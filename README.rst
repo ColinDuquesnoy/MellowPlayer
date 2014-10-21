@@ -15,7 +15,7 @@ other operating systems such as Windows or Mac OSX.*
 Supported Services
 ------------------
 
-At the moment (v0.1), there is only one supported service: Grooveshark.
+At the moment (*v0.1*), there is only one supported service: Grooveshark.
 
 Feel free to request other services on the bug tracker or submit a pull request
 that adds support for new a service! ;)
