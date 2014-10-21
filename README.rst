@@ -10,7 +10,8 @@ Nuage is an alternative to NuvolaPlayer.
 
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
-*Nuage has been created specifically for the `KaOS`_ distribution (a pure KDE distribution without any Gtk packages). That being said, Nuage runs perfectly fine on other desktops (OpenBox, XFCE) or on other operating systems such as Windows or Mac OSX.*
+*Nuage has been created specifically for the* `KaOS`_ 
+*distribution (a pure KDE distribution without any Gtk packages). That being said, Nuage runs perfectly fine on other desktops (OpenBox, XFCE) or on other operating systems such as Windows or Mac OSX.*
 
 
 Supported Services
@@ -37,4 +38,4 @@ Installation
 
 
 .. links:
-.. _KaOS:
+.. _KaOS: http://kaosx.us/
