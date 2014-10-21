@@ -1,24 +1,25 @@
 About
 -----
 
-**NuagePlayer** is a free and cross-platform desktop application that runs a web
-interface of **cloud music services** in its own window and provides **integration with
-your desktop** (multimedia keys, system tray, notifications and more).
+**MellowPlayer** is a free, open source and cross-platform desktop application
+that runs a web interface of **cloud music services** in its own window and
+provides **integration with your desktop** (multimedia keys, system tray,
+notifications and more).
 
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
-*NuagePlayer is an alternative to* `NuvolaPlayer`_ *specifically created for the* `KaOS`_ 
-*distribution (a pure KDE distribution without any Gtk packages).*
-*That being said, NuagePlayer runs perfectly fine on other desktops (OpenBox, XFCE) or on 
-other operating systems such as Windows or Mac OSX.*
+*MellowPlayer is an alternative to* `NuvolaPlayer`_ *specifically created for*
+*the* `KaOS`_ *distribution (a pure KDE distribution without any Gtk
+packages).That being said, MellowPlayer runs perfectly fine on other desktops
+(OpenBox, XFCE) or on another operating systems such as Windows or Mac OSX.*
 
 Supported Services
 ------------------
 
 At the moment (*v0.1*), there is only one supported service: Grooveshark.
 
-Feel free to request other services on the bug tracker or submit a pull request
-that adds support for new a service! ;)
+Feel free to request other services by opening an issue on the bug tracker or
+submit a pull request that adds support for new a service! ;)
 
 
 Requirements
@@ -32,8 +33,7 @@ Installation
 ------------
 ::
 
-    pip3 install nuageplayer
-
+    pip3 install mellowplayer
 
 .. links:
 

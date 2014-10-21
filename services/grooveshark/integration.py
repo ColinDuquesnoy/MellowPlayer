@@ -1,15 +1,18 @@
 """
 This module contains the Grooveshark service implementation.
 """
-from .base import MusicService
+from mellowplayer.api import ServiceIntegration
 
 
-class GroovesharkService(MusicService):
+class GroovesharkServiceIntegration(ServiceIntegration):
     """
-    Implements the grooveshark service using the grooveshark's javascript API.
-    """
-    url = 'http://grooveshark.com'
+    Official service that provides Grooveshark integration using the
+    `Grooveshark JavaScript API`_
 
+    .. _Grooveshark JavaScript API:
+        http://developers.grooveshark.com/docs/js_api/
+
+    """
     def play(self):
         self.jseval('window.Grooveshark.play();')
 
