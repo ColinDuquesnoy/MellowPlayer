@@ -3,6 +3,7 @@ This module contains the cloud music service API.
 """
 import configparser
 import importlib.machinery
+import logging
 import os
 import platform
 from PyQt4 import QtCore
@@ -73,6 +74,7 @@ class ServiceIntegration(QtCore.QObject):
 class PluginMetadata:
     SECTION = 'PluginMetadata'
     def __init__(self, path):
+        _logger().debug('loading plugin metadata')
         config = configparser.RawConfigParser()
         config.read(path)
         self.name = config.get(self.SECTION, 'name')
@@ -110,6 +112,53 @@ class ServicePlugin:
         self.description = ''
         self._load(plugin_dir, webview)
 
+    @classmethod
+    def get_description_path(cls, plugin_dir):
+        return os.path.join(plugin_dir, cls.FN_DESCRIPTION)
+
+    @classmethod
+    def get_integration_path(cls, plugin_dir):
+        return os.path.join(plugin_dir, cls.FN_INTEGRATION)
+
+    @classmethod
+    def get_metadata_path(self, plugin_dir):
+        return os.path.join(plugin_dir, self.FN_METADATA)
+
+    @classmethod
+    def get_required_files(cls, plugin_dir):
+        paths = [
+            cls.get_metadata_path(plugin_dir),
+            cls.get_description_path(plugin_dir),
+            cls.get_integration_path(plugin_dir)
+        ]
+        return paths
+
+    @classmethod
+    def check_required_paths(cls, plugin_dir):
+        missing_paths = []
+        for pth in cls.get_required_files(plugin_dir):
+            if not os.path.exists(pth):
+                missing_paths.append(pth)
+        return missing_paths
+
+    def _load_description(self, plugin_dir):
+        _logger().debug('loading plugin description')
+        with open(self.get_description_path(plugin_dir), 'r') as f:
+            self.description = f.read()
+
+    def _load_integration(self, plugin_dir, webview):
+        module = self.get_integration_path(plugin_dir)
+        name = '%s_%s' % (
+            os.path.split(module)[1].replace('.py', ''),
+            self.metadata.name.lower())
+        _logger().debug("importing <module '%s' from '%s'>", name, module)
+        loader = importlib.machinery.SourceFileLoader(name, module)
+        plugin_module = loader.load_module()
+        classname = '%sServiceIntegration' % self.metadata.name
+        _logger().debug('loading %s.%s', name, classname)
+        loaded_class = getattr(plugin_module, classname)
+        self.integration = loaded_class(webview)
+
     def _load(self, plugin_dir, webview):
         """
         Loads a plugin from the 3 required files (metadata, description,
@@ -118,20 +167,13 @@ class ServicePlugin:
         :param plugin_dir: path of the directory which contains the plugins
             files.
         """
-        with open(os.path.join(plugin_dir, self.FN_DESCRIPTION), 'r') as f:
-            self.description = f.read()
-        self.metadata = PluginMetadata(os.path.join(
-            plugin_dir, self.FN_METADATA))
+        self._load_description(plugin_dir)
+        self.metadata = PluginMetadata(self.get_metadata_path(plugin_dir))
+        self._load_integration(plugin_dir, webview)
 
-        module = os.path.join(plugin_dir, 'integration.py')
-        name ='%s_%s' % (
-            os.path.split(module)[1].replace('.py', ''),
-            self.metadata.name.lower())
-        loader = importlib.machinery.SourceFileLoader(name, module)
-        plugin_module = loader.load_module()
-        loaded_class = getattr(plugin_module, '%sServiceIntegration' %
-                               self.metadata.name)
-        self.integration = loaded_class(webview)
+
+def _logger():
+    return logging.getLogger(__name__)
 
 
 class ServiceManager:
@@ -157,6 +199,7 @@ class ServiceManager:
         """
         Initialises the plugins path.
         """
+        _logger().debug('setting up plugins search path')
         app_dir = os.path.join(os.getcwd(), self.SV_DIR)
         if platform.system().lower() == 'windows':
             user_dir = os.path.join(os.getenv('APPDATA') or '~',
@@ -164,43 +207,67 @@ class ServiceManager:
         else:
             # 2 places on linux and osx (user place and system place)
             sys_dir = '/usr/share/mellowplayer/%s' % self.SV_DIR
-            self._plugins_path.append(sys_dir)
+            if os.path.exists(sys_dir):
+                self._plugins_path.append(sys_dir)
             user_dir = os.path.join('~/.local/share/mellowplayer', self.SV_DIR)
         user_dir = os.path.expanduser(user_dir)
         if not os.path.exists(user_dir):
             # make sure user dir exists
             os.makedirs(user_dir)
-        self._plugins_path.append(app_dir)
-        self._plugins_path.append(user_dir)
+        if os.path.exists(app_dir):
+            self._plugins_path.append(app_dir)
+        if os.path.exists(user_dir):
+            self._plugins_path.append(user_dir)
         # user workspace
         self._plugins_path.append(os.getcwd())
+        _logger().info('service integrations plugin search path: %s',
+                       ';'.join(self._plugins_path))
+
+    def _add_plugin(self, path, plugin):
+        name = plugin.metadata.name
+        if name in self._plugins:
+            _logger().warning('a service integration plugin '
+                              'with the same name already '
+                              'exists: <%s>', path)
+        else:
+            self._plugins[name] = plugin
+            _logger().info('service integration plugin '
+                           'successfully loaded: <%s>', path)
 
     def _load_plugins(self, webview):
+        _logger().debug('loading plugins')
         for root in self._plugins_path:
-            print('inspecting potential plugin path: %s' % root)
+            _logger().debug('inspecting potential plugin path: %s', root)
             flg = False
-            try:
-                for plugin_dir in os.listdir(root):
-                    plugin_dir = os.path.join(root, plugin_dir)
-                    print('trying to load service: %s' % plugin_dir)
-                    try:
-                        plugin = ServicePlugin(plugin_dir, webview)
-                    except (OSError,
-                            configparser.NoOptionError) as e:
-                        # invalid plugin dir
-                        print('invalid service plugin: %s' % plugin_dir)
-                    else:
-                        flg = True
-                        self._plugins[plugin.metadata.name] = plugin
-            except OSError:
-                # no services directory, continue with next path
-                print('directory not found: %s' % root)
-            else:
-                if flg is False:
-                    print('no valid services found in %s' % root)
-        print('available service integration plugins: %r' %
-              list(self._plugins.keys()))
+            for plugin_dir in os.listdir(root):
+                path = os.path.join(root, plugin_dir)
+                if (os.path.isfile(path) or
+                        plugin_dir.startswith('.')):
+                    continue
+                _logger().debug('loading service integration plugin: <%s>',
+                                path)
+                missing_files = ServicePlugin.check_required_paths(path)
+                if missing_files:
+                    _logger().warning(
+                        'not a valid service integration plugin, '
+                        'cannot find required plugin files: %r', missing_files)
+                    continue
+                try:
+                    plugin = ServicePlugin(path, webview)
+                except Exception:
+                    # invalid plugin dir, just log why the loading failed
+                    _logger().exception(
+                        'failed to load service integration plugin: <%s>',
+                        path)
+                else:
+                    flg = True
+                    self._add_plugin(path, plugin)
+            if flg is False:
+                _logger().debug('no valid services found in %s', root)
+        _logger().info('available services: %s',
+                       ', '.join(self._plugins.keys()))
 
     def start(self, service_name):
         service = self._plugins[service_name]
+        _logger().info('starting service: %s', service_name)
         self._webview.load(QtCore.QUrl(service.metadata.url))

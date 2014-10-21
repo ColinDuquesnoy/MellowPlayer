@@ -8,24 +8,25 @@ notifications and more).
 
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
-*MellowPlayer is an alternative to* `NuvolaPlayer`_ *specifically created for*
-*the* `KaOS`_ *distribution (a pure KDE distribution without any Gtk
-packages).That being said, MellowPlayer runs perfectly fine on other desktops
-(OpenBox, XFCE) or on another operating systems such as Windows or Mac OSX.*
+Supported platforms:
+--------------------
+- GNU/Linux
+- Windows
+- Mac OSX
 
 Supported Services
 ------------------
 
-At the moment (*v0.1*), there is only one supported service: Grooveshark.
+At the moment, there is only one cloud music service: **Grooveshark**.
 
-Feel free to request other services by opening an issue on the bug tracker or
-submit a pull request that adds support for new a service! ;)
+Feel free to request support for new services by opening an issue on the bug
+tracker or by submitting a pull request! See the `Service Integration API`_.
 
 
 Requirements
 ------------
 
-- Python 3 (>= 3.2)
+- Python 3 (>= 3.4)
 - PyQt4
 
 
@@ -34,6 +35,22 @@ Installation
 ::
 
     pip3 install mellowplayer
+
+
+
+Notes
+-----
+
+*MellowPlayer is an alternative to* `NuvolaPlayer`_ *specifically created for*
+*the* `KaOS`_ *distribution. KaOS is pure KDE distribution that does not have
+(and will never have) the GTK packages needed to run NuvolaPlayer.
+
+The player has been designed for an integration into Qt based desktops (KDE or
+LxQt), and will run well on classic desktops that still have a system tray (
+XFCE, Cinnamon, OpenBox,...).
+
+We do not recommend to use that application on a Gnome Shell or Unity desktop (
+use `NuvolaPlayer`_ instead).
 
 .. links:
 

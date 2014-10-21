@@ -1,12 +1,18 @@
 """
 This module contains the webview and the cookie jar used by the main window.
 """
+import logging
 from PyQt4 import QtCore, QtWebKit, QtNetwork
+
+
+def _logger():
+    return logging.getLogger(__name__)
 
 
 class CookieJar(QtNetwork.QNetworkCookieJar):
     def __init__(self, cookies_key, parent=None):
         super(CookieJar, self).__init__(parent)
+        _logger().debug('loading cookies')
         self.main_window = parent
         # self.main_window.settings.clear()
         self._key = cookies_key
@@ -14,7 +20,7 @@ class CookieJar(QtNetwork.QNetworkCookieJar):
         if val:
             val = eval(val)
             self.setAllCookies(QtNetwork.QNetworkCookie.parseCookies('\n'.join(val.values())))
-        print('loaded %d cookies' % len(self.allCookies()))
+        _logger().info('%d cookies loaded', len(self.allCookies()))
 
     def setCookiesFromUrl(self, cookie_list, url):
         val = self.main_window.settings.value(self._key)
