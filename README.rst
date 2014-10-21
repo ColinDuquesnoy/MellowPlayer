@@ -1,12 +1,9 @@
 About
 -----
 
-Nuage is a free and cross platform desktop application that runs a web
-interface of cloud music services in its own window and provides integration with
-your desktop (multimedia keys, system tray, media player applets, dock menu,
-notifications and more).
-
-Nuage is an alternative to NuvolaPlayer.
+**NuagePlayer** is a free and cross platform desktop application that runs a web
+interface of *cloud music services* in its own window and provides integration with
+your desktop (multimedia keys, system tray, notifications and more). Nuage is an alternative to `NuvolaPlayer`_.
 
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
@@ -39,3 +36,4 @@ Installation
 
 .. links:
 .. _KaOS: http://kaosx.us/
+.. _NuvolaPlayer: http://nuvolaplayer.fenryxo.cz/home.html
