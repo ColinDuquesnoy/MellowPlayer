@@ -40,7 +40,7 @@ Notes
 -----
 
 MellowPlayer is an alternative to `NuvolaPlayer`_ specifically created for
-the `KaOS`_ distribution. *KaOS* is pure KDE distribution that does not have
+the `KaOS`_ distribution. *KaOS* is a pure KDE distribution that does not have
 (and will never have) the GTK packages needed to run NuvolaPlayer.
 
 The player has been designed for an integration into Qt based desktops (KDE or
