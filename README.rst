@@ -6,6 +6,8 @@ that runs a web interface of **cloud music services** in its own window and
 provides **integration with your desktop** (multimedia keys, system tray,
 notifications and more).
 
+**MellowPlayer has been heavily inspired by `NuvolaPlayer`_**
+
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
 Supported platforms:
