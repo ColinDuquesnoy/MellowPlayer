@@ -31,7 +31,7 @@ Installation
 ------------
 ::
 
-    pip3 install nuage
+    pip3 install nuageplayer
 
 
 .. links:
