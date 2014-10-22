@@ -2,8 +2,10 @@ import functools
 import logging
 import os
 import platform
+import subprocess
 from zipfile import ZipFile
-from qidle import __version__
+from mellowplayer import __version__
+
 
 WINDOWS = platform.system() == 'Windows'
 LINUX = platform.system() == 'Linux'
@@ -36,3 +38,34 @@ def get_cache_directory():
                             'Caches', 'MellowPlayer')
     else:
         return os.path.join(os.path.expanduser("~"), '.cache', 'MellowPlayer')
+
+
+def get_versions():
+    """ Get version information for components used by MellowPlayer """
+    import sys
+    import platform
+
+    from PyQt4.QtCore import QT_VERSION_STR
+    from PyQt4.Qt import PYQT_VERSION_STR
+
+    return {
+        'mellowplayer': __version__,
+        'python': platform.python_version(),  # "2.7.3"
+        'bitness': 64 if sys.maxsize > 2**32 else 32,
+        'qt': QT_VERSION_STR,
+        'qt_api': 'PyQt4 (API v2)',
+        'qt_api_ver': PYQT_VERSION_STR,
+        'system': platform.system(),  # Linux, Windows, ...
+    }
+
+
+def get_vcs_revision():
+    def get_git_revision_hash():
+        return subprocess.check_output(
+            ['git', 'rev-parse', '--short', 'HEAD']).decode('utf-8').replace('\n', '')
+
+    def get_git_branch_name():
+        return subprocess.check_output(
+            ['git', 'branch']).decode('utf-8').replace('* ', '').replace('\n', '')
+
+    return '%s@%s' % (get_git_revision_hash(), get_git_branch_name())
