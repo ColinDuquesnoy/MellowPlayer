@@ -1,13 +1,13 @@
 import logging
 import sys
-from PyQt4 import QtGui
+from PyQt5 import QtWidgets
 from mellowplayer import __version__, logger
 from mellowplayer.gui.main_window import MainWindow
 
 
 def main():
     logger.setup(verbose=False)
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
     window.show()
     window.services.start('Grooveshark')

@@ -33,12 +33,12 @@ print("01. Patched sys.path with %s" % DEVPATH)
 
 #--- checking required dependencies
 try:
-    import PyQt4
+    import PyQt5
 except ImportError:
-    print('02. WARNING: PyQt4 not detected. Install pyqt4 for python3 and try again...')
+    print('02. WARNING: PyQt5 not detected. Install PyQt5 for python3 and try again...')
     sys.exit(1)
 else:
-    print('02. PyQt4 detected')
+    print('02. PyQt5 detected')
 
 
 #--- importing MellowPlayer

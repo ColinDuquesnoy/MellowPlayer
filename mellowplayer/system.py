@@ -45,15 +45,15 @@ def get_versions():
     import sys
     import platform
 
-    from PyQt4.QtCore import QT_VERSION_STR
-    from PyQt4.Qt import PYQT_VERSION_STR
+    from PyQt5.QtCore import QT_VERSION_STR
+    from PyQt5.Qt import PYQT_VERSION_STR
 
     return {
         'mellowplayer': __version__,
         'python': platform.python_version(),  # "2.7.3"
         'bitness': 64 if sys.maxsize > 2**32 else 32,
         'qt': QT_VERSION_STR,
-        'qt_api': 'PyQt4 (API v2)',
+        'qt_api': 'PyQt5 (API v2)',
         'qt_api_ver': PYQT_VERSION_STR,
         'system': platform.system(),  # Linux, Windows, ...
     }

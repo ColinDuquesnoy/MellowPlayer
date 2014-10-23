@@ -6,7 +6,7 @@ import importlib.machinery
 import logging
 import os
 import platform
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 
 class ServiceIntegration(QtCore.QObject):
