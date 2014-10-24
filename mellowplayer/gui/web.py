@@ -2,7 +2,7 @@
 This module contains the webview and the cookie jar used by the main window.
 """
 import logging
-from PyQt5 import QtCore, QtWebKit, QtNetwork, QtWebKitWidgets
+from PyQt4 import QtCore, QtWebKit, QtNetwork
 
 
 def _logger():
@@ -33,7 +33,7 @@ class CookieJar(QtNetwork.QNetworkCookieJar):
         return super(CookieJar, self).setCookiesFromUrl(cookie_list, url)
 
 
-class WebView(QtWebKitWidgets.QWebView):
+class WebView(QtWebKit.QWebView):
     def __init__(self, parent=None):
         super(WebView, self).__init__(parent)
         self.cookieJar = CookieJar()

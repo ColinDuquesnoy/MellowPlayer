@@ -23,7 +23,7 @@ print("Executing MellowPlayer from source checkout")
 #--- checking minimum python version, we need Python >= 3.4
 pyver = "%s%s" % (sys.version_info[0], sys.version_info[1])
 if pyver < '34':
-    print('Cannot run MellowPlayer with Python %s, Python >= 3.4 is required' %
+    print('Cannot run MellowPlayer with Python %s, Python >= 3.4 is required',
           platform.python_version())
     sys.exit(1)
 
@@ -36,7 +36,7 @@ print("01. Patched sys.path with %s" % DEVPATH)
 
 #--- checking required dependencies
 try:
-    import PyQt5
+    import PyQt4
 except ImportError:
     from mellowplayer.system import LINUX, linux_distribution
     if LINUX:
@@ -58,7 +58,7 @@ except ImportError:
     print('02. WARNING: PyQt5 not detected. Install PyQt5 for python3 and '
           'try again...')
 else:
-    print('02. PyQt5 detected')
+    print('02. PyQt4 detected')
 
 
 #--- importing MellowPlayer

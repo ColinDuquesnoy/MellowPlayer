@@ -19,8 +19,11 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <property name="leftMargin">
-     <number>6</number>
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
     </property>
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
@@ -58,7 +61,7 @@
         <item row="1" column="1">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;No streaming service is loaded.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;No streaming service is selected.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -106,7 +109,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonLoad">
+         <widget class="QPushButton" name="pushButtonSelect">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -114,7 +117,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Load service</string>
+           <string>Select service</string>
           </property>
           <property name="icon">
            <iconset resource="../share/icons/icons.qrc">
@@ -134,7 +137,9 @@
            <string>Quit</string>
           </property>
           <property name="icon">
-           <iconset theme="exit"/>
+           <iconset theme="exit">
+            <normaloff/>
+           </iconset>
           </property>
          </widget>
         </item>
@@ -170,7 +175,7 @@
     <property name="title">
      <string>Application</string>
     </property>
-    <addaction name="actionChoose_service"/>
+    <addaction name="actionSelect_service"/>
     <addaction name="separator"/>
     <addaction name="actionPreferences"/>
    </widget>
@@ -197,18 +202,18 @@
    <addaction name="menuPlayback"/>
    <addaction name="menu"/>
   </widget>
-  <action name="actionChoose_service">
+  <action name="actionSelect_service">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="gtk-preferences" resource="../share/icons/icons.qrc">
      <normaloff>:/edit-services.svg</normaloff>:/edit-services.svg</iconset>
    </property>
    <property name="text">
-    <string>Choose service</string>
+    <string>Select service</string>
    </property>
   </action>
   <action name="actionPreferences">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="preferences-system" resource="../share/icons/icons.qrc">
      <normaloff>:/preferences-system.svg</normaloff>:/preferences-system.svg</iconset>
    </property>
    <property name="text">
@@ -217,7 +222,7 @@
   </action>
   <action name="actionPlay">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="media-playback-start" resource="../share/icons/icons.qrc">
      <normaloff>:/media-playback-start.svg</normaloff>:/media-playback-start.svg</iconset>
    </property>
    <property name="text">
@@ -226,7 +231,7 @@
   </action>
   <action name="actionStop">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="media-playback-stop" resource="../share/icons/icons.qrc">
      <normaloff>:/media-playback-stop.svg</normaloff>:/media-playback-stop.svg</iconset>
    </property>
    <property name="text">
@@ -235,7 +240,7 @@
   </action>
   <action name="actionPause">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="media-playback-pause" resource="../share/icons/icons.qrc">
      <normaloff>:/media-playback-pause.svg</normaloff>:/media-playback-pause.svg</iconset>
    </property>
    <property name="text">
@@ -244,7 +249,7 @@
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="go-next" resource="../share/icons/icons.qrc">
      <normaloff>:/go-next.svg</normaloff>:/go-next.svg</iconset>
    </property>
    <property name="text">
@@ -253,7 +258,7 @@
   </action>
   <action name="actionPrevious">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="go-previous" resource="../share/icons/icons.qrc">
      <normaloff>:/go-previous.svg</normaloff>:/go-previous.svg</iconset>
    </property>
    <property name="text">
@@ -262,7 +267,7 @@
   </action>
   <action name="actionAbout_MellowPlayer">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="help-about" resource="../share/icons/icons.qrc">
      <normaloff>:/help-about.svg</normaloff>:/help-about.svg</iconset>
    </property>
    <property name="text">
@@ -271,7 +276,7 @@
   </action>
   <action name="actionReport_a_bug">
    <property name="icon">
-    <iconset resource="../share/icons/icons.qrc">
+    <iconset theme="tools-report-bug" resource="../share/icons/icons.qrc">
      <normaloff>:/tools-report-bug.svg</normaloff>:/tools-report-bug.svg</iconset>
    </property>
    <property name="text">
