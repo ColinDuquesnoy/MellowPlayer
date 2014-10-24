@@ -5,10 +5,5 @@ web interface of **cloud music services** in its own window and provides
 notifications and more).
 
 """
-import sip
-sip.setapi("QString", 2)
-sip.setapi("QVariant", 2)
 
-__version__ = '0.1.dev'
-
-
+__version__ = '1.0a1'
