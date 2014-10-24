@@ -15,7 +15,6 @@ linux_distribution = None
 if LINUX:
     linux_distribution = os.popen(
         '. /etc/os-release && echo "$NAME"').read().splitlines()[0]
-    KaOS = linux_distribution == 'KaOS'
 
 
 def ensure_directory_exists(func):
@@ -59,9 +58,10 @@ def get_versions():
         'python': platform.python_version(),  # "2.7.3"
         'bitness': 64 if sys.maxsize > 2**32 else 32,
         'qt': QT_VERSION_STR,
-        'qt_api': 'PyQt5',
+        'qt_api': 'PyQt5 (API v2)',
         'qt_api_ver': PYQT_VERSION_STR,
-        'system': platform.system(),  # Linux, Windows, ...
+        'system': platform.system() + (' - %s' % linux_distribution if LINUX
+                                       else '')
     }
 
 

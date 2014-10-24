@@ -1,6 +1,7 @@
 import logging
+import os
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 from mellowplayer import __version__, logger
 from mellowplayer.gui.main_window import MainWindow
 

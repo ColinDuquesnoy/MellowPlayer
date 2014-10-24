@@ -10,34 +10,33 @@ def _logger():
 
 
 class CookieJar(QtNetwork.QNetworkCookieJar):
-    def __init__(self, cookies_key, parent=None):
-        super(CookieJar, self).__init__(parent)
+    def __init__(self):
+        super(CookieJar, self).__init__()
         _logger().debug('loading cookies')
-        self.main_window = parent
-        # self.main_window.settings.clear()
-        self._key = cookies_key
-        val = self.main_window.settings.value(self._key)
+        self.settings = QtCore.QSettings("mellowplayer")
+        self._key = 'cookies'
+        val = self.settings.value(self._key)
         if val:
             val = eval(val)
             self.setAllCookies(QtNetwork.QNetworkCookie.parseCookies('\n'.join(val.values())))
         _logger().info('%d cookies loaded', len(self.allCookies()))
 
     def setCookiesFromUrl(self, cookie_list, url):
-        val = self.main_window.settings.value(self._key)
+        val = self.settings.value(self._key)
         if val is None:
             val = {}
         else:
             val = eval(val)
         for cookie in cookie_list:
             val[str(cookie.name())] = bytes(cookie.toRawForm()).decode()
-        self.main_window.settings.setValue(self._key, repr(val))
+        self.settings.setValue(self._key, repr(val))
         return super(CookieJar, self).setCookiesFromUrl(cookie_list, url)
 
 
 class WebView(QtWebKitWidgets.QWebView):
-    def __init__(self, cookies_key, parent=None):
+    def __init__(self, parent=None):
         super(WebView, self).__init__(parent)
-        self.cookieJar = CookieJar(cookies_key, parent)
+        self.cookieJar = CookieJar()
         self.page().networkAccessManager().setCookieJar(self.cookieJar)
         settings = self.settings()
         settings.setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)

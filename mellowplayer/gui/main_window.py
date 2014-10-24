@@ -1,14 +1,14 @@
 from PyQt5 import QtCore, QtWidgets
 from mellowplayer import __version__
 from mellowplayer.api import ServiceManager
-from .webview import WebView
+from .web import WebView
+from .forms.main_window_ui import Ui_MainWindow
 
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.settings = QtCore.QSettings("mellowplayer")
-        self.web_view = WebView('cookies', parent=self)
-        self.setCentralWidget(self.web_view)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.services = ServiceManager(self.ui.webView)
         self.setWindowTitle('MellowPlayer %s' % __version__)
-        self.services = ServiceManager(self.web_view)
