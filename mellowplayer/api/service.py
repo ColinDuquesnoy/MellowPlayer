@@ -248,7 +248,7 @@ class ServiceManager:
                                 path)
                 missing_files = ServicePlugin.check_required_paths(path)
                 if missing_files:
-                    _logger().warning(
+                    _logger().debug(
                         'not a valid service integration plugin, '
                         'cannot find required plugin files: %r', missing_files)
                     continue
