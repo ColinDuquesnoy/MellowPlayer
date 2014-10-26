@@ -5,9 +5,9 @@ import configparser
 import importlib.machinery
 import logging
 import os
-import platform
 from PyQt4 import QtCore
 from mellowplayer import system
+from mellowplayer.settings import Settings
 
 
 class ServiceIntegration(QtCore.QObject):
@@ -193,7 +193,7 @@ class ServiceManager:
 
     @property
     def current_service(self):
-        return self.settings.value('current_service', '')
+        return Settings().current_service
 
     @current_service.setter
     def current_service(self, value):
@@ -202,7 +202,7 @@ class ServiceManager:
         except KeyError:
             pass
         else:
-            self.settings.setValue('current_service', value)
+            Settings().current_service = value
 
     def __init__(self, web_view):
         self._current = None
@@ -211,7 +211,6 @@ class ServiceManager:
         self._init_plugins_path()
         self._load_plugins(web_view)
         self._webview = web_view
-        self.settings = QtCore.QSettings("mellowplayer")
         if self.current_service:
             self._current = self.plugins[self.current_service]
 
