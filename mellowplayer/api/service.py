@@ -6,6 +6,7 @@ import importlib.machinery
 import logging
 import os
 from PyQt4 import QtCore
+import sys
 from mellowplayer import system
 from mellowplayer.settings import Settings
 
@@ -247,22 +248,30 @@ class ServiceManager:
         if self._current:
             self._current.integration.previous()
 
+    @property
+    def current_song(self):
+        if self._current:
+            return self._current.integration.current_song()
+        return None
+
+    def _append_plugin_path(self, path):
+        if os.path.exists(path):
+            self._plugins_path.append(path)
+
     def _init_plugins_path(self):
         """
         Initialises the plugins path.
         """
         _logger().debug('setting up plugins search path')
-        sys_dir = '/usr/share/mellowplayer/%s' % self.SV_DIR
-        if os.path.exists(sys_dir):
-            self._plugins_path.append(sys_dir)
+        if system.LINUX:
+            sys_dir = '%s/share/mellowplayer/%s' % (sys.prefix, self.SV_DIR)
+            self._append_plugin_path(sys_dir)
         user_dir = self.get_user_dir()
-        if os.path.exists(user_dir):
-            self._plugins_path.append(user_dir)
+        self._append_plugin_path(user_dir)
+        # if running from source checkout, for developers or people who want
+        # to run the app without actually installing.
         app_dir = os.path.join(os.getcwd(), self.SV_DIR)
-        if os.path.exists(app_dir):
-            self._plugins_path.append(app_dir)
-        # user workspace
-        self._plugins_path.append(os.getcwd())
+        self._append_plugin_path(app_dir)
         _logger().info('service integrations plugin search path: %s',
                        ';'.join(self._plugins_path))
 
@@ -316,7 +325,7 @@ class ServiceManager:
                 flg = self.add_plugin(path, web_view)
             if flg is False:
                 _logger().debug('no valid services found in %s', root)
-        # load user custom plugins.
+        # todo load custom user plugins.
         _logger().info('available services: %s',
                        ', '.join(self.plugins.keys()))
 

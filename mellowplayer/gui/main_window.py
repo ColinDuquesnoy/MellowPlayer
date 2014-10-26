@@ -1,9 +1,14 @@
+import logging
 from PyQt4 import QtCore, QtGui
 from mellowplayer import __version__
-from mellowplayer.api import ServiceManager
+from mellowplayer.api import ServiceManager, SongStatus
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
 from mellowplayer.settings import Settings
+
+
+def _logger():
+    return logging.getLogger(__name__)
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -18,6 +23,54 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.pushButtonQuit.clicked.connect(self.close)
         self.ui.actionQuit.triggered.connect(self.close)
         self._init_tray_icon()
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self._update_song_status)
+        self.timer.start(1000)
+        self._current_song = None
+
+    #--- Update song status and infos
+    def _update_song_status(self):
+        _logger().debug('updating sound status')
+        song = self.services.current_song
+        if song != self._current_song:
+            self._current_song = song
+            self._notify_new_song()
+        if song:
+            self.setWindowTitle(
+                '%s - MellowPlayer' % str(song))
+            self.tray_icon.setToolTip(
+                '%s - MellowPlayer' % song.pretty_string())
+            self.action_current_song.setText(str(song))
+            self.action_current_song.setEnabled(True)
+            self.ui.actionNext.setEnabled(True)
+            self.ui.actionPrevious.setEnabled(True)
+            if song.status <= SongStatus.Playing:
+                self.action_current_song.setIcon(self.ui.actionPlay.icon())
+                self.ui.actionPlay.setEnabled(False)
+                self.ui.actionPause.setEnabled(True)
+                self.ui.actionStop.setEnabled(True)
+            elif song.status == SongStatus.Paused:
+                self.action_current_song.setIcon(self.ui.actionPause.icon())
+                self.ui.actionPlay.setEnabled(True)
+                self.ui.actionPause.setEnabled(False)
+                self.ui.actionStop.setEnabled(True)
+            elif song.status == SongStatus.Stopped:
+                self.action_current_song.setIcon(self.ui.actionStop.icon())
+                self.ui.actionPlay.setEnabled(False)
+                self.ui.actionPause.setEnabled(False)
+                self.ui.actionStop.setEnabled(False)
+        else:
+            self.setWindowTitle('MellowPlayer')
+            self.tray_icon.setToolTip('MellowPlayer')
+            self.action_current_song.setIcon(self.ui.actionStop.icon())
+            self.action_current_song.setEnabled(False)
+            self.action_current_song.setText('No song selected')
+            self.ui.actionNext.setEnabled(False)
+            self.ui.actionPrevious.setEnabled(False)
+            self.ui.actionPlay.setEnabled(False)
+            self.ui.actionPause.setEnabled(False)
+            self.ui.actionStop.setEnabled(False)
+
 
     #--- system tray icon and close logic
     def close(self):
@@ -26,6 +79,9 @@ class MainWindow(QtGui.QMainWindow):
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()
+        hide &= ((self._current_song is not None and
+                  self._current_song.status <= SongStatus.Playing) or
+                 not Settings().exit_on_close_if_not_playing)
         if hide:
             if not Settings().flg_close:
                 QtGui.QMessageBox.information(
@@ -47,10 +103,18 @@ class MainWindow(QtGui.QMainWindow):
         action_restore.setIcon(QtGui.QIcon.fromTheme(
             'Restore', QtGui.QIcon(':/view-restore.svg')))
         menu.addAction(action_restore)
+        self.action_restore = action_restore
+        menu.addSeparator()
+        self.action_current_song = QtGui.QAction('No song', self)
+        self.action_current_song.setEnabled(False)
+        menu.addAction(self.action_current_song)
         menu.addSeparator()
         menu.addActions(self.ui.menuPlayback.actions())
         menu.addSeparator()
         menu.addActions(self.ui.menuApplication.actions())
+        self.ui.menuPlayback.insertAction(
+            self.ui.actionPlay, self.action_current_song)
+        self.ui.menuPlayback.insertSeparator(self.ui.actionPlay)
         self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
         self.tray_icon.activated.connect(self._on_tray_icon_activated)
@@ -67,6 +131,7 @@ class MainWindow(QtGui.QMainWindow):
         else:
             # only show tray if the window is not visible
             self.tray_icon.setVisible(not visible)
+        self.action_restore.setEnabled(not visible)
 
     #--- slots
     @QtCore.pyqtSlot()
@@ -119,3 +184,6 @@ class MainWindow(QtGui.QMainWindow):
         if service and service != self.services.current_service:
             self.services.current_service = service
             self._start_current()
+
+    def _notify_new_song(self):
+        _logger().info('new song: %s' % self._current_song)

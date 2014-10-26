@@ -17,6 +17,14 @@ class Settings(QtCore.QSettings):
         self.setValue('flg_close', repr(val))
 
     @property
+    def exit_on_close_if_not_playing(self):
+        return eval(self.value('exit_on_close_if_not_playing', 'True'))
+
+    @exit_on_close_if_not_playing.setter
+    def exit_on_close_if_not_playing(self, value):
+        self.setValue('exit_on_close_if_not_playing', repr(value))
+
+    @property
     def cookies(self):
         return self.value('cookies')
 

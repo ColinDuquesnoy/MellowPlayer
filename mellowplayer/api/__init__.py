@@ -7,11 +7,14 @@ This package contains the application API:
 from .service import ServiceIntegration
 from .service import ServicePlugin
 from .service import ServiceManager
+from .song import SongStatus, Song
 
 
 # Public API
 __all__ = [
     'ServiceIntegration',
     'ServicePlugin',
-    'ServiceManager'
+    'ServiceManager',
+    'Song',
+    'SongStatus'
 ]
