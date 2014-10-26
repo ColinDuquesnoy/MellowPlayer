@@ -34,6 +34,7 @@ class MainWindow(QtGui.QMainWindow):
                     'system tray. To terminate the program, '
                     'choose <b>Quit</b> in the context menu '
                     'of the system tray entry.')
+                Settings().flg_close = True
             self.hide()
             ev.ignore()
 
@@ -84,6 +85,26 @@ class MainWindow(QtGui.QMainWindow):
             '0A%0A%23%23%23%20System%20information%0A*%20Operating%20System%3A'
             '%20%0A*%20Mellow%20Player%20Version%3A%0A*%20Service%3A%0A*%20'
             'Service%20version'))
+
+    @QtCore.pyqtSlot()
+    def on_actionPlay_triggered(self):
+        self.services.play()
+
+    @QtCore.pyqtSlot()
+    def on_actionPause_triggered(self):
+        self.services.pause()
+
+    @QtCore.pyqtSlot()
+    def on_actionStop_triggered(self):
+        self.services.stop()
+
+    @QtCore.pyqtSlot()
+    def on_actionNext_triggered(self):
+        self.services.next()
+
+    @QtCore.pyqtSlot()
+    def on_actionPrevious_triggered(self):
+        self.services.previous()
 
     #--- internal helper methods
     def _start_current(self):
