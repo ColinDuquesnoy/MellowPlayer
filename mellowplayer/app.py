@@ -1,17 +1,30 @@
 import logging
-import os
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtCore, QtGui
 from mellowplayer import __version__, logger
 from mellowplayer.gui.main_window import MainWindow
 
 
+def _logger():
+    return logging.getLogger(__name__)
+
+
+class Application(QtGui.QApplication):
+    def __init__(self):
+        QtGui.QApplication.setAttribute(
+            QtCore.Qt.AA_CaptureMultimediaKeys, True)
+        super().__init__(sys.argv)
+        self.window = MainWindow()
+
+    def run(self):
+        self.window.showMaximized()
+        self.exec_()
+        self.window = None
+
+
 def main():
     logger.setup(verbose=False)
-    app = QtGui.QApplication(sys.argv)
-    window = MainWindow()
-    window.showMaximized()
-    app.exec_()
+    Application().run()
 
 
 if __name__ == '__main__':

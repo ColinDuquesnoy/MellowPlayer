@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/colin/Desktop/MellowPlayer/forms/main_window.ui'
 #
-# Created: Sun Oct 26 12:24:55 2014
+# Created: Sun Oct 26 16:36:06 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -189,10 +189,15 @@ class Ui_MainWindow(object):
         self.actionSelect_service.setText(_translate("MainWindow", "Select service", None))
         self.actionPreferences.setText(_translate("MainWindow", "Preferences", None))
         self.actionPlay.setText(_translate("MainWindow", "Play", None))
+        self.actionPlay.setShortcut(_translate("MainWindow", "Media Play", None))
         self.actionStop.setText(_translate("MainWindow", "Stop", None))
+        self.actionStop.setShortcut(_translate("MainWindow", "Media Stop", None))
         self.actionPause.setText(_translate("MainWindow", "Pause", None))
+        self.actionPause.setShortcut(_translate("MainWindow", "Media Play", None))
         self.actionNext.setText(_translate("MainWindow", "Next", None))
+        self.actionNext.setShortcut(_translate("MainWindow", "Media Next", None))
         self.actionPrevious.setText(_translate("MainWindow", "Previous", None))
+        self.actionPrevious.setShortcut(_translate("MainWindow", "Media Previous", None))
         self.actionAbout_MellowPlayer.setText(_translate("MainWindow", "About Mellow Player", None))
         self.actionReport_a_bug.setText(_translate("MainWindow", "Report a bug", None))
         self.actionQuit.setText(_translate("MainWindow", "Quit", None))

@@ -8,6 +8,7 @@ import os
 from PyQt4 import QtCore
 import sys
 from mellowplayer import system
+from . import SongStatus
 from mellowplayer.settings import Settings
 
 
@@ -228,9 +229,15 @@ class ServiceManager:
             os.makedirs(user_dir)
         return user_dir
 
+    def toggle(self):
+        if self.current_song.status > SongStatus.Playing:
+            self._current.integration.play()
+        else:
+            self._current.integration.pause()
+
     def play(self):
         if self._current:
-            self._current.integration.play()
+            self.toggle()
 
     def stop(self):
         if self._current:
@@ -238,7 +245,7 @@ class ServiceManager:
 
     def pause(self):
         if self._current:
-            self._current.integration.pause()
+            self.toggle()
 
     def next(self):
         if self._current:

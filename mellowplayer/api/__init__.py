@@ -4,10 +4,10 @@ This package contains the application API:
   - common classes: Song, SongInfo, SongStatus,...
 
 """
+from .song import SongStatus, Song
 from .service import ServiceIntegration
 from .service import ServicePlugin
 from .service import ServiceManager
-from .song import SongStatus, Song
 
 
 # Public API

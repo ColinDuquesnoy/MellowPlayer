@@ -1,9 +1,10 @@
 import logging
 from PyQt4 import QtCore, QtGui
-from mellowplayer import __version__
+from mellowplayer import __version__, system
 from mellowplayer.api import ServiceManager, SongStatus
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
+from mellowplayer.api.mpris import Mpris2
 from mellowplayer.settings import Settings
 
 
@@ -25,8 +26,9 @@ class MainWindow(QtGui.QMainWindow):
         self._init_tray_icon()
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self._update_song_status)
-        self.timer.start(1000)
+        self.timer.start(10)
         self._current_song = None
+        self.mpris = Mpris2(self)
 
     #--- Update song status and infos
     def _update_song_status(self):
@@ -70,7 +72,6 @@ class MainWindow(QtGui.QMainWindow):
             self.ui.actionPlay.setEnabled(False)
             self.ui.actionPause.setEnabled(False)
             self.ui.actionStop.setEnabled(False)
-
 
     #--- system tray icon and close logic
     def close(self):

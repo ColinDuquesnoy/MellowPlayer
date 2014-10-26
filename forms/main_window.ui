@@ -262,6 +262,9 @@
    <property name="text">
     <string>Play</string>
    </property>
+   <property name="shortcut">
+    <string>Media Play</string>
+   </property>
   </action>
   <action name="actionStop">
    <property name="icon">
@@ -270,6 +273,9 @@
    </property>
    <property name="text">
     <string>Stop</string>
+   </property>
+   <property name="shortcut">
+    <string>Media Stop</string>
    </property>
   </action>
   <action name="actionPause">
@@ -280,6 +286,9 @@
    <property name="text">
     <string>Pause</string>
    </property>
+   <property name="shortcut">
+    <string>Media Play</string>
+   </property>
   </action>
   <action name="actionNext">
    <property name="icon">
@@ -289,6 +298,9 @@
    <property name="text">
     <string>Next</string>
    </property>
+   <property name="shortcut">
+    <string>Media Next</string>
+   </property>
   </action>
   <action name="actionPrevious">
    <property name="icon">
@@ -297,6 +309,9 @@
    </property>
    <property name="text">
     <string>Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Media Previous</string>
    </property>
   </action>
   <action name="actionAbout_MellowPlayer">

@@ -2,7 +2,7 @@
 This module contains the webview and the cookie jar used by the main window.
 """
 import logging
-from PyQt4 import QtCore, QtWebKit, QtNetwork
+from PyQt4 import QtCore, QtWebKit, QtNetwork, QtGui
 from mellowplayer.settings import Settings
 
 
