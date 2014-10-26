@@ -7,6 +7,7 @@ import logging
 import os
 import platform
 from PyQt4 import QtCore
+from mellowplayer import system
 
 
 class ServiceIntegration(QtCore.QObject):
@@ -83,8 +84,14 @@ class PluginMetadata:
         self.maintainer_link = config.get(self.SECTION, 'maintainer_link')
         self.version = config.get(self.SECTION, 'version')
         self.version_minor = config.get(self.SECTION, 'version_minor')
+        self.version_str = '%s.%s' % (self.version, self.version_minor)
         try:
-            self.icon = config.get(self.SECTION, 'version_minor')
+            self.icon = config.get(self.SECTION, 'icon')
+            if not os.path.exists(self.icon):
+                pdir = os.path.abspath(os.path.join(path, os.pardir))
+                self.icon = os.path.join(pdir, self.icon)
+                if not os.path.exists(self.icon):
+                    self.icon = None
         except configparser.ConfigParser:
             # not required
             self.icon = ''
@@ -134,7 +141,7 @@ class ServicePlugin:
         return paths
 
     @classmethod
-    def check_required_paths(cls, plugin_dir):
+    def check_required_files(cls, plugin_dir):
         missing_paths = []
         for pth in cls.get_required_files(plugin_dir):
             if not os.path.exists(pth):
@@ -186,38 +193,55 @@ class ServiceManager:
 
     @property
     def current_service(self):
-        return None
+        return self.settings.value('current_service', '')
+
+    @current_service.setter
+    def current_service(self, value):
+        try:
+            self._current = self.plugins[value]
+        except KeyError:
+            pass
+        else:
+            self.settings.setValue('current_service', value)
 
     def __init__(self, web_view):
+        self._current = None
         self._plugins_path = []
-        self._plugins = {}
+        self.plugins = {}
         self._init_plugins_path()
         self._load_plugins(web_view)
         self._webview = web_view
+        self.settings = QtCore.QSettings("mellowplayer")
+        if self.current_service:
+            self._current = self.plugins[self.current_service]
+
+    def get_user_dir(self):
+        if system.WINDOWS:
+            user_dir = os.path.join(os.getenv('APPDATA') or '~',
+                                    'MellowPlayer', self.SV_DIR)
+        else:
+            user_dir = os.path.join(
+                os.path.expanduser('~'), '.local', 'share', 'mellowplayer',
+                self.SV_DIR)
+        # make sure user dir exists
+        if not os.path.exists(user_dir):
+            os.makedirs(user_dir)
+        return user_dir
 
     def _init_plugins_path(self):
         """
         Initialises the plugins path.
         """
         _logger().debug('setting up plugins search path')
-        app_dir = os.path.join(os.getcwd(), self.SV_DIR)
-        if platform.system().lower() == 'windows':
-            user_dir = os.path.join(os.getenv('APPDATA') or '~',
-                                    'MellowPlayer', self.SV_DIR)
-        else:
-            # 2 places on linux and osx (user place and system place)
-            sys_dir = '/usr/share/mellowplayer/%s' % self.SV_DIR
-            if os.path.exists(sys_dir):
-                self._plugins_path.append(sys_dir)
-            user_dir = os.path.join('~/.local/share/mellowplayer', self.SV_DIR)
-        user_dir = os.path.expanduser(user_dir)
-        if not os.path.exists(user_dir):
-            # make sure user dir exists
-            os.makedirs(user_dir)
-        if os.path.exists(app_dir):
-            self._plugins_path.append(app_dir)
+        sys_dir = '/usr/share/mellowplayer/%s' % self.SV_DIR
+        if os.path.exists(sys_dir):
+            self._plugins_path.append(sys_dir)
+        user_dir = self.get_user_dir()
         if os.path.exists(user_dir):
             self._plugins_path.append(user_dir)
+        app_dir = os.path.join(os.getcwd(), self.SV_DIR)
+        if os.path.exists(app_dir):
+            self._plugins_path.append(app_dir)
         # user workspace
         self._plugins_path.append(os.getcwd())
         _logger().info('service integrations plugin search path: %s',
@@ -225,49 +249,64 @@ class ServiceManager:
 
     def _add_plugin(self, path, plugin):
         name = plugin.metadata.name
-        if name in self._plugins:
+        if name in self.plugins:
             _logger().warning('a service integration plugin '
                               'with the same name already '
                               'exists: <%s>', path)
         else:
-            self._plugins[name] = plugin
+            self.plugins[name] = plugin
             _logger().info('service integration plugin '
                            'successfully loaded: <%s>', path)
 
-    def _load_plugins(self, webview):
+    def add_plugin(self, path, web_view):
+        flg = False
+        plugin_dir = os.path.abspath(os.path.join(path, os.pardir))
+        if (os.path.isfile(path) or
+                plugin_dir.startswith('.')):
+            return flg
+        _logger().debug('loading service integration plugin: <%s>',
+                        path)
+        invalid_files = ServicePlugin.check_required_files(path)
+        if invalid_files:
+            _logger().debug(
+                'not a valid service integration plugin, '
+                'invalid (or missing) plugin files: %r', invalid_files)
+            return flg
+        try:
+            plugin = ServicePlugin(path, web_view)
+        except Exception:
+            # exception when loading plugin, just log it so that the plugin
+            # developer knows what went wrong
+            _logger().exception(
+                'failed to load service integration plugin: <%s>',
+                path)
+        else:
+            # Ok plugin loaded and validated
+            flg = True
+            self._add_plugin(path, plugin)
+        return flg
+
+    def _load_plugins(self, web_view):
         _logger().debug('loading plugins')
+        # plugins from path
         for root in self._plugins_path:
             _logger().debug('inspecting potential plugin path: %s', root)
             flg = False
             for plugin_dir in os.listdir(root):
                 path = os.path.join(root, plugin_dir)
-                if (os.path.isfile(path) or
-                        plugin_dir.startswith('.')):
-                    continue
-                _logger().debug('loading service integration plugin: <%s>',
-                                path)
-                missing_files = ServicePlugin.check_required_paths(path)
-                if missing_files:
-                    _logger().debug(
-                        'not a valid service integration plugin, '
-                        'cannot find required plugin files: %r', missing_files)
-                    continue
-                try:
-                    plugin = ServicePlugin(path, webview)
-                except Exception:
-                    # invalid plugin dir, just log why the loading failed
-                    _logger().exception(
-                        'failed to load service integration plugin: <%s>',
-                        path)
-                else:
-                    flg = True
-                    self._add_plugin(path, plugin)
+                flg = self.add_plugin(path, web_view)
             if flg is False:
                 _logger().debug('no valid services found in %s', root)
+        # load user custom plugins.
         _logger().info('available services: %s',
-                       ', '.join(self._plugins.keys()))
+                       ', '.join(self.plugins.keys()))
 
-    def start(self, service_name):
-        service = self._plugins[service_name]
-        _logger().info('starting service: %s', service_name)
+    def start_current_service(self):
+        if self._current:
+            self._start(self._current)
+            return True
+        return False
+
+    def _start(self, service):
+        _logger().info('starting service: %s', service.metadata.name)
         self._webview.load(QtCore.QUrl(service.metadata.url))

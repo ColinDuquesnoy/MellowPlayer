@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>821</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,8 +32,8 @@
       </property>
       <widget class="QWidget" name="pageHome">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="5" column="2">
-         <spacer name="horizontalSpacer_3">
+        <item row="6" column="0">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -45,8 +45,8 @@
           </property>
          </spacer>
         </item>
-        <item row="0" column="1">
-         <spacer name="verticalSpacer_2">
+        <item row="10" column="1">
+         <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -65,21 +65,8 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="9" column="1">
-         <spacer name="verticalSpacer">
+        <item row="0" column="1">
+         <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -91,57 +78,103 @@
           </property>
          </spacer>
         </item>
+        <item row="6" column="2">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="3" column="1">
-         <widget class="QPushButton" name="pushButtonPreferences">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <property name="topMargin">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>Preferences</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../share/icons/icons.qrc">
-            <normaloff>:/preferences-system.svg</normaloff>:/preferences-system.svg</iconset>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonSelect">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Select service</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../share/icons/icons.qrc">
-            <normaloff>:/edit-services.svg</normaloff>:/edit-services.svg</iconset>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPushButton" name="pushButtonQuit">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Quit</string>
-          </property>
-          <property name="icon">
-           <iconset theme="exit">
-            <normaloff/>
-           </iconset>
-          </property>
-         </widget>
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButtonPreferences">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Preferences</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../share/icons/icons.qrc">
+              <normaloff>:/preferences-system.svg</normaloff>:/preferences-system.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushButtonQuit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Quit</string>
+            </property>
+            <property name="icon">
+             <iconset theme="exit">
+              <normaloff/>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonSelect">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Select service</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../share/icons/icons.qrc">
+              <normaloff>:/edit-services.svg</normaloff>:/edit-services.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -167,7 +200,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>821</width>
      <height>34</height>
     </rect>
    </property>
@@ -176,8 +209,9 @@
      <string>Application</string>
     </property>
     <addaction name="actionSelect_service"/>
-    <addaction name="separator"/>
     <addaction name="actionPreferences"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuPlayback">
     <property name="title">
@@ -281,6 +315,15 @@
    </property>
    <property name="text">
     <string>Report a bug</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit" resource="../share/icons/icons.qrc">
+     <normaloff>:/application-exit.svg</normaloff>:/application-exit.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
    </property>
   </action>
  </widget>

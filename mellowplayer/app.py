@@ -10,8 +10,7 @@ def main():
     logger.setup(verbose=False)
     app = QtGui.QApplication(sys.argv)
     window = MainWindow()
-    window.show()
-    window.services.start('Grooveshark')
+    window.showMaximized()
     app.exec_()
 
 
