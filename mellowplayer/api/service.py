@@ -227,6 +227,26 @@ class ServiceManager:
             os.makedirs(user_dir)
         return user_dir
 
+    def play(self):
+        if self._current:
+            self._current.integration.play()
+
+    def stop(self):
+        if self._current:
+            self._current.integration.stop()
+
+    def pause(self):
+        if self._current:
+            self._current.integration.pause()
+
+    def next(self):
+        if self._current:
+            self._current.integration.next()
+
+    def previous(self):
+        if self._current:
+            self._current.integration.previous()
+
     def _init_plugins_path(self):
         """
         Initialises the plugins path.
