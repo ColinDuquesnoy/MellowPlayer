@@ -19,15 +19,55 @@ class SongStatus:
 
 
 class Song:
+    @property
+    def song_id(self):
+        return self._song_id
+
+    @song_id.setter
+    def song_id(self, value):
+        self._song_id = value
+
+    @property
+    def artist(self):
+        return self._artist
+
+    @artist.setter
+    def artist(self, value):
+        self._artist = str(value)
+
+    @property
+    def art_url(self):
+        return self._art_url
+
+    @art_url.setter
+    def art_url(self, value):
+        self._art_url = str(value)
+
+    @property
+    def album(self):
+        return self._album
+
+    @album.setter
+    def album(self, value):
+        self._album = str(value)
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = str(value)
+
     def __init__(self):
-        self.song_id = None
-        self.artist = ''
-        self.art_url = ''
-        self.album = ''
-        self.name = ''
+        self._song_id = None
+        self._artist = ''
+        self._art_url = ''
+        self._album = ''
+        self._name = ''
         self.duration = datetime.timedelta(seconds=0)
         self.position = datetime.timedelta(seconds=0)
-        self.status = SongStatus.Loading
+        self._status = SongStatus.Loading
 
     @property
     def data(self):

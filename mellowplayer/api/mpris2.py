@@ -71,12 +71,17 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
         self._helper = MPRIS2Helper()
         self.parent().main_window.playback_status_changed.connect(
             self._on_playback_status_changed)
+        self.parent().main_window.song_changed.connect(self._on_song_changed)
 
     def _on_playback_status_changed(self):
         _logger().debug('playback status changed: %s', self.PlaybackStatus)
         self._helper.PropertiesChanged(
             'org.mpris.MediaPlayer2.Player', 'PlaybackStatus',
             self.PlaybackStatus)
+
+    def _on_song_changed(self, song):
+        _logger().info('song changed: %r' % song)
+        self._emit_metadata(song)
 
     @property
     def _current_song(self):
@@ -128,11 +133,50 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtProperty('QMap<QString, QVariant>')
     def Metadata(self):
-        return {
-            'mpris:trackid': QtDBus.QDBusObjectPath(
-                '/mellowplayer/notrack'
-            )
-        }
+        if self._current_song is None:
+            return {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/mellowplayer/NoTrack'
+                )
+            }
+        else:
+            song = self._current_song
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/mellowplayer/Track%d' % id(song.name)),
+                'xesam:title': song.name,
+                'xesam:url': song.art_url,
+                'xesam:album': song.album,
+                'xesam:albumArtist': song.artist,
+                'xesam:artist': song.artist,
+            }
+            print('Metadata')
+            return metadata
+
+    def _emit_metadata(self, song):
+        if song:
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/mellowplayer/Track%d' % id(song.name)),
+                'xesam:title': song.name,
+                'xesam:url': song.art_url,
+                'xesam:album': song.album,
+                'xesam:albumArtist': song.artist,
+                'xesam:artist': song.artist,
+            }
+        else:
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/mellowplayer/NoTrack'),
+                'xesam:title': '',
+                'xesam:url': '',
+                'xesam:album': '',
+                'xesam:albumArtist': '',
+                'xesam:artist': '',
+            }
+        self._helper.PropertiesChanged(
+            "org.mpris.MediaPlayer2.Player", "Metadata", metadata
+        )
 
     @QtCore.pyqtProperty(float)
     def Volume(self):
