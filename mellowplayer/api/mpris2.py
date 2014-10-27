@@ -269,6 +269,7 @@ class MPRISRoot(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtSlot()
     def Raise(self):
+        self.parent().main_window.show()
         self.parent().main_window.raise_()
 
     @QtCore.pyqtSlot()
