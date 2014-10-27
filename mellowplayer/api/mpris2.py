@@ -1,6 +1,6 @@
 import logging
 from PyQt4 import QtCore, QtDBus
-from . import SongStatus
+from . import SongStatus, Song
 
 
 def _logger():
@@ -133,49 +133,11 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtProperty('QMap<QString, QVariant>')
     def Metadata(self):
-        if self._current_song is None:
-            return {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/mellowplayer/NoTrack'
-                )
-            }
-        else:
-            song = self._current_song
-            metadata = {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/mellowplayer/Track%d' % id(song.name)),
-                'xesam:title': song.name,
-                'xesam:url': song.art_url,
-                'xesam:album': song.album,
-                'xesam:albumArtist': song.artist,
-                'xesam:artist': song.artist,
-            }
-            print('Metadata')
-            return metadata
+        return Song.to_xesam(self._current_song)
 
     def _emit_metadata(self, song):
-        if song:
-            metadata = {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/mellowplayer/Track%d' % id(song.name)),
-                'xesam:title': song.name,
-                'xesam:url': song.art_url,
-                'xesam:album': song.album,
-                'xesam:albumArtist': song.artist,
-                'xesam:artist': song.artist,
-            }
-        else:
-            metadata = {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/mellowplayer/NoTrack'),
-                'xesam:title': '',
-                'xesam:url': '',
-                'xesam:album': '',
-                'xesam:albumArtist': '',
-                'xesam:artist': '',
-            }
         self._helper.PropertiesChanged(
-            "org.mpris.MediaPlayer2.Player", "Metadata", metadata
+            "org.mpris.MediaPlayer2.Player", "Metadata", Song.to_xesam(song)
         )
 
     @QtCore.pyqtProperty(float)

@@ -1,5 +1,6 @@
 import datetime
 import json
+from PyQt4 import QtDBus
 
 
 class SongStatus:
@@ -106,3 +107,27 @@ class Song:
 
     def __repr__(self):
         return repr(self.data)
+
+    @classmethod
+    def to_xesam(cls, song):
+        if song:
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/org/mpris/MediaPlayer2/Track%d' % id(song.name)),
+                'xesam:title': song.name,
+                'xesam:artUrl': song.art_url,
+                'xesam:album': song.album,
+                'xesam:albumArtist': song.artist,
+                'xesam:artist': song.artist,
+            }
+        else:
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/org/mpris/MediaPlayer2/NoTrack'),
+                'xesam:title': '',
+                'xesam:url': '',
+                'xesam:album': '',
+                'xesam:albumArtist': '',
+                'xesam:artist': '',
+            }
+        return metadata
