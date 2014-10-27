@@ -1,11 +1,16 @@
 import logging
+import os
+import tempfile
+
 from PyQt4 import QtCore, QtGui
-from mellowplayer import __version__, system
-from mellowplayer.api import ServiceManager, SongStatus
+
+from mellowplayer import __version__
+from mellowplayer.api import SongStatus
+from mellowplayer.core import Mpris2, Player, ServiceManager
+from mellowplayer.core.download import FileDownloader
+from mellowplayer.settings import Settings
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
-from mellowplayer.api.mpris2 import Mpris2
-from mellowplayer.settings import Settings
 
 
 def _logger():
@@ -13,13 +18,11 @@ def _logger():
 
 
 class MainWindow(QtGui.QMainWindow):
-    song_changed = QtCore.pyqtSignal(object)
-    playback_status_changed = QtCore.pyqtSignal(str)
-
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.player = Player()
         self.services = ServiceManager(self.ui.webView)
         self.setWindowTitle('MellowPlayer %s' % __version__)
         self.ui.pushButtonSelect.setFocus()
@@ -28,26 +31,18 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.actionQuit.triggered.connect(self.quit)
         self._init_tray_icon()
         self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(self._update_song_status)
+        self.timer.timeout.connect(self._on_timeout)
         self.timer.start(10)
         self._current_song = None
         self._prev_status = None
         self.mpris = Mpris2(self)
 
     #--- Update song status and infos
-    def _update_song_status(self):
-        _logger().debug('updating sound status')
-        song = self.services.current_song
-        if song != self._current_song:
-            self._current_song = song
-            self._notify_new_song()
-        if song:
-            status = song.status
-        else:
-            status = SongStatus.Stopped
-        if status != self._prev_status:
-            self.playback_status_changed.emit(SongStatus.to_string(status))
-            self._prev_status = status
+    def _on_timeout(self):
+        """
+        Get current song and update gui accordingly.
+        """
+        song = self.player.update()
         if song:
             self.setWindowTitle(
                 '%s - MellowPlayer' % str(song))
@@ -86,7 +81,7 @@ class MainWindow(QtGui.QMainWindow):
 
     #--- system tray icon and close logic
     def quit(self):
-        self.services.stop()
+        self.player.stop()
         self._current_song = None
         self.close()
 
@@ -173,27 +168,29 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.pyqtSlot()
     def on_actionPlay_triggered(self):
-        self.services.play()
+        self.player.play()
 
     @QtCore.pyqtSlot()
     def on_actionPause_triggered(self):
-        self.services.pause()
+        self.player.pause()
 
     @QtCore.pyqtSlot()
     def on_actionStop_triggered(self):
-        self.services.stop()
+        self.player.stop()
 
     @QtCore.pyqtSlot()
     def on_actionNext_triggered(self):
-        self.services.next()
+        self.player.next()
 
     @QtCore.pyqtSlot()
     def on_actionPrevious_triggered(self):
-        self.services.previous()
+        self.player.previous()
 
     #--- internal helper methods
     def _start_current(self):
-        if self.services.start_current_service():
+        sv = self.services.start_current_service()
+        self.player.service = sv
+        if sv is not None:
             self.ui.stackedWidget.setCurrentIndex(1)
         else:
             self.ui.stackedWidget.setCurrentIndex(0)
@@ -205,6 +202,5 @@ class MainWindow(QtGui.QMainWindow):
             self.services.current_service = service
             self._start_current()
 
-    def _notify_new_song(self):
-        _logger().info('new song: %s' % self._current_song)
-        self.song_changed.emit(self._current_song)
+    def _on_art_downloaded(self, path):
+        self.player.art_path = QtCore.QUrl(path)

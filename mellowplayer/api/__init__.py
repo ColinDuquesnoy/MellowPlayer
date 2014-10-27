@@ -6,15 +6,11 @@ This package contains the application API:
 """
 from .song import SongStatus, Song
 from .service import ServiceIntegration
-from .service import ServicePlugin
-from .service import ServiceManager
 
 
 # Public API
 __all__ = [
     'ServiceIntegration',
-    'ServicePlugin',
-    'ServiceManager',
     'Song',
     'SongStatus'
 ]

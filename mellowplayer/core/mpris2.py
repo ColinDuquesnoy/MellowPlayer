@@ -1,6 +1,6 @@
 import logging
 from PyQt4 import QtCore, QtDBus
-from . import SongStatus, Song
+from mellowplayer.api import SongStatus, Song
 
 
 def _logger():
@@ -68,10 +68,17 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
     def __init__(self, parent):
         super().__init__(parent)
         self.setAutoRelaySignals(True)
+        self.player = self.parent().main_window.player
         self._helper = MPRIS2Helper()
-        self.parent().main_window.playback_status_changed.connect(
+        self.player.playback_status_changed.connect(
             self._on_playback_status_changed)
-        self.parent().main_window.song_changed.connect(self._on_song_changed)
+        self.player.song_changed.connect(self._on_song_changed)
+        self.player.art_ready.connect(self._on_art_ready)
+
+    def _on_art_ready(self, art_path):
+        print('art ready', art_path)
+        self._emit_metadata(self._current_song,
+                            'file://%s' % art_path)
 
     def _on_playback_status_changed(self):
         _logger().debug('playback status changed: %s', self.PlaybackStatus)
@@ -85,7 +92,7 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @property
     def _current_song(self):
-        return self.parent().main_window.services.current_song
+        return self.player.get_current_song()
 
     @QtCore.pyqtProperty(str)
     def PlaybackStatus(self):
@@ -135,9 +142,10 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
     def Metadata(self):
         return Song.to_xesam(self._current_song)
 
-    def _emit_metadata(self, song):
+    def _emit_metadata(self, song, art=''):
         self._helper.PropertiesChanged(
-            "org.mpris.MediaPlayer2.Player", "Metadata", Song.to_xesam(song)
+            "org.mpris.MediaPlayer2.Player", "Metadata", Song.to_xesam(
+                song, art=art)
         )
 
     @QtCore.pyqtProperty(float)
@@ -186,27 +194,27 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtSlot()
     def Next(self):
-        self.parent().main_window.services.next()
+        self.player.next()
 
     @QtCore.pyqtSlot()
     def Previous(self):
-        self.parent().main_window.services.previous()
+        self.player.previous()
 
     @QtCore.pyqtSlot()
     def PlayPause(self):
-        self.parent().main_window.services.play()
+        self.player.play()
 
     @QtCore.pyqtSlot()
     def Play(self):
-        self.parent().main_window.services.play()
+        self.player.play()
 
     @QtCore.pyqtSlot()
     def Pause(self):
-        self.parent().main_window.services.pause()
+        self.player.pause()
 
     @QtCore.pyqtSlot()
     def Stop(self):
-        self.parent().main_window.services.stop()
+        self.player.stop()
 
     @QtCore.pyqtSlot(float)
     def Seek(self, val):

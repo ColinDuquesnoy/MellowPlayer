@@ -1,63 +1,15 @@
 """
-This module contains the cloud music service public API.
+
 """
 import configparser
 import importlib.machinery
 import logging
 import os
-from PyQt4 import QtCore
 import sys
+from PyQt4 import QtCore
 from mellowplayer import system
-from . import SongStatus
+from mellowplayer.api import SongStatus
 from mellowplayer.settings import Settings
-
-
-class ServiceIntegration(QtCore.QObject):
-    """
-    Base abstract class for cloud music service integration.
-    """
-
-    def play(self):
-        """
-        Plays the current song.
-        """
-        raise NotImplementedError()
-
-    def pause(self):
-        """
-        Pauses the current song
-        """
-        raise NotImplementedError()
-
-    def stop(self):
-        """
-        Stops the current song
-        """
-        raise NotImplementedError()
-
-    def current_song(self):
-        """
-        Returns the current song.
-
-        :return: current song
-        :rtype: mellowplayer.api.Song
-        """
-        raise NotImplementedError
-
-    def jseval(self, script):
-        """
-        Run a javascript ``script`` on the main page, see
-        `QWebFrame.evaluateJavaScript`_
-
-        :param script: Script to execute (must written in Javascript).
-        :return: The results of the evaluation.
-
-        .. _QWebFrame.evaluateJavaScript:
-            http://qt-project.org/doc/qt-4.8/qwebframe.html#evaluateJavaScript
-        """
-        odict = self._web_view.page().mainFrame().evaluateJavaScript(
-            script).toPyObject()
-        return odict
 
 
 class PluginMetadata:
@@ -168,10 +120,6 @@ class ServicePlugin:
         self._load_integration(plugin_dir, webview)
 
 
-def _logger():
-    return logging.getLogger(__name__)
-
-
 class ServiceManager:
     """
     Manages the list of available service integration plugins and
@@ -215,34 +163,6 @@ class ServiceManager:
         if not os.path.exists(user_dir):
             os.makedirs(user_dir)
         return user_dir
-
-    def toggle(self):
-        if not self.current_song:
-            return
-        if self.current_song.status > SongStatus.Playing:
-            self._current.integration.play()
-        else:
-            self._current.integration.pause()
-
-    def play(self):
-        if self._current:
-            self.toggle()
-
-    def stop(self):
-        if self._current:
-            self._current.integration.stop()
-
-    def pause(self):
-        if self._current:
-            self.toggle()
-
-    def next(self):
-        if self._current:
-            self._current.integration.next()
-
-    def previous(self):
-        if self._current:
-            self._current.integration.previous()
 
     def _append_plugin_path(self, path):
         if os.path.exists(path):
@@ -322,9 +242,13 @@ class ServiceManager:
     def start_current_service(self):
         if self._current:
             self._start(self._current)
-            return True
-        return False
+            return self._current
+        return None
 
     def _start(self, service):
         _logger().info('starting service: %s', service.metadata.name)
         self._webview.load(QtCore.QUrl(service.metadata.url))
+
+
+def _logger():
+    return logging.getLogger(__name__)
