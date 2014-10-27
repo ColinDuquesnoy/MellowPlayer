@@ -24,8 +24,8 @@ class MainWindow(QtGui.QMainWindow):
         self.setWindowTitle('MellowPlayer %s' % __version__)
         self.ui.pushButtonSelect.setFocus()
         self._start_current()
-        self.ui.pushButtonQuit.clicked.connect(self.close)
-        self.ui.actionQuit.triggered.connect(self.close)
+        self.ui.pushButtonQuit.clicked.connect(self.quit)
+        self.ui.actionQuit.triggered.connect(self.quit)
         self._init_tray_icon()
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self._update_song_status)
@@ -85,11 +85,13 @@ class MainWindow(QtGui.QMainWindow):
             self.ui.actionStop.setEnabled(False)
 
     #--- system tray icon and close logic
+    def quit(self):
+        self.services.stop()
+        self._current_song = None
+        self.close()
+
     def close(self):
         super().close()
-        self.mpris.setParent(None)
-        self.mpris.destroy()
-        self.mpris = None
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()
@@ -107,6 +109,10 @@ class MainWindow(QtGui.QMainWindow):
                 Settings().flg_close = True
             self.hide()
             ev.ignore()
+        else:
+            self.mpris.setParent(None)
+            self.mpris.destroy()
+            self.mpris = None
 
     def _init_tray_icon(self):
         self.tray_icon = QtGui.QSystemTrayIcon(self)

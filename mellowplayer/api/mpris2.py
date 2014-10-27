@@ -273,4 +273,4 @@ class MPRISRoot(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtSlot()
     def Quit(self):
-        self.parent().main_window.close()
+        self.parent().main_window.quit()
