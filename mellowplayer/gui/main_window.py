@@ -90,8 +90,9 @@ class MainWindow(QtGui.QMainWindow):
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()
-        hide &= ((self._current_song is not None and
-                  self._current_song.status <= SongStatus.Playing) or
+        song = self.player.get_current_song()
+        hide &= ((song is not None and
+                  song.status <= SongStatus.Playing) or
                  not Settings().exit_on_close_if_not_playing)
         if hide:
             if not Settings().flg_close:
