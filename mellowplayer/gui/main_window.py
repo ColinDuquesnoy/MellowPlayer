@@ -4,7 +4,7 @@ from mellowplayer import __version__, system
 from mellowplayer.api import ServiceManager, SongStatus
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
-from mellowplayer.api.mpris import Mpris2
+from mellowplayer.api.mpris2 import Mpris2
 from mellowplayer.settings import Settings
 
 
@@ -13,6 +13,9 @@ def _logger():
 
 
 class MainWindow(QtGui.QMainWindow):
+    song_changed = QtCore.pyqtSignal(object)
+    playback_status_changed = QtCore.pyqtSignal(str)
+
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.ui = Ui_MainWindow()
@@ -28,6 +31,7 @@ class MainWindow(QtGui.QMainWindow):
         self.timer.timeout.connect(self._update_song_status)
         self.timer.start(10)
         self._current_song = None
+        self._prev_status = None
         self.mpris = Mpris2(self)
 
     #--- Update song status and infos
@@ -37,6 +41,13 @@ class MainWindow(QtGui.QMainWindow):
         if song != self._current_song:
             self._current_song = song
             self._notify_new_song()
+        if song:
+            status = song.status
+        else:
+            status = SongStatus.Stopped
+        if status != self._prev_status:
+            self.playback_status_changed.emit(SongStatus.to_string(status))
+            self._prev_status = status
         if song:
             self.setWindowTitle(
                 '%s - MellowPlayer' % str(song))
@@ -77,6 +88,8 @@ class MainWindow(QtGui.QMainWindow):
     def close(self):
         self.hide()
         super().close()
+        self.mpris.setParent(None)
+        self.mpris.destroy()
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()
@@ -188,3 +201,4 @@ class MainWindow(QtGui.QMainWindow):
 
     def _notify_new_song(self):
         _logger().info('new song: %s' % self._current_song)
+        self.song_changed.emit(self._current_song)

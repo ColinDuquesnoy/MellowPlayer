@@ -3,6 +3,11 @@ This module contains the Grooveshark service implementation.
 """
 import datetime
 from mellowplayer.api import ServiceIntegration, Song, SongStatus
+from PyQt4.QtCore import QString
+
+
+def qstr(val):
+    return QString(val)
 
 
 class GroovesharkServiceIntegration(ServiceIntegration):
@@ -20,7 +25,6 @@ class GroovesharkServiceIntegration(ServiceIntegration):
         'paused': SongStatus.Paused,
         'stopped': SongStatus.Stopped
     }
-
     def play(self):
         self.jseval('window.Grooveshark.play();')
 
@@ -41,20 +45,21 @@ class GroovesharkServiceIntegration(ServiceIntegration):
             'current_song = window.Grooveshark.getCurrentSongStatus()')
         song = Song()
         try:
-            song.song_id = data['song']['songID']
-            song.name = data['song']['songName']
+            sng = data[qstr('song')]
+            song.song_id = sng[qstr('songID')]
+            song.name = sng[qstr('songName')]
             try:
-                song.status = self.STATUS_MAP[data['status']]
+                song.status = self.STATUS_MAP[str(qstr(data[qstr('status')]))]
             except KeyError:
                 song.status = SongStatus.Stopped
-            song.album = data['song']['albumName']
-            song.art_url = data['song']['artURL']
-            song.artist = data['song']['artistName']
-            song.album = data['song']['albumName']
+            song.album = sng[qstr('albumName')]
+            song.art_url = sng[qstr('artURL')]
+            song.artist = sng[qstr('artistName')]
+            song.album = sng[qstr('albumName')]
             song.duration = datetime.timedelta(
-                milliseconds=data['song']['calculatedDuration'])
+                milliseconds=sng[qstr('calculatedDuration')])
             song.position = datetime.timedelta(
-                milliseconds=data['song']['position'])
+                milliseconds=sng[qstr('position')])
         except TypeError:
             return None
         return song

@@ -10,7 +10,8 @@ class Settings(QtCore.QSettings):
 
     @property
     def flg_close(self):
-        return eval(self.value('flg_close', 'False'))
+        return eval(str(self.value(
+            'flg_close', 'False').toPyObject()))
 
     @flg_close.setter
     def flg_close(self, val):
@@ -18,7 +19,8 @@ class Settings(QtCore.QSettings):
 
     @property
     def exit_on_close_if_not_playing(self):
-        return eval(self.value('exit_on_close_if_not_playing', 'True'))
+        return eval(str(self.value(
+            'exit_on_close_if_not_playing', 'True').toPyObject()))
 
     @exit_on_close_if_not_playing.setter
     def exit_on_close_if_not_playing(self, value):
@@ -26,23 +28,25 @@ class Settings(QtCore.QSettings):
 
     @property
     def cookies(self):
-        return self.value('cookies')
+        return str(self.value('cookies').toPyObject())
 
     @cookies.setter
     def cookies(self, value):
         self.setValue('cookies', value)
 
     @property
-    def current_service(self,):
-        return self.value('current_service', '')
+    def current_service(self):
+        return str(self.value(
+            'current_service', '').toPyObject())
 
     @current_service.setter
     def current_service(self, value):
-        self.setValue('current_service', value)
+        self.setValue('current_service', QtCore.QSettings(value))
 
     @property
     def always_show_tray_icon(self):
-        return eval(self.value('always_show_tray_icon', 'True'))
+        return eval(str(self.value(
+            'always_show_tray_icon', 'True').toPyObject()))
 
     @always_show_tray_icon.setter
     def always_show_tray_icon(self, value):

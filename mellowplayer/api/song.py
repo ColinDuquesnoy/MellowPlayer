@@ -11,10 +11,10 @@ class SongStatus:
     @classmethod
     def to_string(cls, val):
         return {
-            cls.Loading: '[Loading]',
-            cls.Playing: '[Playing]',
-            cls.Paused: '[Paused]',
-            cls.Stopped: '[Stopped]'
+            cls.Loading: 'Loading',
+            cls.Playing: 'Playing',
+            cls.Paused: 'Paused',
+            cls.Stopped: 'Stopped'
         }[val]
 
 

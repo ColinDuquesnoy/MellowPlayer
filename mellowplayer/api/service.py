@@ -16,22 +16,6 @@ class ServiceIntegration(QtCore.QObject):
     """
     Base abstract class for cloud music service integration.
     """
-    #: url of the cloud service
-    url = 'url of the cloud service'
-    #: name of the service that will appear on the service's button on
-    #: the services page.
-    name = ''
-    #: icon that will appear on the service's button on the services page.
-    icon = ''
-    #: service version (so that users may know if their favorite service
-    #: has been upated when a new release is available)
-    version = ''
-    #: service description (rich text API)
-    description = ''
-
-    def __init__(self, webview):
-        #: reference to the main web view
-        self._web_view = webview
 
     def play(self):
         """
@@ -71,7 +55,9 @@ class ServiceIntegration(QtCore.QObject):
         .. _QWebFrame.evaluateJavaScript:
             http://qt-project.org/doc/qt-4.8/qwebframe.html#evaluateJavaScript
         """
-        return self._web_view.page().mainFrame().evaluateJavaScript(script)
+        odict = self._web_view.page().mainFrame().evaluateJavaScript(
+            script).toPyObject()
+        return odict
 
 
 class PluginMetadata:
@@ -166,7 +152,8 @@ class ServicePlugin:
         classname = '%sServiceIntegration' % self.metadata.name
         _logger().debug('loading %s.%s', name, classname)
         loaded_class = getattr(plugin_module, classname)
-        self.integration = loaded_class(webview)
+        self.integration = loaded_class()
+        self.integration._web_view = webview
 
     def _load(self, plugin_dir, webview):
         """
@@ -230,6 +217,8 @@ class ServiceManager:
         return user_dir
 
     def toggle(self):
+        if not self.current_song:
+            return
         if self.current_song.status > SongStatus.Playing:
             self._current.integration.play()
         else:
