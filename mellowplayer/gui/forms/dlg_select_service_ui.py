@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/colin/Desktop/MellowPlayer/forms/dlg_select_service.ui'
 #
-# Created: Sat Oct 25 18:30:53 2014
+# Created: Mon Oct 27 17:47:04 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -65,8 +65,8 @@ class Ui_Dialog(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(Dialog)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), Dialog.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

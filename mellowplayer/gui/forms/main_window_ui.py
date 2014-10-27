@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/colin/Desktop/MellowPlayer/forms/main_window.ui'
 #
-# Created: Sun Oct 26 16:36:06 2014
+# Created: Mon Oct 27 17:47:04 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
