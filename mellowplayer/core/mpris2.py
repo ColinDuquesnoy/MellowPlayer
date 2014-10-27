@@ -27,7 +27,7 @@ class MPRIS2Helper(object):
         self.signal.setArguments(
             [interface, {name: values}, QtCore.QStringList()]
         )
-        _logger().debug('sending PropertiesChanged signal for %s, %s, %s',
+        _logger().info('sending PropertiesChanged signal for %s, %s, %s',
                         interface, name, values)
         if not QtDBus.QDBusConnection.sessionBus().send(self.signal):
             _logger().warning('failed to send PropertiesChanged signal for '
@@ -75,10 +75,8 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
         self.player.song_changed.connect(self._on_song_changed)
         self.player.art_ready.connect(self._on_art_ready)
 
-    def _on_art_ready(self, art_path):
-        print('art ready', art_path)
-        self._emit_metadata(self._current_song,
-                            'file://%s' % art_path)
+    def _on_art_ready(self):
+        self._emit_metadata(self._current_song)
 
     def _on_playback_status_changed(self):
         _logger().debug('playback status changed: %s', self.PlaybackStatus)
@@ -140,12 +138,42 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtProperty('QMap<QString, QVariant>')
     def Metadata(self):
-        return Song.to_xesam(self._current_song)
+        return self.to_xesam(self._current_song)
 
-    def _emit_metadata(self, song, art=''):
+    def to_xesam(self, song):
+        try:
+            from PyQt4.QtDBus import QDBusObjectPath
+        except ImportError:
+            metadata = {}
+        else:
+            if song:
+                metadata = {
+                    'mpris:trackid': QDBusObjectPath(
+                        '/org/mpris/MediaPlayer2/Track%d' % id(song.name)),
+                    'xesam:title': song.name,
+                    'xesam:artUrl': self.player.art,
+                    'xesam:album': song.album,
+                    'xesam:albumArtist': song.artist,
+                    'xesam:artist': song.artist,
+                }
+            else:
+                metadata = {
+                    'mpris:trackid': QDBusObjectPath(
+                        '/org/mpris/MediaPlayer2/NoTrack'),
+                    'xesam:title': '',
+                    'xesam:artUrl': '',
+                    'xesam:url': '',
+                    'xesam:album': '',
+                    'xesam:albumArtist': '',
+                    'xesam:artist': '',
+                }
+        print(metadata)
+        return metadata
+
+    def _emit_metadata(self, song):
         self._helper.PropertiesChanged(
-            "org.mpris.MediaPlayer2.Player", "Metadata", Song.to_xesam(
-                song, art=art)
+            "org.mpris.MediaPlayer2.Player", "Metadata",
+            self.to_xesam(self._current_song)
         )
 
     @QtCore.pyqtProperty(float)

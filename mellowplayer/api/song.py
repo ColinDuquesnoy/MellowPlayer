@@ -107,28 +107,3 @@ class Song:
 
     def __repr__(self):
         return repr(self.data)
-
-    @classmethod
-    def to_xesam(cls, song, art=''):
-        if song:
-            metadata = {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/org/mpris/MediaPlayer2/Track%d' % id(song.name)),
-                'xesam:title': song.name,
-                'xesam:artUrl': art,
-                'xesam:album': song.album,
-                'xesam:albumArtist': song.artist,
-                'xesam:artist': song.artist,
-            }
-        else:
-            metadata = {
-                'mpris:trackid': QtDBus.QDBusObjectPath(
-                    '/org/mpris/MediaPlayer2/NoTrack'),
-                'xesam:title': '',
-                'xesam:url': '',
-                'xesam:album': '',
-                'xesam:albumArtist': '',
-                'xesam:artist': '',
-            }
-        print(metadata)
-        return metadata

@@ -12,18 +12,19 @@ from .download import FileDownloader
 class Player(QtCore.QObject):
     song_changed = QtCore.pyqtSignal(object)
     playback_status_changed = QtCore.pyqtSignal(str)
-    art_ready = QtCore.pyqtSignal(str)
+    art_ready = QtCore.pyqtSignal()
 
     def __init__(self):
         QtCore.QObject.__init__(self)
         self.service = None
         self._prev_status = SongStatus.Stopped
         self._prev_song = None
+        self.art = ''
 
     def toggle(self):
         if not self.service:
             return
-        if self.current_song.status > SongStatus.Playing:
+        if self.get_current_song().status > SongStatus.Playing:
             self.service.integration.play()
         else:
             self.service.integration.pause()
@@ -73,14 +74,20 @@ class Player(QtCore.QObject):
         name = '%s-%s' % (artist, album)
         save_path = os.path.join(tmp_dir, name + ext)
         if os.path.exists(save_path):
-            self.art_ready.emit(save_path)
+            self._on_art_ready(save_path)
         else:
             self.downloader = FileDownloader(QtCore.QUrl(url), save_path)
-            self.downloader.finished.connect(self.art_ready.emit)
+            # self.downloader.finished.connect(self.art_ready.emit)
+            self.downloader.finished.connect(self._on_art_ready)
             self.downloader.start()
+
+    def _on_art_ready(self, art):
+        self.art = 'file://%s' % art
+        self.art_ready.emit()
 
     def _check_for_song_changes(self, song):
         if song != self._prev_song:
+            self._art = ''
             self._prev_song = song
             self.song_changed.emit(song)
             if song:
