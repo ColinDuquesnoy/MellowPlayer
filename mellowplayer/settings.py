@@ -7,11 +7,11 @@ from PyQt4 import QtCore
 class Settings(QtCore.QSettings):
     def __init__(self):
         super().__init__('mellowplayer')
+        # self.clear()
 
     @property
     def flg_close(self):
-        return eval(str(self.value(
-            'flg_close', 'False').toPyObject()))
+        return self.value('flg_close', 'False').toBool()
 
     @flg_close.setter
     def flg_close(self, val):
@@ -19,8 +19,7 @@ class Settings(QtCore.QSettings):
 
     @property
     def exit_on_close_if_not_playing(self):
-        return eval(str(self.value(
-            'exit_on_close_if_not_playing', 'True').toPyObject()))
+        return self.value('exit_on_close_if_not_playing', 'True').toBool()
 
     @exit_on_close_if_not_playing.setter
     def exit_on_close_if_not_playing(self, value):
@@ -28,7 +27,10 @@ class Settings(QtCore.QSettings):
 
     @property
     def cookies(self):
-        return str(self.value('cookies').toPyObject())
+        str_val = str(self.value('cookies').toString())
+        if str_val:
+            return eval(str_val)
+        return None
 
     @cookies.setter
     def cookies(self, value):
@@ -36,17 +38,16 @@ class Settings(QtCore.QSettings):
 
     @property
     def current_service(self):
-        return str(self.value(
-            'current_service', '').toPyObject())
+        return str(self.value('current_service').toString())
 
     @current_service.setter
     def current_service(self, value):
-        self.setValue('current_service', QtCore.QSettings(value))
+        self.setValue('current_service', value)
 
     @property
     def always_show_tray_icon(self):
-        return eval(str(self.value(
-            'always_show_tray_icon', 'True').toPyObject()))
+        return self.value(
+            'always_show_tray_icon', 'True').toBool()
 
     @always_show_tray_icon.setter
     def always_show_tray_icon(self, value):

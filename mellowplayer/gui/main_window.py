@@ -86,10 +86,10 @@ class MainWindow(QtGui.QMainWindow):
 
     #--- system tray icon and close logic
     def close(self):
-        self.hide()
         super().close()
         self.mpris.setParent(None)
         self.mpris.destroy()
+        self.mpris = None
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()

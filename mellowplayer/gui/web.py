@@ -16,16 +16,14 @@ class CookieJar(QtNetwork.QNetworkCookieJar):
         _logger().debug('loading cookies')
         val = Settings().cookies
         if val:
-            val = eval(val)
-            self.setAllCookies(QtNetwork.QNetworkCookie.parseCookies('\n'.join(val.values())))
+            self.setAllCookies(QtNetwork.QNetworkCookie.parseCookies(
+                '\n'.join(val.values())))
         _logger().info('%d cookies loaded', len(self.allCookies()))
 
     def setCookiesFromUrl(self, cookie_list, url):
         val = Settings().cookies
         if val is None:
             val = {}
-        else:
-            val = eval(val)
         for cookie in cookie_list:
             val[str(cookie.name())] = bytes(cookie.toRawForm()).decode()
         Settings().cookies = repr(val)
