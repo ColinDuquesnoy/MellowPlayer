@@ -149,25 +149,23 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
             if song:
                 metadata = {
                     'mpris:trackid': QDBusObjectPath(
-                        '/org/mpris/MediaPlayer2/Track%d' % id(song.name)),
-                    'xesam:title': song.name,
-                    'xesam:artUrl': self.player.art,
-                    'xesam:album': song.album,
-                    'xesam:albumArtist': song.artist,
-                    'xesam:artist': song.artist,
+                        '/org/mpris/MediaPlayer2/Track/%d' % id(song.name)),
+                    'xesam:title': QtCore.QString.fromUtf8(song.name),
+                    'xesam:album': QtCore.QString.fromUtf8(song.album),
+                    'xesam:artist': QtCore.QStringList([
+                        QtCore.QString.fromUtf8(song.artist)]),
                 }
+                if self.player.art:
+                    metadata['mpris:artUrl'] = self.player.art
             else:
                 metadata = {
                     'mpris:trackid': QDBusObjectPath(
                         '/org/mpris/MediaPlayer2/NoTrack'),
                     'xesam:title': '',
-                    'xesam:artUrl': '',
-                    'xesam:url': '',
                     'xesam:album': '',
                     'xesam:albumArtist': '',
                     'xesam:artist': '',
                 }
-        print(metadata)
         return metadata
 
     def _emit_metadata(self, song):
