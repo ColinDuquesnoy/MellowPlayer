@@ -21,25 +21,17 @@ class Player(QtCore.QObject):
         self._prev_song = None
         self.art = ''
 
-    def toggle(self):
-        if not self.service:
+    def play_pause(self):
+        if not self.service or not self.get_current_song():
             return
         if self.get_current_song().status > SongStatus.Playing:
             self.service.integration.play()
         else:
             self.service.integration.pause()
 
-    def play(self):
-        if self.service:
-            self.toggle()
-
     def stop(self):
         if self.service:
             self.service.integration.stop()
-
-    def pause(self):
-        if self.service:
-            self.toggle()
 
     def next(self):
         if self.service:

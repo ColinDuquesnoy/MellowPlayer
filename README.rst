@@ -25,11 +25,18 @@ Feel free to request support for new services by opening an issue on the bug
 tracker or by submitting a pull request! See the `Service Integration API`_.
 
 
-Requirements
+Dependencies
 ------------
+
+Requirements:
 
 - Python 3 (>= 3.4)
 - PyQt4
+
+
+Optional:
+
+- PyGlobalShortcuts: global shortcuts (hotkeys) support
 
 
 Installation

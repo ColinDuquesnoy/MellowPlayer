@@ -230,15 +230,15 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtSlot()
     def PlayPause(self):
-        self.player.play()
+        self.player.play_pause()
 
     @QtCore.pyqtSlot()
     def Play(self):
-        self.player.play()
+        self.player.play_pause()
 
     @QtCore.pyqtSlot()
     def Pause(self):
-        self.player.pause()
+        self.player.play_pause()
 
     @QtCore.pyqtSlot()
     def Stop(self):

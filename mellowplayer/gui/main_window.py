@@ -20,22 +20,62 @@ def _logger():
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        self._setup_ui()
         self.player = Player()
         self.services = ServiceManager(self.ui.webView)
-        self.setWindowTitle('MellowPlayer %s' % __version__)
-        self.ui.pushButtonSelect.setFocus()
         self._start_current()
+        self.mpris = Mpris2(self)
+        self._init_tray_icon()
+
+    def _setup_ui(self):
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self._setup_icons()
         self.ui.pushButtonQuit.clicked.connect(self.quit)
         self.ui.actionQuit.triggered.connect(self.quit)
-        self._init_tray_icon()
+        self.ui.pushButtonSelect.setFocus()
+        # configure update timer
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self._on_timeout)
         self.timer.start(10)
-        self._current_song = None
-        self._prev_status = None
-        self.mpris = Mpris2(self)
+
+    def _setup_icons(self):
+        def _icon(theme, path):
+            return QtGui.QIcon.fromTheme(theme, QtGui.QIcon(path))
+
+        self.ic_app = QtGui.QIcon(':/MellowPlayer.png')
+        self.ic_preferences = _icon(
+            'preferences-system', ':/preferences-system.svg')
+        self.ic_play = _icon(
+            'media-playback-start', ':/media-playback-start.svg')
+        self.ic_pause = _icon(
+            'media-playback-pause', ':/media-playback-pause.svg')
+        self.ic_stop = _icon(
+            'media-playback-stop', ':/media-playback-stop.svg')
+        self.ic_next = _icon('media-seek-forward', ':/media-seek-forward.svg')
+        self.ic_previous = _icon(
+            'media-seek-backward', ':/media-seek-backward.svg')
+        self.ic_help_about = _icon('help-about', ':/help-about.svg')
+        self.ic_report_bug = _icon(
+            'tools-report-bug', ':/tools-report-bug.svg')
+        self.ic_quit = _icon(
+            'application-exit', ':/application-exit.svg')
+        self.ic_restore = _icon(
+            'view-restore', ':/view-restore.svg')
+
+        self.ui.actionPlayPause.setIcon(self.ic_play)
+        self.ui.actionStop.setIcon(self.ic_stop)
+        self.ui.actionNext.setIcon(self.ic_next)
+        self.ui.actionPrevious.setIcon(self.ic_previous)
+        self.ui.actionAbout_MellowPlayer.setIcon(self.ic_help_about)
+        self.ui.actionPreferences.setIcon(self.ic_preferences)
+        self.ui.actionReport_a_bug.setIcon(self.ic_report_bug)
+        self.ui.actionQuit.setIcon(self.ic_quit)
+        self.ui.actionSelect_service.setIcon(self.ic_app)
+        self.ui.pushButtonSelect.setIcon(self.ic_app)
+        self.ui.pushButtonPreferences.setIcon(self.ic_preferences)
+        self.ui.pushButtonQuit.setIcon(self.ic_quit)
+
 
     #--- Update song status and infos
     def _on_timeout(self):
@@ -48,41 +88,28 @@ class MainWindow(QtGui.QMainWindow):
                 '%s - MellowPlayer' % str(song))
             self.tray_icon.setToolTip(
                 '%s - MellowPlayer' % song.pretty_string())
-            self.action_current_song.setText(str(song))
-            self.action_current_song.setEnabled(True)
             self.ui.actionNext.setEnabled(True)
             self.ui.actionPrevious.setEnabled(True)
-            if song.status <= SongStatus.Playing:
-                self.action_current_song.setIcon(self.ui.actionPlay.icon())
-                self.ui.actionPlay.setEnabled(False)
-                self.ui.actionPause.setEnabled(True)
-                self.ui.actionStop.setEnabled(True)
-            elif song.status == SongStatus.Paused:
-                self.action_current_song.setIcon(self.ui.actionPause.icon())
-                self.ui.actionPlay.setEnabled(True)
-                self.ui.actionPause.setEnabled(False)
-                self.ui.actionStop.setEnabled(True)
-            elif song.status == SongStatus.Stopped:
-                self.action_current_song.setIcon(self.ui.actionStop.icon())
-                self.ui.actionPlay.setEnabled(False)
-                self.ui.actionPause.setEnabled(False)
-                self.ui.actionStop.setEnabled(False)
+            self.ui.actionStop.setEnabled(song.status != SongStatus.Stopped)
+            self.ui.actionPlayPause.setEnabled(True)
+            self.ui.actionPlayPause.setText(str(song))
+            if song.status == SongStatus.Paused:
+                self.ui.actionPlayPause.setIcon(self.ic_play)
+            else:
+                self.ui.actionPlayPause.setIcon(self.ic_pause)
         else:
             self.setWindowTitle('MellowPlayer')
             self.tray_icon.setToolTip('MellowPlayer')
-            self.action_current_song.setIcon(self.ui.actionStop.icon())
-            self.action_current_song.setEnabled(False)
-            self.action_current_song.setText('No song selected')
             self.ui.actionNext.setEnabled(False)
             self.ui.actionPrevious.setEnabled(False)
-            self.ui.actionPlay.setEnabled(False)
-            self.ui.actionPause.setEnabled(False)
             self.ui.actionStop.setEnabled(False)
+            self.ui.actionPlayPause.setEnabled(False)
+            self.ui.actionPlayPause.setText('Play/Pause')
+            self.ui.actionPlayPause.setIcon(self.ic_play)
 
     #--- system tray icon and close logic
     def quit(self):
         self.player.stop()
-        self._current_song = None
         self.close()
 
     def close(self):
@@ -116,21 +143,13 @@ class MainWindow(QtGui.QMainWindow):
         menu = QtGui.QMenu(self)
         action_restore = QtGui.QAction('Restore window', self)
         action_restore.triggered.connect(self.show)
-        action_restore.setIcon(QtGui.QIcon.fromTheme(
-            'Restore', QtGui.QIcon(':/view-restore.svg')))
+        action_restore.setIcon(self.ic_restore)
         menu.addAction(action_restore)
         self.action_restore = action_restore
-        menu.addSeparator()
-        self.action_current_song = QtGui.QAction('No song', self)
-        self.action_current_song.setEnabled(False)
-        menu.addAction(self.action_current_song)
         menu.addSeparator()
         menu.addActions(self.ui.menuPlayback.actions())
         menu.addSeparator()
         menu.addActions(self.ui.menuApplication.actions())
-        self.ui.menuPlayback.insertAction(
-            self.ui.actionPlay, self.action_current_song)
-        self.ui.menuPlayback.insertSeparator(self.ui.actionPlay)
         self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
         self.tray_icon.activated.connect(self._on_tray_icon_activated)
@@ -168,12 +187,8 @@ class MainWindow(QtGui.QMainWindow):
             'Service%20version'))
 
     @QtCore.pyqtSlot()
-    def on_actionPlay_triggered(self):
-        self.player.play()
-
-    @QtCore.pyqtSlot()
-    def on_actionPause_triggered(self):
-        self.player.pause()
+    def on_actionPlayPause_triggered(self):
+        self.player.play_pause()
 
     @QtCore.pyqtSlot()
     def on_actionStop_triggered(self):

@@ -220,7 +220,7 @@ class ServiceManager:
         if not self.current_song:
             return
         if self.current_song.status > SongStatus.Playing:
-            self._current.integration.play()
+            self._current.integration.play_pause()
         else:
             self._current.integration.pause()
 

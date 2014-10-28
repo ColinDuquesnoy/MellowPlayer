@@ -16,9 +16,28 @@ class Application(QtGui.QApplication):
         super().__init__(sys.argv)
         self.window = MainWindow()
 
+        self._global_shortcuts = []
+        try:
+            # optional dependency
+            from pygs import QxtGlobalShortcut
+        except ImportError:
+            _logger().warning('no global shortcut support, PyGlobalShortcuts '
+                              'package not found')
+        else:
+            shortcuts = [
+                ('Ctrl+Alt+Space', self.window.on_actionPlayPause_triggered),
+                ('Ctrl+Alt+Down', self.window.on_actionStop_triggered),
+                ('Ctrl+Alt+Right', self.window.on_actionNext_triggered),
+                ('Ctrl+Alt+Left', self.window.on_actionPrevious_triggered),
+            ]
+            for shortcut, slot in shortcuts:
+                gs = QxtGlobalShortcut()
+                gs.setShortcut(QtGui.QKeySequence(shortcut))
+                gs.activated.connect(slot)
+                self._global_shortcuts.append(gs)
+
     def run(self):
-        # self.window.showMaximized()
-        self.window.hide()
+        self.window.showMaximized()
         self.exec_()
         del self.window
 
