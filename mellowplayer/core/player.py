@@ -69,15 +69,16 @@ class Player(QtCore.QObject):
         except OSError:
             # dir already created
             pass
-        artist = song.artist.replace(' ', '')
-        album = song.album.replace(' ', '')
+        artist = song.artist.replace(
+            ' ', '').replace('\\', '').replace('/', '')
+        album = song.album.replace(
+            ' ', '').replace('\\', '').replace('/', '')
         name = '%s-%s' % (artist, album)
         save_path = os.path.join(tmp_dir, name + ext)
         if os.path.exists(save_path):
             self._on_art_ready(save_path)
         else:
             self.downloader = FileDownloader(QtCore.QUrl(url), save_path)
-            # self.downloader.finished.connect(self.art_ready.emit)
             self.downloader.finished.connect(self._on_art_ready)
             self.downloader.start()
 
@@ -100,7 +101,9 @@ class Player(QtCore.QObject):
         return None
 
     def update(self):
-        song = self.service.integration.current_song()
-        self._check_for_song_changes(song)
-        self._check_for_status_changes(song)
-        return song
+        if self.service:
+            song = self.service.integration.current_song()
+            self._check_for_song_changes(song)
+            self._check_for_status_changes(song)
+            return song
+        return None

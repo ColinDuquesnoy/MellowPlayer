@@ -7,7 +7,6 @@ from PyQt4 import QtCore
 class Settings(QtCore.QSettings):
     def __init__(self):
         super().__init__('mellowplayer')
-        # self.clear()
 
     @property
     def flg_close(self):
@@ -38,7 +37,7 @@ class Settings(QtCore.QSettings):
 
     @property
     def current_service(self):
-        return str(self.value('current_service').toString())
+        return self.value('current_service').toString()
 
     @current_service.setter
     def current_service(self, value):

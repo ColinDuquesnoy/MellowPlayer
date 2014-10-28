@@ -55,9 +55,9 @@ class ServiceIntegration(QtCore.QObject):
         .. _QWebFrame.evaluateJavaScript:
             http://qt-project.org/doc/qt-4.8/qwebframe.html#evaluateJavaScript
         """
-        odict = self._web_view.page().mainFrame().evaluateJavaScript(
+        data = self._web_view.page().mainFrame().evaluateJavaScript(
             script).toPyObject()
-        return odict
+        return data
 
 
 class PluginMetadata:

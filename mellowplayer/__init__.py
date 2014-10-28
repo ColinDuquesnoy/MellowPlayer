@@ -6,10 +6,10 @@ notifications and more).
 
 """
 import sip
-# sip api v1 is required to properly send dbus notification (otherwise the
-# arguments do not have the correct type (this issue is mainly related to how
-# api v2 autointerpret list, it does not generate QStringList)
-sip.setapi("QString", 1)
+# require the variant api to be able to send the proper data types over DBUS
+# (if we do not set that property, there is no way (AFAIK) to send a string list
+# as it is implicitely converted t QVariantList (Dbus/Mpris except a
+# QStringList not a QVariantList)
 sip.setapi("QVariant", 1)
 
 __version__ = '1.0a1'

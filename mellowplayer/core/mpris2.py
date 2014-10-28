@@ -25,7 +25,8 @@ class MPRIS2Helper(object):
 
         """
         self.signal.setArguments(
-            [interface, {name: values}, QtCore.QStringList()]
+            [interface, {name: values},
+             QtCore.QVariant(QtCore.QVariant.StringList)]
         )
         _logger().info('sending PropertiesChanged signal for %s, %s, %s',
                         interface, name, values)
@@ -147,13 +148,14 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
             metadata = {}
         else:
             if song:
+                artist = QtCore.QVariant([song.artist])
+                artist.convert(QtCore.QVariant.StringList)
                 metadata = {
                     'mpris:trackid': QDBusObjectPath(
                         '/org/mpris/MediaPlayer2/Track/%d' % id(song.name)),
-                    'xesam:title': QtCore.QString.fromUtf8(song.name),
-                    'xesam:album': QtCore.QString.fromUtf8(song.album),
-                    'xesam:artist': QtCore.QStringList([
-                        QtCore.QString.fromUtf8(song.artist)]),
+                    'xesam:title': song.name,
+                    'xesam:album': song.album,
+                    'xesam:artist': artist,
                 }
                 if self.player.art:
                     metadata['mpris:artUrl'] = self.player.art

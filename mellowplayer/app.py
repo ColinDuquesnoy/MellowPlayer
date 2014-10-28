@@ -17,8 +17,8 @@ class Application(QtGui.QApplication):
         self.window = MainWindow()
 
     def run(self):
-        self.window.showMaximized()
-        # self.window.hide()
+        # self.window.showMaximized()
+        self.window.hide()
         self.exec_()
         del self.window
 
