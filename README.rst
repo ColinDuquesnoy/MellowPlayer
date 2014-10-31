@@ -13,7 +13,10 @@ The software is written in Python3 using the PyQt4 GUI toolkit.
 Status
 ------
 
-This software is not even at the alpha stage. The following features are working:
+This software is not even at the alpha stage. 
+
+The following features are working:
+
   - grooveshark integration
   - cookies management
   - MPRIS support
