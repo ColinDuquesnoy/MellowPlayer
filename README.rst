@@ -14,14 +14,14 @@ Status
 ------
 
 This software is under heavy development. Some parts of the GUI and some features have not been implemented yet but
-you can already use it on linux and connect to the Grooveshark service.
+you can already use it on linux and use the Grooveshark service.
 
 The following features are already working:
 
-  - grooveshark integration
-  - cookies management
-  - MPRIS support
-  - global shortcuts support
+- grooveshark integration
+- cookies management
+- MPRIS support
+- global shortcuts support
 
 This has been tested on Manjaro Linux and KaOS only.
 
