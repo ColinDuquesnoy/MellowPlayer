@@ -10,8 +10,22 @@ notifications and more).
 
 The software is written in Python3 using the PyQt4 GUI toolkit.
 
+Status
+------
+
+This software is not even at the alpha stage. The following features are working:
+  - grooveshark integration
+  - cookies management
+  - MPRIS support
+  - Global shortcuts
+
+This has been tested on Manjaro Linux and KaOS only.
+
 Supported platforms:
 --------------------
+
+The following platforms will be supported:
+
 - GNU/Linux
 - Windows
 - Mac OSX
@@ -41,25 +55,9 @@ Optional:
 
 Installation
 ------------
-::
 
-    pip3 install mellowplayer
-
-Notes
------
-
-MellowPlayer is an alternative to `NuvolaPlayer`_ specifically created for
-the `KaOS`_ distribution. *KaOS* is a pure KDE distribution that does not have
-(and will never have) the GTK packages needed to run NuvolaPlayer.
-
-The player has been designed for an integration into Qt based desktops (KDE or
-LxQt), and will run well on classic desktops that still have a system tray (
-XFCE, Cinnamon, OpenBox,...).
-
-We do not recommend to use that application on a Gnome Shell or Unity desktop (
-use `NuvolaPlayer`_ instead).
+At the moment you have to run the app from source checkout, just run ``bootstap.py`` with a **python3** interpreter.
 
 .. links:
 
-.. _KaOS: http://kaosx.us/
 .. _NuvolaPlayer: http://nuvolaplayer.fenryxo.cz/home.html
