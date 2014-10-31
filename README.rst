@@ -13,9 +13,10 @@ The software is written in Python3 using the PyQt4 GUI toolkit.
 Status
 ------
 
-This software is not even in alpha. 
+This software is under heavy development. Some parts of the GUI and some features have not been implemented yet but
+you can already use it on linux and connect to the Grooveshark service.
 
-The following features are working:
+The following features are already working:
 
   - grooveshark integration
   - cookies management
