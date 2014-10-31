@@ -13,14 +13,14 @@ The software is written in Python3 using the PyQt4 GUI toolkit.
 Status
 ------
 
-This software is not even at the alpha stage. 
+This software is not even in alpha. 
 
 The following features are working:
 
   - grooveshark integration
   - cookies management
   - MPRIS support
-  - Global shortcuts
+  - global shortcuts support
 
 This has been tested on Manjaro Linux and KaOS only.
 
