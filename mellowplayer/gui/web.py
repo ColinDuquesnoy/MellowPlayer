@@ -40,3 +40,4 @@ class WebView(QtWebKit.QWebView):
         settings.setAttribute(QtWebKit.QWebSettings.JavaEnabled, True)
         settings.setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
         settings.setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
+        self.page().setLinkDelegationPolicy(self.page().DelegateAllLinks)
