@@ -109,11 +109,9 @@ class MainWindow(QtGui.QMainWindow):
 
     #--- system tray icon and close logic
     def quit(self):
+        self._quit = True
         self.player.stop()
         self.close()
-
-    def close(self):
-        super().close()
 
     def closeEvent(self, ev=None):
         hide = ev is not None and self.isVisible()
@@ -121,7 +119,7 @@ class MainWindow(QtGui.QMainWindow):
         hide &= ((song is not None and
                   song.status <= SongStatus.Playing) or
                  not Settings().exit_on_close_if_not_playing)
-        if hide:
+        if hide and not hasattr(self, '_quit'):
             if not Settings().flg_close:
                 QtGui.QMessageBox.information(
                     self, 'Mellow Player',
@@ -136,6 +134,7 @@ class MainWindow(QtGui.QMainWindow):
             self.mpris.setParent(None)
             self.mpris.destroy()
             self.mpris = None
+            self.tray_icon.hide()
 
     def _init_tray_icon(self):
         self.tray_icon = QtGui.QSystemTrayIcon(self)
