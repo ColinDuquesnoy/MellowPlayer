@@ -26,6 +26,7 @@ class MainWindow(QtGui.QMainWindow):
         self._start_current()
         self.mpris = Mpris2(self)
         self._init_tray_icon()
+        self.ui.webView.page().linkClicked.connect(self._on_link_clicked)
 
     def _setup_ui(self):
         self.ui = Ui_MainWindow()
@@ -75,7 +76,6 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.pushButtonSelect.setIcon(self.ic_app)
         self.ui.pushButtonPreferences.setIcon(self.ic_preferences)
         self.ui.pushButtonQuit.setIcon(self.ic_quit)
-
 
     #--- Update song status and infos
     def _on_timeout(self):
@@ -201,20 +201,29 @@ class MainWindow(QtGui.QMainWindow):
     def on_actionPrevious_triggered(self):
         self.player.previous()
 
+    @QtCore.pyqtSlot(QtCore.QUrl)
+    def _on_link_clicked(self, url):
+        if self.services.current_service.metadata.url in url.toString():
+            self.ui.webView.load(url)
+        else:
+            QtGui.QDesktopServices.openUrl(url)
+
     #--- internal helper methods
     def _start_current(self):
         sv = self.services.start_current_service()
         self.player.service = sv
         if sv is not None:
             self.ui.stackedWidget.setCurrentIndex(1)
+            self.ui.menubar.show()
         else:
             self.ui.stackedWidget.setCurrentIndex(0)
+            self.ui.menubar.hide()
 
     def _select_service(self):
         self.show()
         service = DlgSelectService.select_service(self)
-        if service and service != self.services.current_service:
-            self.services.current_service = service
+        if service and service != self.services.current_service_name:
+            self.services.current_service_name = service
             self._start_current()
 
     def _on_art_downloaded(self, path):
