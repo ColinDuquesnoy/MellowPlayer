@@ -33,6 +33,15 @@ DEVPATH = osp.dirname(osp.abspath(__file__))
 sys.path.insert(0, DEVPATH)
 print("01. Patched sys.path with %s" % DEVPATH)
 
+#--- importing MellowPlayer
+from mellowplayer.system import get_versions, get_vcs_revision
+versions = get_versions()
+print("02. Imported MellowPlayer %s (%s)" % (
+    versions['mellowplayer'], get_vcs_revision()))
+print("    [Python %s %dbits, Qt %s, %s %s on %s]" % \
+      (versions['python'], versions['bitness'], versions['qt'],
+       versions['qt_api'], versions['qt_api_ver'], versions['system']))
+
 
 #--- checking required dependencies
 try:
@@ -48,27 +57,17 @@ except ImportError:
             cmd = "\"pacman\" \"-S\" \"python-pyqt5\""
         installed = False
         if cmd is not None:
-            choice = input('02. WARNING: PyQt5 not detected. Do you want me to'
+            choice = input('03. WARNING: PyQt5 not detected. Do you want me to'
                            ' install it for you? [Y/n] ')
             if choice == 'Y' or not choice:  # Yes is the default choice
                 if os.system('sudo %s' % cmd) == 0:
                     installed = True
         if not installed:
             sys.exit(1)
-    print('02. WARNING: PyQt5 not detected. Install PyQt5 for python3 and '
+    print('03. WARNING: PyQt5 not detected. Install PyQt5 for python3 and '
           'try again...')
 else:
-    print('02. PyQt4 detected')
-
-
-#--- importing MellowPlayer
-from mellowplayer.system import get_versions, get_vcs_revision
-versions = get_versions()
-print("03. Imported MellowPlayer %s (%s)" % (
-    versions['mellowplayer'], get_vcs_revision()))
-print("    [Python %s %dbits, Qt %s, %s %s on %s]" % \
-      (versions['python'], versions['bitness'], versions['qt'],
-       versions['qt_api'], versions['qt_api_ver'], versions['system']))
+    print('03. PyQt4 detected')
 
 
 #--- executing MellowPlayer

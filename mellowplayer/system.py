@@ -1,16 +1,13 @@
 import functools
-import logging
 import os
 import platform
 import subprocess
-from zipfile import ZipFile
 from mellowplayer import __version__
 
 
 WINDOWS = platform.system() == 'Windows'
 LINUX = platform.system() == 'Linux'
 DARWIN = platform.system() == 'Darwin'
-
 linux_distribution = None
 if LINUX:
     linux_distribution = os.popen(

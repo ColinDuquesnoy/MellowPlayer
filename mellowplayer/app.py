@@ -1,7 +1,7 @@
 import logging
 import sys
-from PyQt4 import QtCore, QtGui
 from mellowplayer import __version__, logger
+from PyQt4 import QtCore, QtGui
 from mellowplayer.gui.main_window import MainWindow
 
 
@@ -25,10 +25,10 @@ class Application(QtGui.QApplication):
                               'package not found')
         else:
             shortcut_pairs = [
-                (['Ctrl+Alt+Space', 'Media Play'], self.window.on_actionPlayPause_triggered),
-                (['Ctrl+Alt+Down', 'Media Stop'], self.window.on_actionStop_triggered),
-                (['Ctrl+Alt+Right', 'Media Next'], self.window.on_actionNext_triggered),
-                (['Ctrl+Alt+Left', 'Media Previous'], self.window.on_actionPrevious_triggered),
+                (['Ctrl+Alt+P', 'Media Play'], self.window.on_actionPlayPause_triggered),
+                (['Ctrl+Alt+S', 'Media Stop'], self.window.on_actionStop_triggered),
+                (['Ctrl+Alt+F', 'Media Next'], self.window.on_actionNext_triggered),
+                (['Ctrl+Alt+B', 'Media Previous'], self.window.on_actionPrevious_triggered),
             ]
             for shortcuts, slot in shortcut_pairs:
                 for shortcut in shortcuts:
