@@ -23,7 +23,7 @@ The following features are already working:
 - MPRIS support
 - global shortcuts support
 
-This has been tested on Manjaro Linux and KaOS only.
+This has been tested on GNU/Linux (Manjaro Linux and KaOS) and Windows 7.
 
 Supported platforms:
 --------------------
