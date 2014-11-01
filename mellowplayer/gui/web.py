@@ -36,4 +36,7 @@ class WebView(QtWebKit.QWebView):
         self.cookieJar = CookieJar()
         self.page().networkAccessManager().setCookieJar(self.cookieJar)
         settings = self.settings()
+        settings.setAttribute(QtWebKit.QWebSettings.AutoLoadImages, True)
+        settings.setAttribute(QtWebKit.QWebSettings.JavaEnabled, True)
+        settings.setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
         settings.setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
