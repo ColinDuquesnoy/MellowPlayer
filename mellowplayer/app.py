@@ -38,7 +38,7 @@ class Application(QtGui.QApplication):
                     self._global_shortcuts.append(gs)
 
     def run(self):
-        self.window.showMaximized()
+        self.window.show()
         self.exec_()
         del self.window
 
