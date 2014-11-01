@@ -129,17 +129,21 @@ class ServiceManager:
     SV_DIR = 'services'
 
     @property
-    def current_service(self):
+    def current_service_name(self):
         return Settings().current_service
 
-    @current_service.setter
-    def current_service(self, value):
+    @current_service_name.setter
+    def current_service_name(self, value):
         try:
             self._current = self.plugins[value]
         except KeyError:
             pass
         else:
             Settings().current_service = value
+
+    @property
+    def current_service(self):
+        return self._current
 
     def __init__(self, web_view):
         self._current = None
@@ -148,8 +152,8 @@ class ServiceManager:
         self._init_plugins_path()
         self._load_plugins(web_view)
         self._webview = web_view
-        if self.current_service:
-            self._current = self.plugins[self.current_service]
+        if self.current_service_name:
+            self._current = self.plugins[self.current_service_name]
 
     def get_user_dir(self):
         if system.WINDOWS:
