@@ -1,6 +1,7 @@
 import logging
 import sys
-from mellowplayer import __version__, logger
+from mellowplayer import setup_sip_api, logger
+setup_sip_api()
 from PyQt4 import QtCore, QtGui
 from mellowplayer.gui.main_window import MainWindow
 
