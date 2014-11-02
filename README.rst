@@ -19,7 +19,7 @@ The following features are already working:
 
 - grooveshark integration
 - cookies management
-- MPRIS support
+- `MPRIS 2`_ support
 - global shortcuts support
 
 This has been tested on GNU/Linux (Manjaro Linux and KaOS) and Windows 7.
@@ -64,3 +64,4 @@ At the moment you have to run the app from source checkout, just run ``bootstap.
 .. links:
 
 .. _NuvolaPlayer: http://nuvolaplayer.fenryxo.cz/home.html
+.. _MPRIS 2: http://specifications.freedesktop.org/mpris-spec/latest/
