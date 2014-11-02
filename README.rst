@@ -1,13 +1,13 @@
 .. image:: https://raw.githubusercontent.com/ColinDuquesnoy/MellowPlayer/master/share/icons/mellowplayer-banner.png
 
-**MellowPlayer** is a free, open source and cross-platform desktop application
+*MellowPlayer* is a free, open source and cross-platform desktop application
 that runs a web interface of **cloud music services** in its own window and
 provides **integration with your desktop** (multimedia keys, system tray,
 notifications and more).
 
-**MellowPlayer has been heavily inspired by** `NuvolaPlayer`_.
-
 The software is written in Python3 using the PyQt4 GUI toolkit.
+
+*MellowPlayer has been heavily inspired by* `NuvolaPlayer`_.
 
 Status
 ------
