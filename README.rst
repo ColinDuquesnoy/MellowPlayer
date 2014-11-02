@@ -1,3 +1,5 @@
+.. image:: https://raw.githubusercontent.com/ColinDuquesnoy/MellowPlayer/master/share/icons/mellowplayer-banner.png
+
 About
 -----
 
