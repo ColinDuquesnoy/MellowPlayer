@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Mellow Player
+GenericName=Mellow Player
+Comment=Cloud music integration for your desktop
+Exec=MellowPlayer
+TryExec=MellowPlayer
+Icon=application-x-mellowplayer
+Terminal=false
+Categories=AudioVideo;Player;Qt;Audio;
+StartupNotify=false

@@ -15,7 +15,7 @@ class Application(QtGui.QApplication):
             QtCore.Qt.AA_CaptureMultimediaKeys, True)
         super().__init__(sys.argv)
         self.window = MainWindow()
-
+        self.setWindowIcon(self.window.windowIcon())
         self._global_shortcuts = []
         try:
             # optional dependency

@@ -1,12 +1,14 @@
 <RCC>
   <qresource>
+    <file>mellowplayer-tray-dark.svg</file>
+    <file>mellowplayer-tray-light.svg</file>
     <file>media-seek-backward.svg</file>
     <file>media-seek-forward.svg</file>
     <file>media-seek-backward.svg</file>
     <file>media-seek-forward.svg</file>
     <file>view-restore.svg</file>
     <file>preferences-system.svg</file>
-    <file>MellowPlayer.png</file>
+    <file>application-x-mellowplayer.png</file>
     <file>tools-report-bug.svg</file>
     <file>application-exit.svg</file>
     <file>media-playback-pause.svg</file>

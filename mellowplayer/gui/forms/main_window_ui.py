@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/colin/Desktop/MellowPlayer/forms/main_window.ui'
 #
-# Created: Sat Nov  1 18:58:47 2014
+# Created: Sun Nov  2 12:01:03 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,9 +26,9 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(821, 633)
+        MainWindow.resize(1207, 828)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/MellowPlayer.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/application-x-mellowplayer.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -102,7 +102,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 821, 34))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1207, 34))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuApplication = QtGui.QMenu(self.menubar)
         self.menuApplication.setObjectName(_fromUtf8("menuApplication"))
@@ -152,14 +152,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Mellow Player", None))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\":/MellowPlayer.png\"/></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">Welcome to Mellow Player!</span></p><p align=\"center\"><span style=\" font-size:14pt; font-style:italic;\">Please, select a streaming service.</span></p><p align=\"center\"><br/></p></body></html>", None))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\":/application-x-mellowplayer.png\"/></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">Welcome to Mellow Player!</span></p><p align=\"center\"><span style=\" font-size:14pt; font-style:italic;\">Please, select a cloud music service.</span></p><p align=\"center\"><br/></p></body></html>", None))
         self.pushButtonPreferences.setText(_translate("MainWindow", "Preferences", None))
         self.pushButtonQuit.setText(_translate("MainWindow", "Quit", None))
-        self.pushButtonSelect.setText(_translate("MainWindow", "Select service", None))
+        self.pushButtonSelect.setText(_translate("MainWindow", "Select cloud music service", None))
         self.menuApplication.setTitle(_translate("MainWindow", "Application", None))
         self.menuPlayback.setTitle(_translate("MainWindow", "Control", None))
         self.menu.setTitle(_translate("MainWindow", "Help", None))
-        self.actionSelect_service.setText(_translate("MainWindow", "Select service", None))
+        self.actionSelect_service.setText(_translate("MainWindow", "Select cloud music service", None))
         self.actionPreferences.setText(_translate("MainWindow", "Preferences", None))
         self.actionPlayPause.setText(_translate("MainWindow", "Play/Pause", None))
         self.actionPlayPause.setShortcut(_translate("MainWindow", "Media Play", None))

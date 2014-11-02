@@ -44,7 +44,7 @@ class MainWindow(QtGui.QMainWindow):
         def _icon(theme, path):
             return QtGui.QIcon.fromTheme(theme, QtGui.QIcon(path))
 
-        self.ic_app = QtGui.QIcon(':/MellowPlayer.png')
+        self.ic_app = QtGui.QIcon(':/application-x-mellowplayer.png')
         self.ic_preferences = _icon(
             'preferences-system', ':/preferences-system.svg')
         self.ic_play = _icon(
@@ -138,7 +138,7 @@ class MainWindow(QtGui.QMainWindow):
 
     def _init_tray_icon(self):
         self.tray_icon = QtGui.QSystemTrayIcon(self)
-        self.tray_icon.setIcon(self.windowIcon())
+        self.tray_icon.setIcon(QtGui.QIcon(Settings().tray_icon))
         menu = QtGui.QMenu(self)
         action_restore = QtGui.QAction('Restore window', self)
         action_restore.triggered.connect(self.show)

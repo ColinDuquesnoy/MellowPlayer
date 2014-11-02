@@ -2,6 +2,7 @@
 This module provides an interface to the application settings (get/set)
 """
 from PyQt4 import QtCore
+from mellowplayer import system
 
 
 class Settings(QtCore.QSettings):
@@ -51,3 +52,13 @@ class Settings(QtCore.QSettings):
     @always_show_tray_icon.setter
     def always_show_tray_icon(self, value):
         self.setValue('always_show_tray_icon', repr(value))
+
+    @property
+    def tray_icon(self):
+        def default_icon():
+            if system.WINDOWS:
+                return ':/mellowplayer-tray-dark.svg'
+            if system.DARWIN or system.linux_distribution == 'KaOS':
+                return ':/mellowplayer-tray-light.svg'
+            return ':/application-x-mellowplayer.png'
+        return self.value('tray_icon', default_icon()).toString()

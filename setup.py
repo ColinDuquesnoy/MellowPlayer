@@ -2,12 +2,14 @@
 """
 Setup script for MellowPlayer
 """
+import os
 import sys
 from setuptools import setup, find_packages
 from mellowplayer import __version__
 
 try:
     from pyqt_distutils.build_ui import build_ui
+
     cmdclass = {'build_ui': build_ui}
 except ImportError:
     build_ui = None
@@ -19,12 +21,21 @@ with open('README.rst', 'r') as readme:
     long_desc = readme.read()
 
 
+def sv_files(path):
+    for d in os.listdir(path):
+        fn = os.path.join(path, d)
+        if os.path.isfile(fn):
+            yield fn
+
+
 data_files = []
 if sys.platform == 'linux':
-    data_files.append(('/usr/share/applications',
-                       ['share/MellowPlayer.desktop']))
-    data_files.append(('/usr/share/pixmaps', ['share/icons/MellowPlayer.png']))
-
+    data_files.append(('share/applications',
+                       ['share/mellowplayer.desktop']))
+    data_files.append(('share/pixmaps',
+                       ['share/icons/application-x-mellowplayer.png']))
+    data_files.append(('share/mellowplayer/services/grooveshark',
+                       list(sv_files('services/grooveshark/'))))
 
 setup(
     name='MellowPlayer',
@@ -53,4 +64,3 @@ setup(
         'Topic :: Multimedia :: Sound/Audio :: Players',
     ]
 )
-
