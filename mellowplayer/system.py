@@ -68,7 +68,10 @@ def get_vcs_revision():
             ['git', 'rev-parse', '--short', 'HEAD']).decode('utf-8').replace('\n', '')
 
     def get_git_branch_name():
-        return subprocess.check_output(
-            ['git', 'branch']).decode('utf-8').replace('* ', '').replace('\n', '')
+        output = subprocess.check_output(['git', 'branch']).decode('utf-8')
+        for l in output.splitlines():
+            if l.startswith('*'):
+                return l.replace('*', '').replace(' ', '')
+        return 'master'
 
     return '%s@%s' % (get_git_revision_hash(), get_git_branch_name())
