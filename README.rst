@@ -31,7 +31,6 @@ The following platforms will be supported:
 
 - GNU/Linux
 - Windows
-- Mac OSX
 
 Supported Services
 ------------------
