@@ -49,7 +49,7 @@ setup(
     author_email='colin.duquesnoy@gmail.com',
     description='Cloud Music integration for your desktop (cross-platform)',
     long_description=long_desc,
-    entry_points={'gui_scripts': ['MellowPlayer = mellowplayer.app:main']},
+    entry_points={'gui_scripts': ['MellowPlayer = mellowplayer.main:main']},
     cmdclass=cmdclass,
     classifiers=[
         'Development Status :: 3 - Alpha',

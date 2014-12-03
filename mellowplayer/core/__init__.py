@@ -1,6 +1,7 @@
-try:
+from mellowplayer.qt import QtDBus
+if QtDBus:
     from .mpris2 import Mpris2
-except ImportError:
+else:
     class Mpris2:
         def __init__(self, *args):
             pass

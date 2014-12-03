@@ -1,5 +1,5 @@
+from mellowplayer.qt import QtCore, QtGui, QtWidgets
 from .forms import dlg_select_service_ui
-from PyQt4 import QtCore, QtGui
 
 
 HTML = '''
@@ -13,7 +13,7 @@ HTML = '''
 '''
 
 
-class DlgSelectService(QtGui.QDialog):
+class DlgSelectService(QtWidgets.QDialog):
     def __init__(self, parent):
         super().__init__(parent)
         self.ui = dlg_select_service_ui.Ui_Dialog()
@@ -31,7 +31,7 @@ class DlgSelectService(QtGui.QDialog):
         self.ui.listWidget.setCurrentRow(0)
         self.ui.pushButton.hide()  # not use at the moment
 
-    @QtCore.pyqtSlot(QtGui.QListWidgetItem, QtGui.QListWidgetItem)
+    @QtCore.pyqtSlot(QtWidgets.QListWidgetItem, QtWidgets.QListWidgetItem)
     def on_listWidget_currentItemChanged(self, item, _):
         sv = item.service
         desc = HTML % {

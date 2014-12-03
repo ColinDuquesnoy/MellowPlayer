@@ -5,11 +5,11 @@ import configparser
 import importlib.machinery
 import logging
 import os
-from PyQt4 import QtCore
 import sys
 from mellowplayer import system
-from . import SongStatus
+from mellowplayer.qt import QtCore, to_pyobject
 from mellowplayer.settings import Settings
+from . import SongStatus
 
 
 class ServiceIntegration(QtCore.QObject):
@@ -55,8 +55,8 @@ class ServiceIntegration(QtCore.QObject):
         .. _QWebFrame.evaluateJavaScript:
             http://qt-project.org/doc/qt-4.8/qwebframe.html#evaluateJavaScript
         """
-        data = self._web_view.page().mainFrame().evaluateJavaScript(
-            script).toPyObject()
+        data = to_pyobject(self._web_view.page().mainFrame().evaluateJavaScript(
+            script))
         return data
 
 

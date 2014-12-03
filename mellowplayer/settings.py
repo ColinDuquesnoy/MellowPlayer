@@ -1,8 +1,8 @@
 """
 This module provides an interface to the application settings (get/set)
 """
-from PyQt4 import QtCore
 from mellowplayer import system
+from mellowplayer.qt import QtCore, to_string, to_bool
 
 
 class Settings(QtCore.QSettings):
@@ -11,7 +11,7 @@ class Settings(QtCore.QSettings):
 
     @property
     def flg_close(self):
-        return self.value('flg_close', 'False').toBool()
+        return to_bool(self.value('flg_close', 'False'))
 
     @flg_close.setter
     def flg_close(self, val):
@@ -19,7 +19,7 @@ class Settings(QtCore.QSettings):
 
     @property
     def exit_on_close_if_not_playing(self):
-        return self.value('exit_on_close_if_not_playing', 'True').toBool()
+        return to_bool(self.value('exit_on_close_if_not_playing', 'True'))
 
     @exit_on_close_if_not_playing.setter
     def exit_on_close_if_not_playing(self, value):
@@ -27,7 +27,7 @@ class Settings(QtCore.QSettings):
 
     @property
     def cookies(self):
-        str_val = str(self.value('cookies').toString())
+        str_val = to_string(self.value('cookies'))
         if str_val:
             return eval(str_val)
         return None
@@ -38,16 +38,16 @@ class Settings(QtCore.QSettings):
 
     @property
     def current_service(self):
-        return self.value('current_service').toString()
+        return to_string(self.value('current_service'))
 
     @current_service.setter
     def current_service(self, value):
-        self.setValue('current_service', value)
+        self.setValue('current_service', str(value))
 
     @property
     def always_show_tray_icon(self):
-        return self.value(
-            'always_show_tray_icon', 'True').toBool()
+        return to_bool(self.value(
+            'always_show_tray_icon', 'True'))
 
     @always_show_tray_icon.setter
     def always_show_tray_icon(self, value):
@@ -61,4 +61,4 @@ class Settings(QtCore.QSettings):
             if system.DARWIN or system.linux_distribution == 'KaOS':
                 return ':/mellowplayer-tray-light.svg'
             return ':/application-x-mellowplayer.png'
-        return self.value('tray_icon', default_icon()).toString()
+        return to_string(self.value('tray_icon', default_icon()))

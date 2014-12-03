@@ -4,8 +4,8 @@ throught an integration plugin
 """
 import os
 import tempfile
-from PyQt4 import QtCore
 from mellowplayer.api import SongStatus
+from mellowplayer.qt import QtCore
 from .download import FileDownloader
 
 

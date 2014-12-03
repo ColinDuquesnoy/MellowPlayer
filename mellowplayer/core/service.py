@@ -6,14 +6,14 @@ import importlib.machinery
 import logging
 import os
 import sys
-from PyQt4 import QtCore
 from mellowplayer import system
-from mellowplayer.api import SongStatus
+from mellowplayer.qt import QtCore
 from mellowplayer.settings import Settings
 
 
 class PluginMetadata:
     SECTION = 'PluginMetadata'
+
     def __init__(self, path):
         _logger().debug('loading plugin metadata')
         config = configparser.RawConfigParser()

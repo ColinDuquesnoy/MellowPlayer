@@ -11,7 +11,7 @@ from mellowplayer import __version__
 windows = sys.platform == 'win32'
 osx = sys.platform == 'darwin'
 
-app_script = 'mellowplayer/app.py'
+app_script = 'mellowplayer/main.py'
 app_name = 'Mellow Player'
 app_exe = 'MellowPlayer.exe' if windows else 'MellowPlayer'
 app_icon = 'share/icons/MellowPlayer.ico' if windows else ''

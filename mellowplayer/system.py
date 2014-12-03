@@ -47,16 +47,16 @@ def get_versions():
     import sys
     import platform
 
-    from PyQt4.QtCore import QT_VERSION_STR
-    from PyQt4.Qt import PYQT_VERSION_STR
+    from mellowplayer.qt import QT_API
+    from mellowplayer.qt import QtCore, Qt
 
     return {
         'mellowplayer': __version__,
         'python': platform.python_version(),  # "2.7.3"
         'bitness': 64 if sys.maxsize > 2**32 else 32,
-        'qt': QT_VERSION_STR,
-        'qt_api': 'PyQt4',
-        'qt_api_ver': PYQT_VERSION_STR,
+        'qt': QtCore.QT_VERSION_STR,
+        'qt_api': 'PyQt%s' % QT_API,
+        'qt_api_ver': Qt.PYQT_VERSION_STR,
         'system': platform.system() + (' - %s' % linux_distribution if LINUX
                                        else '')
     }
@@ -71,7 +71,6 @@ def get_vcs_revision():
         output = subprocess.check_output(['git', 'branch']).decode('utf-8')
         for l in output.splitlines():
             if l.startswith('*'):
-                return l.replace('*', '').replace(' ', '')
-        return 'master'
+                return l.replace(' ', '').replace('*', '')
 
     return '%s@%s' % (get_git_revision_hash(), get_git_branch_name())

@@ -5,7 +5,7 @@ that runs a web interface of **cloud music services** in its own window and
 provides **integration with your desktop** (multimedia keys, system tray,
 notifications and more).
 
-The software is written in Python3 using the PyQt4 GUI toolkit.
+The software is written in Python3 using the PyQt GUI toolkit.
 
 *MellowPlayer has been heavily inspired by* `NuvolaPlayer`_.
 
@@ -47,7 +47,7 @@ Dependencies
 Requirements:
 
 - Python 3 (>= 3.4)
-- PyQt4
+- PyQt4 or PyQt5
 
 
 Optional:
@@ -58,7 +58,17 @@ Optional:
 Installation
 ------------
 
-At the moment you have to run the app from source checkout, just run ``bootstap.py`` with a **python3** interpreter.
+At the moment, you have to run from source checkout::
+
+    python3 bootstrap.py
+
+You can specify the target qt api (PyQt4 or PyQt5) using the ``--qt`` command
+line option. By default, Mellow Player will try to use PyQt4. E.g.::
+
+    python3 bootstrap.py --qt=5
+
+Please note that PyQt5 should be avoided on Linux, there are some bugs with the
+QtWebKit (the app will crash as soon as you move to the next song).
 
 .. links:
 

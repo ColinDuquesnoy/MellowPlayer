@@ -1,13 +1,7 @@
 import logging
-import os
-import tempfile
-
-from PyQt4 import QtCore, QtGui
-
-from mellowplayer import __version__
 from mellowplayer.api import SongStatus
 from mellowplayer.core import Mpris2, Player, ServiceManager
-from mellowplayer.core.download import FileDownloader
+from mellowplayer.qt import QtCore, QtGui, QtWidgets
 from mellowplayer.settings import Settings
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
@@ -17,7 +11,7 @@ def _logger():
     return logging.getLogger(__name__)
 
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self._setup_ui()
@@ -137,10 +131,10 @@ class MainWindow(QtGui.QMainWindow):
             self.tray_icon.hide()
 
     def _init_tray_icon(self):
-        self.tray_icon = QtGui.QSystemTrayIcon(self)
+        self.tray_icon = QtWidgets.QSystemTrayIcon(self)
         self.tray_icon.setIcon(QtGui.QIcon(Settings().tray_icon))
-        menu = QtGui.QMenu(self)
-        action_restore = QtGui.QAction('Restore window', self)
+        menu = QtWidgets.QMenu(self)
+        action_restore = QtWidgets.QAction('Restore window', self)
         action_restore.triggered.connect(self.show)
         action_restore.setIcon(self.ic_restore)
         menu.addAction(action_restore)
@@ -154,8 +148,8 @@ class MainWindow(QtGui.QMainWindow):
         self.tray_icon.activated.connect(self._on_tray_icon_activated)
 
     def _on_tray_icon_activated(self, reason):
-        if reason in (QtGui.QSystemTrayIcon.Trigger,
-                      QtGui.QSystemTrayIcon.DoubleClick):
+        if reason in (QtWidgets.QSystemTrayIcon.Trigger,
+                      QtWidgets.QSystemTrayIcon.DoubleClick):
             self.show()
 
     def setVisible(self, visible):

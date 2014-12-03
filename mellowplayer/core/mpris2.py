@@ -1,6 +1,6 @@
 import logging
-from PyQt4 import QtCore, QtDBus
-from mellowplayer.api import SongStatus, Song
+from mellowplayer.api import SongStatus
+from mellowplayer.qt import QtCore, QtDBus
 
 
 def _logger():
@@ -43,13 +43,13 @@ class Mpris2(QtCore.QObject):
     def __init__(self, main_window):
         super().__init__()
         self.main_window = main_window
-        self.root_adaptor = MPRISRoot(self)
-        self.player_adaptor = MPRISPlayer(self)
         if not QtDBus.QDBusConnection.sessionBus().registerService(
                 SERVICE_NAME):
             _logger().warning('Failed to register service %s on the session '
                               'bus' % SERVICE_NAME)
             return
+        self.root_adaptor = MPRISRoot(self)
+        self.player_adaptor = MPRISPlayer(self)
         if not QtDBus.QDBusConnection.sessionBus().registerObject(
                 OBJECT_NAME, self):
             _logger().warning('Failed to register object %s on the session '
@@ -142,32 +142,27 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
         return self.to_xesam(self._current_song)
 
     def to_xesam(self, song):
-        try:
-            from PyQt4.QtDBus import QDBusObjectPath
-        except ImportError:
-            metadata = {}
+        if song:
+            artist = QtCore.QVariant([song.artist])
+            artist.convert(QtCore.QVariant.StringList)
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/org/mpris/MediaPlayer2/Track/%d' % id(song.name)),
+                'xesam:title': song.name,
+                'xesam:album': song.album,
+                'xesam:artist': artist,
+            }
+            if self.player.art:
+                metadata['mpris:artUrl'] = self.player.art
         else:
-            if song:
-                artist = QtCore.QVariant([song.artist])
-                artist.convert(QtCore.QVariant.StringList)
-                metadata = {
-                    'mpris:trackid': QDBusObjectPath(
-                        '/org/mpris/MediaPlayer2/Track/%d' % id(song.name)),
-                    'xesam:title': song.name,
-                    'xesam:album': song.album,
-                    'xesam:artist': artist,
-                }
-                if self.player.art:
-                    metadata['mpris:artUrl'] = self.player.art
-            else:
-                metadata = {
-                    'mpris:trackid': QDBusObjectPath(
-                        '/org/mpris/MediaPlayer2/NoTrack'),
-                    'xesam:title': '',
-                    'xesam:album': '',
-                    'xesam:albumArtist': '',
-                    'xesam:artist': '',
-                }
+            metadata = {
+                'mpris:trackid': QtDBus.QDBusObjectPath(
+                    '/org/mpris/MediaPlayer2/NoTrack'),
+                'xesam:title': '',
+                'xesam:album': '',
+                'xesam:albumArtist': '',
+                'xesam:artist': '',
+            }
         return metadata
 
     def _emit_metadata(self, song):
