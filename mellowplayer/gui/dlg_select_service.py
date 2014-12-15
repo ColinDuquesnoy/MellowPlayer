@@ -23,7 +23,7 @@ class DlgSelectService(QtWidgets.QDialog):
         services = parent.services.plugins.values()
         for sv in sorted(services, key=lambda x: x.metadata.name):
             meta = sv.metadata
-            item = QtGui.QListWidgetItem(meta.name, self.ui.listWidget)
+            item = QtWidgets.QListWidgetItem(meta.name, self.ui.listWidget)
             if meta.icon:
                 item.setIcon(QtGui.QIcon(meta.icon))
             item.service = sv
