@@ -115,7 +115,7 @@ class MainWindow(QtWidgets.QMainWindow):
                  not Settings().exit_on_close_if_not_playing)
         if hide and not hasattr(self, '_quit'):
             if not Settings().flg_close:
-                QtGui.QMessageBox.information(
+                QtWidgets.QMessageBox.information(
                     self, 'Mellow Player',
                     'The program will keep running in the '
                     'system tray. To terminate the program, '
