@@ -10,7 +10,7 @@ def main():
     # parse args
     parser = argparse.ArgumentParser(
         description='Cloud music service integration for your desktop')
-    parser.add_argument('--qt', action='store', dest='qt', type=int, default=4)
+    parser.add_argument('--qt', action='store', dest='qt', type=int, default=5)
     parser.add_argument('--verbose', action='store_true')
     args = parser.parse_args()
 
