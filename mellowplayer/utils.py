@@ -25,6 +25,8 @@ class FileDownloader(QtCore.QObject):
     def _on_download_finished(self, reply):
         _logger().info('download finished in %f [s]',
                        (time.time() - self._start))
+
         with open(self._dest, 'wb') as f:
             f.write(reply.readAll())
+        _logger().info('file downloaded: %s', self._dest)
         self.finished.emit(self._dest)

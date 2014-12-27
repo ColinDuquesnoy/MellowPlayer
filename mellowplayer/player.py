@@ -101,14 +101,9 @@ class Player(QtCore.QObject):
     def _download_art(self):
         song = self.get_current_song()
         url = song.art_url
-        tmp_dir = os.path.join(
-            tempfile.gettempdir(), 'mellowplayer', 'album-arts')
+
+        tmp_dir = tempfile.gettempdir()
         ext = os.path.splitext(url)[1]
-        try:
-            os.makedirs(tmp_dir)
-        except OSError:
-            # dir already created
-            pass
         artist = song.artist.replace(
             ' ', '').replace('\\', '').replace('/', '')
         album = song.album.replace(
