@@ -1,4 +1,4 @@
-.. image:: https://raw.githubusercontent.com/ColinDuquesnoy/MellowPlayer/master/share/icons/mellowplayer-banner.png
+.. image:: https://raw.githubusercontent.com/ColinDuquesnoy/MellowPlayer/master/data/icons/mellowplayer-banner.png
 
 *MellowPlayer* is a free, open source and cross-platform desktop application
 that runs a web interface of **cloud music services** in its own window and
