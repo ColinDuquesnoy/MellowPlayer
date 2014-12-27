@@ -1,8 +1,8 @@
 """
 This module provides an interface to the application settings (get/set)
 """
-from mellowplayer import system
-from mellowplayer.qt import QtCore, to_string, to_bool
+from . import system
+from .qt import QtCore, to_string, to_bool
 
 
 class Settings(QtCore.QSettings):

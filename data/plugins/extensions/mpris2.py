@@ -1,5 +1,5 @@
 import logging
-from mellowplayer.api import SongStatus
+from mellowplayer.api import SongStatus, plugins
 from mellowplayer.qt import QtCore, QtDBus
 
 
@@ -7,7 +7,53 @@ def _logger():
     return logging.getLogger(__name__)
 
 
-class MPRIS2Helper(object):
+class Plugin(plugins.IExtensionPlugin):
+    """
+    Plugin interface that make use of the Mpris2 dbus interface.
+    """
+    def setup(self, app):
+        self.obj = Service(app.window)
+
+    def teardown(self):
+        self.obj.setParent(None)
+        self.obj.destroy()
+        self.obj = None
+
+
+class Service(QtCore.QObject):
+    """
+    This registers the services and starts the root and the player adaptors.
+    """
+    SERVICE_NAME = 'org.mpris.MediaPlayer2.mellowplayer'
+    OBJECT_NAME = '/org/mpris/MediaPlayer2'
+
+    def __init__(self, main_window):
+        super().__init__()
+        self.main_window = main_window
+        if not QtDBus.QDBusConnection.sessionBus().registerService(
+                self.SERVICE_NAME):
+            _logger().warning('Failed to register service %s on the session '
+                              'bus' % self.SERVICE_NAME)
+            return
+        self.root_adaptor = Root(self)
+        self.player_adaptor = Player(self)
+        if not QtDBus.QDBusConnection.sessionBus().registerObject(
+                self.OBJECT_NAME, self):
+            _logger().warning('Failed to register object %s on the session '
+                              'bus' % self.OBJECT_NAME)
+            return
+        _logger().info('MPRIS2 service started')
+
+    def destroy(self):
+        _logger().info('MPRIS2 service destroyed')
+        QtDBus.QDBusConnection.sessionBus().unregisterObject(
+            self.OBJECT_NAME)
+
+
+class Helper(object):
+    """
+    Helper class to send some particular events on the dbus.
+    """
     def __init__(self):
         self.signal = QtDBus.QDBusMessage.createSignal(
             "/org/mpris/MediaPlayer2",
@@ -35,49 +81,24 @@ class MPRIS2Helper(object):
                               '%s, %s, %s', interface, name, values)
 
 
-SERVICE_NAME = 'org.mpris.MediaPlayer2.mellowplayer'
-OBJECT_NAME = '/org/mpris/MediaPlayer2'
-
-
-class Mpris2(QtCore.QObject):
-    def __init__(self, main_window):
-        super().__init__()
-        self.main_window = main_window
-        if not QtDBus.QDBusConnection.sessionBus().registerService(
-                SERVICE_NAME):
-            _logger().warning('Failed to register service %s on the session '
-                              'bus' % SERVICE_NAME)
-            return
-        self.root_adaptor = MPRISRoot(self)
-        self.player_adaptor = MPRISPlayer(self)
-        if not QtDBus.QDBusConnection.sessionBus().registerObject(
-                OBJECT_NAME, self):
-            _logger().warning('Failed to register object %s on the session '
-                              'bus' % OBJECT_NAME)
-            return
-        _logger().info('MPRIS2 service started')
-
-    def destroy(self):
-        _logger().info('MPRIS2 service destroyed')
-        QtDBus.QDBusConnection.sessionBus().unregisterObject(
-            OBJECT_NAME)
-
-
-class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
+class Player(QtDBus.QDBusAbstractAdaptor):
+    """
+    This implements the MPRIS2 player interface.
+    """
     QtCore.Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
 
     def __init__(self, parent):
         super().__init__(parent)
         self.setAutoRelaySignals(True)
-        self.player = self.parent().main_window.player
-        self._helper = MPRIS2Helper()
+        self.player = self.parent().main_window.app.player
+        self._helper = Helper()
         self.player.playback_status_changed.connect(
             self._on_playback_status_changed)
         self.player.song_changed.connect(self._on_song_changed)
         self.player.art_ready.connect(self._on_art_ready)
 
     def _on_art_ready(self):
-        self._emit_metadata(self._current_song)
+        self._emit_metadata(self.current_song)
 
     def _on_playback_status_changed(self):
         _logger().debug('playback status changed: %s', self.PlaybackStatus)
@@ -90,14 +111,14 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
         self._emit_metadata(song)
 
     @property
-    def _current_song(self):
+    def current_song(self):
         return self.player.get_current_song()
 
     @QtCore.pyqtProperty(str)
     def PlaybackStatus(self):
         status = 'Stopped'
-        if self._current_song:
-            status = SongStatus.to_string(self._current_song.status)
+        if self.current_song:
+            status = SongStatus.to_string(self.current_song.status)
             if status == 'Loading':
                 status = 'Playing'
         return status
@@ -139,7 +160,7 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtProperty('QMap<QString, QVariant>')
     def Metadata(self):
-        return self.to_xesam(self._current_song)
+        return self.to_xesam(self.current_song)
 
     def to_xesam(self, song):
         if song:
@@ -168,7 +189,7 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
     def _emit_metadata(self, song):
         self._helper.PropertiesChanged(
             "org.mpris.MediaPlayer2.Player", "Metadata",
-            self.to_xesam(self._current_song)
+            self.to_xesam(self.current_song)
         )
 
     @QtCore.pyqtProperty(float)
@@ -177,9 +198,9 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
 
     @QtCore.pyqtProperty(int)
     def Position(self):
-        if self._current_song:
+        if self.current_song:
             # convert seconds to micro seconds
-            return self._current_song.position.total_seconds() * 1000000
+            return self.current_song.position.total_seconds() * 1000000
         else:
             return 0
 
@@ -252,8 +273,8 @@ class MPRISPlayer(QtDBus.QDBusAbstractAdaptor):
         pass
 
 
-class MPRISRoot(QtDBus.QDBusAbstractAdaptor):
-    """ This provides the DBus adaptor to the outside world"""
+class Root(QtDBus.QDBusAbstractAdaptor):
+    """ This implements the MPRIS2 Root adaptor interface. """
     QtCore.Q_CLASSINFO("D-Bus Interface", 'org.mpris.MediaPlayer2')
 
     # org.mpris.MediaPlayer2 MPRIS 2.0 Root interface

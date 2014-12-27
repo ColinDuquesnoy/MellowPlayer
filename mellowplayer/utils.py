@@ -1,9 +1,6 @@
-"""
-Contains the file downloader helper class
-"""
 import logging
 import time
-from mellowplayer.qt import QtCore, QtNetwork
+from .qt import QtCore, QtNetwork
 
 
 def _logger():

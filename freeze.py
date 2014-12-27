@@ -14,14 +14,14 @@ osx = sys.platform == 'darwin'
 app_script = 'mellowplayer/main.py'
 app_name = 'Mellow Player'
 app_exe = 'MellowPlayer.exe' if windows else 'MellowPlayer'
-app_icon = 'share/icons/MellowPlayer.ico' if windows else ''
+app_icon = 'data/icons/MellowPlayer.ico' if windows else ''
 
 
 if len(sys.argv) == 1:
     sys.argv.append('build')
 
 options = {
-    'include_files': ['services/']
+    'include_files': ['plugins/']
 }
 
 print(
@@ -30,7 +30,7 @@ print(
 setup(name=app_name,
       version=__version__,
       options={'build_exe': options, 'bdist_mac': {
-          'iconfile': app_icon, 'custom_info_plist': 'share/Info.plist'}},
+          'iconfile': app_icon, 'custom_info_plist': 'data/Info.plist'}},
       executables=[
           Executable(app_script, targetName=app_exe,
                      icon=app_icon if windows else None,

@@ -4,7 +4,8 @@ This module contains logging utilities.
 """
 import logging
 import os
-from mellowplayer import system
+
+from . import system
 
 
 def get_path():

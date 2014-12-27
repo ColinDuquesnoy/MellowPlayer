@@ -1,6 +1,7 @@
 import logging
+import weakref
+
 from mellowplayer.api import SongStatus
-from mellowplayer.core import Mpris2, Player, ServiceManager
 from mellowplayer.qt import QtCore, QtGui, QtWidgets
 from mellowplayer.settings import Settings
 from .dlg_select_service import DlgSelectService
@@ -12,13 +13,14 @@ def _logger():
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
+    @property
+    def app(self):
+        return self._app()
+
+    def __init__(self, app):
+        super(MainWindow, self).__init__()
+        self._app = weakref.ref(app)
         self._setup_ui()
-        self.player = Player()
-        self.services = ServiceManager(self.ui.webView)
-        self._start_current()
-        self.mpris = Mpris2(self)
         self._init_tray_icon()
         self.ui.webView.page().linkClicked.connect(self._on_link_clicked)
 
@@ -76,7 +78,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Get current song and update gui accordingly.
         """
-        song = self.player.update()
+        song = self.app.player.update()
         if song:
             self.setWindowTitle(
                 '%s - MellowPlayer' % str(song))
@@ -104,16 +106,16 @@ class MainWindow(QtWidgets.QMainWindow):
     #--- system tray icon and close logic
     def quit(self):
         self._quit = True
-        self.player.stop()
+        self.app.player.stop()
         self.close()
 
     def closeEvent(self, ev=None):
-        hide = ev is not None and self.isVisible()
-        song = self.player.get_current_song()
-        hide &= ((song is not None and
-                  song.status <= SongStatus.Playing) or
-                 not Settings().exit_on_close_if_not_playing)
-        if hide and not hasattr(self, '_quit'):
+        visible = ev is not None and self.isVisible()
+        song = self.app.player.get_current_song()
+        # exit on close if not playing
+        visible &= ((song is not None and song.status <= SongStatus.Playing)
+                    or not Settings().exit_on_close_if_not_playing)
+        if visible and not hasattr(self, '_quit'):
             if not Settings().flg_close:
                 QtWidgets.QMessageBox.information(
                     self, 'Mellow Player',
@@ -125,9 +127,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.hide()
             ev.ignore()
         else:
-            self.mpris.setParent(None)
-            self.mpris.destroy()
-            self.mpris = None
             self.tray_icon.hide()
 
     def _init_tray_icon(self):
@@ -181,44 +180,44 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.pyqtSlot()
     def on_actionPlayPause_triggered(self):
-        self.player.play_pause()
+        self.app.player.play_pause()
 
     @QtCore.pyqtSlot()
     def on_actionStop_triggered(self):
-        self.player.stop()
+        self.app.player.stop()
 
     @QtCore.pyqtSlot()
     def on_actionNext_triggered(self):
-        self.player.next()
+        self.app.player.next()
 
     @QtCore.pyqtSlot()
     def on_actionPrevious_triggered(self):
-        self.player.previous()
+        self.app.player.previous()
 
     @QtCore.pyqtSlot(QtCore.QUrl)
     def _on_link_clicked(self, url):
-        if self.services.current_service.metadata.url in url.toString():
+        """
+        Allow the user to open external links (such as wikipedia pages).
+
+        :param url: url of the clicked link
+        """
+        if self.app.services.current_service.url in url.toString():
             self.ui.webView.load(url)
         else:
             QtGui.QDesktopServices.openUrl(url)
 
     #--- internal helper methods
-    def _start_current(self):
-        sv = self.services.start_current_service()
-        self.player.service = sv
-        if sv is not None:
-            self.ui.stackedWidget.setCurrentIndex(1)
-            self.ui.menubar.show()
-        else:
+    def show_page(self, home=False):
+        if home:
             self.ui.stackedWidget.setCurrentIndex(0)
             self.ui.menubar.hide()
+        else:
+            self.ui.stackedWidget.setCurrentIndex(1)
+            self.ui.menubar.show()
 
     def _select_service(self):
         self.show()
         service = DlgSelectService.select_service(self)
-        if service and service != self.services.current_service_name:
-            self.services.current_service_name = service
-            self._start_current()
-
-    def _on_art_downloaded(self, path):
-        self.player.art_path = QtCore.QUrl(path)
+        if service and service != self.app.services.current_service_name:
+            self.app.services.current_service_name = service
+            self.app.start_current_service()

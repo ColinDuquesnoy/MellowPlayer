@@ -21,36 +21,43 @@ with open('README.rst', 'r') as readme:
     long_desc = readme.read()
 
 
-def sv_files(path):
-    for d in os.listdir(path):
-        fn = os.path.join(path, d)
-        if os.path.isfile(fn):
-            yield fn
+def collect_data_files():
+    def sv_files(path):
+        for d in os.listdir(path):
+            fn = os.path.join(path, d)
+            if os.path.isfile(fn):
+                yield fn
 
+    data_files = []
+    if sys.platform == 'linux':
+        # Desktop file + icon
+        data_files.append(('share/applications',
+                           ['data/mellowplayer.desktop']))
+        data_files.append(('share/pixmaps',
+                           ['data/icons/application-x-mellowplayer.png']))
+    # Plugins (services and extensions)
+    data_files.append(('share/mellowplayer/plugins/services',
+                       list(sv_files('data/plugins/services'))))
+    data_files.append(('share/mellowplayer/plugins/extensions',
+                       list(sv_files('data/plugins/extensions'))))
+    return data_files
 
-data_files = []
-if sys.platform == 'linux':
-    data_files.append(('share/applications',
-                       ['share/mellowplayer.desktop']))
-    data_files.append(('share/pixmaps',
-                       ['share/icons/application-x-mellowplayer.png']))
-    data_files.append(('share/mellowplayer/services/grooveshark',
-                       list(sv_files('services/grooveshark/'))))
 
 setup(
     name='MellowPlayer',
     version=__version__,
-    packages=[p for p in find_packages() if 'test' not in p],
-    keywords=['Music; Cloud; Grooveshark; Player'],
-    data_files=data_files,
+    packages=find_packages(),
+    keywords=['Music; Cloud; Grooveshark; Media Player;'],
+    data_files=collect_data_files(),
     url='https://github.com/ColinDuquesnoy/MellowPlayer',
     license='GPL v2',
     author='Colin Duquesnoy',
     author_email='colin.duquesnoy@gmail.com',
-    description='Cloud Music integration for your desktop (cross-platform)',
+    description='Cross-platform cloud music integration for your desktop',
     long_description=long_desc,
     entry_points={'gui_scripts': ['MellowPlayer = mellowplayer.main:main']},
     cmdclass=cmdclass,
+    install_requires=['yapsy'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: X11 Applications :: Qt',

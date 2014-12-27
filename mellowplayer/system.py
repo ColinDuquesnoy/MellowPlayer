@@ -2,7 +2,7 @@ import functools
 import os
 import platform
 import subprocess
-from mellowplayer import __version__
+from . import __version__
 
 
 WINDOWS = platform.system() == 'Windows'

@@ -20,9 +20,9 @@ class DlgSelectService(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.ui.buttonBox.button(self.ui.buttonBox.Ok).setText('Use service')
         self.setWindowTitle('Select service - Mellow Player')
-        services = parent.services.plugins.values()
-        for sv in sorted(services, key=lambda x: x.metadata.name):
-            meta = sv.metadata
+        services = parent.app.services.plugins.values()
+        for sv in sorted(services, key=lambda x: x.name):
+            meta = sv
             item = QtWidgets.QListWidgetItem(meta.name, self.ui.listWidget)
             if meta.icon:
                 item.setIcon(QtGui.QIcon(meta.icon))
@@ -35,11 +35,11 @@ class DlgSelectService(QtWidgets.QDialog):
     def on_listWidget_currentItemChanged(self, item, _):
         sv = item.service
         desc = HTML % {
-            'sv_name': sv.metadata.name,
+            'sv_name': sv.name,
             'sv_desc': sv.description,
-            'maintainer_url': sv.metadata.maintainer_link,
-            'maintainer_name': sv.metadata.maintainer_name,
-            'sv_version': sv.metadata.version_str
+            'maintainer_url': sv.maintainer_link,
+            'maintainer_name': sv.maintainer_name,
+            'sv_version': sv.version
         }
         self.ui.textBrowser.setText(desc)
 
@@ -47,5 +47,5 @@ class DlgSelectService(QtWidgets.QDialog):
     def select_service(cls, parent):
         dlg = cls(parent)
         if dlg.exec_() == dlg.Accepted:
-            return dlg.ui.listWidget.currentItem().service.metadata.name
+            return dlg.ui.listWidget.currentItem().service.name
         return None

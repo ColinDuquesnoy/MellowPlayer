@@ -2,6 +2,7 @@
 This module contains the webview and the cookie jar used by the main window.
 """
 import logging
+
 from mellowplayer.qt import QtWebKit, QtNetwork, QtWebKitWidgets
 from mellowplayer.settings import Settings
 

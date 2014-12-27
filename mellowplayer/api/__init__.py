@@ -1,16 +1,19 @@
 """
-This package contains the application API:
-  - Service API: an API for integrating new services
-  - common classes: Song, SongInfo, SongStatus,...
-
+This package contains the application public API (for writing
+plugins):
+  - plugins api: the various plugins types (base classes)
+  - song api: Song, SongInfo, SongStatus,...
+  - player api: contains the player object that is used to control the
+                current integration service.
+  - utility api: FileDownloader
 """
+from mellowplayer.utils import FileDownloader
 from .song import SongStatus, Song
-from .service import ServiceIntegration
 
 
 # Public API
 __all__ = [
-    'ServiceIntegration',
+    'FileDownloader',
     'Song',
     'SongStatus'
 ]

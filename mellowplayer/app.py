@@ -1,8 +1,11 @@
 import logging
 import sys
 import weakref
-from mellowplayer.qt import QtGui, QtWidgets, QtCore, QtNetwork
-from mellowplayer.gui.main_window import MainWindow
+
+from .qt import QtGui, QtWidgets, QtCore, QtNetwork
+from .gui.main_window import MainWindow
+from .player import Player
+from .managers import PluginsManager, ServicesManager, ExtensionsManager
 
 
 def _logger():
@@ -73,10 +76,17 @@ class QSingleApplication(QtWidgets.QApplication):
 
 class Application:
     def __init__(self):
-        self._app = QSingleApplication(sys.argv)
-        self.window = MainWindow()
-        self._app.single_start(main_window=self.window)
-        self._app.setWindowIcon(self.window.windowIcon())
+        self.qapp = QSingleApplication(sys.argv)
+        self.window = MainWindow(self)
+        self.qapp.single_start(main_window=self.window)
+        self.qapp.setWindowIcon(self.window.windowIcon())
+        self.player = Player()
+        self.plugin_manager = PluginsManager()
+        self.services = ServicesManager(self.window.ui.webView, self.plugin_manager)
+        self.extensions = ExtensionsManager(self.plugin_manager, self)
+        self.start_current_service()
+
+        # still very experimental.
         self._global_shortcuts = []
         try:
             # optional dependency
@@ -98,8 +108,13 @@ class Application:
                     gs.activated.connect(slot)
                     self._global_shortcuts.append(gs)
 
+    def start_current_service(self):
+        self.player.service = self.services.start_current_service()
+        self.window.show_page(home=self.player.service is None)
+
     def run(self):
         self.window.show()
-        self._app.exec_()
+        self.qapp.exec_()
+        self.extensions.teardown()
         del self.window
-        del self._app
+        del self.qapp

@@ -4,42 +4,90 @@ throught an integration plugin
 """
 import os
 import tempfile
-from mellowplayer.api import SongStatus
-from mellowplayer.qt import QtCore
-from .download import FileDownloader
+
+from .api import SongStatus
+from .utils import FileDownloader
+from .qt import QtCore
 
 
 class Player(QtCore.QObject):
+    """
+    Helps manipulating the service integration plugin to interact with
+    the service: play, pause, get song infos,...
+    """
+    #: Signal emitted when a song changed
     song_changed = QtCore.pyqtSignal(object)
+    #: Signal emitted when the playback status changed
     playback_status_changed = QtCore.pyqtSignal(str)
+    #: Signal emitted when the art for the current song is ready.
     art_ready = QtCore.pyqtSignal()
 
     def __init__(self):
         QtCore.QObject.__init__(self)
+        #: Integration service plugin
         self.service = None
         self._prev_status = SongStatus.Stopped
         self._prev_song = None
+        #: art file path, use it when art_ready has been emitted.
         self.art = ''
 
     def play_pause(self):
+        """
+        Plays or pauses the current song depending on its playback status.
+        """
         if not self.service or not self.get_current_song():
             return
         if self.get_current_song().status > SongStatus.Playing:
-            self.service.integration.play()
+            self.service.play()
         else:
-            self.service.integration.pause()
+            self.service.pause()
 
     def stop(self):
+        """
+        Stops the current song.
+        """
         if self.service:
-            self.service.integration.stop()
+            self.service.stop()
 
     def next(self):
+        """
+        Goes to the next song
+        """
         if self.service:
-            self.service.integration.next()
+            self.service.next()
 
     def previous(self):
+        """
+        Goes to the previous song.
+        """
         if self.service:
-            self.service.integration.previous()
+            self.service.previous()
+
+    def get_current_song(self):
+        """
+        Gets the current song info
+
+        :return: current song or None
+        """
+        if self.service:
+            song = self.service.current_song()
+            return song
+        return None
+
+    def update(self):
+        """
+        Update player status and emit status change signals if
+        a change occured.
+
+        This method should be called periodically to ensure correct player
+        states.
+        """
+        if self.service:
+            song = self.service.current_song()
+            self._check_for_song_changes(song)
+            self._check_for_status_changes(song)
+            return song
+        return None
 
     def _check_for_status_changes(self, song):
         if song:
@@ -85,17 +133,3 @@ class Player(QtCore.QObject):
             self.song_changed.emit(song)
             if song:
                 self._download_art()
-
-    def get_current_song(self):
-        if self.service:
-            song = self.service.integration.current_song()
-            return song
-        return None
-
-    def update(self):
-        if self.service:
-            song = self.service.integration.current_song()
-            self._check_for_song_changes(song)
-            self._check_for_status_changes(song)
-            return song
-        return None

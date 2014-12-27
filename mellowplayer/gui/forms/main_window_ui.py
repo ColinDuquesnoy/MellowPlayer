@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.pushButtonSelect.sizePolicy().hasHeightForWidth())
         self.pushButtonSelect.setSizePolicy(sizePolicy)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/edit-services.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/edit-plugins.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonSelect.setIcon(icon1)
         self.pushButtonSelect.setObjectName("pushButtonSelect")
         self.gridLayout_3.addWidget(self.pushButtonSelect, 0, 1, 1, 1)

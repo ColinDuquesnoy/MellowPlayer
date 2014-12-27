@@ -3,7 +3,8 @@ Main script
 """
 import argparse
 import logging
-from mellowplayer import logger, qt, system
+
+from . import logger, qt, system
 
 
 def main():
@@ -40,7 +41,7 @@ def main():
         versions['qt_api'], versions['qt_api_ver'], versions['system'])
 
     # run application
-    from mellowplayer.app import Application
+    from .app import Application
     Application().run()
 
 

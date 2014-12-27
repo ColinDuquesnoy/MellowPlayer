@@ -2,10 +2,11 @@
 This module contains the Grooveshark service implementation.
 """
 import datetime
-from mellowplayer.api import ServiceIntegration, Song, SongStatus
+import os
+from mellowplayer.api import Song, SongStatus, plugins
 
 
-class GroovesharkServiceIntegration(ServiceIntegration):
+class GroovesharkServiceIntegration(plugins.IServiceIntegrationPlugin):
     """
     Official service that provides Grooveshark integration using the
     `Grooveshark JavaScript API`_
@@ -14,12 +15,30 @@ class GroovesharkServiceIntegration(ServiceIntegration):
         http://developers.grooveshark.com/docs/js_api/
 
     """
+    # Metadata
+    url = 'http://grooveshark.com/'
+    icon = os.path.join(os.path.dirname(__file__), 'grooveshark-logo.png')
+    description = '''
+    <p><strong>Grooveshark</strong> is an international online music search engine,
+music streaming service and music recommendation web software application, allowing users
+to search for, stream, and upload music that can be played immediately or added
+to a playlist. An optional paid subscription adds additional functionality and removes
+advertisements.
+</p><p>
+<em>Source:
+<a href="http://en.wikipedia.org/wiki/Grooveshark">Grooveshark on Wikipedia</a>,
+<a href="http://grooveshark.com">Official website</a></em>
+</p>
+'''
+
+    # map MellowPlayer sound status to grooveshark's sound status
     STATUS_MAP = {
         'loading': SongStatus.Loading,
         'playing': SongStatus.Playing,
         'paused': SongStatus.Paused,
         'stopped': SongStatus.Stopped
     }
+
     def play(self):
         self.jseval('window.Grooveshark.play();')
 
