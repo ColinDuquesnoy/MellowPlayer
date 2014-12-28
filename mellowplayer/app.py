@@ -96,13 +96,14 @@ class Application:
                               'package not found')
         else:
             shortcut_pairs = [
-                (['Ctrl+Alt+P', 'Media Play'], self.window.on_actionPlayPause_triggered),
-                (['Ctrl+Alt+S', 'Media Stop'], self.window.on_actionStop_triggered),
-                (['Ctrl+Alt+F', 'Media Next'], self.window.on_actionNext_triggered),
-                (['Ctrl+Alt+B', 'Media Previous'], self.window.on_actionPrevious_triggered),
+                ('Play/Pause', ['Ctrl+Alt+P'], self.window.on_actionPlayPause_triggered),
+                ('Stop', ['Ctrl+Alt+S'], self.window.on_actionStop_triggered),
+                ('Next', ['Ctrl+Alt+F'], self.window.on_actionNext_triggered),
+                ('Pevious', ['Ctrl+Alt+B'], self.window.on_actionPrevious_triggered),
             ]
-            for shortcuts, slot in shortcut_pairs:
+            for name, shortcuts, slot in shortcut_pairs:
                 for shortcut in shortcuts:
+                    _logger().info('Registering global shortcut: %s -> %s', name, shortcut)
                     gs = QxtGlobalShortcut()
                     gs.setShortcut(QtGui.QKeySequence(shortcut))
                     gs.activated.connect(slot)
@@ -115,6 +116,11 @@ class Application:
     def run(self):
         self.window.show()
         self.qapp.exec_()
+        self._global_shortcuts.clear()
         self.extensions.teardown()
+        self.window.ui.webView.close()
+        self.window.ui = None
         del self.window
+        self.window = None
         del self.qapp
+        self.qapp = None

@@ -1,8 +1,7 @@
 import logging
-import weakref
 
 from mellowplayer.api import SongStatus
-from mellowplayer.qt import QtCore, QtGui, QtWidgets
+from mellowplayer.qt import QtCore, QtGui, QtWidgets, QT_API
 from mellowplayer.settings import Settings
 from .dlg_select_service import DlgSelectService
 from .forms.main_window_ui import Ui_MainWindow
@@ -13,13 +12,9 @@ def _logger():
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    @property
-    def app(self):
-        return self._app()
-
     def __init__(self, app):
         super(MainWindow, self).__init__()
-        self._app = weakref.ref(app)
+        self.app = app
         self._setup_ui()
         self._init_tray_icon()
         self.ui.webView.page().linkClicked.connect(self._on_link_clicked)
@@ -78,6 +73,8 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Get current song and update gui accordingly.
         """
+        if not self.app:
+            return
         song = self.app.player.update()
         if song:
             self.setWindowTitle(
@@ -111,10 +108,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def closeEvent(self, ev=None):
         visible = ev is not None and self.isVisible()
-        song = self.app.player.get_current_song()
-        # exit on close if not playing
-        visible &= ((song is not None and song.status <= SongStatus.Playing)
-                    or not Settings().exit_on_close_if_not_playing)
+        if self.app:
+            song = self.app.player.get_current_song()
+            # exit on close if not playing
+            visible &= ((song is not None and song.status <= SongStatus.Playing)
+                        or not Settings().exit_on_close_if_not_playing)
+        else:
+            visible = False
         if visible and not hasattr(self, '_quit'):
             if not Settings().flg_close:
                 QtWidgets.QMessageBox.information(
@@ -127,22 +127,26 @@ class MainWindow(QtWidgets.QMainWindow):
             self.hide()
             ev.ignore()
         else:
+            super().closeEvent(ev)
+            self.timer.stop()
             self.tray_icon.hide()
 
     def _init_tray_icon(self):
         self.tray_icon = QtWidgets.QSystemTrayIcon(self)
         self.tray_icon.setIcon(QtGui.QIcon(Settings().tray_icon))
-        menu = QtWidgets.QMenu(self)
-        action_restore = QtWidgets.QAction('Restore window', self)
-        action_restore.triggered.connect(self.show)
-        action_restore.setIcon(self.ic_restore)
-        menu.addAction(action_restore)
-        self.action_restore = action_restore
-        menu.addSeparator()
-        menu.addActions(self.ui.menuPlayback.actions())
-        menu.addSeparator()
-        menu.addActions(self.ui.menuApplication.actions())
-        self.tray_icon.setContextMenu(menu)
+        if QT_API == 4:
+            # cause a segfault on exit with PyQt5 (Qt 5.4)
+            menu = QtWidgets.QMenu(self)
+            action_restore = QtWidgets.QAction('Restore window', self)
+            action_restore.triggered.connect(self.show)
+            action_restore.setIcon(self.ic_restore)
+            menu.addAction(action_restore)
+            self.action_restore = action_restore
+            menu.addSeparator()
+            menu.addActions(self.ui.menuPlayback.actions())
+            menu.addSeparator()
+            menu.addActions(self.ui.menuApplication.actions())
+            self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
         self.tray_icon.activated.connect(self._on_tray_icon_activated)
 
@@ -150,15 +154,6 @@ class MainWindow(QtWidgets.QMainWindow):
         if reason in (QtWidgets.QSystemTrayIcon.Trigger,
                       QtWidgets.QSystemTrayIcon.DoubleClick):
             self.show()
-
-    def setVisible(self, visible):
-        super().setVisible(visible)
-        if Settings().always_show_tray_icon:
-            self.tray_icon.show()
-        else:
-            # only show tray if the window is not visible
-            self.tray_icon.setVisible(not visible)
-        self.action_restore.setEnabled(not visible)
 
     #--- slots
     @QtCore.pyqtSlot()
