@@ -14,7 +14,7 @@
    <string>Mellow Player</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../share/icons/icons.qrc">
+   <iconset resource="../data/icons/icons.qrc">
     <normaloff>:/application-x-mellowplayer.png</normaloff>:/application-x-mellowplayer.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -192,7 +192,7 @@
      <x>0</x>
      <y>0</y>
      <width>1207</width>
-     <height>34</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -300,7 +300,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../share/icons/icons.qrc"/>
+  <include location="../data/icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>
