@@ -16,39 +16,51 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+#include <iostream>
 #include "application.h"
 #include "mainwindow.h"
+#include "mellowplayer.h"
 
 
 
 //---------------------------------------------------------s
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
-    QApplication(argc, argv),
-    window(NULL)
+    QApplication(argc, argv)
 {
+#ifdef __kde_support__
+    qDebug() << "MellowPlayer built with KDE support";
+#endif
+    this->setOrganizationName("MellowPlayer");
+    this->setOrganizationDomain("org.mellowplayer");
+    this->setApplicationVersion(
+        QString("%1.%2.%3%4").arg(
+            QString::number(VERSION_MAJOR),
+            QString::number(VERSION_MINOR),
+            QString::number(VERSION_PATCH),
+            VERSION_STATUS));
     singleInstanceController.start(this);
 }
 
 //---------------------------------------------------------
 MellowPlayerApp::~MellowPlayerApp()
 {
-    if(window)
-        delete this->window;
 }
 
 //---------------------------------------------------------
 void MellowPlayerApp::initialize()
 {
     qDebug() << "Initializing application";
-    this->window = new MainWindow();
-    this->window->show();
+    Services::_setCloudServicesManager(new CloudServicesManager(this));
+    Services::_setMainWindow(new MainWindow());
+    Services::mainWindow()->show();
 }
 
 //---------------------------------------------------------
 void MellowPlayerApp::raise()
 {
-    this->window->show();
-    this->window->raise();
-    this->window->activateWindow();
+    QMainWindow* window = Services::mainWindow();
+    window->show();
+    window->raise();
+    window->activateWindow();
 }
 

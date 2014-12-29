@@ -23,6 +23,7 @@
 #include <QMainWindow>
 
 class Player;
+class QPluginLoader;
 namespace Ui {
 class MainWindow;
 }
@@ -49,7 +50,7 @@ public:
 
 private:
     void loadPlugins();
-    void loadPlugin(QObject* plugin);
+    void loadPlugin(QPluginLoader* plugin);
     Ui::MainWindow *ui;
 };
 

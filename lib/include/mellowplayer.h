@@ -16,43 +16,9 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#ifndef APPLICATION_H
-#define APPLICATION_H
-
-#include <QtWidgets>
-#include "singleinstancecontroller.h"
-
-class MainWindow;
-class CloudServicesManager;
-
-
-/**
- * @brief The MellowPlayerApp class is the main application class.
- *
- * This is where we initializes the application GUI and the associated
- * services (plugins, player interface,...).
- */
-class MellowPlayerApp: public QApplication
-{
-public:
-    MellowPlayerApp(int &argc, char **argv);
-    ~MellowPlayerApp();
-
-    /*!
-     * \brief Initializes the application objects (main windown,...).
-     */
-    void initialize();
-
-    /*!
-     * \brief Raises the main window.
-     *
-     * Brings the app window to front.
-     */
-    void raise();
-
-private:
-    SingleInstanceController singleInstanceController;
-};
-
-
-#endif // APPLICATION_H
+/*!
+  * This is a convenience headers that include the whole MellowPlayer api.
+  */
+#include <mellowplayer/cloudservicesmanager.h>
+#include <mellowplayer/plugins.h>
+#include <mellowplayer/services.h>

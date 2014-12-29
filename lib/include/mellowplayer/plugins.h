@@ -27,7 +27,7 @@
 /*!
  * \brief Plugin interface for adding cloud music service integration.
  */
-class ServiceIntegrationInterface
+class ICloudMusicService
 {
 public:
     //! Sets the plugin up, gives it a pointer to the web view.
@@ -39,6 +39,18 @@ public:
       \param webView A pointer to the appliction's web view.
     */
     void setUp(QWebView* webView);
+
+    /*!
+     * Evaluates the JavaScript defined by ``scriptSource`` using the main web
+     * frame as context and returns the result of the last executed statement.
+     *
+     * \param scriptSource JavaScript source to evaluate.
+     * \return The result of the last JavaScript statement.
+     */
+    QVariant runJavaScript(const QString& scriptSource);
+
+    //! Returns the cloud music service URL
+    virtual QUrl url() = 0;
 
     //! Starts playing the current song
     virtual void play() = 0;
@@ -59,8 +71,8 @@ protected:
     QWebView* webView;  ///< A pointer to the appliction's web view.
 };
 
-#define ServiceIntegrationInterface_iid "org.MellowPlayer.ServiceIntegrationInterface"
-Q_DECLARE_INTERFACE(ServiceIntegrationInterface, ServiceIntegrationInterface_iid)
+#define ICloudMusicService_iid "org.MellowPlayer.ICloudMusicService"
+Q_DECLARE_INTERFACE(ICloudMusicService, ICloudMusicService_iid)
 
 #endif // PLUGINS
 

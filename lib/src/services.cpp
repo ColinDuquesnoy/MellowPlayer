@@ -16,44 +16,49 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include <iostream>
-#include <QtCore>
-#include "grooveshark.h"
 
+#include "mellowplayer/services.h"
+#include "mellowplayer/cloudservicesmanager.h"
+#include <QMainWindow>
+#include <QtWebKitWidgets/QWebView>
 
 //---------------------------------------------------------
-QUrl GroovesharkPlugin::url()
+CloudServicesManager* Services::_cloudServicesManager = NULL;
+QMainWindow* Services::_mainWindow= NULL;
+QWebView* Services::_webView = NULL;
+
+//---------------------------------------------------------
+void Services::_setMainWindow(QMainWindow *mainWindow)
 {
-    return QUrl("http://grooveshark.com");
+    Services::_mainWindow = mainWindow;
 }
 
 //---------------------------------------------------------
-void GroovesharkPlugin::play()
+QMainWindow *Services::mainWindow()
 {
-    this->runJavaScript("window.Grooveshark.play();");
+    return Services::_mainWindow;
 }
 
 //---------------------------------------------------------
-void GroovesharkPlugin::pause()
+void Services::_setCloudServicesManager(CloudServicesManager *manager)
 {
-    this->runJavaScript("window.Grooveshark.pause();");
+    Services::_cloudServicesManager = manager;
 }
 
 //---------------------------------------------------------
-void GroovesharkPlugin::stop()
+CloudServicesManager *Services::cloudServicesManager()
 {
-    this->pause();
+    return Services::_cloudServicesManager;
 }
 
 //---------------------------------------------------------
-void GroovesharkPlugin::next()
+void Services::_setWebView(QWebView *_webView)
 {
-    this->runJavaScript("window.Grooveshark.next();");
+    Services::_webView = _webView;
 }
 
 //---------------------------------------------------------
-void GroovesharkPlugin::previous()
+QWebView *Services::webView()
 {
-    this->runJavaScript("window.Grooveshark.previous();");
+    return Services::_webView;
 }
-

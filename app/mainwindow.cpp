@@ -14,9 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
+
 #include <QPluginLoader>
 #include <QtCore>
-#include "mellowplayer/plugins.h"
+#include "mellowplayer.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -27,11 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-#ifdef __KDE_SUPPORT__
-    qDebug() << "MellowPlayer built with KDE support";
-#endif
-
+    Services::_setWebView(ui->webView);
     loadPlugins();
 }
 
@@ -41,9 +38,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//---------------------------------------------------------
 void MainWindow::loadPlugins()
 {
     QDir pluginsDir(qApp->applicationDirPath());
+
     #if defined(Q_OS_WIN)
         if (pluginsDir.dirName().toLower() == "debug" ||
                 pluginsDir.dirName().toLower() == "release")
@@ -60,28 +59,29 @@ void MainWindow::loadPlugins()
     QDir servicesPluginsDir = QDir(pluginsDir);
     servicesPluginsDir.cd("services");
 
-    qDebug() << "Loading cloud service integration plugins from "
-             << servicesPluginsDir;
+    qDebug() << "Loading plugins from " << servicesPluginsDir.absolutePath();
 
     foreach (QString fileName, servicesPluginsDir.entryList(QDir::Files)) {
         QPluginLoader loader(servicesPluginsDir.absoluteFilePath(fileName));
-        QObject *plugin = loader.instance();
-        if (plugin)
-            loadPlugin(plugin);
+        this->loadPlugin(&loader);
     }
 }
 
-void MainWindow::loadPlugin(QObject *plugin)
+//---------------------------------------------------------
+void MainWindow::loadPlugin(QPluginLoader* loader)
 {
-    qDebug() << "  -> loading plugin: " << plugin;
+    QObject *plugin = loader->instance();
+    qDebug() << "Loading plugin: " << plugin;
 
-    // Cloud music service
-    ServiceIntegrationInterface* iService = qobject_cast<
-            ServiceIntegrationInterface*>(plugin);
+    // cloud service interface
+    ICloudMusicService* iService = qobject_cast<
+            ICloudMusicService*>(plugin);
     if(iService)
     {
-        iService->setUp(this->ui->webView);
-        iService->play();
+        Services::cloudServicesManager()->loadPlugin(iService, loader);
         return;
     }
+
+    // extension interface
+    // todo
 }
