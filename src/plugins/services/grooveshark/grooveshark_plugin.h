@@ -12,7 +12,6 @@ class GroovesharkServiceIntegrationPlugin :
     Q_INTERFACES(IServiceIntegration)
 
 public:
-    // IServiceIntegration interface
     void play();
     void pause();
     void stop();

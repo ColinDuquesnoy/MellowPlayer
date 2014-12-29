@@ -20,8 +20,8 @@
 #ifndef PLUGINS
 #define PLUGINS
 
+#include <QtWebKitWidgets/QWebView>
 #include <QtPlugin>
-
 
 class MainWindow;
 
@@ -30,16 +30,33 @@ class MainWindow;
 class IServiceIntegration
 {
 public:
+    //! Sets the plugin up, gives it a pointer to the web view.
+    /*!
+      This function takes a pointer to the application's web view. The view
+      is used to inject some javascript to control a cloud music service
+      throught it's JS API.
+
+      \param webView A pointer to the appliction's web view.
+    */
+    void setUp(QWebView* webView) { this->webView = webView; }
+
     //! Starts playing the current song
     virtual void play() = 0;
+
     //! Pauses the current song
     virtual void pause() = 0;
+
     //! Stops the current song
     virtual void stop() = 0;
+
     //! Skips to the next song
     virtual void next() = 0;
+
     //! Skips to the previous song
     virtual void previous() = 0;
+
+protected:
+    QWebView* webView;  ///< A pointer to the appliction's web view.
 };
 
 #define IServiceIntegration_iid "org.MellowPlayer.IServiceIntegration"

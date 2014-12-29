@@ -30,6 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     player = new Player(this);
+
+#ifdef __KDE_SUPPORT__
+    qDebug() << "MellowPlayer built with KDE support";
+#endif
+
     loadPlugins();
 }
 
@@ -70,4 +75,20 @@ void MainWindow::loadPlugins()
 void MainWindow::loadPlugin(QObject *plugin)
 {
     qDebug() << "  -> loading plugin: " << plugin;
+
+    // Cloud music service
+    IServiceIntegration* iService = qobject_cast<IServiceIntegration*>(plugin);
+    if(iService)
+    {
+        iService->setUp(this->ui->webView);
+        iService->play();
+        return;
+    }
+
+    IGenericExtension* iExtension = qobject_cast<IGenericExtension*>(plugin);
+    if(iExtension)
+    {
+        iExtension->setUp(this);
+        return;
+    }
 }

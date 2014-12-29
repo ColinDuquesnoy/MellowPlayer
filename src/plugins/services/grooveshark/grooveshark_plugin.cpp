@@ -1,30 +1,31 @@
 #include <iostream>
+#include <QtCore>
 #include "grooveshark_plugin.h"
 
 
 void GroovesharkServiceIntegrationPlugin::play()
 {
-    std::cout << "Play" << std::endl;
+    qDebug() << "Play" << this->webView;
 }
 
 
 void GroovesharkServiceIntegrationPlugin::pause()
 {
-    std::cout << "Pause" << std::endl;
+    qDebug() << "Pause";
 }
 
 void GroovesharkServiceIntegrationPlugin::stop()
 {
-    std::cout << "Stop" << std::endl;
+    qDebug() << "Stop";
 }
 
 void GroovesharkServiceIntegrationPlugin::next()
 {
-    std::cout << "Next" << std::endl;
+    qDebug() << "Next";
 }
 
 void GroovesharkServiceIntegrationPlugin::previous()
 {
-    std::cout << "Previous" << std::endl;
+    qDebug() << "Previous";
 }
 
