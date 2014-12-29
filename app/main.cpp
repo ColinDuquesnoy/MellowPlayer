@@ -1,5 +1,4 @@
 //---------------------------------------------------------
-//
 // This file is part of MellowPlayer.
 //
 // MellowPlayer is free software: you can redistribute it and/or modify
@@ -14,29 +13,19 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-//
 //---------------------------------------------------------
-#ifndef PLAYER_H
-#define PLAYER_H
 
-#include <QObject>
+#include "mainwindow.h"
+#include <QApplication>
+#include <QtPlugin>
 
 
-//! Provides an interface for manipulating a service integration plugin.
-/*!
-  The player is a wrapper over IServiceIntegration, it provides some
-  additional signals used to sync the gui (play status changes,...).
-*/
-class Player : public QObject
+//---------------------------------------------------------
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
-public:
-    explicit Player(QObject *parent = 0);
-    ~Player();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-signals:
-
-public slots:
-};
-
-#endif // PLAYER_H
+    return a.exec();
+}

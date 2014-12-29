@@ -14,7 +14,7 @@
    <string>Mellow Player</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../mellowplayer.qrc">
+   <iconset resource="mellowplayer.qrc">
     <normaloff>:/icons/application-x-mellowplayer.png</normaloff>:/icons/application-x-mellowplayer.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -323,7 +323,7 @@
   <tabstop>webView</tabstop>
  </tabstops>
  <resources>
-  <include location="../mellowplayer.qrc"/>
+  <include location="mellowplayer.qrc"/>
  </resources>
  <connections/>
 </ui>

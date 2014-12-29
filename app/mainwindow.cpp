@@ -16,10 +16,8 @@
 //---------------------------------------------------------
 #include <QPluginLoader>
 #include <QtCore>
-
+#include "mellowplayer/plugins.h"
 #include "mainwindow.h"
-#include "player.h"
-#include "plugins.h"
 #include "ui_mainwindow.h"
 
 
@@ -29,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    player = new Player(this);
 
 #ifdef __KDE_SUPPORT__
     qDebug() << "MellowPlayer built with KDE support";
@@ -46,10 +43,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadPlugins()
 {
-    qDebug() << "Loading static plugins";
-    foreach(QObject *plugin, QPluginLoader::staticInstances())
-        loadPlugin(plugin);
-
     QDir pluginsDir(qApp->applicationDirPath());
     #if defined(Q_OS_WIN)
         if (pluginsDir.dirName().toLower() == "debug" ||
@@ -63,9 +56,15 @@ void MainWindow::loadPlugins()
         }
     #endif
     pluginsDir.cd("plugins");
-    qDebug() << "Loading dynamic plugins from " << pluginsDir.absolutePath();
-    foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
-        QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+
+    QDir servicesPluginsDir = QDir(pluginsDir);
+    servicesPluginsDir.cd("services");
+
+    qDebug() << "Loading cloud service integration plugins from "
+             << servicesPluginsDir;
+
+    foreach (QString fileName, servicesPluginsDir.entryList(QDir::Files)) {
+        QPluginLoader loader(servicesPluginsDir.absoluteFilePath(fileName));
         QObject *plugin = loader.instance();
         if (plugin)
             loadPlugin(plugin);
@@ -77,18 +76,12 @@ void MainWindow::loadPlugin(QObject *plugin)
     qDebug() << "  -> loading plugin: " << plugin;
 
     // Cloud music service
-    IServiceIntegration* iService = qobject_cast<IServiceIntegration*>(plugin);
+    ServiceIntegrationInterface* iService = qobject_cast<
+            ServiceIntegrationInterface*>(plugin);
     if(iService)
     {
         iService->setUp(this->ui->webView);
         iService->play();
-        return;
-    }
-
-    IGenericExtension* iExtension = qobject_cast<IGenericExtension*>(plugin);
-    if(iExtension)
-    {
-        iExtension->setUp(this);
         return;
     }
 }

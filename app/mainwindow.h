@@ -51,7 +51,6 @@ private:
     void loadPlugins();
     void loadPlugin(QObject* plugin);
     Ui::MainWindow *ui;
-    Player* player;
 };
 
 #endif // MAINWINDOW_H

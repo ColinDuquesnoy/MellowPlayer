@@ -1,8 +1,0 @@
-<RCC>
-  <qresource>
-    <file>icons/application-x-mellowplayer.png</file>
-    <file>icons/mellowplayer-banner.png</file>
-    <file>icons/mellowplayer-tray-dark.png</file>
-    <file>icons/mellowplayer-tray-light.png</file>
-  </qresource>
-</RCC>
