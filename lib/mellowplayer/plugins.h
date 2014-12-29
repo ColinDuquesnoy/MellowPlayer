@@ -24,7 +24,9 @@
 #include <QtPlugin>
 
 
-//! Plugin interface for adding cloud music service integration.
+/*!
+ * \brief Plugin interface for adding cloud music service integration.
+ */
 class ServiceIntegrationInterface
 {
 public:

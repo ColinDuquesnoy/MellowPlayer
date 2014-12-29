@@ -1,4 +1,5 @@
 //---------------------------------------------------------
+//
 // This file is part of MellowPlayer.
 //
 // MellowPlayer is free software: you can redistribute it and/or modify
@@ -13,16 +14,41 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
+//
 //---------------------------------------------------------
-
 #include "application.h"
-#include <QApplication>
-#include <QtPlugin>
+#include "mainwindow.h"
 
+
+
+//---------------------------------------------------------s
+MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
+    QApplication(argc, argv),
+    window(NULL)
+{
+    singleInstanceController.start(this);
+}
 
 //---------------------------------------------------------
-int main(int argc, char *argv[])
+MellowPlayerApp::~MellowPlayerApp()
 {
-    MellowPlayerApp a(argc, argv);
-    return a.exec();
+    if(window)
+        delete this->window;
 }
+
+//---------------------------------------------------------
+void MellowPlayerApp::initialize()
+{
+    qDebug() << "Initializing application";
+    this->window = new MainWindow();
+    this->window->show();
+}
+
+//---------------------------------------------------------
+void MellowPlayerApp::raise()
+{
+    this->window->show();
+    this->window->raise();
+    this->window->activateWindow();
+}
+

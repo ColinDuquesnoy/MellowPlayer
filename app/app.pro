@@ -1,11 +1,15 @@
-QT              += core gui webkit
+QT              += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 TARGET           = MellowPlayer
 TEMPLATE         = app
 SOURCES         += main.cpp\
-                   mainwindow.cpp
+                   mainwindow.cpp \
+    application.cpp \
+    singleinstancecontroller.cpp
 INCLUDEPATH     += ../lib
-HEADERS         += mainwindow.h
+HEADERS         += mainwindow.h \
+    application.h \
+    singleinstancecontroller.h
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui
 LIBS            += -L../lib -lmellowplayer

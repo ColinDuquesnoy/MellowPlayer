@@ -1,4 +1,5 @@
 //---------------------------------------------------------
+//
 // This file is part of MellowPlayer.
 //
 // MellowPlayer is free software: you can redistribute it and/or modify
@@ -13,16 +14,45 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
+//
 //---------------------------------------------------------
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
-#include "application.h"
-#include <QApplication>
-#include <QtPlugin>
+#include <QtWidgets>
+#include "singleinstancecontroller.h"
+
+class MainWindow;
 
 
-//---------------------------------------------------------
-int main(int argc, char *argv[])
+/**
+ * @brief The MellowPlayerApp class is the main application class.
+ *
+ * This is where we initializes the application GUI and the associated
+ * services (plugins, player interface,...).
+ */
+class MellowPlayerApp: public QApplication
 {
-    MellowPlayerApp a(argc, argv);
-    return a.exec();
-}
+public:
+    MellowPlayerApp(int &argc, char **argv);
+    ~MellowPlayerApp();
+
+    /*!
+     * \brief Initializes the application objects (main windown,...).
+     */
+    void initialize();
+
+    /*!
+     * \brief Raises the main window.
+     *
+     * Brings the app window to front.
+     */
+    void raise();
+
+private:
+    MainWindow* window;
+    SingleInstanceController singleInstanceController;
+};
+
+
+#endif // APPLICATION_H
