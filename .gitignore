@@ -56,3 +56,4 @@ target/
 .idea
 # dolphin
 .directory
+*.pro.user
