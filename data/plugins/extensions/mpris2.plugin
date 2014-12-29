@@ -1,9 +1,0 @@
-[Core]
-Name = MPRIS2
-Module = mpris2
-
-[Documentation]
-Author = Colin Duquesnoy
-Version = 0.1
-Description = Add MPRIS2 support to MellowPlayer
-Website = https://github.com/ColinDuquesnoy/MellowPlayer

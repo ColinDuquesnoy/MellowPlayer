@@ -1,9 +1,0 @@
-[Core]
-Name = Grooveshark
-Module = grooveshark
-
-[Documentation]
-Author = Colin Duquesnoy
-Version = 0.1
-Description = Grooveshark integration plugin
-Website = https://github.com/ColinDuquesnoy/MellowPlayer
