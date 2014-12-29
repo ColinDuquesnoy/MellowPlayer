@@ -15,8 +15,7 @@ QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp\
            mainwindow.cpp \
-           player.cpp \
-           plugins.cpp
+           player.cpp
 
 INCLUDEPATH += ../../include
 
@@ -24,7 +23,7 @@ HEADERS  += ../../include/mainwindow.h \
             ../../include/player.h \
             ../../include/plugins.h
 
-LIBS += -Lplugins -lgrooveshark_plugin
+#LIBS += -Lplugins -lgrooveshark_plugin
 
 FORMS    += ../../data/forms/mainwindow.ui\
             ../../data/forms/dlg_select_service.ui

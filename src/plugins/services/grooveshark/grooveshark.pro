@@ -1,6 +1,8 @@
 TEMPLATE      = lib
-CONFIG       += plugin static
-QT           += widgets
+CONFIG       += plugin
+#CONFIG       += static
+QT           += widgets webkit
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH  += ../../../../include
 HEADERS       = grooveshark_plugin.h
 SOURCES       = grooveshark_plugin.cpp

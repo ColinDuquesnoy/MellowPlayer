@@ -19,7 +19,7 @@
 #include <QApplication>
 #include <QtPlugin>
 
-Q_IMPORT_PLUGIN(GroovesharkServiceIntegrationPlugin)
+//Q_IMPORT_PLUGIN(GroovesharkServiceIntegrationPlugin)
 
 
 //---------------------------------------------------------
