@@ -60,6 +60,13 @@ public:
      */
     void loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
 
+    /*!
+     * \brief Gets the current cloud music service plugin.
+     */
+    ICloudMusicService *currentService();
+
+    bool startCurrent();
+
 signals:
 
 public slots:

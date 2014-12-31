@@ -23,6 +23,8 @@
 #include <QtWebKitWidgets/QWebView>
 #include <QtPlugin>
 
+#include "mellowplayer/song.h"
+
 
 /*!
  * \brief Plugin interface for adding cloud music service integration.
@@ -30,16 +32,6 @@
 class ICloudMusicService
 {
 public:
-    //! Sets the plugin up, gives it a pointer to the web view.
-    /*!
-      This function takes a pointer to the application's web view. The view
-      is used to inject some javascript to control a cloud music service
-      throught it's JS API.
-
-      \param webView A pointer to the appliction's web view.
-    */
-    void setUp(QWebView* webView);
-
     /*!
      * Evaluates the JavaScript defined by ``scriptSource`` using the main web
      * frame as context and returns the result of the last executed statement.
@@ -66,6 +58,8 @@ public:
 
     //! Skips to the previous song
     virtual void previous() = 0;
+
+    virtual SongInfo currentSongInfo() = 0;
 
 protected:
     QWebView* webView;  ///< A pointer to the appliction's web view.

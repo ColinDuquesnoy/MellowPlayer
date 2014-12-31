@@ -17,15 +17,17 @@
 //
 //---------------------------------------------------------
 
-#include "mellowplayer/services.h"
-#include "mellowplayer/cloudservicesmanager.h"
 #include <QMainWindow>
 #include <QtWebKitWidgets/QWebView>
+#include "mellowplayer/cloudservicesmanager.h"
+#include "mellowplayer/player.h"
+#include "mellowplayer/services.h"
 
 //---------------------------------------------------------
-CloudServicesManager* Services::_cloudServicesManager = NULL;
+CloudServicesManager* Services::_cloudServices = NULL;
 QMainWindow* Services::_mainWindow= NULL;
 QWebView* Services::_webView = NULL;
+PlayerInterface* Services::_player = NULL;
 
 //---------------------------------------------------------
 void Services::_setMainWindow(QMainWindow *mainWindow)
@@ -40,15 +42,15 @@ QMainWindow *Services::mainWindow()
 }
 
 //---------------------------------------------------------
-void Services::_setCloudServicesManager(CloudServicesManager *manager)
+void Services::_setCloudServices(CloudServicesManager *manager)
 {
-    Services::_cloudServicesManager = manager;
+    Services::_cloudServices = manager;
 }
 
 //---------------------------------------------------------
-CloudServicesManager *Services::cloudServicesManager()
+CloudServicesManager *Services::cloudServices()
 {
-    return Services::_cloudServicesManager;
+    return Services::_cloudServices;
 }
 
 //---------------------------------------------------------
@@ -62,3 +64,17 @@ QWebView *Services::webView()
 {
     return Services::_webView;
 }
+
+//---------------------------------------------------------
+void Services::_setPlayer(PlayerInterface *player)
+{
+    Services::_player = player;
+}
+
+//---------------------------------------------------------
+PlayerInterface *Services::player()
+{
+    return Services::_player;
+}
+
+

@@ -20,10 +20,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QtCore>
+#include <QtGui>
+#include <QtWidgets>
 
-class Player;
-class QPluginLoader;
 namespace Ui {
 class MainWindow;
 }
@@ -42,15 +42,15 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-
     ~MainWindow();
 
-    //! Returns a pointer to the player interface.
-    Player* getPlayer() const;
+    void showWebPage();
+    void showHomePage();
+
+private slots:
+    void onLinkClicked(QUrl url);
 
 private:
-    void loadPlugins();
-    void loadPlugin(QPluginLoader* plugin);
     Ui::MainWindow *ui;
 };
 

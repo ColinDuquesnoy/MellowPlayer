@@ -15,12 +15,13 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 
-#include <QPluginLoader>
-#include <QtCore>
-#include "mellowplayer.h"
 #include "mainwindow.h"
+#include "mellowplayer.h"
+#include "pluginmanager.h"
 #include "ui_mainwindow.h"
 
+#define PAGE_HOME 0
+#define PAGE_WEB 1
 
 //---------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent) :
@@ -28,8 +29,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // todo: setup cookie jar on web view
+    // make sure javascript and flash are enabled.
+    QWebSettings* settings = this->ui->webView->settings();
+    settings->setAttribute(QWebSettings::JavascriptEnabled, true);
+    settings->setAttribute(QWebSettings::PluginsEnabled, true);
+    // handle opening links ourself so that we open external links in an
+    // external browser
+    this->ui->webView->page()->setLinkDelegationPolicy(
+                QWebPage::DelegateAllLinks);
     Services::_setWebView(ui->webView);
     loadPlugins();
+
+    connect(this->ui->webView, &QWebView::linkClicked, this,
+            &MainWindow::onLinkClicked);
 }
 
 //---------------------------------------------------------
@@ -39,49 +53,25 @@ MainWindow::~MainWindow()
 }
 
 //---------------------------------------------------------
-void MainWindow::loadPlugins()
+void MainWindow::showWebPage()
 {
-    QDir pluginsDir(qApp->applicationDirPath());
-
-    #if defined(Q_OS_WIN)
-        if (pluginsDir.dirName().toLower() == "debug" ||
-                pluginsDir.dirName().toLower() == "release")
-            pluginsDir.cdUp();
-    #elif defined(Q_OS_MAC)
-        if (pluginsDir.dirName() == "MacOS") {
-            pluginsDir.cdUp();
-            pluginsDir.cdUp();
-            pluginsDir.cdUp();
-        }
-    #endif
-    pluginsDir.cd("plugins");
-
-    QDir servicesPluginsDir = QDir(pluginsDir);
-    servicesPluginsDir.cd("services");
-
-    qDebug() << "Loading plugins from " << servicesPluginsDir.absolutePath();
-
-    foreach (QString fileName, servicesPluginsDir.entryList(QDir::Files)) {
-        QPluginLoader loader(servicesPluginsDir.absoluteFilePath(fileName));
-        this->loadPlugin(&loader);
-    }
+    this->ui->stackedWidget->setCurrentIndex(PAGE_WEB);
+    this->ui->menubar->show();
 }
 
 //---------------------------------------------------------
-void MainWindow::loadPlugin(QPluginLoader* loader)
+void MainWindow::showHomePage()
 {
-    QObject *plugin = loader->instance();
-    qDebug() << "Loading plugin: " << plugin;
+    this->ui->stackedWidget->setCurrentIndex(PAGE_HOME);
+    this->ui->menubar->hide();
+}
 
-    // cloud service interface
-    ICloudMusicService* iService = qobject_cast<
-            ICloudMusicService*>(plugin);
-    if(iService)
-    {
-        Services::cloudServicesManager()->loadPlugin(iService, loader);
-        return;
-    }
-
-    // extension interface
-    // todo
+//---------------------------------------------------------
+void MainWindow::onLinkClicked(QUrl url)
+{
+    ICloudMusicService* sv = Services::cloudServices()->currentService();
+    if( sv && url.toString().contains(sv->url().toString()))
+        this->ui->webView->load(url);
+    else
+        QDesktopServices::openUrl(url);
 }

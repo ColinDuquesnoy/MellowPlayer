@@ -33,10 +33,12 @@ else{
 SOURCES         += main.cpp\
                    mainwindow.cpp \
                    application.cpp \
-                   singleinstancecontroller.cpp
+                   singleinstancecontroller.cpp \
+    pluginmanager.cpp
 HEADERS         += mainwindow.h \
                    application.h \
-                   singleinstancecontroller.h
+                   singleinstancecontroller.h \
+    pluginmanager.h
 RESOURCES       = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui

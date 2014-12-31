@@ -16,14 +16,28 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+#include "mellowplayer/song.h"
 
-#include <QtWebKitWidgets/QWebFrame>
-#include "mellowplayer/plugins.h"
-#include "mellowplayer/services.h"
 
 //---------------------------------------------------------
-QVariant ICloudMusicService::runJavaScript(const QString &scriptSource)
+QString playbackStatusToString(PlaybackStatus status)
 {
-    return Services::webView()->page()->mainFrame()->evaluateJavaScript(
-                scriptSource);
+    switch (status) {
+    case Loading:
+        return "Loading";
+    case Playing:
+        return "Playing";
+    case Paused:
+        return "Paused";
+    case Stopped:
+        return "Stopped";
+    }
+    return "";
+}
+
+
+//---------------------------------------------------------
+bool SongInfo::isValid()
+{
+    return songName != "";
 }

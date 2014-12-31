@@ -20,5 +20,7 @@
   * This is a convenience headers that include the whole MellowPlayer api.
   */
 #include <mellowplayer/cloudservicesmanager.h>
+#include <mellowplayer/player.h>
 #include <mellowplayer/plugins.h>
 #include <mellowplayer/services.h>
+#include <mellowplayer/song.h>

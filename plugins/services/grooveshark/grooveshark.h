@@ -49,4 +49,6 @@ public:
     void next();
     //! Skips to the previous song
     void previous();
+
+    SongInfo currentSongInfo();
 };

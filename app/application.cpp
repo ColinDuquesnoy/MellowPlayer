@@ -25,7 +25,8 @@
 
 //---------------------------------------------------------s
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
-    QApplication(argc, argv)
+    QApplication(argc, argv),
+    mainWindow(NULL)
 {
 #ifdef __kde_support__
     qDebug() << "MellowPlayer built with KDE support";
@@ -44,14 +45,22 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
 //---------------------------------------------------------
 MellowPlayerApp::~MellowPlayerApp()
 {
+    if(mainWindow)
+        delete mainWindow;
 }
 
 //---------------------------------------------------------
 void MellowPlayerApp::initialize()
 {
     qDebug() << "Initializing application";
-    Services::_setCloudServicesManager(new CloudServicesManager(this));
-    Services::_setMainWindow(new MainWindow());
+    Services::_setCloudServices(new CloudServicesManager(this));
+    Services::_setPlayer(new PlayerInterface(this));
+    this->mainWindow = new MainWindow();
+    Services::_setMainWindow(this->mainWindow);
+    if(Services::cloudServices()->startCurrent())
+        this->mainWindow->showWebPage();
+    else
+        this->mainWindow->showHomePage();
     Services::mainWindow()->show();
 }
 
@@ -63,4 +72,3 @@ void MellowPlayerApp::raise()
     window->raise();
     window->activateWindow();
 }
-

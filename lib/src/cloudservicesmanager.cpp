@@ -38,7 +38,6 @@ void CloudServicesManager::loadPlugin(ICloudMusicService *iService,
     PluginMetaData meta = this->extractMetaData(pluginLoader);
     if(this->metaData.find(meta.name) == this->metaData.end())
     {
-        iService->setUp(Services::webView());
         this->metaData[meta.name] = meta;
         this->services[meta.name] = iService;
     }
@@ -47,6 +46,24 @@ void CloudServicesManager::loadPlugin(ICloudMusicService *iService,
         qWarning() << "A plugin with the same name already exists, this plugin "
                       "instance will be discared";
     }
+}
+
+//---------------------------------------------------------
+ICloudMusicService *CloudServicesManager::currentService()
+{
+    // todo use QSettings to get the current service name
+    return services["Grooveshark"];
+}
+
+bool CloudServicesManager::startCurrent()
+{
+    ICloudMusicService* iService = this->currentService();
+    if(iService)
+    {
+        Services::webView()->load(iService->url());
+        return true;
+    }
+    return false;
 }
 
 //---------------------------------------------------------

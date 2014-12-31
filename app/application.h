@@ -23,7 +23,6 @@
 #include "singleinstancecontroller.h"
 
 class MainWindow;
-class CloudServicesManager;
 
 
 /**
@@ -52,6 +51,7 @@ public:
 
 private:
     SingleInstanceController singleInstanceController;
+    MainWindow* mainWindow;
 };
 
 

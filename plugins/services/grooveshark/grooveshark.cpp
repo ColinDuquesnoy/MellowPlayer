@@ -57,3 +57,8 @@ void GroovesharkPlugin::previous()
     this->runJavaScript("window.Grooveshark.previous();");
 }
 
+//---------------------------------------------------------
+SongInfo GroovesharkPlugin::currentSongInfo()
+{
+    return SongInfo();
+}

@@ -22,6 +22,7 @@
 
 class QMainWindow;
 class CloudServicesManager;
+class PlayerInterface;
 class QWebView;
 
 /*!
@@ -39,16 +40,20 @@ public:
     static void _setMainWindow(QMainWindow* _mainWindow);
     static QMainWindow* mainWindow();
 
-    static void _setCloudServicesManager(CloudServicesManager* manager);
-    static CloudServicesManager* cloudServicesManager();
+    static void _setCloudServices(CloudServicesManager* manager);
+    static CloudServicesManager* cloudServices();
 
     static void _setWebView(QWebView* _webView);
     static QWebView* webView();
 
+    static void _setPlayer(PlayerInterface* player);
+    static PlayerInterface* player();
+
 private:
     static QMainWindow* _mainWindow;
     static QWebView* _webView;
-    static CloudServicesManager* _cloudServicesManager;
+    static CloudServicesManager* _cloudServices;
+    static PlayerInterface* _player;
 };
 
 #endif // SERVICES_H

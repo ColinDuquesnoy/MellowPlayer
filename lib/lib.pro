@@ -25,10 +25,15 @@ INCLUDEPATH  += include
 HEADERS       = include/mellowplayer.h \
                 include/mellowplayer/plugins.h \
                 include/mellowplayer/cloudservicesmanager.h \
-                include/mellowplayer/services.h
+                include/mellowplayer/services.h \
+    include/mellowplayer/song.h \
+    include/mellowplayer/player.h
 SOURCES       = src/plugins.cpp \
                 src/cloudservicesmanager.cpp \
-                src/services.cpp
+                src/services.cpp \
+    src/song.cpp \
+    src/player.cpp
+
 macx{
     CONFIG += lib_bundle
     FRAMEWORK_HEADERS.version = Versions
