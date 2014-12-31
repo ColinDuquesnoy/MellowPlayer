@@ -23,7 +23,13 @@ TEMPLATE         = app
 QT              += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH     += ../lib/include
-LIBS            += -L../lib -lmellowplayer
+macx{
+    QMAKE_LFLAGS    += -F../lib
+    LIBS += -framework mellowplayer
+}
+else{
+    LIBS            += -L../lib -lmellowplayer
+}
 SOURCES         += main.cpp\
                    mainwindow.cpp \
                    application.cpp \

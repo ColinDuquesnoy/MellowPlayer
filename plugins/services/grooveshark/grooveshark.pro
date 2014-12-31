@@ -26,7 +26,14 @@ SOURCES       = grooveshark.cpp
 TARGET        = $$qtLibraryTarget(grooveshark)
 # for builtin plugins
 INCLUDEPATH  += ../../../lib/include
-LIBS         += -L../../../lib -lmellowplayer
+macx{
+    QMAKE_LFLAGS    += -F../../../lib
+    LIBS += -framework mellowplayer
+}
+else{
+    LIBS         += -L../../../lib -lmellowplayer
+}
+
 DESTDIR       = ../../../app/plugins/services
 
 RESOURCES += \

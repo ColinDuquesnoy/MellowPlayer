@@ -16,7 +16,6 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-
 TEMPLATE      = lib
 TARGET        = $$qtLibraryTarget(mellowplayer)
 VERSION       = 1.0.0
@@ -30,3 +29,10 @@ HEADERS       = include/mellowplayer.h \
 SOURCES       = src/plugins.cpp \
                 src/cloudservicesmanager.cpp \
                 src/services.cpp
+macx{
+    CONFIG += lib_bundle
+    FRAMEWORK_HEADERS.version = Versions
+    FRAMEWORK_HEADERS.files = $$HEADERS
+    FRAMEWORK_HEADERS.path = include
+    QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
+}
