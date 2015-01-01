@@ -25,15 +25,16 @@
 
 
 //---------------------------------------------------------
-CloudServicesManager::CloudServicesManager(QObject *parent):
-    QObject(parent)
+CloudServicesManager::CloudServicesManager(QObject* parent):
+    QObject(parent),
+    _currentService(NULL)
 {
 
 }
 
 //---------------------------------------------------------
-void CloudServicesManager::loadPlugin(ICloudMusicService *iService,
-                                      QPluginLoader *pluginLoader)
+void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
+                                      QPluginLoader* pluginLoader)
 {
     PluginMetaData meta = this->extractMetaData(pluginLoader);
     if(this->metaData.find(meta.name) == this->metaData.end())
@@ -49,26 +50,8 @@ void CloudServicesManager::loadPlugin(ICloudMusicService *iService,
 }
 
 //---------------------------------------------------------
-ICloudMusicService *CloudServicesManager::currentService()
-{
-    // todo use QSettings to get the current service name
-    return services["Grooveshark"];
-}
-
-bool CloudServicesManager::startCurrent()
-{
-    ICloudMusicService* iService = this->currentService();
-    if(iService)
-    {
-        Services::webView()->load(iService->url());
-        return true;
-    }
-    return false;
-}
-
-//---------------------------------------------------------
 CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
-        QPluginLoader *pluginLoader)
+        QPluginLoader* pluginLoader)
 {
     PluginMetaData meta;
     meta.name = pluginLoader->metaData().value(
@@ -105,4 +88,23 @@ CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
              << "  - html description: " << meta.htmlDescription<< "\n";
 
     return meta;
+}
+
+//---------------------------------------------------------
+ICloudMusicService* CloudServicesManager::currentService()
+{
+    return this->_currentService;
+}
+
+//---------------------------------------------------------
+bool CloudServicesManager::startService(const QString& serviceName)
+{
+    bool retVal = false;
+    if(this->services.find(serviceName) != this->services.end())
+    {
+        this->_currentService = this->services[serviceName];
+        Services::webView()->load(this->_currentService->url());
+        retVal = true;
+    }
+    return retVal;
 }

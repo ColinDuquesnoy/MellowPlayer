@@ -57,7 +57,7 @@ void MellowPlayerApp::initialize()
     Services::_setPlayer(new PlayerInterface(this));
     this->mainWindow = new MainWindow();
     Services::_setMainWindow(this->mainWindow);
-    if(Services::cloudServices()->startCurrent())
+    if(Services::cloudServices()->startService("Grooveshark"))
         this->mainWindow->showWebPage();
     else
         this->mainWindow->showHomePage();

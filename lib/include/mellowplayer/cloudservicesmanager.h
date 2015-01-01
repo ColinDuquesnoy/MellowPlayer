@@ -61,11 +61,22 @@ public:
     void loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
 
     /*!
-     * \brief Gets the current cloud music service plugin.
+     * @brief Starts the current service.
+     *
+     * Load the cloud service URL and set the service as the currentService.
+     *
+     * @return True if the service could be started, False if the service does
+     * not exists.
      */
-    ICloudMusicService *currentService();
+    bool startService(const QString& serviceName);
 
-    bool startCurrent();
+    /*!
+     * \brief Gets the current cloud music service, started by startService.
+     *
+     * \returns CUrrent cloud music service or NULL if no service has been
+     * started.
+     */
+    ICloudMusicService* currentService();
 
 signals:
 
@@ -75,6 +86,7 @@ private:
     PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
     std::map<QString, ICloudMusicService*> services;
     std::map<QString, PluginMetaData> metaData;
+    ICloudMusicService* _currentService;
 };
 
 #endif // CLOUDSERVICESMANAGER_H
