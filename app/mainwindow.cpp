@@ -15,6 +15,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 
+#include "cookiejar.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
 #include "pluginmanager.h"
@@ -30,7 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // todo: setup cookie jar on web view
+    ui->webView->page()->networkAccessManager()->setCookieJar(
+                new CookieJar(ui->webView));
     // make sure javascript and flash are enabled.
     QWebSettings* settings = this->ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
