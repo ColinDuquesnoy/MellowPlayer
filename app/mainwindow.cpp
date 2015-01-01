@@ -240,7 +240,7 @@ void MainWindow::updatePlayer()
     {
         this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
         this->trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
-            song.toPrettyString()));
+            song.toString()));
         this->ui->actionNext->setEnabled(true);
         this->ui->actionPrevious->setEnabled(true);
         this->ui->actionStop->setEnabled(song.playbackStatus != Stopped);
@@ -270,6 +270,7 @@ void MainWindow::updatePlayer()
         this->ui->actionPlayPause->setEnabled(false);
         this->ui->actionPlayPause->setText("Play");
         this->ui->actionPlayPause->setIcon(Icons::play());
+        this->trayIcon->setToolTip("MellowPlayer");
     }
 }
 
