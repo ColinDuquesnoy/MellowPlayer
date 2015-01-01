@@ -143,16 +143,21 @@ void MainWindow::updatePlayer()
     SongInfo song = Services::player()->update();
     if(song.isValid())
     {
-        this->setWindowTitle("%s - MellowPlayer" % song.songName);
+        this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.songName));
         this->ui->actionNext->setEnabled(true);
         this->ui->actionPrevious->setEnabled(true);
         this->ui->actionStop->setEnabled(song.playbackStatus != Stopped);
         this->ui->actionPlayPause->setEnabled(true);
         this->ui->actionPlayPause->setText(song.songName);
-//        if song.status == SongStatus.Paused:
-//            self.ui.actionPlayPause.setIcon(self.ic_play)
-//        else:
-//          self.ui.actionPlayPause.setIcon(self.ic_pause)
+        if(song.playbackStatus == Paused)
+            this->ui->actionPlayPause->setIcon(
+                QIcon(":/icons/media-playback-start.png"));
+        else if(song.playbackStatus == Playing)
+            this->ui->actionPlayPause->setIcon(
+                QIcon(":/icons/media-playback-pause.png"));
+        else if(song.playbackStatus == Loading)
+          this->ui->actionPlayPause->setIcon(
+                QIcon(":/icons/loading_static.png"));
     }
     else
     {
@@ -162,6 +167,7 @@ void MainWindow::updatePlayer()
         this->ui->actionStop->setEnabled(false);
         this->ui->actionPlayPause->setEnabled(false);
         this->ui->actionPlayPause->setText("Play/Pause");
-//        self.ui.actionPlayPause.setIcon(self.ic_play);
+        this->ui->actionPlayPause->setIcon(
+            QIcon(":/icons/media-playback-start.png"));
     }
 }

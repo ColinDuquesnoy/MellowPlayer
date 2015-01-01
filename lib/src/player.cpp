@@ -105,6 +105,8 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
         status = song.playbackStatus;
     if(status != this->currentStatus)
     {
+        qDebug() << "Playback status changed: "
+                 << playbackStatusToString((status));
         this->currentStatus = status;
         emit playbackStatusChanged(status);
     }
@@ -115,6 +117,7 @@ void PlayerInterface::checkSongChange(SongInfo &song)
 {
     if(song.songName != this->currentSong.songName)
     {
+        qDebug() << "Song changed: " << song.songName;
         this->currentSong = song;
         emit songChanged(song);
         // todo implement song art download when the FileDownloader is ready.

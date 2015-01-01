@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file>icons/loading_static.png</file>
     <file>icons/application-exit.png</file>
     <file>icons/preferences-other.png</file>
     <file>icons/help-about.png</file>
