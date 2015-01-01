@@ -60,5 +60,23 @@ void GroovesharkPlugin::previous()
 //---------------------------------------------------------
 SongInfo GroovesharkPlugin::currentSongInfo()
 {
-    return SongInfo();
+    SongInfo retVal;
+    QVariantMap result = this->runJavaScript(
+        "current_song = window.Grooveshark.getCurrentSongStatus()").toMap();
+    QVariantMap songData = result["song"].toMap();
+    retVal.songName = songData["songName"].toString();
+    retVal.albumName = songData["albumName"].toString();
+    retVal.artistName = songData["artistName"].toString();
+    retVal.artUrl = songData["artUrl"].toString();
+    QString statusString = result["status"].toString();
+    retVal.playbackStatus = Stopped;
+    if(statusString == "loading")
+        retVal.playbackStatus = Loading;
+    else if(statusString == "playing")
+        retVal.playbackStatus = Playing;
+    else if(statusString == "paused")
+        retVal.playbackStatus = Paused;
+    else if(statusString == "stopped")
+        retVal.playbackStatus = Stopped;
+    return retVal;
 }
