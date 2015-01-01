@@ -53,9 +53,10 @@ private slots:
     void onStopTriggered();
     void onNextTriggered();
     void onPreviousTriggered();
-
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 private:
     void closeEvent(QCloseEvent* event);
+    void setupTrayIcon();
     void setupUpdateTimer();
     void setupWebView();
     void connectSlots();

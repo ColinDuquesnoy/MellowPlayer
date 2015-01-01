@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadPlugins();
     this->connectSlots();
     this->setupUpdateTimer();
+    this->setupTrayIcon();
 }
 
 //---------------------------------------------------------
@@ -91,10 +92,71 @@ void MainWindow::onPreviousTriggered()
 }
 
 //---------------------------------------------------------
+void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger ||
+            reason == QSystemTrayIcon::DoubleClick)
+        this->show();
+}
+
+//---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    this->updateTimer->stop();
+    bool minimizeToTray = QSettings().value(
+        "minimizeToTray", QVariant(true)).toBool();
+    if(this->isVisible() && minimizeToTray)
+    {
+        bool showMsg = QSettings().value(
+            "showMinimizeToTrayMsg", true).toBool();
+        if(showMsg)
+        {
+            QMessageBox::information(
+                this, "MellowPlayer",
+                "The program will keep running in the system tray. To terminate "
+                "the program, choose <b>Quit</b> in the context menu of the "
+                "system tray entry.");
+            QSettings().setValue("showMinimizeToTrayMsg", false);
+        }
+        this->hide();
+        event->ignore();
+    }
+    else
+    {
+        this->updateTimer->stop();
+        this->trayIcon->hide();
+        event->accept();
+    }
 }
+
+//---------------------------------------------------------
+void MainWindow::setupTrayIcon()
+{
+    this->trayIcon = new QSystemTrayIcon(this);
+    this->trayIcon->setIcon(this->windowIcon());
+
+    QMenu* mnu = new QMenu();
+    mnu->addAction(this->ui->actionPlayPause);
+    mnu->addAction(this->ui->actionStop);
+    mnu->addAction(this->ui->actionNext);
+    mnu->addAction(this->ui->actionPrevious);
+    mnu->addSeparator();
+    mnu->addAction(this->ui->actionSelect_service);
+    mnu->addAction(this->ui->actionPreferences);
+    mnu->addSeparator();
+    mnu->addAction(this->ui->actionAbout_MellowPlayer);
+    mnu->addAction(this->ui->actionReport_a_bug);
+    mnu->addSeparator();
+//#ifndef __kde_support__
+    // kde provides a quit action automatically.
+    mnu->addAction(this->ui->actionQuit);
+//#endif
+    this->trayIcon->setContextMenu(mnu);
+
+    this->trayIcon->show();
+    this->connect(this->trayIcon, &QSystemTrayIcon::activated,
+                  this, &MainWindow::onTrayIconActivated);
+}
+
 
 //---------------------------------------------------------
 void MainWindow::setupUpdateTimer()
@@ -136,8 +198,11 @@ void MainWindow::connectSlots()
                   this, &MainWindow::onNextTriggered);
     this->connect(this->ui->actionPrevious, &QAction::triggered,
                   this, &MainWindow::onPreviousTriggered);
+    this->connect(this->ui->actionQuit, &QAction::triggered,
+                  qApp, &QApplication::quit);
 }
 
+//---------------------------------------------------------
 void MainWindow::updatePlayer()
 {
     SongInfo song = Services::player()->update();
