@@ -1,7 +1,17 @@
 <RCC>
-    <qresource prefix="/">
-        <file>icons/application-x-mellowplayer.png</file>
-        <file>icons/mellowplayer-tray-dark.png</file>
-        <file>icons/mellowplayer-tray-light.png</file>
-    </qresource>
+  <qresource prefix="/">
+    <file>icons/application-exit.png</file>
+    <file>icons/preferences-other.png</file>
+    <file>icons/help-about.png</file>
+    <file>icons/media-playback-pause.png</file>
+    <file>icons/media-playback-start.png</file>
+    <file>icons/media-playback-stop.png</file>
+    <file>icons/media-seek-backward.png</file>
+    <file>icons/media-seek-forward.png</file>
+    <file>icons/preferences-system.png</file>
+    <file>icons/tools-report-bug.png</file>
+    <file>icons/application-x-mellowplayer.png</file>
+    <file>icons/mellowplayer-tray-dark.png</file>
+    <file>icons/mellowplayer-tray-light.png</file>
+  </qresource>
 </RCC>

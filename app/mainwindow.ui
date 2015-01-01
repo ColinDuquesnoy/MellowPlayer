@@ -126,6 +126,10 @@
             <property name="text">
              <string>Preferences</string>
             </property>
+            <property name="icon">
+             <iconset resource="mellowplayer.qrc">
+              <normaloff>:/icons/preferences-system.png</normaloff>:/icons/preferences-system.png</iconset>
+            </property>
            </widget>
           </item>
           <item row="2" column="1">
@@ -139,6 +143,10 @@
             <property name="text">
              <string>Quit</string>
             </property>
+            <property name="icon">
+             <iconset resource="mellowplayer.qrc">
+              <normaloff>:/icons/application-exit.png</normaloff>:/icons/application-exit.png</iconset>
+            </property>
            </widget>
           </item>
           <item row="0" column="1">
@@ -151,6 +159,10 @@
             </property>
             <property name="text">
              <string>Select a cloud music service</string>
+            </property>
+            <property name="icon">
+             <iconset resource="mellowplayer.qrc">
+              <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
             </property>
            </widget>
           </item>
@@ -234,6 +246,10 @@
    <addaction name="menu"/>
   </widget>
   <action name="actionSelect_service">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
+   </property>
    <property name="text">
     <string>Select a cloud music service</string>
    </property>
@@ -245,6 +261,10 @@
    </property>
   </action>
   <action name="actionPreferences">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/preferences-system.png</normaloff>:/icons/preferences-system.png</iconset>
+   </property>
    <property name="text">
     <string>Preferences</string>
    </property>
@@ -253,6 +273,10 @@
    </property>
   </action>
   <action name="actionPlayPause">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/media-playback-start.png</normaloff>:/icons/media-playback-start.png</iconset>
+   </property>
    <property name="text">
     <string>Play/Pause</string>
    </property>
@@ -261,6 +285,10 @@
    </property>
   </action>
   <action name="actionStop">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/media-playback-stop.png</normaloff>:/icons/media-playback-stop.png</iconset>
+   </property>
    <property name="text">
     <string>Stop</string>
    </property>
@@ -269,6 +297,10 @@
    </property>
   </action>
   <action name="actionNext">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/media-seek-forward.png</normaloff>:/icons/media-seek-forward.png</iconset>
+   </property>
    <property name="text">
     <string>Next</string>
    </property>
@@ -277,6 +309,10 @@
    </property>
   </action>
   <action name="actionPrevious">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/media-seek-backward.png</normaloff>:/icons/media-seek-backward.png</iconset>
+   </property>
    <property name="text">
     <string>Previous</string>
    </property>
@@ -285,6 +321,10 @@
    </property>
   </action>
   <action name="actionAbout_MellowPlayer">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/help-about.png</normaloff>:/icons/help-about.png</iconset>
+   </property>
    <property name="text">
     <string>About Mellow Player</string>
    </property>
@@ -293,6 +333,10 @@
    </property>
   </action>
   <action name="actionReport_a_bug">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/tools-report-bug.png</normaloff>:/icons/tools-report-bug.png</iconset>
+   </property>
    <property name="text">
     <string>Report a bug</string>
    </property>
@@ -301,6 +345,10 @@
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/application-exit.png</normaloff>:/icons/application-exit.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>

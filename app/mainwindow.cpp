@@ -123,6 +123,7 @@ void MainWindow::setupWebView()
     Services::_setWebView(ui->webView);
 }
 
+//---------------------------------------------------------
 void MainWindow::connectSlots()
 {
     this->connect(this->ui->webView, &QWebView::linkClicked,
