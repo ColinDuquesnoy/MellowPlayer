@@ -40,4 +40,17 @@ macx{
     FRAMEWORK_HEADERS.files = $$HEADERS
     FRAMEWORK_HEADERS.path = include
     QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
+    target.path = /Library/Frameworks
 }
+unix{
+    isEmpty(PREFIX) {
+       PREFIX = /usr/local
+    }
+    target.path = $$PREFIX/lib
+}
+win32
+{
+    # todo
+}
+INSTALLS += target
+

@@ -38,3 +38,18 @@ DESTDIR       = ../../../app/plugins/services
 
 RESOURCES += \
     grooveshark.qrc
+
+macx{
+    # todo
+}
+unix{
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+    target.path = $$PREFIX/share/mellowplayer/plugins/services/
+}
+win32
+{
+    # todo
+}
+INSTALLS += target

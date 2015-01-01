@@ -60,3 +60,19 @@ kde_support {
   DEFINES += "__kde_support__=1"
   QT += KGlobalAccel
 }
+
+macx{
+    CONFIG += app_bundle
+    target.path = /Applications
+}
+unix{
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+    target.path = $$PREFIX/bin
+}
+win32
+{
+    # todo
+}
+INSTALLS += target

@@ -41,6 +41,7 @@ void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
     {
         this->metaData[meta.name] = meta;
         this->services[meta.name] = iService;
+        qDebug() << "Plugin loaded: " << meta.name;
     }
     else
     {
