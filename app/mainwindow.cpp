@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
     this->setupWebView();
     loadPlugins();
     this->connectSlots();
@@ -94,8 +95,7 @@ void MainWindow::onPreviousTriggered()
 //---------------------------------------------------------
 void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    if (reason == QSystemTrayIcon::Trigger ||
-            reason == QSystemTrayIcon::DoubleClick)
+    if (reason == QSystemTrayIcon::DoubleClick)
         this->show();
 }
 
