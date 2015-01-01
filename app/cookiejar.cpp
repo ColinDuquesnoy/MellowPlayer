@@ -29,8 +29,7 @@ CookieJar::CookieJar(QObject* parent):
 //---------------------------------------------------------
 void CookieJar::purgeCookies()
 {
-    QSettings().clear();
-    // reset all cookies to an empty byte array.
+    QSettings().setValue("cookies", CookieMap());
     this->loadCookies();
 }
 
