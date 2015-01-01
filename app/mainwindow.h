@@ -49,9 +49,20 @@ public:
 
 private slots:
     void onLinkClicked(QUrl url);
+    void onPlayPauseTriggered();
+    void onStopTriggered();
+    void onNextTriggered();
+    void onPreviousTriggered();
 
 private:
+    void closeEvent(QCloseEvent* event);
+    void setupUpdateTimer();
+    void setupWebView();
+    void connectSlots();
+    void updatePlayer();
     Ui::MainWindow *ui;
+    QTimer* updateTimer;
+    QSystemTrayIcon* trayIcon;
 };
 
 #endif // MAINWINDOW_H

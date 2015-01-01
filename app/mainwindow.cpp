@@ -30,22 +30,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    ui->webView->page()->networkAccessManager()->setCookieJar(
-                new CookieJar(ui->webView));
-    // make sure javascript and flash are enabled.
-    QWebSettings* settings = this->ui->webView->settings();
-    settings->setAttribute(QWebSettings::JavascriptEnabled, true);
-    settings->setAttribute(QWebSettings::PluginsEnabled, true);
-    // handle opening links ourself so that we open external links in an
-    // external browser
-    this->ui->webView->page()->setLinkDelegationPolicy(
-                QWebPage::DelegateAllLinks);
-    Services::_setWebView(ui->webView);
+    this->setupWebView();
     loadPlugins();
-
-    connect(this->ui->webView, &QWebView::linkClicked, this,
-            &MainWindow::onLinkClicked);
+    this->connectSlots();
+    this->setupUpdateTimer();
 }
 
 //---------------------------------------------------------
@@ -76,4 +64,103 @@ void MainWindow::onLinkClicked(QUrl url)
         this->ui->webView->load(url);
     else
         QDesktopServices::openUrl(url);
+}
+
+//---------------------------------------------------------
+void MainWindow::onPlayPauseTriggered()
+{
+    Services::player()->playPause();
+}
+
+//---------------------------------------------------------
+void MainWindow::onStopTriggered()
+{
+    Services::player()->stop();
+}
+
+//---------------------------------------------------------
+void MainWindow::onNextTriggered()
+{
+    Services::player()->next();
+}
+
+//---------------------------------------------------------
+void MainWindow::onPreviousTriggered()
+{
+    Services::player()->previous();
+}
+
+//---------------------------------------------------------
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    this->updateTimer->stop();
+}
+
+//---------------------------------------------------------
+void MainWindow::setupUpdateTimer()
+{
+    this->updateTimer = new QTimer(this);
+    this->updateTimer->setInterval(500);
+    this->connect(this->updateTimer, &QTimer::timeout,
+                  this, &MainWindow::updatePlayer);
+    this->updateTimer->start();
+}
+
+//---------------------------------------------------------
+void MainWindow::setupWebView()
+{
+    // Setup web view
+    ui->webView->page()->networkAccessManager()->setCookieJar(
+                new CookieJar(ui->webView));
+    // make sure javascript and flash are enabled.
+    QWebSettings* settings = this->ui->webView->settings();
+    settings->setAttribute(QWebSettings::JavascriptEnabled, true);
+    settings->setAttribute(QWebSettings::PluginsEnabled, true);
+    // handle opening links ourself so that we open external links in an
+    // external browser
+    this->ui->webView->page()->setLinkDelegationPolicy(
+                QWebPage::DelegateAllLinks);
+    Services::_setWebView(ui->webView);
+}
+
+void MainWindow::connectSlots()
+{
+    this->connect(this->ui->webView, &QWebView::linkClicked,
+                  this, &MainWindow::onLinkClicked);
+    this->connect(this->ui->actionPlayPause, &QAction::triggered,
+                  this, &MainWindow::onPlayPauseTriggered);
+    this->connect(this->ui->actionStop, &QAction::triggered,
+                  this, &MainWindow::onStopTriggered);
+    this->connect(this->ui->actionNext, &QAction::triggered,
+                  this, &MainWindow::onNextTriggered);
+    this->connect(this->ui->actionPrevious, &QAction::triggered,
+                  this, &MainWindow::onPreviousTriggered);
+}
+
+void MainWindow::updatePlayer()
+{
+    SongInfo song = Services::player()->update();
+    if(song.isValid())
+    {
+        this->setWindowTitle("%s - MellowPlayer" % song.songName);
+        this->ui->actionNext->setEnabled(true);
+        this->ui->actionPrevious->setEnabled(true);
+        this->ui->actionStop->setEnabled(song.playbackStatus != Stopped);
+        this->ui->actionPlayPause->setEnabled(true);
+        this->ui->actionPlayPause->setText(song.songName);
+//        if song.status == SongStatus.Paused:
+//            self.ui.actionPlayPause.setIcon(self.ic_play)
+//        else:
+//          self.ui.actionPlayPause.setIcon(self.ic_pause)
+    }
+    else
+    {
+        this->setWindowTitle("MellowPlayer");
+        this->ui->actionNext->setEnabled(false);
+        this->ui->actionPrevious->setEnabled(false);
+        this->ui->actionStop->setEnabled(false);
+        this->ui->actionPlayPause->setEnabled(false);
+        this->ui->actionPlayPause->setText("Play/Pause");
+//        self.ui.actionPlayPause.setIcon(self.ic_play);
+    }
 }
