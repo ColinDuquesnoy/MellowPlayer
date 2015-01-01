@@ -46,6 +46,7 @@ public:
 
     void showWebPage();
     void showHomePage();
+    void saveGeometryAndState();
 
 private slots:
     void onLinkClicked(QUrl url);
@@ -56,11 +57,14 @@ private slots:
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 private:
     void closeEvent(QCloseEvent* event);
+    void setupIcons();
     void setupTrayIcon();
     void setupUpdateTimer();
     void setupWebView();
     void connectSlots();
     void updatePlayer();
+    void restoreGeometryAndState();
+
     Ui::MainWindow *ui;
     QTimer* updateTimer;
     QSystemTrayIcon* trayIcon;

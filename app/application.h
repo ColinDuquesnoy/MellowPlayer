@@ -49,6 +49,8 @@ public:
      */
     void raise();
 
+    int exec();
+
 private:
     SingleInstanceController singleInstanceController;
     MainWindow* mainWindow;

@@ -72,6 +72,26 @@ struct SongInfo
      * \return True if the song is valid.
      */
     bool isValid();
+
+    /*!
+     * @brief Returns a string representation of the song using the
+     * following format: SONG_NAME by ARTIST_NAME on ALBUM_NAME.
+     *
+     * @return return a string representatin of the song
+     */
+    QString toString();
+
+    /*!
+     * @brief Returns a pretty string representation of the song using the
+     * following format: <b>SONG_NAME</b> by <b>ARTIST_NAME</b> on
+     * <b>ALBUM_NAME</b>.
+     *
+     * The difference with toString is that SONG_NAME, ARTIST_NAME and
+     * ALBUM_NAME are enclode by a bold html (<b>XXX</b>).
+     *
+     * @return return a string representatin of the song
+     */
+    QString toPrettyString();
 };
 
 #endif // SONG

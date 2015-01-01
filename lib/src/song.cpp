@@ -35,9 +35,21 @@ QString playbackStatusToString(PlaybackStatus status)
     return "";
 }
 
-
 //---------------------------------------------------------
 bool SongInfo::isValid()
 {
     return songName != "";
+}
+
+//---------------------------------------------------------
+QString SongInfo::toString()
+{
+    return QString("%1 by %2 on %3").arg(songName, artistName, albumName);
+}
+
+//---------------------------------------------------------
+QString SongInfo::toPrettyString()
+{
+    return QString("<b>%1</b> by <b>%2</b> on <b>%3</b>").arg(
+        songName, artistName, albumName);
 }

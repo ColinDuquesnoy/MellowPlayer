@@ -36,7 +36,7 @@ SingleInstanceController::SingleInstanceController(QObject* parent):
             this, &SingleInstanceController::onNewConnection);
 
     connect(this->localSocket, SIGNAL(error(QLocalSocket::LocalSocketError)),
-            this, SLOT(onSocketError(QLocalSocket::LocalSocketError)));
+            this, SLOT(onSocketError()));
 }
 
 //---------------------------------------------------------
@@ -63,12 +63,13 @@ void SingleInstanceController::onSocketConnected()
 }
 
 //---------------------------------------------------------
-void SingleInstanceController::onSocketError(QLocalSocket::LocalSocketError error)
+void SingleInstanceController::onSocketError()
 {
-    qDebug() << "No other instances are running, performing startup";
+#ifndef QT_DEBUG
     if(!this->localServer->listen(APP_NAME))
         qWarning() << "Failed to start local server, cannot ensure unique "
-                      "application instance (error=" << error << ")";
+                      "application instance";
+#endif
     this->app->initialize();
 }
 

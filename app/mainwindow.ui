@@ -161,7 +161,7 @@
              <string>Select a cloud music service</string>
             </property>
             <property name="icon">
-             <iconset resource="mellowplayer.qrc">
+             <iconset>
               <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
             </property>
            </widget>
@@ -247,7 +247,7 @@
   </widget>
   <action name="actionSelect_service">
    <property name="icon">
-    <iconset resource="mellowplayer.qrc">
+    <iconset theme="system-run">
      <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
    </property>
    <property name="text">
@@ -354,6 +354,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionRestoreWindow">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/view-restore.png</normaloff>:/icons/view-restore.png</iconset>
+   </property>
+   <property name="text">
+    <string>Restore window</string>
+   </property>
+   <property name="toolTip">
+    <string>Restore the window</string>
    </property>
   </action>
  </widget>

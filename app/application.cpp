@@ -72,3 +72,11 @@ void MellowPlayerApp::raise()
     window->raise();
     window->activateWindow();
 }
+
+//---------------------------------------------------------
+int MellowPlayerApp::exec()
+{
+    int retCode = QApplication::exec();
+    this->mainWindow->saveGeometryAndState();
+    return retCode;
+}

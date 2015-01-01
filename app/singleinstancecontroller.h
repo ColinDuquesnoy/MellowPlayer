@@ -50,7 +50,7 @@ public:
 
 public slots:
     void onSocketConnected();
-    void onSocketError(QLocalSocket::LocalSocketError error);
+    void onSocketError();
     void onNewConnection();
 
 private:

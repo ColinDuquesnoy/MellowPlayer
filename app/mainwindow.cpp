@@ -16,6 +16,7 @@
 //---------------------------------------------------------
 
 #include "cookiejar.h"
+#include "icons.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
 #include "pluginmanager.h"
@@ -30,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->restoreGeometryAndState();
+    this->setupIcons();
     ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
     this->setupWebView();
     loadPlugins();
@@ -97,6 +100,12 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::DoubleClick)
         this->show();
+#ifndef Q_OS_MAC
+    bool showMsg = QSettings().value(
+        "showMinimizeToTrayMsg", true).toBool();
+    if( reason == QSystemTrayIcon::Trigger && !showMsg)
+        this->setVisible(!this->isVisible());
+#endif
 }
 
 //---------------------------------------------------------
@@ -125,7 +134,28 @@ void MainWindow::closeEvent(QCloseEvent *event)
         this->updateTimer->stop();
         this->trayIcon->hide();
         event->accept();
+        this->saveGeometryAndState();
     }
+}
+
+//---------------------------------------------------------
+void MainWindow::setupIcons()
+{
+    this->ui->actionSelect_service->setIcon(Icons::selectCloudService());
+    this->ui->actionPreferences->setIcon(Icons::preferences());
+    this->ui->actionQuit->setIcon(Icons::quit());
+
+    this->ui->actionPlayPause->setIcon(Icons::play());
+    this->ui->actionStop->setIcon(Icons::stop());
+    this->ui->actionNext->setIcon(Icons::next());
+    this->ui->actionPrevious->setIcon(Icons::previous());
+
+    this->ui->actionAbout_MellowPlayer->setIcon(Icons::about());
+    this->ui->actionReport_a_bug->setIcon(Icons::reportBug());
+
+    this->ui->pushButtonSelect->setIcon(Icons::selectCloudService());
+    this->ui->pushButtonPreferences->setIcon(Icons::preferences());
+    this->ui->pushButtonPreferences->setIcon(Icons::quit());
 }
 
 //---------------------------------------------------------
@@ -135,6 +165,8 @@ void MainWindow::setupTrayIcon()
     this->trayIcon->setIcon(this->windowIcon());
 
     QMenu* mnu = new QMenu();
+    mnu->addAction(this->ui->actionRestoreWindow);
+    mnu->addSeparator();
     mnu->addAction(this->ui->actionPlayPause);
     mnu->addAction(this->ui->actionStop);
     mnu->addAction(this->ui->actionNext);
@@ -143,20 +175,16 @@ void MainWindow::setupTrayIcon()
     mnu->addAction(this->ui->actionSelect_service);
     mnu->addAction(this->ui->actionPreferences);
     mnu->addSeparator();
-    mnu->addAction(this->ui->actionAbout_MellowPlayer);
-    mnu->addAction(this->ui->actionReport_a_bug);
-    mnu->addSeparator();
-//#ifndef __kde_support__
+#ifndef __kde_support__
     // kde provides a quit action automatically.
     mnu->addAction(this->ui->actionQuit);
-//#endif
+#endif
     this->trayIcon->setContextMenu(mnu);
 
     this->trayIcon->show();
     this->connect(this->trayIcon, &QSystemTrayIcon::activated,
                   this, &MainWindow::onTrayIconActivated);
 }
-
 
 //---------------------------------------------------------
 void MainWindow::setupUpdateTimer()
@@ -198,6 +226,8 @@ void MainWindow::connectSlots()
                   this, &MainWindow::onNextTriggered);
     this->connect(this->ui->actionPrevious, &QAction::triggered,
                   this, &MainWindow::onPreviousTriggered);
+    this->connect(this->ui->actionRestoreWindow, &QAction::triggered,
+                  this, &MainWindow::show);
     this->connect(this->ui->actionQuit, &QAction::triggered,
                   qApp, &QApplication::quit);
 }
@@ -208,21 +238,28 @@ void MainWindow::updatePlayer()
     SongInfo song = Services::player()->update();
     if(song.isValid())
     {
-        this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.songName));
+        this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
+        this->trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
+            song.toPrettyString()));
         this->ui->actionNext->setEnabled(true);
         this->ui->actionPrevious->setEnabled(true);
         this->ui->actionStop->setEnabled(song.playbackStatus != Stopped);
         this->ui->actionPlayPause->setEnabled(true);
-        this->ui->actionPlayPause->setText(song.songName);
         if(song.playbackStatus == Paused)
-            this->ui->actionPlayPause->setIcon(
-                QIcon(":/icons/media-playback-start.png"));
+        {
+            this->ui->actionPlayPause->setIcon(Icons::play());
+            this->ui->actionPlayPause->setText("Play");
+        }
         else if(song.playbackStatus == Playing)
-            this->ui->actionPlayPause->setIcon(
-                QIcon(":/icons/media-playback-pause.png"));
+        {
+            this->ui->actionPlayPause->setIcon(Icons::pause());
+            this->ui->actionPlayPause->setText("Pause");
+        }
         else if(song.playbackStatus == Loading)
-          this->ui->actionPlayPause->setIcon(
-                QIcon(":/icons/loading_static.png"));
+        {
+            this->ui->actionPlayPause->setIcon(Icons::loading());
+            this->ui->actionPlayPause->setText("Loading, please wait...");
+        }
     }
     else
     {
@@ -231,8 +268,21 @@ void MainWindow::updatePlayer()
         this->ui->actionPrevious->setEnabled(false);
         this->ui->actionStop->setEnabled(false);
         this->ui->actionPlayPause->setEnabled(false);
-        this->ui->actionPlayPause->setText("Play/Pause");
-        this->ui->actionPlayPause->setIcon(
-            QIcon(":/icons/media-playback-start.png"));
+        this->ui->actionPlayPause->setText("Play");
+        this->ui->actionPlayPause->setIcon(Icons::play());
     }
+}
+
+//---------------------------------------------------------
+void MainWindow::restoreGeometryAndState()
+{
+    this->restoreGeometry(QSettings().value("windowGeometry").toByteArray());
+    this->restoreState(QSettings().value("windowState").toByteArray());
+}
+
+//---------------------------------------------------------
+void MainWindow::saveGeometryAndState()
+{
+    QSettings().setValue("windowGeometry", this->saveGeometry());
+    QSettings().setValue("windowState", this->saveState(VERSION_MAJOR));
 }
