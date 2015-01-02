@@ -21,14 +21,17 @@
 
 #ifdef __kde_support__
     #include "KGlobalAccel"
+    #define DEFAULT_SHORTCUT_PLAY       "Media Play"
+    #define DEFAULT_SHORTCUT_STOP       "Media Stop"
+    #define DEFAULT_SHORTCUT_NEXT       "Media Next"
+    #define DEFAULT_SHORTCUT_PREVIOUS   "Media Previous"
 #else
     #include "qxtglobalshortcut.h"
+    #define DEFAULT_SHORTCUT_PLAY       "Ctrl+Alt+P"
+    #define DEFAULT_SHORTCUT_STOP       "Ctrl+Alt+S"
+    #define DEFAULT_SHORTCUT_NEXT       "Ctrl+Alt+F"
+    #define DEFAULT_SHORTCUT_PREVIOUS   "Ctrl+Alt+B"
 #endif
-
-#define DEFAULT_SHORTCUT_PLAY       "Media Play"
-#define DEFAULT_SHORTCUT_STOP       "Media Stop"
-#define DEFAULT_SHORTCUT_NEXT       "Media Next"
-#define DEFAULT_SHORTCUT_PREVIOUS   "Media Previous"
 
 
 void HotkeysPlugin::setup()
@@ -41,8 +44,15 @@ void HotkeysPlugin::setup()
 #ifdef __kde_support__
     qDebug() << "Hotkeys Plugin: Setting up KGlobalAccel shortcuts";
     for(int i = 0; i < 4; ++i){
-        KGlobalAccel::setGlobalShortcut(Services::action(names[i]),
-                                        QKeySequence(shortcuts[i]));
+        QKeySequence sequence(shortcuts[i]);
+        QAction* action = Services::action(names[i]);
+        if(!action)
+            continue;
+        action->setShortcut(sequence);
+        if(KGlobalAccel::setGlobalShortcut(action, sequence))
+            qDebug() << "Global shortcut registered: "
+                     << action->objectName().remove("action")<< ": "
+                     << shortcuts[i];
     }
 #else
     qDebug() << "Hotkeys Plugin: Setting up Qxt global shortcuts";
@@ -52,7 +62,10 @@ void HotkeysPlugin::setup()
             continue;
         QxtGlobalShortcut* shortcut = new QxtGlobalShortcut();
         shortcut->setObjectName(names[i].remove("action"));
-        if(shortcut->setShortcut(QKeySequence(shortcuts[i])))
+        QKeySequence sequence(
+            QSettings().value(shortcut->objectName(), shortcuts[i]).toString());
+        action->setShortcut(sequence);
+        if(shortcut->setShortcut(sequence))
             qDebug() << "Global shortcut registered: "
                      << shortcut->objectName() << ": " << shortcuts[i];
         connect(shortcut, &QxtGlobalShortcut::activated,
