@@ -19,7 +19,6 @@
 #include "icons.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
-#include "pluginmanager.h"
 #include "ui_mainwindow.h"
 
 #define PAGE_HOME 0
@@ -30,15 +29,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    this->restoreGeometryAndState();
+    this->ui->setupUi(this);
+    this->setupActions();
     this->setupIcons();
-    ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
+    this->restoreGeometryAndState();
+    this->ui->actionSelect_service->setMenuRole(
+                QAction::ApplicationSpecificRole);
     this->setupWebView();
-    loadPlugins();
-    this->connectSlots();
     this->setupUpdateTimer();
     this->setupTrayIcon();
+    this->connectSlots();
 }
 
 //---------------------------------------------------------
@@ -157,6 +157,20 @@ void MainWindow::setupIcons()
     this->ui->pushButtonSelect->setIcon(Icons::selectCloudService());
     this->ui->pushButtonPreferences->setIcon(Icons::preferences());
     this->ui->pushButtonPreferences->setIcon(Icons::quit());
+}
+
+//---------------------------------------------------------
+void MainWindow::setupActions()
+{
+    this->addAction(this->ui->actionPlayPause);
+    this->addAction(this->ui->actionStop);
+    this->addAction(this->ui->actionNext);
+    this->addAction(this->ui->actionPrevious);
+    this->addAction(this->ui->actionQuit);
+    this->addAction(this->ui->actionSelect_service);
+    this->addAction(this->ui->actionPreferences);
+    this->addAction(this->ui->actionAbout_MellowPlayer);
+    this->addAction(this->ui->actionReport_a_bug);
 }
 
 //---------------------------------------------------------

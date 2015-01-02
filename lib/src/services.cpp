@@ -17,6 +17,7 @@
 //
 //---------------------------------------------------------
 
+#include <QAction>
 #include <QMainWindow>
 #include <QtWebKitWidgets/QWebView>
 #include "mellowplayer/cloudservicesmanager.h"
@@ -25,6 +26,7 @@
 
 //---------------------------------------------------------
 CloudServicesManager* Services::_cloudServices = NULL;
+ExtensionsManager* Services::_extensions = NULL;
 QMainWindow* Services::_mainWindow= NULL;
 QWebView* Services::_webView = NULL;
 PlayerInterface* Services::_player = NULL;
@@ -42,7 +44,7 @@ QMainWindow *Services::mainWindow()
 }
 
 //---------------------------------------------------------
-void Services::_setCloudServices(CloudServicesManager *manager)
+void Services::_setCloudServicesManager(CloudServicesManager *manager)
 {
     Services::_cloudServices = manager;
 }
@@ -51,6 +53,18 @@ void Services::_setCloudServices(CloudServicesManager *manager)
 CloudServicesManager *Services::cloudServices()
 {
     return Services::_cloudServices;
+}
+
+//---------------------------------------------------------
+void Services::_setExtensionsManager(ExtensionsManager *manager)
+{
+    Services::_extensions = manager;
+}
+
+//---------------------------------------------------------
+ExtensionsManager *Services::extensions()
+{
+    return Services::_extensions;
 }
 
 //---------------------------------------------------------
@@ -75,6 +89,17 @@ void Services::_setPlayer(PlayerInterface *player)
 PlayerInterface *Services::player()
 {
     return Services::_player;
+}
+
+//---------------------------------------------------------
+QAction *Services::action(const QString &actionText)
+{
+    QList<QAction*> actions = Services::_mainWindow->actions();
+    foreach(QAction* a, actions){
+        if(a->objectName() == actionText)
+            return a;
+    }
+    return NULL;
 }
 
 

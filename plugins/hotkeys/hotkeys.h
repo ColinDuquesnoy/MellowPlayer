@@ -19,6 +19,7 @@
 #include <QObject>
 #include <mellowplayer.h>
 
+class QxtGlobalShortcut;
 
 /*!
  * \brief The GroovesharkPlugin class provides integration for the grooveshark
@@ -27,28 +28,21 @@
  * The plugin uses the grooveshark's javascript API to interact to implement
  * the ICloudMusicService interface.
  */
-class GroovesharkPlugin :
+class HotkeysPlugin :
         public QObject,
-        public ICloudMusicService
+        public IExtension
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID ICloudMusicService_iid
-                      FILE "grooveshark.json")
-    Q_INTERFACES(ICloudMusicService)
+    Q_PLUGIN_METADATA(IID IExtension_iid
+                      FILE "hotkeys.json")
+    Q_INTERFACES(IExtension)
 
 public:
-    //! Returns the grooveshark URL
-    virtual QUrl url();
-    //! Plays the current song
-    void play();
-    //! Pauses the current song
-    void pause();
-    //! Stops the current song
-    void stop();
-    //! Skips to the next song
-    void next();
-    //! Skips to the previous song
-    void previous();
-
-    SongInfo currentSongInfo();
+    void setup();
+    void teardown();
+    QWidget* settingsWidget();
+private:
+#ifndef __kde_support__
+    QList<QxtGlobalShortcut*> shortcuts;
+#endif
 };

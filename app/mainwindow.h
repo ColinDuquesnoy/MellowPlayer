@@ -30,12 +30,6 @@ class MainWindow;
 
 
 //! Implements the main window of the application.
-/*!
-  This object is the main object of the application, it contains
-  pointers to the various managers of the applications: the plugin
-  manager, the cloud services integrations manager, the player
-  interface,...
-*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,7 +37,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
     void showWebPage();
     void showHomePage();
     void saveGeometryAndState();
@@ -58,6 +51,7 @@ private slots:
 private:
     void closeEvent(QCloseEvent* event);
     void setupIcons();
+    void setupActions();
     void setupTrayIcon();
     void setupUpdateTimer();
     void setupWebView();
@@ -71,3 +65,4 @@ private:
 };
 
 #endif // MAINWINDOW_H
+

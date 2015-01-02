@@ -18,4 +18,4 @@
 #----------------------------------------------------------
 
 TEMPLATE = subdirs
-SUBDIRS  = services
+SUBDIRS  = grooveshark hotkeys

@@ -20,28 +20,28 @@
 #include <QPluginLoader>
 #include <QFile>
 #include "mellowplayer/plugins.h"
-#include "mellowplayer/cloudservicesmanager.h"
+#include "mellowplayer/extensionsmanager.h"
 #include "mellowplayer/services.h"
 
 
 //---------------------------------------------------------
-CloudServicesManager::CloudServicesManager(QObject* parent):
-    QObject(parent),
-    _currentService(NULL)
+ExtensionsManager::ExtensionsManager(QObject* parent):
+    QObject(parent)
 {
 
 }
 
 //---------------------------------------------------------
-void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
-                                      QPluginLoader* pluginLoader)
+void ExtensionsManager::loadPlugin(IExtension* iExtension,
+                                   QPluginLoader* pluginLoader)
 {
     PluginMetaData meta = this->extractMetaData(pluginLoader);
     if(this->metaData.find(meta.name) == this->metaData.end())
     {
         this->metaData[meta.name] = meta;
-        this->services[meta.name] = iService;
-        qDebug() << "Cloud service integration plugin loaded: ";
+        this->extensions[meta.name] = iExtension;
+        iExtension->setup();
+        qDebug() << "Extension plugin loaded: ";
         qDebug() << "  - name: " << meta.name;
         qDebug() << "  - version: " << meta.version;
     }
@@ -53,7 +53,7 @@ void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
 }
 
 //---------------------------------------------------------
-CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
+ExtensionsManager::PluginMetaData ExtensionsManager::extractMetaData(
         QPluginLoader* pluginLoader)
 {
     PluginMetaData meta;
@@ -65,40 +65,7 @@ CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
                 "MetaData").toObject().value("website").toString();
     meta.version = pluginLoader->metaData().value(
                 "MetaData").toObject().value("version").toString();
-    meta.icon = QIcon(pluginLoader->metaData().value(
-                "MetaData").toObject().value("icon").toString());
     meta.description= pluginLoader->metaData().value(
                 "MetaData").toObject().value("description").toString();
-    QString htmlDescPath = pluginLoader->metaData().value(
-                "MetaData").toObject().value("html_description").toString();
-    QFile file(htmlDescPath);
-    if(!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "failed to open html description file: " << htmlDescPath;
-    }
-    else
-    {
-        QTextStream in(&file);
-        meta.htmlDescription = in.readAll();
-    }
-
     return meta;
-}
-
-//---------------------------------------------------------
-ICloudMusicService* CloudServicesManager::currentService()
-{
-    return this->_currentService;
-}
-
-//---------------------------------------------------------
-bool CloudServicesManager::startService(const QString& serviceName)
-{
-    bool retVal = false;
-    if(this->services.find(serviceName) != this->services.end())
-    {
-        this->_currentService = this->services[serviceName];
-        Services::webView()->load(this->_currentService->url());
-        retVal = true;
-    }
-    return retVal;
 }

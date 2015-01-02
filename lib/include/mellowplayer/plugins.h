@@ -20,6 +20,7 @@
 #ifndef PLUGINS
 #define PLUGINS
 
+#include <QtWidgets>
 #include <QtWebKitWidgets/QWebView>
 #include <QtPlugin>
 
@@ -67,6 +68,53 @@ protected:
 
 #define ICloudMusicService_iid "org.MellowPlayer.ICloudMusicService"
 Q_DECLARE_INTERFACE(ICloudMusicService, ICloudMusicService_iid)
+
+
+/*!
+ * \brief Plugin inteface for adding a generic extension to the application.
+ *
+ * An extension plugin can be anything. Since you can access any parts of the
+ * application (logic, gui, other plugins), you're free to setup any kind of
+ * extension. You can add your own menu or dock widget,...
+ *
+ * Each plugin may have a settings widgets that will automatically appear in the
+ * application settings.
+ */
+class IExtension
+{
+public:
+    /*!
+     * \brief Initalizes the extension.
+     *
+     * You must implement this method to perform your extension setup.
+     *
+     * Hint: You can use the Services static class to get access to the most
+     * important parts of your application to perform your own specific setup.
+     */
+    virtual void setup() = 0;
+
+    /*!
+     * \brief Destroys the extension.
+     *
+     * This method is called on application exit.
+     *
+     * Implement this method if you need to unregister some services or to
+     * delete custom allocated objects.
+     */
+    virtual void teardown() = 0;
+
+    /*!
+     * \brief Returns the settings widget associated with the extension.
+     *
+     * Implement this method if you need to show a settings widget in the
+     * application preferences dialog. Return NULL if you don't need to show
+     * any settings.
+     */
+    virtual QWidget* settingsWidget() = 0;
+};
+
+#define IExtension_iid "org.MellowPlayer.IExtension"
+Q_DECLARE_INTERFACE(IExtension, IExtension_iid)
 
 #endif // PLUGINS
 

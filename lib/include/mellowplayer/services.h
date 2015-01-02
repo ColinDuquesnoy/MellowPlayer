@@ -20,9 +20,11 @@
 #ifndef SERVICES_H
 #define SERVICES_H
 
-class QMainWindow;
 class CloudServicesManager;
+class ExtensionsManager;
 class PlayerInterface;
+class QAction;
+class QMainWindow;
 class QWebView;
 
 /*!
@@ -40,8 +42,11 @@ public:
     static void _setMainWindow(QMainWindow* _mainWindow);
     static QMainWindow* mainWindow();
 
-    static void _setCloudServices(CloudServicesManager* manager);
+    static void _setCloudServicesManager(CloudServicesManager* manager);
     static CloudServicesManager* cloudServices();
+
+    static void _setExtensionsManager(ExtensionsManager* manager);
+    static ExtensionsManager* extensions();
 
     static void _setWebView(QWebView* _webView);
     static QWebView* webView();
@@ -49,10 +54,13 @@ public:
     static void _setPlayer(PlayerInterface* player);
     static PlayerInterface* player();
 
+    static QAction* action(const QString& actionText);
+
 private:
     static QMainWindow* _mainWindow;
     static QWebView* _webView;
     static CloudServicesManager* _cloudServices;
+    static ExtensionsManager* _extensions;
     static PlayerInterface* _player;
 };
 

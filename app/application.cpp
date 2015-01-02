@@ -20,7 +20,7 @@
 #include "application.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
-
+#include "pluginsmanager.h"
 
 
 //---------------------------------------------------------s
@@ -53,10 +53,12 @@ MellowPlayerApp::~MellowPlayerApp()
 void MellowPlayerApp::initialize()
 {
     qDebug() << "Initializing application";
-    Services::_setCloudServices(new CloudServicesManager(this));
-    Services::_setPlayer(new PlayerInterface(this));
     this->mainWindow = new MainWindow();
     Services::_setMainWindow(this->mainWindow);
+    Services::_setCloudServicesManager(new CloudServicesManager(this));
+    Services::_setExtensionsManager(new ExtensionsManager(this));
+    Services::_setPlayer(new PlayerInterface(this));
+    loadPlugins();
     if(Services::cloudServices()->startService("Grooveshark"))
         this->mainWindow->showWebPage();
     else

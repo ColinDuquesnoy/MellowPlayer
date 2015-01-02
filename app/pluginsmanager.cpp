@@ -1,4 +1,4 @@
-#include "pluginmanager.h"
+#include "pluginsmanager.h"
 
 #include <QPluginLoader>
 #include <QtCore>
@@ -33,23 +33,34 @@ void loadPlugins()
 {
     QList<QDir> dirs = QList<QDir>();
     dirs.append(getLocalPluginsDir());
-#ifdef Q_OS_LINUX
+    // allow user to try their plugins by starting the app from a directory
+    // where they built their plugins, without needing to install the compiled
+    // plugin anywhere
+    dirs.append(QDir::currentPath());
+    QDir home = QDir::home();
+#if defined(Q_OS_LINUX)
+    // users plugins (in home directory)
+    #define HOME_PLUGINS ".local/share/mellowplayer/plugins"
+    QString pth = home.path() + "/" + HOME_PLUGINS;
+    qDebug() << pth;
+    QDir().mkpath(pth);
+    home.cd(HOME_PLUGINS);
+    dirs.append(home);
+    // builtin plugins installed in PREFIX/share/mellowplayer/plugins
     dirs.append(QDir("/usr/share/mellowplayer/plugins"));
     dirs.append(QDir("/usr/share/local/mellowplayer/plugins"));
+#elif defined(Q_OS_MAC)
+    // todo
+#elif defined(Q_OS_WIN32)
+    // todo
 #endif
-    foreach(QDir dir, dirs) {
-        QStringList subdirs;
-        subdirs.append("services");
-        subdirs.append("extensions");
-        foreach(QString subdir, subdirs){
-            QDir pluginDir(dir);
-            if(pluginDir.cd(subdir)){
-                qDebug() << "Loading plugins from " << pluginDir.absolutePath();
-                foreach (QString fileName, pluginDir.entryList(QDir::Files)) {
-                    QPluginLoader loader(pluginDir.absoluteFilePath(fileName));
-                    loadPlugin(&loader);
-                }
-            }
+    foreach(QDir pluginDir, dirs) {
+        if(!pluginDir.exists())
+            continue;
+        qDebug() << "Loading plugins from " << pluginDir.absolutePath();
+        foreach (QString fileName, pluginDir.entryList(QDir::Files)) {
+            QPluginLoader loader(pluginDir.absoluteFilePath(fileName));
+            loadPlugin(&loader);
         }
     }
 }
@@ -60,7 +71,8 @@ void loadPlugin(QPluginLoader* loader)
     QObject *plugin = loader->instance();
     if(plugin)
     {
-        qDebug() << "Loading plugin: " << plugin;
+        qDebug() << "Loading plugin " << plugin
+                 << " (" << loader->fileName() << ")";
 
         // cloud service interface
         ICloudMusicService* iService = qobject_cast<
@@ -71,7 +83,12 @@ void loadPlugin(QPluginLoader* loader)
             return;
         }
 
-        // extension interface
-        // todo
+        // Extension interface
+        IExtension* iExtension = qobject_cast<IExtension*>(plugin);
+        if(iExtension)
+        {
+            Services::extensions()->loadPlugin(iExtension, loader);
+            return;
+        }
     }
 }

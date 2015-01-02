@@ -17,26 +17,24 @@
 //
 //---------------------------------------------------------
 
-#ifndef CLOUDSERVICESMANAGER_H
-#define CLOUDSERVICESMANAGER_H
+#ifndef EXTENSIONSMANAGER_H
+#define EXTENSIONSMANAGER_H
 
 #include <QObject>
-#include <QIcon>
 
 class QPluginLoader;
-class ICloudMusicService;
+class IExtension;
 
 
 /*!
- * \brief The CloudServicesManager class manages the collection of cloud music
- * services and let you start and changed the current service.
- *
+ * \brief The ExtensionsManager class manages the collection of extension
+ * plugins.
  */
-class CloudServicesManager : public QObject
+class ExtensionsManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit CloudServicesManager(QObject* parent=0);
+    explicit ExtensionsManager(QObject* parent=0);
 
     struct PluginMetaData
     {
@@ -44,49 +42,24 @@ public:
         QString author;
         QString website;
         QString version;
-        QIcon icon;
         QString description;
-        QString htmlDescription;
     };
 
     /*!
-     * \brief Loads a cloud music service plugin.
+     * \brief Adds a cloud music service plugin to the list of managed plugins.
      *
-     * **For internal uses only, all the plugins are loaded by the application.**
+     * **For internal uses only, all the plugins are added by the application.**
      *
      * \param service Service to add.
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
-
-    /*!
-     * @brief Starts the current service.
-     *
-     * Load the cloud service URL and set the service as the currentService.
-     *
-     * @return True if the service could be started, False if the service does
-     * not exists.
-     */
-    bool startService(const QString& serviceName);
-
-    /*!
-     * \brief Gets the current cloud music service, started by startService.
-     *
-     * \returns CUrrent cloud music service or NULL if no service has been
-     * started.
-     */
-    ICloudMusicService* currentService();
-
-signals:
-
-public slots:
+    void loadPlugin(IExtension* iExtension, QPluginLoader* pluginLoader);
 
 private:
     PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
-    std::map<QString, ICloudMusicService*> services;
+    std::map<QString, IExtension*> extensions;
     std::map<QString, PluginMetaData> metaData;
-    ICloudMusicService* _currentService;
 };
 
-#endif // CLOUDSERVICESMANAGER_H
+#endif // EXTENSIONSMANAGER_H

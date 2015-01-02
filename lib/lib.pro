@@ -17,7 +17,7 @@
 #
 #----------------------------------------------------------
 TEMPLATE      = lib
-TARGET        = $$qtLibraryTarget(mellowplayer)
+TARGET        = mellowplayer
 VERSION       = 1.0.0
 QT           += widgets webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
@@ -25,14 +25,16 @@ INCLUDEPATH  += include
 HEADERS       = include/mellowplayer.h \
                 include/mellowplayer/plugins.h \
                 include/mellowplayer/cloudservicesmanager.h \
+                include/mellowplayer/extensionsmanager.h \
                 include/mellowplayer/services.h \
-    include/mellowplayer/song.h \
-    include/mellowplayer/player.h
+                include/mellowplayer/song.h \
+                include/mellowplayer/player.h
 SOURCES       = src/plugins.cpp \
                 src/cloudservicesmanager.cpp \
+                src/extensionsmanager.cpp \
                 src/services.cpp \
-    src/song.cpp \
-    src/player.cpp
+                src/song.cpp \
+                src/player.cpp
 
 macx{
     CONFIG += lib_bundle
