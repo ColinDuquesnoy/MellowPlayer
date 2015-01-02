@@ -17,5 +17,43 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-SUBDIRS  = grooveshark hotkeys mpris2
+TEMPLATE      = lib
+CONFIG       += plugin
+QT           += widgets webkit
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+HEADERS       = mpris2.h
+SOURCES       = mpris2.cpp
+TARGET        = mlp_mpris2
+# for builtin plugins
+INCLUDEPATH  += ../../lib/include
+macx{
+    QMAKE_LFLAGS    += -F../../lib
+    LIBS            += -framework mellowplayer
+}
+else{
+    LIBS            += -L../../lib -lmellowplayer
+}
+
+DESTDIR       = ../../app/plugins
+
+# Optional KDE support config
+kde_support {
+    message("Building for KDE")
+    DEFINES += "__kde_support__=1"
+    QT += KGlobalAccel
+}
+
+macx{
+    # todo
+}
+unix{
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+    target.path = $$PREFIX/share/mellowplayer/plugins
+}
+win32
+{
+    # todo
+}
+INSTALLS += target
