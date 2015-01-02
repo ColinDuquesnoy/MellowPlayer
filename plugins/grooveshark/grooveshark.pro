@@ -23,7 +23,7 @@ QT           += widgets webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 HEADERS       = grooveshark.h
 SOURCES       = grooveshark.cpp
-TARGET        = $$qtLibraryTarget(grooveshark)
+TARGET        = mpp_grooveshark
 # for builtin plugins
 INCLUDEPATH  += ../../lib/include
 macx{

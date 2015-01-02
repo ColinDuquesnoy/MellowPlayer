@@ -23,7 +23,7 @@ QT           += widgets webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 HEADERS       = hotkeys.h
 SOURCES       = hotkeys.cpp
-TARGET        = hotkeys
+TARGET        = mpp_hotkeys
 # for builtin plugins
 INCLUDEPATH  += ../../lib/include
 macx{
