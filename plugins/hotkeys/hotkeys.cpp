@@ -50,12 +50,9 @@ void HotkeysPlugin::setup()
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
-        QxtGlobalShortcut* shortcut = new QxtGlobalShortcut(this);
+        QxtGlobalShortcut* shortcut = new QxtGlobalShortcut();
         shortcut->setObjectName(names[i].remove("action"));
-        if(!shortcut->setShortcut(QKeySequence(shortcuts[i])))
-            qWarning() << "Failed to set global shortcut: "
-                       << shortcut->objectName() << ": " << shortcuts[i];
-        else
+        if(shortcut->setShortcut(QKeySequence(shortcuts[i])))
             qDebug() << "Global shortcut registered: "
                      << shortcut->objectName() << ": " << shortcuts[i];
         connect(shortcut, &QxtGlobalShortcut::activated,
