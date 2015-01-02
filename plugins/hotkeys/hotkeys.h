@@ -22,11 +22,12 @@
 class QxtGlobalShortcut;
 
 /*!
- * \brief The GroovesharkPlugin class provides integration for the grooveshark
- * cloud music service.
+ * \brief Provides hotkeys capabilities to control the media player.
  *
- * The plugin uses the grooveshark's javascript API to interact to implement
- * the ICloudMusicService interface.
+ * On KDE, we use KGlobalAccel. This means that the settings must be configured
+ * using K System Preferences.
+ *
+ * On other platforms/desktop environmnemts, we use QxtGlobalShortcut.
  */
 class HotkeysPlugin :
         public QObject,
