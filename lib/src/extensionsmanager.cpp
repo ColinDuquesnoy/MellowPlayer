@@ -40,10 +40,10 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
     {
         this->metaData[meta.name] = meta;
         this->extensions[meta.name] = iExtension;
-        iExtension->setup();
         qDebug() << "Extension plugin loaded: ";
         qDebug() << "  - name: " << meta.name;
         qDebug() << "  - version: " << meta.version;
+        iExtension->setup();
     }
     else
     {

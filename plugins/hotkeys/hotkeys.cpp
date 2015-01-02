@@ -51,7 +51,7 @@ void HotkeysPlugin::setup()
         action->setShortcut(sequence);
         if(KGlobalAccel::setGlobalShortcut(action, sequence))
             qDebug() << "Global shortcut registered: "
-                     << action->objectName().remove("action")<< ": "
+                     << action->objectName().remove("action") << "\t: "
                      << shortcuts[i];
     }
 #else
@@ -67,7 +67,7 @@ void HotkeysPlugin::setup()
         action->setShortcut(sequence);
         if(shortcut->setShortcut(sequence))
             qDebug() << "Global shortcut registered: "
-                     << shortcut->objectName() << ": " << shortcuts[i];
+                     << shortcut->objectName() << "\t: " << shortcuts[i];
         connect(shortcut, &QxtGlobalShortcut::activated,
                 action, &QAction::trigger);
         this->shortcuts.append(shortcut);
