@@ -42,7 +42,7 @@ kde_support {
     DEFINES += "__kde_support__=1"
     QT += KGlobalAccel
 }
-
+{
     # Build qxtglobalshortcut lib as part of our extension
     QXT            = core
     DEFINES       += BUILD_QXT_CORE BUILD_QXT_GUI
@@ -65,6 +65,7 @@ kde_support {
         SOURCES += win/qxtglobalshortcut_win.cpp
         LIBS += -luser32
     }
+}
 
 macx{
     # todo
