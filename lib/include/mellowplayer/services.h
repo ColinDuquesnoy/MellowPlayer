@@ -41,6 +41,7 @@ class Services
 public:
     static void _setMainWindow(QMainWindow* _mainWindow);
     static QMainWindow* mainWindow();
+    static void raiseMainWindow();
 
     static void _setCloudServicesManager(CloudServicesManager* manager);
     static CloudServicesManager* cloudServices();

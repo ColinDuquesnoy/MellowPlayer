@@ -70,7 +70,7 @@ kde_support {
 macx{
     # todo
 }
-unix{
+unix:!macx {
     isEmpty(PREFIX) {
         PREFIX = /usr/local
     }

@@ -65,7 +65,7 @@ macx{
     CONFIG += app_bundle
     target.path = /Applications
 }
-unix{
+unix:!macx {
     isEmpty(PREFIX) {
         PREFIX = /usr/local
     }

@@ -21,6 +21,7 @@
 #include "mellowplayer/player.h"
 #include "mellowplayer/plugins.h"
 #include "mellowplayer/services.h"
+#include "mellowplayer/urldownloader.h"
 
 
 //---------------------------------------------------------
@@ -75,7 +76,7 @@ void PlayerInterface::previous()
 }
 
 //---------------------------------------------------------
-SongInfo PlayerInterface::getCurrentSong()
+SongInfo PlayerInterface::currentSong()
 {
     ICloudMusicService* iService =
             Services::cloudServices()->currentService();
@@ -98,6 +99,12 @@ SongInfo PlayerInterface::update()
 }
 
 //---------------------------------------------------------
+void PlayerInterface::onArtReady(const QString &filePath)
+{
+    emit this->artReady(filePath);
+}
+
+//---------------------------------------------------------
 void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
 {
     PlaybackStatus status = Stopped;
@@ -115,20 +122,25 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
 //---------------------------------------------------------
 void PlayerInterface::checkSongChange(SongInfo &song)
 {
-    if(song.songName != this->currentSong.songName)
+    if(song.songName != this->_currentSong.songName)
     {
         qDebug() << "Song changed: " << song.songName;
-        this->currentSong = song;
+        this->_currentSong = song;
         emit songChanged(song);
-        // todo implement song art download when the FileDownloader is ready.
-//        if(song.isValid())
-//            this->downloadSongArt(song.artUrl);
+        if(song.isValid())
+            this->downloadSongArt(song.artUrl);
     }
-
 }
 
-
-
-
+void PlayerInterface::downloadSongArt(const QString& url)
+{
+    UrlDownloader* downloader = new UrlDownloader(this);
+    QString dest = QDir::temp().path() +
+                   QString(QDir::separator()) +
+                   QFileInfo(url).fileName();
+    this->connect(downloader, &UrlDownloader::finished,
+                  this, &PlayerInterface::onArtReady);
+    downloader->download(url, dest);
+}
 
 

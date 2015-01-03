@@ -24,6 +24,7 @@
     #include "qxtglobalshortcut.h"
 #endif
 
+//---------------------------------------------------------
 void HotkeysPlugin::setup()
 {
     QString names[] = {"actionPlayPause", "actionStop", "actionNext",
@@ -56,18 +57,14 @@ void HotkeysPlugin::setup()
 #endif
 }
 
+//---------------------------------------------------------
 void HotkeysPlugin::teardown()
 {
 
 }
 
+//---------------------------------------------------------
 QWidget *HotkeysPlugin::settingsWidget()
 {
-#ifdef __kde_support__
-    // no settings when built with kde support, hotkeys settings are configured
-    // using K System Settings -> shortcuts -> Global Shortcuts.
     return NULL;
-#endif
-// todo
-return NULL;
 }

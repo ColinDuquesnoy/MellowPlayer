@@ -25,3 +25,4 @@
 #include <mellowplayer/plugins.h>
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>
+#include <mellowplayer/urldownloader.h>

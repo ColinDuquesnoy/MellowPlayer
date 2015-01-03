@@ -56,7 +56,7 @@ public:
     /*!
      * \brief Gets the current song info
      */
-    SongInfo getCurrentSong();
+    SongInfo currentSong();
 
     /*!
      * \brief Update the player (and emit status changed signals)
@@ -91,13 +91,17 @@ signals:
      *
      * \param artFilePathUrl Art file path (usually in a temporary directory).
      */
-    void artReady(QString artFilePathUrl);
+    void artReady(const QString& artFilePathUrl);
+
+private slots:
+    void onArtReady(const QString& filePath);
 
 private:
     void checkPlaybackStatusChange(SongInfo& song);
     void checkSongChange(SongInfo& song);
+    void downloadSongArt(const QString &url);
 
-    SongInfo currentSong;
+    SongInfo _currentSong;
     PlaybackStatus currentStatus;
 };
 

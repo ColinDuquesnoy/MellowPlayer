@@ -44,6 +44,15 @@ QMainWindow *Services::mainWindow()
 }
 
 //---------------------------------------------------------
+void Services::raiseMainWindow()
+{
+    QMainWindow* window = Services::mainWindow();
+    window->show();
+    window->raise();
+    window->activateWindow();
+}
+
+//---------------------------------------------------------
 void Services::_setCloudServicesManager(CloudServicesManager *manager)
 {
     Services::_cloudServices = manager;

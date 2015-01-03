@@ -69,10 +69,7 @@ void MellowPlayerApp::initialize()
 //---------------------------------------------------------
 void MellowPlayerApp::raise()
 {
-    QMainWindow* window = Services::mainWindow();
-    window->show();
-    window->raise();
-    window->activateWindow();
+    Services::raiseMainWindow();
 }
 
 //---------------------------------------------------------

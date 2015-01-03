@@ -64,10 +64,11 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     QVariantMap result = this->runJavaScript(
         "current_song = window.Grooveshark.getCurrentSongStatus()").toMap();
     QVariantMap songData = result["song"].toMap();
+    retVal.songId = songData["songID"].toString();
     retVal.songName = songData["songName"].toString();
     retVal.albumName = songData["albumName"].toString();
     retVal.artistName = songData["artistName"].toString();
-    retVal.artUrl = songData["artUrl"].toString();
+    retVal.artUrl = songData["artURL"].toString();
     QString statusString = result["status"].toString();
     retVal.playbackStatus = Stopped;
     if(statusString == "loading")

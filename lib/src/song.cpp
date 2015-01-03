@@ -20,11 +20,14 @@
 
 
 //---------------------------------------------------------
-QString playbackStatusToString(PlaybackStatus status)
+QString playbackStatusToString(PlaybackStatus status, bool allowLoading)
 {
     switch (status) {
     case Loading:
-        return "Loading";
+        if(allowLoading)
+            return "Loading";
+        else
+            return "Playing";
     case Playing:
         return "Playing";
     case Paused:
@@ -36,7 +39,7 @@ QString playbackStatusToString(PlaybackStatus status)
 }
 
 //---------------------------------------------------------
-bool SongInfo::isValid()
+bool SongInfo::isValid() const
 {
     return songName != "";
 }

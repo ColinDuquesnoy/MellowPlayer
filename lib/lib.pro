@@ -19,7 +19,7 @@
 TEMPLATE      = lib
 TARGET        = mellowplayer
 VERSION       = 1.0.0
-QT           += widgets webkit
+QT           += widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH  += include
 HEADERS       = include/mellowplayer.h \
@@ -28,13 +28,15 @@ HEADERS       = include/mellowplayer.h \
                 include/mellowplayer/extensionsmanager.h \
                 include/mellowplayer/services.h \
                 include/mellowplayer/song.h \
-                include/mellowplayer/player.h
+                include/mellowplayer/player.h \
+    include/mellowplayer/urldownloader.h
 SOURCES       = src/plugins.cpp \
                 src/cloudservicesmanager.cpp \
                 src/extensionsmanager.cpp \
                 src/services.cpp \
                 src/song.cpp \
-                src/player.cpp
+                src/player.cpp \
+    src/urldownloader.cpp
 
 macx{
     CONFIG += lib_bundle
@@ -44,7 +46,7 @@ macx{
     QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
     target.path = /Library/Frameworks
 }
-unix{
+unix:!macx {
     isEmpty(PREFIX) {
        PREFIX = /usr/local
     }

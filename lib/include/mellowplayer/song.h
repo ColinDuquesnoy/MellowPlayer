@@ -51,7 +51,7 @@ enum PlaybackStatus
  * \param status Status to convert
  * \return String representation of the playback status
  */
-QString playbackStatusToString(PlaybackStatus status);
+QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
 
 
 /*!
@@ -59,6 +59,7 @@ QString playbackStatusToString(PlaybackStatus status);
  */
 struct SongInfo
 {
+    QString songId;                 /*!< Id of the song */
     QString songName;               /*!< Name of the song */
     QString artistName;             /*!< Name of the artist */
     QString albumName;              /*!< Name of the album */
@@ -71,7 +72,7 @@ struct SongInfo
      *
      * \return True if the song is valid.
      */
-    bool isValid();
+    bool isValid() const;
 
     /*!
      * @brief Returns a string representation of the song using the
