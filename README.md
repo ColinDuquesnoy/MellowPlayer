@@ -63,8 +63,3 @@ Installation
 sudo make install
 ```
 
-.. links:
-
-.. _NuvolaPlayer: http://nuvolaplayer.fenryxo.cz/home.html
-.. _MPRIS 2: http://specifications.freedesktop.org/mpris-spec/latest/
-
