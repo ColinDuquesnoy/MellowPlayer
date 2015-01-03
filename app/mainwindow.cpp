@@ -24,6 +24,18 @@
 #define PAGE_HOME 0
 #define PAGE_WEB 1
 
+#ifdef __kde_support__
+    #define DEFAULT_SHORTCUT_PLAY       "Media Play"
+    #define DEFAULT_SHORTCUT_STOP       "Media Stop"
+    #define DEFAULT_SHORTCUT_NEXT       "Media Next"
+    #define DEFAULT_SHORTCUT_PREVIOUS   "Media Previous"
+#else
+    #define DEFAULT_SHORTCUT_PLAY       "Ctrl+Alt+P"
+    #define DEFAULT_SHORTCUT_STOP       "Ctrl+Alt+S"
+    #define DEFAULT_SHORTCUT_NEXT       "Ctrl+Alt+F"
+    #define DEFAULT_SHORTCUT_PREVIOUS   "Ctrl+Alt+B"
+#endif
+
 //---------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -162,15 +174,24 @@ void MainWindow::setupIcons()
 //---------------------------------------------------------
 void MainWindow::setupActions()
 {
-    this->addAction(this->ui->actionPlayPause);
-    this->addAction(this->ui->actionStop);
-    this->addAction(this->ui->actionNext);
-    this->addAction(this->ui->actionPrevious);
-    this->addAction(this->ui->actionQuit);
-    this->addAction(this->ui->actionSelect_service);
-    this->addAction(this->ui->actionPreferences);
-    this->addAction(this->ui->actionAbout_MellowPlayer);
-    this->addAction(this->ui->actionReport_a_bug);
+    QString defaults[] = {
+        DEFAULT_SHORTCUT_PLAY,
+        DEFAULT_SHORTCUT_STOP,
+        DEFAULT_SHORTCUT_NEXT,
+        DEFAULT_SHORTCUT_PREVIOUS
+    };
+    QAction* actions[] = {
+        this->ui->actionPlayPause,
+        this->ui->actionStop,
+        this->ui->actionNext,
+        this->ui->actionPrevious
+    };
+    for(int i = 0; i < 4; ++i){
+        QAction* a = actions[i];
+        this->addAction(a);
+        a->setShortcut(QSettings().value(
+            a->objectName(), defaults[i]).toString());
+    }
 }
 
 //---------------------------------------------------------
