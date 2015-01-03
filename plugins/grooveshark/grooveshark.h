@@ -49,6 +49,10 @@ public:
     void next();
     //! Skips to the previous song
     void previous();
+    //! Seeks to the indicated position
+    void seekToPosition(int position);
     //! Gets the current song info
     SongInfo currentSongInfo();
+    float volume();
+    void setVolume(float volume);
 };

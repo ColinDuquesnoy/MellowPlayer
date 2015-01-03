@@ -60,6 +60,16 @@ public:
     //! Skips to the previous song
     virtual void previous() = 0;
 
+    //! Seeks to the indicated position [µs]
+    virtual void seekToPosition(int position) = 0;
+
+    //! Gets the player volume [0.0-1.0]
+    virtual float volume() = 0;
+
+    //! Sets the player volume [0.0-1.0]
+    virtual void setVolume(float value) = 0;
+
+    //! Gets the current song information
     virtual SongInfo currentSongInfo() = 0;
 
 protected:

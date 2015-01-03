@@ -54,6 +54,13 @@ public:
     void previous();
 
     /*!
+     * \brief Seeks to the indicated position
+     *
+     * \param positon position to reach [µs]
+     */
+    void seekToPosition(int position);
+
+    /*!
      * \brief Gets the current song info
      */
     SongInfo currentSong();
@@ -67,6 +74,20 @@ public:
      * \return the current song infos.
      */
     SongInfo update();
+
+    /*!
+     * \brief Gets the player volume.
+     *
+     * \return Volume [0-1.0]
+     */
+    float volume();
+
+    /*!
+     * \brief Sets the player volume
+     *
+     * \param value volume value between 0.0 and 1.0.
+     */
+    void setVolume(float value);
 
 signals:
     /*!
@@ -93,16 +114,26 @@ signals:
      */
     void artReady(const QString& artFilePathUrl);
 
+    /*!
+     * \brief Signal emitted when the position of the current song changed.
+     *
+     * \param position New song position [µs]
+     * \param duration Song duration[µs]
+     */
+    void positionChanged(int position);
+
 private slots:
     void onArtReady(const QString& filePath);
 
 private:
     void checkPlaybackStatusChange(SongInfo& song);
     void checkSongChange(SongInfo& song);
+    void checkForPositionChange(SongInfo& song);
     void downloadSongArt(const QString &url);
 
-    SongInfo _currentSong;
-    PlaybackStatus currentStatus;
+    SongInfo        _currentSong;
+    PlaybackStatus  currentStatus;
+    int             currentPosition;
 };
 
 #endif // PLAYER

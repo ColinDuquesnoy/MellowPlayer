@@ -59,12 +59,14 @@ QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
  */
 struct SongInfo
 {
-    QString songId;                 /*!< Id of the song */
-    QString songName;               /*!< Name of the song */
-    QString artistName;             /*!< Name of the artist */
-    QString albumName;              /*!< Name of the album */
-    QString artUrl;                 /*!< Art url*/
-    PlaybackStatus playbackStatus;  /*!< Playback status of the song */
+    QString         songId;          /*!< Id of the song */
+    QString         songName;        /*!< Name of the song */
+    QString         artistName;      /*!< Name of the artist */
+    QString         albumName;       /*!< Name of the album */
+    QString         artUrl;          /*!< Art url*/
+    PlaybackStatus  playbackStatus;  /*!< Playback status of the song */
+    qlonglong       duration;        /*!< Song duration given in microseconds */
+    qlonglong       position;        /*!< Song position given in microseconds */
 
     /*!
      * \brief Checks if the song info is valid (i.e. has at least songName

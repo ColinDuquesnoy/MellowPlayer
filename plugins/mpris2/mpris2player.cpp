@@ -1,8 +1,6 @@
 #include <mellowplayer.h>
 #include "mpris2player.h"
 
-
-
 //---------------------------------------------------------
 Mpris2Player::Mpris2Player(QObject *parent):
     QDBusAbstractAdaptor(parent)
@@ -13,6 +11,8 @@ Mpris2Player::Mpris2Player(QObject *parent):
             this, &Mpris2Player::onSongChanged);
     connect(Services::player(), &PlayerInterface::artReady,
             this, &Mpris2Player::onArtReady);
+    connect(Services::player(), &PlayerInterface::positionChanged,
+            this, &Mpris2Player::onPositionChanged);
 }
 
 //---------------------------------------------------------
@@ -54,7 +54,15 @@ void Mpris2Player::Previous()
 //---------------------------------------------------------
 void Mpris2Player::Seek(int position)
 {
-    qDebug() << "Mpris2Player.Seek not implemented yet: " << position;
+    Services::player()->seekToPosition(this->position() + position);
+}
+
+//---------------------------------------------------------
+void Mpris2Player::SetPosition(
+        const QDBusObjectPath &trackId, qlonglong position)
+{
+    qDebug() << "Changing position of " << trackId.path();
+    Services::player()->seekToPosition(position);
 }
 
 //---------------------------------------------------------
@@ -69,6 +77,7 @@ void Mpris2Player::onPlaybackStatusChanged(PlaybackStatus status)
 void Mpris2Player::onSongChanged(const SongInfo &song)
 {
     QVariantMap map;
+    this->artUrl = "";
     map["Metadata"] = this->toXesam(song);
     this->signalUpdate(map);
 }
@@ -77,8 +86,17 @@ void Mpris2Player::onSongChanged(const SongInfo &song)
 void Mpris2Player::onArtReady(const QString &artFilePathUrl)
 {
     QVariantMap map;
-    map["Metadata"] = this->toXesam(Services::player()->currentSong(),
-                                    artFilePathUrl);
+    this->artUrl = artFilePathUrl;
+    map["Metadata"] = this->toXesam(Services::player()->currentSong());
+    this->signalUpdate(map);
+}
+
+//---------------------------------------------------------
+void Mpris2Player::onPositionChanged(int position)
+{
+    QVariantMap map;
+    map["Position"] = position;
+    map["Metadata"] = this->toXesam(Services::player()->currentSong());
     this->signalUpdate(map);
 }
 
@@ -137,13 +155,13 @@ void Mpris2Player::setShuffle(bool value)
 //---------------------------------------------------------
 float Mpris2Player::volume()
 {
-    return 1.0;
+    return Services::player()->volume();
 }
 
 //---------------------------------------------------------
-void Mpris2Player::setVolume(float)
+void Mpris2Player::setVolume(float value)
 {
-    qDebug() << "Changing volume through Mpris has not been implemented yet!";
+    Services::player()->setVolume(value);
 }
 
 //---------------------------------------------------------
@@ -177,9 +195,9 @@ void Mpris2Player::setRate(float value)
 }
 
 //---------------------------------------------------------
-int Mpris2Player::position()
+qlonglong Mpris2Player::position()
 {
-    return 0;
+    return Services::player()->currentSong().position;
 }
 
 //---------------------------------------------------------
@@ -209,7 +227,7 @@ bool Mpris2Player::canPause()
 //---------------------------------------------------------
 bool Mpris2Player::canSeek()
 {
-    return true;  // todo add support for seek, should be possible
+    return true;
 }
 
 //---------------------------------------------------------
@@ -219,8 +237,7 @@ bool Mpris2Player::canControl()
 }
 
 //---------------------------------------------------------
-QMap<QString, QVariant> Mpris2Player::toXesam(const SongInfo &song,
-                                              const QString& artFilePathUrl)
+QMap<QString, QVariant> Mpris2Player::toXesam(const SongInfo &song)
 {
     QMap<QString, QVariant> map;
     if(song.isValid())
@@ -229,19 +246,22 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const SongInfo &song,
         map["xesam:artist"] = artist;
         map["xesam:album"] = song.albumName;
         map["xesam:title"] = song.songName;
+        map["mpris:length"] = song.duration;
         QString trackId = QString(
             "/org/mpris/MediaPlayer2/Track/%1").arg(song.songId);
         map["mpris:trackid"] = QVariant(QDBusObjectPath(trackId).path());
     }
     else
     {
-        map["xesam:artist"] = QStringList();
+        QStringList artist; artist.append("");
+        map["xesam:artist"] = artist;
         map["xesam:album"] = "";
         map["xesam:title"] = "";
+        map["mpris:length"] = 0;
         map["mpris:trackid"] = QVariant(QDBusObjectPath(
                     "/org/mpris/MediaPlayer2/NoTrack").path());
     }
-    map["mpris:artUrl"] = artFilePathUrl;
+    map["mpris:artUrl"] = this->artUrl;
     return map;
 }
 

@@ -26,9 +26,10 @@
 
 //---------------------------------------------------------
 PlayerInterface::PlayerInterface(QObject *parent):
-    QObject(parent)
+    QObject(parent),
+    currentStatus(Stopped),
+    currentPosition(0)
 {
-
 }
 
 //---------------------------------------------------------
@@ -76,6 +77,16 @@ void PlayerInterface::previous()
 }
 
 //---------------------------------------------------------
+void PlayerInterface::seekToPosition(int position)
+{
+    ICloudMusicService* iService =
+            Services::cloudServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        return;
+    iService->seekToPosition(position);
+}
+
+//---------------------------------------------------------
 SongInfo PlayerInterface::currentSong()
 {
     ICloudMusicService* iService =
@@ -95,7 +106,27 @@ SongInfo PlayerInterface::update()
     SongInfo song = iService->currentSongInfo();
     this->checkPlaybackStatusChange(song);
     this->checkSongChange(song);
+    this->checkForPositionChange(song);
     return song;
+}
+
+//---------------------------------------------------------
+float PlayerInterface::volume()
+{
+    ICloudMusicService* iService =
+            Services::cloudServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        return iService->volume();
+    return 0.0f;
+}
+
+//---------------------------------------------------------
+void PlayerInterface::setVolume(float value)
+{
+    ICloudMusicService* iService =
+            Services::cloudServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        iService->setVolume(value);
 }
 
 //---------------------------------------------------------
@@ -132,6 +163,17 @@ void PlayerInterface::checkSongChange(SongInfo &song)
     }
 }
 
+//---------------------------------------------------------
+void PlayerInterface::checkForPositionChange(SongInfo &song)
+{
+    if(this->currentPosition != song.position)
+    {
+        emit positionChanged(song.position);
+        this->currentPosition = song.position;
+    }
+}
+
+//---------------------------------------------------------
 void PlayerInterface::downloadSongArt(const QString& url)
 {
     UrlDownloader* downloader = new UrlDownloader(this);

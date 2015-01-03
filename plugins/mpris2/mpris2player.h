@@ -43,11 +43,13 @@ public slots:
     void Next();
     void Previous();
     void Seek(int position);
+    void SetPosition(const QDBusObjectPath& trackId, qlonglong position);
 
 private slots:
     void onPlaybackStatusChanged(PlaybackStatus status);
     void onSongChanged(const SongInfo& song);
     void onArtReady(const QString& artFilePathUrl);
+    void onPositionChanged(int position);
 
 private:
     void signalUpdate(const QVariantMap &map);
@@ -58,13 +60,13 @@ private:
     bool                    shuffle();
     void                    setShuffle(bool value);
     float                   volume();
-    void                    setVolume(float);
+    void                    setVolume(float value);
     QVariantMap             metadata();
     float                   minimumRate();
     float                   maximumRate();
     float                   rate();
     void                    setRate(float value);
-    int                     position();
+    qlonglong               position();
     bool                    canGoNext();
     bool                    canGoPrevious();
     bool                    canPlay();
@@ -72,8 +74,9 @@ private:
     bool                    canSeek();
     bool                    canControl();
 
-    QMap<QString, QVariant> toXesam(const SongInfo& song,
-                                    const QString& artFilePathUrl="");
+    QMap<QString, QVariant> toXesam(const SongInfo& song);
+
+    QString artUrl;
 
 };
 

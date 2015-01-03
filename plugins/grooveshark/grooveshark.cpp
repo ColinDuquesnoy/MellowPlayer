@@ -58,6 +58,14 @@ void GroovesharkPlugin::previous()
 }
 
 //---------------------------------------------------------
+void GroovesharkPlugin::seekToPosition(int position)
+{
+    this->runJavaScript(
+        QString("window.Grooveshark.seekToPosition(%1)").arg(
+            QString::number(static_cast<int>(position/1000.f))));
+}
+
+//---------------------------------------------------------
 SongInfo GroovesharkPlugin::currentSongInfo()
 {
     SongInfo retVal;
@@ -69,6 +77,9 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     retVal.albumName = songData["albumName"].toString();
     retVal.artistName = songData["artistName"].toString();
     retVal.artUrl = songData["artURL"].toString();
+    // position from grooveshark are given in ms, we use µs.
+    retVal.duration = songData["calculatedDuration"].toInt() * 1000;
+    retVal.position = songData["position"].toInt() * 1000;
     QString statusString = result["status"].toString();
     retVal.playbackStatus = Stopped;
     if(statusString == "loading")
@@ -80,4 +91,20 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     else if(statusString == "stopped")
         retVal.playbackStatus = Stopped;
     return retVal;
+}
+
+//---------------------------------------------------------
+float GroovesharkPlugin::volume()
+{
+    float volume = this->runJavaScript("window.Grooveshark.getVolume())").toInt() / 100.0f;
+    qDebug() << "Grooveshark volume" << volume;
+    return volume;
+}
+
+//---------------------------------------------------------
+void GroovesharkPlugin::setVolume(float volume)
+{
+    this->runJavaScript(
+        QString("window.Grooveshark.setVolume(%1)").arg(
+            QString::number(static_cast<int>(volume * 100))));
 }
