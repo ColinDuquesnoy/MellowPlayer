@@ -63,7 +63,7 @@ kde_support {
 
 macx{
     CONFIG += app_bundle
-    target.path = /Applications
+    target.path = $$PREFIX/Applications
 }
 unix:!macx {
     isEmpty(PREFIX) {

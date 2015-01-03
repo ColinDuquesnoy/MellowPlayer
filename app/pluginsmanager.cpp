@@ -19,8 +19,6 @@ QDir getLocalPluginsDir()
     #elif defined(Q_OS_MAC)
         if (pluginsDir.dirName() == "MacOS") {
             pluginsDir.cdUp();
-            pluginsDir.cdUp();
-            pluginsDir.cdUp();
         }
     #endif
     pluginsDir.cd("plugins");

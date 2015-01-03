@@ -29,12 +29,12 @@ INCLUDEPATH  += ../../lib/include
 macx{
     QMAKE_LFLAGS    += -F../../lib
     LIBS            += -framework mellowplayer
+    DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
 }
 else{
     LIBS            += -L../../lib -lmellowplayer
+    DESTDIR       = ../../app/plugins
 }
-
-DESTDIR       = ../../app/plugins
 
 RESOURCES    += grooveshark.qrc
 

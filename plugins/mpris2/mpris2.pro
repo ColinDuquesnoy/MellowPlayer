@@ -17,28 +17,22 @@
 #
 #----------------------------------------------------------
 # This extension is built only on GNU/Linux
-unix:!macx {
-    TEMPLATE      = lib
-    CONFIG       += plugin
-    QT           += dbus gui
-    greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-    HEADERS       = mpris2.h
-    SOURCES       = mpris2.cpp
-    TARGET        = mlp_mpris2
-    INCLUDEPATH  += ../../lib/include
-    LIBS            += -L../../lib -lmellowplayer
-    DESTDIR       = ../../app/plugins
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
-    target.path = $$PREFIX/share/mellowplayer/plugins
-    INSTALLS += target
+TEMPLATE      = lib
+CONFIG       += plugin
+QT           += dbus gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+HEADERS       = mpris2.h \
+                mpris2root.h \
+                mpris2player.h
+SOURCES       = mpris2.cpp \
+                mpris2root.cpp \
+                mpris2player.cpp
+TARGET        = mlp_mpris2
+INCLUDEPATH  += ../../lib/include
+LIBS            += -L../../lib -lmellowplayer
+DESTDIR       = ../../app/plugins
+isEmpty(PREFIX) {
+    PREFIX = /usr/local
 }
-
-HEADERS += \
-    mpris2root.h \
-    mpris2player.h
-
-SOURCES += \
-    mpris2root.cpp \
-    mpris2player.cpp
+target.path = $$PREFIX/share/mellowplayer/plugins
+INSTALLS += target

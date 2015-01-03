@@ -44,7 +44,7 @@ macx{
     FRAMEWORK_HEADERS.files = $$HEADERS
     FRAMEWORK_HEADERS.path = include
     QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
-    target.path = /Library/Frameworks
+    target.path = $$PREFIX/Library/Frameworks
 }
 unix:!macx {
     isEmpty(PREFIX) {
