@@ -16,44 +16,29 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-
-TEMPLATE      = lib
-CONFIG       += plugin
-QT           += widgets webkit
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
-HEADERS       = mpris2.h
-SOURCES       = mpris2.cpp
-TARGET        = mlp_mpris2
-# for builtin plugins
-INCLUDEPATH  += ../../lib/include
-macx{
-    QMAKE_LFLAGS    += -F../../lib
-    LIBS            += -framework mellowplayer
-}
-else{
+# This extension is built only on GNU/Linux
+unix:!macx {
+    TEMPLATE      = lib
+    CONFIG       += plugin
+    QT           += dbus gui
+    greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+    HEADERS       = mpris2.h
+    SOURCES       = mpris2.cpp
+    TARGET        = mlp_mpris2
+    INCLUDEPATH  += ../../lib/include
     LIBS            += -L../../lib -lmellowplayer
-}
-
-DESTDIR       = ../../app/plugins
-
-# Optional KDE support config
-kde_support {
-    message("Building for KDE")
-    DEFINES += "__kde_support__=1"
-    QT += KGlobalAccel
-}
-
-macx{
-    # todo
-}
-unix{
+    DESTDIR       = ../../app/plugins
     isEmpty(PREFIX) {
         PREFIX = /usr/local
     }
     target.path = $$PREFIX/share/mellowplayer/plugins
+    INSTALLS += target
 }
-win32
-{
-    # todo
-}
-INSTALLS += target
+
+HEADERS += \
+    mpris2root.h \
+    mpris2player.h
+
+SOURCES += \
+    mpris2root.cpp \
+    mpris2player.cpp

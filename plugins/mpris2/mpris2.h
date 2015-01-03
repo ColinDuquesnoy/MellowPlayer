@@ -17,9 +17,21 @@
 //
 //---------------------------------------------------------
 #include <QObject>
+#include <QtDBus>
 #include <mellowplayer.h>
 
+class Mpris2Root;
+class Mpris2Player;
 
+/*!
+ * \brief Provides MPRIS2 support to MellowPlayer
+ *
+ * MPRIS clients will see the MellowPlayer application. You can interact with
+ * the player, song data are send on the bus but there is no playlist support.
+ *
+ * At the moment you cannot seek or change the volume but this is planned!
+ *
+ */
 class Mpris2Plugin :
         public QObject,
         public IExtension
@@ -30,9 +42,28 @@ class Mpris2Plugin :
     Q_INTERFACES(IExtension)
 
 public:
+    explicit Mpris2Plugin(QObject* parent=NULL);
+
+    /*!
+     * \brief Setups the extensions: create and register the mpris service and
+     * object.
+     */
     void setup();
+
+    /*!
+     * \brief Tears the extension down: unregister the service and object.
+     */
     void teardown();
+
+    /*!
+     * \brief Returns the MPRIS2 configuration widget.
+     *
+     * \return QWidget*
+     */
     QWidget* settingsWidget();
 private:
-
+    Mpris2Root* root;       /*!< Mpris2 root interface */
+    Mpris2Player* player;   /*!< Mpris2 player interface */
 };
+
+

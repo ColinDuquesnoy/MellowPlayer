@@ -17,19 +17,52 @@
 //
 //---------------------------------------------------------
 #include <QtWidgets>
+#include <mellowplayer.h>
 #include "mpris2.h"
+#include "mpris2root.h"
+#include "mpris2player.h"
 
+#define SERVICE_NAME    "org.mpris.MediaPlayer2.mellowplayer"
+#define OBJECT_NAME     "/org/mpris/MediaPlayer2"
+
+//---------------------------------------------------------
+Mpris2Plugin::Mpris2Plugin(QObject *parent):
+    QObject(parent),
+    root(NULL),
+    player(NULL)
+{
+}
+
+//---------------------------------------------------------
 void Mpris2Plugin::setup()
 {
-    qDebug() << "Setting up Mpris2Plugin";
+    if(!QDBusConnection::sessionBus().registerService(SERVICE_NAME))
+    {
+        qWarning() << "Failed to register service on the session bus: "
+                   << SERVICE_NAME;
+        return;
+    }
+    this->root = new Mpris2Root(this);
+    this->player = new Mpris2Player(this);
+    if(!QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this))
+    {
+        qWarning() << "Failed to register object on the session bus: "
+                   << OBJECT_NAME;
+        return;
+    }
+    qDebug() << "MPRIS2 service started!";
 }
 
+//---------------------------------------------------------
 void Mpris2Plugin::teardown()
 {
-    qDebug() << "Tearing down Mpris2Plugin";
+    QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
+    QDBusConnection::sessionBus().unregisterObject(SERVICE_NAME);
 }
 
+//---------------------------------------------------------
 QWidget *Mpris2Plugin::settingsWidget()
 {
     return NULL;
 }
+
