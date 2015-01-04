@@ -5,25 +5,26 @@ notifications and more).
 
 The software is written in C++ using the Qt5 GUI toolkit.
 
-*MellowPlayer has been heavily inspired by* `NuvolaPlayer`_.
+*MellowPlayer is a qt based alternative to * [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/). 
+*It has been specifically designed to run on a KaOS platform (i.e. there are more features on kde than on any other platforms)*
 
-Status
-------
+
+## Status
+
 
 This software is under heavy development. Some parts of the GUI and some features have not been implemented yet but
 you can already use it on linux and use the Grooveshark service.
 
 The following features are already working:
 
-- grooveshark integration
-- cookies management
-- `MPRIS 2`_ support
-- global shortcuts support
+- Grooveshark integration
+- Cookies management
+- [MPRIS 2]() support
+- Global shortcuts support
 
-This has been tested on KaOS plasma-next (kde5)
+This has been tested on KaOS plasma-next (kde5) and OS X Yosemite
 
-Supported platforms:
---------------------
+## Supported platforms:
 
 The following platforms will be supported:
 
@@ -31,8 +32,7 @@ The following platforms will be supported:
 - OSX
 - Windows
 
-Supported Services
-------------------
+## Supported Services
 
 At the moment, there is only one cloud music service: **Grooveshark**.
 
@@ -40,26 +40,28 @@ Feel free to request support for new services by opening an issue on the bug
 tracker or by submitting a pull request! See the `Service Integration API`_.
 
 
-Dependencies
-------------
-
-Requirements:
+## Dependencies
 
 - Qt5
 - KGlobalAccell (on kde5 only)
 
-Compilation
------------
+
+## Compilation
 
 ```
-qmake
-make
+qmake make 
 ```
 
-Installation
-------------
+### Build options
 
-```
-sudo make install
-```
+- CONFIG+=kde_support: to build the application with kde5 support (media keys and notifications).
+- PREFIX=%s: the install prefix, default is /usr/local on GNU/Linux and / (/application, /Frameworks) on OS X).
 
+
+## Installation
+
+``` make install ```
+
+## Known issues
+
+1) On OS X, the application might crash on exit if the audio backend is running. We have yet to investigate why this happen.
