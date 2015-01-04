@@ -20,6 +20,6 @@
 TEMPLATE = subdirs
 SUBDIRS  = grooveshark hotkeys
 
-unic:!macx {
+unix:!macx {
 SUBDIRS += mpris2
 }
