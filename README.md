@@ -1,4 +1,4 @@
-![MellowPlayer banner](/banner.png)
+![MellowPlayer banner](/mellowplayer-banner.png)
 
 *MellowPlayer* is a free, open source and cross-platform desktop application
 that runs a web interface of **cloud music services** in its own window and
@@ -20,9 +20,8 @@ The following features are already working:
 
 - Grooveshark integration
 - Cookies management
-- Tray Icon
 - [MPRIS 2](http://specifications.freedesktop.org/mpris-spec/latest/) support
-- Hotkeys support (no configuration gui yet)
+- Global shortcuts support
 
 This has been tested on KaOS plasma-next (kde5) and OS X Yosemite.
 
@@ -58,7 +57,7 @@ make
 ### Build options
 
 - **CONFIG+=kde_support**: to build the application with kde5 support (media keys and notifications).
-- **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``, ``/Frameworks``) on OSX.
+- **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``, ``/Frameworks``) on OS X.
 
 
 ## Installation

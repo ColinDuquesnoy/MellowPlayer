@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="mellowplayer.qrc">
-    <normaloff>:/icons/application-x-mellowplayer.png</normaloff>:/icons/application-x-mellowplayer.png</iconset>
+    <normaloff>:/icons/mellowplayer.png</normaloff>:/icons/mellowplayer.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -161,8 +161,8 @@
              <string>Select a cloud music service</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
+             <iconset resource="mellowplayer.qrc">
+              <normaloff>:/icons/mellowplayer.png</normaloff>:/icons/mellowplayer.png</iconset>
             </property>
            </widget>
           </item>

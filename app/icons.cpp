@@ -68,5 +68,5 @@ QIcon Icons::reportBug()
 
 QIcon Icons::mellowPlayer()
 {
-    return QIcon(":/icons/application-x-mellowplayer.png");
+    return QIcon(":/icons/mellowplayer.png");
 }

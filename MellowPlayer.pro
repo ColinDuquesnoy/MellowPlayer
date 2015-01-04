@@ -25,3 +25,17 @@ SUBDIRS         = app \     # MellowPlayer executable
 # build it first!
 app.depends     = lib
 plugins.depends = lib
+
+unix{
+    # install application desktop file
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+    desktopfile.path = $$PREFIX/share/applications
+    desktopfile.files = share/mellowplayer.desktop
+    INSTALLS += desktopfile
+
+    iconfile.path = $$PREFIX/share/pixmaps
+    iconfile.files = app/icons/mellowplayer.png
+    INSTALLS += iconfile
+}
