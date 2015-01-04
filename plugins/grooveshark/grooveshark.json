@@ -1,0 +1,9 @@
+{
+    "name": "Grooveshark",
+    "author": "Colin Duquesnoy",
+    "website": "https://github.com/ColinDuquesnoy/MellowPlayer",
+    "version": "1.0",
+    "icon": "://grooveshark-logo.png",
+    "description": "Grooveshark cloud music service integration plugin",
+    "html_description": "://description.html"
+}
