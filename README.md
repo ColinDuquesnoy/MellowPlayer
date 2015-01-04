@@ -20,8 +20,9 @@ The following features are already working:
 
 - Grooveshark integration
 - Cookies management
+- Tray Icon
 - [MPRIS 2](http://specifications.freedesktop.org/mpris-spec/latest/) support
-- Global shortcuts support
+- Hotkeys support (no configuration gui yet)
 
 This has been tested on KaOS plasma-next (kde5) and OS X Yosemite.
 
