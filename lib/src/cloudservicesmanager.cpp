@@ -19,6 +19,7 @@
 
 #include <QPluginLoader>
 #include <QFile>
+#include <QtWebKitWidgets/QWebView>
 #include "mellowplayer/plugins.h"
 #include "mellowplayer/cloudservicesmanager.h"
 #include "mellowplayer/services.h"

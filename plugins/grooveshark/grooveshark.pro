@@ -16,31 +16,31 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-
 TEMPLATE      = lib
+TARGET        = mpp_grooveshark
 CONFIG       += plugin
-QT           += widgets webkit
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 HEADERS       = grooveshark.h
 SOURCES       = grooveshark.cpp
-TARGET        = mpp_grooveshark
-# for builtin plugins
-INCLUDEPATH  += ../../lib/include
+RESOURCES    += grooveshark.qrc
+
+INCLUDEPATH  += ../../lib/include  # libmellowplayer include path
 macx{
+    # find and link with mellowplayer framework
     QMAKE_LFLAGS    += -F../../lib
     LIBS            += -framework mellowplayer
+
+    # on OSX, plugins are bundled with the .app
     DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
 }
-else{
+else {
+    # find and link with libmellowplayer
     LIBS            += -L../../lib -lmellowplayer
+
+    # move the plugins next to the app so that we can load them when
+    # running the app with qt creator (for developpers)
     DESTDIR       = ../../app/plugins
 }
 
-RESOURCES    += grooveshark.qrc
-
-macx{
-    # todo
-}
 unix:!macx {
     isEmpty(PREFIX) {
         PREFIX = /usr/local

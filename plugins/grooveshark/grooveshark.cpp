@@ -16,8 +16,6 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include <iostream>
-#include <QtCore>
 #include "grooveshark.h"
 
 

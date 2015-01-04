@@ -16,34 +16,40 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-
 TEMPLATE      = lib
-CONFIG       += plugin
-QT           += widgets webkit
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_hotkeys
+CONFIG       += plugin gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = hotkeys.h
 SOURCES       = hotkeys.cpp
-TARGET        = mpp_hotkeys
-# for builtin plugins
+
 INCLUDEPATH  += ../../lib/include
 macx{
+    # find and link with mellowplayer framework
     QMAKE_LFLAGS    += -F../../lib
     LIBS            += -framework mellowplayer
+
+    # on OSX, plugins are bundled with the .app
     DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
 }
-else{
+else {
+    # find and link with libmellowplayer
     LIBS            += -L../../lib -lmellowplayer
+
+    # move the plugins next to the app so that we load them when running the
+    # app with qt creator (for developpers)
     DESTDIR       = ../../app/plugins
 }
 
 # Optional KDE support config
 kde_support {
-    message("Building for KDE")
+    message("kde support: will use KGlobalAccell for global shortcuts")
     DEFINES += "__kde_support__=1"
     QT += KGlobalAccel
 }
-{
+else{
     # Build qxtglobalshortcut lib as part of our extension
+    message("QxtGlobalShortcut will be used for global shortcuts")
     QXT            = core
     DEFINES       += BUILD_QXT_CORE BUILD_QXT_GUI
     INCLUDEPATH   += libqxt/src/core libqxt/src/widgets
@@ -67,9 +73,7 @@ kde_support {
     }
 }
 
-macx{
-    # todo
-}
+# Setup install target
 unix:!macx {
     isEmpty(PREFIX) {
         PREFIX = /usr/local

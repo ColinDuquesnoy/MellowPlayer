@@ -16,7 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include <QObject>
+#include <QtCore>
 #include <mellowplayer.h>
 
 

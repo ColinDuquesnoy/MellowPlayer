@@ -20,11 +20,12 @@
 #ifndef PLUGINS
 #define PLUGINS
 
-#include <QtWidgets>
-#include <QtWebKitWidgets/QWebView>
+#include <QtCore>
 #include <QtPlugin>
-
 #include "mellowplayer/song.h"
+
+class QWebView;
+class QWidget;
 
 
 /*!
