@@ -34,15 +34,17 @@ SOURCES         += main.cpp\
                    mainwindow.cpp \
                    application.cpp \
                    singleinstancecontroller.cpp \
-    cookiejar.cpp \
-    icons.cpp \
-    pluginsmanager.cpp
+                   cookiejar.cpp \
+                   icons.cpp \
+                   pluginsmanager.cpp \
+                   dlgselectservice.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
-    cookiejar.h \
-    icons.h \
-    pluginsmanager.h
+                   cookiejar.h \
+                   icons.h \
+                   pluginsmanager.h \
+                   dlgselectservice.h
 RESOURCES       = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui

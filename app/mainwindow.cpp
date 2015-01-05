@@ -16,6 +16,7 @@
 //---------------------------------------------------------
 
 #include "cookiejar.h"
+#include "dlgselectservice.h"
 #include "icons.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
@@ -121,6 +122,20 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 }
 
 //---------------------------------------------------------
+void MainWindow::onSelectServiceTriggered()
+{
+    QString service = DlgSelectServices::selectService(this);
+    if(service != "")
+    {
+        if(Services::cloudServices()->startService(service))
+        {
+            this->showWebPage();
+            QSettings().setValue("service", service);
+        }
+    }
+}
+
+//---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     bool minimizeToTray = QSettings().value(
@@ -143,12 +158,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
     else
-    {
-        this->updateTimer->stop();
-        this->trayIcon->hide();
-        event->accept();
-        this->saveGeometryAndState();
-    }
+        // no service is running, quit application
+        qApp->exit(0);
 }
 
 //---------------------------------------------------------
@@ -168,7 +179,7 @@ void MainWindow::setupIcons()
 
     this->ui->pushButtonSelect->setIcon(Icons::selectCloudService());
     this->ui->pushButtonPreferences->setIcon(Icons::preferences());
-    this->ui->pushButtonPreferences->setIcon(Icons::quit());
+    this->ui->pushButtonQuit->setIcon(Icons::quit());
 }
 
 //---------------------------------------------------------
@@ -262,10 +273,19 @@ void MainWindow::connectSlots()
                   this, &MainWindow::onNextTriggered);
     this->connect(this->ui->actionPrevious, &QAction::triggered,
                   this, &MainWindow::onPreviousTriggered);
+
     this->connect(this->ui->actionRestoreWindow, &QAction::triggered,
                   this, &MainWindow::show);
+
+    this->connect(this->ui->actionSelect_service, &QAction::triggered,
+                  this, &MainWindow::onSelectServiceTriggered);
+    this->connect(this->ui->pushButtonSelect, &QPushButton::clicked,
+                  this, &MainWindow::onSelectServiceTriggered);
+
     this->connect(this->ui->actionQuit, &QAction::triggered,
                   qApp, &QApplication::quit);
+    this->connect(this->ui->pushButtonQuit, &QPushButton::clicked,
+                  this, &QApplication::quit);
 }
 
 //---------------------------------------------------------

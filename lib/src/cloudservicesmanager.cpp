@@ -38,10 +38,10 @@ void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
                                       QPluginLoader* pluginLoader)
 {
     PluginMetaData meta = this->extractMetaData(pluginLoader);
-    if(this->metaData.find(meta.name) == this->metaData.end())
+    if(this->_metaData.find(meta.name) == this->_metaData.end())
     {
-        this->metaData[meta.name] = meta;
-        this->services[meta.name] = iService;
+        this->_metaData[meta.name] = meta;
+        this->_services[meta.name] = iService;
         qDebug() << "Cloud service integration plugin loaded: ";
         qDebug() << "  - name: " << meta.name;
         qDebug() << "  - version: " << meta.version;
@@ -86,18 +86,39 @@ CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
 }
 
 //---------------------------------------------------------
-ICloudMusicService* CloudServicesManager::currentService()
+ICloudMusicService* CloudServicesManager::currentService() const
 {
     return this->_currentService;
+}
+
+//---------------------------------------------------------
+CloudServicesManager::MetaDataList CloudServicesManager::allMetaData() const
+{
+    MetaDataList values = this->_metaData.values();
+    qSort(values.begin(), values.end(),
+          [](const CloudServicesManager::PluginMetaData& a,
+             const CloudServicesManager::PluginMetaData& b){
+           return a.name < b.name;
+          });
+    return values;
+}
+
+//---------------------------------------------------------
+CloudServicesManager::PluginMetaData
+    CloudServicesManager::metaData(const QString &serviceName)
+{
+    if(this->_metaData.find(serviceName) != this->_metaData.end())
+        return this->_metaData[serviceName];
+    return PluginMetaData();
 }
 
 //---------------------------------------------------------
 bool CloudServicesManager::startService(const QString& serviceName)
 {
     bool retVal = false;
-    if(this->services.find(serviceName) != this->services.end())
+    if(this->_services.find(serviceName) != this->_services.end())
     {
-        this->_currentService = this->services[serviceName];
+        this->_currentService = this->_services[serviceName];
         Services::webView()->load(this->_currentService->url());
         retVal = true;
     }

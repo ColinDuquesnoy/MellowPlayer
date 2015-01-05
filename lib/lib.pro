@@ -16,27 +16,28 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-TEMPLATE      = lib
-TARGET        = mellowplayer
-VERSION       = 1.0.0
-QT           += widgets webkit network
+TEMPLATE        = lib
+TARGET          = mellowplayer
+VERSION         = 1.0.0
+QT             += widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
-INCLUDEPATH  += include
-HEADERS       = include/mellowplayer.h \
-                include/mellowplayer/plugins.h \
-                include/mellowplayer/cloudservicesmanager.h \
-                include/mellowplayer/extensionsmanager.h \
-                include/mellowplayer/services.h \
-                include/mellowplayer/song.h \
-                include/mellowplayer/player.h \
-    include/mellowplayer/urldownloader.h
-SOURCES       = src/plugins.cpp \
-                src/cloudservicesmanager.cpp \
-                src/extensionsmanager.cpp \
-                src/services.cpp \
-                src/song.cpp \
-                src/player.cpp \
-    src/urldownloader.cpp
+QMAKE_CXXFLAGS += -std=c++11
+INCLUDEPATH    += include
+HEADERS         = include/mellowplayer.h \
+                  include/mellowplayer/plugins.h \
+                  include/mellowplayer/cloudservicesmanager.h \
+                  include/mellowplayer/extensionsmanager.h \
+                  include/mellowplayer/services.h \
+                  include/mellowplayer/song.h \
+                  include/mellowplayer/player.h \
+                  include/mellowplayer/urldownloader.h
+SOURCES         = src/plugins.cpp \
+                  src/cloudservicesmanager.cpp \
+                  src/extensionsmanager.cpp \
+                  src/services.cpp \
+                  src/song.cpp \
+                  src/player.cpp \
+                  src/urldownloader.cpp
 
 macx{
     CONFIG += lib_bundle

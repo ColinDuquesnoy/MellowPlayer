@@ -48,6 +48,7 @@ private slots:
     void onNextTriggered();
     void onPreviousTriggered();
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+    void onSelectServiceTriggered();
 private:
     void closeEvent(QCloseEvent* event);
     void setupIcons();

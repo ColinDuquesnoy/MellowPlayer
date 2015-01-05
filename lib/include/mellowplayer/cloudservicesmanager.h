@@ -20,8 +20,9 @@
 #ifndef CLOUDSERVICESMANAGER_H
 #define CLOUDSERVICESMANAGER_H
 
-#include <QObject>
 #include <QIcon>
+#include <QMap>
+#include <QObject>
 
 class QPluginLoader;
 class ICloudMusicService;
@@ -36,6 +37,7 @@ class CloudServicesManager : public QObject
 {
     Q_OBJECT
 public:
+
     explicit CloudServicesManager(QObject* parent=0);
 
     struct PluginMetaData
@@ -47,7 +49,13 @@ public:
         QIcon icon;
         QString description;
         QString htmlDescription;
+
+        /*! Checks if the meta data are valid, i.e. they correspond to a
+         * plugin instance */
+        bool isValid() const { return name != ""; }
     };
+
+    typedef QList<PluginMetaData> MetaDataList;
 
     /*!
      * \brief Loads a cloud music service plugin.
@@ -76,7 +84,19 @@ public:
      * \returns CUrrent cloud music service or NULL if no service has been
      * started.
      */
-    ICloudMusicService* currentService();
+    ICloudMusicService* currentService() const;
+
+    /*!
+     * \brief Returns a sorted list of all plugins' metadata.
+     */
+    MetaDataList allMetaData() const;
+
+    /*!
+     * \brief Gets the metadata structure for a given service
+     * \param Name of the service
+     * \return Meta data of the given service
+     */
+    PluginMetaData metaData(const QString& serviceName);
 
 signals:
 
@@ -84,8 +104,8 @@ public slots:
 
 private:
     PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
-    std::map<QString, ICloudMusicService*> services;
-    std::map<QString, PluginMetaData> metaData;
+    QMap<QString, ICloudMusicService*> _services;
+    QMap<QString, PluginMetaData> _metaData;
     ICloudMusicService* _currentService;
 };
 

@@ -59,7 +59,8 @@ void MellowPlayerApp::initialize()
     Services::_setExtensionsManager(new ExtensionsManager(this));
     Services::_setPlayer(new PlayerInterface(this));
     loadPlugins();
-    if(Services::cloudServices()->startService("Grooveshark"))
+    if(Services::cloudServices()->startService(
+            QSettings().value("service", "").toString()))
         this->mainWindow->showWebPage();
     else
         this->mainWindow->showHomePage();
