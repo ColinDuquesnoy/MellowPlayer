@@ -51,6 +51,15 @@ unix:!macx {
     isEmpty(PREFIX) {
        PREFIX = /usr/local
     }
+    LIB_HEADERS.files = include/mellowplayer/*
+    LIB_HEADERS.path = $$PREFIX/include/mellowplayer
+
+    LIB_HEADER.files = include/mellowplayer.h
+    LIB_HEADER.path = $$PREFIX/include
+
+    INSTALLS += LIB_HEADER
+    INSTALLS += LIB_HEADERS
+
     target.path = $$PREFIX/lib
 }
 win32
