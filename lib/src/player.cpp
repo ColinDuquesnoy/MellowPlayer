@@ -19,7 +19,7 @@
 
 #include "mellowplayer/cloudservicesmanager.h"
 #include "mellowplayer/player.h"
-#include "mellowplayer/plugins.h"
+#include "mellowplayer/interfaces.h"
 #include "mellowplayer/services.h"
 #include "mellowplayer/urldownloader.h"
 

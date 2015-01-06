@@ -36,14 +36,24 @@ class ExtensionsManager : public QObject
 public:
     explicit ExtensionsManager(QObject* parent=0);
 
-    struct PluginMetaData
+    /*!
+     * \brief The Plugin struct regroup the plugin interface with it's metada.
+     */
+    struct Plugin
     {
-        QString name;
-        QString author;
-        QString website;
-        QString version;
-        QString description;
+        Plugin();
+
+        QString name;           /*!< Name of the plugin */
+        QString author;         /*!< Author of the plugin */
+        QString website;        /*!< Website/repository of the plugin */
+        QString version;        /*!< Version of the plugin */
+        QString description;    /*!< Short description of the plugin */
+
+        IExtension* interface;  /*!< Plugin interface */
+
+        bool isValid() const;
     };
+    typedef QList<Plugin> PluginList;
 
     /*!
      * \brief Adds a cloud music service plugin to the list of managed plugins.
@@ -56,10 +66,20 @@ public:
      */
     void loadPlugin(IExtension* iExtension, QPluginLoader* pluginLoader);
 
+    /*!
+     * \brief Gets a plugin by specifying its name.
+     *
+     * Note that if no plugin could be found, the method will return
+     * an invalid Plugin. For that reason, you should always check plugin
+     * validity using Plugin::isValid().
+     *
+     * \param name Name of the plugin to retrieve.
+     */
+    Plugin plugin(const QString& name) const;
+
 private:
-    PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
-    std::map<QString, IExtension*> extensions;
-    std::map<QString, PluginMetaData> metaData;
+    Plugin extractMetaData(QPluginLoader* pluginLoader);
+    PluginList _plugins;
 };
 
 #endif // EXTENSIONSMANAGER_H

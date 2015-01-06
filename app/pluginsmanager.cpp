@@ -77,7 +77,7 @@ void loadPlugin(QPluginLoader* loader)
                 ICloudMusicService*>(plugin);
         if(iService)
         {
-            Services::cloudServices()->loadPlugin(iService, loader);
+            Services::cloudServices()->_loadPlugin(iService, loader);
             return;
         }
 

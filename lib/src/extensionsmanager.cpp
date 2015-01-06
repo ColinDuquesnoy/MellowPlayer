@@ -19,10 +19,23 @@
 
 #include <QPluginLoader>
 #include <QFile>
-#include "mellowplayer/plugins.h"
+#include "mellowplayer/interfaces.h"
 #include "mellowplayer/extensionsmanager.h"
 #include "mellowplayer/services.h"
 
+
+//---------------------------------------------------------
+ExtensionsManager::Plugin::Plugin():
+    interface(NULL)
+{
+
+}
+
+//---------------------------------------------------------
+bool ExtensionsManager::Plugin::isValid() const
+{
+    return interface != NULL;
+}
 
 //---------------------------------------------------------
 ExtensionsManager::ExtensionsManager(QObject* parent):
@@ -35,15 +48,15 @@ ExtensionsManager::ExtensionsManager(QObject* parent):
 void ExtensionsManager::loadPlugin(IExtension* iExtension,
                                    QPluginLoader* pluginLoader)
 {
-    PluginMetaData meta = this->extractMetaData(pluginLoader);
-    if(this->metaData.find(meta.name) == this->metaData.end())
+    Plugin plugin = this->extractMetaData(pluginLoader);
+    if(!this->plugin(plugin.name).isValid())
     {
-        this->metaData[meta.name] = meta;
-        this->extensions[meta.name] = iExtension;
+        plugin.interface = iExtension;
+        this->_plugins.append(plugin);
         qDebug() << "Extension plugin loaded: ";
-        qDebug() << "  - name: " << meta.name;
-        qDebug() << "  - version: " << meta.version;
-        iExtension->setup();
+        qDebug() << "  - name: " << plugin.name;
+        qDebug() << "  - version: " << plugin.version;
+        plugin.interface->setup();
     }
     else
     {
@@ -53,19 +66,30 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
 }
 
 //---------------------------------------------------------
-ExtensionsManager::PluginMetaData ExtensionsManager::extractMetaData(
+ExtensionsManager::Plugin ExtensionsManager::plugin(const QString &name) const
+{
+    foreach(Plugin p, this->_plugins)
+    {
+        if(p.name == name)
+            return p;
+    }
+    return Plugin();  // invalid plugin
+}
+
+//---------------------------------------------------------
+ExtensionsManager::Plugin ExtensionsManager::extractMetaData(
         QPluginLoader* pluginLoader)
 {
-    PluginMetaData meta;
-    meta.name = pluginLoader->metaData().value(
+    Plugin plugin;
+    plugin.name = pluginLoader->metaData().value(
                 "MetaData").toObject().value("name").toString();
-    meta.author = pluginLoader->metaData().value(
+    plugin.author = pluginLoader->metaData().value(
                 "MetaData").toObject().value("author").toString();
-    meta.website = pluginLoader->metaData().value(
+    plugin.website = pluginLoader->metaData().value(
                 "MetaData").toObject().value("website").toString();
-    meta.version = pluginLoader->metaData().value(
+    plugin.version = pluginLoader->metaData().value(
                 "MetaData").toObject().value("version").toString();
-    meta.description= pluginLoader->metaData().value(
+    plugin.description= pluginLoader->metaData().value(
                 "MetaData").toObject().value("description").toString();
-    return meta;
+    return plugin;
 }

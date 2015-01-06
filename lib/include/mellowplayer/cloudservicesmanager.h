@@ -27,10 +27,9 @@
 class QPluginLoader;
 class ICloudMusicService;
 
-
 /*!
  * \brief The CloudServicesManager class manages the collection of cloud music
- * services and let you start and changed the current service.
+ * service plugins and let you easily start or change the current service.
  *
  */
 class CloudServicesManager : public QObject
@@ -38,26 +37,38 @@ class CloudServicesManager : public QObject
     Q_OBJECT
 public:
 
+    /*!
+     * \brief The Plugin struct regroup the plugin interface with it's metada.
+     */
+    struct Plugin
+    {
+        Plugin();
+
+        // Plugin metadata.
+        QString name;                   /*!< Name of the plugin */
+        QString author;                 /*!< Author of the plugin */
+        QString website;                /*!< Plugin website */
+        QString version;                /*!< Plugin version */
+        QIcon icon;                     /*!< Plugin icon */
+        QString description;            /*!< Plugin description */
+        QString htmlDescription;        /*!< Plugin html description */
+        ICloudMusicService* interface;  /*!< Pointer to the plugin interface */
+
+        /*!
+         * \brief Checks whether the plugin is valid or not.
+         *
+         * A valid plugin has a non-null interface pointer.
+         *
+         * \return true if the plugin is valid else false.
+         */
+        bool isValid() const;
+    };
+    typedef QList<Plugin> PluginList;
+
     explicit CloudServicesManager(QObject* parent=0);
 
-    struct PluginMetaData
-    {
-        QString name;
-        QString author;
-        QString website;
-        QString version;
-        QIcon icon;
-        QString description;
-        QString htmlDescription;
-
-        /*! Checks if the meta data are valid, i.e. they correspond to a
-         * plugin instance */
-        bool isValid() const { return name != ""; }
-    };
-
-    typedef QList<PluginMetaData> MetaDataList;
-
     /*!
+     * \internal
      * \brief Loads a cloud music service plugin.
      *
      * **For internal uses only, all the plugins are loaded by the application.**
@@ -66,46 +77,49 @@ public:
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
+    void _loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
 
     /*!
      * @brief Starts the current service.
      *
-     * Load the cloud service URL and set the service as the currentService.
+     * Load the cloud service URL and set the service plugin as the
+     * currentService.
      *
-     * @return True if the service could be started, False if the service does
-     * not exists.
+     * @return Start status: true on succes, false on error.
      */
     bool startService(const QString& serviceName);
 
     /*!
      * \brief Gets the current cloud music service, started by startService.
      *
-     * \returns CUrrent cloud music service or NULL if no service has been
-     * started.
+     * \returns Current cloud music service interface or NULL if no service has
+     * been started.
      */
     ICloudMusicService* currentService() const;
 
     /*!
-     * \brief Returns a sorted list of all plugins' metadata.
+     * \brief Returns the list of loaded plugins.
      */
-    MetaDataList allMetaData() const;
+    PluginList plugins() const;
 
     /*!
-     * \brief Gets the metadata structure for a given service
-     * \param Name of the service
-     * \return Meta data of the given service
+     * \brief Gets a plugin by specifying its name.
+     *
+     * Note that if no plugin could be found, the method will return
+     * an invalid Plugin. For that reason, you should always check plugin
+     * validity using Plugin::isValid().
+     *
+     * \param Name of the plugin to retrieve.
      */
-    PluginMetaData metaData(const QString& serviceName);
+    Plugin plugin(const QString& serviceName) const;
 
 signals:
 
 public slots:
 
 private:
-    PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
-    QMap<QString, ICloudMusicService*> _services;
-    QMap<QString, PluginMetaData> _metaData;
+    Plugin extractMetaData(QPluginLoader* pluginLoader);
+    PluginList _plugins;
     ICloudMusicService* _currentService;
 };
 

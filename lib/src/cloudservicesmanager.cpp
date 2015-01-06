@@ -20,10 +20,23 @@
 #include <QPluginLoader>
 #include <QFile>
 #include <QtWebKitWidgets/QWebView>
-#include "mellowplayer/plugins.h"
+#include "mellowplayer/interfaces.h"
 #include "mellowplayer/cloudservicesmanager.h"
 #include "mellowplayer/services.h"
 
+
+//---------------------------------------------------------
+CloudServicesManager::Plugin::Plugin():
+    interface(NULL)
+{
+
+}
+
+//---------------------------------------------------------
+bool CloudServicesManager::Plugin::isValid() const
+{
+    return interface != NULL;
+}
 
 //---------------------------------------------------------
 CloudServicesManager::CloudServicesManager(QObject* parent):
@@ -34,17 +47,18 @@ CloudServicesManager::CloudServicesManager(QObject* parent):
 }
 
 //---------------------------------------------------------
-void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
-                                      QPluginLoader* pluginLoader)
+void CloudServicesManager::_loadPlugin(ICloudMusicService* iService,
+                                       QPluginLoader* pluginLoader)
 {
-    PluginMetaData meta = this->extractMetaData(pluginLoader);
-    if(this->_metaData.find(meta.name) == this->_metaData.end())
+    Plugin plugin = this->extractMetaData(pluginLoader);
+    if(!this->plugin(plugin.name).isValid())
     {
-        this->_metaData[meta.name] = meta;
-        this->_services[meta.name] = iService;
+        plugin.interface = iService;
+        Q_ASSERT(plugin.isValid());
+        this->_plugins.append(plugin);
         qDebug() << "Cloud service integration plugin loaded: ";
-        qDebug() << "  - name: " << meta.name;
-        qDebug() << "  - version: " << meta.version;
+        qDebug() << "  - name: " << plugin.name;
+        qDebug() << "  - version: " << plugin.version;
     }
     else
     {
@@ -54,21 +68,21 @@ void CloudServicesManager::loadPlugin(ICloudMusicService* iService,
 }
 
 //---------------------------------------------------------
-CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
+CloudServicesManager::Plugin CloudServicesManager::extractMetaData(
         QPluginLoader* pluginLoader)
 {
-    PluginMetaData meta;
-    meta.name = pluginLoader->metaData().value(
+    Plugin plugin;
+    plugin.name = pluginLoader->metaData().value(
                 "MetaData").toObject().value("name").toString();
-    meta.author = pluginLoader->metaData().value(
+    plugin.author = pluginLoader->metaData().value(
                 "MetaData").toObject().value("author").toString();
-    meta.website = pluginLoader->metaData().value(
+    plugin.website = pluginLoader->metaData().value(
                 "MetaData").toObject().value("website").toString();
-    meta.version = pluginLoader->metaData().value(
+    plugin.version = pluginLoader->metaData().value(
                 "MetaData").toObject().value("version").toString();
-    meta.icon = QIcon(pluginLoader->metaData().value(
+    plugin.icon = QIcon(pluginLoader->metaData().value(
                 "MetaData").toObject().value("icon").toString());
-    meta.description= pluginLoader->metaData().value(
+    plugin.description= pluginLoader->metaData().value(
                 "MetaData").toObject().value("description").toString();
     QString htmlDescPath = pluginLoader->metaData().value(
                 "MetaData").toObject().value("html_description").toString();
@@ -79,10 +93,10 @@ CloudServicesManager::PluginMetaData CloudServicesManager::extractMetaData(
     else
     {
         QTextStream in(&file);
-        meta.htmlDescription = in.readAll();
+        plugin.htmlDescription = in.readAll();
     }
 
-    return meta;
+    return plugin;
 }
 
 //---------------------------------------------------------
@@ -92,33 +106,30 @@ ICloudMusicService* CloudServicesManager::currentService() const
 }
 
 //---------------------------------------------------------
-CloudServicesManager::MetaDataList CloudServicesManager::allMetaData() const
+CloudServicesManager::PluginList CloudServicesManager::plugins() const
 {
-    MetaDataList values = this->_metaData.values();
-    qSort(values.begin(), values.end(),
-          [](const CloudServicesManager::PluginMetaData& a,
-             const CloudServicesManager::PluginMetaData& b){
-           return a.name < b.name;
-          });
-    return values;
+    return this->_plugins;
 }
 
 //---------------------------------------------------------
-CloudServicesManager::PluginMetaData
-    CloudServicesManager::metaData(const QString &serviceName)
+CloudServicesManager::Plugin CloudServicesManager::plugin(
+        const QString &serviceName) const
 {
-    if(this->_metaData.find(serviceName) != this->_metaData.end())
-        return this->_metaData[serviceName];
-    return PluginMetaData();
-}
-
-//---------------------------------------------------------
-bool CloudServicesManager::startService(const QString& serviceName)
-{
-    bool retVal = false;
-    if(this->_services.find(serviceName) != this->_services.end())
+    foreach(Plugin p, this->_plugins)
     {
-        this->_currentService = this->_services[serviceName];
+        if(p.name == serviceName)
+            return p;
+    }
+    return Plugin();  // invalid plugin
+}
+
+//---------------------------------------------------------
+bool CloudServicesManager::startService(const QString& serviceName) {
+    bool retVal = false;
+    Plugin p = this->plugin(serviceName);
+    if(p.isValid() and p.interface != this->_currentService)
+    {
+        this->_currentService = p.interface;
         Services::webView()->load(this->_currentService->url());
         retVal = true;
     }

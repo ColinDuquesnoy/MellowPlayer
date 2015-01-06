@@ -17,12 +17,14 @@
 //
 //---------------------------------------------------------
 /*!
-  * This is a convenience headers that include the whole MellowPlayer api.
+  * This is a convenience header that includes the whole MellowPlayer API.
+  *
+  * When writing a new plugin just include this file and you'll be gone.
   */
 #include <mellowplayer/cloudservicesmanager.h>
 #include <mellowplayer/extensionsmanager.h>
 #include <mellowplayer/player.h>
-#include <mellowplayer/plugins.h>
+#include <mellowplayer/interfaces.h>
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>
 #include <mellowplayer/urldownloader.h>

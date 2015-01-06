@@ -24,13 +24,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 QMAKE_CXXFLAGS += -std=c++11
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
-                  include/mellowplayer/plugins.h \
                   include/mellowplayer/cloudservicesmanager.h \
                   include/mellowplayer/extensionsmanager.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \
                   include/mellowplayer/player.h \
-                  include/mellowplayer/urldownloader.h
+                  include/mellowplayer/urldownloader.h \
+                  include/mellowplayer/interfaces.h
 SOURCES         = src/plugins.cpp \
                   src/cloudservicesmanager.cpp \
                   src/extensionsmanager.cpp \
