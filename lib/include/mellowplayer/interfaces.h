@@ -44,7 +44,7 @@ public:
     QVariant runJavaScript(const QString& scriptSource);
 
     //! Returns the cloud music service URL
-    virtual QUrl url() = 0;
+    virtual QUrl url() const = 0;
 
     //! Starts playing the current song
     virtual void play() = 0;
@@ -121,7 +121,7 @@ public:
      * application preferences dialog. Return NULL if you don't need to show
      * any settings.
      */
-    virtual QWidget* settingsWidget() = 0;
+    virtual QWidget* settingsWidget() const { return NULL; }
 };
 
 #define IExtension_iid "org.MellowPlayer.IExtension"

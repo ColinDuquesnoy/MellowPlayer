@@ -62,9 +62,3 @@ void HotkeysPlugin::teardown()
 {
 
 }
-
-//---------------------------------------------------------
-QWidget *HotkeysPlugin::settingsWidget()
-{
-    return NULL;
-}

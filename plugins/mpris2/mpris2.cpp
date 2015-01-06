@@ -59,10 +59,3 @@ void Mpris2Plugin::teardown()
     QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
     QDBusConnection::sessionBus().unregisterObject(SERVICE_NAME);
 }
-
-//---------------------------------------------------------
-QWidget *Mpris2Plugin::settingsWidget()
-{
-    return NULL;
-}
-

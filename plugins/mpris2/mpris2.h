@@ -55,12 +55,6 @@ public:
      */
     void teardown();
 
-    /*!
-     * \brief Returns the MPRIS2 configuration widget.
-     *
-     * \return QWidget*
-     */
-    QWidget* settingsWidget();
 private:
     Mpris2Root* root;       /*!< Mpris2 root interface */
     Mpris2Player* player;   /*!< Mpris2 player interface */

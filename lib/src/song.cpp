@@ -45,14 +45,7 @@ bool SongInfo::isValid() const
 }
 
 //---------------------------------------------------------
-QString SongInfo::toString()
+QString SongInfo::toString() const
 {
     return QString("%1 by %2 on %3").arg(songName, artistName, albumName);
-}
-
-//---------------------------------------------------------
-QString SongInfo::toPrettyString()
-{
-    return QString("<b>%1</b> by <b>%2</b> on <b>%3</b>").arg(
-        songName, artistName, albumName);
 }

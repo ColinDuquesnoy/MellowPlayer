@@ -20,7 +20,7 @@
 
 
 //---------------------------------------------------------
-QUrl GroovesharkPlugin::url()
+QUrl GroovesharkPlugin::url() const
 {
     return QUrl("http://grooveshark.com");
 }

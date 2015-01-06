@@ -38,7 +38,7 @@ class GroovesharkPlugin :
 
 public:
     //! Returns the grooveshark URL
-    virtual QUrl url();
+    virtual QUrl url() const;
     //! Plays the current song
     void play();
     //! Pauses the current song

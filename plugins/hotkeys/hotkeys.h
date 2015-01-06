@@ -41,7 +41,6 @@ class HotkeysPlugin :
 public:
     void setup();
     void teardown();
-    QWidget* settingsWidget();
 private:
 #ifndef __kde_support__
     QList<QxtGlobalShortcut*> shortcuts;
