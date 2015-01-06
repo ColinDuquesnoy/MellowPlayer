@@ -78,5 +78,6 @@ int MellowPlayerApp::exec()
 {
     int retCode = QApplication::exec();
     this->mainWindow->saveGeometryAndState();
+    Services::extensions()->teardown();
     return retCode;
 }

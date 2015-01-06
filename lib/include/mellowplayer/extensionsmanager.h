@@ -67,6 +67,11 @@ public:
     void loadPlugin(IExtension* iExtension, QPluginLoader* pluginLoader);
 
     /*!
+     * \brief Tears down every extension.
+     */
+    void teardown();
+
+    /*!
      * \brief Gets a plugin by specifying its name.
      *
      * Note that if no plugin could be found, the method will return

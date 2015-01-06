@@ -66,6 +66,13 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
 }
 
 //---------------------------------------------------------
+void ExtensionsManager::teardown()
+{
+    foreach(Plugin p, this->_plugins)
+        p.interface->teardown();
+}
+
+//---------------------------------------------------------
 ExtensionsManager::Plugin ExtensionsManager::plugin(const QString &name) const
 {
     foreach(Plugin p, this->_plugins)
