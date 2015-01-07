@@ -23,3 +23,7 @@ Makefile*
 *-build-*
 # QtCreator
 *.autosave
+# doxygen
+doxyxml
+# sphinx
+_build
