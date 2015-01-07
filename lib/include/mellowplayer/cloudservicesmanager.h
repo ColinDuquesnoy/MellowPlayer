@@ -28,6 +28,29 @@ class QPluginLoader;
 class ICloudMusicService;
 
 /*!
+ * \brief The Plugin class regroups the plugin interface with it's metada.
+ */
+class CloudServicePlugin: public QObject
+{
+    Q_OBJECT
+public:
+
+    explicit CloudServicePlugin(QObject* parent=NULL);
+
+    // Plugin metadata.
+    QString name;                   /*!< Name of the plugin */
+    QString author;                 /*!< Author of the plugin */
+    QString website;                /*!< Plugin website */
+    QString version;                /*!< Plugin version */
+    QIcon icon;                     /*!< Plugin icon */
+    QString description;            /*!< Plugin description */
+    QString htmlDescription;        /*!< Plugin html description */
+
+    ICloudMusicService* interface;  /*!< Pointer to the plugin interface */
+};
+typedef QList<CloudServicePlugin*> CloudPluginList;
+
+/*!
  * \brief The CloudServicesManager class manages the collection of cloud music
  * service plugins and let you easily start or change the current service.
  *
@@ -36,34 +59,6 @@ class CloudServicesManager : public QObject
 {
     Q_OBJECT
 public:
-
-    /*!
-     * \brief The Plugin struct regroup the plugin interface with it's metada.
-     */
-    struct Plugin
-    {
-        Plugin();
-
-        // Plugin metadata.
-        QString name;                   /*!< Name of the plugin */
-        QString author;                 /*!< Author of the plugin */
-        QString website;                /*!< Plugin website */
-        QString version;                /*!< Plugin version */
-        QIcon icon;                     /*!< Plugin icon */
-        QString description;            /*!< Plugin description */
-        QString htmlDescription;        /*!< Plugin html description */
-        ICloudMusicService* interface;  /*!< Pointer to the plugin interface */
-
-        /*!
-         * \brief Checks whether the plugin is valid or not.
-         *
-         * A valid plugin has a non-null interface pointer.
-         *
-         * \return true if the plugin is valid else false.
-         */
-        bool isValid() const;
-    };
-    typedef QList<Plugin> PluginList;
 
     explicit CloudServicesManager(QObject* parent=0);
 
@@ -100,7 +95,7 @@ public:
     /*!
      * \brief Returns the list of loaded plugins.
      */
-    PluginList plugins() const;
+    CloudPluginList plugins() const;
 
     /*!
      * \brief Gets a plugin by specifying its name.
@@ -111,15 +106,15 @@ public:
      *
      * \param Name of the plugin to retrieve.
      */
-    Plugin plugin(const QString& serviceName) const;
+    CloudServicePlugin* plugin(const QString& serviceName) const;
 
 signals:
 
 public slots:
 
 private:
-    Plugin extractMetaData(QPluginLoader* pluginLoader);
-    PluginList _plugins;
+    CloudServicePlugin* extractMetaData(QPluginLoader* pluginLoader);
+    CloudPluginList _plugins;
     ICloudMusicService* _currentService;
 };
 

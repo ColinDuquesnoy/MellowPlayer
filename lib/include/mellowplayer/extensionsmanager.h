@@ -27,6 +27,27 @@ class IExtension;
 
 
 /*!
+ * \brief The ExtensionPlugin class regroups the plugin interface with it's
+ *        metada.
+ */
+class ExtensionPlugin : public QObject
+{
+    Q_OBJECT
+public:
+    explicit ExtensionPlugin(QObject* parent=NULL);
+
+    QString name;           /*!< Name of the plugin */
+    QString author;         /*!< Author of the plugin */
+    QString website;        /*!< Website/repository of the plugin */
+    QString version;        /*!< Version of the plugin */
+    QString description;    /*!< Short description of the plugin */
+
+    IExtension* interface;  /*!< Plugin interface */
+};
+typedef QList<ExtensionPlugin*> ExtensionPluginList;
+
+
+/*!
  * \brief The ExtensionsManager class manages the collection of extension
  * plugins.
  */
@@ -35,25 +56,6 @@ class ExtensionsManager : public QObject
     Q_OBJECT
 public:
     explicit ExtensionsManager(QObject* parent=0);
-
-    /*!
-     * \brief The Plugin struct regroup the plugin interface with it's metada.
-     */
-    struct Plugin
-    {
-        Plugin();
-
-        QString name;           /*!< Name of the plugin */
-        QString author;         /*!< Author of the plugin */
-        QString website;        /*!< Website/repository of the plugin */
-        QString version;        /*!< Version of the plugin */
-        QString description;    /*!< Short description of the plugin */
-
-        IExtension* interface;  /*!< Plugin interface */
-
-        bool isValid() const;
-    };
-    typedef QList<Plugin> PluginList;
 
     /*!
      * \brief Adds a cloud music service plugin to the list of managed plugins.
@@ -80,11 +82,11 @@ public:
      *
      * \param name Name of the plugin to retrieve.
      */
-    Plugin plugin(const QString& name) const;
+    ExtensionPlugin* plugin(const QString& name) const;
 
 private:
-    Plugin extractMetaData(QPluginLoader* pluginLoader);
-    PluginList _plugins;
+    ExtensionPlugin* extractMetaData(QPluginLoader* pluginLoader);
+    ExtensionPluginList _plugins;
 };
 
 #endif // EXTENSIONSMANAGER_H

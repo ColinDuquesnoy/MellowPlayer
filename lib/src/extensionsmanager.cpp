@@ -25,16 +25,11 @@
 
 
 //---------------------------------------------------------
-ExtensionsManager::Plugin::Plugin():
+ExtensionPlugin::ExtensionPlugin(QObject* parent):
+    QObject(parent),
     interface(NULL)
 {
 
-}
-
-//---------------------------------------------------------
-bool ExtensionsManager::Plugin::isValid() const
-{
-    return interface != NULL;
 }
 
 //---------------------------------------------------------
@@ -48,15 +43,15 @@ ExtensionsManager::ExtensionsManager(QObject* parent):
 void ExtensionsManager::loadPlugin(IExtension* iExtension,
                                    QPluginLoader* pluginLoader)
 {
-    Plugin plugin = this->extractMetaData(pluginLoader);
-    if(!this->plugin(plugin.name).isValid())
+    ExtensionPlugin* plugin = this->extractMetaData(pluginLoader);
+    if(!this->plugin(plugin->name))
     {
-        plugin.interface = iExtension;
+        plugin->interface = iExtension;
         this->_plugins.append(plugin);
         qDebug() << "Extension plugin loaded: ";
-        qDebug() << "  - name: " << plugin.name;
-        qDebug() << "  - version: " << plugin.version;
-        plugin.interface->setup();
+        qDebug() << "  - name: " << plugin->name;
+        qDebug() << "  - version: " << plugin->version;
+        plugin->interface->setup();
     }
     else
     {
@@ -68,35 +63,35 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
 //---------------------------------------------------------
 void ExtensionsManager::teardown()
 {
-    foreach(Plugin p, this->_plugins)
-        p.interface->teardown();
+    foreach(ExtensionPlugin* p, this->_plugins)
+        p->interface->teardown();
 }
 
 //---------------------------------------------------------
-ExtensionsManager::Plugin ExtensionsManager::plugin(const QString &name) const
+ExtensionPlugin* ExtensionsManager::plugin(const QString &name) const
 {
-    foreach(Plugin p, this->_plugins)
+    foreach(ExtensionPlugin* p, this->_plugins)
     {
-        if(p.name == name)
+        if(p->name == name)
             return p;
     }
-    return Plugin();  // invalid plugin
+    return NULL; // invalid plugin
 }
 
 //---------------------------------------------------------
-ExtensionsManager::Plugin ExtensionsManager::extractMetaData(
+ExtensionPlugin *ExtensionsManager::extractMetaData(
         QPluginLoader* pluginLoader)
 {
-    Plugin plugin;
-    plugin.name = pluginLoader->metaData().value(
+    ExtensionPlugin* plugin = new ExtensionPlugin(this);
+    plugin->name = pluginLoader->metaData().value(
                 "MetaData").toObject().value("name").toString();
-    plugin.author = pluginLoader->metaData().value(
+    plugin->author = pluginLoader->metaData().value(
                 "MetaData").toObject().value("author").toString();
-    plugin.website = pluginLoader->metaData().value(
+    plugin->website = pluginLoader->metaData().value(
                 "MetaData").toObject().value("website").toString();
-    plugin.version = pluginLoader->metaData().value(
+    plugin->version = pluginLoader->metaData().value(
                 "MetaData").toObject().value("version").toString();
-    plugin.description= pluginLoader->metaData().value(
+    plugin->description= pluginLoader->metaData().value(
                 "MetaData").toObject().value("description").toString();
     return plugin;
 }

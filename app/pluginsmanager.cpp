@@ -56,7 +56,12 @@ void loadPlugins()
         if(!pluginDir.exists())
             continue;
         qDebug() << "Loading plugins from " << pluginDir.absolutePath();
-        foreach (QString fileName, pluginDir.entryList(QDir::Files)) {
+        foreach (QString fileName, pluginDir.entryList(QDir::Files))
+        {
+            QString work(fileName);
+            // Skip invalid plugin filenames (a plugin needs mpp_ prefix)
+            if(!work.replace("lib", "").startsWith("mpp_"))
+                continue;
             QPluginLoader loader(pluginDir.absoluteFilePath(fileName));
             loadPlugin(&loader);
         }

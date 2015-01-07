@@ -18,7 +18,7 @@
 #----------------------------------------------------------
 # This extension is built only on GNU/Linux!
 TEMPLATE      = lib
-TARGET        = mlp_mpris2
+TARGET        = mpp_mpris2
 CONFIG       += plugin
 QT           += dbus gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
