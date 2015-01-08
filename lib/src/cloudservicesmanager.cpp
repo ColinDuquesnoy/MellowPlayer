@@ -50,14 +50,14 @@ void CloudServicesManager::_loadPlugin(ICloudMusicService* iService,
     {
         plugin->interface = iService;
         this->_plugins.append(plugin);
-        qDebug() << "Cloud service integration plugin loaded: ";
-        qDebug() << "  - name: " << plugin->name;
-        qDebug() << "  - version: " << plugin->version;
+        qDebug() << tr("Cloud service integration plugin loaded: ");
+        qDebug() << tr("  - name: ") << plugin->name;
+        qDebug() << tr("  - version: ") << plugin->version;
     }
     else
     {
-        qWarning() << "A plugin with the same name already exists, this plugin "
-                      "instance will be discared";
+        qWarning() << tr("A plugin with the same name already exists, this plugin "
+                         "instance will be discared");
     }
 }
 
@@ -82,7 +82,7 @@ CloudServicePlugin* CloudServicesManager::extractMetaData(
                 "MetaData").toObject().value("html_description").toString();
     QFile file(htmlDescPath);
     if(!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "failed to open html description file: " << htmlDescPath;
+        qWarning() << tr("failed to open html description file: ") << htmlDescPath;
     }
     else
     {

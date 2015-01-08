@@ -38,7 +38,7 @@ void Mpris2Plugin::setup()
 {
     if(!QDBusConnection::sessionBus().registerService(SERVICE_NAME))
     {
-        qWarning() << "Failed to register service on the session bus: "
+        qWarning() << tr("Failed to register service on the session bus: ")
                    << SERVICE_NAME;
         return;
     }
@@ -46,11 +46,11 @@ void Mpris2Plugin::setup()
     this->player = new Mpris2Player(this);
     if(!QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this))
     {
-        qWarning() << "Failed to register object on the session bus: "
+        qWarning() << tr("Failed to register object on the session bus: ")
                    << OBJECT_NAME;
         return;
     }
-    qDebug() << "MPRIS2 service started!";
+    qDebug() << tr("MPRIS2 service started!");
 }
 
 //---------------------------------------------------------

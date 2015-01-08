@@ -52,6 +52,7 @@ public:
     int exec();
 
 private:
+    QTranslator translator;
     SingleInstanceController singleInstanceController;
     MainWindow* mainWindow;
 };

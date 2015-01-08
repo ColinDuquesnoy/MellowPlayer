@@ -31,19 +31,21 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
 {
     if(!item)
         return;
-    static QString html =
-        "<h1>%1</h1>"
-        "<h2>Description</h2>"
-        "%2"
-        "<h2>Service information</h2>"
-        "<p><strong>Maintainer: </strong><a href=%3>%4</a></p>"
-        "<p><strong>Version: </strong>%5</p>";
     CloudServicePlugin* plugin = Services::cloudServices()->plugin(item->text());
     if(plugin)
     {
-        ui->textBrowser->setHtml(html.arg(
-            plugin->name, plugin->htmlDescription, plugin->website, plugin->author,
-            plugin->version));
+        ui->textBrowser->setHtml(
+              QObject::tr("<h1>%1</h1>"
+                          "<h2>Description</h2>"
+                          "%2"
+                          "<h2>Service information</h2>"
+                          "<p><strong>Maintainer: </strong><a href=%3>%4</a></p>"
+                          "<p><strong>Version: </strong>%5</p>")
+              .arg(plugin->name)
+              .arg(plugin->htmlDescription)
+              .arg(plugin->website)
+              .arg(plugin->author)
+              .arg(plugin->version));
     }
 }
 

@@ -149,9 +149,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
         {
             QMessageBox::information(
                 this, "MellowPlayer",
-                "The program will keep running in the system tray. To terminate "
+                tr("The program will keep running in the system tray. To terminate "
                 "the program, choose <b>Quit</b> in the context menu of the "
-                "system tray entry.");
+                "system tray entry."));
             QSettings().setValue("showMinimizeToTrayMsg", false);
         }
         this->hide();
@@ -304,17 +304,17 @@ void MainWindow::updatePlayer()
         if(song.playbackStatus == Paused)
         {
             this->ui->actionPlayPause->setIcon(Icons::play());
-            this->ui->actionPlayPause->setText("Play");
+            this->ui->actionPlayPause->setText(tr("Play"));
         }
         else if(song.playbackStatus == Playing)
         {
             this->ui->actionPlayPause->setIcon(Icons::pause());
-            this->ui->actionPlayPause->setText("Pause");
+            this->ui->actionPlayPause->setText(tr("Pause"));
         }
         else if(song.playbackStatus == Loading)
         {
             this->ui->actionPlayPause->setIcon(Icons::loading());
-            this->ui->actionPlayPause->setText("Loading, please wait...");
+            this->ui->actionPlayPause->setText(tr("Loading, please wait..."));
         }
     }
     else
@@ -324,7 +324,7 @@ void MainWindow::updatePlayer()
         this->ui->actionPrevious->setEnabled(false);
         this->ui->actionStop->setEnabled(false);
         this->ui->actionPlayPause->setEnabled(false);
-        this->ui->actionPlayPause->setText("Play");
+        this->ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
         this->ui->actionPlayPause->setIcon(Icons::play());
         this->trayIcon->setToolTip("MellowPlayer");
     }

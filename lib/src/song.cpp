@@ -16,6 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+#include <QObject>
 #include "mellowplayer/song.h"
 
 
@@ -25,15 +26,15 @@ QString playbackStatusToString(PlaybackStatus status, bool allowLoading)
     switch (status) {
     case Loading:
         if(allowLoading)
-            return "Loading";
+            return QObject::tr("Loading");
         else
-            return "Playing";
+            return QObject::tr("Playing");
     case Playing:
-        return "Playing";
+        return QObject::tr("Playing");
     case Paused:
-        return "Paused";
+        return QObject::tr("Paused");
     case Stopped:
-        return "Stopped";
+        return QObject::tr("Stopped");
     }
     return "";
 }
@@ -47,5 +48,5 @@ bool SongInfo::isValid() const
 //---------------------------------------------------------
 QString SongInfo::toString() const
 {
-    return QString("%1 by %2 on %3").arg(songName, artistName, albumName);
+    return QObject::tr("%1 by %2 from %3").arg(songName).arg(artistName).arg(albumName);
 }

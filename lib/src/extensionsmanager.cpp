@@ -48,15 +48,15 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
     {
         plugin->interface = iExtension;
         this->_plugins.append(plugin);
-        qDebug() << "Extension plugin loaded: ";
-        qDebug() << "  - name: " << plugin->name;
-        qDebug() << "  - version: " << plugin->version;
+        qDebug() << tr("Extension plugin loaded: ");
+        qDebug() << tr("  - name: ") << plugin->name;
+        qDebug() << tr("  - version: ") << plugin->version;
         plugin->interface->setup();
     }
     else
     {
-        qWarning() << "A plugin with the same name already exists, this plugin "
-                      "instance will be discared";
+        qWarning() << tr("A plugin with the same name already exists, this plugin "
+                         "instance will be discared");
     }
 }
 

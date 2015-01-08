@@ -39,3 +39,5 @@ unix{
     iconfile.files = app/icons/mellowplayer.png
     INSTALLS += iconfile
 }
+
+TRANSLATIONS += langs/mellowplayer_fr.ts

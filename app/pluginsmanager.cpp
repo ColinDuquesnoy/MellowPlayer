@@ -55,7 +55,7 @@ void loadPlugins()
     foreach(QDir pluginDir, dirs) {
         if(!pluginDir.exists())
             continue;
-        qDebug() << "Loading plugins from " << pluginDir.absolutePath();
+        qDebug() << QObject::tr("Loading plugins from ") << pluginDir.absolutePath();
         foreach (QString fileName, pluginDir.entryList(QDir::Files))
         {
             QString work(fileName);
@@ -74,7 +74,7 @@ void loadPlugin(QPluginLoader* loader)
     QObject *plugin = loader->instance();
     if(plugin)
     {
-        qDebug() << "Loading plugin " << plugin
+        qDebug() << QObject::tr("Loading plugin ") << plugin
                  << " (" << loader->fileName() << ")";
 
         // cloud service interface

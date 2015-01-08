@@ -61,7 +61,7 @@ void Mpris2Player::Seek(int position)
 void Mpris2Player::SetPosition(
         const QDBusObjectPath &trackId, qlonglong position)
 {
-    qDebug() << "Changing position of " << trackId.path();
+    qDebug() << tr("Changing position of ") << trackId.path();
     Services::player()->seekToPosition(position);
 }
 
@@ -137,7 +137,7 @@ QString Mpris2Player::loopStatus()
 //---------------------------------------------------------
 void Mpris2Player::setLoopStatus(const QString &status)
 {
-    qDebug() << "Mpris2Player.SetLoopStatus not implemented yet: " << status;
+    qDebug() << tr("Mpris2Player.SetLoopStatus not implemented yet: ") << status;
 }
 
 //---------------------------------------------------------
@@ -149,7 +149,7 @@ bool Mpris2Player::shuffle()
 //---------------------------------------------------------
 void Mpris2Player::setShuffle(bool value)
 {
-    qDebug() << "Mpris2Player.SetShuffle not implemented yet: " << value;
+    qDebug() << tr("Mpris2Player.SetShuffle not implemented yet: ") << value;
 }
 
 //---------------------------------------------------------
@@ -191,7 +191,7 @@ float Mpris2Player::rate()
 //---------------------------------------------------------
 void Mpris2Player::setRate(float value)
 {
-    qDebug() << "changing playback rate is not supported: " << value;
+    qDebug() << tr("changing playback rate is not supported: ") << value;
 }
 
 //---------------------------------------------------------

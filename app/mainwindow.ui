@@ -212,7 +212,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -278,7 +278,7 @@
      <normaloff>:/icons/media-playback-start.png</normaloff>:/icons/media-playback-start.png</iconset>
    </property>
    <property name="text">
-    <string>Play/Pause</string>
+    <string>Play</string>
    </property>
    <property name="shortcut">
     <string>Media Play</string>

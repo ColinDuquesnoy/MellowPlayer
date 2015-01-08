@@ -29,7 +29,7 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     mainWindow(NULL)
 {
 #ifdef __kde_support__
-    qDebug() << "MellowPlayer built with KDE support";
+    qDebug() << QObject::tr("MellowPlayer built with KDE support");
 #endif
     this->setOrganizationName("MellowPlayer");
     this->setOrganizationDomain("org.mellowplayer");
@@ -39,6 +39,14 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
             QString::number(VERSION_MINOR),
             QString::number(VERSION_PATCH),
             VERSION_STATUS));
+
+    QChar driveLetter = this->applicationFilePath().at(0);
+    QString path_to_translations = QString(driveLetter) + ":/../translations";
+//    QString locale = QLocale::system().name();
+    QString locale = "fr";
+    translator.load("mellowplayer_" + locale, path_to_translations);
+    this->installTranslator(&translator);
+
     singleInstanceController.start(this);
 }
 
@@ -51,8 +59,8 @@ MellowPlayerApp::~MellowPlayerApp()
 
 //---------------------------------------------------------
 void MellowPlayerApp::initialize()
-{
-    qDebug() << "Initializing application";
+{      
+    qDebug() << QObject::tr("Initializing application");
     this->mainWindow = new MainWindow();
     Services::_setMainWindow(this->mainWindow);
     Services::_setCloudServicesManager(new CloudServicesManager(this));
@@ -77,7 +85,9 @@ void MellowPlayerApp::raise()
 int MellowPlayerApp::exec()
 {
     int retCode = QApplication::exec();
-    this->mainWindow->saveGeometryAndState();
-    Services::extensions()->teardown();
+    if(this->mainWindow)
+        this->mainWindow->saveGeometryAndState();
+    if(Services::extensions())
+        Services::extensions()->teardown();
     return retCode;
 }

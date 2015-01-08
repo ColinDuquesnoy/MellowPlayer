@@ -143,7 +143,7 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
         status = song.playbackStatus;
     if(status != this->currentStatus)
     {
-        qDebug() << "Playback status changed: "
+        qDebug() << tr("Playback status changed: ")
                  << playbackStatusToString((status));
         this->currentStatus = status;
         emit playbackStatusChanged(status);
@@ -155,7 +155,7 @@ void PlayerInterface::checkSongChange(SongInfo &song)
 {
     if(song.songName != this->_currentSong.songName)
     {
-        qDebug() << "Song changed: " << song.songName;
+        qDebug() << tr("Song changed: ") << song.songName;
         this->_currentSong = song;
         emit songChanged(song);
         if(song.isValid())
