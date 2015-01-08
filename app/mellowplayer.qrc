@@ -13,6 +13,6 @@
         <file>icons/media-seek-forward.png</file>
         <file>icons/preferences-system.png</file>
         <file>icons/tools-report-bug.png</file>
-        <file>../translations/mellowplayer_fr.qm</file>
+        <file>translations/mellowplayer_fr.qm</file>
     </qresource>
 </RCC>

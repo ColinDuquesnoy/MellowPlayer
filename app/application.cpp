@@ -40,12 +40,12 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
             QString::number(VERSION_PATCH),
             VERSION_STATUS));
 
-    QChar driveLetter = this->applicationFilePath().at(0);
-    QString path_to_translations = QString(driveLetter) + ":/../translations";
-//    QString locale = QLocale::system().name();
-    QString locale = "fr";
-    translator.load("mellowplayer_" + locale, path_to_translations);
+    QString locale = QLocale::system().name().split("_")[0];
+    qDebug() << "Setting up translations for locale: " << locale;
+    translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
     this->installTranslator(&translator);
+    QFile file(":/mellowplayer_fr.qm");
+    qDebug() << file.open(QIODevice::ReadOnly);
 
     singleInstanceController.start(this);
 }
@@ -59,9 +59,11 @@ MellowPlayerApp::~MellowPlayerApp()
 
 //---------------------------------------------------------
 void MellowPlayerApp::initialize()
-{      
+{
     qDebug() << QObject::tr("Initializing application");
+
     this->mainWindow = new MainWindow();
+
     Services::_setMainWindow(this->mainWindow);
     Services::_setCloudServicesManager(new CloudServicesManager(this));
     Services::_setExtensionsManager(new ExtensionsManager(this));
