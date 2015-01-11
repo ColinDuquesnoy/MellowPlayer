@@ -29,7 +29,7 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     mainWindow(NULL)
 {
 #ifdef __kde_support__
-    qDebug() << QObject::tr("MellowPlayer built with KDE support");
+    qDebug() << "MellowPlayer built with KDE support";
 #endif
     this->setOrganizationName("MellowPlayer");
     this->setOrganizationDomain("org.mellowplayer");
@@ -44,9 +44,6 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     qDebug() << "Setting up translations for locale: " << locale;
     translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
     this->installTranslator(&translator);
-    QFile file(":/mellowplayer_fr.qm");
-    qDebug() << file.open(QIODevice::ReadOnly);
-
     singleInstanceController.start(this);
 }
 
@@ -60,7 +57,7 @@ MellowPlayerApp::~MellowPlayerApp()
 //---------------------------------------------------------
 void MellowPlayerApp::initialize()
 {
-    qDebug() << QObject::tr("Initializing application");
+    qDebug() << "Initializing application";
 
     this->mainWindow = new MainWindow();
 

@@ -25,9 +25,12 @@
 
 
 //---------------------------------------------------------
-ExtensionPlugin::ExtensionPlugin(QObject* parent):
+ExtensionPlugin::ExtensionPlugin(IExtension *interface,
+                                 const PluginMetaData &meta,
+                                 QObject* parent):
     QObject(parent),
-    interface(NULL)
+    metaData(meta),
+    interface(interface)
 {
 
 }
@@ -43,20 +46,20 @@ ExtensionsManager::ExtensionsManager(QObject* parent):
 void ExtensionsManager::loadPlugin(IExtension* iExtension,
                                    QPluginLoader* pluginLoader)
 {
-    ExtensionPlugin* plugin = this->extractMetaData(pluginLoader);
-    if(!this->plugin(plugin->name))
+    PluginMetaData meta = extractMetaData(pluginLoader);
+    if(!this->plugin(meta.name))
     {
-        plugin->interface = iExtension;
+        ExtensionPlugin* plugin = new ExtensionPlugin(iExtension, meta);
         this->_plugins.append(plugin);
-        qDebug() << tr("Extension plugin loaded: ");
-        qDebug() << tr("  - name: ") << plugin->name;
-        qDebug() << tr("  - version: ") << plugin->version;
+        qDebug() << "Extension plugin loaded: ";
+        qDebug() << "  - name: " << plugin->metaData.name;
+        qDebug() << "  - version: " << plugin->metaData.version;
         plugin->interface->setup();
     }
     else
     {
-        qWarning() << tr("A plugin with the same name already exists, this plugin "
-                         "instance will be discared");
+        qWarning() << "A plugin with the same name already exists, this "
+                      "plugin instance will be discared";
     }
 }
 
@@ -72,26 +75,8 @@ ExtensionPlugin* ExtensionsManager::plugin(const QString &name) const
 {
     foreach(ExtensionPlugin* p, this->_plugins)
     {
-        if(p->name == name)
+        if(p->metaData.name == name)
             return p;
     }
     return NULL; // invalid plugin
-}
-
-//---------------------------------------------------------
-ExtensionPlugin *ExtensionsManager::extractMetaData(
-        QPluginLoader* pluginLoader)
-{
-    ExtensionPlugin* plugin = new ExtensionPlugin(this);
-    plugin->name = pluginLoader->metaData().value(
-                "MetaData").toObject().value("name").toString();
-    plugin->author = pluginLoader->metaData().value(
-                "MetaData").toObject().value("author").toString();
-    plugin->website = pluginLoader->metaData().value(
-                "MetaData").toObject().value("website").toString();
-    plugin->version = pluginLoader->metaData().value(
-                "MetaData").toObject().value("version").toString();
-    plugin->description= pluginLoader->metaData().value(
-                "MetaData").toObject().value("description").toString();
-    return plugin;
 }

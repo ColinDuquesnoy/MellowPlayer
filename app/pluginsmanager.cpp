@@ -55,7 +55,7 @@ void loadPlugins()
     foreach(QDir pluginDir, dirs) {
         if(!pluginDir.exists())
             continue;
-        qDebug() << QObject::tr("Loading plugins from ") << pluginDir.absolutePath();
+        qDebug() << "Loading plugins from " << pluginDir.absolutePath();
         foreach (QString fileName, pluginDir.entryList(QDir::Files))
         {
             QString work(fileName);
@@ -74,8 +74,8 @@ void loadPlugin(QPluginLoader* loader)
     QObject *plugin = loader->instance();
     if(plugin)
     {
-        qDebug() << QObject::tr("Loading plugin ") << plugin
-                 << " (" << loader->fileName() << ")";
+        qDebug() << "Loading plugin " << plugin << " ("
+                 << loader->fileName() << ")";
 
         // cloud service interface
         ICloudMusicService* iService = qobject_cast<

@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/">
-        <file>grooveshark-logo.png</file>
-        <file>description.html</file>
-    </qresource>
+  <qresource prefix="/grooveshark">
+    <file alias="logo.png">grooveshark-logo.png</file>
+  </qresource>
 </RCC>

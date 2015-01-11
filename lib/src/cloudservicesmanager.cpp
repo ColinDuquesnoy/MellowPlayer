@@ -26,9 +26,12 @@
 
 
 //---------------------------------------------------------
-CloudServicePlugin::CloudServicePlugin(QObject* parent):
+CloudServicePlugin::CloudServicePlugin(ICloudMusicService *interface,
+                                       const PluginMetaData &meta,
+                                       QObject* parent):
     QObject(parent),
-    interface(NULL)
+    metaData(meta),
+    interface(interface)
 {
 
 }
@@ -45,52 +48,21 @@ CloudServicesManager::CloudServicesManager(QObject* parent):
 void CloudServicesManager::_loadPlugin(ICloudMusicService* iService,
                                        QPluginLoader* pluginLoader)
 {
-    CloudServicePlugin* plugin = this->extractMetaData(pluginLoader);
-    if(!this->plugin(plugin->name))
+    PluginMetaData meta = extractMetaData(pluginLoader);
+
+    if(!this->plugin(meta.name))
     {
-        plugin->interface = iService;
+        CloudServicePlugin* plugin = new CloudServicePlugin(iService, meta);
         this->_plugins.append(plugin);
-        qDebug() << tr("Cloud service integration plugin loaded: ");
-        qDebug() << tr("  - name: ") << plugin->name;
-        qDebug() << tr("  - version: ") << plugin->version;
+        qDebug() << "Cloud service integration plugin loaded: ";
+        qDebug() << "  - name: " << plugin->metaData.name;
+        qDebug() << "  - version: " << plugin->metaData.version;
     }
     else
     {
-        qWarning() << tr("A plugin with the same name already exists, this plugin "
-                         "instance will be discared");
+        qWarning() << "A plugin with the same name already exists, this plugin "
+                      "instance will be discared";
     }
-}
-
-//---------------------------------------------------------
-CloudServicePlugin* CloudServicesManager::extractMetaData(
-        QPluginLoader* pluginLoader)
-{
-    CloudServicePlugin* plugin = new CloudServicePlugin(this);
-    plugin->name = pluginLoader->metaData().value(
-                "MetaData").toObject().value("name").toString();
-    plugin->author = pluginLoader->metaData().value(
-                "MetaData").toObject().value("author").toString();
-    plugin->website = pluginLoader->metaData().value(
-                "MetaData").toObject().value("website").toString();
-    plugin->version = pluginLoader->metaData().value(
-                "MetaData").toObject().value("version").toString();
-    plugin->icon = QIcon(pluginLoader->metaData().value(
-                "MetaData").toObject().value("icon").toString());
-    plugin->description= pluginLoader->metaData().value(
-                "MetaData").toObject().value("description").toString();
-    QString htmlDescPath = pluginLoader->metaData().value(
-                "MetaData").toObject().value("html_description").toString();
-    QFile file(htmlDescPath);
-    if(!file.open(QIODevice::ReadOnly)) {
-        qWarning() << tr("failed to open html description file: ") << htmlDescPath;
-    }
-    else
-    {
-        QTextStream in(&file);
-        plugin->htmlDescription = in.readAll();
-    }
-
-    return plugin;
 }
 
 //---------------------------------------------------------
@@ -110,7 +82,7 @@ CloudServicePlugin* CloudServicesManager::plugin(const QString &serviceName) con
 {
     foreach(CloudServicePlugin* p, this->_plugins)
     {
-        if(p->name == serviceName)
+        if(p->metaData.name == serviceName)
             return p;
     }
     return NULL;  // invalid plugin

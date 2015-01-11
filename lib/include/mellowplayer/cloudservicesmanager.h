@@ -23,8 +23,8 @@
 #include <QIcon>
 #include <QMap>
 #include <QObject>
+#include "mellowplayer/pluginmetadata.h"
 
-class QPluginLoader;
 class ICloudMusicService;
 
 /*!
@@ -34,20 +34,14 @@ class CloudServicePlugin: public QObject
 {
     Q_OBJECT
 public:
+    explicit CloudServicePlugin(ICloudMusicService* interface,
+                                const PluginMetaData& meta,
+                                QObject* parent=NULL);
 
-    explicit CloudServicePlugin(QObject* parent=NULL);
-
-    // Plugin metadata.
-    QString name;                   /*!< Name of the plugin */
-    QString author;                 /*!< Author of the plugin */
-    QString website;                /*!< Plugin website */
-    QString version;                /*!< Plugin version */
-    QIcon icon;                     /*!< Plugin icon */
-    QString description;            /*!< Plugin description */
-    QString htmlDescription;        /*!< Plugin html description */
-
+    PluginMetaData metaData;  /*!< Plugins meta data */
     ICloudMusicService* interface;  /*!< Pointer to the plugin interface */
 };
+
 typedef QList<CloudServicePlugin*> CloudPluginList;
 
 /*!
@@ -113,7 +107,6 @@ signals:
 public slots:
 
 private:
-    CloudServicePlugin* extractMetaData(QPluginLoader* pluginLoader);
     CloudPluginList _plugins;
     ICloudMusicService* _currentService;
 };

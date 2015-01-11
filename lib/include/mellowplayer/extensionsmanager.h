@@ -21,8 +21,8 @@
 #define EXTENSIONSMANAGER_H
 
 #include <QObject>
+#include "mellowplayer/pluginmetadata.h"
 
-class QPluginLoader;
 class IExtension;
 
 
@@ -34,15 +34,11 @@ class ExtensionPlugin : public QObject
 {
     Q_OBJECT
 public:
-    explicit ExtensionPlugin(QObject* parent=NULL);
+    explicit ExtensionPlugin(IExtension* interface, const PluginMetaData& meta,
+                             QObject* parent=NULL);
 
-    QString name;           /*!< Name of the plugin */
-    QString author;         /*!< Author of the plugin */
-    QString website;        /*!< Website/repository of the plugin */
-    QString version;        /*!< Version of the plugin */
-    QString description;    /*!< Short description of the plugin */
-
-    IExtension* interface;  /*!< Plugin interface */
+    PluginMetaData metaData; /*!< Plugin meta data */
+    IExtension* interface;   /*!< Plugin interface */
 };
 typedef QList<ExtensionPlugin*> ExtensionPluginList;
 
@@ -85,7 +81,6 @@ public:
     ExtensionPlugin* plugin(const QString& name) const;
 
 private:
-    ExtensionPlugin* extractMetaData(QPluginLoader* pluginLoader);
     ExtensionPluginList _plugins;
 };
 

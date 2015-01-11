@@ -19,6 +19,22 @@
 #include "grooveshark.h"
 
 
+QString GroovesharkPlugin::htmlDescription() const
+{
+    return tr(
+"<p><strong>Grooveshark</strong> is an international online music search "
+"engine, music streaming service and music recommendation web software "
+"application, allowing users to search for, stream, and upload music that can "
+"be played immediately or added to a playlist. An optional paid subscription "
+"adds additional functionality and removes advertisements."
+"</p><p>"
+"<em>Source:"
+"<a href=\"http://en.wikipedia.org/wiki/Grooveshark\">Grooveshark on Wikipedia</a>,"
+"<a href=\"http://grooveshark.com\">Official website</a></em>"
+"</p>");
+}
+
+
 //---------------------------------------------------------
 QUrl GroovesharkPlugin::url() const
 {

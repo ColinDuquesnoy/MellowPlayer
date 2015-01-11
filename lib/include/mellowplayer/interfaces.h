@@ -29,19 +29,19 @@ class QWidget;
 
 
 /*!
- * \brief Plugin interface for adding cloud music service integration.
+ * \brief Interface for adding cloud music service integration.
  */
 class ICloudMusicService
 {
 public:
+
     /*!
-     * Evaluates the JavaScript defined by ``scriptSource`` using the main web
-     * frame as context and returns the result of the last executed statement.
+     * \brief Returns the html description of the service.
      *
-     * \param scriptSource JavaScript source to evaluate.
-     * \return The result of the last JavaScript statement.
+     * This description appears in the select service dialog.
+     * \return
      */
-    QVariant runJavaScript(const QString& scriptSource);
+    virtual QString htmlDescription() const = 0;
 
     //! Returns the cloud music service URL
     virtual QUrl url() const = 0;
@@ -74,6 +74,15 @@ public:
     virtual SongInfo currentSongInfo() = 0;
 
 protected:
+    /*!
+     * Evaluates the JavaScript defined by ``scriptSource`` using the main web
+     * frame as context and returns the result of the last executed statement.
+     *
+     * \param scriptSource JavaScript source to evaluate.
+     * \return The result of the last JavaScript statement.
+     */
+    QVariant runJavaScript(const QString& scriptSource);
+
     QWebView* webView;  ///< A pointer to the appliction's web view.
 };
 
@@ -82,7 +91,7 @@ Q_DECLARE_INTERFACE(ICloudMusicService, ICloudMusicService_iid)
 
 
 /*!
- * \brief Plugin inteface for adding a generic extension to the application.
+ * \brief Inteface for adding a generic extension to the application.
  *
  * An extension plugin can be anything. Since you can access any parts of the
  * application (logic, gui, other plugins), you're free to setup any kind of

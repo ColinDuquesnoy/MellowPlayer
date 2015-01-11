@@ -60,6 +60,6 @@ void CookieJar::loadCookies()
         values.append(value.toByteArray());
         values.append("\n");
     }
-    qDebug() << QObject::tr("Loading %n cookies", "", map.count());
+    qDebug() << QString("Loading %1 cookies").arg(map.count());
     this->setAllCookies(QNetworkCookie::parseCookies(values.join()));
 }

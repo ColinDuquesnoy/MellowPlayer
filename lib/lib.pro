@@ -30,14 +30,17 @@ HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/song.h \
                   include/mellowplayer/player.h \
                   include/mellowplayer/urldownloader.h \
-                  include/mellowplayer/interfaces.h
-SOURCES         = src/plugins.cpp \
+                  include/mellowplayer/interfaces.h \
+    include/mellowplayer/pluginmetadata.h
+SOURCES         = \
                   src/cloudservicesmanager.cpp \
                   src/extensionsmanager.cpp \
                   src/services.cpp \
                   src/song.cpp \
                   src/player.cpp \
-                  src/urldownloader.cpp
+                  src/urldownloader.cpp \
+    src/interfaces.cpp \
+    src/pluginmetadata.cpp
 
 macx{
     CONFIG += lib_bundle

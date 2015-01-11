@@ -15,12 +15,12 @@ void UrlDownloader::download(const QString &url, const QString &destination)
     connect(this->nam, &QNetworkAccessManager::finished,
             this, &UrlDownloader::onDownloadFinished);
     this->nam->get(QNetworkRequest(QUrl(url)));
-    qDebug() << tr("Downloading ") << url << tr(" to ") << destination;
+    qDebug() << "Downloading " << url << " to " << destination;
 }
 
 void UrlDownloader::onDownloadFinished(QNetworkReply *reply)
 {
-    qDebug() << tr("Download finished: ") << this->fileUrl;
+    qDebug() << "Download finished: " << this->fileUrl;
     QFile file(this->fileUrl);
     if(file.open(QIODevice::WriteOnly))
     {

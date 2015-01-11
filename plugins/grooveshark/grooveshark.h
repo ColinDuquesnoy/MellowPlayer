@@ -37,6 +37,7 @@ class GroovesharkPlugin :
     Q_INTERFACES(ICloudMusicService)
 
 public:
+    virtual QString htmlDescription() const;
     //! Returns the grooveshark URL
     virtual QUrl url() const;
     //! Plays the current song

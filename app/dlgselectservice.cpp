@@ -15,8 +15,8 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     foreach(CloudServicePlugin* plugin,
             Services::cloudServices()->plugins()){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
-        item->setText(plugin->name);
-        item->setIcon(plugin->icon);
+        item->setText(plugin->metaData.name);
+        item->setIcon(plugin->metaData.icon);
         ui->listWidget->addItem(item);
     }
     ui->listWidget->setCurrentRow(row);
@@ -41,11 +41,11 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
                           "<h2>Service information</h2>"
                           "<p><strong>Maintainer: </strong><a href=%3>%4</a></p>"
                           "<p><strong>Version: </strong>%5</p>")
-              .arg(plugin->name)
-              .arg(plugin->htmlDescription)
-              .arg(plugin->website)
-              .arg(plugin->author)
-              .arg(plugin->version));
+              .arg(plugin->metaData.name)
+              .arg(plugin->interface->htmlDescription())
+              .arg(plugin->metaData.website)
+              .arg(plugin->metaData.author)
+              .arg(plugin->metaData.version));
     }
 }
 

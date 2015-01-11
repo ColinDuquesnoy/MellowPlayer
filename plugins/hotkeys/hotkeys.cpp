@@ -30,17 +30,17 @@ void HotkeysPlugin::setup()
     QString names[] = {"actionPlayPause", "actionStop", "actionNext",
                        "actionPrevious"};
 #ifdef __kde_support__
-    qDebug() << tr("Hotkeys Plugin: Setting up KGlobalAccel shortcuts");
+    qDebug() << "Hotkeys Plugin: Setting up KGlobalAccel shortcuts";
     for(int i = 0; i < 4; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
         if(KGlobalAccel::setGlobalShortcut(action, action->shortcut()))
-            qDebug() << tr("Global shortcut registered: ")
+            qDebug() << "Global shortcut registered: "
                      << action->objectName() << "\t: " << action->shortcut();
     }
 #else
-    qDebug() << tr("Hotkeys Plugin: Setting up Qxt global shortcuts");
+    qDebug() << "Hotkeys Plugin: Setting up Qxt global shortcuts";
     for(int i = 0; i < 4; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
@@ -48,7 +48,7 @@ void HotkeysPlugin::setup()
         QxtGlobalShortcut* shortcut = new QxtGlobalShortcut();
         shortcut->setObjectName(action->objectName());
         if(shortcut->setShortcut(action->shortcut()))
-            qDebug() << tr("Global shortcut registered: ")
+            qDebug() << "Global shortcut registered: "
                      << shortcut->objectName() << "\t: " << action->shortcut();
         connect(shortcut, &QxtGlobalShortcut::activated,
                 action, &QAction::trigger);
