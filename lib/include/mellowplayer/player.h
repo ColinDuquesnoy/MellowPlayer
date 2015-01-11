@@ -118,7 +118,6 @@ signals:
      * \brief Signal emitted when the position of the current song changed.
      *
      * \param position New song position [µs]
-     * \param duration Song duration[µs]
      */
     void positionChanged(int position);
 
