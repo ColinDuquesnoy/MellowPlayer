@@ -80,3 +80,9 @@ ExtensionPlugin* ExtensionsManager::plugin(const QString &name) const
     }
     return NULL; // invalid plugin
 }
+
+//---------------------------------------------------------
+ExtensionPluginList ExtensionsManager::plugins() const
+{
+    return this->_plugins;
+}

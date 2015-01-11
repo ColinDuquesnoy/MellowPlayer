@@ -131,6 +131,11 @@ public:
      * any settings.
      */
     virtual QWidget* settingsWidget() const { return NULL; }
+
+    /*!
+     * \brief Returns the plugin description.
+     */
+    virtual QString description() const = 0;
 };
 
 #define IExtension_iid "org.MellowPlayer.IExtension"

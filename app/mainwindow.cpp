@@ -17,25 +17,15 @@
 
 #include "cookiejar.h"
 #include "dlgselectservice.h"
+#include "dlgpreferences.h"
 #include "icons.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
 #include "ui_mainwindow.h"
+#include "shortcuts.h"
 
 #define PAGE_HOME 0
 #define PAGE_WEB 1
-
-#ifdef __kde_support__
-    #define DEFAULT_SHORTCUT_PLAY       "Media Play"
-    #define DEFAULT_SHORTCUT_STOP       "Media Stop"
-    #define DEFAULT_SHORTCUT_NEXT       "Media Next"
-    #define DEFAULT_SHORTCUT_PREVIOUS   "Media Previous"
-#else
-    #define DEFAULT_SHORTCUT_PLAY       "Ctrl+Alt+P"
-    #define DEFAULT_SHORTCUT_STOP       "Ctrl+Alt+S"
-    #define DEFAULT_SHORTCUT_NEXT       "Ctrl+Alt+F"
-    #define DEFAULT_SHORTCUT_PREVIOUS   "Ctrl+Alt+B"
-#endif
 
 //---------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setupUpdateTimer();
     this->setupTrayIcon();
     this->connectSlots();
+
+    // todo restore settings.
 }
 
 //---------------------------------------------------------
@@ -136,6 +128,12 @@ void MainWindow::onSelectServiceTriggered()
 }
 
 //---------------------------------------------------------
+void MainWindow::onPreferencesTriggered()
+{
+    DlgPreferences::editPreferences(this);
+}
+
+//---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     bool minimizeToTray = QSettings().value(
@@ -209,7 +207,8 @@ void MainWindow::setupActions()
 void MainWindow::setupTrayIcon()
 {
     this->trayIcon = new QSystemTrayIcon(this);
-    this->trayIcon->setIcon(this->windowIcon());
+    this->trayIcon->setIcon(DlgPreferences::trayIconFrom(
+        QSettings().value("trayIcon", ":/icons/mellowplayer.png").toString()));
 
     QMenu* mnu = new QMenu();
     mnu->addAction(this->ui->actionRestoreWindow);
@@ -282,6 +281,11 @@ void MainWindow::connectSlots()
     this->connect(this->ui->pushButtonSelect, &QPushButton::clicked,
                   this, &MainWindow::onSelectServiceTriggered);
 
+    this->connect(this->ui->actionPreferences, &QAction::triggered,
+                  this, &MainWindow::onPreferencesTriggered);
+    this->connect(this->ui->pushButtonPreferences, &QPushButton::clicked,
+                  this, &MainWindow::onPreferencesTriggered);
+
     this->connect(this->ui->actionQuit, &QAction::triggered,
                   qApp, &QApplication::quit);
     this->connect(this->ui->pushButtonQuit, &QPushButton::clicked,
@@ -324,8 +328,11 @@ void MainWindow::updatePlayer()
         this->ui->actionPrevious->setEnabled(false);
         this->ui->actionStop->setEnabled(false);
         this->ui->actionPlayPause->setEnabled(false);
-        this->ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
-        this->ui->actionPlayPause->setIcon(Icons::play());
+        if(ui->actionPlayPause->text() != tr("Play"))
+        {
+            this->ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
+            this->ui->actionPlayPause->setIcon(Icons::play());
+        }
         this->trayIcon->setToolTip("MellowPlayer");
     }
 }

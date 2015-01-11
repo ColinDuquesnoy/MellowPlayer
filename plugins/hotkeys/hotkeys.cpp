@@ -62,3 +62,9 @@ void HotkeysPlugin::teardown()
 {
 
 }
+
+//---------------------------------------------------------
+QString HotkeysPlugin::description() const
+{
+    return tr("Provides support hotkeys");
+}

@@ -59,3 +59,9 @@ void Mpris2Plugin::teardown()
     QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
     QDBusConnection::sessionBus().unregisterObject(SERVICE_NAME);
 }
+
+//---------------------------------------------------------
+QString Mpris2Plugin::description() const
+{
+    return tr("Provides MPRIS2 support on GNU/Linux");
+}

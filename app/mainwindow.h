@@ -34,6 +34,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    friend class DlgPreferences;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -49,6 +51,7 @@ private slots:
     void onPreviousTriggered();
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void onSelectServiceTriggered();
+    void onPreferencesTriggered();
 private:
     void closeEvent(QCloseEvent* event);
     void setupIcons();

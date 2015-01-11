@@ -84,6 +84,12 @@ public:
      * \return QIcon
      */
     static QIcon mellowPlayer();
+
+    /*!
+     * \brief Gets the application icon
+     * \return QIcon
+     */
+    static QIcon trayIcon();
 };
 
 #endif // ICONS_H

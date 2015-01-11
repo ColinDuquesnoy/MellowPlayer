@@ -70,3 +70,8 @@ QIcon Icons::mellowPlayer()
 {
     return QIcon(":/icons/mellowplayer.png");
 }
+
+QIcon Icons::trayIcon()
+{
+    return QIcon(":/icons/mellowplayer.png");
+}

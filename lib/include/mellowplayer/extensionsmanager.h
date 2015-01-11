@@ -80,6 +80,8 @@ public:
      */
     ExtensionPlugin* plugin(const QString& name) const;
 
+    ExtensionPluginList plugins() const;
+
 private:
     ExtensionPluginList _plugins;
 };

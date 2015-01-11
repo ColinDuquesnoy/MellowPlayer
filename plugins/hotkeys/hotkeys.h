@@ -41,6 +41,7 @@ class HotkeysPlugin :
 public:
     void setup();
     void teardown();
+    QString description() const;
 private:
 #ifndef __kde_support__
     QList<QxtGlobalShortcut*> shortcuts;

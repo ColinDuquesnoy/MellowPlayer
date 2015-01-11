@@ -37,17 +37,21 @@ SOURCES         += main.cpp\
                    cookiejar.cpp \
                    icons.cpp \
                    pluginsmanager.cpp \
-                   dlgselectservice.cpp
+                   dlgselectservice.cpp \
+    dlgpreferences.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
                    cookiejar.h \
                    icons.h \
                    pluginsmanager.h \
-                   dlgselectservice.h
+                   dlgselectservice.h \
+                   dlgpreferences.h \
+    shortcuts.h
 RESOURCES       = mellowplayer.qrc
 FORMS           += mainwindow.ui \
-                   dlg_select_service.ui
+                   dlg_select_service.ui \
+                   dlg_preferences.ui
 
 # Version infos
 VERSION          = 1.0.0
