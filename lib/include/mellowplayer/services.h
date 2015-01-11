@@ -40,21 +40,53 @@ class Services
 {
 public:
     static void _setMainWindow(QMainWindow* _mainWindow);
+
+    /*!
+     * \brief Gets a pointer to the application's main window
+     */
     static QMainWindow* mainWindow();
+
+    /*!
+     * \brief Raises and shows the main window
+     */
     static void raiseMainWindow();
 
     static void _setCloudServicesManager(CloudServicesManager* manager);
+
+    /*!
+     * \brief Gets a pointer to the cloud services plugin manager.
+     */
     static CloudServicesManager* cloudServices();
 
     static void _setExtensionsManager(ExtensionsManager* manager);
+
+    /*!
+     * \brief Returns a pointer to the extensions plugin manager.
+     */
     static ExtensionsManager* extensions();
 
     static void _setWebView(QWebView* _webView);
+
+    /*!
+     * \brief Gets a pointer to the webview.
+     */
     static QWebView* webView();
 
     static void _setPlayer(PlayerInterface* player);
+
+    /*!
+     * \brief Returns a pointer to the player interface that you can
+     * use to control the cloud service's media player programmatically and
+     * connect to the player events (songChanged,...).
+     */
     static PlayerInterface* player();
 
+    /*!
+     * \brief Gets an action by name (only the control actions can be
+     * retrieved).
+     *
+     * \param actionText Name of the action (objectName()).
+     */
     static QAction* action(const QString& actionText);
 
 private:
