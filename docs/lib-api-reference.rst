@@ -21,6 +21,16 @@ new plugin. You can either **create cloud music service plugin** or a **generic 
 .. doxygenclass:: IExtension
     :members:
 
+Plugins metadata
+----------------
+
+This section describes the plugin metadata, common to both types of plugins.
+
+Those metadata are read from the json description that you specify when you declare
+the plugin interface.
+
+.. doxygenstruct:: PluginMetaData
+    :members:
 
 Services
 --------
