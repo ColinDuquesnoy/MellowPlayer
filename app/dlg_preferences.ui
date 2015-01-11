@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>759</width>
-    <height>480</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -448,6 +448,22 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>toolButton</tabstop>
+  <tabstop>keySequenceEdit</tabstop>
+  <tabstop>keySequenceEdit_2</tabstop>
+  <tabstop>keySequenceEdit_3</tabstop>
+  <tabstop>keySequenceEdit_4</tabstop>
+  <tabstop>keySequenceEdit_5</tabstop>
+  <tabstop>keySequenceEdit_6</tabstop>
+  <tabstop>keySequenceEdit_7</tabstop>
+  <tabstop>keySequenceEdit_8</tabstop>
+  <tabstop>keySequenceEdit_9</tabstop>
+  <tabstop>comboBox</tabstop>
+ </tabstops>
  <resources>
   <include location="mellowplayer.qrc"/>
  </resources>
