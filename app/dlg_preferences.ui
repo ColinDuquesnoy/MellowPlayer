@@ -160,7 +160,7 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label_7">
               <property name="text">
-               <string>Select cloud music service:</string>
+               <string>Select cloud service</string>
               </property>
              </widget>
             </item>
@@ -178,6 +178,15 @@
               </property>
              </widget>
             </item>
+            <item row="0" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_2"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_3"/>
+            </item>
            </layout>
           </widget>
          </item>
@@ -187,6 +196,9 @@
             <string>Media Player Control shortcuts</string>
            </property>
            <layout class="QFormLayout" name="formLayout_4">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::ExpandingFieldsGrow</enum>
+            </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_10">
               <property name="text">
@@ -215,12 +227,19 @@
               </property>
              </widget>
             </item>
+            <item row="0" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_4"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_5"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_6"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_7"/>
+            </item>
            </layout>
-           <zorder>groupBox</zorder>
-           <zorder>label_10</zorder>
-           <zorder>label_11</zorder>
-           <zorder>label_12</zorder>
-           <zorder>label_13</zorder>
           </widget>
          </item>
          <item>
@@ -229,6 +248,9 @@
             <string>Other shortcuts</string>
            </property>
            <layout class="QFormLayout" name="formLayout_5">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::ExpandingFieldsGrow</enum>
+            </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_14">
               <property name="text">
@@ -242,6 +264,12 @@
                <string>Report a bug:</string>
               </property>
              </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_8"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QKeySequenceEdit" name="keySequenceEdit_9"/>
             </item>
            </layout>
           </widget>
@@ -302,6 +330,12 @@
             </item>
             <item row="0" column="1">
              <widget class="QLabel" name="labelAuthor">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>na</string>
               </property>
@@ -316,6 +350,12 @@
             </item>
             <item row="1" column="1">
              <widget class="QLabel" name="labelPluginVersion">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>na</string>
               </property>
@@ -330,6 +370,12 @@
             </item>
             <item row="2" column="1">
              <widget class="QLabel" name="labelPluginWebSite">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>na</string>
               </property>
@@ -347,6 +393,12 @@
             </item>
             <item row="3" column="1">
              <widget class="QLabel" name="labelPluginDescription">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>na</string>
               </property>
