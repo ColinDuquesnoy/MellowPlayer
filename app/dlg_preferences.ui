@@ -68,12 +68,12 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="checkBoxMinimizeToTray">
            <property name="text">
             <string>Minimize to tray</string>
            </property>
@@ -94,10 +94,10 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="lineEditTrayIcon"/>
              </item>
              <item>
-              <widget class="QToolButton" name="toolButton">
+              <widget class="QToolButton" name="toolButtonSelectTrayIcon">
                <property name="text">
                 <string>...</string>
                </property>
@@ -179,13 +179,13 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditSelect"/>
             </item>
             <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_2"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditPreferences"/>
             </item>
             <item row="2" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_3"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditQuit"/>
             </item>
            </layout>
           </widget>
@@ -228,16 +228,16 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_4"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditPlayPause"/>
             </item>
             <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_5"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditStop"/>
             </item>
             <item row="2" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_6"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditNext"/>
             </item>
             <item row="3" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_7"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditPrevious"/>
             </item>
            </layout>
           </widget>
@@ -266,10 +266,10 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_8"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditAbout"/>
             </item>
             <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEdit_9"/>
+             <widget class="QKeySequenceEdit" name="keySequenceEditReportBug"/>
             </item>
            </layout>
           </widget>
@@ -301,7 +301,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="comboBoxPlugins">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -329,7 +329,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLabel" name="labelAuthor">
+             <widget class="QLabel" name="labelPluginAuthor">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -450,19 +450,19 @@
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
-  <tabstop>checkBox</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>toolButton</tabstop>
-  <tabstop>keySequenceEdit</tabstop>
-  <tabstop>keySequenceEdit_2</tabstop>
-  <tabstop>keySequenceEdit_3</tabstop>
-  <tabstop>keySequenceEdit_4</tabstop>
-  <tabstop>keySequenceEdit_5</tabstop>
-  <tabstop>keySequenceEdit_6</tabstop>
-  <tabstop>keySequenceEdit_7</tabstop>
-  <tabstop>keySequenceEdit_8</tabstop>
-  <tabstop>keySequenceEdit_9</tabstop>
-  <tabstop>comboBox</tabstop>
+  <tabstop>checkBoxMinimizeToTray</tabstop>
+  <tabstop>lineEditTrayIcon</tabstop>
+  <tabstop>toolButtonSelectTrayIcon</tabstop>
+  <tabstop>keySequenceEditSelect</tabstop>
+  <tabstop>keySequenceEditPreferences</tabstop>
+  <tabstop>keySequenceEditQuit</tabstop>
+  <tabstop>keySequenceEditPlayPause</tabstop>
+  <tabstop>keySequenceEditStop</tabstop>
+  <tabstop>keySequenceEditNext</tabstop>
+  <tabstop>keySequenceEditPrevious</tabstop>
+  <tabstop>keySequenceEditAbout</tabstop>
+  <tabstop>keySequenceEditReportBug</tabstop>
+  <tabstop>comboBoxPlugins</tabstop>
  </tabstops>
  <resources>
   <include location="mellowplayer.qrc"/>
