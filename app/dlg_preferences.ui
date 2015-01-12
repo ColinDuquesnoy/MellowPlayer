@@ -389,25 +389,27 @@
             <bool>true</bool>
            </property>
            <property name="title">
-            <string>Enabled</string>
+            <string>Settings</string>
            </property>
            <property name="checkable">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="1" column="0">
+             <widget class="QStackedWidget" name="stackedWidget_2">
+              <widget class="QWidget" name="page"/>
+              <widget class="QWidget" name="page_2"/>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>Enabled</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
