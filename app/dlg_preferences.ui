@@ -396,9 +396,10 @@
            </property>
            <layout class="QGridLayout" name="gridLayout">
             <item row="1" column="0">
-             <widget class="QStackedWidget" name="stackedWidget_2">
-              <widget class="QWidget" name="page"/>
-              <widget class="QWidget" name="page_2"/>
+             <widget class="QStackedWidget" name="stackedWidgetPluginSettings">
+              <property name="currentIndex">
+               <number>-1</number>
+              </property>
              </widget>
             </item>
             <item row="0" column="0">
