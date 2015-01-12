@@ -68,7 +68,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -135,7 +135,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QKeySequenceEdit" name="keySequenceEditPlayPause"/>
+          <widget class="QKeySequenceEdit" name="keySequenceEditPlayPause" native="true"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_11">
@@ -145,7 +145,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QKeySequenceEdit" name="keySequenceEditStop"/>
+          <widget class="QKeySequenceEdit" name="keySequenceEditStop" native="true"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_12">
@@ -155,7 +155,7 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QKeySequenceEdit" name="keySequenceEditNext"/>
+          <widget class="QKeySequenceEdit" name="keySequenceEditNext" native="true"/>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_13">
@@ -165,7 +165,7 @@
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QKeySequenceEdit" name="keySequenceEditPrevious"/>
+          <widget class="QKeySequenceEdit" name="keySequenceEditPrevious" native="true"/>
          </item>
         </layout>
        </widget>
@@ -307,7 +307,7 @@
              </widget>
             </item>
             <item row="0" column="0">
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="checkBoxPluginState">
               <property name="text">
                <string>Enabled</string>
               </property>
@@ -334,6 +334,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QKeySequenceEdit</class>
+   <extends>QWidget</extends>
+   <header>qkeysequenceedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>listWidget</tabstop>
   <tabstop>checkBoxMinimizeToTray</tabstop>

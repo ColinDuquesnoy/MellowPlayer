@@ -25,11 +25,10 @@ private slots:
     void onCategoryChanged(int category);
     void reset();
     void restoreDefaults();
-
     void updateTrayIcon(const QString& iconPath);
     void chooseTrayIconFile();
-
     void onCurrentPluginChanged(const QString &pluginName);
+    void onPluginStateChanged(int state);
 
 private:
     void resetInterface();

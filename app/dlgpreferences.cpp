@@ -32,6 +32,8 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
 
     connect(ui->comboBoxPlugins, &QComboBox::currentTextChanged,
             this, &DlgPreferences::onCurrentPluginChanged);
+    connect(ui->checkBoxPluginState, &QCheckBox::stateChanged,
+            this, &DlgPreferences::onPluginStateChanged);
 
     // empty page
     ui->stackedWidgetPluginSettings->addWidget(new QWidget());
@@ -130,6 +132,8 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
         int index = ui->comboBoxPlugins->itemData(
             ui->comboBoxPlugins->currentIndex()).toInt();
         ui->stackedWidgetPluginSettings->setCurrentIndex(index);
+        ui->checkBoxPluginState->setChecked(
+            QSettings().value(plugin->metaData.name, true).toBool());
     }
     else
     {
@@ -138,7 +142,17 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
         ui->labelPluginVersion->setText("");
         ui->labelPluginWebSite->setText("");
         ui->stackedWidgetPluginSettings->setCurrentIndex(0);
+        ui->checkBoxPluginState->setChecked(false);
     }
+}
+
+//---------------------------------------------------------
+void DlgPreferences::onPluginStateChanged(int state)
+{
+    ExtensionPlugin* plugin = Services::extensions()->plugin(
+        ui->comboBoxPlugins->currentText());
+    if(plugin)
+        QSettings().setValue(plugin->metaData.name, bool(state));
 }
 
 

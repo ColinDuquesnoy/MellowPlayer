@@ -32,7 +32,6 @@ ExtensionPlugin::ExtensionPlugin(IExtension *interface,
     metaData(meta),
     interface(interface)
 {
-
 }
 
 //---------------------------------------------------------
@@ -54,7 +53,8 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
         qDebug() << "Extension plugin loaded: ";
         qDebug() << "  - name: " << plugin->metaData.name;
         qDebug() << "  - version: " << plugin->metaData.version;
-        plugin->interface->setup();
+        if(QSettings().value(plugin->metaData.name, true).toBool())
+            plugin->interface->setup();
     }
     else
     {
