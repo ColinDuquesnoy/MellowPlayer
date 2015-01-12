@@ -11,8 +11,12 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     QDialog(parent),
     mainWindow(parent)
 {
+    qDebug() << QSettings().fileName();
+
     ui = new Ui::DialogPreferences();
     ui->setupUi(this);
+
+    this->setWindowTitle(tr("Preferences"));
 
     connect(ui->listWidget, &QListWidget::currentRowChanged,
             this, &DlgPreferences::onCategoryChanged);
@@ -131,22 +135,9 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
         ui->labelPluginDescription->setText(plugin->interface->description());
         ui->labelPluginVersion->setText(plugin->metaData.version);
         ui->labelPluginWebSite->setText(plugin->metaData.website);
-
-        QWidget* settings = plugin->interface->settingsWidget();
-        if(!settings)
-            ui->groupBoxPluginSettings->hide();
-        else
-        {
-            ui->groupBoxPluginSettings->show();
-            QGridLayout* layout = new QGridLayout(ui->groupBoxPluginSettings);
-            settings->setParent(ui->groupBox);
-            layout->addWidget(settings);
-            ui->groupBoxPluginSettings->setLayout(layout);
-        }
     }
     else
     {
-        ui->groupBoxPluginSettings->hide();
         ui->labelPluginAuthor->setText("");
         ui->labelPluginDescription->setText("");
         ui->labelPluginVersion->setText("");
@@ -173,38 +164,22 @@ void DlgPreferences::resetInterface()
 void DlgPreferences::resetShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionSelect_service);
-    actions.append(mainWindow->ui->actionPreferences);
-    actions.append(mainWindow->ui->actionQuit);
     actions.append(mainWindow->ui->actionPlayPause);
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAbout_MellowPlayer);
-    actions.append(mainWindow->ui->actionReport_a_bug);
 
     QList<QString> shortcuts;
-    shortcuts.append(DEFAULT_SHORTCUT_SELECT_SV);
-    shortcuts.append(DEFAULT_SHORTCUT_PREFERENCES);
-    shortcuts.append(DEFAULT_SHORTCUT_QUIT);
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
     shortcuts.append(DEFAULT_SHORTCUT_STOP);
     shortcuts.append(DEFAULT_SHORTCUT_NEXT);
     shortcuts.append(DEFAULT_SHORTCUT_PREVIOUS);
-    shortcuts.append(DEFAULT_SHORTCUT_ABOUT);
-    shortcuts.append(DEFAULT_SHORTCUT_REPORT);
-
 
     QList<QKeySequenceEdit*> edits;
-    edits.append(ui->keySequenceEditSelect);
-    edits.append(ui->keySequenceEditPreferences);
-    edits.append(ui->keySequenceEditQuit);
     edits.append(ui->keySequenceEditPlayPause);
     edits.append(ui->keySequenceEditStop);
     edits.append(ui->keySequenceEditNext);
     edits.append(ui->keySequenceEditPrevious);
-    edits.append(ui->keySequenceEditAbout);
-    edits.append(ui->keySequenceEditReportBug);
 
     for(int i=0; i < actions.count(); ++ i)
         edits[i]->setKeySequence(
@@ -233,26 +208,16 @@ void DlgPreferences::restoreInterface()
 void DlgPreferences::restoreShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionSelect_service);
-    actions.append(mainWindow->ui->actionPreferences);
-    actions.append(mainWindow->ui->actionQuit);
     actions.append(mainWindow->ui->actionPlayPause);
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAbout_MellowPlayer);
-    actions.append(mainWindow->ui->actionReport_a_bug);
 
     QList<QString> shortcuts;
-    shortcuts.append(DEFAULT_SHORTCUT_SELECT_SV);
-    shortcuts.append(DEFAULT_SHORTCUT_PREFERENCES);
-    shortcuts.append(DEFAULT_SHORTCUT_QUIT);
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
     shortcuts.append(DEFAULT_SHORTCUT_STOP);
     shortcuts.append(DEFAULT_SHORTCUT_NEXT);
     shortcuts.append(DEFAULT_SHORTCUT_PREVIOUS);
-    shortcuts.append(DEFAULT_SHORTCUT_ABOUT);
-    shortcuts.append(DEFAULT_SHORTCUT_REPORT);
 
     for(int i=0; i < actions.count(); ++ i)
         QSettings().setValue(actions[i]->objectName(), shortcuts[i]);
@@ -279,26 +244,16 @@ void DlgPreferences::applyInterface()
 void DlgPreferences::applyShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionSelect_service);
-    actions.append(mainWindow->ui->actionPreferences);
-    actions.append(mainWindow->ui->actionQuit);
     actions.append(mainWindow->ui->actionPlayPause);
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAbout_MellowPlayer);
-    actions.append(mainWindow->ui->actionReport_a_bug);
 
     QList<QKeySequenceEdit*> edits;
-    edits.append(ui->keySequenceEditSelect);
-    edits.append(ui->keySequenceEditPreferences);
-    edits.append(ui->keySequenceEditQuit);
     edits.append(ui->keySequenceEditPlayPause);
     edits.append(ui->keySequenceEditStop);
     edits.append(ui->keySequenceEditNext);
     edits.append(ui->keySequenceEditPrevious);
-    edits.append(ui->keySequenceEditAbout);
-    edits.append(ui->keySequenceEditReportBug);
 
     for(int i = 0; i < actions.count(); ++i)
     {
