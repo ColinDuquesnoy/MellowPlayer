@@ -68,7 +68,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -123,145 +123,49 @@
         </layout>
        </widget>
        <widget class="QWidget" name="pageShortcuts">
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QGroupBox" name="groupBox">
-           <property name="title">
-            <string>Application shortcuts</string>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="fieldGrowthPolicy">
+          <enum>QFormLayout::ExpandingFieldsGrow</enum>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Play/Pause:</string>
            </property>
-           <layout class="QFormLayout" name="formLayout_2">
-            <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
-            </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Select cloud service</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>Preferences:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>Quit:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditSelect"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditPreferences"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditQuit"/>
-            </item>
-           </layout>
           </widget>
          </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_2">
-           <property name="title">
-            <string>Media Player Control shortcuts</string>
+         <item row="0" column="1">
+          <widget class="QKeySequenceEdit" name="keySequenceEditPlayPause"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Stop:</string>
            </property>
-           <layout class="QFormLayout" name="formLayout_4">
-            <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
-            </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>Play/Pause:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>Stop:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="text">
-               <string>Next:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>Previous:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditPlayPause"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditStop"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditNext"/>
-            </item>
-            <item row="3" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditPrevious"/>
-            </item>
-           </layout>
           </widget>
          </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_3">
-           <property name="title">
-            <string>Other shortcuts</string>
+         <item row="1" column="1">
+          <widget class="QKeySequenceEdit" name="keySequenceEditStop"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Next:</string>
            </property>
-           <layout class="QFormLayout" name="formLayout_5">
-            <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
-            </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>About:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>Report a bug:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditAbout"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QKeySequenceEdit" name="keySequenceEditReportBug"/>
-            </item>
-           </layout>
           </widget>
          </item>
-         <item>
-          <spacer name="verticalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="2" column="1">
+          <widget class="QKeySequenceEdit" name="keySequenceEditNext"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Previous:</string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QKeySequenceEdit" name="keySequenceEditPrevious"/>
          </item>
         </layout>
        </widget>
@@ -435,15 +339,6 @@
   <tabstop>checkBoxMinimizeToTray</tabstop>
   <tabstop>lineEditTrayIcon</tabstop>
   <tabstop>toolButtonSelectTrayIcon</tabstop>
-  <tabstop>keySequenceEditSelect</tabstop>
-  <tabstop>keySequenceEditPreferences</tabstop>
-  <tabstop>keySequenceEditQuit</tabstop>
-  <tabstop>keySequenceEditPlayPause</tabstop>
-  <tabstop>keySequenceEditStop</tabstop>
-  <tabstop>keySequenceEditNext</tabstop>
-  <tabstop>keySequenceEditPrevious</tabstop>
-  <tabstop>keySequenceEditAbout</tabstop>
-  <tabstop>keySequenceEditReportBug</tabstop>
   <tabstop>comboBoxPlugins</tabstop>
  </tabstops>
  <resources>
