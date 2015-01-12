@@ -42,6 +42,7 @@ public:
     void setup();
     void teardown();
     QString description() const;
+    QWidget* settingsWidget() const;
 private:
 #ifndef __kde_support__
     QList<QxtGlobalShortcut*> shortcuts;

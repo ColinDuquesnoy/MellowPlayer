@@ -15,8 +15,8 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
 
     ui = new Ui::DialogPreferences();
     ui->setupUi(this);
-
     this->setWindowTitle(tr("Preferences"));
+
 
     connect(ui->listWidget, &QListWidget::currentRowChanged,
             this, &DlgPreferences::onCategoryChanged);
@@ -33,12 +33,23 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     connect(ui->comboBoxPlugins, &QComboBox::currentTextChanged,
             this, &DlgPreferences::onCurrentPluginChanged);
 
-    for(int i = 0; i < ui->listWidget->count(); ++i)
+    // empty page
+    ui->stackedWidgetPluginSettings->addWidget(new QWidget());
+
+    // load plugins
+    ui->comboBoxPlugins->clear();
+    foreach(ExtensionPlugin* plugin, Services::extensions()->plugins())
     {
-        ui->listWidget->setCurrentRow(i);
-        reset();
+        QWidget* settings = plugin->interface->settingsWidget();
+        int index = 0;
+        if(settings)
+            index = ui->stackedWidgetPluginSettings->addWidget(settings);
+        ui->comboBoxPlugins->addItem(plugin->metaData.name, index);
     }
 
+    reset();
+
+    // restore last preferences page
     int currentIndex = QSettings().value("lastPreferencesPageIndex", 0).toInt();
     ui->listWidget->setCurrentRow(currentIndex);
 }
@@ -72,37 +83,18 @@ void DlgPreferences::onCategoryChanged(int category)
 //---------------------------------------------------------
 void DlgPreferences::reset()
 {
-    switch(ui->stackedWidget->currentIndex())
-    {
-    case 0:
-        resetInterface();
-        break;
-    case 1:
-        resetShortcuts();
-        break;
-    case 2:
-        resetPlugins();
-        break;
-    }
+    resetInterface();
+    resetShortcuts();
+    resetPlugins();
 }
 
 //---------------------------------------------------------
 void DlgPreferences::restoreDefaults()
 {
-    switch(ui->stackedWidget->currentIndex())
-    {
-    case 0:
-        restoreInterface();
-        break;
-    case 1:
-        restoreShortcuts();
-        break;
-    case 2:
-        restorePlugins();
-        break;
-    }
+    restoreInterface();
+    restoreShortcuts();
+    restorePlugins();
 }
-
 
 //---------------------------------------------------------
 void DlgPreferences::updateTrayIcon(const QString &iconPath)
@@ -127,14 +119,17 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
 {
     qDebug() << "Active plugin changed" << pluginName;
     ExtensionPlugin* plugin = NULL;
-    if(!pluginName.isEmpty())
-        plugin = Services::extensions()->plugin(pluginName);
+    plugin = Services::extensions()->plugin(pluginName);
     if(plugin)
     {
         ui->labelPluginAuthor->setText(plugin->metaData.author);
         ui->labelPluginDescription->setText(plugin->interface->description());
         ui->labelPluginVersion->setText(plugin->metaData.version);
         ui->labelPluginWebSite->setText(plugin->metaData.website);
+
+        int index = ui->comboBoxPlugins->itemData(
+            ui->comboBoxPlugins->currentIndex()).toInt();
+        ui->stackedWidgetPluginSettings->setCurrentIndex(index);
     }
     else
     {
@@ -142,6 +137,7 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
         ui->labelPluginDescription->setText("");
         ui->labelPluginVersion->setText("");
         ui->labelPluginWebSite->setText("");
+        ui->stackedWidgetPluginSettings->setCurrentIndex(0);
     }
 }
 
@@ -190,9 +186,17 @@ void DlgPreferences::resetShortcuts()
 //---------------------------------------------------------
 void DlgPreferences::resetPlugins()
 {
-    ui->comboBoxPlugins->clear();
-    foreach(ExtensionPlugin* plugin, Services::extensions()->plugins())
-        ui->comboBoxPlugins->addItem(plugin->metaData.name);
+    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    {
+        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        if(widgetIndex)
+        {
+            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            ExtensionPlugin* plugin = Services::extensions()->plugin(
+                ui->comboBoxPlugins->itemText(i));
+            plugin->interface->resetSettings(w);
+        }
+    }
 }
 
 //---------------------------------------------------------
@@ -228,11 +232,22 @@ void DlgPreferences::restoreShortcuts()
 //---------------------------------------------------------
 void DlgPreferences::restorePlugins()
 {
-    // todo add a restore default method to extension plugins.
+    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    {
+        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        if(widgetIndex)
+        {
+            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            ExtensionPlugin* plugin = Services::extensions()->plugin(
+                        ui->comboBoxPlugins->itemText(i));
+            plugin->interface->restoreDefaultSettings(w);
+        }
+    }
 
     this->resetPlugins();
 }
 
+//---------------------------------------------------------
 void DlgPreferences::applyInterface()
 {
     QSettings().setValue("minimizeToTray",
@@ -241,6 +256,7 @@ void DlgPreferences::applyInterface()
     mainWindow->trayIcon->setIcon(trayIconFrom(ui->lineEditTrayIcon->text()));
 }
 
+//---------------------------------------------------------
 void DlgPreferences::applyShortcuts()
 {
     QList<QAction*> actions;
@@ -263,9 +279,20 @@ void DlgPreferences::applyShortcuts()
     }
 }
 
+//---------------------------------------------------------
 void DlgPreferences::applyPlugins()
 {
-    // todo add a restore default method to extension plugins.
+    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    {
+        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        if(widgetIndex)
+        {
+            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            ExtensionPlugin* plugin = Services::extensions()->plugin(
+                        ui->comboBoxPlugins->itemText(i));
+            plugin->interface->applySettings(w);
+        }
+    }
 }
 
 //---------------------------------------------------------

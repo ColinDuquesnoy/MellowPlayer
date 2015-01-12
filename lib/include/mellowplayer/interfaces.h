@@ -104,6 +104,11 @@ class IExtension
 {
 public:
     /*!
+     * \brief Returns the plugin description.
+     */
+    virtual QString description() const = 0;
+
+    /*!
      * \brief Initalizes the extension.
      *
      * You must implement this method to perform your extension setup.
@@ -128,14 +133,32 @@ public:
      *
      * Implement this method if you need to show a settings widget in the
      * application preferences dialog. Return NULL if you don't need to show
-     * any settings.
+     * any settings. If you return a non-null widget, you will also need to
+     * implement: resetSettings, restoreDefaultSettings and applySettings.
      */
     virtual QWidget* settingsWidget() const { return NULL; }
 
     /*!
-     * \brief Returns the plugin description.
+     * \brief Reset the plugin settings
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
      */
-    virtual QString description() const = 0;
+    virtual void resetSettings(QWidget* widget) { qDebug() << widget; }
+
+    /*!
+     * \brief Restore the plugin settings to their default values.
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
+     */
+    virtual void restoreDefaultSettings(QWidget* widget) { qDebug() << widget; }
+
+    /*!
+     * \brief Apply plugin settings.
+     *
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
+     */
+    virtual void applySettings(QWidget* widget) { qDebug() << widget; }
 };
 
 #define IExtension_iid "org.MellowPlayer.IExtension"

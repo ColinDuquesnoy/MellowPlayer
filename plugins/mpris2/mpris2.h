@@ -55,8 +55,11 @@ public:
      */
     void teardown();
 
+    /*!
+     * \brief Returns the plugin description.
+     * \return
+     */
     QString description() const;
-
 private:
     Mpris2Root* root;       /*!< Mpris2 root interface */
     Mpris2Player* player;   /*!< Mpris2 player interface */
