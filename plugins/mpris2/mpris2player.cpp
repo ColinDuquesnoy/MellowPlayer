@@ -5,14 +5,14 @@
 Mpris2Player::Mpris2Player(QObject *parent):
     QDBusAbstractAdaptor(parent)
 {
-    connect(Services::player(), &PlayerInterface::playbackStatusChanged,
-            this, &Mpris2Player::onPlaybackStatusChanged);
-    connect(Services::player(), &PlayerInterface::songChanged,
-            this, &Mpris2Player::onSongChanged);
-    connect(Services::player(), &PlayerInterface::artReady,
-            this, &Mpris2Player::onArtReady);
-    connect(Services::player(), &PlayerInterface::positionChanged,
-            this, &Mpris2Player::onPositionChanged);
+    connect(Services::player(), SIGNAL(playbackStatusChanged(PlaybackStatus)),
+            this, SLOT(onPlaybackStatusChanged(PlaybackStatus)));
+    connect(Services::player(), SIGNAL(songChanged(const SongInfo&)),
+            this, SLOT(onSongChanged(const SongInfo&)));
+    connect(Services::player(), SIGNAL(artReady(const QString&)),
+            this, SLOT(onArtReady(const QString&)));
+    connect(Services::player(), SIGNAL(positionChanged(int)),
+            this, SLOT(onPositionChanged(const QString&)));
 }
 
 //---------------------------------------------------------

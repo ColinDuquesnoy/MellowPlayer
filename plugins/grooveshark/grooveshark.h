@@ -32,12 +32,16 @@ class GroovesharkPlugin :
         public ICloudMusicService
 {
     Q_OBJECT
+
+#if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID ICloudMusicService_iid
                       FILE "grooveshark.json")
+#endif
     Q_INTERFACES(ICloudMusicService)
 
 public:
-    virtual QString htmlDescription() const;
+    virtual const PluginMetaData& metaData() const;
+
     //! Returns the grooveshark URL
     virtual QUrl url() const;
     //! Plays the current song

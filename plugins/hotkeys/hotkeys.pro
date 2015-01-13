@@ -88,8 +88,7 @@ unix:!macx {
     }
     target.path = $$PREFIX/share/mellowplayer/plugins
 }
-win32
-{
+win32 {
     # todo
 }
 INSTALLS += target

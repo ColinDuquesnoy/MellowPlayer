@@ -12,8 +12,8 @@ void UrlDownloader::download(const QString &url, const QString &destination)
 {
     this->nam = new QNetworkAccessManager(this);
     this->fileUrl = destination;
-    connect(this->nam, &QNetworkAccessManager::finished,
-            this, &UrlDownloader::onDownloadFinished);
+    connect(this->nam, SIGNAL(finished(QNetworkReply *)),
+            this, SLOT(onDownloadFinished(QNetworkReply *)));
     this->nam->get(QNetworkRequest(QUrl(url)));
     qDebug() << "Downloading " << url << " to " << destination;
 }

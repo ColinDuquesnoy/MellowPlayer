@@ -19,9 +19,16 @@
 #include "grooveshark.h"
 
 
-QString GroovesharkPlugin::htmlDescription() const
+//---------------------------------------------------------
+const PluginMetaData &GroovesharkPlugin::metaData() const
 {
-    return tr(
+    static PluginMetaData meta;
+    meta.name = "Grooveshark";
+    meta.author = "ColinDuquesnoy";
+    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.version = "1.0";
+    meta.icon = QIcon(":/grooveshark/logo.png");
+    meta.description =tr(
 "<p><strong>Grooveshark</strong> is an international online music search "
 "engine, music streaming service and music recommendation web software "
 "application, allowing users to search for, stream, and upload music that can "
@@ -32,10 +39,10 @@ QString GroovesharkPlugin::htmlDescription() const
 "<a href=\"http://en.wikipedia.org/wiki/Grooveshark\">Grooveshark on Wikipedia</a>,"
 "<a href=\"http://grooveshark.com\">Official website</a></em>"
 "</p>");
+
+    return meta;
 }
 
-
-//---------------------------------------------------------
 QUrl GroovesharkPlugin::url() const
 {
     return QUrl("http://grooveshark.com");
@@ -122,3 +129,7 @@ void GroovesharkPlugin::setVolume(float volume)
         QString("window.Grooveshark.setVolume(%1)").arg(
             QString::number(static_cast<int>(volume * 100))));
 }
+
+#if QT_VERSION < 0x050000
+    Q_EXPORT_PLUGIN2( grooveshark, GroovesharkPlugin )
+#endif

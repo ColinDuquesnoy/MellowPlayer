@@ -23,17 +23,6 @@
 #include "mellowplayer/extensionsmanager.h"
 #include "mellowplayer/services.h"
 
-
-//---------------------------------------------------------
-ExtensionPlugin::ExtensionPlugin(IExtension *interface,
-                                 const PluginMetaData &meta,
-                                 QObject* parent):
-    QObject(parent),
-    metaData(meta),
-    iExtension(interface)
-{
-}
-
 //---------------------------------------------------------
 ExtensionsManager::ExtensionsManager(QObject* parent):
     QObject(parent)
@@ -42,19 +31,16 @@ ExtensionsManager::ExtensionsManager(QObject* parent):
 }
 
 //---------------------------------------------------------
-void ExtensionsManager::loadPlugin(IExtension* iExtension,
-                                   QPluginLoader* pluginLoader)
+void ExtensionsManager::loadPlugin(IExtension* iExtension)
 {
-    PluginMetaData meta = extractMetaData(pluginLoader);
-    if(!this->plugin(meta.name))
+    if(!this->plugin(iExtension->metaData().name))
     {
-        ExtensionPlugin* plugin = new ExtensionPlugin(iExtension, meta);
-        this->_plugins.append(plugin);
+        this->_plugins.append(iExtension);
         qDebug() << "Extension plugin loaded: ";
-        qDebug() << "  - name: " << plugin->metaData.name;
-        qDebug() << "  - version: " << plugin->metaData.version;
-        if(QSettings().value(plugin->metaData.name, true).toBool())
-            plugin->iExtension->setup();
+        qDebug() << "  - name: " << iExtension->metaData().name;
+        qDebug() << "  - version: " << iExtension->metaData().version;
+        if(QSettings().value(iExtension->metaData().name, true).toBool())
+            iExtension->setup();
     }
     else
     {
@@ -66,16 +52,16 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
 //---------------------------------------------------------
 void ExtensionsManager::teardown()
 {
-    foreach(ExtensionPlugin* p, this->_plugins)
-        p->iExtension->teardown();
+    foreach(IExtension* p, this->_plugins)
+        p->teardown();
 }
 
 //---------------------------------------------------------
-ExtensionPlugin* ExtensionsManager::plugin(const QString &name) const
+IExtension *ExtensionsManager::plugin(const QString &name) const
 {
-    foreach(ExtensionPlugin* p, this->_plugins)
+    foreach(IExtension* p, this->_plugins)
     {
-        if(p->metaData.name == name)
+        if(p->metaData().name == name)
             return p;
     }
     return NULL; // invalid plugin

@@ -17,8 +17,8 @@
 //
 //---------------------------------------------------------
 
-#include <QtWebKitWidgets/QWebView>
-#include <QtWebKitWidgets/QWebFrame>
+#include <QWebView>
+#include <QWebFrame>
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/services.h"
 

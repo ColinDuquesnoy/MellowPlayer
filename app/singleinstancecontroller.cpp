@@ -29,11 +29,11 @@ SingleInstanceController::SingleInstanceController(QObject* parent):
     localServer(new QLocalServer()),
     app(NULL)
 {
-    connect(this->localSocket, &QLocalSocket::connected,
-            this, &SingleInstanceController::onSocketConnected);
+    connect(this->localSocket, SIGNAL(connected()),
+            this, SLOT(onSocketConnected()));
 
-    connect(this->localServer, &QLocalServer::newConnection,
-            this, &SingleInstanceController::onNewConnection);
+    connect(this->localServer, SIGNAL(newConnection()),
+            this, SLOT(onNewConnection()));
 
     connect(this->localSocket, SIGNAL(error(QLocalSocket::LocalSocketError)),
             this, SLOT(onSocketError()));
@@ -59,7 +59,11 @@ void SingleInstanceController::onSocketConnected()
 {
     // This means the server is already running and we have to exit.
     qDebug() << "Another instance is already running, quitting...";
+#if QT_VERSION >= 0x050000
     QTimer::singleShot(250, &this->app->quit);
+#else
+    QTimer::singleShot(250, this, SLOT(quit));
+#endif
 }
 
 //---------------------------------------------------------

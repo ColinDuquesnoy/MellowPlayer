@@ -19,22 +19,10 @@
 
 #include <QPluginLoader>
 #include <QFile>
-#include <QtWebKitWidgets/QWebView>
+#include <QWebView>
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/cloudservicesmanager.h"
 #include "mellowplayer/services.h"
-
-
-//---------------------------------------------------------
-CloudServicePlugin::CloudServicePlugin(ICloudMusicService *interface,
-                                       const PluginMetaData &meta,
-                                       QObject* parent):
-    QObject(parent),
-    metaData(meta),
-    iService(interface)
-{
-
-}
 
 //---------------------------------------------------------
 CloudServicesManager::CloudServicesManager(QObject* parent):
@@ -45,18 +33,14 @@ CloudServicesManager::CloudServicesManager(QObject* parent):
 }
 
 //---------------------------------------------------------
-void CloudServicesManager::_loadPlugin(ICloudMusicService* iService,
-                                       QPluginLoader* pluginLoader)
+void CloudServicesManager::_loadPlugin(ICloudMusicService* iService)
 {
-    PluginMetaData meta = extractMetaData(pluginLoader);
-
-    if(!this->plugin(meta.name))
+    if(!this->plugin(iService->metaData().name))
     {
-        CloudServicePlugin* plugin = new CloudServicePlugin(iService, meta);
-        this->_plugins.append(plugin);
+        this->_plugins.append(iService);
         qDebug() << "Cloud service integration plugin loaded: ";
-        qDebug() << "  - name: " << plugin->metaData.name;
-        qDebug() << "  - version: " << plugin->metaData.version;
+        qDebug() << "  - name: " << iService->metaData().name;
+        qDebug() << "  - version: " << iService->metaData().version;
     }
     else
     {
@@ -78,11 +62,11 @@ CloudPluginList CloudServicesManager::plugins() const
 }
 
 //---------------------------------------------------------
-CloudServicePlugin* CloudServicesManager::plugin(const QString &serviceName) const
+ICloudMusicService* CloudServicesManager::plugin(const QString &serviceName) const
 {
-    foreach(CloudServicePlugin* p, this->_plugins)
+    foreach(ICloudMusicService* p, this->_plugins)
     {
-        if(p->metaData.name == serviceName)
+        if(p->metaData().name == serviceName)
             return p;
     }
     return NULL;  // invalid plugin
@@ -91,10 +75,10 @@ CloudServicePlugin* CloudServicesManager::plugin(const QString &serviceName) con
 //---------------------------------------------------------
 bool CloudServicesManager::startService(const QString& serviceName) {
     bool retVal = false;
-    CloudServicePlugin* p = this->plugin(serviceName);
-    if(p && p->iService != this->_currentService)
+    ICloudMusicService* p = this->plugin(serviceName);
+    if(p && p != this->_currentService)
     {
-        this->_currentService = p->iService;
+        this->_currentService = p;
         Services::webView()->load(this->_currentService->url());
         retVal = true;
     }

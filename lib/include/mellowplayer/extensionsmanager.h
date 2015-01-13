@@ -25,23 +25,7 @@
 #include "mellowplayer/pluginmetadata.h"
 
 class IExtension;
-
-
-/*!
- * \brief The ExtensionPlugin class regroups the plugin interface with it's
- *        metada.
- */
-class DLL_EXPORT ExtensionPlugin : public QObject
-{
-    Q_OBJECT
-public:
-    explicit ExtensionPlugin(IExtension* iExtension, const PluginMetaData& meta,
-                             QObject* parent=NULL);
-
-    PluginMetaData metaData; /*!< Plugin meta data */
-    IExtension* iExtension;   /*!< Plugin interface */
-};
-typedef QList<ExtensionPlugin*> ExtensionPluginList;
+typedef QList<IExtension*> ExtensionPluginList;
 
 
 /*!
@@ -63,7 +47,7 @@ public:
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void loadPlugin(IExtension* iExtension, QPluginLoader* pluginLoader);
+    void loadPlugin(IExtension* iExtension);
 
     /*!
      * \brief Tears down every extension.
@@ -79,7 +63,7 @@ public:
      *
      * \param name Name of the plugin to retrieve.
      */
-    ExtensionPlugin* plugin(const QString& name) const;
+    IExtension* plugin(const QString& name) const;
 
     ExtensionPluginList plugins() const;
 

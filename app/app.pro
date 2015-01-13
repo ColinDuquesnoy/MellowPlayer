@@ -45,7 +45,8 @@ SOURCES         += main.cpp\
                    icons.cpp \
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
-    dlgpreferences.cpp
+    dlgpreferences.cpp \
+    keysequenceedit.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
@@ -54,7 +55,9 @@ HEADERS         += mainwindow.h \
                    pluginsmanager.h \
                    dlgselectservice.h \
                    dlgpreferences.h \
-    shortcuts.h
+    shortcuts.h \
+    keysequenceedit_p.h \
+    keysequenceedit.h
 RESOURCES       = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui \
@@ -84,8 +87,5 @@ unix:!macx {
     }
     target.path = $$PREFIX/bin
 }
-win32
-{
-    # todo
-}
+
 INSTALLS += target

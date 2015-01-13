@@ -56,10 +56,11 @@ void CookieJar::loadCookies()
     // the base class can use to restore the cloud service cookies.
     QList<QVariant> variantValues = map.values();
     QList<QByteArray> values;
+    QByteArray array;
     foreach(QVariant value, variantValues){
-        values.append(value.toByteArray());
-        values.append("\n");
+        array += value.toByteArray();
+        array += "\n";
     }
     qDebug() << QString("Loading %1 cookies").arg(map.count());
-    this->setAllCookies(QNetworkCookie::parseCookies(values.join()));
+    this->setAllCookies(QNetworkCookie::parseCookies(array));
 }
