@@ -21,8 +21,10 @@
 #define MAINWINDOW_H
 
 #include <QtCore>
-#include <QtGui>
 #include <QWidget>
+#include <QSystemTrayIcon>
+#include <QMainWindow>
+#include <QCloseEvent>
 
 namespace Ui {
 class MainWindow;

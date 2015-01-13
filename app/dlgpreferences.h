@@ -2,7 +2,9 @@
 #define DLGPREFERENCES_H
 
 #include <QMainWindow>
-#include <QtGui>
+#include <QDialog>
+#include <QIcon>
+
 
 namespace Ui {
     class DialogPreferences;

@@ -15,6 +15,8 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 
+#include <QDesktopServices>
+#include <QMessageBox>
 #include <mellowplayer.h>
 #include "cookiejar.h"
 #include "dlgselectservice.h"

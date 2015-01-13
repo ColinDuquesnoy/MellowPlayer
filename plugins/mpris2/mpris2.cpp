@@ -64,7 +64,7 @@ void Mpris2Plugin::teardown()
 const PluginMetaData &Mpris2Plugin::metaData() const
 {
     static PluginMetaData meta;
-    meta.name = "Hotkeys";
+    meta.name = "MPRIS2";
     meta.author = "Colin Duquesnoy";
     meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
     meta.version = "1.0";

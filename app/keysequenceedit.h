@@ -40,8 +40,24 @@
 **
 ****************************************************************************/
 
-#ifndef QKEYSEQUENCEEDIT_H
-#define QKEYSEQUENCEEDIT_H
+#ifndef KEYSEQUENCEEDIT_H
+#define KEYSEQUENCEEDIT_H
+
+#include <qglobal.h>
+
+#if QT_VERSION >= 0x050000
+
+#include <QObject>
+#include <QKeySequenceEdit>
+
+class KeySequenceEdit : public QKeySequenceEdit
+{
+    Q_OBJECT
+public:
+    explicit KeySequenceEdit(QWidget* parent=NULL);
+};
+
+#else
 
 #include <QWidget>
 
@@ -81,6 +97,8 @@ private:
     Q_DECLARE_PRIVATE(KeySequenceEdit)
 };
 
-#endif // QKEYSEQUENCEEDIT_H
+#endif // QT_VERSION >= 0x050000
+
+#endif // KEYSEQUENCEEDIT_H
 
 

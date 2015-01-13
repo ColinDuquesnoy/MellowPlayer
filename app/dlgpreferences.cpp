@@ -1,3 +1,4 @@
+#include <QFileDialog>
 #include <mellowplayer.h>
 
 #include "dlgpreferences.h"

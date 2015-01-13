@@ -12,7 +12,7 @@ Mpris2Player::Mpris2Player(QObject *parent):
     connect(Services::player(), SIGNAL(artReady(const QString&)),
             this, SLOT(onArtReady(const QString&)));
     connect(Services::player(), SIGNAL(positionChanged(int)),
-            this, SLOT(onPositionChanged(const QString&)));
+            this, SLOT(onPositionChanged(int)));
 }
 
 //---------------------------------------------------------

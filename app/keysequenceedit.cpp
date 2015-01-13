@@ -42,13 +42,23 @@
 ****************************************************************************/
 
 #include "keysequenceedit.h"
+
+#if QT_VERSION >= 0x050000
+
+KeySequenceEdit::KeySequenceEdit(QWidget *parent):
+    QKeySequenceEdit(parent)
+{
+
+}
+
+#else
+
+#include "keysequenceedit.h"
 #include "keysequenceedit_p.h"
 
 #include "qboxlayout.h"
 #include "qlineedit.h"
 
-
-#ifndef QT_NO_KEYSEQUENCEEDIT
 
 void KeySequenceEditPrivate::init()
 {
@@ -321,5 +331,5 @@ void KeySequenceEdit::timerEvent(QTimerEvent *e)
     QWidget::timerEvent(e);
 }
 
-#endif // QT_NO_KEYSEQUENCEEDIT
+#endif // QT_VERSION >= 0x050000
 
