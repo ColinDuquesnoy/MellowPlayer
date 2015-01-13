@@ -2,10 +2,12 @@
 #define URLDOWNLOADER
 
 #include <QtCore>
+#include "mellowplayer/exports.h"
+
 class QNetworkAccessManager;
 class QNetworkReply;
 
-class UrlDownloader: public QObject
+class DLL_EXPORT UrlDownloader: public QObject
 {
     Q_OBJECT
 public:

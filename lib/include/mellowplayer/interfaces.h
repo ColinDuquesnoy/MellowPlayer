@@ -22,6 +22,7 @@
 
 #include <QtCore>
 #include <QtPlugin>
+#include "mellowplayer/exports.h"
 #include "mellowplayer/song.h"
 
 class QWebView;
@@ -31,7 +32,7 @@ class QWidget;
 /*!
  * \brief Interface for adding cloud music service integration.
  */
-class ICloudMusicService
+class DLL_EXPORT ICloudMusicService
 {
 public:
 
@@ -100,7 +101,7 @@ Q_DECLARE_INTERFACE(ICloudMusicService, ICloudMusicService_iid)
  * Each plugin may have a settings widgets that will automatically appear in the
  * application settings.
  */
-class IExtension
+class DLL_EXPORT IExtension
 {
 public:
     /*!

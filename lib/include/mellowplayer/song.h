@@ -20,6 +20,7 @@
 #define SONG
 
 #include <QString>
+#include "mellowplayer/exports.h"
 
 /*!
  * \brief The PlaybackStatus enum enumerates the possible playback status of
@@ -51,13 +52,13 @@ enum PlaybackStatus
  * \param status Status to convert
  * \return String representation of the playback status
  */
-QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
+DLL_EXPORT QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
 
 
 /*!
  * \brief The Song struct contains the song current song information
  */
-struct SongInfo
+struct DLL_EXPORT SongInfo
 {
     QString         songId;          /*!< Id of the song */
     QString         songName;        /*!< Name of the song */

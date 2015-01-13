@@ -32,6 +32,14 @@ macx{
     # on OSX, plugins are bundled with the .app
     DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
 }
+win32:CONFIG(debug){
+    LIBS            += -L../../lib/debug -lmellowplayer1
+    DESTDIR       = ../../app/plugins
+}
+win32:CONFIG(release){
+    LIBS            += -L../../lib/release -lmellowplayer1
+    DESTDIR       = ../../app/plugins
+}
 else {
     # find and link with libmellowplayer
     LIBS            += -L../../lib -lmellowplayer

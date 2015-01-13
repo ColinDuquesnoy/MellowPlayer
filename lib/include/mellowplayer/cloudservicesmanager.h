@@ -24,22 +24,23 @@
 #include <QMap>
 #include <QObject>
 #include "mellowplayer/pluginmetadata.h"
+#include "mellowplayer/exports.h"
 
 class ICloudMusicService;
 
 /*!
  * \brief The Plugin class regroups the plugin interface with it's metada.
  */
-class CloudServicePlugin: public QObject
+class DLL_EXPORT CloudServicePlugin: public QObject
 {
     Q_OBJECT
 public:
-    explicit CloudServicePlugin(ICloudMusicService* interface,
+    explicit CloudServicePlugin(ICloudMusicService* iService,
                                 const PluginMetaData& meta,
                                 QObject* parent=NULL);
 
     PluginMetaData metaData;  /*!< Plugins meta data */
-    ICloudMusicService* interface;  /*!< Pointer to the plugin interface */
+    ICloudMusicService* iService;  /*!< Pointer to the plugin interface */
 };
 
 typedef QList<CloudServicePlugin*> CloudPluginList;
@@ -49,7 +50,7 @@ typedef QList<CloudServicePlugin*> CloudPluginList;
  * service plugins and let you easily start or change the current service.
  *
  */
-class CloudServicesManager : public QObject
+class DLL_EXPORT CloudServicesManager : public QObject
 {
     Q_OBJECT
 public:

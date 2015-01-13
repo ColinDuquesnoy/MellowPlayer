@@ -21,8 +21,7 @@
 
 
 //---------------------------------------------------------
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     MellowPlayerApp a(argc, argv);
     return a.exec();
 }

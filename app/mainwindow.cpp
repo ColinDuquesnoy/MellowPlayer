@@ -15,12 +15,12 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 
+#include <mellowplayer.h>
 #include "cookiejar.h"
 #include "dlgselectservice.h"
 #include "dlgpreferences.h"
 #include "icons.h"
 #include "mainwindow.h"
-#include "mellowplayer.h"
 #include "ui_mainwindow.h"
 #include "shortcuts.h"
 

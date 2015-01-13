@@ -31,7 +31,7 @@ CloudServicePlugin::CloudServicePlugin(ICloudMusicService *interface,
                                        QObject* parent):
     QObject(parent),
     metaData(meta),
-    interface(interface)
+    iService(interface)
 {
 
 }
@@ -92,9 +92,9 @@ CloudServicePlugin* CloudServicesManager::plugin(const QString &serviceName) con
 bool CloudServicesManager::startService(const QString& serviceName) {
     bool retVal = false;
     CloudServicePlugin* p = this->plugin(serviceName);
-    if(p && p->interface != this->_currentService)
+    if(p && p->iService != this->_currentService)
     {
-        this->_currentService = p->interface;
+        this->_currentService = p->iService;
         Services::webView()->load(this->_currentService->url());
         retVal = true;
     }

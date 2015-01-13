@@ -27,6 +27,13 @@ macx{
     QMAKE_LFLAGS    += -F../lib
     LIBS += -framework mellowplayer
 }
+win32:CONFIG(debug){
+    LIBS            += -L../lib/debug -lmellowplayer1
+    CONFIG += console
+}
+win32:CONFIG(release){
+    LIBS            += -L../lib/release -lmellowplayer1
+}
 else{
     LIBS            += -L../lib -lmellowplayer
 }

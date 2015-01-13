@@ -21,6 +21,7 @@
 #define EXTENSIONSMANAGER_H
 
 #include <QObject>
+#include "mellowplayer/exports.h"
 #include "mellowplayer/pluginmetadata.h"
 
 class IExtension;
@@ -30,15 +31,15 @@ class IExtension;
  * \brief The ExtensionPlugin class regroups the plugin interface with it's
  *        metada.
  */
-class ExtensionPlugin : public QObject
+class DLL_EXPORT ExtensionPlugin : public QObject
 {
     Q_OBJECT
 public:
-    explicit ExtensionPlugin(IExtension* interface, const PluginMetaData& meta,
+    explicit ExtensionPlugin(IExtension* iExtension, const PluginMetaData& meta,
                              QObject* parent=NULL);
 
     PluginMetaData metaData; /*!< Plugin meta data */
-    IExtension* interface;   /*!< Plugin interface */
+    IExtension* iExtension;   /*!< Plugin interface */
 };
 typedef QList<ExtensionPlugin*> ExtensionPluginList;
 
@@ -47,7 +48,7 @@ typedef QList<ExtensionPlugin*> ExtensionPluginList;
  * \brief The ExtensionsManager class manages the collection of extension
  * plugins.
  */
-class ExtensionsManager : public QObject
+class DLL_EXPORT ExtensionsManager : public QObject
 {
     Q_OBJECT
 public:

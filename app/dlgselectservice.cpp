@@ -42,7 +42,7 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
                           "<p><strong>Maintainer: </strong><a href=%3>%4</a></p>"
                           "<p><strong>Version: </strong>%5</p>")
               .arg(plugin->metaData.name)
-              .arg(plugin->interface->htmlDescription())
+              .arg(plugin->iService->htmlDescription())
               .arg(plugin->metaData.website)
               .arg(plugin->metaData.author)
               .arg(plugin->metaData.version));

@@ -21,10 +21,11 @@ TARGET          = mellowplayer
 VERSION         = 1.0.0
 QT             += widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
-QMAKE_CXXFLAGS += -std=c++11
+DEFINES        += MELLOW_PLAYER_API
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/cloudservicesmanager.h \
+                  include/mellowplayer/exports.h \
                   include/mellowplayer/extensionsmanager.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \

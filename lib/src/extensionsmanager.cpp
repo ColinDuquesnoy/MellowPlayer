@@ -30,7 +30,7 @@ ExtensionPlugin::ExtensionPlugin(IExtension *interface,
                                  QObject* parent):
     QObject(parent),
     metaData(meta),
-    interface(interface)
+    iExtension(interface)
 {
 }
 
@@ -54,7 +54,7 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
         qDebug() << "  - name: " << plugin->metaData.name;
         qDebug() << "  - version: " << plugin->metaData.version;
         if(QSettings().value(plugin->metaData.name, true).toBool())
-            plugin->interface->setup();
+            plugin->iExtension->setup();
     }
     else
     {
@@ -67,7 +67,7 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension,
 void ExtensionsManager::teardown()
 {
     foreach(ExtensionPlugin* p, this->_plugins)
-        p->interface->teardown();
+        p->iExtension->teardown();
 }
 
 //---------------------------------------------------------

@@ -4,8 +4,10 @@
 #include <QIcon>
 #include <QPluginLoader>
 #include <QString>
+#include "mellowplayer/exports.h"
 
-struct PluginMetaData
+
+struct DLL_EXPORT PluginMetaData
 {
     // Plugin metadata.
     QString name;   /*!< Name of the plugin */
@@ -15,7 +17,7 @@ struct PluginMetaData
     QIcon   icon;   /*!< Plugin icon */
 };
 
-PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
+DLL_EXPORT PluginMetaData extractMetaData(QPluginLoader* pluginLoader);
 
 #endif // PLUGINMETADATA
 

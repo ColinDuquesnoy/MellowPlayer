@@ -42,7 +42,7 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     ui->comboBoxPlugins->clear();
     foreach(ExtensionPlugin* plugin, Services::extensions()->plugins())
     {
-        QWidget* settings = plugin->interface->settingsWidget();
+        QWidget* settings = plugin->iExtension->settingsWidget();
         int index = 0;
         if(settings)
             index = ui->stackedWidgetPluginSettings->addWidget(settings);
@@ -125,7 +125,7 @@ void DlgPreferences::onCurrentPluginChanged(const QString& pluginName)
     if(plugin)
     {
         ui->labelPluginAuthor->setText(plugin->metaData.author);
-        ui->labelPluginDescription->setText(plugin->interface->description());
+        ui->labelPluginDescription->setText(plugin->iExtension->description());
         ui->labelPluginVersion->setText(plugin->metaData.version);
         ui->labelPluginWebSite->setText(plugin->metaData.website);
 
@@ -208,7 +208,7 @@ void DlgPreferences::resetPlugins()
             QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
             ExtensionPlugin* plugin = Services::extensions()->plugin(
                 ui->comboBoxPlugins->itemText(i));
-            plugin->interface->resetSettings(w);
+            plugin->iExtension->resetSettings(w);
         }
     }
 }
@@ -254,7 +254,7 @@ void DlgPreferences::restorePlugins()
             QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
             ExtensionPlugin* plugin = Services::extensions()->plugin(
                         ui->comboBoxPlugins->itemText(i));
-            plugin->interface->restoreDefaultSettings(w);
+            plugin->iExtension->restoreDefaultSettings(w);
         }
     }
 
@@ -304,7 +304,7 @@ void DlgPreferences::applyPlugins()
             QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
             ExtensionPlugin* plugin = Services::extensions()->plugin(
                         ui->comboBoxPlugins->itemText(i));
-            plugin->interface->applySettings(w);
+            plugin->iExtension->applySettings(w);
         }
     }
 }

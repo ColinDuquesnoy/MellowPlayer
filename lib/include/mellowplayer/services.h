@@ -20,6 +20,8 @@
 #ifndef SERVICES_H
 #define SERVICES_H
 
+#include "mellowplayer/exports.h"
+
 class CloudServicesManager;
 class ExtensionsManager;
 class PlayerInterface;
@@ -36,7 +38,7 @@ class QWebView;
  * lib). That way plugins can access the main window, the player interface,...
  *
  */
-class Services
+class DLL_EXPORT Services
 {
 public:
     static void _setMainWindow(QMainWindow* _mainWindow);

@@ -25,6 +25,7 @@
 #include <mellowplayer/extensionsmanager.h>
 #include <mellowplayer/player.h>
 #include <mellowplayer/interfaces.h>
+#include "mellowplayer/pluginmetadata.h"
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>
 #include <mellowplayer/urldownloader.h>
