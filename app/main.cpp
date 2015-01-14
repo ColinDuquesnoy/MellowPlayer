@@ -22,11 +22,11 @@
 
 //---------------------------------------------------------
 // Add plugins here
-Q_IMPORT_PLUGIN(GroovesharkPlugin)
-Q_IMPORT_PLUGIN(HotkeysPlugin)
+Q_IMPORT_PLUGIN(mpp_grooveshark)
+Q_IMPORT_PLUGIN(mpp_hotkeys)
 
 #ifdef Q_OS_LINUX
-Q_IMPORT_PLUGIN(Mpris2Plugin)
+Q_IMPORT_PLUGIN(mpp_mpris2)
 #endif
 
 

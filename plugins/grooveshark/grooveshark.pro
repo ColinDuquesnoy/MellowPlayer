@@ -22,16 +22,5 @@ CONFIG       += plugin static
 HEADERS       = grooveshark.h
 SOURCES       = grooveshark.cpp
 RESOURCES    += grooveshark.qrc
-DESTDIR       = ../../app/plugins
+DESTDIR       = ../../app
 INCLUDEPATH  += ../../lib/include
-win32:CONFIG(debug){
-    LIBS            += -L../../lib/debug -lmellowplayer1
-    DESTDIR       = ../../app/plugins
-}
-win32:CONFIG(release){
-    LIBS            += -L../../lib/release -lmellowplayer1
-}
-else{
-    # find and link with libmellowplayer
-    LIBS            += -L../../lib -lmellowplayer
-}

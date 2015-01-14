@@ -19,27 +19,15 @@
 TEMPLATE      = lib
 TARGET        = mpp_hotkeys
 CONFIG       += plugin static
-QT           += gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = hotkeys.h
 SOURCES       = hotkeys.cpp
 INCLUDEPATH  += ../../lib/include
-DESTDIR       = ../../app/plugins
-win32:CONFIG(debug){
-    LIBS            += -L../../lib/debug -lmellowplayer1
-}
-win32:CONFIG(release){
-    LIBS            += -L../../lib/release -lmellowplayer1
-}
-else {
-    LIBS            += -L../../lib -lmellowplayer
-}
+DESTDIR       = ../../app
 
 # Optional KDE support config
 kde_support {
     message("HotkeysPlugin: kde support enabled (using KGlobalAccell)")
     DEFINES += "__kde_support__=1"
-    QT += KGlobalAccel
 }
 else{
     # Build qxtglobalshortcut lib as part of our extension
@@ -58,11 +46,9 @@ else{
     }
     macx {
         SOURCES += mac/qxtglobalshortcut_mac.cpp
-        LIBS += -framework Carbon
     }
 
     win32 {
         SOURCES += win/qxtglobalshortcut_win.cpp
-        LIBS += -luser32
     }
 }

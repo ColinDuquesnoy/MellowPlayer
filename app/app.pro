@@ -19,10 +19,9 @@
 # Project configuration
 TARGET              = MellowPlayer
 TEMPLATE            = app
-QT                 += core gui network webkit dbus
+QT                 += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
-# plugins are linked statically, add new plugins here and in main.cpp
 LIBS += -Lplugins \
         -lmpp_grooveshark \
         -lmpp_hotkeys \
@@ -34,10 +33,10 @@ win32{
     LIBS += -luser32
 }
 win32:CONFIG(debug){
-    LIBS            += -L../lib/debug -lmellowplayer1
+    LIBS            += -L../lib/debug -lmellowplayer
 }
 win32:CONFIG(release){
-    LIBS            += -L../lib/release -lmellowplayer1
+    LIBS            += -L../lib/release -lmellowplayer
 }
 unix{
     LIBS            += -L../lib -lmellowplayer\
@@ -46,6 +45,7 @@ macx {
    LIBS             += -framework Carbon
 }
 unix:!macx {
+    QT              += dbus
     LIBS            += -lmpp_mpris2
 }
 
@@ -99,6 +99,9 @@ unix:!macx {
         PREFIX = /usr/local
     }
     target.path = $$PREFIX/bin
+}
+win32 {
+    target.path = dist
 }
 
 INSTALLS += target

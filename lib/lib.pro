@@ -26,7 +26,6 @@ DEFINES        += MELLOW_PLAYER_API
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/cloudservicesmanager.h \
-                  include/mellowplayer/exports.h \
                   include/mellowplayer/extensionsmanager.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \

@@ -136,5 +136,5 @@ void GroovesharkPlugin::setVolume(float volume)
 }
 
 #if QT_VERSION < 0x050000
-    Q_EXPORT_PLUGIN2( grooveshark, GroovesharkPlugin )
+Q_EXPORT_PLUGIN2( mpp_grooveshark, GroovesharkPlugin )
 #endif
