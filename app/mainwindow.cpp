@@ -15,6 +15,8 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 
+#include <QDesktopServices>
+#include <QMessageBox>
 #include <mellowplayer.h>
 #include "cookiejar.h"
 #include "dlgselectservice.h"
@@ -228,8 +230,8 @@ void MainWindow::setupTrayIcon()
     this->trayIcon->setContextMenu(mnu);
 
     this->trayIcon->show();
-    this->connect(this->trayIcon, &QSystemTrayIcon::activated,
-                  this, &MainWindow::onTrayIconActivated);
+    this->connect(this->trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                  this, SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
 }
 
 //---------------------------------------------------------
@@ -237,8 +239,8 @@ void MainWindow::setupUpdateTimer()
 {
     this->updateTimer = new QTimer(this);
     this->updateTimer->setInterval(1000);
-    this->connect(this->updateTimer, &QTimer::timeout,
-                  this, &MainWindow::updatePlayer);
+    this->connect(this->updateTimer, SIGNAL(timeout()),
+                  this, SLOT(updatePlayer()));
     this->updateTimer->start();
 }
 
@@ -262,34 +264,34 @@ void MainWindow::setupWebView()
 //---------------------------------------------------------
 void MainWindow::connectSlots()
 {
-    this->connect(this->ui->webView, &QWebView::linkClicked,
-                  this, &MainWindow::onLinkClicked);
-    this->connect(this->ui->actionPlayPause, &QAction::triggered,
-                  this, &MainWindow::onPlayPauseTriggered);
-    this->connect(this->ui->actionStop, &QAction::triggered,
-                  this, &MainWindow::onStopTriggered);
-    this->connect(this->ui->actionNext, &QAction::triggered,
-                  this, &MainWindow::onNextTriggered);
-    this->connect(this->ui->actionPrevious, &QAction::triggered,
-                  this, &MainWindow::onPreviousTriggered);
+    this->connect(this->ui->webView, SIGNAL(linkClicked(QUrl)),
+                  this, SLOT(onLinkClicked(QUrl)));
+    this->connect(this->ui->actionPlayPause, SIGNAL(triggered()),
+                  this, SLOT(onPlayPauseTriggered()));
+    this->connect(this->ui->actionStop, SIGNAL(triggered()),
+                  this, SLOT(onStopTriggered()));
+    this->connect(this->ui->actionNext, SIGNAL(triggered()),
+                  this, SLOT(onNextTriggered()));
+    this->connect(this->ui->actionPrevious, SIGNAL(triggered()),
+                  this, SLOT(onPreviousTriggered()));
 
-    this->connect(this->ui->actionRestoreWindow, &QAction::triggered,
-                  this, &MainWindow::show);
+    this->connect(this->ui->actionRestoreWindow, SIGNAL(triggered()),
+                  this, SLOT(show()));
 
-    this->connect(this->ui->actionSelect_service, &QAction::triggered,
-                  this, &MainWindow::onSelectServiceTriggered);
-    this->connect(this->ui->pushButtonSelect, &QPushButton::clicked,
-                  this, &MainWindow::onSelectServiceTriggered);
+    this->connect(this->ui->actionSelect_service, SIGNAL(triggered()),
+                  this, SLOT(onSelectServiceTriggered()));
+    this->connect(this->ui->pushButtonSelect, SIGNAL(clicked()),
+                  this, SLOT(onSelectServiceTriggered()));
 
-    this->connect(this->ui->actionPreferences, &QAction::triggered,
-                  this, &MainWindow::onPreferencesTriggered);
-    this->connect(this->ui->pushButtonPreferences, &QPushButton::clicked,
-                  this, &MainWindow::onPreferencesTriggered);
+    this->connect(this->ui->actionPreferences, SIGNAL(triggered()),
+                  this, SLOT(onPreferencesTriggered()));
+    this->connect(this->ui->pushButtonPreferences, SIGNAL(clicked()),
+                  this, SLOT(onPreferencesTriggered()));
 
-    this->connect(this->ui->actionQuit, &QAction::triggered,
-                  qApp, &QApplication::quit);
-    this->connect(this->ui->pushButtonQuit, &QPushButton::clicked,
-                  this, &QApplication::quit);
+    this->connect(this->ui->actionQuit, SIGNAL(triggered()),
+                  qApp, SLOT(quit()));
+    this->connect(this->ui->pushButtonQuit, SIGNAL(clicked()),
+                  qApp, SLOT(quit()));
 }
 
 //---------------------------------------------------------

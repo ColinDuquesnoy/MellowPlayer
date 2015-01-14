@@ -37,8 +37,11 @@ class Mpris2Plugin :
         public IExtension
 {
     Q_OBJECT
+
+#if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID IExtension_iid
                       FILE "mpris2.json")
+#endif
     Q_INTERFACES(IExtension)
 
 public:
@@ -59,7 +62,13 @@ public:
      * \brief Returns the plugin description.
      * \return
      */
-    QString description() const;
+    const PluginMetaData& metaData() const;
+
+    QWidget *settingsWidget() const;
+    void resetSettings(QWidget* widget) const;
+    void restoreDefaultSettings(QWidget* widget) const;
+    void applySettings(QWidget* widget) const;
+
 private:
     Mpris2Root* root;       /*!< Mpris2 root interface */
     Mpris2Player* player;   /*!< Mpris2 player interface */

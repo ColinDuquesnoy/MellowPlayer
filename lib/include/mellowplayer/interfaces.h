@@ -23,6 +23,7 @@
 #include <QtCore>
 #include <QtPlugin>
 #include "mellowplayer/exports.h"
+#include "mellowplayer/pluginmetadata.h"
 #include "mellowplayer/song.h"
 
 class QWebView;
@@ -35,14 +36,10 @@ class QWidget;
 class DLL_EXPORT ICloudMusicService
 {
 public:
-
     /*!
-     * \brief Returns the html description of the service.
-     *
-     * This description appears in the select service dialog.
-     * \return
+     * \brief Returns the plugin's meta data.
      */
-    virtual QString htmlDescription() const = 0;
+    virtual const PluginMetaData& metaData() const = 0;
 
     //! Returns the cloud music service URL
     virtual QUrl url() const = 0;
@@ -105,9 +102,9 @@ class DLL_EXPORT IExtension
 {
 public:
     /*!
-     * \brief Returns the plugin description.
+     * \brief Returns the plugin's meta data.
      */
-    virtual QString description() const = 0;
+    virtual const PluginMetaData& metaData() const = 0;
 
     /*!
      * \brief Initalizes the extension.
@@ -137,21 +134,21 @@ public:
      * any settings. If you return a non-null widget, you will also need to
      * implement: resetSettings, restoreDefaultSettings and applySettings.
      */
-    virtual QWidget* settingsWidget() const { return NULL; }
+    virtual QWidget* settingsWidget() const = 0;
 
     /*!
      * \brief Reset the plugin settings
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void resetSettings(QWidget* widget) { qDebug() << widget; }
+    virtual void resetSettings(QWidget* widget) const = 0;
 
     /*!
      * \brief Restore the plugin settings to their default values.
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void restoreDefaultSettings(QWidget* widget) { qDebug() << widget; }
+    virtual void restoreDefaultSettings(QWidget* widget) const = 0;
 
     /*!
      * \brief Apply plugin settings.
@@ -159,7 +156,7 @@ public:
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void applySettings(QWidget* widget) { qDebug() << widget; }
+    virtual void applySettings(QWidget* widget) const = 0;
 };
 
 #define IExtension_iid "org.MellowPlayer.IExtension"

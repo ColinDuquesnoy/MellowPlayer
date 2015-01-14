@@ -180,8 +180,9 @@ void PlayerInterface::downloadSongArt(const QString& url)
     QString dest = QDir::temp().path() +
                    QString(QDir::separator()) +
                    QFileInfo(url).fileName();
-    this->connect(downloader, &UrlDownloader::finished,
-                  this, &PlayerInterface::onArtReady);
+    connect(downloader, SIGNAL(finished(const QString&)),
+            this, SLOT(onArtReady(const QString&)));
+
     downloader->download(url, dest);
 }
 

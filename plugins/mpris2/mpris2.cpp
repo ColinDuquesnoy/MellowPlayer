@@ -16,7 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include <QtWidgets>
+#include <QWidget>
 #include <mellowplayer.h>
 #include "mpris2.h"
 #include "mpris2root.h"
@@ -61,7 +61,42 @@ void Mpris2Plugin::teardown()
 }
 
 //---------------------------------------------------------
-QString Mpris2Plugin::description() const
+const PluginMetaData &Mpris2Plugin::metaData() const
 {
-    return tr("Provides MPRIS2 support on GNU/Linux");
+    static PluginMetaData meta;
+    meta.name = "MPRIS2";
+    meta.author = "Colin Duquesnoy";
+    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.version = "1.0";
+    meta.description =tr("Exposes an MPRIS2 interface to DBUS.");
+    return meta;
 }
+
+//---------------------------------------------------------
+QWidget *Mpris2Plugin::settingsWidget() const
+{
+    return NULL;
+}
+
+//---------------------------------------------------------
+void Mpris2Plugin::resetSettings(QWidget *widget) const
+{
+
+}
+
+//---------------------------------------------------------
+void Mpris2Plugin::restoreDefaultSettings(QWidget *widget) const
+{
+
+}
+
+//---------------------------------------------------------
+void Mpris2Plugin::applySettings(QWidget *widget) const
+{
+
+}
+
+
+#if QT_VERSION < 0x050000
+    Q_EXPORT_PLUGIN2( mpris2, Mpris2Plugin )
+#endif

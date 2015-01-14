@@ -19,7 +19,7 @@
 
 #include <QAction>
 #include <QMainWindow>
-#include <QtWebKitWidgets/QWebView>
+#include <QWebView>
 #include "mellowplayer/cloudservicesmanager.h"
 #include "mellowplayer/player.h"
 #include "mellowplayer/services.h"

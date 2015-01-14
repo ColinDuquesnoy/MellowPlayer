@@ -21,13 +21,14 @@
 #define MAINWINDOW_H
 
 #include <QtCore>
-#include <QtGui>
-#include <QtWidgets>
+#include <QWidget>
+#include <QSystemTrayIcon>
+#include <QMainWindow>
+#include <QCloseEvent>
 
 namespace Ui {
 class MainWindow;
 }
-
 
 //! Implements the main window of the application.
 class MainWindow : public QMainWindow
@@ -52,6 +53,8 @@ private slots:
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void onSelectServiceTriggered();
     void onPreferencesTriggered();
+    void updatePlayer();
+
 private:
     void closeEvent(QCloseEvent* event);
     void setupIcons();
@@ -60,7 +63,7 @@ private:
     void setupUpdateTimer();
     void setupWebView();
     void connectSlots();
-    void updatePlayer();
+
     void restoreGeometryAndState();
 
     Ui::MainWindow *ui;

@@ -1,8 +1,10 @@
 #ifndef DLGPREFERENCES_H
 #define DLGPREFERENCES_H
 
-#include <QtWidgets>
-#include <QtGui>
+#include <QMainWindow>
+#include <QDialog>
+#include <QIcon>
+
 
 namespace Ui {
     class DialogPreferences;
@@ -13,6 +15,7 @@ class MainWindow;
 
 class DlgPreferences: public QDialog
 {
+    Q_OBJECT
 public:
     explicit DlgPreferences(MainWindow *parent=NULL);
     ~DlgPreferences();
@@ -27,7 +30,7 @@ private slots:
     void restoreDefaults();
     void updateTrayIcon(const QString& iconPath);
     void chooseTrayIconFile();
-    void onCurrentPluginChanged(const QString &pluginName);
+    void onCurrentPluginChanged(int currentIndex);
     void onPluginStateChanged(int state);
 
 private:

@@ -82,7 +82,7 @@ void loadPlugin(QPluginLoader* loader)
                 ICloudMusicService*>(plugin);
         if(iService)
         {
-            Services::cloudServices()->_loadPlugin(iService, loader);
+            Services::cloudServices()->_loadPlugin(iService);
             return;
         }
 
@@ -90,7 +90,7 @@ void loadPlugin(QPluginLoader* loader)
         IExtension* iExtension = qobject_cast<IExtension*>(plugin);
         if(iExtension)
         {
-            Services::extensions()->loadPlugin(iExtension, loader);
+            Services::extensions()->loadPlugin(iExtension);
             return;
         }
     }

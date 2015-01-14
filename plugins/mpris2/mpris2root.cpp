@@ -1,4 +1,4 @@
-#include <QtWidgets>
+#include <QMainWindow>
 #include <mellowplayer.h>
 #include "mpris2root.h"
 

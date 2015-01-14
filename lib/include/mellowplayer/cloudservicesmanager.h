@@ -28,22 +28,7 @@
 
 class ICloudMusicService;
 
-/*!
- * \brief The Plugin class regroups the plugin interface with it's metada.
- */
-class DLL_EXPORT CloudServicePlugin: public QObject
-{
-    Q_OBJECT
-public:
-    explicit CloudServicePlugin(ICloudMusicService* iService,
-                                const PluginMetaData& meta,
-                                QObject* parent=NULL);
-
-    PluginMetaData metaData;  /*!< Plugins meta data */
-    ICloudMusicService* iService;  /*!< Pointer to the plugin interface */
-};
-
-typedef QList<CloudServicePlugin*> CloudPluginList;
+typedef QList<ICloudMusicService*> CloudPluginList;
 
 /*!
  * \brief The CloudServicesManager class manages the collection of cloud music
@@ -67,7 +52,7 @@ public:
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void _loadPlugin(ICloudMusicService* iService, QPluginLoader* pluginLoader);
+    void _loadPlugin(ICloudMusicService* iService);
 
     /*!
      * @brief Starts the current service.
@@ -101,7 +86,7 @@ public:
      *
      * \param Name of the plugin to retrieve.
      */
-    CloudServicePlugin* plugin(const QString& serviceName) const;
+    ICloudMusicService* plugin(const QString& serviceName) const;
 
 signals:
 

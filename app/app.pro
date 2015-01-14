@@ -29,12 +29,11 @@ macx{
 }
 win32:CONFIG(debug){
     LIBS            += -L../lib/debug -lmellowplayer1
-    CONFIG += console
 }
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
 }
-else{
+unix:!macx{
     LIBS            += -L../lib -lmellowplayer
 }
 SOURCES         += main.cpp\
@@ -45,7 +44,8 @@ SOURCES         += main.cpp\
                    icons.cpp \
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
-    dlgpreferences.cpp
+    dlgpreferences.cpp \
+    keysequenceedit.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
@@ -54,7 +54,9 @@ HEADERS         += mainwindow.h \
                    pluginsmanager.h \
                    dlgselectservice.h \
                    dlgpreferences.h \
-    shortcuts.h
+    shortcuts.h \
+    keysequenceedit_p.h \
+    keysequenceedit.h
 RESOURCES       = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui \
@@ -84,8 +86,5 @@ unix:!macx {
     }
     target.path = $$PREFIX/bin
 }
-win32
-{
-    # todo
-}
+
 INSTALLS += target

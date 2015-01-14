@@ -16,13 +16,26 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include <QtWidgets>
+#include <QAction>
+#include <qglobal.h>
 #include "hotkeys.h"
 #ifdef __kde_support__
     #include "KGlobalAccel"
 #else
     #include "qxtglobalshortcut.h"
 #endif
+
+//---------------------------------------------------------
+const PluginMetaData &HotkeysPlugin::metaData() const
+{
+    static PluginMetaData meta;
+    meta.name = "Hotkeys";
+    meta.author = "Colin Duquesnoy";
+    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.version = "1.0";
+    meta.description =tr("Adds support for global shortcuts.");
+    return meta;
+}
 
 //---------------------------------------------------------
 void HotkeysPlugin::setup()
@@ -50,8 +63,7 @@ void HotkeysPlugin::setup()
         if(shortcut->setShortcut(action->shortcut()))
             qDebug() << "Global shortcut registered: "
                      << shortcut->objectName() << "\t: " << action->shortcut();
-        connect(shortcut, &QxtGlobalShortcut::activated,
-                action, &QAction::trigger);
+        connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
         this->shortcuts.append(shortcut);
     }
 #endif
@@ -69,7 +81,30 @@ QString HotkeysPlugin::description() const
     return tr("Provides support hotkeys");
 }
 
+//---------------------------------------------------------
 QWidget *HotkeysPlugin::settingsWidget() const
 {
     return NULL;
 }
+
+//---------------------------------------------------------
+void HotkeysPlugin::resetSettings(QWidget *widget) const
+{
+    Q_ASSERT(widget == NULL);
+}
+
+//---------------------------------------------------------
+void HotkeysPlugin::restoreDefaultSettings(QWidget *widget) const
+{
+    Q_ASSERT(widget == NULL);
+}
+
+//---------------------------------------------------------
+void HotkeysPlugin::applySettings(QWidget *widget) const
+{
+    Q_ASSERT(widget == NULL);
+}
+
+#if QT_VERSION < 0x050000
+    Q_EXPORT_PLUGIN2( hotkeys, HotkeysPlugin )
+#endif

@@ -8,15 +8,21 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     ui(new Ui::DialogSelectServices())
 {
     ui->setupUi(this);
-    connect(ui->listWidget, &QListWidget::currentItemChanged,
-            this, &DlgSelectServices::onCurrentItemChanged);
+
+#if QT_VERSION >= 0x050000
+    connect(ui->listWidget, SIGNAL(currentItemChanged(QListWidgetItem *)),
+            this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
+#else
+    connect(ui->listWidget, SIGNAL(itemChanged(QListWidgetItem *)),
+            this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
+#endif
 
     int row = 0;
-    foreach(CloudServicePlugin* plugin,
+    foreach(ICloudMusicService* plugin,
             Services::cloudServices()->plugins()){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
-        item->setText(plugin->metaData.name);
-        item->setIcon(plugin->metaData.icon);
+        item->setText(plugin->metaData().name);
+        item->setIcon(plugin->metaData().icon);
         ui->listWidget->addItem(item);
     }
     ui->listWidget->setCurrentRow(row);
@@ -31,7 +37,7 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
 {
     if(!item)
         return;
-    CloudServicePlugin* plugin = Services::cloudServices()->plugin(item->text());
+    ICloudMusicService* plugin = Services::cloudServices()->plugin(item->text());
     if(plugin)
     {
         ui->textBrowser->setHtml(
@@ -41,11 +47,11 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
                           "<h2>Service information</h2>"
                           "<p><strong>Maintainer: </strong><a href=%3>%4</a></p>"
                           "<p><strong>Version: </strong>%5</p>")
-              .arg(plugin->metaData.name)
-              .arg(plugin->iService->htmlDescription())
-              .arg(plugin->metaData.website)
-              .arg(plugin->metaData.author)
-              .arg(plugin->metaData.version));
+              .arg(plugin->metaData().name)
+              .arg(plugin->metaData().description)
+              .arg(plugin->metaData().website)
+              .arg(plugin->metaData().author)
+              .arg(plugin->metaData().version));
     }
 }
 

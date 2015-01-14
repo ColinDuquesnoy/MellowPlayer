@@ -1,7 +1,8 @@
 #ifndef DLGSELECTSERVICE_H
 #define DLGSELECTSERVICE_H
 
-#include <QtWidgets>
+#include <QDialog>
+#include <QListWidgetItem>
 
 namespace Ui {
     class DialogSelectServices;

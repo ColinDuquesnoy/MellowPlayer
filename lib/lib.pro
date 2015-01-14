@@ -40,8 +40,7 @@ SOURCES         = \
                   src/song.cpp \
                   src/player.cpp \
                   src/urldownloader.cpp \
-    src/interfaces.cpp \
-    src/pluginmetadata.cpp
+    src/interfaces.cpp
 
 macx{
     CONFIG += lib_bundle
@@ -65,10 +64,6 @@ unix:!macx {
     INSTALLS += LIB_HEADERS
 
     target.path = $$PREFIX/lib
-}
-win32
-{
-    # todo
 }
 INSTALLS += target
 

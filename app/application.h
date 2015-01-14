@@ -19,7 +19,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <QtWidgets>
+#include <QApplication>
+#include <QTranslator>
 #include "singleinstancecontroller.h"
 
 class MainWindow;
