@@ -16,31 +16,30 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-
 # Project configuration
-TARGET           = MellowPlayer
-TEMPLATE         = app
-QT              += core gui network webkit
+TARGET              = MellowPlayer
+TEMPLATE            = app
+QT                 += core gui network webkit dbus
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
-INCLUDEPATH     += ../lib/include
 
-# link plugins statically
-LIBS += -Lplugins -lmpp_grooveshark \
-        -lmpp_hotkeys
+# plugins are linked statically, add new plugins here and in main.cpp
+LIBS += -Lplugins \
+        -lmpp_grooveshark \
+        -lmpp_hotkeys \
+        -lmpp_mpris2
 
-macx{
-    QMAKE_LFLAGS    += -F../lib
-    LIBS += -framework mellowplayer
-}
+# link with libmellowplayer
+INCLUDEPATH        += ../lib/include
 win32:CONFIG(debug){
     LIBS            += -L../lib/debug -lmellowplayer1
 }
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
 }
-unix:!macx{
-    LIBS            += -L../lib -lmellowplayer -lmpp_mpris2
+else{
+    LIBS            += -L../lib -lmellowplayer
 }
+
 SOURCES         += main.cpp\
                    mainwindow.cpp \
                    application.cpp \
@@ -49,8 +48,8 @@ SOURCES         += main.cpp\
                    icons.cpp \
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
-    dlgpreferences.cpp \
-    keysequenceedit.cpp
+                   dlgpreferences.cpp \
+                   keysequenceedit.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
@@ -59,10 +58,10 @@ HEADERS         += mainwindow.h \
                    pluginsmanager.h \
                    dlgselectservice.h \
                    dlgpreferences.h \
-    shortcuts.h \
-    keysequenceedit_p.h \
-    keysequenceedit.h
-RESOURCES       = mellowplayer.qrc
+                   shortcuts.h \
+                   keysequenceedit_p.h \
+                   keysequenceedit.h
+RESOURCES        = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui \
                    dlg_preferences.ui
@@ -74,13 +73,13 @@ DEFINES         += VERSION_MINOR=0
 DEFINES         += VERSION_PATCH=0
 DEFINES         += VERSION_STATUS=\\\"-alpha1\\\"
 
-# Optional KDE support config
+
 kde_support {
-  message("Building for KDE")
-  DEFINES += "__kde_support__=1"
+  # Optional KDE support will use KGlobalAccel
   QT += KGlobalAccel
 }
 
+# install
 macx{
     CONFIG += app_bundle
     target.path = $$PREFIX/Applications
@@ -93,3 +92,4 @@ unix:!macx {
 }
 
 INSTALLS += target
+

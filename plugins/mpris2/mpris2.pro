@@ -28,18 +28,6 @@ HEADERS       = mpris2.h \
 SOURCES       = mpris2.cpp \
                 mpris2root.cpp \
                 mpris2player.cpp
-
-# find and link with libmellowplayer
 INCLUDEPATH  += ../../lib/include
-LIBS            += -L../../lib -lmellowplayer
-
-# move the plugins next to the app so that we load them when running the
-# app with qt creator (for developpers)
+LIBS         += -L../../lib -lmellowplayer
 DESTDIR       = ../../app/plugins
-
-# setup install target
-isEmpty(PREFIX) {
-    PREFIX = /usr/local
-}
-target.path = $$PREFIX/share/mellowplayer/plugins
-INSTALLS += target

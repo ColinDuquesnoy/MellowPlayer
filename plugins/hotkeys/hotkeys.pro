@@ -19,40 +19,25 @@
 TEMPLATE      = lib
 TARGET        = mpp_hotkeys
 CONFIG       += plugin static
-QT += gui
+QT           += gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = hotkeys.h
 SOURCES       = hotkeys.cpp
-
 INCLUDEPATH  += ../../lib/include
-macx{
-    # find and link with mellowplayer framework
-    QMAKE_LFLAGS    += -F../../lib
-    LIBS            += -framework mellowplayer
-
-    # on OSX, plugins are bundled with the .app
-    DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
-}
+DESTDIR       = ../../app/plugins
 win32:CONFIG(debug){
     LIBS            += -L../../lib/debug -lmellowplayer1
-    DESTDIR       = ../../app/plugins
 }
 win32:CONFIG(release){
     LIBS            += -L../../lib/release -lmellowplayer1
-    DESTDIR       = ../../app/plugins
 }
-unix:!macx {
-    # find and link with libmellowplayer
+else {
     LIBS            += -L../../lib -lmellowplayer
-
-    # move the plugins next to the app so that we load them when running the
-    # app with qt creator (for developpers)
-    DESTDIR       = ../../app/plugins
 }
 
 # Optional KDE support config
 kde_support {
-    message("kde support: will use KGlobalAccell for global shortcuts")
+    message("HotkeysPlugin: kde support enabled (using KGlobalAccell)")
     DEFINES += "__kde_support__=1"
     QT += KGlobalAccel
 }
@@ -81,15 +66,3 @@ else{
         LIBS += -luser32
     }
 }
-
-# Setup install target
-unix:!macx {
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
-    target.path = $$PREFIX/share/mellowplayer/plugins
-}
-win32 {
-    # todo
-}
-INSTALLS += target
