@@ -1,9 +1,0 @@
-{
-    "name": "Foo",
-    "author": "Your Name",
-    "website": "your repo url, for bug reports and feature requests",
-    "version": "1.0",
-    "icon": ":/foo/logo.png",
-    "description": "Foo is an example of a cloud service integration plugin",
-    "html_description": ":/foo/description.html"
-}

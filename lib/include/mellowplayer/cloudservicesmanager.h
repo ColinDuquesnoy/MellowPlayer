@@ -24,7 +24,6 @@
 #include <QMap>
 #include <QObject>
 #include "mellowplayer/pluginmetadata.h"
-#include "mellowplayer/exports.h"
 
 class ICloudMusicService;
 
@@ -35,7 +34,7 @@ typedef QList<ICloudMusicService*> CloudPluginList;
  * service plugins and let you easily start or change the current service.
  *
  */
-class DLL_EXPORT CloudServicesManager : public QObject
+class CloudServicesManager : public QObject
 {
     Q_OBJECT
 public:

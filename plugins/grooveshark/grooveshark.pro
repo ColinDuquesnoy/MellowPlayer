@@ -18,41 +18,9 @@
 #----------------------------------------------------------
 TEMPLATE      = lib
 TARGET        = mpp_grooveshark
-CONFIG       += plugin
+CONFIG       += plugin static
 HEADERS       = grooveshark.h
 SOURCES       = grooveshark.cpp
 RESOURCES    += grooveshark.qrc
-
-INCLUDEPATH  += ../../lib/include  # libmellowplayer include path
-macx{
-    # find and link with mellowplayer framework
-    QMAKE_LFLAGS    += -F../../lib
-    LIBS            += -framework mellowplayer
-
-    # on OSX, plugins are bundled with the .app
-    DESTDIR       = ../../app/MellowPlayer.app/Contents/plugins
-}
-win32:CONFIG(debug){
-    LIBS            += -L../../lib/debug -lmellowplayer1
-    DESTDIR       = ../../app/plugins
-}
-win32:CONFIG(release){
-    LIBS            += -L../../lib/release -lmellowplayer1
-    DESTDIR       = ../../app/plugins
-}
-unix:!macx {
-    # find and link with libmellowplayer
-    LIBS            += -L../../lib -lmellowplayer
-
-    # move the plugins next to the app so that we can load them when
-    # running the app with qt creator (for developpers)
-    DESTDIR       = ../../app/plugins
-}
-
-unix:!macx {
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
-    target.path = $$PREFIX/share/mellowplayer/plugins
-}
-INSTALLS += target
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include

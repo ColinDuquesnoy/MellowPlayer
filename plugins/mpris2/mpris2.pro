@@ -19,7 +19,7 @@
 # This extension is built only on GNU/Linux!
 TEMPLATE      = lib
 TARGET        = mpp_mpris2
-CONFIG       += plugin
+CONFIG       += plugin static
 QT           += dbus gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = mpris2.h \
@@ -28,18 +28,6 @@ HEADERS       = mpris2.h \
 SOURCES       = mpris2.cpp \
                 mpris2root.cpp \
                 mpris2player.cpp
-
-# find and link with libmellowplayer
 INCLUDEPATH  += ../../lib/include
-LIBS            += -L../../lib -lmellowplayer
-
-# move the plugins next to the app so that we load them when running the
-# app with qt creator (for developpers)
-DESTDIR       = ../../app/plugins
-
-# setup install target
-isEmpty(PREFIX) {
-    PREFIX = /usr/local
-}
-target.path = $$PREFIX/share/mellowplayer/plugins
-INSTALLS += target
+LIBS         += -L../../lib -lmellowplayer
+DESTDIR       = ../../app

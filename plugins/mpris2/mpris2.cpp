@@ -81,22 +81,22 @@ QWidget *Mpris2Plugin::settingsWidget() const
 //---------------------------------------------------------
 void Mpris2Plugin::resetSettings(QWidget *widget) const
 {
-
+    Q_ASSERT(widget == NULL);
 }
 
 //---------------------------------------------------------
 void Mpris2Plugin::restoreDefaultSettings(QWidget *widget) const
 {
-
+    Q_ASSERT(widget == NULL);
 }
 
 //---------------------------------------------------------
 void Mpris2Plugin::applySettings(QWidget *widget) const
 {
-
+    Q_ASSERT(widget == NULL);
 }
 
 
 #if QT_VERSION < 0x050000
-    Q_EXPORT_PLUGIN2( mpris2, Mpris2Plugin )
+    Q_EXPORT_PLUGIN2( Mpris2Plugin, Mpris2Plugin )
 #endif

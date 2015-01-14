@@ -21,6 +21,16 @@
 
 
 //---------------------------------------------------------
+// Add plugins here
+Q_IMPORT_PLUGIN(GroovesharkPlugin)
+Q_IMPORT_PLUGIN(HotkeysPlugin)
+
+#ifdef Q_OS_LINUX
+Q_IMPORT_PLUGIN(Mpris2Plugin)
+#endif
+
+
+//---------------------------------------------------------
 int main(int argc, char *argv[]){
     MellowPlayerApp a(argc, argv);
     return a.exec();

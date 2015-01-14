@@ -21,14 +21,13 @@
 #define PLAYER
 
 #include <QObject>
-#include "mellowplayer/exports.h"
 #include "mellowplayer/song.h"
 
 
 /*!
  * \brief The PlayerInterface provides an interface to the cloud music player
  */
-class DLL_EXPORT PlayerInterface: public QObject
+class PlayerInterface: public QObject
 {
     Q_OBJECT
 public:

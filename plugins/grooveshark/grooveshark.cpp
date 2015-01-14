@@ -20,6 +20,11 @@
 
 
 //---------------------------------------------------------
+GroovesharkPlugin::GroovesharkPlugin()
+{
+    Q_INIT_RESOURCE(grooveshark);  // grooveshark.qrc
+}
+
 const PluginMetaData &GroovesharkPlugin::metaData() const
 {
     static PluginMetaData meta;
@@ -131,5 +136,5 @@ void GroovesharkPlugin::setVolume(float volume)
 }
 
 #if QT_VERSION < 0x050000
-    Q_EXPORT_PLUGIN2( grooveshark, GroovesharkPlugin )
+Q_EXPORT_PLUGIN2( GroovesharkPlugin, GroovesharkPlugin )
 #endif

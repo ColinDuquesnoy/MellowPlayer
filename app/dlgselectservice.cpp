@@ -9,13 +9,8 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
 {
     ui->setupUi(this);
 
-#if QT_VERSION >= 0x050000
-    connect(ui->listWidget, SIGNAL(currentItemChanged(QListWidgetItem *)),
-            this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
-#else
     connect(ui->listWidget, SIGNAL(itemChanged(QListWidgetItem *)),
             this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
-#endif
 
     int row = 0;
     foreach(ICloudMusicService* plugin,
