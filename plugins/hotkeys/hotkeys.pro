@@ -18,7 +18,8 @@
 #----------------------------------------------------------
 TEMPLATE      = lib
 TARGET        = mpp_hotkeys
-CONFIG       += plugin gui
+CONFIG       += plugin static
+QT += gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = hotkeys.h
 SOURCES       = hotkeys.cpp

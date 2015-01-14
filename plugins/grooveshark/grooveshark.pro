@@ -18,7 +18,7 @@
 #----------------------------------------------------------
 TEMPLATE      = lib
 TARGET        = mpp_grooveshark
-CONFIG       += plugin
+CONFIG       += plugin static
 HEADERS       = grooveshark.h
 SOURCES       = grooveshark.cpp
 RESOURCES    += grooveshark.qrc

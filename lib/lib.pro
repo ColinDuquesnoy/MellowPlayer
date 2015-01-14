@@ -18,6 +18,7 @@
 #----------------------------------------------------------
 TEMPLATE        = lib
 TARGET          = mellowplayer
+CONFIG         += static
 VERSION         = 1.0.0
 QT             += widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets

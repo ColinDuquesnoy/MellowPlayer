@@ -23,6 +23,11 @@ TEMPLATE         = app
 QT              += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH     += ../lib/include
+
+# link plugins statically
+LIBS += -Lplugins -lmpp_grooveshark \
+        -lmpp_hotkeys
+
 macx{
     QMAKE_LFLAGS    += -F../lib
     LIBS += -framework mellowplayer
@@ -34,7 +39,7 @@ win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
 }
 unix:!macx{
-    LIBS            += -L../lib -lmellowplayer
+    LIBS            += -L../lib -lmellowplayer -lmpp_mpris2
 }
 SOURCES         += main.cpp\
                    mainwindow.cpp \

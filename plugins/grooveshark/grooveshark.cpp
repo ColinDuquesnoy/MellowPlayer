@@ -20,6 +20,11 @@
 
 
 //---------------------------------------------------------
+GroovesharkPlugin::GroovesharkPlugin()
+{
+    Q_INIT_RESOURCE(grooveshark);  // grooveshark.qrc
+}
+
 const PluginMetaData &GroovesharkPlugin::metaData() const
 {
     static PluginMetaData meta;

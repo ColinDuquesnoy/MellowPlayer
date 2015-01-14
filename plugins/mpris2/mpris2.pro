@@ -19,7 +19,7 @@
 # This extension is built only on GNU/Linux!
 TEMPLATE      = lib
 TARGET        = mpp_mpris2
-CONFIG       += plugin
+CONFIG       += plugin static
 QT           += dbus gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = mpris2.h \

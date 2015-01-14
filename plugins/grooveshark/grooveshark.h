@@ -40,6 +40,7 @@ class GroovesharkPlugin :
     Q_INTERFACES(ICloudMusicService)
 
 public:
+    GroovesharkPlugin();
     virtual const PluginMetaData& metaData() const;
 
     //! Returns the grooveshark URL
