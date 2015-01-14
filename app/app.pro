@@ -26,19 +26,29 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 LIBS += -Lplugins \
         -lmpp_grooveshark \
         -lmpp_hotkeys \
-        -lmpp_mpris2
+
 
 # link with libmellowplayer
 INCLUDEPATH        += ../lib/include
+win32{
+    LIBS += -luser32
+}
 win32:CONFIG(debug){
     LIBS            += -L../lib/debug -lmellowplayer1
 }
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
 }
-else{
-    LIBS            += -L../lib -lmellowplayer
+unix{
+    LIBS            += -L../lib -lmellowplayer\
 }
+macx {
+   LIBS             += -framework Carbon
+}
+unix:!macx {
+    LIBS            += -lmpp_mpris2
+}
+
 
 SOURCES         += main.cpp\
                    mainwindow.cpp \
