@@ -33,7 +33,7 @@ win32:CONFIG(debug){
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
 }
-else{
+unix:!macx{
     LIBS            += -L../lib -lmellowplayer
 }
 SOURCES         += main.cpp\

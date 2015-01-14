@@ -40,7 +40,7 @@ win32:CONFIG(release){
     LIBS            += -L../../lib/release -lmellowplayer1
     DESTDIR       = ../../app/plugins
 }
-else {
+unix:!macx {
     # find and link with libmellowplayer
     LIBS            += -L../../lib -lmellowplayer
 
