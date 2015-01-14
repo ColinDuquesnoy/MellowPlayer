@@ -21,7 +21,6 @@
 #define EXTENSIONSMANAGER_H
 
 #include <QObject>
-#include "mellowplayer/exports.h"
 #include "mellowplayer/pluginmetadata.h"
 
 class IExtension;
@@ -32,7 +31,7 @@ typedef QList<IExtension*> ExtensionPluginList;
  * \brief The ExtensionsManager class manages the collection of extension
  * plugins.
  */
-class DLL_EXPORT ExtensionsManager : public QObject
+class ExtensionsManager : public QObject
 {
     Q_OBJECT
 public:

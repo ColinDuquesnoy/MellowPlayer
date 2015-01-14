@@ -3,14 +3,13 @@
 
 #include <QIcon>
 #include <QString>
-#include "mellowplayer/exports.h"
 
 
 /*!
  * \brief The PluginMetaData struct contains the metadata of a
  * MellowPlayer plugin.
  */
-struct DLL_EXPORT PluginMetaData
+struct PluginMetaData
 {
     QString name;           /*!< Name of the plugin */
     QString author;         /*!< Author of the plugin */
