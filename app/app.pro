@@ -22,7 +22,7 @@ TEMPLATE            = app
 QT                 += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
-LIBS += -Lplugins \
+LIBS += -L. \
         -lmpp_grooveshark \
         -lmpp_hotkeys \
 
