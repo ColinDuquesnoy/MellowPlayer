@@ -30,4 +30,4 @@ SOURCES       = mpris2.cpp \
                 mpris2player.cpp
 INCLUDEPATH  += ../../lib/include
 LIBS         += -L../../lib -lmellowplayer
-DESTDIR       = ../../app/plugins
+DESTDIR       = ../../app

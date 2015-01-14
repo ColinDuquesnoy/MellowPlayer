@@ -30,6 +30,7 @@ DESTDIR       = ../../app
 kde_support {
     message("HotkeysPlugin: kde support enabled (using KGlobalAccell)")
     DEFINES += "__kde_support__=1"
+    QT += KGlobalAccel
 }
 else{
     # Build qxtglobalshortcut lib as part of our extension
