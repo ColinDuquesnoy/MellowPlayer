@@ -29,7 +29,6 @@ macx{
 }
 win32:CONFIG(debug){
     LIBS            += -L../lib/debug -lmellowplayer1
-    CONFIG += console
 }
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer1
