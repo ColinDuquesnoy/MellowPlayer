@@ -54,6 +54,7 @@ private slots:
     void onSelectServiceTriggered();
     void onPreferencesTriggered();
     void updatePlayer();
+    void onAboutTriggered();
 
 private:
     void closeEvent(QCloseEvent* event);
