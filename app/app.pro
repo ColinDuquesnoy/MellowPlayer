@@ -87,6 +87,7 @@ DEFINES         += VERSION_STATUS=\\\"-alpha1\\\"
 kde_support {
   # Optional KDE support will use KGlobalAccel
   QT += KGlobalAccel
+  DEFINES += "__kde_support__=1"
 }
 
 # install
