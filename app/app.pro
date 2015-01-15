@@ -46,7 +46,7 @@ macx {
 }
 unix:!macx {
     QT              += dbus
-    LIBS            += -lmpp_mpris2
+    LIBS            += -lmpp_mpris2 -lX11
 }
 
 
