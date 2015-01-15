@@ -295,6 +295,8 @@ void MainWindow::connectSlots()
 
     this->connect(this->ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
                   this, SLOT(onAboutTriggered()));
+    this->connect(this->ui->actionReport_a_bug, SIGNAL(triggered()),
+                  this, SLOT(onReportBugTriggered()));
 }
 
 //---------------------------------------------------------
@@ -384,7 +386,13 @@ void MainWindow::onAboutTriggered()
              compilerString(), QString::number(QSysInfo::WordSize));
 
     QMessageBox::about(
-        this, tr("About MellowPlayer"), description);
+                this, tr("About MellowPlayer"), description);
+}
+
+void MainWindow::onReportBugTriggered()
+{
+    QDesktopServices::openUrl(QUrl(
+        "https://github.com/ColinDuquesnoy/MellowPlayer/issues/new"));
 }
 
 //---------------------------------------------------------

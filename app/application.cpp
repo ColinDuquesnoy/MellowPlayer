@@ -37,7 +37,7 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
         QString("%1.%2.%3%4").arg(
             QString::number(VERSION_MAJOR),
             QString::number(VERSION_MINOR),
-            QString::number(VERSION_PATCH),
+            QString::number(VERSION_MICRO),
             VERSION_STATUS));
 
     QString locale = QLocale::system().name().split("_")[0];
