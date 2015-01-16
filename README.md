@@ -31,8 +31,8 @@ The following platforms are supported:
 - OSX
 - Windows
 
-*It is worth noting the even though the app is cross-platform, the focus will always be 
-on the KDE linux desktop (and maybe other Qt based desktops such as LxQt).*
+*It is worth noting that even though the app is cross-platform, the focus will always be 
+on the KDE linux desktop (and maybe on other Qt based desktops such as LxQt).*
 
 ## Supported Streaming Services
 
@@ -57,7 +57,7 @@ See the [translators tutorial]() for more information.
 4) Reporting bugs
 
 If you found a bug in the application, please report it on our issue tracker. The application 
-has a menu for easily do that (Help->Report a bug). **Please read the CONTRIBUTING.md** before
+has a menu for easily do that (Help->Report a bug). Please, read [CONTRIBUTING.md]() before
 reporting a bug!
 
 
