@@ -1,7 +1,7 @@
 ![MellowPlayer banner](/banner.png)
 
 *MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
-that runs a web interface of **music streaming services** in its own window and
+that runs **web-based music streaming services** in its own window and
 provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
 notifications and more).
 
