@@ -25,17 +25,17 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/extensionsmanager.h \
+                  include/mellowplayer/interfaces.h \
+                  include/mellowplayer/player.h \
+                  include/mellowplayer/pluginmetadata.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \
-                  include/mellowplayer/player.h \
+                  include/mellowplayer/streamingservicesmanager.h \
                   include/mellowplayer/urldownloader.h \
-                  include/mellowplayer/interfaces.h \
-                  include/mellowplayer/pluginmetadata.h \
-                  include/mellowplayer/streamingservicesmanager.h
 SOURCES         = src/extensionsmanager.cpp \
+                  src/interfaces.cpp \
+                  src/player.cpp \
                   src/services.cpp \
                   src/song.cpp \
-                  src/player.cpp \
+                  src/streamingservicesmanager.cpp \
                   src/urldownloader.cpp \
-                  src/interfaces.cpp \
-                  src/streamingservicesmanager.cpp

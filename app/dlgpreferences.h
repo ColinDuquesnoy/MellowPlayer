@@ -16,6 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #ifndef DLGPREFERENCES_H
 #define DLGPREFERENCES_H
 

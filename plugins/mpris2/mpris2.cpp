@@ -16,6 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #include <QWidget>
 #include <mellowplayer.h>
 #include "mpris2.h"
@@ -96,7 +97,7 @@ void Mpris2Plugin::applySettings(QWidget *widget) const
     Q_ASSERT(widget == NULL);
 }
 
-
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
     Q_EXPORT_PLUGIN2( Mpris2Plugin, Mpris2Plugin )
 #endif

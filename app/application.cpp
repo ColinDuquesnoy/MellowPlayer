@@ -16,6 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #include <iostream>
 #include "application.h"
 #include "mainwindow.h"

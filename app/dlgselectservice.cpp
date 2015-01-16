@@ -16,6 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #include <mellowplayer.h>
 #include "dlgselectservice.h"
 #include "ui_dlg_select_service.h"

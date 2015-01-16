@@ -16,8 +16,8 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-#include "grooveshark.h"
 
+#include "grooveshark.h"
 
 //---------------------------------------------------------
 GroovesharkPlugin::GroovesharkPlugin()

@@ -62,7 +62,8 @@ StreamingServicesList StreamingServicesManager::plugins() const
 }
 
 //---------------------------------------------------------
-IStreamingServiceIntegration* StreamingServicesManager::plugin(const QString &serviceName) const
+IStreamingServiceIntegration* StreamingServicesManager::plugin(
+    const QString &serviceName) const
 {
     foreach(IStreamingServiceIntegration* p, this->_plugins)
     {

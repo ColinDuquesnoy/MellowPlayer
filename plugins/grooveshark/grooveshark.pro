@@ -16,6 +16,7 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
+
 TEMPLATE      = lib
 TARGET        = mpp_grooveshark
 CONFIG       += plugin static

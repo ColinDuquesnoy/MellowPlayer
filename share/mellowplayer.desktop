@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Mellow Player
-GenericName=Mellow Player
+Name=MellowPlayer
+GenericName=MellowPlayer
 Comment=Music streaming service integration for your desktop!
 Exec=MellowPlayer
 TryExec=MellowPlayer

@@ -16,16 +16,12 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
-/*!
-  * This is a convenience header that includes the whole MellowPlayer API.
-  *
-  * When writing a new plugin just include this file and you'll be gone.
-  */
-#include <mellowplayer/streamingservicesmanager.h>
+
 #include <mellowplayer/extensionsmanager.h>
-#include <mellowplayer/player.h>
 #include <mellowplayer/interfaces.h>
+#include <mellowplayer/player.h>
 #include "mellowplayer/pluginmetadata.h"
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>
+#include <mellowplayer/streamingservicesmanager.h>
 #include <mellowplayer/urldownloader.h>

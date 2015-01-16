@@ -45,7 +45,8 @@ public:
      * \internal
      * \brief Loads a music streaming service integration plugin.
      *
-     * **For internal uses only, all the plugins are loaded by the application.**
+     * **For internal uses only, all the plugins are loaded by the
+     * application.**
      *
      * \param service Service to add.
      * \param pluginLoader Pointer to the plugin loader that loaded the service

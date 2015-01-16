@@ -16,9 +16,9 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #include <QtCore>
 #include <mellowplayer.h>
-
 
 /*!
  * \brief The GroovesharkPlugin class provides integration for the grooveshark

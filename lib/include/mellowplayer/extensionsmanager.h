@@ -64,6 +64,9 @@ public:
      */
     IExtension* plugin(const QString& name) const;
 
+    /*!
+     * \brief Gets the list of extension plugins.
+     */
     ExtensionPluginList plugins() const;
 
 private:

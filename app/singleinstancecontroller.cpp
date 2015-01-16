@@ -16,11 +16,11 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #include "singleinstancecontroller.h"
 #include "application.h"
 
 #define APP_NAME "MellowPlayer"
-
 
 //---------------------------------------------------------
 SingleInstanceController::SingleInstanceController(QObject* parent):

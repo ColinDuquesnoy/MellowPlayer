@@ -16,9 +16,9 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //---------------------------------------------------------
+
 #ifndef SHORCTUTS
 #define SHORCTUTS
-
 
 #define DEFAULT_SHORTCUT_SELECT_SV      "F8"
 #define DEFAULT_SHORTCUT_PREFERENCES    "F2"
