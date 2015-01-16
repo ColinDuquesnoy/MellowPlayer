@@ -48,7 +48,7 @@ There are many ways to contribute to MellowPlayer:
 
 Support for new streaming service is added by writing a [writing a service integration plugin]()
 
-### 2) Extends the application
+### 2) Extend the application
 
 You can extend the application by [writing a generic extension plugin]().
 
@@ -56,7 +56,7 @@ You can extend the application by [writing a generic extension plugin]().
 
 See the [translators tutorial]() for more information.
 
-### 4) Reporting bugs
+### 4) Report bugs
 
 If you found a bug in the application, please report it on our issue tracker. The application 
 has a menu for easily do that (Help->Report a bug). Please, read [CONTRIBUTING.md]() before
