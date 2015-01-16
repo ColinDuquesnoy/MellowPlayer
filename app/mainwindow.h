@@ -34,14 +34,25 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
     friend class DlgPreferences;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    /*!
+     * \brief Shows the web page
+     */
     void showWebPage();
+
+    /*!
+     * \brief Shows the home page
+     */
     void showHomePage();
+
+    /*!
+     * \brief Save window geometry and state
+     */
     void saveGeometryAndState();
 
 private slots:

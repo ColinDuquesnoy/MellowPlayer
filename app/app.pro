@@ -22,6 +22,7 @@ TEMPLATE            = app
 QT                 += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
+# Add static plugins here (and in main.cpp)
 LIBS += -L. \
         -lmpp_grooveshark \
         -lmpp_hotkeys \
@@ -39,13 +40,15 @@ win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer
 }
 unix{
-    LIBS            += -L../lib -lmellowplayer\
+    LIBS            += -L../lib -lmellowplayer
 }
 macx {
    LIBS             += -framework Carbon
 }
 unix:!macx {
     QT              += dbus
+
+    # linux only plugins and libraries
     LIBS            += -lmpp_mpris2 -lX11
 }
 
@@ -59,7 +62,8 @@ SOURCES         += main.cpp\
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
                    dlgpreferences.cpp \
-                   keysequenceedit.cpp
+                   keysequenceedit.cpp \
+                   webview.cpp
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
@@ -70,7 +74,8 @@ HEADERS         += mainwindow.h \
                    dlgpreferences.h \
                    shortcuts.h \
                    keysequenceedit_p.h \
-                   keysequenceedit.h
+                   keysequenceedit.h \
+                   webview.h
 RESOURCES        = mellowplayer.qrc
 FORMS           += mainwindow.ui \
                    dlg_select_service.ui \
@@ -84,8 +89,8 @@ DEFINES         += VERSION_MICRO=0
 DEFINES         += VERSION_STATUS=\\\"a1\\\"
 
 
+# Optional KDE support will use KGlobalAccel
 kde_support {
-    # Optional KDE support will use KGlobalAccel
     QT += KGlobalAccel
     DEFINES += "__kde_support__=1"
 }

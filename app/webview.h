@@ -22,6 +22,11 @@
 #include <QWebView>
 
 
+/*!
+ * \brief The WebView class extends QWebView to add support for
+ * JavaScript popup windows (e.g. for signing in with google,
+ * twitter or facebook)
+ */
 class WebView : public QWebView
 {
 public:

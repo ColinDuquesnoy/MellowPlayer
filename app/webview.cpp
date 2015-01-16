@@ -18,12 +18,14 @@
 //---------------------------------------------------------
 #include "webview.h"
 
+//---------------------------------------------------------
 WebView::WebView(QWidget *parent):
   QWebView(parent)
 {
 
 }
 
+//---------------------------------------------------------
 QWebView *WebView::createWindow(QWebPage::WebWindowType type)
 {
     Q_UNUSED(type);

@@ -22,6 +22,7 @@
 #include <QtNetwork>
 #include <QtCore>
 
+
 typedef QMap<QString, QVariant> CookieMap;
 Q_DECLARE_METATYPE(CookieMap)
 
@@ -44,7 +45,7 @@ public:
     void purgeCookies();
 
     /*!
-     * \brief Adds the cookies in the list cookieList to this cookie jar.
+     * \brief Adds the cookies in the cookieList to this cookie jar.
      */
     bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList,
                            const QUrl &url);

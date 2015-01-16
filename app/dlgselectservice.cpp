@@ -1,8 +1,27 @@
+//---------------------------------------------------------
+//
+// This file is part of MellowPlayer.
+//
+// MellowPlayer is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// MellowPlayer is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
+//
+//---------------------------------------------------------
 #include <mellowplayer.h>
 #include "dlgselectservice.h"
 #include "ui_dlg_select_service.h"
 
 
+//---------------------------------------------------------
 DlgSelectServices::DlgSelectServices(QWidget *parent):
     QDialog(parent),
     ui(new Ui::DialogSelectServices())
@@ -23,11 +42,13 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     ui->listWidget->setCurrentRow(row);
 }
 
+//---------------------------------------------------------
 DlgSelectServices::~DlgSelectServices()
 {
     delete ui;
 }
 
+//---------------------------------------------------------
 void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
 {
     if(!item)
@@ -50,6 +71,7 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
     }
 }
 
+//---------------------------------------------------------
 QString DlgSelectServices::selectService(QWidget *parent)
 {
     DlgSelectServices dlg(parent);

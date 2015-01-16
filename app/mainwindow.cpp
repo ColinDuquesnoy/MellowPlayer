@@ -344,6 +344,7 @@ void MainWindow::updatePlayer()
     }
 }
 
+//---------------------------------------------------------
 static QString compilerString()
 {
 #if defined(Q_CC_CLANG) // must be before GNU, because clang claims to be GNU too
@@ -364,7 +365,7 @@ static QString compilerString()
     return QLatin1String("<unknown compiler>");
 }
 
-
+//---------------------------------------------------------
 void MainWindow::onAboutTriggered()
 {
     QString version = QString("%1.%2.%3%4")
@@ -389,6 +390,7 @@ void MainWindow::onAboutTriggered()
                 this, tr("About MellowPlayer"), description);
 }
 
+//---------------------------------------------------------
 void MainWindow::onReportBugTriggered()
 {
     QDesktopServices::openUrl(QUrl(
