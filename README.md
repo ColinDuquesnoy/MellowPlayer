@@ -7,8 +7,8 @@ notifications and more).
 
 The software is written in **C++** using the **Qt** GUI toolkit.
 
-*MellowPlayer is a Qt based alternative to [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/), specifically 
-crafted for running on Qt based linux desktops and distributions (such as KaOS or Chakra).
+*MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/), 
+*specifically crafted for running on Qt based linux desktops and distributions (such as KaOS or Chakra).*
 
 ## Development status
 
