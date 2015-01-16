@@ -1,50 +1,70 @@
 ![MellowPlayer banner](/banner.png)
 
-*MellowPlayer* is a free, open source and cross-platform desktop application
+*MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
 that runs a web interface of **music streaming services** in its own window and
-provides **integration with your desktop** (multimedia keys, system tray,
+provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
 notifications and more).
 
-The software is written in **C++** using the **Qt5** GUI toolkit.
+The software is written in **C++** using the **Qt** GUI toolkit.
 
-*MellowPlayer is a qt based alternative to [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/). 
-It has been specifically designed to run on a KDE platform (i.e. there are more features on kde than on any other platforms)*
+*MellowPlayer is a Qt based alternative to [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/), specifically 
+crafted for running on Qt based linux desktops and distributions (such as KaOS or Chakra).
 
+## Development status
 
-## Status
-
-This software is under heavy development. Some parts of the GUI and some features have not been implemented yet but
-you can already use it on linux and use the Grooveshark service.
+The application is under heavy development and the API has not been stabilized yet.
 
 The following features are already working:
 
-- Grooveshark integration
+- Grooveshark service integration
 - Cookies management
 - [MPRIS 2](http://specifications.freedesktop.org/mpris-spec/latest/) support
-- Global shortcuts support
+- Global shortcuts support (using KGlobalAccell on KDE and QxtGlobalShortcut everywhere else).
 
-This has been tested on KaOS plasma-next (kde5) and OS X Yosemite.
+The application has been tested on KaOS KF5, Manjaro XFCE, OS X Yosemite and Windows 7.1.
 
 ## Supported platforms:
 
-The following platforms will be supported:
+The following platforms are supported:
 
 - GNU/Linux
 - OSX
 - Windows
 
-## Supported Services
+It is worth noting the even though the app is cross-platform, the focus will always be 
+on the KDE linux desktop (and maybe other Qt based desktops such as LxQt).
+
+## Supported Streaming Services
 
 At the moment, there is only one music streaming service: **Grooveshark**.
 
-Feel free to request support for new services by opening an issue on the bug
-tracker or by submitting a pull request! See the [Service Integration API]() (which is not ready yet).
+## Contributing
+
+There are many ways to contribute to MellowPlayer:
+
+1) Add support for a new streaming service
+
+Support for new streaming service is added by writing a [Service Integration Plugin]()
+
+2) Extends the application
+
+You can extend the application by [writing generic extension plugin]().
+
+3) Help with translations
+
+See the [translators tutorial]() for more information.
+
+4) Reporting bugs
+
+If you found a bug in the application, please report it on our issue tracker. The application 
+has a menu for easily do that (Help->Report a bug). **Please read the CONTRIBUTING.md** before
+reporting a bug!
 
 
 ## Dependencies
 
-- Qt5
-- KGlobalAccell (on kde5 only)
+- Qt5 (Qt4 is also supported if you're running on Windows or if you're running on an old linux distribution, such as Ubuntu 12.04)
+- KGlobalAccell (if built with ``kde_support``)
 
 
 ## Compilation
@@ -56,14 +76,18 @@ make
 
 ### Build options
 
-- **CONFIG+=kde_support**: to build the application with kde5 support (media keys and notifications).
-- **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``, ``/Frameworks``) on OS X.
+- **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
+- **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``) OS X.
 
 
 ## Installation
 
-``` make install ```
+``` (sudo) make install ```
 
 ## Known issues
 
 1) On OS X, the application might crash on exit if the audio backend is running. We have yet to investigate why this happen.
+2) QtWebKit does not load some flash websites, such as Spotify. At the moment we are unable to provide
+   support for such services. Things will probably change once the new Qt WebEngine supports flash.
+3) Flash cannot be detected for grooveshark on Windows if compiling the app with Qt5. That's the reason
+   why we still keep Qt4 support.
