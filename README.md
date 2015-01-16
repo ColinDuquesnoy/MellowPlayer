@@ -36,7 +36,9 @@ on the KDE linux desktop (and maybe on other Qt based desktops such as LxQt).*
 
 ## Supported Streaming Services
 
-At the moment, there is only one music streaming service: **Grooveshark**.
+Here are the currently supported streaming services:
+
+  - **Grooveshark**
 
 ## Contributing
 
