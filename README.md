@@ -44,11 +44,11 @@ There are many ways to contribute to MellowPlayer:
 
 1) Add support for a new streaming service
 
-Support for new streaming service is added by writing a [Service Integration Plugin]()
+Support for new streaming service is added by writing a [writing a service integration plugin]()
 
 2) Extends the application
 
-You can extend the application by [writing generic extension plugin]().
+You can extend the application by [writing a generic extension plugin]().
 
 3) Help with translations
 
@@ -63,8 +63,8 @@ reporting a bug!
 
 ## Dependencies
 
-- Qt5 (Qt4 is also supported if you're running on Windows or if you're running on an old linux distribution, such as Ubuntu 12.04)
-- KGlobalAccell (if built with ``kde_support``)
+- **Qt5** (**Qt4** is also supported if you're running on Windows or if you're running on an old linux distribution, such as Ubuntu 12.04)
+- **KGlobalAccell** (if built with ``kde_support``)
 
 
 ## Compilation
