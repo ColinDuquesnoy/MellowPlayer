@@ -51,12 +51,17 @@ void SingleInstanceController::start(MellowPlayerApp* app)
 {
     qDebug() << "Starting the application";
     this->app = app;
+#ifndef QT_DEBUG
     this->localSocket->connectToServer(APP_NAME, QIODevice::WriteOnly);
+#else
+    this->app->initialize();
+#endif
 }
 
 //---------------------------------------------------------
 void SingleInstanceController::onSocketConnected()
 {
+
     // This means the server is already running and we have to exit.
     qDebug() << "Another instance is already running, quitting...";
 #if QT_VERSION >= 0x050000
@@ -69,11 +74,9 @@ void SingleInstanceController::onSocketConnected()
 //---------------------------------------------------------
 void SingleInstanceController::onSocketError()
 {
-#ifndef QT_DEBUG
     if(!this->localServer->listen(APP_NAME))
         qWarning() << "Failed to start local server, cannot ensure unique "
                       "application instance";
-#endif
     this->app->initialize();
 }
 
