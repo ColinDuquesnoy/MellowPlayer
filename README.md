@@ -27,9 +27,9 @@ The application has been tested on KaOS KF5, Manjaro XFCE, OS X Yosemite and Win
 
 The following platforms are supported:
 
-- GNU/Linux
-- OSX
-- Windows
+- **GNU/Linux**
+- **Mac OSX**
+- **Windows**
 
 *It is worth noting that even though the app is cross-platform, the focus will always be 
 on the KDE linux desktop (and maybe on other Qt based desktops such as LxQt).*
