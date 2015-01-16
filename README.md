@@ -1,7 +1,7 @@
 ![MellowPlayer banner](/banner.png)
 
 *MellowPlayer* is a free, open source and cross-platform desktop application
-that runs a web interface of **cloud music services** in its own window and
+that runs a web interface of **music streaming services** in its own window and
 provides **integration with your desktop** (multimedia keys, system tray,
 notifications and more).
 
@@ -35,7 +35,7 @@ The following platforms will be supported:
 
 ## Supported Services
 
-At the moment, there is only one cloud music service: **Grooveshark**.
+At the moment, there is only one music streaming service: **Grooveshark**.
 
 Feel free to request support for new services by opening an issue on the bug
 tracker or by submitting a pull request! See the [Service Integration API]() (which is not ready yet).

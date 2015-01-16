@@ -71,7 +71,7 @@ void MainWindow::showHomePage()
 //---------------------------------------------------------
 void MainWindow::onLinkClicked(QUrl url)
 {
-    ICloudMusicService* sv = Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* sv = Services::streamingServices()->currentService();
     if( sv && url.toString().contains(sv->url().toString()))
         this->ui->webView->load(url);
     else
@@ -121,7 +121,7 @@ void MainWindow::onSelectServiceTriggered()
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
-        if(Services::cloudServices()->startService(service))
+        if(Services::streamingServices()->startService(service))
         {
             this->showWebPage();
             QSettings().setValue("service", service);
@@ -165,7 +165,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 //---------------------------------------------------------
 void MainWindow::setupIcons()
 {
-    this->ui->actionSelect_service->setIcon(Icons::selectCloudService());
+    this->ui->actionSelect_service->setIcon(Icons::selectStreamingService());
     this->ui->actionPreferences->setIcon(Icons::preferences());
     this->ui->actionQuit->setIcon(Icons::quit());
 
@@ -177,7 +177,7 @@ void MainWindow::setupIcons()
     this->ui->actionAbout_MellowPlayer->setIcon(Icons::about());
     this->ui->actionReport_a_bug->setIcon(Icons::reportBug());
 
-    this->ui->pushButtonSelect->setIcon(Icons::selectCloudService());
+    this->ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
     this->ui->pushButtonPreferences->setIcon(Icons::preferences());
     this->ui->pushButtonQuit->setIcon(Icons::quit());
 }

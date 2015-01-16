@@ -30,9 +30,9 @@ class QWidget;
 
 
 /*!
- * \brief Interface for adding cloud music service integration.
+ * \brief Interface for adding music streaming service integration.
  */
-class ICloudMusicService
+class IStreamingServiceIntegration
 {
 public:
     /*!
@@ -40,7 +40,7 @@ public:
      */
     virtual const PluginMetaData& metaData() const = 0;
 
-    //! Returns the cloud music service URL
+    //! Returns the music streaming service URL
     virtual QUrl url() const = 0;
 
     //! Starts playing the current song
@@ -83,8 +83,8 @@ protected:
     QWebView* webView;  ///< A pointer to the appliction's web view.
 };
 
-#define ICloudMusicService_iid "org.MellowPlayer.ICloudMusicService"
-Q_DECLARE_INTERFACE(ICloudMusicService, ICloudMusicService_iid)
+#define IStreamingServiceIntegration_iid "org.MellowPlayer.IStreamingServiceIntegration"
+Q_DECLARE_INTERFACE(IStreamingServiceIntegration, IStreamingServiceIntegration_iid)
 
 
 /*!

@@ -12,10 +12,11 @@ Plugin Interfaces
 -----------------
 
 This section describe the interfaces that must be implemented to create a 
-new plugin. You can either **create cloud music service plugin** or a **generic extension**.
+new plugin. You can either **create music streaming service integration plugin**
+or a **generic extension plugin**.
 
 
-.. doxygenclass:: ICloudMusicService
+.. doxygenclass:: IStreamingService
     :members:
     
 .. doxygenclass:: IExtension
@@ -41,11 +42,11 @@ anywhere using the following static class:
 .. doxygenclass:: Services
     :members:
 
-Cloud Player API
-----------------
+Streaming Service Player API
+----------------------------
 
 This section describes the player API that you can use from your plugin to interact 
-with the cloud media player.
+with the streaming service's media player.
     
 .. doxygenclass:: PlayerInterface
     :members:
@@ -61,16 +62,10 @@ Plugins Managers API
 
 This section describes the plugins manager and actual plugin classes.
     
-.. doxygenclass:: CloudServicesManager
+.. doxygenclass:: StreamingServicesManager
     :members:
     
 .. doxygenclass:: ExtensionsManager
-    :members:
-
-.. doxygenclass:: CloudServicePlugin
-    :members:
-
-.. doxygenclass:: ExtensionPlugin
     :members:
 
 

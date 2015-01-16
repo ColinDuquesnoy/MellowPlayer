@@ -20,12 +20,12 @@
 #include <QAction>
 #include <QMainWindow>
 #include <QWebView>
-#include "mellowplayer/cloudservicesmanager.h"
+#include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/player.h"
 #include "mellowplayer/services.h"
 
 //---------------------------------------------------------
-CloudServicesManager* Services::_cloudServices = NULL;
+StreamingServicesManager* Services::_services = NULL;
 ExtensionsManager* Services::_extensions = NULL;
 QMainWindow* Services::_mainWindow= NULL;
 QWebView* Services::_webView = NULL;
@@ -53,15 +53,15 @@ void Services::raiseMainWindow()
 }
 
 //---------------------------------------------------------
-void Services::_setCloudServicesManager(CloudServicesManager *manager)
+void Services::_setServicesManager(StreamingServicesManager *manager)
 {
-    Services::_cloudServices = manager;
+    Services::_services = manager;
 }
 
 //---------------------------------------------------------
-CloudServicesManager *Services::cloudServices()
+StreamingServicesManager *Services::streamingServices()
 {
-    return Services::_cloudServices;
+    return Services::_services;
 }
 
 //---------------------------------------------------------

@@ -62,10 +62,9 @@ QIcon Icons::previous()
 }
 
 //---------------------------------------------------------
-QIcon Icons::selectCloudService()
+QIcon Icons::selectStreamingService()
 {
-    return QIcon::fromTheme("system-run",
-                            QIcon(":/icons/system-run.png"));
+    return QIcon::fromTheme("system-run", QIcon(":/icons/system-run.png"));
 }
 
 //---------------------------------------------------------

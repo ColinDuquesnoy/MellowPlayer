@@ -25,7 +25,8 @@
 
 
 /*!
- * \brief The PlayerInterface provides an interface to the cloud music player
+ * \brief The PlayerInterface provides an interface to the music streaming
+ * service's player.
  */
 class PlayerInterface: public QObject
 {

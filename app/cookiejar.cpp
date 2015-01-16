@@ -53,7 +53,7 @@ void CookieJar::loadCookies()
     CookieMap map = QSettings().value("cookies", CookieMap()).toMap();
     // we need to convert qvariants to qbytearrays and separate them with
     // a '\n' so that we easily join each byte array into a big array that
-    // the base class can use to restore the cloud service cookies.
+    // the base class can use to restore the streaming service cookies.
     QList<QVariant> variantValues = map.values();
     QList<QByteArray> values;
     QByteArray array;

@@ -68,10 +68,10 @@ public:
     static QIcon previous();
 
     /*!
-     * \brief Gets the "select cloud service" icon
+     * \brief Gets the "select music streaming service" icon
      * \return QIcon
      */
-    static QIcon selectCloudService();
+    static QIcon selectStreamingService();
 
     /*!
      * \brief Gets the "preferences" icon

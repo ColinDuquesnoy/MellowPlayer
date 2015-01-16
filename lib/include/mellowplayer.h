@@ -21,7 +21,7 @@
   *
   * When writing a new plugin just include this file and you'll be gone.
   */
-#include <mellowplayer/cloudservicesmanager.h>
+#include <mellowplayer/streamingservicesmanager.h>
 #include <mellowplayer/extensionsmanager.h>
 #include <mellowplayer/player.h>
 #include <mellowplayer/interfaces.h>

@@ -38,11 +38,11 @@ public:
     explicit ExtensionsManager(QObject* parent=0);
 
     /*!
-     * \brief Adds a cloud music service plugin to the list of managed plugins.
+     * \brief Adds an extension plugin to the list of managed plugins.
      *
      * **For internal uses only, all the plugins are added by the application.**
      *
-     * \param service Service to add.
+     * \param iExtension Service to add.
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */

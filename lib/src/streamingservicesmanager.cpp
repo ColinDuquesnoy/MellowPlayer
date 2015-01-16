@@ -21,11 +21,11 @@
 #include <QFile>
 #include <QWebView>
 #include "mellowplayer/interfaces.h"
-#include "mellowplayer/cloudservicesmanager.h"
+#include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/services.h"
 
 //---------------------------------------------------------
-CloudServicesManager::CloudServicesManager(QObject* parent):
+StreamingServicesManager::StreamingServicesManager(QObject* parent):
     QObject(parent),
     _currentService(NULL)
 {
@@ -33,12 +33,12 @@ CloudServicesManager::CloudServicesManager(QObject* parent):
 }
 
 //---------------------------------------------------------
-void CloudServicesManager::_loadPlugin(ICloudMusicService* iService)
+void StreamingServicesManager::_loadPlugin(IStreamingServiceIntegration* iService)
 {
     if(!this->plugin(iService->metaData().name))
     {
         this->_plugins.append(iService);
-        qDebug() << "Cloud service integration plugin loaded: ";
+        qDebug() << "Music streaming service integration plugin loaded: ";
         qDebug() << "  - name: " << iService->metaData().name;
         qDebug() << "  - version: " << iService->metaData().version;
     }
@@ -50,21 +50,21 @@ void CloudServicesManager::_loadPlugin(ICloudMusicService* iService)
 }
 
 //---------------------------------------------------------
-ICloudMusicService* CloudServicesManager::currentService() const
+IStreamingServiceIntegration* StreamingServicesManager::currentService() const
 {
     return this->_currentService;
 }
 
 //---------------------------------------------------------
-CloudPluginList CloudServicesManager::plugins() const
+StreamingServicesList StreamingServicesManager::plugins() const
 {
     return this->_plugins;
 }
 
 //---------------------------------------------------------
-ICloudMusicService* CloudServicesManager::plugin(const QString &serviceName) const
+IStreamingServiceIntegration* StreamingServicesManager::plugin(const QString &serviceName) const
 {
-    foreach(ICloudMusicService* p, this->_plugins)
+    foreach(IStreamingServiceIntegration* p, this->_plugins)
     {
         if(p->metaData().name == serviceName)
             return p;
@@ -73,9 +73,9 @@ ICloudMusicService* CloudServicesManager::plugin(const QString &serviceName) con
 }
 
 //---------------------------------------------------------
-bool CloudServicesManager::startService(const QString& serviceName) {
+bool StreamingServicesManager::startService(const QString& serviceName) {
     bool retVal = false;
-    ICloudMusicService* p = this->plugin(serviceName);
+    IStreamingServiceIntegration* p = this->plugin(serviceName);
     if(p && p != this->_currentService)
     {
         this->_currentService = p;

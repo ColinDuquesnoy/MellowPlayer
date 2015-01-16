@@ -17,33 +17,33 @@
 //
 //---------------------------------------------------------
 
-#ifndef CLOUDSERVICESMANAGER_H
-#define CLOUDSERVICESMANAGER_H
+#ifndef STREAMINGSERVICESMANAGER_H
+#define STREAMINGSERVICESMANAGER_H
 
 #include <QIcon>
 #include <QMap>
 #include <QObject>
 #include "mellowplayer/pluginmetadata.h"
 
-class ICloudMusicService;
+class IStreamingServiceIntegration;
 
-typedef QList<ICloudMusicService*> CloudPluginList;
+typedef QList<IStreamingServiceIntegration*> StreamingServicesList;
 
 /*!
- * \brief The CloudServicesManager class manages the collection of cloud music
- * service plugins and let you easily start or change the current service.
- *
+ * \brief The StreamingServicesManager class manages the collection of
+ * music streaming service integration plugins and let you easily start or
+ * change the current streaming service.
  */
-class CloudServicesManager : public QObject
+class StreamingServicesManager : public QObject
 {
     Q_OBJECT
 public:
 
-    explicit CloudServicesManager(QObject* parent=0);
+    explicit StreamingServicesManager(QObject* parent=0);
 
     /*!
      * \internal
-     * \brief Loads a cloud music service plugin.
+     * \brief Loads a music streaming service integration plugin.
      *
      * **For internal uses only, all the plugins are loaded by the application.**
      *
@@ -51,12 +51,12 @@ public:
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void _loadPlugin(ICloudMusicService* iService);
+    void _loadPlugin(IStreamingServiceIntegration* iService);
 
     /*!
      * @brief Starts the current service.
      *
-     * Load the cloud service URL and set the service plugin as the
+     * Load the streaming service URL and set the service plugin as the
      * currentService.
      *
      * @return Start status: true on succes, false on error.
@@ -64,17 +64,17 @@ public:
     bool startService(const QString& serviceName);
 
     /*!
-     * \brief Gets the current cloud music service, started by startService.
+     * \brief Gets the current streaming service, started by startService.
      *
-     * \returns Current cloud music service interface or NULL if no service has
-     * been started.
+     * \returns Current music streaming service integration interface or NULL
+     * if no service has been started yet.
      */
-    ICloudMusicService* currentService() const;
+    IStreamingServiceIntegration* currentService() const;
 
     /*!
      * \brief Returns the list of loaded plugins.
      */
-    CloudPluginList plugins() const;
+    StreamingServicesList plugins() const;
 
     /*!
      * \brief Gets a plugin by specifying its name.
@@ -85,15 +85,15 @@ public:
      *
      * \param Name of the plugin to retrieve.
      */
-    ICloudMusicService* plugin(const QString& serviceName) const;
+    IStreamingServiceIntegration* plugin(const QString& serviceName) const;
 
 signals:
 
 public slots:
 
 private:
-    CloudPluginList _plugins;
-    ICloudMusicService* _currentService;
+    StreamingServicesList _plugins;
+    IStreamingServiceIntegration* _currentService;
 };
 
-#endif // CLOUDSERVICESMANAGER_H
+#endif // STREAMINGSERVICESMANAGER_H

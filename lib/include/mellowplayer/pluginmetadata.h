@@ -15,8 +15,8 @@ struct PluginMetaData
     QString author;         /*!< Author of the plugin */
     QString website;        /*!< Plugin website */
     QString version;        /*!< Plugin version */
-    QString description;    /*!< Plugin description, use html for cloud
-                                 services plugins */
+    QString description;    /*!< Plugin description, use html for streaming
+                                 services integration plugins */
     QIcon   icon;           /*!< Plugin icon, optional*/
 };
 

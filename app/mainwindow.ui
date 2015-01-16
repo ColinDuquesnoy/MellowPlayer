@@ -43,14 +43,14 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageHome">
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="1">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a cloud music service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -167,7 +167,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Select a cloud music service</string>
+             <string>Select a music streaming service</string>
             </property>
             <property name="icon">
              <iconset resource="mellowplayer.qrc">
@@ -263,10 +263,10 @@
      <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Select a cloud music service</string>
+    <string>&amp;Select a music streaming service</string>
    </property>
    <property name="toolTip">
-    <string>Select a cloud music service</string>
+    <string>Select a music streaming service</string>
    </property>
    <property name="shortcut">
     <string>F8</string>

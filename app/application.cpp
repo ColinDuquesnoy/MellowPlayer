@@ -62,11 +62,11 @@ void MellowPlayerApp::initialize()
     this->mainWindow = new MainWindow();
 
     Services::_setMainWindow(this->mainWindow);
-    Services::_setCloudServicesManager(new CloudServicesManager(this));
+    Services::_setServicesManager(new StreamingServicesManager(this));
     Services::_setExtensionsManager(new ExtensionsManager(this));
     Services::_setPlayer(new PlayerInterface(this));
     loadPlugins();
-    if(Services::cloudServices()->startService(
+    if(Services::streamingServices()->startService(
             QSettings().value("service", "").toString()))
         this->mainWindow->showWebPage();
     else

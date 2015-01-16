@@ -20,7 +20,7 @@
 #ifndef SERVICES_H
 #define SERVICES_H
 
-class CloudServicesManager;
+class StreamingServicesManager;
 class ExtensionsManager;
 class PlayerInterface;
 class QAction;
@@ -51,12 +51,12 @@ public:
      */
     static void raiseMainWindow();
 
-    static void _setCloudServicesManager(CloudServicesManager* manager);
+    static void _setServicesManager(StreamingServicesManager* manager);
 
     /*!
-     * \brief Gets a pointer to the cloud services plugin manager.
+     * \brief Gets a pointer to the music streaming services plugin manager.
      */
-    static CloudServicesManager* cloudServices();
+    static StreamingServicesManager* streamingServices();
 
     static void _setExtensionsManager(ExtensionsManager* manager);
 
@@ -76,7 +76,7 @@ public:
 
     /*!
      * \brief Returns a pointer to the player interface that you can
-     * use to control the cloud service's media player programmatically and
+     * use to control the streaming service's media player programmatically and
      * connect to the player events (songChanged,...).
      */
     static PlayerInterface* player();
@@ -92,7 +92,7 @@ public:
 private:
     static QMainWindow* _mainWindow;
     static QWebView* _webView;
-    static CloudServicesManager* _cloudServices;
+    static StreamingServicesManager* _services;
     static ExtensionsManager* _extensions;
     static PlayerInterface* _player;
 };

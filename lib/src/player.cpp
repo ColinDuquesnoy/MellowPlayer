@@ -17,7 +17,7 @@
 //
 //---------------------------------------------------------
 
-#include "mellowplayer/cloudservicesmanager.h"
+#include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/player.h"
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/services.h"
@@ -35,8 +35,8 @@ PlayerInterface::PlayerInterface(QObject *parent):
 //---------------------------------------------------------
 void PlayerInterface::playPause()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     SongInfo song = iService->currentSongInfo();
@@ -49,8 +49,8 @@ void PlayerInterface::playPause()
 //---------------------------------------------------------
 void PlayerInterface::stop()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     iService->stop();
@@ -59,8 +59,8 @@ void PlayerInterface::stop()
 //---------------------------------------------------------
 void PlayerInterface::next()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     iService->next();
@@ -69,8 +69,8 @@ void PlayerInterface::next()
 //---------------------------------------------------------
 void PlayerInterface::previous()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     iService->previous();
@@ -79,8 +79,8 @@ void PlayerInterface::previous()
 //---------------------------------------------------------
 void PlayerInterface::seekToPosition(int position)
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     iService->seekToPosition(position);
@@ -89,8 +89,8 @@ void PlayerInterface::seekToPosition(int position)
 //---------------------------------------------------------
 SongInfo PlayerInterface::currentSong()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService)
         return SongInfo(); // invalid song
     return iService->currentSongInfo();
@@ -99,8 +99,8 @@ SongInfo PlayerInterface::currentSong()
 //---------------------------------------------------------
 SongInfo PlayerInterface::update()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService)
         return SongInfo();  // invalid song
     SongInfo song = iService->currentSongInfo();
@@ -113,8 +113,8 @@ SongInfo PlayerInterface::update()
 //---------------------------------------------------------
 float PlayerInterface::volume()
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return iService->volume();
     return 0.0f;
@@ -123,8 +123,8 @@ float PlayerInterface::volume()
 //---------------------------------------------------------
 void PlayerInterface::setVolume(float value)
 {
-    ICloudMusicService* iService =
-            Services::cloudServices()->currentService();
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         iService->setVolume(value);
 }

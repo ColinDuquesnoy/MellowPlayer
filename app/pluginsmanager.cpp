@@ -24,12 +24,12 @@
 //---------------------------------------------------------
 void loadPlugin(QObject* plugin)
 {
-    // cloud service interface
-    ICloudMusicService* iService = qobject_cast<
-            ICloudMusicService*>(plugin);
+    // streaming service interface
+    IStreamingServiceIntegration* iService = qobject_cast<
+            IStreamingServiceIntegration*>(plugin);
     if(iService)
     {
-        Services::cloudServices()->_loadPlugin(iService);
+        Services::streamingServices()->_loadPlugin(iService);
         return;
     }
 

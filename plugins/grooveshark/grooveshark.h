@@ -22,22 +22,22 @@
 
 /*!
  * \brief The GroovesharkPlugin class provides integration for the grooveshark
- * cloud music service.
+ * music streaming service.
  *
  * The plugin uses the grooveshark's javascript API to interact to implement
- * the ICloudMusicService interface.
+ * the IStreamingService interface.
  */
 class GroovesharkPlugin :
         public QObject,
-        public ICloudMusicService
+        public IStreamingServiceIntegration
 {
     Q_OBJECT
 
 #if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID ICloudMusicService_iid
+    Q_PLUGIN_METADATA(IID IStreamingServiceIntegration_iid
                       FILE "grooveshark.json")
 #endif
-    Q_INTERFACES(ICloudMusicService)
+    Q_INTERFACES(IStreamingServiceIntegration)
 
 public:
     GroovesharkPlugin();

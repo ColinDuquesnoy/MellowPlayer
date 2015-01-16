@@ -32,8 +32,8 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
             this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
 
     int row = 0;
-    foreach(ICloudMusicService* plugin,
-            Services::cloudServices()->plugins()){
+    foreach(IStreamingServiceIntegration* plugin,
+            Services::streamingServices()->plugins()){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
         item->setText(plugin->metaData().name);
         item->setIcon(plugin->metaData().icon);
@@ -53,7 +53,7 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
 {
     if(!item)
         return;
-    ICloudMusicService* plugin = Services::cloudServices()->plugin(item->text());
+    IStreamingServiceIntegration* plugin = Services::streamingServices()->plugin(item->text());
     if(plugin)
     {
         ui->textBrowser->setHtml(
