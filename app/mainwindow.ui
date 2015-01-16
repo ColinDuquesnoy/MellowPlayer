@@ -19,7 +19,16 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -34,7 +43,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pageHome">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -185,20 +194,23 @@
       </widget>
       <widget class="QWidget" name="pageWeb">
        <layout class="QGridLayout" name="gridLayout_4">
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <property name="spacing">
          <number>0</number>
         </property>
         <item row="0" column="0">
-         <widget class="QWebView" name="webView">
-          <property name="url">
-           <url>
-            <string>about:blank</string>
-           </url>
-          </property>
-         </widget>
+         <widget class="WebView" name="webView" native="true"/>
         </item>
        </layout>
       </widget>
@@ -226,7 +238,7 @@
    </widget>
    <widget class="QMenu" name="menuPlayback">
     <property name="title">
-     <string>Control</string>
+     <string>&amp;Control</string>
     </property>
     <addaction name="actionPlayPause"/>
     <addaction name="actionStop"/>
@@ -235,7 +247,7 @@
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Help</string>
+     <string>He&amp;lp</string>
     </property>
     <addaction name="actionAbout_MellowPlayer"/>
     <addaction name="separator"/>
@@ -247,11 +259,11 @@
   </widget>
   <action name="actionSelect_service">
    <property name="icon">
-    <iconset theme="system-run">
+    <iconset theme="system-run" resource="mellowplayer.qrc">
      <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
    </property>
    <property name="text">
-    <string>Select a cloud music service</string>
+    <string>&amp;Select a cloud music service</string>
    </property>
    <property name="toolTip">
     <string>Select a cloud music service</string>
@@ -266,7 +278,7 @@
      <normaloff>:/icons/preferences-system.png</normaloff>:/icons/preferences-system.png</iconset>
    </property>
    <property name="text">
-    <string>Preferences</string>
+    <string>&amp;Preferences</string>
    </property>
    <property name="shortcut">
     <string>F2</string>
@@ -278,7 +290,7 @@
      <normaloff>:/icons/media-playback-start.png</normaloff>:/icons/media-playback-start.png</iconset>
    </property>
    <property name="text">
-    <string>Play</string>
+    <string>&amp;Play</string>
    </property>
    <property name="shortcut">
     <string>Media Play</string>
@@ -290,7 +302,7 @@
      <normaloff>:/icons/media-playback-stop.png</normaloff>:/icons/media-playback-stop.png</iconset>
    </property>
    <property name="text">
-    <string>Stop</string>
+    <string>&amp;Stop</string>
    </property>
    <property name="shortcut">
     <string>Media Stop</string>
@@ -302,7 +314,7 @@
      <normaloff>:/icons/media-seek-forward.png</normaloff>:/icons/media-seek-forward.png</iconset>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string>&amp;Next</string>
    </property>
    <property name="shortcut">
     <string>Media Next</string>
@@ -314,7 +326,7 @@
      <normaloff>:/icons/media-seek-backward.png</normaloff>:/icons/media-seek-backward.png</iconset>
    </property>
    <property name="text">
-    <string>Previous</string>
+    <string>P&amp;revious</string>
    </property>
    <property name="shortcut">
     <string>Media Previous</string>
@@ -326,7 +338,7 @@
      <normaloff>:/icons/help-about.png</normaloff>:/icons/help-about.png</iconset>
    </property>
    <property name="text">
-    <string>About Mellow Player</string>
+    <string>&amp;About Mellow Player</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -338,7 +350,7 @@
      <normaloff>:/icons/tools-report-bug.png</normaloff>:/icons/tools-report-bug.png</iconset>
    </property>
    <property name="text">
-    <string>Report a bug</string>
+    <string>&amp;Report a bug</string>
    </property>
    <property name="shortcut">
     <string>F3</string>
@@ -350,7 +362,7 @@
      <normaloff>:/icons/application-exit.png</normaloff>:/icons/application-exit.png</iconset>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -371,16 +383,16 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QWebView</class>
+   <class>WebView</class>
    <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
+   <header>webview.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>pushButtonSelect</tabstop>
   <tabstop>pushButtonPreferences</tabstop>
   <tabstop>pushButtonQuit</tabstop>
-  <tabstop>webView</tabstop>
  </tabstops>
  <resources>
   <include location="mellowplayer.qrc"/>
