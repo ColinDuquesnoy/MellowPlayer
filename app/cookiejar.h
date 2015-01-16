@@ -23,10 +23,8 @@
 #include <QtNetwork>
 #include <QtCore>
 
-
 typedef QMap<QString, QVariant> CookieMap;
 Q_DECLARE_METATYPE(CookieMap)
-
 
 /*!
  * \brief The CookieJar class manages the cookies cache.

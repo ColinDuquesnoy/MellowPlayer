@@ -16,7 +16,8 @@
 # along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 #
 #----------------------------------------------------------
-# This extension is built only on GNU/Linux!
+
+# This extension is built on GNU/Linux only!
 TEMPLATE      = lib
 TARGET        = mpp_mpris2
 CONFIG       += plugin static

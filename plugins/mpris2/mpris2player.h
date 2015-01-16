@@ -94,7 +94,6 @@ private:
     bool                    canControl();
 
     QMap<QString, QVariant> toXesam(const SongInfo& song);
-
     QString artUrl;
 
 };
