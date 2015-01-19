@@ -78,7 +78,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -116,6 +116,13 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxConfirmQuit">
+           <property name="text">
+            <string>Confirm application exit</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="verticalSpacer_2">

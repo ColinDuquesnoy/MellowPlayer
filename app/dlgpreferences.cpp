@@ -251,7 +251,9 @@ void DlgPreferences::resetInterface()
         "minimizeToTray", QVariant(true)).toBool();
     QString trayIconPath = QSettings().value(
                 "trayIcon",  ":/icons/mellowplayer.png").toString();
+    bool confirmQuit = QSettings().value("confirmQuit", true).toBool();
 
+    ui->checkBoxConfirmQuit->setChecked(confirmQuit);
     ui->checkBoxMinimizeToTray->setChecked(minimizeToTray);
     ui->lineEditTrayIcon->setText(trayIconPath);
     updateTrayIcon(trayIconPath);
@@ -306,6 +308,7 @@ void DlgPreferences::restoreInterface()
 {
     QSettings().setValue("minimizeToTray", true);
     QSettings().setValue("trayIcon",  ":/icons/mellowplayer.png");
+    QSettings().setValue("confirmQuit", true);
 
     this->resetInterface();
 }
@@ -355,6 +358,7 @@ void DlgPreferences::applyInterface()
     QSettings().setValue("minimizeToTray",
                          ui->checkBoxMinimizeToTray->isChecked());
     QSettings().setValue("trayIcon", ui->lineEditTrayIcon->text());
+    QSettings().setValue("confirmQuit", ui->checkBoxConfirmQuit->isChecked());
     mainWindow->trayIcon->setIcon(trayIconFrom(ui->lineEditTrayIcon->text()));
 }
 

@@ -157,7 +157,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
     else
-        // no service is running, quit application
+        // no service is running or the window is already hidden,
+        // quit application
         qApp->exit(0);
 }
 
@@ -288,9 +289,9 @@ void MainWindow::connectSlots()
                   this, SLOT(onPreferencesTriggered()));
 
     this->connect(this->ui->actionQuit, SIGNAL(triggered()),
-                  qApp, SLOT(quit()));
+                  this, SLOT(quit()));
     this->connect(this->ui->pushButtonQuit, SIGNAL(clicked()),
-                  qApp, SLOT(quit()));
+                  this, SLOT(quit()));
 
     this->connect(this->ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
                   this, SLOT(onAboutTriggered()));
@@ -393,7 +394,20 @@ void MainWindow::onAboutTriggered()
 void MainWindow::onReportBugTriggered()
 {
     QDesktopServices::openUrl(QUrl(
-        "https://github.com/ColinDuquesnoy/MellowPlayer/issues/new"));
+                                  "https://github.com/ColinDuquesnoy/MellowPlayer/issues/new"));
+}
+
+//---------------------------------------------------------
+void MainWindow::quit()
+{
+    bool confirm = QSettings().value("confirmQuit", true).toBool();
+    if(!confirm || QMessageBox::question(this, tr("Confirm quit"),
+                       tr("Are you sure you want to exit Mellow Player"),
+                       QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ==
+       QMessageBox::Yes)
+    {
+        qApp->exit();
+    }
 }
 
 //---------------------------------------------------------

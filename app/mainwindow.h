@@ -67,6 +67,7 @@ private slots:
     void updatePlayer();
     void onAboutTriggered();
     void onReportBugTriggered();
+    void quit();
 
 private:
     void closeEvent(QCloseEvent* event);
