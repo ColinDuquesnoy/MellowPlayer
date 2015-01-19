@@ -45,8 +45,6 @@ public:
     const PluginMetaData &metaData() const;
     void setup();
     void teardown();
-    QString description() const;
-
     QWidget* settingsWidget() const;
     void resetSettings(QWidget* widget) const;
     void restoreDefaultSettings(QWidget* widget) const;

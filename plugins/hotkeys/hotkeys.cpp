@@ -77,12 +77,6 @@ void HotkeysPlugin::teardown()
 }
 
 //---------------------------------------------------------
-QString HotkeysPlugin::description() const
-{
-    return tr("Provides support hotkeys");
-}
-
-//---------------------------------------------------------
 QWidget *HotkeysPlugin::settingsWidget() const
 {
     return NULL;
