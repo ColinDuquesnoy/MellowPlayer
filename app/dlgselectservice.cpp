@@ -17,6 +17,8 @@
 //
 //---------------------------------------------------------
 
+#include <QDialogButtonBox>
+#include <QPushButton>
 #include <mellowplayer.h>
 #include "dlgselectservice.h"
 #include "ui_dlg_select_service.h"
@@ -28,6 +30,9 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     ui(new Ui::DialogSelectServices())
 {
     ui->setupUi(this);
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
+    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     connect(ui->listWidget, SIGNAL(itemChanged(QListWidgetItem *)),
             this, SLOT(onCurrentItemChanged(QListWidgetItem *)));

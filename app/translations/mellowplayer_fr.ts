@@ -30,95 +30,95 @@
         <translation>Cache</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="86"/>
+        <location filename="../dlg_preferences.ui" line="88"/>
         <source>Minimize to tray</source>
         <translation>Minimiser dans la barre des tâches</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="95"/>
+        <location filename="../dlg_preferences.ui" line="97"/>
         <source>Tray Icon:</source>
         <translation>Icône dans la barre des tâches:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="112"/>
+        <location filename="../dlg_preferences.ui" line="114"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="141"/>
+        <location filename="../dlg_preferences.ui" line="143"/>
         <source>Play/Pause:</source>
         <translation>Lecture/Pause:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="148"/>
+        <location filename="../dlg_preferences.ui" line="150"/>
         <source>Stop:</source>
         <translation>Stop:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="155"/>
+        <location filename="../dlg_preferences.ui" line="157"/>
         <source>Next:</source>
         <translation>Piste suivante:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="162"/>
+        <location filename="../dlg_preferences.ui" line="164"/>
         <source>Previous:</source>
         <translation>Pister précédente:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="187"/>
+        <location filename="../dlg_preferences.ui" line="189"/>
         <source>Plugin:</source>
         <translation>Plugin:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="206"/>
+        <location filename="../dlg_preferences.ui" line="208"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="215"/>
+        <location filename="../dlg_preferences.ui" line="217"/>
         <source>Author:</source>
         <translation>Auteur:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="228"/>
-        <location filename="../dlg_preferences.ui" line="248"/>
-        <location filename="../dlg_preferences.ui" line="268"/>
-        <location filename="../dlg_preferences.ui" line="291"/>
+        <location filename="../dlg_preferences.ui" line="230"/>
+        <location filename="../dlg_preferences.ui" line="250"/>
+        <location filename="../dlg_preferences.ui" line="270"/>
+        <location filename="../dlg_preferences.ui" line="293"/>
         <source>na</source>
         <translation>na</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="235"/>
+        <location filename="../dlg_preferences.ui" line="237"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="255"/>
+        <location filename="../dlg_preferences.ui" line="257"/>
         <source>Website:</source>
         <translation>Site web:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="278"/>
+        <location filename="../dlg_preferences.ui" line="280"/>
         <source>Description:</source>
         <translation>Description:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="304"/>
+        <location filename="../dlg_preferences.ui" line="306"/>
         <source>Settings</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="320"/>
+        <location filename="../dlg_preferences.ui" line="322"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="334"/>
+        <location filename="../dlg_preferences.ui" line="336"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="341"/>
+        <location filename="../dlg_preferences.ui" line="343"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
@@ -152,14 +152,47 @@ p, li { white-space: pre-wrap; }
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="144"/>
+        <location filename="../dlgpreferences.cpp" line="50"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="51"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="52"/>
+        <source>Reset</source>
+        <translation>Remise à zéro</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="54"/>
+        <source>Restore defaults</source>
+        <translation>Par défaut</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="151"/>
         <source>Select a custom tray icon image</source>
         <translation>Choisissez un icône personnalisée</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="145"/>
+        <location filename="../dlgpreferences.cpp" line="152"/>
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation>Images (*.png *.xpm *.jpg);</translation>
+    </message>
+</context>
+<context>
+    <name>DlgSelectServices</name>
+    <message>
+        <location filename="../dlgselectservice.cpp" line="32"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../dlgselectservice.cpp" line="33"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -389,7 +422,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../dlgselectservice.cpp" line="61"/>
+        <location filename="../dlgselectservice.cpp" line="64"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
     </message>
