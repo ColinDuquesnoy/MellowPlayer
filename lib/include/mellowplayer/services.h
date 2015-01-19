@@ -26,6 +26,7 @@ class PlayerInterface;
 class QAction;
 class QMainWindow;
 class QWebView;
+class QSystemTrayIcon;
 
 /*!
  * \brief The Services class shares the main application objects.
@@ -89,12 +90,16 @@ public:
      */
     static QAction* action(const QString& actionText);
 
+    static void _setSystemTrayIcon(QSystemTrayIcon* icon);
+    static QSystemTrayIcon *systemTrayIcon();
+
 private:
     static QMainWindow* _mainWindow;
     static QWebView* _webView;
     static StreamingServicesManager* _services;
     static ExtensionsManager* _extensions;
     static PlayerInterface* _player;
+    static QSystemTrayIcon* _trayIcon;
 };
 
 #endif // SERVICES_H

@@ -436,6 +436,14 @@ Are you sure you want to erase all settings?</source>
     </message>
 </context>
 <context>
+    <name>NotificationsPlugin</name>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="50"/>
+        <source>Show playback notifications.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../dlgselectservice.cpp" line="63"/>

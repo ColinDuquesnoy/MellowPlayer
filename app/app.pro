@@ -27,6 +27,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 LIBS += -L. \
         -lmpp_grooveshark \
         -lmpp_hotkeys \
+        -lmpp_notifications
 
 
 # link with libmellowplayer

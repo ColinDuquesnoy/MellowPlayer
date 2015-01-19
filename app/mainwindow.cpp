@@ -232,6 +232,7 @@ void MainWindow::setupTrayIcon()
     this->trayIcon->show();
     this->connect(this->trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
                   this, SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+    Services::_setSystemTrayIcon(this->trayIcon);
 }
 
 //---------------------------------------------------------

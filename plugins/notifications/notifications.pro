@@ -17,9 +17,14 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-SUBDIRS  = grooveshark hotkeys notifications
-
-unix:!macx {
-SUBDIRS += mpris2
-}
+# This extension is built on GNU/Linux only!
+TEMPLATE      = lib
+TARGET        = mpp_notifications
+CONFIG       += plugin static
+QT           += dbus gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+HEADERS       = notifications.h
+SOURCES       = notifications.cpp
+INCLUDEPATH  += ../../lib/include
+LIBS         += -L../../lib -lmellowplayer
+DESTDIR       = ../../app

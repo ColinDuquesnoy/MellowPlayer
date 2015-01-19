@@ -24,6 +24,7 @@
 // Add plugins here
 Q_IMPORT_PLUGIN(GroovesharkPlugin)
 Q_IMPORT_PLUGIN(HotkeysPlugin)
+Q_IMPORT_PLUGIN(NotificationsPlugin)
 
 #ifdef Q_OS_LINUX
 Q_IMPORT_PLUGIN(Mpris2Plugin)
