@@ -113,6 +113,8 @@ public:
     static QIcon interface();
     static QIcon shortcuts();
     static QIcon plugins();
+
+    static QIcon userTrash();
 };
 
 #endif // ICONS_H

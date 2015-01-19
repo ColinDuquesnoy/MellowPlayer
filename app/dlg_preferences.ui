@@ -62,7 +62,9 @@
          <string>Cache</string>
         </property>
         <property name="icon">
-         <iconset theme="user-trash-full"/>
+         <iconset theme="user-trash">
+          <normaloff/>
+         </iconset>
         </property>
        </item>
       </widget>

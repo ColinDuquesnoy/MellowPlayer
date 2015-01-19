@@ -45,6 +45,7 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     ui->listWidget->item(0)->setIcon(Icons::interface());
     ui->listWidget->item(1)->setIcon(Icons::shortcuts());
     ui->listWidget->item(2)->setIcon(Icons::plugins());
+    ui->listWidget->item(3)->setIcon(Icons::userTrash());
 
     connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
             this, SLOT(onCategoryChanged(int)));
