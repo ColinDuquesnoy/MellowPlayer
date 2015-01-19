@@ -45,80 +45,85 @@
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="143"/>
+        <location filename="../dlg_preferences.ui" line="123"/>
+        <source>Confirm application exit</source>
+        <translation>Confirmer la sortie de l&apos;application</translation>
+    </message>
+    <message>
+        <location filename="../dlg_preferences.ui" line="150"/>
         <source>Play/Pause:</source>
         <translation>Lecture/Pause:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="150"/>
+        <location filename="../dlg_preferences.ui" line="157"/>
         <source>Stop:</source>
         <translation>Stop:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="157"/>
+        <location filename="../dlg_preferences.ui" line="164"/>
         <source>Next:</source>
         <translation>Piste suivante:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="164"/>
+        <location filename="../dlg_preferences.ui" line="171"/>
         <source>Previous:</source>
         <translation>Pister précédente:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="189"/>
+        <location filename="../dlg_preferences.ui" line="196"/>
         <source>Plugin:</source>
         <translation>Plugin:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="208"/>
+        <location filename="../dlg_preferences.ui" line="215"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="217"/>
+        <location filename="../dlg_preferences.ui" line="224"/>
         <source>Author:</source>
         <translation>Auteur:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="230"/>
-        <location filename="../dlg_preferences.ui" line="250"/>
-        <location filename="../dlg_preferences.ui" line="270"/>
-        <location filename="../dlg_preferences.ui" line="293"/>
+        <location filename="../dlg_preferences.ui" line="237"/>
+        <location filename="../dlg_preferences.ui" line="257"/>
+        <location filename="../dlg_preferences.ui" line="277"/>
+        <location filename="../dlg_preferences.ui" line="300"/>
         <source>na</source>
         <translation>na</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="237"/>
+        <location filename="../dlg_preferences.ui" line="244"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="257"/>
+        <location filename="../dlg_preferences.ui" line="264"/>
         <source>Website:</source>
         <translation>Site web:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="280"/>
+        <location filename="../dlg_preferences.ui" line="287"/>
         <source>Description:</source>
         <translation>Description:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="306"/>
+        <location filename="../dlg_preferences.ui" line="313"/>
         <source>Settings</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="322"/>
+        <location filename="../dlg_preferences.ui" line="329"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="336"/>
+        <location filename="../dlg_preferences.ui" line="343"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="343"/>
+        <location filename="../dlg_preferences.ui" line="350"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
@@ -181,16 +186,54 @@ p, li { white-space: pre-wrap; }
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation>Images (*.png *.xpm *.jpg);</translation>
     </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="201"/>
+        <source>Restart required</source>
+        <translation>Redémarrage de l&apos;application requis</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="202"/>
+        <source>You need to restart the application for the change to be applied.
+
+Do you want to restart now?</source>
+        <translation>Vous devez redémarrer l&apos;application pour que le changement soit appliqué.
+
+Voulez-vous redémarrer maintenant?</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="215"/>
+        <source>Clear cookies</source>
+        <translation>Nettoyer les cookies</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="216"/>
+        <source>This will remove all cookies stored by Mellow Player.
+Are you sure you want to clear all cookies?</source>
+        <translation>Cette action va nettoyer les cookies stockées par Mellow Player.
+Etes-vous sur de vouloir supprimer toutes les cookies?</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="231"/>
+        <source>This will remove all settings stored by Mellow Player.
+Are you sure you want to erase all settings?</source>
+        <translation>Cette action va nettoyer les paramètres de l&apos;application.
+Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
+    </message>
+    <message>
+        <location filename="../dlgpreferences.cpp" line="230"/>
+        <source>Clear settings</source>
+        <translation>Nettoyer les règlages de l&apos;application</translation>
+    </message>
 </context>
 <context>
     <name>DlgSelectServices</name>
     <message>
-        <location filename="../dlgselectservice.cpp" line="32"/>
+        <location filename="../dlgselectservice.cpp" line="34"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../dlgselectservice.cpp" line="33"/>
+        <location filename="../dlgselectservice.cpp" line="35"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -384,31 +427,41 @@ p, li { white-space: pre-wrap; }
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
-        <location filename="../mainwindow.cpp" line="337"/>
-        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="338"/>
+        <location filename="../mainwindow.cpp" line="340"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>Loading, please wait...</source>
         <translation>Chargement en cours, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="376"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="389"/>
+        <location filename="../mainwindow.cpp" line="390"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="404"/>
+        <source>Confirm quit</source>
+        <translation>Confirmer la sortie</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="405"/>
+        <source>Are you sure you want to exit Mellow Player?</source>
+        <translation>Etes-vous sûr de vouloir quitter Mellow Player?</translation>
     </message>
 </context>
 <context>
@@ -422,7 +475,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../dlgselectservice.cpp" line="64"/>
+        <location filename="../dlgselectservice.cpp" line="66"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
     </message>

@@ -60,6 +60,7 @@ public:
      */
     static QIcon trayIconFrom(const QString& path);
 
+    void restart();
 private slots:
     void onCategoryChanged(int category);
     void reset();

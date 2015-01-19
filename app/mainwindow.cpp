@@ -394,7 +394,7 @@ void MainWindow::onAboutTriggered()
 void MainWindow::onReportBugTriggered()
 {
     QDesktopServices::openUrl(QUrl(
-                                  "https://github.com/ColinDuquesnoy/MellowPlayer/issues/new"));
+        "https://github.com/ColinDuquesnoy/MellowPlayer/issues/new"));
 }
 
 //---------------------------------------------------------
@@ -402,7 +402,7 @@ void MainWindow::quit()
 {
     bool confirm = QSettings().value("confirmQuit", true).toBool();
     if(!confirm || QMessageBox::question(this, tr("Confirm quit"),
-                       tr("Are you sure you want to exit Mellow Player"),
+                       tr("Are you sure you want to exit Mellow Player?"),
                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ==
        QMessageBox::Yes)
     {
