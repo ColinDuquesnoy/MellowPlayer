@@ -25,87 +25,102 @@
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="78"/>
+        <location filename="../dlg_preferences.ui" line="62"/>
+        <source>Cache</source>
+        <translation>Cache</translation>
+    </message>
+    <message>
+        <location filename="../dlg_preferences.ui" line="86"/>
         <source>Minimize to tray</source>
         <translation>Minimiser dans la barre des tâches</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="87"/>
+        <location filename="../dlg_preferences.ui" line="95"/>
         <source>Tray Icon:</source>
         <translation>Icône dans la barre des tâches:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="104"/>
+        <location filename="../dlg_preferences.ui" line="112"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="133"/>
+        <location filename="../dlg_preferences.ui" line="141"/>
         <source>Play/Pause:</source>
         <translation>Lecture/Pause:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="140"/>
+        <location filename="../dlg_preferences.ui" line="148"/>
         <source>Stop:</source>
         <translation>Stop:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="147"/>
+        <location filename="../dlg_preferences.ui" line="155"/>
         <source>Next:</source>
         <translation>Piste suivante:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="154"/>
+        <location filename="../dlg_preferences.ui" line="162"/>
         <source>Previous:</source>
         <translation>Pister précédente:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="179"/>
+        <location filename="../dlg_preferences.ui" line="187"/>
         <source>Plugin:</source>
         <translation>Plugin:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="198"/>
+        <location filename="../dlg_preferences.ui" line="206"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="207"/>
+        <location filename="../dlg_preferences.ui" line="215"/>
         <source>Author:</source>
         <translation>Auteur:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="220"/>
-        <location filename="../dlg_preferences.ui" line="240"/>
-        <location filename="../dlg_preferences.ui" line="260"/>
-        <location filename="../dlg_preferences.ui" line="283"/>
+        <location filename="../dlg_preferences.ui" line="228"/>
+        <location filename="../dlg_preferences.ui" line="248"/>
+        <location filename="../dlg_preferences.ui" line="268"/>
+        <location filename="../dlg_preferences.ui" line="291"/>
         <source>na</source>
         <translation>na</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="227"/>
+        <location filename="../dlg_preferences.ui" line="235"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="247"/>
+        <location filename="../dlg_preferences.ui" line="255"/>
         <source>Website:</source>
         <translation>Site web:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="270"/>
+        <location filename="../dlg_preferences.ui" line="278"/>
         <source>Description:</source>
         <translation>Description:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="296"/>
+        <location filename="../dlg_preferences.ui" line="304"/>
         <source>Settings</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="312"/>
+        <location filename="../dlg_preferences.ui" line="320"/>
         <source>Enabled</source>
         <translation>Activé</translation>
+    </message>
+    <message>
+        <location filename="../dlg_preferences.ui" line="334"/>
+        <source>Clear cookies</source>
+        <translation>Nettoyer les cookies</translation>
+    </message>
+    <message>
+        <location filename="../dlg_preferences.ui" line="341"/>
+        <source>Clear settings</source>
+        <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
 </context>
 <context>
@@ -132,17 +147,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DlgPreferences</name>
     <message>
-        <location filename="../dlgpreferences.cpp" line="40"/>
+        <location filename="../dlgpreferences.cpp" line="43"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="137"/>
+        <location filename="../dlgpreferences.cpp" line="144"/>
         <source>Select a custom tray icon image</source>
         <translation>Choisissez un icône personnalisée</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="138"/>
+        <location filename="../dlgpreferences.cpp" line="145"/>
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation>Images (*.png *.xpm *.jpg);</translation>
     </message>
@@ -185,6 +200,11 @@ p, li { white-space: pre-wrap; }
         <translation>Mellow Player</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="53"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot; width=128 height=128/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot; width=128 height=128/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Bienvenue dans Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Veuillez choisir un service de musique en ligne, svp...&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="136"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
@@ -200,48 +220,43 @@ p, li { white-space: pre-wrap; }
         <translation>Application</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="272"/>
+        <location filename="../mainwindow.ui" line="293"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="284"/>
+        <location filename="../mainwindow.ui" line="305"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="296"/>
+        <location filename="../mainwindow.ui" line="317"/>
         <source>Media Play</source>
         <translation>Media Play</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="308"/>
+        <location filename="../mainwindow.ui" line="329"/>
         <source>Media Stop</source>
         <translation>Media Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="320"/>
+        <location filename="../mainwindow.ui" line="341"/>
         <source>Media Next</source>
         <translation>Media Next</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="332"/>
+        <location filename="../mainwindow.ui" line="353"/>
         <source>Media Previous</source>
         <translation>Media Previous</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="344"/>
+        <location filename="../mainwindow.ui" line="365"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="53"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Bienvenue dans MellowPlayer!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Veuillez choisir un service de musique en ligne, s.v.p.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="170"/>
-        <location filename="../mainwindow.ui" line="269"/>
+        <location filename="../mainwindow.ui" line="290"/>
         <source>Select a music streaming service</source>
         <translation>Choisissez un service de musique en ligne</translation>
     </message>
@@ -256,99 +271,109 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="266"/>
+        <location filename="../mainwindow.ui" line="258"/>
+        <source>&amp;View</source>
+        <translation>&amp;Vue</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="268"/>
+        <source>Toolbar</source>
+        <translation>Barre d&apos;outils</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="287"/>
         <source>&amp;Select a music streaming service</source>
         <translation>&amp;Choisissez un service de musique en ligne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="281"/>
+        <location filename="../mainwindow.ui" line="302"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Préférences</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="293"/>
+        <location filename="../mainwindow.ui" line="314"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="305"/>
+        <location filename="../mainwindow.ui" line="326"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="317"/>
+        <location filename="../mainwindow.ui" line="338"/>
         <source>&amp;Next</source>
         <translation>Piste &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="329"/>
+        <location filename="../mainwindow.ui" line="350"/>
         <source>P&amp;revious</source>
         <translation>Piste &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="341"/>
+        <location filename="../mainwindow.ui" line="362"/>
         <source>&amp;About Mellow Player</source>
         <translation>&amp;A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="353"/>
+        <location filename="../mainwindow.ui" line="374"/>
         <source>&amp;Report a bug</source>
         <translation>&amp;Rapporter un bug</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="356"/>
+        <location filename="../mainwindow.ui" line="377"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="365"/>
+        <location filename="../mainwindow.ui" line="386"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="368"/>
+        <location filename="../mainwindow.ui" line="389"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="377"/>
+        <location filename="../mainwindow.ui" line="398"/>
         <source>Restore window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="380"/>
+        <location filename="../mainwindow.ui" line="401"/>
         <source>Restore the window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="151"/>
         <source>The program will keep running in the system tray. To terminate the program, choose &lt;b&gt;Quit&lt;/b&gt; in the context menu of the system tray entry.</source>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
-        <location filename="../mainwindow.cpp" line="338"/>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.cpp" line="339"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>Loading, please wait...</source>
         <translation>Chargement en cours, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="377"/>
+        <location filename="../mainwindow.cpp" line="376"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="389"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
