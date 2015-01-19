@@ -34,7 +34,8 @@
 //---------------------------------------------------------
 DlgPreferences::DlgPreferences(MainWindow* parent):
     QDialog(parent),
-    mainWindow(parent)
+    mainWindow(parent),
+    lockPluginState(true)
 {
     qDebug() << QSettings().fileName();
 
@@ -61,12 +62,13 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
 
     connect(ui->comboBoxPlugins, SIGNAL(currentIndexChanged(int)),
             this, SLOT(onCurrentPluginChanged(int)));
-    connect(ui->checkBoxPluginState, SIGNAL(stateChanged(int)),
-            this, SLOT(onPluginStateChanged(int)));
     connect(ui->pushButtonClearCookies, SIGNAL(clicked()),
             this, SLOT(onClearCookiesClicked()));
     connect(ui->pushButtonClearPreferences, SIGNAL(clicked()),
             this, SLOT(onClearPreferencesClicked()));
+
+    connect(ui->checkBoxPluginState, SIGNAL(stateChanged(int)),
+            this, SLOT(onPluginStateChanged(int)));
 
     // empty page
     ui->stackedWidgetPluginSettings->addWidget(new QWidget());
@@ -83,6 +85,8 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     }
 
     reset();
+
+    this->lockPluginState = false;
 
     // restore last preferences page
     int currentIndex = QSettings().value("lastPreferencesPageIndex", 0).toInt();
@@ -152,6 +156,7 @@ void DlgPreferences::chooseTrayIconFile()
 //---------------------------------------------------------
 void DlgPreferences::onCurrentPluginChanged(int currentIndex)
 {
+    this->lockPluginState = true;
     QString pluginName = ui->comboBoxPlugins->itemText(currentIndex);
     qDebug() << "Active plugin changed" << pluginName;
     IExtension* plugin = Services::extensions()->plugin(pluginName);
@@ -177,15 +182,19 @@ void DlgPreferences::onCurrentPluginChanged(int currentIndex)
         ui->stackedWidgetPluginSettings->setCurrentIndex(0);
         ui->checkBoxPluginState->setChecked(false);
     }
+    this->lockPluginState = false;
 }
 
 //---------------------------------------------------------
 void DlgPreferences::onPluginStateChanged(int state)
 {
+    if(this->lockPluginState)
+        return;
     IExtension* plugin = Services::extensions()->plugin(
         ui->comboBoxPlugins->currentText());
     if(plugin)
         QSettings().setValue(plugin->metaData().name, bool(state));
+    this->restart();
 }
 
 //---------------------------------------------------------
@@ -279,6 +288,7 @@ void DlgPreferences::resetShortcuts()
 //---------------------------------------------------------
 void DlgPreferences::resetPlugins()
 {
+    this->lockPluginState = true;
     for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
     {
         int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
@@ -290,16 +300,19 @@ void DlgPreferences::resetPlugins()
             plugin->resetSettings(w);
         }
     }
+    this->lockPluginState = false;
 }
 
 //---------------------------------------------------------
 void DlgPreferences::restoreInterface()
 {
+    this->lockPluginState = true;
     QSettings().setValue("minimizeToTray", true);
     QSettings().setValue("trayIcon",  ":/icons/mellowplayer.png");
     QSettings().setValue("confirmQuit", true);
 
     this->resetInterface();
+    this->lockPluginState = false;
 }
 
 //---------------------------------------------------------
