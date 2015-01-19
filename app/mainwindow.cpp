@@ -44,8 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setupUpdateTimer();
     this->setupTrayIcon();
     this->connectSlots();
-
-    // todo restore settings.
+    this->ui->menuView->addActions(this->createPopupMenu()->actions());
 }
 
 //---------------------------------------------------------
@@ -402,6 +401,8 @@ void MainWindow::restoreGeometryAndState()
 {
     this->restoreGeometry(QSettings().value("windowGeometry").toByteArray());
     this->restoreState(QSettings().value("windowState").toByteArray());
+    this->ui->toolBar->setVisible(
+        QSettings().value("toolbarVisible", false).toBool());
 }
 
 //---------------------------------------------------------
@@ -409,4 +410,16 @@ void MainWindow::saveGeometryAndState()
 {
     QSettings().setValue("windowGeometry", this->saveGeometry());
     QSettings().setValue("windowState", this->saveState(VERSION_MAJOR));
+
+
+    // store toolbar state
+    foreach(QAction* action, this->ui->menuView->actions())
+    {
+        QString text = action->text();
+        QString oName = this->ui->toolBar->objectName();
+        if(text.remove("&").toLower() == oName.toLower())
+        {
+            QSettings().setValue("toolbarVisible", action->isChecked());
+        }
+    }
 }
