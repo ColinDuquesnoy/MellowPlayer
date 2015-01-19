@@ -109,6 +109,10 @@ public:
      * \return QIcon
      */
     static QIcon trayIcon();
+
+    static QIcon interface();
+    static QIcon shortcuts();
+    static QIcon plugins();
 };
 
 #endif // ICONS_H

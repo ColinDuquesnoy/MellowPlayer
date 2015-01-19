@@ -21,6 +21,7 @@
 #include <mellowplayer.h>
 
 #include "dlgpreferences.h"
+#include "icons.h"
 #include "keysequenceedit.h"
 #include "mainwindow.h"
 #include "shortcuts.h"
@@ -38,6 +39,9 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     ui->setupUi(this);
     this->setWindowTitle(tr("Preferences"));
 
+    ui->listWidget->item(0)->setIcon(Icons::interface());
+    ui->listWidget->item(1)->setIcon(Icons::shortcuts());
+    ui->listWidget->item(2)->setIcon(Icons::plugins());
 
     connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
             this, SLOT(onCategoryChanged(int)));

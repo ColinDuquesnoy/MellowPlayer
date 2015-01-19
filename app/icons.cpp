@@ -105,5 +105,28 @@ QIcon Icons::mellowPlayer()
 //---------------------------------------------------------
 QIcon Icons::trayIcon()
 {
-    return QIcon(":/icons/mellowplayer.png");
+  return QIcon(":/icons/mellowplayer.png");
 }
+
+//---------------------------------------------------------
+QIcon Icons::interface()
+{
+    return QIcon::fromTheme("preferences-desktop-theme",
+                            QIcon(":/icons/preferences-desktop-theme.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::shortcuts()
+{
+    return QIcon::fromTheme("preferences-desktop-keyboard",
+                            QIcon(":/icons/preferences-desktop-keyboard.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::plugins()
+{
+  return QIcon::fromTheme("preferences-other",
+                          QIcon(":/icons/preferences-other.png"));
+}
+
+
