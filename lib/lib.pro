@@ -31,11 +31,11 @@ HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \
                   include/mellowplayer/streamingservicesmanager.h \
-                  include/mellowplayer/urldownloader.h \
+                  include/mellowplayer/urldownloader.h
 SOURCES         = src/extensionsmanager.cpp \
                   src/interfaces.cpp \
                   src/player.cpp \
                   src/services.cpp \
                   src/song.cpp \
                   src/streamingservicesmanager.cpp \
-                  src/urldownloader.cpp \
+                  src/urldownloader.cpp
