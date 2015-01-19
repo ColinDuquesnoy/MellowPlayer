@@ -120,7 +120,7 @@ signals:
      *
      * \param position New song position [µs]
      */
-    void positionChanged(int position);
+    void positionChanged(qlonglong position);
 
 private slots:
     void onArtReady(const QString& filePath);

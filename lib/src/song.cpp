@@ -27,17 +27,36 @@ QString playbackStatusToString(PlaybackStatus status, bool allowLoading)
     switch (status) {
     case Loading:
         if(allowLoading)
-            return QObject::tr("Loading");
+            return "Loading";
         else
-            return QObject::tr("Playing");
+            return "Playing";
     case Playing:
-        return QObject::tr("Playing");
+        return "Playing";
     case Paused:
-        return QObject::tr("Paused");
+        return "Paused";
     case Stopped:
-        return QObject::tr("Stopped");
+        return "Stopped";
     }
     return "";
+}
+
+//---------------------------------------------------------
+QString playbackStatusToStringTr(PlaybackStatus status, bool allowLoading)
+{
+  switch (status) {
+  case Loading:
+      if(allowLoading)
+          return QObject::tr("Loading");
+      else
+          return QObject::tr("Playing");
+  case Playing:
+      return QObject::tr("Playing");
+  case Paused:
+      return QObject::tr("Paused");
+  case Stopped:
+      return QObject::tr("Stopped");
+  }
+  return "";
 }
 
 //---------------------------------------------------------

@@ -144,7 +144,7 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
     if(status != this->currentStatus)
     {
         qDebug() << "Playback status changed: "
-                 << playbackStatusToString((status));
+                 << playbackStatusToStringTr((status));
         this->currentStatus = status;
         emit playbackStatusChanged(status);
     }

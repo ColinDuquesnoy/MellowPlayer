@@ -17,12 +17,15 @@
 //
 //---------------------------------------------------------
 
+#include <math.h>
 #include <mellowplayer.h>
 #include "mpris2player.h"
 
 //---------------------------------------------------------
 Mpris2Player::Mpris2Player(QObject *parent):
-    QDBusAbstractAdaptor(parent)
+    QDBusAbstractAdaptor(parent),
+    length(0),
+    prevPos(0)
 {
     connect(Services::player(), SIGNAL(playbackStatusChanged(PlaybackStatus)),
             this, SLOT(onPlaybackStatusChanged(PlaybackStatus)));
@@ -30,8 +33,8 @@ Mpris2Player::Mpris2Player(QObject *parent):
             this, SLOT(onSongChanged(const SongInfo&)));
     connect(Services::player(), SIGNAL(artReady(const QString&)),
             this, SLOT(onArtReady(const QString&)));
-    connect(Services::player(), SIGNAL(positionChanged(int)),
-            this, SLOT(onPositionChanged(int)));
+    connect(Services::player(), SIGNAL(positionChanged(qlonglong)),
+            this, SLOT(onPositionChanged(qlonglong)));
 }
 
 //---------------------------------------------------------
@@ -71,8 +74,9 @@ void Mpris2Player::Previous()
 }
 
 //---------------------------------------------------------
-void Mpris2Player::Seek(int position)
+void Mpris2Player::Seek(qlonglong position)
 {
+    qDebug() << "Seek " << position;
     Services::player()->seekToPosition(this->position() + position);
 }
 
@@ -80,7 +84,9 @@ void Mpris2Player::Seek(int position)
 void Mpris2Player::SetPosition(
         const QDBusObjectPath &trackId, qlonglong position)
 {
-    qDebug() << "Changing position of " << trackId.path();
+    position = floor(position / 1000000.f) * 1000000;
+    qDebug() << "Changing position of " << trackId.path() << ": "
+             << position;
     Services::player()->seekToPosition(position);
 }
 
@@ -97,6 +103,7 @@ void Mpris2Player::onSongChanged(const SongInfo &song)
 {
     QVariantMap map;
     this->artUrl = "";
+    this->length = 0;
     map["Metadata"] = this->toXesam(song);
     this->signalUpdate(map);
 }
@@ -106,17 +113,36 @@ void Mpris2Player::onArtReady(const QString &artFilePathUrl)
 {
     QVariantMap map;
     this->artUrl = artFilePathUrl;
+    this->artUrl = "file://" + artFilePathUrl;
     map["Metadata"] = this->toXesam(Services::player()->currentSong());
     this->signalUpdate(map);
 }
 
 //---------------------------------------------------------
-void Mpris2Player::onPositionChanged(int position)
+void Mpris2Player::onPositionChanged(qlonglong position)
 {
+    qlonglong floorPos = floor(position / 1000000.f) * 1000000;
+
     QVariantMap map;
-    map["Position"] = position;
-    map["Metadata"] = this->toXesam(Services::player()->currentSong());
-    this->signalUpdate(map);
+    if(this->length == 0 && Services::player()->currentSong().duration)
+    {
+        this->length = Services::player()->currentSong().duration;
+        map["Metadata"] = this->toXesam(Services::player()->currentSong());
+        this->signalUpdate(map);
+    }
+    else
+    {
+        map["Position"] = floorPos;
+        this->signalUpdate(map);
+        qlonglong delta = abs(floorPos - this->prevPos);
+        this->prevPos = floorPos;
+        if(delta > 1000000)
+        {
+            qDebug() << "Seeked emitted";
+            emit this->Seeked(floorPos);
+        }
+
+    }
 }
 
 //---------------------------------------------------------
@@ -135,6 +161,8 @@ void Mpris2Player::signalUpdate(const QVariantMap &map)
         << QStringList();
     signal.setArguments(args);
     QDBusConnection::sessionBus().send(signal);
+
+    qDebug() << "Update signaled: " << map;
 }
 
 //---------------------------------------------------------
@@ -216,7 +244,7 @@ void Mpris2Player::setRate(float value)
 //---------------------------------------------------------
 qlonglong Mpris2Player::position()
 {
-    return Services::player()->currentSong().position;
+    return this->prevPos;
 }
 
 //---------------------------------------------------------

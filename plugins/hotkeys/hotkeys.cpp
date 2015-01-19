@@ -85,19 +85,19 @@ QWidget *HotkeysPlugin::settingsWidget() const
 //---------------------------------------------------------
 void HotkeysPlugin::resetSettings(QWidget *widget) const
 {
-    Q_ASSERT(widget == NULL);
+    Q_UNUSED(widget);
 }
 
 //---------------------------------------------------------
 void HotkeysPlugin::restoreDefaultSettings(QWidget *widget) const
 {
-    Q_ASSERT(widget == NULL);
+    Q_UNUSED(widget);
 }
 
 //---------------------------------------------------------
 void HotkeysPlugin::applySettings(QWidget *widget) const
 {
-    Q_ASSERT(widget == NULL);
+    Q_UNUSED(widget);
 }
 
 #if QT_VERSION < 0x050000

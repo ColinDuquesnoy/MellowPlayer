@@ -54,6 +54,9 @@ public:
     Q_PROPERTY(QString  LoopStatus      READ loopStatus     WRITE setLoopStatus)
     Q_PROPERTY(QString  PlaybackStatus  READ playbackStatus                    )
 
+signals:
+  void Seeked(qlonglong);
+
 public slots:
     void PlayPause();
     void Play();
@@ -61,14 +64,14 @@ public slots:
     void Stop();
     void Next();
     void Previous();
-    void Seek(int position);
+    void Seek(qlonglong position);
     void SetPosition(const QDBusObjectPath& trackId, qlonglong position);
 
 private slots:
     void onPlaybackStatusChanged(PlaybackStatus status);
     void onSongChanged(const SongInfo& song);
     void onArtReady(const QString& artFilePathUrl);
-    void onPositionChanged(int position);
+    void onPositionChanged(qlonglong position);
 
 private:
     void signalUpdate(const QVariantMap &map);
@@ -95,6 +98,8 @@ private:
 
     QMap<QString, QVariant> toXesam(const SongInfo& song);
     QString artUrl;
+    qlonglong length;
+    qlonglong prevPos;
 
 };
 
