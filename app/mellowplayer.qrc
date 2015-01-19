@@ -19,5 +19,9 @@
         <file>translations/mellowplayer_fr.qm</file>
         <file>icons/user-trash.png</file>
         <file>translations/mellowplayer_en.qm</file>
+        <file>translations/mellowplayer_de.qm</file>
+        <file>translations/mellowplayer_es.qm</file>
+        <file>translations/mellowplayer_nl.qm</file>
+        <file>translations/mellowplayer_ru.qm</file>
     </qresource>
 </RCC>

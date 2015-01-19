@@ -47,5 +47,6 @@ TRANSLATIONS += app/translations/mellowplayer_fr.ts \
                 app/translations/mellowplayer_de.ts \
                 app/translations/mellowplayer_ru.ts
 
-# automatically release
+# automatically update and release translations
+system("lupdate MellowPlayer.pro")
 system("lrelease MellowPlayer.pro")
