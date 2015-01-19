@@ -18,8 +18,11 @@
 //---------------------------------------------------------
 
 #include <QFileDialog>
+#include <QMessageBox>
 #include <mellowplayer.h>
 
+#include "application.h"
+#include "cookiejar.h"
 #include "dlgpreferences.h"
 #include "icons.h"
 #include "keysequenceedit.h"
@@ -59,6 +62,10 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
             this, SLOT(onCurrentPluginChanged(int)));
     connect(ui->checkBoxPluginState, SIGNAL(stateChanged(int)),
             this, SLOT(onPluginStateChanged(int)));
+    connect(ui->pushButtonClearCookies, SIGNAL(clicked()),
+            this, SLOT(onClearCookiesClicked()));
+    connect(ui->pushButtonClearPreferences, SIGNAL(clicked()),
+            this, SLOT(onClearPreferencesClicked()));
 
     // empty page
     ui->stackedWidgetPluginSettings->addWidget(new QWidget());
@@ -178,6 +185,55 @@ void DlgPreferences::onPluginStateChanged(int state)
         ui->comboBoxPlugins->currentText());
     if(plugin)
         QSettings().setValue(plugin->metaData().name, bool(state));
+}
+
+//---------------------------------------------------------
+void DlgPreferences::onClearCookiesClicked()
+{
+    if(QMessageBox::question(
+        this, "Clear cookies",
+        "This will remove all cookies stored by Mellow Player (e.g. your "
+        "login information).\n\nAre you sure you want to clear all cookies?",
+        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
+            QMessageBox::Yes)
+    {
+        CookieJar().purgeCookies();
+        if(QMessageBox::question(
+            this, "Restart required",
+            "You need to restart the application for the change to be applied."
+            "\n\n"
+            "Do you want to restart now?", QMessageBox::Yes | QMessageBox::No,
+            QMessageBox::Yes) == QMessageBox::Yes)
+        {
+            QProcess::startDetached(QApplication::applicationFilePath());
+            qApp->exit(12);
+        }
+    }
+}
+
+//---------------------------------------------------------
+void DlgPreferences::onClearPreferencesClicked()
+{
+    if(QMessageBox::question(
+        this, "Clear settings",
+        "This will remove all settings stored by Mellow Player. The next"
+        "time reboot it will run as if it was the first time.\n\n"
+        "Are you sure you want to erase all settings?",
+        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
+            QMessageBox::Yes)
+    {
+        QSettings().clear();
+        if(QMessageBox::question(
+            this, "Restart required",
+            "You need to restart the application for the change to be applied."
+            "\n\n"
+            "Do you want to restart now?", QMessageBox::Yes | QMessageBox::No,
+            QMessageBox::Yes) == QMessageBox::Yes)
+        {
+            QProcess::startDetached(QApplication::applicationFilePath());
+            qApp->exit(12);
+        }
+    }
 }
 
 

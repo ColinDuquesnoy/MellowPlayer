@@ -57,6 +57,14 @@
           <normaloff>:/icons/preferences-other.png</normaloff>:/icons/preferences-other.png</iconset>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Cache</string>
+        </property>
+        <property name="icon">
+         <iconset theme="user-trash-full"/>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -68,7 +76,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -315,6 +323,37 @@
             </item>
            </layout>
           </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="pageCache">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="pushButtonClearCookies">
+           <property name="text">
+            <string>Clear cookies</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonClearPreferences">
+           <property name="text">
+            <string>Clear settings</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

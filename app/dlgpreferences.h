@@ -68,6 +68,8 @@ private slots:
     void chooseTrayIconFile();
     void onCurrentPluginChanged(int currentIndex);
     void onPluginStateChanged(int state);
+    void onClearCookiesClicked();
+    void onClearPreferencesClicked();
 
 private:
     void resetInterface();
