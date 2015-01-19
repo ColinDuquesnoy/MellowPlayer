@@ -53,7 +53,6 @@ enum PlaybackStatus
  * \return String representation of the playback status
  */
 QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
-QString playbackStatusToStringTr(PlaybackStatus status, bool allowLoading=true);
 
 
 /*!

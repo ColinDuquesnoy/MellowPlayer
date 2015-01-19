@@ -42,22 +42,22 @@
     <message>
         <location filename="../dlg_preferences.ui" line="133"/>
         <source>Play/Pause:</source>
-        <translation>Jouer/Mettre en pause:</translation>
+        <translation>Lecture/Pause:</translation>
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="140"/>
         <source>Stop:</source>
-        <translation>Arrêter:</translation>
+        <translation>Stop:</translation>
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="147"/>
         <source>Next:</source>
-        <translation>Suivant:</translation>
+        <translation>Piste suivante:</translation>
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="154"/>
         <source>Previous:</source>
-        <translation>Précédent:</translation>
+        <translation>Pister précédente:</translation>
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="179"/>
@@ -132,17 +132,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DlgPreferences</name>
     <message>
-        <location filename="../dlgpreferences.cpp" line="39"/>
+        <location filename="../dlgpreferences.cpp" line="40"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="133"/>
+        <location filename="../dlgpreferences.cpp" line="137"/>
         <source>Select a custom tray icon image</source>
         <translation>Choisissez un icône personnalisée</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="134"/>
+        <location filename="../dlgpreferences.cpp" line="138"/>
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation>Images (*.png *.xpm *.jpg);</translation>
     </message>
@@ -268,22 +268,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="293"/>
         <source>&amp;Play</source>
-        <translation>&amp;Jouer</translation>
+        <translation>&amp;Lecture</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="305"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Arrêter</translation>
+        <translation>&amp;Stop</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="317"/>
         <source>&amp;Next</source>
-        <translation>&amp;Suivant</translation>
+        <translation>Piste &amp;suivante</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="329"/>
         <source>P&amp;revious</source>
-        <translation>&amp;Précédent</translation>
+        <translation>Piste &amp;précédente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -330,12 +330,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../mainwindow.cpp" line="338"/>
         <location filename="../mainwindow.cpp" line="340"/>
         <source>Play</source>
-        <translation>Jouer</translation>
+        <translation>Lecture</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="323"/>
         <source>Pause</source>
-        <translation>Mettre en pause</translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="328"/>
@@ -367,27 +367,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../dlgselectservice.cpp" line="61"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../lib/src/song.cpp" line="30"/>
-        <source>Loading</source>
-        <translation>Chargement</translation>
-    </message>
-    <message>
-        <location filename="../../lib/src/song.cpp" line="32"/>
-        <location filename="../../lib/src/song.cpp" line="34"/>
-        <source>Playing</source>
-        <translation>En train de jouer</translation>
-    </message>
-    <message>
-        <location filename="../../lib/src/song.cpp" line="36"/>
-        <source>Paused</source>
-        <translation>En pause</translation>
-    </message>
-    <message>
-        <location filename="../../lib/src/song.cpp" line="38"/>
-        <source>Stopped</source>
-        <translation>Arrêté</translation>
     </message>
     <message>
         <location filename="../../lib/src/song.cpp" line="52"/>

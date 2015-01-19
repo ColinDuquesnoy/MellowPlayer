@@ -41,25 +41,6 @@ QString playbackStatusToString(PlaybackStatus status, bool allowLoading)
 }
 
 //---------------------------------------------------------
-QString playbackStatusToStringTr(PlaybackStatus status, bool allowLoading)
-{
-  switch (status) {
-  case Loading:
-      if(allowLoading)
-          return QObject::tr("Loading");
-      else
-          return QObject::tr("Playing");
-  case Playing:
-      return QObject::tr("Playing");
-  case Paused:
-      return QObject::tr("Paused");
-  case Stopped:
-      return QObject::tr("Stopped");
-  }
-  return "";
-}
-
-//---------------------------------------------------------
 bool SongInfo::isValid() const
 {
     return songName != "";
