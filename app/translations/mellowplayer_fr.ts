@@ -157,42 +157,22 @@ p, li { white-space: pre-wrap; }
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="50"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="51"/>
-        <source>Cancel</source>
-        <translation>Annuler</translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="52"/>
-        <source>Reset</source>
-        <translation>Remise à zéro</translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="54"/>
-        <source>Restore defaults</source>
-        <translation>Par défaut</translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="151"/>
+        <location filename="../dlgpreferences.cpp" line="145"/>
         <source>Select a custom tray icon image</source>
         <translation>Choisissez un icône personnalisée</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="152"/>
+        <location filename="../dlgpreferences.cpp" line="146"/>
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation>Images (*.png *.xpm *.jpg);</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="201"/>
+        <location filename="../dlgpreferences.cpp" line="195"/>
         <source>Restart required</source>
         <translation>Redémarrage de l&apos;application requis</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="202"/>
+        <location filename="../dlgpreferences.cpp" line="196"/>
         <source>You need to restart the application for the change to be applied.
 
 Do you want to restart now?</source>
@@ -201,41 +181,28 @@ Do you want to restart now?</source>
 Voulez-vous redémarrer maintenant?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="215"/>
+        <location filename="../dlgpreferences.cpp" line="209"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="216"/>
+        <location filename="../dlgpreferences.cpp" line="210"/>
         <source>This will remove all cookies stored by Mellow Player.
 Are you sure you want to clear all cookies?</source>
         <translation>Cette action va nettoyer les cookies stockées par Mellow Player.
 Etes-vous sur de vouloir supprimer toutes les cookies?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="231"/>
+        <location filename="../dlgpreferences.cpp" line="225"/>
         <source>This will remove all settings stored by Mellow Player.
 Are you sure you want to erase all settings?</source>
         <translation>Cette action va nettoyer les paramètres de l&apos;application.
 Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="230"/>
+        <location filename="../dlgpreferences.cpp" line="224"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
-    </message>
-</context>
-<context>
-    <name>DlgSelectServices</name>
-    <message>
-        <location filename="../dlgselectservice.cpp" line="34"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="../dlgselectservice.cpp" line="35"/>
-        <source>Cancel</source>
-        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -422,6 +389,11 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="150"/>
+        <source>Minimizing to system tray</source>
+        <translation>Minimisation dans la barre des tâches</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="151"/>
         <source>The program will keep running in the system tray. To terminate the program, choose &lt;b&gt;Quit&lt;/b&gt; in the context menu of the system tray entry.</source>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
@@ -445,13 +417,13 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="377"/>
-        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
-        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
+        <source>&lt;h3&gt;Mellow Player %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
+        <translation>&lt;h3&gt;Mellow Player %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="390"/>
-        <source>About MellowPlayer</source>
-        <translation>A propos de MellowPlayer</translation>
+        <source>About Mellow Player</source>
+        <translation>A propos de Mellow Player</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="404"/>
@@ -475,7 +447,7 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../dlgselectservice.cpp" line="66"/>
+        <location filename="../dlgselectservice.cpp" line="63"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
     </message>

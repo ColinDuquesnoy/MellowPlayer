@@ -30,7 +30,7 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     mainWindow(NULL)
 {
 #ifdef __kde_support__
-    qDebug() << "MellowPlayer built with KDE support";
+    qDebug() << "Mellow Player built with KDE support";
 #endif
     this->setOrganizationName("MellowPlayer");
     this->setOrganizationDomain("org.mellowplayer");

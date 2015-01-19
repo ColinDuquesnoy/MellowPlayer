@@ -18,5 +18,6 @@
         <file>icons/tools-report-bug.png</file>
         <file>translations/mellowplayer_fr.qm</file>
         <file>icons/user-trash.png</file>
+        <file>translations/mellowplayer_en.qm</file>
     </qresource>
 </RCC>

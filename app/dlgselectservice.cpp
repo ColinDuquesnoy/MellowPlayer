@@ -31,9 +31,6 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
 {
     ui->setupUi(this);
 
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
-    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
-
     connect(ui->listWidget, SIGNAL(itemChanged(QListWidgetItem *)),
             this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
 

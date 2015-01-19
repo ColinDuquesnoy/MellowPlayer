@@ -47,12 +47,6 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     ui->listWidget->item(2)->setIcon(Icons::plugins());
     ui->listWidget->item(3)->setIcon(Icons::userTrash());
 
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
-    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
-    ui->buttonBox->button(QDialogButtonBox::Reset)->setText(tr("Reset"));
-    ui->buttonBox->button(QDialogButtonBox::RestoreDefaults)->setText(
-                tr("Restore defaults"));
-
     connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
             this, SLOT(onCategoryChanged(int)));
     connect(ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()),

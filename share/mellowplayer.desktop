@@ -1,12 +1,16 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=MellowPlayer
-GenericName=MellowPlayer
-Comment=Music streaming services integration for your desktop!
+Name=Mellow Player
+GenericName=Cloud music player
+GenericName[fr]=Lecteur de service de musique en ligne
+Comment=Cloud music player
+Comment[fr]=Lecteur de service de musique en ligne
 Exec=MellowPlayer
 TryExec=MellowPlayer
 Icon=mellowplayer
 Terminal=false
 Categories=AudioVideo;Player;Qt;Audio;
 StartupNotify=false
+
+
