@@ -147,50 +147,50 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DlgPreferences</name>
     <message>
-        <location filename="../dlgpreferences.cpp" line="43"/>
+        <location filename="../dlgpreferences.cpp" line="44"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="145"/>
+        <location filename="../dlgpreferences.cpp" line="149"/>
         <source>Select a custom tray icon image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="146"/>
+        <location filename="../dlgpreferences.cpp" line="150"/>
         <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="195"/>
+        <location filename="../dlgpreferences.cpp" line="204"/>
         <source>Restart required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="196"/>
+        <location filename="../dlgpreferences.cpp" line="205"/>
         <source>You need to restart the application for the change to be applied.
 
 Do you want to restart now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="209"/>
+        <location filename="../dlgpreferences.cpp" line="220"/>
         <source>Clear cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="210"/>
+        <location filename="../dlgpreferences.cpp" line="221"/>
         <source>This will remove all cookies stored by Mellow Player.
 Are you sure you want to clear all cookies?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="224"/>
+        <location filename="../dlgpreferences.cpp" line="235"/>
         <source>Clear settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="225"/>
+        <location filename="../dlgpreferences.cpp" line="236"/>
         <source>This will remove all settings stored by Mellow Player.
 Are you sure you want to erase all settings?</source>
         <translation type="unfinished"></translation>
@@ -390,39 +390,39 @@ Are you sure you want to erase all settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
-        <location filename="../mainwindow.cpp" line="338"/>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="377"/>
+        <location filename="../mainwindow.cpp" line="378"/>
         <source>&lt;h3&gt;Mellow Player %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="391"/>
         <source>About Mellow Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="404"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>Confirm quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="405"/>
+        <location filename="../mainwindow.cpp" line="406"/>
         <source>Are you sure you want to exit Mellow Player?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -438,8 +438,13 @@ Are you sure you want to erase all settings?</source>
 <context>
     <name>NotificationsPlugin</name>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="50"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="54"/>
         <source>Show playback notifications.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="94"/>
+        <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
