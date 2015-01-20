@@ -40,13 +40,8 @@ unix{
 
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
-TRANSLATIONS += app/translations/mellowplayer_fr.ts \
-                app/translations/mellowplayer_en.ts \
-                app/translations/mellowplayer_es.ts \
-                app/translations/mellowplayer_nl.ts \
-                app/translations/mellowplayer_de.ts \
-                app/translations/mellowplayer_ru.ts
+TRANSLATIONS += app/translations/mellowplayer_fr.ts
 
-# automatically update and release translations
-system("lupdate MellowPlayer.pro")
+# automatically release translations, .qm files are embedded
+# in the application resources.
 system("lrelease MellowPlayer.pro")
