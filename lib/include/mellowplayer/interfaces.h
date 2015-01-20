@@ -96,6 +96,24 @@ Q_DECLARE_INTERFACE(IStreamingServiceIntegration, IStreamingServiceIntegration_i
  *
  * Each plugin may have a settings widgets that will automatically appear in the
  * application settings.
+ *
+ * To create a new IExtension, you **must implement the following methods**:
+ *
+ *    - metaData
+ *    - setup
+ *
+ * The following methods are optional. Implement them if you have a
+ * specific teardown procedure to execute:
+ *
+ *   - teardown
+ *
+ * Or if you wish to expose some settings to the user through the
+ * preferences dialog:
+ *
+ *   - settingsWidget
+ *   - resetSettings
+ *   - restoreSettings
+ *   - applySettings
  */
 class IExtension
 {
@@ -123,7 +141,7 @@ public:
      * Implement this method if you need to unregister some services or to
      * delete custom allocated objects.
      */
-    virtual void teardown() = 0;
+    virtual void teardown() { }
 
     /*!
      * \brief Returns the settings widget associated with the extension.
@@ -133,21 +151,21 @@ public:
      * any settings. If you return a non-null widget, you will also need to
      * implement: resetSettings, restoreDefaultSettings and applySettings.
      */
-    virtual QWidget* settingsWidget() const = 0;
+    virtual QWidget* settingsWidget() const { return NULL; }
 
     /*!
      * \brief Reset the plugin settings
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void resetSettings(QWidget* widget) const = 0;
+    virtual void resetSettings(QWidget* widget) const { Q_UNUSED(widget) }
 
     /*!
      * \brief Restore the plugin settings to their default values.
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void restoreDefaultSettings(QWidget* widget) const = 0;
+    virtual void restoreDefaultSettings(QWidget* widget) const { Q_UNUSED(widget) }
 
     /*!
      * \brief Apply plugin settings.
@@ -155,7 +173,7 @@ public:
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
-    virtual void applySettings(QWidget* widget) const = 0;
+    virtual void applySettings(QWidget* widget) const { Q_UNUSED(widget) }
 };
 
 #define IExtension_iid "org.MellowPlayer.IExtension"

@@ -42,13 +42,8 @@ class HotkeysPlugin :
     Q_INTERFACES(IExtension)
 
 public:
-    const PluginMetaData &metaData() const;
-    void setup();
-    void teardown();
-    QWidget* settingsWidget() const;
-    void resetSettings(QWidget* widget) const;
-    void restoreDefaultSettings(QWidget* widget) const;
-    void applySettings(QWidget* widget) const;
+    virtual const PluginMetaData &metaData() const;
+    virtual void setup();
 
 private:
 #ifndef __kde_support__

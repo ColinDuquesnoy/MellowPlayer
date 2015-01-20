@@ -70,35 +70,6 @@ void HotkeysPlugin::setup()
 #endif
 }
 
-//---------------------------------------------------------
-void HotkeysPlugin::teardown()
-{
-
-}
-
-//---------------------------------------------------------
-QWidget *HotkeysPlugin::settingsWidget() const
-{
-    return NULL;
-}
-
-//---------------------------------------------------------
-void HotkeysPlugin::resetSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void HotkeysPlugin::restoreDefaultSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void HotkeysPlugin::applySettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
 
 #if QT_VERSION < 0x050000
     Q_EXPORT_PLUGIN2( HotkeysPlugin, HotkeysPlugin )

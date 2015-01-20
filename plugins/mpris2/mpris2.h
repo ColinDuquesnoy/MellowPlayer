@@ -65,11 +65,6 @@ public:
      */
     const PluginMetaData& metaData() const;
 
-    QWidget *settingsWidget() const;
-    void resetSettings(QWidget* widget) const;
-    void restoreDefaultSettings(QWidget* widget) const;
-    void applySettings(QWidget* widget) const;
-
 private:
     Mpris2Root* root;       /*!< Mpris2 root interface */
     Mpris2Player* player;   /*!< Mpris2 player interface */

@@ -51,20 +51,10 @@ public:
     void setup();
 
     /*!
-     * \brief Tears the extension down: unregister the service and object.
-     */
-    void teardown();
-
-    /*!
-     * \brief Returns the plugin description.
+     * \brief Returns the plugin's meta data.
      * \return
      */
     const PluginMetaData& metaData() const;
-
-    QWidget *settingsWidget() const;
-    void resetSettings(QWidget* widget) const;
-    void restoreDefaultSettings(QWidget* widget) const;
-    void applySettings(QWidget* widget) const;
 
 private slots:
     void onSongChanged(const SongInfo& song);

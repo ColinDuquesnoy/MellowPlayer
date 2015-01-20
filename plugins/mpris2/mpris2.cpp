@@ -74,30 +74,6 @@ const PluginMetaData &Mpris2Plugin::metaData() const
 }
 
 //---------------------------------------------------------
-QWidget *Mpris2Plugin::settingsWidget() const
-{
-    return NULL;
-}
-
-//---------------------------------------------------------
-void Mpris2Plugin::resetSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void Mpris2Plugin::restoreDefaultSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void Mpris2Plugin::applySettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
 #if QT_VERSION < 0x050000
     Q_EXPORT_PLUGIN2( Mpris2Plugin, Mpris2Plugin )
 #endif

@@ -38,12 +38,6 @@ void NotificationsPlugin::setup()
 }
 
 //---------------------------------------------------------
-void NotificationsPlugin::teardown()
-{
-
-}
-
-//---------------------------------------------------------
 const PluginMetaData &NotificationsPlugin::metaData() const
 {
     static PluginMetaData meta;
@@ -53,30 +47,6 @@ const PluginMetaData &NotificationsPlugin::metaData() const
     meta.version = "1.0";
     meta.description =tr("Show playback notifications.");
     return meta;
-}
-
-//---------------------------------------------------------
-QWidget *NotificationsPlugin::settingsWidget() const
-{
-    return NULL;
-}
-
-//---------------------------------------------------------
-void NotificationsPlugin::resetSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void NotificationsPlugin::restoreDefaultSettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
-}
-
-//---------------------------------------------------------
-void NotificationsPlugin::applySettings(QWidget *widget) const
-{
-    Q_UNUSED(widget);
 }
 
 //---------------------------------------------------------
@@ -95,6 +65,7 @@ void NotificationsPlugin::onSongChanged(const SongInfo &song)
             "Mellow Player", tr("Stopped"), icon);
 }
 
+//---------------------------------------------------------
 void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 {
     switch (status) {
