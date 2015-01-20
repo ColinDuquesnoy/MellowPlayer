@@ -34,95 +34,85 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="97"/>
-        <source>Tray Icon:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dlg_preferences.ui" line="114"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dlg_preferences.ui" line="123"/>
+        <location filename="../dlg_preferences.ui" line="95"/>
         <source>Confirm application exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="150"/>
+        <location filename="../dlg_preferences.ui" line="122"/>
         <source>Play/Pause:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="157"/>
+        <location filename="../dlg_preferences.ui" line="129"/>
         <source>Stop:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="164"/>
+        <location filename="../dlg_preferences.ui" line="136"/>
         <source>Next:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="171"/>
+        <location filename="../dlg_preferences.ui" line="143"/>
         <source>Previous:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="196"/>
+        <location filename="../dlg_preferences.ui" line="168"/>
         <source>Plugin:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="215"/>
+        <location filename="../dlg_preferences.ui" line="187"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="224"/>
+        <location filename="../dlg_preferences.ui" line="196"/>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="237"/>
-        <location filename="../dlg_preferences.ui" line="257"/>
-        <location filename="../dlg_preferences.ui" line="277"/>
-        <location filename="../dlg_preferences.ui" line="300"/>
+        <location filename="../dlg_preferences.ui" line="209"/>
+        <location filename="../dlg_preferences.ui" line="229"/>
+        <location filename="../dlg_preferences.ui" line="249"/>
+        <location filename="../dlg_preferences.ui" line="272"/>
         <source>na</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="244"/>
+        <location filename="../dlg_preferences.ui" line="216"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="264"/>
+        <location filename="../dlg_preferences.ui" line="236"/>
         <source>Website:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="287"/>
+        <location filename="../dlg_preferences.ui" line="259"/>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="313"/>
+        <location filename="../dlg_preferences.ui" line="285"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="329"/>
+        <location filename="../dlg_preferences.ui" line="301"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="343"/>
+        <location filename="../dlg_preferences.ui" line="315"/>
         <source>Clear cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="350"/>
+        <location filename="../dlg_preferences.ui" line="322"/>
         <source>Clear settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -152,45 +142,35 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="149"/>
-        <source>Select a custom tray icon image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="150"/>
-        <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dlgpreferences.cpp" line="204"/>
+        <location filename="../dlgpreferences.cpp" line="181"/>
         <source>Restart required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="205"/>
+        <location filename="../dlgpreferences.cpp" line="182"/>
         <source>You need to restart the application for the change to be applied.
 
 Do you want to restart now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="220"/>
+        <location filename="../dlgpreferences.cpp" line="197"/>
         <source>Clear cookies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="221"/>
+        <location filename="../dlgpreferences.cpp" line="198"/>
         <source>This will remove all cookies stored by Mellow Player.
 Are you sure you want to clear all cookies?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="235"/>
+        <location filename="../dlgpreferences.cpp" line="212"/>
         <source>Clear settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="236"/>
+        <location filename="../dlgpreferences.cpp" line="213"/>
         <source>This will remove all settings stored by Mellow Player.
 Are you sure you want to erase all settings?</source>
         <translation type="unfinished"></translation>
@@ -438,12 +418,17 @@ Are you sure you want to erase all settings?</source>
 <context>
     <name>NotificationsPlugin</name>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="54"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="48"/>
         <source>Show playback notifications.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="94"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="65"/>
+        <source>Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="74"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
