@@ -82,16 +82,25 @@ void NotificationsPlugin::applySettings(QWidget *widget) const
 //---------------------------------------------------------
 void NotificationsPlugin::onSongChanged(const SongInfo &song)
 {
-    Services::systemTrayIcon()->showMessage("Mellow Player",
-                                            song.toString());
+#ifdef Q_OS_MAC
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::NoIcon;
+#else
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::Information;
+#endif
+    if(song.isValid())
+        Services::systemTrayIcon()->showMessage(
+            "Mellow Player", song.toString(), icon);
+    else
+        Services::systemTrayIcon()->showMessage(
+            "Mellow Player", tr("Stopped"), icon);
 }
 
 void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 {
     switch (status) {
     case Paused:
-        Services::systemTrayIcon()->showMessage("Mellow Player",
-                                                tr("Pause"));
+        Services::systemTrayIcon()->showMessage(
+            "Mellow Player", tr("Pause"), QSystemTrayIcon::NoIcon);
         break;
     default:
         break;
