@@ -208,6 +208,8 @@ void DlgPreferences::restart()
         QMessageBox::Yes) == QMessageBox::Yes)
     {
         QProcess::startDetached(QApplication::applicationFilePath());
+        MellowPlayerApp* app = qobject_cast<MellowPlayerApp*>(qApp);
+        app->close();
         qApp->exit(12);
     }
 }

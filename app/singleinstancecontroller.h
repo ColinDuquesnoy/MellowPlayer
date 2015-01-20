@@ -48,6 +48,8 @@ public:
      */
     void start(MellowPlayerApp* app);
 
+    void close();
+
 public slots:
     void onSocketConnected();
     void onSocketError();

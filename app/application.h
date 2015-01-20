@@ -35,6 +35,7 @@ class MainWindow;
  */
 class MellowPlayerApp: public QApplication
 {
+    Q_OBJECT
 public:
     MellowPlayerApp(int &argc, char **argv);
     ~MellowPlayerApp();
@@ -52,6 +53,8 @@ public:
     void raise();
 
     int exec();
+
+    void close();
 
 private:
     QTranslator translator;

@@ -58,6 +58,11 @@ void SingleInstanceController::start(MellowPlayerApp* app)
 #endif
 }
 
+void SingleInstanceController::close()
+{
+    this->localServer->close();
+}
+
 //---------------------------------------------------------
 void SingleInstanceController::onSocketConnected()
 {

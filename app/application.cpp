@@ -85,9 +85,15 @@ void MellowPlayerApp::raise()
 int MellowPlayerApp::exec()
 {
     int retCode = QApplication::exec();
+    this->close();
     if(this->mainWindow)
         this->mainWindow->saveGeometryAndState();
+    return retCode;
+}
+
+void MellowPlayerApp::close()
+{
     if(Services::extensions())
         Services::extensions()->teardown();
-    return retCode;
+    this->singleInstanceController.close();
 }
