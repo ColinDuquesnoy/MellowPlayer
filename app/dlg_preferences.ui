@@ -90,34 +90,6 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Tray Icon:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="labelTrayIcon">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEditTrayIcon"/>
-           </item>
-           <item>
-            <widget class="QToolButton" name="toolButtonSelectTrayIcon">
-             <property name="text">
-              <string>...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
           <widget class="QCheckBox" name="checkBoxConfirmQuit">
            <property name="text">
             <string>Confirm application exit</string>
@@ -392,8 +364,6 @@
  <tabstops>
   <tabstop>listWidget</tabstop>
   <tabstop>checkBoxMinimizeToTray</tabstop>
-  <tabstop>lineEditTrayIcon</tabstop>
-  <tabstop>toolButtonSelectTrayIcon</tabstop>
   <tabstop>comboBoxPlugins</tabstop>
  </tabstops>
  <resources>

@@ -99,13 +99,7 @@ QIcon Icons::reportBug()
 //---------------------------------------------------------
 QIcon Icons::mellowPlayer()
 {
-    return QIcon(":/icons/mellowplayer.png");
-}
-
-//---------------------------------------------------------
-QIcon Icons::trayIcon()
-{
-  return QIcon(":/icons/mellowplayer.png");
+    return QIcon::fromTheme("mellowplayer", QIcon(":/icons/mellowplayer.png"));
 }
 
 //---------------------------------------------------------

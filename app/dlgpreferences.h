@@ -65,8 +65,6 @@ private slots:
     void onCategoryChanged(int category);
     void reset();
     void restoreDefaults();
-    void updateTrayIcon(const QString& iconPath);
-    void chooseTrayIconFile();
     void onCurrentPluginChanged(int currentIndex);
     void onPluginStateChanged(int state);
     void onClearCookiesClicked();

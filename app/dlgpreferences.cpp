@@ -55,11 +55,6 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     connect(ui->buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
             this, SLOT(restoreDefaults()));
 
-    connect(ui->lineEditTrayIcon, SIGNAL(textChanged(const QString &)),
-            this, SLOT(updateTrayIcon(const QString &)));
-    connect(ui->toolButtonSelectTrayIcon, SIGNAL(clicked()),
-            this, SLOT(chooseTrayIconFile()));
-
     connect(ui->comboBoxPlugins, SIGNAL(currentIndexChanged(int)),
             this, SLOT(onCurrentPluginChanged(int)));
     connect(ui->pushButtonClearCookies, SIGNAL(clicked()),
@@ -133,24 +128,6 @@ void DlgPreferences::restoreDefaults()
     restoreInterface();
     restoreShortcuts();
     restorePlugins();
-}
-
-//---------------------------------------------------------
-void DlgPreferences::updateTrayIcon(const QString &iconPath)
-{
-    ui->labelTrayIcon->setPixmap(trayIconFrom(iconPath).pixmap(24, 24));
-}
-
-
-//---------------------------------------------------------
-void DlgPreferences::chooseTrayIconFile()
-{
-    QString path = QFileDialog::getOpenFileName(
-        this, tr("Select a custom tray icon image"), "",
-        tr("Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)")
-    );
-    if(!path.isEmpty())
-        this->ui->lineEditTrayIcon->setText(path);
 }
 
 //---------------------------------------------------------
@@ -255,8 +232,6 @@ void DlgPreferences::resetInterface()
 
     ui->checkBoxConfirmQuit->setChecked(confirmQuit);
     ui->checkBoxMinimizeToTray->setChecked(minimizeToTray);
-    ui->lineEditTrayIcon->setText(trayIconPath);
-    updateTrayIcon(trayIconPath);
 }
 
 
@@ -361,9 +336,7 @@ void DlgPreferences::applyInterface()
 {
     QSettings().setValue("minimizeToTray",
                          ui->checkBoxMinimizeToTray->isChecked());
-    QSettings().setValue("trayIcon", ui->lineEditTrayIcon->text());
     QSettings().setValue("confirmQuit", ui->checkBoxConfirmQuit->isChecked());
-    mainWindow->trayIcon->setIcon(trayIconFrom(ui->lineEditTrayIcon->text()));
 }
 
 //---------------------------------------------------------
