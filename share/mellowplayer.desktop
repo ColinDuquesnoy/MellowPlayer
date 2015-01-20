@@ -10,7 +10,7 @@ Exec=MellowPlayer
 TryExec=MellowPlayer
 Icon=mellowplayer
 Terminal=false
-Categories=AudioVideo;Player;Qt;Audio;
+Categories=AudioVideo;Player;Qt;Audio;Network;
 StartupNotify=false
 
 
