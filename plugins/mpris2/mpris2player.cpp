@@ -136,12 +136,8 @@ void Mpris2Player::onPositionChanged(qlonglong position)
         this->signalUpdate(map);
         qlonglong delta = abs(floorPos - this->prevPos);
         this->prevPos = floorPos;
-        if(delta > 1000000)
-        {
-            qDebug() << "Seeked emitted";
+        if(delta > 2000000)
             emit this->Seeked(floorPos);
-        }
-
     }
 }
 
@@ -162,7 +158,7 @@ void Mpris2Player::signalUpdate(const QVariantMap &map)
     signal.setArguments(args);
     QDBusConnection::sessionBus().send(signal);
 
-    qDebug() << "Update signaled: " << map;
+    // qDebug() << "Update signaled: " << map;
 }
 
 //---------------------------------------------------------
