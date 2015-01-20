@@ -117,6 +117,7 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 //---------------------------------------------------------
 void MainWindow::onSelectServiceTriggered()
 {
+    this->show();
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
@@ -131,6 +132,7 @@ void MainWindow::onSelectServiceTriggered()
 //---------------------------------------------------------
 void MainWindow::onPreferencesTriggered()
 {
+    this->show();
     DlgPreferences::editPreferences(this);
 }
 
@@ -369,6 +371,7 @@ static QString compilerString()
 //---------------------------------------------------------
 void MainWindow::onAboutTriggered()
 {
+    this->show();
     QString version = QString("%1.%2.%3%4")
             .arg(VERSION_MAJOR)
             .arg(VERSION_MINOR)
