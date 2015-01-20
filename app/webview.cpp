@@ -31,7 +31,7 @@ QWebView *WebView::createWindow(QWebPage::WebWindowType type)
 {
     Q_UNUSED(type);
 
-    QWebView *webView = new WebView(this);
+    QWebView *webView = new WebView();
     QWebPage *newWeb = new QWebPage(webView);
     connect(newWeb, SIGNAL(windowCloseRequested()),
             webView, SLOT(close()));
