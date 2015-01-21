@@ -18,6 +18,8 @@
 #----------------------------------------------------------
 
 TEMPLATE      = lib
+QT             += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 TARGET        = mpp_grooveshark
 CONFIG       += plugin static
 HEADERS       = grooveshark.h

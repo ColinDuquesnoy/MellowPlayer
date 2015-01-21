@@ -102,16 +102,9 @@ void MainWindow::onPreviousTriggered()
 }
 
 //---------------------------------------------------------
-void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
+void MainWindow::onTrayIconActivated(bool active)
 {
-    if (reason == QSystemTrayIcon::DoubleClick)
-        this->show();
-#ifndef Q_OS_MAC
-    bool showMsg = QSettings().value(
-        "showMinimizeToTrayMsg", true).toBool();
-    if( reason == QSystemTrayIcon::Trigger && !showMsg)
-        this->setVisible(!this->isVisible());
-#endif
+    this->setVisible(active);
 }
 
 //---------------------------------------------------------
@@ -210,9 +203,7 @@ void MainWindow::setupActions()
 //---------------------------------------------------------
 void MainWindow::setupTrayIcon()
 {
-    this->trayIcon = new QSystemTrayIcon(this);
-    this->trayIcon->setIcon(DlgPreferences::trayIconFrom(
-        QSettings().value("trayIcon", ":/icons/mellowplayer.png").toString()));
+    this->trayIcon = new TrayIcon(this);
 
     QMenu* mnu = new QMenu();
     mnu->addAction(this->ui->actionRestoreWindow);
@@ -231,10 +222,10 @@ void MainWindow::setupTrayIcon()
 #endif
     this->trayIcon->setContextMenu(mnu);
 
-    this->trayIcon->show();
-    this->connect(this->trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                  this, SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
-    Services::_setSystemTrayIcon(this->trayIcon);
+    this->trayIcon->setIcon(Icons::mellowPlayer());
+    this->connect(this->trayIcon, SIGNAL(activated(bool)),
+                  this, SLOT(onTrayIconActivated(bool)));
+    Services::_setTrayIcon(this->trayIcon);
 }
 
 //---------------------------------------------------------

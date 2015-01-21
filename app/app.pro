@@ -93,7 +93,7 @@ DEFINES         += VERSION_STATUS=\\\"a1\\\"
 
 # Optional KDE support will use KGlobalAccel
 kde_support {
-    QT += KGlobalAccel
+    QT += KGlobalAccel KNotifications
     DEFINES += "__kde_support__=1"
 }
 

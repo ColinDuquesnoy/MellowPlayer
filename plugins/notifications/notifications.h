@@ -58,7 +58,4 @@ public:
 
 private slots:
     void onSongChanged(const SongInfo& song);
-    void onPlaybackStatusChanged(PlaybackStatus status);
 };
-
-

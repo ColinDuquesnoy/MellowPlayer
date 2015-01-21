@@ -24,4 +24,5 @@
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>
 #include <mellowplayer/streamingservicesmanager.h>
+#include <mellowplayer/trayicon.h>
 #include <mellowplayer/urldownloader.h>

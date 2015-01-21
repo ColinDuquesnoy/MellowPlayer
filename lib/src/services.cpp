@@ -20,10 +20,10 @@
 #include <QAction>
 #include <QMainWindow>
 #include <QWebView>
-#include <QSystemTrayIcon>
 #include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/player.h"
 #include "mellowplayer/services.h"
+#include "mellowplayer/trayicon.h"
 
 //---------------------------------------------------------
 StreamingServicesManager* Services::_services = NULL;
@@ -31,7 +31,7 @@ ExtensionsManager* Services::_extensions = NULL;
 QMainWindow* Services::_mainWindow= NULL;
 QWebView* Services::_webView = NULL;
 PlayerInterface* Services::_player = NULL;
-QSystemTrayIcon* Services::_trayIcon = NULL;
+TrayIcon* Services::_trayIcon = NULL;
 
 //---------------------------------------------------------
 void Services::_setMainWindow(QMainWindow *mainWindow)
@@ -114,13 +114,13 @@ QAction *Services::action(const QString &actionText)
 }
 
 //---------------------------------------------------------
-void Services::_setSystemTrayIcon(QSystemTrayIcon *icon)
+void Services::_setTrayIcon(TrayIcon *icon)
 {
     Services::_trayIcon = icon;
 }
 
 //---------------------------------------------------------
-QSystemTrayIcon *Services::systemTrayIcon()
+TrayIcon *Services::trayIcon()
 {
     return Services::_trayIcon;
 }

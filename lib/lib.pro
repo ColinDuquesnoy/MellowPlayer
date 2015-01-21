@@ -20,7 +20,7 @@ TEMPLATE        = lib
 TARGET          = mellowplayer
 CONFIG         += static
 VERSION         = 1.0.0
-QT             += widgets webkit network
+QT             += core gui widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
@@ -31,11 +31,18 @@ HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/services.h \
                   include/mellowplayer/song.h \
                   include/mellowplayer/streamingservicesmanager.h \
-                  include/mellowplayer/urldownloader.h
+                  include/mellowplayer/urldownloader.h \
+    include/mellowplayer/trayicon.h
 SOURCES         = src/extensionsmanager.cpp \
                   src/interfaces.cpp \
                   src/player.cpp \
                   src/services.cpp \
                   src/song.cpp \
                   src/streamingservicesmanager.cpp \
-                  src/urldownloader.cpp
+                  src/urldownloader.cpp \
+    src/trayicon.cpp
+# Optional KDE support will use KGlobalAccel
+kde_support {
+    QT += KNotifications
+    DEFINES += "__kde_support__=1"
+}

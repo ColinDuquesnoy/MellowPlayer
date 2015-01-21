@@ -104,12 +104,6 @@ public:
      */
     static QIcon mellowPlayer();
 
-    /*!
-     * \brief Gets the application icon
-     * \return QIcon
-     */
-    static QIcon trayIcon();
-
     static QIcon interface();
     static QIcon shortcuts();
     static QIcon plugins();

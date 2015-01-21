@@ -22,9 +22,10 @@
 
 #include <QtCore>
 #include <QWidget>
-#include <QSystemTrayIcon>
 #include <QMainWindow>
 #include <QCloseEvent>
+
+class TrayIcon;
 
 namespace Ui {
 class MainWindow;
@@ -61,7 +62,7 @@ private slots:
     void onStopTriggered();
     void onNextTriggered();
     void onPreviousTriggered();
-    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+    void onTrayIconActivated(bool active);
     void onSelectServiceTriggered();
     void onPreferencesTriggered();
     void updatePlayer();
@@ -82,7 +83,7 @@ private:
 
     Ui::MainWindow *ui;
     QTimer* updateTimer;
-    QSystemTrayIcon* trayIcon;
+    TrayIcon* trayIcon;
 };
 
 #endif // MAINWINDOW_H

@@ -18,7 +18,6 @@
 //---------------------------------------------------------
 
 #include <QWidget>
-#include <QSystemTrayIcon>
 #include <mellowplayer.h>
 #include "notifications.h"
 
@@ -33,8 +32,6 @@ void NotificationsPlugin::setup()
 {
     connect(Services::player(), SIGNAL(songChanged(SongInfo)),
             this, SLOT(onSongChanged(SongInfo)));
-    connect(Services::player(), SIGNAL(playbackStatusChanged(PlaybackStatus)),
-            this, SLOT(onPlaybackStatusChanged(PlaybackStatus)));
 }
 
 //---------------------------------------------------------
@@ -52,30 +49,8 @@ const PluginMetaData &NotificationsPlugin::metaData() const
 //---------------------------------------------------------
 void NotificationsPlugin::onSongChanged(const SongInfo &song)
 {
-#ifdef Q_OS_MAC
-    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::NoIcon;
-#else
-    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::Information;
-#endif
     if(song.isValid())
-        Services::systemTrayIcon()->showMessage(
-            "Mellow Player", song.toString(), icon);
-    else
-        Services::systemTrayIcon()->showMessage(
-            "Mellow Player", tr("Stopped"), icon);
-}
-
-//---------------------------------------------------------
-void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
-{
-    switch (status) {
-    case Paused:
-        Services::systemTrayIcon()->showMessage(
-            "Mellow Player", tr("Pause"), QSystemTrayIcon::NoIcon);
-        break;
-    default:
-        break;
-    }
+        Services::trayIcon()->showMessage(song.toString(), "media-optical");
 }
 
 //---------------------------------------------------------
