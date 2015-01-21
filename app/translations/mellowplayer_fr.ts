@@ -35,14 +35,6 @@
         <translation>Minimiser dans la barre des tâches</translation>
     </message>
     <message>
-        <source>Tray Icon:</source>
-        <translation type="vanished">Icône dans la barre des tâches:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-    <message>
         <location filename="../dlg_preferences.ui" line="95"/>
         <source>Confirm application exit</source>
         <translation>Confirmer la sortie de l&apos;application</translation>
@@ -155,14 +147,6 @@ p, li { white-space: pre-wrap; }
         <translation>Préférences</translation>
     </message>
     <message>
-        <source>Select a custom tray icon image</source>
-        <translation type="vanished">Choisissez un icône personnalisée</translation>
-    </message>
-    <message>
-        <source>Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)</source>
-        <translation type="vanished">Images (*.png *.xpm *.jpg);</translation>
-    </message>
-    <message>
         <location filename="../dlgpreferences.cpp" line="181"/>
         <source>Restart required</source>
         <translation>Redémarrage de l&apos;application requis</translation>
@@ -204,7 +188,7 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
 <context>
     <name>GroovesharkPlugin</name>
     <message>
-        <location filename="../../plugins/grooveshark/grooveshark.cpp" line="36"/>
+        <location filename="../../plugins/grooveshark/grooveshark.cpp" line="37"/>
         <source>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; is an international online music search engine, music streaming service and music recommendation web software application, allowing users to search for, stream, and upload music that can be played immediately or added to a playlist. An optional paid subscription adds additional functionality and removes advertisements.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; est un service de recherche, de recommendation et de streaming de musique en ligne, permettant à ses utilisateurs de rechercher et de téléverser de la musique qui peut être jouée directement ou être ajoutée à une liste de lecture. Un abonnement payant optionnel permet de retirer les publicités et d&apos;avoir accès à des fontionnalités supplémentaires.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
     </message>
@@ -213,8 +197,8 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
     <name>HotkeysPlugin</name>
     <message>
         <location filename="../../plugins/hotkeys/hotkeys.cpp" line="37"/>
-        <source>Adds support for global shortcuts.</source>
-        <translation>Ajoute le support des raccourcis globaux.</translation>
+        <source>Adds support for global keyboard shortcuts.</source>
+        <translation>Ajoute le support des raccourcis clavier globaux.</translation>
     </message>
 </context>
 <context>
@@ -385,49 +369,49 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="145"/>
         <source>Minimizing to system tray</source>
         <translation>Minimisation dans la barre des tâches</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="146"/>
         <source>The program will keep running in the system tray. To terminate the program, choose &lt;b&gt;Quit&lt;/b&gt; in the context menu of the system tray entry.</source>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
-        <location filename="../mainwindow.cpp" line="339"/>
-        <location filename="../mainwindow.cpp" line="341"/>
+        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="332"/>
+        <location filename="../mainwindow.cpp" line="334"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="317"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>Loading, please wait...</source>
         <translation>Chargement en cours, veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="378"/>
+        <location filename="../mainwindow.cpp" line="372"/>
         <source>&lt;h3&gt;Mellow Player %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation>&lt;h3&gt;Mellow Player %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="385"/>
         <source>About Mellow Player</source>
         <translation>A propos de Mellow Player</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="405"/>
+        <location filename="../mainwindow.cpp" line="399"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="406"/>
+        <location filename="../mainwindow.cpp" line="400"/>
         <source>Are you sure you want to exit Mellow Player?</source>
         <translation>Etes-vous sûr de vouloir quitter Mellow Player?</translation>
     </message>
@@ -443,19 +427,9 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
 <context>
     <name>NotificationsPlugin</name>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="48"/>
-        <source>Show playback notifications.</source>
-        <translation>Affiche des notifications sur l&apos;état de la lecture.</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="65"/>
-        <source>Stopped</source>
-        <translation>Stoppé</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="74"/>
-        <source>Pause</source>
-        <translation>Pause</translation>
+        <location filename="../../plugins/notifications/notifications.cpp" line="45"/>
+        <source>Shows a notification when the song changed.</source>
+        <translation>Affiche une notification lorsque la piste active a changé.</translation>
     </message>
 </context>
 <context>

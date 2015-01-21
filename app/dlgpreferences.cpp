@@ -142,7 +142,7 @@ void DlgPreferences::onCurrentPluginChanged(int currentIndex)
         ui->labelPluginAuthor->setText(plugin->metaData().author);
         ui->labelPluginDescription->setText(plugin->metaData().description);
         ui->labelPluginVersion->setText(plugin->metaData().version);
-        ui->labelPluginWebSite->setText(plugin->metaData().website);
+        ui->labelPluginWebSite->setText(plugin->metaData().author_website);
 
         int index = ui->comboBoxPlugins->itemData(
             ui->comboBoxPlugins->currentIndex()).toInt();

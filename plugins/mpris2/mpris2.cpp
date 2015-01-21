@@ -67,7 +67,7 @@ const PluginMetaData &Mpris2Plugin::metaData() const
     static PluginMetaData meta;
     meta.name = "MPRIS2";
     meta.author = "Colin Duquesnoy";
-    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
     meta.description =tr("Exposes an MPRIS2 interface to DBUS.");
     return meta;

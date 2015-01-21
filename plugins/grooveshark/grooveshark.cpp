@@ -25,12 +25,13 @@ GroovesharkPlugin::GroovesharkPlugin()
     Q_INIT_RESOURCE(grooveshark);  // grooveshark.qrc
 }
 
+//---------------------------------------------------------
 const PluginMetaData &GroovesharkPlugin::metaData() const
 {
     static PluginMetaData meta;
     meta.name = "Grooveshark";
-    meta.author = "ColinDuquesnoy";
-    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.author = "Colin Duquesnoy";
+    meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
     meta.icon = QIcon(":/grooveshark/logo.png");
     meta.description =tr(
@@ -48,6 +49,7 @@ const PluginMetaData &GroovesharkPlugin::metaData() const
     return meta;
 }
 
+//---------------------------------------------------------
 QUrl GroovesharkPlugin::url() const
 {
     return QUrl("http://grooveshark.com");

@@ -68,7 +68,7 @@ void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
                           "<p><strong>Version: </strong>%5</p>")
               .arg(plugin->metaData().name)
               .arg(plugin->metaData().description)
-              .arg(plugin->metaData().website)
+              .arg(plugin->metaData().author_website)
               .arg(plugin->metaData().author)
               .arg(plugin->metaData().version));
     }

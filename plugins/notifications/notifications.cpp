@@ -40,9 +40,9 @@ const PluginMetaData &NotificationsPlugin::metaData() const
     static PluginMetaData meta;
     meta.name = "Notifications";
     meta.author = "Colin Duquesnoy";
-    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
-    meta.description =tr("Show playback notifications.");
+    meta.description =tr("Shows a notification when the song changed.");
     return meta;
 }
 

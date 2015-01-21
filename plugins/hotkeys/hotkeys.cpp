@@ -32,9 +32,9 @@ const PluginMetaData &HotkeysPlugin::metaData() const
     static PluginMetaData meta;
     meta.name = "Hotkeys";
     meta.author = "Colin Duquesnoy";
-    meta.website = "https://github.com/ColinDuquesnoy/MellowPlayer";
+    meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
-    meta.description =tr("Adds support for global shortcuts.");
+    meta.description =tr("Adds support for global keyboard shortcuts.");
     return meta;
 }
 

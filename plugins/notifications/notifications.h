@@ -21,12 +21,8 @@
 #include <mellowplayer.h>
 
 /*!
- * \brief Provides MPRIS2 support to MellowPlayer
- *
- * MPRIS clients will see the MellowPlayer application. You can interact with
- * the player, song data are send on the bus but there is no playlist support.
- *
- * At the moment you cannot seek or change the volume but this is planned!
+ * \brief Display a notification from the system tray icon whenever the current
+ * song changed.
  *
  */
 class NotificationsPlugin :
