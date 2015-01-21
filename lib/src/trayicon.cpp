@@ -24,7 +24,7 @@ TrayIcon::TrayIcon(QObject *parent):
 #endif
 }
 
-void TrayIcon::close()
+TrayIcon::~TrayIcon()
 {
 #ifndef __kde_support__
     trayIcon->hide();

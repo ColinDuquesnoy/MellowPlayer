@@ -17,6 +17,7 @@ class TrayIcon: public QObject
     Q_OBJECT
 public:
     explicit TrayIcon(QObject* parent);
+    ~TrayIcon();
 
     void close();
     void setIcon(const QIcon& icon);
