@@ -66,7 +66,7 @@ reporting a bug!
 ## Dependencies
 
 - **Qt5** (**Qt4** is also supported if you're running on Windows or if you're running on an old linux distribution, such as Ubuntu 12.04)
-- **KGlobalAccell** (if built with ``kde_support``)
+- **KGlobalAccell** and **KNotifications** (if built with ``kde_support``)
 
 
 ## Compilation
