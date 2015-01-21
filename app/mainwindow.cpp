@@ -38,8 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setupActions();
     this->setupIcons();
     this->restoreGeometryAndState();
-    this->ui->actionSelect_service->setMenuRole(
-                QAction::ApplicationSpecificRole);
     this->setupWebView();
     this->setupUpdateTimer();
     this->setupTrayIcon();
@@ -198,6 +196,13 @@ void MainWindow::setupActions()
         a->setShortcut(QSettings().value(
             a->objectName(), defaults[i]).toString());
     }
+
+    // setup roles, this is only for OS X
+    ui->actionPreferences->setMenuRole(QAction::PreferencesRole);
+    ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
+    ui->actionQuit->setMenuRole(QAction::QuitRole);
+    ui->actionAbout_MellowPlayer->setMenuRole(QAction::AboutRole);
+    ui->actionAbout_Qt->setMenuRole(QAction::AboutQtRole);
 }
 
 //---------------------------------------------------------
@@ -289,6 +294,8 @@ void MainWindow::connectSlots()
 
     this->connect(this->ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
                   this, SLOT(onAboutTriggered()));
+    this->connect(this->ui->actionAbout_Qt, SIGNAL(triggered()),
+                  this, SLOT(onAboutQtTriggered()));
     this->connect(this->ui->actionReport_a_bug, SIGNAL(triggered()),
                   this, SLOT(onReportBugTriggered()));
 }
@@ -383,6 +390,12 @@ void MainWindow::onAboutTriggered()
 
     QMessageBox::about(
                 this, tr("About Mellow Player"), description);
+}
+
+//---------------------------------------------------------
+void MainWindow::onAboutQtTriggered()
+{
+    QMessageBox::aboutQt(this);
 }
 
 //---------------------------------------------------------

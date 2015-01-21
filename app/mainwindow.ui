@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>630</height>
+    <height>668</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -250,6 +250,7 @@
      <string>He&amp;lp</string>
     </property>
     <addaction name="actionAbout_MellowPlayer"/>
+    <addaction name="actionAbout_Qt"/>
     <addaction name="separator"/>
     <addaction name="actionReport_a_bug"/>
    </widget>
@@ -399,6 +400,15 @@
    </property>
    <property name="toolTip">
     <string>Restore the window</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="icon">
+    <iconset resource="mellowplayer.qrc">
+     <normaloff>:/icons/about-qt.png</normaloff>:/icons/about-qt.png</iconset>
+   </property>
+   <property name="text">
+    <string>About &amp;Qt</string>
    </property>
   </action>
  </widget>

@@ -67,6 +67,7 @@ private slots:
     void onPreferencesTriggered();
     void updatePlayer();
     void onAboutTriggered();
+    void onAboutQtTriggered();
     void onReportBugTriggered();
     void quit();
 
