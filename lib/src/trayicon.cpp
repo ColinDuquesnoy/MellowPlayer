@@ -63,12 +63,8 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
     trayIcon->setToolTipSubTitle(message);
     trayIcon->showMessage("Mellow Player", message, icon);
 #else
-Q_UNUSED(icon);
-#ifdef Q_OS_MAC
-    trayIcon->showMessage("Mellow Player", m, QSystemTrayIcon::NoIcon);
-#else
+    Q_UNUSED(icon);
     trayIcon->showMessage("Mellow Player", message);
-#endif
 #endif
 }
 
