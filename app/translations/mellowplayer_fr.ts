@@ -371,7 +371,7 @@ Etes-vous sûre de vouloir nettoyer tous les paramètres?</translation>
     <message>
         <location filename="../mainwindow.ui" line="411"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>A propos de &amp;Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="143"/>
