@@ -51,7 +51,7 @@ public:
     static QString selectService(QWidget* parent);
 
 private slots:
-    void onCurrentItemChanged(QListWidgetItem* item);
+    void onCurrentRowChanged(int row);
 
 private:
     Ui::DialogSelectServices* ui;

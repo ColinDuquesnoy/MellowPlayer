@@ -31,17 +31,24 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
 {
     ui->setupUi(this);
 
-    connect(ui->listWidget, SIGNAL(itemChanged(QListWidgetItem *)),
-            this, SLOT(onCurrentItemChanged(QListWidgetItem *)));
-
     int row = 0;
+    QString activeService = QSettings().value("service", "").toString();
+    int i = 0;
     foreach(IStreamingServiceIntegration* plugin,
             Services::streamingServices()->plugins()){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
         item->setText(plugin->metaData().name);
         item->setIcon(plugin->metaData().icon);
         ui->listWidget->addItem(item);
+
+        if(plugin->metaData().name == activeService)
+            row = i;
+
+        ++i;
     }
+
+    connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
+            this, SLOT(onCurrentRowChanged(int)));
     ui->listWidget->setCurrentRow(row);
 }
 
@@ -52,10 +59,9 @@ DlgSelectServices::~DlgSelectServices()
 }
 
 //---------------------------------------------------------
-void DlgSelectServices::onCurrentItemChanged(QListWidgetItem *item)
+void DlgSelectServices::onCurrentRowChanged(int row)
 {
-    if(!item)
-        return;
+    QListWidgetItem* item = this->ui->listWidget->item(row);
     IStreamingServiceIntegration* plugin = Services::streamingServices()->plugin(item->text());
     if(plugin)
     {
