@@ -25,6 +25,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 # Add static plugins here (and in main.cpp)
 LIBS += -L.
+LIBS += -lmpp_deezer
 LIBS += -lmpp_grooveshark
 LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications

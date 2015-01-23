@@ -17,13 +17,14 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
+TEMPLATE      = lib
+QT           += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_deezer
+CONFIG       += plugin static
+HEADERS       = deezer.h
+SOURCES       = deezer.cpp
+RESOURCES    += deezer.qrc
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include
 
-unix:!macx {
-    SUBDIRS += mpris2
-}
-
-SUBDIRS += grooveshark
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer

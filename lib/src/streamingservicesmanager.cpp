@@ -80,6 +80,8 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
     if(p && p != this->_currentService)
     {
         this->_currentService = p;
+        qDebug() << "Starting service " << serviceName
+                 << "(" << p->url() << ")";
         Services::webView()->load(this->_currentService->url());
         retVal = true;
     }

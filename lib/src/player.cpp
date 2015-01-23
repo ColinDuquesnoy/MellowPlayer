@@ -179,6 +179,7 @@ void PlayerInterface::downloadSongArt(const QString& url)
     UrlDownloader* downloader = new UrlDownloader(this);
     QString dest = QDir::temp().path() +
                    QString(QDir::separator()) +
+                   this->currentSong().songId +
                    QFileInfo(url).fileName();
     connect(downloader, SIGNAL(finished(const QString&)),
             this, SLOT(onArtReady(const QString&)));
