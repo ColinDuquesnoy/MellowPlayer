@@ -27,3 +27,6 @@ Makefile*
 doxyxml
 # sphinx
 _build
+
+# Pycharm project files
+.idea

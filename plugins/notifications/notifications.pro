@@ -21,7 +21,7 @@
 TEMPLATE      = lib
 TARGET        = mpp_notifications
 CONFIG       += plugin static
-QT           += dbus gui
+QT           += gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 HEADERS       = notifications.h
 SOURCES       = notifications.cpp

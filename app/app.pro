@@ -24,11 +24,10 @@ QT                 += core gui network webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 # Add static plugins here (and in main.cpp)
-LIBS += -L. \
-        -lmpp_grooveshark \
-        -lmpp_hotkeys \
-        -lmpp_notifications
-
+LIBS += -L.
+LIBS += -lmpp_grooveshark
+LIBS += -lmpp_hotkeys
+LIBS += -lmpp_notifications
 
 # link with libmellowplayer
 INCLUDEPATH        += ../lib/include

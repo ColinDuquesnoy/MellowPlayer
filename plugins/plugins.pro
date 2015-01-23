@@ -18,8 +18,11 @@
 #----------------------------------------------------------
 
 TEMPLATE = subdirs
-SUBDIRS  = grooveshark hotkeys notifications
 
 unix:!macx {
-SUBDIRS += mpris2
+    SUBDIRS += mpris2
 }
+
+SUBDIRS += grooveshark
+SUBDIRS += hotkeys
+SUBDIRS += notifications
