@@ -50,7 +50,7 @@ sudo make install
 ### Build options
 
 - **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
-- **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``) OS X.
+- **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
 
 ## Known issues
 
