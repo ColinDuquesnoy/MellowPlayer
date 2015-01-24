@@ -21,7 +21,7 @@ TEMPLATE        = subdirs
 SUBDIRS         = app \     # MellowPlayer executable
                   lib \     # MellowPlayer library (shared object/dll)
                   plugins   # plugins (shared objects/dll)
-app.depends     = plugins
+app.depends     = plugins lib
 plugins.depends = lib
 
 unix{

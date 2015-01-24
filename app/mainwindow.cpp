@@ -102,7 +102,8 @@ void MainWindow::onPreviousTriggered()
 //---------------------------------------------------------
 void MainWindow::onTrayIconActivated(bool active)
 {
-    this->setVisible(active);
+    if(active)
+        this->show();
 }
 
 //---------------------------------------------------------

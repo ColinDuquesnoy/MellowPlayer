@@ -30,24 +30,31 @@ LIBS += -lmpp_grooveshark
 LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications
 
-# force relink app when a static lib changed.
-PRE_TARGETDEPS += libmpp_deezer.a
-PRE_TARGETDEPS += libmpp_grooveshark.a
-PRE_TARGETDEPS += libmpp_hotkeys.a
-PRE_TARGETDEPS += libmpp_notifications.a
+win32 { # force relink app when a static lib changed.
+    PRE_TARGETDEPS += mpp_deezer.lib
+    PRE_TARGETDEPS += mpp_grooveshark.lib
+    PRE_TARGETDEPS += mpp_hotkeys.lib
+    PRE_TARGETDEPS += mpp_notifications.lib
+}
+else { # force relink app when a static lib changed.
+    PRE_TARGETDEPS += libmpp_deezer.a
+    PRE_TARGETDEPS += libmpp_grooveshark.a
+    PRE_TARGETDEPS += libmpp_hotkeys.a
+    PRE_TARGETDEPS += libmpp_notifications.a
+}
 
 # link with libmellowplayer
 INCLUDEPATH        += ../lib/include
 win32{
     LIBS += -luser32
 }
-win32:CONFIG(debug){
+win32:CONFIG(Debug){
     LIBS            += -L../lib/debug -lmellowplayer
-    PRE_TARGETDEPS += ../lib/debug/libmellowplayer.a
+    PRE_TARGETDEPS += ../lib/debug/mellowplayer.lib
 }
-win32:CONFIG(release){
+win32:CONFIG(Release){
     LIBS            += -L../lib/release -lmellowplayer
-    PRE_TARGETDEPS += ../lib/release/libmellowplayer.a
+    PRE_TARGETDEPS += ../lib/release/mellowplayer.lib
 }
 unix{
     LIBS            += -L../lib -lmellowplayer
