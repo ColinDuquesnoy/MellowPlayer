@@ -54,8 +54,10 @@ sudo make install
 
 ## Known issues
 
-1) On OS X, the application might crash on exit if the audio backend is running. We have yet to investigate why this happen.
-2) QtWebKit does not load some flash websites, such as Spotify. At the moment we are unable to provide
+- 1) On OS X, the application might crash on exit if the audio backend is running. We have yet to investigate why this happen.
+
+- 2) QtWebKit does not load some flash websites, such as Spotify. At the moment we are unable to provide
    support for such services. Things will probably change once the new Qt WebEngine supports flash.
-3) Flash cannot be detected for grooveshark on Windows if compiling the app with Qt5. That's the reason
+
+- 3) Flash cannot be detected for grooveshark on Windows if compiling the app with Qt5. That's the reason
    why we still keep Qt4 support.
