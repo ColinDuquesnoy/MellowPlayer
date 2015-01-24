@@ -62,4 +62,4 @@ sudo make install
 - 3) Flash cannot be detected for grooveshark on Windows if compiling the app with Qt5. That's the reason
    why we still keep Qt4 support.
 
-- 4) Media Player keys cannot be used for shortcuts on OSX. On Windows they will work if you don't have another app that is using them (e.g. you might need to uninstall Windows Media Player for the media keys to be recognized by Mellow Player).
+- 4) Media Player keys cannot be used for shortcuts on OSX. On Windows they will work if you don't have another app that is using them (e.g. you might need to uninstall Windows Media Player for the media keys to be recognized by Mellow Player). On Linux (not KDE), your best bet is to use an MPRIS2 client. On KDE, media keys should work out of the box (unless they are used by another running KDE media player such as Amarok), you can configure them in K System Settings -> Shortcuts -> Global Shortcut -> MellowPlayer component.
