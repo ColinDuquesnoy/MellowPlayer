@@ -18,13 +18,10 @@ The following platforms are supported:
 - **Mac OSX**
 - **Windows**
 
-*It is worth noting that even though the app is cross-platform, the focus will always be 
-on the KDE linux desktop (and maybe on other Qt based desktops such as LxQt).*
-
 ## Supported music streaming services
 
-- Grooveshark
-- Deezer
+- **Grooveshark**
+- **Deezer**
 
 ## Features
 
