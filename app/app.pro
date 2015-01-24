@@ -45,6 +45,7 @@ else { # force relink app when a static lib changed.
 
 # link with libmellowplayer
 INCLUDEPATH        += ../lib/include
+win32:RC_FILE     += MellowPlayer.rc
 win32{
     LIBS += -luser32
 }

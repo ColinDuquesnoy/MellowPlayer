@@ -16,6 +16,7 @@ Usage::
 
 """
 import os
+import shutil
 import sys
 
 
@@ -77,6 +78,87 @@ def update_translations():
     os.system('lupdate MellowPlayer.pro')
 
 
+def make_win32_release():
+    """
+    Make a full release on Windows
+    """
+    def get_env_vars():
+        try:
+            # load from cache
+            with open('envvars.usr', 'r') as f:
+                exe, qmake = f.read().splitlines()
+        except (OSError, IOError):
+            # get build dir to get the full exe path
+            exe = ''
+            while not exe and not os.path.exists(exe):
+                build_dir = read_input('Please indicate the release build directory: ').strip()
+                exe = os.path.join(build_dir, 'app', 'release', 'MellowPlayer.exe')
+            # get qmake path
+            qmake = ''
+            while not qmake and not os.path.exists(qmake):
+                qmake = read_input('Please the full path to qmake: ')
+            # cache it!
+            with open('envvars.usr', 'w') as f:
+                f.write('\n'.join([exe, qmake]))
+        return exe, qmake
+
+    def make_dist_dir():
+        dist_dir = 'bin'
+        if os.path.exists(dist_dir):
+            shutil.rmtree(dist_dir)
+        os.mkdir(dist_dir)
+        return dist_dir
+
+    exe, qmake = get_env_vars()
+    dist = make_dist_dir()
+    bin_dir = os.path.dirname(qmake)
+
+    files = [
+        exe,
+        os.path.join(bin_dir, 'QtGui4.dll'),
+        os.path.join(bin_dir, 'QtCore4.dll'),
+        os.path.join(bin_dir, 'QtSvg4.dll'),
+        os.path.join(bin_dir, 'QtNetwork4.dll'),
+        os.path.join(bin_dir, 'QtWebKit4.dll'),
+        'c:\\Windows\\System32\\msvcr100.dll',
+        'c:\\Windows\\System32\\msvcp100.dll',
+    ]
+
+    for f in files:
+        print('copying %s to %s' % (f, dist))
+        shutil.copy(f, dist)
+
+    plugins_dir = os.path.abspath(os.path.join(bin_dir, '..', 'plugins'))
+
+    plugins = []
+    for subdir in ['imageformats', 'iconengines']:
+        root = os.path.join(plugins_dir, subdir)
+        for f in os.listdir(root):
+            if f.endswith('.dll') and not f.endswith('d4.dll'):
+                plugins.append((os.path.join(root, f), subdir))
+
+    for f, dest_dir in plugins:
+        dst = os.path.join(dist, dest_dir)
+        if not os.path.exists(dst):
+            os.makedirs(dst)
+        print('copying %s to %s' % (f, dst))
+        shutil.copy(f, dst)
+
+    # configure innosetup
+    version = read_input('Version string: ')
+    with open('setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
+        lines = src.readlines()
+        data = []
+        for l in lines:
+            l = l.replace('@VERSION@', version)
+            data.append(l)
+        dst.writelines(data)
+
+    os.environ['PATH'] += ';C:\Program Files (x86)\Inno Setup 5'
+    os.system('iscc %s' % os.path.join(os.getcwd(), 'setup.iss'))
+
+
+
 # --- Menu definition
 #: The menu dict associate the menu text entry and its associated function.
 MENU = {
@@ -84,7 +166,8 @@ MENU = {
     '2. Add a new extension plugin': add_extension_plugin,
     '3. Add a new translation': add_translation,
     '4. Update translations': update_translations,
-    '5. Exit': lambda: sys.exit(0)
+    '5. Make windows release': make_win32_release,
+    '6. Exit': lambda: sys.exit(0)
 }
 
 
