@@ -63,6 +63,7 @@ unix{
 }
 macx {
    LIBS             += -framework Carbon
+   ICON              = icons/mellowplayer.icns
 }
 unix:!macx {
     QT              += dbus
