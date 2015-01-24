@@ -159,6 +159,27 @@ def make_win32_release():
 
 
 
+def make_osx_release():
+    def get_build_dir():
+        try:
+            # load from cache
+            with open('envvars.usr', 'r') as f:
+                build_dir = f.read()
+        except (OSError, IOError):
+            # get build dir
+            build_dir = ''
+            while not build_dir and not os.path.exists(build_dir):
+                build_dir = read_input('Build directory: ')
+            # cache it!
+            with open('envvars.usr', 'w') as f:
+                f.write(build_dir)
+        return build_dir
+
+    os.chdir(os.path.join(get_build_dir(), 'app'))
+    os.system('macdeployqt MellowPlayer.app -dmg')
+
+
+
 # --- Menu definition
 #: The menu dict associate the menu text entry and its associated function.
 MENU = {
@@ -167,7 +188,8 @@ MENU = {
     '3. Add a new translation': add_translation,
     '4. Update translations': update_translations,
     '5. Make windows release': make_win32_release,
-    '6. Exit': lambda: sys.exit(0)
+    '6. Make OSX release': make_osx_release,
+    '7. Exit': lambda: sys.exit(0)
 }
 
 
