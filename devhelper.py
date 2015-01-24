@@ -150,6 +150,9 @@ def register_plugin(name, classname):
     :param classname: Class name of the plugin
     """
     lib_name = 'mpp_%s' % name
+    lib_fullname_unix = 'libmpp_%s.a' % name
+    lib_fullname_win32 = 'mpp_%s.lib' % name
+
 
     # plugins.pro
     with open('plugins/plugins.pro', 'r') as fin:
@@ -162,11 +165,29 @@ def register_plugin(name, classname):
     with open('app/app.pro', 'r') as fin:
         lines = fin.read().splitlines(True)
     insert_index = -1
+    # LIBS
     for i, line in enumerate(lines):
         if line.strip() == 'LIBS += -L.':
             insert_index = i + 1
             break
     lines.insert(insert_index, 'LIBS += -l%s\n' % lib_name)
+    # PRE_TARGETDEPS
+    # win32
+    insert_index = -1
+    for i, line in enumerate(lines):
+        if line.strip() == 'win32 { # force relink app when a static lib changed.':
+            insert_index = i + 1
+            break
+    lines.insert(insert_index, '    PRE_TARGETDEPS += %s\n' % lib_fullname_win32)
+    # unix
+    insert_index = -1
+    for i, line in enumerate(lines):
+        if line.strip() == 'else { # force relink app when a static lib changed.':
+            insert_index = i + 1
+            break
+    lines.insert(insert_index, '    PRE_TARGETDEPS += %s\n' % lib_fullname_unix)
+
+    # write results
     with open('app/app.pro', 'w') as fout:
         fout.write(''.join(lines))
 
