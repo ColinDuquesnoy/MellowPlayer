@@ -51,12 +51,6 @@ public:
     static QIcon stop();
 
     /*!
-     * \brief Gets the "loading" icon
-     * \return QIcon
-     */
-    static QIcon loading();
-
-    /*!
      * \brief Gets the "next" icon
      * \return QIcon
      */

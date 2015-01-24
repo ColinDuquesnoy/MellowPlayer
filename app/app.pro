@@ -30,6 +30,12 @@ LIBS += -lmpp_grooveshark
 LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications
 
+# force relink app when a static lib changed.
+PRE_TARGETDEPS += libmpp_deezer.a
+PRE_TARGETDEPS += libmpp_grooveshark.a
+PRE_TARGETDEPS += libmpp_hotkeys.a
+PRE_TARGETDEPS += libmpp_notifications.a
+
 # link with libmellowplayer
 INCLUDEPATH        += ../lib/include
 win32{
@@ -37,12 +43,15 @@ win32{
 }
 win32:CONFIG(debug){
     LIBS            += -L../lib/debug -lmellowplayer
+    PRE_TARGETDEPS += ../lib/debug/libmellowplayer.a
 }
 win32:CONFIG(release){
     LIBS            += -L../lib/release -lmellowplayer
+    PRE_TARGETDEPS += ../lib/release/libmellowplayer.a
 }
 unix{
     LIBS            += -L../lib -lmellowplayer
+    PRE_TARGETDEPS += ../lib/libmellowplayer.a
 }
 macx {
    LIBS             += -framework Carbon

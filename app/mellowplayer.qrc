@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>icons/mellowplayer.png</file>
         <file>icons/view-restore.png</file>
-        <file>icons/loading_static.png</file>
         <file>icons/application-exit.png</file>
         <file>icons/preferences-other.png</file>
         <file>icons/preferences-desktop-theme.png</file>

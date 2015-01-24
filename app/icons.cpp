@@ -43,12 +43,6 @@ QIcon Icons::stop()
 }
 
 //---------------------------------------------------------
-QIcon Icons::loading()
-{
-    return QIcon(":/icons/loading_static.png");
-}
-
-//---------------------------------------------------------
 QIcon Icons::next()
 {
     return QIcon::fromTheme("media-seek-forward",

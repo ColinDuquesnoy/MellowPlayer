@@ -110,13 +110,11 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     retVal.position = songData["position"].toInt() * 1000;
     QString statusString = result["status"].toString();
     retVal.playbackStatus = Stopped;
-    if(statusString == "loading")
-        retVal.playbackStatus = Loading;
-    else if(statusString == "playing")
+    if(statusString == "playing")
         retVal.playbackStatus = Playing;
     else if(statusString == "paused")
         retVal.playbackStatus = Paused;
-    else if(statusString == "stopped")
+    else
         retVal.playbackStatus = Stopped;
     return retVal;
 }

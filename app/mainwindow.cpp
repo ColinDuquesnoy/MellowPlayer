@@ -323,11 +323,6 @@ void MainWindow::updatePlayer()
             this->ui->actionPlayPause->setIcon(Icons::pause());
             this->ui->actionPlayPause->setText(tr("Pause"));
         }
-        else if(song.playbackStatus == Loading)
-        {
-            this->ui->actionPlayPause->setIcon(Icons::loading());
-            this->ui->actionPlayPause->setText(tr("Loading, please wait..."));
-        }
     }
     else
     {

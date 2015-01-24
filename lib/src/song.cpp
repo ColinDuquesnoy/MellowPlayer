@@ -22,14 +22,9 @@
 
 
 //---------------------------------------------------------
-QString playbackStatusToString(PlaybackStatus status, bool allowLoading)
+QString playbackStatusToString(PlaybackStatus status)
 {
     switch (status) {
-    case Loading:
-        if(allowLoading)
-            return "Loading";
-        else
-            return "Playing";
     case Playing:
         return "Playing";
     case Paused:

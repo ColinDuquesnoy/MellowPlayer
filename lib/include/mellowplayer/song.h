@@ -29,10 +29,6 @@
 enum PlaybackStatus
 {
     /*!
-      Song is loading
-      */
-    Loading,
-    /*!
       Song is playing
       */
     Playing,
@@ -52,7 +48,7 @@ enum PlaybackStatus
  * \param status Status to convert
  * \return String representation of the playback status
  */
-QString playbackStatusToString(PlaybackStatus status, bool allowLoading=true);
+QString playbackStatusToString(PlaybackStatus status);
 
 
 /*!

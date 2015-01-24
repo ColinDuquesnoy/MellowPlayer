@@ -42,7 +42,7 @@ const PluginMetaData &DeezerPlugin::metaData() const
 "</p>"
 "<p>"
 "<em>Source:"
-"<a href=\"http://en.wikipedia.org/wiki/Deezer\">Grooveshark on Wikipedia</a>,"
+"<a href=\"http://en.wikipedia.org/wiki/Deezer\">Deezer on Wikipedia</a>,"
 "<a href=\"http://deezer.com\">Official website</a></em>"
 "</p>");
     return meta;
@@ -87,8 +87,13 @@ void DeezerPlugin::previous()
 //---------------------------------------------------------
 void DeezerPlugin::seekToPosition(int position)
 {
-    // not supported
-    Q_UNUSED(position);
+    // deezer use a normalised float value to represent the song duration
+    // (0 = beginning, 1 = end)
+    float percentage = position / float(this->currentSongInfo().duration);
+    QString cmd = QString(
+        "dzPlayer.control.seek(%1);").arg(QString::number(percentage));
+    qDebug() << cmd;
+    this->runJavaScript(cmd);
 }
 
 //---------------------------------------------------------
@@ -108,20 +113,18 @@ SongInfo DeezerPlugin::currentSongInfo()
          "dzPlayer.getPosition();").toFloat() * 1000000);
     retVal.songId = this->runJavaScript(
         "dzPlayer.getSongId();").toString();
-    bool loading = this->runJavaScript(
-        "dzPlayer.loading;").toBool();
+
     bool playing = this->runJavaScript(
         "dzPlayer.playing;").toBool();
     bool paused = this->runJavaScript(
         "dzPlayer.paused;").toBool();
-    if(loading)
-        retVal.playbackStatus = Loading;
-    else if(playing)
+    if(playing)
         retVal.playbackStatus = Playing;
     else if(paused)
         retVal.playbackStatus = Paused;
     else
         retVal.playbackStatus = Stopped;
+
     QString coverId = this->runJavaScript("dzPlayer.getCover();").toString();
     retVal.artUrl = QString(
         "https://cdns-images.deezer.com/images/cover/%1/"
@@ -133,15 +136,15 @@ SongInfo DeezerPlugin::currentSongInfo()
 //---------------------------------------------------------
 float DeezerPlugin::volume()
 {
-    // not supported
-    return 1.f;
+    return this->runJavaScript("dzPlayer.volume;").toFloat();
 }
 
 //---------------------------------------------------------
 void DeezerPlugin::setVolume(float volume)
 {
-    // not supported
-    Q_UNUSED(volume);
+    QString cmd = QString(
+        "dzPlayer.control.setVolume(%1);").arg(QString::number(volume));
+    this->runJavaScript(cmd);
 }
 
 //---------------------------------------------------------
