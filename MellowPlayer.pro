@@ -27,7 +27,7 @@ plugins.depends = lib
 unix{
     # install application desktop file
     isEmpty(PREFIX) {
-        PREFIX = /usr/local
+        PREFIX = /usr
     }
     desktopfile.path = $$PREFIX/share/applications
     desktopfile.files = share/mellowplayer.desktop
