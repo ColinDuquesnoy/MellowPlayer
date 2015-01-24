@@ -10,19 +10,6 @@ The software is written in **C++** using the **Qt** GUI toolkit.
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/), 
 *specifically crafted for KaOS/KF5.*
 
-## Development status
-
-The application is under heavy development and the API has not been stabilized yet.
-
-The following features are already working:
-
-- Grooveshark service integration
-- Cookies management
-- [MPRIS 2](http://specifications.freedesktop.org/mpris-spec/latest/) support
-- Global shortcuts support (using KGlobalAccell on KDE and QxtGlobalShortcut everywhere else).
-
-The application has been tested on KaOS KF5, Manjaro XFCE, OS X Yosemite and Windows 7.1.
-
 ## Supported platforms:
 
 The following platforms are supported:
@@ -34,33 +21,19 @@ The following platforms are supported:
 *It is worth noting that even though the app is cross-platform, the focus will always be 
 on the KDE linux desktop (and maybe on other Qt based desktops such as LxQt).*
 
-## Supported Streaming Services
+## Supported music streaming services
 
-Here are the currently supported streaming services:
+- Grooveshark
+- Deezer
 
-  - **Grooveshark**
+## Features
 
-## Contributing
-
-There are many ways to contribute to MellowPlayer:
-
-### 1) Add support for a new streaming service
-
-Support for new streaming service is added by writing a [writing a service integration plugin]()
-
-### 2) Extend the application
-
-You can extend the application by [writing a generic extension plugin]().
-
-### 3) Help with translations
-
-See the [translators tutorial]() for more information.
-
-### 4) Report bugs
-
-If you found a bug in the application, please report it on our issue tracker. The application 
-has a menu for easily do that (Help->Report a bug). Please, read [CONTRIBUTING.md]() before
-reporting a bug!
+- Minimize to system tray
+- Integration with media keys on KDE SC/Plasma 5
+- Hotkeys support QxtGlobalShortcut
+- Mpris2 Interface (Linux only)
+- System tray notifications
+- Plugin based application (you can extend the app or add support for new service by writing a plugin)
 
 
 ## Dependencies
@@ -73,18 +46,14 @@ reporting a bug!
 
 ```
 qmake
-make 
+make
+sudo make install
 ```
 
 ### Build options
 
 - **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
 - **PREFIX=%s**: the install prefix. Default is ``/usr/local`` on GNU/Linux and ``/`` (``/Applications``) OS X.
-
-
-## Installation
-
-``` (sudo) make install ```
 
 ## Known issues
 
