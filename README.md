@@ -5,20 +5,14 @@ that runs **web-based music streaming services** in its own window and
 provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
 notifications and more).
 
-The software is written in **C++** using the **Qt** GUI toolkit.
-
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/), 
 *specifically crafted for KaOS/KF5.*
 
 ![MellowPlayer](docs/_static/mellowplayer-kaos.png "MellowPlayer on KaOS (Plasma5)")
 
-## Supported platforms:
+## License
 
-The following platforms are supported:
-
-- **GNU/Linux**
-- **Mac OSX**
-- **Windows**
+MellowPlayer is licensed under the GPL license.
 
 ## Supported music streaming services
 
@@ -34,12 +28,16 @@ The following platforms are supported:
 - System tray notifications
 - Plugin based application (you can extend the app or add support for new service by writing a plugin)
 
+## Supported platforms:
+
+- **GNU/Linux**
+- **Mac OSX**
+- **Windows**
 
 ## Dependencies
 
-- **Qt5** (**Qt4** is also supported if you're running on Windows or if you're running on an old linux distribution, such as Ubuntu 12.04)
+- **Qt5** (>= 5.4.0) or **Qt4**
 - **KGlobalAccell** and **KNotifications** (if built with ``kde_support``)
-
 
 ## Compilation
 
