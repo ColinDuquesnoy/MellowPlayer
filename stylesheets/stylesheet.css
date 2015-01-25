@@ -345,11 +345,12 @@ Full-Width Styles
   position: absolute;
   font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
   font-size: 18px;
+  color: #bdbdbd;
   font-style: italic;
   font-weight: bold;
-  width: 500px;
+  width: 493px;
   z-index: 10;
-  bottom: -55px;
+  bottom: -53px;
   right: 0px;
   height: 70px;
   background:  no-repeat 0% 90%;
