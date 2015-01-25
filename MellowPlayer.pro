@@ -38,6 +38,11 @@ unix{
     INSTALLS += iconfile
 }
 
+DISTFILES += README.md
+DISTFILES += LICENSE
+DISTFILES += devhelper.py
+DISTFILES += setup.iss.in
+
 # automatically release translations, .qm files are embedded
 # in the application resources.
 system("lrelease MellowPlayer.pro")
