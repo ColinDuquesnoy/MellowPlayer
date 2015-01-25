@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Mellow Player</string>
+   <string>MellowPlayer</string>
   </property>
   <property name="windowIcon">
    <iconset resource="mellowplayer.qrc">
@@ -50,7 +50,7 @@
         <item row="1" column="1">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot; width=128 height=128/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to Mellow Player!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot; width=&quot;128&quot; height=&quot;128&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to MellowPlayer!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -360,7 +360,7 @@
      <normaloff>:/icons/help-about.png</normaloff>:/icons/help-about.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;About Mellow Player</string>
+    <string>&amp;About MellowPlayer</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -404,7 +404,7 @@
   </action>
   <action name="actionAbout_Qt">
    <property name="icon">
-    <iconset resource="mellowplayer.qrc">
+    <iconset>
      <normaloff>:/icons/about-qt.png</normaloff>:/icons/about-qt.png</iconset>
    </property>
    <property name="text">

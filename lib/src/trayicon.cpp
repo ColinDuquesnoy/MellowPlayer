@@ -36,7 +36,7 @@ void TrayIcon::setIcon(const QIcon &icon)
 #ifdef __kde_support__
     trayIcon->setIconByPixmap(icon);
     trayIcon->setToolTipIconByPixmap(icon);
-    trayIcon->setTitle("Mellow Player");
+    trayIcon->setTitle("MellowPlayer");
 #else
     trayIcon->setIcon(icon);
     trayIcon->show();
@@ -61,10 +61,10 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
 {
 #ifdef __kde_support__
     trayIcon->setToolTipSubTitle(message);
-    trayIcon->showMessage("Mellow Player", message, icon);
+    trayIcon->showMessage("MellowPlayer", message, icon);
 #else
     Q_UNUSED(icon);
-    trayIcon->showMessage("Mellow Player", message);
+    trayIcon->showMessage("MellowPlayer", message);
 #endif
 }
 

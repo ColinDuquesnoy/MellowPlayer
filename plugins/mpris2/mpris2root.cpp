@@ -82,7 +82,7 @@ void Mpris2Root::setFullscreen(bool value)
 //---------------------------------------------------------
 QString Mpris2Root::identity()
 {
-    return "Mellow Player";
+    return "MellowPlayer";
 }
 
 //---------------------------------------------------------

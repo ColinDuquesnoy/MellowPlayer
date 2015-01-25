@@ -307,8 +307,8 @@ void MainWindow::updatePlayer()
     SongInfo song = Services::player()->update();
     if(song.isValid())
     {
-        this->setWindowTitle(QString("%1 - Mellow Player").arg(song.toString()));
-        this->trayIcon->setToolTip(QString("%1 - Mellow Player").arg(
+        this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
+        this->trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
             song.toString()));
         this->ui->actionNext->setEnabled(true);
         this->ui->actionPrevious->setEnabled(true);
@@ -327,7 +327,7 @@ void MainWindow::updatePlayer()
     }
     else
     {
-        this->setWindowTitle("Mellow Player");
+        this->setWindowTitle("MellowPlayer");
         this->ui->actionNext->setEnabled(false);
         this->ui->actionPrevious->setEnabled(false);
         this->ui->actionStop->setEnabled(false);
@@ -337,7 +337,7 @@ void MainWindow::updatePlayer()
             this->ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
             this->ui->actionPlayPause->setIcon(Icons::play());
         }
-        this->trayIcon->setToolTip("Mellow Player");
+        this->trayIcon->setToolTip("MellowPlayer");
     }
 }
 
@@ -373,7 +373,7 @@ void MainWindow::onAboutTriggered()
             .arg(VERSION_STATUS);
 
     const QString description = tr(
-        "<h3>Mellow Player %1</h3>"
+        "<h3>MellowPlayer %1</h3>"
         "Built on %2 at %3 (%4, %5 bit)<br/>"
         "<br/>"
         "Copyright 2015 Colin Duquesnoy. All rights reserved.<br/>"
@@ -385,7 +385,7 @@ void MainWindow::onAboutTriggered()
              compilerString(), QString::number(QSysInfo::WordSize));
 
     QMessageBox::about(
-                this, tr("About Mellow Player"), description);
+                this, tr("About MellowPlayer"), description);
 }
 
 //---------------------------------------------------------
@@ -406,7 +406,7 @@ void MainWindow::quit()
 {
     bool confirm = QSettings().value("confirmQuit", true).toBool();
     if(!confirm || QMessageBox::question(this, tr("Confirm quit"),
-                       tr("Are you sure you want to exit Mellow Player?"),
+                       tr("Are you sure you want to exit MellowPlayer?"),
                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ==
        QMessageBox::Yes)
     {

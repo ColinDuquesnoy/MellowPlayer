@@ -195,7 +195,7 @@ void DlgPreferences::onClearCookiesClicked()
 {
     if(QMessageBox::question(
         this, tr("Clear cookies"),
-        tr("This will remove all cookies stored by Mellow Player.\n"
+        tr("This will remove all cookies stored by MellowPlayer.\n"
            "Are you sure you want to clear all cookies?"),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
             QMessageBox::Yes)
@@ -210,7 +210,7 @@ void DlgPreferences::onClearPreferencesClicked()
 {
     if(QMessageBox::question(
         this, tr("Clear settings"),
-        tr("This will remove all settings stored by Mellow Player.\n"
+        tr("This will remove all settings stored by MellowPlayer.\n"
            "Are you sure you want to erase all settings?"),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
             QMessageBox::Yes)
