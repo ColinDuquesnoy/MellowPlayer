@@ -1,5 +1,7 @@
 ![MellowPlayer banner](/banner.png)
 
+## About
+
 *MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
 that runs **web-based music streaming services** in its own window and
 provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
@@ -14,25 +16,16 @@ notifications and more).
 
 MellowPlayer is licensed under the GPL license.
 
-## Supported music streaming services
-
-- **Grooveshark**
-- **Deezer**
-
 ## Features
 
-- Minimize to system tray
-- Integration with media keys on KDE SC/Plasma 5
-- Hotkeys support QxtGlobalShortcut
-- Mpris2 Interface (Linux only)
-- System tray notifications
+- Support for the following web-based music streaming services
+   - [Grooveshark](http://grooveshark.com/)
+   - [Deezer](http://www.deezer.com/)
+- Cross-platform (available on Windows, Mac OSX and GNU/Linux)
+- System tray integration (minimize to system tray when you close the window, notifications)
+- Global shortcuts support (Media Keys or custom shortcut)
+- Mpris2 support (GNU/Linux only)
 - Plugin based application (you can extend the app or add support for new service by writing a plugin)
-
-## Supported platforms:
-
-- **GNU/Linux**
-- **Mac OSX**
-- **Windows**
 
 ## Dependencies
 
