@@ -353,6 +353,7 @@ Full-Width Styles
   bottom: -53px;
   right: 0px;
   height: 70px;
+  margin-right: 5px;
   background:  no-repeat 0% 90%;
 }
 
@@ -436,55 +437,27 @@ Full-Width Styles
   text-align: center;
 }
 
-.footer-links1 ul, .footer-links1 p, .footer-links1 li, .footer-links1 a{
+.copyright p{
+  text-decoration: none;
+}
+
+.footer-links1 ul, .footer-links1 li, .footer-links1 a{
   text-decoration: none;
   list-style: none;
   display: block;
   float: left;
   vertical-align: center;
   margin-left: 5px;
-  background-color: ;
-}
-
-.footer-links2 ul, .footer-links2 p, .footer-links2 li, .footer-links2 a{
   text-decoration: none;
-  list-style: none;
-  display: block;
-  float: left;
-  vertical-align: center;
-  margin-left: 5px;
-  position: relative;
-  bottom: 1px;
 }
 
-.footer-links3 ul, .footer-links3 p, .footer-links3 li, .footer-links3 a{
-  text-decoration: none;
-  list-style: none;
-  display: block;
-  float: right;
-  vertical-align: center;
-  margin-left: 5px;
-  background-color: ;
+.footer-links1 a{
+  text-decoration: underline;
 }
 
-.footer-links2 img{
-  width: 35px;
-  bottom: 0px;
-  right: 0px;
-  height: 35px;
-  margin-right: 10px;
-  margin-left: 35px;
-  border: 0px;
-  box-shadow: 0 0 0px #ebebeb;
-  -webkit-box-shadow: 0 0 0px #ebebeb;
-  -moz-box-shadow: 0 0 0px #ebebeb;
-  -o-box-shadow: 0 0 0px #ebebeb;
-  -ms-box-shadow: 0 0 0px #ebebeb;
-}
-
-.footer-links2 img:hover{
+.footer-links1 a:hover{
 	opacity: 0.5; 
-  
+	text-decoration: underline;  
 }
 
 
