@@ -333,7 +333,7 @@ Full-Width Styles
 
 #downloads {
   position: absolute;
-  width: 500px;
+  width: 405px;
   z-index: 10;
   bottom: -40px;
   right: 0px;
@@ -344,7 +344,10 @@ Full-Width Styles
 .download-title {
   position: absolute;
   font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
-  width: 460px;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  width: 500px;
   z-index: 10;
   bottom: -55px;
   right: 0px;
