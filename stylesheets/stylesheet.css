@@ -315,14 +315,41 @@ Full-Width Styles
   text-shadow: #111 0px 0px 10px;
 }
 
+#mellow-icon img{
+  float: left;
+  width: 100px;
+  bottom: 0px;
+  right: 0px;
+  height: 100px;
+  margin-right: 20px;
+  border: 0px;
+  box-shadow: 0 0 0px #ebebeb;
+  -webkit-box-shadow: 0 0 0px #ebebeb;
+  -moz-box-shadow: 0 0 0px #ebebeb;
+  -o-box-shadow: 0 0 0px #ebebeb;
+  -ms-box-shadow: 0 0 0px #ebebeb;
+  
+}
+
 #downloads {
   position: absolute;
-  width: 400px;
+  width: 500px;
   z-index: 10;
   bottom: -40px;
   right: 0px;
   height: 70px;
   background: url('../images/icon_download.png') /*blue*/ no-repeat 0% 90%;
+}
+
+.download-title {
+  position: absolute;
+  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  width: 460px;
+  z-index: 10;
+  bottom: -55px;
+  right: 0px;
+  height: 70px;
+  background:  no-repeat 0% 90%;
 }
 
 .zip_download_link {
