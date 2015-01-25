@@ -35,10 +35,12 @@ const PluginMetaData &DeezerPlugin::metaData() const
     meta.version = "1.0";
     meta.icon = QIcon(":/deezer/deezer-logo.png");
     meta.description =tr(
-"<p><strong>Deezer</strong> is a French web-based music streaming service."
-"It allows users to listen to music on various devices online or offline. "
-"It currently has 18 million licensed tracks, over 30,000 radio channels "
-"and 22 million users (1.5 million subscribers)."
+"<p><strong>Deezer</strong> is a web-based music streaming service. "
+"It allows users to listen to music content from record labels including EMI, "
+"Sony, Universal Music Group, and Warner Music Group on various devices "
+"online or offline. Created in Paris, France, Deezer currently has 35 million "
+"licensed tracks in its library, over 30,000 radio channels, 16 million "
+"monthly active users, and 5 million paid subscribers as of 6 November 2013."
 "</p>"
 "<p>"
 "<em>Source:"
