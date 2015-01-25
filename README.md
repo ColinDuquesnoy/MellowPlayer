@@ -45,6 +45,14 @@ sudo make install
 - **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
 - **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
 
+## Contributing
+
+MellowPlayer is an open-source application that needs your help to go on growing and improving!
+
+There are many ways for developer and non-developers to contribute to the project: you can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on.
+
+If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/CONTRIBUTING.md) and the [wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)!
+
 ## Known issues
 
 - 1) On OS X, the application might crash on exit if the audio backend is running. We have yet to investigate why this happen.
