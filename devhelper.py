@@ -18,6 +18,7 @@ Usage::
 import os
 import shutil
 import sys
+import webbrowser
 
 
 # --- Menu functions
@@ -179,6 +180,15 @@ def make_osx_release():
     os.system('macdeployqt MellowPlayer.app -dmg')
 
 
+def make_docs():
+    os.system('doxygen docs/Doxyfile')
+
+    answer = read_input("Open documentation [Y/n]?").lower()
+    if answer != 'n':
+        path = 'file://' + os.path.realpath(os.path.join(
+            os.getcwd(), 'docs', '_build', 'html', 'index.html'))
+        print(path, webbrowser.open_new_tab(path))
+
 
 # --- Menu definition
 #: The menu dict associate the menu text entry and its associated function.
@@ -189,7 +199,8 @@ MENU = {
     '4. Update translations': update_translations,
     '5. Make windows release': make_win32_release,
     '6. Make OSX release': make_osx_release,
-    '7. Exit': lambda: sys.exit(0)
+    '7. Make documentation': make_docs,
+    '8. Exit': lambda: sys.exit(0)
 }
 
 
