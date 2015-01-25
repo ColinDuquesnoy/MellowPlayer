@@ -75,7 +75,7 @@ def add_translation():
 
 def update_translations():
     """ Updates existing translations (run lupdate). """
-    os.system('lupdate MellowPlayer.pro')
+    os.system('lupdate MellowPlayer.pro -no-obsolete')
 
 
 def make_win32_release():
