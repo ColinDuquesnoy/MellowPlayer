@@ -84,7 +84,7 @@ public:
      * an invalid Plugin. For that reason, you should always check plugin
      * validity using Plugin::isValid().
      *
-     * \param Name of the plugin to retrieve.
+     * \param serviceName of the plugin to retrieve.
      */
     IStreamingServiceIntegration* plugin(const QString& serviceName) const;
 

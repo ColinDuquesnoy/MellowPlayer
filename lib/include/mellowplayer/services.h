@@ -40,8 +40,6 @@ class TrayIcon;
 class Services
 {
 public:
-    static void _setMainWindow(QMainWindow* _mainWindow);
-
     /*!
      * \brief Gets a pointer to the application's main window
      */
@@ -52,28 +50,20 @@ public:
      */
     static void raiseMainWindow();
 
-    static void _setServicesManager(StreamingServicesManager* manager);
-
     /*!
      * \brief Gets a pointer to the music streaming services plugin manager.
      */
     static StreamingServicesManager* streamingServices();
-
-    static void _setExtensionsManager(ExtensionsManager* manager);
 
     /*!
      * \brief Returns a pointer to the extensions plugin manager.
      */
     static ExtensionsManager* extensions();
 
-    static void _setWebView(QWebView* _webView);
-
     /*!
      * \brief Gets a pointer to the webview.
      */
     static QWebView* webView();
-
-    static void _setPlayer(PlayerInterface* player);
 
     /*!
      * \brief Returns a pointer to the player interface that you can
@@ -90,10 +80,25 @@ public:
      */
     static QAction* action(const QString& actionText);
 
-    static void _setTrayIcon(TrayIcon* icon);
+    /*!
+     * \brief Gets the trayIcon object.
+     *
+     * You may want use it to show notifications,...
+     * \return
+     */
     static TrayIcon *trayIcon();
 
 private:
+    friend class MellowPlayerApp;
+    friend class MainWindow;
+
+    static void _setMainWindow(QMainWindow* _mainWindow);
+    static void _setServicesManager(StreamingServicesManager* manager);
+    static void _setExtensionsManager(ExtensionsManager* manager);
+    static void _setWebView(QWebView* _webView);
+    static void _setPlayer(PlayerInterface* player);
+    static void _setTrayIcon(TrayIcon *icon);
+
     static QMainWindow* _mainWindow;
     static QWebView* _webView;
     static StreamingServicesManager* _services;

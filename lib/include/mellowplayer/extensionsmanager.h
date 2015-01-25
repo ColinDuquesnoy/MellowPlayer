@@ -43,8 +43,6 @@ public:
      * **For internal uses only, all the plugins are added by the application.**
      *
      * \param iExtension Service to add.
-     * \param pluginLoader Pointer to the plugin loader that loaded the service
-     *                     plugin.
      */
     void loadPlugin(IExtension* iExtension);
 

@@ -57,7 +57,7 @@ public:
     /*!
      * \brief Seeks to the indicated position
      *
-     * \param positon position to reach [µs]
+     * \param position position to reach [µs]
      */
     void seekToPosition(int position);
 
