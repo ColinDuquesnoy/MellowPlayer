@@ -42,6 +42,7 @@ DISTFILES += README.md
 DISTFILES += LICENSE
 DISTFILES += devhelper.py
 DISTFILES += setup.iss.in
+DISTFILES += docs/Doxyfile
 
 # automatically release translations, .qm files are embedded
 # in the application resources.
