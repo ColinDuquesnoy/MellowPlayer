@@ -61,7 +61,6 @@ struct SongInfo
     QString         artistName;      /*!< Name of the artist */
     QString         albumName;       /*!< Name of the album */
     QString         artUrl;          /*!< Art url*/
-    PlaybackStatus  playbackStatus;  /*!< Playback status of the song */
     qlonglong       duration;        /*!< Song duration given in microseconds */
     qlonglong       position;        /*!< Song position given in microseconds */
 

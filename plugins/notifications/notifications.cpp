@@ -30,8 +30,8 @@ NotificationsPlugin::NotificationsPlugin(QObject *parent):
 //---------------------------------------------------------
 void NotificationsPlugin::setup()
 {
-    connect(Services::player(), SIGNAL(songChanged(SongInfo)),
-            this, SLOT(onSongChanged(SongInfo)));
+    connect(Services::player(), SIGNAL(songStarted(SongInfo)),
+            this, SLOT(onSongStarted(SongInfo)));
 }
 
 //---------------------------------------------------------
@@ -47,10 +47,13 @@ const PluginMetaData &NotificationsPlugin::metaData() const
 }
 
 //---------------------------------------------------------
-void NotificationsPlugin::onSongChanged(const SongInfo &song)
+void NotificationsPlugin::onSongStarted(const SongInfo &song)
 {
     if(song.isValid())
+    {
+        qDebug() << "New song started: " << song.toString();
         Services::trayIcon()->showMessage(song.toString(), "media-optical");
+    }
 }
 
 //---------------------------------------------------------

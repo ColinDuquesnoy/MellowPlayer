@@ -116,16 +116,6 @@ SongInfo DeezerPlugin::currentSongInfo()
     retVal.songId = this->runJavaScript(
         "dzPlayer.getSongId();").toString();
 
-    bool playing = this->runJavaScript(
-        "dzPlayer.playing;").toBool();
-    bool paused = this->runJavaScript(
-        "dzPlayer.paused;").toBool();
-    if(playing)
-        retVal.playbackStatus = Playing;
-    else if(paused)
-        retVal.playbackStatus = Paused;
-    else
-        retVal.playbackStatus = Stopped;
 
     QString coverId = this->runJavaScript("dzPlayer.getCover();").toString();
     retVal.artUrl = QString(
@@ -133,6 +123,21 @@ SongInfo DeezerPlugin::currentSongInfo()
         "400x400.jpg").arg(coverId);
 
     return retVal;
+}
+
+//---------------------------------------------------------
+PlaybackStatus DeezerPlugin::playbackStatus()
+{
+    bool playing = this->runJavaScript(
+        "dzPlayer.playing;").toBool();
+    bool paused = this->runJavaScript(
+        "dzPlayer.paused;").toBool();
+    if(playing)
+        return Playing;
+    else if(paused)
+        return Paused;
+    else
+        return Stopped;
 }
 
 //---------------------------------------------------------

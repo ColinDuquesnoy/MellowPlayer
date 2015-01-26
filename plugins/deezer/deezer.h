@@ -52,7 +52,11 @@ public:
     void seekToPosition(int position);
     //! Gets the current song info
     SongInfo currentSongInfo();
+    //! Gets the deezer player's playback status
+    PlaybackStatus playbackStatus();
     float volume();
     void setVolume(float volume);
+
+
 };
 

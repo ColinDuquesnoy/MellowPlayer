@@ -105,18 +105,26 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     retVal.albumName = songData["albumName"].toString();
     retVal.artistName = songData["artistName"].toString();
     retVal.artUrl = songData["artURL"].toString();
+
     // position from grooveshark are given in ms, we use µs.
     retVal.duration = songData["calculatedDuration"].toInt() * 1000;
     retVal.position = songData["position"].toInt() * 1000;
-    QString statusString = result["status"].toString();
-    retVal.playbackStatus = Stopped;
-    if(statusString == "playing")
-        retVal.playbackStatus = Playing;
-    else if(statusString == "paused")
-        retVal.playbackStatus = Paused;
-    else
-        retVal.playbackStatus = Stopped;
+
     return retVal;
+}
+
+//---------------------------------------------------------
+PlaybackStatus GroovesharkPlugin::playbackStatus()
+{
+    QVariantMap result = this->runJavaScript(
+        "current_song = window.Grooveshark.getCurrentSongStatus()").toMap();
+    QString statusString = result["status"].toString();
+    if(statusString == "playing")
+        return Playing;
+    else if(statusString == "paused")
+        return Paused;
+    else
+        return Stopped;
 }
 
 //---------------------------------------------------------
@@ -135,6 +143,7 @@ void GroovesharkPlugin::setVolume(float volume)
             QString::number(static_cast<int>(volume * 100))));
 }
 
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2( GroovesharkPlugin, GroovesharkPlugin )
 #endif

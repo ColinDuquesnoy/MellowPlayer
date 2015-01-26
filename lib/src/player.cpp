@@ -40,7 +40,7 @@ void PlayerInterface::playPause()
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     SongInfo song = iService->currentSongInfo();
-    if(song.playbackStatus > Playing)
+    if(this->playbackStatus() > Playing)
         iService->play();
     else
         iService->pause();
@@ -116,8 +116,8 @@ float PlayerInterface::volume()
     IStreamingServiceIntegration* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
-        return iService->volume();
-    return 0.0f;
+        return 0.0f;
+    return iService->volume();
 }
 
 //---------------------------------------------------------
@@ -125,8 +125,17 @@ void PlayerInterface::setVolume(float value)
 {
     IStreamingServiceIntegration* iService =
             Services::streamingServices()->currentService();
-    if(!iService || !iService->currentSongInfo().isValid())
+    if(iService && iService->currentSongInfo().isValid())
         iService->setVolume(value);
+}
+
+PlaybackStatus PlayerInterface::playbackStatus() const
+{
+    IStreamingServiceIntegration* iService =
+            Services::streamingServices()->currentService();
+    if(iService)
+        return iService->playbackStatus();
+    return Stopped;
 }
 
 //---------------------------------------------------------
@@ -140,7 +149,7 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
 {
     PlaybackStatus status = Stopped;
     if(song.isValid())
-        status = song.playbackStatus;
+        status = playbackStatus();
     if(status != this->currentStatus)
     {
         qDebug() << "Playback status changed: "
@@ -153,14 +162,29 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
 //---------------------------------------------------------
 void PlayerInterface::checkSongChange(SongInfo &song)
 {
-    if(song.songName != this->_currentSong.songName &&
-        song.playbackStatus == Playing)
+    if(song.songName != this->_currentSong.songName)
     {
         qDebug() << "Song changed: " << song.songName;
-        this->_currentSong = song;
         emit songChanged(song);
+        this->_currentSong = song;
+
+        if(this->playbackStatus() == Playing && song.isValid())
+        {
+            this->_startedSong = song;
+            emit songStarted(song);
+        }
+        else
+            this->_startedSong = SongInfo(); // invalid song
+
         if(song.isValid())
             this->downloadSongArt(song.artUrl);
+    }
+    else if(!this->_startedSong.isValid() && this->playbackStatus() == Playing)
+    {
+        // sometimes (depends on the player) a new song is active but not playing,
+        // we only emit song started when a song is active and the player is playing.
+        this->_startedSong = song;
+        emit songStarted(song);
     }
 }
 

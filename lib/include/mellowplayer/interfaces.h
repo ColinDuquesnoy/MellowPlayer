@@ -70,6 +70,9 @@ public:
     //! Gets the current song information
     virtual SongInfo currentSongInfo() = 0;
 
+    //! Gets the player's playback status
+    virtual PlaybackStatus playbackStatus() = 0;
+
 protected:
     /*!
      * Evaluates the JavaScript defined by ``scriptSource`` using the main web

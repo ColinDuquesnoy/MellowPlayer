@@ -53,5 +53,5 @@ public:
     const PluginMetaData& metaData() const;
 
 private slots:
-    void onSongChanged(const SongInfo& song);
+    void onSongStarted(const SongInfo& song);
 };

@@ -90,6 +90,13 @@ public:
      */
     void setVolume(float value);
 
+    /*!
+     * \brief Gets the player's playback status
+     *
+     * \return PlaybackStatus
+     */
+    PlaybackStatus playbackStatus() const;
+
 signals:
     /*!
      * \brief Signal emitted when the current song status changed
@@ -103,9 +110,21 @@ signals:
     /*!
      * \brief Signal emitted when the current song changed.
      *
+     * Note that the current song might change even if the player is not
+     * playing. If you want to get notified when a song changed and is playing,
+     * use the songStarted signal instead.
+     *
      * \param song The new song info
      */
     void songChanged(const SongInfo& song);
+
+    /*!
+     * \brief Signal emitted when a new song changed and the song is currently
+     * playing.
+     *
+     * \param song The new song info
+     */
+    void songStarted(const SongInfo& song);
 
     /*!
      * \brief Signal emitted when an art file has been downloaded and is
@@ -132,6 +151,7 @@ private:
     void downloadSongArt(const QString &url);
 
     SongInfo        _currentSong;
+    SongInfo        _startedSong;
     PlaybackStatus  currentStatus;
     int             currentPosition;
 };

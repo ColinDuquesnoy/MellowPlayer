@@ -59,6 +59,8 @@ public:
     void seekToPosition(int position);
     //! Gets the current song info
     SongInfo currentSongInfo();
+    //! Gets the grooveshark player's playaback status
+    PlaybackStatus playbackStatus();
     float volume();
     void setVolume(float volume);
 };

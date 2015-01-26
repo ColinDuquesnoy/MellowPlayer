@@ -164,11 +164,8 @@ void Mpris2Player::signalUpdate(const QVariantMap &map)
 //---------------------------------------------------------
 QString Mpris2Player::playbackStatus()
 {
-    SongInfo song = Services::player()->currentSong();
-    QString retVal = "Stopped";
-    if(song.isValid())
-        retVal = playbackStatusToString(song.playbackStatus);
-    return retVal;
+    PlayerInterface* player = Services::player();
+    return playbackStatusToString(player->playbackStatus());
 }
 
 //---------------------------------------------------------

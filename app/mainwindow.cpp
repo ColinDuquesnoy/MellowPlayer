@@ -238,7 +238,7 @@ void MainWindow::setupTrayIcon()
 void MainWindow::setupUpdateTimer()
 {
     this->updateTimer = new QTimer(this);
-    this->updateTimer->setInterval(1000);
+    this->updateTimer->setInterval(10);
     this->connect(this->updateTimer, SIGNAL(timeout()),
                   this, SLOT(updatePlayer()));
     this->updateTimer->start();
@@ -304,7 +304,8 @@ void MainWindow::connectSlots()
 //---------------------------------------------------------
 void MainWindow::updatePlayer()
 {
-    SongInfo song = Services::player()->update();
+    PlayerInterface* player = Services::player();
+    SongInfo song = player->update();
     if(song.isValid())
     {
         this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
@@ -312,14 +313,14 @@ void MainWindow::updatePlayer()
             song.toString()));
         this->ui->actionNext->setEnabled(true);
         this->ui->actionPrevious->setEnabled(true);
-        this->ui->actionStop->setEnabled(song.playbackStatus != Stopped);
+        this->ui->actionStop->setEnabled(player->playbackStatus() != Stopped);
         this->ui->actionPlayPause->setEnabled(true);
-        if(song.playbackStatus == Paused)
+        if(player->playbackStatus() == Paused)
         {
             this->ui->actionPlayPause->setIcon(Icons::play());
             this->ui->actionPlayPause->setText(tr("Play"));
         }
-        else if(song.playbackStatus == Playing)
+        else if(player->playbackStatus() == Playing)
         {
             this->ui->actionPlayPause->setIcon(Icons::pause());
             this->ui->actionPlayPause->setText(tr("Pause"));
