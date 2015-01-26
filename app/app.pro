@@ -106,7 +106,7 @@ VERSION          = 1.0.0
 DEFINES         += VERSION_MAJOR=1
 DEFINES         += VERSION_MINOR=0
 DEFINES         += VERSION_MICRO=0
-DEFINES         += VERSION_STATUS=\\\"a1\\\"
+DEFINES         += VERSION_STATUS=\\\"beta0\\\"
 
 
 # Optional KDE support will use KGlobalAccel
