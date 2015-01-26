@@ -21,6 +21,7 @@
 #include <QFile>
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/extensionsmanager.h"
+#include "mellowplayer/playbackstatus.h"
 #include "mellowplayer/services.h"
 
 //---------------------------------------------------------

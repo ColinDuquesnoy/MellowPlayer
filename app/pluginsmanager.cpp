@@ -26,8 +26,8 @@
 void loadPlugin(QObject* plugin)
 {
     // streaming service interface
-    IStreamingServiceIntegration* iService = qobject_cast<
-            IStreamingServiceIntegration*>(plugin);
+    IStreamingService* iService = qobject_cast<
+            IStreamingService*>(plugin);
     if(iService)
     {
         Services::streamingServices()->_loadPlugin(iService);

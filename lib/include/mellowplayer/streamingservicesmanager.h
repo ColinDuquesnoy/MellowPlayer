@@ -25,9 +25,9 @@
 #include <QObject>
 #include "mellowplayer/pluginmetadata.h"
 
-class IStreamingServiceIntegration;
+class IStreamingService;
 
-typedef QList<IStreamingServiceIntegration*> StreamingServicesList;
+typedef QList<IStreamingService*> StreamingServicesList;
 
 /*!
  * \brief The StreamingServicesManager class manages the collection of
@@ -52,7 +52,7 @@ public:
      * \param pluginLoader Pointer to the plugin loader that loaded the service
      *                     plugin.
      */
-    void _loadPlugin(IStreamingServiceIntegration* iService);
+    void _loadPlugin(IStreamingService* iService);
 
     /*!
      * @brief Starts the current service.
@@ -70,7 +70,7 @@ public:
      * \returns Current music streaming service integration interface or NULL
      * if no service has been started yet.
      */
-    IStreamingServiceIntegration* currentService() const;
+    IStreamingService* currentService() const;
 
     /*!
      * \brief Returns the list of loaded plugins.
@@ -86,7 +86,7 @@ public:
      *
      * \param serviceName of the plugin to retrieve.
      */
-    IStreamingServiceIntegration* plugin(const QString& serviceName) const;
+    IStreamingService* plugin(const QString& serviceName) const;
 
 signals:
 
@@ -94,7 +94,7 @@ public slots:
 
 private:
     StreamingServicesList _plugins;
-    IStreamingServiceIntegration* _currentService;
+    IStreamingService* _currentService;
 };
 
 #endif // STREAMINGSERVICESMANAGER_H

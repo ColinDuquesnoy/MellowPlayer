@@ -22,20 +22,6 @@
 
 
 //---------------------------------------------------------
-QString playbackStatusToString(PlaybackStatus status)
-{
-    switch (status) {
-    case Playing:
-        return "Playing";
-    case Paused:
-        return "Paused";
-    case Stopped:
-        return "Stopped";
-    }
-    return "";
-}
-
-//---------------------------------------------------------
 bool SongInfo::isValid() const
 {
     return songName != "";

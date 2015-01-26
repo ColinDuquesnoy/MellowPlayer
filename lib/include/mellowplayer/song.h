@@ -22,34 +22,6 @@
 
 #include <QString>
 
-/*!
- * \brief The PlaybackStatus enum enumerates the possible playback status of
- * a song.
- */
-enum PlaybackStatus
-{
-    /*!
-      Song is playing
-      */
-    Playing,
-    /*!
-      Song has been paused
-      */
-    Paused,
-    /*!
-      Song has been stopped
-      */
-    Stopped
-};
-
-
-/*!
- * \brief Converts a playback status value to a string
- * \param status Status to convert
- * \return String representation of the playback status
- */
-QString playbackStatusToString(PlaybackStatus status);
-
 
 /*!
  * \brief The Song struct contains the song current song information
@@ -67,6 +39,8 @@ struct SongInfo
     /*!
      * \brief Checks if the song info is valid (i.e. has at least songName
      * defined)
+     *
+     * SongInfo().isValid() will return false.
      *
      * \return True if the song is valid.
      */

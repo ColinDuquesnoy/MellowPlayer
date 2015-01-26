@@ -33,7 +33,7 @@ StreamingServicesManager::StreamingServicesManager(QObject* parent):
 }
 
 //---------------------------------------------------------
-void StreamingServicesManager::_loadPlugin(IStreamingServiceIntegration* iService)
+void StreamingServicesManager::_loadPlugin(IStreamingService* iService)
 {
     if(!this->plugin(iService->metaData().name))
     {
@@ -50,7 +50,7 @@ void StreamingServicesManager::_loadPlugin(IStreamingServiceIntegration* iServic
 }
 
 //---------------------------------------------------------
-IStreamingServiceIntegration* StreamingServicesManager::currentService() const
+IStreamingService* StreamingServicesManager::currentService() const
 {
     return this->_currentService;
 }
@@ -62,10 +62,10 @@ StreamingServicesList StreamingServicesManager::plugins() const
 }
 
 //---------------------------------------------------------
-IStreamingServiceIntegration* StreamingServicesManager::plugin(
+IStreamingService* StreamingServicesManager::plugin(
     const QString &serviceName) const
 {
-    foreach(IStreamingServiceIntegration* p, this->_plugins)
+    foreach(IStreamingService* p, this->_plugins)
     {
         if(p->metaData().name == serviceName)
             return p;
@@ -76,7 +76,7 @@ IStreamingServiceIntegration* StreamingServicesManager::plugin(
 //---------------------------------------------------------
 bool StreamingServicesManager::startService(const QString& serviceName) {
     bool retVal = false;
-    IStreamingServiceIntegration* p = this->plugin(serviceName);
+    IStreamingService* p = this->plugin(serviceName);
     if(p && p != this->_currentService)
     {
         this->_currentService = p;

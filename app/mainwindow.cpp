@@ -68,7 +68,7 @@ void MainWindow::showHomePage()
 //---------------------------------------------------------
 void MainWindow::onLinkClicked(QUrl url)
 {
-    IStreamingServiceIntegration* sv = Services::streamingServices()->currentService();
+    IStreamingService* sv = Services::streamingServices()->currentService();
     if( sv && url.toString().contains(sv->url().toString()))
         this->ui->webView->load(url);
     else

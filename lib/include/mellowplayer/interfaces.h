@@ -23,6 +23,7 @@
 #include <QtCore>
 #include <QtPlugin>
 #include "mellowplayer/pluginmetadata.h"
+#include "mellowplayer/playbackstatus.h"
 #include "mellowplayer/song.h"
 
 class QWebView;
@@ -32,7 +33,7 @@ class QWidget;
 /*!
  * \brief Interface for adding music streaming service integration.
  */
-class IStreamingServiceIntegration
+class IStreamingService
 {
 public:
     /*!
@@ -86,8 +87,8 @@ protected:
     QWebView* webView;  ///< A pointer to the appliction's web view.
 };
 
-#define IStreamingServiceIntegration_iid "org.MellowPlayer.IStreamingServiceIntegration"
-Q_DECLARE_INTERFACE(IStreamingServiceIntegration, IStreamingServiceIntegration_iid)
+#define IStreamingService_iid "org.MellowPlayer.IStreamingService"
+Q_DECLARE_INTERFACE(IStreamingService, IStreamingService_iid)
 
 
 /*!

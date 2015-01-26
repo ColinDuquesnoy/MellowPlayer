@@ -35,7 +35,7 @@ PlayerInterface::PlayerInterface(QObject *parent):
 //---------------------------------------------------------
 void PlayerInterface::playPause()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
@@ -49,7 +49,7 @@ void PlayerInterface::playPause()
 //---------------------------------------------------------
 void PlayerInterface::stop()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
@@ -59,7 +59,7 @@ void PlayerInterface::stop()
 //---------------------------------------------------------
 void PlayerInterface::next()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
@@ -69,7 +69,7 @@ void PlayerInterface::next()
 //---------------------------------------------------------
 void PlayerInterface::previous()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
@@ -79,7 +79,7 @@ void PlayerInterface::previous()
 //---------------------------------------------------------
 void PlayerInterface::seekToPosition(int position)
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
@@ -89,7 +89,7 @@ void PlayerInterface::seekToPosition(int position)
 //---------------------------------------------------------
 SongInfo PlayerInterface::currentSong()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService)
         return SongInfo(); // invalid song
@@ -99,7 +99,7 @@ SongInfo PlayerInterface::currentSong()
 //---------------------------------------------------------
 SongInfo PlayerInterface::update()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService)
         return SongInfo();  // invalid song
@@ -113,7 +113,7 @@ SongInfo PlayerInterface::update()
 //---------------------------------------------------------
 float PlayerInterface::volume()
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return 0.0f;
@@ -123,7 +123,7 @@ float PlayerInterface::volume()
 //---------------------------------------------------------
 void PlayerInterface::setVolume(float value)
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(iService && iService->currentSongInfo().isValid())
         iService->setVolume(value);
@@ -131,7 +131,7 @@ void PlayerInterface::setVolume(float value)
 
 PlaybackStatus PlayerInterface::playbackStatus() const
 {
-    IStreamingServiceIntegration* iService =
+    IStreamingService* iService =
             Services::streamingServices()->currentService();
     if(iService)
         return iService->playbackStatus();

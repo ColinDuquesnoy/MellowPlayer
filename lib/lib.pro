@@ -32,7 +32,8 @@ HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/song.h \
                   include/mellowplayer/streamingservicesmanager.h \
                   include/mellowplayer/urldownloader.h \
-    include/mellowplayer/trayicon.h
+    include/mellowplayer/trayicon.h \
+    include/mellowplayer/playbackstatus.h
 SOURCES         = src/extensionsmanager.cpp \
                   src/interfaces.cpp \
                   src/player.cpp \

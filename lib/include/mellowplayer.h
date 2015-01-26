@@ -20,6 +20,7 @@
 #include <mellowplayer/extensionsmanager.h>
 #include <mellowplayer/interfaces.h>
 #include <mellowplayer/player.h>
+#include <mellowplayer/playbackstatus.h>
 #include "mellowplayer/pluginmetadata.h"
 #include <mellowplayer/services.h>
 #include <mellowplayer/song.h>

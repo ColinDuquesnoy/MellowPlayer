@@ -23,7 +23,7 @@
 #include "mellowplayer/services.h"
 
 //---------------------------------------------------------
-QVariant IStreamingServiceIntegration::runJavaScript(const QString &scriptSource)
+QVariant IStreamingService::runJavaScript(const QString &scriptSource)
 {
     return Services::webView()->page()->mainFrame()->evaluateJavaScript(
                 scriptSource);

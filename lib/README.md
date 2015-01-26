@@ -9,7 +9,7 @@ various plugins intefaces are declared and where you'll find an API to interact 
 ## Contents:
 
 - Plugins interfaces
-   - IStreamingServiceIntegration
+   - IStreamingService
    - IExtension
    - PluginMetaData
 - API

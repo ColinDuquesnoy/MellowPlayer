@@ -21,6 +21,7 @@
 #define PLAYER
 
 #include <QObject>
+#include "mellowplayer/playbackstatus.h"
 #include "mellowplayer/song.h"
 
 

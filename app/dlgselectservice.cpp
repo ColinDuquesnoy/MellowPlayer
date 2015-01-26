@@ -34,7 +34,7 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     int row = 0;
     QString activeService = QSettings().value("service", "").toString();
     int i = 0;
-    foreach(IStreamingServiceIntegration* plugin,
+    foreach(IStreamingService* plugin,
             Services::streamingServices()->plugins()){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
         item->setText(plugin->metaData().name);
@@ -62,7 +62,7 @@ DlgSelectServices::~DlgSelectServices()
 void DlgSelectServices::onCurrentRowChanged(int row)
 {
     QListWidgetItem* item = this->ui->listWidget->item(row);
-    IStreamingServiceIntegration* plugin = Services::streamingServices()->plugin(item->text());
+    IStreamingService* plugin = Services::streamingServices()->plugin(item->text());
     if(plugin)
     {
         ui->textBrowser->setHtml(
