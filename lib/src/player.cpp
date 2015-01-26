@@ -129,6 +129,7 @@ void PlayerInterface::setVolume(float value)
         iService->setVolume(value);
 }
 
+//---------------------------------------------------------
 PlaybackStatus PlayerInterface::playbackStatus() const
 {
     IStreamingService* iService =

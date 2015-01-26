@@ -31,10 +31,10 @@
 class WebView : public QWebView
 {
 public:
-  explicit WebView(QWidget* parent=NULL);
+    explicit WebView(QWidget* parent=NULL);
 
 protected:
-  virtual QWebView *createWindow(QWebPage::WebWindowType type);
+    virtual QWebView *createWindow(QWebPage::WebWindowType type);
 };
 
 #endif // WEBVIEW_H

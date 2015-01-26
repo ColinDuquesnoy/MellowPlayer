@@ -23,7 +23,6 @@ enum PlaybackStatus
     Stopped
 };
 
-
 /*!
  * \brief Converts a playback status value to a string
  * \param status Status to convert

@@ -98,10 +98,28 @@ public:
      */
     static QIcon mellowPlayer();
 
+    /*!
+     * \brief Gets the interface settings icon
+     * \return QIcon
+     */
     static QIcon interface();
+
+    /*!
+     * \brief Gets the shortcuts icon
+     * \return QIcon
+     */
     static QIcon shortcuts();
+
+    /*!
+     * \brief Gets the plugins icon
+     * \return QIcon
+     */
     static QIcon plugins();
 
+    /*!
+     * \brief Gets the trash icon.
+     * \return QIcon
+     */
     static QIcon userTrash();
 };
 

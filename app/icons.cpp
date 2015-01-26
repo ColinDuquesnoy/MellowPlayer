@@ -117,6 +117,7 @@ QIcon Icons::plugins()
                           QIcon(":/icons/preferences-other.png"));
 }
 
+//---------------------------------------------------------
 QIcon Icons::userTrash()
 {
     return QIcon::fromTheme("user-trash", QIcon(":/icons/user-trash.png"));

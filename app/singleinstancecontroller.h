@@ -48,6 +48,9 @@ public:
      */
     void start(MellowPlayerApp* app);
 
+    /*!
+     * \brief Close the single application instance.
+     */
     void close();
 
 public slots:

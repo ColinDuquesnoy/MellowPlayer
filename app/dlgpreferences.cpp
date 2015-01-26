@@ -191,6 +191,7 @@ void DlgPreferences::restart()
     }
 }
 
+//---------------------------------------------------------
 void DlgPreferences::onClearCookiesClicked()
 {
     if(QMessageBox::question(

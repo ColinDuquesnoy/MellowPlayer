@@ -24,7 +24,7 @@
 #include "pluginsmanager.h"
 
 
-//---------------------------------------------------------s
+//---------------------------------------------------------
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     QApplication(argc, argv),
     mainWindow(NULL)
@@ -91,6 +91,7 @@ int MellowPlayerApp::exec()
     return retCode;
 }
 
+//---------------------------------------------------------
 void MellowPlayerApp::close()
 {
     if(Services::extensions())

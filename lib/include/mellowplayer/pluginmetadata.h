@@ -32,7 +32,8 @@ struct PluginMetaData
 {
     QString name;           /*!< Name of the plugin */
     QString author;         /*!< Author of the plugin */
-    QString author_website;        /*!< Plugin website */
+    QString author_website; /*!< Plugin website (usually a link to the author's
+                                 github account) */
     QString version;        /*!< Plugin version */
     QString description;    /*!< Plugin description, use html for streaming
                                  services integration plugins */

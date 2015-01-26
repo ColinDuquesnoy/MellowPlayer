@@ -22,7 +22,6 @@
 
 #include <QString>
 
-
 /*!
  * \brief The Song struct contains the song current song information
  */

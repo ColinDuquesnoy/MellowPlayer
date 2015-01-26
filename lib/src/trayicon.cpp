@@ -7,6 +7,7 @@
 #endif
 
 
+//---------------------------------------------------------
 TrayIcon::TrayIcon(QObject *parent):
     QObject(parent),
 #ifdef __kde_support__
@@ -24,6 +25,7 @@ TrayIcon::TrayIcon(QObject *parent):
 #endif
 }
 
+//---------------------------------------------------------
 TrayIcon::~TrayIcon()
 {
 #ifndef __kde_support__
@@ -31,6 +33,7 @@ TrayIcon::~TrayIcon()
 #endif
 }
 
+//---------------------------------------------------------
 void TrayIcon::setIcon(const QIcon &icon)
 {
 #ifdef __kde_support__
@@ -43,11 +46,13 @@ void TrayIcon::setIcon(const QIcon &icon)
 #endif
 }
 
+//---------------------------------------------------------
 void TrayIcon::setContextMenu(QMenu *menu)
 {
     trayIcon->setContextMenu(menu);
 }
 
+//---------------------------------------------------------
 void TrayIcon::setToolTip(const QString &toolTip)
 {
 #ifdef __kde_support__
@@ -57,6 +62,7 @@ void TrayIcon::setToolTip(const QString &toolTip)
 #endif
 }
 
+//---------------------------------------------------------
 void TrayIcon::showMessage(const QString &message, const QString& icon)
 {
 #ifdef __kde_support__
@@ -68,12 +74,14 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
 #endif
 }
 
+//---------------------------------------------------------
 void TrayIcon::onKF5IconActivated(bool state, QPoint pos)
 {
     Q_UNUSED(pos);
     emit activated(state);
 }
 
+//---------------------------------------------------------
 void TrayIcon::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     bool active = false;

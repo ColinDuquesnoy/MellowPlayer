@@ -60,7 +60,7 @@ public:
      */
     static QIcon trayIconFrom(const QString& path);
 
-    void restart();
+
 private slots:
     void onCategoryChanged(int category);
     void reset();
@@ -71,6 +71,8 @@ private slots:
     void onClearPreferencesClicked();
 
 private:
+    void restart();
+
     void resetInterface();
     void resetShortcuts();
     void resetPlugins();

@@ -34,8 +34,9 @@ class DeezerPlugin:
 
 public:
     DeezerPlugin();
-    virtual const PluginMetaData& metaData() const;
 
+    //! Gets the plugin's meta data
+    virtual const PluginMetaData& metaData() const;
     //! Returns the DeezerPlugin URL
     virtual QUrl url() const;
     //! Plays the current song
@@ -54,9 +55,8 @@ public:
     SongInfo currentSongInfo();
     //! Gets the deezer player's playback status
     PlaybackStatus playbackStatus();
+    //! Gets the player volume
     float volume();
+    //! Sets the player volume
     void setVolume(float volume);
-
-
 };
-

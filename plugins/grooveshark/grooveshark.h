@@ -41,8 +41,9 @@ class GroovesharkPlugin :
 
 public:
     GroovesharkPlugin();
-    virtual const PluginMetaData& metaData() const;
 
+    //! Gets the plugin's meta data
+    virtual const PluginMetaData& metaData() const;
     //! Returns the grooveshark URL
     virtual QUrl url() const;
     //! Plays the current song
@@ -61,6 +62,8 @@ public:
     SongInfo currentSongInfo();
     //! Gets the grooveshark player's playaback status
     PlaybackStatus playbackStatus();
+    //! Gets the player volume
     float volume();
+    //! Sets the player volume [0.0-1.0]
     void setVolume(float volume);
 };

@@ -50,6 +50,9 @@
 #include <QObject>
 #include <QKeySequenceEdit>
 
+/*!
+ * \brief Qt5's QKeySequenceEdit
+ */
 class KeySequenceEdit : public QKeySequenceEdit
 {
     Q_OBJECT

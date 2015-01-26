@@ -42,7 +42,9 @@ class HotkeysPlugin :
     Q_INTERFACES(IExtension)
 
 public:
+    //! Gets the plugin's meta data
     virtual const PluginMetaData &metaData() const;
+    //! Sets the extension up (initialization).
     virtual void setup();
 
 private:

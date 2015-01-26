@@ -52,8 +52,15 @@ public:
      */
     void raise();
 
+    /*!
+     * \brief Executes the application (runs the main event loop).
+     * \return Loop exit status.
+     */
     int exec();
 
+    /*!
+     * \brief Closes the application.
+     */
     void close();
 
 private:
