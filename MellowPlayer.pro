@@ -44,10 +44,6 @@ DISTFILES += devhelper.py
 DISTFILES += setup.iss.in
 DISTFILES += docs/Doxyfile
 
-# automatically release translations, .qm files are embedded
-# in the application resources.
-system("lrelease MellowPlayer.pro")
-
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
 TRANSLATIONS += app/translations/mellowplayer_fr.ts
