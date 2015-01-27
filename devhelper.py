@@ -23,17 +23,31 @@ import webbrowser
 
 # --- Menu functions
 def add_service_plugin():
-    """ Adds a new music streaming service integration plugin to the project """
+    """ Adds a new music streaming extension integration plugin to the project """
     name, classname = query_plugin_infos()
-    gen_files(name, classname, sv_pro, sv_inc, sv_src, qrc=sv_qrc)
+    with open('share/templates/service/file.pro') as f:
+        pro = f.read()
+    with open('share/templates/service/file.h') as f:
+        inc = f.read()
+    with open('share/templates/service/file.cpp') as f:
+        src = f.read()
+    with open('share/templates/service/file.qrc') as f:
+        qrc = f.read()
+    gen_files(name, classname, pro, inc, src, qrc=qrc)
     register_plugin(name, classname)
     print('Plugin added... You may now rebuild the application in QtCreator.')
 
 
 def add_extension_plugin():
-    """ Adds a new extension plugin to the project """
+    """ Adds a new service plugin to the project """
     name, classname = query_plugin_infos()
-    gen_files(name, classname, ext_pro, ext_inc, ext_src)
+    with open('share/templates/extension/file.pro') as f:
+        pro = f.read()
+    with open('share/templates/extension/file.h') as f:
+        inc = f.read()
+    with open('share/templates/extension/file.cpp') as f:
+        src = f.read()
+    gen_files(name, classname, pro, inc, src)
     register_plugin(name, classname)
     print('Plugin added... You may now rebuild the application in QtCreator.')
 
@@ -194,8 +208,8 @@ def make_docs():
 # --- Menu definition
 #: The menu dict associate the menu text entry and its associated function.
 MENU = {
-    '1. Add a new music streaming service plugin': add_service_plugin,
-    '2. Add a new extension plugin': add_extension_plugin,
+    '1. Add a new music streaming extension plugin': add_service_plugin,
+    '2. Add a new service plugin': add_extension_plugin,
     '3. Add a new translation': add_translation,
     '4. Update translations': update_translations,
     '5. Make windows release': make_win32_release,
@@ -357,344 +371,6 @@ def display_menu():
         if choice not in range(1, len(MENU) + 1):
             return None
         return choice - 1
-
-
-# --- Extension plugin templates
-ext_pro = '''#----------------------------------------------------------
-#
-# This file is part of MellowPlayer.
-#
-# MellowPlayer is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# MellowPlayer is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-#
-#----------------------------------------------------------
-
-# This extension is built on GNU/Linux only!
-TEMPLATE      = lib
-TARGET        = mpp_%(name)s
-CONFIG       += plugin static
-QT           += gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-HEADERS       = %(name)s.h
-SOURCES       = %(name)s.cpp
-INCLUDEPATH  += ../../lib/include
-LIBS         += -L../../lib -lmellowplayer
-DESTDIR       = ../../app
-
-'''
-
-ext_inc = '''//---------------------------------------------------------
-//
-// This file is part of MellowPlayer.
-//
-// MellowPlayer is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// MellowPlayer is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-//
-//---------------------------------------------------------
-
-#include <QObject>
-#include <mellowplayer.h>
-
-
-class %(classname)s :
-        public QObject,
-        public IExtension
-{
-    Q_OBJECT
-
-#if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID IExtension_iid
-                      FILE "%(name)s.json")
-#endif
-    Q_INTERFACES(IExtension)
-
-public:
-    explicit %(classname)s(QObject* parent=NULL);
-
-    void setup();
-    const PluginMetaData& metaData() const;
-};
-'''
-
-ext_src = '''//---------------------------------------------------------
-//
-// This file is part of MellowPlayer.
-//
-// MellowPlayer is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// MellowPlayer is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-//
-//---------------------------------------------------------
-
-#include <QWidget>
-#include <mellowplayer.h>
-#include "%(name)s.h"
-
-//---------------------------------------------------------
-%(classname)s::%(classname)s(QObject *parent):
-    QObject(parent)
-{
-}
-
-//---------------------------------------------------------
-void %(classname)s::setup()
-{
-    // setup your extension here
-}
-
-//---------------------------------------------------------
-const PluginMetaData &%(classname)s::metaData() const
-{
-    static PluginMetaData meta;
-    meta.name = "%(name_cap)s";
-    meta.author = "YOUR NAME";
-    meta.author_website = "YOUR GITHUB PROFILE";
-    meta.version = "1.0";
-    meta.description =tr("Plugin description");
-    return meta;
-}
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-    Q_EXPORT_PLUGIN2( %(classname)s, %(classname)s )
-#endif
-
-'''
-
-# --- Music Streaming Service integration plugin templates
-sv_pro = '''#----------------------------------------------------------
-#
-# This file is part of MellowPlayer.
-#
-# MellowPlayer is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# MellowPlayer is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-#
-#----------------------------------------------------------
-
-TEMPLATE      = lib
-QT           += core gui widgets webkit network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
-TARGET        = mpp_%(name)s
-CONFIG       += plugin static
-HEADERS       = %(name)s.h
-SOURCES       = %(name)s.cpp
-RESOURCES    += %(name)s.qrc
-DESTDIR       = ../../app
-INCLUDEPATH  += ../../lib/include
-
-'''
-
-sv_inc = '''//---------------------------------------------------------
-//
-// This file is part of MellowPlayer.
-//
-// MellowPlayer is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// MellowPlayer is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-//
-//---------------------------------------------------------
-
-#include <QtCore>
-#include <mellowplayer.h>
-
-class %(classname)s:
-        public QObject,
-        public IStreamingService
-{
-    Q_OBJECT
-
-#if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID IStreamingService_iid
-                      FILE "%(name)s.json")
-#endif
-    Q_INTERFACES(IStreamingService)
-
-public:
-    %(classname)s();
-    virtual const PluginMetaData& metaData() const;
-
-    //! Returns the %(classname)s URL
-    virtual QUrl url() const;
-    //! Plays the current song
-    void play();
-    //! Pauses the current song
-    void pause();
-    //! Stops the current song
-    void stop();
-    //! Skips to the next song
-    void next();
-    //! Skips to the previous song
-    void previous();
-    //! Seeks to the indicated position
-    void seekToPosition(int position);
-    //! Gets the current song info
-    SongInfo currentSongInfo();
-    float volume();
-    void setVolume(float volume);
-};
-
-'''
-
-sv_src = '''//---------------------------------------------------------
-//
-// This file is part of MellowPlayer.
-//
-// MellowPlayer is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// MellowPlayer is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
-//
-//---------------------------------------------------------
-
-#include "%(name)s.h"
-
-//---------------------------------------------------------
-%(classname)s::%(classname)s()
-{
-    Q_INIT_RESOURCE(%(name)s);
-}
-
-//---------------------------------------------------------
-const PluginMetaData &%(classname)s::metaData() const
-{
-    static PluginMetaData meta;
-    meta.name = "%(name_cap)s";
-    meta.author = "YOUR NAME";
-    meta.author_website = "YOUR GITHUB PROFILE URL";
-    meta.version = "1.0";
-    meta.icon = QIcon("YOUR ICON PATH");
-    meta.description =tr("Music streaming service description");
-    return meta;
-}
-
-//---------------------------------------------------------
-QUrl %(classname)s::url() const
-{
-    return QUrl("YOUR SERVICE URL");
-}
-
-//---------------------------------------------------------
-void %(classname)s::play()
-{
-    this->runJavaScript("");
-}
-
-//---------------------------------------------------------
-void %(classname)s::pause()
-{
-    this->runJavaScript("");
-}
-
-//---------------------------------------------------------
-void %(classname)s::stop()
-{
-    this->pause();
-}
-
-//---------------------------------------------------------
-void %(classname)s::next()
-{
-    this->runJavaScript("");
-}
-
-//---------------------------------------------------------
-void %(classname)s::previous()
-{
-    this->runJavaScript("");
-}
-
-//---------------------------------------------------------
-void %(classname)s::seekToPosition(int position)
-{
-    this->runJavaScript("");
-}
-
-//---------------------------------------------------------
-SongInfo %(classname)s::currentSongInfo()
-{
-    SongInfo retVal;
-    return retVal;
-}
-
-//---------------------------------------------------------
-float %(classname)s::volume()
-{
-    return 1.f;
-}
-
-//---------------------------------------------------------
-void %(classname)s::setVolume(float volume)
-{
-}
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2( %(classname)s, %(classname)s )
-#endif
-
-'''
-
-sv_qrc = '''<RCC>
-  <qresource prefix="/%(name)s">
-  </qresource>
-</RCC>
-'''
 
 
 # --- Application entry point
