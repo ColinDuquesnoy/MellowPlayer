@@ -97,14 +97,15 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="textblock"><code>#include &lt;QtCore&gt;</code><br />
 <code>#include &lt;QtPlugin&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d7/d6d/pluginmetadata_8h_source.html">mellowplayer/pluginmetadata.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dc/dc8/playbackstatus_8h_source.html">mellowplayer/playbackstatus.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d2/da3/song_8h_source.html">mellowplayer/song.h</a>&quot;</code><br />
 </div>
 <p><a href="../../d6/de4/interfaces_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html">IStreamingServiceIntegration</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for adding music streaming service integration.  <a href="../../d1/d46/class_i_streaming_service_integration.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html">IStreamingService</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for adding music streaming service integration.  <a href="../../d9/d19/class_i_streaming_service.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dfb/class_i_extension.html">IExtension</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inteface for adding a generic extension to the application.  <a href="../../d5/dfb/class_i_extension.html#details">More...</a><br /></td></tr>
@@ -112,8 +113,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a5db845c93cc6bdfd57426f6472f650b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de4/interfaces_8h.html#a5db845c93cc6bdfd57426f6472f650b7">IStreamingServiceIntegration_iid</a>&#160;&#160;&#160;&quot;org.MellowPlayer.IStreamingServiceIntegration&quot;</td></tr>
-<tr class="separator:a5db845c93cc6bdfd57426f6472f650b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13411a43b6052ff821416cfc89a9f268"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de4/interfaces_8h.html#a13411a43b6052ff821416cfc89a9f268">IStreamingService_iid</a>&#160;&#160;&#160;&quot;org.MellowPlayer.IStreamingService&quot;</td></tr>
+<tr class="separator:a13411a43b6052ff821416cfc89a9f268"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66b5d0249d908a6708f8e4d2b54a5807"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de4/interfaces_8h.html#a66b5d0249d908a6708f8e4d2b54a5807">IExtension_iid</a>&#160;&#160;&#160;&quot;org.MellowPlayer.IExtension&quot;</td></tr>
 <tr class="separator:a66b5d0249d908a6708f8e4d2b54a5807"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -128,28 +129,28 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00179">179</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00183">183</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5db845c93cc6bdfd57426f6472f650b7"></a>
+<a class="anchor" id="a13411a43b6052ff821416cfc89a9f268"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define IStreamingServiceIntegration_iid&#160;&#160;&#160;&quot;org.MellowPlayer.IStreamingServiceIntegration&quot;</td>
+          <td class="memname">#define IStreamingService_iid&#160;&#160;&#160;&quot;org.MellowPlayer.IStreamingService&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00086">86</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00090">90</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 18:03:32 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['seektoposition',['seekToPosition',['../d1/d46/class_i_streaming_service_integration.html#a1ad0e14ae3adcc1ed7cf958bedde159e',1,'IStreamingServiceIntegration::seekToPosition()'],['../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a',1,'PlayerInterface::seekToPosition()']]],
+  ['seektoposition',['seekToPosition',['../d9/d19/class_i_streaming_service.html#a2f31e6dc74478a82028536e29b8a0a72',1,'IStreamingService::seekToPosition()'],['../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a',1,'PlayerInterface::seekToPosition()']]],
   ['services',['Services',['../df/db6/class_services.html',1,'']]],
   ['services_2ecpp',['services.cpp',['../df/d9f/services_8cpp.html',1,'']]],
   ['services_2eh',['services.h',['../d8/d63/services_8h.html',1,'']]],
@@ -9,7 +9,7 @@ var searchData=
   ['settingswidget',['settingsWidget',['../d5/dfb/class_i_extension.html#acb35d844387bf82952d4123dc84f1895',1,'IExtension']]],
   ['settooltip',['setToolTip',['../d7/d82/class_tray_icon.html#ab461c63b1f920a0d57cc95ac184f950c',1,'TrayIcon']]],
   ['setup',['setup',['../d5/dfb/class_i_extension.html#a8eb2e7b67a79656abf455ebf02cef70b',1,'IExtension']]],
-  ['setvolume',['setVolume',['../d1/d46/class_i_streaming_service_integration.html#a847c705d3896eb0634b013d29f2c19f3',1,'IStreamingServiceIntegration::setVolume()'],['../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d',1,'PlayerInterface::setVolume()']]],
+  ['setvolume',['setVolume',['../d9/d19/class_i_streaming_service.html#a04edc120001d7994f009dee7892617c1',1,'IStreamingService::setVolume()'],['../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d',1,'PlayerInterface::setVolume()']]],
   ['showmessage',['showMessage',['../d7/d82/class_tray_icon.html#a39c4ff1faf54a7ecaacc83f8dff67646',1,'TrayIcon']]],
   ['song_2ecpp',['song.cpp',['../df/ddd/song_8cpp.html',1,'']]],
   ['song_2eh',['song.h',['../d2/da3/song_8h.html',1,'']]],
@@ -17,11 +17,12 @@ var searchData=
   ['songid',['songId',['../dc/d91/struct_song_info.html#af6dc1468ba3b79216240642e9b42903f',1,'SongInfo']]],
   ['songinfo',['SongInfo',['../dc/d91/struct_song_info.html',1,'']]],
   ['songname',['songName',['../dc/d91/struct_song_info.html#a77bd0ec85db18d1acf8bd09e85ae8b2a',1,'SongInfo']]],
+  ['songstarted',['songStarted',['../d7/d3e/class_player_interface.html#a6239d0de5446c0931a27cd3b50a20899',1,'PlayerInterface']]],
   ['startservice',['startService',['../d6/df5/class_streaming_services_manager.html#a733b5ad509a8dadf94e333ae9ae90f74',1,'StreamingServicesManager']]],
-  ['stop',['stop',['../d1/d46/class_i_streaming_service_integration.html#a85eb991e8233909044eda816ed5d8798',1,'IStreamingServiceIntegration::stop()'],['../d7/d3e/class_player_interface.html#af9dc2654fe09e1e8817d7fe2cb30226f',1,'PlayerInterface::stop()']]],
-  ['stopped',['Stopped',['../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170a4d049c6d45e08a294523df186ad77a75',1,'song.h']]],
+  ['stop',['stop',['../d9/d19/class_i_streaming_service.html#a8cfdc810a737bf1a6bb45bdf2dfa6066',1,'IStreamingService::stop()'],['../d7/d3e/class_player_interface.html#af9dc2654fe09e1e8817d7fe2cb30226f',1,'PlayerInterface::stop()']]],
+  ['stopped',['Stopped',['../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170a4d049c6d45e08a294523df186ad77a75',1,'playbackstatus.h']]],
   ['streamingservices',['streamingServices',['../df/db6/class_services.html#a6553923a83ed4aeec735a09abc4e26a3',1,'Services']]],
-  ['streamingserviceslist',['StreamingServicesList',['../dd/d0c/streamingservicesmanager_8h.html#a8688c50563c95318adfcc555e6566eee',1,'streamingservicesmanager.h']]],
+  ['streamingserviceslist',['StreamingServicesList',['../dd/d0c/streamingservicesmanager_8h.html#abc6866a293eaed39c92e3e013bef380a',1,'streamingservicesmanager.h']]],
   ['streamingservicesmanager',['StreamingServicesManager',['../d6/df5/class_streaming_services_manager.html',1,'StreamingServicesManager'],['../d6/df5/class_streaming_services_manager.html#aad597bac5fe18b4e1a82569ebd6f4154',1,'StreamingServicesManager::StreamingServicesManager()']]],
   ['streamingservicesmanager_2ecpp',['streamingservicesmanager.cpp',['../dc/d0a/streamingservicesmanager_8cpp.html',1,'']]],
   ['streamingservicesmanager_2eh',['streamingservicesmanager.h',['../dd/d0c/streamingservicesmanager_8h.html',1,'']]]

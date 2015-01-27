@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>MellowPlayer: IStreamingServiceIntegration Class Reference</title>
+<title>MellowPlayer: IStreamingService Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -89,70 +89,73 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="../../dd/d79/class_i_streaming_service_integration-members.html">List of all members</a>  </div>
+<a href="../../de/d88/class_i_streaming_service-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">IStreamingServiceIntegration Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">IStreamingService Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Interface for adding music streaming service integration.  
- <a href="../../d1/d46/class_i_streaming_service_integration.html#details">More...</a></p>
+ <a href="../../d9/d19/class_i_streaming_service.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2c9199740fb533b18f3101171ed9c5ff"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="../../d6/d65/struct_plugin_meta_data.html">PluginMetaData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a2c9199740fb533b18f3101171ed9c5ff">metaData</a> () const =0</td></tr>
-<tr class="memdesc:a2c9199740fb533b18f3101171ed9c5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plugin's meta data.  <a href="#a2c9199740fb533b18f3101171ed9c5ff">More...</a><br /></td></tr>
-<tr class="separator:a2c9199740fb533b18f3101171ed9c5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeae11cfc60a23d0da521bfc71176575c"><td class="memItemLeft" align="right" valign="top">virtual QUrl&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#aeae11cfc60a23d0da521bfc71176575c">url</a> () const =0</td></tr>
-<tr class="memdesc:aeae11cfc60a23d0da521bfc71176575c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the music streaming service URL.  <a href="#aeae11cfc60a23d0da521bfc71176575c">More...</a><br /></td></tr>
-<tr class="separator:aeae11cfc60a23d0da521bfc71176575c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8c36a13dcfc8da13433b302efcf453b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#ad8c36a13dcfc8da13433b302efcf453b">play</a> ()=0</td></tr>
-<tr class="memdesc:ad8c36a13dcfc8da13433b302efcf453b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts playing the current song.  <a href="#ad8c36a13dcfc8da13433b302efcf453b">More...</a><br /></td></tr>
-<tr class="separator:ad8c36a13dcfc8da13433b302efcf453b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77d9470af4ae9265cd6310b74487c61"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#ab77d9470af4ae9265cd6310b74487c61">pause</a> ()=0</td></tr>
-<tr class="memdesc:ab77d9470af4ae9265cd6310b74487c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses the current song.  <a href="#ab77d9470af4ae9265cd6310b74487c61">More...</a><br /></td></tr>
-<tr class="separator:ab77d9470af4ae9265cd6310b74487c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85eb991e8233909044eda816ed5d8798"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a85eb991e8233909044eda816ed5d8798">stop</a> ()=0</td></tr>
-<tr class="memdesc:a85eb991e8233909044eda816ed5d8798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the current song.  <a href="#a85eb991e8233909044eda816ed5d8798">More...</a><br /></td></tr>
-<tr class="separator:a85eb991e8233909044eda816ed5d8798"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f3cb5414de66569bea80193a059806c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a9f3cb5414de66569bea80193a059806c">next</a> ()=0</td></tr>
-<tr class="memdesc:a9f3cb5414de66569bea80193a059806c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips to the next song.  <a href="#a9f3cb5414de66569bea80193a059806c">More...</a><br /></td></tr>
-<tr class="separator:a9f3cb5414de66569bea80193a059806c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff9629e0751e0d89b9aae0bf0ea800f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#aff9629e0751e0d89b9aae0bf0ea800f6">previous</a> ()=0</td></tr>
-<tr class="memdesc:aff9629e0751e0d89b9aae0bf0ea800f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips to the previous song.  <a href="#aff9629e0751e0d89b9aae0bf0ea800f6">More...</a><br /></td></tr>
-<tr class="separator:aff9629e0751e0d89b9aae0bf0ea800f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ad0e14ae3adcc1ed7cf958bedde159e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a1ad0e14ae3adcc1ed7cf958bedde159e">seekToPosition</a> (int position)=0</td></tr>
-<tr class="memdesc:a1ad0e14ae3adcc1ed7cf958bedde159e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks to the indicated position [µs].  <a href="#a1ad0e14ae3adcc1ed7cf958bedde159e">More...</a><br /></td></tr>
-<tr class="separator:a1ad0e14ae3adcc1ed7cf958bedde159e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac690a39189d680006ba3b3b4c2239e44"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#ac690a39189d680006ba3b3b4c2239e44">volume</a> ()=0</td></tr>
-<tr class="memdesc:ac690a39189d680006ba3b3b4c2239e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player volume [0.0-1.0].  <a href="#ac690a39189d680006ba3b3b4c2239e44">More...</a><br /></td></tr>
-<tr class="separator:ac690a39189d680006ba3b3b4c2239e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a847c705d3896eb0634b013d29f2c19f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a847c705d3896eb0634b013d29f2c19f3">setVolume</a> (float value)=0</td></tr>
-<tr class="memdesc:a847c705d3896eb0634b013d29f2c19f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the player volume [0.0-1.0].  <a href="#a847c705d3896eb0634b013d29f2c19f3">More...</a><br /></td></tr>
-<tr class="separator:a847c705d3896eb0634b013d29f2c19f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86f13730388d473a7fbc817a6e012f1c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a86f13730388d473a7fbc817a6e012f1c">currentSongInfo</a> ()=0</td></tr>
-<tr class="memdesc:a86f13730388d473a7fbc817a6e012f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current song information.  <a href="#a86f13730388d473a7fbc817a6e012f1c">More...</a><br /></td></tr>
-<tr class="separator:a86f13730388d473a7fbc817a6e012f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f31777be9b4d3065bc6ddf9e4475818"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="../../d6/d65/struct_plugin_meta_data.html">PluginMetaData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a7f31777be9b4d3065bc6ddf9e4475818">metaData</a> () const =0</td></tr>
+<tr class="memdesc:a7f31777be9b4d3065bc6ddf9e4475818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plugin's meta data.  <a href="#a7f31777be9b4d3065bc6ddf9e4475818">More...</a><br /></td></tr>
+<tr class="separator:a7f31777be9b4d3065bc6ddf9e4475818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a376f4588ab1786a397aacc616037a855"><td class="memItemLeft" align="right" valign="top">virtual QUrl&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a376f4588ab1786a397aacc616037a855">url</a> () const =0</td></tr>
+<tr class="memdesc:a376f4588ab1786a397aacc616037a855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the music streaming service URL.  <a href="#a376f4588ab1786a397aacc616037a855">More...</a><br /></td></tr>
+<tr class="separator:a376f4588ab1786a397aacc616037a855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35586f170c6a0ae057801e7114a005b0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a35586f170c6a0ae057801e7114a005b0">play</a> ()=0</td></tr>
+<tr class="memdesc:a35586f170c6a0ae057801e7114a005b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts playing the current song.  <a href="#a35586f170c6a0ae057801e7114a005b0">More...</a><br /></td></tr>
+<tr class="separator:a35586f170c6a0ae057801e7114a005b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba0b79fd019f93df95fa001596ecbf14"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#aba0b79fd019f93df95fa001596ecbf14">pause</a> ()=0</td></tr>
+<tr class="memdesc:aba0b79fd019f93df95fa001596ecbf14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses the current song.  <a href="#aba0b79fd019f93df95fa001596ecbf14">More...</a><br /></td></tr>
+<tr class="separator:aba0b79fd019f93df95fa001596ecbf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cfdc810a737bf1a6bb45bdf2dfa6066"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a8cfdc810a737bf1a6bb45bdf2dfa6066">stop</a> ()=0</td></tr>
+<tr class="memdesc:a8cfdc810a737bf1a6bb45bdf2dfa6066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the current song.  <a href="#a8cfdc810a737bf1a6bb45bdf2dfa6066">More...</a><br /></td></tr>
+<tr class="separator:a8cfdc810a737bf1a6bb45bdf2dfa6066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7214b662d17757c68f3641fbb77a2708"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a7214b662d17757c68f3641fbb77a2708">next</a> ()=0</td></tr>
+<tr class="memdesc:a7214b662d17757c68f3641fbb77a2708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips to the next song.  <a href="#a7214b662d17757c68f3641fbb77a2708">More...</a><br /></td></tr>
+<tr class="separator:a7214b662d17757c68f3641fbb77a2708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad964227bb5f7fd54b56b2e3f55b9de47"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#ad964227bb5f7fd54b56b2e3f55b9de47">previous</a> ()=0</td></tr>
+<tr class="memdesc:ad964227bb5f7fd54b56b2e3f55b9de47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips to the previous song.  <a href="#ad964227bb5f7fd54b56b2e3f55b9de47">More...</a><br /></td></tr>
+<tr class="separator:ad964227bb5f7fd54b56b2e3f55b9de47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f31e6dc74478a82028536e29b8a0a72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a2f31e6dc74478a82028536e29b8a0a72">seekToPosition</a> (int position)=0</td></tr>
+<tr class="memdesc:a2f31e6dc74478a82028536e29b8a0a72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks to the indicated position [µs].  <a href="#a2f31e6dc74478a82028536e29b8a0a72">More...</a><br /></td></tr>
+<tr class="separator:a2f31e6dc74478a82028536e29b8a0a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4db4d40dc641b050d96f405a91e67a0"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#ac4db4d40dc641b050d96f405a91e67a0">volume</a> ()=0</td></tr>
+<tr class="memdesc:ac4db4d40dc641b050d96f405a91e67a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player volume [0.0-1.0].  <a href="#ac4db4d40dc641b050d96f405a91e67a0">More...</a><br /></td></tr>
+<tr class="separator:ac4db4d40dc641b050d96f405a91e67a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04edc120001d7994f009dee7892617c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a04edc120001d7994f009dee7892617c1">setVolume</a> (float value)=0</td></tr>
+<tr class="memdesc:a04edc120001d7994f009dee7892617c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the player volume [0.0-1.0].  <a href="#a04edc120001d7994f009dee7892617c1">More...</a><br /></td></tr>
+<tr class="separator:a04edc120001d7994f009dee7892617c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae40caa18d4ccfb1182979bf089445d1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#aae40caa18d4ccfb1182979bf089445d1">currentSongInfo</a> ()=0</td></tr>
+<tr class="memdesc:aae40caa18d4ccfb1182979bf089445d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current song information.  <a href="#aae40caa18d4ccfb1182979bf089445d1">More...</a><br /></td></tr>
+<tr class="separator:aae40caa18d4ccfb1182979bf089445d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b0e1c70470265d4bc478a72d54d171"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a54b0e1c70470265d4bc478a72d54d171">playbackStatus</a> ()=0</td></tr>
+<tr class="memdesc:a54b0e1c70470265d4bc478a72d54d171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's playback status.  <a href="#a54b0e1c70470265d4bc478a72d54d171">More...</a><br /></td></tr>
+<tr class="separator:a54b0e1c70470265d4bc478a72d54d171"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad80d993be3b88d7a5ecc4ddb4c816519"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#ad80d993be3b88d7a5ecc4ddb4c816519">runJavaScript</a> (const QString &amp;scriptSource)</td></tr>
-<tr class="separator:ad80d993be3b88d7a5ecc4ddb4c816519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbbe0143dfde287cdb422d59cef5894e"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e">runJavaScript</a> (const QString &amp;scriptSource)</td></tr>
+<tr class="separator:afbbe0143dfde287cdb422d59cef5894e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a28e48d1095fe3e369ffb3ffaa3579e2d"><td class="memItemLeft" align="right" valign="top">QWebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d46/class_i_streaming_service_integration.html#a28e48d1095fe3e369ffb3ffaa3579e2d">webView</a></td></tr>
-<tr class="memdesc:a28e48d1095fe3e369ffb3ffaa3579e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the appliction's web view.  <a href="#a28e48d1095fe3e369ffb3ffaa3579e2d">More...</a><br /></td></tr>
-<tr class="separator:a28e48d1095fe3e369ffb3ffaa3579e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963f4a8d32d7aab6b504f958d10816e8"><td class="memItemLeft" align="right" valign="top">QWebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a963f4a8d32d7aab6b504f958d10816e8">webView</a></td></tr>
+<tr class="memdesc:a963f4a8d32d7aab6b504f958d10816e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the appliction's web view.  <a href="#a963f4a8d32d7aab6b504f958d10816e8">More...</a><br /></td></tr>
+<tr class="separator:a963f4a8d32d7aab6b504f958d10816e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for adding music streaming service integration. </p>
 
-<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00035">35</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00036">36</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a86f13730388d473a7fbc817a6e012f1c"></a>
+<a class="anchor" id="aae40caa18d4ccfb1182979bf089445d1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -160,7 +163,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a> IStreamingServiceIntegration::currentSongInfo </td>
+          <td class="memname">virtual <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a> IStreamingService::currentSongInfo </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -177,7 +180,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2c9199740fb533b18f3101171ed9c5ff"></a>
+<a class="anchor" id="a7f31777be9b4d3065bc6ddf9e4475818"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -185,7 +188,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual const <a class="el" href="../../d6/d65/struct_plugin_meta_data.html">PluginMetaData</a>&amp; IStreamingServiceIntegration::metaData </td>
+          <td class="memname">virtual const <a class="el" href="../../d6/d65/struct_plugin_meta_data.html">PluginMetaData</a>&amp; IStreamingService::metaData </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -202,7 +205,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9f3cb5414de66569bea80193a059806c"></a>
+<a class="anchor" id="a7214b662d17757c68f3641fbb77a2708"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -210,7 +213,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::next </td>
+          <td class="memname">virtual void IStreamingService::next </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -227,7 +230,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab77d9470af4ae9265cd6310b74487c61"></a>
+<a class="anchor" id="aba0b79fd019f93df95fa001596ecbf14"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -235,7 +238,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::pause </td>
+          <td class="memname">virtual void IStreamingService::pause </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -252,7 +255,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad8c36a13dcfc8da13433b302efcf453b"></a>
+<a class="anchor" id="a35586f170c6a0ae057801e7114a005b0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -260,7 +263,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::play </td>
+          <td class="memname">virtual void IStreamingService::play </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -277,7 +280,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aff9629e0751e0d89b9aae0bf0ea800f6"></a>
+<a class="anchor" id="a54b0e1c70470265d4bc478a72d54d171"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -285,7 +288,32 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::previous </td>
+          <td class="memname">virtual <a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> IStreamingService::playbackStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the player's playback status. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad964227bb5f7fd54b56b2e3f55b9de47"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void IStreamingService::previous </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -302,7 +330,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad80d993be3b88d7a5ecc4ddb4c816519"></a>
+<a class="anchor" id="afbbe0143dfde287cdb422d59cef5894e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -310,7 +338,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QVariant IStreamingServiceIntegration::runJavaScript </td>
+          <td class="memname">QVariant IStreamingService::runJavaScript </td>
           <td>(</td>
           <td class="paramtype">const QString &amp;&#160;</td>
           <td class="paramname"><em>scriptSource</em></td><td>)</td>
@@ -336,7 +364,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1ad0e14ae3adcc1ed7cf958bedde159e"></a>
+<a class="anchor" id="a2f31e6dc74478a82028536e29b8a0a72"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -344,7 +372,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::seekToPosition </td>
+          <td class="memname">virtual void IStreamingService::seekToPosition </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>position</em></td><td>)</td>
@@ -362,7 +390,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a847c705d3896eb0634b013d29f2c19f3"></a>
+<a class="anchor" id="a04edc120001d7994f009dee7892617c1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -370,7 +398,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::setVolume </td>
+          <td class="memname">virtual void IStreamingService::setVolume </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -388,7 +416,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a85eb991e8233909044eda816ed5d8798"></a>
+<a class="anchor" id="a8cfdc810a737bf1a6bb45bdf2dfa6066"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -396,7 +424,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void IStreamingServiceIntegration::stop </td>
+          <td class="memname">virtual void IStreamingService::stop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -413,7 +441,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeae11cfc60a23d0da521bfc71176575c"></a>
+<a class="anchor" id="a376f4588ab1786a397aacc616037a855"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -421,7 +449,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual QUrl IStreamingServiceIntegration::url </td>
+          <td class="memname">virtual QUrl IStreamingService::url </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -438,7 +466,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac690a39189d680006ba3b3b4c2239e44"></a>
+<a class="anchor" id="ac4db4d40dc641b050d96f405a91e67a0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -446,7 +474,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual float IStreamingServiceIntegration::volume </td>
+          <td class="memname">virtual float IStreamingService::volume </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -464,7 +492,7 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a28e48d1095fe3e369ffb3ffaa3579e2d"></a>
+<a class="anchor" id="a963f4a8d32d7aab6b504f958d10816e8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -472,7 +500,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QWebView* IStreamingServiceIntegration::webView</td>
+          <td class="memname">QWebView* IStreamingService::webView</td>
         </tr>
       </table>
   </td>
@@ -484,7 +512,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to the appliction's web view. </p>
 
-<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00083">83</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00087">87</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
 
 </div>
 </div>
@@ -495,7 +523,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 18:03:33 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

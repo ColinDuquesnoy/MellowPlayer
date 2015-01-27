@@ -114,60 +114,66 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define PLAYER</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/da3/song_8h.html">mellowplayer/song.h</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../dc/dc8/playbackstatus_8h.html">mellowplayer/playbackstatus.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d2/da3/song_8h.html">mellowplayer/song.h</a>&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="../../d7/d3e/class_player_interface.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d7/d3e/class_player_interface.html">PlayerInterface</a>: <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../d7/d3e/class_player_interface.html#ab8342f5bbb4ef988315a1d2d22abb72d">PlayerInterface</a>(QObject* parent=NULL);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#adc9e85216a17fcc1e69a6829b27cf46c">playPause</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#af9dc2654fe09e1e8817d7fe2cb30226f">stop</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a5c42163cb6610ba5fa3c6b178537ba14">next</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#aa9fd457001ed0483335503a6d3f14ac5">previous</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a">seekToPosition</a>(<span class="keywordtype">int</span> position);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a> <a class="code" href="../../d7/d3e/class_player_interface.html#ab4c81e6fc923ad144f1ba92b6c4b8389">currentSong</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a> <a class="code" href="../../d7/d3e/class_player_interface.html#a338af5ba449cb976eaba30ee8f3f7bc5">update</a>();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a613c59b397e67c1c48a161654b82aa3a">volume</a>();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d">setVolume</a>(<span class="keywordtype">float</span> value);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;signals:</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a26c4dd0d6e4d925fd6e5bb726e99e504">playbackStatusChanged</a>(<a class="code" href="../../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> newStatus);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a4047a4be97f51327b25c8dd5e9ada1d1">songChanged</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a97468edef95718dc2e5fe57eb63ebf0e">artReady</a>(<span class="keyword">const</span> QString&amp; artFilePathUrl);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a82eda23a53504e020af9ecaf9dac6715">positionChanged</a>(qlonglong position);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> onArtReady(<span class="keyword">const</span> QString&amp; filePath);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> checkPlaybackStatusChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">void</span> checkSongChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> checkForPositionChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> downloadSongArt(<span class="keyword">const</span> QString &amp;url);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>        _currentSong;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="../../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>  currentStatus;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">int</span>             currentPosition;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;};</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif // PLAYER</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="ttc" id="song_8h_html_af7f1518ce4cfac695fd4755843b29170"><div class="ttname"><a href="../../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a></div><div class="ttdeci">PlaybackStatus</div><div class="ttdoc">The PlaybackStatus enum enumerates the possible playback status of a song. </div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da3/song_8h_source.html#l00029">song.h:29</a></div></div>
-<div class="ttc" id="struct_song_info_html"><div class="ttname"><a href="../../dc/d91/struct_song_info.html">SongInfo</a></div><div class="ttdoc">The Song struct contains the song current song information. </div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da3/song_8h_source.html#l00057">song.h:57</a></div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="../../d7/d3e/class_player_interface.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d7/d3e/class_player_interface.html">PlayerInterface</a>: <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../d7/d3e/class_player_interface.html#ab8342f5bbb4ef988315a1d2d22abb72d">PlayerInterface</a>(QObject* parent=NULL);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#adc9e85216a17fcc1e69a6829b27cf46c">playPause</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#af9dc2654fe09e1e8817d7fe2cb30226f">stop</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a5c42163cb6610ba5fa3c6b178537ba14">next</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#aa9fd457001ed0483335503a6d3f14ac5">previous</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a">seekToPosition</a>(<span class="keywordtype">int</span> position);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a> <a class="code" href="../../d7/d3e/class_player_interface.html#ab4c81e6fc923ad144f1ba92b6c4b8389">currentSong</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a> <a class="code" href="../../d7/d3e/class_player_interface.html#a338af5ba449cb976eaba30ee8f3f7bc5">update</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a613c59b397e67c1c48a161654b82aa3a">volume</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d">setVolume</a>(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> <a class="code" href="../../d7/d3e/class_player_interface.html#a54f58b6d05b80610d12dfb18a2da9a19">playbackStatus</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;signals:</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a26c4dd0d6e4d925fd6e5bb726e99e504">playbackStatusChanged</a>(<a class="code" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> newStatus);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a4047a4be97f51327b25c8dd5e9ada1d1">songChanged</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a6239d0de5446c0931a27cd3b50a20899">songStarted</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a97468edef95718dc2e5fe57eb63ebf0e">artReady</a>(<span class="keyword">const</span> QString&amp; artFilePathUrl);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d3e/class_player_interface.html#a82eda23a53504e020af9ecaf9dac6715">positionChanged</a>(qlonglong position);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">void</span> onArtReady(<span class="keyword">const</span> QString&amp; filePath);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> checkPlaybackStatusChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> checkSongChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">void</span> checkForPositionChange(<a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>&amp; song);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">void</span> downloadSongArt(<span class="keyword">const</span> QString &amp;url);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>        _currentSong;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="../../dc/d91/struct_song_info.html">SongInfo</a>        _startedSong;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>  currentStatus;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordtype">int</span>             currentPosition;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;};</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif // PLAYER</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="ttc" id="playbackstatus_8h_html_af7f1518ce4cfac695fd4755843b29170"><div class="ttname"><a href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a></div><div class="ttdeci">PlaybackStatus</div><div class="ttdoc">The PlaybackStatus enum enumerates the possible playback status of a song. </div><div class="ttdef"><b>Definition:</b> <a href="../../dc/dc8/playbackstatus_8h_source.html#l00010">playbackstatus.h:10</a></div></div>
+<div class="ttc" id="struct_song_info_html"><div class="ttname"><a href="../../dc/d91/struct_song_info.html">SongInfo</a></div><div class="ttdoc">The Song struct contains the song current song information. </div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da3/song_8h_source.html#l00028">song.h:28</a></div></div>
 <div class="ttc" id="class_player_interface_html_a8a6290cc6bc6aa6a6a0996720433695d"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d">PlayerInterface::setVolume</a></div><div class="ttdeci">void setVolume(float value)</div><div class="ttdoc">Sets the player volume. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00124">player.cpp:124</a></div></div>
 <div class="ttc" id="class_player_interface_html_adc9e85216a17fcc1e69a6829b27cf46c"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#adc9e85216a17fcc1e69a6829b27cf46c">PlayerInterface::playPause</a></div><div class="ttdeci">void playPause()</div><div class="ttdoc">Resumes/Pauses playback depending on the current playback status. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00036">player.cpp:36</a></div></div>
 <div class="ttc" id="class_player_interface_html_ab4c81e6fc923ad144f1ba92b6c4b8389"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#ab4c81e6fc923ad144f1ba92b6c4b8389">PlayerInterface::currentSong</a></div><div class="ttdeci">SongInfo currentSong()</div><div class="ttdoc">Gets the current song info. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00090">player.cpp:90</a></div></div>
@@ -176,18 +182,21 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="ttc" id="class_player_interface_html_a2bd017fcd8c96fa9349cc01f3967ba2a"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a">PlayerInterface::seekToPosition</a></div><div class="ttdeci">void seekToPosition(int position)</div><div class="ttdoc">Seeks to the indicated position. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00080">player.cpp:80</a></div></div>
 <div class="ttc" id="class_player_interface_html_a26c4dd0d6e4d925fd6e5bb726e99e504"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a26c4dd0d6e4d925fd6e5bb726e99e504">PlayerInterface::playbackStatusChanged</a></div><div class="ttdeci">void playbackStatusChanged(PlaybackStatus newStatus)</div><div class="ttdoc">Signal emitted when the current song status changed. </div></div>
 <div class="ttc" id="class_player_interface_html_a613c59b397e67c1c48a161654b82aa3a"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a613c59b397e67c1c48a161654b82aa3a">PlayerInterface::volume</a></div><div class="ttdeci">float volume()</div><div class="ttdoc">Gets the player volume. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00114">player.cpp:114</a></div></div>
-<div class="ttc" id="class_player_interface_html"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html">PlayerInterface</a></div><div class="ttdoc">The PlayerInterface provides an interface to the music streaming service&#39;s player. </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d62/player_8h_source.html#l00031">player.h:31</a></div></div>
+<div class="ttc" id="class_player_interface_html"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html">PlayerInterface</a></div><div class="ttdoc">The PlayerInterface provides an interface to the music streaming service&#39;s player. </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d62/player_8h_source.html#l00032">player.h:32</a></div></div>
 <div class="ttc" id="class_player_interface_html_a338af5ba449cb976eaba30ee8f3f7bc5"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a338af5ba449cb976eaba30ee8f3f7bc5">PlayerInterface::update</a></div><div class="ttdeci">SongInfo update()</div><div class="ttdoc">Update the player (and emit status changed signals) </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00100">player.cpp:100</a></div></div>
 <div class="ttc" id="class_player_interface_html_a97468edef95718dc2e5fe57eb63ebf0e"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a97468edef95718dc2e5fe57eb63ebf0e">PlayerInterface::artReady</a></div><div class="ttdeci">void artReady(const QString &amp;artFilePathUrl)</div><div class="ttdoc">Signal emitted when an art file has been downloaded and is ready to use. </div></div>
 <div class="ttc" id="class_player_interface_html_af9dc2654fe09e1e8817d7fe2cb30226f"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#af9dc2654fe09e1e8817d7fe2cb30226f">PlayerInterface::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Stops play. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00050">player.cpp:50</a></div></div>
 <div class="ttc" id="song_8h_html"><div class="ttname"><a href="../../d2/da3/song_8h.html">song.h</a></div></div>
 <div class="ttc" id="class_player_interface_html_a5c42163cb6610ba5fa3c6b178537ba14"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a5c42163cb6610ba5fa3c6b178537ba14">PlayerInterface::next</a></div><div class="ttdeci">void next()</div><div class="ttdoc">Plays next song. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00060">player.cpp:60</a></div></div>
+<div class="ttc" id="class_player_interface_html_a6239d0de5446c0931a27cd3b50a20899"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a6239d0de5446c0931a27cd3b50a20899">PlayerInterface::songStarted</a></div><div class="ttdeci">void songStarted(const SongInfo &amp;song)</div><div class="ttdoc">Signal emitted when a new song changed and the song is currently playing. </div></div>
+<div class="ttc" id="playbackstatus_8h_html"><div class="ttname"><a href="../../dc/dc8/playbackstatus_8h.html">playbackstatus.h</a></div></div>
 <div class="ttc" id="class_player_interface_html_a4047a4be97f51327b25c8dd5e9ada1d1"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a4047a4be97f51327b25c8dd5e9ada1d1">PlayerInterface::songChanged</a></div><div class="ttdeci">void songChanged(const SongInfo &amp;song)</div><div class="ttdoc">Signal emitted when the current song changed. </div></div>
+<div class="ttc" id="class_player_interface_html_a54f58b6d05b80610d12dfb18a2da9a19"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#a54f58b6d05b80610d12dfb18a2da9a19">PlayerInterface::playbackStatus</a></div><div class="ttdeci">PlaybackStatus playbackStatus() const </div><div class="ttdoc">Gets the player&#39;s playback status. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00133">player.cpp:133</a></div></div>
 <div class="ttc" id="class_player_interface_html_aa9fd457001ed0483335503a6d3f14ac5"><div class="ttname"><a href="../../d7/d3e/class_player_interface.html#aa9fd457001ed0483335503a6d3f14ac5">PlayerInterface::previous</a></div><div class="ttdeci">void previous()</div><div class="ttdoc">Plays previous song. </div><div class="ttdef"><b>Definition:</b> <a href="../../db/d80/player_8cpp_source.html#l00070">player.cpp:70</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 18:03:32 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -109,12 +109,15 @@ Inheritance diagram for PlayerInterface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a26c4dd0d6e4d925fd6e5bb726e99e504"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a26c4dd0d6e4d925fd6e5bb726e99e504">playbackStatusChanged</a> (<a class="el" href="../../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> newStatus)</td></tr>
+<tr class="memitem:a26c4dd0d6e4d925fd6e5bb726e99e504"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a26c4dd0d6e4d925fd6e5bb726e99e504">playbackStatusChanged</a> (<a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> newStatus)</td></tr>
 <tr class="memdesc:a26c4dd0d6e4d925fd6e5bb726e99e504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the current song status changed.  <a href="#a26c4dd0d6e4d925fd6e5bb726e99e504">More...</a><br /></td></tr>
 <tr class="separator:a26c4dd0d6e4d925fd6e5bb726e99e504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4047a4be97f51327b25c8dd5e9ada1d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a4047a4be97f51327b25c8dd5e9ada1d1">songChanged</a> (const <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a> &amp;song)</td></tr>
 <tr class="memdesc:a4047a4be97f51327b25c8dd5e9ada1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the current song changed.  <a href="#a4047a4be97f51327b25c8dd5e9ada1d1">More...</a><br /></td></tr>
 <tr class="separator:a4047a4be97f51327b25c8dd5e9ada1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6239d0de5446c0931a27cd3b50a20899"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a6239d0de5446c0931a27cd3b50a20899">songStarted</a> (const <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a> &amp;song)</td></tr>
+<tr class="memdesc:a6239d0de5446c0931a27cd3b50a20899"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when a new song changed and the song is currently playing.  <a href="#a6239d0de5446c0931a27cd3b50a20899">More...</a><br /></td></tr>
+<tr class="separator:a6239d0de5446c0931a27cd3b50a20899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97468edef95718dc2e5fe57eb63ebf0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a97468edef95718dc2e5fe57eb63ebf0e">artReady</a> (const QString &amp;artFilePathUrl)</td></tr>
 <tr class="memdesc:a97468edef95718dc2e5fe57eb63ebf0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when an art file has been downloaded and is ready to use.  <a href="#a97468edef95718dc2e5fe57eb63ebf0e">More...</a><br /></td></tr>
 <tr class="separator:a97468edef95718dc2e5fe57eb63ebf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,11 +156,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a6290cc6bc6aa6a6a0996720433695d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a8a6290cc6bc6aa6a6a0996720433695d">setVolume</a> (float value)</td></tr>
 <tr class="memdesc:a8a6290cc6bc6aa6a6a0996720433695d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the player volume.  <a href="#a8a6290cc6bc6aa6a6a0996720433695d">More...</a><br /></td></tr>
 <tr class="separator:a8a6290cc6bc6aa6a6a0996720433695d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f58b6d05b80610d12dfb18a2da9a19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a54f58b6d05b80610d12dfb18a2da9a19">playbackStatus</a> () const </td></tr>
+<tr class="memdesc:a54f58b6d05b80610d12dfb18a2da9a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's playback status.  <a href="#a54f58b6d05b80610d12dfb18a2da9a19">More...</a><br /></td></tr>
+<tr class="separator:a54f58b6d05b80610d12dfb18a2da9a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="../../d7/d3e/class_player_interface.html" title="The PlayerInterface provides an interface to the music streaming service&#39;s player. ">PlayerInterface</a> provides an interface to the music streaming service's player. </p>
 
-<p>Definition at line <a class="el" href="../../d3/d62/player_8h_source.html#l00031">31</a> of file <a class="el" href="../../d3/d62/player_8h_source.html">player.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d3/d62/player_8h_source.html#l00032">32</a> of file <a class="el" href="../../d3/d62/player_8h_source.html">player.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab8342f5bbb4ef988315a1d2d22abb72d"></a>
 <div class="memitem">
@@ -256,6 +262,26 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a54f58b6d05b80610d12dfb18a2da9a19"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a> PlayerInterface::playbackStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the player's playback status. </p>
+<dl class="section return"><dt>Returns</dt><dd>PlaybackStatus </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00133">133</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a26c4dd0d6e4d925fd6e5bb726e99e504"></a>
 <div class="memitem">
 <div class="memproto">
@@ -266,7 +292,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void PlayerInterface::playbackStatusChanged </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d2/da3/song_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td>
           <td class="paramname"><em>newStatus</em></td><td>)</td>
           <td></td>
         </tr>
@@ -434,6 +460,39 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Signal emitted when the current song changed. </p>
+<p>Note that the current song might change even if the player is not playing. If you want to get notified when a song changed and is playing, use the songStarted signal instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">song</td><td>The new song info </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6239d0de5446c0931a27cd3b50a20899"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInterface::songStarted </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>song</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal emitted when a new song changed and the song is currently playing. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">song</td><td>The new song info </td></tr>
@@ -510,7 +569,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 18:03:33 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
