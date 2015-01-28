@@ -84,7 +84,13 @@ protected:
      */
     QVariant runJavaScript(const QString& scriptSource);
 
-    QWebView* webView;  ///< A pointer to the appliction's web view.
+    /*!
+     * \brief Utility method that checks whether the page has finished
+     * loading or not.
+     *
+     * \returns true if the page has finished loading, otherwise returns false
+     */
+    bool isPageLoaded() const;
 };
 
 #define IStreamingService_iid "org.MellowPlayer.IStreamingService"
