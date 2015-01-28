@@ -20,7 +20,11 @@ enum PlaybackStatus
     /*!
       Song has been stopped
       */
-    Stopped
+    Stopped,
+    /*!
+      Song is buffering.
+      */
+    Buffering
 };
 
 /*!
@@ -37,6 +41,8 @@ inline QString playbackStatusToString(PlaybackStatus status)
         return "Paused";
     case Stopped:
         return "Stopped";
+    case Buffering:
+        return "Buffering";
     }
     return "";
 }

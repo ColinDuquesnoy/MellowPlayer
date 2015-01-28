@@ -134,9 +134,13 @@ PlaybackStatus PlayerInterface::playbackStatus() const
 {
     IStreamingService* iService =
             Services::streamingServices()->currentService();
+    PlaybackStatus status = Stopped;
     if(iService)
-        return iService->playbackStatus();
-    return Stopped;
+         status = iService->playbackStatus();
+    if(status == Buffering)
+        status = Paused; // a player that is buffering is considered to be
+                         // paused.
+    return status;
 }
 
 //---------------------------------------------------------

@@ -128,6 +128,8 @@ SongInfo DeezerPlugin::currentSongInfo()
 //---------------------------------------------------------
 PlaybackStatus DeezerPlugin::playbackStatus()
 {
+    bool loading = this->runJavaScript(
+        "dzPlayer.loading;").toBool();
     bool playing = this->runJavaScript(
         "dzPlayer.playing;").toBool();
     bool paused = this->runJavaScript(
@@ -136,6 +138,8 @@ PlaybackStatus DeezerPlugin::playbackStatus()
         return Playing;
     else if(paused)
         return Paused;
+    else if(loading)
+        return Buffering;
     else
         return Stopped;
 }
