@@ -25,18 +25,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 # Add static plugins here (and in main.cpp)
 LIBS += -L.
+LIBS += -lmpp_groovesharkmobile
 LIBS += -lmpp_deezer
 LIBS += -lmpp_grooveshark
 LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications
 
 win32 { # force relink app when a static lib changed.
+    PRE_TARGETDEPS += mpp_groovesharkmobile.lib
     PRE_TARGETDEPS += mpp_deezer.lib
     PRE_TARGETDEPS += mpp_grooveshark.lib
     PRE_TARGETDEPS += mpp_hotkeys.lib
     PRE_TARGETDEPS += mpp_notifications.lib
 }
 else { # force relink app when a static lib changed.
+    PRE_TARGETDEPS += libmpp_groovesharkmobile.a
     PRE_TARGETDEPS += libmpp_deezer.a
     PRE_TARGETDEPS += libmpp_grooveshark.a
     PRE_TARGETDEPS += libmpp_hotkeys.a

@@ -17,14 +17,13 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-
-unix:!macx {
-    SUBDIRS += mpris2
-}
-
-SUBDIRS += grooveshark
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer
-SUBDIRS += groovesharkmobile
+TEMPLATE      = lib
+QT           += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_groovesharkmobile
+CONFIG       += plugin static
+HEADERS       = groovesharkmobile.h
+SOURCES       = groovesharkmobile.cpp
+RESOURCES    += groovesharkmobile.qrc
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include

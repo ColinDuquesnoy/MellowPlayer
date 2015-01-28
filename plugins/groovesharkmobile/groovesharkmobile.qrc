@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/groovesharkmobile">
+    <file alias="logo.png">grooveshark-logo.png</file>
+  </qresource>
+</RCC>

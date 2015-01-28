@@ -22,6 +22,7 @@
 
 //---------------------------------------------------------
 // Add plugins here
+Q_IMPORT_PLUGIN(GroovesharkmobilePlugin)
 Q_IMPORT_PLUGIN(DeezerPlugin)
 Q_IMPORT_PLUGIN(GroovesharkPlugin)
 Q_IMPORT_PLUGIN(HotkeysPlugin)
