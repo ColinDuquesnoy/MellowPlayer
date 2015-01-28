@@ -23,6 +23,12 @@
 #include "dlgselectservice.h"
 #include "ui_dlg_select_service.h"
 
+bool cmp(const IStreamingService* a,
+                    const IStreamingService* b)
+{
+    return a->metaData().name < b->metaData().name;
+}
+
 
 //---------------------------------------------------------
 DlgSelectServices::DlgSelectServices(QWidget *parent):
@@ -34,8 +40,9 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     int row = 0;
     QString activeService = QSettings().value("service", "").toString();
     int i = 0;
-    foreach(IStreamingService* plugin,
-            Services::streamingServices()->plugins()){
+    StreamingServicesList plugins = Services::streamingServices()->plugins();
+    qSort(plugins.begin(), plugins.end(), cmp);
+    foreach(IStreamingService* plugin, plugins){
         QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
         item->setText(plugin->metaData().name);
         item->setIcon(plugin->metaData().icon);
