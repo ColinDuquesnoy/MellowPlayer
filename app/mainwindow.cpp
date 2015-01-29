@@ -238,7 +238,7 @@ void MainWindow::setupTrayIcon()
 void MainWindow::setupUpdateTimer()
 {
     this->updateTimer = new QTimer(this);
-    this->updateTimer->setInterval(10);
+    this->updateTimer->setInterval(100);
     this->connect(this->updateTimer, SIGNAL(timeout()),
                   this, SLOT(updatePlayer()));
     this->updateTimer->start();
