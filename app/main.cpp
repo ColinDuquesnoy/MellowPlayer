@@ -22,11 +22,14 @@
 
 //---------------------------------------------------------
 // Add plugins here
-Q_IMPORT_PLUGIN(GroovesharkmobilePlugin)
 Q_IMPORT_PLUGIN(DeezerPlugin)
 Q_IMPORT_PLUGIN(GroovesharkPlugin)
 Q_IMPORT_PLUGIN(HotkeysPlugin)
 Q_IMPORT_PLUGIN(NotificationsPlugin)
+
+#ifndef Q_OS_WIN
+Q_IMPORT_PLUGIN(GroovesharkmobilePlugin)
+#endif
 
 #ifdef Q_OS_LINUX
 Q_IMPORT_PLUGIN(Mpris2Plugin)
