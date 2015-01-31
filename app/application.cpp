@@ -67,12 +67,12 @@ void MellowPlayerApp::initialize()
     Services::_setExtensionsManager(new ExtensionsManager(this));
     Services::_setPlayer(new PlayerInterface(this));
     loadPlugins();
+    Services::mainWindow()->show();
     if(Services::streamingServices()->startService(
             QSettings().value("service", "").toString()))
         m_mainWindow->showWebPage();
     else
         m_mainWindow->showHomePage();
-    Services::mainWindow()->show();
 }
 
 //---------------------------------------------------------

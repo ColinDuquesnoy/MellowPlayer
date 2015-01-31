@@ -43,9 +43,11 @@ public:
     GroovesharkPlugin();
 
     //! Gets the plugin's meta data
-    virtual const PluginMetaData& metaData() const;
+    const PluginMetaData& metaData() const;
+    //! Flash is required.
+    bool flashRequired();
     //! Returns the grooveshark URL
-    virtual QUrl url() const;
+    QUrl url() const;
     //! Plays the current song
     void play();
     //! Pauses the current song

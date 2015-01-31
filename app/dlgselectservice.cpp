@@ -19,6 +19,7 @@
 
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QMessageBox>
 #include <mellowplayer.h>
 #include "dlgselectservice.h"
 #include "ui_dlg_select_service.h"
@@ -84,6 +85,8 @@ void DlgSelectServices::onCurrentRowChanged(int row)
               .arg(plugin->metaData().author_website)
               .arg(plugin->metaData().author)
               .arg(plugin->metaData().version));
+        m_ui->labelFlash->setVisible(
+            plugin->flashRequired() && !Services::hasFlash());
     }
 }
 
@@ -92,6 +95,9 @@ QString DlgSelectServices::selectService(QWidget *parent)
 {
     DlgSelectServices dlg(parent);
     if(dlg.exec() == QDialog::Accepted)
-        return dlg.m_ui->listWidget->currentItem()->text();
+    {
+        QString serviceName = dlg.m_ui->listWidget->currentItem()->text();
+        return serviceName;
+    }
     return "";
 }

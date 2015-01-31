@@ -113,6 +113,7 @@ void MainWindow::onSelectServiceTriggered()
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
+        showHomePage();
         if(Services::streamingServices()->startService(service))
         {
             showWebPage();
@@ -266,6 +267,7 @@ void MainWindow::setupWebView()
     m_ui->webView->page()->setLinkDelegationPolicy(
                 QWebPage::DelegateAllLinks);
     Services::_setWebView(m_ui->webView);
+    qDebug() << "Has flash: " << Services::hasFlash();
 }
 
 //---------------------------------------------------------

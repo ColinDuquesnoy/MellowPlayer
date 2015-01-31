@@ -50,6 +50,12 @@ const PluginMetaData &GroovesharkmobilePlugin::metaData() const
 }
 
 //---------------------------------------------------------
+bool GroovesharkmobilePlugin::flashRequired()
+{
+    return false;
+}
+
+//---------------------------------------------------------
 QUrl GroovesharkmobilePlugin::url() const
 {
     return QUrl("http://html5.grooveshark.com/");

@@ -41,6 +41,11 @@ public:
      */
     virtual const PluginMetaData& metaData() const = 0;
 
+    /*!
+     * \brief Tells whether the service require the flashplugin to be installed.
+     */
+    virtual bool flashRequired() = 0;
+
     //! Returns the music streaming service URL
     virtual QUrl url() const = 0;
 

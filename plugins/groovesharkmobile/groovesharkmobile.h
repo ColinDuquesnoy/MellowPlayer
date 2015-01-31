@@ -35,6 +35,8 @@ class GroovesharkmobilePlugin:
 public:
     GroovesharkmobilePlugin();
     virtual const PluginMetaData& metaData() const;
+    //! Flash is not required, this is the html5 version of grooveshark
+    bool flashRequired();
     //! Returns the GroovesharkmobilePlugin URL
     virtual QUrl url() const;
     //! Plays the current song

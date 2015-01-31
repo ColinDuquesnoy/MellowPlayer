@@ -50,6 +50,13 @@ const PluginMetaData &DeezerPlugin::metaData() const
     return meta;
 }
 
+
+//---------------------------------------------------------
+bool DeezerPlugin::flashRequired()
+{
+    return true;
+}
+
 //---------------------------------------------------------
 QUrl DeezerPlugin::url() const
 {

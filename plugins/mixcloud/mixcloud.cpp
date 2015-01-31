@@ -45,6 +45,12 @@ const PluginMetaData &MixcloudPlugin::metaData() const
 }
 
 //---------------------------------------------------------
+bool MixcloudPlugin::flashRequired()
+{
+    return true;
+}
+
+//---------------------------------------------------------
 QUrl MixcloudPlugin::url() const
 {
     return QUrl("http://mixcloud.com");

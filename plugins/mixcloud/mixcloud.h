@@ -35,6 +35,8 @@ class MixcloudPlugin:
 public:
     MixcloudPlugin();
     virtual const PluginMetaData& metaData() const;
+    //! Flash is required.
+    bool flashRequired();
     //! Returns the MixcloudPlugin URL
     virtual QUrl url() const;
     //! Plays the current song

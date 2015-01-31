@@ -17,12 +17,15 @@
 //
 //---------------------------------------------------------
 
-#include <QPluginLoader>
 #include <QFile>
+#include <QPluginLoader>
+#include <QMainWindow>
+#include <QMessageBox>
 #include <QWebView>
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/services.h"
+
 
 //---------------------------------------------------------
 StreamingServicesManager::StreamingServicesManager(QObject* parent):
@@ -80,10 +83,23 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
     if(p && p != m_currentService)
     {
         m_currentService = p;
-        qDebug() << "Starting service " << serviceName
-                 << "(" << p->url() << ")";
-        Services::webView()->load(m_currentService->url());
-        retVal = true;
+        if(!Services::hasFlash() && m_currentService->flashRequired())
+        {
+            QMessageBox::warning(
+                Services::mainWindow(),
+                tr("Flash player plugin missing"),
+                tr("The flash player plugin is missing on your system.\n\n"
+                   "This service cannot be used without flash.\nPlease "
+                   "install the latest flash player plugin from adobe and try "
+                   "again!"));
+            return false;
+        }
+        else {
+            qDebug() << "Starting service " << serviceName
+                     << "(" << p->url() << ")";
+            Services::webView()->load(m_currentService->url());
+            retVal = true;
+        }
     }
     return retVal;
 }

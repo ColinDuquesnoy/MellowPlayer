@@ -66,6 +66,11 @@ public:
     static QWebView* webView();
 
     /*!
+     * \brief Checks whether the flash player plugin is installed or not.
+     */
+    static bool hasFlash();
+
+    /*!
      * \brief Returns a pointer to the player interface that you can
      * use to control the streaming service's media player programmatically and
      * connect to the player events (songChanged,...).

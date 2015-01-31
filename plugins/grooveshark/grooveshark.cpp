@@ -50,6 +50,12 @@ const PluginMetaData &GroovesharkPlugin::metaData() const
 }
 
 //---------------------------------------------------------
+bool GroovesharkPlugin::flashRequired()
+{
+    return true;
+}
+
+//---------------------------------------------------------
 QUrl GroovesharkPlugin::url() const
 {
     return QUrl("http://grooveshark.com");

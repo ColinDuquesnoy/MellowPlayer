@@ -20,6 +20,7 @@
 #include <QAction>
 #include <QMainWindow>
 #include <QWebView>
+#include <QWebFrame>
 #include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/player.h"
 #include "mellowplayer/services.h"
@@ -88,6 +89,21 @@ void Services::_setWebView(QWebView *_webView)
 QWebView *Services::webView()
 {
     return Services::m_webView;
+}
+
+//---------------------------------------------------------
+bool Services::hasFlash()
+{
+    QString checkFlash = "var hasFlash = false;"
+        "try {"
+        "    hasFlash = Boolean("
+        "        new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));"
+        "} catch(exception) {"
+        "   hasFlash = ('undefined' != "
+        "typeof navigator.mimeTypes['application/x-shockwave-flash']);"
+        "}";
+    return webView()->page()->mainFrame()->evaluateJavaScript(
+        checkFlash).toBool();
 }
 
 //---------------------------------------------------------

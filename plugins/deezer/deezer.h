@@ -37,6 +37,8 @@ public:
 
     //! Gets the plugin's meta data
     virtual const PluginMetaData& metaData() const;
+    //! Flash is required.
+    virtual bool flashRequired();
     //! Returns the DeezerPlugin URL
     virtual QUrl url() const;
     //! Plays the current song
