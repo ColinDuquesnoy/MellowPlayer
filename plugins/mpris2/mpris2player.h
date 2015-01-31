@@ -98,9 +98,9 @@ private:
     bool                    canControl();
 
     QMap<QString, QVariant> toXesam(const SongInfo& song);
-    QString artUrl;
-    qlonglong length;
-    qlonglong prevPos;
+    QString m_artUrl;
+    qlonglong m_length;
+    qlonglong m_prevPos;
 
 };
 

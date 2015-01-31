@@ -27,14 +27,14 @@
 //---------------------------------------------------------
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     QApplication(argc, argv),
-    mainWindow(NULL)
+    m_mainWindow(NULL)
 {
 #ifdef __kde_support__
     qDebug() << "MellowPlayer built with KDE support";
 #endif
-    this->setOrganizationName("MellowPlayer");
-    this->setOrganizationDomain("org.mellowplayer");
-    this->setApplicationVersion(
+    setOrganizationName("MellowPlayer");
+    setOrganizationDomain("org.mellowplayer");
+    setApplicationVersion(
         QString("%1.%2.%3%4").arg(
             QString::number(VERSION_MAJOR),
             QString::number(VERSION_MINOR),
@@ -43,16 +43,16 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
 
     QString locale = QLocale::system().name().split("_")[0];
     qDebug() << "Setting up translations for locale: " << locale;
-    translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
-    this->installTranslator(&translator);
-    singleInstanceController.start(this);
+    m_translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
+    installTranslator(&m_translator);
+    m_singleInstanceController.start(this);
 }
 
 //---------------------------------------------------------
 MellowPlayerApp::~MellowPlayerApp()
 {
-    if(mainWindow)
-        delete mainWindow;
+    if(m_mainWindow)
+        delete m_mainWindow;
 }
 
 //---------------------------------------------------------
@@ -60,18 +60,18 @@ void MellowPlayerApp::initialize()
 {
     qDebug() << "Initializing application";
 
-    this->mainWindow = new MainWindow();
+    m_mainWindow = new MainWindow();
 
-    Services::_setMainWindow(this->mainWindow);
+    Services::_setMainWindow(m_mainWindow);
     Services::_setServicesManager(new StreamingServicesManager(this));
     Services::_setExtensionsManager(new ExtensionsManager(this));
     Services::_setPlayer(new PlayerInterface(this));
     loadPlugins();
     if(Services::streamingServices()->startService(
             QSettings().value("service", "").toString()))
-        this->mainWindow->showWebPage();
+        m_mainWindow->showWebPage();
     else
-        this->mainWindow->showHomePage();
+        m_mainWindow->showHomePage();
     Services::mainWindow()->show();
 }
 
@@ -85,9 +85,9 @@ void MellowPlayerApp::raise()
 int MellowPlayerApp::exec()
 {
     int retCode = QApplication::exec();
-    this->close();
-    if(this->mainWindow)
-        this->mainWindow->saveGeometryAndState();
+    close();
+    if(m_mainWindow)
+        m_mainWindow->saveGeometryAndState();
     return retCode;
 }
 
@@ -96,5 +96,5 @@ void MellowPlayerApp::close()
 {
     if(Services::extensions())
         Services::extensions()->teardown();
-    this->singleInstanceController.close();
+    m_singleInstanceController.close();
 }

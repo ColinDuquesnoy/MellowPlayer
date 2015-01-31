@@ -11,16 +11,16 @@
 TrayIcon::TrayIcon(QObject *parent):
     QObject(parent),
 #ifdef __kde_support__
-    trayIcon(new KStatusNotifierItem())
+    m_trayIcon(new KStatusNotifierItem())
 #else
-    trayIcon(new QSystemTrayIcon())
+    m_trayIcon(new QSystemTrayIcon())
 #endif
 {
 #ifdef __kde_support__
-    connect (trayIcon, SIGNAL(activateRequested(bool, QPoint)),
+    connect (m_trayIcon, SIGNAL(activateRequested(bool, QPoint)),
              this, SLOT(onKF5IconActivated(bool, QPoint)) );
 #else
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+    connect(m_trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));
 #endif
 }
@@ -29,7 +29,7 @@ TrayIcon::TrayIcon(QObject *parent):
 TrayIcon::~TrayIcon()
 {
 #ifndef __kde_support__
-    trayIcon->hide();
+    m_trayIcon->hide();
 #endif
 }
 
@@ -37,28 +37,28 @@ TrayIcon::~TrayIcon()
 void TrayIcon::setIcon(const QIcon &icon)
 {
 #ifdef __kde_support__
-    trayIcon->setIconByPixmap(icon);
-    trayIcon->setToolTipIconByPixmap(icon);
-    trayIcon->setTitle("MellowPlayer");
+    m_trayIcon->setIconByPixmap(icon);
+    m_trayIcon->setToolTipIconByPixmap(icon);
+    m_trayIcon->setTitle("MellowPlayer");
 #else
-    trayIcon->setIcon(icon);
-    trayIcon->show();
+    m_trayIcon->setIcon(icon);
+    m_trayIcon->show();
 #endif
 }
 
 //---------------------------------------------------------
 void TrayIcon::setContextMenu(QMenu *menu)
 {
-    trayIcon->setContextMenu(menu);
+    m_trayIcon->setContextMenu(menu);
 }
 
 //---------------------------------------------------------
 void TrayIcon::setToolTip(const QString &toolTip)
 {
 #ifdef __kde_support__
-    trayIcon->setTitle(toolTip);
+    m_trayIcon->setTitle(toolTip);
 #else
-    trayIcon->setToolTip(toolTip);
+    m_trayIcon->setToolTip(toolTip);
 #endif
 }
 
@@ -66,11 +66,11 @@ void TrayIcon::setToolTip(const QString &toolTip)
 void TrayIcon::showMessage(const QString &message, const QString& icon)
 {
 #ifdef __kde_support__
-    trayIcon->setToolTipSubTitle(message);
-    trayIcon->showMessage("MellowPlayer", message, icon);
+    m_trayIcon->setToolTipSubTitle(message);
+    m_trayIcon->showMessage("MellowPlayer", message, icon);
 #else
     Q_UNUSED(icon);
-    trayIcon->showMessage("MellowPlayer", message);
+    m_trayIcon->showMessage("MellowPlayer", message);
 #endif
 }
 

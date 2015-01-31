@@ -27,12 +27,12 @@
 //---------------------------------------------------------
 PlayerInterface::PlayerInterface(QObject *parent):
     QObject(parent),
-    currentStatus(Stopped),
-    currentPosition(0),
-    _canSeek(false),
-    _canPlay(false),
-    _canGoNext(false),
-    _canGoPrevious(false)
+    m_currentStatus(Stopped),
+    m_currentPosition(0),
+    m_canSeek(false),
+    m_canPlay(false),
+    m_canGoNext(false),
+    m_canGoPrevious(false)
 {
 }
 
@@ -44,7 +44,7 @@ void PlayerInterface::playPause()
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     SongInfo song = iService->currentSongInfo();
-    if(this->playbackStatus() > Playing)
+    if(playbackStatus() > Playing)
         iService->play();
     else
         iService->pause();
@@ -148,10 +148,10 @@ SongInfo PlayerInterface::update()
     if(!iService)
         return SongInfo();  // invalid song
     SongInfo song = iService->currentSongInfo();
-    this->checkPlaybackStatusChange(song);
-    this->checkSongChange(song);
-    this->checkForPositionChange(song);
-    this->checkForControlCaps();
+    checkPlaybackStatusChange(song);
+    checkSongChange(song);
+    checkForPositionChange(song);
+    checkForControlCaps();
     return song;
 }
 
@@ -221,7 +221,7 @@ void PlayerInterface::addToFavorites()
 //---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
-    emit this->artReady(filePath);
+    emit artReady(filePath);
 }
 
 //---------------------------------------------------------
@@ -230,11 +230,11 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
     PlaybackStatus status = Stopped;
     if(song.isValid())
         status = playbackStatus();
-    if(status != this->currentStatus)
+    if(status != m_currentStatus)
     {
         qDebug() << "Playback status changed: "
                  << playbackStatusToString((status));
-        this->currentStatus = status;
+        m_currentStatus = status;
         emit playbackStatusChanged(status);
     }
 }
@@ -242,28 +242,28 @@ void PlayerInterface::checkPlaybackStatusChange(SongInfo &song)
 //---------------------------------------------------------
 void PlayerInterface::checkSongChange(SongInfo &song)
 {
-    if(song.songName != this->_currentSong.songName)
+    if(song.songName != m_currentSong.songName)
     {
         qDebug() << "Song changed: " << song.songName;
         emit songChanged(song);
-        this->_currentSong = song;
+        m_currentSong = song;
 
-        if(this->playbackStatus() == Playing && song.isValid())
+        if(playbackStatus() == Playing && song.isValid())
         {
-            this->_startedSong = song;
+            m_startedSong = song;
             emit songStarted(song);
         }
         else
-            this->_startedSong = SongInfo(); // invalid song
+            m_startedSong = SongInfo(); // invalid song
 
         if(song.isValid())
-            this->downloadSongArt(song.artUrl);
+            downloadSongArt(song.artUrl);
     }
-    else if(!this->_startedSong.isValid() && this->playbackStatus() == Playing)
+    else if(!m_startedSong.isValid() && playbackStatus() == Playing)
     {
         // sometimes (depends on the player) a new song is active but not playing,
         // we only emit song started when a song is active and the player is playing.
-        this->_startedSong = song;
+        m_startedSong = song;
         emit songStarted(song);
     }
 }
@@ -271,10 +271,10 @@ void PlayerInterface::checkSongChange(SongInfo &song)
 //---------------------------------------------------------
 void PlayerInterface::checkForPositionChange(SongInfo &song)
 {
-    if(this->currentPosition != song.position)
+    if(m_currentPosition != song.position)
     {
         emit positionChanged(song.position);
-        this->currentPosition = song.position;
+        m_currentPosition = song.position;
     }
 }
 
@@ -284,17 +284,17 @@ void PlayerInterface::checkForControlCaps()
             Services::streamingServices()->currentService();
     if(iService)
     {
-        if(this->canGoNext() != this->_canGoNext ||
-           this->canGoPrevious() != this->_canGoPrevious ||
-           this->canPlay() != this->_canPlay ||
-           this->canSeek() != this->_canSeek)
+        if(canGoNext() != m_canGoNext ||
+           canGoPrevious() != m_canGoPrevious ||
+           canPlay() != m_canPlay ||
+           canSeek() != m_canSeek)
         {
-            this->_canGoNext = this->canGoNext();
-            this->_canGoPrevious = this->canGoPrevious();
-            this->_canPlay = this->canPlay();
-            this->_canSeek = this->canSeek();
+            m_canGoNext = canGoNext();
+            m_canGoPrevious = canGoPrevious();
+            m_canPlay = canPlay();
+            m_canSeek = canSeek();
 
-            emit this->controlCapsChanged();
+            emit controlCapsChanged();
         }
     }
 }
@@ -305,7 +305,7 @@ void PlayerInterface::downloadSongArt(const QString& url)
     UrlDownloader* downloader = new UrlDownloader(this);
     QString dest = QDir::temp().path() +
                    QString(QDir::separator()) +
-                   this->currentSong().songId +
+                   currentSong().songId +
                    QFileInfo(url).fileName();
     connect(downloader, SIGNAL(finished(const QString&)),
             this, SLOT(onArtReady(const QString&)));

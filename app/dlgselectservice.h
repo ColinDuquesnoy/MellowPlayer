@@ -54,7 +54,7 @@ private slots:
     void onCurrentRowChanged(int row);
 
 private:
-    Ui::DialogSelectServices* ui;
+    Ui::DialogSelectServices* m_ui;
 
 };
 

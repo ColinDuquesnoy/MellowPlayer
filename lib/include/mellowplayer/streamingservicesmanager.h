@@ -93,8 +93,8 @@ signals:
 public slots:
 
 private:
-    StreamingServicesList _plugins;
-    IStreamingService* _currentService;
+    StreamingServicesList m_plugins;
+    IStreamingService* m_currentService;
 };
 
 #endif // STREAMINGSERVICESMANAGER_H

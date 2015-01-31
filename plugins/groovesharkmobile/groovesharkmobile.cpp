@@ -58,31 +58,31 @@ QUrl GroovesharkmobilePlugin::url() const
 //---------------------------------------------------------
 void GroovesharkmobilePlugin::play()
 {
-    this->runJavaScript("GS.audio.pauseResume();");
+    runJavaScript("GS.audio.pauseResume();");
 }
 
 //---------------------------------------------------------
 void GroovesharkmobilePlugin::pause()
 {
-    this->runJavaScript("GS.audio.pauseResume();");
+    runJavaScript("GS.audio.pauseResume();");
 }
 
 //---------------------------------------------------------
 void GroovesharkmobilePlugin::stop()
 {
-    this->pause();
+    pause();
 }
 
 //---------------------------------------------------------
 void GroovesharkmobilePlugin::next()
 {
-    this->runJavaScript("GS.audio.playNext();");
+    runJavaScript("GS.audio.playNext();");
 }
 
 //---------------------------------------------------------
 void GroovesharkmobilePlugin::previous()
 {
-    this->runJavaScript("GS.models.queue.prev() && GS.audio.playNow();");
+    runJavaScript("GS.models.queue.prev() && GS.audio.playNow();");
 }
 
 //---------------------------------------------------------

@@ -92,19 +92,19 @@ private:
     friend class MellowPlayerApp;
     friend class MainWindow;
 
-    static void _setMainWindow(QMainWindow* _mainWindow);
+    static void _setMainWindow(QMainWindow* m_mainWindow);
     static void _setServicesManager(StreamingServicesManager* manager);
     static void _setExtensionsManager(ExtensionsManager* manager);
-    static void _setWebView(QWebView* _webView);
+    static void _setWebView(QWebView* m_webView);
     static void _setPlayer(PlayerInterface* player);
     static void _setTrayIcon(TrayIcon *icon);
 
-    static QMainWindow* _mainWindow;
-    static QWebView* _webView;
-    static StreamingServicesManager* _services;
-    static ExtensionsManager* _extensions;
-    static PlayerInterface* _player;
-    static TrayIcon* _trayIcon;
+    static QMainWindow* m_mainWindow;
+    static QWebView* m_webView;
+    static StreamingServicesManager* m_services;
+    static ExtensionsManager* m_extensions;
+    static PlayerInterface* m_player;
+    static TrayIcon* m_trayIcon;
 };
 
 #endif // SERVICES_H

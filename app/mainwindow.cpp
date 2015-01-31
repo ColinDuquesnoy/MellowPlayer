@@ -32,37 +32,37 @@
 //---------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    m_ui(new Ui::MainWindow)
 {
-    this->ui->setupUi(this);
-    this->setupActions();
-    this->setupIcons();
-    this->restoreGeometryAndState();
-    this->setupWebView();
-    this->setupUpdateTimer();
-    this->setupTrayIcon();
-    this->connectSlots();
-    this->ui->menuView->addActions(this->createPopupMenu()->actions());
+    m_ui->setupUi(this);
+    setupActions();
+    setupIcons();
+    restoreGeometryAndState();
+    setupWebView();
+    setupUpdateTimer();
+    setupTrayIcon();
+    connectSlots();
+    m_ui->menuView->addActions(createPopupMenu()->actions());
 }
 
 //---------------------------------------------------------
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete m_ui;
 }
 
 //---------------------------------------------------------
 void MainWindow::showWebPage()
 {
-    this->ui->stackedWidget->setCurrentIndex(PAGE_WEB);
-    this->ui->menubar->show();
+    m_ui->stackedWidget->setCurrentIndex(PAGE_WEB);
+    m_ui->menubar->show();
 }
 
 //---------------------------------------------------------
 void MainWindow::showHomePage()
 {
-    this->ui->stackedWidget->setCurrentIndex(PAGE_HOME);
-    this->ui->menubar->hide();
+    m_ui->stackedWidget->setCurrentIndex(PAGE_HOME);
+    m_ui->menubar->hide();
 }
 
 //---------------------------------------------------------
@@ -70,7 +70,7 @@ void MainWindow::onLinkClicked(QUrl url)
 {
     IStreamingService* sv = Services::streamingServices()->currentService();
     if( sv && url.toString().contains(sv->url().toString()))
-        this->ui->webView->load(url);
+        m_ui->webView->load(url);
     else
         QDesktopServices::openUrl(url);
 }
@@ -103,19 +103,19 @@ void MainWindow::onPreviousTriggered()
 void MainWindow::onTrayIconActivated(bool active)
 {
     if(active)
-        this->show();
+        show();
 }
 
 //---------------------------------------------------------
 void MainWindow::onSelectServiceTriggered()
 {
-    this->show();
+    show();
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
         if(Services::streamingServices()->startService(service))
         {
-            this->showWebPage();
+            showWebPage();
             QSettings().setValue("service", service);
         }
     }
@@ -124,7 +124,7 @@ void MainWindow::onSelectServiceTriggered()
 //---------------------------------------------------------
 void MainWindow::onPreferencesTriggered()
 {
-    this->show();
+    show();
     DlgPreferences::editPreferences(this);
 }
 
@@ -133,8 +133,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
-    if(this->isVisible() && minimizeToTray &&
-        this->ui->stackedWidget->currentIndex() == PAGE_WEB)
+    if(isVisible() && minimizeToTray &&
+        m_ui->stackedWidget->currentIndex() == PAGE_WEB)
     {
         bool showMsg = QSettings().value(
             "showMinimizeToTrayMsg", true).toBool();
@@ -147,7 +147,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
                 "system tray entry."));
             QSettings().setValue("showMinimizeToTrayMsg", false);
         }
-        this->hide();
+        hide();
         event->ignore();
     }
     else
@@ -159,22 +159,22 @@ void MainWindow::closeEvent(QCloseEvent *event)
 //---------------------------------------------------------
 void MainWindow::setupIcons()
 {
-    this->ui->actionSelect_service->setIcon(Icons::selectStreamingService());
-    this->ui->actionPreferences->setIcon(Icons::preferences());
-    this->ui->actionQuit->setIcon(Icons::quit());
+    m_ui->actionSelect_service->setIcon(Icons::selectStreamingService());
+    m_ui->actionPreferences->setIcon(Icons::preferences());
+    m_ui->actionQuit->setIcon(Icons::quit());
 
-    this->ui->actionPlayPause->setIcon(Icons::play());
-    this->ui->actionStop->setIcon(Icons::stop());
-    this->ui->actionNext->setIcon(Icons::next());
-    this->ui->actionPrevious->setIcon(Icons::previous());
-    this->ui->actionAdd_to_favorites->setIcon(Icons::favorite());
+    m_ui->actionPlayPause->setIcon(Icons::play());
+    m_ui->actionStop->setIcon(Icons::stop());
+    m_ui->actionNext->setIcon(Icons::next());
+    m_ui->actionPrevious->setIcon(Icons::previous());
+    m_ui->actionAdd_to_favorites->setIcon(Icons::favorite());
 
-    this->ui->actionAbout_MellowPlayer->setIcon(Icons::about());
-    this->ui->actionReport_a_bug->setIcon(Icons::reportBug());
+    m_ui->actionAbout_MellowPlayer->setIcon(Icons::about());
+    m_ui->actionReport_a_bug->setIcon(Icons::reportBug());
 
-    this->ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
-    this->ui->pushButtonPreferences->setIcon(Icons::preferences());
-    this->ui->pushButtonQuit->setIcon(Icons::quit());
+    m_ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
+    m_ui->pushButtonPreferences->setIcon(Icons::preferences());
+    m_ui->pushButtonQuit->setIcon(Icons::quit());
 }
 
 //---------------------------------------------------------
@@ -188,74 +188,74 @@ void MainWindow::setupActions()
         DEFAULT_SHORTCUT_FAVORITE
     };
     QAction* actions[] = {
-        this->ui->actionPlayPause,
-        this->ui->actionStop,
-        this->ui->actionNext,
-        this->ui->actionPrevious,
-        this->ui->actionAdd_to_favorites
+        m_ui->actionPlayPause,
+        m_ui->actionStop,
+        m_ui->actionNext,
+        m_ui->actionPrevious,
+        m_ui->actionAdd_to_favorites
     };
     for(int i = 0; i < 5; ++i){
         QAction* a = actions[i];
-        this->addAction(a);
+        addAction(a);
         a->setShortcut(QSettings().value(
             a->objectName(), defaults[i]).toString());
     }
 
     // setup roles, this is only for OS X
-    ui->actionPreferences->setMenuRole(QAction::PreferencesRole);
-    ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
-    ui->actionQuit->setMenuRole(QAction::QuitRole);
-    ui->actionAbout_MellowPlayer->setMenuRole(QAction::AboutRole);
-    ui->actionAbout_Qt->setMenuRole(QAction::AboutQtRole);
+    m_ui->actionPreferences->setMenuRole(QAction::PreferencesRole);
+    m_ui->actionSelect_service->setMenuRole(QAction::ApplicationSpecificRole);
+    m_ui->actionQuit->setMenuRole(QAction::QuitRole);
+    m_ui->actionAbout_MellowPlayer->setMenuRole(QAction::AboutRole);
+    m_ui->actionAbout_Qt->setMenuRole(QAction::AboutQtRole);
 }
 
 //---------------------------------------------------------
 void MainWindow::setupTrayIcon()
 {
-    this->trayIcon = new TrayIcon(this);
+    m_trayIcon = new TrayIcon(this);
 
     QMenu* mnu = new QMenu();
-    mnu->addAction(this->ui->actionRestoreWindow);
+    mnu->addAction(m_ui->actionRestoreWindow);
     mnu->addSeparator();
-    mnu->addAction(this->ui->actionPlayPause);
-    mnu->addAction(this->ui->actionStop);
-    mnu->addAction(this->ui->actionNext);
-    mnu->addAction(this->ui->actionPrevious);
-    mnu->addAction(this->ui->actionAdd_to_favorites);
+    mnu->addAction(m_ui->actionPlayPause);
+    mnu->addAction(m_ui->actionStop);
+    mnu->addAction(m_ui->actionNext);
+    mnu->addAction(m_ui->actionPrevious);
+    mnu->addAction(m_ui->actionAdd_to_favorites);
     mnu->addSeparator();
-    mnu->addAction(this->ui->actionSelect_service);
-    mnu->addAction(this->ui->actionPreferences);
+    mnu->addAction(m_ui->actionSelect_service);
+    mnu->addAction(m_ui->actionPreferences);
     mnu->addSeparator();
 #ifndef __kde_support__
     // kde provides a quit action automatically.
-    mnu->addAction(this->ui->actionQuit);
+    mnu->addAction(m_ui->actionQuit);
 #endif
-    this->trayIcon->setContextMenu(mnu);
+    m_trayIcon->setContextMenu(mnu);
 
-    this->trayIcon->setIcon(Icons::mellowPlayer());
-    this->connect(this->trayIcon, SIGNAL(activated(bool)),
+    m_trayIcon->setIcon(Icons::mellowPlayer());
+    connect(m_trayIcon, SIGNAL(activated(bool)),
                   this, SLOT(onTrayIconActivated(bool)));
-    Services::_setTrayIcon(this->trayIcon);
+    Services::_setTrayIcon(m_trayIcon);
 }
 
 //---------------------------------------------------------
 void MainWindow::setupUpdateTimer()
 {
-    this->updateTimer = new QTimer(this);
-    this->updateTimer->setInterval(100);
-    this->connect(this->updateTimer, SIGNAL(timeout()),
+    m_updateTimer = new QTimer(this);
+    m_updateTimer->setInterval(100);
+    connect(m_updateTimer, SIGNAL(timeout()),
                   this, SLOT(updatePlayer()));
-    this->updateTimer->start();
+    m_updateTimer->start();
 }
 
 //---------------------------------------------------------
 void MainWindow::setupWebView()
 {
     // Setup web view
-    ui->webView->page()->networkAccessManager()->setCookieJar(
-                new CookieJar(ui->webView));
+    m_ui->webView->page()->networkAccessManager()->setCookieJar(
+                new CookieJar(m_ui->webView));
     // make sure javascript and flash are enabled.
-    QWebSettings* settings = this->ui->webView->settings();
+    QWebSettings* settings = m_ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
 #ifdef QT_DEBUG
@@ -263,50 +263,50 @@ void MainWindow::setupWebView()
 #endif
     // handle opening links ourself so that we open external links in an
     // external browser
-    this->ui->webView->page()->setLinkDelegationPolicy(
+    m_ui->webView->page()->setLinkDelegationPolicy(
                 QWebPage::DelegateAllLinks);
-    Services::_setWebView(ui->webView);
+    Services::_setWebView(m_ui->webView);
 }
 
 //---------------------------------------------------------
 void MainWindow::connectSlots()
 {
-    this->connect(this->ui->webView, SIGNAL(linkClicked(QUrl)),
+    connect(m_ui->webView, SIGNAL(linkClicked(QUrl)),
                   this, SLOT(onLinkClicked(QUrl)));
-    this->connect(this->ui->actionPlayPause, SIGNAL(triggered()),
+    connect(m_ui->actionPlayPause, SIGNAL(triggered()),
                   this, SLOT(onPlayPauseTriggered()));
-    this->connect(this->ui->actionStop, SIGNAL(triggered()),
+    connect(m_ui->actionStop, SIGNAL(triggered()),
                   this, SLOT(onStopTriggered()));
-    this->connect(this->ui->actionNext, SIGNAL(triggered()),
+    connect(m_ui->actionNext, SIGNAL(triggered()),
                   this, SLOT(onNextTriggered()));
-    this->connect(this->ui->actionPrevious, SIGNAL(triggered()),
+    connect(m_ui->actionPrevious, SIGNAL(triggered()),
                   this, SLOT(onPreviousTriggered()));
 
-    this->connect(this->ui->actionRestoreWindow, SIGNAL(triggered()),
+    connect(m_ui->actionRestoreWindow, SIGNAL(triggered()),
                   this, SLOT(show()));
 
-    this->connect(this->ui->actionSelect_service, SIGNAL(triggered()),
+    connect(m_ui->actionSelect_service, SIGNAL(triggered()),
                   this, SLOT(onSelectServiceTriggered()));
-    this->connect(this->ui->pushButtonSelect, SIGNAL(clicked()),
+    connect(m_ui->pushButtonSelect, SIGNAL(clicked()),
                   this, SLOT(onSelectServiceTriggered()));
 
-    this->connect(this->ui->actionPreferences, SIGNAL(triggered()),
+    connect(m_ui->actionPreferences, SIGNAL(triggered()),
                   this, SLOT(onPreferencesTriggered()));
-    this->connect(this->ui->pushButtonPreferences, SIGNAL(clicked()),
+    connect(m_ui->pushButtonPreferences, SIGNAL(clicked()),
                   this, SLOT(onPreferencesTriggered()));
 
-    this->connect(this->ui->actionQuit, SIGNAL(triggered()),
+    connect(m_ui->actionQuit, SIGNAL(triggered()),
                   this, SLOT(quit()));
-    this->connect(this->ui->pushButtonQuit, SIGNAL(clicked()),
+    connect(m_ui->pushButtonQuit, SIGNAL(clicked()),
                   this, SLOT(quit()));
 
-    this->connect(this->ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
+    connect(m_ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
                   this, SLOT(onAboutTriggered()));
-    this->connect(this->ui->actionAbout_Qt, SIGNAL(triggered()),
+    connect(m_ui->actionAbout_Qt, SIGNAL(triggered()),
                   this, SLOT(onAboutQtTriggered()));
-    this->connect(this->ui->actionReport_a_bug, SIGNAL(triggered()),
+    connect(m_ui->actionReport_a_bug, SIGNAL(triggered()),
                   this, SLOT(onReportBugTriggered()));
-    this->connect(this->ui->actionAdd_to_favorites, SIGNAL(triggered()),
+    connect(m_ui->actionAdd_to_favorites, SIGNAL(triggered()),
                   this, SLOT(onAddToFavorites()));
 }
 
@@ -315,43 +315,43 @@ void MainWindow::updatePlayer()
 {
     PlayerInterface* player = Services::player();
     SongInfo song = player->update();
-    ui->actionAdd_to_favorites->setVisible(player->canFavorite());
-    ui->actionAdd_to_favorites->setText(
+    m_ui->actionAdd_to_favorites->setVisible(player->canFavorite());
+    m_ui->actionAdd_to_favorites->setText(
         player->isFavorite() ? tr("Remove from favorites") :
                                tr("Add to favorites"));
     if(song.isValid())
     {
-        this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
-        this->trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
+        setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
+        m_trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
             song.toString()));
-        this->ui->actionNext->setEnabled(player->canGoNext());
-        this->ui->actionPrevious->setEnabled(player->canGoPrevious());
-        this->ui->actionStop->setEnabled(player->playbackStatus() != Stopped);
-        this->ui->actionPlayPause->setEnabled(true);
+        m_ui->actionNext->setEnabled(player->canGoNext());
+        m_ui->actionPrevious->setEnabled(player->canGoPrevious());
+        m_ui->actionStop->setEnabled(player->playbackStatus() != Stopped);
+        m_ui->actionPlayPause->setEnabled(true);
         if(player->playbackStatus() == Paused)
         {
-            this->ui->actionPlayPause->setIcon(Icons::play());
-            this->ui->actionPlayPause->setText(tr("Play"));
+            m_ui->actionPlayPause->setIcon(Icons::play());
+            m_ui->actionPlayPause->setText(tr("Play"));
         }
         else if(player->playbackStatus() == Playing)
         {
-            this->ui->actionPlayPause->setIcon(Icons::pause());
-            this->ui->actionPlayPause->setText(tr("Pause"));
+            m_ui->actionPlayPause->setIcon(Icons::pause());
+            m_ui->actionPlayPause->setText(tr("Pause"));
         }
     }
     else
     {
-        this->setWindowTitle("MellowPlayer");
-        this->ui->actionNext->setEnabled(false);
-        this->ui->actionPrevious->setEnabled(false);
-        this->ui->actionStop->setEnabled(false);
-        this->ui->actionPlayPause->setEnabled(false);
-        if(ui->actionPlayPause->text() != tr("Play"))
+        setWindowTitle("MellowPlayer");
+        m_ui->actionNext->setEnabled(false);
+        m_ui->actionPrevious->setEnabled(false);
+        m_ui->actionStop->setEnabled(false);
+        m_ui->actionPlayPause->setEnabled(false);
+        if(m_ui->actionPlayPause->text() != tr("Play"))
         {
-            this->ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
-            this->ui->actionPlayPause->setIcon(Icons::play());
+            m_ui->actionPlayPause->setText(QApplication::translate("MainWindow", "Play", 0));
+            m_ui->actionPlayPause->setIcon(Icons::play());
         }
-        this->trayIcon->setToolTip("MellowPlayer");
+        m_trayIcon->setToolTip("MellowPlayer");
     }
 }
 
@@ -379,7 +379,7 @@ static QString compilerString()
 //---------------------------------------------------------
 void MainWindow::onAboutTriggered()
 {
-    this->show();
+    show();
     QString version = QString("%1.%2.%3%4")
             .arg(VERSION_MAJOR)
             .arg(VERSION_MINOR)
@@ -437,24 +437,24 @@ void MainWindow::onAddToFavorites()
 //---------------------------------------------------------
 void MainWindow::restoreGeometryAndState()
 {
-    this->restoreGeometry(QSettings().value("windowGeometry").toByteArray());
-    this->restoreState(QSettings().value("windowState").toByteArray());
-    this->ui->toolBar->setVisible(
+    restoreGeometry(QSettings().value("windowGeometry").toByteArray());
+    restoreState(QSettings().value("windowState").toByteArray());
+    m_ui->toolBar->setVisible(
         QSettings().value("toolbarVisible", false).toBool());
 }
 
 //---------------------------------------------------------
 void MainWindow::saveGeometryAndState()
 {
-    QSettings().setValue("windowGeometry", this->saveGeometry());
-    QSettings().setValue("windowState", this->saveState(VERSION_MAJOR));
+    QSettings().setValue("windowGeometry", saveGeometry());
+    QSettings().setValue("windowState", saveState(VERSION_MAJOR));
 
 
     // store toolbar state
-    foreach(QAction* action, this->ui->menuView->actions())
+    foreach(QAction* action, m_ui->menuView->actions())
     {
         QString text = action->text();
-        QString oName = this->ui->toolBar->objectName();
+        QString oName = m_ui->toolBar->objectName();
         if(text.remove("&").toLower() == oName.toLower())
         {
             QSettings().setValue("toolbarVisible", action->isChecked());

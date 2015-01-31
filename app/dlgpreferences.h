@@ -87,9 +87,9 @@ private:
 
 
 private:
-    Ui::DialogPreferences* ui;
-    MainWindow* mainWindow;
-    bool lockPluginState;
+    Ui::DialogPreferences* m_ui;
+    MainWindow* m_mainWindow;
+    bool m_lockPluginState;
 };
 
 #endif // DLGPREFERENCES_H

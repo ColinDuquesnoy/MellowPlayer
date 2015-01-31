@@ -27,7 +27,7 @@
 //---------------------------------------------------------
 StreamingServicesManager::StreamingServicesManager(QObject* parent):
     QObject(parent),
-    _currentService(NULL)
+    m_currentService(NULL)
 {
 
 }
@@ -35,9 +35,9 @@ StreamingServicesManager::StreamingServicesManager(QObject* parent):
 //---------------------------------------------------------
 void StreamingServicesManager::_loadPlugin(IStreamingService* iService)
 {
-    if(!this->plugin(iService->metaData().name))
+    if(!plugin(iService->metaData().name))
     {
-        this->_plugins.append(iService);
+        m_plugins.append(iService);
         qDebug() << "Music streaming service integration plugin loaded: ";
         qDebug() << "  - name: " << iService->metaData().name;
         qDebug() << "  - version: " << iService->metaData().version;
@@ -52,20 +52,20 @@ void StreamingServicesManager::_loadPlugin(IStreamingService* iService)
 //---------------------------------------------------------
 IStreamingService* StreamingServicesManager::currentService() const
 {
-    return this->_currentService;
+    return m_currentService;
 }
 
 //---------------------------------------------------------
 StreamingServicesList StreamingServicesManager::plugins() const
 {
-    return this->_plugins;
+    return m_plugins;
 }
 
 //---------------------------------------------------------
 IStreamingService* StreamingServicesManager::plugin(
     const QString &serviceName) const
 {
-    foreach(IStreamingService* p, this->_plugins)
+    foreach(IStreamingService* p, m_plugins)
     {
         if(p->metaData().name == serviceName)
             return p;
@@ -76,13 +76,13 @@ IStreamingService* StreamingServicesManager::plugin(
 //---------------------------------------------------------
 bool StreamingServicesManager::startService(const QString& serviceName) {
     bool retVal = false;
-    IStreamingService* p = this->plugin(serviceName);
-    if(p && p != this->_currentService)
+    IStreamingService* p = plugin(serviceName);
+    if(p && p != m_currentService)
     {
-        this->_currentService = p;
+        m_currentService = p;
         qDebug() << "Starting service " << serviceName
                  << "(" << p->url() << ")";
-        Services::webView()->load(this->_currentService->url());
+        Services::webView()->load(m_currentService->url());
         retVal = true;
     }
     return retVal;

@@ -64,9 +64,9 @@ public:
     void close();
 
 private:
-    QTranslator translator;
-    SingleInstanceController singleInstanceController;
-    MainWindow* mainWindow;
+    QTranslator m_translator;
+    SingleInstanceController m_singleInstanceController;
+    MainWindow* m_mainWindow;
 };
 
 

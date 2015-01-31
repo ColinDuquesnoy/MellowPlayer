@@ -83,9 +83,9 @@ private:
 
     void restoreGeometryAndState();
 
-    Ui::MainWindow *ui;
-    QTimer* updateTimer;
-    TrayIcon* trayIcon;
+    Ui::MainWindow *m_ui;
+    QTimer* m_updateTimer;
+    TrayIcon* m_trayIcon;
 };
 
 #endif // MAINWINDOW_H

@@ -46,7 +46,7 @@ public:
      * \brief Starts the application and make sure one single instance is
      * running.
      */
-    void start(MellowPlayerApp* app);
+    void start(MellowPlayerApp* m_app);
 
     /*!
      * \brief Close the single application instance.
@@ -59,9 +59,9 @@ public slots:
     void onNewConnection();
 
 private:
-    QLocalSocket* localSocket;
-    QLocalServer* localServer;
-    MellowPlayerApp* app;
+    QLocalSocket* m_localSocket;
+    QLocalServer* m_localServer;
+    MellowPlayerApp* m_app;
 };
 
 

@@ -29,8 +29,8 @@
 //---------------------------------------------------------
 Mpris2Plugin::Mpris2Plugin(QObject *parent):
     QObject(parent),
-    root(NULL),
-    player(NULL)
+    m_root(NULL),
+    m_player(NULL)
 {
 }
 
@@ -43,8 +43,8 @@ void Mpris2Plugin::setup()
                    << SERVICE_NAME;
         return;
     }
-    this->root = new Mpris2Root(this);
-    this->player = new Mpris2Player(this);
+    m_root = new Mpris2Root(this);
+    m_player = new Mpris2Player(this);
     if(!QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this))
     {
         qWarning() << "Failed to register object on the session bus: "

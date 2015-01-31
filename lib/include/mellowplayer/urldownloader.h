@@ -51,12 +51,12 @@ signals:
      *
      * \param fileUrl File path url (on the local file system)
      */
-    void finished(const QString& fileUrl);
+    void finished(const QString& m_fileUrl);
 private slots:
     void onDownloadFinished(QNetworkReply* reply);
 private:
-    QNetworkAccessManager* nam;
-    QString fileUrl;
+    QNetworkAccessManager* m_nam;
+    QString m_fileUrl;
 };
 
 #endif // URLDOWNLOADER

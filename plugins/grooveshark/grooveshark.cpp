@@ -58,37 +58,37 @@ QUrl GroovesharkPlugin::url() const
 //---------------------------------------------------------
 void GroovesharkPlugin::play()
 {
-    this->runJavaScript("window.Grooveshark.play();");
+    runJavaScript("window.Grooveshark.play();");
 }
 
 //---------------------------------------------------------
 void GroovesharkPlugin::pause()
 {
-    this->runJavaScript("window.Grooveshark.pause();");
+    runJavaScript("window.Grooveshark.pause();");
 }
 
 //---------------------------------------------------------
 void GroovesharkPlugin::stop()
 {
-    this->pause();
+    pause();
 }
 
 //---------------------------------------------------------
 void GroovesharkPlugin::next()
 {
-    this->runJavaScript("window.Grooveshark.next();");
+    runJavaScript("window.Grooveshark.next();");
 }
 
 //---------------------------------------------------------
 void GroovesharkPlugin::previous()
 {
-    this->runJavaScript("window.Grooveshark.previous();");
+    runJavaScript("window.Grooveshark.previous();");
 }
 
 //---------------------------------------------------------
 void GroovesharkPlugin::seekToPosition(int position)
 {
-    this->runJavaScript(
+    runJavaScript(
         QString("window.Grooveshark.seekToPosition(%1)").arg(
             QString::number(static_cast<int>(position/1000.f))));
 }
@@ -97,7 +97,7 @@ void GroovesharkPlugin::seekToPosition(int position)
 SongInfo GroovesharkPlugin::currentSongInfo()
 {
     SongInfo retVal;
-    QVariantMap result = this->runJavaScript(
+    QVariantMap result = runJavaScript(
         "current_song = window.Grooveshark.getCurrentSongStatus()").toMap();
     QVariantMap songData = result["song"].toMap();
     retVal.songId = songData["songID"].toString();
@@ -116,7 +116,7 @@ SongInfo GroovesharkPlugin::currentSongInfo()
 //---------------------------------------------------------
 PlaybackStatus GroovesharkPlugin::playbackStatus()
 {
-    QVariantMap result = this->runJavaScript(
+    QVariantMap result = runJavaScript(
         "current_song = window.Grooveshark.getCurrentSongStatus()").toMap();
     QString statusString = result["status"].toString();
     if(statusString == "playing")
@@ -132,7 +132,8 @@ PlaybackStatus GroovesharkPlugin::playbackStatus()
 //---------------------------------------------------------
 float GroovesharkPlugin::volume()
 {
-    float volume = this->runJavaScript("window.Grooveshark.getVolume())").toInt() / 100.0f;
+    float volume = runJavaScript(
+        "window.Grooveshark.getVolume())").toInt() / 100.0f;
     qDebug() << "Grooveshark volume" << volume;
     return volume;
 }
@@ -140,7 +141,7 @@ float GroovesharkPlugin::volume()
 //---------------------------------------------------------
 void GroovesharkPlugin::setVolume(float volume)
 {
-    this->runJavaScript(
+    runJavaScript(
         QString("window.Grooveshark.setVolume(%1)").arg(
                     QString::number(static_cast<int>(volume * 100))));
 }

@@ -25,42 +25,42 @@
 //---------------------------------------------------------
 SingleInstanceController::SingleInstanceController(QObject* parent):
     QObject(parent),
-    localSocket(new QLocalSocket()),
-    localServer(new QLocalServer()),
-    app(NULL)
+    m_localSocket(new QLocalSocket()),
+    m_localServer(new QLocalServer()),
+    m_app(NULL)
 {
-    connect(this->localSocket, SIGNAL(connected()),
+    connect(m_localSocket, SIGNAL(connected()),
             this, SLOT(onSocketConnected()));
 
-    connect(this->localServer, SIGNAL(newConnection()),
+    connect(m_localServer, SIGNAL(newConnection()),
             this, SLOT(onNewConnection()));
 
-    connect(this->localSocket, SIGNAL(error(QLocalSocket::LocalSocketError)),
+    connect(m_localSocket, SIGNAL(error(QLocalSocket::LocalSocketError)),
             this, SLOT(onSocketError()));
 }
 
 //---------------------------------------------------------
 SingleInstanceController::~SingleInstanceController()
 {
-    delete this->localServer;
-    delete this->localSocket;
+    delete m_localServer;
+    delete m_localSocket;
 }
 
 //---------------------------------------------------------
 void SingleInstanceController::start(MellowPlayerApp* app)
 {
     qDebug() << "Starting the application";
-    this->app = app;
+    app = app;
 #ifndef QT_DEBUG
-    this->localSocket->connectToServer(APP_NAME, QIODevice::WriteOnly);
+    localSocket->connectToServer(APP_NAME, QIODevice::WriteOnly);
 #else
-    this->app->initialize();
+    app->initialize();
 #endif
 }
 
 void SingleInstanceController::close()
 {
-    this->localServer->close();
+    m_localServer->close();
 }
 
 //---------------------------------------------------------
@@ -70,7 +70,7 @@ void SingleInstanceController::onSocketConnected()
     // This means the server is already running and we have to exit.
     qDebug() << "Another instance is already running, quitting...";
 #if QT_VERSION >= 0x050000
-    QTimer::singleShot(250, &this->app->quit);
+    QTimer::singleShot(250, &m_app->quit);
 #else
     QTimer::singleShot(250, this, SLOT(quit));
 #endif
@@ -79,14 +79,14 @@ void SingleInstanceController::onSocketConnected()
 //---------------------------------------------------------
 void SingleInstanceController::onSocketError()
 {
-    if(!this->localServer->listen(APP_NAME))
+    if(!m_localServer->listen(APP_NAME))
         qWarning() << "Failed to start local server, cannot ensure unique "
                       "application instance";
-    this->app->initialize();
+    m_app->initialize();
 }
 
 //---------------------------------------------------------
 void SingleInstanceController::onNewConnection()
 {
-    this->app->raise();
+    m_app->raise();
 }

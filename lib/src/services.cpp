@@ -26,23 +26,23 @@
 #include "mellowplayer/trayicon.h"
 
 //---------------------------------------------------------
-StreamingServicesManager* Services::_services = NULL;
-ExtensionsManager* Services::_extensions = NULL;
-QMainWindow* Services::_mainWindow= NULL;
-QWebView* Services::_webView = NULL;
-PlayerInterface* Services::_player = NULL;
-TrayIcon* Services::_trayIcon = NULL;
+StreamingServicesManager* Services::m_services = NULL;
+ExtensionsManager* Services::m_extensions = NULL;
+QMainWindow* Services::m_mainWindow= NULL;
+QWebView* Services::m_webView = NULL;
+PlayerInterface* Services::m_player = NULL;
+TrayIcon* Services::m_trayIcon = NULL;
 
 //---------------------------------------------------------
 void Services::_setMainWindow(QMainWindow *mainWindow)
 {
-    Services::_mainWindow = mainWindow;
+    Services::m_mainWindow = mainWindow;
 }
 
 //---------------------------------------------------------
 QMainWindow *Services::mainWindow()
 {
-    return Services::_mainWindow;
+    return Services::m_mainWindow;
 }
 
 //---------------------------------------------------------
@@ -57,55 +57,55 @@ void Services::raiseMainWindow()
 //---------------------------------------------------------
 void Services::_setServicesManager(StreamingServicesManager *manager)
 {
-    Services::_services = manager;
+    Services::m_services = manager;
 }
 
 //---------------------------------------------------------
 StreamingServicesManager *Services::streamingServices()
 {
-    return Services::_services;
+    return Services::m_services;
 }
 
 //---------------------------------------------------------
 void Services::_setExtensionsManager(ExtensionsManager *manager)
 {
-    Services::_extensions = manager;
+    Services::m_extensions = manager;
 }
 
 //---------------------------------------------------------
 ExtensionsManager *Services::extensions()
 {
-    return Services::_extensions;
+    return Services::m_extensions;
 }
 
 //---------------------------------------------------------
 void Services::_setWebView(QWebView *_webView)
 {
-    Services::_webView = _webView;
+    Services::m_webView = _webView;
 }
 
 //---------------------------------------------------------
 QWebView *Services::webView()
 {
-    return Services::_webView;
+    return Services::m_webView;
 }
 
 //---------------------------------------------------------
 void Services::_setPlayer(PlayerInterface *player)
 {
-    Services::_player = player;
+    Services::m_player = player;
 }
 
 //---------------------------------------------------------
 PlayerInterface *Services::player()
 {
-    return Services::_player;
+    return Services::m_player;
 }
 
 //---------------------------------------------------------
 QAction *Services::action(const QString &actionText)
 {
-    QList<QAction*> actions = Services::_mainWindow->actions();
+    QList<QAction*> actions = Services::m_mainWindow->actions();
     foreach(QAction* a, actions){
         if(a->objectName() == actionText)
             return a;
@@ -116,13 +116,13 @@ QAction *Services::action(const QString &actionText)
 //---------------------------------------------------------
 void Services::_setTrayIcon(TrayIcon *icon)
 {
-    Services::_trayIcon = icon;
+    Services::m_trayIcon = icon;
 }
 
 //---------------------------------------------------------
 TrayIcon *Services::trayIcon()
 {
-    return Services::_trayIcon;
+    return Services::m_trayIcon;
 }
 
 

@@ -23,30 +23,30 @@
 //---------------------------------------------------------
 UrlDownloader::UrlDownloader(QObject *parent):
     QObject(parent),
-    nam(NULL)
+    m_nam(NULL)
 {
 }
 
 //---------------------------------------------------------
 void UrlDownloader::download(const QString &url, const QString &destination)
 {
-    this->nam = new QNetworkAccessManager(this);
-    this->fileUrl = destination;
-    connect(this->nam, SIGNAL(finished(QNetworkReply *)),
+    m_nam = new QNetworkAccessManager(this);
+    m_fileUrl = destination;
+    connect(m_nam, SIGNAL(finished(QNetworkReply *)),
             this, SLOT(onDownloadFinished(QNetworkReply *)));
-    this->nam->get(QNetworkRequest(QUrl(url)));
+    m_nam->get(QNetworkRequest(QUrl(url)));
     qDebug() << "Downloading " << url << " to " << destination;
 }
 
 //---------------------------------------------------------
 void UrlDownloader::onDownloadFinished(QNetworkReply *reply)
 {
-    qDebug() << "Download finished: " << this->fileUrl;
-    QFile file(this->fileUrl);
+    qDebug() << "Download finished: " << m_fileUrl;
+    QFile file(m_fileUrl);
     if(file.open(QIODevice::WriteOnly))
     {
         file.write(reply->readAll());
         file.close();
     }
-    emit this->finished(this->fileUrl);
+    emit finished(m_fileUrl);
 }

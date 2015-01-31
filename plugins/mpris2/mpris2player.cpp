@@ -24,8 +24,8 @@
 //---------------------------------------------------------
 Mpris2Player::Mpris2Player(QObject *parent):
     QDBusAbstractAdaptor(parent),
-    length(0),
-    prevPos(0)
+    m_length(0),
+    m_prevPos(0)
 {
     connect(Services::player(), SIGNAL(playbackStatusChanged(PlaybackStatus)),
             this, SLOT(onPlaybackStatusChanged(PlaybackStatus)));
@@ -97,27 +97,27 @@ void Mpris2Player::onPlaybackStatusChanged(PlaybackStatus status)
 {
     QVariantMap map;
     map["PlaybackStatus"] = playbackStatusToString(status);
-    this->signalUpdate(map);
+    signalUpdate(map);
 }
 
 //---------------------------------------------------------
 void Mpris2Player::onSongChanged(const SongInfo &song)
 {
     QVariantMap map;
-    this->artUrl = "";
-    this->length = 0;
-    map["Metadata"] = this->toXesam(song);
-    this->signalUpdate(map);
+    m_artUrl = "";
+    m_length = 0;
+    map["Metadata"] = toXesam(song);
+    signalUpdate(map);
 }
 
 //---------------------------------------------------------
 void Mpris2Player::onArtReady(const QString &artFilePathUrl)
 {
     QVariantMap map;
-    this->artUrl = artFilePathUrl;
-    this->artUrl = "file://" + artFilePathUrl;
-    map["Metadata"] = this->toXesam(Services::player()->currentSong());
-    this->signalUpdate(map);
+    m_artUrl = artFilePathUrl;
+    m_artUrl = "file://" + artFilePathUrl;
+    map["Metadata"] = toXesam(Services::player()->currentSong());
+    signalUpdate(map);
 }
 
 //---------------------------------------------------------
@@ -126,20 +126,20 @@ void Mpris2Player::onPositionChanged(qlonglong position)
     qlonglong floorPos = floor(position / 1000000.f) * 1000000;
 
     QVariantMap map;
-    if(this->length == 0 && Services::player()->currentSong().duration)
+    if(m_length == 0 && Services::player()->currentSong().duration)
     {
-        this->length = Services::player()->currentSong().duration;
-        map["Metadata"] = this->toXesam(Services::player()->currentSong());
-        this->signalUpdate(map);
+        m_length = Services::player()->currentSong().duration;
+        map["Metadata"] = toXesam(Services::player()->currentSong());
+        signalUpdate(map);
     }
     else
     {
         map["Position"] = floorPos;
-        this->signalUpdate(map);
-        qlonglong delta = abs(floorPos - this->prevPos);
-        this->prevPos = floorPos;
+        signalUpdate(map);
+        qlonglong delta = abs(floorPos - m_prevPos);
+        m_prevPos = floorPos;
         if(delta > 2000000)
-            emit this->Seeked(floorPos);
+            emit Seeked(floorPos);
     }
 }
 
@@ -147,11 +147,11 @@ void Mpris2Player::onPositionChanged(qlonglong position)
 void Mpris2Player::onControlCapsChanged()
 {
     QVariantMap map;
-    map["CanSeek"] = this->canSeek();
-    map["CanPlay"] = this->canPlay();
-    map["CanPause"] = this->canPause();
-    map["CanGoNext"] = this->canGoNext();
-    map["CanGoPrevious"] = this->canGoPrevious();
+    map["CanSeek"] = canSeek();
+    map["CanPlay"] = canPlay();
+    map["CanPause"] = canPause();
+    map["CanGoNext"] = canGoNext();
+    map["CanGoPrevious"] = canGoPrevious();
     signalUpdate(map);
 }
 
@@ -221,7 +221,7 @@ void Mpris2Player::setVolume(float value)
 //---------------------------------------------------------
 QVariantMap Mpris2Player::metadata()
 {
-    return this->toXesam(Services::player()->currentSong());
+    return toXesam(Services::player()->currentSong());
 }
 
 //---------------------------------------------------------
@@ -251,7 +251,7 @@ void Mpris2Player::setRate(float value)
 //---------------------------------------------------------
 qlonglong Mpris2Player::position()
 {
-    return this->prevPos;
+    return m_prevPos;
 }
 
 //---------------------------------------------------------
@@ -315,6 +315,6 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const SongInfo &song)
         map["mpris:trackid"] = QVariant(QDBusObjectPath(
                     "/org/mpris/MediaPlayer2/NoTrack").path());
     }
-    map["mpris:artUrl"] = this->artUrl;
+    map["mpris:artUrl"] = m_artUrl;
     return map;
 }

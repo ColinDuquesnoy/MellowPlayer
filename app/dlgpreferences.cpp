@@ -34,64 +34,64 @@
 //---------------------------------------------------------
 DlgPreferences::DlgPreferences(MainWindow* parent):
     QDialog(parent),
-    mainWindow(parent),
-    lockPluginState(true)
+    m_mainWindow(parent),
+    m_lockPluginState(true)
 {
     qDebug() << QSettings().fileName();
 
-    ui = new Ui::DialogPreferences();
-    ui->setupUi(this);
-    this->setWindowTitle(tr("Preferences"));
+    m_ui = new Ui::DialogPreferences();
+    m_ui->setupUi(this);
+    setWindowTitle(tr("Preferences"));
 
-    ui->listWidget->item(0)->setIcon(Icons::interface());
-    ui->listWidget->item(1)->setIcon(Icons::shortcuts());
-    ui->listWidget->item(2)->setIcon(Icons::plugins());
-    ui->listWidget->item(3)->setIcon(Icons::userTrash());
+    m_ui->listWidget->item(0)->setIcon(Icons::interface());
+    m_ui->listWidget->item(1)->setIcon(Icons::shortcuts());
+    m_ui->listWidget->item(2)->setIcon(Icons::plugins());
+    m_ui->listWidget->item(3)->setIcon(Icons::userTrash());
 
-    connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
+    connect(m_ui->listWidget, SIGNAL(currentRowChanged(int)),
             this, SLOT(onCategoryChanged(int)));
-    connect(ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()),
+    connect(m_ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()),
             this, SLOT(reset()));
-    connect(ui->buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
+    connect(m_ui->buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
             this, SLOT(restoreDefaults()));
 
-    connect(ui->comboBoxPlugins, SIGNAL(currentIndexChanged(int)),
+    connect(m_ui->comboBoxPlugins, SIGNAL(currentIndexChanged(int)),
             this, SLOT(onCurrentPluginChanged(int)));
-    connect(ui->pushButtonClearCookies, SIGNAL(clicked()),
+    connect(m_ui->pushButtonClearCookies, SIGNAL(clicked()),
             this, SLOT(onClearCookiesClicked()));
-    connect(ui->pushButtonClearPreferences, SIGNAL(clicked()),
+    connect(m_ui->pushButtonClearPreferences, SIGNAL(clicked()),
             this, SLOT(onClearPreferencesClicked()));
 
-    connect(ui->checkBoxPluginState, SIGNAL(stateChanged(int)),
+    connect(m_ui->checkBoxPluginState, SIGNAL(stateChanged(int)),
             this, SLOT(onPluginStateChanged(int)));
 
     // empty page
-    ui->stackedWidgetPluginSettings->addWidget(new QWidget());
+    m_ui->stackedWidgetPluginSettings->addWidget(new QWidget());
 
     // load plugins
-    ui->comboBoxPlugins->clear();
+    m_ui->comboBoxPlugins->clear();
     foreach(IExtension* plugin, Services::extensions()->plugins())
     {
         QWidget* settings = plugin->settingsWidget();
         int index = 0;
         if(settings)
-            index = ui->stackedWidgetPluginSettings->addWidget(settings);
-        ui->comboBoxPlugins->addItem(plugin->metaData().name, index);
+            index = m_ui->stackedWidgetPluginSettings->addWidget(settings);
+        m_ui->comboBoxPlugins->addItem(plugin->metaData().name, index);
     }
 
     reset();
 
-    this->lockPluginState = false;
+    m_lockPluginState = false;
 
     // restore last preferences page
     int currentIndex = QSettings().value("lastPreferencesPageIndex", 0).toInt();
-    ui->listWidget->setCurrentRow(currentIndex);
+    m_ui->listWidget->setCurrentRow(currentIndex);
 }
 
 //---------------------------------------------------------
 DlgPreferences::~DlgPreferences()
 {
-    delete ui;
+    delete m_ui;
 }
 
 //---------------------------------------------------------
@@ -111,7 +111,7 @@ bool DlgPreferences::editPreferences(MainWindow *parent)
 //---------------------------------------------------------
 void DlgPreferences::onCategoryChanged(int category)
 {
-    ui->stackedWidget->setCurrentIndex(category);
+    m_ui->stackedWidget->setCurrentIndex(category);
 }
 
 //---------------------------------------------------------
@@ -133,45 +133,45 @@ void DlgPreferences::restoreDefaults()
 //---------------------------------------------------------
 void DlgPreferences::onCurrentPluginChanged(int currentIndex)
 {
-    this->lockPluginState = true;
-    QString pluginName = ui->comboBoxPlugins->itemText(currentIndex);
+    m_lockPluginState = true;
+    QString pluginName = m_ui->comboBoxPlugins->itemText(currentIndex);
     qDebug() << "Active plugin changed" << pluginName;
     IExtension* plugin = Services::extensions()->plugin(pluginName);
     if(plugin)
     {
-        ui->labelPluginAuthor->setText(plugin->metaData().author);
-        ui->labelPluginDescription->setText(plugin->metaData().description);
-        ui->labelPluginVersion->setText(plugin->metaData().version);
-        ui->labelPluginWebSite->setText(plugin->metaData().author_website);
+        m_ui->labelPluginAuthor->setText(plugin->metaData().author);
+        m_ui->labelPluginDescription->setText(plugin->metaData().description);
+        m_ui->labelPluginVersion->setText(plugin->metaData().version);
+        m_ui->labelPluginWebSite->setText(plugin->metaData().author_website);
 
-        int index = ui->comboBoxPlugins->itemData(
-            ui->comboBoxPlugins->currentIndex()).toInt();
-        ui->stackedWidgetPluginSettings->setCurrentIndex(index);
-        ui->checkBoxPluginState->setChecked(
+        int index = m_ui->comboBoxPlugins->itemData(
+            m_ui->comboBoxPlugins->currentIndex()).toInt();
+        m_ui->stackedWidgetPluginSettings->setCurrentIndex(index);
+        m_ui->checkBoxPluginState->setChecked(
             QSettings().value(plugin->metaData().name, true).toBool());
     }
     else
     {
-        ui->labelPluginAuthor->setText("");
-        ui->labelPluginDescription->setText("");
-        ui->labelPluginVersion->setText("");
-        ui->labelPluginWebSite->setText("");
-        ui->stackedWidgetPluginSettings->setCurrentIndex(0);
-        ui->checkBoxPluginState->setChecked(false);
+        m_ui->labelPluginAuthor->setText("");
+        m_ui->labelPluginDescription->setText("");
+        m_ui->labelPluginVersion->setText("");
+        m_ui->labelPluginWebSite->setText("");
+        m_ui->stackedWidgetPluginSettings->setCurrentIndex(0);
+        m_ui->checkBoxPluginState->setChecked(false);
     }
-    this->lockPluginState = false;
+    m_lockPluginState = false;
 }
 
 //---------------------------------------------------------
 void DlgPreferences::onPluginStateChanged(int state)
 {
-    if(this->lockPluginState)
+    if(m_lockPluginState)
         return;
     IExtension* plugin = Services::extensions()->plugin(
-        ui->comboBoxPlugins->currentText());
+        m_ui->comboBoxPlugins->currentText());
     if(plugin)
         QSettings().setValue(plugin->metaData().name, bool(state));
-    this->restart();
+    restart();
 }
 
 //---------------------------------------------------------
@@ -231,8 +231,8 @@ void DlgPreferences::resetInterface()
                 "trayIcon",  ":/icons/mellowplayer.png").toString();
     bool confirmQuit = QSettings().value("confirmQuit", true).toBool();
 
-    ui->checkBoxConfirmQuit->setChecked(confirmQuit);
-    ui->checkBoxMinimizeToTray->setChecked(minimizeToTray);
+    m_ui->checkBoxConfirmQuit->setChecked(confirmQuit);
+    m_ui->checkBoxMinimizeToTray->setChecked(minimizeToTray);
 }
 
 
@@ -240,11 +240,11 @@ void DlgPreferences::resetInterface()
 void DlgPreferences::resetShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionPlayPause);
-    actions.append(mainWindow->ui->actionStop);
-    actions.append(mainWindow->ui->actionNext);
-    actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAdd_to_favorites);
+    actions.append(m_mainWindow->m_ui->actionPlayPause);
+    actions.append(m_mainWindow->m_ui->actionStop);
+    actions.append(m_mainWindow->m_ui->actionNext);
+    actions.append(m_mainWindow->m_ui->actionPrevious);
+    actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
 
     QList<QString> shortcuts;
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
@@ -254,11 +254,11 @@ void DlgPreferences::resetShortcuts()
     shortcuts.append(DEFAULT_SHORTCUT_FAVORITE);
 
     QList<KeySequenceEdit*> edits;
-    edits.append(ui->lineEditPlayPause);
-    edits.append(ui->lineEditStop);
-    edits.append(ui->lineEditNext);
-    edits.append(ui->lineEditPrevious);
-    edits.append(ui->lineEditFavorite);
+    edits.append(m_ui->lineEditPlayPause);
+    edits.append(m_ui->lineEditStop);
+    edits.append(m_ui->lineEditNext);
+    edits.append(m_ui->lineEditPrevious);
+    edits.append(m_ui->lineEditFavorite);
 
     for(int i=0; i < actions.count(); ++ i)
         edits[i]->setKeySequence(
@@ -269,42 +269,42 @@ void DlgPreferences::resetShortcuts()
 //---------------------------------------------------------
 void DlgPreferences::resetPlugins()
 {
-    this->lockPluginState = true;
-    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    m_lockPluginState = true;
+    for(int i = 0; i < m_ui->comboBoxPlugins->count(); ++i)
     {
-        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        int widgetIndex = m_ui->comboBoxPlugins->itemData(i).toInt();
         if(widgetIndex)
         {
-            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            QWidget* w = m_ui->stackedWidgetPluginSettings->widget(widgetIndex);
             IExtension* plugin = Services::extensions()->plugin(
-                ui->comboBoxPlugins->itemText(i));
+                m_ui->comboBoxPlugins->itemText(i));
             plugin->resetSettings(w);
         }
     }
-    this->lockPluginState = false;
+    m_lockPluginState = false;
 }
 
 //---------------------------------------------------------
 void DlgPreferences::restoreInterface()
 {
-    this->lockPluginState = true;
+    m_lockPluginState = true;
     QSettings().setValue("minimizeToTray", true);
     QSettings().setValue("trayIcon",  ":/icons/mellowplayer.png");
     QSettings().setValue("confirmQuit", true);
 
-    this->resetInterface();
-    this->lockPluginState = false;
+    resetInterface();
+    m_lockPluginState = false;
 }
 
 //---------------------------------------------------------
 void DlgPreferences::restoreShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionPlayPause);
-    actions.append(mainWindow->ui->actionStop);
-    actions.append(mainWindow->ui->actionNext);
-    actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAdd_to_favorites);
+    actions.append(m_mainWindow->m_ui->actionPlayPause);
+    actions.append(m_mainWindow->m_ui->actionStop);
+    actions.append(m_mainWindow->m_ui->actionNext);
+    actions.append(m_mainWindow->m_ui->actionPrevious);
+    actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
 
     QList<QString> shortcuts;
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
@@ -316,51 +316,51 @@ void DlgPreferences::restoreShortcuts()
     for(int i=0; i < actions.count(); ++ i)
         QSettings().setValue(actions[i]->objectName(), shortcuts[i]);
 
-    this->resetShortcuts();
+    resetShortcuts();
 }
 
 //---------------------------------------------------------
 void DlgPreferences::restorePlugins()
 {
-    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    for(int i = 0; i < m_ui->comboBoxPlugins->count(); ++i)
     {
-        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        int widgetIndex = m_ui->comboBoxPlugins->itemData(i).toInt();
         if(widgetIndex)
         {
-            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            QWidget* w = m_ui->stackedWidgetPluginSettings->widget(widgetIndex);
             IExtension* plugin = Services::extensions()->plugin(
-                        ui->comboBoxPlugins->itemText(i));
+                        m_ui->comboBoxPlugins->itemText(i));
             plugin->restoreDefaultSettings(w);
         }
     }
 
-    this->resetPlugins();
+    resetPlugins();
 }
 
 //---------------------------------------------------------
 void DlgPreferences::applyInterface()
 {
     QSettings().setValue("minimizeToTray",
-                         ui->checkBoxMinimizeToTray->isChecked());
-    QSettings().setValue("confirmQuit", ui->checkBoxConfirmQuit->isChecked());
+                         m_ui->checkBoxMinimizeToTray->isChecked());
+    QSettings().setValue("confirmQuit", m_ui->checkBoxConfirmQuit->isChecked());
 }
 
 //---------------------------------------------------------
 void DlgPreferences::applyShortcuts()
 {
     QList<QAction*> actions;
-    actions.append(mainWindow->ui->actionPlayPause);
-    actions.append(mainWindow->ui->actionStop);
-    actions.append(mainWindow->ui->actionNext);
-    actions.append(mainWindow->ui->actionPrevious);
-    actions.append(mainWindow->ui->actionAdd_to_favorites);
+    actions.append(m_mainWindow->m_ui->actionPlayPause);
+    actions.append(m_mainWindow->m_ui->actionStop);
+    actions.append(m_mainWindow->m_ui->actionNext);
+    actions.append(m_mainWindow->m_ui->actionPrevious);
+    actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
 
     QList<KeySequenceEdit*> edits;
-    edits.append(ui->lineEditPlayPause);
-    edits.append(ui->lineEditStop);
-    edits.append(ui->lineEditNext);
-    edits.append(ui->lineEditPrevious);
-    edits.append(ui->lineEditFavorite);
+    edits.append(m_ui->lineEditPlayPause);
+    edits.append(m_ui->lineEditStop);
+    edits.append(m_ui->lineEditNext);
+    edits.append(m_ui->lineEditPrevious);
+    edits.append(m_ui->lineEditFavorite);
 
     for(int i = 0; i < actions.count(); ++i)
     {
@@ -373,14 +373,14 @@ void DlgPreferences::applyShortcuts()
 //---------------------------------------------------------
 void DlgPreferences::applyPlugins()
 {
-    for(int i = 0; i < ui->comboBoxPlugins->count(); ++i)
+    for(int i = 0; i < m_ui->comboBoxPlugins->count(); ++i)
     {
-        int widgetIndex = ui->comboBoxPlugins->itemData(i).toInt();
+        int widgetIndex = m_ui->comboBoxPlugins->itemData(i).toInt();
         if(widgetIndex)
         {
-            QWidget* w = ui->stackedWidgetPluginSettings->widget(widgetIndex);
+            QWidget* w = m_ui->stackedWidgetPluginSettings->widget(widgetIndex);
             IExtension* plugin = Services::extensions()->plugin(
-                        ui->comboBoxPlugins->itemText(i));
+                        m_ui->comboBoxPlugins->itemText(i));
             plugin->applySettings(w);
         }
     }

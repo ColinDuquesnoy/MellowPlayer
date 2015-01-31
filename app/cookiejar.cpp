@@ -23,14 +23,14 @@
 CookieJar::CookieJar(QObject* parent):
     QNetworkCookieJar(parent)
 {
-    this->loadCookies();
+    loadCookies();
 }
 
 //---------------------------------------------------------
 void CookieJar::purgeCookies()
 {
     QSettings().setValue("cookies", CookieMap());
-    this->loadCookies();
+    loadCookies();
 }
 
 //---------------------------------------------------------
@@ -62,5 +62,5 @@ void CookieJar::loadCookies()
         array += "\n";
     }
     qDebug() << QString("Loading %1 cookies").arg(map.count());
-    this->setAllCookies(QNetworkCookie::parseCookies(array));
+    setAllCookies(QNetworkCookie::parseCookies(array));
 }

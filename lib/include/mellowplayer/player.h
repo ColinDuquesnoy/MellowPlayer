@@ -197,15 +197,14 @@ private:
     void checkForControlCaps();
     void downloadSongArt(const QString &url);
 
-    SongInfo        _currentSong;
-    SongInfo        _startedSong;
-    PlaybackStatus  currentStatus;
-    int             currentPosition;
-
-    bool _canSeek;
-    bool _canPlay;
-    bool _canGoNext;
-    bool _canGoPrevious;
+    SongInfo        m_currentSong;
+    SongInfo        m_startedSong;
+    PlaybackStatus  m_currentStatus;
+    int             m_currentPosition;
+    bool            m_canSeek;
+    bool            m_canPlay;
+    bool            m_canGoNext;
+    bool            m_canGoPrevious;
 };
 
 #endif // PLAYER

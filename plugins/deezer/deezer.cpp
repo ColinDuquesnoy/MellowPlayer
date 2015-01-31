@@ -59,31 +59,31 @@ QUrl DeezerPlugin::url() const
 //---------------------------------------------------------
 void DeezerPlugin::play()
 {
-    this->runJavaScript("dzPlayer.control.play();");
+    runJavaScript("dzPlayer.control.play();");
 }
 
 //---------------------------------------------------------
 void DeezerPlugin::pause()
 {
-    this->runJavaScript("dzPlayer.control.pause();");
+    runJavaScript("dzPlayer.control.pause();");
 }
 
 //---------------------------------------------------------
 void DeezerPlugin::stop()
 {
-    this->pause();
+    pause();
 }
 
 //---------------------------------------------------------
 void DeezerPlugin::next()
 {
-    this->runJavaScript("dzPlayer.control.nextSong();");
+    runJavaScript("dzPlayer.control.nextSong();");
 }
 
 //---------------------------------------------------------
 void DeezerPlugin::previous()
 {
-    this->runJavaScript("dzPlayer.control.prevSong();");
+    runJavaScript("dzPlayer.control.prevSong();");
 }
 
 //---------------------------------------------------------
@@ -91,11 +91,11 @@ void DeezerPlugin::seekToPosition(int position)
 {
     // deezer use a normalised float value to represent the song duration
     // (0 = beginning, 1 = end)
-    float percentage = position / float(this->currentSongInfo().duration);
+    float percentage = position / float(currentSongInfo().duration);
     QString cmd = QString(
         "dzPlayer.control.seek(%1);").arg(QString::number(percentage));
     qDebug() << cmd;
-    this->runJavaScript(cmd);
+    runJavaScript(cmd);
 }
 
 //---------------------------------------------------------
@@ -103,21 +103,21 @@ SongInfo DeezerPlugin::currentSongInfo()
 {
     SongInfo retVal;
 
-    retVal.songName = this->runJavaScript(
+    retVal.songName = runJavaScript(
         "dzPlayer.getSongTitle();").toString();
-    retVal.albumName = this->runJavaScript(
+    retVal.albumName = runJavaScript(
         "dzPlayer.getAlbumTitle();").toString();
-    retVal.artistName = this->runJavaScript(
+    retVal.artistName = runJavaScript(
         "dzPlayer.getArtistName();").toString();
-    retVal.duration = static_cast<qlonglong>(this->runJavaScript(
+    retVal.duration = static_cast<qlonglong>(runJavaScript(
          "dzPlayer.getDuration();").toFloat() * 1000000);
-    retVal.position = static_cast<qlonglong>(this->runJavaScript(
+    retVal.position = static_cast<qlonglong>(runJavaScript(
          "dzPlayer.getPosition();").toFloat() * 1000000);
-    retVal.songId = this->runJavaScript(
+    retVal.songId = runJavaScript(
         "dzPlayer.getSongId();").toString();
 
 
-    QString coverId = this->runJavaScript("dzPlayer.getCover();").toString();
+    QString coverId = runJavaScript("dzPlayer.getCover();").toString();
     retVal.artUrl = QString(
         "https://cdns-images.deezer.com/images/cover/%1/"
         "400x400.jpg").arg(coverId);
@@ -128,11 +128,11 @@ SongInfo DeezerPlugin::currentSongInfo()
 //---------------------------------------------------------
 PlaybackStatus DeezerPlugin::playbackStatus()
 {
-    bool loading = this->runJavaScript(
+    bool loading = runJavaScript(
         "dzPlayer.loading;").toBool();
-    bool playing = this->runJavaScript(
+    bool playing = runJavaScript(
         "dzPlayer.playing;").toBool();
-    bool paused = this->runJavaScript(
+    bool paused = runJavaScript(
         "dzPlayer.paused;").toBool();
     if(playing)
         return Playing;
@@ -147,7 +147,7 @@ PlaybackStatus DeezerPlugin::playbackStatus()
 //---------------------------------------------------------
 float DeezerPlugin::volume()
 {
-    return this->runJavaScript("dzPlayer.volume;").toFloat();
+    return runJavaScript("dzPlayer.volume;").toFloat();
 }
 
 //---------------------------------------------------------
@@ -155,7 +155,7 @@ void DeezerPlugin::setVolume(float volume)
 {
     QString cmd = QString(
         "dzPlayer.control.setVolume(%1);").arg(QString::number(volume));
-    this->runJavaScript(cmd);
+    runJavaScript(cmd);
 }
 
 //---------------------------------------------------------

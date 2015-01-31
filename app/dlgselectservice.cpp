@@ -33,9 +33,9 @@ bool cmp(const IStreamingService* a,
 //---------------------------------------------------------
 DlgSelectServices::DlgSelectServices(QWidget *parent):
     QDialog(parent),
-    ui(new Ui::DialogSelectServices())
+    m_ui(new Ui::DialogSelectServices())
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     int row = 0;
     QString activeService = QSettings().value("service", "").toString();
@@ -43,10 +43,10 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
     StreamingServicesList plugins = Services::streamingServices()->plugins();
     qSort(plugins.begin(), plugins.end(), cmp);
     foreach(IStreamingService* plugin, plugins){
-        QListWidgetItem* item = new QListWidgetItem(ui->listWidget);
+        QListWidgetItem* item = new QListWidgetItem(m_ui->listWidget);
         item->setText(plugin->metaData().name);
         item->setIcon(plugin->metaData().icon);
-        ui->listWidget->addItem(item);
+        m_ui->listWidget->addItem(item);
 
         if(plugin->metaData().name == activeService)
             row = i;
@@ -54,25 +54,25 @@ DlgSelectServices::DlgSelectServices(QWidget *parent):
         ++i;
     }
 
-    connect(ui->listWidget, SIGNAL(currentRowChanged(int)),
+    connect(m_ui->listWidget, SIGNAL(currentRowChanged(int)),
             this, SLOT(onCurrentRowChanged(int)));
-    ui->listWidget->setCurrentRow(row);
+    m_ui->listWidget->setCurrentRow(row);
 }
 
 //---------------------------------------------------------
 DlgSelectServices::~DlgSelectServices()
 {
-    delete ui;
+    delete m_ui;
 }
 
 //---------------------------------------------------------
 void DlgSelectServices::onCurrentRowChanged(int row)
 {
-    QListWidgetItem* item = this->ui->listWidget->item(row);
+    QListWidgetItem* item = m_ui->listWidget->item(row);
     IStreamingService* plugin = Services::streamingServices()->plugin(item->text());
     if(plugin)
     {
-        ui->textBrowser->setHtml(
+        m_ui->textBrowser->setHtml(
               QObject::tr("<h1>%1</h1>"
                           "<h2>Description</h2>"
                           "%2"
@@ -92,6 +92,6 @@ QString DlgSelectServices::selectService(QWidget *parent)
 {
     DlgSelectServices dlg(parent);
     if(dlg.exec() == QDialog::Accepted)
-        return dlg.ui->listWidget->currentItem()->text();
+        return dlg.m_ui->listWidget->currentItem()->text();
     return "";
 }

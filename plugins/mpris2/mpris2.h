@@ -66,8 +66,8 @@ public:
     const PluginMetaData& metaData() const;
 
 private:
-    Mpris2Root* root;       /*!< Mpris2 root interface */
-    Mpris2Player* player;   /*!< Mpris2 player interface */
+    Mpris2Root* m_root;       /*!< Mpris2 root interface */
+    Mpris2Player* m_player;   /*!< Mpris2 player interface */
 };
 
 

@@ -65,7 +65,7 @@ void HotkeysPlugin::setup()
             qDebug() << "Global shortcut registered: "
                      << shortcut->objectName() << "\t: " << action->shortcut();
         connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
-        this->shortcuts.append(shortcut);
+        m_shortcuts.append(shortcut);
     }
 #endif
 }

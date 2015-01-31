@@ -34,9 +34,9 @@ ExtensionsManager::ExtensionsManager(QObject* parent):
 //---------------------------------------------------------
 void ExtensionsManager::loadPlugin(IExtension* iExtension)
 {
-    if(!this->plugin(iExtension->metaData().name))
+    if(!plugin(iExtension->metaData().name))
     {
-        this->_plugins.append(iExtension);
+        m_plugins.append(iExtension);
         qDebug() << "Extension plugin loaded: ";
         qDebug() << "  - name: " << iExtension->metaData().name;
         qDebug() << "  - version: " << iExtension->metaData().version;
@@ -53,14 +53,14 @@ void ExtensionsManager::loadPlugin(IExtension* iExtension)
 //---------------------------------------------------------
 void ExtensionsManager::teardown()
 {
-    foreach(IExtension* p, this->_plugins)
+    foreach(IExtension* p, m_plugins)
         p->teardown();
 }
 
 //---------------------------------------------------------
 IExtension *ExtensionsManager::plugin(const QString &name) const
 {
-    foreach(IExtension* p, this->_plugins)
+    foreach(IExtension* p, m_plugins)
     {
         if(p->metaData().name == name)
             return p;
@@ -71,5 +71,5 @@ IExtension *ExtensionsManager::plugin(const QString &name) const
 //---------------------------------------------------------
 ExtensionPluginList ExtensionsManager::plugins() const
 {
-    return this->_plugins;
+    return m_plugins;
 }

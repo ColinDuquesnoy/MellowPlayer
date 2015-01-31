@@ -86,9 +86,9 @@ private slots:
 
 private:
 #ifdef __kde_support__
-    KStatusNotifierItem* trayIcon;
+    KStatusNotifierItem* m_trayIcon;
 #else
-    QSystemTrayIcon* trayIcon;
+    QSystemTrayIcon* m_trayIcon;
 #endif
 };
 

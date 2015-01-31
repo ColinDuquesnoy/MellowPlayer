@@ -68,7 +68,7 @@ public:
     ExtensionPluginList plugins() const;
 
 private:
-    ExtensionPluginList _plugins;
+    ExtensionPluginList m_plugins;
 };
 
 #endif // EXTENSIONSMANAGER_H

@@ -49,6 +49,6 @@ public:
 
 private:
 #ifndef __kde_support__
-    QList<QxtGlobalShortcut*> shortcuts;
+    QList<QxtGlobalShortcut*> m_shortcuts;
 #endif
 };
