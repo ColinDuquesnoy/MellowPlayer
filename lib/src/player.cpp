@@ -278,6 +278,7 @@ void PlayerInterface::checkForPositionChange(SongInfo &song)
     }
 }
 
+//---------------------------------------------------------
 void PlayerInterface::checkForControlCaps()
 {
     IStreamingService* iService =

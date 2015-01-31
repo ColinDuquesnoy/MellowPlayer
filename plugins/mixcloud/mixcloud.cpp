@@ -105,14 +105,26 @@ PlaybackStatus MixcloudPlugin::playbackStatus()
 SongInfo MixcloudPlugin::currentSongInfo()
 {
     SongInfo retVal;
-    retVal.songName = runJavaScript(
-        "$('.player-cloudcast-title').get()[0].text").toString();
+    // prefer current track over the playlist title if available, not
+    // all playlist have track bindings.
+    retVal.songName = runJavaScript("$('.current-track').text()").toString();
     if(retVal.isValid())
     {
         retVal.artistName = runJavaScript(
+            "$('.current-artist').children(0).html()").toString();
+        retVal.albumName = runJavaScript(
+            "$('.player-cloudcast-title').get()[0].text").toString();
+    }
+    else
+    {
+        retVal.songName = runJavaScript(
+            "$('.player-cloudcast-title').get()[0].text").toString();
+        retVal.artistName = runJavaScript(
             "$('.player-cloudcast-author-link').get()[0].text").toString();
+    }
+    if(retVal.isValid())
+    {
         retVal.songId = QString::number(rand());
-        retVal.albumName = "";
         retVal.artUrl = runJavaScript(
             "$('.player-cloudcast-image').children(0).get(0).src")
                 .toString().replace("w/60/h/60", "w/500/h/500");
