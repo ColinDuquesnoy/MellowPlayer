@@ -60,7 +60,11 @@ QUrl MixcloudPlugin::url() const
 void MixcloudPlugin::play()
 {
     qDebug() << "play";
+#ifdef Q_OS_WIN32
+    this->runJavaScript("$('.player-control').click()");
+#else
     this->runJavaScript("$('.player-control').get()[0].click()");
+#endif
     qApp->processEvents();
 }
 
