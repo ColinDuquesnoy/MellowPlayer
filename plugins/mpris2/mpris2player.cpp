@@ -257,35 +257,30 @@ qlonglong Mpris2Player::position()
 //---------------------------------------------------------
 bool Mpris2Player::canGoNext()
 {
-    qDebug() << "canGoNext" << Services::player()->canGoNext();
     return Services::player()->canGoNext();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canGoPrevious()
 {
-    qDebug() << "canGoPrevious" << Services::player()->canGoPrevious();
     return Services::player()->canGoPrevious();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canPlay()
 {
-    qDebug() << "canPlay" << Services::player()->canPlay();
     return Services::player()->canPlay();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canPause()
 {
-    qDebug() << "canPause" << Services::player()->canPlay();
     return Services::player()->canPlay();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canSeek()
 {
-    qDebug() << "canSeek" << Services::player()->canSeek();
     return Services::player()->canSeek();
 }
 
