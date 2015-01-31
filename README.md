@@ -20,6 +20,8 @@ MellowPlayer is licensed under the GPL license.
 
 - Support for the following web-based music streaming services:
    - [Grooveshark](http://grooveshark.com/)
+   - [Grooveshark Mobile](http://grooveshark.com/) (on GNU/Linux and OS X only)
+   - [Mixcloud](http://www.mixcloud.com/)
    - [Deezer](http://www.deezer.com/)
 - Cross-platform (available on Windows, Mac OSX and GNU/Linux)
 - System tray integration (minimize to system tray when you close the window, notifications)
