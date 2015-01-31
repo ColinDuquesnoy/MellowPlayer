@@ -138,6 +138,9 @@ def make_win32_release():
         os.path.join(bin_dir, 'QtWebKit4.dll'),
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
+        # open ssl
+        'win32/libeay32.dll',
+        'win32/ssleay32.dll'
     ]
 
     for f in files:
