@@ -17,17 +17,13 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-
-unix{
-    SUBDIRS += groovesharkmobile
-}
-unix:!macx {
-    SUBDIRS += mpris2
-}
-
-SUBDIRS += grooveshark
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer
-SUBDIRS += mixcloud
+TEMPLATE      = lib
+QT           += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_mixcloud
+CONFIG       += plugin static
+HEADERS       = mixcloud.h
+SOURCES       = mixcloud.cpp
+RESOURCES    += mixcloud.qrc
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include
