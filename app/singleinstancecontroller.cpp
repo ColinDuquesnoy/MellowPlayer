@@ -50,9 +50,9 @@ SingleInstanceController::~SingleInstanceController()
 void SingleInstanceController::start(MellowPlayerApp* app)
 {
     qDebug() << "Starting the application";
-    app = app;
+    m_app = app;
 #ifndef QT_DEBUG
-    localSocket->connectToServer(APP_NAME, QIODevice::WriteOnly);
+    m_localSocket->connectToServer(APP_NAME, QIODevice::WriteOnly);
 #else
     app->initialize();
 #endif
