@@ -314,8 +314,8 @@ void MainWindow::updatePlayer()
         this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
         this->trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
             song.toString()));
-        this->ui->actionNext->setEnabled(true);
-        this->ui->actionPrevious->setEnabled(true);
+        this->ui->actionNext->setEnabled(player->canGoNext());
+        this->ui->actionPrevious->setEnabled(player->canGoPrevious());
         this->ui->actionStop->setEnabled(player->playbackStatus() != Stopped);
         this->ui->actionPlayPause->setEnabled(true);
         if(player->playbackStatus() == Paused)

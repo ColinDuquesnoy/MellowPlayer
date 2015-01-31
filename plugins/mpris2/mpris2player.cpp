@@ -143,6 +143,7 @@ void Mpris2Player::onPositionChanged(qlonglong position)
     }
 }
 
+//---------------------------------------------------------
 void Mpris2Player::onControlCapsChanged()
 {
     QVariantMap map;
