@@ -59,10 +59,10 @@ win32:CONFIG(Release){
 }
 unix{
     LIBS            += -L../lib -lmellowplayer
-    PRE_TARGETDEPS += ../lib/libmellowplayer.a
+    PRE_TARGETDEPS  += ../lib/libmellowplayer.a
 
-    LIBS += -lmpp_groovesharkmobile
-    PRE_TARGETDEPS += mpp_groovesharkmobile.lib
+    LIBS            += -lmpp_groovesharkmobile
+    PRE_TARGETDEPS  += libmpp_groovesharkmobile.a
 
 }
 macx {
