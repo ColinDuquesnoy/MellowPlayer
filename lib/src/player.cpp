@@ -95,7 +95,7 @@ bool PlayerInterface::canPlay()
 {
     IStreamingService* iService =
             Services::streamingServices()->currentService();
-    if(!iService && !iService->currentSongInfo().isValid())
+    if(!iService || !iService->currentSongInfo().isValid())
         return false;
     return true;
 }

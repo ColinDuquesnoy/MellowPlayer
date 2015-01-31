@@ -113,12 +113,11 @@ void MainWindow::onSelectServiceTriggered()
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
-        showHomePage();
+        QSettings().setValue("service", service);
         if(Services::streamingServices()->startService(service))
-        {
             showWebPage();
-            QSettings().setValue("service", service);
-        }
+        else
+            showHomePage();
     }
 }
 

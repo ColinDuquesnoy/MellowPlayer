@@ -78,12 +78,13 @@ IStreamingService* StreamingServicesManager::plugin(
 
 //---------------------------------------------------------
 bool StreamingServicesManager::startService(const QString& serviceName) {
-    bool retVal = false;
+    bool retVal = true;
     IStreamingService* p = plugin(serviceName);
-    if(p && p != m_currentService)
+    if(!p)
+        retVal = false;
+    else
     {
-        m_currentService = p;
-        if(!Services::hasFlash() && m_currentService->flashRequired())
+        if(!Services::hasFlash() && p->flashRequired())
         {
             QMessageBox::warning(
                 Services::mainWindow(),
@@ -92,9 +93,11 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
                    "This service cannot be used without flash.\nPlease "
                    "install the latest flash player plugin from adobe and try "
                    "again!"));
-            return false;
+            retVal = false;
         }
-        else {
+        else if(p != m_currentService)
+        {
+            m_currentService = p;
             qDebug() << "Starting service " << serviceName
                      << "(" << p->url() << ")";
             Services::webView()->load(m_currentService->url());
