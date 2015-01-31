@@ -153,6 +153,24 @@ void GroovesharkmobilePlugin::setVolume(float volume)
 }
 
 //---------------------------------------------------------
+bool GroovesharkmobilePlugin::canSeek()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+bool GroovesharkmobilePlugin::canGoNext()
+{
+    return runJavaScript("GS.models.queue.next() != null").toBool();
+}
+
+//---------------------------------------------------------
+bool GroovesharkmobilePlugin::canGoPrevious()
+{
+    return runJavaScript("GS.models.queue.prev() != null").toBool();
+}
+
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2( GroovesharkmobilePlugin, GroovesharkmobilePlugin )
 #endif

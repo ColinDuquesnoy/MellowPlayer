@@ -63,6 +63,28 @@ public:
     void seekToPosition(int position);
 
     /*!
+     * \brief Whether playback can be started using playPause.
+     */
+    bool canPlay();
+
+    /*!
+     * \brief Whether the client can control the playback position using
+     *  seekToPosition.
+     */
+    bool canSeek();
+
+    /*!
+     * \brief Whether the client can call the next method on this interface and
+     * expect the current track to change.
+     */
+    bool canGoNext();
+    /*!
+     * \brief Whether the client can call the previous method on this interface
+     * and expect the current track to change.
+     */
+    bool canGoPrevious();
+
+    /*!
      * \brief Gets the current song info
      */
     SongInfo currentSong();
@@ -142,6 +164,12 @@ signals:
      */
     void positionChanged(qlonglong position);
 
+    /*!
+     * \brief Signal emitted when the player's control capabilities changed
+     * (e.g. canGoNext changed from true to false,...).
+     */
+    void controlCapsChanged();
+
 private slots:
     void onArtReady(const QString& filePath);
 
@@ -149,12 +177,18 @@ private:
     void checkPlaybackStatusChange(SongInfo& song);
     void checkSongChange(SongInfo& song);
     void checkForPositionChange(SongInfo& song);
+    void checkForControlCaps();
     void downloadSongArt(const QString &url);
 
     SongInfo        _currentSong;
     SongInfo        _startedSong;
     PlaybackStatus  currentStatus;
     int             currentPosition;
+
+    bool _canSeek;
+    bool _canPlay;
+    bool _canGoNext;
+    bool _canGoPrevious;
 };
 
 #endif // PLAYER

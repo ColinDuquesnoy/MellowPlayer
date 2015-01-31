@@ -72,6 +72,7 @@ private slots:
     void onSongChanged(const SongInfo& song);
     void onArtReady(const QString& artFilePathUrl);
     void onPositionChanged(qlonglong position);
+    void onControlCapsChanged();
 
 private:
     void signalUpdate(const QVariantMap &map);

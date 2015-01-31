@@ -35,6 +35,8 @@ Mpris2Player::Mpris2Player(QObject *parent):
             this, SLOT(onArtReady(const QString&)));
     connect(Services::player(), SIGNAL(positionChanged(qlonglong)),
             this, SLOT(onPositionChanged(qlonglong)));
+    connect(Services::player(), SIGNAL(controlCapsChanged()),
+            this, SLOT(onControlCapsChanged()));
 }
 
 //---------------------------------------------------------
@@ -141,6 +143,17 @@ void Mpris2Player::onPositionChanged(qlonglong position)
     }
 }
 
+void Mpris2Player::onControlCapsChanged()
+{
+    QVariantMap map;
+    map["CanSeek"] = this->canSeek();
+    map["CanPlay"] = this->canPlay();
+    map["CanPause"] = this->canPause();
+    map["CanGoNext"] = this->canGoNext();
+    map["CanGoPrevious"] = this->canGoPrevious();
+    signalUpdate(map);
+}
+
 //---------------------------------------------------------
 void Mpris2Player::signalUpdate(const QVariantMap &map)
 {
@@ -243,31 +256,36 @@ qlonglong Mpris2Player::position()
 //---------------------------------------------------------
 bool Mpris2Player::canGoNext()
 {
-    return true;
+    qDebug() << "canGoNext" << Services::player()->canGoNext();
+    return Services::player()->canGoNext();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canGoPrevious()
 {
-    return true;
+    qDebug() << "canGoPrevious" << Services::player()->canGoPrevious();
+    return Services::player()->canGoPrevious();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canPlay()
 {
-    return true;
+    qDebug() << "canPlay" << Services::player()->canPlay();
+    return Services::player()->canPlay();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canPause()
 {
-    return true;
+    qDebug() << "canPause" << Services::player()->canPlay();
+    return Services::player()->canPlay();
 }
 
 //---------------------------------------------------------
 bool Mpris2Player::canSeek()
 {
-    return true;
+    qDebug() << "canSeek" << Services::player()->canSeek();
+    return Services::player()->canSeek();
 }
 
 //---------------------------------------------------------

@@ -142,7 +142,27 @@ void GroovesharkPlugin::setVolume(float volume)
 {
     this->runJavaScript(
         QString("window.Grooveshark.setVolume(%1)").arg(
-            QString::number(static_cast<int>(volume * 100))));
+                    QString::number(static_cast<int>(volume * 100))));
+}
+
+//---------------------------------------------------------
+bool GroovesharkPlugin::canSeek()
+{
+    // seems like there is no way to know if the user joined a brodcast, this
+    // is the only condition where canSeek should return false.
+    return true;
+}
+
+//---------------------------------------------------------
+bool GroovesharkPlugin::canGoNext()
+{
+    return runJavaScript("Grooveshark.getNextSong() != null").toBool();
+}
+
+//---------------------------------------------------------
+bool GroovesharkPlugin::canGoPrevious()
+{
+    return runJavaScript("Grooveshark.getPreviousSong() != null").toBool();
 }
 
 //---------------------------------------------------------

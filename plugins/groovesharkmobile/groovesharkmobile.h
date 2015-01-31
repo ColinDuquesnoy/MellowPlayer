@@ -57,4 +57,13 @@ public:
     float volume();
     //! Sets the player's volume
     void setVolume(float volume);
+    //! Whether the client can control the playback position using
+    //! seekToPosition.
+    bool canSeek();
+    //! Whether the client can call the next method on this interface and
+    //! expect the current track to change.
+    bool canGoNext();
+    //! Whether the client can call the previsou method on this interface and
+    //! expect the current track to change.
+    bool canGoPrevious();
 };

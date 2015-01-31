@@ -159,6 +159,24 @@ void DeezerPlugin::setVolume(float volume)
 }
 
 //---------------------------------------------------------
+bool DeezerPlugin::canSeek()
+{
+    return runJavaScript("dzPlayer.control.canSeek()").toBool();
+}
+
+//---------------------------------------------------------
+bool DeezerPlugin::canGoNext()
+{
+    return runJavaScript("dzPlayer.getNextSong() != null").toBool();
+}
+
+//---------------------------------------------------------
+bool DeezerPlugin::canGoPrevious()
+{
+    return runJavaScript("dzPlayer.getPrevSong() != null").toBool();
+}
+
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2( DeezerPlugin, DeezerPlugin )
 #endif

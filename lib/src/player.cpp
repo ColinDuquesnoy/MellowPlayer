@@ -28,7 +28,11 @@
 PlayerInterface::PlayerInterface(QObject *parent):
     QObject(parent),
     currentStatus(Stopped),
-    currentPosition(0)
+    currentPosition(0),
+    _canSeek(false),
+    _canPlay(false),
+    _canGoNext(false),
+    _canGoPrevious(false)
 {
 }
 
@@ -87,6 +91,46 @@ void PlayerInterface::seekToPosition(int position)
 }
 
 //---------------------------------------------------------
+bool PlayerInterface::canPlay()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(!iService && !iService->currentSongInfo().isValid())
+        return false;
+    return true;
+}
+
+//---------------------------------------------------------
+bool PlayerInterface::canSeek()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        return false;
+    return iService->canSeek();
+}
+
+//---------------------------------------------------------
+bool PlayerInterface::canGoNext()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        return true;
+    return iService->canGoNext();
+}
+
+//---------------------------------------------------------
+bool PlayerInterface::canGoPrevious()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(!iService || !iService->currentSongInfo().isValid())
+        return true;
+    return iService->canGoPrevious();
+}
+
+//---------------------------------------------------------
 SongInfo PlayerInterface::currentSong()
 {
     IStreamingService* iService =
@@ -107,6 +151,7 @@ SongInfo PlayerInterface::update()
     this->checkPlaybackStatusChange(song);
     this->checkSongChange(song);
     this->checkForPositionChange(song);
+    this->checkForControlCaps();
     return song;
 }
 
@@ -200,6 +245,27 @@ void PlayerInterface::checkForPositionChange(SongInfo &song)
     {
         emit positionChanged(song.position);
         this->currentPosition = song.position;
+    }
+}
+
+void PlayerInterface::checkForControlCaps()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(iService)
+    {
+        if(this->canGoNext() != this->_canGoNext ||
+           this->canGoPrevious() != this->_canGoPrevious ||
+           this->canPlay() != this->_canPlay ||
+           this->canSeek() != this->_canSeek)
+        {
+            this->_canGoNext = this->canGoNext();
+            this->_canGoPrevious = this->canGoPrevious();
+            this->_canPlay = this->canPlay();
+            this->_canSeek = this->canSeek();
+
+            emit this->controlCapsChanged();
+        }
     }
 }
 

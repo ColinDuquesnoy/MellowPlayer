@@ -44,6 +44,18 @@ public:
     //! Returns the music streaming service URL
     virtual QUrl url() const = 0;
 
+    //! Whether the client can control the playback position using
+    //! seekToPosition.
+    virtual bool canSeek() = 0;
+
+    //! Whether the client can call the next method on this interface and
+    //! expect the current track to change.
+    virtual bool canGoNext() = 0;
+
+    //! Whether the client can call the previsou method on this interface and
+    //! expect the current track to change.
+    virtual bool canGoPrevious() = 0;
+
     //! Starts playing the current song
     virtual void play() = 0;
 
