@@ -120,6 +120,23 @@ public:
      */
     PlaybackStatus playbackStatus() const;
 
+    /*!
+     * \brief Checks whether the streaming service can favorite the current
+     * song
+     */
+    bool canFavorite();
+
+    /*!
+     * \brief Checks whether the current song is part of the user's favorite
+     * songs.
+     */
+    bool isFavorite();
+
+    /*!
+     * \brief Adds the current song to the favorites
+     */
+    void addToFavorites();
+
 signals:
     /*!
      * \brief Signal emitted when the current song status changed

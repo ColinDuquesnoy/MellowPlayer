@@ -166,6 +166,25 @@ bool GroovesharkPlugin::canGoPrevious()
 }
 
 //---------------------------------------------------------
+bool GroovesharkPlugin::canFavorite()
+{
+    return true;
+}
+
+//---------------------------------------------------------
+bool GroovesharkPlugin::isFavorite()
+{
+    return runJavaScript("$('#np-fav').hasClass('active')").toBool();
+}
+
+//---------------------------------------------------------
+void GroovesharkPlugin::addToFavorite(bool add)
+{
+    Q_UNUSED(add);
+    runJavaScript("$('#np-fav').get()[0].click()");
+}
+
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2( GroovesharkPlugin, GroovesharkPlugin )
 #endif

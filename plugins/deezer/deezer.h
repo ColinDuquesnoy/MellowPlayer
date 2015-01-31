@@ -68,4 +68,10 @@ public:
     //! Whether the client can call the previsou method on this interface and
     //! expect the current track to change.
     bool canGoPrevious();
+    //! Checks whether the service support adding a song to the user's favorite
+    bool canFavorite();
+    //! Checks whether the current song is one of the user's favorite.
+    bool isFavorite();
+    //! Adds the current song to the user's favorites
+    void addToFavorite(bool add);
 };

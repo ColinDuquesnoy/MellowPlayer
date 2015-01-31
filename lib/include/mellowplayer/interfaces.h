@@ -86,6 +86,19 @@ public:
     //! Gets the player's playback status
     virtual PlaybackStatus playbackStatus() = 0;
 
+    //! Checks whether the service support adding a song to the user's favorite
+    virtual bool canFavorite() = 0;
+
+    //! Checks whether the song is part of the user's favorite songs.
+    virtual bool isFavorite() = 0;
+
+    /*!
+     * \brief Adds the current song to the user's favorite songs.
+     *
+     * \param add True to addd, False to remove.
+     */
+    virtual void addToFavorite(bool add) = 0;
+
 protected:
     /*!
      * Evaluates the JavaScript defined by ``scriptSource`` using the main web

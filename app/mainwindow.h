@@ -70,6 +70,7 @@ private slots:
     void onAboutQtTriggered();
     void onReportBugTriggered();
     void quit();
+    void onAddToFavorites();
 
 private:
     void closeEvent(QCloseEvent* event);

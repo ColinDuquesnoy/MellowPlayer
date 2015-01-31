@@ -29,6 +29,7 @@ QVariant IStreamingService::runJavaScript(const QString &scriptSource)
         scriptSource);
 }
 
+//---------------------------------------------------------
 bool IStreamingService::isPageLoaded() const
 {
     return Services::webView()->page()->mainFrame()->toHtml().contains(

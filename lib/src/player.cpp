@@ -189,6 +189,36 @@ PlaybackStatus PlayerInterface::playbackStatus() const
 }
 
 //---------------------------------------------------------
+bool PlayerInterface::canFavorite()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(iService)
+         return iService->canFavorite();
+    return false;
+}
+
+//---------------------------------------------------------
+bool PlayerInterface::isFavorite()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(iService)
+         return iService->isFavorite();
+    return false;
+}
+
+//---------------------------------------------------------
+void PlayerInterface::addToFavorites()
+{
+    IStreamingService* iService =
+            Services::streamingServices()->currentService();
+    if(iService)
+         iService->addToFavorite(!iService->isFavorite());
+
+}
+
+//---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
     emit this->artReady(filePath);

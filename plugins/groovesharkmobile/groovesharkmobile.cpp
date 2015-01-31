@@ -171,6 +171,24 @@ bool GroovesharkmobilePlugin::canGoPrevious()
 }
 
 //---------------------------------------------------------
+bool GroovesharkmobilePlugin::canFavorite()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+bool GroovesharkmobilePlugin::isFavorite()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+void GroovesharkmobilePlugin::addToFavorite(bool add)
+{
+    Q_UNUSED(add);
+}
+
+//---------------------------------------------------------
 #if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2( GroovesharkmobilePlugin, GroovesharkmobilePlugin )
 #endif

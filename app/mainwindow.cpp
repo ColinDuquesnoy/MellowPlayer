@@ -306,6 +306,8 @@ void MainWindow::connectSlots()
                   this, SLOT(onAboutQtTriggered()));
     this->connect(this->ui->actionReport_a_bug, SIGNAL(triggered()),
                   this, SLOT(onReportBugTriggered()));
+    this->connect(this->ui->actionAdd_to_favorites, SIGNAL(triggered()),
+                  this, SLOT(onAddToFavorites()));
 }
 
 //---------------------------------------------------------
@@ -313,6 +315,10 @@ void MainWindow::updatePlayer()
 {
     PlayerInterface* player = Services::player();
     SongInfo song = player->update();
+    ui->actionAdd_to_favorites->setVisible(player->canFavorite());
+    ui->actionAdd_to_favorites->setText(
+        player->isFavorite() ? tr("Remove from favorites") :
+                               tr("Add to favorites"));
     if(song.isValid())
     {
         this->setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
@@ -420,6 +426,12 @@ void MainWindow::quit()
     {
         qApp->exit();
     }
+}
+
+//---------------------------------------------------------
+void MainWindow::onAddToFavorites()
+{
+    Services::player()->addToFavorites();
 }
 
 //---------------------------------------------------------
