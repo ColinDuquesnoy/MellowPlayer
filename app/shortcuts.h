@@ -20,6 +20,8 @@
 #ifndef SHORCTUTS
 #define SHORCTUTS
 
+#include <QtCore>
+
 #define DEFAULT_SHORTCUT_SELECT_SV      "F8"
 #define DEFAULT_SHORTCUT_PREFERENCES    "F2"
 #define DEFAULT_SHORTCUT_QUIT           "Ctrl+Q"
@@ -36,9 +38,11 @@
     #define DEFAULT_SHORTCUT_NEXT       "Ctrl+Alt+F"
     #define DEFAULT_SHORTCUT_PREVIOUS   "Ctrl+Alt+B"
 #endif
-
+#ifdef Q_OS_MAC
+#define DEFAULT_SHORTCUT_FAVORITE       "Ctrl+Alt+L"
+#else
 #define DEFAULT_SHORTCUT_FAVORITE       "Ctrl+Alt+F"
-
+#endif
 #define DEFAULT_SHORTCUT_ABOUT          "F1"
 #define DEFAULT_SHORTCUT_REPORT         "F3"
 
