@@ -52,7 +52,12 @@ DISTFILES += share/templates/service/file.pro
 
 # automatically release translations, .qm files are embedded
 # in the application resources.
-system("lrelease-qt5 MellowPlayer.pro")
+unix:!macx{
+    system("lrelease-qt5 MellowPlayer.pro")
+}
+else{
+    system("lrelease MellowPlayer.pro")
+}
 
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
