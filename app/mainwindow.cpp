@@ -315,7 +315,8 @@ void MainWindow::updatePlayer()
 {
     PlayerInterface* player = Services::player();
     SongInfo song = player->update();
-    m_ui->actionAdd_to_favorites->setVisible(player->canFavorite());
+    m_ui->actionAdd_to_favorites->setVisible(
+        player->canFavorite() && player->currentSong().isValid());
     m_ui->actionAdd_to_favorites->setText(
         player->isFavorite() ? tr("Remove from favorites") :
                                tr("Add to favorites"));
