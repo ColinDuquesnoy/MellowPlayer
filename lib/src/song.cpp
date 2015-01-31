@@ -32,3 +32,9 @@ QString SongInfo::toString() const
 {
     return QObject::tr("%1 by %2 from %3").arg(songName).arg(artistName).arg(albumName);
 }
+
+SongInfo::SongInfo()
+{
+    songName = "";
+    position = 0;
+}

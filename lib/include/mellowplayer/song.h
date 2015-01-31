@@ -52,6 +52,8 @@ struct SongInfo
      * @return return a string representatin of the song
      */
     QString toString() const;
+
+    SongInfo();
 };
 
 #endif // SONG
