@@ -244,6 +244,8 @@
     <addaction name="actionStop"/>
     <addaction name="actionNext"/>
     <addaction name="actionPrevious"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_to_favorites"/>
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
@@ -409,6 +411,14 @@
    </property>
    <property name="text">
     <string>About &amp;Qt</string>
+   </property>
+  </action>
+  <action name="actionAdd_to_favorites">
+   <property name="icon">
+    <iconset theme="emblem-favorite"/>
+   </property>
+   <property name="text">
+    <string>Add to favorites</string>
    </property>
   </action>
  </widget>

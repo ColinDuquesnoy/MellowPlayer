@@ -37,6 +37,8 @@
     #define DEFAULT_SHORTCUT_PREVIOUS   "Ctrl+Alt+B"
 #endif
 
+#define DEFAULT_SHORTCUT_FAVORITE       "Ctrl+Alt+F"
+
 #define DEFAULT_SHORTCUT_ABOUT          "F1"
 #define DEFAULT_SHORTCUT_REPORT         "F3"
 

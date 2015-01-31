@@ -244,18 +244,21 @@ void DlgPreferences::resetShortcuts()
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
+    actions.append(mainWindow->ui->actionAdd_to_favorites);
 
     QList<QString> shortcuts;
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
     shortcuts.append(DEFAULT_SHORTCUT_STOP);
     shortcuts.append(DEFAULT_SHORTCUT_NEXT);
     shortcuts.append(DEFAULT_SHORTCUT_PREVIOUS);
+    shortcuts.append(DEFAULT_SHORTCUT_FAVORITE);
 
     QList<KeySequenceEdit*> edits;
     edits.append(ui->lineEditPlayPause);
     edits.append(ui->lineEditStop);
     edits.append(ui->lineEditNext);
     edits.append(ui->lineEditPrevious);
+    edits.append(ui->lineEditFavorite);
 
     for(int i=0; i < actions.count(); ++ i)
         edits[i]->setKeySequence(
@@ -301,12 +304,14 @@ void DlgPreferences::restoreShortcuts()
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
+    actions.append(mainWindow->ui->actionAdd_to_favorites);
 
     QList<QString> shortcuts;
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
     shortcuts.append(DEFAULT_SHORTCUT_STOP);
     shortcuts.append(DEFAULT_SHORTCUT_NEXT);
     shortcuts.append(DEFAULT_SHORTCUT_PREVIOUS);
+    shortcuts.append(DEFAULT_SHORTCUT_FAVORITE);
 
     for(int i=0; i < actions.count(); ++ i)
         QSettings().setValue(actions[i]->objectName(), shortcuts[i]);
@@ -348,12 +353,14 @@ void DlgPreferences::applyShortcuts()
     actions.append(mainWindow->ui->actionStop);
     actions.append(mainWindow->ui->actionNext);
     actions.append(mainWindow->ui->actionPrevious);
+    actions.append(mainWindow->ui->actionAdd_to_favorites);
 
     QList<KeySequenceEdit*> edits;
     edits.append(ui->lineEditPlayPause);
     edits.append(ui->lineEditStop);
     edits.append(ui->lineEditNext);
     edits.append(ui->lineEditPrevious);
+    edits.append(ui->lineEditFavorite);
 
     for(int i = 0; i < actions.count(); ++i)
     {

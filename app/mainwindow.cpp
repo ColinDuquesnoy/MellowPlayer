@@ -167,6 +167,7 @@ void MainWindow::setupIcons()
     this->ui->actionStop->setIcon(Icons::stop());
     this->ui->actionNext->setIcon(Icons::next());
     this->ui->actionPrevious->setIcon(Icons::previous());
+    this->ui->actionAdd_to_favorites->setIcon(Icons::favorite());
 
     this->ui->actionAbout_MellowPlayer->setIcon(Icons::about());
     this->ui->actionReport_a_bug->setIcon(Icons::reportBug());
@@ -183,15 +184,17 @@ void MainWindow::setupActions()
         DEFAULT_SHORTCUT_PLAY,
         DEFAULT_SHORTCUT_STOP,
         DEFAULT_SHORTCUT_NEXT,
-        DEFAULT_SHORTCUT_PREVIOUS
+        DEFAULT_SHORTCUT_PREVIOUS,
+        DEFAULT_SHORTCUT_FAVORITE
     };
     QAction* actions[] = {
         this->ui->actionPlayPause,
         this->ui->actionStop,
         this->ui->actionNext,
-        this->ui->actionPrevious
+        this->ui->actionPrevious,
+        this->ui->actionAdd_to_favorites
     };
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 5; ++i){
         QAction* a = actions[i];
         this->addAction(a);
         a->setShortcut(QSettings().value(
@@ -218,6 +221,7 @@ void MainWindow::setupTrayIcon()
     mnu->addAction(this->ui->actionStop);
     mnu->addAction(this->ui->actionNext);
     mnu->addAction(this->ui->actionPrevious);
+    mnu->addAction(this->ui->actionAdd_to_favorites);
     mnu->addSeparator();
     mnu->addAction(this->ui->actionSelect_service);
     mnu->addAction(this->ui->actionPreferences);

@@ -122,3 +122,10 @@ QIcon Icons::userTrash()
 {
     return QIcon::fromTheme("user-trash", QIcon(":/icons/user-trash.png"));
 }
+
+//---------------------------------------------------------
+QIcon Icons::favorite()
+{
+    return QIcon::fromTheme("emblem-favorite",
+                            QIcon(":/icons/emblem-favorite.png"));
+}

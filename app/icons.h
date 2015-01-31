@@ -121,6 +121,8 @@ public:
      * \return QIcon
      */
     static QIcon userTrash();
+
+    static QIcon favorite();
 };
 
 #endif // ICONS_H

@@ -42,10 +42,10 @@ const PluginMetaData &HotkeysPlugin::metaData() const
 void HotkeysPlugin::setup()
 {
     QString names[] = {"actionPlayPause", "actionStop", "actionNext",
-                       "actionPrevious"};
+                       "actionPrevious", "actionAdd_to_favorites"};
 #ifdef __kde_support__
     qDebug() << "Hotkeys Plugin: Setting up KGlobalAccel shortcuts";
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 5; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
@@ -55,7 +55,7 @@ void HotkeysPlugin::setup()
     }
 #else
     qDebug() << "Hotkeys Plugin: Setting up Qxt global shortcuts";
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 5; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
