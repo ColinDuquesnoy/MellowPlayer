@@ -77,7 +77,7 @@ void %(classname)s::previous()
 //---------------------------------------------------------
 void %(classname)s::seekToPosition(int position)
 {
-    this->runJavaScript("");
+    Q_UNUSED(position);
 }
 
 //---------------------------------------------------------
@@ -103,6 +103,42 @@ float %(classname)s::volume()
 void %(classname)s::setVolume(float volume)
 {
     Q_UNUSED(volume);
+}
+
+//---------------------------------------------------------
+bool %(classname)s::canFavorite()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+bool %(classname)s::isFavorite()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+void %(classname)s::addToFavorite(bool add)
+{
+    Q_UNUSED(add);
+}
+
+//---------------------------------------------------------
+bool %(classname)s::canSeek()
+{
+    return false;
+}
+
+//---------------------------------------------------------
+bool %(classname)s::canGoNext()
+{
+    return true;
+}
+
+//---------------------------------------------------------
+bool %(classname)s::canGoPrevious()
+{
+    return true;
 }
 
 //---------------------------------------------------------

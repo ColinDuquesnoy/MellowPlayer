@@ -43,6 +43,12 @@ DISTFILES += LICENSE
 DISTFILES += devhelper.py
 DISTFILES += setup.iss.in
 DISTFILES += docs/Doxyfile
+DISTFILES += share/templates/extensions/file.h
+DISTFILES += share/templates/extensions/file.cpp
+DISTFILES += share/templates/extensions/file.pro
+DISTFILES += share/templates/service/file.h
+DISTFILES += share/templates/service/file.cpp
+DISTFILES += share/templates/service/file.pro
 
 # automatically release translations, .qm files are embedded
 # in the application resources.

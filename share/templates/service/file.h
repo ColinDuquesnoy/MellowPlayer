@@ -57,4 +57,19 @@ public:
     float volume();
     //! Sets the player's volume
     void setVolume(float volume);
+    //! Checks whether the service support adding a song to the user's favorite
+    bool canFavorite();
+    //! Checks whether the song is part of the user's favorite songs.
+    bool isFavorite();
+    //! Adds the current to the user's favorite songs.
+    void addToFavorite(bool add);
+    //! Whether the client can control the playback position using
+    //! seekToPosition.
+    bool canSeek();
+    //! Whether the client can call the next method on this interface and
+    //! expect the current track to change.
+    bool canGoNext();
+    //! Whether the client can call the previsou method on this interface and
+    //! expect the current track to change.
+    bool canGoPrevious();
 };
