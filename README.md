@@ -10,7 +10,7 @@ notifications and more).
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
 
-![MellowPlayer](docs/_static/mellowplayer-kaos.png "MellowPlayer on KaOS (Plasma5)")
+![MellowPlayer](doc/_static/mellowplayer-kaos.png "MellowPlayer on KaOS (Plasma5)")
 
 ## License
 
