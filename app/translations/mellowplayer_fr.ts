@@ -68,60 +68,65 @@
         <translation>Pister précédente:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="168"/>
+        <location filename="../dlg_preferences.ui" line="162"/>
+        <source>Add to favorites:</source>
+        <translation>Ajouter aux favoris:</translation>
+    </message>
+    <message>
+        <location filename="../dlg_preferences.ui" line="178"/>
         <source>Plugin:</source>
         <translation>Plugin:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="187"/>
+        <location filename="../dlg_preferences.ui" line="197"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="196"/>
+        <location filename="../dlg_preferences.ui" line="206"/>
         <source>Author:</source>
         <translation>Auteur:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="209"/>
-        <location filename="../dlg_preferences.ui" line="229"/>
-        <location filename="../dlg_preferences.ui" line="249"/>
-        <location filename="../dlg_preferences.ui" line="272"/>
+        <location filename="../dlg_preferences.ui" line="219"/>
+        <location filename="../dlg_preferences.ui" line="239"/>
+        <location filename="../dlg_preferences.ui" line="259"/>
+        <location filename="../dlg_preferences.ui" line="282"/>
         <source>na</source>
         <translation>na</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="216"/>
+        <location filename="../dlg_preferences.ui" line="226"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="236"/>
+        <location filename="../dlg_preferences.ui" line="246"/>
         <source>Website:</source>
         <translation>Site web:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="259"/>
+        <location filename="../dlg_preferences.ui" line="269"/>
         <source>Description:</source>
         <translation>Description:</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="285"/>
+        <location filename="../dlg_preferences.ui" line="295"/>
         <source>Settings</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="301"/>
+        <location filename="../dlg_preferences.ui" line="311"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="315"/>
+        <location filename="../dlg_preferences.ui" line="325"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlg_preferences.ui" line="322"/>
+        <location filename="../dlg_preferences.ui" line="332"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
@@ -134,17 +139,22 @@
         <translation>Choisissez un service de streaming en ligne</translation>
     </message>
     <message>
-        <location filename="../dlg_select_service.ui" line="47"/>
+        <location filename="../dlg_select_service.ui" line="52"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dlg_select_service.ui" line="71"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Cannot find flash plugin, required to use this service!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Le plugin flash, requis pour utiliser ce service, est manquant!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -169,26 +179,26 @@ Do you want to restart now?</source>
 Voulez-vous redémarrer maintenant?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="197"/>
+        <location filename="../dlgpreferences.cpp" line="198"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="198"/>
+        <location filename="../dlgpreferences.cpp" line="199"/>
         <source>This will remove all cookies stored by MellowPlayer.
 Are you sure you want to clear all cookies?</source>
         <translation>Cette action va supprimer tous les cookies stockés par MellowPlayer.
 Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="213"/>
+        <location filename="../dlgpreferences.cpp" line="214"/>
         <source>This will remove all settings stored by MellowPlayer.
 Are you sure you want to erase all settings?</source>
         <translation>Cette action va supprimer toutes les paramètres de l&apos;application.
 Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="212"/>
+        <location filename="../dlgpreferences.cpp" line="213"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
@@ -197,6 +207,14 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     <name>GroovesharkPlugin</name>
     <message>
         <location filename="../../plugins/grooveshark/grooveshark.cpp" line="37"/>
+        <source>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; is an international online music search engine, music streaming service and music recommendation web software application, allowing users to search for, stream, and upload music that can be played immediately or added to a playlist. An optional paid subscription adds additional functionality and removes advertisements.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; est un service de recherche, de recommendation et de streaming de musique en ligne, permettant à ses utilisateurs de rechercher et de téléverser de la musique qui peut être jouée directement ou être ajoutée à une liste de lecture. Un abonnement payant optionnel permet de retirer les publicités et d&apos;avoir accès à des fontionnalités supplémentaires.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://fr.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>GroovesharkmobilePlugin</name>
+    <message>
+        <location filename="../../plugins/groovesharkmobile/groovesharkmobile.cpp" line="38"/>
         <source>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; is an international online music search engine, music streaming service and music recommendation web software application, allowing users to search for, stream, and upload music that can be played immediately or added to a playlist. An optional paid subscription adds additional functionality and removes advertisements.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; est un service de recherche, de recommendation et de streaming de musique en ligne, permettant à ses utilisateurs de rechercher et de téléverser de la musique qui peut être jouée directement ou être ajoutée à une liste de lecture. Un abonnement payant optionnel permet de retirer les publicités et d&apos;avoir accès à des fontionnalités supplémentaires.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://fr.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
     </message>
@@ -241,48 +259,48 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Application</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="294"/>
+        <location filename="../mainwindow.ui" line="296"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="306"/>
+        <location filename="../mainwindow.ui" line="308"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="318"/>
+        <location filename="../mainwindow.ui" line="320"/>
         <source>Media Play</source>
         <translation>Media Play</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="330"/>
+        <location filename="../mainwindow.ui" line="332"/>
         <source>Media Stop</source>
         <translation>Media Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="342"/>
+        <location filename="../mainwindow.ui" line="344"/>
         <source>Media Next</source>
         <translation>Media Next</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="354"/>
+        <location filename="../mainwindow.ui" line="356"/>
         <source>Media Previous</source>
         <translation>Media Previous</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="363"/>
+        <location filename="../mainwindow.ui" line="365"/>
         <source>&amp;About MellowPlayer</source>
         <translation>&amp;A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="366"/>
+        <location filename="../mainwindow.ui" line="368"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="170"/>
-        <location filename="../mainwindow.ui" line="291"/>
+        <location filename="../mainwindow.ui" line="293"/>
         <source>Select a music streaming service</source>
         <translation>Choisissez un service de musique en ligne</translation>
     </message>
@@ -302,84 +320,90 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>&amp;Contrôle</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="250"/>
+        <location filename="../mainwindow.ui" line="252"/>
         <source>He&amp;lp</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="259"/>
+        <location filename="../mainwindow.ui" line="261"/>
         <source>&amp;View</source>
         <translation>&amp;Vue</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="269"/>
+        <location filename="../mainwindow.ui" line="271"/>
         <source>Toolbar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
+        <location filename="../mainwindow.ui" line="290"/>
         <source>&amp;Select a music streaming service</source>
         <translation>&amp;Choisissez un service de musique en ligne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="303"/>
+        <location filename="../mainwindow.ui" line="305"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Préférences</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="315"/>
+        <location filename="../mainwindow.ui" line="317"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="327"/>
+        <location filename="../mainwindow.ui" line="329"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="339"/>
+        <location filename="../mainwindow.ui" line="341"/>
         <source>&amp;Next</source>
         <translation>Piste &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="351"/>
+        <location filename="../mainwindow.ui" line="353"/>
         <source>P&amp;revious</source>
         <translation>Piste &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="375"/>
+        <location filename="../mainwindow.ui" line="377"/>
         <source>&amp;Report a bug</source>
         <translation>&amp;Rapporter un bug</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="378"/>
+        <location filename="../mainwindow.ui" line="380"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="387"/>
+        <location filename="../mainwindow.ui" line="389"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="390"/>
+        <location filename="../mainwindow.ui" line="392"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="399"/>
+        <location filename="../mainwindow.ui" line="401"/>
         <source>Restore window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="402"/>
+        <location filename="../mainwindow.ui" line="404"/>
         <source>Restore the window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="411"/>
+        <location filename="../mainwindow.ui" line="413"/>
         <source>About &amp;Qt</source>
         <translation>A propos de &amp;Qt</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="421"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <source>Add to favorites</source>
+        <translation>Ajouter aux favoris</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="144"/>
@@ -392,36 +416,49 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <location filename="../mainwindow.cpp" line="335"/>
-        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <source>Remove from favorites</source>
+        <translation>Retirer des favoris</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.cpp" line="351"/>
+        <location filename="../mainwindow.cpp" line="353"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="325"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="375"/>
+        <location filename="../mainwindow.cpp" line="391"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="388"/>
+        <location filename="../mainwindow.cpp" line="404"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="409"/>
+        <location filename="../mainwindow.cpp" line="425"/>
         <source>Are you sure you want to exit MellowPlayer?</source>
         <translation>Etes-vous sûr de vouloir quitter MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="408"/>
+        <location filename="../mainwindow.cpp" line="424"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
+    </message>
+</context>
+<context>
+    <name>MixcloudPlugin</name>
+    <message>
+        <location filename="../../plugins/mixcloud/mixcloud.cpp" line="38"/>
+        <source>Mixcloud is an online music streaming service that allows for the listening and distribution of radio shows, DJ mixes and podcasts, which are crowdsourced by its registered users. Its notable users include Wired, Harvard Business School, TED Talks, and Barack Obama. Mixcloud was originally funded by its founders only and continues to be owned solely by its team.</source>
+        <translation>Mixcloud est une plate-forme collaborative de partage et d&apos;écoute de musique en ligne spécialement dédiée aux sessions de mixage enregistrées en studio diffusées en radio ou en podcast. The Guardian et TED utilisent la plate-forme.</translation>
     </message>
 </context>
 <context>
@@ -443,14 +480,43 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../dlgselectservice.cpp" line="69"/>
+        <location filename="../dlgselectservice.cpp" line="77"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../lib/src/song.cpp" line="47"/>
+        <location filename="../../lib/src/song.cpp" line="34"/>
         <source>%1 by %2 from %3</source>
         <translation>%1 de %2 sur %3</translation>
+    </message>
+    <message>
+        <location filename="../../lib/src/song.cpp" line="37"/>
+        <source>%1 by %2</source>
+        <translation>%1 de %2</translation>
+    </message>
+    <message>
+        <location filename="../../lib/src/song.cpp" line="40"/>
+        <source>%1 from %2</source>
+        <translation>%1 sur %2</translation>
+    </message>
+</context>
+<context>
+    <name>StreamingServicesManager</name>
+    <message>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="91"/>
+        <source>Flash player plugin missing</source>
+        <translation>Le plugin flash est manquant</translation>
+    </message>
+    <message>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="92"/>
+        <source>The flash player plugin is missing on your system.
+
+This service cannot be used without flash.
+Please install the latest flash player plugin from adobe and try again!</source>
+        <translation>Impossible de trouver le plugin flash sur votre système.
+
+Ce service ne peut pas être utilisé sans flash.
+Veuillez installer la dernière version du plugin flash développé par Adobe et essayer à nouveau!</translation>
     </message>
 </context>
 </TS>
