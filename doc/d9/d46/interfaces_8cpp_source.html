@@ -119,16 +119,24 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="../../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e">   26</a></span>&#160;QVariant <a class="code" href="../../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e">IStreamingService::runJavaScript</a>(<span class="keyword">const</span> QString &amp;scriptSource)</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="../../df/db6/class_services.html#ae815d8e55bc31800d3513f545aa11c94">Services::webView</a>()-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                scriptSource);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        scriptSource);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//---------------------------------------------------------</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="../../d9/d19/class_i_streaming_service.html#a29e90a160a1ece2499bd890ff7fc1663">   33</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="../../d9/d19/class_i_streaming_service.html#a29e90a160a1ece2499bd890ff7fc1663">IStreamingService::isPageLoaded</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="../../df/db6/class_services.html#ae815d8e55bc31800d3513f545aa11c94">Services::webView</a>()-&gt;page()-&gt;mainFrame()-&gt;toHtml().contains(</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="stringliteral">&quot;&lt;/html&gt;&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="ttc" id="services_8h_html"><div class="ttname"><a href="../../d8/d63/services_8h.html">services.h</a></div></div>
 <div class="ttc" id="interfaces_8h_html"><div class="ttname"><a href="../../d6/de4/interfaces_8h.html">interfaces.h</a></div></div>
 <div class="ttc" id="class_i_streaming_service_html_afbbe0143dfde287cdb422d59cef5894e"><div class="ttname"><a href="../../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e">IStreamingService::runJavaScript</a></div><div class="ttdeci">QVariant runJavaScript(const QString &amp;scriptSource)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d46/interfaces_8cpp_source.html#l00026">interfaces.cpp:26</a></div></div>
-<div class="ttc" id="class_services_html_ae815d8e55bc31800d3513f545aa11c94"><div class="ttname"><a href="../../df/db6/class_services.html#ae815d8e55bc31800d3513f545aa11c94">Services::webView</a></div><div class="ttdeci">static QWebView * webView()</div><div class="ttdoc">Gets a pointer to the webview. </div><div class="ttdef"><b>Definition:</b> <a href="../../df/d9f/services_8cpp_source.html#l00088">services.cpp:88</a></div></div>
+<div class="ttc" id="class_i_streaming_service_html_a29e90a160a1ece2499bd890ff7fc1663"><div class="ttname"><a href="../../d9/d19/class_i_streaming_service.html#a29e90a160a1ece2499bd890ff7fc1663">IStreamingService::isPageLoaded</a></div><div class="ttdeci">bool isPageLoaded() const </div><div class="ttdoc">Utility method that checks whether the page has finished loading or not. </div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d46/interfaces_8cpp_source.html#l00033">interfaces.cpp:33</a></div></div>
+<div class="ttc" id="class_services_html_ae815d8e55bc31800d3513f545aa11c94"><div class="ttname"><a href="../../df/db6/class_services.html#ae815d8e55bc31800d3513f545aa11c94">Services::webView</a></div><div class="ttdeci">static QWebView * webView()</div><div class="ttdoc">Gets a pointer to the webview. </div><div class="ttdef"><b>Definition:</b> <a href="../../df/d9f/services_8cpp_source.html#l00089">services.cpp:89</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 1 2015 16:09:46 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

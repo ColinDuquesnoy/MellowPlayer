@@ -124,6 +124,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a82eda23a53504e020af9ecaf9dac6715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a82eda23a53504e020af9ecaf9dac6715">positionChanged</a> (qlonglong position)</td></tr>
 <tr class="memdesc:a82eda23a53504e020af9ecaf9dac6715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the position of the current song changed.  <a href="#a82eda23a53504e020af9ecaf9dac6715">More...</a><br /></td></tr>
 <tr class="separator:a82eda23a53504e020af9ecaf9dac6715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf945f8c6ddb658e79c34c9ecd9a2eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#aeaf945f8c6ddb658e79c34c9ecd9a2eb">controlCapsChanged</a> ()</td></tr>
+<tr class="memdesc:aeaf945f8c6ddb658e79c34c9ecd9a2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the player's control capabilities changed (e.g. canGoNext changed from true to false,...).  <a href="#aeaf945f8c6ddb658e79c34c9ecd9a2eb">More...</a><br /></td></tr>
+<tr class="separator:aeaf945f8c6ddb658e79c34c9ecd9a2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -144,6 +147,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2bd017fcd8c96fa9349cc01f3967ba2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a2bd017fcd8c96fa9349cc01f3967ba2a">seekToPosition</a> (int position)</td></tr>
 <tr class="memdesc:a2bd017fcd8c96fa9349cc01f3967ba2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks to the indicated position.  <a href="#a2bd017fcd8c96fa9349cc01f3967ba2a">More...</a><br /></td></tr>
 <tr class="separator:a2bd017fcd8c96fa9349cc01f3967ba2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee6ebea8555975bb33849eaff9415f21"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#aee6ebea8555975bb33849eaff9415f21">canPlay</a> ()</td></tr>
+<tr class="memdesc:aee6ebea8555975bb33849eaff9415f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether playback can be started using playPause.  <a href="#aee6ebea8555975bb33849eaff9415f21">More...</a><br /></td></tr>
+<tr class="separator:aee6ebea8555975bb33849eaff9415f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1275992e95dfc77f028af5ada3960429"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a1275992e95dfc77f028af5ada3960429">canSeek</a> ()</td></tr>
+<tr class="memdesc:a1275992e95dfc77f028af5ada3960429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the client can control the playback position using seekToPosition.  <a href="#a1275992e95dfc77f028af5ada3960429">More...</a><br /></td></tr>
+<tr class="separator:a1275992e95dfc77f028af5ada3960429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ab8e8e0a27d2f35b8b63efc838146ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a7ab8e8e0a27d2f35b8b63efc838146ee">canGoNext</a> ()</td></tr>
+<tr class="memdesc:a7ab8e8e0a27d2f35b8b63efc838146ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the client can call the next method on this interface and expect the current track to change.  <a href="#a7ab8e8e0a27d2f35b8b63efc838146ee">More...</a><br /></td></tr>
+<tr class="separator:a7ab8e8e0a27d2f35b8b63efc838146ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07931a523835016ffb02b50161d5bcbd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a07931a523835016ffb02b50161d5bcbd">canGoPrevious</a> ()</td></tr>
+<tr class="memdesc:a07931a523835016ffb02b50161d5bcbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the client can call the previous method on this interface and expect the current track to change.  <a href="#a07931a523835016ffb02b50161d5bcbd">More...</a><br /></td></tr>
+<tr class="separator:a07931a523835016ffb02b50161d5bcbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c81e6fc923ad144f1ba92b6c4b8389"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d91/struct_song_info.html">SongInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#ab4c81e6fc923ad144f1ba92b6c4b8389">currentSong</a> ()</td></tr>
 <tr class="memdesc:ab4c81e6fc923ad144f1ba92b6c4b8389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current song info.  <a href="#ab4c81e6fc923ad144f1ba92b6c4b8389">More...</a><br /></td></tr>
 <tr class="separator:ab4c81e6fc923ad144f1ba92b6c4b8389"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +174,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a54f58b6d05b80610d12dfb18a2da9a19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a54f58b6d05b80610d12dfb18a2da9a19">playbackStatus</a> () const </td></tr>
 <tr class="memdesc:a54f58b6d05b80610d12dfb18a2da9a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's playback status.  <a href="#a54f58b6d05b80610d12dfb18a2da9a19">More...</a><br /></td></tr>
 <tr class="separator:a54f58b6d05b80610d12dfb18a2da9a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166f2218a20fd51210e7ca2df51e41c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a166f2218a20fd51210e7ca2df51e41c2">canFavorite</a> ()</td></tr>
+<tr class="memdesc:a166f2218a20fd51210e7ca2df51e41c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the streaming service can favorite the current song.  <a href="#a166f2218a20fd51210e7ca2df51e41c2">More...</a><br /></td></tr>
+<tr class="separator:a166f2218a20fd51210e7ca2df51e41c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a988d24c5606f1155595250990c27f425"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a988d24c5606f1155595250990c27f425">isFavorite</a> ()</td></tr>
+<tr class="memdesc:a988d24c5606f1155595250990c27f425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current song is part of the user's favorite songs.  <a href="#a988d24c5606f1155595250990c27f425">More...</a><br /></td></tr>
+<tr class="separator:a988d24c5606f1155595250990c27f425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834b87bb5172166265f9dc0ef70af551"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d3e/class_player_interface.html#a834b87bb5172166265f9dc0ef70af551">addToFavorites</a> ()</td></tr>
+<tr class="memdesc:a834b87bb5172166265f9dc0ef70af551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the current song to the favorites.  <a href="#a834b87bb5172166265f9dc0ef70af551">More...</a><br /></td></tr>
+<tr class="separator:a834b87bb5172166265f9dc0ef70af551"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="../../d7/d3e/class_player_interface.html" title="The PlayerInterface provides an interface to the music streaming service&#39;s player. ">PlayerInterface</a> provides an interface to the music streaming service's player. </p>
@@ -192,6 +216,25 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a834b87bb5172166265f9dc0ef70af551"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInterface::addToFavorites </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the current song to the favorites. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00212">212</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a97468edef95718dc2e5fe57eb63ebf0e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -224,6 +267,126 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a166f2218a20fd51210e7ca2df51e41c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::canFavorite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether the streaming service can favorite the current song. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00192">192</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ab8e8e0a27d2f35b8b63efc838146ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::canGoNext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the client can call the next method on this interface and expect the current track to change. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a07931a523835016ffb02b50161d5bcbd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::canGoPrevious </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the client can call the previous method on this interface and expect the current track to change. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee6ebea8555975bb33849eaff9415f21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::canPlay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether playback can be started using playPause. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1275992e95dfc77f028af5ada3960429"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::canSeek </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the client can control the playback position using seekToPosition. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeaf945f8c6ddb658e79c34c9ecd9a2eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerInterface::controlCapsChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal emitted when the player's control capabilities changed (e.g. canGoNext changed from true to false,...). </p>
+
+</div>
+</div>
 <a class="anchor" id="ab4c81e6fc923ad144f1ba92b6c4b8389"></a>
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +402,26 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the current song info. </p>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a988d24c5606f1155595250990c27f425"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerInterface::isFavorite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether the current song is part of the user's favorite songs. </p>
+
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00202">202</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -258,7 +440,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Plays next song. </p>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +460,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the player's playback status. </p>
 <dl class="section return"><dt>Returns</dt><dd>PlaybackStatus </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00133">133</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +512,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Resumes/Pauses playback depending on the current playback status. </p>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00036">36</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00040">40</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -381,7 +563,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Plays previous song. </p>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +589,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +615,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -517,7 +699,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Stops play. </p>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00050">50</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -538,7 +720,7 @@ Public Member Functions</h2></td></tr>
 <p>This method must be called periodically to ensure proper refresh of the player status.</p>
 <dl class="section return"><dt>Returns</dt><dd>the current song infos. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00100">100</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,7 +740,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the player volume. </p>
 <dl class="section return"><dt>Returns</dt><dd>Volume [0-1.0] </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d80/player_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../db/d80/player_8cpp_source.html">player.cpp</a>.</p>
 
 </div>
 </div>
@@ -569,7 +751,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 1 2015 16:09:46 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

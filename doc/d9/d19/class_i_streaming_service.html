@@ -88,7 +88,6 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="../../de/d88/class_i_streaming_service-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">IStreamingService Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -105,9 +104,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7f31777be9b4d3065bc6ddf9e4475818"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="../../d6/d65/struct_plugin_meta_data.html">PluginMetaData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a7f31777be9b4d3065bc6ddf9e4475818">metaData</a> () const =0</td></tr>
 <tr class="memdesc:a7f31777be9b4d3065bc6ddf9e4475818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plugin's meta data.  <a href="#a7f31777be9b4d3065bc6ddf9e4475818">More...</a><br /></td></tr>
 <tr class="separator:a7f31777be9b4d3065bc6ddf9e4475818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7db51e5c35eda82dac9fc9b909bbbda4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a7db51e5c35eda82dac9fc9b909bbbda4">flashRequired</a> ()=0</td></tr>
+<tr class="memdesc:a7db51e5c35eda82dac9fc9b909bbbda4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells whether the service require the flashplugin to be installed.  <a href="#a7db51e5c35eda82dac9fc9b909bbbda4">More...</a><br /></td></tr>
+<tr class="separator:a7db51e5c35eda82dac9fc9b909bbbda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a376f4588ab1786a397aacc616037a855"><td class="memItemLeft" align="right" valign="top">virtual QUrl&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a376f4588ab1786a397aacc616037a855">url</a> () const =0</td></tr>
 <tr class="memdesc:a376f4588ab1786a397aacc616037a855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the music streaming service URL.  <a href="#a376f4588ab1786a397aacc616037a855">More...</a><br /></td></tr>
 <tr class="separator:a376f4588ab1786a397aacc616037a855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b3e8dbadcaf776669bb3548d11fb54"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a17b3e8dbadcaf776669bb3548d11fb54">canSeek</a> ()=0</td></tr>
+<tr class="separator:a17b3e8dbadcaf776669bb3548d11fb54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb009e5046b912610ba0bbd7e64f611d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#abb009e5046b912610ba0bbd7e64f611d">canGoNext</a> ()=0</td></tr>
+<tr class="separator:abb009e5046b912610ba0bbd7e64f611d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15df517d9dfb37bf0d6739b26e143666"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a15df517d9dfb37bf0d6739b26e143666">canGoPrevious</a> ()=0</td></tr>
+<tr class="separator:a15df517d9dfb37bf0d6739b26e143666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35586f170c6a0ae057801e7114a005b0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a35586f170c6a0ae057801e7114a005b0">play</a> ()=0</td></tr>
 <tr class="memdesc:a35586f170c6a0ae057801e7114a005b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts playing the current song.  <a href="#a35586f170c6a0ae057801e7114a005b0">More...</a><br /></td></tr>
 <tr class="separator:a35586f170c6a0ae057801e7114a005b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,23 +146,158 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a54b0e1c70470265d4bc478a72d54d171"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dc/dc8/playbackstatus_8h.html#af7f1518ce4cfac695fd4755843b29170">PlaybackStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a54b0e1c70470265d4bc478a72d54d171">playbackStatus</a> ()=0</td></tr>
 <tr class="memdesc:a54b0e1c70470265d4bc478a72d54d171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's playback status.  <a href="#a54b0e1c70470265d4bc478a72d54d171">More...</a><br /></td></tr>
 <tr class="separator:a54b0e1c70470265d4bc478a72d54d171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae24c416a2f16908663c3e6257bee6932"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#ae24c416a2f16908663c3e6257bee6932">canFavorite</a> ()=0</td></tr>
+<tr class="memdesc:ae24c416a2f16908663c3e6257bee6932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the service support adding a song to the user's favorite.  <a href="#ae24c416a2f16908663c3e6257bee6932">More...</a><br /></td></tr>
+<tr class="separator:ae24c416a2f16908663c3e6257bee6932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35f6e269be3ac0eb472f474af6d265d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#af35f6e269be3ac0eb472f474af6d265d">isFavorite</a> ()=0</td></tr>
+<tr class="memdesc:af35f6e269be3ac0eb472f474af6d265d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the song is part of the user's favorite songs.  <a href="#af35f6e269be3ac0eb472f474af6d265d">More...</a><br /></td></tr>
+<tr class="separator:af35f6e269be3ac0eb472f474af6d265d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5b572a7c3a7a2784dd2ed1069858ba9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#aa5b572a7c3a7a2784dd2ed1069858ba9">addToFavorite</a> (bool add)=0</td></tr>
+<tr class="memdesc:aa5b572a7c3a7a2784dd2ed1069858ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the current song to the user's favorite songs.  <a href="#aa5b572a7c3a7a2784dd2ed1069858ba9">More...</a><br /></td></tr>
+<tr class="separator:aa5b572a7c3a7a2784dd2ed1069858ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:afbbe0143dfde287cdb422d59cef5894e"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e">runJavaScript</a> (const QString &amp;scriptSource)</td></tr>
 <tr class="separator:afbbe0143dfde287cdb422d59cef5894e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a963f4a8d32d7aab6b504f958d10816e8"><td class="memItemLeft" align="right" valign="top">QWebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a963f4a8d32d7aab6b504f958d10816e8">webView</a></td></tr>
-<tr class="memdesc:a963f4a8d32d7aab6b504f958d10816e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the appliction's web view.  <a href="#a963f4a8d32d7aab6b504f958d10816e8">More...</a><br /></td></tr>
-<tr class="separator:a963f4a8d32d7aab6b504f958d10816e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29e90a160a1ece2499bd890ff7fc1663"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d19/class_i_streaming_service.html#a29e90a160a1ece2499bd890ff7fc1663">isPageLoaded</a> () const </td></tr>
+<tr class="memdesc:a29e90a160a1ece2499bd890ff7fc1663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility method that checks whether the page has finished loading or not.  <a href="#a29e90a160a1ece2499bd890ff7fc1663">More...</a><br /></td></tr>
+<tr class="separator:a29e90a160a1ece2499bd890ff7fc1663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for adding music streaming service integration. </p>
 
 <p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00036">36</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa5b572a7c3a7a2784dd2ed1069858ba9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void IStreamingService::addToFavorite </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>add</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds the current song to the user's favorite songs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">add</td><td>True to addd, False to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae24c416a2f16908663c3e6257bee6932"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::canFavorite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the service support adding a song to the user's favorite. </p>
+
+</div>
+</div>
+<a class="anchor" id="abb009e5046b912610ba0bbd7e64f611d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::canGoNext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Whether the client can call the next method on this interface and expect the current track to change. </p>
+
+</div>
+</div>
+<a class="anchor" id="a15df517d9dfb37bf0d6739b26e143666"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::canGoPrevious </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Whether the client can call the previsou method on this interface and expect the current track to change. </p>
+
+</div>
+</div>
+<a class="anchor" id="a17b3e8dbadcaf776669bb3548d11fb54"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::canSeek </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Whether the client can control the playback position using seekToPosition. </p>
+
+</div>
+</div>
 <a class="anchor" id="aae40caa18d4ccfb1182979bf089445d1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -177,6 +320,84 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current song information. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7db51e5c35eda82dac9fc9b909bbbda4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::flashRequired </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tells whether the service require the flashplugin to be installed. </p>
+
+</div>
+</div>
+<a class="anchor" id="af35f6e269be3ac0eb472f474af6d265d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStreamingService::isFavorite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the song is part of the user's favorite songs. </p>
+
+</div>
+</div>
+<a class="anchor" id="a29e90a160a1ece2499bd890ff7fc1663"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IStreamingService::isPageLoaded </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Utility method that checks whether the page has finished loading or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the page has finished loading, otherwise returns false </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d9/d46/interfaces_8cpp_source.html#l00033">33</a> of file <a class="el" href="../../d9/d46/interfaces_8cpp_source.html">interfaces.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,31 +712,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a963f4a8d32d7aab6b504f958d10816e8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QWebView* IStreamingService::webView</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>A pointer to the appliction's web view. </p>
-
-<p>Definition at line <a class="el" href="../../d6/de4/interfaces_8h_source.html#l00087">87</a> of file <a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/include/mellowplayer/<a class="el" href="../../d6/de4/interfaces_8h_source.html">interfaces.h</a></li>
 <li>lib/src/<a class="el" href="../../d9/d46/interfaces_8cpp_source.html">interfaces.cpp</a></li>
@@ -523,7 +719,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 1 2015 16:09:46 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

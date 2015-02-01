@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['teardown',['teardown',['../d1/db4/class_extensions_manager.html#a92eca41cee9b19ad9178565ffcab1371',1,'ExtensionsManager::teardown()'],['../d5/dfb/class_i_extension.html#a3cab4ea27fdd01e6cce752d648417773',1,'IExtension::teardown()']]],
-  ['tostring',['toString',['../dc/d91/struct_song_info.html#a188850c663c0ab7f9982155d9ec08385',1,'SongInfo']]],
-  ['trayicon',['TrayIcon',['../d7/d82/class_tray_icon.html',1,'TrayIcon'],['../d7/d82/class_tray_icon.html#a9454352025c90c64de24cbbdcf5d18a5',1,'TrayIcon::TrayIcon()'],['../df/db6/class_services.html#a73606ab144943113e009bc5125273cc1',1,'Services::trayIcon()']]],
-  ['trayicon_2ecpp',['trayicon.cpp',['../d4/d87/trayicon_8cpp.html',1,'']]],
-  ['trayicon_2eh',['trayicon.h',['../d0/d73/trayicon_8h.html',1,'']]]
+  ['raisemainwindow',['raiseMainWindow',['../df/db6/class_services.html#a8e941af0f1a7f465c87d0dff3f0ff077',1,'Services']]],
+  ['readme_2emd',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]],
+  ['resetsettings',['resetSettings',['../d5/dfb/class_i_extension.html#abbb15e8d980a5a9143e7de6f5cb59436',1,'IExtension']]],
+  ['restoredefaultsettings',['restoreDefaultSettings',['../d5/dfb/class_i_extension.html#a5133d7fbbb96dd84c243120af9197b79',1,'IExtension']]],
+  ['runjavascript',['runJavaScript',['../d9/d19/class_i_streaming_service.html#afbbe0143dfde287cdb422d59cef5894e',1,'IStreamingService']]]
 ];

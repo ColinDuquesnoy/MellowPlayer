@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['version',['version',['../d6/d65/struct_plugin_meta_data.html#aa5632eb43dc168536acd4125b820ce6d',1,'PluginMetaData']]],
-  ['volume',['volume',['../d9/d19/class_i_streaming_service.html#ac4db4d40dc641b050d96f405a91e67a0',1,'IStreamingService::volume()'],['../d7/d3e/class_player_interface.html#a613c59b397e67c1c48a161654b82aa3a',1,'PlayerInterface::volume()']]]
+  ['teardown',['teardown',['../d1/db4/class_extensions_manager.html#a92eca41cee9b19ad9178565ffcab1371',1,'ExtensionsManager::teardown()'],['../d5/dfb/class_i_extension.html#a3cab4ea27fdd01e6cce752d648417773',1,'IExtension::teardown()']]],
+  ['tostring',['toString',['../dc/d91/struct_song_info.html#a188850c663c0ab7f9982155d9ec08385',1,'SongInfo']]],
+  ['trayicon',['TrayIcon',['../d7/d82/class_tray_icon.html',1,'TrayIcon'],['../df/db6/class_services.html#a73606ab144943113e009bc5125273cc1',1,'Services::trayIcon()'],['../d7/d82/class_tray_icon.html#a9454352025c90c64de24cbbdcf5d18a5',1,'TrayIcon::TrayIcon()']]],
+  ['trayicon_2ecpp',['trayicon.cpp',['../d4/d87/trayicon_8cpp.html',1,'']]],
+  ['trayicon_2eh',['trayicon.h',['../d0/d73/trayicon_8h.html',1,'']]]
 ];

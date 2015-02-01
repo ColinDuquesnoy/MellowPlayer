@@ -104,16 +104,16 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#a9454352025c90c64de24cbbdcf5d18a5">   11</a></span>&#160;<a class="code" href="../../d7/d82/class_tray_icon.html#a9454352025c90c64de24cbbdcf5d18a5">TrayIcon::TrayIcon</a>(QObject *parent):</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    QObject(parent),</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;#ifdef __kde_support__</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    trayIcon(new KStatusNotifierItem())</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    m_trayIcon(new KStatusNotifierItem())</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;#else</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    trayIcon(new QSystemTrayIcon())</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    m_trayIcon(new QSystemTrayIcon())</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;#endif</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifdef __kde_support__</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    connect (trayIcon, SIGNAL(activateRequested(<span class="keywordtype">bool</span>, QPoint)),</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    connect (m_trayIcon, SIGNAL(activateRequested(<span class="keywordtype">bool</span>, QPoint)),</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;             <span class="keyword">this</span>, SLOT(onKF5IconActivated(<span class="keywordtype">bool</span>, QPoint)) );</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    connect(trayIcon, SIGNAL(<a class="code" href="../../d7/d82/class_tray_icon.html#af917a122d0c5c4a76a57ef7575b5c906">activated</a>(QSystemTrayIcon::ActivationReason)),</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    connect(m_trayIcon, SIGNAL(<a class="code" href="../../d7/d82/class_tray_icon.html#af917a122d0c5c4a76a57ef7575b5c906">activated</a>(QSystemTrayIcon::ActivationReason)),</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keyword">this</span>, SLOT(onTrayIconActivated(QSystemTrayIcon::ActivationReason)));</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
@@ -122,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#a4ab023074143b46c3eb9dda2a1678492">   29</a></span>&#160;<a class="code" href="../../d7/d82/class_tray_icon.html#a4ab023074143b46c3eb9dda2a1678492">TrayIcon::~TrayIcon</a>()</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef __kde_support__</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    trayIcon-&gt;hide();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    m_trayIcon-&gt;hide();</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
@@ -130,28 +130,28 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#ae1d0a4455d3dbfa12904e73f710d1680">   37</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d7/d82/class_tray_icon.html#ae1d0a4455d3dbfa12904e73f710d1680">TrayIcon::setIcon</a>(<span class="keyword">const</span> QIcon &amp;icon)</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef __kde_support__</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    trayIcon-&gt;setIconByPixmap(icon);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    trayIcon-&gt;setToolTipIconByPixmap(icon);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    trayIcon-&gt;setTitle(<span class="stringliteral">&quot;MellowPlayer&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    m_trayIcon-&gt;setIconByPixmap(icon);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    m_trayIcon-&gt;setToolTipIconByPixmap(icon);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    m_trayIcon-&gt;setTitle(<span class="stringliteral">&quot;MellowPlayer&quot;</span>);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    trayIcon-&gt;setIcon(icon);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    trayIcon-&gt;show();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    m_trayIcon-&gt;setIcon(icon);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    m_trayIcon-&gt;show();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//---------------------------------------------------------</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#a192dd6f1a5afbcfc097d9941824a050e">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d7/d82/class_tray_icon.html#a192dd6f1a5afbcfc097d9941824a050e">TrayIcon::setContextMenu</a>(QMenu *menu)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    trayIcon-&gt;setContextMenu(menu);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    m_trayIcon-&gt;setContextMenu(menu);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//---------------------------------------------------------</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#ab461c63b1f920a0d57cc95ac184f950c">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d7/d82/class_tray_icon.html#ab461c63b1f920a0d57cc95ac184f950c">TrayIcon::setToolTip</a>(<span class="keyword">const</span> QString &amp;toolTip)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#ifdef __kde_support__</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    trayIcon-&gt;setTitle(toolTip);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    m_trayIcon-&gt;setTitle(toolTip);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    trayIcon-&gt;setToolTip(toolTip);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    m_trayIcon-&gt;setToolTip(toolTip);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
@@ -159,11 +159,11 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="../../d7/d82/class_tray_icon.html#a39c4ff1faf54a7ecaacc83f8dff67646">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d7/d82/class_tray_icon.html#a39c4ff1faf54a7ecaacc83f8dff67646">TrayIcon::showMessage</a>(<span class="keyword">const</span> QString &amp;message, <span class="keyword">const</span> QString&amp; icon)</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifdef __kde_support__</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    trayIcon-&gt;setToolTipSubTitle(message);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    trayIcon-&gt;showMessage(<span class="stringliteral">&quot;MellowPlayer&quot;</span>, message, icon);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    m_trayIcon-&gt;setToolTipSubTitle(message);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    m_trayIcon-&gt;showMessage(<span class="stringliteral">&quot;MellowPlayer&quot;</span>, message, icon);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    Q_UNUSED(icon);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    trayIcon-&gt;showMessage(<span class="stringliteral">&quot;MellowPlayer&quot;</span>, message);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    m_trayIcon-&gt;showMessage(<span class="stringliteral">&quot;MellowPlayer&quot;</span>, message);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
@@ -193,7 +193,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 1 2015 16:09:46 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isvalid',['isValid',['../dc/d91/struct_song_info.html#a48b818e609de13bc2639433ed0aa1d2a',1,'SongInfo']]]
+  ['hasflash',['hasFlash',['../df/db6/class_services.html#a022f4f3ab049469d35cf0408d67b1609',1,'Services']]]
 ];

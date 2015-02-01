@@ -126,12 +126,12 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d62/class_url_downloader.html#abcf12401b34a23efbc68096d47b65f9c">download</a>(<span class="keyword">const</span> QString&amp; url, <span class="keyword">const</span> QString&amp; destination);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;signals:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d62/class_url_downloader.html#a943f3a2a1c26f1b6c8d3f8f64b976034">finished</a>(<span class="keyword">const</span> QString&amp; fileUrl);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d62/class_url_downloader.html#a01e88589e2859c9543c0b172293b9fca">finished</a>(<span class="keyword">const</span> QString&amp; m_fileUrl);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span> slots:</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> onDownloadFinished(QNetworkReply* reply);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    QNetworkAccessManager* nam;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QString fileUrl;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    QNetworkAccessManager* m_nam;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QString m_fileUrl;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif // URLDOWNLOADER</span></div>
@@ -139,11 +139,11 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="ttc" id="class_url_downloader_html_abcf12401b34a23efbc68096d47b65f9c"><div class="ttname"><a href="../../d7/d62/class_url_downloader.html#abcf12401b34a23efbc68096d47b65f9c">UrlDownloader::download</a></div><div class="ttdeci">void download(const QString &amp;url, const QString &amp;destination)</div><div class="ttdoc">Downloads the given url to the specified destination. </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d80/urldownloader_8cpp_source.html#l00031">urldownloader.cpp:31</a></div></div>
 <div class="ttc" id="class_url_downloader_html"><div class="ttname"><a href="../../d7/d62/class_url_downloader.html">UrlDownloader</a></div><div class="ttdoc">Utility class to download a file from URL. </div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d78/urldownloader_8h_source.html#l00033">urldownloader.h:33</a></div></div>
 <div class="ttc" id="class_url_downloader_html_aac4cdcbac5f9f7ca4871828bcfbb46fa"><div class="ttname"><a href="../../d7/d62/class_url_downloader.html#aac4cdcbac5f9f7ca4871828bcfbb46fa">UrlDownloader::UrlDownloader</a></div><div class="ttdeci">UrlDownloader(QObject *parent=NULL)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d80/urldownloader_8cpp_source.html#l00024">urldownloader.cpp:24</a></div></div>
-<div class="ttc" id="class_url_downloader_html_a943f3a2a1c26f1b6c8d3f8f64b976034"><div class="ttname"><a href="../../d7/d62/class_url_downloader.html#a943f3a2a1c26f1b6c8d3f8f64b976034">UrlDownloader::finished</a></div><div class="ttdeci">void finished(const QString &amp;fileUrl)</div><div class="ttdoc">Signal emitted when the download has finished. </div></div>
+<div class="ttc" id="class_url_downloader_html_a01e88589e2859c9543c0b172293b9fca"><div class="ttname"><a href="../../d7/d62/class_url_downloader.html#a01e88589e2859c9543c0b172293b9fca">UrlDownloader::finished</a></div><div class="ttdeci">void finished(const QString &amp;m_fileUrl)</div><div class="ttdoc">Signal emitted when the download has finished. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 27 2015 20:50:12 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 1 2015 16:09:46 for MellowPlayer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
