@@ -107,6 +107,8 @@ void TrayIcon::showMessage(const QString &message, QIcon* icon)
     notification->sendEvent();
     connect(notification, SIGNAL(activated(unsigned int )), this, SLOT(notificationActionActivated(unsigned int)));
     connect(notification, SIGNAL(closed()), this, SLOT(onKNotificationClosed()));
+
+    m_prevNotif = notification;
 #else
     Q_UNUSED(icon);
     m_trayIcon->showMessage("MellowPlayer", message);
