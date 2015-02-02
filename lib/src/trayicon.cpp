@@ -129,6 +129,7 @@ void TrayIcon::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
     emit activated(active);
 }
 
+#ifdef __kde_support__
 //---------------------------------------------------------
 void TrayIcon::onKNotificationClosed()
 {
@@ -151,3 +152,4 @@ void TrayIcon::notificationActionActivated(unsigned int actionIndex)
         break;
     }
 }
+#endif
