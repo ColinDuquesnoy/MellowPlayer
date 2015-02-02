@@ -25,6 +25,7 @@
 
 #ifdef __kde_support__
 class KStatusNotifierItem;
+class KNotification;
 #endif
 
 
@@ -70,7 +71,7 @@ public:
      * \param icon The message icon. Used only for KDE builds.
      */
     void showMessage(const QString& message,
-                     const QString &icon="mellowplayer");
+                     QIcon *icon=NULL);
 
 signals:
     /**
@@ -83,10 +84,15 @@ signals:
 private slots:
     void onKF5IconActivated(bool state, QPoint pos);
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+#ifdef __kde_support__
+    void onKNotificationClosed();
+    void notificationActionActivated(unsigned int);
+#endif
 
 private:
 #ifdef __kde_support__
     KStatusNotifierItem* m_trayIcon;
+    KNotification* m_prevNotif;
 #else
     QSystemTrayIcon* m_trayIcon;
 #endif
