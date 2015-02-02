@@ -1,0 +1,10 @@
+[Global]
+IconName=mellowplayer
+Comment=MellowPlayer
+Name=MellowPlayer
+
+[Event/songChanged]
+Name=songChanged
+Comment=The current song has changed
+Comment[fr]=La piste active a changé
+Action=Popup

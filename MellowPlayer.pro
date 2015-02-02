@@ -37,6 +37,11 @@ unix{
     iconfile.files = app/icons/mellowplayer.png
     INSTALLS += iconfile
 }
+kde_support {
+    notifyrc.path = $$PREFIX/share/knotifications5
+    notifyrc.files = share/MellowPlayer.notifyrc
+    INSTALLS += notifyrc
+}
 
 DISTFILES += README.md
 DISTFILES += LICENSE
