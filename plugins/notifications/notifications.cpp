@@ -52,8 +52,7 @@ void NotificationsPlugin::onArtReady(const QString &art)
     SongInfo song = Services::player()->currentSong();
     if(song.isValid())
     {
-        QIcon icon(art);
-        Services::trayIcon()->showMessage(song.toString(), &icon);
+        Services::trayIcon()->showMessage(song.toString(), art);
     }
 }
 

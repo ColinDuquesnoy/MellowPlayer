@@ -19,6 +19,7 @@
 
 #include <QDebug>
 #include <QMainWindow>
+#include <QProcess>
 #include "mellowplayer/trayicon.h"
 #include "mellowplayer/services.h"
 #include "mellowplayer/player.h"
@@ -88,7 +89,7 @@ void TrayIcon::setToolTip(const QString &toolTip)
 }
 
 //---------------------------------------------------------
-void TrayIcon::showMessage(const QString &message, QIcon* icon)
+void TrayIcon::showMessage(const QString &message, const QString& icon)
 {
 #ifdef __kde_support__
     if(m_prevNotif != NULL)
@@ -97,7 +98,7 @@ void TrayIcon::showMessage(const QString &message, QIcon* icon)
         "songChanged", Services::mainWindow(), KNotification::CloseWhenWidgetActivated);
     notification->setTitle(tr("MellowPlayer - Song changed"));
     notification->setText(message);
-    notification->setPixmap(icon->pixmap(64, 64));
+    notification->setPixmap(QIcon(icon).pixmap(64, 64));
 
     QStringList actions;
     actions.append(tr("Open"));
@@ -109,6 +110,12 @@ void TrayIcon::showMessage(const QString &message, QIcon* icon)
     connect(notification, SIGNAL(closed()), this, SLOT(onKNotificationClosed()));
 
     m_prevNotif = notification;
+#elif defined(Q_OS_LINUX)
+    QStringList args;
+    args.append("MellowPlayer");
+    args.append(message);
+    args.append(QString("--icon=%1").arg(icon));
+    QProcess::startDetached("notify-send", args);
 #else
     Q_UNUSED(icon);
     m_trayIcon->showMessage("MellowPlayer", message);

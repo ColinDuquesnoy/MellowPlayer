@@ -71,7 +71,7 @@ public:
      * \param icon The message icon. Used only for KDE builds.
      */
     void showMessage(const QString& message,
-                     QIcon *icon=NULL);
+                     const QString &icon="mellowplayer");
 
 signals:
     /**
