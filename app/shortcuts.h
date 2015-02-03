@@ -41,7 +41,7 @@
 #ifdef Q_OS_MAC
 #define DEFAULT_SHORTCUT_FAVORITE       "Ctrl+Alt+L"
 #else
-#define DEFAULT_SHORTCUT_FAVORITE       "Ctrl+Alt+F"
+#define DEFAULT_SHORTCUT_FAVORITE       "Shift+Alt+F"
 #endif
 #define DEFAULT_SHORTCUT_ABOUT          "F1"
 #define DEFAULT_SHORTCUT_REPORT         "F3"
