@@ -182,9 +182,6 @@ PlaybackStatus PlayerInterface::playbackStatus() const
     PlaybackStatus status = Stopped;
     if(iService)
          status = iService->playbackStatus();
-    if(status == Buffering)
-        status = Paused; // a player that is buffering is considered to be
-                         // paused.
     return status;
 }
 
