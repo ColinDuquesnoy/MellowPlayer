@@ -323,7 +323,9 @@ void MainWindow::updatePlayer()
                                tr("Add to favorites"));
     if(song.isValid())
     {
-        setWindowTitle(QString("%1 - MellowPlayer").arg(song.toString()));
+        setWindowTitle(QString("%1 - %2 - MellowPlayer").arg(
+            song.toString(),
+            Services::streamingServices()->currentService()->metaData().name));
         m_trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
             song.toString()));
         m_ui->actionNext->setEnabled(player->canGoNext());
@@ -343,7 +345,8 @@ void MainWindow::updatePlayer()
     }
     else
     {
-        setWindowTitle("MellowPlayer");
+        setWindowTitle(QString("%1 - MellowPlayer").arg(
+            Services::streamingServices()->currentService()->metaData().name));
         m_ui->actionNext->setEnabled(false);
         m_ui->actionPrevious->setEnabled(false);
         m_ui->actionStop->setEnabled(false);
