@@ -107,7 +107,6 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
 
     QStringList actions;
     actions.append(tr("Open"));
-    actions.append(tr("Next"));
     notification->setActions(actions);
 
     notification->sendEvent();
@@ -156,16 +155,7 @@ void TrayIcon::onKNotificationClosed()
 void TrayIcon::notificationActionActivated(unsigned int actionIndex)
 {
     Q_UNUSED(actionIndex);
-    qDebug() << "Action Index" << actionIndex;
-    switch (actionIndex)
-    {
-    case 1:
-        Services::mainWindow()->show();
-        Services::mainWindow()->raise();
-        break;
-    case 2:
-        Services::player()->next();
-        break;
-    }
+    Services::mainWindow()->show();
+    Services::mainWindow()->raise();
 }
 #endif
