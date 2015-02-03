@@ -95,8 +95,9 @@ void Mpris2Player::SetPosition(
 //---------------------------------------------------------
 void Mpris2Player::onPlaybackStatusChanged(PlaybackStatus status)
 {
+    Q_UNUSED(status);
     QVariantMap map;
-    map["PlaybackStatus"] = playbackStatusToString(status);
+    map["PlaybackStatus"] = this->playbackStatus();
     signalUpdate(map);
 }
 
