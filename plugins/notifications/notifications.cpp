@@ -71,7 +71,7 @@ void NotificationsPlugin::onArtReady(const QString &art)
     // The song is playing but the player has not stored
     // m_currentArt yet -> art was not ready when the song started and
     // the notification was skipped.
-    // Not it's time to show the notification
+    // Now it's time to show the notification
     if(song.isValid() && wasPlaying && Services::player()->currentArt() == "")
         Services::trayIcon()->showMessage(song.toString(), art);
 }
