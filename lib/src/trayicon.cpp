@@ -98,7 +98,7 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
         m_prevNotif->close();
     KNotification *notification= new KNotification(
         "songChanged", Services::mainWindow(), KNotification::CloseWhenWidgetActivated);
-    notification->setTitle(tr("MellowPlayer - Song changed"));
+    notification->setTitle(tr("MellowPlayer"));
     notification->setText(message);
     if(QFile(icon).exists())
         notification->setPixmap(QIcon(icon).pixmap(64, 64));
