@@ -112,6 +112,8 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
     m_prevNotif = notification;
 #elif defined(Q_OS_LINUX)
     QStringList args;
+    args.append("--hint");
+    args.append("int:transient:1");
     args.append("MellowPlayer");
     args.append(message);
     args.append(QString("--icon=%1").arg(icon));
