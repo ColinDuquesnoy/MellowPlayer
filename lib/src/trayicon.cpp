@@ -18,6 +18,7 @@
 //---------------------------------------------------------
 
 #include <QDebug>
+#include <QFile>
 #include <QMainWindow>
 #include <QProcess>
 #include "mellowplayer/trayicon.h"
@@ -91,6 +92,7 @@ void TrayIcon::setToolTip(const QString &toolTip)
 //---------------------------------------------------------
 void TrayIcon::showMessage(const QString &message, const QString& icon)
 {
+    qDebug() << "showing tray icon message: " << message << " (icon=" << icon << ")";
 #ifdef __kde_support__
     if(m_prevNotif != NULL)
         m_prevNotif->close();
@@ -98,7 +100,10 @@ void TrayIcon::showMessage(const QString &message, const QString& icon)
         "songChanged", Services::mainWindow(), KNotification::CloseWhenWidgetActivated);
     notification->setTitle(tr("MellowPlayer - Song changed"));
     notification->setText(message);
-    notification->setPixmap(QIcon(icon).pixmap(64, 64));
+    if(QFile(icon).exists())
+        notification->setPixmap(QIcon(icon).pixmap(64, 64));
+    else
+        notification->setPixmap(QIcon::fromTheme(icon).pixmap(64, 64));
 
     QStringList actions;
     actions.append(tr("Open"));

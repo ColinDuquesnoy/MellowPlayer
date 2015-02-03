@@ -55,4 +55,8 @@ public:
 private slots:
     void onSongStarted(const SongInfo& song);
     void onArtReady(const QString& art);
+    void onPlaybackStatusChanged(PlaybackStatus status);
+
+private:
+    bool wasPlaying;
 };

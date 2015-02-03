@@ -23,7 +23,8 @@
 
 //---------------------------------------------------------
 NotificationsPlugin::NotificationsPlugin(QObject *parent):
-    QObject(parent)
+    QObject(parent),
+    wasPlaying(false)
 {
 }
 
@@ -34,6 +35,8 @@ void NotificationsPlugin::setup()
             this, SLOT(onArtReady(QString)));
     connect(Services::player(), SIGNAL(songStarted(SongInfo)),
             this, SLOT(onSongStarted(SongInfo)));
+    connect(Services::player(), SIGNAL(playbackStatusChanged(PlaybackStatus)),
+            this, SLOT(onPlaybackStatusChanged(PlaybackStatus)));
 }
 
 //---------------------------------------------------------
@@ -51,6 +54,7 @@ const PluginMetaData &NotificationsPlugin::metaData() const
 //---------------------------------------------------------
 void NotificationsPlugin::onSongStarted(const SongInfo &song)
 {
+    qDebug() << "onSongStarted";
     // art may not be ready yet, in that case we will display the notification
     // in onArtReady
     if(song.isValid() && Services::player()->currentArt() != "")
@@ -61,6 +65,7 @@ void NotificationsPlugin::onSongStarted(const SongInfo &song)
 //---------------------------------------------------------
 void NotificationsPlugin::onArtReady(const QString &art)
 {
+    qDebug() << "onArtReady";
     SongInfo song = Services::player()->currentSong();
 
     // The song is playing but the player has not stored
@@ -71,6 +76,29 @@ void NotificationsPlugin::onArtReady(const QString &art)
             Services::player()->playbackStatus() == Playing &&
                 Services::player()->currentArt() == "")
         Services::trayIcon()->showMessage(song.toString(), art);
+}
+
+//---------------------------------------------------------
+void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
+{
+    switch(status){
+    case Paused:
+        if(wasPlaying)
+            Services::trayIcon()->showMessage(tr("Paused"));
+        wasPlaying = false;
+        break;
+    case Stopped:
+        Services::trayIcon()->showMessage(tr("Stopped"));
+        wasPlaying = false;
+        break;
+    case Playing:
+        wasPlaying = true;
+        break;
+    case Buffering:
+    default:
+        wasPlaying = false;
+        break;
+    }
 }
 
 //---------------------------------------------------------
