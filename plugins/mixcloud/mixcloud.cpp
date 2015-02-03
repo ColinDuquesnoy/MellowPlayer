@@ -102,9 +102,12 @@ void MixcloudPlugin::seekToPosition(int position)
 PlaybackStatus MixcloudPlugin::playbackStatus()
 {
     if(currentSongInfo().isValid())
-        if (runJavaScript("$('.player-control').hasClass("
+        if(runJavaScript("$('.player-control').hasClass("
                           "'player-control pause-state')").toBool())
             return Playing;
+        else if(runJavaScript("$('.player-control').hasClass("
+                                 "'player-control loading-state')").toBool())
+            return Buffering;
         else
             return Paused;
     else
