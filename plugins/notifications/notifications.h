@@ -53,5 +53,6 @@ public:
     const PluginMetaData& metaData() const;
 
 private slots:
+    void onSongStarted(const SongInfo& song);
     void onArtReady(const QString& art);
 };

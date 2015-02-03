@@ -32,6 +32,8 @@ void NotificationsPlugin::setup()
 {
     connect(Services::player(), SIGNAL(artReady(QString)),
             this, SLOT(onArtReady(QString)));
+    connect(Services::player(), SIGNAL(songStarted(SongInfo)),
+            this, SLOT(onSongStarted(SongInfo)));
 }
 
 //---------------------------------------------------------
@@ -47,13 +49,28 @@ const PluginMetaData &NotificationsPlugin::metaData() const
 }
 
 //---------------------------------------------------------
+void NotificationsPlugin::onSongStarted(const SongInfo &song)
+{
+    // art may not be ready yet, in that case we will display the notification
+    // in onArtReady
+    if(song.isValid() && Services::player()->currentArt() != "")
+        Services::trayIcon()->showMessage(
+            song.toString(), Services::player()->currentArt());
+}
+
+//---------------------------------------------------------
 void NotificationsPlugin::onArtReady(const QString &art)
 {
     SongInfo song = Services::player()->currentSong();
-    if(song.isValid())
-    {
+
+    // The song is playing but the player has not stored
+    // m_currentArt yet -> art was not ready when the song started and
+    // the notification was skipped.
+    // Not it's time to show the notification
+    if(song.isValid() &&
+            Services::player()->playbackStatus() == Playing &&
+                Services::player()->currentArt() == "")
         Services::trayIcon()->showMessage(song.toString(), art);
-    }
 }
 
 //---------------------------------------------------------

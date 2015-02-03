@@ -137,6 +137,11 @@ public:
      */
     void addToFavorites();
 
+    /*!
+     * \brief Gets the path to the current song art.
+     */
+    const QString &currentArt() const;
+
 signals:
     /*!
      * \brief Signal emitted when the current song status changed
@@ -197,6 +202,7 @@ private:
     void checkForControlCaps();
     void downloadSongArt(const QString &url);
 
+    QString        m_currentArt;
     SongInfo        m_currentSong;
     SongInfo        m_startedSong;
     PlaybackStatus  m_currentStatus;

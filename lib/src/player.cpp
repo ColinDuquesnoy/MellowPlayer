@@ -219,9 +219,16 @@ void PlayerInterface::addToFavorites()
 }
 
 //---------------------------------------------------------
+const QString& PlayerInterface::currentArt() const
+{
+    return m_currentArt;
+}
+
+//---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
     emit artReady(filePath);
+    this->m_currentArt = filePath;
 }
 
 //---------------------------------------------------------
@@ -244,6 +251,7 @@ void PlayerInterface::checkSongChange(SongInfo &song)
 {
     if(song.songName != m_currentSong.songName)
     {
+        m_currentArt = "";
         qDebug() << "Song changed: " << song.songName;
         emit songChanged(song);
         m_currentSong = song;
@@ -257,7 +265,9 @@ void PlayerInterface::checkSongChange(SongInfo &song)
             m_startedSong = SongInfo(); // invalid song
 
         if(song.isValid())
+        {
             downloadSongArt(song.artUrl);
+        }
     }
     else if(!m_startedSong.isValid() && playbackStatus() == Playing)
     {
