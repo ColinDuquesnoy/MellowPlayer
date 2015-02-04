@@ -258,9 +258,8 @@ void MainWindow::setupWebView()
     QWebSettings* settings = m_ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
-#ifdef QT_DEBUG
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
-#endif
+
     // handle opening links ourself so that we open external links in an
     // external browser
     m_ui->webView->page()->setLinkDelegationPolicy(
