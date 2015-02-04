@@ -117,8 +117,8 @@
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="311"/>
-        <source>Enabled</source>
-        <translation>Activé</translation>
+        <source>Plugin enabled</source>
+        <translation>Plugin activé</translation>
     </message>
     <message>
         <location filename="../dlg_preferences.ui" line="325"/>
@@ -128,7 +128,7 @@
     <message>
         <location filename="../dlg_preferences.ui" line="332"/>
         <source>Clear settings</source>
-        <translation>Nettoyer les règlages de l&apos;application</translation>
+        <translation>Nettoyer les réglages de l&apos;application</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     <message>
         <location filename="../keysequenceedit.cpp" line="120"/>
         <source>Press shortcut</source>
-        <translation>Exécutez un raccourci clavier</translation>
+        <translation>Pressez une combinaison de touches</translation>
     </message>
     <message>
         <location filename="../keysequenceedit.cpp" line="297"/>
@@ -421,34 +421,34 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Retirer des favoris</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
-        <location filename="../mainwindow.cpp" line="351"/>
-        <location filename="../mainwindow.cpp" line="353"/>
+        <location filename="../mainwindow.cpp" line="338"/>
+        <location filename="../mainwindow.cpp" line="354"/>
+        <location filename="../mainwindow.cpp" line="356"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="341"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="394"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="404"/>
+        <location filename="../mainwindow.cpp" line="407"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="425"/>
+        <location filename="../mainwindow.cpp" line="428"/>
         <source>Are you sure you want to exit MellowPlayer?</source>
         <translation>Etes-vous sûr de vouloir quitter MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="424"/>
+        <location filename="../mainwindow.cpp" line="427"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
     </message>
@@ -472,9 +472,34 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
 <context>
     <name>NotificationsPlugin</name>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="45"/>
-        <source>Shows a notification when the song changed.</source>
-        <translation>Affiche une notification lorsque la piste active a changé.</translation>
+        <location filename="../../plugins/notifications/notifications.cpp" line="55"/>
+        <source>Display playback notifications</source>
+        <translation>Affiche des notifications sur l&apos;état de la lecture</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="66"/>
+        <source>Display a notification when the current track has changed</source>
+        <translation>Affiche une notification lorsque la piste active a changé</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="69"/>
+        <source>Display a notification when the playback has paused</source>
+        <translation>Affiche une notification lorsque la lecture est mise en pause</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="72"/>
+        <source>Display a notification when the playback has stopped</source>
+        <translation>Affiche une notification lorsque la lecture est interrompue</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="132"/>
+        <source>Paused</source>
+        <translation>En pause</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/notifications/notifications.cpp" line="137"/>
+        <source>Stopped</source>
+        <translation>Interrompu</translation>
     </message>
 </context>
 <context>
@@ -486,7 +511,7 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
     <message>
         <location filename="../../lib/src/song.cpp" line="34"/>
-        <source>%1 by %2 from %3</source>
+        <source>%1 by %2 on %3</source>
         <translation>%1 de %2 sur %3</translation>
     </message>
     <message>
@@ -496,7 +521,7 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
     <message>
         <location filename="../../lib/src/song.cpp" line="40"/>
-        <source>%1 from %2</source>
+        <source>%1 on %2</source>
         <translation>%1 sur %2</translation>
     </message>
 </context>
@@ -517,6 +542,19 @@ Please install the latest flash player plugin from adobe and try again!</source>
 
 Ce service ne peut pas être utilisé sans flash.
 Veuillez installer la dernière version du plugin flash développé par Adobe et essayer à nouveau!</translation>
+    </message>
+</context>
+<context>
+    <name>TrayIcon</name>
+    <message>
+        <location filename="../../lib/src/trayicon.cpp" line="101"/>
+        <source>MellowPlayer</source>
+        <translation>MellowPlayer</translation>
+    </message>
+    <message>
+        <location filename="../../lib/src/trayicon.cpp" line="109"/>
+        <source>Open</source>
+        <translation>Ouvrir</translation>
     </message>
 </context>
 </TS>
