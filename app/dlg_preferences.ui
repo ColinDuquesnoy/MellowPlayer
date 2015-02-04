@@ -78,7 +78,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -308,7 +308,7 @@
             <item row="0" column="0">
              <widget class="QCheckBox" name="checkBoxPluginState">
               <property name="text">
-               <string>Enabled</string>
+               <string>Plugin enabled</string>
               </property>
              </widget>
             </item>

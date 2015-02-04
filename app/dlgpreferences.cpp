@@ -327,10 +327,9 @@ void DlgPreferences::restorePlugins()
         int widgetIndex = m_ui->comboBoxPlugins->itemData(i).toInt();
         if(widgetIndex)
         {
-            QWidget* w = m_ui->stackedWidgetPluginSettings->widget(widgetIndex);
             IExtension* plugin = Services::extensions()->plugin(
                         m_ui->comboBoxPlugins->itemText(i));
-            plugin->restoreDefaultSettings(w);
+            plugin->restoreDefaultSettings();
         }
     }
 

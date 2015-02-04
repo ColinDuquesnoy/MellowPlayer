@@ -195,6 +195,9 @@ public:
 
     /*!
      * \brief Reset the plugin settings
+     *
+     * Apply the settings stored in QSettings to widget.
+     *
      * \param widget Pointer to the settings widget returned by
      *  setttingsWidget()
      */
@@ -202,10 +205,11 @@ public:
 
     /*!
      * \brief Restore the plugin settings to their default values.
-     * \param widget Pointer to the settings widget returned by
-     *  setttingsWidget()
+     *
+     * Here you should just reset the values stored into QSettings, resetSettings will
+     * be called immediately to resfresh the widget state.
      */
-    virtual void restoreDefaultSettings(QWidget* widget) const { Q_UNUSED(widget) }
+    virtual void restoreDefaultSettings() const { }
 
     /*!
      * \brief Apply plugin settings.

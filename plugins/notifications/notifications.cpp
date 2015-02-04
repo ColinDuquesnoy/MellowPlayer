@@ -17,6 +17,9 @@
 //
 //---------------------------------------------------------
 
+#include <QCheckBox>
+#include <QLayoutItem>
+#include <QVBoxLayout>
 #include <QWidget>
 #include <mellowplayer.h>
 #include "notifications.h"
@@ -49,8 +52,59 @@ const PluginMetaData &NotificationsPlugin::metaData() const
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
-    meta.description =tr("Shows a notification when the song changed.");
+    meta.description =tr("Display playback notifications");
     return meta;
+}
+
+//---------------------------------------------------------
+QWidget *NotificationsPlugin::settingsWidget() const
+{
+    QWidget* widget = new QWidget();
+    QVBoxLayout* layout = new QVBoxLayout(widget);
+    layout->setMargin(0);
+
+    QCheckBox* cb = new QCheckBox(tr("Display a notification when the current track has changed"));
+    cb->setChecked(QSettings().value("notifySongChanged", true).toBool());
+    layout->addWidget(cb);
+    cb = new QCheckBox(tr("Display a notification when the playback has paused"));
+    cb->setChecked(QSettings().value("notifyPaused", true).toBool());
+    layout->addWidget(cb);
+    cb = new QCheckBox(tr("Display a notification when the playback has stopped"));
+    cb->setChecked(QSettings().value("notifyStopped", true).toBool());
+    layout->addWidget(cb);
+    layout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding));
+
+    return widget;
+}
+
+//---------------------------------------------------------
+void NotificationsPlugin::resetSettings(QWidget *widget) const
+{
+    QCheckBox* cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(0)->widget());
+    cb->setChecked(QSettings().value("notifySongChanged", true).toBool());
+    cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(1)->widget());
+    cb->setChecked(QSettings().value("notifyPaused", true).toBool());
+    cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(2)->widget());
+    cb->setChecked(QSettings().value("notifyStopped", true).toBool());
+}
+
+//---------------------------------------------------------
+void NotificationsPlugin::restoreDefaultSettings() const
+{
+    QSettings().setValue("notifySongChanged", true);
+    QSettings().setValue("notifyPaused", true);
+    QSettings().setValue("notifyStopped", true);
+}
+
+//---------------------------------------------------------
+void NotificationsPlugin::applySettings(QWidget *widget) const
+{
+    QCheckBox* cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(0)->widget());
+    QSettings().setValue("notifySongChanged", cb->isChecked());
+    cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(1)->widget());
+    QSettings().setValue("notifyPaused", cb->isChecked());
+    cb = qobject_cast<QCheckBox*>(widget->layout()->itemAt(2)->widget());
+    QSettings().setValue("notifyStopped", cb->isChecked());
 }
 
 //---------------------------------------------------------
@@ -64,6 +118,7 @@ void NotificationsPlugin::onSongStarted(const SongInfo &song)
 //---------------------------------------------------------
 void NotificationsPlugin::onArtReady(const QString &art)
 {
+    Q_UNUSED(art);
     m_artReady = true;
     notifySongChange();
 }
@@ -73,12 +128,13 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 {
     switch(status){
     case Paused:
-        if(m_wasPlaying)
+        if(m_wasPlaying && QSettings().value("notifyPaused").toBool())
             Services::trayIcon()->showMessage(tr("Paused"));
         m_wasPlaying = false;
         break;
     case Stopped:
-        Services::trayIcon()->showMessage(tr("Stopped"));
+        if(QSettings().value("notifyStopped").toBool())
+            Services::trayIcon()->showMessage(tr("Stopped"));
         m_wasPlaying = false;
         break;
     case Playing:
@@ -96,9 +152,10 @@ void NotificationsPlugin::notifySongChange()
 {
     if(m_songStarted && m_artReady)
     {
-        Services::trayIcon()->showMessage(
-            Services::player()->currentSong().toString(),
-            Services::player()->currentArt());
+        if(QSettings().value("notifySongChanged").toBool())
+            Services::trayIcon()->showMessage(
+                Services::player()->currentSong().toString(),
+                Services::player()->currentArt());
         m_songStarted = false;
         m_artReady = false;
     }

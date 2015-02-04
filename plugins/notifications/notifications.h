@@ -52,6 +52,39 @@ public:
      */
     const PluginMetaData& metaData() const;
 
+    /*!
+     * \brief Returns the settings widget associated with the extension.
+     *
+     * Implement this method if you need to show a settings widget in the
+     * application preferences dialog. Return NULL if you don't need to show
+     * any settings. If you return a non-null widget, you will also need to
+     * implement: resetSettings, restoreDefaultSettings and applySettings.
+     */
+    QWidget* settingsWidget() const;
+
+    /*!
+     * \brief Reset the plugin settings
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
+     */
+    void resetSettings(QWidget* widget) const;
+
+    /*!
+     * \brief Restore the plugin settings to their default values.
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
+     */
+    void restoreDefaultSettings() const;
+
+    /*!
+     * \brief Apply plugin settings.
+     *
+     * \param widget Pointer to the settings widget returned by
+     *  setttingsWidget()
+     */
+    void applySettings(QWidget* widget) const;
+
+
 private slots:
     void onSongStarted(const SongInfo& song);
     void onArtReady(const QString& art);
