@@ -344,8 +344,9 @@ void MainWindow::updatePlayer()
     }
     else
     {
-        setWindowTitle(QString("%1 - MellowPlayer").arg(
-            Services::streamingServices()->currentService()->metaData().name));
+        IStreamingService* sv = Services::streamingServices()->currentService();
+        if(sv)
+            setWindowTitle(QString("%1 - MellowPlayer").arg(sv->metaData().name));
         m_ui->actionNext->setEnabled(false);
         m_ui->actionPrevious->setEnabled(false);
         m_ui->actionStop->setEnabled(false);
