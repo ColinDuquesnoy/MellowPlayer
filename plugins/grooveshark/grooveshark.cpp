@@ -129,7 +129,7 @@ PlaybackStatus GroovesharkPlugin::playbackStatus()
         return Playing;
     else if(statusString == "paused")
         return Paused;
-    else if(statusString == "loading")
+    else if(statusString == "loading" || currentSongInfo().isValid())
         return Buffering;
     else
         return Stopped;
