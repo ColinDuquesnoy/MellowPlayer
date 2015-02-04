@@ -58,5 +58,8 @@ private slots:
     void onPlaybackStatusChanged(PlaybackStatus status);
 
 private:
-    bool wasPlaying;
+    void notifySongChange();
+    bool m_wasPlaying;
+    bool m_songStarted;
+    bool m_artReady;
 };

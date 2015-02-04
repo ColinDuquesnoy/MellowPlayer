@@ -224,8 +224,8 @@ const QString& PlayerInterface::currentArt() const
 //---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
-    emit artReady(filePath);
     this->m_currentArt = filePath;
+    emit artReady(filePath);
 }
 
 //---------------------------------------------------------

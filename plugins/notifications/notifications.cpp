@@ -24,7 +24,9 @@
 //---------------------------------------------------------
 NotificationsPlugin::NotificationsPlugin(QObject *parent):
     QObject(parent),
-    wasPlaying(false)
+    m_wasPlaying(false),
+    m_songStarted(false),
+    m_artReady(false)
 {
 }
 
@@ -54,26 +56,16 @@ const PluginMetaData &NotificationsPlugin::metaData() const
 //---------------------------------------------------------
 void NotificationsPlugin::onSongStarted(const SongInfo &song)
 {
-    qDebug() << "onSongStarted";
-    // art may not be ready yet, in that case we will display the notification
-    // in onArtReady
-    if(song.isValid() && Services::player()->currentArt() != "")
-        Services::trayIcon()->showMessage(
-            song.toString(), Services::player()->currentArt());
+    if(song.isValid())
+        m_songStarted = true;
+    notifySongChange();
 }
 
 //---------------------------------------------------------
 void NotificationsPlugin::onArtReady(const QString &art)
 {
-    qDebug() << "onArtReady";
-    SongInfo song = Services::player()->currentSong();
-
-    // The song is playing but the player has not stored
-    // m_currentArt yet -> art was not ready when the song started and
-    // the notification was skipped.
-    // Now it's time to show the notification
-    if(song.isValid() && wasPlaying && Services::player()->currentArt() == "")
-        Services::trayIcon()->showMessage(song.toString(), art);
+    m_artReady = true;
+    notifySongChange();
 }
 
 //---------------------------------------------------------
@@ -81,21 +73,34 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 {
     switch(status){
     case Paused:
-        if(wasPlaying)
+        if(m_wasPlaying)
             Services::trayIcon()->showMessage(tr("Paused"));
-        wasPlaying = false;
+        m_wasPlaying = false;
         break;
     case Stopped:
         Services::trayIcon()->showMessage(tr("Stopped"));
-        wasPlaying = false;
+        m_wasPlaying = false;
         break;
     case Playing:
-        wasPlaying = true;
+        m_wasPlaying = true;
         break;
     case Buffering:
     default:
-        wasPlaying = false;
+        m_wasPlaying = false;
         break;
+    }
+}
+
+//---------------------------------------------------------
+void NotificationsPlugin::notifySongChange()
+{
+    if(m_songStarted && m_artReady)
+    {
+        Services::trayIcon()->showMessage(
+            Services::player()->currentSong().toString(),
+            Services::player()->currentArt());
+        m_songStarted = false;
+        m_artReady = false;
     }
 }
 
