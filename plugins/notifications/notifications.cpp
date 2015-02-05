@@ -128,12 +128,12 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 {
     switch(status){
     case Paused:
-        if(m_wasPlaying && QSettings().value("notifyPaused").toBool())
+        if(m_wasPlaying && QSettings().value("notifyPaused", true).toBool())
             Services::trayIcon()->showMessage(tr("Paused"));
         m_wasPlaying = false;
         break;
     case Stopped:
-        if(QSettings().value("notifyStopped").toBool())
+        if(QSettings().value("notifyStopped", true).toBool())
             Services::trayIcon()->showMessage(tr("Stopped"));
         m_wasPlaying = false;
         break;
@@ -150,9 +150,10 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 //---------------------------------------------------------
 void NotificationsPlugin::notifySongChange()
 {
+    qDebug() << "notifySongChange" << m_songStarted << m_artReady;
     if(m_songStarted && m_artReady)
     {
-        if(QSettings().value("notifySongChanged").toBool())
+        if(QSettings().value("notifySongChanged", true).toBool())
             Services::trayIcon()->showMessage(
                 Services::player()->currentSong().toString(),
                 Services::player()->currentArt());
