@@ -248,10 +248,12 @@ void PlayerInterface::checkSongChange(SongInfo &song)
 {
     if(song.songName != m_currentSong.songName)
     {
-        m_currentArt = "";
         qDebug() << "Song changed: " << song.songName;
         emit songChanged(song);
         m_currentSong = song;
+
+        if(song.isValid())
+            downloadSongArt(song.artUrl);
 
         if(playbackStatus() == Playing && song.isValid())
         {
@@ -260,16 +262,11 @@ void PlayerInterface::checkSongChange(SongInfo &song)
         }
         else
             m_startedSong = SongInfo(); // invalid song
-
-        if(song.isValid())
-        {
-            downloadSongArt(song.artUrl);
-        }
     }
-    else if(!m_startedSong.isValid() && playbackStatus() == Playing)
+    else if(song.isValid() && !m_startedSong.isValid() && playbackStatus() == Playing)
     {
         // sometimes (depends on the player) a new song is active but not playing,
-        // we only emit song started when a song is active and the player is playing.
+        // we only emit song started when a song is valid and the player is playing.s
         m_startedSong = song;
         emit songStarted(song);
     }
@@ -312,10 +309,11 @@ void PlayerInterface::downloadSongArt(const QString& url)
 {
     QString dest = QDir::temp().path() +
                    QString(QDir::separator()) +
-                   currentSong().songId +
+                   this->currentSong().songId +
                    QFileInfo(url).fileName();
+    qDebug() << url << "->" << dest;
     if(QFile(dest).exists())
-        emit artReady(dest);
+        this->onArtReady(dest);
     else
     {
         UrlDownloader* downloader = new UrlDownloader(this);

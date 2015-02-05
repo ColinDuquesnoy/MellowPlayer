@@ -110,6 +110,7 @@ void NotificationsPlugin::applySettings(QWidget *widget) const
 //---------------------------------------------------------
 void NotificationsPlugin::onSongStarted(const SongInfo &song)
 {
+    qDebug() << "onSongStarted: " << song.toString();
     if(song.isValid())
         m_songStarted = true;
     notifySongChange();
@@ -118,6 +119,7 @@ void NotificationsPlugin::onSongStarted(const SongInfo &song)
 //---------------------------------------------------------
 void NotificationsPlugin::onArtReady(const QString &art)
 {
+    qDebug() << "onArtReady: " << art;
     Q_UNUSED(art);
     m_artReady = true;
     notifySongChange();
@@ -150,7 +152,7 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 //---------------------------------------------------------
 void NotificationsPlugin::notifySongChange()
 {
-    qDebug() << "notifySongChange" << m_songStarted << m_artReady;
+    qDebug() << "notifySongChange: songStarted = " << m_songStarted << " - artReady = " << m_artReady;
     if(m_songStarted && m_artReady)
     {
         if(QSettings().value("notifySongChanged", true).toBool())
