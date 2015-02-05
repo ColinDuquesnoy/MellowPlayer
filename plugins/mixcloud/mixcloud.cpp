@@ -137,10 +137,10 @@ SongInfo MixcloudPlugin::currentSongInfo()
     }
     if(retVal.isValid())
     {
-        retVal.songId = QString::number(rand());
         retVal.artUrl = runJavaScript(
             "$('.player-cloudcast-image').children(0).get(0).src")
                 .toString().replace("w/60/h/60", "w/500/h/500");
+        retVal.songId = QFileInfo(retVal.artUrl).baseName().replace("-", "");
 
         // cannot seek
         retVal.position = 0;
