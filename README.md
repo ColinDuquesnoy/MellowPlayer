@@ -1,8 +1,11 @@
 ![MellowPlayer banner](/banner.png)
 
-## About
 
 [![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
+
+## About
+
+
 
 *MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
 that runs **web-based music streaming services** in its own window and
