@@ -2,6 +2,7 @@
 
 
 [![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
+[![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
 
 ## About
 
