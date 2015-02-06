@@ -16,6 +16,7 @@ install:
     - sudo apt-add-repository -y ppa:beineri/opt-qt54
     - sudo apt-get -qq update
     - sudo apt-get -qq install g++-4.9 libc6-i386 qt54tools qt54svg qt54webkit
+    - sudo apt-get install flashplugin-installer
     - export CXX="g++-4.9"
     - export CC="gcc-4.9";
     - source /opt/qt54/bin/qt54-env.sh;
