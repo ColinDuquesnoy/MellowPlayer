@@ -400,7 +400,8 @@ void MainWindow::onAboutTriggered()
         "<br/>"
         "The program is provided AS IS with NO WARRANTY OF ANY KIND, "
         "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A "
-        "PARTICULAR PURPOSE.<br/>")
+        "PARTICULAR PURPOSE.<br/><br/>"
+        "<a href=\"http://colinduquesnoy.github.io/MellowPlayer/\">Download the latest version!</a> ")
         .arg(version, QLatin1String(__DATE__), QLatin1String(__TIME__),
              compilerString(), QString::number(QSysInfo::WordSize));
 
