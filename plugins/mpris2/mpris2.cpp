@@ -68,7 +68,7 @@ const PluginMetaData &Mpris2Plugin::metaData() const
     meta.name = "MPRIS2";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
-    meta.version = "1.0";
+    meta.version = "1.1";
     meta.description =tr("Exposes an MPRIS2 interface to DBUS.");
     return meta;
 }

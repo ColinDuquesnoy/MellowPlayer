@@ -33,7 +33,7 @@ const PluginMetaData &MixcloudPlugin::metaData() const
     meta.name = "Mixcloud";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
-    meta.version = "1.0";
+    meta.version = "1.1";
     meta.icon = QIcon(":/mixcloud/logo.png");
     meta.description =tr(
 "Mixcloud is an online music streaming service that allows for the listening "
