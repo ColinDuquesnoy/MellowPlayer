@@ -47,6 +47,7 @@ DISTFILES += README.md
 DISTFILES += LICENSE
 DISTFILES += devhelper.py
 DISTFILES += setup.iss.in
+DISTFILES += .travis.yml
 DISTFILES += docs/Doxyfile
 DISTFILES += share/templates/extensions/file.h
 DISTFILES += share/templates/extensions/file.cpp
