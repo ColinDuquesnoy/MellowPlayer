@@ -422,8 +422,8 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="338"/>
-        <location filename="../mainwindow.cpp" line="354"/>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="355"/>
+        <location filename="../mainwindow.cpp" line="357"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
@@ -433,22 +433,23 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
-        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;</source>
-        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;Le programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;</translation>
+        <location filename="../mainwindow.cpp" line="395"/>
+        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Download the latest version!&lt;/a&gt; </source>
+        <translatorcomment>&amp;lt;h3&amp;gt;MellowPlayer %1&amp;lt;/h3&amp;gt;Compilé le %2 à %3 (%4, %5 bit)&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Le programme est fourni TEL QUEL sans GARANTIE D&amp;apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&amp;apos;ADÉQUATION À UN USAGE PARTICULIER.&amp;lt;br/&amp;gt;</translatorcomment>
+        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Téléchargez la dernière version!&lt;/a&gt; </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="428"/>
+        <location filename="../mainwindow.cpp" line="430"/>
         <source>Are you sure you want to exit MellowPlayer?</source>
         <translation>Etes-vous sûr de vouloir quitter MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="427"/>
+        <location filename="../mainwindow.cpp" line="429"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
     </message>
@@ -492,12 +493,12 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Affiche une notification lorsque la lecture est interrompue</translation>
     </message>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="132"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="134"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="137"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="139"/>
         <source>Stopped</source>
         <translation>Interrompu</translation>
     </message>
@@ -528,12 +529,12 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
 <context>
     <name>StreamingServicesManager</name>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="91"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="92"/>
         <source>Flash player plugin missing</source>
         <translation>Le plugin flash est manquant</translation>
     </message>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="92"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="93"/>
         <source>The flash player plugin is missing on your system.
 
 This service cannot be used without flash.
