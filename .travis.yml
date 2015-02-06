@@ -7,6 +7,10 @@ env:
     - CONFIG=Release
     - CONFIG=Debug
 
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
 install:
     - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
     - sudo apt-add-repository -y ppa:beineri/opt-qt54
@@ -21,3 +25,9 @@ script:
     - qmake
     - make
     - sudo make install
+
+    # a few functional test
+    - MellowPlayer --service=deezer --autoquit-delay=10
+    - MellowPlayer --service=grooveshark --autoquit-delay=10
+    - MellowPlayer --service=groovesharkmobile --autoquit-delay=10
+    - MellowPlayer --service=mixcloud --autoquit-delay=10
