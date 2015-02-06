@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
     friend class DlgPreferences;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(bool debug, QWidget *parent = 0);
     ~MainWindow();
 
     /*!
@@ -78,7 +78,7 @@ private:
     void setupActions();
     void setupTrayIcon();
     void setupUpdateTimer();
-    void setupWebView();
+    void setupWebView(bool debug);
     void connectSlots();
 
     void restoreGeometryAndState();

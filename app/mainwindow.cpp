@@ -30,7 +30,7 @@
 #define PAGE_WEB 1
 
 //---------------------------------------------------------
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(bool debug, QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow)
 {
@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setupActions();
     setupIcons();
     restoreGeometryAndState();
-    setupWebView();
+    setupWebView(debug);
     setupUpdateTimer();
     setupTrayIcon();
     connectSlots();
@@ -249,7 +249,7 @@ void MainWindow::setupUpdateTimer()
 }
 
 //---------------------------------------------------------
-void MainWindow::setupWebView()
+void MainWindow::setupWebView(bool debug)
 {
     // Setup web view
     m_ui->webView->page()->networkAccessManager()->setCookieJar(
@@ -258,7 +258,8 @@ void MainWindow::setupWebView()
     QWebSettings* settings = m_ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
-    settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
+    if(debug)
+        settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
 
     // handle opening links ourself so that we open external links in an
     // external browser

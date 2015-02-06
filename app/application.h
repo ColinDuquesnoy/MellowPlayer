@@ -67,6 +67,8 @@ private:
     QTranslator m_translator;
     SingleInstanceController m_singleInstanceController;
     MainWindow* m_mainWindow;
+    bool m_debug;
+    QString m_service;
 };
 
 

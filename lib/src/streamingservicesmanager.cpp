@@ -68,9 +68,10 @@ StreamingServicesList StreamingServicesManager::plugins() const
 IStreamingService* StreamingServicesManager::plugin(
     const QString &serviceName) const
 {
+    QString name = QString(serviceName).toLower().replace(" ", "");
     foreach(IStreamingService* p, m_plugins)
     {
-        if(p->metaData().name == serviceName)
+        if(p->metaData().name.toLower().replace(" ", "") == name)
             return p;
     }
     return NULL;  // invalid plugin

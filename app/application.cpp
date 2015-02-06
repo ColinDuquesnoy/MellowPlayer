@@ -41,11 +41,61 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
             QString::number(VERSION_MICRO),
             VERSION_STATUS));
 
-    QString locale = QLocale::system().name().split("_")[0];
-    qDebug() << "Setting up translations for locale: " << locale;
-    m_translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
-    installTranslator(&m_translator);
-    m_singleInstanceController.start(this);
+    QStringList args = arguments();
+    bool quit = false;
+#ifdef QT_DEBUG
+    m_debug = true;
+#else
+    m_debug = false;
+#endif
+    int autoQuitDelay = 0;
+    m_service = QSettings().value("service", "").toString();
+    QRegExp rxArgAutoQuit("--autoquit-delay=([0-9]{1,})");
+    QRegExp rxArgDebug("--debug");
+    QRegExp rxArgHelp("--help");
+    QRegExp rxArgVersion("--version");
+    QRegExp rxArgService("--service=([a-zA-Z\\s]*)");
+
+    for (int i = 1; i < args.size(); ++i) {
+        if (rxArgAutoQuit.indexIn(args.at(i)) != -1 ) {
+            autoQuitDelay =  rxArgAutoQuit.cap(1).toInt();
+            QTimer::singleShot(autoQuitDelay * 1000, this, SLOT(quit()));
+        }
+        else if (rxArgDebug.indexIn(args.at(i)) != -1 ) {
+            m_debug = true;
+        }
+        else if (rxArgHelp.indexIn(args.at(i)) != -1 ) {
+            std::cout << "Add cloud music integration to your desktop!" << std::endl << std::endl;
+            std::cout << "Options:" << std::endl;
+            std::cout << "  * --debug: enable the web inspector"  << std::endl;
+            std::cout << "  * --help: show this help message"  << std::endl;
+            std::cout << "  * --version: show the version"  << std::endl;
+            std::cout << "  * --service=%s: select a specific service (deezer, grooveshark, groovesharkmobile, mixcloud)"  << std::endl;
+            std::cout << "  * --autoquit-delay=%d: a delay for automatically quitting the application (for testing purposes)."  << std::endl;
+
+            quit = true;
+        }
+        else if (rxArgVersion.indexIn(args.at(i)) != -1 ) {
+            std::cout << "MellowPlayer v" << applicationVersion().toStdString() << std::endl;
+            quit = true;
+        }
+        else if (rxArgService.indexIn(args.at(i)) != -1 ) {
+            m_service =  rxArgService.cap(1);
+        }
+        else {
+            qDebug() << "Unknown arg:" << args.at(i);
+        }
+    }
+
+    if(!quit)
+    {
+        QString locale = QLocale::system().name().split("_")[0];
+        m_translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
+        installTranslator(&m_translator);
+        m_singleInstanceController.start(this);
+    }
+    else
+        QTimer::singleShot(1, this, SLOT(quit()));
 }
 
 //---------------------------------------------------------
@@ -60,7 +110,7 @@ void MellowPlayerApp::initialize()
 {
     qDebug() << "Initializing application";
 
-    m_mainWindow = new MainWindow();
+    m_mainWindow = new MainWindow(m_debug);
 
     Services::_setMainWindow(m_mainWindow);
     Services::_setServicesManager(new StreamingServicesManager(this));
@@ -69,8 +119,7 @@ void MellowPlayerApp::initialize()
     loadPlugins();
     m_mainWindow->showWebPage();
     Services::mainWindow()->show();
-    if(Services::streamingServices()->startService(
-            QSettings().value("service", "").toString()))
+    if(Services::streamingServices()->startService(m_service))
         m_mainWindow->showWebPage();
     else
         m_mainWindow->showHomePage();

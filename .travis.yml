@@ -1,30 +1,23 @@
 language: cpp
 
 os:
-  - linux
-  - osx
+    - linux
 
 env:
-  - CONFIG=Release
-  - CONFIG=Debug
+    - CONFIG=Release
+    - CONFIG=Debug
 
 install:
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-         sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-      && sudo apt-add-repository -y ppa:beineri/opt-qt54
-      && sudo apt-get -qq update
-      && sudo apt-get -qq install g++-4.8 libc6-i386 qt54tools qt54svg qt54webkit
-      && export CXX="g++-4.8"
-      && export CC="gcc-4.8";
-      source /opt/qt54/bin/qt54-env.sh;
-    else
-         brew update
-      && brew install qt5
-      && chmod -R 755 /usr/local/opt/qt5/*
-      ;
-    fi
+    - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+    - sudo apt-add-repository -y ppa:beineri/opt-qt54
+    - sudo apt-get -qq update
+    - sudo apt-get -qq install g++-4.9 libc6-i386 qt54tools qt54svg qt54webkit
+    - export CXX="g++-4.9"
+    - export CC="gcc-4.9";
+    - source /opt/qt54/bin/qt54-env.sh;
 
 script:
-  - qmake
-  - make
-  - sudo make install
+    # make sure the app can be build and installed without errors
+    - qmake
+    - make
+    - sudo make install
