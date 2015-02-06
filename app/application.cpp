@@ -22,25 +22,12 @@
 #include "mainwindow.h"
 #include "mellowplayer.h"
 #include "pluginsmanager.h"
+#include "cookiejar.h"
 
 
 //---------------------------------------------------------
-MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
-    QApplication(argc, argv),
-    m_mainWindow(NULL)
+bool MellowPlayerApp::parseArgs()
 {
-#ifdef __kde_support__
-    qDebug() << "MellowPlayer built with KDE support";
-#endif
-    setOrganizationName("MellowPlayer");
-    setOrganizationDomain("org.mellowplayer");
-    setApplicationVersion(
-        QString("%1.%2.%3%4").arg(
-            QString::number(VERSION_MAJOR),
-            QString::number(VERSION_MINOR),
-            QString::number(VERSION_MICRO),
-            VERSION_STATUS));
-
     QStringList args = arguments();
     bool quit = false;
 #ifdef QT_DEBUG
@@ -54,6 +41,8 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     QRegExp rxArgDebug("--debug");
     QRegExp rxArgHelp("--help");
     QRegExp rxArgVersion("--version");
+    QRegExp rxArgClearCookies("--clear-cookies");
+    QRegExp rxArgClearSettings("--clear-settings");
     QRegExp rxArgService("--service=([a-zA-Z\\s]*)");
 
     for (int i = 1; i < args.size(); ++i) {
@@ -64,11 +53,23 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
         else if (rxArgDebug.indexIn(args.at(i)) != -1 ) {
             m_debug = true;
         }
+        else if (rxArgClearCookies.indexIn(args.at(i)) != -1 ) {
+            qDebug() << "clearing cookies";
+            CookieJar().purgeCookies();
+        }
+        else if (rxArgClearSettings.indexIn(args.at(i)) != -1 ) {
+            qDebug() << "clearing settings";
+            QSettings().clear();
+            m_service = "";
+        }
         else if (rxArgHelp.indexIn(args.at(i)) != -1 ) {
             std::cout << "Add cloud music integration to your desktop!" << std::endl << std::endl;
             std::cout << "Options:" << std::endl;
             std::cout << "  * --debug: enable the web inspector"  << std::endl;
             std::cout << "  * --help: show this help message"  << std::endl;
+            std::cout << "  * --version: show the version"  << std::endl;
+            std::cout << "  * --clear-settings: clear the application settings, restore factory defaults"  << std::endl;
+            std::cout << "  * --clear-cookies: clear the stored cookies"  << std::endl;
             std::cout << "  * --version: show the version"  << std::endl;
             std::cout << "  * --service=%s: select a specific service (deezer, grooveshark, groovesharkmobile, mixcloud)"  << std::endl;
             std::cout << "  * --autoquit-delay=%d: a delay for automatically quitting the application (for testing purposes)."  << std::endl;
@@ -86,6 +87,27 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
             qDebug() << "Unknown arg:" << args.at(i);
         }
     }
+
+    return quit;
+}
+
+MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
+    QApplication(argc, argv),
+    m_mainWindow(NULL)
+{
+#ifdef __kde_support__
+    qDebug() << "MellowPlayer built with KDE support";
+#endif
+    setOrganizationName("MellowPlayer");
+    setOrganizationDomain("org.mellowplayer");
+    setApplicationVersion(
+        QString("%1.%2.%3%4").arg(
+            QString::number(VERSION_MAJOR),
+            QString::number(VERSION_MINOR),
+            QString::number(VERSION_MICRO),
+            VERSION_STATUS));
+
+    bool quit = parseArgs();
 
     if(!quit)
     {

@@ -63,6 +63,8 @@ public:
      */
     void close();
 
+    void parseArgs(bool quit, QStringList args);
+    bool parseArgs();
 private:
     QTranslator m_translator;
     SingleInstanceController m_singleInstanceController;
