@@ -401,9 +401,11 @@ void MainWindow::onAboutTriggered()
         "The program is provided AS IS with NO WARRANTY OF ANY KIND, "
         "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A "
         "PARTICULAR PURPOSE.<br/><br/>"
-        "<a href=\"http://colinduquesnoy.github.io/MellowPlayer/\">Download the latest version!</a> ")
-        .arg(version, QLatin1String(__DATE__), QLatin1String(__TIME__),
-             compilerString(), QString::number(QSysInfo::WordSize));
+#ifndef Q_OS_LINUX
+        "<a href=\"http://colinduquesnoy.github.io/MellowPlayer/\">Click here to download the latest version!</a> "
+#endif
+        ).arg(version, QLatin1String(__DATE__), QLatin1String(__TIME__),
+              compilerString(), QString::number(QSysInfo::WordSize));
 
     QMessageBox::about(
                 this, tr("About MellowPlayer"), description);
