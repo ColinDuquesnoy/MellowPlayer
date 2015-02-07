@@ -72,7 +72,7 @@ void SingleInstanceController::onSocketConnected()
 #if QT_VERSION >= 0x050000
     QTimer::singleShot(250, &m_app->quit);
 #else
-    QTimer::singleShot(250, this, SLOT(quit));
+    QTimer::singleShot(250, m_app, SLOT(quit()));
 #endif
 }
 
