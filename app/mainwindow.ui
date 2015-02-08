@@ -224,7 +224,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -254,6 +254,7 @@
     <addaction name="actionAbout_MellowPlayer"/>
     <addaction name="actionAbout_Qt"/>
     <addaction name="separator"/>
+    <addaction name="actionWiki"/>
     <addaction name="actionReport_a_bug"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -415,10 +416,17 @@
   </action>
   <action name="actionAdd_to_favorites">
    <property name="icon">
-    <iconset theme="emblem-favorite"/>
+    <iconset theme="emblem-favorite">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
-    <string>Add to favorites</string>
+    <string>&amp;Add to favorites</string>
+   </property>
+  </action>
+  <action name="actionWiki">
+   <property name="text">
+    <string>Wiki</string>
    </property>
   </action>
  </widget>

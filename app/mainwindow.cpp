@@ -307,6 +307,8 @@ void MainWindow::connectSlots()
                   this, SLOT(onAboutQtTriggered()));
     connect(m_ui->actionReport_a_bug, SIGNAL(triggered()),
                   this, SLOT(onReportBugTriggered()));
+    connect(m_ui->actionWiki, SIGNAL(triggered()),
+            this, SLOT(onWikiTriggered()));
     connect(m_ui->actionAdd_to_favorites, SIGNAL(triggered()),
                   this, SLOT(onAddToFavorites()));
 }
@@ -415,6 +417,14 @@ void MainWindow::onAboutTriggered()
 void MainWindow::onAboutQtTriggered()
 {
     QMessageBox::aboutQt(this);
+}
+
+//---------------------------------------------------------
+void MainWindow::onWikiTriggered()
+{
+    QDesktopServices::openUrl(QUrl(
+        "https://github.com/ColinDuquesnoy/MellowPlayer/"
+        "wiki#user-documentation"));
 }
 
 //---------------------------------------------------------
