@@ -63,9 +63,12 @@ public:
      */
     void close();
 
-    void parseArgs(bool quit, QStringList args);
-    bool parseArgs();
+private slots:
+    void onCommitDataRequested(QSessionManager& manager);
+
 private:
+    bool parseArgs();
+
     QTranslator m_translator;
     SingleInstanceController m_singleInstanceController;
     MainWindow* m_mainWindow;
