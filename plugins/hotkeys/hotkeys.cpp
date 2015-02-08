@@ -34,7 +34,7 @@ const PluginMetaData &HotkeysPlugin::metaData() const
     meta.name = "Hotkeys";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
-    meta.version = "1.0";
+    meta.version = "1.1";
     meta.description =tr("Adds support for global keyboard shortcuts.");
     return meta;
 }
