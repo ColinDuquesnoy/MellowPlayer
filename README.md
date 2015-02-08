@@ -22,29 +22,16 @@ notifications and more).
 
 MellowPlayer is licensed under the GPL license.
 
-## Features
-
-- Support for the following web-based music streaming services:
-   - [Grooveshark](http://grooveshark.com/)
-   - [Grooveshark Mobile](http://html5.grooveshark.com/) (on GNU/Linux and OS X only)
-   - [Mixcloud](http://www.mixcloud.com/)
-   - [Deezer](http://www.deezer.com/)
-- Cross-platform (available on Windows, Mac OSX and GNU/Linux)
-- System tray integration (minimize to system tray when you close the window, notifications)
-- Global shortcuts support (Media Keys or custom shortcut)
-- Mpris2 support (GNU/Linux only)
-- Plugin based application (you can extend the app or add support for new service by writing a plugin)
-
 ## Dependencies
 
 ### All platforms
 
 - **Qt5** (>= 5.4.0) or **Qt4**
-- **flashplugin**
+- **flashplugin** (runtime dependency)
 
 ### GNU/Linux
 
-- **libnotify**
+- **libnotify** (runtime dependency)
 
 ### KDE Sc/Plasma 5
 
