@@ -18,6 +18,7 @@
 //---------------------------------------------------------
 
 #include <QAction>
+#include <QLabel>
 #include <qglobal.h>
 #include "hotkeys.h"
 #ifdef __kde_support__
@@ -67,6 +68,22 @@ void HotkeysPlugin::setup()
         connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
         m_shortcuts.append(shortcut);
     }
+#endif
+}
+
+QWidget *HotkeysPlugin::settingsWidget() const
+{
+#ifdef __kde_support__
+    QLabel* lbl = new QLabel();
+    lbl->setText(tr(
+"<html><head/><body><p align=\"center\">Global shortcuts can be configured in "
+"the system settings</p><p align=\"center\"><span style=\" font-size:8pt; "
+"font-style:italic;\">(Shortcuts -&gt;Global Shortcuts -&gt; MellowPlayer "
+"Component)</span></p></body></html>"));
+    //lbl->setStyleSheet();
+    return lbl;
+#else
+    return NULL;
 #endif
 }
 

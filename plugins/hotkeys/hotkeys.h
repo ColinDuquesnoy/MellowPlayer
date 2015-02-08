@@ -46,6 +46,7 @@ public:
     virtual const PluginMetaData &metaData() const;
     //! Sets the extension up (initialization).
     virtual void setup();
+    QWidget *settingsWidget() const;
 
 private:
 #ifndef __kde_support__
