@@ -222,9 +222,14 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
 <context>
     <name>HotkeysPlugin</name>
     <message>
-        <location filename="../../plugins/hotkeys/hotkeys.cpp" line="37"/>
+        <location filename="../../plugins/hotkeys/hotkeys.cpp" line="38"/>
         <source>Adds support for global keyboard shortcuts.</source>
         <translation>Ajoute le support des raccourcis clavier globaux.</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/hotkeys/hotkeys.cpp" line="78"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Global shortcuts can be configured in the system settings&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;(Shortcuts -&amp;gt;Global Shortcuts -&amp;gt; MellowPlayer Component)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Les raccourcis globaux peuvent être configurés dans les paramètres système.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;(Shortcuts -&amp;gt;Raccourcis globaux-&amp;gt; Composant: MellowPlayer )&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -434,21 +439,21 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="395"/>
-        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Download the latest version!&lt;/a&gt; </source>
-        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Téléchargez la dernière version!&lt;/a&gt; </translation>
+        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Click here to download the latest version!&lt;/a&gt; </source>
+        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Cliquez ici pour télécharger la dernière version!&lt;/a&gt; </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="409"/>
+        <location filename="../mainwindow.cpp" line="411"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="430"/>
+        <location filename="../mainwindow.cpp" line="432"/>
         <source>Are you sure you want to exit MellowPlayer?</source>
         <translation>Etes-vous sûr de vouloir quitter MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="429"/>
+        <location filename="../mainwindow.cpp" line="431"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
     </message>
