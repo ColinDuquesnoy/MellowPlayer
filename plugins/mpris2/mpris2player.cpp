@@ -97,7 +97,7 @@ void Mpris2Player::onPlaybackStatusChanged(PlaybackStatus status)
 {
     Q_UNUSED(status);
     QVariantMap map;
-    map["PlaybackStatus"] = this->playbackStatus();
+    map["PlaybackStatus"] = statusToString(status);
     signalUpdate(map);
 }
 
@@ -170,6 +170,7 @@ void Mpris2Player::signalUpdate(const QVariantMap &map)
         << "org.mpris.MediaPlayer2.Player"
         << map
         << QStringList();
+    qDebug() << "MPRIS: signaling update" << args;
     signal.setArguments(args);
     QDBusConnection::sessionBus().send(signal);
 }
@@ -179,6 +180,11 @@ QString Mpris2Player::playbackStatus()
 {
     PlayerInterface* player = Services::player();
     PlaybackStatus status = player->playbackStatus();
+    return statusToString(status);
+}
+
+QString Mpris2Player::statusToString(PlaybackStatus status)
+{
     // a player that is buffering is considered to be paused for mpris,
     // othersie the player disappear on Plasma 5.
     if(status == Buffering)
