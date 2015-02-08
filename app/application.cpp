@@ -30,9 +30,6 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv):
     QApplication(argc, argv),
     m_mainWindow(NULL)
 {
-#ifdef __kde_support__
-    qDebug() << "MellowPlayer built with KDE support";
-#endif
     setOrganizationName("MellowPlayer");
     setOrganizationDomain("org.mellowplayer");
     setApplicationVersion(
@@ -168,7 +165,11 @@ bool MellowPlayerApp::parseArgs()
             quit = true;
         }
         else if (rxArgVersion.indexIn(args.at(i)) != -1 ) {
-            std::cout << "MellowPlayer v" << applicationVersion().toStdString() << std::endl;
+            std::cout << "MellowPlayer v" << applicationVersion().toStdString()
+#ifdef __kde_support__
+                      << " (built with KDE_SUPPORT)"
+#endif
+                      << std::endl;
             quit = true;
         }
         else if (rxArgService.indexIn(args.at(i)) != -1 ) {
