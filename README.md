@@ -1,12 +1,9 @@
 ![MellowPlayer banner](/banner.png)
 
-
 [![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
 [![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
 
 ## About
-
-
 
 *MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
 that runs **web-based music streaming services** in its own window and
@@ -15,8 +12,6 @@ notifications and more).
 
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
-
-![MellowPlayer](doc/_static/mellowplayer-kaos.png "MellowPlayer on KaOS (Plasma5)")
 
 ## License
 
