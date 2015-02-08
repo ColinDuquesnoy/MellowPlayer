@@ -19,17 +19,14 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-### All platforms
-
+All platforms:
 - **Qt5** (>= 5.4.0) or **Qt4**
 - **flashplugin** (runtime dependency)
 
-### GNU/Linux
-
+GNU/Linux:
 - **libnotify** (runtime dependency)
 
-### KDE Sc/Plasma 5
-
+KDE Sc/Plasma 5:
 - **KGlobalAccell**
 - **KNotifications**
 
