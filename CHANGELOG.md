@@ -13,6 +13,7 @@
 
 ### Fixed bugs
 
+- fix a bug which prevented the os from shutting down (logout/shutdown/restart) if the window was visible
 - fix a couple of bugs related to buffering state in various streaming service. Those bugs were not 
   visible with the old notification system
 - improve mpris interface on other desktops (mainly gnome shell)
