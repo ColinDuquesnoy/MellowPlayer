@@ -13,6 +13,13 @@ notifications and more).
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
 
+
+## Resources
+
+- [Official website](http://colinduquesnoy.github.io/MellowPlayer/)
+- [Wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
+- [API Reference](http://colinduquesnoy.github.io/MellowPlayer/doc/index.html)
+
 ## License
 
 MellowPlayer is licensed under the GPL license.
@@ -30,7 +37,6 @@ KDE Sc/Plasma 5:
 - **KGlobalAccell**
 - **KNotifications**
 
-
 ## Compilation
 
 ```
@@ -39,7 +45,7 @@ make
 sudo make install
 ```
 
-### Build options
+Build options:
 
 - **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
 - **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
