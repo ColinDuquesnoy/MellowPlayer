@@ -18,6 +18,7 @@
 //---------------------------------------------------------
 
 #include <iostream>
+#include <QSessionManager>
 #include "application.h"
 #include "mainwindow.h"
 #include "mellowplayer.h"
