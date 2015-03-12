@@ -110,10 +110,10 @@ FORMS           += mainwindow.ui \
                    dlg_preferences.ui
 
 # Version infos
-VERSION          = 1.0.0
+VERSION          = 1.1.1
 DEFINES         += VERSION_MAJOR=1
 DEFINES         += VERSION_MINOR=1
-DEFINES         += VERSION_MICRO=0
+DEFINES         += VERSION_MICRO=1
 DEFINES         += VERSION_STATUS=\\\"\\\"
 
 

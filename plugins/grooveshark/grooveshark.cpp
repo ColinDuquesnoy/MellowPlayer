@@ -58,7 +58,7 @@ bool GroovesharkPlugin::flashRequired()
 //---------------------------------------------------------
 QUrl GroovesharkPlugin::url() const
 {
-    return QUrl("http://grooveshark.com");
+    return QUrl("http://retro.grooveshark.com");
 }
 
 //---------------------------------------------------------
