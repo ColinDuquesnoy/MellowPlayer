@@ -110,7 +110,7 @@ SongInfo GroovesharkPlugin::currentSongInfo()
     retVal.songName = songData["songName"].toString();
     retVal.albumName = songData["albumName"].toString();
     retVal.artistName = songData["artistName"].toString();
-    retVal.artUrl = songData["artURL"].toString();
+    retVal.artUrl = songData["artURL"].toString().replace("?co=retro.grooveshark.com", "");
 
     // position from grooveshark are given in ms, we use µs.
     retVal.duration = songData["calculatedDuration"].toInt() * 1000;
