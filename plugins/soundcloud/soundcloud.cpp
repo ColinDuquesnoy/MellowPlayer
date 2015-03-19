@@ -35,7 +35,13 @@ const PluginMetaData &SoundcloudPlugin::metaData() const
     meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
     meta.icon = QIcon(":/soundcloud/logo-black.png");
-    meta.description =tr("Music streaming service description");
+    meta.description =tr(
+"<p><strong>SoundCloud</strong> is a Swedish online audio distribution platform based in Berlin, Germany, "
+"that enables its users to upload, record, promote, and share their originally-created sounds.</p> "
+"<p>According to the company’s data, in December 2014, the service attracts more than "
+"175 million unique monthly listeners, while content creators upload about 12 hours worth of audio "
+"every minute.</p><p>Founders Alexander Ljung and Eric Wahlforss are the chief executive officer (CEO) and "
+"chief technical officer (CTO), respectively.</p>");
     return meta;
 }
 
