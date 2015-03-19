@@ -20,7 +20,7 @@
 #include <QtCore>
 #include <mellowplayer.h>
 
-class %(classname)s:
+class SoundcloudPlugin:
         public QObject,
         public IStreamingService
 {
@@ -28,17 +28,17 @@ class %(classname)s:
 
 #if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID IStreamingService_iid
-                      FILE "%(name)s.json")
+                      FILE "soundcloud.json")
 #endif
     Q_INTERFACES(IStreamingService)
 
 public:
-    %(classname)s();
+    SoundcloudPlugin();
     virtual const PluginMetaData& metaData() const;
-    //! Returns the %(classname)s URL
-    QUrl url() const;
-    //! Is flash required
-    bool flashRequired() const;
+    //! Flash is required to use sound cloud
+    bool flashRequired();
+    //! Returns the SoundcloudPlugin URL
+    virtual QUrl url() const;
     //! Plays the current song
     void play();
     //! Pauses the current song
@@ -74,4 +74,7 @@ public:
     //! Whether the client can call the previsou method on this interface and
     //! expect the current track to change.
     bool canGoPrevious();
+
+private:
+    int id;
 };

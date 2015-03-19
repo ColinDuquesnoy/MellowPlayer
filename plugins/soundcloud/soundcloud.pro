@@ -17,18 +17,13 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-
-unix{
-    SUBDIRS += groovesharkmobile
-}
-unix:!macx {
-    SUBDIRS += mpris2
-}
-
-SUBDIRS += grooveshark
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer
-SUBDIRS += mixcloud
-SUBDIRS += soundcloud
+TEMPLATE      = lib
+QT           += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_soundcloud
+CONFIG       += plugin static
+HEADERS       = soundcloud.h
+SOURCES       = soundcloud.cpp
+RESOURCES    += soundcloud.qrc
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include

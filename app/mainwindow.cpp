@@ -17,6 +17,7 @@
 
 #include <QDesktopServices>
 #include <QMessageBox>
+#include <QWebFrame>
 #include <mellowplayer.h>
 #include "cookiejar.h"
 #include "dlgselectservice.h"
@@ -56,6 +57,7 @@ void MainWindow::showWebPage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_WEB);
     m_ui->menubar->show();
+    m_updateTimer->stop();
 }
 
 //---------------------------------------------------------
@@ -245,7 +247,6 @@ void MainWindow::setupUpdateTimer()
     m_updateTimer->setInterval(100);
     connect(m_updateTimer, SIGNAL(timeout()),
                   this, SLOT(updatePlayer()));
-    m_updateTimer->start();
 }
 
 //---------------------------------------------------------
@@ -311,6 +312,9 @@ void MainWindow::connectSlots()
             this, SLOT(onWikiTriggered()));
     connect(m_ui->actionAdd_to_favorites, SIGNAL(triggered()),
                   this, SLOT(onAddToFavorites()));
+
+    connect(m_ui->webView, SIGNAL(loadFinished(bool)),
+            this, SLOT(onLoadFinished(bool)));
 }
 
 //---------------------------------------------------------
@@ -451,6 +455,26 @@ void MainWindow::quit()
 void MainWindow::onAddToFavorites()
 {
     Services::player()->addToFavorites();
+}
+
+void MainWindow::onLoadFinished(bool ok)
+{
+    if(ok)
+    {
+        QWebFrame* frame = m_ui->webView->page()->mainFrame();
+        bool jqueryMissing = frame->evaluateJavaScript("!window.jQuery").toBool();
+        if(jqueryMissing)
+        {
+            QString pth(":/jquery-2.1.3.min.js");
+            qDebug() << "injecting " << pth;
+            QFile f(pth);
+            if(f.open(QFile::ReadOnly|QIODevice::Text))
+            {
+                frame->evaluateJavaScript(f.readAll());
+            }
+        }
+        m_updateTimer->start();
+    }
 }
 
 //---------------------------------------------------------

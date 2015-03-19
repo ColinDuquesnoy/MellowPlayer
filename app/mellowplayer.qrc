@@ -18,5 +18,6 @@
         <file>translations/mellowplayer_fr.qm</file>
         <file>icons/user-trash.png</file>
         <file>icons/emblem-favorite.png</file>
+        <file>jquery-2.1.3.min.js</file>
     </qresource>
 </RCC>

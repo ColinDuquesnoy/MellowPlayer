@@ -26,6 +26,15 @@
 }
 
 //---------------------------------------------------------
+bool %(classname)s::flashRequired()
+{
+    // most services require flash, change it to false if you're
+    // working on an html5 service.
+    return true;
+}
+
+
+//---------------------------------------------------------
 const PluginMetaData &%(classname)s::metaData() const
 {
     static PluginMetaData meta;

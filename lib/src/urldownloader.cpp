@@ -30,12 +30,28 @@ UrlDownloader::UrlDownloader(QObject *parent):
 //---------------------------------------------------------
 void UrlDownloader::download(const QString &url, const QString &destination)
 {
-    m_nam = new QNetworkAccessManager(this);
     m_fileUrl = destination;
-    connect(m_nam, SIGNAL(finished(QNetworkReply *)),
-            this, SLOT(onDownloadFinished(QNetworkReply *)));
-    m_nam->get(QNetworkRequest(QUrl(url)));
-    qDebug() << "Downloading " << url << " to " << destination;
+    if(url.startsWith(":") or url.startsWith("qrc:"))
+    {
+        // load from resource
+        QFile dst(m_fileUrl);
+        QFile src(url);
+        if(src.open(QIODevice::ReadOnly) && dst.open(QIODevice::WriteOnly))
+        {
+            dst.write(src.readAll());
+            dst.close();
+        }
+        emit finished(m_fileUrl);
+    }
+    else
+    {
+        m_nam = new QNetworkAccessManager(this);
+        connect(m_nam, SIGNAL(finished(QNetworkReply *)),
+                this, SLOT(onDownloadFinished(QNetworkReply *)));
+        m_nam->get(QNetworkRequest(QUrl(url)));
+        qDebug() << "Downloading " << url << " to " << destination;
+    }
+
 }
 
 //---------------------------------------------------------

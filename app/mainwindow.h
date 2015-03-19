@@ -72,6 +72,7 @@ private slots:
     void onReportBugTriggered();
     void quit();
     void onAddToFavorites();
+    void onLoadFinished(bool ok);
 
 private:
     void closeEvent(QCloseEvent* event);
