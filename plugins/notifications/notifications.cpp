@@ -131,12 +131,12 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
     switch(status){
     case Paused:
         if(m_wasPlaying && QSettings().value("notifyPaused", true).toBool())
-            Services::trayIcon()->showMessage(tr("Paused"));
+            Services::trayIcon()->showMessage(tr("Paused"), saveServiceIconToTemp());
         m_wasPlaying = false;
         break;
     case Stopped:
         if(QSettings().value("notifyStopped", true).toBool())
-            Services::trayIcon()->showMessage(tr("Stopped"));
+            Services::trayIcon()->showMessage(tr("Stopped"), saveServiceIconToTemp());
         m_wasPlaying = false;
         break;
     case Playing:
@@ -150,15 +150,27 @@ void NotificationsPlugin::onPlaybackStatusChanged(PlaybackStatus status)
 }
 
 //---------------------------------------------------------
+QString NotificationsPlugin::saveServiceIconToTemp()
+{
+    const PluginMetaData meta = Services::streamingServices()->currentService()->metaData();
+    QString dest = QDir::temp().path() + QString(QDir::separator()) + meta.name +
+            QString(".png");
+    meta.icon.pixmap(64, 64).save(dest);
+
+    return dest;
+}
+
 void NotificationsPlugin::notifySongChange()
 {
     qDebug() << "notifySongChange: songStarted = " << m_songStarted << " - artReady = " << m_artReady;
     if(m_songStarted && m_artReady)
     {
+        QString art = Services::player()->currentArt();
+        if(art.isEmpty())
+            art = saveServiceIconToTemp();
         if(QSettings().value("notifySongChanged", true).toBool())
             Services::trayIcon()->showMessage(
-                Services::player()->currentSong().toString(),
-                Services::player()->currentArt());
+                Services::player()->currentSong().toString(), art);
         m_songStarted = false;
         m_artReady = false;
     }

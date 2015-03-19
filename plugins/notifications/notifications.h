@@ -85,6 +85,7 @@ public:
     void applySettings(QWidget* widget) const;
 
 
+    QString saveServiceIconToTemp();
 private slots:
     void onSongStarted(const SongInfo& song);
     void onArtReady(const QString& art);

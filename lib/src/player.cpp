@@ -312,7 +312,9 @@ void PlayerInterface::downloadSongArt(const QString& url)
                    this->currentSong().songId +
                    QFileInfo(url).fileName();
     qDebug() << url << "->" << dest;
-    if(QFile(dest).exists())
+    if(url.isEmpty())
+        this->onArtReady("");
+    else if(QFile(dest).exists())
         this->onArtReady(dest);
     else
     {
