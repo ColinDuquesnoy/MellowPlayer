@@ -31,7 +31,7 @@ UrlDownloader::UrlDownloader(QObject *parent):
 void UrlDownloader::download(const QString &url, const QString &destination)
 {
     m_fileUrl = destination;
-    if(url.startsWith(":") or url.startsWith("qrc:"))
+    if(url.startsWith(":") || url.startsWith("qrc:"))
     {
         // load from resource
         QFile dst(m_fileUrl);

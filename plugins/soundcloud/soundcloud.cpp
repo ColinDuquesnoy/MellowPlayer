@@ -126,7 +126,9 @@ SongInfo SoundcloudPlugin::currentSongInfo()
     retVal.songName = runJavaScript("$('.playbackTitle__link').text()").toString();
     retVal.position = runJavaScript("$('.playbackTitle__progress').attr('aria-valuenow')").toFloat() * 1000;
     retVal.duration = runJavaScript("$('.playbackTitle__progress').attr('aria-valuemax')").toFloat() * 1000;
+#if QT_VERSION >= 0x050000
     retVal.songId = QString::number(qt_hash(retVal.songName));
+#endif
     return retVal;
 }
 
