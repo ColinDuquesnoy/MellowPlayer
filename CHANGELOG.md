@@ -1,3 +1,20 @@
+## 1.2.0
+
+### New features
+- Soundcloud integration
+- New streaming service icons
+
+### Fixed bugs
+- fix cookies management: use one cookie jar per service (#3)
+- fix grooveshark retro images not appearing in kmediaplayer
+
+## 1.1.1
+
+Use grooveshark retro instead of the new grooveshark website. 
+The new website does not work well with QtWebkit (freeze on large collection, completely unusable).
+We will reintroduce the official grooveshark as soon as QtWebEngine starts supporting flash.
+
+
 ## 1.1.0
 
 ### New features
