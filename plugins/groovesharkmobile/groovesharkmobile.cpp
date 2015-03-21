@@ -33,7 +33,7 @@ const PluginMetaData &GroovesharkmobilePlugin::metaData() const
     meta.name = "Grooveshark Mobile";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
-    meta.version = "1.0";
+    meta.version = "1.1";
     meta.icon = QIcon(":/grooveshark/logo.png");
     meta.description =tr(
 "<p><strong>Grooveshark</strong> is an international online music search "

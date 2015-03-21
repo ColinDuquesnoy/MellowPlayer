@@ -32,7 +32,7 @@ const PluginMetaData &DeezerPlugin::metaData() const
     meta.name = "Deezer";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "Colin Duquesnoy";
-    meta.version = "1.0";
+    meta.version = "1.1";
     meta.icon = QIcon(":/deezer/deezer-logo.png");
     meta.description =tr(
 "<p><strong>Deezer</strong> is a web-based music streaming service. "

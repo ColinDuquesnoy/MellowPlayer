@@ -51,7 +51,7 @@ const PluginMetaData &NotificationsPlugin::metaData() const
     meta.name = "Notifications";
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
-    meta.version = "1.1";
+    meta.version = "1.2";
     meta.description =tr("Display playback notifications");
     return meta;
 }
