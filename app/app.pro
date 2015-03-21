@@ -88,7 +88,6 @@ SOURCES         += main.cpp\
                    mainwindow.cpp \
                    application.cpp \
                    singleinstancecontroller.cpp \
-                   cookiejar.cpp \
                    icons.cpp \
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
@@ -98,7 +97,6 @@ SOURCES         += main.cpp\
 HEADERS         += mainwindow.h \
                    application.h \
                    singleinstancecontroller.h \
-                   cookiejar.h \
                    icons.h \
                    pluginsmanager.h \
                    dlgselectservice.h \

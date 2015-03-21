@@ -19,7 +19,6 @@
 #include <QMessageBox>
 #include <QWebFrame>
 #include <mellowplayer.h>
-#include "cookiejar.h"
 #include "dlgselectservice.h"
 #include "dlgpreferences.h"
 #include "icons.h"
@@ -252,9 +251,6 @@ void MainWindow::setupUpdateTimer()
 //---------------------------------------------------------
 void MainWindow::setupWebView(bool debug)
 {
-    // Setup web view
-    m_ui->webView->page()->networkAccessManager()->setCookieJar(
-                new CookieJar(m_ui->webView));
     // make sure javascript and flash are enabled.
     QWebSettings* settings = m_ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);

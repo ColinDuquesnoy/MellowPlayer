@@ -23,7 +23,7 @@
 #include "mainwindow.h"
 #include "mellowplayer.h"
 #include "pluginsmanager.h"
-#include "cookiejar.h"
+#include "mellowplayer/cookiejar.h"
 
 
 //---------------------------------------------------------
@@ -144,7 +144,9 @@ bool MellowPlayerApp::parseArgs()
         }
         else if (rxArgClearCookies.indexIn(args.at(i)) != -1 ) {
             qDebug() << "clearing cookies";
-            CookieJar().purgeCookies();
+            foreach (IStreamingService* service, Services::streamingServices()->plugins()) {
+                CookieJar(service->metaData().name).purgeCookies();
+            }
         }
         else if (rxArgClearSettings.indexIn(args.at(i)) != -1 ) {
             qDebug() << "clearing settings";

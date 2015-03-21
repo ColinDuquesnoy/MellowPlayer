@@ -17,11 +17,12 @@
 //
 //---------------------------------------------------------
 
-#include "cookiejar.h"
+#include "mellowplayer/cookiejar.h"
 
 //---------------------------------------------------------
-CookieJar::CookieJar(QObject* parent):
-    QNetworkCookieJar(parent)
+CookieJar::CookieJar(const QString &serviceName, QObject* parent):
+    QNetworkCookieJar(parent),
+    serviceName(serviceName)
 {
     loadCookies();
 }
@@ -29,7 +30,7 @@ CookieJar::CookieJar(QObject* parent):
 //---------------------------------------------------------
 void CookieJar::purgeCookies()
 {
-    QSettings().setValue("cookies", CookieMap());
+    QSettings().setValue("cookies-" + serviceName, CookieMap());
     loadCookies();
 }
 
@@ -38,11 +39,11 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList,
                                   const QUrl &url)
 {
     // Update existing cookies and add new cookies to the map
-    CookieMap cookieMap = QSettings().value("cookies", CookieMap()).toMap();
+    CookieMap cookieMap = QSettings().value("cookies-" + serviceName, CookieMap()).toMap();
     foreach (QNetworkCookie cookie, cookieList) {
         cookieMap[cookie.name()] = cookie.toRawForm();
     }
-    QSettings().setValue("cookies", cookieMap);
+    QSettings().setValue("cookies-" + serviceName, cookieMap);
     return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
@@ -50,7 +51,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList,
 void CookieJar::loadCookies()
 {
     // set all cookies from the cookie map
-    CookieMap map = QSettings().value("cookies", CookieMap()).toMap();
+    CookieMap map = QSettings().value("cookies-" + serviceName, CookieMap()).toMap();
     // we need to convert qvariants to qbytearrays and separate them with
     // a '\n' so that we easily join each byte array into a big array that
     // the base class can use to restore the streaming service cookies.

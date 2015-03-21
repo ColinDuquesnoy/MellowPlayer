@@ -22,7 +22,7 @@
 #include <mellowplayer.h>
 
 #include "application.h"
-#include "cookiejar.h"
+#include "mellowplayer/cookiejar.h"
 #include "dlgpreferences.h"
 #include "icons.h"
 #include "keysequenceedit.h"
@@ -201,7 +201,9 @@ void DlgPreferences::onClearCookiesClicked()
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
             QMessageBox::Yes)
     {
-        CookieJar().purgeCookies();
+        foreach (IStreamingService* service, Services::streamingServices()->plugins()) {
+            CookieJar(service->metaData().name).purgeCookies();
+        }
         restart();
     }
 }

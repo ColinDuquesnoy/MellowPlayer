@@ -24,6 +24,7 @@ QT             += core gui widgets webkit network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
+                  include/mellowplayer/cookiejar.h \
                   include/mellowplayer/extensionsmanager.h \
                   include/mellowplayer/interfaces.h \
                   include/mellowplayer/player.h \
@@ -35,6 +36,7 @@ HEADERS         = include/mellowplayer.h \
     include/mellowplayer/trayicon.h \
     include/mellowplayer/playbackstatus.h
 SOURCES         = src/extensionsmanager.cpp \
+                  src/cookiejar.cpp \
                   src/interfaces.cpp \
                   src/player.cpp \
                   src/services.cpp \

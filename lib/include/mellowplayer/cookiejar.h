@@ -36,7 +36,7 @@ class CookieJar : public QNetworkCookieJar
 {
 
 public:
-    explicit CookieJar(QObject *parent=NULL);
+    explicit CookieJar(const QString& serviceName, QObject *parent=NULL);
 
     /*!
      * @brief Purge the cookies cache.
@@ -51,6 +51,7 @@ public:
 
 private:
     void loadCookies();
+    QString serviceName;
 };
 
 #endif // COOKIEJAR_H
