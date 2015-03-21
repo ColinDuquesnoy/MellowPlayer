@@ -34,7 +34,7 @@ const PluginMetaData &SoundcloudPlugin::metaData() const
     meta.author = "Colin Duquesnoy";
     meta.author_website = "https://github.com/ColinDuquesnoy";
     meta.version = "1.0";
-    meta.icon = QIcon(":/soundcloud/logo-black.png");
+    meta.icon = QIcon(":/soundcloud/logo.png");
     meta.description =tr(
 "<p><strong>SoundCloud</strong> is a Swedish online audio distribution platform based in Berlin, Germany, "
 "that enables its users to upload, record, promote, and share their originally-created sounds.</p> "
