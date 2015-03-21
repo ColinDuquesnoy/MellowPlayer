@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/soundcloud">
-        <file>logo.png</file>
-        <file>logo-black.png</file>
-    </qresource>
-</RCC>
