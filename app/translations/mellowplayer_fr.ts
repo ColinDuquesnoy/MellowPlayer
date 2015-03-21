@@ -191,14 +191,14 @@ Are you sure you want to clear all cookies?</source>
 Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="214"/>
+        <location filename="../dlgpreferences.cpp" line="216"/>
         <source>This will remove all settings stored by MellowPlayer.
 Are you sure you want to erase all settings?</source>
         <translation>Cette action va supprimer toutes les paramètres de l&apos;application.
 Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="213"/>
+        <location filename="../dlgpreferences.cpp" line="215"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
     </message>
@@ -420,12 +420,12 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Ajouter aux favoris</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="145"/>
         <source>Minimizing to system tray</source>
         <translation>Minimisation dans la barre des tâches</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="146"/>
         <source>The program will keep running in the system tray. To terminate the program, choose &lt;b&gt;Quit&lt;/b&gt; in the context menu of the system tray entry.</source>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
@@ -540,14 +540,22 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
 </context>
 <context>
+    <name>SoundcloudPlugin</name>
+    <message>
+        <location filename="../../plugins/soundcloud/soundcloud.cpp" line="38"/>
+        <source>&lt;p&gt;&lt;strong&gt;SoundCloud&lt;/strong&gt; is a Swedish online audio distribution platform based in Berlin, Germany, that enables its users to upload, record, promote, and share their originally-created sounds.&lt;/p&gt; &lt;p&gt;According to the company’s data, in December 2014, the service attracts more than 175 million unique monthly listeners, while content creators upload about 12 hours worth of audio every minute.&lt;/p&gt;&lt;p&gt;Founders Alexander Ljung and Eric Wahlforss are the chief executive officer (CEO) and chief technical officer (CTO), respectively.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;strong&gt;SoundCloud&lt;strong&gt; est une plateforme de distribution audio en ligne sur laquelle les utilisateurs peuvent collaborer, promouvoir et distribuer leurs projets musicaux1.&lt;/p&gt;&lt;p&gt;En juin 2013, le site compte 40 millions d&apos;utilisateurs inscrits et 200 millions de visiteurs uniques par mois2.&lt;/p&gt;</translation>
+    </message>
+</context>
+<context>
     <name>StreamingServicesManager</name>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="92"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="93"/>
         <source>Flash player plugin missing</source>
         <translation>Le plugin flash est manquant</translation>
     </message>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="93"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="94"/>
         <source>The flash player plugin is missing on your system.
 
 This service cannot be used without flash.
