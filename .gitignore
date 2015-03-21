@@ -34,3 +34,6 @@ dist
 .idea
 *.iss
 *.usr
+
+# Dolpin
+.directory

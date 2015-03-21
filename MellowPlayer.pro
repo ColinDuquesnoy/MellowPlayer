@@ -43,6 +43,7 @@ kde_support {
     INSTALLS += notifyrc
 }
 
+DISTFILES += .gitignore
 DISTFILES += README.md
 DISTFILES += LICENSE
 DISTFILES += devhelper.py
