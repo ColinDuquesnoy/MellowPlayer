@@ -1,3 +1,11 @@
+## 1.2.1
+
+### New features:
+- soundcloud song art can now be used for notifications and mpris2 interface on Linux.
+
+### Fixed bugs:
+- fix broken soundcloud integration (due to a change to the soundcloud player interface).
+
 ## 1.2.0
 
 ### New features
