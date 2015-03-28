@@ -123,9 +123,13 @@ PlaybackStatus SoundcloudPlugin::playbackStatus()
 SongInfo SoundcloudPlugin::currentSongInfo()
 {
     SongInfo retVal;
-    retVal.songName = runJavaScript("$('.playbackTitle__link').text()").toString();
-    retVal.position = runJavaScript("$('.playbackTitle__progress').attr('aria-valuenow')").toFloat() * 1000;
-    retVal.duration = runJavaScript("$('.playbackTitle__progress').attr('aria-valuemax')").toFloat() * 1000;
+    retVal.songName = runJavaScript("$('.playbackSoundBadge__title').text()").toString();
+    QString progress = runJavaScript("$('.playbackTimeline__timePassed').text()").toString();
+    retVal.position = stringToTime(progress);
+    QString duration = runJavaScript("$('.playbackTimeline__duration').text()").toString();
+    retVal.duration = stringToTime(duration);
+    QString url = runJavaScript("$('.playbackSoundBadge').children(0).children(0).children(0).css('background-image')").toString();
+    retVal.artUrl = url.left(url.length() - 1).replace("url(", "").replace("t50x50", "t120x120");
 #if QT_VERSION >= 0x050000
     retVal.songId = QString::number(qt_hash(retVal.songName));
 #endif
@@ -178,7 +182,31 @@ bool SoundcloudPlugin::canGoNext()
 bool SoundcloudPlugin::canGoPrevious()
 {
     return !runJavaScript("$('.skipControl__previous').attr('class')").toString(
-        ).contains("disabled");
+                ).contains("disabled");
+}
+
+qlonglong SoundcloudPlugin::stringToTime(const QString &string)
+{
+    QString format;
+    switch (string.length()) {
+    case 4:
+        format = "m:ss";
+        break;
+    case 5:
+        format = "mm:ss";
+        break;
+    case 7:
+        format = "h:mm:ss";
+        break;
+    case 8:
+        format = "hh:mm:ss";
+        break;
+    default:
+        break;
+    }
+    QTime time = QTime::fromString(string, format);
+    int seconds = QTime(0, 0, 0).secsTo(time);
+    return seconds * 1000000;
 }
 
 //---------------------------------------------------------

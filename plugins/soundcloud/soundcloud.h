@@ -76,5 +76,6 @@ public:
     bool canGoPrevious();
 
 private:
+    qlonglong stringToTime(const QString& string);
     int id;
 };
