@@ -111,11 +111,11 @@ FORMS           += mainwindow.ui \
                    dlg_preferences.ui
 
 # Version infos
-VERSION          = 1.2.1
+VERSION          = 1.3.0
 DEFINES         += VERSION_MAJOR=1
-DEFINES         += VERSION_MINOR=2
-DEFINES         += VERSION_MICRO=1
-DEFINES         += VERSION_STATUS=\\\"\\\"
+DEFINES         += VERSION_MINOR=3
+DEFINES         += VERSION_MICRO=0
+DEFINES         += VERSION_STATUS=\\\".dev0\\\"
 
 
 # Optional KDE support will use KGlobalAccel
