@@ -165,8 +165,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
         // no service is running or the window is already hidden,
         // quit application
         qApp->exit(0);
+#else
+    Q_UNUSED(event);
+    if(!exitApplication())
+        event->ignore();
 #endif
-    quit();
 }
 
 //---------------------------------------------------------
@@ -306,9 +309,9 @@ void MainWindow::connectSlots()
                   this, SLOT(onPreferencesTriggered()));
 
     connect(m_ui->actionQuit, SIGNAL(triggered()),
-                  this, SLOT(quit()));
+                  this, SLOT(exitApplication()));
     connect(m_ui->pushButtonQuit, SIGNAL(clicked()),
-                  this, SLOT(quit()));
+                  this, SLOT(exitApplication()));
 
     connect(m_ui->actionAbout_MellowPlayer, SIGNAL(triggered()),
                   this, SLOT(onAboutTriggered()));
@@ -447,16 +450,20 @@ void MainWindow::onReportBugTriggered()
 }
 
 //---------------------------------------------------------
-void MainWindow::quit()
+bool MainWindow::exitApplication()
 {
     bool confirm = QSettings().value("confirmQuit", true).toBool();
-    if(!confirm || QMessageBox::question(this, tr("Confirm quit"),
-                       tr("Are you sure you want to exit MellowPlayer?"),
-                       QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ==
-       QMessageBox::Yes)
+    if(confirm)
     {
-        qApp->exit();
+        int answer = QMessageBox::question(
+            this, tr("Confirm quit"),
+            tr("Are you sure you want to exit MellowPlayer?"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+       if(answer == QMessageBox::No)
+           return false;
     }
+    qApp->exit();
+    return true;
 }
 
 //---------------------------------------------------------

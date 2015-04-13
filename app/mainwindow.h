@@ -75,7 +75,7 @@ private slots:
     void onAboutQtTriggered();
     void onWikiTriggered();
     void onReportBugTriggered();
-    void quit();
+    bool exitApplication();
     void onAddToFavorites();
     void onLoadFinished(bool ok);
 
