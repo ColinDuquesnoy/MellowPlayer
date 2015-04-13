@@ -44,36 +44,7 @@ MainWindow::MainWindow(bool debug, QWidget *parent) :
     setupTrayIcon();
     connectSlots();
     m_ui->menuView->addActions(createPopupMenu()->actions());
-
-    //create the signal
-    QDBusMessage signal = QDBusMessage::createSignal("/",
-        "com.canonical.Unity.LauncherEntry", "Update");
-
-    //set the application ID
-    signal << "application://mellowplayer.desktop";
-
-    //set the properties
-    QVariantMap properties;
-
-    QString dbusPath = "/com/me/mellowplayer/quicklist";
-
-    m_quickList = new QMenu();
-    m_quickList->addAction(m_ui->actionPlayPause);
-    m_quickList->addAction(m_ui->actionStop);
-    m_quickList->addAction(m_ui->actionNext);
-    m_quickList->addAction(m_ui->actionPrevious);
-    m_quickList->addAction(m_ui->actionAdd_to_favorites);
-    m_quickList->addSeparator();
-    m_quickList->addAction(m_ui->actionSelect_service);
-    m_quickList->addAction(m_ui->actionPreferences);
-    exporter = new DBusMenuExporter(dbusPath, m_quickList);
-
-    properties["quicklist"] = dbusPath;
-
-    signal << properties;
-
-    //send the signal
-    QDBusConnection::sessionBus().send(signal);
+    setupQuikLists();
 }
 
 //---------------------------------------------------------
@@ -495,6 +466,7 @@ void MainWindow::onAddToFavorites()
     Services::player()->addToFavorites();
 }
 
+//---------------------------------------------------------
 void MainWindow::onLoadFinished(bool ok)
 {
     if(ok)
@@ -541,4 +513,39 @@ void MainWindow::saveGeometryAndState()
             QSettings().setValue("toolbarVisible", action->isChecked());
         }
     }
+}
+
+//---------------------------------------------------------
+void MainWindow::setupQuikLists()
+{
+#ifdef __ubuntu_support__
+    QDBusMessage signal = QDBusMessage::createSignal("/",
+        "com.canonical.Unity.LauncherEntry", "Update");
+
+    //set the application ID
+    signal << "application://mellowplayer.desktop";
+
+    //set the properties
+    QVariantMap properties;
+
+    QString dbusPath = "/com/me/mellowplayer/quicklist";
+
+    m_quickList = new QMenu();
+    m_quickList->addAction(m_ui->actionPlayPause);
+    m_quickList->addAction(m_ui->actionStop);
+    m_quickList->addAction(m_ui->actionNext);
+    m_quickList->addAction(m_ui->actionPrevious);
+    m_quickList->addAction(m_ui->actionAdd_to_favorites);
+    m_quickList->addSeparator();
+    m_quickList->addAction(m_ui->actionSelect_service);
+    m_quickList->addAction(m_ui->actionPreferences);
+    exporter = new DBusMenuExporter(dbusPath, m_quickList);
+
+    properties["quicklist"] = dbusPath;
+
+    signal << properties;
+
+    //send the signal
+    QDBusConnection::sessionBus().send(signal);
+#endif
 }
