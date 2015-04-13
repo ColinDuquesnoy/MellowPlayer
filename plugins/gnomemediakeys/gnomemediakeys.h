@@ -1,4 +1,5 @@
 //---------------------------------------------------------
+//
 // This file is part of MellowPlayer.
 //
 // MellowPlayer is free software: you can redistribute it and/or modify
@@ -13,34 +14,40 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
+//
 //---------------------------------------------------------
 
-#include "application.h"
-#include <QApplication>
-#include <QtPlugin>
+#include <QObject>
+#include <mellowplayer.h>
+
+class QDBusPendingCallWatcher;
+class OrgGnomeSettingsDaemonMediaKeysInterface;
 
 
-//---------------------------------------------------------
-// Add plugins here
-Q_IMPORT_PLUGIN(SoundcloudPlugin)
-Q_IMPORT_PLUGIN(MixcloudPlugin)
-Q_IMPORT_PLUGIN(DeezerPlugin)
-Q_IMPORT_PLUGIN(GroovesharkPlugin)
-Q_IMPORT_PLUGIN(HotkeysPlugin)
-Q_IMPORT_PLUGIN(NotificationsPlugin)
+// Adapted from Clementine's gnomeglobalshortcutbackend
+class GnomemediakeysPlugin :
+        public QObject,
+        public IExtension
+{
+    Q_OBJECT
 
-#ifndef Q_OS_WIN
-Q_IMPORT_PLUGIN(GroovesharkmobilePlugin)
+#if QT_VERSION >= 0x050000
+    Q_PLUGIN_METADATA(IID IExtension_iid
+                      FILE "gnomemediakeys.json")
 #endif
+    Q_INTERFACES(IExtension)
 
-#ifdef Q_OS_LINUX
-Q_IMPORT_PLUGIN(Mpris2Plugin)
-Q_IMPORT_PLUGIN(GnomemediakeysPlugin)
-#endif
+public:
+    explicit GnomemediakeysPlugin(QObject* parent=NULL);
 
+    void setup();
+    void teardown();
+    const PluginMetaData& metaData() const;
 
-//---------------------------------------------------------
-int main(int argc, char *argv[]){
-    MellowPlayerApp a(argc, argv);
-    return a.exec();
-}
+private slots:
+    void registerFinished(QDBusPendingCallWatcher* watcher);
+    void gnomeMediaKeyPressed(const QString& _, const QString& key);
+private:
+    OrgGnomeSettingsDaemonMediaKeysInterface* m_interface;
+    bool m_connected;
+};
