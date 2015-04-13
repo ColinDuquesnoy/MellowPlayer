@@ -30,12 +30,16 @@ All platforms:
 - **Qt5** (>= 5.4.0) or **Qt4**
 - **flashplugin** (runtime dependency)
 
-GNU/Linux:
-- **libnotify** (runtime dependency)
-
 KDE Sc/Plasma 5:
 - **KGlobalAccell**
 - **KNotifications**
+
+Ubuntu/Unity:
+- **libnotify** (runtime dependency)
+- **libdbusmenu-qt5**
+
+Other GNU/Linux distributions/desktops:
+- **libnotify** (runtime dependency)
 
 ## Compilation
 
@@ -56,8 +60,8 @@ Note: to build mellowplayer on ubuntu, you'll need the following packages:
 
 - qtbase5-dev
 - qtbase5-private-dev
-- libqt5webkit-dev
-- dbusmenu-qt5-dev
+- libqt5webkit5-dev
+- libdbusmenu-qt5-dev
 
 ## Contributing
 
