@@ -43,6 +43,10 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     m_ui->setupUi(this);
     setWindowTitle(tr("Preferences"));
 
+#ifdef __ubuntu_support__
+    m_ui->checkBoxMinimizeToTray->hide();
+#endif
+
     m_ui->listWidget->item(0)->setIcon(Icons::interface());
     m_ui->listWidget->item(1)->setIcon(Icons::shortcuts());
     m_ui->listWidget->item(2)->setIcon(Icons::plugins());

@@ -49,3 +49,7 @@ kde_support {
     QT += KNotifications
     DEFINES += "__kde_support__=1"
 }
+
+ubuntu_support {
+    DEFINES += "__ubuntu_support__=1"
+}
