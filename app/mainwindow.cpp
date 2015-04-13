@@ -32,7 +32,8 @@
 //---------------------------------------------------------
 MainWindow::MainWindow(bool debug, QWidget *parent) :
     QMainWindow(parent),
-    m_ui(new Ui::MainWindow)
+    m_ui(new Ui::MainWindow),
+    exporter(NULL)
 {
     m_ui->setupUi(this);
     setupActions();
@@ -43,6 +44,36 @@ MainWindow::MainWindow(bool debug, QWidget *parent) :
     setupTrayIcon();
     connectSlots();
     m_ui->menuView->addActions(createPopupMenu()->actions());
+
+    //create the signal
+    QDBusMessage signal = QDBusMessage::createSignal("/",
+        "com.canonical.Unity.LauncherEntry", "Update");
+
+    //set the application ID
+    signal << "application://mellowplayer.desktop";
+
+    //set the properties
+    QVariantMap properties;
+
+    QString dbusPath = "/com/me/mellowplayer/quicklist";
+
+    m_quickList = new QMenu();
+    m_quickList->addAction(m_ui->actionPlayPause);
+    m_quickList->addAction(m_ui->actionStop);
+    m_quickList->addAction(m_ui->actionNext);
+    m_quickList->addAction(m_ui->actionPrevious);
+    m_quickList->addAction(m_ui->actionAdd_to_favorites);
+    m_quickList->addSeparator();
+    m_quickList->addAction(m_ui->actionSelect_service);
+    m_quickList->addAction(m_ui->actionPreferences);
+    exporter = new DBusMenuExporter(dbusPath, m_quickList);
+
+    properties["quicklist"] = dbusPath;
+
+    signal << properties;
+
+    //send the signal
+    QDBusConnection::sessionBus().send(signal);
 }
 
 //---------------------------------------------------------
@@ -55,7 +86,9 @@ MainWindow::~MainWindow()
 void MainWindow::showWebPage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_WEB);
+#ifndef __ubuntu_support__
     m_ui->menubar->show();
+#endif
     m_updateTimer->stop();
 }
 
@@ -63,7 +96,9 @@ void MainWindow::showWebPage()
 void MainWindow::showHomePage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_HOME);
+#ifndef __ubuntu_support__
     m_ui->menubar->hide();
+#endif
 }
 
 //---------------------------------------------------------
@@ -105,6 +140,9 @@ void MainWindow::onTrayIconActivated(bool active)
 {
     if(active)
         show();
+#ifdef __ubuntu_support__
+    m_ui->menubar->show();
+#endif
 }
 
 //---------------------------------------------------------
@@ -132,9 +170,11 @@ void MainWindow::onPreferencesTriggered()
 //---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+#ifndef __ubuntu_support__
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
-    if(isVisible() && minimizeToTray &&
+    bool visible = isVisible() && !isMinimized();
+    if(visible && minimizeToTray &&
         m_ui->stackedWidget->currentIndex() == PAGE_WEB)
     {
         bool showMsg = QSettings().value(
@@ -155,6 +195,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         // no service is running or the window is already hidden,
         // quit application
         qApp->exit(0);
+#endif
+    quit();
 }
 
 //---------------------------------------------------------

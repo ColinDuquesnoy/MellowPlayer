@@ -25,6 +25,11 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 
+#ifdef __ubuntu_support__
+    #include <dbusmenuexporter.h>
+    #include <QDBusMessage>
+#endif
+
 class TrayIcon;
 
 namespace Ui {
@@ -88,6 +93,8 @@ private:
     Ui::MainWindow *m_ui;
     QTimer* m_updateTimer;
     TrayIcon* m_trayIcon;
+    QMenu* m_quickList;
+    DBusMenuExporter *exporter;
 };
 
 #endif // MAINWINDOW_H

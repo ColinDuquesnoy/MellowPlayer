@@ -69,7 +69,11 @@ void TrayIcon::setIcon(const QIcon &icon)
     m_trayIcon->setTitle("MellowPlayer");
 #else
     m_trayIcon->setIcon(icon);
+#ifdef __ubuntu_support__
+    m_trayIcon->hide();
+#else
     m_trayIcon->show();
+#endif
 #endif
 }
 

@@ -48,7 +48,16 @@ sudo make install
 Build options:
 
 - **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
+- **CONFIG+=ubuntu_support**: to build the application with ubuntu support (disable tray icon, fix global menu, unity quicklists).
 - **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
+
+
+Note: to build mellowplayer on ubuntu, you'll need the following packages:
+
+- qtbase5-dev
+- qtbase5-private-dev
+- libqt5webkit-dev
+- dbusmenu-qt5-dev
 
 ## Contributing
 

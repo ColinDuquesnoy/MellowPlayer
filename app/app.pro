@@ -124,6 +124,12 @@ kde_support {
     DEFINES += "__kde_support__=1"
 }
 
+ubuntu_support {
+    DEFINES += "__ubuntu_support__=1"
+    INCLUDEPATH += /usr/include/dbusmenu-qt5/
+    LIBS += -ldbusmenu-qt5
+}
+
 # install
 macx{
     CONFIG += app_bundle
