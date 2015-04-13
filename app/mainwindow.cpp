@@ -32,8 +32,7 @@
 //---------------------------------------------------------
 MainWindow::MainWindow(bool debug, QWidget *parent) :
     QMainWindow(parent),
-    m_ui(new Ui::MainWindow),
-    exporter(NULL)
+    m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
     setupActions();
