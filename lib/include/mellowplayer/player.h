@@ -142,6 +142,11 @@ public:
      */
     const QString &currentArt() const;
 
+    /*!
+     * \brief Tells the player that a service has just started.
+     */
+    void onServiceStarted();
+
 signals:
     /*!
      * \brief Signal emitted when the current song status changed

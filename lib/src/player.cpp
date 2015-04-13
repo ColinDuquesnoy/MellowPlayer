@@ -222,6 +222,12 @@ const QString& PlayerInterface::currentArt() const
 }
 
 //---------------------------------------------------------
+void PlayerInterface::onServiceStarted()
+{
+    m_currentStatus = Stopped;
+}
+
+//---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
     this->m_currentArt = filePath;

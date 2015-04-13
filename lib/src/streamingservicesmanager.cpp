@@ -26,6 +26,7 @@
 #include "mellowplayer/interfaces.h"
 #include "mellowplayer/streamingservicesmanager.h"
 #include "mellowplayer/services.h"
+#include "mellowplayer/player.h"
 
 
 //---------------------------------------------------------
@@ -105,6 +106,7 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
             Services::webView()->page()->networkAccessManager()->setCookieJar(
                 new CookieJar(serviceName, Services::webView()));
             Services::webView()->load(m_currentService->url());
+            Services::player()->onServiceStarted();
             retVal = true;
         }
     }
