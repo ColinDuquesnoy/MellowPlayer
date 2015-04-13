@@ -32,3 +32,5 @@ script:
     - MellowPlayer --service=grooveshark --autoquit-delay=10
     - MellowPlayer --service=groovesharkmobile --autoquit-delay=10
     - MellowPlayer --service=mixcloud --autoquit-delay=10
+    - MellowPlayer --service=soundcloud --autoquit-delay=10
+
