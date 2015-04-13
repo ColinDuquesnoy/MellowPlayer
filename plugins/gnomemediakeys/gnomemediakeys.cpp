@@ -38,11 +38,10 @@ GnomemediakeysPlugin::GnomemediakeysPlugin(QObject *parent):
 //---------------------------------------------------------
 void GnomemediakeysPlugin::setup()
 {
-    qDebug() << "registering gnome settings daemon";
-
 #ifdef __kde_support__
     return; // not needed on KDE
 #else
+    qDebug() << "registering gnome settings daemon";
     if (!QDBusConnection::sessionBus().interface()->isServiceRegistered(GSD_SERVICE))
     {
         qWarning() << "gnome settings daemon not registered";

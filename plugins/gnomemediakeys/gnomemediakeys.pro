@@ -29,4 +29,9 @@ INCLUDEPATH  += ../../lib/include
 LIBS         += -L../../lib -lmellowplayer
 DESTDIR       = ../../app
 
+kde_support {
+    # plugin does not do anything on KDE
+    DEFINES += "__kde_support__=1"
+}
+
 DBUS_INTERFACES += org.gnome.SettingsDaemon.MediaKeys.xml
