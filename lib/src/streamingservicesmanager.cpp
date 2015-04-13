@@ -103,10 +103,10 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
             m_currentService = p;
             qDebug() << "Starting service " << serviceName
                      << "(" << p->url() << ")";
+            Services::player()->onServiceStarted();
             Services::webView()->page()->networkAccessManager()->setCookieJar(
                 new CookieJar(serviceName, Services::webView()));
             Services::webView()->load(m_currentService->url());
-            Services::player()->onServiceStarted();
             retVal = true;
         }
     }
