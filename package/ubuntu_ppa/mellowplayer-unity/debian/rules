@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+qmake CONFIG+=ubuntu_support
+
+%:
+	dh $@
+	

@@ -37,3 +37,13 @@ dist
 
 # Dolpin
 .directory
+
+changelog
+gpg_key
+*.build
+*.dsc
+*.tar.gz
+*.changes
+*.upload
+
+*~
