@@ -17,19 +17,21 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
+# This extension is built on GNU/Linux only!
+TEMPLATE      = lib
+TARGET        = mpp_gnomemediakeys
+CONFIG       += plugin static
+QT           += dbus gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+HEADERS       = gnomemediakeys.h
+SOURCES       = gnomemediakeys.cpp
+INCLUDEPATH  += ../../lib/include
+LIBS         += -L../../lib -lmellowplayer
+DESTDIR       = ../../app
 
-unix{
-    SUBDIRS += groovesharkmobile
-}
-unix:!macx {
-    SUBDIRS += mpris2
-    SUBDIRS += gnomemediakeys
+kde_support {
+    # plugin does not do anything on KDE
+    DEFINES += "__kde_support__=1"
 }
 
-SUBDIRS += grooveshark
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer
-SUBDIRS += mixcloud
-SUBDIRS += soundcloud
+DBUS_INTERFACES += org.gnome.SettingsDaemon.MediaKeys.xml

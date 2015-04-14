@@ -80,7 +80,9 @@ unix:!macx {
 
     # linux only plugins and libraries
     LIBS            += -lmpp_mpris2 -lX11
+    LIBS            += -lmpp_gnomemediakeys
     PRE_TARGETDEPS  += libmpp_mpris2.a
+    PRE_TARGETDEPS  += libmpp_gnomemediakeys.a
 }
 
 
