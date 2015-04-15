@@ -15,6 +15,7 @@ Usage::
           any additional package.
 
 """
+import glob
 import os
 import shutil
 import sys
@@ -127,15 +128,30 @@ def make_win32_release():
 
     exe, qmake = get_env_vars()
     dist = make_dist_dir()
-    bin_dir = os.path.dirname(qmake)
+    qt_bin_dir = os.path.dirname(qmake)
+    iconengines_dir = os.path.abspath(os.path.join(qt_bin_dir, '..',
+                                       'plugins', 'iconengines'))
+    iconengines_dst = os.path.join(dist, 'iconengines')
+    try:
+        os.mkdir(iconengines_dst)
+    except OSError:
+        pass
+
+    imageformats_dir = os.path.abspath(
+        os.path.join(qt_bin_dir, '..', 'plugins', 'imageformats'))
+    imageformats_dst = os.path.join(dist, 'imageformats')
+    try:
+        os.mkdir(imageformats_dst)
+    except OSError:
+        pass
 
     files = [
         exe,
-        os.path.join(bin_dir, 'QtGui4.dll'),
-        os.path.join(bin_dir, 'QtCore4.dll'),
-        os.path.join(bin_dir, 'QtSvg4.dll'),
-        os.path.join(bin_dir, 'QtNetwork4.dll'),
-        os.path.join(bin_dir, 'QtWebKit4.dll'),
+        os.path.join(qt_bin_dir, 'QtGui4.dll'),
+        os.path.join(qt_bin_dir, 'QtCore4.dll'),
+        os.path.join(qt_bin_dir, 'QtSvg4.dll'),
+        os.path.join(qt_bin_dir, 'QtNetwork4.dll'),
+        os.path.join(qt_bin_dir, 'QtWebKit4.dll'),
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
         # open ssl
@@ -147,7 +163,17 @@ def make_win32_release():
         print('copying %s to %s' % (f, dist))
         shutil.copy(f, dist)
 
-    plugins_dir = os.path.abspath(os.path.join(bin_dir, '..', 'src', 'plugins'))
+    for f in [os.path.join(iconengines_dir, name) for name in
+              glob.glob(os.path.join(iconengines_dir, '*.dll'))]:
+        print('copying %s to %s' % (f, dist))
+        shutil.copy(f, iconengines_dst)
+
+    for f in [os.path.join(imageformats_dir, name) for name in
+              glob.glob(os.path.join(imageformats_dir, '*.dll'))]:
+        print('copying %s to %s' % (f, dist))
+        shutil.copy(f, imageformats_dst)
+
+    plugins_dir = os.path.abspath(os.path.join(qt_bin_dir, '..', 'src', 'plugins'))
 
     plugins = []
     for subdir in ['imageformats', 'iconengines']:
