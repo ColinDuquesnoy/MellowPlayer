@@ -38,7 +38,7 @@ public:
     //! Returns the %(classname)s URL
     QUrl url() const;
     //! Is flash required
-    bool flashRequired() const;
+    bool flashRequired();
     //! Plays the current song
     void play();
     //! Pauses the current song
