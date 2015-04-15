@@ -1,6 +1,6 @@
 #! /bin/bash
 
-package=mellowplayer-unity
+package=mellowplayer
 email=colin.duquesnoy@gmail.com
 version=1.3.0
 gpg_key=`cat gpg_key`

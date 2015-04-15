@@ -1,6 +1,6 @@
 #! /bin/bash
 
-package=mellowplayer-unity
+package=mellowplayer-kde
 email=colin.duquesnoy@gmail.com
 version=1.3.0
 gpg_key=`cat gpg_key`
@@ -48,7 +48,7 @@ function make_source_package(){
 }
 
 setup_upstream_tarball
-for release in 'trusty' 'utopic' 'vivid'
+for release in 'utopic' 'vivid'
 do 
 	clean
 	configure ${release}
