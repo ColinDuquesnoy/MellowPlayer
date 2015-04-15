@@ -25,13 +25,13 @@ import webbrowser
 def add_service_plugin():
     """ Adds a new music streaming extension integration plugin to the project """
     name, classname = query_plugin_infos()
-    with open('share/templates/service/file.pro') as f:
+    with open('tools/templates/service/file.pro') as f:
         pro = f.read()
-    with open('share/templates/service/file.h') as f:
+    with open('tools/templates/service/file.h') as f:
         inc = f.read()
-    with open('share/templates/service/file.cpp') as f:
+    with open('tools/templates/service/file.cpp') as f:
         src = f.read()
-    with open('share/templates/service/file.qrc') as f:
+    with open('tools/templates/service/file.qrc') as f:
         qrc = f.read()
     gen_files(name, classname, pro, inc, src, qrc=qrc)
     register_plugin(name, classname)
@@ -41,11 +41,11 @@ def add_service_plugin():
 def add_extension_plugin():
     """ Adds a new service plugin to the project """
     name, classname = query_plugin_infos()
-    with open('share/templates/extension/file.pro') as f:
+    with open('tools/templates/extension/file.pro') as f:
         pro = f.read()
-    with open('share/templates/extension/file.h') as f:
+    with open('tools/templates/extension/file.h') as f:
         inc = f.read()
-    with open('share/templates/extension/file.cpp') as f:
+    with open('tools/templates/extension/file.cpp') as f:
         src = f.read()
     gen_files(name, classname, pro, inc, src)
     register_plugin(name, classname)
@@ -63,18 +63,18 @@ def add_translation():
     print('Adding new translation: %s' % translation_entry)
 
     # Add entry to mellow player
-    with open('MellowPlayer.pro', 'r') as fin:
+    with open('src/src.pro', 'r') as fin:
         content = '\n'.join(fin.read().splitlines())
     content += '\nTRANSLATIONS +=%s\n' % translation_entry
-    with open('MellowPlayer.pro', 'w') as fout:
+    with open('src/src.pro', 'w') as fout:
         fout.write(content)
 
-    # Add entry to app/mellowplayer.qrc
+    # Add entry to src/app/mellowplayer.qrc
     qrc_entry = '        <file>translations/mellowplayer_%s.qm</file>\n' % code
-    with open('app/mellowplayer.qrc', 'r') as fin:
+    with open('src/app/mellowplayer.qrc', 'r') as fin:
         lines = fin.read().splitlines(True)
     lines.insert(2, qrc_entry)
-    with open('app/mellowplayer.qrc', 'w') as fout:
+    with open('src/app/mellowplayer.qrc', 'w') as fout:
         fout.write(''.join(lines))
 
     # update translations
@@ -90,8 +90,8 @@ def add_translation():
 
 def update_translations():
     """ Updates existing translations (run lupdate and lrelease). """
-    os.system('lupdate MellowPlayer.pro -no-obsolete')
-    os.system('lrelease MellowPlayer.pro')
+    os.system('lupdate src/src.pro -no-obsolete')
+    os.system('lrelease src/src.pro')
 
 
 def make_win32_release():
@@ -139,15 +139,15 @@ def make_win32_release():
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
         # open ssl
-        'win32/libeay32.dll',
-        'win32/ssleay32.dll'
+        'package/windows/libeay32.dll',
+        'package/windows/ssleay32.dll'
     ]
 
     for f in files:
         print('copying %s to %s' % (f, dist))
         shutil.copy(f, dist)
 
-    plugins_dir = os.path.abspath(os.path.join(bin_dir, '..', 'plugins'))
+    plugins_dir = os.path.abspath(os.path.join(bin_dir, '..', 'src', 'plugins'))
 
     plugins = []
     for subdir in ['imageformats', 'iconengines']:
@@ -165,7 +165,7 @@ def make_win32_release():
 
     # configure innosetup
     version = read_input('Version string: ')
-    with open('setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
+    with open('package/windows/setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
         lines = src.readlines()
         data = []
         for l in lines:
@@ -195,7 +195,7 @@ def make_osx_release():
         return build_dir
 
     os.chdir(os.path.join(get_build_dir(), 'app'))
-    os.system('/Applications/macdeployqt.app/Contents/MacOS/macdeployqt MellowPlayer.app -dmg')
+    os.system('/Applications/macdeployqt.src/app/Contents/MacOS/macdeployqt MellowPlayer.app -dmg')
 
 
 def make_docs():
@@ -247,7 +247,7 @@ def gen_files(name, classname, pro, header, src, qrc=None):
     :param src: plugin pro source template (str)
     :param qrc: plugin qrc template (str)
     """
-    directory = os.path.join('plugins', name)
+    directory = os.path.join('src/plugins', name)
     try:
         os.mkdir(directory)
     except OSError:
@@ -287,16 +287,15 @@ def register_plugin(name, classname):
     lib_fullname_unix = 'libmpp_%s.a' % name
     lib_fullname_win32 = 'mpp_%s.lib' % name
 
-
     # plugins.pro
-    with open('plugins/plugins.pro', 'r') as fin:
+    with open('src/plugins/plugins.pro', 'r') as fin:
         content = '\n'.join(fin.read().splitlines())
     content += '\nSUBDIRS += %s\n' % name
-    with open('plugins/plugins.pro', 'w') as fout:
+    with open('src/plugins/plugins.pro', 'w') as fout:
         fout.write(content)
 
     # app.pro
-    with open('app/app.pro', 'r') as fin:
+    with open('src/app/app.pro', 'r') as fin:
         lines = fin.read().splitlines(True)
     insert_index = -1
     # LIBS
@@ -306,7 +305,7 @@ def register_plugin(name, classname):
             break
     lines.insert(insert_index, 'LIBS += -l%s\n' % lib_name)
     # PRE_TARGETDEPS
-    # win32
+    # windows
     insert_index = -1
     for i, line in enumerate(lines):
         if line.strip() == 'win32 { # force relink app when a static lib changed.':
@@ -322,12 +321,12 @@ def register_plugin(name, classname):
     lines.insert(insert_index, '    PRE_TARGETDEPS += %s\n' % lib_fullname_unix)
 
     # write results
-    with open('app/app.pro', 'w') as fout:
+    with open('src/app/app.pro', 'w') as fout:
         fout.write(''.join(lines))
 
     # main.cpp
 
-    with open('app/main.cpp', 'r') as fin:
+    with open('src/app/main.cpp', 'r') as fin:
         lines = fin.read().splitlines(True)
     insert_index = -1
     for i, line in enumerate(lines):
@@ -335,7 +334,7 @@ def register_plugin(name, classname):
             insert_index = i
             break
     lines.insert(insert_index, 'Q_IMPORT_PLUGIN(%s)\n' % classname)
-    with open('app/main.cpp', 'w') as fout:
+    with open('src/app/main.cpp', 'w') as fout:
         fout.write(''.join(lines))
 
 

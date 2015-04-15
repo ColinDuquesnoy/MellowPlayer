@@ -17,59 +17,6 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE        = subdirs
-SUBDIRS         = app \     # MellowPlayer executable
-                  lib \     # MellowPlayer library (shared object/dll)
-                  plugins   # plugins (shared objects/dll)
-app.depends     = plugins lib
-plugins.depends = lib
-
-unix{
-    # install application desktop file
-    isEmpty(PREFIX) {
-        PREFIX = /usr
-    }
-    desktopfile.path = $$PREFIX/share/applications
-    desktopfile.files = share/mellowplayer.desktop
-    INSTALLS += desktopfile
-
-    iconfile.path = $$PREFIX/share/pixmaps
-    iconfile.files = app/icons/mellowplayer.png
-    INSTALLS += iconfile
-}
-kde_support {
-    notifyrc.path = $$PREFIX/share/knotifications5
-    notifyrc.files = share/MellowPlayer.notifyrc
-    INSTALLS += notifyrc
-}
-
-ubuntu_support {
-    message("building mellowplayer for ubuntu")
-}
-
-DISTFILES += .gitignore
-DISTFILES += README.md
-DISTFILES += LICENSE
-DISTFILES += devhelper.py
-DISTFILES += setup.iss.in
-DISTFILES += .travis.yml
-DISTFILES += docs/Doxyfile
-DISTFILES += share/templates/extensions/file.h
-DISTFILES += share/templates/extensions/file.cpp
-DISTFILES += share/templates/extensions/file.pro
-DISTFILES += share/templates/service/file.h
-DISTFILES += share/templates/service/file.cpp
-DISTFILES += share/templates/service/file.pro
-
-# automatically release translations, .qm files are embedded
-# in the application resources.
-unix:!macx{
-    system("lrelease-qt5 MellowPlayer.pro")
-}
-else{
-    system("lrelease MellowPlayer.pro")
-}
-
-# translations for the whole project (including plugins and lib) are stored
-# in the app folder (for an easier integration with the app's resources).
-TRANSLATIONS += app/translations/mellowplayer_fr.ts
+TEMPLATE    = subdirs
+SUBDIRS     += src
+CONFIG      += ordered
