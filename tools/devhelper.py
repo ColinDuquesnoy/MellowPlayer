@@ -194,8 +194,8 @@ def make_osx_release():
                 f.write(build_dir)
         return build_dir
 
-    os.chdir(os.path.join(get_build_dir(), 'app'))
-    os.system('/Applications/macdeployqt.src/app/Contents/MacOS/macdeployqt MellowPlayer.app -dmg')
+    os.chdir(os.path.join(get_build_dir(), 'src', 'app'))
+    os.system('macdeployqt MellowPlayer.app -dmg')
 
 
 def make_docs():
