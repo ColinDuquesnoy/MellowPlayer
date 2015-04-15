@@ -43,6 +43,10 @@ kde_support {
     INSTALLS += notifyrc
 }
 
+ubuntu_support {
+    message("building mellowplayer for ubuntu")
+}
+
 DISTFILES += .gitignore
 DISTFILES += README.md
 DISTFILES += LICENSE
