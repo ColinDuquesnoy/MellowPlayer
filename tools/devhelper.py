@@ -139,8 +139,8 @@ def make_win32_release():
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
         # open ssl
-        'package/windows/libeay32.dll',
-        'package/windows/ssleay32.dll'
+        os.path.join(os.getcwd(), 'package', 'windows', 'libeay32.dll'),
+        os.path.join(os.getcwd(), 'package', 'windows', 'ssleay32.dll')
     ]
 
     for f in files:
