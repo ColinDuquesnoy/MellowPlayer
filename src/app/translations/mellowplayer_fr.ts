@@ -165,12 +165,12 @@ p, li { white-space: pre-wrap; }
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="181"/>
+        <location filename="../dlgpreferences.cpp" line="185"/>
         <source>Restart required</source>
         <translation>Redémarrage de l&apos;application requis</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="182"/>
+        <location filename="../dlgpreferences.cpp" line="186"/>
         <source>You need to restart the application for the change to be applied.
 
 Do you want to restart now?</source>
@@ -179,28 +179,36 @@ Do you want to restart now?</source>
 Voulez-vous redémarrer maintenant?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="198"/>
+        <location filename="../dlgpreferences.cpp" line="202"/>
         <source>Clear cookies</source>
         <translation>Nettoyer les cookies</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="199"/>
+        <location filename="../dlgpreferences.cpp" line="203"/>
         <source>This will remove all cookies stored by MellowPlayer.
 Are you sure you want to clear all cookies?</source>
         <translation>Cette action va supprimer tous les cookies stockés par MellowPlayer.
 Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="216"/>
+        <location filename="../dlgpreferences.cpp" line="220"/>
         <source>This will remove all settings stored by MellowPlayer.
 Are you sure you want to erase all settings?</source>
         <translation>Cette action va supprimer toutes les paramètres de l&apos;application.
 Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</translation>
     </message>
     <message>
-        <location filename="../dlgpreferences.cpp" line="215"/>
+        <location filename="../dlgpreferences.cpp" line="219"/>
         <source>Clear settings</source>
         <translation>Nettoyer les règlages de l&apos;application</translation>
+    </message>
+</context>
+<context>
+    <name>GnomemediakeysPlugin</name>
+    <message>
+        <location filename="../../plugins/gnomemediakeys/gnomemediakeys.cpp" line="85"/>
+        <source>Add support for gnome multimedia keys daemon</source>
+        <translation>gnome-multimeida-keys integration</translation>
     </message>
 </context>
 <context>
@@ -415,54 +423,64 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Wiki</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="325"/>
+        <location filename="../mainwindow.cpp" line="342"/>
         <source>Add to favorites</source>
         <translation>Ajouter aux favoris</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Minimizing to system tray</source>
         <translation>Minimisation dans la barre des tâches</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="146"/>
+        <location filename="../mainwindow.cpp" line="156"/>
         <source>The program will keep running in the system tray. To terminate the program, choose &lt;b&gt;Quit&lt;/b&gt; in the context menu of the system tray entry.</source>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>Remove from favorites</source>
         <translation>Retirer des favoris</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="340"/>
         <location filename="../mainwindow.cpp" line="357"/>
-        <location filename="../mainwindow.cpp" line="359"/>
+        <location filename="../mainwindow.cpp" line="378"/>
+        <location filename="../mainwindow.cpp" line="380"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
+        <location filename="../mainwindow.cpp" line="362"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="397"/>
+        <location filename="../mainwindow.cpp" line="386"/>
+        <source>Stopped</source>
+        <translation>Interrompu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="421"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Click here to download the latest version!&lt;/a&gt; </source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Cliquez ici pour télécharger la dernière version!&lt;/a&gt; </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.cpp" line="437"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="442"/>
+        <location filename="../mainwindow.cpp" line="469"/>
         <source>Are you sure you want to exit MellowPlayer?</source>
         <translation>Etes-vous sûr de vouloir quitter MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="441"/>
+        <location filename="../mainwindow.cpp" line="509"/>
+        <source>Loading</source>
+        <translation>Chargement en cours</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="468"/>
         <source>Confirm quit</source>
         <translation>Confirmer la sortie</translation>
     </message>
@@ -550,12 +568,12 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
 <context>
     <name>StreamingServicesManager</name>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="93"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="94"/>
         <source>Flash player plugin missing</source>
         <translation>Le plugin flash est manquant</translation>
     </message>
     <message>
-        <location filename="../../lib/src/streamingservicesmanager.cpp" line="94"/>
+        <location filename="../../lib/src/streamingservicesmanager.cpp" line="95"/>
         <source>The flash player plugin is missing on your system.
 
 This service cannot be used without flash.
@@ -569,12 +587,12 @@ Veuillez installer la dernière version du plugin flash développé par Adobe et
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="../../lib/src/trayicon.cpp" line="101"/>
+        <location filename="../../lib/src/trayicon.cpp" line="105"/>
         <source>MellowPlayer</source>
         <translation>MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../../lib/src/trayicon.cpp" line="109"/>
+        <location filename="../../lib/src/trayicon.cpp" line="113"/>
         <source>Open</source>
         <translation>Ouvrir</translation>
     </message>
