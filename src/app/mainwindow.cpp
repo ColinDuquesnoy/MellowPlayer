@@ -118,7 +118,7 @@ void MainWindow::onTrayIconActivated(bool active)
 //---------------------------------------------------------
 void MainWindow::onSelectServiceTriggered()
 {
-    show();
+    restoreWindow();
     QString service = DlgSelectServices::selectService(this);
     if(service != "")
     {
@@ -133,7 +133,7 @@ void MainWindow::onSelectServiceTriggered()
 //---------------------------------------------------------
 void MainWindow::onPreferencesTriggered()
 {
-    show();
+    restoreWindow();
     DlgPreferences::editPreferences(this);
 }
 
