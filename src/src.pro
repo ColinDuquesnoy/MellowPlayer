@@ -39,7 +39,7 @@ unix{
 }
 kde_support {
     notifyrc.path = $$PREFIX/share/knotifications5
-    notifyrc.files = share/MellowPlayer.notifyrc
+    notifyrc.files = ../share/MellowPlayer.notifyrc
     INSTALLS += notifyrc
 }
 
