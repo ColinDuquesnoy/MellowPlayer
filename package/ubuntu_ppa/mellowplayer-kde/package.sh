@@ -55,7 +55,7 @@ do
 	pushd ${package}-${version}
     make_source_package
 	popd
-	dput ppa:colin-duquesnoy/experimental *.changes	
+	dput ppa:colin-duquesnoy/stable *.changes	
 done
 
 clean_all
