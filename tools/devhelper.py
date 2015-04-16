@@ -7,9 +7,9 @@ contributors that automates some boring administration tasks such as:
   - adding a new translation to the project
   - updating existing translation
 
-Usage::
+Run this tool from the root directory of the project::
 
-    python devtool.py
+    python tools/devtool.py
 
 .. note:: this script will work with both python2 or python3, you don't need
           any additional package.
