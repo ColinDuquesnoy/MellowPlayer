@@ -30,7 +30,7 @@ unix{
         PREFIX = /usr
     }
     desktopfile.path = $$PREFIX/share/applications
-    desktopfile.files = share/mellowplayer.desktop
+    desktopfile.files = ../share/mellowplayer.desktop
     INSTALLS += desktopfile
 
     iconfile.path = $$PREFIX/share/pixmaps
