@@ -1,3 +1,24 @@
+## 1.3.0
+
+### New features:
+- Add support Ubuntu/Unity (available through ppa:colin-duquesnoy/stable)
+    - disable tray icon
+    - fix double global menu
+    - add support for unity quicklists
+- Add support for Gnome Settings Daemon (multimedia keys)
+- Project stucture cleanup (all code has been moved into the src folder)
+- Use Restore Window actiont to show the current service name and the song info
+  (or the service status, e.g. Loading or Stopped)
+  
+### Fixed bugs:
+
+- Select service dialog: don't reload page if service has not changed but user
+  choose OK.
+- Prevent the "Stopped" notification from being shown when switching service
+- Use restoreWindow instead of show to make sure the main window is active 
+  before showing any preference dialog.
+
+
 ## 1.2.1
 
 ### New features:
