@@ -43,8 +43,8 @@ kde_support {
     INSTALLS += notifyrc
 }
 
-ubuntu_support {
-    message("building mellowplayer for ubuntu")
+unity_support {
+    message("building mellowplayer for Unity/Ubuntu")
 }
 
 DISTFILES += .gitignore

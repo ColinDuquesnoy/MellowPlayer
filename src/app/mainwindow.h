@@ -25,7 +25,7 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 
-#ifdef __ubuntu_support__
+#ifdef __unity_support__
     #include <dbusmenuexporter.h>
     #include <QDBusMessage>
 #endif
@@ -94,7 +94,7 @@ private:
     QTimer* m_updateTimer;
     TrayIcon* m_trayIcon;
 
-#ifdef __ubuntu_support__
+#ifdef __unity_support__
     QMenu* m_quickList;
     DBusMenuExporter *exporter;
 #endif

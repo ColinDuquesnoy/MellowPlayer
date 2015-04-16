@@ -50,6 +50,6 @@ kde_support {
     DEFINES += "__kde_support__=1"
 }
 
-ubuntu_support {
-    DEFINES += "__ubuntu_support__=1"
+unity_support {
+    DEFINES += "__unity_support__=1"
 }

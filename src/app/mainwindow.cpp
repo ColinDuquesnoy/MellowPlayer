@@ -56,7 +56,7 @@ MainWindow::~MainWindow()
 void MainWindow::showWebPage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_WEB);
-#ifndef __ubuntu_support__
+#ifndef __unity_support__
     m_ui->menubar->show();
 #endif
     m_updateTimer->stop();
@@ -66,7 +66,7 @@ void MainWindow::showWebPage()
 void MainWindow::showHomePage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_HOME);
-#ifndef __ubuntu_support__
+#ifndef __unity_support__
     m_ui->menubar->hide();
 #endif
 }
@@ -110,7 +110,7 @@ void MainWindow::onTrayIconActivated(bool active)
 {
     if(active)
         show();
-#ifdef __ubuntu_support__
+#ifdef __unity_support__
     m_ui->menubar->show();
 #endif
 }
@@ -140,7 +140,7 @@ void MainWindow::onPreferencesTriggered()
 //---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-#ifndef __ubuntu_support__
+#ifndef __unity_support__
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
     bool visible = isVisible() && !isMinimized();
@@ -524,7 +524,7 @@ void MainWindow::saveGeometryAndState()
 //---------------------------------------------------------
 void MainWindow::setupQuikLists()
 {
-#ifdef __ubuntu_support__
+#ifdef __unity_support__
     QDBusMessage signal = QDBusMessage::createSignal("/",
         "com.canonical.Unity.LauncherEntry", "Update");
 

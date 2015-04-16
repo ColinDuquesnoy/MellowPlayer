@@ -43,7 +43,7 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     m_ui->setupUi(this);
     setWindowTitle(tr("Preferences"));
 
-#ifdef __ubuntu_support__
+#ifdef __unity_support__
     m_ui->checkBoxMinimizeToTray->hide();
 #endif
 
