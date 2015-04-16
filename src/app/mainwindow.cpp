@@ -296,7 +296,7 @@ void MainWindow::connectSlots()
                   this, SLOT(onPreviousTriggered()));
 
     connect(m_ui->actionRestoreWindow, SIGNAL(triggered()),
-                  this, SLOT(show()));
+                  this, SLOT(restoreWindow()));
 
     connect(m_ui->actionSelect_service, SIGNAL(triggered()),
                   this, SLOT(onSelectServiceTriggered()));
@@ -324,6 +324,8 @@ void MainWindow::connectSlots()
     connect(m_ui->actionAdd_to_favorites, SIGNAL(triggered()),
                   this, SLOT(onAddToFavorites()));
 
+    connect(m_ui->webView, SIGNAL(loadStarted()),
+            this, SLOT(onLoadStarted()));
     connect(m_ui->webView, SIGNAL(loadFinished(bool)),
             this, SLOT(onLoadFinished(bool)));
 }
@@ -359,6 +361,10 @@ void MainWindow::updatePlayer()
             m_ui->actionPlayPause->setIcon(Icons::pause());
             m_ui->actionPlayPause->setText(tr("Pause"));
         }
+
+        m_ui->actionRestoreWindow->setText(
+            Services::streamingServices()->currentService()->metaData().name +
+            " - " + song.toString());
     }
     else
     {
@@ -375,6 +381,9 @@ void MainWindow::updatePlayer()
             m_ui->actionPlayPause->setIcon(Icons::play());
         }
         m_trayIcon->setToolTip("MellowPlayer");
+
+        m_ui->actionRestoreWindow->setText(
+            Services::streamingServices()->currentService()->metaData().name + " - " + tr("Stopped"));
     }
 }
 
@@ -494,6 +503,19 @@ void MainWindow::onLoadFinished(bool ok)
 }
 
 //---------------------------------------------------------
+void MainWindow::onLoadStarted()
+{
+    m_ui->actionRestoreWindow->setText(
+        Services::streamingServices()->currentService()->metaData().name + " - " + tr("Loading"));
+}
+
+//---------------------------------------------------------
+void MainWindow::restoreWindow()
+{
+    Services::raiseMainWindow();
+}
+
+//---------------------------------------------------------
 void MainWindow::restoreGeometryAndState()
 {
     restoreGeometry(QSettings().value("windowGeometry").toByteArray());
@@ -537,6 +559,8 @@ void MainWindow::setupQuikLists()
     QString dbusPath = "/com/me/mellowplayer/quicklist";
 
     m_quickList = new QMenu();
+    m_quickList->addAction(m_ui->actionRestoreWindow);
+    m_quickList->addSeparator();
     m_quickList->addAction(m_ui->actionPlayPause);
     m_quickList->addAction(m_ui->actionStop);
     m_quickList->addAction(m_ui->actionNext);

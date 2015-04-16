@@ -78,6 +78,8 @@ private slots:
     bool exitApplication();
     void onAddToFavorites();
     void onLoadFinished(bool ok);
+    void onLoadStarted();
+    void restoreWindow();
 
 private:
     void closeEvent(QCloseEvent* event);
