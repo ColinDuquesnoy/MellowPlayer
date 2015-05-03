@@ -56,7 +56,7 @@ void HotkeysPlugin::setup()
     }
 #else
     qDebug() << "Hotkeys Plugin: Setting up Qxt global shortcuts";
-    for(int i = 0; i < 5; ++i){
+    for(int i = 0; i < 4; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
