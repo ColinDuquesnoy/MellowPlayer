@@ -259,7 +259,6 @@ void MainWindow::setupWebView(bool debug)
     // make sure javascript and flash are enabled.
     QWebSettings* settings = m_ui->webView->settings();
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
-    settings->setAttribute(QWebSettings::PluginsEnabled, true);
     if(debug)
         settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
 
