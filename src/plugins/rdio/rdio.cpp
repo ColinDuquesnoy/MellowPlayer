@@ -30,7 +30,11 @@ bool RdioPlugin::flashRequired()
 {
     // most services require flash, change it to false if you're
     // working on an html5 service.
+#ifdef Q_OS_WIN32
+    return true;
+#else
     return false;
+#endif
 }
 
 
