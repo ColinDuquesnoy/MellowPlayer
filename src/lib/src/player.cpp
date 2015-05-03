@@ -60,7 +60,7 @@ void PlayerInterface::playPause()
 //---------------------------------------------------------
 void PlayerInterface::runTimer()
 {
-    m_tempo = 1000;
+    m_tempo = 250;
     m_timer->start(m_tempo);
 }
 
