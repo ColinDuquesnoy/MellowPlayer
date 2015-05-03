@@ -32,8 +32,12 @@ PlayerInterface::PlayerInterface(QObject *parent):
     m_canSeek(false),
     m_canPlay(false),
     m_canGoNext(false),
-    m_canGoPrevious(false)
+    m_canGoPrevious(false),
+    m_tempo(0),
+    m_timer(new QTimer(this))
 {
+    m_timer->setInterval(1000);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(resetTempo()));
 }
 
 //---------------------------------------------------------
@@ -44,20 +48,32 @@ void PlayerInterface::playPause()
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     SongInfo song = iService->currentSongInfo();
+    if(m_tempo != 0)
+        return;
     if(playbackStatus() > Playing)
         iService->play();
     else
         iService->pause();
+    runTimer();
 }
 
 //---------------------------------------------------------
+void PlayerInterface::runTimer()
+{
+    m_tempo = 1000;
+    m_timer->start(m_tempo);
+}
+
 void PlayerInterface::stop()
 {
     IStreamingService* iService =
             Services::streamingServices()->currentService();
+    if(m_tempo  !=  0)
+        return;
     if(!iService || !iService->currentSongInfo().isValid())
         return;
     iService->stop();
+    runTimer();
 }
 
 //---------------------------------------------------------
@@ -67,7 +83,10 @@ void PlayerInterface::next()
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
+    if(m_tempo  !=  0)
+        return;
     iService->next();
+    runTimer();
 }
 
 //---------------------------------------------------------
@@ -77,7 +96,10 @@ void PlayerInterface::previous()
             Services::streamingServices()->currentService();
     if(!iService || !iService->currentSongInfo().isValid())
         return;
+    if(m_tempo  !=  0)
+        return;
     iService->previous();
+    runTimer();
 }
 
 //---------------------------------------------------------
@@ -231,6 +253,13 @@ void PlayerInterface::onServiceStarted()
 void PlayerInterface::onArtReady(const QString &filePath)
 {
     emit artReady(filePath);
+}
+
+//---------------------------------------------------------
+void PlayerInterface::resetTempo()
+{
+    m_tempo = 0;
+    m_timer->stop();
 }
 
 //---------------------------------------------------------

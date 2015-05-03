@@ -21,6 +21,7 @@
 #define PLAYER
 
 #include <QObject>
+#include <QTimer>
 #include "mellowplayer/playbackstatus.h"
 #include "mellowplayer/song.h"
 
@@ -199,15 +200,17 @@ signals:
 
 private slots:
     void onArtReady(const QString& filePath);
+    void resetTempo();
 
 private:
+    void runTimer();
     void checkPlaybackStatusChange(SongInfo& song);
     void checkSongChange(SongInfo& song);
     void checkForPositionChange(SongInfo& song);
     void checkForControlCaps();
     void downloadSongArt(const QString &url);
 
-    QString        m_currentArt;
+    QString         m_currentArt;
     SongInfo        m_currentSong;
     SongInfo        m_startedSong;
     PlaybackStatus  m_currentStatus;
@@ -216,6 +219,8 @@ private:
     bool            m_canPlay;
     bool            m_canGoNext;
     bool            m_canGoPrevious;
+    int             m_tempo;
+    QTimer*         m_timer;
 };
 
 #endif // PLAYER
