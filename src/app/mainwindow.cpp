@@ -137,8 +137,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 #ifndef __unity_support__
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
-    bool visible = isVisible() && !isMinimized();
-    if(visible && minimizeToTray &&
+    if(isVisible() && minimizeToTray &&
         m_ui->stackedWidget->currentIndex() == PAGE_WEB)
     {
         bool showMsg = QSettings().value(
