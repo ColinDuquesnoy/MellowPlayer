@@ -230,7 +230,6 @@ void PlayerInterface::onServiceStarted()
 //---------------------------------------------------------
 void PlayerInterface::onArtReady(const QString &filePath)
 {
-    this->m_currentArt = filePath;
     emit artReady(filePath);
 }
 
@@ -317,6 +316,7 @@ void PlayerInterface::downloadSongArt(const QString& url)
                    QString(QDir::separator()) +
                    this->currentSong().songId +
                    QFileInfo(url).fileName();
+    this->m_currentArt = dest;
     qDebug() << url << "->" << dest;
     if(url.isEmpty())
         this->onArtReady("");

@@ -96,4 +96,5 @@ private:
     bool m_wasPlaying;
     bool m_songStarted;
     bool m_artReady;
+    QString m_art;
 };

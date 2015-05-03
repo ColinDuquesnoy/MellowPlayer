@@ -113,6 +113,8 @@ void NotificationsPlugin::onSongStarted(const SongInfo &song)
     qDebug() << "onSongStarted: " << song.toString();
     if(song.isValid())
         m_songStarted = true;
+    if(Services::player()->currentArt() != m_art)
+        m_artReady = false;
     notifySongChange();
 }
 
@@ -120,7 +122,7 @@ void NotificationsPlugin::onSongStarted(const SongInfo &song)
 void NotificationsPlugin::onArtReady(const QString &art)
 {
     qDebug() << "onArtReady: " << art;
-    Q_UNUSED(art);
+    m_art = art;
     m_artReady = true;
     notifySongChange();
 }
