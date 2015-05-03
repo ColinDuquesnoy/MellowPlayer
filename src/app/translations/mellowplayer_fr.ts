@@ -212,22 +212,6 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
     </message>
 </context>
 <context>
-    <name>GroovesharkPlugin</name>
-    <message>
-        <location filename="../../plugins/grooveshark/grooveshark.cpp" line="37"/>
-        <source>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; is an international online music search engine, music streaming service and music recommendation web software application, allowing users to search for, stream, and upload music that can be played immediately or added to a playlist. An optional paid subscription adds additional functionality and removes advertisements.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; est un service de recherche, de recommendation et de streaming de musique en ligne, permettant à ses utilisateurs de rechercher et de téléverser de la musique qui peut être jouée directement ou être ajoutée à une liste de lecture. Un abonnement payant optionnel permet de retirer les publicités et d&apos;avoir accès à des fontionnalités supplémentaires.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://fr.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>GroovesharkmobilePlugin</name>
-    <message>
-        <location filename="../../plugins/groovesharkmobile/groovesharkmobile.cpp" line="38"/>
-        <source>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; is an international online music search engine, music streaming service and music recommendation web software application, allowing users to search for, stream, and upload music that can be played immediately or added to a playlist. An optional paid subscription adds additional functionality and removes advertisements.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;strong&gt;Grooveshark&lt;/strong&gt; est un service de recherche, de recommendation et de streaming de musique en ligne, permettant à ses utilisateurs de rechercher et de téléverser de la musique qui peut être jouée directement ou être ajoutée à une liste de lecture. Un abonnement payant optionnel permet de retirer les publicités et d&apos;avoir accès à des fontionnalités supplémentaires.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://fr.wikipedia.org/wiki/Grooveshark&quot;&gt;Grooveshark sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://grooveshark.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
-    </message>
-</context>
-<context>
     <name>HotkeysPlugin</name>
     <message>
         <location filename="../../plugins/hotkeys/hotkeys.cpp" line="38"/>

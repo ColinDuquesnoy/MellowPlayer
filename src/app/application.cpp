@@ -162,7 +162,7 @@ bool MellowPlayerApp::parseArgs()
             std::cout << "  * --clear-settings: clear the application settings, restore factory defaults"  << std::endl;
             std::cout << "  * --clear-cookies: clear the stored cookies"  << std::endl;
             std::cout << "  * --version: show the version"  << std::endl;
-            std::cout << "  * --service=%s: select a specific service (deezer, grooveshark, groovesharkmobile, mixcloud)"  << std::endl;
+            std::cout << "  * --service=%s: select a specific service (deezer, mixcloud, soundcloud)"  << std::endl;
             std::cout << "  * --autoquit-delay=%d: a delay for automatically quitting the application (for testing purposes)."  << std::endl;
 
             quit = true;

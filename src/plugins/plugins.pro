@@ -19,15 +19,11 @@
 
 TEMPLATE = subdirs
 
-unix{
-    SUBDIRS += groovesharkmobile
-}
 unix:!macx {
     SUBDIRS += mpris2
     SUBDIRS += gnomemediakeys
 }
 
-SUBDIRS += grooveshark
 SUBDIRS += hotkeys
 SUBDIRS += notifications
 SUBDIRS += deezer

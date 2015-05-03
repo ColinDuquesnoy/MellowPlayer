@@ -28,7 +28,6 @@ LIBS += -L.
 LIBS += -lmpp_soundcloud
 LIBS += -lmpp_mixcloud
 LIBS += -lmpp_deezer
-LIBS += -lmpp_grooveshark
 LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications
 
@@ -36,7 +35,6 @@ win32 { # force relink app when a static lib changed.
     PRE_TARGETDEPS += mpp_soundcloud.lib
     PRE_TARGETDEPS += mpp_mixcloud.lib
     PRE_TARGETDEPS += mpp_deezer.lib
-    PRE_TARGETDEPS += mpp_grooveshark.lib
     PRE_TARGETDEPS += mpp_hotkeys.lib
     PRE_TARGETDEPS += mpp_notifications.lib
 }
@@ -44,7 +42,6 @@ else { # force relink app when a static lib changed.
     PRE_TARGETDEPS += libmpp_soundcloud.a
     PRE_TARGETDEPS += libmpp_mixcloud.a
     PRE_TARGETDEPS += libmpp_deezer.a
-    PRE_TARGETDEPS += libmpp_grooveshark.a
     PRE_TARGETDEPS += libmpp_hotkeys.a
     PRE_TARGETDEPS += libmpp_notifications.a
 }
@@ -66,10 +63,6 @@ win32:CONFIG(Release){
 unix{
     LIBS            += -L../lib -lmellowplayer
     PRE_TARGETDEPS  += ../lib/libmellowplayer.a
-
-    LIBS            += -lmpp_groovesharkmobile
-    PRE_TARGETDEPS  += libmpp_groovesharkmobile.a
-
 }
 macx {
    LIBS             += -framework Carbon -lcrypto -lssl
