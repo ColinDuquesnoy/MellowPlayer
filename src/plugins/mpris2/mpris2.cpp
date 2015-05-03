@@ -72,4 +72,3 @@ const PluginMetaData &Mpris2Plugin::metaData() const
     meta.description =tr("Exposes an MPRIS2 interface to DBUS.");
     return meta;
 }
-Q_EXPORT_PLUGIN2( Mpris2Plugin, Mpris2Plugin )
