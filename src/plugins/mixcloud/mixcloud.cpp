@@ -75,12 +75,6 @@ void MixcloudPlugin::pause()
 }
 
 //---------------------------------------------------------
-void MixcloudPlugin::stop()
-{
-    this->pause();
-}
-
-//---------------------------------------------------------
 void MixcloudPlugin::next()
 {
     // not supported

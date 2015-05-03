@@ -74,12 +74,6 @@ void SoundcloudPlugin::pause()
 }
 
 //---------------------------------------------------------
-void SoundcloudPlugin::stop()
-{
-    pause();
-}
-
-//---------------------------------------------------------
 void SoundcloudPlugin::next()
 {
 #ifdef Q_OS_WIN32

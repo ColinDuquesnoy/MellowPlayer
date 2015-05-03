@@ -247,7 +247,6 @@ void DlgPreferences::resetShortcuts()
 {
     QList<QAction*> actions;
     actions.append(m_mainWindow->m_ui->actionPlayPause);
-    actions.append(m_mainWindow->m_ui->actionStop);
     actions.append(m_mainWindow->m_ui->actionNext);
     actions.append(m_mainWindow->m_ui->actionPrevious);
     actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
@@ -307,7 +306,6 @@ void DlgPreferences::restoreShortcuts()
 {
     QList<QAction*> actions;
     actions.append(m_mainWindow->m_ui->actionPlayPause);
-    actions.append(m_mainWindow->m_ui->actionStop);
     actions.append(m_mainWindow->m_ui->actionNext);
     actions.append(m_mainWindow->m_ui->actionPrevious);
     actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
@@ -355,7 +353,6 @@ void DlgPreferences::applyShortcuts()
 {
     QList<QAction*> actions;
     actions.append(m_mainWindow->m_ui->actionPlayPause);
-    actions.append(m_mainWindow->m_ui->actionStop);
     actions.append(m_mainWindow->m_ui->actionNext);
     actions.append(m_mainWindow->m_ui->actionPrevious);
     actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);

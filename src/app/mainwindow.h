@@ -64,7 +64,6 @@ public:
 private slots:
     void onLinkClicked(QUrl url);
     void onPlayPauseTriggered();
-    void onStopTriggered();
     void onNextTriggered();
     void onPreviousTriggered();
     void onTrayIconActivated(bool active);

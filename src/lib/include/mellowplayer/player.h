@@ -42,11 +42,6 @@ public:
     void playPause();
 
     /*!
-     * \brief Stops play
-     */
-    void stop();
-
-    /*!
      * \brief Plays next song
      */
     void next();

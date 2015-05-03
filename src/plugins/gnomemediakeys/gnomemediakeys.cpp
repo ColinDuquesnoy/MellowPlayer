@@ -111,8 +111,6 @@ void GnomemediakeysPlugin::gnomeMediaKeyPressed(const QString& _, const QString&
     Q_UNUSED(_);
     if (key == "Play")
         Services::player()->playPause();
-    if (key == "Stop")
-        Services::player()->stop();
     if (key == "Next")
         Services::player()->next();
     if (key == "Previous")

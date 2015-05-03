@@ -42,7 +42,7 @@ const PluginMetaData &HotkeysPlugin::metaData() const
 //---------------------------------------------------------
 void HotkeysPlugin::setup()
 {
-    QString names[] = {"actionPlayPause", "actionStop", "actionNext",
+    QString names[] = {"actionPlayPause", "actionNext",
                        "actionPrevious", "actionAdd_to_favorites"};
 #ifdef __kde_support__
     qDebug() << "Hotkeys Plugin: Setting up KGlobalAccel shortcuts";

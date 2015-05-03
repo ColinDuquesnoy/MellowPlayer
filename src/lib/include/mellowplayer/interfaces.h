@@ -67,9 +67,6 @@ public:
     //! Pauses the current song
     virtual void pause() = 0;
 
-    //! Stops the current song
-    virtual void stop() = 0;
-
     //! Skips to the next song
     virtual void next() = 0;
 
