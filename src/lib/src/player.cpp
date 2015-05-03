@@ -64,18 +64,6 @@ void PlayerInterface::runTimer()
     m_timer->start(m_tempo);
 }
 
-void PlayerInterface::stop()
-{
-    IStreamingService* iService =
-            Services::streamingServices()->currentService();
-    if(m_tempo  !=  0)
-        return;
-    if(!iService || !iService->currentSongInfo().isValid())
-        return;
-    iService->stop();
-    runTimer();
-}
-
 //---------------------------------------------------------
 void PlayerInterface::next()
 {

@@ -66,12 +66,6 @@ void %(classname)s::pause()
 }
 
 //---------------------------------------------------------
-void %(classname)s::stop()
-{
-    this->pause();
-}
-
-//---------------------------------------------------------
 void %(classname)s::next()
 {
     this->runJavaScript("");

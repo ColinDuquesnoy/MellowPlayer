@@ -241,7 +241,6 @@
      <string>&amp;Control</string>
     </property>
     <addaction name="actionPlayPause"/>
-    <addaction name="actionStop"/>
     <addaction name="actionNext"/>
     <addaction name="actionPrevious"/>
     <addaction name="separator"/>
@@ -279,7 +278,6 @@
    </attribute>
    <addaction name="actionPrevious"/>
    <addaction name="actionPlayPause"/>
-   <addaction name="actionStop"/>
    <addaction name="actionNext"/>
   </widget>
   <action name="actionSelect_service">
@@ -319,18 +317,6 @@
    </property>
    <property name="shortcut">
     <string>Media Play</string>
-   </property>
-  </action>
-  <action name="actionStop">
-   <property name="icon">
-    <iconset resource="mellowplayer.qrc">
-     <normaloff>:/icons/media-playback-stop.png</normaloff>:/icons/media-playback-stop.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Stop</string>
-   </property>
-   <property name="shortcut">
-    <string>Media Stop</string>
    </property>
   </action>
   <action name="actionNext">
@@ -426,7 +412,7 @@
   </action>
   <action name="actionWiki">
    <property name="text">
-    <string>Wiki</string>
+    <string>&amp;Wiki</string>
    </property>
   </action>
  </widget>

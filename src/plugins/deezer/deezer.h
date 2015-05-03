@@ -45,8 +45,6 @@ public:
     void play();
     //! Pauses the current song
     void pause();
-    //! Stops the current song
-    void stop();
     //! Skips to the next song
     void next();
     //! Skips to the previous song

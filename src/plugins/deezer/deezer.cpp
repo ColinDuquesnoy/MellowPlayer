@@ -76,12 +76,6 @@ void DeezerPlugin::pause()
 }
 
 //---------------------------------------------------------
-void DeezerPlugin::stop()
-{
-    pause();
-}
-
-//---------------------------------------------------------
 void DeezerPlugin::next()
 {
     runJavaScript("dzPlayer.control.nextSong();");

@@ -88,12 +88,6 @@ void MainWindow::onPlayPauseTriggered()
 }
 
 //---------------------------------------------------------
-void MainWindow::onStopTriggered()
-{
-    Services::player()->stop();
-}
-
-//---------------------------------------------------------
 void MainWindow::onNextTriggered()
 {
     Services::player()->next();
@@ -143,8 +137,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 #ifndef __unity_support__
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
-    bool visible = isVisible() && !isMinimized();
-    if(visible && minimizeToTray &&
+    if(isVisible() && minimizeToTray &&
         m_ui->stackedWidget->currentIndex() == PAGE_WEB)
     {
         bool showMsg = QSettings().value(
@@ -180,7 +173,6 @@ void MainWindow::setupIcons()
     m_ui->actionQuit->setIcon(Icons::quit());
 
     m_ui->actionPlayPause->setIcon(Icons::play());
-    m_ui->actionStop->setIcon(Icons::stop());
     m_ui->actionNext->setIcon(Icons::next());
     m_ui->actionPrevious->setIcon(Icons::previous());
     m_ui->actionAdd_to_favorites->setIcon(Icons::favorite());
@@ -198,19 +190,17 @@ void MainWindow::setupActions()
 {
     QString defaults[] = {
         DEFAULT_SHORTCUT_PLAY,
-        DEFAULT_SHORTCUT_STOP,
         DEFAULT_SHORTCUT_NEXT,
         DEFAULT_SHORTCUT_PREVIOUS,
         DEFAULT_SHORTCUT_FAVORITE
     };
     QAction* actions[] = {
         m_ui->actionPlayPause,
-        m_ui->actionStop,
         m_ui->actionNext,
         m_ui->actionPrevious,
         m_ui->actionAdd_to_favorites
     };
-    for(int i = 0; i < 5; ++i){
+    for(int i = 0; i < 4; ++i){
         QAction* a = actions[i];
         addAction(a);
         a->setShortcut(QSettings().value(
@@ -234,7 +224,6 @@ void MainWindow::setupTrayIcon()
     mnu->addAction(m_ui->actionRestoreWindow);
     mnu->addSeparator();
     mnu->addAction(m_ui->actionPlayPause);
-    mnu->addAction(m_ui->actionStop);
     mnu->addAction(m_ui->actionNext);
     mnu->addAction(m_ui->actionPrevious);
     mnu->addAction(m_ui->actionAdd_to_favorites);
@@ -288,8 +277,6 @@ void MainWindow::connectSlots()
                   this, SLOT(onLinkClicked(QUrl)));
     connect(m_ui->actionPlayPause, SIGNAL(triggered()),
                   this, SLOT(onPlayPauseTriggered()));
-    connect(m_ui->actionStop, SIGNAL(triggered()),
-                  this, SLOT(onStopTriggered()));
     connect(m_ui->actionNext, SIGNAL(triggered()),
                   this, SLOT(onNextTriggered()));
     connect(m_ui->actionPrevious, SIGNAL(triggered()),
@@ -349,7 +336,6 @@ void MainWindow::updatePlayer()
             song.toString()));
         m_ui->actionNext->setEnabled(player->canGoNext());
         m_ui->actionPrevious->setEnabled(player->canGoPrevious());
-        m_ui->actionStop->setEnabled(player->playbackStatus() != Stopped);
         m_ui->actionPlayPause->setEnabled(true);
         if(player->playbackStatus() == Paused)
         {
@@ -373,7 +359,6 @@ void MainWindow::updatePlayer()
             setWindowTitle(QString("%1 - MellowPlayer").arg(sv->metaData().name));
         m_ui->actionNext->setEnabled(false);
         m_ui->actionPrevious->setEnabled(false);
-        m_ui->actionStop->setEnabled(false);
         m_ui->actionPlayPause->setEnabled(false);
         if(m_ui->actionPlayPause->text() != tr("Play"))
         {
@@ -562,7 +547,6 @@ void MainWindow::setupQuikLists()
     m_quickList->addAction(m_ui->actionRestoreWindow);
     m_quickList->addSeparator();
     m_quickList->addAction(m_ui->actionPlayPause);
-    m_quickList->addAction(m_ui->actionStop);
     m_quickList->addAction(m_ui->actionNext);
     m_quickList->addAction(m_ui->actionPrevious);
     m_quickList->addAction(m_ui->actionAdd_to_favorites);

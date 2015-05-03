@@ -78,12 +78,6 @@ void RdioPlugin::pause()
 }
 
 //---------------------------------------------------------
-void RdioPlugin::stop()
-{
-    this->pause();
-}
-
-//---------------------------------------------------------
 void RdioPlugin::next()
 {
     this->runJavaScript("R.Services.Player.next()");
