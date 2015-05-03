@@ -87,7 +87,11 @@ bool StreamingServicesManager::startService(const QString& serviceName) {
         retVal = false;
     else
     {
-        if(!Services::hasFlash() && p->flashRequired())
+        bool flashRequired = p->flashRequired();
+        QWebSettings* settings = Services::webView()->settings();
+        qDebug() << "trying to activate flash plugin: " << flashRequired;
+        settings->setAttribute(QWebSettings::PluginsEnabled, flashRequired);
+        if(!Services::hasFlash() && flashRequired)
         {
             QMessageBox::warning(
                 Services::mainWindow(),
