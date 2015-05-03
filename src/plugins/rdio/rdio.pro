@@ -17,16 +17,13 @@
 #
 #----------------------------------------------------------
 
-TEMPLATE = subdirs
-
-unix:!macx {
-    SUBDIRS += mpris2
-    SUBDIRS += gnomemediakeys
-}
-
-SUBDIRS += hotkeys
-SUBDIRS += notifications
-SUBDIRS += deezer
-SUBDIRS += mixcloud
-SUBDIRS += soundcloud
-SUBDIRS += rdio
+TEMPLATE      = lib
+QT           += core gui widgets webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+TARGET        = mpp_rdio
+CONFIG       += plugin static
+HEADERS       = rdio.h
+SOURCES       = rdio.cpp
+RESOURCES    += rdio.qrc
+DESTDIR       = ../../app
+INCLUDEPATH  += ../../lib/include
