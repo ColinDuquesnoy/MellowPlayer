@@ -46,7 +46,7 @@ void HotkeysPlugin::setup()
                        "actionPrevious", "actionAdd_to_favorites"};
 #ifdef __kde_support__
     qDebug() << "Hotkeys Plugin: Setting up KGlobalAccel shortcuts";
-    for(int i = 0; i < 5; ++i){
+    for(int i = 0; i < 4; ++i){
         QAction* action = Services::action(names[i]);
         if(!action)
             continue;
