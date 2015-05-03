@@ -508,12 +508,12 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <translation>Affiche une notification lorsque la lecture est interrompue</translation>
     </message>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="134"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="136"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../../plugins/notifications/notifications.cpp" line="139"/>
+        <location filename="../../plugins/notifications/notifications.cpp" line="141"/>
         <source>Stopped</source>
         <translation>Interrompu</translation>
     </message>
@@ -539,6 +539,15 @@ Etes-vous sûr de vouloir supprimer les paramètres de l&apos;application?</tran
         <location filename="../../lib/src/song.cpp" line="40"/>
         <source>%1 on %2</source>
         <translation>%1 sur %2</translation>
+    </message>
+</context>
+<context>
+    <name>RdioPlugin</name>
+    <message>
+        <location filename="../../plugins/rdio/rdio.cpp" line="46"/>
+        <source>&lt;p&gt;&lt;strong&gt;Rdio&lt;/strong&gt; is an online music service that offers ad-supported free streaming service and ad-free subscription services in 85 countries.&lt;/p&gt;&lt;p&gt;It is available as a website and also has clients for the iPhone, iPod Touch &amp; iPad, Android, BlackBerry, and Windows Phone mobile devices, which can play streaming music or cache songs for offline playback. There are also clients for the Roku and Sonos systems. The web-based service also offers a native desktop client application for Mac OS X and Windows. Its library has content from the four major record labels, as well as the Merlin Network and the aggregators IODA, INgrooves, The Orchard, CD Baby, IRIS Distribution, BFM Digital, Finetunes, and Catapult. Rdio also offers social networking, allowing users to share playlists and follow others to see what music they listen to.&lt;/p&gt;&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Rdio&quot;&gt;Rdio on Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://rdio.com&quot;&gt;Official website&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;strong&gt;Rdio&lt;/strong&gt; est un service musique en ligne disponible aux États-Unis, au Canada, au Brésil, en Australie, en Nouvelle-Zélande, au Royaume-Uni, en France, en Allemagne, en Espagne, au Portugal, au Danemark, en Estonie, en Finlande, en Suède, aux Pays-Bas et en Belgique&lt;/p&gt;&lt;p&gt;Rdio dispose d&apos;une bibliothèque de plus de 18 millions de titres et fonctionne aussi bien en application OSX, Windows qu&apos;en version web ou version mobile (iOS, Android, BlackBerry, WP7).&lt;p&gt;
+&lt;em&gt;Source:&lt;a href=&quot;http://en.wikipedia.org/wiki/Rdio&quot;&gt;Rdio sur Wikipedia&lt;/a&gt;,&lt;a href=&quot;http://rdio.com&quot;&gt;Site web officiel&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
