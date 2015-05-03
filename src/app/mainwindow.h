@@ -90,6 +90,7 @@ private:
     void connectSlots();
     void restoreGeometryAndState();
     void setupQuikLists();
+    void setupDockMenu();
 
     Ui::MainWindow *m_ui;
     QTimer* m_updateTimer;

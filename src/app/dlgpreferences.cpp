@@ -43,7 +43,7 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     m_ui->setupUi(this);
     setWindowTitle(tr("Preferences"));
 
-#ifdef __unity_support__
+#if defined(__unity_support__) || defined(Q_OS_MACX)
     m_ui->checkBoxMinimizeToTray->hide();
 #endif
 

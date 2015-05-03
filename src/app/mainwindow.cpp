@@ -41,6 +41,7 @@ MainWindow::MainWindow(bool debug, QWidget *parent) :
     setupWebView(debug);
     setupUpdateTimer();
     setupTrayIcon();
+    setupDockMenu();
     connectSlots();
     m_ui->menuView->addActions(createPopupMenu()->actions());
     setupQuikLists();
@@ -134,7 +135,11 @@ void MainWindow::onPreferencesTriggered()
 //---------------------------------------------------------
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-#ifndef __unity_support__
+#if defined(Q_OS_MACX) || defined(__unity_support__)
+    Q_UNUSED(event);
+    if(!exitApplication())
+        event->ignore();
+#else
     bool minimizeToTray = QSettings().value(
         "minimizeToTray", QVariant(true)).toBool();
     if(isVisible() && minimizeToTray &&
@@ -158,10 +163,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         // no service is running or the window is already hidden,
         // quit application
         qApp->exit(0);
-#else
-    Q_UNUSED(event);
-    if(!exitApplication())
-        event->ignore();
 #endif
 }
 
@@ -561,5 +562,17 @@ void MainWindow::setupQuikLists()
 
     //send the signal
     QDBusConnection::sessionBus().send(signal);
+#endif
+}
+
+void MainWindow::setupDockMenu()
+{
+#ifdef Q_OS_MACX
+    QMenu* mnu = new QMenu(this);
+    mnu->addAction(m_ui->actionPlayPause);
+    mnu->addAction(m_ui->actionNext);
+    mnu->addAction(m_ui->actionPrevious);
+    mnu->addAction(m_ui->actionAdd_to_favorites);
+    qt_mac_set_dock_menu(mnu);
 #endif
 }
