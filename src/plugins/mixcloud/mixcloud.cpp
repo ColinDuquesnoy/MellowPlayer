@@ -173,7 +173,11 @@ bool MixcloudPlugin::isFavorite()
 void MixcloudPlugin::addToFavorite(bool add)
 {
     Q_UNUSED(add);
+#ifdef Q_OS_WIN32
+    runJavaScript("$('.icon-favorite-inner').click()");
+#else
     runJavaScript("$('.icon-favorite-inner').get(0).click()");
+#endif
 }
 
 //---------------------------------------------------------
