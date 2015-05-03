@@ -147,12 +147,26 @@ def make_win32_release():
 
     files = [
         exe,
-        os.path.join(qt_bin_dir, 'Qt5Gui.dll'),
-        os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
+        os.path.join(qt_bin_dir, 'icudt53.dll'),
+        os.path.join(qt_bin_dir, 'icuin53.dll'),
+        os.path.join(qt_bin_dir, 'icuuc53.dll'),
         os.path.join(qt_bin_dir, 'Qt5Core.dll'),
-        os.path.join(qt_bin_dir, 'Qt5Svg.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Gui.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Multimedia.dll'),
+        os.path.join(qt_bin_dir, 'Qt5MultimediaWidgets.dll'),
         os.path.join(qt_bin_dir, 'Qt5Network.dll'),
+        os.path.join(qt_bin_dir, 'Qt5OpenGL.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Positioning.dll'),
+        os.path.join(qt_bin_dir, 'Qt5PrintSupport.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Qml.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Quick.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Sensors.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Sql.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Svg.dll'),
+        os.path.join(qt_bin_dir, 'Qt5WebChannel.dll'),
         os.path.join(qt_bin_dir, 'Qt5WebKit.dll'),
+        os.path.join(qt_bin_dir, 'Qt5WebKitWidgets.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
         # open ssl
@@ -164,24 +178,15 @@ def make_win32_release():
         print('copying %s to %s' % (f, dist))
         shutil.copy(f, dist)
 
-    for f in [os.path.join(iconengines_dir, name) for name in
-              glob.glob(os.path.join(iconengines_dir, '*.dll'))]:
-        print('copying %s to %s' % (f, dist))
-        shutil.copy(f, iconengines_dst)
-
-    for f in [os.path.join(imageformats_dir, name) for name in
-              glob.glob(os.path.join(imageformats_dir, '*.dll'))]:
-        print('copying %s to %s' % (f, dist))
-        shutil.copy(f, imageformats_dst)
-
     plugins_dir = os.path.abspath(os.path.join(qt_bin_dir, '..', 'plugins'))
 
     plugins = []
-    for subdir in ['imageformats', 'iconengines', 'platforms']:
+    for subdir in ['imageformats', 'iconengines', 'platforms', 'audio', 'mediaservice']:
         root = os.path.join(plugins_dir, subdir)
         for f in os.listdir(root):
-            if f.endswith('.dll') and not f.endswith('d4.dll'):
-                plugins.append((os.path.join(root, f), subdir))
+            if not f.endswith('.dll') or f.endswith('d.dll'):
+                continue
+            plugins.append((os.path.join(root, f), subdir))
 
     for f, dest_dir in plugins:
         dst = os.path.join(dist, dest_dir)
