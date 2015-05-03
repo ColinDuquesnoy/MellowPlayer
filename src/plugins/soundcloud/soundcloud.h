@@ -25,11 +25,7 @@ class SoundcloudPlugin:
         public IStreamingService
 {
     Q_OBJECT
-
-#if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID IStreamingService_iid
-                      FILE "soundcloud.json")
-#endif
+    Q_PLUGIN_METADATA(IID IStreamingService_iid FILE "soundcloud.json")
     Q_INTERFACES(IStreamingService)
 
 public:

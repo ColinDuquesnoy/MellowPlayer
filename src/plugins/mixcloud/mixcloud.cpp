@@ -59,13 +59,7 @@ QUrl MixcloudPlugin::url() const
 //---------------------------------------------------------
 void MixcloudPlugin::play()
 {
-    qDebug() << "play";
-#ifdef Q_OS_WIN32
-    this->runJavaScript("$('.player-control').click()");
-#else
     this->runJavaScript("$('.player-control').get()[0].click()");
-#endif
-    qApp->processEvents();
 }
 
 //---------------------------------------------------------
@@ -173,11 +167,7 @@ bool MixcloudPlugin::isFavorite()
 void MixcloudPlugin::addToFavorite(bool add)
 {
     Q_UNUSED(add);
-#ifdef Q_OS_WIN32
-    runJavaScript("$('.icon-favorite-inner').click()");
-#else
     runJavaScript("$('.icon-favorite-inner').get(0).click()");
-#endif
 }
 
 //---------------------------------------------------------
@@ -197,8 +187,3 @@ bool MixcloudPlugin::canGoPrevious()
 {
     return false;
 }
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2( MixcloudPlugin, MixcloudPlugin )
-#endif

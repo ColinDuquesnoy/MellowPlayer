@@ -20,8 +20,7 @@
 # Project configuration
 TARGET              = MellowPlayer
 TEMPLATE            = app
-QT                 += core gui network webkit
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+QT                 += core gui network webkit widgets webkitwidgets
 
 # Add static plugins here (and in main.cpp)
 LIBS += -L.
@@ -90,7 +89,6 @@ SOURCES         += main.cpp\
                    pluginsmanager.cpp \
                    dlgselectservice.cpp \
                    dlgpreferences.cpp \
-                   keysequenceedit.cpp \
                    webview.cpp
 HEADERS         += mainwindow.h \
                    application.h \
@@ -100,8 +98,6 @@ HEADERS         += mainwindow.h \
                    dlgselectservice.h \
                    dlgpreferences.h \
                    shortcuts.h \
-                   keysequenceedit_p.h \
-                   keysequenceedit.h \
                    webview.h
 RESOURCES        = mellowplayer.qrc
 FORMS           += mainwindow.ui \
@@ -109,9 +105,9 @@ FORMS           += mainwindow.ui \
                    dlg_preferences.ui
 
 # Version infos
-VERSION          = 1.3.0
+VERSION          = 1.4.0
 DEFINES         += VERSION_MAJOR=1
-DEFINES         += VERSION_MINOR=3
+DEFINES         += VERSION_MINOR=4
 DEFINES         += VERSION_MICRO=0
 DEFINES         += VERSION_STATUS=\\\"\\\"
 

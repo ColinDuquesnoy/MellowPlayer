@@ -21,8 +21,7 @@
 TEMPLATE      = lib
 TARGET        = mpp_mpris2
 CONFIG       += plugin static
-QT           += dbus gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT           += dbus gui widgets
 HEADERS       = mpris2.h \
                 mpris2root.h \
                 mpris2player.h

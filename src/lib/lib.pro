@@ -20,8 +20,7 @@ TEMPLATE        = lib
 TARGET          = mellowplayer
 CONFIG         += static
 VERSION         = 1.0.0
-QT             += core gui widgets webkit network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+QT             += core gui widgets webkit network widgets webkitwidgets
 INCLUDEPATH    += include
 HEADERS         = include/mellowplayer.h \
                   include/mellowplayer/cookiejar.h \

@@ -25,11 +25,7 @@ class DeezerPlugin:
         public IStreamingService
 {
     Q_OBJECT
-
-#if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID IStreamingService_iid
-                      FILE "deezer.json")
-#endif
+    Q_PLUGIN_METADATA(IID IStreamingService_iid FILE "deezer.json")
     Q_INTERFACES(IStreamingService)
 
 public:

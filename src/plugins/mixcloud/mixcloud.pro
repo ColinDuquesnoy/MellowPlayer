@@ -18,8 +18,7 @@
 #----------------------------------------------------------
 
 TEMPLATE      = lib
-QT           += core gui widgets webkit network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+QT           += core gui widgets webkit network widgets webkitwidgets
 TARGET        = mpp_mixcloud
 CONFIG       += plugin static
 HEADERS       = mixcloud.h

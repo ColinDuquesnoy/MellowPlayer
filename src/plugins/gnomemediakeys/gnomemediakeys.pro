@@ -21,8 +21,7 @@
 TEMPLATE      = lib
 TARGET        = mpp_gnomemediakeys
 CONFIG       += plugin static
-QT           += dbus gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT           += dbus gui widgets
 HEADERS       = gnomemediakeys.h
 SOURCES       = gnomemediakeys.cpp
 INCLUDEPATH  += ../../lib/include

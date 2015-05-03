@@ -26,11 +26,7 @@ class %(classname)s :
         public IExtension
 {
     Q_OBJECT
-
-#if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID IExtension_iid
-                      FILE "%(name)s.json")
-#endif
+    Q_PLUGIN_METADATA(IID IExtension_iid FILE "%(name)s.json")
     Q_INTERFACES(IExtension)
 
 public:

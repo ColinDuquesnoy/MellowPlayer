@@ -21,8 +21,7 @@
 TEMPLATE      = lib
 TARGET        = mpp_%(name)s
 CONFIG       += plugin static
-QT           += gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT           += gui widgets
 HEADERS       = %(name)s.h
 SOURCES       = %(name)s.cpp
 INCLUDEPATH  += ../../lib/include

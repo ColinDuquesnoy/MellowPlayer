@@ -147,11 +147,12 @@ def make_win32_release():
 
     files = [
         exe,
-        os.path.join(qt_bin_dir, 'QtGui4.dll'),
-        os.path.join(qt_bin_dir, 'QtCore4.dll'),
-        os.path.join(qt_bin_dir, 'QtSvg4.dll'),
-        os.path.join(qt_bin_dir, 'QtNetwork4.dll'),
-        os.path.join(qt_bin_dir, 'QtWebKit4.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Gui.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Core.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Svg.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Network.dll'),
+        os.path.join(qt_bin_dir, 'Qt5WebKit.dll'),
         'c:\\Windows\\System32\\msvcr100.dll',
         'c:\\Windows\\System32\\msvcp100.dll',
         # open ssl
@@ -173,10 +174,10 @@ def make_win32_release():
         print('copying %s to %s' % (f, dist))
         shutil.copy(f, imageformats_dst)
 
-    plugins_dir = os.path.abspath(os.path.join(qt_bin_dir, '..', 'src', 'plugins'))
+    plugins_dir = os.path.abspath(os.path.join(qt_bin_dir, '..', 'plugins'))
 
     plugins = []
-    for subdir in ['imageformats', 'iconengines']:
+    for subdir in ['imageformats', 'iconengines', 'platforms']:
         root = os.path.join(plugins_dir, subdir)
         for f in os.listdir(root):
             if f.endswith('.dll') and not f.endswith('d4.dll'):

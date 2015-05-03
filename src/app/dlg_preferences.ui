@@ -78,7 +78,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -123,48 +123,38 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>Stop:</string>
-           </property>
-          </widget>
+         <item row="0" column="1">
+          <widget class="QKeySequenceEdit" name="lineEditPlayPause"/>
          </item>
-         <item row="2" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_12">
            <property name="text">
             <string>Next:</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
+         <item row="1" column="1">
+          <widget class="QKeySequenceEdit" name="lineEditNext"/>
+         </item>
+         <item row="2" column="0">
           <widget class="QLabel" name="label_13">
            <property name="text">
             <string>Previous:</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="KeySequenceEdit" name="lineEditPlayPause"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="KeySequenceEdit" name="lineEditStop"/>
-         </item>
          <item row="2" column="1">
-          <widget class="KeySequenceEdit" name="lineEditNext"/>
+          <widget class="QKeySequenceEdit" name="lineEditPrevious"/>
          </item>
-         <item row="3" column="1">
-          <widget class="KeySequenceEdit" name="lineEditPrevious"/>
-         </item>
-         <item row="4" column="0">
+         <item row="3" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
             <string>Add to favorites:</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="KeySequenceEdit" name="lineEditFavorite"/>
+         <item row="3" column="1">
+          <widget class="QKeySequenceEdit" name="lineEditFavorite"/>
          </item>
         </layout>
        </widget>
@@ -364,13 +354,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KeySequenceEdit</class>
-   <extends>QLineEdit</extends>
-   <header>keysequenceedit.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>listWidget</tabstop>
   <tabstop>checkBoxMinimizeToTray</tabstop>

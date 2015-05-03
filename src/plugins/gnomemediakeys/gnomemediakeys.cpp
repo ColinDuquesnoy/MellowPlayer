@@ -116,8 +116,3 @@ void GnomemediakeysPlugin::gnomeMediaKeyPressed(const QString& _, const QString&
     if (key == "Previous")
         Services::player()->previous();
 }
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-    Q_EXPORT_PLUGIN2( GnomemediakeysPlugin, GnomemediakeysPlugin )
-#endif

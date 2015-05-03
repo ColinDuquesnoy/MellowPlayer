@@ -25,7 +25,6 @@
 #include "mellowplayer/cookiejar.h"
 #include "dlgpreferences.h"
 #include "icons.h"
-#include "keysequenceedit.h"
 #include "mainwindow.h"
 #include "shortcuts.h"
 #include "ui_mainwindow.h"
@@ -253,14 +252,12 @@ void DlgPreferences::resetShortcuts()
 
     QList<QString> shortcuts;
     shortcuts.append(DEFAULT_SHORTCUT_PLAY);
-    shortcuts.append(DEFAULT_SHORTCUT_STOP);
     shortcuts.append(DEFAULT_SHORTCUT_NEXT);
     shortcuts.append(DEFAULT_SHORTCUT_PREVIOUS);
     shortcuts.append(DEFAULT_SHORTCUT_FAVORITE);
 
-    QList<KeySequenceEdit*> edits;
+    QList<QKeySequenceEdit*> edits;
     edits.append(m_ui->lineEditPlayPause);
-    edits.append(m_ui->lineEditStop);
     edits.append(m_ui->lineEditNext);
     edits.append(m_ui->lineEditPrevious);
     edits.append(m_ui->lineEditFavorite);
@@ -357,9 +354,8 @@ void DlgPreferences::applyShortcuts()
     actions.append(m_mainWindow->m_ui->actionPrevious);
     actions.append(m_mainWindow->m_ui->actionAdd_to_favorites);
 
-    QList<KeySequenceEdit*> edits;
+    QList<QKeySequenceEdit*> edits;
     edits.append(m_ui->lineEditPlayPause);
-    edits.append(m_ui->lineEditStop);
     edits.append(m_ui->lineEditNext);
     edits.append(m_ui->lineEditPrevious);
     edits.append(m_ui->lineEditFavorite);

@@ -196,9 +196,3 @@ void DeezerPlugin::addToFavorite(bool add)
     Q_UNUSED(add);
     runJavaScript("$('.icon-love-circle').get()[0].click()");
 }
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2( DeezerPlugin, DeezerPlugin )
-#endif
-

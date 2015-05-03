@@ -124,9 +124,7 @@ SongInfo SoundcloudPlugin::currentSongInfo()
     retVal.duration = stringToTime(duration);
     QString url = runJavaScript("$('.playbackSoundBadge').children(0).children(0).children(0).css('background-image')").toString();
     retVal.artUrl = url.left(url.length() - 1).replace("url(", "").replace("t50x50", "t120x120");
-#if QT_VERSION >= 0x050000
     retVal.songId = QString::number(qt_hash(retVal.songName));
-#endif
     return retVal;
 }
 
@@ -202,8 +200,3 @@ qlonglong SoundcloudPlugin::stringToTime(const QString &string)
     int seconds = QTime(0, 0, 0).secsTo(time);
     return seconds * 1000000;
 }
-
-//---------------------------------------------------------
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2( SoundcloudPlugin, SoundcloudPlugin )
-#endif
