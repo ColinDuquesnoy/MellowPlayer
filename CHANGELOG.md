@@ -1,6 +1,30 @@
 ## 1.3.0
 
 ### New features:
+- Remove grooveshark plugins since the service has shutdown
+- Add [Rdio](http://rdio.com) integration (HTML5 service, free with audio ads)
+- UI improvements: remove the confusing stop action from the menus (all the supported services
+  don't have a stop action, just pause).
+- OSX improvements:
+    - add a dock menu with play/pause, next, previous and add to favorites action
+    - use the same behaviour as on Ubuntu: no minimize to tray (tray is used just for messages), quit/close exits the
+      application
+- Make flash an optional runtime dependency: flash plugins won't get enabled (even if installed) except
+  for the service that require it (Deezer, Mixcloud and Soundcloud)
+- Get rid of Qt4 build support, now MellowPlayer is Qt5 only (even on Windows)
+
+### Fixed bugs:
+- Fix a corner case where the wrong image was used for the "song changed" notification (linux only,
+  all desktop environments affected)
+- Fix/workaround key repeat issue with KGlobalAccel (KDE Sc/Plasma 5 only)
+- Fix "Close" action on minimized windows (all platforms except OSX and Ubuntu/Unity)
+- Fix "Add to favorites" action on Windows
+- Fix frozen player issue introduced in v1.3
+
+
+## 1.3.0
+
+### New features:
 - Add support Ubuntu/Unity (available through ppa:colin-duquesnoy/stable)
     - disable tray icon
     - fix double global menu
