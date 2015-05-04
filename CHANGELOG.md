@@ -1,4 +1,4 @@
-## 1.3.0
+## 1.4.0
 
 ### New features:
 - Remove grooveshark plugins since the service has shutdown
