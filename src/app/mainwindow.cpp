@@ -118,7 +118,8 @@ void MainWindow::onSelectServiceTriggered()
     if(service != "")
     {
         IStreamingService* sv = Services::streamingServices()->plugin(service);
-        if(sv->metaData().name != Services::streamingServices()->currentService()->metaData().name)
+        IStreamingService* current = Services::streamingServices()->currentService();
+        if(sv == NULL || current == NULL || sv->metaData().name != current->metaData().name)
         {
             QSettings().setValue("service", service);
             if(Services::streamingServices()->startService(service))
