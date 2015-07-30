@@ -31,14 +31,26 @@ bool SongInfo::isValid() const
 QString SongInfo::toString() const
 {
     if(albumName != "" && artistName != "")
-        return QObject::tr("%1 by %2 on %3")
-                .arg(songName).arg(artistName).arg(albumName);
+        return QObject::tr(
+            "%1 by %2 on %3").arg(songName).arg(artistName).arg(albumName);
     else if(albumName == "" && artistName != "")
-        return QObject::tr("%1 by %2")
-                .arg(songName).arg(artistName);
+        return QObject::tr("%1 by %2").arg(songName).arg(artistName);
     else if(albumName != "" && artistName == "")
-        return QObject::tr("%1 on %2")
-                .arg(songName).arg(artistName);
+        return QObject::tr("%1 on %2").arg(songName).arg(artistName);
+    else
+        return songName;
+}
+
+//---------------------------------------------------------
+QString SongInfo::toPrettyString() const
+{
+    if(albumName != "" && artistName != "")
+        return QObject::tr(
+            "<b>%1</b> <i>by</i> %2 <i>on</i> %3").arg(songName).arg(artistName).arg(albumName);
+    else if(albumName == "" && artistName != "")
+        return QObject::tr("<b>%1</b> <i>by</i> %2").arg(songName).arg(artistName);
+    else if(albumName != "" && artistName == "")
+        return QObject::tr("<b>%1</b> <i>on</i> %2").arg(songName).arg(artistName);
     else
         return songName;
 }

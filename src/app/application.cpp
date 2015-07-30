@@ -76,9 +76,16 @@ void MellowPlayerApp::initialize()
     Services::_setPlayer(new PlayerInterface(this));
     loadPlugins();
     m_mainWindow->showWebPage();
-    Services::mainWindow()->show();
+    if(QSettings().value("showFullscreen", false).toBool())
+        Services::mainWindow()->showFullScreen();
+    else
+        Services::mainWindow()->show();
     if(Services::streamingServices()->startService(m_service))
+    {
         m_mainWindow->showWebPage();
+        m_mainWindow->setInfoLabelText(
+            "Loading " + Services::streamingServices()->currentService()->metaData().name + "...");
+    }
     else
         m_mainWindow->showHomePage();
 }

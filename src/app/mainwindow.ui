@@ -218,18 +218,18 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
     <property name="title">
-     <string>Application</string>
+     <string>Applicatio&amp;n</string>
     </property>
     <addaction name="actionSelect_service"/>
     <addaction name="actionPreferences"/>
@@ -238,7 +238,7 @@
    </widget>
    <widget class="QMenu" name="menuPlayback">
     <property name="title">
-     <string>&amp;Control</string>
+     <string>Playe&amp;r</string>
     </property>
     <addaction name="actionPlayPause"/>
     <addaction name="actionNext"/>
@@ -246,7 +246,7 @@
     <addaction name="separator"/>
     <addaction name="actionAdd_to_favorites"/>
    </widget>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>He&amp;lp</string>
     </property>
@@ -260,15 +260,28 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <addaction name="actionShow_menu"/>
+    <addaction name="actionShow_toolbar"/>
+    <addaction name="actionFullscreen"/>
+   </widget>
+   <widget class="QMenu" name="menuNavigation">
+    <property name="title">
+     <string>Navi&amp;gation</string>
+    </property>
+    <addaction name="actionHome"/>
    </widget>
    <addaction name="menuApplication"/>
+   <addaction name="menuNavigation"/>
    <addaction name="menuPlayback"/>
    <addaction name="menuView"/>
-   <addaction name="menu"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>Toolbar</string>
+    <string>Main toolbar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -276,6 +289,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionHome"/>
+   <addaction name="actionSelect_service"/>
+   <addaction name="separator"/>
+   <addaction name="actionAdd_to_favorites"/>
    <addaction name="actionPrevious"/>
    <addaction name="actionPlayPause"/>
    <addaction name="actionNext"/>
@@ -345,7 +362,7 @@
   </action>
   <action name="actionAbout_MellowPlayer">
    <property name="icon">
-    <iconset resource="mellowplayer.qrc">
+    <iconset theme="help-about" resource="mellowplayer.qrc">
      <normaloff>:/icons/help-about.png</normaloff>:/icons/help-about.png</iconset>
    </property>
    <property name="text">
@@ -411,8 +428,61 @@
    </property>
   </action>
   <action name="actionWiki">
+   <property name="icon">
+    <iconset theme="help-contents">
+     <normaloff/>
+    </iconset>
+   </property>
    <property name="text">
     <string>&amp;Wiki</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset theme="go-home">
+     <normaloff/>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionShow_menu">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show menu</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionShow_toolbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show toolbar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="view-fullscreen">
+     <normaloff/>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>

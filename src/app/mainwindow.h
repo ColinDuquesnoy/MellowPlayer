@@ -21,8 +21,7 @@
 #define MAINWINDOW_H
 
 #include <QtCore>
-#include <QWidget>
-#include <QMainWindow>
+#include <QtWidgets>
 #include <QCloseEvent>
 
 #ifdef __unity_support__
@@ -61,11 +60,22 @@ public:
      */
     void saveGeometryAndState();
 
+    /*!
+     * \brief setInfoLabelText sets the text shown in the central label of the toolbar.
+     *
+     * This label is used to display the song's pretty name or the state of the player in case
+     * no song are available.
+     *
+     * \param text
+     */
+    void setInfoLabelText(const QString& text);
+
 private slots:
     void onLinkClicked(QUrl url);
     void onPlayPauseTriggered();
     void onNextTriggered();
     void onPreviousTriggered();
+    void onHomeTriggered();
     void onTrayIconActivated(bool active);
     void onSelectServiceTriggered();
     void onPreferencesTriggered();
@@ -79,6 +89,9 @@ private slots:
     void onLoadFinished(bool ok);
     void onLoadStarted();
     void restoreWindow();
+    void onShowMenuToggled(bool showMenu);
+    void onShowToolbarToggled(bool showToolBar);
+    void onShowFullscreenToggled(bool showFullscreen);
 
 private:
     void closeEvent(QCloseEvent* event);
@@ -91,10 +104,13 @@ private:
     void restoreGeometryAndState();
     void setupQuikLists();
     void setupDockMenu();
+    void setupToolbar();
 
     Ui::MainWindow *m_ui;
     QTimer* m_updateTimer;
     TrayIcon* m_trayIcon;
+    QLabel* m_lblSongInfo;
+    QToolButton* m_BtMenu;
 
 #ifdef __unity_support__
     QMenu* m_quickList;

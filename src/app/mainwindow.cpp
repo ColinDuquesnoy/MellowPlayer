@@ -37,14 +37,14 @@ MainWindow::MainWindow(bool debug, QWidget *parent) :
     m_ui->setupUi(this);
     setupActions();
     setupIcons();
-    restoreGeometryAndState();
     setupWebView(debug);
     setupUpdateTimer();
     setupTrayIcon();
     setupDockMenu();
+    setupToolbar();
     connectSlots();
-    m_ui->menuView->addActions(createPopupMenu()->actions());
     setupQuikLists();
+    restoreGeometryAndState();
 }
 
 //---------------------------------------------------------
@@ -58,9 +58,17 @@ void MainWindow::showWebPage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_WEB);
 #ifndef __unity_support__
-    m_ui->menubar->show();
+    bool showMenu = QSettings().value("menuVisible", false).toBool();
+    m_ui->menuBar->setVisible(showMenu);
+    #ifndef Q_OS_MACX
+        bool showToolBar = QSettings().value("toolBarVisible", true).toBool();
+        m_ui->toolBar->setVisible(showToolBar);
+    #else
+        m_ui->toolBar->setVisible(false);
+    #endif
 #endif
     m_updateTimer->stop();
+    updatePlayer();
 }
 
 //---------------------------------------------------------
@@ -68,7 +76,8 @@ void MainWindow::showHomePage()
 {
     m_ui->stackedWidget->setCurrentIndex(PAGE_HOME);
 #ifndef __unity_support__
-    m_ui->menubar->hide();
+    m_ui->menuBar->setVisible(false);
+    m_ui->toolBar->setVisible(false);
 #endif
 }
 
@@ -101,6 +110,12 @@ void MainWindow::onPreviousTriggered()
 }
 
 //---------------------------------------------------------
+void MainWindow::onHomeTriggered()
+{
+    m_ui->webView->load(Services::streamingServices()->currentService()->url());
+}
+
+//---------------------------------------------------------
 void MainWindow::onTrayIconActivated(bool active)
 {
     if(active)
@@ -123,7 +138,11 @@ void MainWindow::onSelectServiceTriggered()
         {
             QSettings().setValue("service", service);
             if(Services::streamingServices()->startService(service))
+            {
                 showWebPage();
+                setInfoLabelText(
+                    "Loading " + Services::streamingServices()->currentService()->metaData().name + "...");
+            }
             else
                 showHomePage();
         }
@@ -194,6 +213,7 @@ void MainWindow::setupIcons()
 //---------------------------------------------------------
 void MainWindow::setupActions()
 {
+    // load custom user shortcuts for player actions
     QString defaults[] = {
         DEFAULT_SHORTCUT_PLAY,
         DEFAULT_SHORTCUT_NEXT,
@@ -212,6 +232,9 @@ void MainWindow::setupActions()
         a->setShortcut(QSettings().value(
             a->objectName(), defaults[i]).toString());
     }
+    // most services don't support that, hide to avoid seeing it during
+    // the loading of the service
+    m_ui->actionAdd_to_favorites->setVisible(false);
 
     // setup roles, this is only for OS X
     m_ui->actionPreferences->setMenuRole(QAction::PreferencesRole);
@@ -219,6 +242,28 @@ void MainWindow::setupActions()
     m_ui->actionQuit->setMenuRole(QAction::QuitRole);
     m_ui->actionAbout_MellowPlayer->setMenuRole(QAction::AboutRole);
     m_ui->actionAbout_Qt->setMenuRole(QAction::AboutQtRole);
+
+    // add web page navigation actions
+    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Back));
+    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Forward));
+    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Reload));
+
+    // set user defined view actions state
+    m_ui->actionShow_menu->setChecked(QSettings().value("menuVisible", false).toBool());
+    m_ui->actionShow_toolbar->setChecked(QSettings().value("toolBarVisible", true).toBool());
+    m_ui->actionFullscreen->setChecked(QSettings().value("showFullscreen", false).toBool());
+
+    // in case both menu and toolbar are hidden
+    addAction(m_ui->actionShow_menu);
+    addAction(m_ui->actionShow_toolbar);
+    addAction(m_ui->actionFullscreen);
+    addAction(m_ui->actionSelect_service);
+    addAction(m_ui->actionPreferences);
+    addAction(m_ui->actionPlayPause);
+    addAction(m_ui->actionPrevious);
+    addAction(m_ui->actionNext);
+    addAction(m_ui->actionAdd_to_favorites);
+    addAction(m_ui->actionQuit);
 }
 
 //---------------------------------------------------------
@@ -287,6 +332,9 @@ void MainWindow::connectSlots()
     connect(m_ui->actionPrevious, SIGNAL(triggered()),
                   this, SLOT(onPreviousTriggered()));
 
+    connect(m_ui->actionHome, SIGNAL(triggered()),
+            this, SLOT(onHomeTriggered()));
+
     connect(m_ui->actionRestoreWindow, SIGNAL(triggered()),
                   this, SLOT(restoreWindow()));
 
@@ -316,6 +364,13 @@ void MainWindow::connectSlots()
     connect(m_ui->actionAdd_to_favorites, SIGNAL(triggered()),
                   this, SLOT(onAddToFavorites()));
 
+    connect(m_ui->actionShow_menu, SIGNAL(toggled(bool)),
+            this, SLOT(onShowMenuToggled(bool)));
+    connect(m_ui->actionShow_toolbar, SIGNAL(toggled(bool)),
+            this, SLOT(onShowToolbarToggled(bool)));
+    connect(m_ui->actionFullscreen, SIGNAL(toggled(bool)),
+            this, SLOT(onShowFullscreenToggled(bool)));
+
     connect(m_ui->webView, SIGNAL(loadStarted()),
             this, SLOT(onLoadStarted()));
     connect(m_ui->webView, SIGNAL(loadFinished(bool)),
@@ -334,11 +389,9 @@ void MainWindow::updatePlayer()
                                tr("Add to favorites"));
     if(song.isValid())
     {
-        setWindowTitle(QString("%1 - %2 - MellowPlayer").arg(
-            song.toString(),
-            Services::streamingServices()->currentService()->metaData().name));
-        m_trayIcon->setToolTip(QString("%1 - MellowPlayer").arg(
-            song.toString()));
+        setWindowTitle(Services::streamingServices()->currentService()->metaData().name);
+        m_trayIcon->setToolTip(QString("%1 -- MellowPlayer").arg(song.toString()));
+        m_lblSongInfo->setText(song.toPrettyString());
         m_ui->actionNext->setEnabled(player->canGoNext());
         m_ui->actionPrevious->setEnabled(player->canGoPrevious());
         m_ui->actionPlayPause->setEnabled(true);
@@ -362,6 +415,7 @@ void MainWindow::updatePlayer()
         IStreamingService* sv = Services::streamingServices()->currentService();
         if(sv)
             setWindowTitle(QString("%1 - MellowPlayer").arg(sv->metaData().name));
+        m_lblSongInfo->clear();
         m_ui->actionNext->setEnabled(false);
         m_ui->actionPrevious->setEnabled(false);
         m_ui->actionPlayPause->setEnabled(false);
@@ -372,8 +426,11 @@ void MainWindow::updatePlayer()
         }
         m_trayIcon->setToolTip("MellowPlayer");
 
-        m_ui->actionRestoreWindow->setText(
-            Services::streamingServices()->currentService()->metaData().name + " - " + tr("Stopped"));
+        if(Services::streamingServices()->currentService())
+            m_ui->actionRestoreWindow->setText(
+                Services::streamingServices()->currentService()->metaData().name + " - " + tr("Stopped"));
+        else
+            m_ui->actionRestoreWindow->setText("Restore window");
     }
 }
 
@@ -506,12 +563,45 @@ void MainWindow::restoreWindow()
 }
 
 //---------------------------------------------------------
+void MainWindow::onShowMenuToggled(bool showMenu)
+{
+    QSettings().setValue("menuVisible", showMenu);
+    m_ui->menuBar->setVisible(showMenu);
+}
+
+//---------------------------------------------------------
+void MainWindow::onShowToolbarToggled(bool showToolBar)
+{
+    QSettings().setValue("toolBarVisible", showToolBar);
+
+#ifndef Q_OS_MACX
+    m_ui->toolBar->setVisible(showToolBar);
+#else
+    m_ui->toolBar->setVisible(false);
+#endif
+}
+
+//---------------------------------------------------------
+void MainWindow::onShowFullscreenToggled(bool showFullscreen)
+{
+    QSettings().setValue("showFullscreen", showFullscreen);
+    if(showFullscreen)
+        this->showFullScreen();
+    else
+        this->showNormal();
+}
+
+//---------------------------------------------------------
 void MainWindow::restoreGeometryAndState()
 {
     restoreGeometry(QSettings().value("windowGeometry").toByteArray());
     restoreState(QSettings().value("windowState").toByteArray());
-    m_ui->toolBar->setVisible(
-        QSettings().value("toolbarVisible", false).toBool());
+#ifndef Q_OS_MACX
+    m_ui->toolBar->setVisible(QSettings().value("toolBarVisible", true).toBool());
+#else
+    m_ui->toolBar->setVisible(false);
+#endif
+    m_ui->menuBar->setVisible(QSettings().value("menuVisible", false).toBool());
 }
 
 //---------------------------------------------------------
@@ -519,18 +609,12 @@ void MainWindow::saveGeometryAndState()
 {
     QSettings().setValue("windowGeometry", saveGeometry());
     QSettings().setValue("windowState", saveState(VERSION_MAJOR));
+}
 
-
-    // store toolbar state
-    foreach(QAction* action, m_ui->menuView->actions())
-    {
-        QString text = action->text();
-        QString oName = m_ui->toolBar->objectName();
-        if(text.remove("&").toLower() == oName.toLower())
-        {
-            QSettings().setValue("toolbarVisible", action->isChecked());
-        }
-    }
+//---------------------------------------------------------
+void MainWindow::setInfoLabelText(const QString &text)
+{
+    m_lblSongInfo->setText(text);
 }
 
 //---------------------------------------------------------
@@ -579,4 +663,40 @@ void MainWindow::setupDockMenu()
     mnu->addAction(m_ui->actionAdd_to_favorites);
     qt_mac_set_dock_menu(mnu);
 #endif
+}
+
+void MainWindow::setupToolbar()
+{
+    // web page actions
+    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Back));
+    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Forward));
+    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Reload));
+
+    // label for song infos
+    m_lblSongInfo = new QLabel(this);
+    m_lblSongInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    m_lblSongInfo->setAlignment(Qt::AlignCenter);
+    m_ui->toolBar->insertWidget(m_ui->actionPrevious, m_lblSongInfo);
+
+    m_ui->toolBar->addSeparator();
+
+    m_BtMenu = new QToolButton(this);
+    m_BtMenu->setText("Configure");
+    m_BtMenu->setIcon(QIcon::fromTheme("applications-system"));
+    m_BtMenu->setPopupMode(QToolButton::InstantPopup);
+    m_BtMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    m_ui->toolBar->addWidget(m_BtMenu);
+
+    QMenu* mnu = new QMenu("Configure", m_BtMenu);
+    mnu->addAction(m_ui->actionShow_menu);
+    mnu->addAction(m_ui->actionShow_toolbar);
+    mnu->addAction(m_ui->actionFullscreen);
+    // todo: add a menu to show tool windows (atm there are no tool window but plugins
+    // might want to add some, e.g. to display lyrics).
+    mnu->addSeparator();
+    mnu->addAction(m_ui->actionPreferences);
+    m_ui->menuHelp->setIcon(QIcon::fromTheme("help-contents"));
+    mnu->addMenu(m_ui->menuHelp);
+    mnu->addAction(m_ui->actionQuit);
+    m_BtMenu->setMenu(mnu);
 }
