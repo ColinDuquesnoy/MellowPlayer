@@ -121,7 +121,7 @@ void MainWindow::onTrayIconActivated(bool active)
     if(active)
         show();
 #ifdef __unity_support__
-    m_ui->menubar->show();
+    m_ui->menuBar->show();
 #endif
 }
 
