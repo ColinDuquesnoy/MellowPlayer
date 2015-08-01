@@ -84,6 +84,13 @@ QIcon Icons::about()
 }
 
 //---------------------------------------------------------
+QIcon Icons::help()
+{
+    return QIcon::fromTheme("help-contents",
+                            QIcon(":/icons/help-contents.png"));
+}
+
+//---------------------------------------------------------
 QIcon Icons::reportBug()
 {
     return QIcon::fromTheme("tools-report-bug",
@@ -128,4 +135,39 @@ QIcon Icons::favorite()
 {
     return QIcon::fromTheme("emblem-favorite",
                             QIcon(":/icons/emblem-favorite.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::configure()
+{
+    return QIcon::fromTheme("applications-system",
+                            QIcon(":/icons/applications-system.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::back()
+{
+    return QIcon::fromTheme("go-previous",
+                            QIcon(":/icons/go-previous.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::forward()
+{
+    return QIcon::fromTheme("go-next",
+                            QIcon(":/icons/go-next.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::home()
+{
+    return QIcon::fromTheme("go-home",
+                            QIcon(":/icons/go-home.png"));
+}
+
+//---------------------------------------------------------
+QIcon Icons::reload()
+{
+    return QIcon::fromTheme("view-refresh",
+                            QIcon(":/icons/view-refresh.png"));
 }
