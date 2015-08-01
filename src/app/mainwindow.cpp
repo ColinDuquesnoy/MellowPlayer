@@ -32,7 +32,8 @@
 //---------------------------------------------------------
 MainWindow::MainWindow(bool debug, QWidget *parent) :
     QMainWindow(parent),
-    m_ui(new Ui::MainWindow)
+    m_ui(new Ui::MainWindow),
+    m_lblSongInfo(NULL)
 {
     m_ui->setupUi(this);
     setupActions();
@@ -391,7 +392,7 @@ void MainWindow::updatePlayer()
     {
         setWindowTitle(Services::streamingServices()->currentService()->metaData().name);
         m_trayIcon->setToolTip(QString("%1 -- MellowPlayer").arg(song.toString()));
-        m_lblSongInfo->setText(song.toPrettyString());
+        this->setInfoLabelText(song.toPrettyString());
         m_ui->actionNext->setEnabled(player->canGoNext());
         m_ui->actionPrevious->setEnabled(player->canGoPrevious());
         m_ui->actionPlayPause->setEnabled(true);
@@ -415,7 +416,8 @@ void MainWindow::updatePlayer()
         IStreamingService* sv = Services::streamingServices()->currentService();
         if(sv)
             setWindowTitle(QString("%1 - MellowPlayer").arg(sv->metaData().name));
-        m_lblSongInfo->clear();
+        if(m_lblSongInfo)
+            m_lblSongInfo->clear();
         m_ui->actionNext->setEnabled(false);
         m_ui->actionPrevious->setEnabled(false);
         m_ui->actionPlayPause->setEnabled(false);
@@ -614,7 +616,8 @@ void MainWindow::saveGeometryAndState()
 //---------------------------------------------------------
 void MainWindow::setInfoLabelText(const QString &text)
 {
-    m_lblSongInfo->setText(text);
+    if(m_lblSongInfo)
+        m_lblSongInfo->setText(text);
 }
 
 //---------------------------------------------------------
@@ -667,6 +670,8 @@ void MainWindow::setupDockMenu()
 
 void MainWindow::setupToolbar()
 {
+
+#ifndef Q_OS_MACX
     // web page actions
     QAction* a = m_ui->webView->pageAction(QWebPage::Back);
     a->setIcon(Icons::back());
@@ -701,11 +706,13 @@ void MainWindow::setupToolbar()
     mnu->addSeparator();
     mnu->addAction(m_ui->actionSelect_service);
     mnu->addAction(m_ui->actionPreferences);
-#ifndef Q_OS_MACX
+
     QAction* mnuHelpAction = mnu->addMenu(m_ui->menuHelp);
     mnuHelpAction->setIcon(Icons::help());
-#endif
+
     mnu->addAction(m_ui->actionQuit);
     m_BtMenu->setMenu(mnu);
     m_ui->toolBar->addWidget(m_BtMenu);
+#endif
 }
+
