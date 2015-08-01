@@ -193,18 +193,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 //---------------------------------------------------------
 void MainWindow::setupIcons()
 {
-    m_ui->actionSelect_service->setIcon(Icons::selectStreamingService());
-    m_ui->actionPreferences->setIcon(Icons::preferences());
-    m_ui->actionQuit->setIcon(Icons::quit());
-
-    m_ui->actionPlayPause->setIcon(Icons::play());
-    m_ui->actionNext->setIcon(Icons::next());
-    m_ui->actionPrevious->setIcon(Icons::previous());
-    m_ui->actionAdd_to_favorites->setIcon(Icons::favorite());
-
-    m_ui->actionAbout_MellowPlayer->setIcon(Icons::about());
-    m_ui->actionReport_a_bug->setIcon(Icons::reportBug());
-
     m_ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
     m_ui->pushButtonPreferences->setIcon(Icons::preferences());
     m_ui->pushButtonQuit->setIcon(Icons::quit());
@@ -244,9 +232,15 @@ void MainWindow::setupActions()
     m_ui->actionAbout_Qt->setMenuRole(QAction::AboutQtRole);
 
     // add web page navigation actions
-    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Back));
-    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Forward));
-    m_ui->menuNavigation->addAction(m_ui->webView->pageAction(QWebPage::Reload));
+    QAction* a = m_ui->webView->pageAction(QWebPage::Back);
+    a->setIcon(Icons::back());
+    m_ui->menuNavigation->addAction(a);
+    a = m_ui->webView->pageAction(QWebPage::Forward);
+    a->setIcon(Icons::forward());
+    m_ui->menuNavigation->addAction(a);
+    a = m_ui->webView->pageAction(QWebPage::Reload);
+    a->setIcon(Icons::reload());
+    m_ui->menuNavigation->addAction(a);
 
     // set user defined view actions state
     m_ui->actionShow_menu->setChecked(QSettings().value("menuVisible", false).toBool());
@@ -668,25 +662,30 @@ void MainWindow::setupDockMenu()
 void MainWindow::setupToolbar()
 {
     // web page actions
-    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Back));
-    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Forward));
-    m_ui->toolBar->insertAction(m_ui->actionHome, m_ui->webView->pageAction(QWebPage::Reload));
+    QAction* a = m_ui->webView->pageAction(QWebPage::Back);
+    a->setIcon(Icons::back());
+    m_ui->toolBar->insertAction(m_ui->actionHome, a);
+    a = m_ui->webView->pageAction(QWebPage::Forward);
+    a->setIcon(Icons::forward());
+    m_ui->toolBar->insertAction(m_ui->actionHome, a);
+    a = m_ui->webView->pageAction(QWebPage::Reload);
+    a->setIcon(Icons::reload());
+    m_ui->toolBar->insertAction(m_ui->actionHome, a);
 
     // label for song infos
     m_lblSongInfo = new QLabel(this);
-    m_lblSongInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    m_lblSongInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     m_lblSongInfo->setAlignment(Qt::AlignCenter);
     m_ui->toolBar->insertWidget(m_ui->actionPrevious, m_lblSongInfo);
 
     m_ui->toolBar->addSeparator();
 
+    // Configure drop down menu
     m_BtMenu = new QToolButton(this);
     m_BtMenu->setText("Configure");
-    m_BtMenu->setIcon(QIcon::fromTheme("applications-system"));
+    m_BtMenu->setIcon(Icons::configure());
     m_BtMenu->setPopupMode(QToolButton::InstantPopup);
     m_BtMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    m_ui->toolBar->addWidget(m_BtMenu);
-
     QMenu* mnu = new QMenu("Configure", m_BtMenu);
     mnu->addAction(m_ui->actionShow_menu);
     mnu->addAction(m_ui->actionShow_toolbar);
@@ -695,8 +694,9 @@ void MainWindow::setupToolbar()
     // might want to add some, e.g. to display lyrics).
     mnu->addSeparator();
     mnu->addAction(m_ui->actionPreferences);
-    m_ui->menuHelp->setIcon(QIcon::fromTheme("help-contents"));
+    m_ui->menuHelp->setIcon(Icons::help());
     mnu->addMenu(m_ui->menuHelp);
     mnu->addAction(m_ui->actionQuit);
     m_BtMenu->setMenu(mnu);
+    m_ui->toolBar->addWidget(m_BtMenu);
 }

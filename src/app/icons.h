@@ -87,6 +87,12 @@ public:
     static QIcon about();
 
     /*!
+     * \brief Gets the "help" icon
+     * \return QIcon
+     */
+    static QIcon help();
+
+    /*!
      * \brief Gets the "report bug" icon
      * \return QIcon
      */
@@ -122,7 +128,23 @@ public:
      */
     static QIcon userTrash();
 
+    /*!
+     * \brief Gets the favorite icon
+     * \return
+     */
     static QIcon favorite();
+
+    /*!
+     * \brief Gets the configure icon
+     * \return
+     */
+    static QIcon configure();
+
+    static QIcon back();
+    static QIcon forward();
+    static QIcon home();
+    static QIcon reload();
+
 };
 
 #endif // ICONS_H
