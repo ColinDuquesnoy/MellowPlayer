@@ -29,6 +29,7 @@ SetupIconFile=src\app\icons\mellowplayer.ico
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
+SignTool=digicert
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

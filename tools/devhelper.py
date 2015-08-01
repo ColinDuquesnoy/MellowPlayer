@@ -147,9 +147,9 @@ def make_win32_release():
 
     files = [
         exe,
-        os.path.join(qt_bin_dir, 'icudt53.dll'),
-        os.path.join(qt_bin_dir, 'icuin53.dll'),
-        os.path.join(qt_bin_dir, 'icuuc53.dll'),
+        os.path.join(qt_bin_dir, 'icudt54.dll'),
+        os.path.join(qt_bin_dir, 'icuin54.dll'),
+        os.path.join(qt_bin_dir, 'icuuc54.dll'),
         os.path.join(qt_bin_dir, 'Qt5Core.dll'),
         os.path.join(qt_bin_dir, 'Qt5Gui.dll'),
         os.path.join(qt_bin_dir, 'Qt5Multimedia.dll'),
@@ -204,6 +204,9 @@ def make_win32_release():
             l = l.replace('@VERSION@', version)
             data.append(l)
         dst.writelines(data)
+
+    print('signing mellowplayer executable')
+    os.system('c:\DigiCertUtil.exe sign /noInput %s' % os.path.join(dist, 'MellowPlayer.exe'))
 
     os.environ['PATH'] += ';C:\Program Files (x86)\Inno Setup 5'
     os.system('iscc %s' % os.path.join(os.getcwd(), 'setup.iss'))
