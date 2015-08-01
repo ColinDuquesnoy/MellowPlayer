@@ -227,7 +227,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -422,9 +422,8 @@
   </action>
   <action name="actionAdd_to_favorites">
    <property name="icon">
-    <iconset theme="emblem-favorite">
-     <normaloff/>
-    </iconset>
+    <iconset theme="emblem-favorite" resource="mellowplayer.qrc">
+     <normaloff>:/icons/emblem-favorite.png</normaloff>:/icons/emblem-favorite.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Add to favorites</string>
@@ -475,9 +474,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view-fullscreen">
-     <normaloff/>
-    </iconset>
+    <iconset theme="view-fullscreen" resource="mellowplayer.qrc">
+     <normaloff>:/icons/view-fullscreen.png</normaloff>:/icons/view-fullscreen.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Fullscreen</string>

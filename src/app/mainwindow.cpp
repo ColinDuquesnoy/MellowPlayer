@@ -248,9 +248,15 @@ void MainWindow::setupActions()
     m_ui->actionFullscreen->setChecked(QSettings().value("showFullscreen", false).toBool());
 
     // in case both menu and toolbar are hidden
+#ifndef Q_OS_MACX
     addAction(m_ui->actionShow_menu);
     addAction(m_ui->actionShow_toolbar);
     addAction(m_ui->actionFullscreen);
+#else
+    m_ui->actionShow_menu->setVisible(false);
+    m_ui->actionShow_toolbar->setVisible(false);
+    m_ui->actionFullscreen->setVisible(false);
+#endif
     addAction(m_ui->actionSelect_service);
     addAction(m_ui->actionPreferences);
     addAction(m_ui->actionPlayPause);
@@ -694,8 +700,10 @@ void MainWindow::setupToolbar()
     // might want to add some, e.g. to display lyrics).
     mnu->addSeparator();
     mnu->addAction(m_ui->actionPreferences);
-    m_ui->menuHelp->setIcon(Icons::help());
-    mnu->addMenu(m_ui->menuHelp);
+#ifndef Q_OS_MACX
+    QAction* mnuHelpAction = mnu->addMenu(m_ui->menuHelp);
+    mnuHelpAction->setIcon(Icons::help());
+#endif
     mnu->addAction(m_ui->actionQuit);
     m_BtMenu->setMenu(mnu);
     m_ui->toolBar->addWidget(m_BtMenu);
