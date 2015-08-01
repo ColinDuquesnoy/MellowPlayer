@@ -108,7 +108,7 @@ public:
      * \brief Gets the interface settings icon
      * \return QIcon
      */
-    static QIcon interface();
+    static QIcon interfacePreferences();
 
     /*!
      * \brief Gets the shortcuts icon

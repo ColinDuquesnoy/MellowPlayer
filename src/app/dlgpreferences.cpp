@@ -46,7 +46,7 @@ DlgPreferences::DlgPreferences(MainWindow* parent):
     m_ui->checkBoxMinimizeToTray->hide();
 #endif
 
-    m_ui->listWidget->item(0)->setIcon(Icons::interface());
+    m_ui->listWidget->item(0)->setIcon(Icons::interfacePreferences());
     m_ui->listWidget->item(1)->setIcon(Icons::shortcuts());
     m_ui->listWidget->item(2)->setIcon(Icons::plugins());
     m_ui->listWidget->item(3)->setIcon(Icons::userTrash());

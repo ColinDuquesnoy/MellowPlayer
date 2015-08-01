@@ -104,7 +104,7 @@ QIcon Icons::mellowPlayer()
 }
 
 //---------------------------------------------------------
-QIcon Icons::interface()
+QIcon Icons::interfacePreferences()
 {
     return QIcon::fromTheme("preferences-desktop-theme",
                             QIcon(":/icons/preferences-desktop-theme.png"));
