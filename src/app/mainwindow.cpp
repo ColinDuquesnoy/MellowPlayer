@@ -699,6 +699,7 @@ void MainWindow::setupToolbar()
     // todo: add a menu to show tool windows (atm there are no tool window but plugins
     // might want to add some, e.g. to display lyrics).
     mnu->addSeparator();
+    mnu->addAction(m_ui->actionSelect_service);
     mnu->addAction(m_ui->actionPreferences);
 #ifndef Q_OS_MACX
     QAction* mnuHelpAction = mnu->addMenu(m_ui->menuHelp);
