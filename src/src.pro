@@ -29,12 +29,12 @@ unix{
     isEmpty(PREFIX) {
         PREFIX = /usr
     }
-    desktopfile.path = $$PREFIX/share/applications
+    desktopfile.path = /usr/share/applications
     desktopfile.files = ../share/mellowplayer.desktop
     INSTALLS += desktopfile
 
-    iconfile.path = $$PREFIX/share/pixmaps
-    iconfile.files = app/icons/mellowplayer.png
+    iconfile.path = /usr/share/icons/hicolor/scalable/apps
+    iconfile.files = ../share/mellowplayer.svg
     INSTALLS += iconfile
 }
 kde_support {
