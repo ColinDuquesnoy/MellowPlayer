@@ -1,3 +1,12 @@
+## 1.5.0
+
+### UI Improvements:
+
+- improvements to the toolbar on linux and windows
+- add web page navigation actions (back, forward, reload, home)
+- add ability to hide both the menu and the toolbar
+- add ability to run the application in fullscreen
+
 ## 1.4.0
 
 ### New features:
