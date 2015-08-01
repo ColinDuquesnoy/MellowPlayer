@@ -6,6 +6,8 @@
 - add web page navigation actions (back, forward, reload, home)
 - add ability to hide both the menu and the toolbar
 - add ability to run the application in fullscreen
+- use a svg icon for the desktop entry on GNU/Linux. Icon will be installed into
+  ``/usr/share/icons/hicolor/scalable/apps`` instead of ``/usr/share/pixmaps``
 
 ## 1.4.0
 
