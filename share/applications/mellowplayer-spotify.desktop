@@ -1,0 +1,40 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=Spotify
+Exec=mellowplayer --service=spotify --standalone
+TryExec=mellowplayer
+Icon=mellowplayer-spotify
+Terminal=false
+Categories=AudioVideo;Network;
+StartupNotify=false
+StartupWMClass=Spotify
+GenericName=Spotify web app
+GenericName[fr]=Application web Spotify
+Comment=Spotify web app
+Comment[fr]=Application web Spotify
+Actions=PlayPause;Next;Previous;Restore
+
+[Desktop Action PlayPause]
+Exec=mellowplayer --service=spotify --standalone --playpause
+Name=Play/Pause
+Icon=media-playback-start
+
+[Desktop Action Next]
+Exec=mellowplayer --service=spotify --standalone --next
+Name=Next song
+Icon=media-seek-forward
+Name[fr]=Piste suivante
+
+[Desktop Action Previous]
+Exec=mellowplayer --service=spotify --standalone --previous
+Name=Previous song
+Icon=media-seek-backward
+Name[fr]=Piste précédente
+
+[Desktop Action Restore]
+Exec=mellowplayer --service=spotify --standalone
+Name=Restore window
+Name[fr]=Restaurer la fenêtre
+Icon=view-restore

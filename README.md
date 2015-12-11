@@ -1,4 +1,4 @@
-![MellowPlayer banner](/banner.png)
+![MellowPlayer banner](docs/_static/banner.png)
 
 [![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
 [![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
@@ -13,12 +13,21 @@ notifications and more).
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
 
+## Supported services:
+
+- **Deezer**
+- **Mixcloud**
+- **Soundcloud**
+- **Spotify**
+
 
 ## Resources
 
 - [Official website](http://colinduquesnoy.github.io/MellowPlayer/)
-- [Wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
-- [API Reference](http://colinduquesnoy.github.io/MellowPlayer/doc/index.html)
+
+.. todo: fix doc link
+
+- [Documentation](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
 
 ## License
 
@@ -26,20 +35,10 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-All platforms:
-- **Qt5** (>= 5.4.1)
-- **flashplugin** (optional runtime dependency)
+- **Qt5** (>= 5.6.0)
+- **SnoreNotify** (>= 0.6.0)
+- **PepperFlash** (runtime dependency)
 
-KDE Sc/Plasma 5:
-- **KGlobalAccell**
-- **KNotifications**
-
-Ubuntu/Unity:
-- **libnotify** (runtime dependency)
-- **libdbusmenu-qt5**
-
-Other GNU/Linux distributions/desktops:
-- **libnotify** (runtime dependency)
 
 ## Compilation
 
@@ -48,12 +47,6 @@ qmake
 make
 sudo make install
 ```
-
-Build options:
-
-- **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
-- **CONFIG+=unity_support**: to build the application with Unity desktop support (disable tray icon, fix global menu, unity quicklists).
-- **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
 
 ## Contributing
 

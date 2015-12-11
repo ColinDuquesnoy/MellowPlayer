@@ -1,49 +1,67 @@
-# C++ objects and libs
-*.slo
-*.lo
-*.o
-*.a
-*.la
-*.lai
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
 *.so
-*.dll
-*.dylib
-# Qt-es
-/.qmake.cache
-/.qmake.stash
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# HackEdit
+.hackedit
+history
+objectdb
 *.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-qrc_*.cpp
-ui_*.h
-Makefile*
-*-build-*
-# QtCreator
 *.autosave
-# doxygen
-doxyxml
-# sphinx
-_build
-bin
-dist
 
-# Pycharm project files
-.idea
-*.iss
-*.usr
-
-# Dolpin
-.directory
-
-changelog
-gpg_key
-*.build
-*.dsc
-*.tar.gz
-*.changes
-*.upload
-
-*~
+#  Plasma
+*.directory

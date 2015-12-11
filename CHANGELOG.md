@@ -1,3 +1,18 @@
+## 2.0 beta
+
+- General:
+    - web streaming services are now written in pure javascript
+    - QtWebEngine port
+    - add Spotify service
+- GNU/Linux:
+    - build is now cross desktop (no more desktop specific specialised builds)
+    - add ability to turn a streaming service into a standalone app
+- Rdio: remove service
+- Mixcloud: improve integration (add abitliy to seek into the cloudcast)
+- Deezer:
+    - fix art url missing
+    - disable addToFavorites action
+
 ## 1.5.0
 
 ### UI Improvements:
@@ -44,13 +59,13 @@
 - Project stucture cleanup (all code has been moved into the src folder)
 - Use Restore Window actiont to show the current service name and the song info
   (or the service status, e.g. Loading or Stopped)
-  
+
 ### Fixed bugs:
 
 - Select service dialog: don't reload page if service has not changed but user
   choose OK.
 - Prevent the "Stopped" notification from being shown when switching service
-- Use restoreWindow instead of show to make sure the main window is active 
+- Use restoreWindow instead of show to make sure the main window is active
   before showing any preference dialog.
 
 
@@ -74,7 +89,7 @@
 
 ## 1.1.1
 
-Use grooveshark retro instead of the new grooveshark website. 
+Use grooveshark retro instead of the new grooveshark website.
 The new website does not work well with QtWebkit (freeze on large collection, completely unusable).
 We will reintroduce the official grooveshark as soon as QtWebEngine starts supporting flash.
 
@@ -95,7 +110,7 @@ We will reintroduce the official grooveshark as soon as QtWebEngine starts suppo
 ### Fixed bugs
 
 - fix a bug which prevented the os from shutting down (logout/shutdown/restart) if the window was visible
-- fix a couple of bugs related to buffering state in various streaming service. Those bugs were not 
+- fix a couple of bugs related to buffering state in various streaming service. Those bugs were not
   visible with the old notification system
 - improve mpris interface on other desktops (mainly gnome shell)
 - improve french translation
