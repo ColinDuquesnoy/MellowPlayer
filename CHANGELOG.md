@@ -1,3 +1,13 @@
+## 1.5.1
+
+- [Deezer] Fix missing album art in notifications and MPRIS2 interface
+- [Mixcloud] Improve integration:
+
+    - Add ability to skip to previous/next song
+    - Add ability to retrieve song duration and song position
+    - Add ability to seek into the current mixcloud (this is a bit slow in webkit, works much better in qtwebengine).
+
+
 ## 1.5.0
 
 ### UI Improvements:
