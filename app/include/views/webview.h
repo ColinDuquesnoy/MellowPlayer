@@ -49,7 +49,7 @@ class WebPage : public QWebEnginePage {
 public:
   explicit WebPage(QObject *parent);
   bool
-  certificateError(const QWebEngineCertificateError &certificateError) override;
+  certificateError(const QWebEngineCertificateError& certificateError) override;
 };
 
 #endif // WEBVIEW_H

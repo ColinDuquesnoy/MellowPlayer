@@ -15,7 +15,7 @@ install:
     # install qt5.6 beta from a tar.gz archive hosted on my dropbox
     # this build already contains snorenotify
     - wget https://www.dropbox.com/s/q02ekria8pj72hs/Qt5.6.0.tar.gz
-    - tar -zxvf Qt5.6.0.tar.gz
+    - tar -zxf Qt5.6.0.tar.gz
 
 script:
     # make sure the app can be build and installed without errors
