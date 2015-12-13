@@ -24,10 +24,7 @@ notifications and more).
 ## Resources
 
 - [Official website](http://colinduquesnoy.github.io/MellowPlayer/)
-
-.. todo: fix doc link
-
-- [Documentation](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
+- [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
 
 ## License
 
