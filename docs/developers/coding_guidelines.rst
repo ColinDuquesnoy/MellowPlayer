@@ -7,10 +7,10 @@ We made a small script that will format any C++/javascript source file in the pr
 
     sh utils/beautify.sh
 
-To run this tool, you need to install (and you need to run GNU/Linux or OSX):
+To run this tool, you need to install the following packages:
 
-- clang-format: ``sudo pacman -S clang``
-- jsbeautifier: ``sudo pip3 install jsbeautifier``
+- **clang-format**: ``sudo pacman -S clang``
+- **jsbeautifier**: ``sudo pip3 install jsbeautifier``
 
 
 **Please, run this script before submitting a pull request!**
