@@ -124,23 +124,10 @@ PlaybackStatus MixcloudPlugin::playbackStatus()
 SongInfo MixcloudPlugin::currentSongInfo()
 {
     SongInfo retVal;
-    // prefer current track over the playlist title if available, not
-    // all playlist have track bindings.
-    retVal.songName = runJavaScript("$('.current-track').text()").toString();
-    if(retVal.isValid())
-    {
-        retVal.artistName = runJavaScript(
-            "$('.current-artist').children(0).html()").toString();
-        retVal.albumName = runJavaScript(
-            "$('.player-cloudcast-title').get()[0].text").toString();
-    }
-    else
-    {
-        retVal.songName = runJavaScript(
-            "$('.player-cloudcast-title').get()[0].text").toString();
-        retVal.artistName = runJavaScript(
-            "$('.player-cloudcast-author-link').get()[0].text").toString();
-    }
+    retVal.songName = runJavaScript(
+        "$('.player-cloudcast-title').get()[0].text").toString();
+    retVal.artistName = runJavaScript(
+        "$('.player-cloudcast-author-link').get()[0].text").toString();
     if(retVal.isValid())
     {
         retVal.artUrl = runJavaScript(
