@@ -108,7 +108,7 @@ FORMS           += mainwindow.ui \
 VERSION          = 1.5.0
 DEFINES         += VERSION_MAJOR=1
 DEFINES         += VERSION_MINOR=5
-DEFINES         += VERSION_MICRO=0
+DEFINES         += VERSION_MICRO=1
 DEFINES         += VERSION_STATUS=\\\"\\\"
 
 
