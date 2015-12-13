@@ -19,6 +19,7 @@
 
 #include <QWebView>
 #include "mixcloud.h"
+#include <iostream>
 
 //---------------------------------------------------------
 MixcloudPlugin::MixcloudPlugin()
@@ -71,19 +72,36 @@ void MixcloudPlugin::pause()
 //---------------------------------------------------------
 void MixcloudPlugin::next()
 {
-    // not supported
+    runJavaScript("var M = $(document.querySelector(\n"
+                  "    '.ng-scope[ng-controller=\"PlayerQueueCtrl\"]')).scope();\n"
+                  "var currentIndex = M.playerQueue.queue.getNowPlayingIndex();\n"
+                  "var next = M.playerQueue.queue.cloudcastList.get(currentIndex + 1);\n"
+                  "if (typeof next != 'undefined') {\n"
+                  "    M.playerQueue.playFromQueue(next);\n"
+                  "} else {\n"
+                  "    M.playerQueue.playUpNext();\n"
+                  "}\n");
 }
 
 //---------------------------------------------------------
 void MixcloudPlugin::previous()
 {
-    // not supported
+    runJavaScript("var M = $(document.querySelector(\n"
+                  "   '.ng-scope[ng-controller=\"PlayerQueueCtrl\"]')).scope();\n"
+                  "var currentIndex = M.playerQueue.queue.getNowPlayingIndex();\n"
+                  "var previous = M.playerQueue.queue.cloudcastList.get(currentIndex + -1);\n"
+                  "if (typeof previous != 'undefined') {\n"
+                  "    M.playerQueue.playFromQueue(previous);\n"
+                  "}\n");
 }
 
 //---------------------------------------------------------
 void MixcloudPlugin::seekToPosition(int position)
 {
-    Q_UNUSED(position);
+    runJavaScript(QString(
+        "var M = $(document.querySelector("
+        "        '.ng-scope[ng-controller=\"PlayerQueueCtrl\"]')).scope();"
+        "M.$emit('slider:stop', %1);").arg(position / 1000000.0f));
 }
 
 //---------------------------------------------------------
@@ -131,8 +149,10 @@ SongInfo MixcloudPlugin::currentSongInfo()
         retVal.songId = QFileInfo(retVal.artUrl).baseName().replace("-", "");
 
         // cannot seek
-        retVal.position = 0;
-        retVal.duration = 0;
+        retVal.duration = runJavaScript("var M = $(document.querySelector('.ng-scope[ng-controller=\"PlayerQueueCtrl\"]')).scope();\n"
+                                        "M.player.audioLength").toFloat() * qlonglong(1000000);
+        retVal.position = runJavaScript("var M = $(document.querySelector('.ng-scope[ng-controller=\"PlayerQueueCtrl\"]')).scope();\n"
+                                        "M.player.audioPosition").toFloat() * qlonglong(1000000);
     }
     return retVal;
 }
@@ -173,17 +193,17 @@ void MixcloudPlugin::addToFavorite(bool add)
 //---------------------------------------------------------
 bool MixcloudPlugin::canSeek()
 {
-    return false;
+    return true;
 }
 
 //---------------------------------------------------------
 bool MixcloudPlugin::canGoNext()
 {
-    return false;
+    return true;
 }
 
 //---------------------------------------------------------
 bool MixcloudPlugin::canGoPrevious()
 {
-    return false;
+    return true;
 }
