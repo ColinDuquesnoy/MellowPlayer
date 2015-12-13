@@ -46,15 +46,18 @@ Web streaming service integration plugins are now written in pure javascript.
 7. Once your plugin works, submit a pull request!
 
 
-Adding a new translation
-------------------------
+Adding/Updating a new translation
+---------------------------------
 
-To add a new translation, follow the below steps:
+**To add a new translation**, follow the below steps:
 
-1. run the devhelper script: ``python3 utils/devhelper.py``
-2. Select the first entry in the menu (Add a new translation)
+1. Run the *devhelper script*: ``python3 utils/devhelper.py``
+2. Select the **first entry** in the menu (*Add a new translation*)
 3. Indicate the code for the language you want to add (e.g. fr, en, es,...)
 4. Open app/translations/mellowplayer_lang.ts (where lang is the code you specified in the previous step)
    with Qt linguist
 5. Once you've finished translating, save you work and make a release (File->Release)
 6. Submit a pull request!
+
+**To update an existing translation**, run the *devhelper script* but, this time, use the **second entry** 
+in the menu (*Update translations*). Afterward you can just follow step 4, 5 and 6.
