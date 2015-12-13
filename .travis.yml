@@ -12,26 +12,25 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-    - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-    - sudo apt-add-repository -y ppa:beineri/opt-qt551
-    - sudo apt-get -qq update
-    - sudo apt-get -qq install g++-4.9 libc6-i386 qt55tools qt55svg qt55webengine
-    # require ubuntu 14.04 -> Semaphore CI?
-    - sudo apt-get install pepperflashplugin-nonfree
-    - sudo update-pepperflashplugin-nonfree --install
-    - export CXX="g++-4.9"
-    - export CC="gcc-4.9";
-    - source /opt/qt55/bin/qt55-env.sh;
+    # install qt5.6 beta from a tar.gz archive hosted on my dropbox
+    # this build already contains snorenotify
+    - wget https://www.dropbox.com/s/q02ekria8pj72hs/Qt5.6.0.tar.gz
+    - tar -zxvf Qt5.6.0.tar.gz
 
 script:
     # make sure the app can be build and installed without errors
-    - qmake
+    - Qt5.6.0/5.6/gcc_64/bin/qmake
     - make
     - sudo make install
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/Qt5.6.0/5.6/gcc_64/lib:$PWD/Qt5.6.0/5.6/gcc_64/lib64
 
-    # a few functional test
+    # a few functional tests
     - mellowplayer --service=deezer --autoquit-delay=10
     - mellowplayer --service=spotify --autoquit-delay=10
     - mellowplayer --service=mixcloud --autoquit-delay=10
     - mellowplayer --service=soundcloud --autoquit-delay=10
+    - mellowplayer --service=deezer --standalone --autoquit-delay=10
+    - mellowplayer --service=spotify --standalone --autoquit-delay=10
+    - mellowplayer --service=mixcloud --standalone --autoquit-delay=10
+    - mellowplayer --service=soundcloud --standalone --autoquit-delay=10
 
