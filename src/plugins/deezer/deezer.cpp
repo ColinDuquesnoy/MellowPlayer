@@ -120,7 +120,7 @@ SongInfo DeezerPlugin::currentSongInfo()
 
     QString coverId = runJavaScript("dzPlayer.getCover();").toString();
     retVal.artUrl = QString(
-        "https://cdns-images.deezer.com/images/cover/%1/"
+        "http://e-cdn-images.deezer.com/images/cover/%1/"
         "400x400.jpg").arg(coverId);
 
     return retVal;
