@@ -78,7 +78,7 @@ signals:
   void playerStatusChanged(PlayerStatus status);
   void volumeChanged(float newVolume);
   void songChanged(const SongInfo &songInfo);
-  void songPositionChanged(float position);
+  void songPositionChanged(double position);
   void songArtReady(const QString &localPath);
   void songDurationAvailable(const SongInfo &songInfo);
 

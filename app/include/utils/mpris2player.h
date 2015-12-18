@@ -54,7 +54,7 @@ public:
   Q_PROPERTY(bool CanStope READ canStop)
   Q_PROPERTY(bool CanGoPrevious READ canGoPrevious)
   Q_PROPERTY(bool CanGoNext READ canGoNext)
-  Q_PROPERTY(int Position READ position)
+  Q_PROPERTY(qlonglong Position READ position)
   Q_PROPERTY(int MinimuRate READ minimumRate)
   Q_PROPERTY(int MaximuRate READ maximumRate)
   Q_PROPERTY(int Rate READ rate WRITE setRate)
@@ -80,7 +80,7 @@ private slots:
   void onPlaybackStatusChanged(PlayerStatus status);
   void onSongChanged(const SongInfo &song);
   void onArtReady(const QString &artFilePathUrl);
-  void onPositionChanged(float position);
+  void onPositionChanged(double position);
   void onControlCapsChanged(const PlayerInfo &playerInfo);
   void onVolumeChanged(double volume);
 

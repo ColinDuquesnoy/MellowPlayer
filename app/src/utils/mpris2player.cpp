@@ -78,6 +78,7 @@ void Mpris2Player::Previous() { m_player->previous(); }
 //-------------------------------------
 void Mpris2Player::Seek(qlonglong position) {
   qlonglong newPos = this->position() + position;
+  m_prevPos = newPos;
   m_player->seekToPosition(newPos / SEC_TO_MICROSEC);
 }
 
@@ -85,6 +86,7 @@ void Mpris2Player::Seek(qlonglong position) {
 void Mpris2Player::SetPosition(const QDBusObjectPath &trackId,
                                qlonglong position) {
   Q_UNUSED(trackId);
+  m_prevPos = position;
   m_player->seekToPosition(position / SEC_TO_MICROSEC);
 }
 
@@ -116,12 +118,11 @@ void Mpris2Player::onArtReady(const QString &artFilePathUrl) {
 }
 
 //-------------------------------------
-void Mpris2Player::onPositionChanged(float position) {
-  qlonglong mprisPos = position * SEC_TO_MICROSEC;
-  qlonglong delta = abs(mprisPos - m_prevPos);
-  m_prevPos = mprisPos;
-  if (delta > SEEK_DELTA_LIMIT)
-    emit Seeked(mprisPos);
+void Mpris2Player::onPositionChanged(double position) {
+  qlonglong pos = (qlonglong) position * SEC_TO_MICROSEC;
+  if(abs(pos - m_prevPos) > SEEK_DELTA_LIMIT || (m_prevPos == 0 && pos > 0))
+    emit Seeked(pos);
+  m_prevPos = pos;
 }
 
 //-------------------------------------
@@ -215,7 +216,9 @@ double Mpris2Player::rate() { return 1.0; }
 void Mpris2Player::setRate(float value) { Q_UNUSED(value); }
 
 //-------------------------------------
-qlonglong Mpris2Player::position() { return m_prevPos; }
+qlonglong Mpris2Player::position() {
+    return (qlonglong)m_player->songInfo().Position * SEC_TO_MICROSEC;
+}
 
 //-------------------------------------
 bool Mpris2Player::canGoNext() {
