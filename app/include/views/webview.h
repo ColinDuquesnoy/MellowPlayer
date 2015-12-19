@@ -37,19 +37,10 @@
 class WebView : public QWebEngineView {
 public:
   explicit WebView(QWidget *parent = NULL);
-
-  void load(const QUrl &url);
   void deleteAllCookies();
 
 protected:
   virtual QWebEngineView *createWindow(QWebEnginePage::WebWindowType type);
-};
-
-class WebPage : public QWebEnginePage {
-public:
-  explicit WebPage(QObject *parent);
-  bool
-  certificateError(const QWebEngineCertificateError& certificateError) override;
 };
 
 #endif // WEBVIEW_H

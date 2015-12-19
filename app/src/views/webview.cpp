@@ -31,22 +31,13 @@
 // Implementations
 //---------------------------------------------------------
 //-------------------------------------
-WebView::WebView(QWidget *parent) : QWebEngineView(parent) {}
-
-//-------------------------------------
-void WebView::load(const QUrl &url) {
-
-  qDebug() << "Loading" << url.toString();
-  WebPage *page = new WebPage(this);
-  page->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-  page->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-  page->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,
-                                 true);
-  page->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-  setPage(page);
-  page->load(url);
-
-  qDebug() << page->profile()->cachePath();
+WebView::WebView(QWidget *parent) : QWebEngineView(parent) {
+    QWebEngineSettings* webSettings = QWebEngineSettings::defaultSettings();
+    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,
+                              true);
+    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
 }
 
 //-------------------------------------
@@ -69,15 +60,4 @@ QWebEngineView *WebView::createWindow(QWebEnginePage::WebWindowType type) {
   webView->setPage(newWeb);
   webView->show();
   return webView;
-}
-
-//-------------------------------------
-WebPage::WebPage(QObject *parent) : QWebEnginePage(parent) {}
-
-//-------------------------------------
-bool WebPage::certificateError(
-    const QWebEngineCertificateError &certificateError) {
-  // ignore certificate errors
-  Q_UNUSED(certificateError);
-  return true;
 }
