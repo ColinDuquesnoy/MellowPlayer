@@ -54,6 +54,7 @@ SOURCES += main.cpp\
            controllers/player.cpp \
            controllers/services.cpp \
            utils/icons.cpp \
+           utils/mpris_utils.cpp \
            utils/playerinfo.cpp \
            utils/singleinstancecontroller.cpp \
            utils/songinfo.cpp \
@@ -70,6 +71,7 @@ HEADERS += application.h \
            controllers/player.h \
            controllers/services.h \
            utils/icons.h \
+           utils/mpris_utils.h \
            utils/playerinfo.h \
            utils/shortcuts.h \
            utils/singleinstancecontroller.h \

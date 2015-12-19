@@ -23,6 +23,7 @@
 #include <math.h>
 #include "controllers/services.h"
 #include "utils/mpris2player.h"
+#include "utils/mpris_utils.h"
 #include "views/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -40,6 +41,7 @@ Mpris2Player::Mpris2Player(QObject *parent)
 void Mpris2Player::setMainWindow(MainWindow *mainWindow) {
   m_mainWindow = mainWindow;
   m_player = mainWindow->player();
+  StreamingServicesController* services = mainWindow->services();
 
   connect(m_player, &PlayerController::playerStatusChanged, this,
           &Mpris2Player::onPlaybackStatusChanged);
@@ -55,6 +57,8 @@ void Mpris2Player::setMainWindow(MainWindow *mainWindow) {
           &Mpris2Player::onVolumeChanged);
   connect(m_player, &PlayerController::songDurationAvailable, this,
           &Mpris2Player::onSongChanged);
+  connect(services, &StreamingServicesController::serviceStarted,
+          this, &Mpris2Player::onServiceStarted);
 }
 
 //-------------------------------------
@@ -95,7 +99,7 @@ void Mpris2Player::onPlaybackStatusChanged(PlayerStatus status) {
   Q_UNUSED(status);
   QVariantMap map;
   map["PlaybackStatus"] = statusToString(status);
-  signalUpdate(map);
+  signalPlayerUpdate(map);
 }
 
 //-------------------------------------
@@ -103,7 +107,7 @@ void Mpris2Player::onSongChanged(const SongInfo &song) {
   QVariantMap map;
   map["Metadata"] = toXesam(song);
   if (map != m_lastMeta)
-    signalUpdate(map);
+    signalPlayerUpdate(map);
   m_lastMeta = map;
 }
 
@@ -113,7 +117,7 @@ void Mpris2Player::onArtReady(const QString &artFilePathUrl) {
   QVariantMap map;
   map["Metadata"] = toXesam(m_player->songInfo());
   if (map != m_lastMeta)
-    signalUpdate(map);
+    signalPlayerUpdate(map);
   m_lastMeta = map;
 }
 
@@ -131,30 +135,23 @@ void Mpris2Player::onControlCapsChanged(const PlayerInfo &playerInfo) {
   map["CanSeek"] = playerInfo.CanSeek;
   map["CanGoNext"] = playerInfo.CanGoNext;
   map["CanGoPrevious"] = playerInfo.CanGoPrevious;
-  signalUpdate(map);
+  signalPlayerUpdate(map);
 }
 
 //-------------------------------------
 void Mpris2Player::onVolumeChanged(double volume) {
   QVariantMap map;
   map["Volume"] = volume;
-  signalUpdate(map);
+  signalPlayerUpdate(map);
 }
 
 //-------------------------------------
-void Mpris2Player::signalUpdate(const QVariantMap &map) {
-  if (map.isEmpty()) {
-    return;
-  }
-  QDBusMessage signal = QDBusMessage::createSignal(
-      "/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties",
-      "PropertiesChanged");
-  QVariantList args = QVariantList() << "org.mpris.MediaPlayer2.Player" << map
-                                     << QStringList();
-  signal.setArguments(args);
-
-  qDebug() << "MPRIS-PropertiesChanged:" << map;
-  QDBusConnection::sessionBus().send(signal);
+void Mpris2Player::onServiceStarted(const QString &serviceName)
+{
+    Q_UNUSED(serviceName);
+    this->onControlCapsChanged(m_player->playerInfo());
+    this->onSongChanged(SongInfo());
+    this->onPlaybackStatusChanged(PlayerStatus::Stopped);
 }
 
 //-------------------------------------

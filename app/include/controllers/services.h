@@ -101,6 +101,9 @@ public:
    */
   const StreamingServicePlugin &currentService() const;
 
+signals:
+  void serviceStarted(const QString& serviceName);
+
 public slots:
   /**
    * @brief Shows the select service dialog and process change.

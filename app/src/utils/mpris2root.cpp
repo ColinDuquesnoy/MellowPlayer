@@ -20,9 +20,11 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include "views/mainwindow.h"
 #include "utils/mpris2root.h"
+#include "utils/mpris_utils.h"
+#include "views/mainwindow.h"
 #include "ui_mainwindow.h"
+#include "controllers/services.h"
 
 //---------------------------------------------------------
 // Implementations
@@ -33,6 +35,8 @@ Mpris2Root::Mpris2Root(QObject *parent) : QDBusAbstractAdaptor(parent) {}
 //--------------------------------------
 void Mpris2Root::setMainWindow(MainWindow *mainWindow) {
   m_mainWindow = mainWindow;
+  connect(mainWindow->services(), &StreamingServicesController::serviceStarted,
+          this, &Mpris2Root::onServiceStarted);
 }
 
 //-------------------------------------
@@ -40,6 +44,16 @@ void Mpris2Root::Raise() { m_mainWindow->restoreWindow(); }
 
 //-------------------------------------
 void Mpris2Root::Quit() { qApp->exit(0); }
+
+//-------------------------------------
+void Mpris2Root::onServiceStarted(const QString &svName)
+{
+    if(qApp->applicationDisplayName() == "MellowPlayer") {
+        QVariantMap map;
+        map["Identity"] = svName;
+        signalUpdate(map, "org.mpris.MediaPlayer2");
+    }
+}
 
 //-------------------------------------
 bool Mpris2Root::canRaise() { return true; }
@@ -65,7 +79,9 @@ void Mpris2Root::setFullscreen(bool value) {
 }
 
 //-------------------------------------
-QString Mpris2Root::identity() { return qApp->applicationDisplayName(); }
+QString Mpris2Root::identity() {
+    return qApp->applicationDisplayName();
+}
 
 //-------------------------------------
 QString Mpris2Root::desktopEntry() {

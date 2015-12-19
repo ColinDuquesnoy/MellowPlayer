@@ -39,7 +39,7 @@ class MainWindow;
  *
  * http://specifications.freedesktop.org/mpris-spec/latest/Media_Player.html
  */
-class Mpris2Root : QDBusAbstractAdaptor {
+class Mpris2Root : public QDBusAbstractAdaptor {
   Q_OBJECT
   Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2")
 public:
@@ -58,6 +58,9 @@ public:
 public slots:
   void Raise();
   void Quit();
+
+private slots:
+  void onServiceStarted(const QString& svName);
 
 private:
   bool canRaise();

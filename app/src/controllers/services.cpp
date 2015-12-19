@@ -251,6 +251,7 @@ void StreamingServicesController::onLoadFinished(bool status) {
     this->m_mainWindow->ui()->webView->page()->runJavaScript(
         constants + m_currentService.Code);
     m_mainWindow->player()->startPolling();
+    emit serviceStarted(m_currentService.Name);
     qDebug() << "Service started" << m_currentService.Name;
   }
   qApp->restoreOverrideCursor();

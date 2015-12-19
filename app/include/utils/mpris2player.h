@@ -83,10 +83,9 @@ private slots:
   void onPositionChanged(double position);
   void onControlCapsChanged(const PlayerInfo &playerInfo);
   void onVolumeChanged(double volume);
+  void onServiceStarted(const QString& serviceName);
 
 private:
-  void signalUpdate(const QVariantMap &map);
-
   QString playbackStatus();
   QString loopStatus();
   void setLoopStatus(const QString &status);
