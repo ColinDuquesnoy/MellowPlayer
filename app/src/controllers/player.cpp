@@ -213,6 +213,8 @@ QFileInfo getLocalArtUrl(const QString &artUrl, const QString &songId,
   QString suffix = QFileInfo(artUrl).suffix();
   if (suffix.isEmpty())
     suffix = "jpg";
+  else if (suffix.contains("?"))
+      suffix = suffix.split('?')[0];
   QFileInfo localArtUrl = QFileInfo(dirPath, sv + songId + "." + suffix);
   return localArtUrl;
 }
