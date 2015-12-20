@@ -201,8 +201,8 @@ void PlayerController::onUpdateFinished(const QVariant &result) {
   m_playerInfo = playerInfo;
 }
 
-QFileInfo getLocalArtUrl(const QString &artUrl, const QString &songId,
-                         const QString &sv) {
+//--------------------------------------
+QFileInfo getLocalArtUrl(const QString &songId, const QString &sv) {
   QString cacheDir =
       QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0];
   QFileInfo dir = QFileInfo(cacheDir, "Covers");
@@ -210,20 +210,14 @@ QFileInfo getLocalArtUrl(const QString &artUrl, const QString &songId,
   if (!dir.exists()) {
     QDir(cacheDir).mkdir("Covers");
   }
-  QString suffix = QFileInfo(artUrl).suffix();
-  if (suffix.isEmpty())
-    suffix = "jpg";
-  else if (suffix.contains("?"))
-      suffix = suffix.split('?')[0];
-  QFileInfo localArtUrl = QFileInfo(dirPath, sv + songId + "." + suffix);
+  QFileInfo localArtUrl = QFileInfo(dirPath, sv + "-" + songId);
   return localArtUrl;
 }
 
 //--------------------------------------
 void PlayerController::onDownloadFinished(QNetworkReply *reply) {
   QString sv = m_mainWindow->services()->currentService().Name;
-  m_songInfo.LocalArtUrl = getLocalArtUrl(m_songInfo.ArtUrl, m_songInfo.SongId,
-                                          sv).absoluteFilePath();
+  m_songInfo.LocalArtUrl = getLocalArtUrl(m_songInfo.SongId, sv).absoluteFilePath();
   QFile file(m_songInfo.LocalArtUrl);
   if (file.open(QIODevice::WriteOnly)) {
     file.write(reply->readAll());
@@ -234,9 +228,9 @@ void PlayerController::onDownloadFinished(QNetworkReply *reply) {
 
 //--------------------------------------
 void PlayerController::downloadArtUrl(const SongInfo &songInfo) {
+  qDebug() << songInfo.ArtUrl;
   QString sv = m_mainWindow->services()->currentService().Name;
-  QFileInfo localArtUrl = getLocalArtUrl(songInfo.ArtUrl, songInfo.SongId, sv);
-  qDebug() << localArtUrl.absoluteFilePath();
+  QFileInfo localArtUrl = getLocalArtUrl(songInfo.SongId, sv);
   if (localArtUrl.exists()) {
     m_songInfo.LocalArtUrl = localArtUrl.absoluteFilePath();
     emit songArtReady(m_songInfo.LocalArtUrl);
