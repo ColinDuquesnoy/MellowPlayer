@@ -1,3 +1,7 @@
+## 1.5.2
+
+- Remove Rdio service (service has shutdown).
+
 ## 1.5.1
 
 - [Deezer] Fix missing album art in notifications and MPRIS2 interface

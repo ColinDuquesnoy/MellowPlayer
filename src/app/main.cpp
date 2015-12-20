@@ -22,7 +22,6 @@
 
 //---------------------------------------------------------
 // Add plugins here
-Q_IMPORT_PLUGIN(RdioPlugin)
 Q_IMPORT_PLUGIN(SoundcloudPlugin)
 Q_IMPORT_PLUGIN(MixcloudPlugin)
 Q_IMPORT_PLUGIN(DeezerPlugin)

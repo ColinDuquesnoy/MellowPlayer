@@ -24,7 +24,6 @@ QT                 += core gui network webkit widgets webkitwidgets
 
 # Add static plugins here (and in main.cpp)
 LIBS += -L.
-LIBS += -lmpp_rdio
 LIBS += -lmpp_soundcloud
 LIBS += -lmpp_mixcloud
 LIBS += -lmpp_deezer
@@ -32,7 +31,6 @@ LIBS += -lmpp_hotkeys
 LIBS += -lmpp_notifications
 
 win32 { # force relink app when a static lib changed.
-    PRE_TARGETDEPS += mpp_rdio.lib
     PRE_TARGETDEPS += mpp_soundcloud.lib
     PRE_TARGETDEPS += mpp_mixcloud.lib
     PRE_TARGETDEPS += mpp_deezer.lib
@@ -40,7 +38,6 @@ win32 { # force relink app when a static lib changed.
     PRE_TARGETDEPS += mpp_notifications.lib
 }
 else { # force relink app when a static lib changed.
-    PRE_TARGETDEPS += libmpp_rdio.a
     PRE_TARGETDEPS += libmpp_soundcloud.a
     PRE_TARGETDEPS += libmpp_mixcloud.a
     PRE_TARGETDEPS += libmpp_deezer.a

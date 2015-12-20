@@ -29,7 +29,6 @@ script:
 
     # a few functional test
     - MellowPlayer --service=deezer --autoquit-delay=10
-    - MellowPlayer --service=rdio --autoquit-delay=10
     - MellowPlayer --service=mixcloud --autoquit-delay=10
     - MellowPlayer --service=soundcloud --autoquit-delay=10
 

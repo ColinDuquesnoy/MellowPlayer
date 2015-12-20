@@ -29,4 +29,3 @@ SUBDIRS += notifications
 SUBDIRS += deezer
 SUBDIRS += mixcloud
 SUBDIRS += soundcloud
-SUBDIRS += rdio
