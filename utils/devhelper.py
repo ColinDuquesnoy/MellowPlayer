@@ -79,7 +79,7 @@ def make_win32_release():
             exe = ''
             while not exe and not os.path.exists(exe):
                 build_dir = read_input('Please indicate the release build directory: ').strip()
-                exe = os.path.join(build_dir, 'app', 'release', 'MellowPlayer.exe')
+                exe = os.path.join(build_dir, 'MellowPlayer.exe')
             # get qmake path
             qmake = ''
             while not qmake and not os.path.exists(qmake):
@@ -98,6 +98,13 @@ def make_win32_release():
 
     exe, qmake = get_env_vars()
     dist = make_dist_dir()
+	
+    mellow_plugins_dir = os.path.join(dist, "plugins")
+    # if not os.path.exists(mellow_plugins_dir):
+    #     os.makedirs(mellow_plugins_dir, exist_ok=True)
+    shutil.copytree(os.path.join(os.getcwd(), 'plugins'), mellow_plugins_dir)
+	
+	# copy qt stuff
     qt_bin_dir = os.path.dirname(qmake)
     iconengines_dir = os.path.abspath(os.path.join(qt_bin_dir, '..',
                                        'plugins', 'iconengines'))
@@ -134,20 +141,23 @@ def make_win32_release():
         os.path.join(qt_bin_dir, 'Qt5Sql.dll'),
         os.path.join(qt_bin_dir, 'Qt5Svg.dll'),
         os.path.join(qt_bin_dir, 'Qt5WebChannel.dll'),
-        os.path.join(qt_bin_dir, 'Qt5WebKit.dll'),
-        os.path.join(qt_bin_dir, 'Qt5WebKitWidgets.dll'),
-        os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
-        'c:\\Windows\\System32\\msvcr100.dll',
-        'c:\\Windows\\System32\\msvcp100.dll',
-        # open ssl
-        os.path.join(os.getcwd(), 'package', 'windows', 'libeay32.dll'),
-        os.path.join(os.getcwd(), 'package', 'windows', 'ssleay32.dll')
+        os.path.join(qt_bin_dir, 'Qt5WebEngine.dll'),
+        os.path.join(qt_bin_dir, 'Qt5WebEngineCore.dll'),
+        os.path.join(qt_bin_dir, 'Qt5WebEngineWidgets.dll'),
+		os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
+        os.path.join(qt_bin_dir, 'snorenotify.exe'),
+        os.path.join(qt_bin_dir, 'snoresend.exe'),
+        os.path.join(qt_bin_dir, 'snoresettings.exe'),
+        os.path.join(qt_bin_dir, 'snoretoast.exe'),
+        os.path.join(qt_bin_dir, 'png2ico.exe'),
+        os.path.join(qt_bin_dir, 'snore-qt5.dll')
     ]
 
     for f in files:
         print('copying %s to %s' % (f, dist))
         shutil.copy(f, dist)
 
+	# qt plugins
     plugins_dir = os.path.abspath(os.path.join(qt_bin_dir, '..', 'plugins'))
 
     plugins = []
@@ -167,7 +177,7 @@ def make_win32_release():
 
     # configure innosetup
     version = read_input('Version string: ')
-    with open('package/windows/setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
+    with open('utils/windows/setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
         lines = src.readlines()
         data = []
         for l in lines:
@@ -199,7 +209,7 @@ def make_osx_release():
                 f.write(build_dir)
         return build_dir
 
-    os.chdir(os.path.join(get_build_dir(), 'src', 'app'))
+    os.chdir(os.path.join(get_build_dir()))
     os.system('macdeployqt MellowPlayer.app -dmg')
 
 
