@@ -25,7 +25,7 @@ QT += LibsnoreQt5
 CONFIG += c++11
 
 # Windows specific rules
-win32:RC_FILE += mellowplayer/mellowplayer.rc
+win32:RC_FILE += app/mellowplayer.rc
 win32{
     LIBS += -luser32
 }
@@ -39,6 +39,12 @@ macx {
 # GNU/Linux specific rules
 unix:!macx {
     QT += dbus
+    SOURCES += utils/mpris2root.cpp \
+               utils/mpris2player.cpp \
+               utils/mpris_utils.cpp
+    HEADERS += utils/mpris2root.h \
+               utils/mpris2player.h \
+               utils/mpris_utils.h
 }
 
 INCLUDEPATH   += app/include
@@ -49,12 +55,11 @@ SOURCES += main.cpp\
            application.cpp \
            controllers/base.cpp \
            controllers/hotkeys.cpp \
-           controllers/mpris2.cpp \
            controllers/notifications.cpp \
+           controllers/mpris2.cpp \
            controllers/player.cpp \
            controllers/services.cpp \
            utils/icons.cpp \
-           utils/mpris_utils.cpp \
            utils/playerinfo.cpp \
            utils/singleinstancecontroller.cpp \
            utils/songinfo.cpp \
@@ -71,7 +76,6 @@ HEADERS += application.h \
            controllers/player.h \
            controllers/services.h \
            utils/icons.h \
-           utils/mpris_utils.h \
            utils/playerinfo.h \
            utils/shortcuts.h \
            utils/singleinstancecontroller.h \
@@ -80,13 +84,6 @@ HEADERS += application.h \
            views/dlgpreferences.h \
            views/mainwindow.h \
            views/webview.h
-
-unix:!macx {
-    SOURCES += utils/mpris2root.cpp \
-               utils/mpris2player.cpp
-    HEADERS += utils/mpris2root.h \
-               utils/mpris2player.h
-}
 
 RESOURCES = app/mellowplayer.qrc
 FORMS += app/forms/dlg_select_service.ui \
