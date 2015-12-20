@@ -106,6 +106,8 @@ def make_win32_release():
 	
 	# copy qt stuff
     qt_bin_dir = os.path.dirname(qmake)
+    qt_root_dir = os.path.abspath(os.path.join(qt_bin_dir, os.pardir))
+    snore_plugins_dir = os.path.join(qt_root_dir, "lib", "plugins", "libsnore-qt5")
     iconengines_dir = os.path.abspath(os.path.join(qt_bin_dir, '..',
                                        'plugins', 'iconengines'))
     iconengines_dst = os.path.join(dist, 'iconengines')
@@ -144,13 +146,19 @@ def make_win32_release():
         os.path.join(qt_bin_dir, 'Qt5WebEngine.dll'),
         os.path.join(qt_bin_dir, 'Qt5WebEngineCore.dll'),
         os.path.join(qt_bin_dir, 'Qt5WebEngineWidgets.dll'),
+		os.path.join(qt_bin_dir, 'QtWebEngineProcess.exe'),
 		os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
         os.path.join(qt_bin_dir, 'snorenotify.exe'),
         os.path.join(qt_bin_dir, 'snoresend.exe'),
         os.path.join(qt_bin_dir, 'snoresettings.exe'),
-        os.path.join(qt_bin_dir, 'snoretoast.exe'),
+        os.path.join(qt_bin_dir, 'SnoreToast.exe'),
         os.path.join(qt_bin_dir, 'png2ico.exe'),
-        os.path.join(qt_bin_dir, 'snore-qt5.dll')
+        os.path.join(qt_bin_dir, 'snore-qt5.dll'),
+		os.path.join(qt_root_dir, 'qtwebengine_resources.pak'),
+		os.path.join(qt_root_dir, 'qtwebengine_resources_100p.pak'),
+		os.path.join(qt_root_dir, 'qtwebengine_resources_200p.pak'),
+		os.path.join(qt_root_dir, 'icudtl.dat'),
+		os.path.join(snore_plugins_dir, 'libsnore_backend_snoretoast.dll'),        
     ]
 
     for f in files:
