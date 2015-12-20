@@ -152,7 +152,7 @@ bool MellowPlayerApp::parseArgs() {
   QRegExp rxArgHelp("--help");
   QRegExp rxArgVersion("--version");
   QRegExp rxArgStandalone("--standalone");
-  QRegExp rxArgService("--service=([a-zA-Z\\s]*)");
+  QRegExp rxArgService("--service=([a-zA-Z\\s_\\d]*)");
   QRegExp rxArgPlayPause("--playpause");
   QRegExp rxArgNext("--next");
   QRegExp rxArgPrevious("--previous");
@@ -190,6 +190,7 @@ bool MellowPlayerApp::parseArgs() {
       quit = true;
     } else if (rxArgService.indexIn(args.at(i)) != -1) {
       m_service = rxArgService.cap(1);
+      m_service = m_service.replace("_", " ");
     } else if (rxArgStandalone.indexIn(args.at(i)) != -1) {
       m_standalone = true;
     } else if (rxArgPlayPause.indexIn(args.at(i)) != -1) {
@@ -204,8 +205,13 @@ bool MellowPlayerApp::parseArgs() {
   }
 
   if (m_standalone && !m_service.isEmpty()) {
-    // use the capitalized service name
-    QString appName = m_service.left(1).toUpper() + m_service.mid(1).toLower();
+    // capitalize each parts of the service name
+    QStringList tokens = m_service.split(" ");
+    QStringList capitalized;
+    foreach (const QString& t, tokens) {
+        capitalized.append(t.left(1).toUpper() + t.mid(1).toLower());
+    }
+    QString appName = capitalized.join(" ");
     setApplicationDisplayName(appName);
     setApplicationName(appName);
   } else

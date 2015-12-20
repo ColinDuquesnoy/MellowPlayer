@@ -35,7 +35,10 @@
 //---------------------------------------------------------
 MPRIS2Controller::MPRIS2Controller(MainWindow *mainWindow)
     : BaseController("mpris2", mainWindow) {
-  m_svName = QString(SERVICE_NAME).arg(qApp->applicationDisplayName());
+  QString appName = qApp->applicationDisplayName().replace(" ", "");
+  if(appName != "MellowPlayer")
+      appName = QString("MellowPlayer-%1").arg((appName));
+  m_svName = QString(SERVICE_NAME).arg(appName);
 #ifdef Q_OS_LINUX
   if (!QDBusConnection::sessionBus().registerService(m_svName)) {
     qWarning() << "Failed to register service on the session bus: " << m_svName;
@@ -50,7 +53,7 @@ MPRIS2Controller::MPRIS2Controller(MainWindow *mainWindow)
                << OBJECT_NAME;
     return;
   }
-  qDebug() << "MPRIS2 service started!";
+  qDebug() << "MPRIS2 service started:" << m_svName;
 #endif
 }
 
