@@ -100,9 +100,9 @@ def make_win32_release():
     dist = make_dist_dir()
 	
     mellow_plugins_dir = os.path.join(dist, "plugins")
-    # if not os.path.exists(mellow_plugins_dir):
-    #     os.makedirs(mellow_plugins_dir, exist_ok=True)
     shutil.copytree(os.path.join(os.getcwd(), 'plugins'), mellow_plugins_dir)
+    shutil.copy(os.path.join(os.getcwd(), 'utils', 'windows', 'vc_redist.x86.exe'),
+                os.path.join(dist, 'vc_redist.x86.exe'))
 	
 	# copy qt stuff
     qt_bin_dir = os.path.dirname(qmake)
@@ -158,7 +158,7 @@ def make_win32_release():
 		os.path.join(qt_root_dir, 'qtwebengine_resources_100p.pak'),
 		os.path.join(qt_root_dir, 'qtwebengine_resources_200p.pak'),
 		os.path.join(qt_root_dir, 'icudtl.dat'),
-		os.path.join(snore_plugins_dir, 'libsnore_backend_snoretoast.dll'),        
+		os.path.join(snore_plugins_dir, 'libsnore_backend_snoretoast.dll'),
     ]
 
     for f in files:
@@ -185,7 +185,7 @@ def make_win32_release():
 
     # configure innosetup
     version = read_input('Version string: ')
-    with open('utils/windows/setup.iss.in', 'r') as src, open('setup.iss', 'w') as dst:
+    with open('utils/windows/setup_templ.iss', 'r') as src, open('setup.iss', 'w') as dst:
         lines = src.readlines()
         data = []
         for l in lines:
