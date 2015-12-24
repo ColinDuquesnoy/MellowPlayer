@@ -33,7 +33,7 @@ win32{
 # Mac OSX specific Rules
 macx {
    LIBS += -framework Carbon -lcrypto -lssl
-   ICON = mellowplayer/icons/mellowplayer.icns
+   ICON = app/icons/mellowplayer.icns
 }
 
 # GNU/Linux specific rules
@@ -108,10 +108,10 @@ HEADERS       += qxtglobalshortcut.h
 SOURCES       += qxtglobal.cpp qxtglobalshortcut.cpp
 unix: {
     QT += gui-private
-    LIBS += -lX11
 }
 unix:!macx {
     SOURCES += x11/qxtglobalshortcut_x11.cpp
+    LIBS += -lX11
 }
 macx {
     SOURCES += mac/qxtglobalshortcut_mac.cpp
