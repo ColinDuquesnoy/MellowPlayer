@@ -96,19 +96,24 @@ bool checkPluginDirectory(const QString &directory) {
 }
 
 //--------------------------------------
-QStringList getSearchPaths() {
-  QFileInfo homePath(QDir::homePath(),
-                     QString(".local/share/mellowplayer/plugins"));
-  QFileInfo linuxSysPath("/usr/share/mellowplayer/plugins");
-  QFileInfo debianSysPath("/usr/local/share/mellowplayer/plugins");
-  QFileInfo cwdPath(QDir::currentPath(), "plugins");
-
+QStringList getSearchPaths() {  
   QStringList paths;
-  paths.append(cwdPath.absoluteFilePath());
-  paths.append(homePath.absoluteFilePath());
-  paths.append(linuxSysPath.absoluteFilePath());
-  paths.append(debianSysPath.absoluteFilePath());
+  paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
+  paths.append(QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, "plugins"));
 
+#ifdef Q_OS_MAC
+  QDir pluginsDir(qApp->applicationDirPath());
+  pluginsDir.cdUp();
+  pluginsDir.cd("PlugIns");
+  pluginsDir.cd("services");
+  paths.append(pluginsDir.path());
+  qWarning() << "OSX Application Plugins Path:" << pluginsDir.path();
+#endif
+
+#ifdef Q_OS_LINUX
+  paths.append("/usr/share/mellowplayer/plugins");
+  paths.append("/usr/local/share/mellowplayer/plugins");
+#endif
   return paths;
 }
 
