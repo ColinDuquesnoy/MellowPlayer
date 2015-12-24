@@ -60,7 +60,7 @@ public slots:
   void Quit();
 
 private slots:
-  void onServiceStarted(const QString& svName);
+  void onServiceStarted(const QString &svName);
 
 private:
   bool canRaise();

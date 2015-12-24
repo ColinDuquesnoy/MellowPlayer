@@ -96,10 +96,11 @@ bool checkPluginDirectory(const QString &directory) {
 }
 
 //--------------------------------------
-QStringList getSearchPaths() {  
+QStringList getSearchPaths() {
   QStringList paths;
   paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
-  paths.append(QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, "plugins"));
+  paths.append(
+      QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, "plugins"));
 
 #ifdef Q_OS_MAC
   QDir pluginsDir(qApp->applicationDirPath());

@@ -106,8 +106,7 @@ void NotificationsController::showMessage(const QString &title,
   m_oldNotification = noti;
 #else
   m_mainWindow->trayIcon()->showMessage(
-    title,
-    QTextDocumentFragment::fromHtml(message).toPlainText());
+      title, QTextDocumentFragment::fromHtml(message).toPlainText());
   Q_UNUSED(icon);
   Q_UNUSED(actions);
 #endif

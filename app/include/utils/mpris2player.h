@@ -83,7 +83,7 @@ private slots:
   void onPositionChanged(double position);
   void onControlCapsChanged(const PlayerInfo &playerInfo);
   void onVolumeChanged(double volume);
-  void onServiceStarted(const QString& serviceName);
+  void onServiceStarted(const QString &serviceName);
 
 private:
   QString playbackStatus();

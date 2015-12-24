@@ -102,7 +102,7 @@ public:
   const StreamingServicePlugin &currentService() const;
 
 signals:
-  void serviceStarted(const QString& serviceName);
+  void serviceStarted(const QString &serviceName);
 
 public slots:
   /**

@@ -217,7 +217,8 @@ QFileInfo getLocalArtUrl(const QString &songId, const QString &sv) {
 //--------------------------------------
 void PlayerController::onDownloadFinished(QNetworkReply *reply) {
   QString sv = m_mainWindow->services()->currentService().Name;
-  m_songInfo.LocalArtUrl = getLocalArtUrl(m_songInfo.SongId, sv).absoluteFilePath();
+  m_songInfo.LocalArtUrl =
+      getLocalArtUrl(m_songInfo.SongId, sv).absoluteFilePath();
   QFile file(m_songInfo.LocalArtUrl);
   if (file.open(QIODevice::WriteOnly)) {
     file.write(reply->readAll());

@@ -208,8 +208,8 @@ bool MellowPlayerApp::parseArgs() {
     // capitalize each parts of the service name
     QStringList tokens = m_service.split(" ");
     QStringList capitalized;
-    foreach (const QString& t, tokens) {
-        capitalized.append(t.left(1).toUpper() + t.mid(1).toLower());
+    foreach (const QString &t, tokens) {
+      capitalized.append(t.left(1).toUpper() + t.mid(1).toLower());
     }
     QString appName = capitalized.join(" ");
     setApplicationDisplayName(appName);

@@ -16,11 +16,14 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function getHashCode(s){
-  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+function getHashCode(s) {
+    return s.split("").reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
 }
 
-function getButtons(){
+function getButtons() {
     return {
         play: document.getElementById("player_play_button"),
         pause: document.getElementById("player_pause_button"),
@@ -32,7 +35,7 @@ function updatePlayerInfo() {
     try {
         var buttons = getButtons();
         var playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-        if(buttons.play.style.display == "block")
+        if (buttons.play.style.display == "block")
             playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
         return {
             "PlaybackStatus": playbackStatus,
@@ -42,8 +45,7 @@ function updatePlayerInfo() {
             "CanAddToFavorites": false,
             "Volume": 1,
         };
-    }
-    catch(e) {
+    } catch (e) {
         return {
             "PlaybackStatus": mellowplayer.PlaybackStatus.STOPPED,
             "CanSeek": false,
@@ -68,8 +70,7 @@ function updateSongInfo() {
             "Duration": 0,
             "Position": 0
         };
-    }
-    catch(e) {
+    } catch (e) {
         console.warn(e);
         return {
             "SongId": 0,

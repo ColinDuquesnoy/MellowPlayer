@@ -26,6 +26,6 @@
 #include <QVariantMap>
 
 void signalPlayerUpdate(const QVariantMap &map);
-void signalUpdate(const QVariantMap &map, const QString& interfaceName);
+void signalUpdate(const QVariantMap &map, const QString &interfaceName);
 
 #endif // MPRIS2_UTILS_H

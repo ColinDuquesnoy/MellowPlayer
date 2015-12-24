@@ -36,8 +36,8 @@
 MPRIS2Controller::MPRIS2Controller(MainWindow *mainWindow)
     : BaseController("mpris2", mainWindow) {
   QString appName = qApp->applicationDisplayName().replace(" ", "");
-  if(appName != "MellowPlayer")
-      appName = QString("MellowPlayer-%1").arg((appName));
+  if (appName != "MellowPlayer")
+    appName = QString("MellowPlayer-%1").arg((appName));
   m_svName = QString(SERVICE_NAME).arg(appName);
 #ifdef Q_OS_LINUX
   if (!QDBusConnection::sessionBus().registerService(m_svName)) {

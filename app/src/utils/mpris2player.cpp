@@ -41,7 +41,7 @@ Mpris2Player::Mpris2Player(QObject *parent)
 void Mpris2Player::setMainWindow(MainWindow *mainWindow) {
   m_mainWindow = mainWindow;
   m_player = mainWindow->player();
-  StreamingServicesController* services = mainWindow->services();
+  StreamingServicesController *services = mainWindow->services();
 
   connect(m_player, &PlayerController::playerStatusChanged, this,
           &Mpris2Player::onPlaybackStatusChanged);
@@ -57,8 +57,8 @@ void Mpris2Player::setMainWindow(MainWindow *mainWindow) {
           &Mpris2Player::onVolumeChanged);
   connect(m_player, &PlayerController::songDurationAvailable, this,
           &Mpris2Player::onSongChanged);
-  connect(services, &StreamingServicesController::serviceStarted,
-          this, &Mpris2Player::onServiceStarted);
+  connect(services, &StreamingServicesController::serviceStarted, this,
+          &Mpris2Player::onServiceStarted);
 }
 
 //-------------------------------------
@@ -123,8 +123,8 @@ void Mpris2Player::onArtReady(const QString &artFilePathUrl) {
 
 //-------------------------------------
 void Mpris2Player::onPositionChanged(double position) {
-  qlonglong pos = (qlonglong) position * SEC_TO_MICROSEC;
-  if(abs(pos - m_prevPos) > SEEK_DELTA_LIMIT || (m_prevPos == 0 && pos > 0))
+  qlonglong pos = (qlonglong)position * SEC_TO_MICROSEC;
+  if (abs(pos - m_prevPos) > SEEK_DELTA_LIMIT || (m_prevPos == 0 && pos > 0))
     emit Seeked(pos);
   m_prevPos = pos;
 }
@@ -146,12 +146,11 @@ void Mpris2Player::onVolumeChanged(double volume) {
 }
 
 //-------------------------------------
-void Mpris2Player::onServiceStarted(const QString &serviceName)
-{
-    Q_UNUSED(serviceName);
-    this->onControlCapsChanged(m_player->playerInfo());
-    this->onSongChanged(SongInfo());
-    this->onPlaybackStatusChanged(PlayerStatus::Stopped);
+void Mpris2Player::onServiceStarted(const QString &serviceName) {
+  Q_UNUSED(serviceName);
+  this->onControlCapsChanged(m_player->playerInfo());
+  this->onSongChanged(SongInfo());
+  this->onPlaybackStatusChanged(PlayerStatus::Stopped);
 }
 
 //-------------------------------------
@@ -214,7 +213,7 @@ void Mpris2Player::setRate(float value) { Q_UNUSED(value); }
 
 //-------------------------------------
 qlonglong Mpris2Player::position() {
-    return (qlonglong)m_player->songInfo().Position * SEC_TO_MICROSEC;
+  return (qlonglong)m_player->songInfo().Position * SEC_TO_MICROSEC;
 }
 
 //-------------------------------------

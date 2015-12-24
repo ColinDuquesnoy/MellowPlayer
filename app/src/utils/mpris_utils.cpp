@@ -25,27 +25,22 @@
 #include <QDebug>
 #include "utils/mpris_utils.h"
 
-
 //-------------------------------------
-void signalPlayerUpdate(const QVariantMap &map)
-{
-    signalUpdate(map, "org.mpris.MediaPlayer2.Player");
+void signalPlayerUpdate(const QVariantMap &map) {
+  signalUpdate(map, "org.mpris.MediaPlayer2.Player");
 }
 
-
 //-------------------------------------
-void signalUpdate(const QVariantMap &map, const QString& interfaceName) {
+void signalUpdate(const QVariantMap &map, const QString &interfaceName) {
   if (map.isEmpty()) {
     return;
   }
   QDBusMessage signal = QDBusMessage::createSignal(
       "/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties",
       "PropertiesChanged");
-  QVariantList args = QVariantList() << interfaceName << map
-                                     << QStringList();
+  QVariantList args = QVariantList() << interfaceName << map << QStringList();
   signal.setArguments(args);
 
   qDebug() << "MPRIS-PropertiesChanged:" << map;
   QDBusConnection::sessionBus().send(signal);
 }
-

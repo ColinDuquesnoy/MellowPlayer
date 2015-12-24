@@ -32,12 +32,11 @@
 //---------------------------------------------------------
 //-------------------------------------
 WebView::WebView(QWidget *parent) : QWebEngineView(parent) {
-    QWebEngineSettings* webSettings = QWebEngineSettings::defaultSettings();
-    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-    webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,
-                              true);
-    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+  QWebEngineSettings *webSettings = QWebEngineSettings::defaultSettings();
+  webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+  webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+  webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
+  webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
 }
 
 //-------------------------------------

@@ -46,13 +46,12 @@ void Mpris2Root::Raise() { m_mainWindow->restoreWindow(); }
 void Mpris2Root::Quit() { qApp->exit(0); }
 
 //-------------------------------------
-void Mpris2Root::onServiceStarted(const QString &svName)
-{
-    if(qApp->applicationDisplayName() == "MellowPlayer") {
-        QVariantMap map;
-        map["Identity"] = svName;
-        signalUpdate(map, "org.mpris.MediaPlayer2");
-    }
+void Mpris2Root::onServiceStarted(const QString &svName) {
+  if (qApp->applicationDisplayName() == "MellowPlayer") {
+    QVariantMap map;
+    map["Identity"] = svName;
+    signalUpdate(map, "org.mpris.MediaPlayer2");
+  }
 }
 
 //-------------------------------------
@@ -79,9 +78,7 @@ void Mpris2Root::setFullscreen(bool value) {
 }
 
 //-------------------------------------
-QString Mpris2Root::identity() {
-    return qApp->applicationDisplayName();
-}
+QString Mpris2Root::identity() { return qApp->applicationDisplayName(); }
 
 //-------------------------------------
 QString Mpris2Root::desktopEntry() {
