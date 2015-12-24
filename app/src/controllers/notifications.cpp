@@ -26,18 +26,22 @@
 #include "views/mainwindow.h"
 #include "ui_mainwindow.h"
 
+#ifndef Q_OS_MAC
 using namespace Snore;
+#endif
 
 //---------------------------------------------------------
 // Implementations
 //---------------------------------------------------------
 //--------------------------------------
 NotificationsController::NotificationsController(MainWindow *parent)
-    : BaseController("notifications", parent),
-      m_SnoreApp("MellowPlayer", m_mainWindow->windowIcon()),
-      m_SongChangedAlert("Song changed", m_mainWindow->windowIcon()),
-      m_playbackPausedAlert("Paused", Icons::pause()),
-      m_playbackStoppedAlert("Stopped", Icons::stop()) {
+    : BaseController("notifications", parent)
+{
+#ifndef Q_OS_MAC
+  m_SnoreApp("MellowPlayer", m_mainWindow->windowIcon());
+  m_SongChangedAlert("Song changed", m_mainWindow->windowIcon());
+  m_playbackPausedAlert("Paused", Icons::pause());
+  m_playbackStoppedAlert("Stopped", Icons::stop());
   SnoreCore &snoreCore = SnoreCore::instance();
   snoreCore.registerApplication(m_SnoreApp);
   snoreCore.setDefaultApplication(m_SnoreApp);
@@ -49,7 +53,7 @@ NotificationsController::NotificationsController(MainWindow *parent)
            << snoreCore.pluginNames(Snore::SnorePlugin::BACKEND);
   connect(&snoreCore, &SnoreCore::actionInvoked, this,
           &NotificationsController::onActionInvoked);
-
+#endif
   PlayerController *player = m_mainWindow->player();
   connect(player, &PlayerController::playerStatusChanged, this,
           &NotificationsController::onPlaybackStatusChanged);
@@ -65,6 +69,7 @@ void NotificationsController::showMessage(const QString &title,
   if (!QSettings().value("notifications/enable", true).toBool()) {
     return;
   }
+#ifndef Q_OS_MAC
   SnoreCore &snoreCore = SnoreCore::instance();
   QString myTitle = title;
   QString myMessage = message;
@@ -96,8 +101,16 @@ void NotificationsController::showMessage(const QString &title,
   }
   snoreCore.broadcastNotification(noti);
   m_oldNotification = noti;
+#else
+  m_mainWindow->trayIcon()->showMessage(
+    title,
+    QTextDocumentFragment::fromHtml(message).toPlainText());
+  Q_UNUSED(icon);
+  Q_UNUSED(actions);
+#endif
 }
 
+#ifndef Q_OS_MAC
 //--------------------------------------
 void NotificationsController::onActionInvoked(
     const Notification &notification) {
@@ -111,6 +124,7 @@ void NotificationsController::onActionInvoked(
     emit actionTriggered(actionName);
   }
 }
+#endif
 
 //--------------------------------------
 void NotificationsController::onPlaybackStatusChanged(PlayerStatus status) {

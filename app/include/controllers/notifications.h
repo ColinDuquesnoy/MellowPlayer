@@ -23,7 +23,10 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include <QIcon>
+#ifndef Q_OS_MAC
 #include <libsnore/snore.h>
+#endif
 #include "controllers/base.h"
 #include "controllers/player.h"
 
@@ -51,18 +54,21 @@ signals:
   void actionTriggered(const QString &actionName);
 
 private slots:
+#ifndef Q_OS_MAC
   void onActionInvoked(const Snore::Notification &notification);
+#endif
   void onPlaybackStatusChanged(PlayerStatus status);
   void onArtReady(const QString &artUrl);
   void showSongChangedNotification(const SongInfo &song);
 
 private:
+#ifndef Q_OS_MAC
   Snore::Application m_SnoreApp;
   Snore::Alert m_SongChangedAlert;
   Snore::Alert m_playbackPausedAlert;
   Snore::Alert m_playbackStoppedAlert;
   Snore::Notification m_oldNotification;
-
+#endif
   SongInfo m_oldSong;
 };
 
