@@ -463,6 +463,7 @@ void MainWindow::setupToolbar() {
   m_ui->toolBar->addSeparator();
 
   // Configure drop down menu
+#ifndef Q_OS_MAC
   m_BtMenu = new QToolButton(this);
   m_BtMenu->setText(tr("Control"));
   m_BtMenu->setIcon(Icons::configure());
@@ -483,4 +484,5 @@ void MainWindow::setupToolbar() {
   mnu->addAction(m_ui->actionQuit);
   m_BtMenu->setMenu(mnu);
   m_ui->toolBar->addWidget(m_BtMenu);
+#endif
 }
