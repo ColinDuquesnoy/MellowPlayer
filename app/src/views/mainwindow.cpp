@@ -454,7 +454,6 @@ void MainWindow::setupDockMenu() {
 
 //--------------------------------------
 void MainWindow::setupToolbar() {
-#ifndef Q_OS_MACX
   // label for song infos
   m_lblSongInfo = new QLabel(this);
   m_lblSongInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -477,11 +476,11 @@ void MainWindow::setupToolbar() {
   mnu->addAction(m_ui->actionSelect_service);
   mnu->addAction(m_ui->actionPreferences);
 
-  QAction *mnuHelpAction = mnu->addMenu(m_ui->menuHelp);
-  mnuHelpAction->setIcon(Icons::help());
+  QMenu *mnuHelp = mnu->addMenu("Help");
+  mnuHelp->addActions(m_ui->menuHelp->actions());
+  mnuHelp->setIcon(Icons::help());
 
   mnu->addAction(m_ui->actionQuit);
   m_BtMenu->setMenu(mnu);
   m_ui->toolBar->addWidget(m_BtMenu);
-#endif
 }
