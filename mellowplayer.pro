@@ -18,10 +18,17 @@
 #----------------------------------------------------------
 
 # Project configuration
-TARGET = mellowplayer
+unix:!macx {
+    TARGET = mellowplayer
+}
+else {
+    TARGET = MellowPlayer
+}
 TEMPLATE = app
 QT += core gui network widgets webengine webenginewidgets
-QT += LibsnoreQt5
+!macx {
+    QT += LibsnoreQt5
+}
 CONFIG += c++11
 
 # Windows specific rules
