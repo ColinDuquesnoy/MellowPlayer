@@ -36,12 +36,15 @@ using namespace Snore;
 //--------------------------------------
 NotificationsController::NotificationsController(MainWindow *parent)
     : BaseController("notifications", parent)
+#ifndef Q_OS_MAC
+      ,
+      m_SnoreApp("MellowPlayer", m_mainWindow->windowIcon()),
+      m_SongChangedAlert("Song changed", m_mainWindow->windowIcon()),
+      m_playbackPausedAlert("Paused", Icons::pause()),
+      m_playbackStoppedAlert("Stopped", Icons::stop())
+#endif
 {
 #ifndef Q_OS_MAC
-  m_SnoreApp("MellowPlayer", m_mainWindow->windowIcon());
-  m_SongChangedAlert("Song changed", m_mainWindow->windowIcon());
-  m_playbackPausedAlert("Paused", Icons::pause());
-  m_playbackStoppedAlert("Stopped", Icons::stop());
   SnoreCore &snoreCore = SnoreCore::instance();
   snoreCore.registerApplication(m_SnoreApp);
   snoreCore.setDefaultApplication(m_SnoreApp);
