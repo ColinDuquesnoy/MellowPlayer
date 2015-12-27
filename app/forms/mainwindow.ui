@@ -224,7 +224,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -261,7 +261,6 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionShow_menu"/>
-    <addaction name="actionShow_toolbar"/>
     <addaction name="actionFullscreen"/>
    </widget>
    <widget class="QMenu" name="menuNavigation">
@@ -296,6 +295,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionHome"/>
+   <addaction name="actionSelect_service"/>
    <addaction name="separator"/>
    <addaction name="actionAdd_to_favorites"/>
    <addaction name="actionPrevious"/>
@@ -304,8 +304,8 @@
   </widget>
   <action name="actionSelect_service">
    <property name="icon">
-    <iconset theme="system-run" resource="../mellowplayer.qrc">
-     <normaloff>:/icons/system-run.png</normaloff>:/icons/system-run.png</iconset>
+    <iconset theme="audio-x-generic" resource="../mellowplayer.qrc">
+     <normaloff>:/icons/audio-x-generic.png</normaloff>:/icons/audio-x-generic.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Select a music streaming service</string>
@@ -453,22 +453,15 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset theme="show-menu">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>&amp;Show menu</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
-   </property>
-  </action>
-  <action name="actionShow_toolbar">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>S&amp;how toolbar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="actionFullscreen">

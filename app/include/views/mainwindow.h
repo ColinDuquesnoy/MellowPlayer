@@ -120,7 +120,6 @@ private slots:
   void onReportBugTriggered();
   bool exitApplication();
   void onShowMenuToggled(bool showMenu);
-  void onShowToolbarToggled(bool showToolBar);
   void onShowFullscreenToggled(bool showFullscreen);
   void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 

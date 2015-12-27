@@ -7,7 +7,6 @@
         <file>icons/preferences-desktop-theme.png</file>
         <file>icons/preferences-desktop-keyboard.png</file>
         <file>icons/help-about.png</file>
-        <file>icons/system-run.png</file>
         <file>icons/media-playback-pause.png</file>
         <file>icons/media-playback-start.png</file>
         <file>icons/media-seek-backward.png</file>
@@ -22,8 +21,9 @@
         <file>icons/view-refresh.png</file>
         <file>icons/go-next.png</file>
         <file>icons/go-home.png</file>
-        <file>icons/applications-system.png</file>
         <file>icons/view-fullscreen.png</file>
         <file>icons/preferences-desktop-notification.png</file>
+        <file>icons/application-menu.png</file>
+        <file>icons/audio-x-generic.png</file>
     </qresource>
 </RCC>

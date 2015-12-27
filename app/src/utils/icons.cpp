@@ -127,8 +127,8 @@ QIcon Icons::favorite() {
 
 //--------------------------------------
 QIcon Icons::configure() {
-  return QIcon::fromTheme("applications-system",
-                          QIcon(":/icons/applications-system.png"));
+  return QIcon::fromTheme("application-menu",
+                          QIcon(":/icons/application-menu.png"));
 }
 
 //--------------------------------------

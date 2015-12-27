@@ -158,14 +158,11 @@ void MainWindow::setupActions() {
   // set user defined view actions state
   m_ui->actionShow_menu->setChecked(
       QSettings().value("interface/menuVisible", false).toBool());
-  m_ui->actionShow_toolbar->setChecked(
-      QSettings().value("interface/toolBarVisible", true).toBool());
   m_ui->actionFullscreen->setChecked(
       QSettings().value("interface/showFullscreen", false).toBool());
 
 #ifndef Q_OS_MACX
   addAction(m_ui->actionShow_menu);
-  addAction(m_ui->actionShow_toolbar);
   addAction(m_ui->actionFullscreen);
 #else
   // Menu cannot be hidden on OSX
@@ -236,8 +233,6 @@ void MainWindow::connectSlots() {
   connect(m_ui->actionWiki, SIGNAL(triggered()), this, SLOT(onWikiTriggered()));
   connect(m_ui->actionShow_menu, SIGNAL(toggled(bool)), this,
           SLOT(onShowMenuToggled(bool)));
-  connect(m_ui->actionShow_toolbar, SIGNAL(toggled(bool)), this,
-          SLOT(onShowToolbarToggled(bool)));
   connect(m_ui->actionFullscreen, SIGNAL(toggled(bool)), this,
           SLOT(onShowFullscreenToggled(bool)));
 
@@ -339,17 +334,6 @@ void MainWindow::restoreWindow() {
 void MainWindow::onShowMenuToggled(bool showMenu) {
   QSettings().setValue("interface/menuVisible", showMenu);
   m_ui->menuBar->setVisible(showMenu);
-}
-
-//--------------------------------------
-void MainWindow::onShowToolbarToggled(bool showToolBar) {
-  QSettings().setValue("interface/toolBarVisible", showToolBar);
-
-#ifndef Q_OS_MACX
-  m_ui->toolBar->setVisible(showToolBar);
-#else
-  m_ui->toolBar->setVisible(false);
-#endif
 }
 
 //--------------------------------------
@@ -481,7 +465,6 @@ void MainWindow::setupToolbar() {
   m_BtMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   QMenu *mnu = new QMenu(tr("Control"), m_BtMenu);
   mnu->addAction(m_ui->actionShow_menu);
-  mnu->addAction(m_ui->actionShow_toolbar);
   mnu->addAction(m_ui->actionFullscreen);
   mnu->addSeparator();
   mnu->addAction(m_ui->actionSelect_service);
