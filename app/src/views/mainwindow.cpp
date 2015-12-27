@@ -62,7 +62,12 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 //-------------------------------------
-MainWindow::~MainWindow() { delete m_ui; }
+MainWindow::~MainWindow() {
+    foreach(BaseController* c, m_controllers){
+        c->m_mainWindow = nullptr;
+    }
+    delete m_ui;
+}
 
 //--------------------------------------
 void MainWindow::onPreferencesTriggered() {
@@ -411,12 +416,18 @@ BaseController *MainWindow::controller(const QString &name) const {
 
 //--------------------------------------
 PlayerController *MainWindow::player() const {
-  return qobject_cast<PlayerController *>(controller("player"));
+  BaseController* c = controller("player");
+  if(c != nullptr)
+    return qobject_cast<PlayerController *>(c);
+  return nullptr;
 }
 
 //--------------------------------------
 StreamingServicesController *MainWindow::services() const {
-  return qobject_cast<StreamingServicesController *>(controller("services"));
+  BaseController* c = controller("services");
+  if(c != nullptr)
+    return qobject_cast<StreamingServicesController *>(c);
+  return nullptr;
 }
 
 //--------------------------------------

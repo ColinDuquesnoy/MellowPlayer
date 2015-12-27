@@ -43,6 +43,7 @@ class MainWindow;
  */
 class BaseController : public QObject {
   Q_OBJECT
+    friend class MainWindow;
 public:
   /**
    * @brief Constructor
