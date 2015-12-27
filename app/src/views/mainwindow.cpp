@@ -471,10 +471,9 @@ void MainWindow::setupToolbar() {
   m_lblSongInfo->setAlignment(Qt::AlignCenter);
   m_ui->toolBar->insertWidget(m_ui->actionPrevious, m_lblSongInfo);
 
-  m_ui->toolBar->addSeparator();
-
   // Configure drop down menu
 #ifndef Q_OS_MAC
+  m_ui->toolBar->addSeparator();
   m_BtMenu = new QToolButton(this);
   m_BtMenu->setText(tr("Control"));
   m_BtMenu->setIcon(Icons::configure());
