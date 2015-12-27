@@ -44,16 +44,12 @@ class Wizard;
 //! Implements the main window of the application.
 class WizardNewPlugin : public QWizard {
   Q_OBJECT
-  enum class Pages {
-      Intro = 0,
-      Details = 1,
-      Finished = 2
-  };
+  enum class Pages { Intro = 0, Details = 1, Finished = 2 };
 
 public:
   explicit WizardNewPlugin(QWidget *parent = 0);
   ~WizardNewPlugin();
-  static bool createNewPlugin(QWidget* parent);
+  static bool createNewPlugin(QWidget *parent);
 
 protected:
   bool validateCurrentPage();
@@ -62,9 +58,9 @@ private slots:
   void onOpenPluginDirClicked();
 
 private:
-  void createPlugin(const QDir& pluginDir);
-  void createFile(const QDir& pluginDir, const QString& filename);
-  Ui::Wizard* m_ui;
+  void createPlugin(const QDir &pluginDir);
+  void createFile(const QDir &pluginDir, const QString &filename);
+  Ui::Wizard *m_ui;
   QString m_originalFinishedText;
   QDir m_pluginDir;
 };

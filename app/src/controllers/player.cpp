@@ -133,14 +133,14 @@ void PlayerController::onFavoriteChanged(bool favorite) {
 
 //--------------------------------------
 void PlayerController::onUpdateFinished(const QVariant &result) {
-  if(m_mainWindow == nullptr)
+  if (m_mainWindow == nullptr)
     return;
   QVariantMap resultMap = result.toMap();
   QVariantMap songInfoData = resultMap.value("songInfo").toMap();
   QVariantMap playerInfoData = resultMap.value("playerInfo").toMap();
-  StreamingServicesController* services = m_mainWindow->services();
-  if(services == nullptr)
-      return;
+  StreamingServicesController *services = m_mainWindow->services();
+  if (services == nullptr)
+    return;
   StreamingServicePlugin service = services->currentService();
   SongInfo songInfo = songFromQVariantMap(songInfoData);
   PlayerInfo playerInfo = playerInfoFromQVariantMap(playerInfoData);

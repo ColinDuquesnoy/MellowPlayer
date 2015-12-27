@@ -33,76 +33,71 @@ WizardNewPlugin::WizardNewPlugin(QWidget *parent)
   m_ui->setupUi(this);
   m_originalFinishedText = m_ui->labelFinished->text();
 
-  connect(m_ui->btOpenPluginDir, &QPushButton::clicked,
-          this, &WizardNewPlugin::onOpenPluginDirClicked);
+  connect(m_ui->btOpenPluginDir, &QPushButton::clicked, this,
+          &WizardNewPlugin::onOpenPluginDirClicked);
 }
 
 //-------------------------------------
-WizardNewPlugin::~WizardNewPlugin() {
-    delete m_ui;
+WizardNewPlugin::~WizardNewPlugin() { delete m_ui; }
+
+//-------------------------------------
+bool WizardNewPlugin::validateCurrentPage() {
+  if (currentId() == int(Pages::Details)) {
+    QDir pluginsDir(getUserPluginsDirectory());
+    if (!pluginsDir.exists())
+      pluginsDir.mkpath(".");
+    QString svName = m_ui->editSvName->text().toLower().split(" ")[0];
+    QDir pluginDir(QFileInfo(pluginsDir, svName).absoluteFilePath());
+    if (pluginDir.exists())
+      return false;
+    pluginDir.mkpath(".");
+    m_pluginDir = pluginDir;
+    createPlugin(pluginDir);
+    m_ui->labelFinished->setText(m_originalFinishedText.arg(pluginDir.path()));
+  }
+  return true;
 }
 
 //-------------------------------------
-bool WizardNewPlugin::validateCurrentPage()
-{
-    if(currentId() == int(Pages::Details)){
-        QDir pluginsDir(getUserPluginsDirectory());
-        if(!pluginsDir.exists())
-            pluginsDir.mkpath(".");
-        QString svName = m_ui->editSvName->text().toLower().split(" ")[0];
-        QDir pluginDir(QFileInfo(pluginsDir, svName).absoluteFilePath());
-        if(pluginDir.exists())
-            return false;
-        pluginDir.mkpath(".");
-        m_pluginDir = pluginDir;
-        createPlugin(pluginDir);
-        m_ui->labelFinished->setText(m_originalFinishedText.arg(pluginDir.path()));
-    }
+void WizardNewPlugin::onOpenPluginDirClicked() {
+  QDesktopServices::openUrl(QUrl(m_pluginDir.path()));
+}
+
+//-------------------------------------
+bool WizardNewPlugin::createNewPlugin(QWidget *parent) {
+  WizardNewPlugin wizard(parent);
+  if (wizard.exec() == wizard.Accepted)
     return true;
+  return false;
 }
 
 //-------------------------------------
-void WizardNewPlugin::onOpenPluginDirClicked()
-{
-    QDesktopServices::openUrl(QUrl(m_pluginDir.path()));
+void WizardNewPlugin::createPlugin(const QDir &pluginDir) {
+  createFile(pluginDir, "integration.js");
+  createFile(pluginDir, "description.html");
+  createFile(pluginDir, "logo.svg");
+  createFile(pluginDir, "metadata.ini");
 }
 
 //-------------------------------------
-bool WizardNewPlugin::createNewPlugin(QWidget *parent)
-{
-    WizardNewPlugin wizard(parent);
-    if(wizard.exec() == wizard.Accepted)
-        return true;
-    return false;
-}
-
-//-------------------------------------
-void WizardNewPlugin::createPlugin(const QDir &pluginDir)
-{
-    createFile(pluginDir, "integration.js");
-    createFile(pluginDir, "description.html");
-    createFile(pluginDir, "logo.svg");
-    createFile(pluginDir, "metadata.ini");
-}
-
-//-------------------------------------
-void WizardNewPlugin::createFile(const QDir &pluginDir, const QString &filename) {
+void WizardNewPlugin::createFile(const QDir &pluginDir,
+                                 const QString &filename) {
   QFile fin(QString(":/plugin_template/%1").arg(filename));
-  if(!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
+  if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
     qWarning() << "Failed to read plugin file" << filename;
     return;
   }
   QTextStream in(&fin);
   QString text = in.readAll();
   fin.close();
-  if(filename == "metadata.ini") {
-      text = text.arg(m_ui->editAuthor->text(), m_ui->editAuthorUrl->text(),
-                      m_ui->editSvName->text(), m_ui->editSvUrl->text());
+  if (filename == "metadata.ini") {
+    text = text.arg(m_ui->editAuthor->text(), m_ui->editAuthorUrl->text(),
+                    m_ui->editSvName->text(), m_ui->editSvUrl->text());
   }
   QFile fout(QFileInfo(pluginDir, filename).absoluteFilePath());
-  if(fout.open(QIODevice::WriteOnly | QIODevice::Text)) {
-      QTextStream out(&fout);
-      out << text;
+  if (fout.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    QTextStream out(&fout);
+    out << text;
   }
   fout.close();
 }

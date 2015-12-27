@@ -64,10 +64,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 //-------------------------------------
 MainWindow::~MainWindow() {
-    foreach(BaseController* c, m_controllers){
-        c->m_mainWindow = nullptr;
-    }
-    delete m_ui;
+  foreach (BaseController *c, m_controllers) { c->m_mainWindow = nullptr; }
+  delete m_ui;
 }
 
 //--------------------------------------
@@ -353,15 +351,14 @@ void MainWindow::onShowFullscreenToggled(bool showFullscreen) {
 //--------------------------------------
 void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason) {
   if (reason != QSystemTrayIcon::Context)
-      restoreWindow();
+    restoreWindow();
 }
 
 //--------------------------------------
-void MainWindow::onCreatePluginTriggered()
-{
-  if(WizardNewPlugin::createNewPlugin(this)) {
-      services()->reload();
-      services()->selectService();
+void MainWindow::onCreatePluginTriggered() {
+  if (WizardNewPlugin::createNewPlugin(this)) {
+    services()->reload();
+    services()->selectService();
   }
 }
 
@@ -414,16 +411,16 @@ BaseController *MainWindow::controller(const QString &name) const {
 
 //--------------------------------------
 PlayerController *MainWindow::player() const {
-  BaseController* c = controller("player");
-  if(c != nullptr)
+  BaseController *c = controller("player");
+  if (c != nullptr)
     return qobject_cast<PlayerController *>(c);
   return nullptr;
 }
 
 //--------------------------------------
 StreamingServicesController *MainWindow::services() const {
-  BaseController* c = controller("services");
-  if(c != nullptr)
+  BaseController *c = controller("services");
+  if (c != nullptr)
     return qobject_cast<StreamingServicesController *>(c);
   return nullptr;
 }
@@ -469,7 +466,7 @@ void MainWindow::setupToolbar() {
   m_lblSongInfo->setAlignment(Qt::AlignCenter);
   m_ui->toolBar->insertWidget(m_ui->actionPrevious, m_lblSongInfo);
 
-  // Configure drop down menu
+// Configure drop down menu
 #ifndef Q_OS_MAC
   m_ui->toolBar->addSeparator();
   m_BtMenu = new QToolButton(this);

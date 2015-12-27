@@ -57,7 +57,6 @@ struct StreamingServicePlugin {
 bool operator==(const StreamingServicePlugin &lhs,
                 const StreamingServicePlugin &rhs);
 
-
 QString getUserPluginsDirectory();
 
 //---------------------------------------------------------
@@ -125,7 +124,7 @@ public slots:
 private slots:
   void onLoadStarted();
   void onLoadFinished(bool status);
-  void onScriptChanged(const QString& path);
+  void onScriptChanged(const QString &path);
 
 private:
   void loadCurrentServiceScript();

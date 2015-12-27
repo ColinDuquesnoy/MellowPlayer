@@ -140,11 +140,10 @@ QList<StreamingServicePlugin> loadPlugins() {
 }
 
 //--------------------------------------
-QString getUserPluginsDirectory()
-{
+QString getUserPluginsDirectory() {
   return QFileInfo(QStandardPaths::standardLocations(
-    QStandardPaths::AppLocalDataLocation)[0],
-    "plugins").absoluteFilePath();
+                       QStandardPaths::AppLocalDataLocation)[0],
+                   "plugins").absoluteFilePath();
 }
 
 //--------------------------------------
@@ -157,7 +156,7 @@ StreamingServicesController::StreamingServicesController(MainWindow *mainWindow)
     : BaseController("services", mainWindow) {
   m_services = loadPlugins();
 
-  foreach(StreamingServicePlugin p, m_services) {
+  foreach (StreamingServicePlugin p, m_services) {
     m_fsWatcher.addPath(p.scriptPath);
   }
 
@@ -180,16 +179,15 @@ StreamingServicesController::StreamingServicesController(MainWindow *mainWindow)
 }
 
 //--------------------------------------
-void StreamingServicesController::reload()
-{
-  foreach(StreamingServicePlugin p, m_services) {
+void StreamingServicesController::reload() {
+  foreach (StreamingServicePlugin p, m_services) {
     m_fsWatcher.removePath(p.scriptPath);
   }
   m_services = loadPlugins();
-  foreach(StreamingServicePlugin p, m_services) {
-      if(m_currentService.Name == p.Name)
-          m_currentService = p;
-      m_fsWatcher.addPath(p.scriptPath);
+  foreach (StreamingServicePlugin p, m_services) {
+    if (m_currentService.Name == p.Name)
+      m_currentService = p;
+    m_fsWatcher.addPath(p.scriptPath);
   }
 }
 
@@ -271,18 +269,17 @@ void StreamingServicesController::onLoadStarted() {
 }
 
 //--------------------------------------
-void StreamingServicesController::loadCurrentServiceScript()
-{
-    QString constants("mellowplayer = {\n"
-                      "    PlaybackStatus: {\n"
-                      "        PLAYING: 0,\n"
-                      "        PAUSED: 1,\n"
-                      "        STOPPED: 2,\n"
-                      "        BUFFERING: 3\n"
-                      "    }\n"
-                      "};");
-    this->m_mainWindow->ui()->webView->page()->runJavaScript(
-        constants + m_currentService.Code);
+void StreamingServicesController::loadCurrentServiceScript() {
+  QString constants("mellowplayer = {\n"
+                    "    PlaybackStatus: {\n"
+                    "        PLAYING: 0,\n"
+                    "        PAUSED: 1,\n"
+                    "        STOPPED: 2,\n"
+                    "        BUFFERING: 3\n"
+                    "    }\n"
+                    "};");
+  this->m_mainWindow->ui()->webView->page()->runJavaScript(
+      constants + m_currentService.Code);
 }
 
 //--------------------------------------
@@ -297,20 +294,19 @@ void StreamingServicesController::onLoadFinished(bool status) {
   qApp->restoreOverrideCursor();
 }
 
-void StreamingServicesController::onScriptChanged(const QString &path)
-{
-    foreach (StreamingServicePlugin p, m_services) {
-        if(p.scriptPath == path) {
-            qDebug() << "script changed externally, reloading" << path;
-            p.Code = readFileContent(path);
-            if(p.Name == m_currentService.Name) {
-                m_currentService.Code = p.Code;
-                loadCurrentServiceScript();
-            }
-            break;
-        }
+void StreamingServicesController::onScriptChanged(const QString &path) {
+  foreach (StreamingServicePlugin p, m_services) {
+    if (p.scriptPath == path) {
+      qDebug() << "script changed externally, reloading" << path;
+      p.Code = readFileContent(path);
+      if (p.Name == m_currentService.Name) {
+        m_currentService.Code = p.Code;
+        loadCurrentServiceScript();
+      }
+      break;
     }
-    m_fsWatcher.addPath(path);
+  }
+  m_fsWatcher.addPath(path);
 }
 
 //--------------------------------------
