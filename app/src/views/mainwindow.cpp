@@ -34,6 +34,7 @@
 #include "views/dlgselectservice.h"
 #include "views/dlgpreferences.h"
 #include "views/mainwindow.h"
+#include "views/wizard_new_plugin.h"
 #include "ui_mainwindow.h"
 
 //---------------------------------------------------------
@@ -238,6 +239,10 @@ void MainWindow::connectSlots() {
 
   connect(m_ui->stackedWidget, &QStackedWidget::currentChanged, this,
           &MainWindow::onPageChanged);
+  connect(m_ui->actionCreate_plugin, &QAction::triggered, this,
+          &MainWindow::onCreatePluginTriggered);
+  connect(m_ui->btCreatePlugin, &QPushButton::clicked, this,
+          &MainWindow::onCreatePluginTriggered);
 }
 
 //--------------------------------------
@@ -348,7 +353,16 @@ void MainWindow::onShowFullscreenToggled(bool showFullscreen) {
 //--------------------------------------
 void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason) {
   if (reason != QSystemTrayIcon::Context)
-    restoreWindow();
+      restoreWindow();
+}
+
+//--------------------------------------
+void MainWindow::onCreatePluginTriggered()
+{
+  if(WizardNewPlugin::createNewPlugin(this)) {
+      services()->reload();
+      services()->selectService();
+  }
 }
 
 //--------------------------------------

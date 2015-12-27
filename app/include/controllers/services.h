@@ -71,6 +71,11 @@ public:
   explicit StreamingServicesController(MainWindow *mainWindow);
 
   /**
+   * @brief Reload the list of available services.
+   */
+  void reload();
+
+  /**
    * @brief Starts the specified service and show the webview page.
    *
    * If the service does not exists, the home page is shown instead.

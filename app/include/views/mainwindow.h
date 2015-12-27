@@ -122,6 +122,7 @@ private slots:
   void onShowMenuToggled(bool showMenu);
   void onShowFullscreenToggled(bool showFullscreen);
   void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+  void onCreatePluginTriggered();
 
 private:
   void closeEvent(QCloseEvent *event);

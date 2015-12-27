@@ -173,6 +173,16 @@ StreamingServicesController::StreamingServicesController(MainWindow *mainWindow)
 }
 
 //--------------------------------------
+void StreamingServicesController::reload()
+{
+  m_services = loadPlugins();
+  foreach(StreamingServicePlugin p, m_services) {
+      if(m_currentService.Name == p.Name)
+          m_currentService = p;
+  }
+}
+
+//--------------------------------------
 void StreamingServicesController::startService(const QString &serviceName,
                                                bool force) {
   StreamingServicePlugin sv = getService(serviceName);

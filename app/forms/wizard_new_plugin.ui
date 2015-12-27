@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>639</width>
-    <height>381</height>
+    <width>641</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Wizard</string>
+   <string>Create plugin wizard</string>
   </property>
   <widget class="QWizardPage" name="wizardPageIntro">
    <property name="title">
@@ -24,7 +24,7 @@
     <item>
      <widget class="QLabel" name="labelIntro">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This wizard will guide you though the steps need to create a service integration plugin for MellowPlayer.&lt;/p&gt;&lt;p&gt;A service integration plugin let you add support for a new web-based streaming service.&lt;/p&gt;&lt;p&gt;A plugin is a directory which contains 4 files:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;description.html&lt;/span&gt;: this file contains the description of your plugin and will be visible in the service selection dialog.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;integration.js&lt;/span&gt;: this file contains the code of your plugin. You just have to implement a few functions in javascript...&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;metadata.ini&lt;/span&gt;: this file contains some metadata about your plugin.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: the logo of your plugin.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This wizard will take care of creating all those files...&lt;/p&gt;&lt;p&gt;See the &lt;a href=&quot;http://mellowplayer.readthedocs.org/en/latest/developers/plugins.html#functions-to-implement&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;API documentation&lt;/span&gt;&lt;/a&gt; for a description of each of these functions...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This wizard will guide you though the steps needed to create a service integration plugin for MellowPlayer.&lt;/p&gt;&lt;p&gt;A service integration plugin let you add support for a new web-based streaming service.&lt;/p&gt;&lt;p&gt;A plugin is a directory which contains 4 files:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;description.html&lt;/span&gt;: this file contains the description of your plugin and will be visible in the service selection dialog.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;integration.js&lt;/span&gt;: this file contains the code of your plugin. You just have to implement a few functions in javascript.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;metadata.ini&lt;/span&gt;: this file contains some metadata about your plugin.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: the logo of your plugin.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This wizard will create all those files for you, you're left with the implementation.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;See the &lt;/span&gt;&lt;a href=&quot;http://mellowplayer.readthedocs.org/en/latest/developers/plugins.html#functions-to-implement&quot;&gt;&lt;span style=&quot; font-style:italic; text-decoration: underline; color:#2980b9;&quot;&gt;API documentation&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; for a description of each of these functions.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::RichText</enum>
@@ -47,7 +47,7 @@
     <string>Details</string>
    </property>
    <property name="subTitle">
-    <string>Please fill in the below form about your plugin</string>
+    <string>Please fill in the details about your plugin.</string>
    </property>
    <layout class="QFormLayout" name="formLayout">
     <property name="fieldGrowthPolicy">
@@ -104,7 +104,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="labelFinished">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -112,7 +112,7 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Your plugin has been created: &lt;a href=&quot;file://&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;%1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Restart MellowPlayer and you plugin should appear in the list of available services.&lt;/p&gt;&lt;p&gt;It's now up to you to implement the body of the functions of &lt;span style=&quot; font-weight:600;&quot;&gt;integration.js&lt;/span&gt; and give a nice description of the service and your plugin in &lt;span style=&quot; font-weight:600;&quot;&gt;description.html.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Your plugin has been created to: &lt;a href=&quot;file://%1&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;%1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Your plugin should now appear in the list of available services, just select it and start working in it!&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Your code will be reloaded automatically whenever you save it using your preferred editor...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -133,7 +133,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="btOpenPluginDir">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -144,13 +144,21 @@
        <string>Open plugin directory</string>
       </property>
       <property name="icon">
-       <iconset theme="folder-open"/>
+       <iconset theme="folder-open">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>editSvName</tabstop>
+  <tabstop>editSvUrl</tabstop>
+  <tabstop>editAuthor</tabstop>
+  <tabstop>editAuthorUrl</tabstop>
+  <tabstop>btOpenPluginDir</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

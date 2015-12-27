@@ -73,7 +73,8 @@ SOURCES += main.cpp\
            views/dlgselectservice.cpp \
            views/dlgpreferences.cpp \
            views/mainwindow.cpp \
-           views/webview.cpp
+           views/webview.cpp \
+           views/wizard_new_plugin.cpp
 
 HEADERS += application.h \
            controllers/hotkeys.h \
@@ -90,7 +91,8 @@ HEADERS += application.h \
            views/dlgselectservice.h \
            views/dlgpreferences.h \
            views/mainwindow.h \
-           views/webview.h
+           views/webview.h \
+           views/wizard_new_plugin.h
 
 RESOURCES = app/mellowplayer.qrc
 FORMS += app/forms/dlg_select_service.ui \
