@@ -48,6 +48,9 @@ struct StreamingServicePlugin {
   QIcon Icon;            ///< Plugin's icon path
   QString IconFilePath;  ///< Plugin's icon path
   QString Version;       ///< Plugin's version
+
+  QString scriptPath;
+
   bool isValid();
 };
 
@@ -122,8 +125,11 @@ public slots:
 private slots:
   void onLoadStarted();
   void onLoadFinished(bool status);
+  void onScriptChanged(const QString& path);
 
 private:
+  void loadCurrentServiceScript();
+  QFileSystemWatcher m_fsWatcher;
   QList<StreamingServicePlugin> m_services;
   StreamingServicePlugin m_currentService;
 };

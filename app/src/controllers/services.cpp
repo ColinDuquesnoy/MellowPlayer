@@ -81,6 +81,7 @@ StreamingServicePlugin loadPlugin(const QString &directory) {
   retVal.Code = readFileContent(scriptPath);
   retVal.Description = readFileContent(descPath);
   readMetadata(metadataPath, retVal);
+  retVal.scriptPath = scriptPath;
 
   return retVal;
 }
@@ -156,6 +157,10 @@ StreamingServicesController::StreamingServicesController(MainWindow *mainWindow)
     : BaseController("services", mainWindow) {
   m_services = loadPlugins();
 
+  foreach(StreamingServicePlugin p, m_services) {
+    m_fsWatcher.addPath(p.scriptPath);
+  }
+
   QPushButton *bt = m_mainWindow->ui()->pushButtonSelect;
   QAction *a = m_mainWindow->ui()->actionSelect_service;
   WebView *v = m_mainWindow->ui()->webView;
@@ -170,15 +175,21 @@ StreamingServicesController::StreamingServicesController(MainWindow *mainWindow)
           &StreamingServicesController::onLoadFinished);
   connect(m_mainWindow->ui()->actionHome, &QAction::triggered, this,
           &StreamingServicesController::onHomeTriggered);
+  connect(&m_fsWatcher, &QFileSystemWatcher::fileChanged, this,
+          &StreamingServicesController::onScriptChanged);
 }
 
 //--------------------------------------
 void StreamingServicesController::reload()
 {
+  foreach(StreamingServicePlugin p, m_services) {
+    m_fsWatcher.removePath(p.scriptPath);
+  }
   m_services = loadPlugins();
   foreach(StreamingServicePlugin p, m_services) {
       if(m_currentService.Name == p.Name)
           m_currentService = p;
+      m_fsWatcher.addPath(p.scriptPath);
   }
 }
 
@@ -260,9 +271,8 @@ void StreamingServicesController::onLoadStarted() {
 }
 
 //--------------------------------------
-void StreamingServicesController::onLoadFinished(bool status) {
-  WebView *v = m_mainWindow->ui()->webView;
-  if (status && !v->url().isEmpty()) {
+void StreamingServicesController::loadCurrentServiceScript()
+{
     QString constants("mellowplayer = {\n"
                       "    PlaybackStatus: {\n"
                       "        PLAYING: 0,\n"
@@ -273,11 +283,34 @@ void StreamingServicesController::onLoadFinished(bool status) {
                       "};");
     this->m_mainWindow->ui()->webView->page()->runJavaScript(
         constants + m_currentService.Code);
+}
+
+//--------------------------------------
+void StreamingServicesController::onLoadFinished(bool status) {
+  WebView *v = m_mainWindow->ui()->webView;
+  if (status && !v->url().isEmpty()) {
+    loadCurrentServiceScript();
     m_mainWindow->player()->startPolling();
     emit serviceStarted(m_currentService.Name);
     qDebug() << "Service started" << m_currentService.Name;
   }
   qApp->restoreOverrideCursor();
+}
+
+void StreamingServicesController::onScriptChanged(const QString &path)
+{
+    foreach (StreamingServicePlugin p, m_services) {
+        if(p.scriptPath == path) {
+            qDebug() << "script changed externally, reloading" << path;
+            p.Code = readFileContent(path);
+            if(p.Name == m_currentService.Name) {
+                m_currentService.Code = p.Code;
+                loadCurrentServiceScript();
+            }
+            break;
+        }
+    }
+    m_fsWatcher.addPath(path);
 }
 
 //--------------------------------------
