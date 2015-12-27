@@ -54,6 +54,9 @@ struct StreamingServicePlugin {
 bool operator==(const StreamingServicePlugin &lhs,
                 const StreamingServicePlugin &rhs);
 
+
+QString getUserPluginsDirectory();
+
 //---------------------------------------------------------
 // Classes
 //---------------------------------------------------------

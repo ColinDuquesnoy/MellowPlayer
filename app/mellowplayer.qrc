@@ -25,5 +25,10 @@
         <file>icons/preferences-desktop-notification.png</file>
         <file>icons/application-menu.png</file>
         <file>icons/audio-x-generic.png</file>
+        <file>icons/plugins.png</file>
+        <file>plugin_template/description.html</file>
+        <file>plugin_template/integration.js</file>
+        <file>plugin_template/logo.svg</file>
+        <file>plugin_template/metadata.ini</file>
     </qresource>
 </RCC>

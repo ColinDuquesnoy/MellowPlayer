@@ -95,7 +95,8 @@ HEADERS += application.h \
 RESOURCES = app/mellowplayer.qrc
 FORMS += app/forms/dlg_select_service.ui \
          app/forms/dlg_preferences.ui \
-         app/forms/mainwindow.ui
+         app/forms/mainwindow.ui \
+         app/forms/wizard_new_plugin.ui
 
 # Version infos
 VERSION = 2.0.0
@@ -154,15 +155,6 @@ unix:!macx {
 }
 win32 {
     target.path = dist
-}
-
-# automatically release translations, .qm files are embedded
-# in the application resources.
-unix:!macx{
-    system("lrelease-qt5 MellowPlayer.pro")
-}
-else{
-    system("lrelease MellowPlayer.pro")
 }
 
 # translations for the whole project (including plugins and lib) are stored

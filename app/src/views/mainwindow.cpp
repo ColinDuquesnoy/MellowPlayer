@@ -467,6 +467,8 @@ void MainWindow::setupToolbar() {
   mnu->addAction(m_ui->actionShow_menu);
   mnu->addAction(m_ui->actionFullscreen);
   mnu->addSeparator();
+  mnu->addAction(m_ui->actionCreate_plugin);
+  mnu->addSeparator();
   mnu->addAction(m_ui->actionSelect_service);
   mnu->addAction(m_ui->actionPreferences);
 

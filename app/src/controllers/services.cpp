@@ -99,8 +99,7 @@ bool checkPluginDirectory(const QString &directory) {
 QStringList getSearchPaths() {
   QStringList paths;
   paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
-  paths.append(
-      QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, "plugins"));
+  paths.append(getUserPluginsDirectory());
 
 #ifdef Q_OS_MAC
   QDir pluginsDir(qApp->applicationDirPath());
@@ -137,6 +136,14 @@ QList<StreamingServicePlugin> loadPlugins() {
     }
   }
   return plugins;
+}
+
+//--------------------------------------
+QString getUserPluginsDirectory()
+{
+  return QFileInfo(QStandardPaths::standardLocations(
+    QStandardPaths::AppLocalDataLocation)[0],
+    "plugins").absoluteFilePath();
 }
 
 //--------------------------------------
@@ -263,6 +270,7 @@ void StreamingServicesController::onLoadFinished(bool status) {
   qApp->restoreOverrideCursor();
 }
 
+//--------------------------------------
 bool operator==(const StreamingServicePlugin &lhs,
                 const StreamingServicePlugin &rhs) {
   return lhs.Name == rhs.Name;

@@ -35,7 +35,6 @@
 //--------------------------------------
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv)
     : QApplication(argc, argv), m_mainWindow(NULL) {
-  setOrganizationName("MellowPlayer");
   setOrganizationDomain("org.mellowplayer");
   setApplicationDisplayName("MellowPlayer");
   setApplicationName("MellowPlayer");

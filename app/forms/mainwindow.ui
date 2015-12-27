@@ -269,10 +269,17 @@
     </property>
     <addaction name="actionHome"/>
    </widget>
+   <widget class="QMenu" name="menuDeveloper">
+    <property name="title">
+     <string>Developer</string>
+    </property>
+    <addaction name="actionCreate_plugin"/>
+   </widget>
    <addaction name="menuApplication"/>
    <addaction name="menuNavigation"/>
    <addaction name="menuPlayback"/>
    <addaction name="menuView"/>
+   <addaction name="menuDeveloper"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -421,6 +428,9 @@
    <property name="text">
     <string>About &amp;Qt</string>
    </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
   </action>
   <action name="actionAdd_to_favorites">
    <property name="icon">
@@ -429,6 +439,9 @@
    </property>
    <property name="text">
     <string>&amp;Add to favorites</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
    </property>
   </action>
   <action name="actionWiki">
@@ -439,6 +452,9 @@
    <property name="text">
     <string>&amp;Wiki</string>
    </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
   </action>
   <action name="actionHome">
    <property name="icon">
@@ -447,6 +463,9 @@
    </property>
    <property name="text">
     <string>&amp;Home</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
    </property>
   </action>
   <action name="actionShow_menu">
@@ -477,6 +496,18 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionCreate_plugin">
+   <property name="icon">
+    <iconset theme="plugins" resource="../mellowplayer.qrc">
+     <normaloff>:/icons/plugins.png</normaloff>:/icons/plugins.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create plugin...</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
    </property>
   </action>
  </widget>
