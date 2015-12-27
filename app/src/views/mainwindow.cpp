@@ -115,6 +115,7 @@ void MainWindow::setupIcons() {
   m_ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
   m_ui->pushButtonPreferences->setIcon(Icons::preferences());
   m_ui->pushButtonQuit->setIcon(Icons::quit());
+  m_ui->btCreatePlugin->setIcon(Icons::plugins());
 }
 
 //--------------------------------------
@@ -166,7 +167,6 @@ void MainWindow::setupActions() {
 #else
   // Menu cannot be hidden on OSX
   m_ui->actionShow_menu->setVisible(false);
-  m_ui->actionShow_toolbar->setVisible(false);
   m_ui->actionFullscreen->setVisible(false);
 #endif
   addAction(m_ui->actionSelect_service);

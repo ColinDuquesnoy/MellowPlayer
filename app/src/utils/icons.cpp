@@ -60,7 +60,7 @@ QIcon Icons::previous() {
 
 //--------------------------------------
 QIcon Icons::selectStreamingService() {
-  return QIcon::fromTheme("system-run", QIcon(":/icons/system-run.png"));
+  return QIcon::fromTheme("audio-x-generic", QIcon(":/icons/audio-x-generic.png"));
 }
 
 //--------------------------------------
@@ -110,8 +110,8 @@ QIcon Icons::shortcuts() {
 
 //--------------------------------------
 QIcon Icons::plugins() {
-  return QIcon::fromTheme("preferences-other",
-                          QIcon(":/icons/preferences-other.png"));
+  return QIcon::fromTheme("plugins",
+                          QIcon(":/icons/plugins.png"));
 }
 
 //--------------------------------------
