@@ -23,12 +23,30 @@ MellowPlayer will look for plugins in the following directories:
 - **$CURRENT_WORKING_DIR/plugins**
 - **/usr/share/mellowplayer/plugins**
 - **/usr/local/share/mellowplayer/plugins**
-- **~/.local/share/mellowplayer/plugins**
+- **~/.local/share/MellowPlayer/plugins**
 
 
-You will find a plugin template in **utils/templates**. Just copy the ``plugin`` template directory 
-to one of the above locations, rename it to the name of the service you want to add and start 
-editing the 4 documents aforementioned.
+Create a new plugin
+-------------------
+
+To create a plugin, go to the **Control** drop down menu or the **Developer** main menu and click on **Create plugin**. 
+
+This will bring the following wizard:
+
+.. image:: ../_static/wizard_new_plugin_01.png
+    :align: center
+
+Fill in the details:
+
+.. image:: ../_static/wizard_new_plugin_02.png
+    :align: center
+
+
+When you're done, select your new plugin service in the services dialog that will automatically pop out:
+
+.. image:: ../_static/wizard_new_plugin_03.png
+    :align: center
+
 
 Functions to implement
 ----------------------
