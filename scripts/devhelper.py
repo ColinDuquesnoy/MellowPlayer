@@ -101,8 +101,6 @@ def make_win32_release():
 	
     mellow_plugins_dir = os.path.join(dist, "plugins")
     shutil.copytree(os.path.join(os.getcwd(), 'plugins'), mellow_plugins_dir)
-    shutil.copy(os.path.join(os.getcwd(), 'scripts', 'windows', 'vc_redist.x86.exe'),
-                os.path.join(dist, 'vc_redist.x86.exe'))
 	
 	# copy qt stuff
     qt_bin_dir = os.path.dirname(qmake)

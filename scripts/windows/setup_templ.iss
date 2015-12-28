@@ -35,30 +35,38 @@ SignTool=digicert
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
-[Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
-Name: "vcredist"; Description: "Install MSVC 2015 redist (recommended)"; GroupDescription: "Additional installers:";
-Name: "flash"; Description: "Install Flash Player PPAPI (recommended)"; GroupDescription: "Additional installers:";
+[Types]
+Name: full;    Description: "Full installation"
+Name: compact; Description: "Compact installation"
+Name: custom;  Description: "Custom installation"; Flags: iscustom
+
+[Components]
+Name: app;  Description: "MellowPlayer";  Types: full compact custom; Flags: fixed
+Name: flash; Description: "Flash Player PPAPI";  Types: full; Flags: disablenouninstallwarning;
+Name: vcredist; Description: "MSVC 2015 Redist";  Types: full; Flags: disablenouninstallwarning;
 
 [Files]
-Source: "bin\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Components: app
+Source: "scripts\windows\vc_redist.x86.exe"; DestDir: "{tmp}\vc_redist.x86.exe"; Components: vcredist
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app; 
+Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1; Components: app;
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Components: app;
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; Components: app;
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Components: app;
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon; Components: app;
 
 [Run]
-Filename: "{app}\vc_redist.x86.exe"; Tasks: vcredist;
-Filename: "{tmp}\flash_ppapi_setup.exe"; Tasks: flash;
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\vc_redist.x86.exe"; Components: vcredist;
+Filename: "{tmp}\flash_ppapi_setup.exe"; Components: flash;
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: app;
 
 [Code]
 procedure InitializeWizard();
 begin
-    idpSetOption('detailsvisible', 'yes');
-    idpAddFile('https://fpdownload.adobe.com/pub/flashplayer/latest/help/install_flash_player_ppapi.exe', ExpandConstant('{tmp}\flash_ppapi_setup.exe'));
-    idpDownloadAfter(wpReady);
+  idpAddFileComp('https://fpdownload.adobe.com/pub/flashplayer/latest/help/install_flash_player_ppapi.exe', ExpandConstant('{tmp}\flash_ppapi_setup.exe'), 'flash');
+  idpDownloadAfter(wpReady);
 end;
