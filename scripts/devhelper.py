@@ -101,7 +101,7 @@ def make_win32_release():
 	
     mellow_plugins_dir = os.path.join(dist, "plugins")
     shutil.copytree(os.path.join(os.getcwd(), 'plugins'), mellow_plugins_dir)
-    shutil.copy(os.path.join(os.getcwd(), 'utils', 'windows', 'vc_redist.x86.exe'),
+    shutil.copy(os.path.join(os.getcwd(), 'scripts', 'windows', 'vc_redist.x86.exe'),
                 os.path.join(dist, 'vc_redist.x86.exe'))
 	
 	# copy qt stuff
@@ -185,7 +185,7 @@ def make_win32_release():
 
     # configure innosetup
     version = read_input('Version string: ')
-    with open('utils/windows/setup_templ.iss', 'r') as src, open('setup.iss', 'w') as dst:
+    with open('scripts/windows/setup_templ.iss', 'r') as src, open('setup.iss', 'w') as dst:
         lines = src.readlines()
         data = []
         for l in lines:
