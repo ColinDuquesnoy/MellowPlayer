@@ -265,7 +265,6 @@ void StreamingServicesController::onLoadStarted() {
   m_mainWindow->setInfoLabelText(
       QString("Loading %1").arg(m_currentService.Name));
   m_mainWindow->player()->stopPolling();
-  qApp->setOverrideCursor(Qt::WaitCursor);
 }
 
 //--------------------------------------
@@ -291,7 +290,6 @@ void StreamingServicesController::onLoadFinished(bool status) {
     emit serviceStarted(m_currentService.Name);
     qDebug() << "Service started" << m_currentService.Name;
   }
-  qApp->restoreOverrideCursor();
 }
 
 void StreamingServicesController::onScriptChanged(const QString &path) {
