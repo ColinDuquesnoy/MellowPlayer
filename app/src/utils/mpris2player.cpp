@@ -82,7 +82,7 @@ void Mpris2Player::Previous() { m_player->previous(); }
 //-------------------------------------
 void Mpris2Player::Seek(qlonglong position) {
   qlonglong newPos = this->position() + position;
-  m_prevPos = newPos;
+  m_prevPos = 0;  // force emit seeked
   m_player->seekToPosition(newPos / SEC_TO_MICROSEC);
 }
 
@@ -90,7 +90,7 @@ void Mpris2Player::Seek(qlonglong position) {
 void Mpris2Player::SetPosition(const QDBusObjectPath &trackId,
                                qlonglong position) {
   Q_UNUSED(trackId);
-  m_prevPos = position;
+  m_prevPos = 0;  // force emit seeked
   m_player->seekToPosition(position / SEC_TO_MICROSEC);
 }
 
@@ -213,7 +213,7 @@ void Mpris2Player::setRate(float value) { Q_UNUSED(value); }
 
 //-------------------------------------
 qlonglong Mpris2Player::position() {
-  return (qlonglong)m_player->songInfo().Position * SEC_TO_MICROSEC;
+  return m_player->songInfo().Position * SEC_TO_MICROSEC;
 }
 
 //-------------------------------------
