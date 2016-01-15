@@ -170,7 +170,7 @@
              <string>Select a music streaming service</string>
             </property>
             <property name="icon">
-             <iconset theme="audio-x-generic"/>
+             <iconset theme="folder-music"/>
             </property>
            </widget>
           </item>
@@ -193,7 +193,8 @@
              <string>Create a plugin...</string>
             </property>
             <property name="icon">
-             <iconset theme="plugins"/>
+             <iconset theme="plugins">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </widget>
           </item>
@@ -233,7 +234,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -320,8 +321,8 @@
   </widget>
   <action name="actionSelect_service">
    <property name="icon">
-    <iconset theme="audio-x-generic" resource="../mellowplayer.qrc">
-     <normaloff>:/icons/audio-x-generic.png</normaloff>:/icons/audio-x-generic.png</iconset>
+    <iconset theme="folder-music" resource="../mellowplayer.qrc">
+     <normaloff>:/icons/folder-music.png</normaloff>:/icons/folder-music.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Select a music streaming service</string>

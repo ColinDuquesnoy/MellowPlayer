@@ -60,7 +60,11 @@ QIcon Icons::previous() {
 
 //--------------------------------------
 QIcon Icons::selectStreamingService() {
-  return QIcon::fromTheme("audio-x-generic", QIcon(":/icons/audio-x-generic.png"));
+  QString themeIcon("folder-music");
+  if(!QIcon::hasThemeIcon(themeIcon)){
+      themeIcon = "audio-x-generic";
+  }
+  return QIcon::fromTheme(themeIcon, QIcon(":/icons/folder-music.png"));
 }
 
 //--------------------------------------
