@@ -54,6 +54,9 @@ MainWindow::MainWindow(QWidget *parent)
   m_ui->stackedWidget->setCurrentIndex(PAGE_HOME);
   onPageChanged(PAGE_HOME);
 
+  qApp->setWindowIcon(Icons::mellowPlayer());
+  setWindowIcon(Icons::mellowPlayer());
+
   // Setup controllers
   new PlayerController(this);
   new StreamingServicesController(this);
