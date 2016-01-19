@@ -48,12 +48,12 @@ NotificationsController::NotificationsController(MainWindow *parent)
   SnoreCore &snoreCore = SnoreCore::instance();
   snoreCore.registerApplication(m_SnoreApp);
   snoreCore.setDefaultApplication(m_SnoreApp);
-  snoreCore.loadPlugins(Snore::SnorePlugin::ALL);
+  snoreCore.loadPlugins(Snore::SnorePlugin::All);
 
   qDebug() << "Primary notification backend:"
            << snoreCore.primaryNotificationBackend();
   qDebug() << "Available notification backends:"
-           << snoreCore.pluginNames(Snore::SnorePlugin::BACKEND);
+           << snoreCore.pluginNames(Snore::SnorePlugin::Backend);
   connect(&snoreCore, &SnoreCore::actionInvoked, this,
           &NotificationsController::onActionInvoked);
 #endif
@@ -83,15 +83,15 @@ void NotificationsController::showMessage(const QString &title,
   }
 
   if (!m_SnoreApp.constHints().value("use-markup").toBool()) {
-    myTitle = Utils::normalizeMarkup(myTitle, Utils::NO_MARKUP);
-    myMessage = Utils::normalizeMarkup(myMessage, Utils::NO_MARKUP);
+    myTitle = Utils::normalizeMarkup(myTitle, Utils::NoMarkup);
+    myMessage = Utils::normalizeMarkup(myMessage, Utils::NoMarkup);
   }
 
   int timeout = QSettings().value("notifications/timeout", 5).toInt();
 
   if (m_oldNotification.isValid() && timeout != 0)
     snoreCore.requestCloseNotification(m_oldNotification,
-                                       Notification::REPLACED);
+                                       Notification::Replaced);
 
   Notification noti(m_SnoreApp, m_SnoreApp.defaultAlert(), myTitle, myMessage,
                     myIcon, timeout);
