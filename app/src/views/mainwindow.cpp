@@ -334,6 +334,14 @@ bool MainWindow::exitApplication() {
 void MainWindow::restoreWindow() {
   raise();
   show();
+  // force refresh web view
+  qDebug() << "Forcing refresh of QWebEngineView";
+  int originalWidth = geometry().width();
+  int originalHeight = geometry().height();
+  resize(originalWidth - 1, originalHeight - 1);
+  qApp->processEvents();
+  resize(originalWidth, originalHeight);
+  qApp->processEvents();
 }
 
 //--------------------------------------
