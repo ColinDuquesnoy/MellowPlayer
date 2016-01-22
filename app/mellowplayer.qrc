@@ -30,5 +30,8 @@
         <file>plugin_template/logo.svg</file>
         <file>plugin_template/metadata.ini</file>
         <file>icons/folder-music.png</file>
+        <file>icons/text-x-changelog.png</file>
+        <file>icons/internet-web-browser.png</file>
+        <file>icons/window-close.png</file>
     </qresource>
 </RCC>

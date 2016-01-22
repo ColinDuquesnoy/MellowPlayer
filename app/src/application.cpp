@@ -38,10 +38,9 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv)
   setOrganizationDomain("org.mellowplayer");
   setApplicationDisplayName("MellowPlayer");
   setApplicationName("MellowPlayer");
-  setApplicationVersion(QString("%1.%2.%3")
-                            .arg(QString::number(VERSION_MAJOR),
-                                 QString::number(VERSION_MINOR),
-                                 QString::number(VERSION_MICRO)));
+  setApplicationVersion(APP_VERSION);
+
+  QVersionNumber version = QVersionNumber::fromString(APP_VERSION);
 
   connect(&m_singleInstanceController,
           &SingleInstanceController::playPauseRequested, this,

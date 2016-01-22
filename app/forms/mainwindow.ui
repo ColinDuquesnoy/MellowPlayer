@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>668</height>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="minimumSize">
        <size>
@@ -43,18 +43,18 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pageHome">
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="1">
+        <item row="2" column="1">
          <widget class="QLabel" name="label">
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icons/mellowplayer.png&quot; width=&quot;128&quot; height=&quot;128&quot;/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Welcome to MellowPlayer!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-style:italic;&quot;&gt;Please, select a music streaming service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="7" column="0">
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -67,7 +67,7 @@
           </property>
          </spacer>
         </item>
-        <item row="6" column="2">
+        <item row="7" column="2">
          <spacer name="horizontalSpacer_3">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -80,7 +80,7 @@
           </property>
          </spacer>
         </item>
-        <item row="10" column="1">
+        <item row="11" column="1">
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -93,7 +93,7 @@
           </property>
          </spacer>
         </item>
-        <item row="0" column="1">
+        <item row="1" column="1">
          <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -106,7 +106,7 @@
           </property>
          </spacer>
         </item>
-        <item row="3" column="1">
+        <item row="4" column="1">
          <layout class="QGridLayout" name="gridLayout_3">
           <property name="topMargin">
            <number>0</number>
@@ -170,7 +170,8 @@
              <string>Select a music streaming service</string>
             </property>
             <property name="icon">
-             <iconset theme="folder-music"/>
+             <iconset theme="folder-music">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </widget>
           </item>
@@ -226,6 +227,85 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="popupUpdate" native="true">
+      <property name="styleSheet">
+       <string notr="true">QWidget#popupUpdate {background-color: #3daee9;};</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/preferences-desktop-notification.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPopupUpdate">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;A new version of MellowPlayer is available!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonPopupOpenBrowser">
+         <property name="text">
+          <string>Open browser</string>
+         </property>
+         <property name="icon">
+          <iconset theme="internet-web-browser"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonPopupDetails">
+         <property name="text">
+          <string>Details</string>
+         </property>
+         <property name="icon">
+          <iconset theme="text-x-changelog"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonPopupClose">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset theme="window-close">
+           <normaloff>.</normaloff>.</iconset>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -234,7 +314,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -537,5 +617,22 @@
  <resources>
   <include location="../mellowplayer.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonPopupClose</sender>
+   <signal>clicked()</signal>
+   <receiver>popupUpdate</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>776</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

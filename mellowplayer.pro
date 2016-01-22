@@ -31,8 +31,12 @@ QT += core gui network widgets webengine webenginewidgets
 }
 CONFIG += c++11
 
+# Version and windows icon
+win32:VERSION = 1.95.0.0 # major.minor.patch.build
+else:VERSION = 1.95    # major.minor.patch
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
 # Windows specific rules
-win32:RC_FILE += app/mellowplayer.rc
 win32{
     LIBS += -luser32
 }
@@ -66,6 +70,7 @@ SOURCES += main.cpp\
            controllers/mpris2.cpp \
            controllers/player.cpp \
            controllers/services.cpp \
+           controllers/update.cpp \
            utils/icons.cpp \
            utils/playerinfo.cpp \
            utils/singleinstancecontroller.cpp \
@@ -83,6 +88,7 @@ HEADERS += application.h \
            controllers/notifications.h \
            controllers/player.h \
            controllers/services.h \
+           controllers/update.h \
            utils/icons.h \
            utils/playerinfo.h \
            utils/shortcuts.h \
@@ -99,14 +105,6 @@ FORMS += app/forms/dlg_select_service.ui \
          app/forms/dlg_preferences.ui \
          app/forms/mainwindow.ui \
          app/forms/wizard_new_plugin.ui
-
-# Version infos
-VERSION = 2.0.0
-DEFINES += VERSION_MAJOR=2
-DEFINES += VERSION_MINOR=0
-DEFINES += VERSION_MICRO=0
-DEFINES += VERSION_STATUS=\\\"dev\\\"
-
 
 # Build qxtglobalshortcut lib as part of our extension
 message("QxtGlobalShortcut will be used for global shortcuts")

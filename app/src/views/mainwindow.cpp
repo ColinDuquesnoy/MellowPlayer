@@ -29,6 +29,7 @@
 #include "controllers/notifications.h"
 #include "controllers/player.h"
 #include "controllers/services.h"
+#include "controllers/update.h"
 #include "utils/icons.h"
 #include "utils/shortcuts.h"
 #include "views/dlgselectservice.h"
@@ -58,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
   setWindowIcon(Icons::mellowPlayer());
 
   // Setup controllers
+  new UpdateController(this);
   new PlayerController(this);
   new StreamingServicesController(this);
   new NotificationsController(this);
@@ -273,11 +275,7 @@ static QString compilerString() {
 //--------------------------------------
 void MainWindow::onAboutTriggered() {
   restoreWindow();
-  QString version = QString("%1.%2.%3%4")
-                        .arg(VERSION_MAJOR)
-                        .arg(VERSION_MINOR)
-                        .arg(VERSION_MICRO)
-                        .arg(VERSION_STATUS);
+  QString version = qApp->applicationVersion();
 
   const QString description =
       tr("<h3>MellowPlayer %1</h3>"
@@ -390,7 +388,7 @@ void MainWindow::restoreGeometryAndState() {
 //--------------------------------------
 void MainWindow::saveGeometryAndState() {
   QSettings().setValue("interface/windowGeometry", saveGeometry());
-  QSettings().setValue("interface/windowState", saveState(VERSION_MAJOR));
+  QSettings().setValue("interface/windowState", saveState());
 }
 
 //--------------------------------------
