@@ -39,6 +39,7 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 # Windows specific rules
 win32{
     LIBS += -luser32
+    RC_ICONS = app/icons/mellowplayer.ico
 }
 
 # Mac OSX specific Rules
