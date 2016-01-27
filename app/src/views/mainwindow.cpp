@@ -32,6 +32,7 @@
 #include "controllers/update.h"
 #include "utils/icons.h"
 #include "utils/shortcuts.h"
+#include "views/hoverable_button.h"
 #include "views/dlgselectservice.h"
 #include "views/dlgpreferences.h"
 #include "views/mainwindow.h"
@@ -46,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_ui(new Ui::MainWindow), m_lblSongInfo(NULL) {
   m_ui->setupUi(this);
   setupActions();
-  setupIcons();
   setupTrayIcon();
   setupDockMenu();
   setupToolbar();
@@ -113,14 +113,6 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     qApp->processEvents();
     qApp->quit();
   }
-}
-
-//--------------------------------------
-void MainWindow::setupIcons() {
-  m_ui->pushButtonSelect->setIcon(Icons::selectStreamingService());
-  m_ui->pushButtonPreferences->setIcon(Icons::preferences());
-  m_ui->pushButtonQuit->setIcon(Icons::quit());
-  m_ui->btCreatePlugin->setIcon(Icons::plugins());
 }
 
 //--------------------------------------
@@ -225,8 +217,6 @@ void MainWindow::connectSlots() {
           SLOT(onPreferencesTriggered()));
 
   connect(m_ui->actionQuit, SIGNAL(triggered()), this, SLOT(exitApplication()));
-  connect(m_ui->pushButtonQuit, SIGNAL(clicked()), this,
-          SLOT(exitApplication()));
 
   connect(m_ui->actionAbout_MellowPlayer, SIGNAL(triggered()), this,
           SLOT(onAboutTriggered()));
@@ -246,6 +236,17 @@ void MainWindow::connectSlots() {
           &MainWindow::onCreatePluginTriggered);
   connect(m_ui->btCreatePlugin, &QPushButton::clicked, this,
           &MainWindow::onCreatePluginTriggered);
+
+  m_ui->labelToolTip->setText("");
+  m_ui->pushButtonSelect->setDisplayText(tr("Select a music streaming service"));
+  connect(m_ui->pushButtonSelect, &HoverableButton::mouseHoverEvent,
+          m_ui->labelToolTip, &QLabel::setText);
+  m_ui->pushButtonPreferences->setDisplayText(tr("Preferences"));
+  connect(m_ui->pushButtonPreferences, &HoverableButton::mouseHoverEvent,
+          m_ui->labelToolTip, &QLabel::setText);
+  m_ui->btCreatePlugin->setDisplayText(tr("Create a plugin"));
+  connect(m_ui->btCreatePlugin, &HoverableButton::mouseHoverEvent,
+          m_ui->labelToolTip, &QLabel::setText);
 }
 
 //--------------------------------------

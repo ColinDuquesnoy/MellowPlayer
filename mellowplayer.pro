@@ -76,6 +76,7 @@ SOURCES += main.cpp\
            utils/playerinfo.cpp \
            utils/singleinstancecontroller.cpp \
            utils/songinfo.cpp \
+           views/hoverable_button.cpp \
            views/dlgselectservice.cpp \
            views/dlgpreferences.cpp \
            views/mainwindow.cpp \
@@ -95,6 +96,7 @@ HEADERS += application.h \
            utils/shortcuts.h \
            utils/singleinstancecontroller.h \
            utils/songinfo.h \
+           views/hoverable_button.h \
            views/dlgselectservice.h \
            views/dlgpreferences.h \
            views/mainwindow.h \

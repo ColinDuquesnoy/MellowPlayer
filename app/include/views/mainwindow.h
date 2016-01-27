@@ -126,7 +126,6 @@ private slots:
 
 private:
   void closeEvent(QCloseEvent *event);
-  void setupIcons();
   void setupActions();
   void setupTrayIcon();
   void connectSlots();

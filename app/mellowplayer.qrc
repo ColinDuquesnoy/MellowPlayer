@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
+        <file>icons/application-exit-white.svg</file>
+        <file>icons/folder-music-white.svg</file>
+        <file>icons/plugins-white.svg</file>
+        <file>icons/preferences-system-white.svg</file>
+        <file>icons/home-background.png</file>
         <file>icons/mellowplayer.png</file>
         <file>icons/view-restore.png</file>
         <file>icons/application-exit.png</file>
@@ -33,5 +38,6 @@
         <file>icons/text-x-changelog.png</file>
         <file>icons/internet-web-browser.png</file>
         <file>icons/window-close.png</file>
+        <file>icons/mellowplayer.svg</file>
     </qresource>
 </RCC>
