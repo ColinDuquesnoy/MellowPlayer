@@ -1,13 +1,15 @@
 ## 2.0 beta
 
 - General:
-    - web streaming services are now written in pure javascript
-    - QtWebEngine port
-    - add Spotify service
+    - port to QtWebEngine
+    - web streaming services plugins are now written in pure javascript (a
+      wizard will guide you through the steps of creating a plugin)
+    - 3 new services added: Spotify, 8tracks and LeDjamRadio
+    - new design for the home page
+    - update notifier
 - GNU/Linux:
-    - build is now cross desktop (no more desktop specific specialised builds)
+    - build is now cross desktop (no more desktop specific release)
     - add ability to turn a streaming service into a standalone app
-- Rdio: remove service
 - Mixcloud: improve integration (add abitliy to seek into the cloudcast)
 - Deezer:
     - fix art url missing
