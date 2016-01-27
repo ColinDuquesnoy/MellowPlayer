@@ -158,7 +158,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <property name="spacing">
-              <number>20</number>
+              <number>40</number>
              </property>
              <property name="topMargin">
               <number>0</number>
@@ -245,8 +245,8 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
                </property>
                <property name="iconSize">
                 <size>
-                 <width>76</width>
-                 <height>76</height>
+                 <width>92</width>
+                 <height>92</height>
                 </size>
                </property>
                <property name="flat">
