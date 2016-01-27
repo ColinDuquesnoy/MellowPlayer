@@ -32,8 +32,8 @@ QT += core gui network widgets webengine webenginewidgets
 CONFIG += c++11
 
 # Version and windows icon
-win32:VERSION = 1.95.0.0 # major.minor.patch.build
-else:VERSION = 1.95    # major.minor.patch
+win32:VERSION = 1.90.0.0 # major.minor.patch.build
+else:VERSION = 1.90    # major.minor.patch
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # Windows specific rules
