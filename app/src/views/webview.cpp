@@ -53,7 +53,8 @@ void WebView::deleteAllCookies() {
 QWebEngineView *WebView::createWindow(QWebEnginePage::WebWindowType type) {
   Q_UNUSED(type);
 
-  QWebEngineView *webView = new QWebEngineView();
+  QWebEngineView *webView = new WebView();
+  webView->setAttribute(Qt::WA_DeleteOnClose, true);
   QWebEnginePage *newWeb = new QWebEnginePage(webView);
   connect(newWeb, SIGNAL(windowCloseRequested()), webView, SLOT(close()));
   webView->setPage(newWeb);
