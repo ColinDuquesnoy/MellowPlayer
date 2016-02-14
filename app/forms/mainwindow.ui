@@ -632,7 +632,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
      <normaloff>:/icons/tools-report-bug.png</normaloff>:/icons/tools-report-bug.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Report a bug</string>
+    <string>&amp;Report an issue...</string>
    </property>
    <property name="shortcut">
     <string>F3</string>
