@@ -1,33 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>DialogPreferences</name>
     <message>
         <location filename="../forms/dlg_preferences.ui" line="14"/>
         <source>Preferences</source>
-        <translatorcomment>Préférences</translatorcomment>
         <translation>Préférences</translation>
     </message>
     <message>
         <location filename="../forms/dlg_preferences.ui" line="35"/>
         <source>Interface</source>
         <translation>Interface</translation>
-    </message>
-    <message>
-        <location filename="../forms/dlg_preferences.ui" line="62"/>
-        <source>Cache</source>
-        <translation>Cache</translation>
-    </message>
-    <message>
-        <location filename="../forms/dlg_preferences.ui" line="143"/>
-        <source>Confirm application exit</source>
-        <translation>Confirmer la sortie de l&apos;application</translation>
-    </message>
-    <message>
-        <location filename="../forms/dlg_preferences.ui" line="170"/>
-        <source>Play/Pause:</source>
-        <translation>Lecture/Pause:</translation>
     </message>
     <message>
         <location filename="../forms/dlg_preferences.ui" line="44"/>
@@ -38,6 +20,11 @@
         <location filename="../forms/dlg_preferences.ui" line="53"/>
         <source>Notifications</source>
         <translation>Notifications</translation>
+    </message>
+    <message>
+        <location filename="../forms/dlg_preferences.ui" line="62"/>
+        <source>Cache</source>
+        <translation>Cache</translation>
     </message>
     <message>
         <location filename="../forms/dlg_preferences.ui" line="87"/>
@@ -63,6 +50,16 @@
         <location filename="../forms/dlg_preferences.ui" line="131"/>
         <source>Icon</source>
         <translation>Icône</translation>
+    </message>
+    <message>
+        <location filename="../forms/dlg_preferences.ui" line="143"/>
+        <source>Confirm application exit</source>
+        <translation>Confirmer la sortie de l&apos;application</translation>
+    </message>
+    <message>
+        <location filename="../forms/dlg_preferences.ui" line="170"/>
+        <source>Play/Pause:</source>
+        <translation>Lecture/Pause:</translation>
     </message>
     <message>
         <location filename="../forms/dlg_preferences.ui" line="180"/>
@@ -152,9 +149,13 @@
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -179,6 +180,11 @@ Do you want to restart now?</source>
 Voulez-vous redémarrer maintenant?</translation>
     </message>
     <message>
+        <location filename="../src/views/dlgpreferences.cpp" line="132"/>
+        <source>Clear settings</source>
+        <translation>Nettoyer les règlages de l&apos;application</translation>
+    </message>
+    <message>
         <location filename="../src/views/dlgpreferences.cpp" line="133"/>
         <source>This will remove all settings stored by MellowPlayer and restart the application...
 Are you sure you want to erase all settings?</source>
@@ -199,53 +205,23 @@ Are you sure you want to proceed?</source>
         <translation>Cette action va supprimer les cookies.
 Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
     </message>
-    <message>
-        <location filename="../src/views/dlgpreferences.cpp" line="132"/>
-        <source>Clear settings</source>
-        <translation>Nettoyer les règlages de l&apos;application</translation>
-    </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/views/mainwindow.cpp" line="244"/>
-        <source>Preferences</source>
-        <translation>Préférences</translation>
+        <location filename="../forms/mainwindow.ui" line="14"/>
+        <source>MellowPlayer</source>
+        <translation>MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="566"/>
-        <source>F8</source>
-        <translation>F8</translation>
+        <location filename="../forms/mainwindow.ui" line="116"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/mellowplayer.svg&quot; /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/mellowplayer.svg&quot; /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="578"/>
-        <source>F2</source>
-        <translation>F2</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="590"/>
-        <source>Media Play</source>
-        <translation>Media Play</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="602"/>
-        <source>Media Next</source>
-        <translation>Media Next</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="614"/>
-        <source>Media Previous</source>
-        <translation>Media Previous</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="623"/>
-        <source>&amp;About MellowPlayer</source>
-        <translation>&amp;A propos de MellowPlayer</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="626"/>
-        <source>F1</source>
-        <translation>F1</translation>
+        <location filename="../forms/mainwindow.ui" line="123"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../forms/mainwindow.ui" line="318"/>
@@ -255,39 +231,9 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Choisissez un service de musique en ligne</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="14"/>
-        <source>MellowPlayer</source>
-        <translation>MellowPlayer</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="493"/>
-        <source>He&amp;lp</source>
-        <translation>&amp;Aide</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="560"/>
-        <source>&amp;Select a music streaming service</source>
-        <translation>&amp;Choisissez un service de musique en ligne</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="575"/>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Préférences</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="587"/>
-        <source>&amp;Play</source>
-        <translation>&amp;Lecture</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="474"/>
-        <source>Applicatio&amp;n</source>
-        <translation>Applicatio&amp;n</translation>
-    </message>
-    <message>
         <location filename="../forms/mainwindow.ui" line="389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/preferences-desktop-notification.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/preferences-desktop-notification.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../forms/mainwindow.ui" line="405"/>
@@ -305,9 +251,34 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Détails</translation>
     </message>
     <message>
+        <location filename="../forms/mainwindow.ui" line="474"/>
+        <source>Applicatio&amp;n</source>
+        <translation>Applicatio&amp;n</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="483"/>
+        <source>Pla&amp;yer</source>
+        <translation>&amp;Lecteur</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="493"/>
+        <source>He&amp;lp</source>
+        <translation>&amp;Aide</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="503"/>
+        <source>V&amp;iew</source>
+        <translation>Vue</translation>
+    </message>
+    <message>
         <location filename="../forms/mainwindow.ui" line="510"/>
         <source>Navi&amp;gation</source>
         <translation>Navi&amp;gation</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="516"/>
+        <source>&amp;Developer</source>
+        <translation>Développeur</translation>
     </message>
     <message>
         <location filename="../forms/mainwindow.ui" line="529"/>
@@ -315,14 +286,64 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Barre d&apos;outils principale</translation>
     </message>
     <message>
+        <location filename="../forms/mainwindow.ui" line="560"/>
+        <source>&amp;Select a music streaming service</source>
+        <translation>&amp;Choisissez un service de musique en ligne</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="566"/>
+        <source>F8</source>
+        <translation>F8</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="575"/>
+        <source>&amp;Preferences</source>
+        <translation>&amp;Préférences</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="578"/>
+        <source>F2</source>
+        <translation>F2</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="587"/>
+        <source>&amp;Play</source>
+        <translation>&amp;Lecture</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="590"/>
+        <source>Media Play</source>
+        <translation>Media Play</translation>
+    </message>
+    <message>
         <location filename="../forms/mainwindow.ui" line="599"/>
         <source>&amp;Next</source>
         <translation>Piste &amp;suivante</translation>
     </message>
     <message>
+        <location filename="../forms/mainwindow.ui" line="602"/>
+        <source>Media Next</source>
+        <translation>Media Next</translation>
+    </message>
+    <message>
         <location filename="../forms/mainwindow.ui" line="611"/>
         <source>P&amp;revious</source>
         <translation>Piste &amp;précédente</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="614"/>
+        <source>Media Previous</source>
+        <translation>Media Previous</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="623"/>
+        <source>&amp;About MellowPlayer</source>
+        <translation>&amp;A propos de MellowPlayer</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="626"/>
+        <source>F1</source>
+        <translation>F1</translation>
     </message>
     <message>
         <location filename="../forms/mainwindow.ui" line="635"/>
@@ -402,17 +423,7 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
     <message>
         <location filename="../forms/mainwindow.ui" line="725"/>
         <source>Ctrl+M</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="749"/>
-        <source>&amp;Create plugin...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="752"/>
-        <source>F4</source>
-        <translation>F4</translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../forms/mainwindow.ui" line="737"/>
@@ -420,34 +431,19 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>&amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="116"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/mellowplayer.svg&quot; /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="123"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="483"/>
-        <source>Pla&amp;yer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="503"/>
-        <source>V&amp;iew</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="516"/>
-        <source>&amp;Developer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../forms/mainwindow.ui" line="740"/>
         <source>F11</source>
         <translation>F11</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="749"/>
+        <source>&amp;Create plugin...</source>
+        <translation>&amp;Créer un plugin</translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="752"/>
+        <source>F4</source>
+        <translation>F4</translation>
     </message>
     <message>
         <location filename="../src/views/mainwindow.cpp" line="102"/>
@@ -460,9 +456,29 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
+        <location filename="../src/views/mainwindow.cpp" line="244"/>
+        <source>Preferences</source>
+        <translation>Préférences</translation>
+    </message>
+    <message>
         <location filename="../src/views/mainwindow.cpp" line="247"/>
         <source>Create a plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un plugin</translation>
+    </message>
+    <message>
+        <location filename="../src/views/mainwindow.cpp" line="282"/>
+        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Click here to download the latest version!&lt;/a&gt; </source>
+        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Cliquez ici pour télécharger la dernière version!&lt;/a&gt; </translation>
+    </message>
+    <message>
+        <location filename="../src/views/mainwindow.cpp" line="298"/>
+        <source>About MellowPlayer</source>
+        <translation>A propos de MellowPlayer</translation>
+    </message>
+    <message>
+        <location filename="../src/views/mainwindow.cpp" line="322"/>
+        <source>Confirm quit</source>
+        <translation>Confirmer la sortie</translation>
     </message>
     <message>
         <location filename="../src/views/mainwindow.cpp" line="322"/>
@@ -479,21 +495,6 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <location filename="../src/views/mainwindow.cpp" line="487"/>
         <source>Control</source>
         <translation>Contrôle</translation>
-    </message>
-    <message>
-        <location filename="../src/views/mainwindow.cpp" line="282"/>
-        <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Click here to download the latest version!&lt;/a&gt; </source>
-        <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Cliquez ici pour télécharger la dernière version!&lt;/a&gt; </translation>
-    </message>
-    <message>
-        <location filename="../src/views/mainwindow.cpp" line="298"/>
-        <source>About MellowPlayer</source>
-        <translation>A propos de MellowPlayer</translation>
-    </message>
-    <message>
-        <location filename="../src/views/mainwindow.cpp" line="322"/>
-        <source>Confirm quit</source>
-        <translation>Confirmer la sortie</translation>
     </message>
 </context>
 <context>
@@ -567,11 +568,6 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/views/dlgselectservice.cpp" line="68"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
-    </message>
-    <message>
         <location filename="../src/utils/songinfo.cpp" line="35"/>
         <source>%1 by %2</source>
         <translation>%1 de %2</translation>
@@ -585,6 +581,11 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <location filename="../src/utils/songinfo.cpp" line="45"/>
         <source>&lt;b&gt;%1&lt;/b&gt;</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/views/dlgselectservice.cpp" line="68"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Service information&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Maintainer: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;h2&gt;Description&lt;/h2&gt;%2&lt;h2&gt;Information à propos du service&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Mainteneur: &lt;/strong&gt;&lt;a href=%3&gt;%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Version: &lt;/strong&gt;%5&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
