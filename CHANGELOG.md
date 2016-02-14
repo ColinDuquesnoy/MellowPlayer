@@ -1,16 +1,20 @@
 ## 2.0 beta
 
 - General:
-    - port to QtWebEngine
-    - web streaming services plugins are now written in pure javascript (a
-      wizard will guide you through the steps of creating a plugin)
-    - 3 new services added: Spotify, 8tracks and LeDjamRadio
-    - new design for the home page
-    - update notifier
+    - ported to **QtWebEngine**
+    - 3 new services added: **Spotify**, **8tracks** and **LeDjamRadio**
+    - web streaming services **plugins are now written in pure javascript** (a
+      wizard will guide you through the steps of creating a new plugin)
+    - **new** design for the **home page**
+    - **update notifier**
+    - translations are now managed on **transifex**: https://www.transifex.com/colinduquesnoy/mellowplayer/
+
 - GNU/Linux:
     - build is now cross desktop (no more desktop specific release)
     - add ability to turn a streaming service into a standalone app
+
 - Mixcloud: improve integration (add abitliy to seek into the cloudcast)
+
 - Deezer:
     - fix art url missing
     - disable addToFavorites action
