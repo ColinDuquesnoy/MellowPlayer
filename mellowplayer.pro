@@ -162,4 +162,5 @@ win32 {
 
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
-TRANSLATIONS += app/translations/mellowplayer_fr.ts
+TRANSLATIONS += app/translations/mellowplayer_en.ts \
+                app/translations/mellowplayer_fr.ts \
