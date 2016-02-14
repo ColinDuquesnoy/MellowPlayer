@@ -46,7 +46,7 @@ class QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobalShortcut>
                                  ,
                                  public QAbstractNativeEventFilter
 #endif
-                                 {
+{
 public:
   QXT_DECLARE_PUBLIC(QxtGlobalShortcut)
   QxtGlobalShortcutPrivate();

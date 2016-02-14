@@ -36,58 +36,65 @@
 //---------------------------------------------------------
 //-------------------------------------
 UpdateController::UpdateController(MainWindow *parent)
-    : BaseController("hotkeys", parent), m_nam(new QNetworkAccessManager(this))  {
-    parent->ui()->popupUpdate->hide();
+    : BaseController("hotkeys", parent),
+      m_nam(new QNetworkAccessManager(this)) {
+  parent->ui()->popupUpdate->hide();
 
-    m_mainWindow->ui()->pushButtonPopupClose->setIcon(
-        QIcon::fromTheme("window-close", QIcon(":/icons/window-close.png")));
-    m_mainWindow->ui()->pushButtonPopupOpenBrowser->setIcon(
-        QIcon::fromTheme("internet-web-browser", QIcon(":/icons/internet-web-browser.png")));
-    m_mainWindow->ui()->pushButtonPopupDetails->setIcon(
-        QIcon::fromTheme("text-x-changelog", QIcon(":/icons/text-x-changelog.png")));
+  m_mainWindow->ui()->pushButtonPopupClose->setIcon(
+      QIcon::fromTheme("window-close", QIcon(":/icons/window-close.png")));
+  m_mainWindow->ui()->pushButtonPopupOpenBrowser->setIcon(QIcon::fromTheme(
+      "internet-web-browser", QIcon(":/icons/internet-web-browser.png")));
+  m_mainWindow->ui()->pushButtonPopupDetails->setIcon(QIcon::fromTheme(
+      "text-x-changelog", QIcon(":/icons/text-x-changelog.png")));
 
-    connect(m_nam, &QNetworkAccessManager::finished, this, &UpdateController::onResultsAvailable);
-    connect(m_mainWindow->ui()->pushButtonPopupOpenBrowser, &QPushButton::clicked, this, &UpdateController::onOpenBrowserClicked);
-    connect(m_mainWindow->ui()->pushButtonPopupDetails, &QPushButton::clicked, this, &UpdateController::onShowDetailsClicked);
-    m_nam->get(QNetworkRequest(QUrl("https://api.github.com/repos/ColinDuquesnoy/MellowPlayer/releases/latest")));
+  connect(m_nam, &QNetworkAccessManager::finished, this,
+          &UpdateController::onResultsAvailable);
+  connect(m_mainWindow->ui()->pushButtonPopupOpenBrowser, &QPushButton::clicked,
+          this, &UpdateController::onOpenBrowserClicked);
+  connect(m_mainWindow->ui()->pushButtonPopupDetails, &QPushButton::clicked,
+          this, &UpdateController::onShowDetailsClicked);
+  m_nam->get(QNetworkRequest(QUrl("https://api.github.com/repos/ColinDuquesnoy/"
+                                  "MellowPlayer/releases/latest")));
 }
 
 //-------------------------------------
-void UpdateController::onResultsAvailable(QNetworkReply *reply)
-{
-    if(reply->error() == QNetworkReply::NoError) {
-        QString data(reply->readAll());
-        QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
-        QJsonObject obj = doc.object();
-        m_LatestVersion = QVersionNumber::fromString(obj.value("name").toString());
-        m_ReleaseNotes = obj.value("body").toString().replace("\r\n", "<br>");
+void UpdateController::onResultsAvailable(QNetworkReply *reply) {
+  if (reply->error() == QNetworkReply::NoError) {
+    QString data(reply->readAll());
+    QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
+    QJsonObject obj = doc.object();
+    m_LatestVersion = QVersionNumber::fromString(obj.value("name").toString());
+    m_ReleaseNotes = obj.value("body").toString().replace("\r\n", "<br>");
 
-        QVersionNumber currentVersion = QVersionNumber::fromString(APP_VERSION);
+    QVersionNumber currentVersion = QVersionNumber::fromString(APP_VERSION);
 
-        if(currentVersion < m_LatestVersion){
-            qDebug() << QString("A new version is available: %1").arg(m_LatestVersion.toString());
-            qDebug() << QString("Release notes:\n\n %1").arg(m_ReleaseNotes);
-            m_mainWindow->ui()->popupUpdate->show();
-        } else {
-            qDebug() << QString("Version %1 is up to date...").arg(currentVersion.toString());
-        }
-
+    if (currentVersion < m_LatestVersion) {
+      qDebug() << QString("A new version is available: %1")
+                      .arg(m_LatestVersion.toString());
+      qDebug() << QString("Release notes:\n\n %1").arg(m_ReleaseNotes);
+      m_mainWindow->ui()->popupUpdate->show();
     } else {
-        qDebug() << "Failed to retrieve latest release info from github" << reply->errorString();
+      qDebug() << QString("Version %1 is up to date...")
+                      .arg(currentVersion.toString());
     }
-    reply->deleteLater();
+
+  } else {
+    qDebug() << "Failed to retrieve latest release info from github"
+             << reply->errorString();
+  }
+  reply->deleteLater();
 }
 
 //-------------------------------------
-void UpdateController::onOpenBrowserClicked()
-{
-    QDesktopServices::openUrl(QUrl("https://github.com/ColinDuquesnoy/MellowPlayer/releases/latest"));
+void UpdateController::onOpenBrowserClicked() {
+  QDesktopServices::openUrl(
+      QUrl("https://github.com/ColinDuquesnoy/MellowPlayer/releases/latest"));
 }
 
 //-------------------------------------
-void UpdateController::onShowDetailsClicked()
-{
-    QMessageBox::information(m_mainWindow, "Release notes", QString(
-        "<b>Latest version: %1</b><p>%2</p>").arg(
-            m_LatestVersion.toString(), m_ReleaseNotes));
+void UpdateController::onShowDetailsClicked() {
+  QMessageBox::information(
+      m_mainWindow, "Release notes",
+      QString("<b>Latest version: %1</b><p>%2</p>")
+          .arg(m_LatestVersion.toString(), m_ReleaseNotes));
 }

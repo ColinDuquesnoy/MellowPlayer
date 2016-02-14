@@ -43,7 +43,7 @@ public:
    *
    * \param displayText Text to display when mouseEnter the widget
    */
-  void setDisplayText(const QString& displayText);
+  void setDisplayText(const QString &displayText);
 
 signals:
   /**
@@ -51,11 +51,11 @@ signals:
    * @param displayText Associated display text or empty string depending of
    * whether the mouse entered or leaved the button.
    */
-  void mouseHoverEvent(const QString& displayText);
+  void mouseHoverEvent(const QString &displayText);
 
 protected:
-  virtual void enterEvent(QEvent* event);
-  virtual void leaveEvent(QEvent* event);
+  virtual void enterEvent(QEvent *event);
+  virtual void leaveEvent(QEvent *event);
 
 private:
   QString m_displayText;

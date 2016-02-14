@@ -61,8 +61,8 @@ QIcon Icons::previous() {
 //--------------------------------------
 QIcon Icons::selectStreamingService() {
   QString themeIcon("folder-music");
-  if(!QIcon::hasThemeIcon(themeIcon)){
-      themeIcon = "audio-x-generic";
+  if (!QIcon::hasThemeIcon(themeIcon)) {
+    themeIcon = "audio-x-generic";
   }
   return QIcon::fromTheme(themeIcon, QIcon(":/icons/folder-music.png"));
 }
@@ -114,8 +114,7 @@ QIcon Icons::shortcuts() {
 
 //--------------------------------------
 QIcon Icons::plugins() {
-  return QIcon::fromTheme("plugins",
-                          QIcon(":/icons/plugins.png"));
+  return QIcon::fromTheme("plugins", QIcon(":/icons/plugins.png"));
 }
 
 //--------------------------------------

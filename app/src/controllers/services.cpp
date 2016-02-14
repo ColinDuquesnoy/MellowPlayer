@@ -41,12 +41,14 @@ QString findFileByExtension(const QString &directory, const QString &suffix) {
 }
 
 //--------------------------------------
-QString findTranslation(const QString &originalFilePath, const QString &locale) {
+QString findTranslation(const QString &originalFilePath,
+                        const QString &locale) {
   QString baseName = QFileInfo(originalFilePath).baseName();
-  QString expectedPath = QString(originalFilePath).replace(
-              baseName, QString("%1_%2").arg(baseName).arg((locale)));
-  if(QFileInfo(expectedPath).exists())
-      return expectedPath;
+  QString expectedPath =
+      QString(originalFilePath)
+          .replace(baseName, QString("%1_%2").arg(baseName).arg((locale)));
+  if (QFileInfo(expectedPath).exists())
+    return expectedPath;
   return QString();
 }
 
@@ -88,8 +90,8 @@ StreamingServicePlugin loadPlugin(const QString &directory) {
   QString descPath = findFileByExtension(directory, "html");
   QString locale = QLocale::system().name().split("_")[0];
   QString translationPath = findTranslation(descPath, locale);
-  if(!translationPath.isEmpty())
-      descPath = translationPath;
+  if (!translationPath.isEmpty())
+    descPath = translationPath;
   StreamingServicePlugin retVal;
   retVal.Code = readFileContent(scriptPath);
   retVal.Description = readFileContent(descPath);
@@ -156,7 +158,8 @@ QList<StreamingServicePlugin> loadPlugins() {
 QString getUserPluginsDirectory() {
   return QFileInfo(QStandardPaths::standardLocations(
                        QStandardPaths::AppLocalDataLocation)[0],
-                   "plugins").absoluteFilePath();
+                   "plugins")
+      .absoluteFilePath();
 }
 
 //--------------------------------------

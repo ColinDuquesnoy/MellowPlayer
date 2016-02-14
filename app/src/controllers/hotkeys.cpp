@@ -48,19 +48,25 @@ HotkeysController::HotkeysController(MainWindow *parent)
     m_shortcuts.append(shortcut);
   }
 #ifdef Q_OS_WIN
-  QAction *mediaActions[] = {parent->ui()->actionPlayPause, parent->ui()->actionPlayPause,
-                             parent->ui()->actionNext, parent->ui()->actionPrevious};
-  int shortcuts[] = {Qt::Key_MediaPlay, Qt::Key_MediaStop, Qt::Key_MediaNext, Qt::Key_MediaPrevious};
-  QStringList names; names << "MediaPlay" << "MediaStop" << "MediaNext" << "MediaPrevious";
+  QAction *mediaActions[] = {
+      parent->ui()->actionPlayPause, parent->ui()->actionPlayPause,
+      parent->ui()->actionNext, parent->ui()->actionPrevious};
+  int shortcuts[] = {Qt::Key_MediaPlay, Qt::Key_MediaStop, Qt::Key_MediaNext,
+                     Qt::Key_MediaPrevious};
+  QStringList names;
+  names << "MediaPlay"
+        << "MediaStop"
+        << "MediaNext"
+        << "MediaPrevious";
   qDebug() << "Hotkeys: Setting up Media shortcuts";
   for (int i = 0; i < names.count(); ++i) {
-      QAction *action = mediaActions[i];
-      QxtGlobalShortcut *shortcut = new QxtGlobalShortcut();
-      shortcut->setObjectName(names[i]);
-      if (shortcut->setShortcut(shortcuts[i]))
-        qDebug() << "Media shortcut registered: " << names[i];
-      connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
-      m_shortcuts.append(shortcut);
+    QAction *action = mediaActions[i];
+    QxtGlobalShortcut *shortcut = new QxtGlobalShortcut();
+    shortcut->setObjectName(names[i]);
+    if (shortcut->setShortcut(shortcuts[i]))
+      qDebug() << "Media shortcut registered: " << names[i];
+    connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
+    m_shortcuts.append(shortcut);
   }
 #endif
 }

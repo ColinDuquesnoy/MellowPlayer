@@ -57,8 +57,7 @@ public Q_SLOTS:
   void setEnabled(bool enabled = true);
   void setDisabled(bool disabled = true);
 
-Q_SIGNALS:
-  void activated();
+  Q_SIGNALS : void activated();
 };
 
 #endif // QXTGLOBALSHORTCUT_H

@@ -44,14 +44,14 @@ public:
   explicit UpdateController(MainWindow *parent = 0);
 
 private slots:
-  void onResultsAvailable(QNetworkReply* reply);
+  void onResultsAvailable(QNetworkReply *reply);
   void onOpenBrowserClicked();
   void onShowDetailsClicked();
 
 private:
-  QNetworkAccessManager* m_nam;
+  QNetworkAccessManager *m_nam;
   QVersionNumber m_LatestVersion;
   QString m_ReleaseNotes;
- };
+};
 
 #endif // UPDATECONTROLLER_H

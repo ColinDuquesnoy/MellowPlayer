@@ -238,7 +238,8 @@ void MainWindow::connectSlots() {
           &MainWindow::onCreatePluginTriggered);
 
   m_ui->labelToolTip->setText("");
-  m_ui->pushButtonSelect->setDisplayText(tr("Select a music streaming service"));
+  m_ui->pushButtonSelect->setDisplayText(
+      tr("Select a music streaming service"));
   connect(m_ui->pushButtonSelect, &HoverableButton::mouseHoverEvent,
           m_ui->labelToolTip, &QLabel::setText);
   m_ui->pushButtonPreferences->setDisplayText(tr("Preferences"));

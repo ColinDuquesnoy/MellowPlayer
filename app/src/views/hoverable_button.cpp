@@ -28,23 +28,22 @@
 //---------------------------------------------------------
 //-------------------------------------
 HoverableButton::HoverableButton(QWidget *parent) : QPushButton(parent) {
-    setMouseTracking(true);
+  setMouseTracking(true);
 }
 
-void HoverableButton::setDisplayText(const QString &displayText)
-{
-    m_displayText = displayText;
+void HoverableButton::setDisplayText(const QString &displayText) {
+  m_displayText = displayText;
 }
 
 //-------------------------------------
-void HoverableButton::enterEvent(QEvent *event){
+void HoverableButton::enterEvent(QEvent *event) {
   Q_UNUSED(event);
   qApp->setOverrideCursor(Qt::PointingHandCursor);
   emit mouseHoverEvent(m_displayText);
 }
 
 //-------------------------------------
-void HoverableButton::leaveEvent(QEvent *event){
+void HoverableButton::leaveEvent(QEvent *event) {
   Q_UNUSED(event);
   qApp->restoreOverrideCursor();
   emit mouseHoverEvent("");

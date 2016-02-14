@@ -161,8 +161,7 @@ quint32 QxtGlobalShortcutPrivate::nativeKeycode(Qt::Key key) {
     return kVK_DownArrow;
   case Qt::Key_Up:
     return kVK_UpArrow;
-  default:
-    ;
+  default:;
   }
 
   if (key == Qt::Key_Escape)

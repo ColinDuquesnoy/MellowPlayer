@@ -5,7 +5,7 @@ We use the llvm code formating guidelines using clang-format.
 
 We made a small script that will format any C++/javascript source file in the project to fit the style guidelines::
 
-    sh utils/beautify.sh
+    sh scripts/beautify.sh
 
 To run this tool, you need to install the following packages:
 

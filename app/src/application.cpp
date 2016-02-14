@@ -164,7 +164,8 @@ bool MellowPlayerApp::parseArgs() {
       QTimer::singleShot(autoQuitDelay * 1000, this, SLOT(quit()));
     } else if (rxArgHelp.indexIn(args.at(i)) != -1) {
       std::cout << tr("Add cloud music integration to your desktop!")
-                       .toStdString() << std::endl
+                       .toStdString()
+                << std::endl
                 << std::endl;
       std::cout << tr("Options:").toStdString() << std::endl;
       std::cout << tr("  * --help: show this help message").toStdString()
@@ -173,14 +174,18 @@ bool MellowPlayerApp::parseArgs() {
                 << std::endl;
       std::cout
           << tr("  * --standalone: make the specified service a standalone "
-                "application. (ignored if --service is not used)").toStdString()
+                "application. (ignored if --service is not used)")
+                 .toStdString()
           << std::endl;
       std::cout
           << tr("  * --service=%s: select a specific service (e.. deezer, "
-                "mixcloud, soundcloud or spotify)").toStdString() << std::endl;
+                "mixcloud, soundcloud or spotify)")
+                 .toStdString()
+          << std::endl;
       std::cout << tr("  * --autoquit-delay=%d: a delay for automatically "
                       "quitting the application (for testing purposes).")
-                       .toStdString() << std::endl;
+                       .toStdString()
+                << std::endl;
       quit = true;
     } else if (rxArgVersion.indexIn(args.at(i)) != -1) {
       std::cout << "MellowPlayer v" << applicationVersion().toStdString()
