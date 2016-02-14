@@ -21,6 +21,7 @@
 // Headers
 //---------------------------------------------------------
 #include "views/hoverable_button.h"
+#include <QApplication>
 
 //---------------------------------------------------------
 // Implementations
@@ -38,11 +39,13 @@ void HoverableButton::setDisplayText(const QString &displayText)
 //-------------------------------------
 void HoverableButton::enterEvent(QEvent *event){
   Q_UNUSED(event);
+  qApp->setOverrideCursor(Qt::PointingHandCursor);
   emit mouseHoverEvent(m_displayText);
 }
 
 //-------------------------------------
 void HoverableButton::leaveEvent(QEvent *event){
   Q_UNUSED(event);
+  qApp->restoreOverrideCursor();
   emit mouseHoverEvent("");
 }
