@@ -164,3 +164,12 @@ win32 {
 # in the app folder (for an easier integration with the app's resources).
 TRANSLATIONS += app/translations/mellowplayer_en.ts \
                 app/translations/mellowplayer_fr.ts \
+
+# automatically release translations, .qm files are embedded
+# in the application resources.
+unix:!macx{
+    system("lrelease-qt5 mellowplayer.pro")
+}
+else{
+    system("lrelease mellowplayer.pro")
+}
