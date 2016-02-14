@@ -7,3 +7,38 @@ source_file = app/translations/mellowplayer_en.ts
 source_lang = en
 type = QT
 
+[mellowplayer.8tracks]
+file_filter = plugins/8tracks/description_<lang>.html
+source_file = plugins/8tracks/description.html
+source_lang = en
+type = HTML
+
+[mellowplayer.deezer]
+file_filter = plugins/deezer/description_<lang>.html
+source_file = plugins/deezer/description.html
+source_lang = en
+type = HTML
+
+[mellowplayer.ledjam]
+file_filter = plugins/ledjam/description_<lang>.html
+source_file = plugins/ledjam/description.html
+source_lang = en
+type = HTML
+
+[mellowplayer.mixcloud]
+file_filter = plugins/mixcloud/description_<lang>.html
+source_file = plugins/mixcloud/description.html
+source_lang = en
+type = HTML
+
+[mellowplayer.soundcloud]
+file_filter = plugins/soundcloud/description_<lang>.html
+source_file = plugins/soundcloud/description.html
+source_lang = en
+type = HTML
+
+[mellowplayer.spotify]
+file_filter = plugins/spotify/description_<lang>.html
+source_file = plugins/spotify/description.html
+source_lang = en
+type = HTML

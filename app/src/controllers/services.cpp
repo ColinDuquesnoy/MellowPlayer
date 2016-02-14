@@ -41,6 +41,16 @@ QString findFileByExtension(const QString &directory, const QString &suffix) {
 }
 
 //--------------------------------------
+QString findTranslation(const QString &originalFilePath, const QString &locale) {
+  QString baseName = QFileInfo(originalFilePath).baseName();
+  QString expectedPath = QString(originalFilePath).replace(
+              baseName, QString("%1_%2").arg(baseName).arg((locale)));
+  if(QFileInfo(expectedPath).exists())
+      return expectedPath;
+  return QString();
+}
+
+//--------------------------------------
 QString readFileContent(const QString &filePath) {
   QString retVal;
 
@@ -76,7 +86,10 @@ StreamingServicePlugin loadPlugin(const QString &directory) {
   QString metadataPath = findFileByExtension(directory, "ini");
   QString scriptPath = findFileByExtension(directory, "js");
   QString descPath = findFileByExtension(directory, "html");
-
+  QString locale = QLocale::system().name().split("_")[0];
+  QString translationPath = findTranslation(descPath, locale);
+  if(!translationPath.isEmpty())
+      descPath = translationPath;
   StreamingServicePlugin retVal;
   retVal.Code = readFileContent(scriptPath);
   retVal.Description = readFileContent(descPath);
