@@ -49,15 +49,9 @@ Web streaming service integration plugins are now written in pure javascript.
 Adding/Updating a new translation
 ---------------------------------
 
-**To add a new translation**, follow the below steps:
+MellowPlayer translations are hosted on transifex: https://www.transifex.com/colinduquesnoy/mellowplayer/
 
-1. Run the *devhelper script*: ``python3 utils/devhelper.py``
-2. Select the **first entry** in the menu (*Add a new translation*)
-3. Indicate the code for the language you want to add (e.g. fr, en, es,...)
-4. Open app/translations/mellowplayer_lang.ts (where lang is the code you specified in the previous step)
-   with Qt linguist
-5. Once you've finished translating, save you work and make a release (File->Release)
-6. Submit a pull request!
-
-**To update an existing translation**, run the *devhelper script* but, this time, use the **second entry** 
-in the menu (*Update translations*). Afterward you can just follow step 4, 5 and 6.
+- Create an account at transifex
+- Go to the project's homepage and click on the "Join the team" button
+- If the language you want to work on does not exists yet, send us a language request. Once the request has been accepted, a new translation file for the requested language will be created automatically by transifex.
+- To actually start translating, go to the project's home page on transifex and click on the translate button. This will open the translator tool where you can choose the resource and the language you want to work on.
