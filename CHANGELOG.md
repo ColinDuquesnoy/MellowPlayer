@@ -2,7 +2,7 @@
 
 - General:
     - ported to **QtWebEngine**
-    - 3 new services added: **Spotify**, **8tracks** and **LeDjamRadio**
+    - 2 new services: **Spotify** and **8tracks**
     - web streaming services **plugins are now written in pure javascript** (a
       wizard will guide you through the steps of creating a new plugin)
     - **new** design for the **home page**
