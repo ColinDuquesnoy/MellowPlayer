@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>933</width>
-    <height>710</height>
+    <height>712</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -119,6 +119,9 @@
              </item>
              <item>
               <widget class="QLabel" name="label_4">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(255, 255, 255)</string>
+               </property>
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -314,6 +317,9 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
                <kerning>true</kerning>
               </font>
              </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;</string>
+             </property>
              <property name="text">
               <string>Select a music streaming service</string>
              </property>
@@ -466,7 +472,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
      <x>0</x>
      <y>0</y>
      <width>933</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
