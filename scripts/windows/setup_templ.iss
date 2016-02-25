@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 #include <idp.iss>
 
-#define MyAppName "MellowPlayer2"
+#define MyAppName "MellowPlayer"
 #define MyAppVersion "@VERSION@"
 #define MyAppPublisher "Colin Duquesnoy"
 #define MyAppURL "https://github.com/ColinDuquesnoy/MellowPlayer"
@@ -50,7 +50,7 @@ Source: "bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Compo
 Source: "scripts\windows\vc_redist.x86.exe"; DestDir: "{tmp}\vc_redist.x86.exe"; Components: vcredist
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app; 
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app;
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1; Components: app;
 
 [Icons]
