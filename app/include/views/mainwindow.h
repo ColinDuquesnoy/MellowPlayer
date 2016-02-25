@@ -116,7 +116,7 @@ private slots:
   void onPreferencesTriggered();
   void onAboutTriggered();
   void onAboutQtTriggered();
-  void onWikiTriggered();
+  void onActionDocumentationTriggered();
   void onReportBugTriggered();
   bool exitApplication();
   void onShowMenuToggled(bool showMenu);

@@ -224,7 +224,7 @@ void MainWindow::connectSlots() {
           SLOT(onAboutQtTriggered()));
   connect(m_ui->actionReport_a_bug, SIGNAL(triggered()), this,
           SLOT(onReportBugTriggered()));
-  connect(m_ui->actionWiki, SIGNAL(triggered()), this, SLOT(onWikiTriggered()));
+  connect(m_ui->actionDocumentation, SIGNAL(triggered()), this, SLOT(onActionDocumentationTriggered()));
   connect(m_ui->actionShow_menu, SIGNAL(toggled(bool)), this,
           SLOT(onShowMenuToggled(bool)));
   connect(m_ui->actionFullscreen, SIGNAL(toggled(bool)), this,
@@ -303,10 +303,9 @@ void MainWindow::onAboutTriggered() {
 void MainWindow::onAboutQtTriggered() { QMessageBox::aboutQt(this); }
 
 //--------------------------------------
-void MainWindow::onWikiTriggered() {
+void MainWindow::onActionDocumentationTriggered() {
   QDesktopServices::openUrl(
-      QUrl("https://github.com/ColinDuquesnoy/MellowPlayer/"
-           "wiki#user-documentation"));
+      QUrl("http://mellowplayer.readthedocs.org/en/webengine/"));
 }
 
 //--------------------------------------

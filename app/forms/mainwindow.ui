@@ -466,7 +466,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
      <x>0</x>
      <y>0</y>
      <width>933</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -495,7 +495,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <addaction name="actionAbout_MellowPlayer"/>
     <addaction name="actionAbout_Qt"/>
     <addaction name="separator"/>
-    <addaction name="actionWiki"/>
+    <addaction name="actionDocumentation"/>
     <addaction name="actionReport_a_bug"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -686,13 +686,13 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <string>Ctrl+Shift+L</string>
    </property>
   </action>
-  <action name="actionWiki">
+  <action name="actionDocumentation">
    <property name="icon">
     <iconset theme="help-contents" resource="../mellowplayer.qrc">
      <normaloff>:/icons/help-contents.png</normaloff>:/icons/help-contents.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Wiki</string>
+    <string>&amp;Documentation</string>
    </property>
    <property name="shortcut">
     <string>F10</string>
