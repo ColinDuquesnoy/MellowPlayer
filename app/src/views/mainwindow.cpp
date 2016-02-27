@@ -305,7 +305,7 @@ void MainWindow::onAboutQtTriggered() { QMessageBox::aboutQt(this); }
 //--------------------------------------
 void MainWindow::onActionDocumentationTriggered() {
   QDesktopServices::openUrl(
-      QUrl("http://mellowplayer.readthedocs.org/en/webengine/"));
+      QUrl("http://mellowplayer.readthedocs.org/en/latest/"));
 }
 
 //--------------------------------------
