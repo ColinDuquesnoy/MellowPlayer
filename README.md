@@ -33,7 +33,7 @@ MellowPlayer is licensed under the GPL license.
 ## Dependencies
 
 - **Qt5** (>= 5.6.0)
-- **SnoreNotify** (>= 0.6.0)
+- **SnoreNotify** (>= 0.7.0)
 - **PepperFlash** (runtime dependency)
 
 
