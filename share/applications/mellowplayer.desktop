@@ -1,0 +1,40 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=MellowPlayer
+Exec=mellowplayer
+TryExec=mellowplayer
+Icon=mellowplayer
+Terminal=false
+Categories=AudioVideo;Network;
+StartupNotify=true
+StartupWMClass=MellowPlayer
+GenericName=Cloud music player
+GenericName[fr]=Lecteur de services de musique en ligne
+Comment=Cloud music player
+Comment[fr]=Lecteur de services de musique en ligne
+Actions=PlayPause;Next;Previous;Restore
+
+[Desktop Action PlayPause]
+Exec=mellowplayer --playpause
+Name=Play/Pause
+Icon=media-playback-start
+
+[Desktop Action Next]
+Exec=mellowplayer --next
+Name=Next song
+Name[fr]=Piste suivante
+Icon=media-seek-forward
+
+[Desktop Action Previous]
+Exec=mellowplayer --previous
+Name=Previous song
+Name[fr]=Piste précédente
+Icon=media-seek-backward
+
+[Desktop Action Restore]
+Exec=mellowplayer
+Name=Restore window
+Name[fr]=Restaurer la fenêtre
+Icon=view-restore

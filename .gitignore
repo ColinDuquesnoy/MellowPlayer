@@ -32,7 +32,7 @@ dist
 
 # Pycharm project files
 .idea
-*.iss
+setup.iss
 *.usr
 
 # Dolpin

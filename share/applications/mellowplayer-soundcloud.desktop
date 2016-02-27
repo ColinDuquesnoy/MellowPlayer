@@ -1,0 +1,40 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=Soundcloud
+Exec=mellowplayer --service=soundcloud --standalone
+TryExec=mellowplayer
+Icon=mellowplayer-soundcloud
+Terminal=false
+Categories=AudioVideo;Network;
+StartupNotify=true
+StartupWMClass=Soundcloud
+GenericName=Soundcloud web app
+GenericName[fr]=Application web soundcloud
+Comment=Soundcloud web app
+Comment[fr]=Application web Soundcloud
+Actions=PlayPause;Next;Previous;Restore
+
+[Desktop Action PlayPause]
+Exec=mellowplayer --service=soundcloud --standalone --playpause
+Name=Play/Pause
+Icon=media-playback-start
+
+[Desktop Action Next]
+Exec=mellowplayer --service=soundcloud --standalone --next
+Name=Next song
+Icon=media-seek-forward
+Name[fr]=Piste suivante
+
+[Desktop Action Previous]
+Exec=mellowplayer --service=soundcloud --standalone --previous
+Name=Previous song
+Icon=media-seek-backward
+Name[fr]=Piste précédente
+
+[Desktop Action Restore]
+Exec=mellowplayer --service=soundcloud --standalone
+Name=Restore window
+Name[fr]=Restaurer la fenêtre
+Icon=view-restore

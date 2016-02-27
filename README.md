@@ -1,6 +1,6 @@
-![MellowPlayer banner](/banner.png)
+![MellowPlayer banner](docs/_static/banner.png)
 
-[![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
+[![Build Status](https://semaphoreci.com/api/v1/projects/8f479e85-a11e-4a76-8124-954ba3876dd7/633096/shields_badge.svg)](https://semaphoreci.com/colinduquesnoy/mellowplayer)
 [![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
 
 ## About
@@ -13,12 +13,18 @@ notifications and more).
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
 
+## Supported services:
+
+- **Deezer**
+- **Mixcloud**
+- **Soundcloud**
+- **Spotify**
+
 
 ## Resources
 
 - [Official website](http://colinduquesnoy.github.io/MellowPlayer/)
-- [Wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
-- [API Reference](http://colinduquesnoy.github.io/MellowPlayer/doc/index.html)
+- [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
 
 ## License
 
@@ -26,20 +32,10 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-All platforms:
-- **Qt5** (>= 5.4.1)
-- **flashplugin** (optional runtime dependency)
+- **Qt5** (>= 5.6.0)
+- **SnoreNotify** (>= 0.6.0)
+- **PepperFlash** (runtime dependency)
 
-KDE Sc/Plasma 5:
-- **KGlobalAccell**
-- **KNotifications**
-
-Ubuntu/Unity:
-- **libnotify** (runtime dependency)
-- **libdbusmenu-qt5**
-
-Other GNU/Linux distributions/desktops:
-- **libnotify** (runtime dependency)
 
 ## Compilation
 
@@ -49,16 +45,10 @@ make
 sudo make install
 ```
 
-Build options:
-
-- **CONFIG+=kde_support**: to build the application with kde support (media keys, tray icon).
-- **CONFIG+=unity_support**: to build the application with Unity desktop support (disable tray icon, fix global menu, unity quicklists).
-- **PREFIX=%s**: the install prefix. Default is ``/usr`` on GNU/Linux and ``/`` (``/Applications``) OS X.
-
 ## Contributing
 
 MellowPlayer is an open-source application that needs your help to go on growing and improving!
 
 There are many ways for developer and non-developers to contribute to the project. You can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on...
 
-If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/CONTRIBUTING.md) and the [wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)!
+If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/CONTRIBUTING.rst)!
