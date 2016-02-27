@@ -19,6 +19,7 @@ notifications and more).
 - **Mixcloud**
 - **Soundcloud**
 - **Spotify**
+- **8tracks**
 
 
 ## Resources
