@@ -1,6 +1,6 @@
 ![MellowPlayer banner](docs/_static/banner.png)
 
-[![Build Status](https://semaphoreci.com/api/v1/projects/8f479e85-a11e-4a76-8124-954ba3876dd7/633096/shields_badge.svg)](https://semaphoreci.com/colinduquesnoy/mellowplayer)
+[![Build Status](https://semaphoreci.com/api/v1/colinduquesnoy/mellowplayer/branches/master/shields_badge.svg)](https://semaphoreci.com/colinduquesnoy/mellowplayer)
 [![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
 
 ## About
