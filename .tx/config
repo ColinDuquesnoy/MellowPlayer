@@ -19,12 +19,6 @@ source_file = plugins/deezer/description.html
 source_lang = en
 type = HTML
 
-[mellowplayer.ledjam]
-file_filter = plugins/ledjam/description_<lang>.html
-source_file = plugins/ledjam/description.html
-source_lang = en
-type = HTML
-
 [mellowplayer.mixcloud]
 file_filter = plugins/mixcloud/description_<lang>.html
 source_file = plugins/mixcloud/description.html
