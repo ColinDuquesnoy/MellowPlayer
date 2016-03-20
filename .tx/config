@@ -42,3 +42,9 @@ file_filter = plugins/spotify/description_<lang>.html
 source_file = plugins/spotify/description.html
 source_lang = en
 type = HTML
+
+[mellowplayer.tunein]
+file_filter = plugins/tunein/description_<lang>.html
+source_file = plugins/tunein/description.html
+source_lang = en
+type = HTML

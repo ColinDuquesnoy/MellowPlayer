@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="fr">
 <context>
     <name>DialogPreferences</name>
     <message>
@@ -149,7 +151,7 @@
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -219,229 +221,229 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/mellowplayer.svg&quot; /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="123"/>
+        <location filename="../forms/mainwindow.ui" line="126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;MellowPlayer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="318"/>
-        <location filename="../forms/mainwindow.ui" line="563"/>
-        <location filename="../src/views/mainwindow.cpp" line="241"/>
+        <location filename="../forms/mainwindow.ui" line="324"/>
+        <location filename="../forms/mainwindow.ui" line="569"/>
+        <location filename="../src/views/mainwindow.cpp" line="242"/>
         <source>Select a music streaming service</source>
         <translation>Choisissez un service de musique en ligne</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="389"/>
+        <location filename="../forms/mainwindow.ui" line="395"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/preferences-desktop-notification.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icons/preferences-desktop-notification.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="405"/>
+        <location filename="../forms/mainwindow.ui" line="411"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;A new version of MellowPlayer is available!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Une nouvelle version de MellowPlayer est disponible!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="412"/>
+        <location filename="../forms/mainwindow.ui" line="418"/>
         <source>Open browser</source>
         <translation>Ouvrir le navigateur</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="423"/>
+        <location filename="../forms/mainwindow.ui" line="429"/>
         <source>Details</source>
         <translation>Détails</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="474"/>
+        <location filename="../forms/mainwindow.ui" line="480"/>
         <source>Applicatio&amp;n</source>
         <translation>Applicatio&amp;n</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="483"/>
+        <location filename="../forms/mainwindow.ui" line="489"/>
         <source>Pla&amp;yer</source>
         <translation>&amp;Lecteur</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="493"/>
+        <location filename="../forms/mainwindow.ui" line="499"/>
         <source>He&amp;lp</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="503"/>
+        <location filename="../forms/mainwindow.ui" line="509"/>
         <source>V&amp;iew</source>
         <translation>Vue</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="510"/>
+        <location filename="../forms/mainwindow.ui" line="516"/>
         <source>Navi&amp;gation</source>
         <translation>Navi&amp;gation</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="516"/>
+        <location filename="../forms/mainwindow.ui" line="522"/>
         <source>&amp;Developer</source>
         <translation>Développeur</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="529"/>
+        <location filename="../forms/mainwindow.ui" line="535"/>
         <source>Main toolbar</source>
         <translation>Barre d&apos;outils principale</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="560"/>
+        <location filename="../forms/mainwindow.ui" line="566"/>
         <source>&amp;Select a music streaming service</source>
         <translation>&amp;Choisissez un service de musique en ligne</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="566"/>
+        <location filename="../forms/mainwindow.ui" line="572"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="575"/>
+        <location filename="../forms/mainwindow.ui" line="581"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Préférences</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="578"/>
+        <location filename="../forms/mainwindow.ui" line="584"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="587"/>
+        <location filename="../forms/mainwindow.ui" line="593"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="590"/>
+        <location filename="../forms/mainwindow.ui" line="596"/>
         <source>Media Play</source>
         <translation>Media Play</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="599"/>
+        <location filename="../forms/mainwindow.ui" line="605"/>
         <source>&amp;Next</source>
         <translation>Piste &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="602"/>
+        <location filename="../forms/mainwindow.ui" line="608"/>
         <source>Media Next</source>
         <translation>Media Next</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="611"/>
+        <location filename="../forms/mainwindow.ui" line="617"/>
         <source>P&amp;revious</source>
         <translation>Piste &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="614"/>
+        <location filename="../forms/mainwindow.ui" line="620"/>
         <source>Media Previous</source>
         <translation>Media Previous</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="623"/>
+        <location filename="../forms/mainwindow.ui" line="629"/>
         <source>&amp;About MellowPlayer</source>
         <translation>&amp;A propos de MellowPlayer</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="626"/>
+        <location filename="../forms/mainwindow.ui" line="632"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="635"/>
-        <source>&amp;Report a bug</source>
-        <translation>&amp;Rapporter un bug</translation>
+        <location filename="../forms/mainwindow.ui" line="641"/>
+        <source>&amp;Report an issue...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="638"/>
+        <location filename="../forms/mainwindow.ui" line="701"/>
+        <source>&amp;Documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/mainwindow.ui" line="644"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="647"/>
+        <location filename="../forms/mainwindow.ui" line="653"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="650"/>
+        <location filename="../forms/mainwindow.ui" line="656"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="659"/>
+        <location filename="../forms/mainwindow.ui" line="665"/>
         <source>Restore window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="662"/>
+        <location filename="../forms/mainwindow.ui" line="668"/>
         <source>Restore the window</source>
         <translation>Restaurer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="671"/>
+        <location filename="../forms/mainwindow.ui" line="677"/>
         <source>About &amp;Qt</source>
         <translation>A propos de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="674"/>
+        <location filename="../forms/mainwindow.ui" line="680"/>
         <source>F9</source>
         <translation>F9</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="683"/>
+        <location filename="../forms/mainwindow.ui" line="689"/>
         <source>&amp;Add to favorites</source>
         <translation>&amp;Ajouter aux favoris</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="686"/>
+        <location filename="../forms/mainwindow.ui" line="692"/>
         <source>Ctrl+Shift+L</source>
         <translation>Ctrl+Shift+L</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="695"/>
-        <source>&amp;Wiki</source>
-        <translation>&amp;Wiki</translation>
-    </message>
-    <message>
-        <location filename="../forms/mainwindow.ui" line="698"/>
+        <location filename="../forms/mainwindow.ui" line="704"/>
         <source>F10</source>
         <translation>F10</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="707"/>
+        <location filename="../forms/mainwindow.ui" line="713"/>
         <source>&amp;Home</source>
         <translation>&amp;Accueil</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="710"/>
+        <location filename="../forms/mainwindow.ui" line="716"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="722"/>
+        <location filename="../forms/mainwindow.ui" line="728"/>
         <source>&amp;Show menu</source>
         <translation>Afficher le &amp;menu</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="725"/>
+        <location filename="../forms/mainwindow.ui" line="731"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="737"/>
+        <location filename="../forms/mainwindow.ui" line="743"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="740"/>
+        <location filename="../forms/mainwindow.ui" line="746"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="749"/>
+        <location filename="../forms/mainwindow.ui" line="755"/>
         <source>&amp;Create plugin...</source>
         <translation>&amp;Créer un plugin</translation>
     </message>
     <message>
-        <location filename="../forms/mainwindow.ui" line="752"/>
+        <location filename="../forms/mainwindow.ui" line="758"/>
         <source>F4</source>
         <translation>F4</translation>
     </message>
@@ -456,22 +458,22 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Le programme va continuer de fonctionner dans la barre des tâches. Pour terminer le programme, choississez &lt;b&gt;Quitter&lt;/b&gt; dans le menu contextuel de l&apos;icône de la barre des tâches.</translation>
     </message>
     <message>
-        <location filename="../src/views/mainwindow.cpp" line="244"/>
+        <location filename="../src/views/mainwindow.cpp" line="245"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../src/views/mainwindow.cpp" line="247"/>
+        <location filename="../src/views/mainwindow.cpp" line="248"/>
         <source>Create a plugin</source>
         <translation>Créer un plugin</translation>
     </message>
     <message>
-        <location filename="../src/views/mainwindow.cpp" line="282"/>
+        <location filename="../src/views/mainwindow.cpp" line="283"/>
         <source>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Built on %2 at %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. All rights reserved.&lt;br/&gt;&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Click here to download the latest version!&lt;/a&gt; </source>
         <translation>&lt;h3&gt;MellowPlayer %1&lt;/h3&gt;Compilé le %2 à %3 (%4, %5 bit)&lt;br/&gt;&lt;br/&gt;Copyright 2015 Colin Duquesnoy. Tous droits réservés.&lt;br/&gt;&lt;br/&gt;e programme est fourni TEL QUEL sans GARANTIE D&apos;AUCUNE SORTE, Y COMPRIS DE GARANTIE DE LA CONCEPTION, DE QUALITÉ MARCHANDE ET D&apos;ADÉQUATION À UN USAGE PARTICULIER.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://colinduquesnoy.github.io/MellowPlayer/&quot;&gt;Cliquez ici pour télécharger la dernière version!&lt;/a&gt; </translation>
     </message>
     <message>
-        <location filename="../src/views/mainwindow.cpp" line="298"/>
+        <location filename="../src/views/mainwindow.cpp" line="299"/>
         <source>About MellowPlayer</source>
         <translation>A propos de MellowPlayer</translation>
     </message>
@@ -505,32 +507,32 @@ Etes-vous sûr de vouloir supprimer tous les cookies?</translation>
         <translation>Intégrez les service de musique en ligne avec votre bureau!</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="169"/>
+        <location filename="../src/application.cpp" line="170"/>
         <source>Options:</source>
         <translation>Options:</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="170"/>
+        <location filename="../src/application.cpp" line="171"/>
         <source>  * --help: show this help message</source>
         <translation>  * --help: affiche l&apos;aide du programme</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="172"/>
+        <location filename="../src/application.cpp" line="173"/>
         <source>  * --version: show the version</source>
         <translation>  * --version: affiche la version du programme</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="175"/>
+        <location filename="../src/application.cpp" line="176"/>
         <source>  * --standalone: make the specified service a standalone application. (ignored if --service is not used)</source>
         <translation>  * --standalone: crée une application standalone pour le service spécifié (ignoré si aucun service n&apos;est spécifié)</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="179"/>
+        <location filename="../src/application.cpp" line="181"/>
         <source>  * --service=%s: select a specific service (e.. deezer, mixcloud, soundcloud or spotify)</source>
         <translation>  * --service=%s: active le service spécifié(par example: deezer, mixcloud, soundcloud ou spotify)</translation>
     </message>
     <message>
-        <location filename="../src/application.cpp" line="181"/>
+        <location filename="../src/application.cpp" line="185"/>
         <source>  * --autoquit-delay=%d: a delay for automatically quitting the application (for testing purposes).</source>
         <translation>  * --autoquit-delay=%d: le délai pour automatiquement quitter l&apos;application (utilisé pour les tests fonctionnels).</translation>
     </message>
