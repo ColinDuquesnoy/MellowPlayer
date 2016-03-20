@@ -1,8 +1,8 @@
-## 2.0 Release Candidate
+## 2.0 Release Candidate (v1.99)
 
 - add TuneIn integration plugin
 
-## 2.0 beta
+## 2.0 beta (v1.95)
 
 - General:
     - ported to **QtWebEngine**
