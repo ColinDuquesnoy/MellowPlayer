@@ -111,10 +111,14 @@ function setVolume(volume) {
 }
 
 
-function addToFavorites(add) {
+function addToFavorites() {
+    // not supported
+}
+
+function removeFromFavorites() {
     // not supported
 }
 
 function seekToPosition(position) {
-
+    // not supported
 }

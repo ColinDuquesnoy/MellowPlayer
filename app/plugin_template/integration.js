@@ -61,7 +61,11 @@ function setVolume(volume) {
 }
 
 
-function addToFavorites(add) {
+function addToFavorites() {
+
+}
+
+function removeFromFavorites() {
 
 }
 

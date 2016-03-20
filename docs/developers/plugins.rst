@@ -111,10 +111,15 @@ Sets the player's volume.
   
 **volume** is a *float* in the range [0-1].
 
-addToFavorites(add)
+addToFavorites()
 +++++++++++++++++++
 
-Adds/Removes song from favorites.
+Adds song to favorites.
+
+removeFromFavorites()
++++++++++++++++++++++
+
+Removes song from favorites.
 
 seekToPosition(position)
 ++++++++++++++++++++++++

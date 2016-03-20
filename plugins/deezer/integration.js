@@ -69,7 +69,11 @@ function setVolume(volume) {
     dzPlayer.control.setVolume(volume);
 }
 
-function addToFavorites(add) {
+function addToFavorites() {
+    // not supported
+}
+
+function removeFromFavorites() {
     // not supported
 }
 
