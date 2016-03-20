@@ -1,3 +1,7 @@
+## 2.0
+
+- add TuneIn integration plugin
+
 ## 2.0 beta
 
 - General:

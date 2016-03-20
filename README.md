@@ -15,11 +15,12 @@ notifications and more).
 
 ## Supported services:
 
-- **Deezer**
-- **Mixcloud**
-- **Soundcloud**
-- **Spotify**
-- **8tracks**
+- [Deezer](http://deezer.com)
+- [Mixcloud](http://mixcloud.com)
+- [Soundcloud](http://soundcloud.com)
+- [Spotify](http://spotify.com)
+- [TuneIn](http://tunein.com/)
+- [8tracks](http://8tracks.com/)
 
 
 ## Resources
