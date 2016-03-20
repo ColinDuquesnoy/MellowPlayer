@@ -1,4 +1,4 @@
-## 2.0
+## 2.0 Release Candidate
 
 - add TuneIn integration plugin
 
