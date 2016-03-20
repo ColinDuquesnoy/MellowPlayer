@@ -1,0 +1,40 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=TuneIn
+Exec=mellowplayer --service=tunein --standalone
+TryExec=mellowplayer
+Icon=mellowplayer-tunein
+Terminal=false
+Categories=AudioVideo;Network;
+StartupNotify=true
+StartupWMClass=Tunein
+GenericName=TuneIn web app
+GenericName[fr]=Application web TuneIn
+Comment=TuneIn web app
+Comment[fr]=Application web TuneIn
+Actions=PlayPause;Next;Previous;Restore
+
+[Desktop Action PlayPause]
+Exec=mellowplayer --service=tunein --standalone --playpause
+Name=Play/Pause
+Icon=media-playback-start
+
+[Desktop Action Next]
+Exec=mellowplayer --service=tunein --standalone --next
+Name=Next song
+Icon=media-seek-forward
+Name[fr]=Piste suivante
+
+[Desktop Action Previous]
+Exec=mellowplayer --service=tunein --standalone --previous
+Name=Previous song
+Icon=media-seek-backward
+Name[fr]=Piste précédente
+
+[Desktop Action Restore]
+Exec=mellowplayer --service=tunein --standalone
+Name=Restore window
+Name[fr]=Restaurer la fenêtre
+Icon=view-restore
