@@ -47,7 +47,7 @@ Name: vcredist; Description: "MSVC 2015 Redist";  Types: full; Flags: disablenou
 
 [Files]
 Source: "bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Components: app
-Source: "scripts\windows\vc_redist.x86.exe"; DestDir: "{tmp}\vc_redist.x86.exe"; Components: vcredist
+Source: "scripts\windows\vc_redist.x86.exe"; DestDir: "{tmp}"; Components: vcredist
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app;
@@ -60,7 +60,7 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon; Components: app;
 
 [Run]
-Filename: "{app}\vc_redist.x86.exe"; Components: vcredist;
+Filename: "{tmp}\vc_redist.x86.exe"; Components: vcredist;
 Filename: "{tmp}\flash_ppapi_setup.exe"; Components: flash;
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: app;
 
