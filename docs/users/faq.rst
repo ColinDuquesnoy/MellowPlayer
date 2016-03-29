@@ -4,7 +4,7 @@ FAQ & Known issues
 Known issues
 ------------
 
-- Mixcloud fails to load due to an ERR_SSL_PROTOCOL_ERROR on GNU/Linux with nss 3.21. This is a well known issue for chromium < 47. QtWebEngine needs to be `patched`_
+- Some services fail to load due to an ERR_SSL_PROTOCOL_ERROR on GNU/Linux with nss>=3.21. This is a known issue for chromium < 47. QtWebEngine needs to be `patched`_ or you need to downgrad nss to 3.20...
 - Media Player Keys support on OSX and Windows might not work.
 
 
