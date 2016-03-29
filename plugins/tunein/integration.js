@@ -18,6 +18,17 @@
 //-----------------------------------------------------------------------------
 var oldSongInfo = null;
 
+function hashCode(str) {
+  var hash = 0, i, chr, len;
+  if (str.length === 0) return hash;
+  for (i = 0, len = str.length; i < len; i++) {
+    chr   = str.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
+
 function getPlaybackStatus() {
     var retVal = mellowplayer.PlaybackStatus.STOPPED;
     var stateStr = TuneIn.app.getPlayState();
@@ -58,7 +69,7 @@ function updateSongInfo() {
             retVal = oldSongInfo;
         }
     } else {
-        retVal.SongId = broadcast.GuideId;
+        retVal.SongId = hashCode(broadcast.Title + broadcast.Subtitle);
         retVal.SongTitle = broadcast.Title;
         retVal.AlbumTitle = broadcast.Subtitle;
         retVal.ArtUrl = broadcast.Image;
