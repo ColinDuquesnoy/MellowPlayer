@@ -106,6 +106,10 @@ void MellowPlayerApp::raise() { m_mainWindow->restoreWindow(); }
 
 //--------------------------------------
 int MellowPlayerApp::exec() {
+  // clear covers cache
+  QString cacheDir =
+        QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0] + QDir::separator() + "Covers";
+  QDir(cacheDir).removeRecursively();
   int retCode = QApplication::exec();
   close();
   if (m_mainWindow)
