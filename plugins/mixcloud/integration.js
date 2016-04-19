@@ -56,7 +56,7 @@ function updateSongInfo() {
         "SongTitle": cloudcast.title,
         "ArtistName": cloudcast.owner,
         "AlbumTitle": '',
-        "ArtUrl": "http:" + M.player.currentCloudcast.widgetImage,
+        "ArtUrl": M.player.currentCloudcast.widgetImage,
         "Favorite": $('.icon-favorite-inner').get(0).getAttribute('class').match("ng-hide") == null,
         "Duration": M.player.audioLength,
         "Position": M.player.audioPosition
