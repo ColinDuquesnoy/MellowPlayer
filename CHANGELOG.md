@@ -1,10 +1,18 @@
 ## 2.0
 
+### 2.0.1
+
+**Fixed bugs**
+
+- [Mixcloud] fix missing album arts due to change in URL.
+- [All] fix album arts cache grows indefinitely. Now the cache will get cleaned on application startup.
+- [Windows] fix empty list of plugins if user pinned the app to the panel when the app was running.
+
 ### 2.0.0
 
 **Fixed bugs**
 
-- fix missing radio art if broadcast.Guide is the same as a previous broadcast
+- [TuneIn] fix missing radio art if broadcast.Guide is the same as a previous broadcast
 
 ### 2.0.0 Release Candidate (v1.99)
 
