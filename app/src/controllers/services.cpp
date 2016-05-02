@@ -114,6 +114,7 @@ bool checkPluginDirectory(const QString &directory) {
 //--------------------------------------
 QStringList getSearchPaths() {
   QStringList paths;
+  paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
   paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
   paths.append(getUserPluginsDirectory());
 
@@ -130,7 +131,8 @@ QStringList getSearchPaths() {
   paths.append("/usr/share/mellowplayer/plugins");
   paths.append("/usr/local/share/mellowplayer/plugins");
 #endif
-  return paths;
+
+  return QSet<QString>::fromList(paths).toList();
 }
 
 //--------------------------------------
