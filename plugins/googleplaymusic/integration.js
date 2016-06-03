@@ -100,9 +100,6 @@ function updateSongInfo() {
         AlbumTitle = null;
     }
     
-    duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText;
-    position = document.querySelector("#material-player-right-wrapper #time_container_current").innerText;
-
     //-----------------------------------------------------------------------------
     // Credit for this code to http://stackoverflow.com/questions/13437796/convert-any-string-time-to-seconds
     //-----------------------------------------------------------------------------
@@ -140,13 +137,9 @@ function updateSongInfo() {
         "AlbumTitle": AlbumTitle,
         "ArtUrl": ArtUrl,
         "Favorite": false,
-<<<<<<< HEAD
         "Duration": Duration,
         "Position": Position
-=======
-        "Duration": duration, 
-        "Position": position
->>>>>>> ca8e97a4299b9fb44c89adad03602b7427b4f648
+
     }
 }
 
