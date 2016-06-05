@@ -21,6 +21,7 @@ notifications and more).
 - [Spotify](http://spotify.com)
 - [TuneIn](http://tunein.com/)
 - [8tracks](http://8tracks.com/)
+- [Google Play Music](https://play.google.com/music/listen)
 
 
 ## Resources
