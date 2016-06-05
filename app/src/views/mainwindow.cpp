@@ -46,6 +46,10 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_ui(new Ui::MainWindow), m_lblSongInfo(NULL) {
   m_ui->setupUi(this);
+#ifdef Q_OS_WIN32
+  if(QSysInfo::WindowsVersion == QSysInfo::WV_WINDOWS10)
+    setStyleSheet("QToolBar { background-color: white;};");
+#endif
   setupActions();
   setupTrayIcon();
   setupDockMenu();
