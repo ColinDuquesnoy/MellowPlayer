@@ -1,5 +1,9 @@
 ## 2.0
 
+## 2.1
+
+- add support for Google Play Music
+
 ### 2.0.1
 
 **Fixed bugs**
