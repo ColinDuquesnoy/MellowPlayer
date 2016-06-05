@@ -1,8 +1,18 @@
-## 2.0
-
 ## 2.1
 
-- add support for Google Play Music
+### 2.1.2
+
+Small UI tweaks for Windows 10 (set toolbar background color to white)
+
+### 2.1.1
+
+Fix version number not updated in previous release
+
+### 2.1.0
+
+Add support for Google Play Music
+
+## 2.0
 
 ### 2.0.1
 
