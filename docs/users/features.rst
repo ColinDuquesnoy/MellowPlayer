@@ -26,4 +26,4 @@ Features
 .. _Soundcloud: http://www.soundclound.com
 .. _TuneIn: http://www.tunein.com
 .. _8tracks: http://www.8tracks.com
-.. _Google Play Music:https://play.google.com/music/listen
+.. _Google Play Music: https://play.google.com/music/listen
