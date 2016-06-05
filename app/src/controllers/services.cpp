@@ -255,6 +255,8 @@ StreamingServicesController::getService(const QString &serviceName) const {
   foreach (StreamingServicePlugin plugin, m_services) {
     if (plugin.Name.toLower() == serviceName.toLower())
       return plugin;
+    if (plugin.Name.toLower().replace(" ", "") == serviceName.toLower())
+        return plugin;
   }
   return StreamingServicePlugin();
 }
