@@ -10,6 +10,7 @@ Features
    - `Soundcloud`_
    - `TuneIn`_
    - `8tracks`_
+   - `Google Play Music`_
 
 - On GNU/Linux, each service can be turned into a standalone app
 - System tray integration and notifications
@@ -25,3 +26,4 @@ Features
 .. _Soundcloud: http://www.soundclound.com
 .. _TuneIn: http://www.tunein.com
 .. _8tracks: http://www.8tracks.com
+.. _Google Play Music:https://play.google.com/music/listen
