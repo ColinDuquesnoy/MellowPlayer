@@ -25,6 +25,7 @@
 #include <QWebEnginePage>
 #include <QWebEngineSettings>
 #include "controllers/hotkeys.h"
+#include "controllers/lyrics.h"
 #include "controllers/mpris2.h"
 #include "controllers/notifications.h"
 #include "controllers/player.h"
@@ -69,6 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
   new NotificationsController(this);
   new HotkeysController(this);
   new MPRIS2Controller(this);
+  new LyricsController(this);
 }
 
 //-------------------------------------
@@ -112,6 +114,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     hide();
     event->ignore();
   } else {
+    LyricsController* lyrics = qobject_cast<LyricsController*>(controller("lyrics"));
+    lyrics->saveState();
     player()->stopPolling();
     hide();
     qApp->processEvents();
@@ -329,6 +333,8 @@ bool MainWindow::exitApplication() {
     if (answer == QMessageBox::No)
       return false;
   }
+  LyricsController* lyrics = qobject_cast<LyricsController*>(controller("lyrics"));
+  lyrics->saveState();
   qApp->exit();
   return true;
 }
@@ -489,8 +495,10 @@ void MainWindow::setupToolbar() {
   m_BtMenu->setPopupMode(QToolButton::InstantPopup);
   m_BtMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   QMenu *mnu = new QMenu(tr("Control"), m_BtMenu);
-  mnu->addAction(m_ui->actionShow_menu);
-  mnu->addAction(m_ui->actionFullscreen);
+  QMenu* viewMenu = mnu->addMenu("View");
+  viewMenu->addAction(m_ui->actionShow_menu);
+  viewMenu->addAction(m_ui->actionFullscreen);
+  viewMenu->addAction(m_ui->actionShow_lyrics);
   mnu->addSeparator();
   mnu->addAction(m_ui->actionCreate_plugin);
   mnu->addSeparator();

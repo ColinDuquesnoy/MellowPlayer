@@ -25,7 +25,7 @@ else {
     TARGET = MellowPlayer
 }
 TEMPLATE = app
-QT += core gui network widgets webengine webenginewidgets
+QT += core gui network widgets webengine webenginewidgets xml
 !macx {
     QT += LibsnoreQt5
 }
@@ -67,6 +67,7 @@ SOURCES += main.cpp\
            application.cpp \
            controllers/base.cpp \
            controllers/hotkeys.cpp \
+           controllers/lyrics.cpp \
            controllers/notifications.cpp \
            controllers/mpris2.cpp \
            controllers/player.cpp \
@@ -84,8 +85,9 @@ SOURCES += main.cpp\
            views/wizard_new_plugin.cpp
 
 HEADERS += application.h \
-           controllers/hotkeys.h \
            controllers/base.h \
+           controllers/hotkeys.h \
+           controllers/lyrics.h \
            controllers/mpris2.h \
            controllers/notifications.h \
            controllers/player.h \

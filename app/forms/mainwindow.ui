@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
+    <width>1113</width>
     <height>712</height>
    </rect>
   </property>
@@ -471,8 +471,8 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>933</width>
-     <height>22</height>
+     <width>1113</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
@@ -510,6 +510,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     </property>
     <addaction name="actionShow_menu"/>
     <addaction name="actionFullscreen"/>
+    <addaction name="actionShow_lyrics"/>
    </widget>
    <widget class="QMenu" name="menuNavigation">
     <property name="title">
@@ -556,6 +557,31 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
    <addaction name="actionPrevious"/>
    <addaction name="actionPlayPause"/>
    <addaction name="actionNext"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidgetLyrics">
+   <property name="windowTitle">
+    <string>&amp;Lyrics</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QTextEdit" name="textEditLyrics">
+       <property name="undoRedoEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="lineWrapMode">
+        <enum>QTextEdit::WidgetWidth</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="actionSelect_service">
    <property name="icon">
@@ -756,6 +782,20 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
    </property>
    <property name="shortcut">
     <string>F4</string>
+   </property>
+  </action>
+  <action name="actionShow_lyrics">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="view-media-lyrics"/>
+   </property>
+   <property name="text">
+    <string>Show lyrics</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>
