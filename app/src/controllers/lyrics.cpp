@@ -43,6 +43,7 @@ LyricsController::LyricsController(MainWindow *parent)
     connect(m_mainWindow->ui()->stackedWidget, &QStackedWidget::currentChanged, this, &LyricsController::onPageChanged);
     connect(m_mainWindow->player(), &PlayerController::songChanged, this, &LyricsController::onSongChanged);
     connect(m_nam, &QNetworkAccessManager::finished, this, &LyricsController::onLyricsLoaded);
+    connect(m_mainWindow->ui()->dockWidgetLyrics, &QDockWidget::visibilityChanged, this, &LyricsController::showLyricsPane);
     showLyricsPane(false);
 
     m_mainWindow->ui()->textEditLyrics->setAlignment(Qt::AlignCenter);
@@ -51,7 +52,7 @@ LyricsController::LyricsController(MainWindow *parent)
 //-------------------------------------
 void LyricsController::saveState()
 {
-    QSettings().setValue("lyricsPaneVisible", m_mainWindow->ui()->dockWidgetLyrics->isVisible());
+    QSettings().setValue("interface/lyricsPaneVisible", m_mainWindow->ui()->dockWidgetLyrics->isVisible());
 }
 
 //-------------------------------------
@@ -61,7 +62,9 @@ void LyricsController::showLyricsPane(bool show)
     m_mainWindow->ui()->actionShow_lyrics->setChecked(show);
     m_mainWindow->ui()->actionShow_lyrics->blockSignals(false);
 
+    m_mainWindow->ui()->dockWidgetLyrics->blockSignals(true);
     m_mainWindow->ui()->dockWidgetLyrics->setVisible(show);
+    m_mainWindow->ui()->dockWidgetLyrics->blockSignals(false);
 }
 
 //-------------------------------------
@@ -69,8 +72,8 @@ void LyricsController::onPageChanged(int page)
 {
     if(page == PAGE_WEB){
         // restore state of lyrics pane
-        bool autoShow = QSettings().value("automaticallyShowLyricsPane", true).toBool();
-        bool lyricsPaneVisible = QSettings().value("lyricsPaneVisible", false).toBool();
+        bool autoShow = QSettings().value("interface/automaticallyShowLyricsPane", false).toBool();
+        bool lyricsPaneVisible = QSettings().value("interface/lyricsPaneVisible", false).toBool();
         if(!autoShow){
             m_mainWindow->ui()->dockWidgetLyrics->setVisible(lyricsPaneVisible);
         }
@@ -87,12 +90,33 @@ void LyricsController::onSongChanged(const SongInfo &songInfo)
     QString song = QString(songInfo.SongTitle).toLower();
 
     // replace stop words (see http://www.chartlyrics.com/api.aspx STOP WORDS)
-    // french words
-    QRegExp frenchStopWords("\\s?(le|la|les|du|des|de|chanson|encore|autre|ici|là|mauvaise)\\s+");
-//    while(frenchStopWords.indexIn(song) != -1)
+
+    // french stop words (from http://www.ranks.nl/stopwords/french)
+    QRegExp frenchStopWords(
+        "\\b(alors|au|aucuns|aussi|autre|avant|avec|avoir|bon|car|ce|cela|ces|ceux|chaque|ci|comme|comment|dans|de|des|du"
+        "|dedans|dehors|depuis|devrait|doit|donc|dos|début|elle|elles|en|encore|essai|est|et|eu|fait|faites|fois|font|"
+        "hors|ici|il|ils|je|juste|la|là|le|les|leur|là|ma|maintenant|mais|mes|mine|moins|mon|mot|même|ni|nommés|notre|nous"
+        "|ou|où|par|parce|pas|peut|peu|plupart|pour|pourquoi|chanson|que|quel|quelle|quelles|quels|qui|sa|sans|ses|"
+        "seulement|si|sien|son|sont|sous|soyez|sujet|sur|ta|tandis|tellement|tels|tes|ton|tous|tout|trop|très|tu|"
+        "voient|vont|votre|vous|vu|ça|étaient|état|étions|été|être|je|suis|mauvais|mauvaise|l'|d'|ne|n'|à|un|une)\\b");
     song = song.replace(frenchStopWords, " ");
 
-    qDebug() << "Song" << song;
+    // spanish stop words (from http://www.ranks.nl/stopwords/spanish)
+    QRegExp spanishStopWord(
+        "\\b(un|una|unas|unos|uno|sobre|todo|también|tras|otro|algún|alguno|alguna|algunos|algunas|ser|es|soy|eres|"
+        "somos|sois|estoy|esta|estamos|estais|estan|como|en|para|atras|porque|por|qué|estado|estaba|ante|antes|siendo|"
+        "ambos|pero|por|poder|puede|puedo|podemos|podeis|pueden|fui|fue|fuimos|fueron|hacer|hago|hace|hacemos|haceis|"
+        "hacen|cada|fin|incluso|primero|desde|conseguir|consigo|consigue|consigues|conseguimos|consiguen|ir|voy|va|"
+        "vamos|vais|van|vaya|gueno|ha|tener|tengo|tiene|tenemos|teneis|tienen|el|la|lo|las|los|su|aqui|mio|tuyo|ellos|"
+        "ellas|nos|nosotros|vosotros|vosotras|si|dentro|solo|solamente|saber|sabes|sabe|sabemos|sabeis|saben|ultimo|"
+        "largo|bastante|haces|muchos|aquellos|aquellas|sus|entonces|tiempo|verdad|verdadero|verdadera|cierto|ciertos|"
+        "cierta|ciertas|intentar|intento|intenta|intentas|intentamos|intentais|intentan|dos|bajo|arriba|encima|usar|"
+        "uso|usas|usa|usamos|usais|usan|emplear|empleo|empleas|emplean|ampleamos|empleais|valor|muy|era|eras|eramos|"
+        "eran|modo|bien|cual|cuando|donde|mientras|quien|con|entre|sin|trabajo|trabajar|trabajas|trabaja|trabajamos|"
+        "trabajais|trabajan|podria|podrias|podriamos|podrian|podriais|yo|aquel)\\b");
+    song = song.replace(spanishStopWord, " ");
+
+    qDebug() << "***** Searching for" << song;
 
 
     QString url = baseUrl.arg(artist).arg(song);
@@ -125,11 +149,11 @@ void LyricsController::onLyricsLoaded(QNetworkReply* reply)
             }
         }
     }
-    bool autoShow = QSettings().value("automaticallyShowLyricsPane", true).toBool();
+    bool autoShow = QSettings().value("interface/automaticallyShowLyricsPane", false).toBool();
 
     m_mainWindow->ui()->textEditLyrics->setText("<p>" + lyrics.replace("\n", "<br>") + "</p>");
     m_mainWindow->ui()->textEditLyrics->setAlignment(Qt::AlignCenter);
     if(autoShow){
-        m_mainWindow->ui()->dockWidgetLyrics->setVisible(found);
+        showLyricsPane(found);
     }
 }

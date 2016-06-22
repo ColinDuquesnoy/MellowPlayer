@@ -173,12 +173,14 @@ void DlgPreferences::resetInterface() {
   bool showTrayIcon =
       QSettings().value("interface/showTrayIcon", QVariant(true)).toBool();
   QString trayIconPath = QSettings().value("interface/trayIcon").toString();
+  bool autoShowLyrics = QSettings().value("interface/automaticallyShowLyricsPane", false).toBool();
   bool confirmQuit = QSettings().value("interface/confirmQuit", true).toBool();
 
   m_ui->checkBoxConfirmQuit->setChecked(confirmQuit);
   m_ui->checkBoxShowTrayIcon->setChecked(showTrayIcon);
   m_ui->groupBoxMinimizeToTray->setChecked(minimizeToTray);
   m_ui->lineEditTrayIcon->setText(trayIconPath);
+  m_ui->checkBoxAutoShowLyrics->setChecked(autoShowLyrics);
   updateTrayIconPreview(trayIconPath);
 }
 
@@ -231,6 +233,7 @@ void DlgPreferences::restoreInterface() {
   QSettings().setValue("interface/showTrayIcon", true);
   QSettings().setValue("interface/trayIcon", "");
   QSettings().setValue("interface/confirmQuit", true);
+  QSettings().setValue("interface/automaticallyShowLyricsPane", false);
 
   resetInterface();
 }
@@ -274,6 +277,8 @@ void DlgPreferences::applyInterface() {
                        m_ui->checkBoxShowTrayIcon->isChecked());
   QSettings().setValue("interface/confirmQuit",
                        m_ui->checkBoxConfirmQuit->isChecked());
+  QSettings().setValue("interface/automaticallyShowLyricsPane",
+                       m_ui->checkBoxAutoShowLyrics->isChecked());
   QSettings().setValue("interface/trayIcon", m_ui->lineEditTrayIcon->text());
 }
 

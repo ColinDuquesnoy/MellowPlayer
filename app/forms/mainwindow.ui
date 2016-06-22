@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1113</width>
-    <height>712</height>
+    <width>871</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -471,13 +471,13 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1113</width>
+     <width>871</width>
      <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">
     <property name="title">
-     <string>Applicatio&amp;n</string>
+     <string>Appli&amp;cation</string>
     </property>
     <addaction name="actionSelect_service"/>
     <addaction name="actionPreferences"/>
@@ -506,7 +506,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>V&amp;iew</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionShow_menu"/>
     <addaction name="actionFullscreen"/>
@@ -559,6 +559,15 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
    <addaction name="actionNext"/>
   </widget>
   <widget class="QDockWidget" name="dockWidgetLyrics">
+   <property name="minimumSize">
+    <size>
+     <width>250</width>
+     <height>87</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
    <property name="windowTitle">
     <string>&amp;Lyrics</string>
    </property>
@@ -789,10 +798,11 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view-media-lyrics"/>
+    <iconset theme="view-media-lyrics">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Show lyrics</string>
+    <string>Show &amp;lyrics</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
