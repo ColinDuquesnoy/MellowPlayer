@@ -146,6 +146,7 @@ def make_win32_release():
         os.path.join(qt_bin_dir, 'Qt5WebEngineWidgets.dll'),
         os.path.join(qt_bin_dir, 'QtWebEngineProcess.exe'),
         os.path.join(qt_bin_dir, 'Qt5Widgets.dll'),
+        os.path.join(qt_bin_dir, 'Qt5Xml.dll'),
         os.path.join(qt_bin_dir, 'snorenotify.exe'),
         os.path.join(qt_bin_dir, 'snoresend.exe'),
         os.path.join(qt_bin_dir, 'snoresettings.exe'),
