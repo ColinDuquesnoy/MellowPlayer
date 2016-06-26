@@ -1,3 +1,9 @@
+## 2.0
+
+### 2.0.0
+
+Add a lyrics panel that show the lyrics of the current song (using the chartlyrics web service).
+
 ## 2.1
 
 ### 2.1.2
