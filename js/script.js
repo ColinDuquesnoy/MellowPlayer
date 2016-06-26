@@ -49,8 +49,8 @@ $(document).ready(function() {
                 .top - 64
         }, 1000);
     });
-    $(".menu a:contains('contribution')").on('click', function(event) {
-        console.log('contribution is cliqued');
+    $(".menu a:contains('contributing')").on('click', function(event) {
+        console.log('contributing is cliqued');
         event.preventDefault();
         $('html, body').animate({
             scrollTop: $("#contribution").offset()
