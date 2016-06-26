@@ -58,6 +58,8 @@ void LyricsController::saveState()
 //-------------------------------------
 void LyricsController::showLyricsPane(bool show)
 {
+    if(!m_mainWindow)
+        return;
     m_mainWindow->ui()->actionShow_lyrics->blockSignals(true);
     m_mainWindow->ui()->actionShow_lyrics->setChecked(show);
     m_mainWindow->ui()->actionShow_lyrics->blockSignals(false);
