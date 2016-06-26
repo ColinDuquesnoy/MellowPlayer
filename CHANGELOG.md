@@ -1,6 +1,10 @@
-## 2.0
+## 2.2
 
-### 2.0.0
+### 2.2.1
+
+Fix segfault on application exit if lyrics pane is visible.
+
+### 2.2.0
 
 Add a lyrics panel that show the lyrics of the current song (using the chartlyrics web service).
 
