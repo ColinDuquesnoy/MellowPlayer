@@ -221,7 +221,7 @@ def make_osx_release():
     # os.makedirs(plugins_dir, exist_ok=True)
     shutil.copytree("plugins", plugins_dir)
     os.chdir(build_dir)
-    os.system('/Users/Colin/Qt5.6.0-BETA/5.6/clang_64/bin/macdeployqt MellowPlayer.app -dmg')
+    os.system('/Users/Colin/Qt/5.6/clang_64/bin/macdeployqt MellowPlayer.app -dmg')
 
 
 def make_docs():
