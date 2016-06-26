@@ -77,14 +77,14 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="pageInterface">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QGroupBox" name="groupBoxMinimizeToTray">
            <property name="title">
-            <string>Minimize to system tray</string>
+            <string>Minimi&amp;ze to system tray</string>
            </property>
            <property name="flat">
             <bool>false</bool>
@@ -135,6 +135,16 @@
              </layout>
             </item>
            </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxAutoShowLyrics">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically show or hide the lyrics pane.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Automatically show lyrics pane</string>
+           </property>
           </widget>
          </item>
          <item>
