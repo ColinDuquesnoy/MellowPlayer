@@ -36,14 +36,7 @@ class LyricsController : public BaseController {
   Q_OBJECT
 public:
   explicit LyricsController(MainWindow *parent = 0);
-
-//  void restoreLyricsPaneState();
   void saveState();
-
-//  void isAutoShowEnabled();
-//  void setAutoShowEnabled();
-
-signals:
 
 public slots:
     void showLyricsPane(bool show);
