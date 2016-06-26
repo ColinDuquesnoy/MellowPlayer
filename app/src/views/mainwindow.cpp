@@ -47,6 +47,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_ui(new Ui::MainWindow), m_lblSongInfo(NULL) {
   m_ui->setupUi(this);
+  m_ui->dockWidgetLyrics->setWindowTitle(tr("Lyrics"));
 #ifdef Q_OS_WIN32
   if(QSysInfo::WindowsVersion == QSysInfo::WV_WINDOWS10)
     setStyleSheet("QToolBar { background-color: white;};");
