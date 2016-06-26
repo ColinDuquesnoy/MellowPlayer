@@ -26,7 +26,7 @@ notifications and more).
 
 ## Resources
 
-- [Official website](http://colinduquesnoy.github.io/MellowPlayer/)
+- [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
 - [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
 
 ## License
