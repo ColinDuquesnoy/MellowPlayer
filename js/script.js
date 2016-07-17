@@ -21,13 +21,25 @@ $(document).ready(function() {
     trigger.on('click', function(e) {
         e.preventDefault();
         // alert('je suis cliqué');
+        hiddenSection.toggleClass('active');
         hiddenSection.slideToggle();
+        if (hiddenSection.hasClass('active')) {
+
+                $('html, body').animate({
+                    scrollTop: $(".hidden-section").offset()
+                        .top - 104
+                }, 1000);
+           
+        } else {}
     });
 
     //Using Waypoints
     $(".menu a:contains('services')").on('click', function(event) {
         console.log('services is cliqued');
         event.preventDefault();
+        $(".menu a").removeClass('active');
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#services").offset()
                 .top - 64
@@ -36,6 +48,8 @@ $(document).ready(function() {
     $(".menu a:contains('features')").on('click', function(event) {
         console.log('features is cliqued');
         event.preventDefault();
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#features").offset()
                 .top - 64
@@ -44,6 +58,8 @@ $(document).ready(function() {
     $(".menu a:contains('downloads')").on('click', function(event) {
         console.log('downloads is cliqued');
         event.preventDefault();
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#downloads").offset()
                 .top - 64
@@ -52,6 +68,8 @@ $(document).ready(function() {
     $(".menu a:contains('contributing')").on('click', function(event) {
         console.log('contributing is cliqued');
         event.preventDefault();
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#contribution").offset()
                 .top - 64
@@ -60,11 +78,19 @@ $(document).ready(function() {
     $(".menu a:contains('about')").on('click', function(event) {
         console.log('about is cliqued');
         event.preventDefault();
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#about").offset()
                 .top - 64
         }, 1000);
     });
+
+    //GNU/ linux link in downloads on click > go to hidden section
+   
+    
+    
+
     //go-to-dl
     $(".features a:contains('app')").on('click', function(event) {
         console.log('downloads is cliqued');
@@ -128,6 +154,8 @@ $(document).ready(function() {
              $(this).removeClass('active');
         });
     });
+
+    
 
 
 });
