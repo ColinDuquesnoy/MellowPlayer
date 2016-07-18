@@ -84,6 +84,7 @@ nav {
   display: none; }
 
 /* BURGER ACTIVE */
+/* Main Menu */
 ul.menu {
   text-transform: uppercase; }
   ul.menu > li {
@@ -93,7 +94,10 @@ ul.menu {
       display: block;
       height: 100%;
       width: 100%;
-      padding: 0; }
+      padding: 0;
+      color: #cecece; }
+    ul.menu > li a.active {
+      color: white; }
     ul.menu > li a.active::after {
       content: "";
       position: absolute;
@@ -102,12 +106,7 @@ ul.menu {
       right: 0;
       height: 3px;
       width: 100%;
-      background-color: white;
-      -webkit-transition: width .30s ease-in;
-      -moz-transition: width .30s ease-in;
-      -ms-transition: width .30s ease-in;
-      -o-transition: width .30s ease-in;
-      transition: width .30s ease-in; }
+      background-color: white; }
     ul.menu > li a::after {
       content: "";
       position: absolute;
@@ -116,12 +115,12 @@ ul.menu {
       right: 0;
       height: 3px;
       width: 00%;
-      background-color: white;
-      -webkit-transition: width .30s ease-in;
-      -moz-transition: width .30s ease-in;
-      -ms-transition: width .30s ease-in;
-      -o-transition: width .30s ease-in;
-      transition: width .30s ease-in; }
+      background-color: #cecece;
+      -webkit-transition: width .20s ease-out;
+      -moz-transition: width .20s ease-out;
+      -ms-transition: width .20s ease-out;
+      -o-transition: width .20s ease-out;
+      transition: width .20s ease-out; }
     ul.menu > li a:hover::after {
       content: "";
       position: absolute;
@@ -130,12 +129,11 @@ ul.menu {
       right: 0;
       height: 3px;
       width: 100%;
-      background-color: white;
-      -webkit-transition: width .30s ease-out;
-      -moz-transition: width .30s ease-out;
-      -ms-transition: width .30s ease-out;
-      -o-transition: width .30s ease-out;
-      transition: width .30s ease-out; }
+      -webkit-transition: width .30s ease-in;
+      -moz-transition: width .30s ease-in;
+      -ms-transition: width .30s ease-in;
+      -o-transition: width .30s ease-in;
+      transition: width .30s ease-in; }
 
 header {
   position: relative;

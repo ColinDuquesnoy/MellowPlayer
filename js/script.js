@@ -102,8 +102,9 @@ $(document).ready(function() {
     });
     // Logo home
     $(".logo-home").on('click', function(event) {
-        console.log('home is cliqued');
+        console.log('home is cliqued');        
         event.preventDefault();
+        $(".menu a").removeClass('active');
         $('html, body').animate({
             scrollTop: $("body").offset()
                 .top - 72
