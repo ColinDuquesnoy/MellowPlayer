@@ -156,7 +156,41 @@ $(document).ready(function() {
         });
     });
 
-    
+    // on scroll down elements fadeIn 
+
+    // hide our element on page load
+    $('.services').children().css('opacity', 0);
+     
+    $('.services').waypoint(function() {
+        $('.services h1, .services > p').addClass('fadeInDown animated');
+        $('.services ul').addClass('fadeIn animated');
+    }, { offset: '50%' });  
+
+
+    $('.features h1, .features li img, .features li h2, .features li p, .features li a, .compare-table').css('opacity', 0);    
+     
+    $('.features').waypoint(function() {
+        $('.features h1').addClass('fadeInDown animated');
+        $('.features li h2, .features li p, .features li a').addClass('fadeInLeft animated');
+        $('.features li img, .compare-table').addClass('bounceIn animated');        
+    }, { offset: '50%' }); 
+
+    $('.downloads h1, .downloads > p, .downloads li img, .downloads li p').css('opacity', 0);    
+     
+    $('.downloads').waypoint(function() {
+        $('.downloads h1, .downloads > p').addClass('fadeInDown animated');
+        $('.downloads li p').addClass('fadeInLeft animated');
+        $('.downloads li img').addClass('bounceIn animated');        
+    }, { offset: '50%' }); 
+
+    $('.contribution h1, .contribution p, .contribution a').css('opacity', 0);    
+     
+    $('.contribution').waypoint(function() {
+        $('.contribution h1').addClass('fadeInDown animated');
+        $('.contribution p, .contribution a').addClass('fadeInLeft animated');      
+    }, { offset: '50%' }); 
+
+
 
 
 });
