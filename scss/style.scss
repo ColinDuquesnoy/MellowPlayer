@@ -478,10 +478,7 @@ div.title p{
 	.hidden-section{
 		background-color: rgba(75,130,216,1);
 		color: white;
-		pre{
-			color: white;	
-			text-align: left;		
-		}
+		
 		img{
 			max-height: 50px;
 			min-height: 30px;
@@ -492,6 +489,37 @@ div.title p{
 		}
 		a{
 			color: $yellow;
+		}
+		code{		
+			flex: auto;				
+		    color: white;		    
+		    text-align: left;
+		    background-color: #363636;
+		    padding: 0 .9375rem;
+		    line-height: 3rem;		 			
+		}
+		.copy-button{
+			width: 5rem;			
+			background-color: #fff;			
+			text-align: center;			
+			text-decoration: none;
+			color: black;
+			padding: 0 .9375rem;
+			line-height: 3rem;	
+			-webkit-transition: background-color .45s ease, color .45s ease;
+			   -moz-transition: background-color .45s ease, color .45s ease;
+			    -ms-transition: background-color .45s ease, color .45s ease;
+			     -o-transition: background-color .45s ease, color .45s ease;
+			        transition: background-color .45s ease, color .45s ease;	
+			&:hover{
+				background-color: $yellow;
+				color: #363636;		
+				-webkit-transition: background-color .45s ease, color .45s ease;
+				   -moz-transition: background-color .45s ease, color .45s ease;
+				    -ms-transition: background-color .45s ease, color .45s ease;
+				     -o-transition: background-color .45s ease, color .45s ease;
+				        transition: background-color .45s ease, color .45s ease;
+			}	
 		}
 	}
 
@@ -506,15 +534,10 @@ div.title p{
 	}
 }
 
-
-
-
 .highlight-bash{
-	// border: 1px solid #e1e4e5;
-	padding: 0px 0 0 20px;
-	overflow-x: auto;
-	background-color: rgba(54, 54, 54, 1);
-	margin: 1px 0 24px 0;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: .9375rem;	
 }
 
 .contribution{
