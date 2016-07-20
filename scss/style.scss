@@ -156,60 +156,77 @@ ul.menu{
             width: 100%;
             padding: 0;
             color: #cecece;
-
-            
-        }
-
-        a.active{color: white;}
- 
-        a.active::after{
-            content: "";
-            // border: 0 3px 0 0 white solid;
-            position: absolute;
-            top: 25px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            width: 100%;            
-            background-color: white;
-
- 
-        }
- 
-        a::after{
-            content: "";
-            // border: 0 3px 0 0 white solid;
-            position: absolute;
-            top: 25px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            width: 00%;
-            background-color: #cecece;
-            -webkit-transition: width .20s ease-out;
+        	-webkit-transition: width .20s ease-out;
                -moz-transition: width .20s ease-out;
                 -ms-transition: width .20s ease-out;
                  -o-transition: width .20s ease-out;
                     transition: width .20s ease-out;
- 
+            &:hover{
+            	color: white;
+            	-webkit-transition: width .30s ease-in;
+	               -moz-transition: width .30s ease-in;
+	                -ms-transition: width .30s ease-in;
+	                 -o-transition: width .30s ease-in;
+	                    transition: width .30s ease-in;
+            }            
+        }
+
+        a.active{
+        	color: $yellow;
+    		-webkit-transition: width .30s ease-in;
+    	       -moz-transition: width .30s ease-in;
+    	        -ms-transition: width .30s ease-in;
+    	         -o-transition: width .30s ease-in;
+    	            transition: width .30s ease-in;
         }
  
-        a:hover::after{
-            content: "";
-            // border: 0 3px 0 0 white solid;
-            position: absolute;
-            top: 25px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            width: 100%;            
-            -webkit-transition: width .30s ease-in;
-               -moz-transition: width .30s ease-in;
-                -ms-transition: width .30s ease-in;
-                 -o-transition: width .30s ease-in;
-                    transition: width .30s ease-in;
+        // a.active::after{
+        //     content: "";
+        //     // border: 0 3px 0 0 white solid;
+        //     position: absolute;
+        //     top: 25px;
+        //     left: 0;
+        //     right: 0;
+        //     height: 3px;
+        //     width: 100%;            
+        //     background-color: white;
  
-        }
+        // }
+ 
+        // a::after{
+        //     content: "";
+        //     // border: 0 3px 0 0 white solid;
+        //     position: absolute;
+        //     top: 25px;
+        //     left: 0;
+        //     right: 0;
+        //     height: 3px;
+        //     width: 00%;
+        //     background-color: #cecece;
+        //     -webkit-transition: width .20s ease-out;
+        //        -moz-transition: width .20s ease-out;
+        //         -ms-transition: width .20s ease-out;
+        //          -o-transition: width .20s ease-out;
+        //             transition: width .20s ease-out;
+ 
+        // }
+ 
+        // a:hover::after{
+        //     content: "";
+        //     // border: 0 3px 0 0 white solid;
+        //     position: absolute;
+        //     top: 25px;
+        //     left: 0;
+        //     right: 0;
+        //     height: 3px;
+        //     width: 100%;            
+        //     -webkit-transition: width .30s ease-in;
+        //        -moz-transition: width .30s ease-in;
+        //         -ms-transition: width .30s ease-in;
+        //          -o-transition: width .30s ease-in;
+        //             transition: width .30s ease-in;
+ 
+        // }
  
  
     }
