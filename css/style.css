@@ -84,6 +84,15 @@ nav {
   display: none; }
 
 /* BURGER ACTIVE */
+.burger.active .icon {
+  background-color: transparent; }
+  .burger.active .icon:before {
+    top: 0px;
+    transform: rotate(-45deg); }
+  .burger.active .icon:after {
+    top: 0px;
+    transform: rotate(45deg); }
+
 /* Main Menu */
 ul.menu {
   text-transform: uppercase; }
