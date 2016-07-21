@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // burger code for responsive version
     console.log("ready!");
     $('.burger').on('click', function() {
         $(this).toggleClass('active');
@@ -7,7 +8,6 @@ $(document).ready(function() {
         } else {
             $('.my-desktop-menu').removeClass('active');
         }
-
     });
     $('.my-desktop-menu a').on('click', function(){
         $('.my-desktop-menu').removeClass('active');
@@ -35,28 +35,22 @@ $(document).ready(function() {
 
     //Using Waypoints
     $(".menu a:contains('services')").on('click', function(event) {
+        
         console.log('services is cliqued');
-        event.preventDefault();
-        // $(".menu a").removeClass('active');        
-        // $(this).toggleClass('active');
+        event.preventDefault();        
+        $(".menu a").removeClass('active');        
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#services").offset()
                 .top - 64
-        }, 1000);
-    }); 
-    //On scroll current section get his respective menu link activated
-    // $('.services').waypoint(function(down) {
-    //     $(".menu a").removeClass('active');  
-    //     $(".menu a:contains('services')").addClass('active');       
-    // }, { offset: 64 }); 
-    // $('header').waypoint(function(up) {
-    //     $(".menu a").removeClass('active');             
-    // }, { offset: 'bottom-in-view' }); 
+        }, 500);
+    });
 
+    //On scroll current section get his respective menu link activated
     
     var directionWaypoint = new Waypoint({
       element: $('.services'),
-      handler: function(direction) {
+      handler: function(direction) {        
         if (direction === 'down') {
             console.log(direction + ' ' + '= bas');
             $(".menu a").removeClass('active');
@@ -71,14 +65,15 @@ $(document).ready(function() {
    
     
     $(".menu a:contains('features')").on('click', function(event) {
+        
         console.log('features is cliqued');
         event.preventDefault();
-        // $(".menu a").removeClass('active');
-        // $(this).toggleClass('active');
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#features").offset()
                 .top - 64
-        }, 1000);
+        }, 500);
     });
     //On scroll current section get his respective menu link activated
     // $('.features').waypoint(function() {
@@ -103,20 +98,19 @@ $(document).ready(function() {
     
 
     $(".menu a:contains('downloads')").on('click', function(event) {
+        
         console.log('downloads is cliqued');
         event.preventDefault();
-        // $(".menu a").removeClass('active');
-        // $(this).toggleClass('active');
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');
         $('html, body').animate({
             scrollTop: $("#downloads").offset()
                 .top - 64
-        }, 1000);
+        }, 500);
     });
+
     // On scroll current section get his respective menu link activated
-    // $('.downloads').waypoint(function() {
-    //     $(".menu a").removeClass('active');  
-    //     $(".menu a:contains('downloads')").addClass('active');       
-    // }, { offset: 100 }); 
+
     var directionWaypoint = new Waypoint({
       element: $('.downloads'),
       handler: function(direction) {
@@ -134,18 +128,20 @@ $(document).ready(function() {
     }); 
 
     $(".menu a:contains('contributing')").on('click', function(event) {
+        
         console.log('contributing is cliqued');
-        event.preventDefault();        
+        event.preventDefault();         
+        $(".menu a").removeClass('active');
+        $(this).toggleClass('active');     
         $('html, body').animate({
             scrollTop: $("#contribution").offset()
                 .top - 64
-        }, 1000);
-        // $(".menu a").removeClass('active');
-        // $(this).toggleClass('active');
+        }, 500);
+        
     });
 
     var directionWaypoint = new Waypoint({
-      element: $('.contribution'),
+      element: $('#contribution'),
       handler: function(direction) {
         if (direction === 'down') {
             console.log(direction + ' ' + '= bas');
@@ -158,19 +154,16 @@ $(document).ready(function() {
         }                    
       },
       offset: 66      
-    }); 
+    });     
 
-
-    //GNU/ linux link in downloads on click > go to hidden section 
-
-    //go-to-dl
+    //go-to-features
     $(".features a:contains('app')").on('click', function(event) {
         console.log('downloads is cliqued');
         event.preventDefault();
         $('html, body').animate({
             scrollTop: $("#downloads").offset()
                 .top - 64
-        }, 1000);
+        }, 500);
     });
     // Logo home
     $(".logo-home").on('click', function(event) {
@@ -180,7 +173,7 @@ $(document).ready(function() {
         $('html, body').animate({
             scrollTop: $("body").offset()
                 .top - 72
-        }, 1000);
+        }, 500);
     });
 
     $(".go-up").on('click', function(event) {
