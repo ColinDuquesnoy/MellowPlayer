@@ -190,11 +190,6 @@ header {
   .services li, .features li, .downloads li, .contribution li, .keep-in li {
     padding-bottom: 40px; }
 
-.services.scrollReveal h1 {
-  opacity: 0; }
-.services.scrollReveal > p {
-  opacity: 0; }
-
 .services {
   background-color: #fefefe; }
   .services h1 {
@@ -224,7 +219,7 @@ header {
     margin-top: 40px; }
     .services li img {
       max-height: 128px;
-      min-height: 100px; }
+      max-width: 128px; }
     .services li p {
       text-align: center; }
     .services li a {
@@ -262,11 +257,11 @@ header {
     font-weight: 700; }
   .features img {
     max-height: 128px;
-    min-height: 100px; }
+    max-width: 128px; }
 
 .compare-table img {
   max-height: 32px;
-  min-height: 28px; }
+  max-width: 100%; }
 
 .compare-table .column {
   color: black;
@@ -296,14 +291,11 @@ div.title p {
     margin-bottom: 40px; }
   .downloads img {
     max-height: 128px;
-    min-height: 100px;
+    max-width: 128px;
     cursor: pointer; }
   .downloads .hidden-section {
     background-color: #4b82d8;
     color: white; }
-    .downloads .hidden-section pre {
-      color: white;
-      text-align: left; }
     .downloads .hidden-section img {
       max-height: 50px;
       min-height: 30px;
@@ -313,6 +305,34 @@ div.title p {
       border-radius: 50%; }
     .downloads .hidden-section a {
       color: #ffc000; }
+    .downloads .hidden-section code {
+      flex: auto;
+      color: white;
+      text-align: left;
+      background-color: #363636;
+      padding: 0 .9375rem;
+      line-height: 3rem; }
+    .downloads .hidden-section .copy-button {
+      width: 5rem;
+      background-color: #fff;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      padding: 0 .9375rem;
+      line-height: 3rem;
+      -webkit-transition: background-color .45s ease, color .45s ease;
+      -moz-transition: background-color .45s ease, color .45s ease;
+      -ms-transition: background-color .45s ease, color .45s ease;
+      -o-transition: background-color .45s ease, color .45s ease;
+      transition: background-color .45s ease, color .45s ease; }
+      .downloads .hidden-section .copy-button:hover {
+        background-color: #ffc000;
+        color: #363636;
+        -webkit-transition: background-color .45s ease, color .45s ease;
+        -moz-transition: background-color .45s ease, color .45s ease;
+        -ms-transition: background-color .45s ease, color .45s ease;
+        -o-transition: background-color .45s ease, color .45s ease;
+        transition: background-color .45s ease, color .45s ease; }
   .downloads .distributions {
     margin-bottom: 30px;
     border: 1px solid #fff; }
@@ -321,10 +341,9 @@ div.title p {
     font-size: 0.8rem; }
 
 .highlight-bash {
-  padding: 0px 0 0 20px;
-  overflow-x: auto;
-  background-color: #363636;
-  margin: 1px 0 24px 0; }
+  display: flex;
+  flex-direction: row;
+  margin-bottom: .9375rem; }
 
 .contribution {
   color: #363636;
@@ -375,8 +394,8 @@ footer {
       -o-transition: opacity .30s ease-in;
       transition: opacity .30s ease-in; }
   .social-media img {
-    min-height: 20px;
-    max-height: 25px; }
+    width: 25px;
+    height: 25px; }
 
 .credits {
   text-align: right;
@@ -484,8 +503,7 @@ footer {
     margin-right: .925rem; }
 
   .compare-table img {
-    max-height: 16px;
-    min-height: 10px; }
+    width: 22px; }
 
   .gnu-linux.row.align-center {
     padding: 0 30px 0 30px; }

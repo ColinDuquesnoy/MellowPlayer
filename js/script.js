@@ -17,7 +17,7 @@ $(document).ready(function() {
     //Reveal gnu linux hidden menu
     var trigger = $('.trigger-hidden-menu');
     var hiddenSection = $('.hidden-section');
-    hiddenSection.hide();
+    hiddenSection.hide(); 
     trigger.on('click', function(e) {
         e.preventDefault();
         // alert('je suis cliqué');
