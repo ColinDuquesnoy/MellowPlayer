@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$('.copy-trick').css({'background-color':'transparent','width':'0px','height':'0px','color':'transparent','border-color':'transparent'});
 
 		//Create a textarea and set its contents to the text you want copied to the clipboard.	
-		var thisTextInsideCodeTag = $(textToCopy).text(); //#kaos code
+		var thisTextInsideCodeTag = $(textToCopy).text().replace('$ ', ''); 
 		console.log('thisTextInsideCodeTag');
 
 		// Append the textarea to the dom.
