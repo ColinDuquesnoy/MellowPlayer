@@ -52,14 +52,10 @@ $(document).ready(function() {
         $(".menu a").removeClass('active');        
         $(thisElement).toggleClass('active');
         $('html, body').animate({
-            scrollTop: $("#" + itemName).offset()
-                .top - 64
-        }, 500);
-        // re enable waypoints when scroll anim has finished
-        setInterval(function(){
-            enableDirectionWaypoints(true);
-        }, 600);
-    }
+            scrollTop: $("#" + itemName).offset().top - 64}, 500, 'swing', 
+            function(){
+                enableDirectionWaypoints(true);});
+    };
 
     //Using Waypoints
     $(".menu a:contains('services')").on('click', function(event) {
@@ -164,22 +160,25 @@ $(document).ready(function() {
     });
     // Logo home
     $(".logo-home").on('click', function(event) {
+        enableDirectionWaypoints(false);
         console.log('home is cliqued');        
         event.preventDefault();
         $(".menu a").removeClass('active');
         $('html, body').animate({
-            scrollTop: $("body").offset()
-                .top - 72
-        }, 500);
+            scrollTop: $("body").offset().top - 72}, 500, 'swing', 
+            function(){
+                enableDirectionWaypoints(true);});
     });
 
     $(".go-up").on('click', function(event) {
+        enableDirectionWaypoints(false);
         console.log('home is cliqued');
         event.preventDefault();
+        $('.menu a').removeClass('active');
         $('html, body').animate({
-            scrollTop: $("body").offset()
-                .top - 72
-        }, 1000);
+            scrollTop: $("body").offset().top - 72}, 500, 'swing', 
+            function(){
+                enableDirectionWaypoints(true);});
     });
 
     /* Dynamic top menu positioning
