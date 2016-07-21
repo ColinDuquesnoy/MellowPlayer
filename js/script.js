@@ -17,7 +17,7 @@ $(document).ready(function() {
     //Reveal gnu linux hidden menu
     var trigger = $('.trigger-hidden-menu');
     var hiddenSection = $('.hidden-section');
-    hiddenSection.hide(); 
+    hiddenSection.show(); 
     trigger.on('click', function(e) {
         e.preventDefault();
         // alert('je suis cliqué');
@@ -44,16 +44,7 @@ $(document).ready(function() {
                 .top - 64
         }, 1000);
     }); 
-    //On scroll current section get his respective menu link activated
-    // $('.services').waypoint(function(down) {
-    //     $(".menu a").removeClass('active');  
-    //     $(".menu a:contains('services')").addClass('active');       
-    // }, { offset: 64 }); 
-    // $('header').waypoint(function(up) {
-    //     $(".menu a").removeClass('active');             
-    // }, { offset: 'bottom-in-view' }); 
-
-    
+    //On scroll current section get his respective menu link activated    
     var directionWaypoint = new Waypoint({
       element: $('.services'),
       handler: function(direction) {
@@ -81,10 +72,7 @@ $(document).ready(function() {
         }, 1000);
     });
     //On scroll current section get his respective menu link activated
-    // $('.features').waypoint(function() {
-    //     $(".menu a").removeClass('active');  
-    //     $(".menu a:contains('features')").addClass('active');       
-    // }, { offset: 100 });
+    
     var directionWaypoint = new Waypoint({
       element: $('.features'),
       handler: function(direction) {
