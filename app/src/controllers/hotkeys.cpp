@@ -20,11 +20,11 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "controllers/hotkeys.h"
+#include "ui_mainwindow.h"
+#include "views/mainwindow.h"
 #include <QAction>
 #include <qxtglobalshortcut.h>
-#include "controllers/hotkeys.h"
-#include "views/mainwindow.h"
-#include "ui_mainwindow.h"
 
 //---------------------------------------------------------
 // Implementations

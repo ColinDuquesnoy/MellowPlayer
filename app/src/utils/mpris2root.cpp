@@ -21,10 +21,10 @@
 // Headers
 //---------------------------------------------------------
 #include "utils/mpris2root.h"
+#include "controllers/services.h"
+#include "ui_mainwindow.h"
 #include "utils/mpris_utils.h"
 #include "views/mainwindow.h"
-#include "ui_mainwindow.h"
-#include "controllers/services.h"
 
 //---------------------------------------------------------
 // Implementations

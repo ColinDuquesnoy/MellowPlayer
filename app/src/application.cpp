@@ -20,14 +20,14 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <iostream>
-#include <QSessionManager>
 #include "application.h"
 #include "controllers/player.h"
 #include "controllers/services.h"
+#include "ui_mainwindow.h"
 #include "utils/icons.h"
 #include "views/mainwindow.h"
-#include "ui_mainwindow.h"
+#include <QSessionManager>
+#include <iostream>
 
 //---------------------------------------------------------
 // Implementations
@@ -110,7 +110,8 @@ void MellowPlayerApp::raise() { m_mainWindow->restoreWindow(); }
 int MellowPlayerApp::exec() {
   // clear covers cache
   QString cacheDir =
-        QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0] + QDir::separator() + "Covers";
+      QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0] +
+      QDir::separator() + "Covers";
   QDir(cacheDir).removeRecursively();
   int retCode = QApplication::exec();
   close();
@@ -169,10 +170,10 @@ bool MellowPlayerApp::parseArgs() {
       autoQuitDelay = rxArgAutoQuit.cap(1).toInt();
       QTimer::singleShot(autoQuitDelay * 1000, this, SLOT(quit()));
     } else if (rxArgHelp.indexIn(args.at(i)) != -1) {
-      std::cout << tr("Add cloud music integration to your desktop!")
-                       .toStdString()
-                << std::endl
-                << std::endl;
+      std::cout
+          << tr("Add cloud music integration to your desktop!").toStdString()
+          << std::endl
+          << std::endl;
       std::cout << tr("Options:").toStdString() << std::endl;
       std::cout << tr("  * --help: show this help message").toStdString()
                 << std::endl;

@@ -20,10 +20,7 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QDesktopServices>
-#include <QMessageBox>
-#include <QWebEnginePage>
-#include <QWebEngineSettings>
+#include "views/mainwindow.h"
 #include "controllers/hotkeys.h"
 #include "controllers/lyrics.h"
 #include "controllers/mpris2.h"
@@ -31,14 +28,17 @@
 #include "controllers/player.h"
 #include "controllers/services.h"
 #include "controllers/update.h"
+#include "ui_mainwindow.h"
 #include "utils/icons.h"
 #include "utils/shortcuts.h"
-#include "views/hoverable_button.h"
-#include "views/dlgselectservice.h"
 #include "views/dlgpreferences.h"
-#include "views/mainwindow.h"
+#include "views/dlgselectservice.h"
+#include "views/hoverable_button.h"
 #include "views/wizard_new_plugin.h"
-#include "ui_mainwindow.h"
+#include <QDesktopServices>
+#include <QMessageBox>
+#include <QWebEnginePage>
+#include <QWebEngineSettings>
 
 //---------------------------------------------------------
 // Implementations
@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
   m_ui->setupUi(this);
   m_ui->dockWidgetLyrics->setWindowTitle(tr("Lyrics"));
 #ifdef Q_OS_WIN32
-  if(QSysInfo::WindowsVersion == QSysInfo::WV_WINDOWS10)
+  if (QSysInfo::WindowsVersion == QSysInfo::WV_WINDOWS10)
     setStyleSheet("QToolBar { background-color: white;};");
 #endif
   setupActions();
@@ -76,9 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //-------------------------------------
 MainWindow::~MainWindow() {
-  foreach (BaseController *c, m_controllers) {
-      c->m_mainWindow = nullptr;
-  }
+  foreach (BaseController *c, m_controllers) { c->m_mainWindow = nullptr; }
   delete m_ui;
 }
 
@@ -117,7 +115,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     hide();
     event->ignore();
   } else {
-    LyricsController* lyrics = qobject_cast<LyricsController*>(controller("lyrics"));
+    LyricsController *lyrics =
+        qobject_cast<LyricsController *>(controller("lyrics"));
     lyrics->saveState();
     player()->stopPolling();
     hide();
@@ -235,7 +234,8 @@ void MainWindow::connectSlots() {
           SLOT(onAboutQtTriggered()));
   connect(m_ui->actionReport_a_bug, SIGNAL(triggered()), this,
           SLOT(onReportBugTriggered()));
-  connect(m_ui->actionDocumentation, SIGNAL(triggered()), this, SLOT(onActionDocumentationTriggered()));
+  connect(m_ui->actionDocumentation, SIGNAL(triggered()), this,
+          SLOT(onActionDocumentationTriggered()));
   connect(m_ui->actionShow_menu, SIGNAL(toggled(bool)), this,
           SLOT(onShowMenuToggled(bool)));
   connect(m_ui->actionFullscreen, SIGNAL(toggled(bool)), this,
@@ -336,7 +336,8 @@ bool MainWindow::exitApplication() {
     if (answer == QMessageBox::No)
       return false;
   }
-  LyricsController* lyrics = qobject_cast<LyricsController*>(controller("lyrics"));
+  LyricsController *lyrics =
+      qobject_cast<LyricsController *>(controller("lyrics"));
   lyrics->saveState();
   qApp->exit();
   return true;
@@ -498,7 +499,7 @@ void MainWindow::setupToolbar() {
   m_BtMenu->setPopupMode(QToolButton::InstantPopup);
   m_BtMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   QMenu *mnu = new QMenu(tr("Control"), m_BtMenu);
-  QMenu* viewMenu = mnu->addMenu("View");
+  QMenu *viewMenu = mnu->addMenu("View");
   viewMenu->addAction(m_ui->actionShow_menu);
   viewMenu->addAction(m_ui->actionFullscreen);
   viewMenu->addAction(m_ui->actionShow_lyrics);

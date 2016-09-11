@@ -23,11 +23,11 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "controllers/player.h"
+#include "utils/playerinfo.h"
+#include "utils/songinfo.h"
 #include <QObject>
 #include <QtDBus>
-#include "controllers/player.h"
-#include "utils/songinfo.h"
-#include "utils/playerinfo.h"
 
 //---------------------------------------------------------
 // Implementations

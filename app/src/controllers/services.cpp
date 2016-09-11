@@ -19,13 +19,13 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include "controllers/player.h"
 #include "controllers/services.h"
+#include "controllers/player.h"
+#include "ui_mainwindow.h"
 #include "utils/icons.h"
 #include "views/dlgselectservice.h"
 #include "views/mainwindow.h"
 #include "views/webview.h"
-#include "ui_mainwindow.h"
 
 //---------------------------------------------------------
 // Implementations
@@ -115,7 +115,8 @@ bool checkPluginDirectory(const QString &directory) {
 QStringList getSearchPaths() {
   QStringList paths;
   paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
-  paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
+  paths.append(
+      QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
   paths.append(getUserPluginsDirectory());
 
 #ifdef Q_OS_MAC
@@ -258,7 +259,7 @@ StreamingServicesController::getService(const QString &serviceName) const {
     if (plugin.Name.toLower() == serviceName.toLower())
       return plugin;
     if (plugin.Name.toLower().replace(" ", "") == serviceName.toLower())
-        return plugin;
+      return plugin;
   }
   return StreamingServicePlugin();
 }

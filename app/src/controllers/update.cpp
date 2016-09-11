@@ -20,14 +20,14 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "controllers/update.h"
+#include "ui_mainwindow.h"
+#include "views/mainwindow.h"
+#include <QDesktopServices>
+#include <QJsonDocument>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QJsonDocument>
-#include <QDesktopServices>
-#include "controllers/update.h"
-#include "views/mainwindow.h"
-#include "ui_mainwindow.h"
 
 #define DELAY_BEFORE_CHECK 5000
 

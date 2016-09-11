@@ -20,12 +20,12 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <math.h>
-#include "controllers/services.h"
 #include "utils/mpris2player.h"
+#include "controllers/services.h"
+#include "ui_mainwindow.h"
 #include "utils/mpris_utils.h"
 #include "views/mainwindow.h"
-#include "ui_mainwindow.h"
+#include <math.h>
 
 #define SEC_TO_MICROSEC 1000000
 #define SEEK_DELTA_LIMIT SEC_TO_MICROSEC * 2

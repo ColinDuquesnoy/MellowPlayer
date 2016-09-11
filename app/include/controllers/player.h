@@ -23,11 +23,11 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QtCore>
-#include <QtNetwork>
 #include "controllers/base.h"
 #include "utils/playerinfo.h"
 #include "utils/songinfo.h"
+#include <QtCore>
+#include <QtNetwork>
 
 //---------------------------------------------------------
 // Forward declarations

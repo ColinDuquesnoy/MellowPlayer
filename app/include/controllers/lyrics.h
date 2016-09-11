@@ -23,9 +23,9 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QtNetwork>
 #include "controllers/base.h"
 #include "utils/songinfo.h"
+#include <QtNetwork>
 
 //---------------------------------------------------------
 // Forward declarations
@@ -39,13 +39,13 @@ public:
   void saveState();
 
 public slots:
-    void showLyricsPane(bool show);
-    void onPageChanged(int page);
-    void onSongChanged(const SongInfo &songInfo);
-    void onLyricsLoaded(QNetworkReply *reply);
+  void showLyricsPane(bool show);
+  void onPageChanged(int page);
+  void onSongChanged(const SongInfo &songInfo);
+  void onLyricsLoaded(QNetworkReply *reply);
 
 private:
-    QNetworkAccessManager *m_nam;
+  QNetworkAccessManager *m_nam;
 };
 
 #endif // HOTKEYSCONTROLLER_H

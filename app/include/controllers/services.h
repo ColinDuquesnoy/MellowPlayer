@@ -23,9 +23,9 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "controllers/base.h"
 #include <QtCore>
 #include <QtGui>
-#include "controllers/base.h"
 
 //---------------------------------------------------------
 // Foward declarations

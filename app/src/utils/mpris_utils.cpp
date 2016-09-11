@@ -20,10 +20,10 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QDBusMessage>
-#include <QDBusConnection>
-#include <QDebug>
 #include "utils/mpris_utils.h"
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDebug>
 
 //-------------------------------------
 void signalPlayerUpdate(const QVariantMap &map) {

@@ -20,8 +20,8 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include "controllers/services.h"
 #include "views/wizard_new_plugin.h"
+#include "controllers/services.h"
 #include "ui_wizard_new_plugin.h"
 
 //---------------------------------------------------------
@@ -38,9 +38,7 @@ WizardNewPlugin::WizardNewPlugin(QWidget *parent)
 }
 
 //-------------------------------------
-WizardNewPlugin::~WizardNewPlugin() {
-    delete m_ui;
-}
+WizardNewPlugin::~WizardNewPlugin() { delete m_ui; }
 
 //-------------------------------------
 bool WizardNewPlugin::validateCurrentPage() {

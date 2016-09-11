@@ -23,9 +23,9 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "utils/singleinstancecontroller.h"
 #include <QApplication>
 #include <QTranslator>
-#include "utils/singleinstancecontroller.h"
 
 //---------------------------------------------------------
 // Forward declarations

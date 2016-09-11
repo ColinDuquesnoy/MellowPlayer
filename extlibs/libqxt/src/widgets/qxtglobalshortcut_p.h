@@ -34,8 +34,8 @@
 
 #include "qxtglobalshortcut.h"
 #include <QAbstractEventDispatcher>
-#include <QKeySequence>
 #include <QHash>
+#include <QKeySequence>
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QAbstractNativeEventFilter>

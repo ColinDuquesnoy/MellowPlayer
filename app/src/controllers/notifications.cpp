@@ -22,9 +22,9 @@
 //---------------------------------------------------------
 #include "controllers/notifications.h"
 #include "controllers/services.h"
+#include "ui_mainwindow.h"
 #include "utils/icons.h"
 #include "views/mainwindow.h"
-#include "ui_mainwindow.h"
 
 #ifndef Q_OS_MAC
 using namespace Snore;

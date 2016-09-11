@@ -20,16 +20,16 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include "views/dlgpreferences.h"
+#include "application.h"
+#include "ui_dlg_preferences.h"
+#include "ui_mainwindow.h"
+#include "utils/icons.h"
+#include "utils/shortcuts.h"
+#include "views/mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QWebEngineCookieStore>
-#include "application.h"
-#include "utils/icons.h"
-#include "utils/shortcuts.h"
-#include "views/dlgpreferences.h"
-#include "views/mainwindow.h"
-#include "ui_mainwindow.h"
-#include "ui_dlg_preferences.h"
 
 #define PREFS_INTERFACE 0
 #define PREFS_HOTKEYS 1
@@ -75,9 +75,7 @@ DlgPreferences::DlgPreferences(MainWindow *parent)
 }
 
 //--------------------------------------
-DlgPreferences::~DlgPreferences() {
-  delete m_ui;
-}
+DlgPreferences::~DlgPreferences() { delete m_ui; }
 
 //--------------------------------------
 bool DlgPreferences::editPreferences(MainWindow *parent) {
@@ -175,7 +173,10 @@ void DlgPreferences::resetInterface() {
   bool showTrayIcon =
       QSettings().value("interface/showTrayIcon", QVariant(true)).toBool();
   QString trayIconPath = QSettings().value("interface/trayIcon").toString();
-  bool autoShowLyrics = QSettings().value("interface/automaticallyShowLyricsPane", false).toBool();
+  bool autoShowLyrics =
+      QSettings()
+          .value("interface/automaticallyShowLyricsPane", false)
+          .toBool();
   bool confirmQuit = QSettings().value("interface/confirmQuit", true).toBool();
 
   m_ui->checkBoxConfirmQuit->setChecked(confirmQuit);

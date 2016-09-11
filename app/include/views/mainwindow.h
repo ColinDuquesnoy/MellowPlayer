@@ -23,9 +23,9 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
+#include <QCloseEvent>
 #include <QtCore>
 #include <QtWidgets>
-#include <QCloseEvent>
 
 //---------------------------------------------------------
 // Forward declarations

@@ -20,8 +20,8 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QApplication>
 #include "controllers/mpris2.h"
+#include <QApplication>
 #ifdef Q_OS_LINUX
 #include "utils/mpris2player.h"
 #include "utils/mpris2root.h"

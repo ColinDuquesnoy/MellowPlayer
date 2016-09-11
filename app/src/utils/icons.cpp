@@ -20,10 +20,10 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QSettings>
-#include <QFile>
-#include <QApplication>
 #include "utils/icons.h"
+#include <QApplication>
+#include <QFile>
+#include <QSettings>
 
 //---------------------------------------------------------
 // Implementations

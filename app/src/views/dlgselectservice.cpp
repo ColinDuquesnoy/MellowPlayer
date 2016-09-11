@@ -20,13 +20,13 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QDialogButtonBox>
-#include <QPushButton>
-#include <QMessageBox>
-#include "controllers/services.h"
-#include "views/mainwindow.h"
 #include "views/dlgselectservice.h"
+#include "controllers/services.h"
 #include "ui_dlg_select_service.h"
+#include "views/mainwindow.h"
+#include <QDialogButtonBox>
+#include <QMessageBox>
+#include <QPushButton>
 
 //---------------------------------------------------------
 // Implementations
@@ -57,9 +57,7 @@ DlgSelectServices::DlgSelectServices(MainWindow *parent)
 }
 
 //--------------------------------------
-DlgSelectServices::~DlgSelectServices() {
-  delete m_ui;
-}
+DlgSelectServices::~DlgSelectServices() { delete m_ui; }
 
 //--------------------------------------
 void DlgSelectServices::onCurrentRowChanged(int row) {

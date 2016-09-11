@@ -23,9 +23,9 @@
 //---------------------------------------------------------
 // Headers
 //---------------------------------------------------------
-#include <QVersionNumber>
-#include <QString>
 #include "controllers/base.h"
+#include <QString>
+#include <QVersionNumber>
 
 //---------------------------------------------------------
 // Forward declarations

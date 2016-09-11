@@ -31,10 +31,10 @@
 *****************************************************************************/
 
 #include "qxtglobalshortcut_p.h"
-#include <QMap>
-#include <QHash>
-#include <QtDebug>
 #include <QApplication>
+#include <QHash>
+#include <QMap>
+#include <QtDebug>
 
 typedef QPair<uint, uint> Identifier;
 static QMap<quint32, EventHotKeyRef> keyRefs;

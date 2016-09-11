@@ -19,22 +19,23 @@
 var oldSongInfo = null;
 
 function hashCode(str) {
-  var hash = 0, i, chr, len;
-  if (str.length === 0) return hash;
-  for (i = 0, len = str.length; i < len; i++) {
-    chr   = str.charCodeAt(i);
-    hash  = ((hash << 5) - hash) + chr;
-    hash |= 0; // Convert to 32bit integer
-  }
-  return hash;
+    var hash = 0,
+        i, chr, len;
+    if (str.length === 0) return hash;
+    for (i = 0, len = str.length; i < len; i++) {
+        chr = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
 };
 
 function getPlaybackStatus() {
     var retVal = mellowplayer.PlaybackStatus.STOPPED;
     var stateStr = TuneIn.app.getPlayState();
-    if(stateStr === 'playing')
+    if (stateStr === 'playing')
         retVal = mellowplayer.PlaybackStatus.PLAYING;
-    else if(stateStr === 'stopped')
+    else if (stateStr === 'stopped')
         retVal = mellowplayer.PlaybackStatus.PAUSED;
     return retVal;
 }
@@ -63,9 +64,9 @@ function updateSongInfo() {
         "Favorite": false,
         "Duration": 0,
         "Position": 0
-    };   
-    if(broadcast == undefined) {
-        if(!stopped && oldSongInfo != null) {
+    };
+    if (broadcast == undefined) {
+        if (!stopped && oldSongInfo != null) {
             retVal = oldSongInfo;
         }
     } else {

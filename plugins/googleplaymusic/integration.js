@@ -53,83 +53,65 @@ function updatePlayerInfo() {
         "Volume": 1,
     }
 }
-    
+
 //-----------------------------------------------------------------------------
 // Much of this was adapted from: https://github.com/tiliado/nuvola-app-google-play-music
 //-----------------------------------------------------------------------------
 
 function updateSongInfo() {
     var elm;
-    
-    try
-    {
+
+    try {
         ArtUrl = document.querySelector("#playerSongInfo #playerBarArt").src.replace("=s90-", "=s500-");
+    } catch (e) {
+        ArtUrl = null;
     }
-    catch(e)
-    {
-        ArtUrl =  null;
-    }
-    
-    try
-    {
+
+    try {
         elm = document.querySelector("#playerSongInfo #currently-playing-title");
         songTitle = elm.innerText || elm.textContent;
-    }
-    catch(e)
-    {
+    } catch (e) {
         songTitle = null;
     }
-    
-    try
-    {
+
+    try {
         elm = document.getElementById('player-artist').firstChild;
         ArtistName = elm.innerText || elm.textContent;
-    }
-    catch (e)
-    {
+    } catch (e) {
         ArtistName = null;
     }
-    
-    try
-    {
+
+    try {
         elm = document.querySelector("#playerSongInfo .player-album");
         AlbumTitle = elm.innerText || elm.textContent;
-    }
-    catch (e)
-    {
+    } catch (e) {
         AlbumTitle = null;
     }
-    
+
     //-----------------------------------------------------------------------------
     // Credit for this code to http://stackoverflow.com/questions/13437796/convert-any-string-time-to-seconds
     //-----------------------------------------------------------------------------
-    
-    try
-    {
+
+    try {
         Duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText
         var dtimes = Duration.split(":");
         var dminutes = dtimes[0];
         var dseconds = dtimes[1];
         Duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
-    }
-    catch (e)
-    {
+    } catch (e) {
         Duration = null;
     }
-    
-    try
-    {
+
+    try {
         Position = document.querySelector("#material-player-right-wrapper #time_container_current").innerText;
         var ptimes = Position.split(":");
         var pminutes = ptimes[0];
         var pseconds = ptimes[1];
         Position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
-    }
-    catch (e)
-    {
+    } catch (e) {
         Position = null;
     }
-        
+
     return {
         "SongId": getHashCode(songTitle),
         "SongTitle": songTitle,
@@ -144,50 +126,50 @@ function updateSongInfo() {
 }
 
 function play() {
-    
+
     getButtons().playpause.click()
-    
+
 }
 
 function pause() {
-    
+
     getButtons().playpause.click()
-    
+
 }
 
 function goNext() {
-    
+
     getButtons().skip.click()
-    
+
 }
 
 function goPrevious() {
-    
+
     getButtons().back.click()
-    
+
 }
 
 function setVolume(volume) {
-    
- // not currently supported
-    
+
+    // not currently supported
+
 }
 
 
 function addToFavorites() {
-    
- // not currently supported
-    
+
+    // not currently supported
+
 }
 
 function removeFromFavorites() {
-    
- // not currently supported
-    
+
+    // not currently supported
+
 }
 
 function seekToPosition(position) {
-    
- // not currently supported
-    
+
+    // not currently supported
+
 }
