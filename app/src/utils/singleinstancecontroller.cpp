@@ -23,6 +23,11 @@
 #include "utils/singleinstancecontroller.h"
 #include "application.h"
 
+#ifdef Q_OS_UNIX
+#include <signal.h>
+#include <unistd.h>
+#endif
+
 //---------------------------------------------------------
 // Definitions
 //---------------------------------------------------------
@@ -82,6 +87,7 @@ void SingleInstanceController::onSocketError() {
   if (!m_localServer->listen(m_appName))
     qWarning() << "Failed to start local server, cannot ensure unique "
                   "application instance";
+  connectSignalHandlers();
   m_app->initialize();
 }
 
@@ -108,4 +114,19 @@ void SingleInstanceController::onReadyRead() {
       m_app->raise();
     }
   }
+}
+
+void SingleInstanceController::connectSignalHandlers()
+{
+#ifdef Q_OS_UNIX
+    auto handler = [](int sig) ->void {
+      printf("\nquit the application (user request signal = %d).\n", sig);
+      QFile::remove("/tmp/MellowPlayer");
+      QCoreApplication::quit();
+    };
+    QList<int> unix_signals = {SIGKILL, SIGTERM, SIGQUIT, SIGINT};
+    foreach (int sig, unix_signals) {
+      signal(sig, handler);
+    }
+#endif
 }

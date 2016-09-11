@@ -74,6 +74,7 @@ public slots:
   void onReadyRead();
 
 private:
+  void connectSignalHandlers();
   QLocalSocket *m_localSocket;
   QLocalServer *m_localServer;
   MellowPlayerApp *m_app;
