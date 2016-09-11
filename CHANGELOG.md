@@ -1,5 +1,12 @@
 ## 2.2
 
+### 2.2.2
+
+- Fix broken 8tracks integration
+- Fix missing art url in soundcloud
+- Improve single application controller on linux; now handle crash or premature termination of the unique app instance.
+- Internal refactoring: use QCommandLineParser instead of our own
+
 ### 2.2.1
 
 Fix segfault on application exit if lyrics pane is visible.
