@@ -63,7 +63,7 @@ function updateSongInfo() {
     try {
         var artUrl = document.getElementsByClassName('playbackSoundBadge')[
             0].children[0].children[0].children[0].style["background-image"];
-        artUrl = artUrl.replace("url(", "").replace(")", "").replace('50x50', '250x250');
+        artUrl = artUrl.replace('url("', "").replace('")', "").replace('50x50', '250x250');
         var songId = artUrl.match('-(\\d*)-')[1];
     } catch (e) {
         var songId = 0;
