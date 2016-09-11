@@ -67,8 +67,10 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv)
 
 //--------------------------------------
 MellowPlayerApp::~MellowPlayerApp() {
-  if (m_mainWindow)
+  if (m_mainWindow != nullptr) {
     delete m_mainWindow;
+    m_mainWindow = nullptr;
+  }
 }
 
 //--------------------------------------

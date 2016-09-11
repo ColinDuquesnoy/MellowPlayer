@@ -39,7 +39,7 @@ HotkeysController::HotkeysController(MainWindow *parent)
   qDebug() << "Hotkeys: Setting up Qxt global shortcuts";
   for (int i = 0; i < 4; ++i) {
     QAction *action = actions[i];
-    QxtGlobalShortcut *shortcut = new QxtGlobalShortcut();
+    QxtGlobalShortcut *shortcut = new QxtGlobalShortcut(this);
     shortcut->setObjectName(action->objectName());
     if (shortcut->setShortcut(action->shortcut()))
       qDebug() << "Global shortcut registered: " << action->shortcut()
@@ -61,7 +61,7 @@ HotkeysController::HotkeysController(MainWindow *parent)
   qDebug() << "Hotkeys: Setting up Media shortcuts";
   for (int i = 0; i < names.count(); ++i) {
     QAction *action = mediaActions[i];
-    QxtGlobalShortcut *shortcut = new QxtGlobalShortcut();
+    QxtGlobalShortcut *shortcut = new QxtGlobalShortcut(this);
     shortcut->setObjectName(names[i]);
     if (shortcut->setShortcut(shortcuts[i]))
       qDebug() << "Media shortcut registered: " << names[i];

@@ -75,7 +75,9 @@ DlgPreferences::DlgPreferences(MainWindow *parent)
 }
 
 //--------------------------------------
-DlgPreferences::~DlgPreferences() { delete m_ui; }
+DlgPreferences::~DlgPreferences() {
+  delete m_ui;
+}
 
 //--------------------------------------
 bool DlgPreferences::editPreferences(MainWindow *parent) {

@@ -57,7 +57,9 @@ DlgSelectServices::DlgSelectServices(MainWindow *parent)
 }
 
 //--------------------------------------
-DlgSelectServices::~DlgSelectServices() { delete m_ui; }
+DlgSelectServices::~DlgSelectServices() {
+  delete m_ui;
+}
 
 //--------------------------------------
 void DlgSelectServices::onCurrentRowChanged(int row) {

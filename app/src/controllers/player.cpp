@@ -31,7 +31,7 @@
 //---------------------------------------------------------
 //--------------------------------------
 PlayerController::PlayerController(MainWindow *parent)
-    : BaseController("player", parent), m_pollingTimer(new QTimer()),
+    : BaseController("player", parent), m_pollingTimer(new QTimer(this)),
       m_webView(parent->ui()->webView), m_nam(new QNetworkAccessManager(this)) {
   m_pollingTimer->setInterval(100);
   connect(m_pollingTimer, &QTimer::timeout, this, &PlayerController::update);

@@ -38,7 +38,9 @@ WizardNewPlugin::WizardNewPlugin(QWidget *parent)
 }
 
 //-------------------------------------
-WizardNewPlugin::~WizardNewPlugin() { delete m_ui; }
+WizardNewPlugin::~WizardNewPlugin() {
+    delete m_ui;
+}
 
 //-------------------------------------
 bool WizardNewPlugin::validateCurrentPage() {

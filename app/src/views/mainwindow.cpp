@@ -76,7 +76,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 //-------------------------------------
 MainWindow::~MainWindow() {
-  foreach (BaseController *c, m_controllers) { c->m_mainWindow = nullptr; }
+  foreach (BaseController *c, m_controllers) {
+      c->m_mainWindow = nullptr;
+  }
   delete m_ui;
 }
 
@@ -188,7 +190,7 @@ void MainWindow::setupActions() {
 void MainWindow::setupTrayIcon() {
   m_trayIcon = new QSystemTrayIcon(this);
 
-  QMenu *mnu = new QMenu();
+  QMenu *mnu = new QMenu(this);
   mnu->addAction(m_ui->actionPlayPause);
   mnu->addAction(m_ui->actionNext);
   mnu->addAction(m_ui->actionPrevious);
