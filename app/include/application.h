@@ -77,13 +77,13 @@ private slots:
   void onPreviousRequested();
 
 private:
-  bool parseArgs();
+  void parseArgs();
 
   QTranslator m_translator;
   SingleInstanceController m_singleInstanceController;
   MainWindow *m_mainWindow;
-  bool m_debug;
   bool m_standalone;
+  bool m_quit;
   QString m_action;
   QString m_service;
 };

@@ -54,7 +54,6 @@ SingleInstanceController::~SingleInstanceController() {
 void SingleInstanceController::start(MellowPlayerApp *app,
                                      const QString &appName,
                                      const QString &actionName) {
-  qDebug() << "Starting the application";
   m_app = app;
   m_appName = appName;
   m_action = actionName;

@@ -28,13 +28,14 @@
 #include "views/mainwindow.h"
 #include <QSessionManager>
 #include <iostream>
+#include <QCommandLineParser>
 
 //---------------------------------------------------------
 // Implementations
 //---------------------------------------------------------
 //--------------------------------------
 MellowPlayerApp::MellowPlayerApp(int &argc, char **argv)
-    : QApplication(argc, argv), m_mainWindow(NULL) {
+    : QApplication(argc, argv), m_mainWindow(NULL), m_quit(false) {
   setOrganizationDomain("org.mellowplayer");
   setApplicationDisplayName("MellowPlayer");
   setApplicationName("MellowPlayer");
@@ -51,18 +52,15 @@ MellowPlayerApp::MellowPlayerApp(int &argc, char **argv)
           &SingleInstanceController::previousRequested, this,
           &MellowPlayerApp::onPreviousRequested);
 
-  bool quit = parseArgs();
+  parseArgs();
 
-  if (!quit) {
-    connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this,
-            SLOT(onCommitDataRequested(QSessionManager &)));
+  connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this,
+          SLOT(onCommitDataRequested(QSessionManager &)));
 
-    QString locale = QLocale::system().name().split("_")[0];
-    m_translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
-    installTranslator(&m_translator);
-    m_singleInstanceController.start(this, applicationDisplayName(), m_action);
-  } else
-    QTimer::singleShot(1, this, SLOT(quit()));
+  QString locale = QLocale::system().name().split("_")[0];
+  m_translator.load(QString(":/translations/mellowplayer_%1.qm").arg(locale));
+  installTranslator(&m_translator);
+  m_singleInstanceController.start(this, applicationDisplayName(), m_action);
 }
 
 //--------------------------------------
@@ -75,6 +73,8 @@ MellowPlayerApp::~MellowPlayerApp() {
 
 //--------------------------------------
 void MellowPlayerApp::initialize() {
+  if(m_quit)
+      return;
   qDebug() << "Initializing application";
 
   m_mainWindow = new MainWindow();
@@ -108,6 +108,8 @@ void MellowPlayerApp::raise() { m_mainWindow->restoreWindow(); }
 
 //--------------------------------------
 int MellowPlayerApp::exec() {
+  if(m_quit)
+      return 0;
   // clear covers cache
   QString cacheDir =
       QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0] +
@@ -143,75 +145,67 @@ void MellowPlayerApp::onPreviousRequested() {
 }
 
 //--------------------------------------
-bool MellowPlayerApp::parseArgs() {
+void MellowPlayerApp::parseArgs() {
   QStringList args = arguments();
-  bool quit = false;
-#ifdef QT_DEBUG
-  m_debug = true;
-#else
-  m_debug = false;
-#endif
-  int autoQuitDelay = 0;
-  m_service = QSettings().value("services/current", "").toString();
-  QRegExp rxArgAutoQuit("--autoquit-delay=([0-9]{1,})");
-  QRegExp rxArgHelp("--help");
-  QRegExp rxArgVersion("--version");
-  QRegExp rxArgStandalone("--standalone");
-  QRegExp rxArgService("--service=([a-zA-Z\\s_\\d]*)");
-  QRegExp rxArgPlayPause("--playpause");
-  QRegExp rxArgNext("--next");
-  QRegExp rxArgPrevious("--previous");
 
+  QCommandLineParser parser;
+  QCommandLineOption helpOption = parser.addHelpOption();
+  QCommandLineOption versionOption = parser.addVersionOption();
+
+  QCommandLineOption autoQuitDelayOption("autoquit-delay", "Specifies a delay for automatically quitting the application.", "value", "0");
+  parser.addOption(autoQuitDelayOption);
+
+  QCommandLineOption standaloneOption("standalone", "Makes the specified service a standalone application. "
+                                                    "This option is ignored if --service hasn't been set");
+  parser.addOption(standaloneOption);
+
+  QCommandLineOption serviceOption("service", "Selects a specific service, e.g. deezer, mixcloud, soundcloud, spotify, ...", "service", "");
+  parser.addOption(serviceOption);
+
+  QCommandLineOption playPauseOption("playpause", "Plays or pauses the player.");
+  parser.addOption(playPauseOption);
+
+  QCommandLineOption nextOption("next", "Skips to the next song.");
+  parser.addOption(nextOption);
+
+  QCommandLineOption previousOption("previous", "Skips to the previous song.");
+  parser.addOption(previousOption);
+
+  m_service = QSettings().value("services/current", "").toString();
   m_standalone = false;
   m_action = "Restore";
 
-  for (int i = 1; i < args.size(); ++i) {
-    if (rxArgAutoQuit.indexIn(args.at(i)) != -1) {
-      autoQuitDelay = rxArgAutoQuit.cap(1).toInt();
-      QTimer::singleShot(autoQuitDelay * 1000, this, SLOT(quit()));
-    } else if (rxArgHelp.indexIn(args.at(i)) != -1) {
-      std::cout
-          << tr("Add cloud music integration to your desktop!").toStdString()
-          << std::endl
-          << std::endl;
-      std::cout << tr("Options:").toStdString() << std::endl;
-      std::cout << tr("  * --help: show this help message").toStdString()
-                << std::endl;
-      std::cout << tr("  * --version: show the version").toStdString()
-                << std::endl;
-      std::cout
-          << tr("  * --standalone: make the specified service a standalone "
-                "application. (ignored if --service is not used)")
-                 .toStdString()
-          << std::endl;
-      std::cout
-          << tr("  * --service=%s: select a specific service (e.. deezer, "
-                "mixcloud, soundcloud or spotify)")
-                 .toStdString()
-          << std::endl;
-      std::cout << tr("  * --autoquit-delay=%d: a delay for automatically "
-                      "quitting the application (for testing purposes).")
-                       .toStdString()
-                << std::endl;
-      quit = true;
-    } else if (rxArgVersion.indexIn(args.at(i)) != -1) {
-      std::cout << "MellowPlayer v" << applicationVersion().toStdString()
-                << std::endl;
-      quit = true;
-    } else if (rxArgService.indexIn(args.at(i)) != -1) {
-      m_service = rxArgService.cap(1);
-      m_service = m_service.replace("_", " ");
-    } else if (rxArgStandalone.indexIn(args.at(i)) != -1) {
+  parser.parse(qApp->arguments());
+
+  if(parser.isSet(helpOption)) {
+      std::cout << parser.helpText().toStdString();
+      m_quit = true;
+  }
+
+  if(parser.isSet(versionOption)) {
+      std::cout << "MellowPlayer v"<< qApp->applicationVersion().toStdString() << std::endl;
+      m_quit = true;
+  }
+
+  if(parser.isSet(autoQuitDelayOption)) {
+    int autoQuitDelay = parser.value(autoQuitDelayOption).toInt();
+    QTimer::singleShot(autoQuitDelay * 1000, this, SLOT(quit()));
+  }
+
+  if(parser.isSet(serviceOption)) {
+      m_service = parser.value(serviceOption).replace("_", " ");
+  }
+
+  if(parser.isSet(standaloneOption)) {
       m_standalone = true;
-    } else if (rxArgPlayPause.indexIn(args.at(i)) != -1) {
+  }
+
+  if(parser.isSet(playPauseOption)) {
       m_action = "PlayPause";
-    } else if (rxArgNext.indexIn(args.at(i)) != -1) {
+  } else if(parser.isSet(nextOption)) {
       m_action = "Next";
-    } else if (rxArgPrevious.indexIn(args.at(i)) != -1) {
+  } else if(parser.isSet(previousOption)) {
       m_action = "Previous";
-    } else {
-      qDebug() << "Unknown arg:" << args.at(i);
-    }
   }
 
   if (m_standalone && !m_service.isEmpty()) {
@@ -224,8 +218,8 @@ bool MellowPlayerApp::parseArgs() {
     QString appName = capitalized.join(" ");
     setApplicationDisplayName(appName);
     setApplicationName(appName);
-  } else
+  } else if (m_standalone && m_service.isEmpty()) {
     m_standalone = false; // require a --service option
-
-  return quit;
+    qWarning() << "--standalone option ignored, require --service to be defined";
+  }
 }
