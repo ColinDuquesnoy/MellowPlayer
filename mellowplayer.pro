@@ -165,6 +165,9 @@ win32 {
 # copy plugins to build directory
 win32 {
     copy_plugins.commands = $(COPY_DIR) \"$$PWD/plugins\" \"$$OUT_PWD\plugins\"
+}
+macx {
+    copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/MellowPlayer.app/Contents/MacOS/plugins
 } else {
     copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/plugins
 }
