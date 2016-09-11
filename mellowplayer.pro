@@ -162,6 +162,13 @@ win32 {
     target.path = dist
 }
 
+# copy plugins to build directory
+copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD
+first.depends = $(first) copy_plugins
+export(first.depends)
+export(copy_plugins.commands)
+QMAKE_EXTRA_TARGETS += first copy_plugins
+
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
 TRANSLATIONS += app/translations/mellowplayer_en.ts \
