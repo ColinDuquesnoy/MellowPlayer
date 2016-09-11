@@ -163,18 +163,19 @@ win32 {
 }
 
 # copy plugins to build directory
-win32 {
-    copy_plugins.commands = $(COPY_DIR) \"$$PWD/plugins\" \"$$OUT_PWD\plugins\"
+!equals(OUT_PWD, $$PWD) {
+    win32 {
+        copy_plugins.commands = $(COPY_DIR) \"$$PWD/plugins\" \"$$OUT_PWD\plugins\"
+    } macx {
+        copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/MellowPlayer.app/Contents/MacOS/plugins
+    }else {
+        copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/plugins
+    }
+    first.depends = $(first) copy_plugins
+    export(first.depends)
+    export(copy_plugins.commands)
+    QMAKE_EXTRA_TARGETS += first copy_plugins
 }
-macx {
-    copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/MellowPlayer.app/Contents/MacOS/plugins
-} else {
-    copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD/plugins
-}
-first.depends = $(first) copy_plugins
-export(first.depends)
-export(copy_plugins.commands)
-QMAKE_EXTRA_TARGETS += first copy_plugins
 
 # translations for the whole project (including plugins and lib) are stored
 # in the app folder (for an easier integration with the app's resources).
