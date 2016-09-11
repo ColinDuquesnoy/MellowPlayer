@@ -25,22 +25,28 @@ function getHashCode(s) {
 
 function getButtons() {
     return {
-        play: document.getElementById("player_play_button"),
-        pause: document.getElementById("player_pause_button"),
-        skip: document.getElementById("player_skip_button"),
+        play: document.getElementById("youtube_play_button"),
+        pause: document.getElementById("youtube_pause_button"),
+        skip: document.getElementById("youtube_skip_button"),
     };
+}
+
+function isPlaying() {
+   var mix = document.getElementById("mix_youtube");
+   var index = mix.className.indexOf("playing");
+   return index !== -1;
 }
 
 function updatePlayerInfo() {
     try {
         var buttons = getButtons();
-        var playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-        if (buttons.play.style.display == "block")
-            playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
+        var playbackStatus = isPlaying() ?
+                    mellowplayer.PlaybackStatus.PLAYING :
+                    mellowplayer.PlaybackStatus.PAUSED;
         return {
             "PlaybackStatus": playbackStatus,
             "CanSeek": false,
-            "CanGoNext": buttons.skip && buttons.skip.style.display != "none",
+            "CanGoNext": true,
             "CanGoPrevious": false,
             "CanAddToFavorites": false,
             "Volume": 1,
@@ -59,12 +65,12 @@ function updatePlayerInfo() {
 
 function updateSongInfo() {
     try {
-        var songTitle = document.querySelector(".track.now_playing .title_artist .t").innerText;
+        var songTitle = document.querySelector(".title_artist .t").innerText;
         return {
             "SongId": getHashCode(songTitle),
             "SongTitle": songTitle,
-            "ArtistName": document.querySelector(".track.now_playing .title_artist .a").innerText,
-            "AlbumTitle": document.querySelector(".track.now_playing .album .detail").innerText,
+            "ArtistName": document.querySelector(".title_artist .a").innerText,
+            "AlbumTitle": document.querySelector(".album .detail").innerText,
             "ArtUrl": document.querySelector("#player_mix img.cover").src.replace(/w=\d+&h=\d+/, 'w=500&h=500'),
             "Favorite": false,
             "Duration": 0,
@@ -90,7 +96,7 @@ function play() {
 }
 
 function pause() {
-    getButtons().play.click()
+    getButtons().pause.click()
 }
 
 function goNext() {
