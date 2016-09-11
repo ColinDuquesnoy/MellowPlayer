@@ -105,7 +105,7 @@ def make_win32_release():
     # copy qt stuff
     qt_bin_dir = os.path.dirname(qmake)
     qt_root_dir = os.path.abspath(os.path.join(qt_bin_dir, os.pardir))
-    snore_plugins_dir = os.path.join(qt_root_dir, "lib", "plugins", "libsnore-qt5")
+    snore_plugins_dir = os.path.join(qt_root_dir, "plugins", "libsnore-qt5")
     iconengines_dir = os.path.abspath(os.path.join(qt_bin_dir, '..',
                                        'plugins', 'iconengines'))
     iconengines_dst = os.path.join(dist, 'iconengines')
@@ -124,9 +124,6 @@ def make_win32_release():
 
     files = [
         exe,
-        os.path.join(qt_bin_dir, 'icudt54.dll'),
-        os.path.join(qt_bin_dir, 'icuin54.dll'),
-        os.path.join(qt_bin_dir, 'icuuc54.dll'),
         os.path.join(qt_bin_dir, 'Qt5Core.dll'),
         os.path.join(qt_bin_dir, 'Qt5Gui.dll'),
         os.path.join(qt_bin_dir, 'Qt5Multimedia.dll'),
@@ -153,6 +150,7 @@ def make_win32_release():
         os.path.join(qt_bin_dir, 'SnoreToast.exe'),
         os.path.join(qt_bin_dir, 'png2ico.exe'),
         os.path.join(qt_bin_dir, 'snore-qt5.dll'),
+        os.path.join(qt_root_dir, 'resources', 'qtwebengine_devtools_resources.pak'),
         os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources.pak'),
         os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources_100p.pak'),
         os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources_200p.pak'),
