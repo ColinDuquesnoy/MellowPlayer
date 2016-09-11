@@ -215,11 +215,8 @@ def make_osx_release():
         return build_dir
 
     build_dir = get_build_dir()
-    plugins_dir = os.path.join(build_dir, "MellowPlayer.app/Contents/PlugIns/services")
-    # os.makedirs(plugins_dir, exist_ok=True)
-    shutil.copytree("plugins", plugins_dir)
     os.chdir(build_dir)
-    os.system('/Users/Colin/Qt/5.6/clang_64/bin/macdeployqt MellowPlayer.app -dmg')
+    os.system('/Users/Colin/Qt/5.7/clang_64/bin/macdeployqt MellowPlayer.app -dmg')
 
 
 def make_docs():
