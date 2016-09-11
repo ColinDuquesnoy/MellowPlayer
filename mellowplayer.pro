@@ -163,7 +163,7 @@ win32 {
 }
 
 # copy plugins to build directory
-copy_plugins.commands = $(COPY_DIR) $$PWD/plugins $$OUT_PWD
+copy_plugins.commands = $(COPY_DIR) \"$$PWD/plugins\" \"$$OUT_PWD\plugins\"
 first.depends = $(first) copy_plugins
 export(first.depends)
 export(copy_plugins.commands)
