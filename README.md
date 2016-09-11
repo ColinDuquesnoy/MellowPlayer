@@ -43,7 +43,9 @@ MellowPlayer is licensed under the GPL license.
 ## Compilation
 
 ```
-qmake
+mkdir build
+cd build
+qmake ..
 make
 sudo make install
 ```
