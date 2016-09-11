@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>871</width>
-    <height>699</height>
+    <width>1230</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,12 +36,6 @@
     </property>
     <item row="1" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
-      <property name="minimumSize">
-       <size>
-        <width>800</width>
-        <height>600</height>
-       </size>
-      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -471,7 +465,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>871</width>
+     <width>1230</width>
      <height>20</height>
     </rect>
    </property>
@@ -562,7 +556,7 @@ QPushButton:hover,  QPushButton:pressed, QPushButton:focus {
    <property name="minimumSize">
     <size>
      <width>250</width>
-     <height>87</height>
+     <height>107</height>
     </size>
    </property>
    <property name="features">
