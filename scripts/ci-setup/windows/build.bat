@@ -1,4 +1,4 @@
-cd ..\..
+cd ..\..\..
 set QTDIR=C:\Qt\5.7\msvc2015_64
 set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
 set CMAKE_PREFIX_PATH=%QTDIR%
