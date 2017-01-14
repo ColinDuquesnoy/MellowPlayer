@@ -75,6 +75,12 @@ function updateSongInfo() {
     }
 
     try {
+        songID = getHashCode(songTitle);
+    } catch (e) {
+        songID = null;
+    }
+
+    try {
         elm = document.getElementById('player-artist').firstChild;
         ArtistName = elm.innerText || elm.textContent;
     } catch (e) {
@@ -113,7 +119,7 @@ function updateSongInfo() {
     }
 
     return {
-        "SongId": getHashCode(songTitle),
+        "SongId": songID,
         "SongTitle": songTitle,
         "ArtistName": ArtistName,
         "AlbumTitle": AlbumTitle,
