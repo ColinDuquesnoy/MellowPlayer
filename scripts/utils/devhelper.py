@@ -40,7 +40,7 @@ def add_translation():
     with open('mellowplayer.pro', 'w') as fout:
         fout.write(content)
 
-    # Add entry to src/app/mellowplayer.qrc
+    # Add entry to lib/app/mellowplayer.qrc
     qrc_entry = '        <file>translations/mellowplayer_%s.qm</file>\n' % code
     with open('app/mellowplayer.qrc', 'r') as fin:
         lines = fin.read().splitlines(True)

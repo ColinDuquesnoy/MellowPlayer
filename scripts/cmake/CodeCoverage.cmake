@@ -147,7 +147,7 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
 
             # Capturing lcov counters and generating report
             COMMAND ${LCOV_PATH} --directory . --capture --output-file ${coverage_info}
-            COMMAND ${LCOV_PATH} --remove ${coverage_info} '/opt/*' 'tests/*' '3rdparty/*' 'moc_*' 'googletest/*' 'googlemock/*' '/usr/*' --output-file ${coverage_cleaned}
+            COMMAND ${LCOV_PATH} --remove ${coverage_info} 'tests/*' '3rdparty/*' 'moc_*' '/usr/*' --output-file ${coverage_cleaned}
             COMMAND ${GENHTML_PATH} -o ${_outputname} ${coverage_cleaned}
 
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -164,4 +164,3 @@ ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")        # debug, no optimisation
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")    # enabling coverage
-setup_target_for_coverage(coverage "make test" coverage)

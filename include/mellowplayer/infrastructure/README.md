@@ -1,1 +1,0 @@
-This directory contains the headers of the Infrastructure library.

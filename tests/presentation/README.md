@@ -1,1 +1,0 @@
-This directory contains the tests of the Presentation library.

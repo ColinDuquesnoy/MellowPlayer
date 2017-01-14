@@ -48,3 +48,4 @@ gpg_key
 
 *~
 *.user
+coverage
