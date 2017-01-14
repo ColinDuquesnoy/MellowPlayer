@@ -1,5 +1,5 @@
-cd ..\..\..\build\test\Release
+cd ..\..\..\build\Publish\bin
 set QTDIR=C:\Qt\5.7\msvc2015_64
 set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
-mellowplayer_test.exe
+mellowplayer_tests.exe
 
