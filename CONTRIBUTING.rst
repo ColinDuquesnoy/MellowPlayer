@@ -17,7 +17,7 @@ If you're reporting a bug, **make sure to provide the following information**:
 
 .. note:: There is a menu action in the application to easily open a new issue: *Help > Report a bug*
 
-.. _issue tracker: https://github.com/ColinDuquesnoy/MellowPlayer/issues
+.. _issue tracker: https://gitlab.com/ColinDuquesnoy/MellowPlayer/issues
 
 Submitting a pull request
 -------------------------
