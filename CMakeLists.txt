@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 execute_process(COMMAND git rev-parse --short HEAD WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE GIT_HASH
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-project(MellowPlayer VERSION 3.0.0)
+project(mellowplayer VERSION 3.0.0)
 
 add_definitions(-DHACKEDIT_VERSION=${MellowPlayer_VERSION})
 add_definitions(-DHACKEDIT_VERSION_MAJOR=${MellowPlayer_VERSION_MAJOR})
