@@ -1,0 +1,1 @@
+This directory contains the headers of the UseCases library.
