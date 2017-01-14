@@ -41,7 +41,7 @@ function updatePlayerInfo() {
         "CanSeek": true,
         "CanGoNext": true,
         "CanGoPrevious": typeof previous != "undefined",
-        "CanAddToFavorites": true,
+        "CanAddToFavorites": false,
         "Volume": M.player.volume,
     }
 }
@@ -57,7 +57,7 @@ function updateSongInfo() {
         "ArtistName": cloudcast.owner,
         "AlbumTitle": '',
         "ArtUrl": M.player.currentCloudcast.widgetImage,
-        "Favorite": $('.icon-favorite-inner').get(0).getAttribute('class').match("ng-hide") == null,
+        "Favorite": false,
         "Duration": M.player.audioLength,
         "Position": M.player.audioPosition
     }
