@@ -47,3 +47,4 @@ gpg_key
 *.upload
 
 *~
+*.user
