@@ -1,5 +1,10 @@
 ## 2.2
 
+### 2.2.3
+
+- Fix broken mixcloud integration plugin
+- Fix broken google play music integration plugin
+
 ### 2.2.2
 
 - Fix broken 8tracks integration
