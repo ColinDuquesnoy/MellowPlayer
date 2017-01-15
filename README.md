@@ -12,8 +12,6 @@ notifications and more).
 *MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
 *specifically crafted for* [KaOS](http://kaosx.us/).
 
-*[Version 3.0](https://gitlab.com/ColinDuquesnoy/MellowPlayer/milestones/14) is in active development*
-
 ## Supported services:
 
 - [Deezer](http://deezer.com)
@@ -34,26 +32,76 @@ notifications and more).
 
 MellowPlayer is licensed under the GPL license.
 
+# Requirements
+
+## Supported platforms
+
+- GNU/Linux
+    - KaOS
+    - ArchLinux
+    - Fedora >= 25
+- Mac OSX
+- Windows
+
 ## Dependencies
 
-- **Qt5** (>= 5.6.0)
-- **SnoreNotify** (>= 0.7.0)
-- **PepperFlash** (runtime dependency)
+- **Qt** >= 5.7
+- **CMake** >= 3.5
+
+## bundled 3rd-parties
+
+- **Catch**
+- some parts of **libqxt**
 
 
-## Compilation
+# Compilation
 
-```
+Building MellowPlayer requires a **C++14** compiler:
+
+    - GCC >= 5.x
+    - Clang >= 3.5
+    - MSVC 2015 Update 2 
+
+## GNU/Linux
+
+```bash
 mkdir build && cd build
-qmake ..
+cmake ..
 make
-sudo make install
 ```
+
+## OSX
+
+```bash
+mkdir build && cd build
+brew install qt5 cmake
+cmake -DCMAKE_PREFIX_PATH=/usr/local/opt/qt5 ..
+make
+```
+
+## Windows
+
+```bash
+mkdir build && cd build
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release .. 
+cmake --build . --config Release
+```
+
+# Build options
+
+You can specify the following options when calling cmake:
+
+- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - *Default is Debug*
+- ``-DBUILD_TESTS=``: **ON** or **OFF** - *Default is ON*
+- ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - *Default is OFF*
 
 ## Contributing
+
+**[Version 3.0](https://gitlab.com/ColinDuquesnoy/MellowPlayer/milestones/14) is in active development on the develop branch**
 
 MellowPlayer is an open-source application that needs your help to go on growing and improving!
 
 There are many ways for developer and non-developers to contribute to the project. You can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on...
 
 If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/CONTRIBUTING.rst)!
+
