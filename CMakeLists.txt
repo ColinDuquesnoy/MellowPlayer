@@ -16,6 +16,9 @@ set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or R
 set_option(BUILD_TESTS TRUE BOOL "TRUE to build the tests, FALSE to ignore them.")
 set_option(ENABLE_COVERAGE FALSE BOOL "True to build code coverage targerts")
 
+# Common headers
+include_directories(lib/common/)
+
 # Sources
 if(ENABLE_COVERAGE)
     include(scripts/cmake/CodeCoverage.cmake)

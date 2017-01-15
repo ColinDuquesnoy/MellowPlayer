@@ -1,12 +1,10 @@
 #pragma once
 
+#include <Macros.hpp>
 #include <QtCore>
 #include <chrono>
 
-namespace MellowPlayer
-{
-namespace Entities
-{
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 /**
  * @brief The Song class holds the information about a song (title, artist, album, ...).
@@ -89,5 +87,5 @@ private:
     double position_;
     bool isFavorite_;
 };
-}
-}
+
+END_MELLOWPLAYER_NAMESPACE

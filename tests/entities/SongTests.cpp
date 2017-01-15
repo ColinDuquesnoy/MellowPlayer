@@ -3,7 +3,7 @@
 #include <QSignalSpy>
 #include <iostream>
 
-using namespace MellowPlayer::Entities;
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
 void testQStringProperty(string propertyName, string signalName,

@@ -1,6 +1,6 @@
 #include "Song.hpp"
 
-using namespace MellowPlayer::Entities;
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 
 Song::Song(QObject *parent)
     : QObject(parent), uniqueId_(""), title_(""), artist_(""), album_(""), artUrl_(""), duration_(0), position_(0), isFavorite_(false) {
