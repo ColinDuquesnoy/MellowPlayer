@@ -8,13 +8,13 @@ stages:
   tags:
     - linux
   before_script:
-    - ./scripts/ci-setup/linux/archlinux-env-setup.sh
+    - ./scripts/env-setup/linux/archlinux-env-setup.sh
 
 build:archlinux:
   <<: *archlinux_def
   stage: build
   script:
-    - ./scripts/ci-setup/linux/build.sh
+    - ./scripts/env-setup/linux/build.sh
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
@@ -26,7 +26,7 @@ test:archlinux:
   dependencies:
     - build:archlinux
   script:
-    - ./scripts/ci-setup/linux/runtests.sh
+    - ./scripts/env-setup/linux/runtests.sh
 
 ### Ubuntu 16.04
 .job_template: &ubuntu_def
@@ -34,7 +34,7 @@ test:archlinux:
   tags:
     - linux
   before_script:
-    - ./scripts/ci-setup/linux/ubuntu-env-setup.sh
+    - ./scripts/env-setup/linux/ubuntu-env-setup.sh
   variables:
     CMAKE_PREFIX_PATH: "/opt/qt57"
 
@@ -42,7 +42,7 @@ build:ubuntu:
   <<: *ubuntu_def
   stage: build
   script:
-    - ./scripts/ci-setup/linux/build.sh
+    - ./scripts/env-setup/linux/build.sh
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
@@ -54,7 +54,7 @@ test:ubuntu:
   dependencies:
     - build:ubuntu
   script:
-    - ./scripts/ci-setup/linux/runtests.sh
+    - ./scripts/env-setup/linux/runtests.sh
 
 ### Fedora
 .job_template: &fedora_def
@@ -62,13 +62,13 @@ test:ubuntu:
   tags:
     - linux
   before_script:
-    - ./scripts/ci-setup/linux/fedora-env-setup.sh
+    - ./scripts/env-setup/linux/fedora-env-setup.sh
 
 build:fedora:
   <<: *fedora_def
   stage: build
   script: # also build in debug mode to be able to measure coverage
-    - ./scripts/ci-setup/linux/build.sh
+    - ./scripts/env-setup/linux/build.sh
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
@@ -80,14 +80,14 @@ test:fedora:
   dependencies:
     - build:fedora
   script:
-    - ./scripts/ci-setup/linux/runtests.sh
+    - ./scripts/env-setup/linux/runtests.sh
 
 coverage:
   <<: *fedora_def
   stage: test
   script:
-    - ./scripts/ci-setup/linux/build.sh --debug --coverage
-    - ./scripts/ci-setup/linux/runtests.sh --debug --coverage
+    - ./scripts/env-setup/linux/build.sh --debug --coverage
+    - ./scripts/env-setup/linux/runtests.sh --debug --coverage
   allow_failure: true
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
@@ -99,14 +99,14 @@ coverage:
   tags:
     - windows
   before_script:
-    - chmod +x ./scripts/ci-setup/windows/build.bat
-    - chmod +x ./scripts/ci-setup/windows/runtests.bat
+    - chmod +x ./scripts/env-setup/windows/build.bat
+    - chmod +x ./scripts/env-setup/windows/runtests.bat
 
 build:windows:
   <<: *windows_def
   stage: build
   script:
-    - cd scripts/ci-setup/windows
+    - cd scripts/env-setup/windows
     - ./build.bat
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
@@ -119,7 +119,7 @@ test:windows:
   dependencies:
     - build:windows
   script:
-    - cd scripts/ci-setup/windows
+    - cd scripts/env-setup/windows
     - ./runtests.bat
 
 ### OSX
@@ -131,7 +131,7 @@ build:osx:
   <<: *osx_def
   stage: build
   script:
-    - ./scripts/ci-setup/osx/build.sh
+    - ./scripts/env-setup/osx/build.sh
   artifacts:
     name: "${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
@@ -143,4 +143,4 @@ test:osx:
   dependencies:
     - build:osx
   script:
-    - ./scripts/ci-setup/osx/runtests.sh
+    - ./scripts/env-setup/osx/runtests.sh
