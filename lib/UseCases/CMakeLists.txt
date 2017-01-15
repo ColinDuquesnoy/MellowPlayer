@@ -1,8 +1,8 @@
-set(LIB_NAME "${PROJECT_NAME}_entities")
+set(LIB_NAME "${PROJECT_NAME}.UseCases")
 
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 
 add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
-target_include_directories(${LIB_NAME} PUBLIC .)
+target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
 qt5_use_modules(${LIB_NAME} Core)

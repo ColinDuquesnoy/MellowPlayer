@@ -1,1 +1,0 @@
-This directory contains the sources of the UseCases library.

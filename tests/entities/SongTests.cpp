@@ -1,7 +1,7 @@
-#include <Song.hpp>
-#include <catch.hpp>
 #include <QSignalSpy>
-#include <iostream>
+#include <catch.hpp>
+#include <Entities/Song.hpp>
+
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;

@@ -13,5 +13,9 @@ ApplicationWindow {
         url: "https://www.deezer.com/"
         anchors.fill: parent
         settings.pluginsEnabled : true
+
+        onLoadProgressChanged: {
+            console.log("Loading " + loadProgress + "%");
+        }
     }
 }

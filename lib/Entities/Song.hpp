@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Macros.hpp>
+#include <Common/Macros.hpp>
 #include <QtCore>
 #include <chrono>
 

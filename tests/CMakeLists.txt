@@ -1,10 +1,10 @@
-set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}_tests)
+set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.Tests)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/catch)
 
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 
 add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES})
-target_link_libraries(${TEST_EXECUTABLE_NAME} ${PROJECT_NAME}_entities)
+target_link_libraries(${TEST_EXECUTABLE_NAME} ${PROJECT_NAME}.Entities)
 qt5_use_modules(${TEST_EXECUTABLE_NAME} Core Test)
 
 add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)

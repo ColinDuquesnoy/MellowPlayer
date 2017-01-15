@@ -1,1 +1,3 @@
-add_subdirectory(entities)
+add_subdirectory(Entities)
+add_subdirectory(UseCases)
+add_subdirectory(Infrastructure)
