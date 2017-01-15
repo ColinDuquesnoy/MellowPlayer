@@ -4,4 +4,4 @@ apt-get update
 apt-get install software-properties-common --fix-missing -y
 apt-add-repository ppa:beineri/opt-qt571-xenial -y
 apt-get update
-apt-get install build-essential qt57base qt57declarative qt57quickcontrols2 qt57graphicaleffects qt57creator liblog4cplus-dev mesa-common-dev libgl1-mesa-dev pkg-config cmake --fix-missing -y
+apt-get install build-essential qt57base qt57declarative qt57quickcontrols2 qt57graphicaleffects qt57creator mesa-common-dev libgl1-mesa-dev pkg-config cmake --fix-missing -y
