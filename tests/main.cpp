@@ -17,8 +17,10 @@ int main(int argc, char* argv[])
     qtApp.setOrganizationName("MellowPlayer");
 
     SpdLoggerFactory loggerFactory;
+    LoggerConfig loggerConfig;
+    loggerConfig.createFileLogger = false;
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory);
-    loggingManager.setDefaultLogLevel(LogLevel::Trace);
+    LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
 
     return Catch::Session().run(argc, const_cast<char const* const* const>(argv));
 }
