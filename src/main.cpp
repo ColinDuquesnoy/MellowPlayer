@@ -10,6 +10,8 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 int main(int argc, char* argv[])
 {
+    Q_INIT_RESOURCE(frontend);
+
     QGuiApplication qtApp(argc, argv);
     qtApp.setApplicationDisplayName("MellowPlayer");
     qtApp.setApplicationName("MellowPlayer3");

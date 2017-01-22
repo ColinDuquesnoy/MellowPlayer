@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/MellowPlayer/QmlFrontend">
+        <file>fonts/MaterialIcons-Regular.ttf</file>
+        <file>qml/MaterialIcons.qml</file>
+        <file>qmldir</file>
+    </qresource>
+</RCC>
