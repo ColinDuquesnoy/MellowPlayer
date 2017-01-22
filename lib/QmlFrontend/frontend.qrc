@@ -2,6 +2,10 @@
     <qresource prefix="/MellowPlayer/QmlFrontend">
         <file>fonts/MaterialIcons-Regular.ttf</file>
         <file>qml/MaterialIcons.qml</file>
+        <file>qml/MainWindow.qml</file>
+        <file>qml/MainToolBar.qml</file>
+        <file>qml/ServiceDelegate.qml</file>
         <file>qmldir</file>
+        <file>qml/EnabledServices.qml</file>
     </qresource>
 </RCC>

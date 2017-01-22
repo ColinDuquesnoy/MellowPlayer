@@ -1,1 +1,2 @@
 singleton MaterialIcons 1.0 qml/MaterialIcons.qml
+MainWindow 1.0 qml/MainWindow.qml
