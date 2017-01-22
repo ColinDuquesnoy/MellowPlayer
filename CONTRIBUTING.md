@@ -22,7 +22,7 @@ If you're reporting a bug, **make sure to provide the following information**:
 Setting up a development environment
 ------------------------------------
 
-This step is documented in the wiki: https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/how-to-setup
+Read the how to setup page of the [wiki](https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/how-to-setup)
 
 We also recommend you read the [architecture](https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/architecture) and the [coding guidelines](guidelines) pages before hacking on MellowPlayer.
 
