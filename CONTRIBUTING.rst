@@ -19,6 +19,13 @@ If you're reporting a bug, **make sure to provide the following information**:
 
 .. _issue tracker: https://gitlab.com/ColinDuquesnoy/MellowPlayer/issues
 
+Setting up a development environment
+------------------------------------
+
+This step is documented in the wiki: https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/how-to-setup
+
+We also recommend you read the [architecture](https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/architecture) and the [coding guidelines](guidelines) pages before hacking on MellowPlayer.
+
 Submitting a pull request
 -------------------------
 
@@ -38,11 +45,11 @@ Adding support for a new service
 Web streaming service integration plugins are now written in pure javascript.
 
 1. Create a new plugin using the wizard (see http://mellowplayer.readthedocs.io/en/webengine/developers/plugins.html#create-a-new-plugin)
-3. Edit ``metadata.ini`` (add correct url, name, version,...)
-4. Edit ``description.html`` to describe the streaming service
-5. Customise logo.svg
-6. Implement the needed functions in ``integration.js``
-7. Once your plugin works, submit a pull request!
+2. Edit ``metadata.ini`` (add correct url, name, version,...)
+3. Edit ``description.html`` to describe the streaming service
+4. Customise logo.svg
+5. Implement the needed functions in ``integration.js``
+6. Once your plugin works, submit a pull request!
 
 
 Adding/Updating a new translation
