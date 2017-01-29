@@ -96,6 +96,7 @@ coverage:
 
 ### Windows
 .job_template: &windows_def
+  allow_failure: true
   tags:
     - windows
   before_script:
@@ -124,6 +125,7 @@ test:windows:
 
 ### OSX
 .job_template: &osx_def
+  allow_failure: true
   tags:
     - osx
 
