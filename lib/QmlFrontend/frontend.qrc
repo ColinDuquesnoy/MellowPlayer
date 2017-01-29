@@ -7,5 +7,6 @@
         <file>qml/ServiceDelegate.qml</file>
         <file>qmldir</file>
         <file>qml/EnabledServices.qml</file>
+        <file>images/home-background.png</file>
     </qresource>
 </RCC>

@@ -3,57 +3,43 @@ import QtQuick 2.7
 ListModel {
     ListElement {
         name: "Deezer"
-        serviceUrl: "https://deezer.com"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://deezer.com"
+        serviceColor: "#23232c"
     }
 
     ListElement {
         name: "Mixcloud"
-        serviceUrl: "https://mixcloud.com"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://mixcloud.com"
+        serviceColor: "#273a4b"
     }
 
     ListElement {
         name: "Spotify"
-        serviceUrl: "https://play.spotify.com"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://play.spotify.com"
+        serviceColor: "#1c1c1f"
     }
 
     ListElement {
         name: "Soundcloud"
-        serviceUrl: "https://soundcloud.com"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://soundcloud.com"
+        serviceColor: "#333333"
     }
 
     ListElement {
         name: "8tracks"
-        serviceUrl: "https://8tracks.com"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://8tracks.com"
+        serviceColor: "#2f364a"
     }
 
     ListElement {
         name: "Google Play Music"
-        serviceUrl: "https://play.google.com/music/listen"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceUrl: "http://play.google.com/music/listen"
+        serviceColor: ""
     }
 
     ListElement {
         name: "TuneIn"
         serviceUrl: "http://tunein.com/"
-        preload: true
-        backgroundColor: ""
-        foregroundColor: ""
+        serviceColor: "#36b4a7"
     }
 }

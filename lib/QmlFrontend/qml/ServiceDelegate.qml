@@ -1,85 +1,108 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.1
 import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 import QtGraphicalEffects 1.0
+
+import "qrc:/MellowPlayer/QmlFrontend"
 
 Item {
     id: root
     width: servicesGridView.cellWidth
     height: servicesGridView.cellHeight
 
-    Rectangle {
+    property string backgroundColor: Material.background
+    property var webView: webViewStack.itemAt(index)
+
+    Pane {
         id: highlight
         anchors.fill: parent
-        radius: 3
-        color: mouseArea.containsMouse ? Qt.lighter(Material.background) : "transparent"
+        anchors.margins: parent.width / 50
+        Material.background: state == "hover" ? Qt.lighter(backgroundColor) : backgroundColor
+        Material.elevation: 5
 
-        ColumnLayout {
-            anchors.fill: parent
-            anchors.margins: 9
-            spacing: 15
-
-            Label {
-                Layout.fillWidth: true
-                text: name
-                horizontalAlignment: Text.AlignHCenter
+        Image {
+            id: preview
+            x: 0
+            y: 0
+            width: parent.width
+            height: parent.height
+            source: {
+                var webEngineView = webView
+                return webEngineView !== null && webEngineView.image !== null ? webEngineView.image.url : "qrc:/MellowPlayer/QmlFrontend/images/home-background.png"
             }
+            states: State {
+                name: "selected"
 
-            Item {
-                id: placeHolder
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.margins: 9
+                PropertyChanges {
+                    target: body
+                    state: "between"
+                    previewImage: preview
+                }
 
-                WebEngineView {
-                    id: webEngineView
-                    x: 0
-                    y: 0
+                ParentChange {
+                    target: preview
+                    parent: body
                     width: body.width
                     height: body.height
-                    transformOrigin: Item.TopLeft
-                    scale: placeHolder.width / body.width
-                    url: serviceUrl
-                    settings.pluginsEnabled : true
-                    enabled: root.state == "selected"
-                }
-
-                Desaturate {
-                    id: filter
-                    anchors.fill: parent
-                    source: placeHolder
-                    desaturation: 1.0
-                }
-
-                Image {
-                    width: 64
-                    height: 64
-                    source: webEngineView.icon
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.margins: 10
+                    x: 0
+                    y: 0
                 }
             }
+            transitions: [
+                Transition {
+                    ParentAnimation {
+                        via: body
 
-            Item {
-                Layout.fillWidth: true
-                Layout.preferredHeight: switchAutoLoad.height
-                Switch {
-                    anchors.centerIn: parent
-                    id: switchAutoLoad
-                    text: "Load automatically"
+                        PropertyAnimation {
+                            properties: "x,y,width,height"
+                            easing.type: Easing.InOutCubic
+                        }
+                    }
+
+                    onRunningChanged: {
+                        if(!running) {
+                            body.state = preview.state == "selected" ? "webview" : "overview";
+                            body.previewImage = preview;
+                            preview.visible = preview.state != "selected";
+                            webViewStack.currentIndex = index;
+                        }
+                    }
                 }
+            ]
+            onStateChanged: {
+                preview.visible = true;
+                if (webView.url == "" )
+                    webView.url = webView.urlToLoad;
             }
         }
 
+        Desaturate {
+            id: filter
+            anchors.fill: preview
+            source: preview
+            desaturation: 1.0
+        }
+
+        ColorOverlay {
+            id: overlay
+            anchors.fill: preview
+            source: preview
+            color: "black"
+            opacity: 0.3
+        }
+
+        state: mouseArea.containsMouse || btOff.hovered ? "hover" : ""
+
         states: State {
             name: "hover"
+
             PropertyChanges {
                 target: filter
                 desaturation: 0.0
             }
+
             PropertyChanges {
                 target: overlay
                 opacity: 0.0
@@ -89,48 +112,67 @@ Item {
 
         transitions: [
             Transition {
-                PropertyAnimation { properties: "desaturation" }
+                PropertyAnimation { properties: "desaturation, opacity" }
             }
         ]
-    }
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-        enabled: root.state != "selected"
+        Pane {
+            anchors.centerIn: parent
 
-        onContainsMouseChanged: containsMouse ? highlight.state = "hover" : highlight.state = ""
+            RowLayout {
+                anchors.fill: parent
 
-        onClicked: {
-            body.currentWebView = root;
-            root.state = "selected";
-        }
-    }
+                Image {
+                    Layout.maximumWidth: 22
+                    Layout.maximumHeight: 22
+                    source: webView.icon
+                }
 
-
-
-    states: State {
-        name: "selected"
-        PropertyChanges {
-            target: body
-            overviewVisible: false
-        }
-        ParentChange {
-            target: webEngineView
-            parent: body
-            scale: 1.0
-            x: 0
-            y: 0
-        }
-    }
-
-    transitions: [
-        Transition {
-            ParentAnimation {
-                via: body
-                PropertyAnimation { properties: "x,y,scale"; easing: Easing.InOutCubic; /*duration: 1000*/}
+                Label {
+                    id: lblName
+                    Layout.fillWidth: true
+                    text: name
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
             }
         }
-    ]
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onClicked: {
+                preview.state = "selected";
+            }
+        }
+
+        Rectangle {
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: 10
+            width: 32
+            height: 32
+            radius: 32
+            color: Material.background
+            visible: preview.source != "qrc:/MellowPlayer/QmlFrontend/images/home-background.png" && highlight.state == "hover"
+
+            ToolButton {
+                id: btOff
+                hoverEnabled: true
+                anchors.centerIn: parent
+
+                text: MaterialIcons.icon_power_settings_new
+                font.family: MaterialIcons.family
+                font.pointSize: 22
+
+                onClicked: {
+                    webView.url = "";
+                    webView.reload();
+                    webView.image = null;
+                }
+            }
+        }
+    }
 }
