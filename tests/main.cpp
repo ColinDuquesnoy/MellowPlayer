@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_RUNNER
 #include <QString>
-#include <QtCore/QCoreApplication>
+#include <QtGui/QGuiApplication>
 #include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include "catch.hpp"
@@ -10,7 +10,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 int main(int argc, char* argv[])
 {
-    QCoreApplication qtApp(argc, argv);
+    QGuiApplication qtApp(argc, argv);
     qtApp.setApplicationName("MellowPlayer3");
     qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
     qtApp.setOrganizationDomain("org.mellowplayer");

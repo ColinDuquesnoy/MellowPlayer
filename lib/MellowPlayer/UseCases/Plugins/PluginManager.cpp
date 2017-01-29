@@ -1,4 +1,4 @@
-#include "PluginManagerTests.hpp"
+#include "PluginManager.hpp"
 #include <stdexcept>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)

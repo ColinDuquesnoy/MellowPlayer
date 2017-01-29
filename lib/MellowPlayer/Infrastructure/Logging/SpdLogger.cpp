@@ -40,7 +40,7 @@ SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)
 SpdLogger::~SpdLogger() = default;
 
 void SpdLogger::log(const string& message, LogLevel level, const char* file, int line) {
-    if (includeFileAndLine_ && file != NULL)
+    if (includeFileAndLine_ && file != NULL && level == LogLevel::Trace)
         logger_->log(static_cast<level::level_enum>(level), "{} ( \"{}:{}\" )", message, file, line);
     else
         logger_->log(static_cast<level::level_enum>(level), message.c_str());

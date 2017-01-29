@@ -72,7 +72,7 @@ protected:
 
 inline ansicolor_sink::ansicolor_sink(sink_ptr wrapped_sink) : sink_(wrapped_sink)
 {
-    colors_[level::trace]   = cyan;
+    colors_[level::trace]   = magenta;
     colors_[level::debug]   = cyan;
     colors_[level::info]    = bold;
     colors_[level::warn]    = yellow + bold;

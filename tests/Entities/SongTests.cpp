@@ -4,7 +4,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("Song.DefaultCtor", "[Song]") {
+TEST_CASE("Song.DefaultCtor", "[Song][Entities]") {
     Song song;
 
     REQUIRE(song.album == "");

@@ -4,7 +4,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("Plugin.DefaultCtor", "[Plugin]") {
+TEST_CASE("Plugin.DefaultCtor", "[Plugin][Entities]") {
     Plugin plugin;
 
     REQUIRE(plugin.author == "");

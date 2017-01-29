@@ -1,18 +1,18 @@
 #include <catch.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Plugins/PluginManagerTests.hpp>
+#include <MellowPlayer/UseCases/Plugins/PluginManager.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace fakeit;
 using namespace std;
 
-TEST_CASE("PluginManager use the pluginLoader to get the list of plugins", "[PluginManager,UseCases]") {
+TEST_CASE("PluginManager use the pluginLoader to get the list of plugins", "[PluginManager][UseCases]") {
     auto mock = PluginLoaderMock::basicMock();
     PluginManager pluginManager(mock.get());
     Verify(Method(mock, loadPlugins)).Exactly(1);
 };
 
-TEST_CASE("PluginManager can find a specific plugin", "[PluginManager,UseCases]") {
+TEST_CASE("PluginManager can find a specific plugin", "[PluginManager][UseCases]") {
     auto mock = PluginLoaderMock::basicMock();
     PluginManager pluginManager(mock.get());
 

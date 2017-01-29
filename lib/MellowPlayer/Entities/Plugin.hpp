@@ -48,6 +48,11 @@ struct Plugin {
     QString script;
 
     /**
+     * @brief Path to the plugin script.
+     */
+    QString scriptPath;
+
+    /**
      * @brief The version of the plugin.
      */
     QString version;
@@ -60,8 +65,17 @@ struct Plugin {
           name(""),
           url(""),
           script(""),
+          scriptPath(""),
           version("") {
 
+    }
+
+    bool isValid() const {
+        return !name.isEmpty() && !url.isEmpty();
+    }
+
+    inline bool operator==(const Plugin& rhs) {
+        return name == rhs.name && url == rhs.url;
     }
 };
 

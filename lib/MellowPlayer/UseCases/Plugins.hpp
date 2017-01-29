@@ -1,3 +1,4 @@
 #pragma once
 
-#import "Plugins/IPluginLoader.hpp"
+#include "Plugins/IPluginLoader.hpp"
+#include "Plugins/PluginManager.hpp"
