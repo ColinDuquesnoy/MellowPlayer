@@ -1,91 +1,59 @@
 #pragma once
 
 #include <Common/Macros.hpp>
-#include <QtCore>
-#include <chrono>
+#include <QtCore/QString>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 /**
- * @brief The Song class holds the information about a song (title, artist, album, ...).
+ * @brief The song structure contains the data of the current song.
  */
-class Song: public QObject
-{
-    Q_OBJECT
+struct Song {
     /**
-     * @brief The unique id of the song.
+     * @brief Unique id of the song.
      */
-    Q_PROPERTY(QString uniqueId READ uniqueId WRITE setUniqueId NOTIFY uniqueIdChanged)
+    QString uniqueId;
 
     /**
-     * @brief The title of the song.
+     * @brief Title of the song.
      */
-    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    QString title;
 
     /**
-     * @brief The name of the artist.
+     * @brief Name of the artist.
      */
-    Q_PROPERTY(QString artist READ artist WRITE setArtist NOTIFY artistChanged)
+    QString artist;
 
     /**
-     * @brief The name of the album.
+     * @brief Name of the album
      */
-    Q_PROPERTY(QString album READ album WRITE setAlbum NOTIFY albumChanged)
+    QString album;
 
     /**
-     * @brief The song art url. Optional.
+     * @brief Album art url.
      */
-    Q_PROPERTY(QString artUrl READ artUrl WRITE setArtUrl NOTIFY artUrlChanged)
+    QString artUrl;
 
     /**
-     * @brief The duration of the song [seconds].
+     * @brief Duration of the seconds (number of seconds).
      */
-    Q_PROPERTY(double duration READ duration WRITE setDuration NOTIFY durationChanged)
+    double duration;
 
     /**
-     * @bried
+     * @brief Whether the song is part of the favorites song of the user.
      */
-    Q_PROPERTY(bool isFavorite READ isFavorite WRITE setIsFavorite NOTIFY isFavoriteChanged)
-public:
-    explicit Song(QObject* parent= nullptr);
+    bool isFavorite;
 
-    QString toString() const;
+    Song()
+        : uniqueId(""),
+          title(""),
+          artist(""),
+          album(""),
+          artUrl(""),
+          duration(0),
+          isFavorite(false) {
 
-    QString uniqueId() const;
-    QString title() const;
-    QString artist() const;
-    QString album() const;
-    QString artUrl() const;
-    double duration() const;
-    bool isFavorite() const;
-
-public slots:
-    void setUniqueId(QString uniqueId);
-    void setTitle(QString title);
-    void setArtist(QString artist);
-    void setAlbum(QString album);
-    void setArtUrl(QString artUrl);
-    void setDuration(double duration);
-    void setIsFavorite(bool isFavorite);
-
-signals:
-    void uniqueIdChanged(QString uniqueId);
-    void titleChanged(QString title);
-    void artistChanged(QString artist);
-    void albumChanged(QString album);
-    void artUrlChanged(QString artUrl);
-    void durationChanged(double duration);
-    void isFavoriteChanged(bool favorite);
-
-private:
-    QString uniqueId_;
-    QString title_;
-    QString artist_;
-    QString album_;
-    QString artUrl_;
-    double duration_;
-    double position_;
-    bool isFavorite_;
+    }
 };
 
 END_MELLOWPLAYER_NAMESPACE
