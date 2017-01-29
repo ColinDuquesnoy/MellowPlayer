@@ -83,8 +83,7 @@ QStringList PluginLoaderHelper::getSearchPaths() {
     pluginsDir.cdUp();
     pluginsDir.cd("PlugIns");
     pluginsDir.cd("services");
-    paths.append(pluginsDir.path());
-    qWarning() << "OSX Application Plugins Path:" << pluginsDir.path();
+    paths.append(pluginsDir.path());    
 #endif
 
 #ifdef Q_OS_LINUX

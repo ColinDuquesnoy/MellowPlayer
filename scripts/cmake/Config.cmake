@@ -24,7 +24,7 @@ if(MSVC_COMPILER)
     endif()
     add_definitions("/wd4251")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field")
 endif()
 
 # Setup compiler settings
