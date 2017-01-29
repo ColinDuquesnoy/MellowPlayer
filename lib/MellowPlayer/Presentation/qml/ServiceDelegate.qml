@@ -5,7 +5,7 @@ import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 import QtGraphicalEffects 1.0
 
-import "qrc:/MellowPlayer/QmlFrontend"
+import "qrc:/MellowPlayer/Presentation"
 
 Item {
     id: root
@@ -30,7 +30,7 @@ Item {
             height: parent.height
             source: {
                 var webEngineView = webView
-                return webEngineView !== null && webEngineView.image !== null ? webEngineView.image.url : "qrc:/MellowPlayer/QmlFrontend/images/home-background.png"
+                return webEngineView !== null && webEngineView.image !== null ? webEngineView.image.url : "qrc:/MellowPlayer/Presentation/images/home-background.png"
             }
             states: State {
                 name: "selected"
@@ -156,7 +156,7 @@ Item {
             height: 32
             radius: 32
             color: Material.background
-            visible: preview.source != "qrc:/MellowPlayer/QmlFrontend/images/home-background.png" && highlight.state == "hover"
+            visible: preview.source != "qrc:/MellowPlayer/Presentation/images/home-background.png" && highlight.state == "hover"
 
             ToolButton {
                 id: btOff

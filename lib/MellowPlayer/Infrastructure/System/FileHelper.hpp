@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <Common/Macros.hpp>
+#include <MellowPlayer/Macros.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

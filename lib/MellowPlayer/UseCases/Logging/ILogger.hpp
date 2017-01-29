@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common/Macros.hpp>
+#include <MellowPlayer/Macros.hpp>
 #include "LoggerConfig.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)

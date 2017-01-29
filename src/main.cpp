@@ -1,16 +1,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
-#include <UseCases/Logging.hpp>
-#include <Infrastructure/Logging.hpp>
-#include <Infrastructure/System/FileHelper.hpp>
+#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Infrastructure.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 int main(int argc, char* argv[])
 {
-    Q_INIT_RESOURCE(frontend);
+    Q_INIT_RESOURCE(presentation);
 
     QGuiApplication qtApp(argc, argv);
     qtApp.setApplicationDisplayName("MellowPlayer");

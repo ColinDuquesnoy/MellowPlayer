@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Common/Macros.hpp>
+#include <MellowPlayer/Macros.hpp>
 #include <QtCore/QString>
 #include <QtGui/QImage>
 

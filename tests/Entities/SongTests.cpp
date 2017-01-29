@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <Entities/Song.hpp>
+#include <MellowPlayer/Entities.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;

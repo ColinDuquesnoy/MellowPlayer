@@ -1,4 +1,4 @@
-import "qrc:/MellowPlayer/QmlFrontend"
+import "qrc:/MellowPlayer/Presentation"
 
 MainWindow {
     visible: true

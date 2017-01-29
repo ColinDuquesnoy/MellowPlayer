@@ -1,1 +1,0 @@
-This directory contains the sources of the Presentation library (MVC implementation).

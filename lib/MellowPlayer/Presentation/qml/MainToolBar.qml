@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 
-import "qrc:/MellowPlayer/QmlFrontend"
+import "qrc:/MellowPlayer/Presentation"
 
 ToolBar {
     id: toolBar

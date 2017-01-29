@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_RUNNER
 #include <QString>
 #include <QtCore/QCoreApplication>
-#include <Infrastructure.hpp>
-#include <UseCases.hpp>
+#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include "catch.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

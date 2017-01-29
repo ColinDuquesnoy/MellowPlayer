@@ -1,4 +1,4 @@
-set(LIB_NAME "${PROJECT_NAME}.QmlFrontend")
+set(LIB_NAME "${PROJECT_NAME}.Presentation")
 
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 file(GLOB_RECURSE SOURCE_FILES *.cpp)

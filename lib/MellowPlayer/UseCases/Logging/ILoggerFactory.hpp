@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <Common/Macros.hpp>
+#include <MellowPlayer/Macros.hpp>
 #include "LoggerConfig.hpp"
 #include "ILogger.hpp"
 
