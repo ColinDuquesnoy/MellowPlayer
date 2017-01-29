@@ -65,4 +65,7 @@ struct Plugin {
     }
 };
 
+using PluginList = QList<MellowPlayer::Entities::Plugin>;
+
 END_MELLOWPLAYER_NAMESPACE
+
