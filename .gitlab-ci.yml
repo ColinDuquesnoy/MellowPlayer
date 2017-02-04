@@ -13,7 +13,9 @@ stages:
 ### Commit build
 .job_template: &commit_build_def
   stage: commit-build
-  except: triggers tags
+  except:
+      - triggers
+      - tags
 
 ### Full build
 .job_template: &full_build_def
