@@ -17,10 +17,13 @@ branches:
   except:
     - gh-pages
 
+before_build:
+  - cd scripts\build\windows
+
 build_script:
-  - cd scripts/build/windows
   - build.bat
 
 test_script:
-  - cd scripts/build/windows
+  - cd ..\scripts\build\windows
   - runtests.bat
+
