@@ -1,0 +1,26 @@
+version: "0.1.0.{build}"
+os: Visual Studio 2015
+
+platform:
+  - x64
+
+configuration:
+  - Release
+
+init:
+  - cmake --version
+  - msbuild /version
+
+clone_folder: C:\projects\MellowPlayer
+
+branches:
+  except:
+    - gh-pages
+
+build_script:
+  - cd scripts/build/windows
+  - build.bat
+
+test_script:
+  - cd scripts/build/windows
+  - runtests.bat
