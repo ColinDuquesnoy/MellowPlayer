@@ -50,7 +50,8 @@ stages:
     - linux
   before_script:
     - ./scripts/env-setup/linux/archlinux-env-setup.sh
-    - export DISPLAY=:99.0
+    - export DISPLAY=:99
+    - Xvfb :99 -ac &
 
 ### Ubuntu 16.04
 .job_template: &ubuntu_def
