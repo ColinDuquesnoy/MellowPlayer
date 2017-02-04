@@ -9,8 +9,9 @@ if [ "$1" == "--debug" ]; then
 fi
 
 cd $build_dir
-ctest -V
 
 if [ "$2" == "--coverage" ]; then
     make coverage;
+else
+    ctest -V;
 fi
