@@ -28,15 +28,6 @@ stages:
 # Platforms
 #**************************************
 
-### Windows
-.job_template: &windows_def
-  allow_failure: true
-  tags:
-    - windows
-  before_script:
-    - chmod +x ./scripts/build/windows/build.bat
-    - chmod +x ./scripts/build/windows/runtests.bat
-
 ### OSX
 .job_template: &osx_def
   allow_failure: true
@@ -84,21 +75,6 @@ commit-build:archlinux:
     name: "CoverageReport_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
       - cmake-build-debug/coverage
-
-commit-build:windows:
-  <<: *commit_build_def
-  <<: *windows_def
-  script:
-    - cd scripts/build/windows
-    - ./build.bat
-    - ./runtests.bat
-
-commit-build:osx:
-  <<: *commit_build_def
-  <<: *osx_def
-  script:
-    - ./scripts/build/osx/build.sh --debug
-    - ./scripts/build/osx/runtests.sh --debug
 
 #--------------------------------------------------------------------
 # Full Build
