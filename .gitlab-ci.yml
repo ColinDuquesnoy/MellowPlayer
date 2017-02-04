@@ -34,8 +34,8 @@ stages:
   tags:
     - windows
   before_script:
-    - chmod +x ./scripts/env-setup/windows/build.bat
-    - chmod +x ./scripts/env-setup/windows/runtests.bat
+    - chmod +x ./scripts/build/windows/build.bat
+    - chmod +x ./scripts/build/windows/runtests.bat
 
 ### OSX
 .job_template: &osx_def
@@ -76,8 +76,8 @@ commit-build:archlinux:
   <<: *commit_build_def
   <<: *archlinux_def
   script:
-    - ./scripts/env-setup/linux/build.sh --debug --coverage
-    - ./scripts/env-setup/linux/runtests.sh --debug --coverage
+    - ./scripts/build/linux/build.sh --debug --coverage
+    - ./scripts/build/linux/runtests.sh --debug --coverage
   artifacts:
     name: "CoverageReport_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
@@ -87,7 +87,7 @@ commit-build:windows:
   <<: *commit_build_def
   <<: *windows_def
   script:
-    - cd scripts/env-setup/windows
+    - cd scripts/build/windows
     - ./build.bat
     - ./runtests.bat
 
@@ -95,8 +95,8 @@ commit-build:osx:
   <<: *commit_build_def
   <<: *osx_def
   script:
-    - ./scripts/env-setup/osx/build.sh --debug
-    - ./scripts/env-setup/osx/runtests.sh --debug
+    - ./scripts/build/osx/build.sh --debug
+    - ./scripts/build/osx/runtests.sh --debug
 
 #--------------------------------------------------------------------
 # Full Build
