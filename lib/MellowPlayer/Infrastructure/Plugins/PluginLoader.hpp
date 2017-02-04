@@ -11,6 +11,14 @@ public:
     Entities::PluginList loadPlugins() const override;
 
 private:
+    std::unique_ptr<Entities::Plugin> loadPlugin(const QString &directory) const;
+    QString findFileByExtension(const QString &directory, const QString &suffix) const;
+    QString readFileContent(const QString &filePath) const;
+    Entities::PluginMetadata readMetadata(const QString &filePath) const;
+    bool checkPluginDirectory(const QString &directory) const;
+    QString getUserPluginsDirectory() const;
+    QStringList getSearchPaths() const;
+
     UseCases::ILogger& logger_;
 };
 

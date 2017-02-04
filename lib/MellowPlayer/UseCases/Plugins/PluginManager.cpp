@@ -12,7 +12,7 @@ PluginManager::PluginManager(IPluginLoader &pluginLoader)
 
 const Plugin &PluginManager::plugin(const QString &name) const {
     for(const auto& plugin: plugins_)
-        if (plugin.getName() == name)
-            return plugin;
+        if (plugin->getName() == name)
+            return *plugin;
     throw invalid_argument("unknown plugin: " + name.toStdString());
 }

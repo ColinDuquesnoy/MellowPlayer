@@ -1,10 +1,13 @@
+#include <memory>
 #include "Plugin.hpp"
 #include <QtGui/QIcon>
 #include <QtCore/QSettings>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
+using namespace std;
 
-Plugin::Plugin(const PluginMetadata &metadata): metadata(metadata) {
+Plugin::Plugin(const PluginMetadata &metadata) :
+    metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
 
 }
 
@@ -22,8 +25,10 @@ QString Plugin::getToolbarColor() const {
     return "";
 }
 
-QImage Plugin::getLogo() const {
-    return QIcon(metadata.logoPath).pixmap(64, 64).toImage();
+QString Plugin::getLogo() const {
+    if (metadata.logoPath.isEmpty())
+        return "";
+    return "file://" + metadata.logoPath;
 }
 
 const QString &Plugin::getName() const {
@@ -42,8 +47,12 @@ const QString &Plugin::getVersion() const {
     return metadata.version;
 }
 
-const QString &Plugin::getScript() const {
-    return metadata.script;
+PluginScript& Plugin::getScript() {
+    return *script;
+}
+
+PluginScript *Plugin::getScriptPtr() {
+    return &getScript();
 }
 
 bool Plugin::isValid() const {
@@ -52,6 +61,16 @@ bool Plugin::isValid() const {
 
 void Plugin::setCustomUrl(const QString &url) {
     QSettings settings;
-    settings.setValue(getCustomUrlSettingsKey(), url);
+    if (url != getUrl()) {
+        settings.setValue(getCustomUrlSettingsKey(), url);
+        emit urlChanged(url);
+    }
+}
 
+bool Plugin::operator==(const Plugin &rhs) const {
+    return getName() == rhs.getName() && getUrl() == rhs.getUrl();
+}
+
+bool Plugin::operator!=(const Plugin &rhs) const {
+    return !operator==(rhs);
 }

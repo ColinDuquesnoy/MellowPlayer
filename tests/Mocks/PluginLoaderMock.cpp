@@ -5,11 +5,11 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 using namespace fakeit;
 
-Plugin createPlugin(const QString& name) {
+unique_ptr<Plugin> createPlugin(const QString& name) {
     PluginMetadata metadata;
     metadata.name = name;
     metadata.url = "http://" + name.toLower() + ".com";
-    Plugin plugin(metadata);
+    auto plugin = make_unique<Plugin>(metadata);
     return plugin;
 }
 
