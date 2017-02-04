@@ -10,7 +10,7 @@ class PluginLoaderHelper {
 public:
     QString findFileByExtension(const QString &directory, const QString &suffix);
     QString readFileContent(const QString &filePath);
-    void readMetadata(const QString &filePath, Entities::Plugin &plugin);
+    Entities::PluginMetadata readMetadata(const QString &filePath);
     Entities::Plugin loadPlugin(const QString &directory);
     bool checkPluginDirectory(const QString &directory);
     QString getUserPluginsDirectory();

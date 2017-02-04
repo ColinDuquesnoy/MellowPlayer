@@ -2,6 +2,7 @@ set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.Tests)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/catch)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/fakeit)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_definitions(-DPLUGINS_DIR=\"${CMAKE_SOURCE_DIR}/src/plugins\")
 
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 

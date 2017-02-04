@@ -24,7 +24,7 @@ PluginList PluginLoader::loadPlugins() const {
             if (helper.checkPluginDirectory(directory.absoluteFilePath())) {
                 Plugin plugin = helper.loadPlugin(directory.absoluteFilePath());
                 if (plugin.isValid() && !plugins.contains(plugin)) {
-                    LOG_INFO(logger_, plugin.name.toStdString().c_str() << " plugin successfully loaded (from \"" <<
+                    LOG_INFO(logger_, plugin.getName().toStdString().c_str() << " plugin successfully loaded (from \"" <<
                                       directory.absoluteFilePath().toStdString().c_str() << "\")");
                     plugins.append(plugin);
                 }

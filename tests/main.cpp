@@ -1,12 +1,16 @@
 #define CATCH_CONFIG_RUNNER
-#include <QString>
+#include <stdexcept>
+#include "catch.hpp"
+#include <QtCore/QDebug>
+#include <QtCore/QSettings>
+#include <QtCore/QString>
 #include <QtGui/QGuiApplication>
 #include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include "catch.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -16,11 +20,24 @@ int main(int argc, char* argv[])
     qtApp.setOrganizationDomain("org.mellowplayer");
     qtApp.setOrganizationName("MellowPlayer");
 
+    QSettings settings;
+    settings.clear();
+
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
     loggerConfig.createFileLogger = false;
-    LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory);
+
+    try {
+        auto& loggingManager = LoggingManager::instance();
+        assert(false);
+    }
+    catch (const logic_error& e) {
+        assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
+    }
+    LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
+    loggingManager.setDefaultLogLevel(LogLevel::Warning);
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
+    qDebug() << "Starting tests";
 
     return Catch::Session().run(argc, const_cast<char const* const* const>(argv));
 }

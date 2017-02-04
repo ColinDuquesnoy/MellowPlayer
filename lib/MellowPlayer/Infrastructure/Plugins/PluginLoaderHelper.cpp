@@ -34,16 +34,18 @@ QString PluginLoaderHelper::readFileContent(const QString &filePath) {
     return retVal;
 }
 
-void PluginLoaderHelper::readMetadata(const QString &filePath, Plugin &plugin) {
+PluginMetadata PluginLoaderHelper::readMetadata(const QString &filePath) {
     QSettings meta(filePath, QSettings::IniFormat);
 
-    plugin.author = meta.value("author").toString();
-    plugin.authorWebsite = meta.value("author_website").toString();
-    QString iconFilePath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
-    plugin.logo = QIcon(iconFilePath).pixmap(64, 64).toImage();
-    plugin.name = meta.value("name").toString();
-    plugin.url = meta.value("url").toString();
-    plugin.version = meta.value("version").toString();
+    PluginMetadata pluginMetadata;
+    pluginMetadata.author = meta.value("author").toString();
+    pluginMetadata.authorWebsite = meta.value("author_website").toString();
+    pluginMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
+    pluginMetadata.name = meta.value("name").toString();
+    pluginMetadata.url = meta.value("url").toString();
+    pluginMetadata.version = meta.value("version").toString();
+
+    return pluginMetadata;
 }
 
 Plugin PluginLoaderHelper::loadPlugin(const QString &directory) {
@@ -51,12 +53,11 @@ Plugin PluginLoaderHelper::loadPlugin(const QString &directory) {
     QString scriptPath = findFileByExtension(directory, "js");
     QString descPath = findFileByExtension(directory, "html");
     QString locale = QLocale::system().name().split("_")[0];
-    Plugin retVal;
-    retVal.script = readFileContent(scriptPath);
-    readMetadata(metadataPath, retVal);
-    retVal.scriptPath = scriptPath;
+    PluginMetadata metadata = readMetadata(metadataPath);
+    metadata.script = readFileContent(scriptPath);
+    metadata.scriptPath = scriptPath;
 
-    return retVal;
+    return Plugin(metadata);
 }
 
 bool PluginLoaderHelper::checkPluginDirectory(const QString &directory) {

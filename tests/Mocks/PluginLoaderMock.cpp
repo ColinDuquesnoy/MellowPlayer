@@ -6,10 +6,10 @@ using namespace std;
 using namespace fakeit;
 
 Plugin createPlugin(const QString& name) {
-    Plugin plugin;
-    plugin.name = name;
-    plugin.url = "http://" + name.toLower() + ".com";
-
+    PluginMetadata metadata;
+    metadata.name = name;
+    metadata.url = "http://" + name.toLower() + ".com";
+    Plugin plugin(metadata);
     return plugin;
 }
 

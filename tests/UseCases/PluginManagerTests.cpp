@@ -17,7 +17,7 @@ TEST_CASE("PluginManager can find a specific plugin", "[PluginManager][UseCases]
     PluginManager pluginManager(mock.get());
 
     SECTION("Find plugin by name") {
-        REQUIRE(pluginManager.plugin("Deezer").name == "Deezer");
+        REQUIRE(pluginManager.plugin("Deezer").getName() == "Deezer");
     }
 
     SECTION("Find unknown plugin should throw an exception") {
