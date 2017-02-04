@@ -79,7 +79,7 @@ commit-build:archlinux:
   <<: *archlinux_def
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
-    - ./cmake-build-debug/tests/MellowPlayer.Tests
+    - ./scripts/build/linux/runtests.sh --debug --coverage
   artifacts:
     name: "CoverageReport_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
