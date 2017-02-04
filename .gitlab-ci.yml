@@ -51,7 +51,6 @@ stages:
   before_script:
     - ./scripts/env-setup/linux/archlinux-env-setup.sh
     - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
 
 ### Ubuntu 16.04
 .job_template: &ubuntu_def
@@ -79,7 +78,7 @@ commit-build:archlinux:
   <<: *archlinux_def
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
-    - ./scripts/build/linux/runtests.sh --debug --coverage
+    - ./cmake-build-debug/tests/MellowPlayer.Tests
   artifacts:
     name: "CoverageReport_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
     paths:
