@@ -7,7 +7,6 @@ import "qrc:/MellowPlayer/Presentation"
 
 ToolBar {
     id: toolBar
-    Material.primary: Material.background
 
     property int iconSize: 16
 
@@ -121,10 +120,13 @@ ToolBar {
         }
 
         ToolButton {
-            text: MaterialIcons.icon_more_vert
+            text: MaterialIcons.icon_menu
             font.family: MaterialIcons.family
             font.pointSize: toolBar.iconSize
             hoverEnabled: true
+            onClicked: {
+                viewStack.push(settingsPageComponent)
+            }
         }
     }
 

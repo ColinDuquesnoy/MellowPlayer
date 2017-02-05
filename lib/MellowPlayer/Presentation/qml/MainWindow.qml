@@ -4,186 +4,165 @@ import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 
+import "qrc:/MellowPlayer/Presentation"
+import "MainView"
+
 ApplicationWindow {
     id: mainWindow
     title: "MellowPlayer"
     minimumWidth: 1280
     minimumHeight: 720
 
-    header: MainToolBar { id: toolBar }
-
-    Item {
-        id: body
+    StackView {
+        id: viewStack
         anchors.fill: parent
-        anchors.margins: 0
+        initialItem: mainPageComponent
 
-        property var previewImage
-        property string originalBackgroundColor: Material.background
-        property string originalForegroundColor: Material.foreground
+    }
 
-        EnabledServices { id: services }
+    Component {
+        id: mainPageComponent
 
-        states: [
-            State {
-                name: "overview"
+        MainPage {
 
-                PropertyChanges {
-                    target: mask
-                    visible: true
-                }
+        }
+    }
 
-                PropertyChanges {
-                    target: overviewLoader
-                    visible: true
-                    enabled: true
-                }
+    Component {
+        id: settingsPageComponent
 
-                PropertyChanges {
-                    target: webViewStack
-                    visible: true
-                    enabled: true
-                }
+        Page {
+            header: ToolBar {
+                Layout.fillWidth: true
+                Material.primary: Material.background
 
-                PropertyChanges {
-                    target: toolBar
-                    Material.background: body.originalBackgroundColor
-                }
-
-            },
-            State {
-                name: "webview"
-
-                PropertyChanges {
-                    target: mask
-                    visible: false
-                }
-
-                PropertyChanges {
-                    target: overviewLoader
-                    visible: false
-                    enabled: false
-                }
-
-                PropertyChanges {
-                    target: webViewStack
-                    visible: true
-                    enabled: true
-                }
-
-                PropertyChanges {
-                    target: toolBar
-                    Material.background: webViewStack.itemAt(webViewStack.currentIndex).color
-                }
-            },
-            State {
-                name: "between"
-
-                PropertyChanges {
-                    target: mask
-                    visible: true
-                }
-
-
-                PropertyChanges {
-                    target: overviewLoader
-                    visible: false
-                }
-
-                PropertyChanges {
-                    target: webViewStack
-                    visible: true
-                }
-            }
-        ]
-        state: "overview"
-
-        StackLayout {
-            id: webViewStack
-            anchors.fill: parent
-
-            Component.onCompleted: overviewLoader.sourceComponent = overviewComponent
-
-            Repeater {
-                id: repeater
-                model: services
-
-                WebEngineView {
-                    id: webEngineView
+                RowLayout {
                     anchors.fill: parent
-                    settings.pluginsEnabled : true
-                    visible: webViewStack.visible && webViewStack.currentIndex == index;
-                    enabled: visible
 
-                    property string urlToLoad: serviceUrl
-                    property string color: serviceColor != "" ? serviceColor : Material.background
-                    property var image: null
-                    property bool ready: image != null || url == ""
-                    signal updateImageFinished();
+                    ToolButton {
+                        Layout.fillHeight: true
+                        text: MaterialIcons.icon_arrow_back
+                        font { family: MaterialIcons.family; pixelSize: 22 }
+                        hoverEnabled: true
 
-                    function updateImage() {
-                        webEngineView.grabToImage(function(result) { image = result; updateImageFinished(); },
-                                                  Qt.size(webEngineView.width, webEngineView.height));
+                        onClicked: viewStack.pop()
                     }
                 }
-            }
-        }
-
-        Pane {
-            id: mask
-            anchors.fill: parent
-        }
-
-        Loader { id: overviewLoader; anchors.fill: parent; anchors.margins: 50; visible: false }
-
-        Component {
-            id: overviewComponent
-
-            ColumnLayout {
-                id: overview
-                width: parent.width
-                height: parent.height
 
                 Label {
-                    Layout.fillWidth: true
-                    text: "Which service would you like to listen to ?"
-                    font.pixelSize: 32
-                    horizontalAlignment: Text.AlignHCenter
+                    anchors.centerIn: parent
+                    text: "Settings"
+                }
+            }
+
+            RowLayout {
+                anchors.fill: parent
+
+                Pane {
+                    Layout.fillHeight: true
+                    Layout.maximumWidth: 400
+                    Layout.minimumWidth: 400
+                    Material.elevation: 8
+                    padding: 0
+
+
+                    ListView {
+                        id: settingsPageList
+                        anchors.fill: parent
+
+                        model: settingsPagesModel
+                        delegate: settingsPageDelegate
+
+                        ListModel {
+                            id: settingsPagesModel
+
+                            ListElement {
+                                title: "General"
+                                icon:  "\ue8b8"
+                            }
+
+                            ListElement {
+                                title: "Notifications"
+                                icon:  "\ue7f4"
+                            }
+
+                            ListElement {
+                                title: "Plugins"
+                                icon:  "\ue87b"
+                            }
+                        }
+
+                        Component {
+                            id: settingsPageDelegate
+
+                            Rectangle {
+                                color: mouseArea.containsMouse ? Qt.lighter(Material.background, 1.5) : settingsPageList.currentIndex == index  ?  Qt.lighter(Material.background, 1.4) :  Material.background
+                                width: parent.width
+                                height: 90
+
+                                RowLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 20
+
+                                    Label {
+                                        Layout.fillWidth: true
+                                        verticalAlignment: "AlignVCenter"
+                                        text: icon
+                                        font.family: MaterialIcons.family
+                                        font.pixelSize: 26
+                                    }
+
+                                    Label {
+                                        Layout.fillWidth: true
+                                        verticalAlignment: "AlignVCenter"
+                                        text: title
+                                        font.pixelSize: 26
+                                    }
+                                }
+
+                                MouseArea {
+                                    id: mouseArea
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    cursorShape: containsMouse && settingsPageList.currentIndex != index ? "PointingHandCursor" : "ArrowCursor"
+
+                                    onClicked: settingsPageList.currentIndex = index
+                                }
+                            }
+                        }
+                    }
                 }
 
-                Item {
+                StackLayout {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Layout.margins: 50
+                    currentIndex: settingsPageList.currentIndex
 
-                    GridView {
-                        id: servicesGridView
-                        anchors.centerIn: parent
-                        focus: true
-                        width: {
-                            if (mainWindow.width <= 1680 )
-                                return 0.90 * mainWindow.width;
-                            else if( mainWindow.width < 1920)
-                                return 0.80 * mainWindow.width;
-                            else
-                                return 0.70 * mainWindow.width;
+                    Item {
+                        id: generalSettingsPage
+
+                        Label {
+                            text: "General"
+                            anchors.centerIn: parent
                         }
-                        height: parent.height
-                        clip: true
+                    }
 
-                        ScrollBar.vertical: ScrollBar {
-                            parent: servicesGridView.parent
-                            anchors.top: servicesGridView.top
-                            anchors.left: servicesGridView.right
-                            anchors.bottom: servicesGridView.bottom
-                            active: hovered
-                            hoverEnabled: true
+                    Item {
+                        id: notificationsSettingsPage
 
+                        Label {
+                            text: "Notifications"
+                            anchors.centerIn: parent
                         }
+                    }
 
-                        cellWidth: servicesGridView.width / 3
-                        cellHeight: cellWidth / 16 * 9
-                        model: EnabledServices {}
-                        delegate: ServiceDelegate {}
+                    Item {
+                        id: pluginsSettingsPage
+
+                        Label {
+                            text: "Plugins"
+                            anchors.centerIn: parent
+                        }
                     }
                 }
             }
