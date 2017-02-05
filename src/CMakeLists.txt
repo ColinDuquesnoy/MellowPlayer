@@ -7,3 +7,9 @@ target_link_libraries(${PROJECT_NAME}
         ${PROJECT_NAME}.UseCases
         ${PROJECT_NAME}.Infrastructure
         ${PROJECT_NAME}.Presentation)
+
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib/static)
+install(DIRECTORY plugins DESTINATION share/mellowplayer)

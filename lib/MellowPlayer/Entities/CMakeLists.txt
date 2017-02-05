@@ -3,5 +3,15 @@ set(LIB_NAME "${PROJECT_NAME}.Entities")
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 
-add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
+if(WIN32)
+    add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
+else()
+    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
+
+    install(TARGETS ${LIB_NAME}
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib/static)
+endif()
+
 qt5_use_modules(${LIB_NAME} Core Gui)

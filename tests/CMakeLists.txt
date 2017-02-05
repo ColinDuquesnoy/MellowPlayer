@@ -11,6 +11,7 @@ target_link_libraries(${TEST_EXECUTABLE_NAME}
                       ${PROJECT_NAME}.Logging
                       ${PROJECT_NAME}.Entities
                       ${PROJECT_NAME}.UseCases
+                      ${PROJECT_NAME}.Presentation
                       ${PROJECT_NAME}.Infrastructure)
 qt5_use_modules(${TEST_EXECUTABLE_NAME} Core Test)
 
