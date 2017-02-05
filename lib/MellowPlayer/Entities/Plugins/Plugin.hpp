@@ -4,6 +4,7 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/Logging.hpp>
 #include "PluginMetadata.hpp"
 #include "PluginScript.hpp"
 
@@ -45,6 +46,7 @@ signals:
 private:
     const QString getCustomUrlSettingsKey() const;
 
+    Logging::ILogger& logger;
     PluginMetadata metadata;
     std::unique_ptr<PluginScript> script;
 };

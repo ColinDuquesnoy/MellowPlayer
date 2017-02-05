@@ -2,6 +2,7 @@
 
 #include <QtCore/QObject>
 #include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/Logging.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
@@ -34,6 +35,7 @@ signals:
     void codeChanged(QString);
 
 private:
+    Logging::ILogger& logger;
     QString code;
     QString path;
 };

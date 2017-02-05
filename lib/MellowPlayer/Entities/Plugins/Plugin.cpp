@@ -3,12 +3,19 @@
 #include <QtGui/QIcon>
 #include <QtCore/QSettings>
 
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
 Plugin::Plugin(const PluginMetadata &metadata) :
+    logger(LoggingManager::instance().getLogger("Plugin")),
     metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
 
+    if( (!metadata.isValid()))
+        LOG_WARN(logger, "Invalid metadata, name or url is empty");
+
+    if (!script->isValid())
+        LOG_WARN(logger, metadata.name.toStdString() << " invalid integration script");
 }
 
 const QString &Plugin::getAuthor() const {
@@ -56,7 +63,7 @@ PluginScript *Plugin::getScriptPtr() {
 }
 
 bool Plugin::isValid() const {
-    return metadata.isValid();
+    return metadata.isValid() && script->isValid();
 }
 
 void Plugin::setCustomUrl(const QString &url) {
