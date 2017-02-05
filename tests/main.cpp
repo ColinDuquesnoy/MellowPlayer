@@ -3,12 +3,11 @@
 #include "catch.hpp"
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
-#include <QtCore/QString>
 #include <QtGui/QGuiApplication>
 #include <MellowPlayer/Infrastructure.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Logging.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 

@@ -5,7 +5,7 @@
 #include "LoggerConfig.hpp"
 #include "ILogger.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Logging)
 
 class ILoggerFactory {
 public:

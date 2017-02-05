@@ -2,7 +2,7 @@
 #include <QString>
 #include "LoggingManager.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 using namespace std;
 
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message) {

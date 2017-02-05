@@ -5,7 +5,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include "ILoggerFactory.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Logging)
 
 class LoggingManager {
 public:

@@ -2,12 +2,13 @@
 
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Logging.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class PluginLoader: public UseCases::IPluginLoader {
 public:
-    PluginLoader(UseCases::LoggingManager& loggingManager);
+    PluginLoader(Logging::LoggingManager& loggingManager);
     Entities::PluginList loadPlugins() const override;
 
 private:
@@ -19,7 +20,7 @@ private:
     QString getUserPluginsDirectory() const;
     QStringList getSearchPaths() const;
 
-    UseCases::ILogger& logger_;
+    Logging::ILogger& logger_;
 };
 
 END_MELLOWPLAYER_NAMESPACE

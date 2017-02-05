@@ -1,3 +1,4 @@
+add_subdirectory(MellowPlayer/Logging)
 add_subdirectory(MellowPlayer/Entities)
 add_subdirectory(MellowPlayer/UseCases)
 add_subdirectory(MellowPlayer/Infrastructure)

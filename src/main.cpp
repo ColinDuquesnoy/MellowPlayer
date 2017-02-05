@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
+#include <MellowPlayer/Logging.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

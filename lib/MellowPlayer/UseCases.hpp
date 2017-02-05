@@ -1,4 +1,4 @@
 #pragma once
 
-#include "UseCases/Logging.hpp"
+#include "Logging.hpp"
 #include "UseCases/Plugins.hpp"

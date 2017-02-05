@@ -3,7 +3,7 @@
 #include <string>
 #include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Logging)
 
 /**
  * @brief Enumerates the possible log levels.

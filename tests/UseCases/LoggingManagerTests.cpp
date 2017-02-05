@@ -1,7 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Logging.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 
 TEST_CASE("LoggingManager.getLogger_noArgs") {
     auto& logger = LoggingManager::instance().getLogger();

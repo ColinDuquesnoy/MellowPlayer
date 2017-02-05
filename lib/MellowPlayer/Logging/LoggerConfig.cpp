@@ -1,6 +1,6 @@
 #include "LoggerConfig.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 using namespace std;
 
 string LoggerConfig::DEFAULT_LOG_FORMAT = "[%L] [%Y-%m-%d %H-%M-%S:%f] [%n] %v";
