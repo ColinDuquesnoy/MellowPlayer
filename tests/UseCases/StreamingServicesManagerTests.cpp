@@ -10,7 +10,7 @@ using namespace std;
 TEST_CASE("StreamingServicesManagerTests") {
     auto mock = StreamingServiceLoaderMock::basicMock();
     StreamingServicesManager streamingServicesManager(mock.get());
-    QSignalSpy serviceAddedSpy(&streamingServicesManager, SIGNAL(serviceAdded(StreamingService*)));
+    QSignalSpy serviceAddedSpy(&streamingServicesManager, SIGNAL(serviceAdded(Entities::StreamingService*)));
     streamingServicesManager.load();
 
     SECTION("load called StreamingServicesLoader::load") {
@@ -36,7 +36,7 @@ TEST_CASE("StreamingServicesManagerTests") {
 
     SECTION("set current service ") {
         QSignalSpy currentServiceChangedSignal(&streamingServicesManager,
-                                               SIGNAL(currentServiceChanged(StreamingService*)));
+                                               SIGNAL(currentServiceChanged(Entities::StreamingService*)));
         streamingServicesManager.setCurrentService(&streamingServicesManager.getService("Deezer"));
         REQUIRE(streamingServicesManager.getCurrentService() != nullptr);
         REQUIRE(currentServiceChangedSignal.count() == 1);

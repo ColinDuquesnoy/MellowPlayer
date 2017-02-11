@@ -2,7 +2,7 @@
 
 #include <QAbstractListModel>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/StreamingService.hpp>
+#include <MellowPlayer/Entities/StreamingService.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -13,20 +13,17 @@ public:
 
     StreamingServicesModel();
 
-    void addService(UseCases::StreamingService* streamingService);
-    void removeService(UseCases::StreamingService* streamingService);
-
+    void addService(Entities::StreamingService* streamingService);
+    void removeService(Entities::StreamingService* streamingService);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-
     QVariant data(const QModelIndex& index, int role) const override;
-
-    QList<UseCases::StreamingService*> getServices() { return services; }
+    QList<Entities::StreamingService*> getServices() { return services; }
 
 protected:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
-    QList<UseCases::StreamingService*> services;
+    QList<Entities::StreamingService*> services;
 };
 
 END_MELLOWPLAYER_NAMESPACE

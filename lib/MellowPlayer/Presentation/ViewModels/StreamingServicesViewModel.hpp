@@ -31,8 +31,8 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onServiceAdded(UseCases::StreamingService* plugin);
-    void onServiceRemoved(UseCases::StreamingService* plugin);
+    void onServiceAdded(Entities::StreamingService* plugin);
+    void onServiceRemoved(Entities::StreamingService* plugin);
 
 private:
     UseCases::StreamingServicesManager& streamingServicesManager;

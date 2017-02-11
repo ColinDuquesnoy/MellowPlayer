@@ -1,7 +1,7 @@
 #include "PluginScript.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 
 PluginScript::PluginScript(const QString &code, const QString &path)
     :

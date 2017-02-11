@@ -7,25 +7,25 @@ BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class StreamingServicesManager: public QObject {
     Q_OBJECT
-    Q_PROPERTY(StreamingService* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
+    Q_PROPERTY(Entities::StreamingService* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
 public:
     StreamingServicesManager(IStreamingServicesLoader& pluginLoader);
 
-    StreamingService& getService(const QString &name) const;
-    const StreamingServicesList& getServices() const;
+    Entities::StreamingService& getService(const QString &name) const;
+    const Entities::StreamingServicesList& getServices() const;
     void load();
-    void setCurrentService(StreamingService* service);
-    StreamingService* getCurrentService() const;
+    void setCurrentService(Entities::StreamingService* service);
+    Entities::StreamingService* getCurrentService() const;
 
 signals:
-    void serviceAdded(StreamingService *plugin);
-    void serviceRemoved(StreamingService *plugin);
-    void currentServiceChanged(StreamingService* service);
+    void serviceAdded(Entities::StreamingService *plugin);
+    void serviceRemoved(Entities::StreamingService *plugin);
+    void currentServiceChanged(Entities::StreamingService* service);
 
 private:
     IStreamingServicesLoader& pluginLoader;
-    StreamingServicesList streamingServices;
-    StreamingService* currentService;
+    Entities::StreamingServicesList streamingServices;
+    Entities::StreamingService* currentService;
 };
 
 END_MELLOWPLAYER_NAMESPACE

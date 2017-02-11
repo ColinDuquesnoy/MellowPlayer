@@ -8,7 +8,7 @@
 #include "MellowPlayer/Entities/PluginMetadata.hpp"
 #include "PluginScript.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 class StreamingService: public QObject {
 Q_OBJECT
@@ -19,7 +19,6 @@ Q_OBJECT
     Q_PROPERTY(QString name READ getName CONSTANT);
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged);
     Q_PROPERTY(QString version READ getVersion CONSTANT);
-    Q_PROPERTY(PluginScript * script READ getScriptPtr CONSTANT);
 public:
     StreamingService(const Entities::PluginMetadata& metadata);
 
@@ -32,8 +31,6 @@ public:
     const QString& getName() const;
     QString getUrl() const;
     const QString& getVersion() const;
-    PluginScript* getScriptPtr();
-    PluginScript& getScript();
 
     Q_INVOKABLE void setCustomUrl(const QString& url);
 
@@ -52,7 +49,7 @@ private:
 };
 
 
-using StreamingServicesList = QList<std::shared_ptr<MellowPlayer::UseCases::StreamingService>>;
+using StreamingServicesList = QList<std::shared_ptr<MellowPlayer::Entities::StreamingService>>;
 
 END_MELLOWPLAYER_NAMESPACE
 

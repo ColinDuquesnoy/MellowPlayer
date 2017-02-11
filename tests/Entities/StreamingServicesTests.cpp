@@ -1,9 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Entities.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("StreamingService::getAuthor") {
     PluginMetadata pluginMetadata;
@@ -65,24 +64,6 @@ TEST_CASE("StreamingService.getUrl") {
     service.setCustomUrl("https://deezer.com/news");
     REQUIRE(service.getUrl() == "https://deezer.com/news");
     REQUIRE(spy.count() == 1);
-}
-
-TEST_CASE("StreamingService.getScript") {
-    PluginMetadata pluginMetadata;
-    pluginMetadata.script = "code";
-    pluginMetadata.scriptPath = "path";
-    StreamingService service(pluginMetadata);
-    REQUIRE(service.getScript().getCode() == "code");
-    REQUIRE(service.getScript().getPath() == "path");
-}
-
-TEST_CASE("StreamingService.getScriptPtr") {
-    PluginMetadata pluginMetadata;
-    pluginMetadata.script = "code";
-    pluginMetadata.scriptPath = "path";
-    StreamingService service(pluginMetadata);
-    REQUIRE(service.getScriptPtr()->getCode() == "code");
-    REQUIRE(service.getScriptPtr()->getPath() == "path");
 }
 
 TEST_CASE("StreamingService.getVersion") {

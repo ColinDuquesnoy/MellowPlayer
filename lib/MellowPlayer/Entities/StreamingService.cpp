@@ -5,7 +5,6 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 StreamingService::StreamingService(const PluginMetadata& metadata)
@@ -14,7 +13,6 @@ StreamingService::StreamingService(const PluginMetadata& metadata)
     metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
 
     if ((!metadata.isValid())) LOG_WARN(logger, "Invalid metadata, name or url is empty");
-
     if (!script->isValid()) LOG_WARN(logger, metadata.name.toStdString() << " invalid integration script");
 }
 
@@ -52,14 +50,6 @@ const QString StreamingService::getCustomUrlSettingsKey() const { return metadat
 
 const QString& StreamingService::getVersion() const {
     return metadata.version;
-}
-
-PluginScript* StreamingService::getScriptPtr() {
-    return script.get();
-}
-
-PluginScript& StreamingService::getScript() {
-    return *script;
 }
 
 bool StreamingService::isValid() const {
