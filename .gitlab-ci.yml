@@ -65,7 +65,7 @@ stages:
 #--------------------------------------------------------------------
 # Commit Build
 #--------------------------------------------------------------------
-commit-build:archlinux:
+commit-build:linux:
   <<: *commit_build_def
   <<: *archlinux_def
   script:
