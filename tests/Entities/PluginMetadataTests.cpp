@@ -4,7 +4,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("Plugin.DefaultCtor") {
+TEST_CASE("StreamingService.DefaultCtor") {
     PluginMetadata plugin;
 
     REQUIRE(plugin.author == "");
@@ -17,7 +17,7 @@ TEST_CASE("Plugin.DefaultCtor") {
     REQUIRE(plugin.version == "");
 }
 
-TEST_CASE("Plugin.isValid") {
+TEST_CASE("StreamingService.isValid") {
     PluginMetadata plugin;
 
     REQUIRE(!plugin.isValid());
@@ -29,7 +29,7 @@ TEST_CASE("Plugin.isValid") {
     REQUIRE(plugin.isValid());
 }
 
-TEST_CASE("Plugin.operator==") {
+TEST_CASE("StreamingService.operator==") {
     PluginMetadata plugin;
     PluginMetadata test;
 

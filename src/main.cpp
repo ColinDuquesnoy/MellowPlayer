@@ -3,10 +3,12 @@
 #include <QtWebEngine>
 #include <MellowPlayer/Logging.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Presentation.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 int main(int argc, char* argv[])
@@ -35,8 +37,11 @@ int main(int argc, char* argv[])
     LOG_INFO(logger, "Log directory: " + FileHelper::logDirectory());
 
     // Init systems
-    PluginLoader pluginLoader(loggingManager);
-    PluginManager pluginManager(pluginLoader);
+    StreamingServicesLoader pluginLoader(loggingManager);
+    StreamingServicesManager pluginManager(pluginLoader);
+
+    // Init view models
+    StreamingServicesViewModel pluginsViewModel(pluginManager, &qmlApplicationEngine);
 
     // Load qml application
     LOG_TRACE(logger, "Loading qml application");

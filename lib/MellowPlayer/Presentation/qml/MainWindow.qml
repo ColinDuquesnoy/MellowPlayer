@@ -9,7 +9,7 @@ import "MainView"
 
 ApplicationWindow {
     id: mainWindow
-    title: "MellowPlayer"
+    title: streamingServices.currentService !== null ? streamingServices.currentService.name : ""
     minimumWidth: 1280
     minimumHeight: 720
 
@@ -41,7 +41,7 @@ ApplicationWindow {
 
                     ToolButton {
                         Layout.fillHeight: true
-                        text: MaterialIcons.icon_arrow_back
+                        text: MaterialIcons.icon_exit_to_app
                         font { family: MaterialIcons.family; pixelSize: 22 }
                         hoverEnabled: true
 
@@ -60,8 +60,8 @@ ApplicationWindow {
 
                 Pane {
                     Layout.fillHeight: true
-                    Layout.maximumWidth: 400
-                    Layout.minimumWidth: 400
+                    Layout.maximumWidth: 450
+                    Layout.minimumWidth: 450
                     Material.elevation: 8
                     padding: 0
 
@@ -103,21 +103,21 @@ ApplicationWindow {
                                 RowLayout {
                                     anchors.fill: parent
                                     anchors.margins: 20
+                                    spacing: 10
 
                                     Label {
-                                        Layout.fillWidth: true
-                                        verticalAlignment: "AlignVCenter"
                                         text: icon
                                         font.family: MaterialIcons.family
                                         font.pixelSize: 26
                                     }
 
                                     Label {
-                                        Layout.fillWidth: true
                                         verticalAlignment: "AlignVCenter"
                                         text: title
                                         font.pixelSize: 26
                                     }
+
+                                    Item { Layout.fillWidth: true; }
                                 }
 
                                 MouseArea {

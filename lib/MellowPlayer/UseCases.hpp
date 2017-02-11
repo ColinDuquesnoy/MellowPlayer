@@ -1,4 +1,7 @@
 #pragma once
 
-#include "Logging.hpp"
-#include "UseCases/Plugins.hpp"
+#include "UseCases/PluginScript.hpp"
+#include "MellowPlayer/UseCases/IStreamingServicesLoader.hpp"
+#include "UseCases/StreamingService.hpp"
+#include "UseCases/StreamingServicesManager.hpp"
+

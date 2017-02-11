@@ -5,13 +5,13 @@
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Logging.hpp>
-#include "PluginMetadata.hpp"
+#include "MellowPlayer/Entities/PluginMetadata.hpp"
 #include "PluginScript.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class Plugin: public QObject {
-    Q_OBJECT
+class StreamingService: public QObject {
+Q_OBJECT
     Q_PROPERTY(QString author READ getAuthor CONSTANT);
     Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT);
     Q_PROPERTY(QString toolbarColor READ getToolbarColor CONSTANT);
@@ -19,9 +19,9 @@ class Plugin: public QObject {
     Q_PROPERTY(QString name READ getName CONSTANT);
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged);
     Q_PROPERTY(QString version READ getVersion CONSTANT);
-    Q_PROPERTY(PluginScript* script READ getScriptPtr CONSTANT);
+    Q_PROPERTY(PluginScript * script READ getScriptPtr CONSTANT);
 public:
-    Plugin(const PluginMetadata& metadata);
+    StreamingService(const Entities::PluginMetadata& metadata);
 
     bool isValid() const;
 
@@ -32,13 +32,13 @@ public:
     const QString& getName() const;
     QString getUrl() const;
     const QString& getVersion() const;
-    PluginScript& getScript();
     PluginScript* getScriptPtr();
+    PluginScript& getScript();
 
-    void setCustomUrl(const QString& url);
+    Q_INVOKABLE void setCustomUrl(const QString& url);
 
-    bool operator==(const Plugin& rhs) const;
-    bool operator!=(const Plugin& rhs) const;
+    bool operator==(const StreamingService& rhs) const;
+    bool operator!=(const StreamingService& rhs) const;
 
 signals:
     void urlChanged(QString);
@@ -47,12 +47,12 @@ private:
     const QString getCustomUrlSettingsKey() const;
 
     Logging::ILogger& logger;
-    PluginMetadata metadata;
+    Entities::PluginMetadata metadata;
     std::unique_ptr<PluginScript> script;
 };
 
 
-using PluginList = QList<std::shared_ptr<MellowPlayer::Entities::Plugin>>;
+using StreamingServicesList = QList<std::shared_ptr<MellowPlayer::UseCases::StreamingService>>;
 
 END_MELLOWPLAYER_NAMESPACE
 

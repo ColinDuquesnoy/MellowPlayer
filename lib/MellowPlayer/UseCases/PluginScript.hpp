@@ -4,7 +4,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Logging.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class PluginScript: public QObject {
     Q_OBJECT

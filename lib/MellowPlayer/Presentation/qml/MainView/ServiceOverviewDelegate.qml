@@ -29,8 +29,7 @@ Item {
             width: parent.width
             height: parent.height
             source: {
-                var webEngineView = webView
-                return webEngineView !== null && webEngineView.image !== null ? webEngineView.image.url : "qrc:/MellowPlayer/Presentation/images/home-background.png"
+                return webView !== null && webView.image !== null ? webView.image.url : "qrc:/MellowPlayer/Presentation/images/home-background.png"
             }
             states: State {
                 name: "selected"
@@ -66,7 +65,6 @@ Item {
                             body.state = preview.state == "selected" ? "webview" : "overview";
                             body.previewImage = preview;
                             preview.visible = preview.state != "selected";
-                            webViewStack.currentIndex = index;
                         }
                     }
                 }
@@ -121,17 +119,20 @@ Item {
 
             RowLayout {
                 anchors.fill: parent
+                spacing: 9
 
                 Image {
-                    Layout.maximumWidth: 22
-                    Layout.maximumHeight: 22
-                    source: webView.icon
+                    Layout.maximumWidth: 32
+                    Layout.maximumHeight: 32
+                    source: service.logo
+                    antialiasing: true
+                    mipmap: true
                 }
 
                 Label {
                     id: lblName
                     Layout.fillWidth: true
-                    text: name
+                    text: service.name
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -143,9 +144,7 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
 
-            onClicked: {
-                preview.state = "selected";
-            }
+            onClicked: root.activate();
         }
 
         Rectangle {
@@ -173,6 +172,18 @@ Item {
                     webView.image = null;
                 }
             }
+        }
+    }
+
+    function activate() {
+        streamingServices.currentService = service;
+        preview.state = "selected";
+    }
+
+    Component.onCompleted: {
+        if (streamingServices.currentIndex == index) {
+            root.activate();
+            preview.visible = false;
         }
     }
 }

@@ -1,5 +1,6 @@
 #pragma once
 
-#include "Infrastructure/Logging.hpp"
-#include "Infrastructure/Plugins.hpp"
-#include "Infrastructure/System.hpp"
+#include "Infrastructure/Logging/SpdLogger.hpp"
+#include "Infrastructure/Logging/SpdLoggerFactory.hpp"
+#include "MellowPlayer/Infrastructure/StreamingServicesLoader.hpp"
+#include "Infrastructure/System/FileHelper.hpp"

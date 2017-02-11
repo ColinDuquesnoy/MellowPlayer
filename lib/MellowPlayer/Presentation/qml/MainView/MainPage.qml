@@ -18,8 +18,6 @@ Page {
         property string originalBackgroundColor: Material.background
         property string originalForegroundColor: Material.foreground
 
-        EnabledServices { id: services }
-
         states: [
             State {
                 name: "overview"
@@ -69,7 +67,7 @@ Page {
 
                 PropertyChanges {
                     target: toolBar
-                    Material.background: webViewStack.itemAt(webViewStack.currentIndex).color
+                    Material.background: webViewStack.currentWebView().toolBarColor
                 }
             },
             State {
@@ -96,30 +94,26 @@ Page {
 
         StackLayout {
             id: webViewStack
+
+            currentIndex: streamingServices.currentIndex
             anchors.fill: parent
 
-            Component.onCompleted: overviewLoader.sourceComponent = overviewComponent
+            Component.onCompleted: overviewLoader.sourceComponent = overviewComponent;
+
+            property int loadProgress: 0
+
+            function currentWebView() { return webViewStack.itemAt(webViewStack.currentIndex); }
 
             Repeater {
                 id: repeater
-                model: services
+                model: streamingServices.model
 
-                WebEngineView {
-                    id: webEngineView
+                WebView {
+                    id: webView
                     anchors.fill: parent
-                    settings.pluginsEnabled : true
-                    visible: webViewStack.visible && webViewStack.currentIndex == index;
-                    enabled: visible
 
-                    property string urlToLoad: serviceUrl
-                    property string color: serviceColor != "" ? serviceColor : Material.background
-                    property var image: null
-                    property bool ready: image != null || url == ""
-                    signal updateImageFinished();
-
-                    function updateImage() {
-                        webEngineView.grabToImage(function(result) { image = result; updateImageFinished(); },
-                                                  Qt.size(webEngineView.width, webEngineView.height));
+                    onLoadProgressChanged: {
+                        webViewStack.loadProgress = loadProgress
                     }
                 }
             }
@@ -179,7 +173,7 @@ Page {
 
                         cellWidth: servicesGridView.width / 3
                         cellHeight: cellWidth / 16 * 9
-                        model: EnabledServices {}
+                        model: streamingServices.model
                         delegate: ServiceOverviewDelegate {}
                     }
                 }

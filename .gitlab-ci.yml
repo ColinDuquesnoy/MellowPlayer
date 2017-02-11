@@ -71,10 +71,6 @@ commit-build:archlinux:
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
     - ./scripts/build/linux/runtests.sh --debug --coverage
-  artifacts:
-    name: "CoverageReport_${CI_BUILD_NAME}_${CI_BUILD_REF_NAME}"
-    paths:
-      - cmake-build-debug/coverage
 
 #--------------------------------------------------------------------
 # Full Build

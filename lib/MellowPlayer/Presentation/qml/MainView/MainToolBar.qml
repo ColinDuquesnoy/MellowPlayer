@@ -18,13 +18,13 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pointSize: toolBar.iconSize
             hoverEnabled: true
-            visible: body.previewImage !== undefined
+            visible: body.previewImage !== undefined || body.state == "webview"
 
             onClicked:  {
                 if (body.previewImage.state === "selected") {
                     // to overview
-                    webViewStack.itemAt(webViewStack.currentIndex).updateImageFinished.connect(switchToOverview);
-                    webViewStack.itemAt(webViewStack.currentIndex).updateImage();
+                    webViewStack.currentWebView().updateImageFinished.connect(switchToOverview);
+                    webViewStack.currentWebView().updateImage();
                 } else {
                     // back
                     body.state = "between";
@@ -35,7 +35,7 @@ ToolBar {
             function switchToOverview() {
                 body.state = "between";
                 body.previewImage.state = "";
-                webViewStack.itemAt(webViewStack.currentIndex).updateImageFinished.disconnect(switchToOverview);
+                webViewStack.currentWebView().updateImageFinished.disconnect(switchToOverview);
             }
         }
 
@@ -131,7 +131,7 @@ ToolBar {
     }
 
     Label {
-        text: "Get Lucky by Daft Punks on XXXAlbum"
+        text: webViewStack.loadProgress < 100 ? "Loading " + mainWindow.title : "Get Lucky by Daft Punks on XXXAlbum"
         anchors.centerIn: parent
         visible: body.state == "webview"
     }

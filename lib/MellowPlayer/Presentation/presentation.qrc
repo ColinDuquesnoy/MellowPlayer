@@ -4,7 +4,7 @@
         <file>qml/MainWindow.qml</file>
         <file>qml/MainView/MainPage.qml</file>
         <file>qml/MainView/MainToolBar.qml</file>
-        <file>qml/MainView/EnabledServices.qml</file>
+        <file>qml/MainView/WebView.qml</file>
         <file>qmldir</file>
         <file>fonts/MaterialIcons-Regular.ttf</file>
         <file>images/home-background.png</file>
