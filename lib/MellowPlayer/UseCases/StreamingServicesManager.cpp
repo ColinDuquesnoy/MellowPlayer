@@ -10,17 +10,6 @@ StreamingServicesManager::StreamingServicesManager(IStreamingServicesLoader& plu
       currentService(nullptr) {
 }
 
-StreamingService& StreamingServicesManager::getService(const QString& name) const {
-    for (const auto& plugin: streamingServices)
-        if (plugin->getName() == name)
-            return *plugin;
-    throw invalid_argument("unknown plugin: " + name.toStdString());
-}
-
-const StreamingServicesList& StreamingServicesManager::getServices() const {
-    return streamingServices;
-}
-
 void StreamingServicesManager::load() {
     auto newPlugins = pluginLoader.load();
 
@@ -37,20 +26,17 @@ void StreamingServicesManager::load() {
             emit serviceAdded(newPlugin.get());
         }
     }
+}
 
-    for (auto plugin: streamingServices) {
-        bool pluginFound = false;
-        for (auto newPlugin: newPlugins) {
-            if (*plugin == *newPlugin) {
-                pluginFound = true;
-                break;
-            }
-        }
-        if (!pluginFound) {
-            streamingServices.removeOne(plugin);
-            emit serviceRemoved(plugin.get());
-        }
-    }
+StreamingService& StreamingServicesManager::getService(const QString& name) const {
+    for (const auto& plugin: streamingServices)
+        if (plugin->getName() == name)
+            return *plugin;
+    throw invalid_argument("unknown plugin: " + name.toStdString());
+}
+
+const StreamingServicesList& StreamingServicesManager::getServices() const {
+    return streamingServices;
 }
 
 void StreamingServicesManager::setCurrentService(StreamingService* service) {

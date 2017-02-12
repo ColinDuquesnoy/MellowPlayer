@@ -1,20 +1,25 @@
 #include <memory>
-#include "StreamingService.hpp"
 #include <QtGui/QIcon>
 #include <QtCore/QSettings>
+#include "StreamingService.hpp"
+#include "Player.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 StreamingService::StreamingService(const PluginMetadata& metadata)
     :
     logger(LoggingManager::instance().getLogger("StreamingService")),
-    metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
+    metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)),
+    player(make_unique<Player>(*this)) {
 
     if ((!metadata.isValid())) LOG_WARN(logger, "Invalid metadata, name or url is empty");
     if (!script->isValid()) LOG_WARN(logger, metadata.name.toStdString() << " invalid integration script");
 }
+
+StreamingService::~StreamingService() = default;
 
 const QString& StreamingService::getAuthor() const {
     return metadata.author;
@@ -70,4 +75,12 @@ bool StreamingService::operator==(const StreamingService& rhs) const {
 
 bool StreamingService::operator!=(const StreamingService& rhs) const {
     return !operator==(rhs);
+}
+
+PluginScript* StreamingService::getScript() {
+    return script.get();
+}
+
+Player* StreamingService::getPlayer() {
+    return player.get();
 }

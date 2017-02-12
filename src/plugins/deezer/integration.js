@@ -16,7 +16,7 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function updatePlayerInfo() {
+function update() {
     var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     if (dzPlayer.isPlaying())
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
@@ -26,26 +26,20 @@ function updatePlayerInfo() {
         playbackStatus = mellowplayer.PlaybackStatus.BUFFERING;
 
     return {
-        "PlaybackStatus": playbackStatus,
-        "CanSeek": dzPlayer.control.canSeek(),
-        "CanGoNext": dzPlayer.getNextSong() != null,
-        "CanGoPrevious": dzPlayer.getPrevSong() != null,
-        "CanAddToFavorites": false,
-        "Volume": dzPlayer.volume,
-    }
-}
-
-function updateSongInfo() {
-    return {
-        "SongId": dzPlayer.getSongId(),
-        "SongTitle": dzPlayer.getSongTitle(),
-        "ArtistName": dzPlayer.getArtistName(),
-        "AlbumTitle": dzPlayer.getAlbumTitle(),
-        "ArtUrl": 'http://e-cdn-images.deezer.com/images/cover/' +
-            dzPlayer.getCover() + '/250x250.jpg',
-        "Favorite": false,
-        "Duration": dzPlayer.getDuration(),
-        "Position": dzPlayer.getPosition()
+        "playbackStatus": playbackStatus,
+        "canSeek": dzPlayer.control.canSeek(),
+        "canGoNext": dzPlayer.getNextSong() !== null,
+        "canGoPrevious": dzPlayer.getPrevSong() !== null,
+        "canAddToFavorites": true,
+        "volume": dzPlayer.volume,
+        "position": dzPlayer.getPosition(),
+        "duration": dzPlayer.getDuration(),
+        "isFavorite": $(".icon-love.active").length > 0,
+        "songId": dzPlayer.getSongId(),
+        "songTitle": dzPlayer.getSongTitle(),
+        "artistName": dzPlayer.getArtistName(),
+        "albumTitle": dzPlayer.getAlbumTitle(),
+        "artUrl": 'http://e-cdn-images.deezer.com/images/cover/' + dzPlayer.getCover() + '/250x250.jpg'
     }
 }
 
@@ -70,11 +64,11 @@ function setVolume(volume) {
 }
 
 function addToFavorites() {
-    // not supported
+    $(".icon-love").click()
 }
 
 function removeFromFavorites() {
-    // not supported
+    $(".icon-love").click()
 }
 
 function seekToPosition(position) {

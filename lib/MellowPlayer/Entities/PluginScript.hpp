@@ -15,21 +15,21 @@ public:
 
     bool isValid() const;
 
-    const QString& getCode() const;
+    QString getConstants() const;
+    QString getCode() const;
     void setCode(const QString& value);
 
     const QString& getPath() const;
 
-    Q_INVOKABLE QString updatePlayerInfo() const;
-    Q_INVOKABLE QString updateSongInfo() const;
+    Q_INVOKABLE QString update() const;
     Q_INVOKABLE QString play() const;
     Q_INVOKABLE QString pause() const;
     Q_INVOKABLE QString next() const;
     Q_INVOKABLE QString previous() const;
-    Q_INVOKABLE QString setVolume(int volume) const;
+    Q_INVOKABLE QString setVolume(double volume) const;
     Q_INVOKABLE QString addToFavorites() const;
     Q_INVOKABLE QString removeFromFavorites() const;
-    Q_INVOKABLE QString seekToPosition(int position) const;
+    Q_INVOKABLE QString seekToPosition(double position) const;
 
 signals:
     void codeChanged(QString);

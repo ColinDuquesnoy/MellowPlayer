@@ -37,56 +37,43 @@ function isPlaying() {
    return index !== -1;
 }
 
-function updatePlayerInfo() {
+function update() {
     try {
         var buttons = getButtons();
-        var playbackStatus = isPlaying() ?
-                    mellowplayer.PlaybackStatus.PLAYING :
-                    mellowplayer.PlaybackStatus.PAUSED;
-        return {
-            "PlaybackStatus": playbackStatus,
-            "CanSeek": false,
-            "CanGoNext": true,
-            "CanGoPrevious": false,
-            "CanAddToFavorites": false,
-            "Volume": 1,
-        };
-    } catch (e) {
-        return {
-            "PlaybackStatus": mellowplayer.PlaybackStatus.STOPPED,
-            "CanSeek": false,
-            "CanGoNext": false,
-            "CanGoPrevious": false,
-            "CanAddToFavorites": false,
-            "Volume": 1,
-        };
-    }
-}
-
-function updateSongInfo() {
-    try {
+        var playbackStatus = isPlaying() ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
         var songTitle = document.querySelector(".title_artist .t").innerText;
         return {
-            "SongId": getHashCode(songTitle),
-            "SongTitle": songTitle,
-            "ArtistName": document.querySelector(".title_artist .a").innerText,
-            "AlbumTitle": document.querySelector(".album .detail").innerText,
-            "ArtUrl": document.querySelector("#player_mix img.cover").src.replace(/w=\d+&h=\d+/, 'w=500&h=500'),
-            "Favorite": false,
-            "Duration": 0,
-            "Position": 0
+            "playbackStatus": playbackStatus,
+            "canSeek": false,
+            "canGoNext": true,
+            "canGoPrevious": false,
+            "canAddToFavorites": false,
+            "volume": 1,
+            "duration": 0,
+            "position": 0,
+            "songId": getHashCode(songTitle),
+            "songTitle": songTitle,
+            "artistName": document.querySelector(".title_artist .a").innerText,
+            "albumTitle": document.querySelector(".album .detail").innerText,
+            "artUrl": document.querySelector("#player_mix img.cover").src.replace(/w=\d+&h=\d+/, 'w=500&h=500'),
+            "isFavorite": false
         };
     } catch (e) {
-        console.warn(e);
         return {
-            "SongId": 0,
-            "SongTitle": '',
-            "ArtistName": '',
-            "AlbumTitle": '',
-            "ArtUrl": '',
-            "Favorite": false,
-            "Duration": 0,
-            "Position": 0
+            "playbackStatus": mellowplayer.PlaybackStatus.STOPPED,
+            "canSeek": false,
+            "canGoNext": false,
+            "canGoPrevious": false,
+            "canAddToFavorites": false,
+            "volume": 1,
+            "duration": 0,
+            "position": 0,
+            "songId": 0,
+            "songTitle": '',
+            "artistName": '',
+            "albumTitle": '',
+            "artUrl": '',
+            "isFavorite": false
         };
     }
 }

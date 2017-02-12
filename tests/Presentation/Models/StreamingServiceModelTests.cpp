@@ -11,9 +11,6 @@ TEST_CASE("StreamingServicesModel") {
     StreamingServicesModel model;
     REQUIRE(model.rowCount() == 0);
 
-//    auto data = model.data(model.index(-1, -1), StreamingServicesModel::StreamingServiceRole);
-//    REQUIRE(bool(data.isNull() && !data.isValid()));
-
     SECTION("addService") {
         PluginMetadata metadata;
         metadata.name = "Deezer";
@@ -39,5 +36,9 @@ TEST_CASE("StreamingServicesModel") {
                 REQUIRE(bool(data.isNull() && !data.isValid()));
             }
         }
+    }
+
+    SECTION("roleNames") {
+        REQUIRE(model.roleNames().count() == 1);
     }
 }

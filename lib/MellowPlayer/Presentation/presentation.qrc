@@ -2,12 +2,13 @@
     <qresource prefix="/MellowPlayer/Presentation">
         <file>qml/MaterialIcons.qml</file>
         <file>qml/MainWindow.qml</file>
-        <file>qml/MainView/MainPage.qml</file>
-        <file>qml/MainView/MainToolBar.qml</file>
-        <file>qml/MainView/WebView.qml</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/MainToolBar.qml</file>
+        <file>qml/ServiceOverviewDelegate.qml</file>
+        <file>qml/ServicesOverview.qml</file>
+        <file>qml/WebView.qml</file>
         <file>qmldir</file>
         <file>fonts/MaterialIcons-Regular.ttf</file>
         <file>images/home-background.png</file>
-        <file>qml/MainView/ServiceOverviewDelegate.qml</file>
     </qresource>
 </RCC>

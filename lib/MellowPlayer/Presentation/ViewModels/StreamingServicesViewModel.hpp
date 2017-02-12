@@ -15,7 +15,7 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
-    StreamingServicesViewModel(UseCases::StreamingServicesManager& pluginManager, QQmlApplicationEngine* applicationEngine=nullptr);
+    StreamingServicesViewModel(UseCases::StreamingServicesManager& pluginManager);
 
     Q_INVOKABLE void reload();
     StreamingServicesModel* getModel();
@@ -31,13 +31,13 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onServiceAdded(Entities::StreamingService* plugin);
-    void onServiceRemoved(Entities::StreamingService* plugin);
+    void onServiceAdded(UseCases::StreamingService* plugin);
 
 private:
     UseCases::StreamingServicesManager& streamingServicesManager;
     StreamingServicesModel model;
     QObject* currentService;
+    QObject* currentPlayer;
     int currentIndex;
 };
 

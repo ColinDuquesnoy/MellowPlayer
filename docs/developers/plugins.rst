@@ -54,35 +54,27 @@ Functions to implement
 Here is a brief description of the functions you need to implement in order to 
 integrate a new web-based streaming service.
 
-updatePlayerInfo()
+update()
 ++++++++++++++++++
 
 This function is called regularly to update the player information.
 
 You must return a dictionnary with the following keys:
 
-- **PlaybackStatus** *(int, use mellowplayer.PlaybackStatus)*
-- **CanSeek** *(bool)*
-- **CanGoNext** *(bool)*
-- **CanGoPrevious** *(bool)*
-- **CanAddToFavorites** *(bool)*
-- **Volume** *(float [0-1])*
-
-updateSongInfo()
-++++++++++++++++
-
-This function is called regularly to update the song information.
-
-You must return a dictionnary with the following keys:
-
-- **SongId** *(str)*
-- **SongTitle** *(str)*
-- **ArtistName** *(str)*
-- **AlbumTitle** *(str)*
-- **ArtUrl** *(str)*
-- **Favorite** *(bool)*
-- **Duration** *(int [seconds])*
-- **Position** *(int [seconds])*
+- **playbackStatus** *(int, use mellowplayer.PlaybackStatus)*
+- **canSeek** *(bool)*
+- **canGoNext** *(bool)*
+- **canGoPrevious** *(bool)*
+- **canAddToFavorites** *(bool)*
+- **volume** *(float [0-1])*
+- **songId** *(str)*
+- **songTitle** *(str)*
+- **artistName** *(str)*
+- **albumTitle** *(str)*
+- **artUrl** *(str)*
+- **isFavorite** *(bool)*
+- **duration** *(int [seconds])*
+- **position** *(int [seconds])*
 
 play()
 ++++++

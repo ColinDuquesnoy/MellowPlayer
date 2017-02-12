@@ -40,31 +40,26 @@ function getPlaybackStatus() {
     return retVal;
 }
 
+function update() {
+    var retVal = {
+        "playbackStatus": getPlaybackStatus(),
+        "canSeek": false,
+        "canGoNext": false,
+        "canGoPrevious": false,
+        "canAddToFavorites": true,
+        "volume": 1,
+        "songId": 0,
+        "songTitle": '',
+        "artistName": '',
+        "albumTitle": '',
+        "artUrl": '',
+        "isFavorite": false,
+        "duration": 0,
+        "position": 0
+    };
 
-function updatePlayerInfo() {
-    return {
-        "PlaybackStatus": getPlaybackStatus(),
-        "CanSeek": false,
-        "CanGoNext": false,
-        "CanGoPrevious": false,
-        "CanAddToFavorites": true,
-        "Volume": 1,
-    }
-}
-
-function updateSongInfo() {
     var broadcast = TuneIn.app.getNowPlaying();
     var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
-    var retVal = {
-        "SongId": 0,
-        "SongTitle": '',
-        "ArtistName": '',
-        "AlbumTitle": '',
-        "ArtUrl": '',
-        "Favorite": false,
-        "Duration": 0,
-        "Position": 0
-    };
     if (broadcast == undefined) {
         if (!stopped && oldSongInfo != null) {
             retVal = oldSongInfo;
@@ -72,8 +67,8 @@ function updateSongInfo() {
     } else {
         retVal.SongId = hashCode(broadcast.Title + broadcast.Subtitle);
         retVal.SongTitle = broadcast.Title;
-        retVal.AlbumTitle = broadcast.Subtitle;
-        retVal.ArtUrl = broadcast.Image;
+        retVal.albumTitle = broadcast.Subtitle;
+        retVal.artUrl = broadcast.Image;
         retVal.Favorite = $(".in").length > 0;
         oldSongInfo = retVal;
     }

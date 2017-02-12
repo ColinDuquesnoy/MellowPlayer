@@ -7,6 +7,7 @@
 #include <MellowPlayer/Infrastructure.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -30,18 +31,24 @@ int main(int argc, char* argv[])
     // Init logging system
     SpdLoggerFactory loggerFactory;
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory);
-    loggingManager.setDefaultLogLevel(LogLevel::Info);
+    loggingManager.setDefaultLogLevel(LogLevel::Debug);
     ILogger& logger = loggingManager.getLogger("main");
     LOG_INFO(logger, "-------------------------------------------------------------------------------");
     LOG_INFO(logger, "MellowPlayer v" << MELLOWPLAYER_VERSION << " started");
     LOG_INFO(logger, "Log directory: " + FileHelper::logDirectory());
 
     // Init systems
-    StreamingServicesLoader pluginLoader(loggingManager);
-    StreamingServicesManager pluginManager(pluginLoader);
+    StreamingServicesLoader streamingServicesLoader(loggingManager);
+    StreamingServicesManager streamingServicesManager(streamingServicesLoader);
+    PlayerProxy player(streamingServicesManager);
+    StreamingServicesViewModel streamingServices(streamingServicesManager);
 
-    // Init view models
-    StreamingServicesViewModel pluginsViewModel(pluginManager, &qmlApplicationEngine);
+    // Make c++ objects available to QML
+    qmlApplicationEngine.rootContext()->setContextProperty("streamingServices", &streamingServices);
+    qmlApplicationEngine.rootContext()->setContextProperty("player", &player);
+    qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
+    qRegisterMetaType<Player*>("Player*");
+    qRegisterMetaType<Song*>("Entities::Song*");
 
     // Load qml application
     LOG_TRACE(logger, "Loading qml application");

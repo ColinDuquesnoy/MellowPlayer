@@ -1,6 +1,6 @@
 #include "StreamingServicesModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesModel::StreamingServicesModel()

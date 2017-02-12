@@ -7,7 +7,7 @@ using namespace std;
 
 TEST_CASE("PluginScript.getCode") {
     PluginScript script("code", "path");
-    REQUIRE(script.getCode() == "code");
+    REQUIRE(script.getCode().toStdString() == "code");
 }
 
 TEST_CASE("PluginScript.getPath") {
@@ -24,14 +24,9 @@ TEST_CASE("PluginScript.setCode") {
     REQUIRE(spy.count() == 1);
 }
 
-TEST_CASE("PluginScript.updatePlayerInfo") {
+TEST_CASE("PluginScript.update") {
     PluginScript script("code", "path");
-    REQUIRE(script.updatePlayerInfo() == "updatePlayerInfo();");
-}
-
-TEST_CASE("PluginScript.updateSongInfo") {
-    PluginScript script("code", "path");
-    REQUIRE(script.updateSongInfo() == "updateSongInfo();");
+    REQUIRE(script.update() == "update();");
 }
 
 TEST_CASE("PluginScript.play") {
@@ -76,8 +71,7 @@ TEST_CASE("PluginScript.seekToPosition") {
 
 
 TEST_CASE("PluginScript.isValid_validCode") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -90,23 +84,8 @@ TEST_CASE("PluginScript.isValid_validCode") {
     REQUIRE(script.isValid());
 }
 
-TEST_CASE("PluginScript.isValid_missUpdatePlayerInfo") {
-    QString code = "function updateSongInfo\n"
-        "function play\n"
-        "function pause\n"
-        "function goNext\n"
-        "function goPrevious\n"
-        "function setVolume\n"
-        "function addToFavorites\n"
-        "function removeFromFavorites\n"
-        "function seekToPosition\n";
-    PluginScript script(code, "path");
-    REQUIRE(!script.isValid());
-}
-
-TEST_CASE("PluginScript.isValid_missUpdateSongInfo") {
-    QString code = "function updatePlayerInfo\n"
-        "function play\n"
+TEST_CASE("PluginScript.isValid_missUpdate") {
+    QString code = "function play\n"
         "function pause\n"
         "function goNext\n"
         "function goPrevious\n"
@@ -119,8 +98,7 @@ TEST_CASE("PluginScript.isValid_missUpdateSongInfo") {
 }
 
 TEST_CASE("PluginScript.isValid_missPlay") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function pause\n"
         "function goNext\n"
         "function goPrevious\n"
@@ -133,8 +111,7 @@ TEST_CASE("PluginScript.isValid_missPlay") {
 }
 
 TEST_CASE("PluginScript.isValid_missPause") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function goNext\n"
         "function goPrevious\n"
@@ -147,8 +124,7 @@ TEST_CASE("PluginScript.isValid_missPause") {
 }
 
 TEST_CASE("PluginScript.isValid_missGoNext") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goPrevious\n"
@@ -161,8 +137,7 @@ TEST_CASE("PluginScript.isValid_missGoNext") {
 }
 
 TEST_CASE("PluginScript.isValid_missGoPrevious") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -175,8 +150,7 @@ TEST_CASE("PluginScript.isValid_missGoPrevious") {
 }
 
 TEST_CASE("PluginScript.isValid_missSetVolume") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -189,8 +163,7 @@ TEST_CASE("PluginScript.isValid_missSetVolume") {
 }
 
 TEST_CASE("PluginScript.isValid_missAddToFavorites") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -203,8 +176,7 @@ TEST_CASE("PluginScript.isValid_missAddToFavorites") {
 }
 
 TEST_CASE("PluginScript.isValid_missRemoveFromFavorites") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -217,8 +189,7 @@ TEST_CASE("PluginScript.isValid_missRemoveFromFavorites") {
 }
 
 TEST_CASE("PluginScript.isValid_missSeekToPositon") {
-    QString code = "function updatePlayerInfo\n"
-        "function updateSongInfo\n"
+    QString code = "function update\n"
         "function play\n"
         "function pause\n"
         "function goNext\n"
@@ -228,4 +199,9 @@ TEST_CASE("PluginScript.isValid_missSeekToPositon") {
         "function removeFromFavorites\n";
     PluginScript script(code, "path");
     REQUIRE(!script.isValid());
+}
+
+TEST_CASE("PluginScript.getConstants") {
+    PluginScript script("", "");
+    REQUIRE(!script.getConstants().isEmpty());
 }

@@ -5,7 +5,6 @@ import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 
 import "qrc:/MellowPlayer/Presentation"
-import "MainView"
 
 ApplicationWindow {
     id: mainWindow

@@ -16,56 +16,55 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function updatePlayerInfo() {
+function update() {
     var playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
     var volume = 1.0;
+    var songId = "";
+    var songTitle = "";
+    var artistName = "";
+    var albumTitle = "";
+    var artUrl = "";
+    var duration = 0;
+    var position = 0;
+
     if (Spotify.Shuttle._initContext != null) {
         var playerContext = Spotify.Shuttle._initContext.contextPlayer;
         var player = playerContext._player._player;
+        var track = playerContext.getCurrentTrack();
         if (player.isPaused) {
             playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
         } else if (player.isStopped) {
             playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
         }
-        volume = player.getVolume();
-    }
-    return {
-        "PlaybackStatus": playbackStatus,
-        "CanSeek": true,
-        "CanGoNext": true,
-        "CanGoPrevious": true,
-        "CanAddToFavorites": false,
-        "Volume": volume
-    }
-}
 
-function updateSongInfo() {
-    if (Spotify.Shuttle._initContext != null) {
-        var playerContext = Spotify.Shuttle._initContext.contextPlayer;
-        var player = playerContext._player._player;
-        var track = playerContext.getCurrentTrack();
+        volume = player.getVolume();
+
         if (track != null) {
-            return {
-                "SongId": track._pid,
-                "SongTitle": track.name,
-                "ArtistName": track.artistName,
-                "AlbumTitle": track.albumTitle,
-                "ArtUrl": playerContext.getCurrentTrack().image.replace('https://d3rt1990lpmkn.cloudfront.net/unbranded/', 'https://i.scdn.co/image/'),
-                "Favorite": false,
-                "Duration": track.duration / 1000,
-                "Position": player.position() / 1000
-            }
+            songId = track._pid;
+            songTitle = track.name;
+            artistName = track.artistName;
+            albumTitle = track.albumTitle;
+            artUrl = track.image.replace('https://d3rt1990lpmkn.cloudfront.net/unbranded/', 'https://i.scdn.co/image/');
+            duration = track.duration / 1000;       // milliseconds to seconds
+            position = player.position() / 1000;    // milliseconds to seconds
         }
     }
+
     return {
-        "SongId": '0',
-        "SongTitle": '',
-        "ArtistName": '',
-        "AlbumTitle": '',
-        "ArtUrl": '',
-        "Favorite": false,
-        "Duration": 0,
-        "Position": 0
+        "songId": songId,
+        "songTitle": songTitle,
+        "artistName": artistName,
+        "albumTitle": albumTitle,
+        "artUrl": artUrl,
+        "isFavorite": false,
+        "duration": duration,
+        "position": position,
+        "playbackStatus": playbackStatus,
+        "canSeek": true,
+        "canGoNext": true,
+        "canGoPrevious": true,
+        "canAddToFavorites": false,
+        "volume": volume
     }
 }
 
@@ -99,7 +98,6 @@ function setVolume(volume) {
     player.setVolume(volume);
 }
 
-
 function addToFavorites() {
     // not supported
 }
@@ -111,5 +109,5 @@ function removeFromFavorites() {
 function seekToPosition(position) {
     var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
     var player = playerContext._player._player;
-    player.seek(position * 1000) // spotify works with milliseconds
+    player.seek(position * 1000)  // spotify works with milliseconds
 }

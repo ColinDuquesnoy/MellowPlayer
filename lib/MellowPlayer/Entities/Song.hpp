@@ -1,59 +1,51 @@
 #pragma once
 
+#include <QtCore/QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <QtCore/QString>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
-/**
- * @brief The song structure contains the data of the current song.
- */
-struct Song {
-    /**
-     * @brief Unique id of the song.
-     */
+class Song: public QObject {
+    Q_OBJECT
+    Q_PROPERTY(QString uniqueId READ getUniqueId CONSTANT)
+    Q_PROPERTY(QString title READ getTitle CONSTANT)
+    Q_PROPERTY(QString artist READ getArtist CONSTANT)
+    Q_PROPERTY(QString album READ getAlbum CONSTANT)
+    Q_PROPERTY(QString artUrl READ getArtUrl CONSTANT)
+    Q_PROPERTY(double duration READ getDuration NOTIFY durationChanged)
+    Q_PROPERTY(bool isFavorite READ getIsFavorite NOTIFY isFavoriteChanged)
+
+public:
+    Song();
+    Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album,
+         const QString& artUrl, double duration, bool isFavorite);
+
+    QString getUniqueId() const;
+    QString getTitle() const;
+    QString getArtist() const;
+    QString getAlbum() const;
+    QString getArtUrl() const;
+    double getDuration() const;
+    bool getIsFavorite() const;
+
+    void setDuration(double value);
+    void setIsFavorite(bool value);
+
+    bool operator==(const Song& other) const { return uniqueId == other.uniqueId; }
+    bool operator!=(const Song& other) const { return !this->operator==(other); }
+
+signals:
+    void durationChanged();
+    void isFavoriteChanged();
+
+private:
     QString uniqueId;
-
-    /**
-     * @brief Title of the song.
-     */
     QString title;
-
-    /**
-     * @brief Name of the artist.
-     */
     QString artist;
-
-    /**
-     * @brief Name of the album
-     */
     QString album;
-
-    /**
-     * @brief Album art url.
-     */
     QString artUrl;
-
-    /**
-     * @brief Duration of the seconds (number of seconds).
-     */
-    double duration;
-
-    /**
-     * @brief Whether the song is part of the favorites song of the user.
-     */
+    double duration; // in seconds
     bool isFavorite;
-
-    Song()
-        : uniqueId(""),
-          title(""),
-          artist(""),
-          album(""),
-          artUrl(""),
-          duration(0),
-          isFavorite(false) {
-
-    }
 };
 
 END_MELLOWPLAYER_NAMESPACE

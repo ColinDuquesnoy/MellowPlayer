@@ -143,6 +143,7 @@ Item {
             id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
+            cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
 
             onClicked: root.activate();
         }

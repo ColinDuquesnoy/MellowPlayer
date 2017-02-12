@@ -8,19 +8,12 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager,
-                                                       QQmlApplicationEngine* applicationEngine)
+StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager)
     :
     QObject(), streamingServicesManager(pluginManager), currentService(nullptr), currentIndex(-1) {
 
-    if (applicationEngine != nullptr) {
-        applicationEngine->rootContext()->setContextProperty("streamingServices", this);
-    }
-
     connect(&pluginManager, &StreamingServicesManager::serviceAdded,
             this, &StreamingServicesViewModel::onServiceAdded);
-    connect(&pluginManager, &StreamingServicesManager::serviceRemoved,
-            this, &StreamingServicesViewModel::onServiceRemoved);
 
     reload();
 
@@ -57,7 +50,6 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     streamingServicesManager.setCurrentService(service);
     setCurrentIndex(model.getServices().indexOf(service));
     emit currentServiceChanged(currentService);
-
 }
 
 void StreamingServicesViewModel::setCurrentIndex(int value) {
@@ -74,8 +66,4 @@ void StreamingServicesViewModel::reload() {
 
 void StreamingServicesViewModel::onServiceAdded(StreamingService* plugin) {
     model.addService(plugin);
-}
-
-void StreamingServicesViewModel::onServiceRemoved(StreamingService* plugin) {
-    model.removeService(plugin);
 }

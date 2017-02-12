@@ -1,5 +1,8 @@
 #pragma once
 
-#include "MellowPlayer/UseCases/IStreamingServicesLoader.hpp"
+#include "UseCases/IStreamingServicesLoader.hpp"
+#include "UseCases/Player.hpp"
+#include "UseCases/PlayerProxy.hpp"
+#include "UseCases/StreamingService.hpp"
 #include "UseCases/StreamingServicesManager.hpp"
 
