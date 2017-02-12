@@ -1,7 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1
-import QtQuick.Controls.Material 2.1
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 
 import MellowPlayer 1.0
 import "qrc:/MellowPlayer/Presentation"
@@ -172,14 +172,6 @@ ToolBar {
         }
 
         ToolButton {
-            text: MaterialIcons.icon_mic
-            font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
-            hoverEnabled: true
-            visible: body.state == "webview"
-        }
-
-        ToolButton {
             text: MaterialIcons.icon_notifications
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
@@ -200,7 +192,7 @@ ToolBar {
         id: centerItem
         anchors.centerIn: parent
         height: toolBar.height
-        width: 400
+        width: 300
         visible: body.state == "webview"
 
         ColumnLayout {
@@ -214,6 +206,7 @@ ToolBar {
                 text: getText()
                 horizontalAlignment: "AlignHCenter"
                 verticalAlignment: sliderGroup.visible ? "AlignTop" : "AlignVCenter"
+                elide: "ElideMiddle"
 
                 function getText() {
                     if (webViewStack.currentWebView() !== null && webViewStack.currentWebView().loading)

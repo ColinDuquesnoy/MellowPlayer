@@ -6,9 +6,6 @@ import QtWebEngine 1.3
 
 WebEngineView {
     id: root
-    settings.pluginsEnabled : true
-    visible: webViewStack.visible && webViewStack.currentIndex == index;
-    enabled: visible
 
     property QtObject player: service.player
     property string urlToLoad: service.url
@@ -17,11 +14,25 @@ WebEngineView {
     property bool ready: image != null || url == ""
     signal updateImageFinished();
 
+    settings.pluginsEnabled : true
+    visible: webViewStack.visible && webViewStack.currentIndex == index;
+    enabled: visible
+
+    onLoadingChanged: if (!loading) player.initialize()
+
+    onNewViewRequested: {
+        if (!request.userInitiated)
+            console.warn("Blocked a popup window")
+        else {
+            var dialog = applicationRoot.createDialog(root.profile);
+            request.openIn(dialog.currentWebView);
+        }
+    }
+
+
     function updateImage() {
         root.grabToImage(function(result) { image = result; updateImageFinished(); }, Qt.size(root.width, root.height));
     }
-
-    onLoadingChanged: if (!loading) player.initialize()
 
     Connections {
         target: player

@@ -8,6 +8,9 @@ import "qrc:/MellowPlayer/Presentation"
 
 ApplicationWindow {
     id: mainWindow
+
+    property QtObject applicationRoot: ApplicationRoot { }
+
     title: streamingServices.currentService !== null ? streamingServices.currentService.name : ""
     minimumWidth: 1280
     minimumHeight: 720
