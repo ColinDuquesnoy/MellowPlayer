@@ -41,6 +41,7 @@ int main(int argc, char* argv[])
     StreamingServicesLoader streamingServicesLoader(loggingManager);
     StreamingServicesManager streamingServicesManager(streamingServicesLoader);
     PlayerProxy player(streamingServicesManager);
+    Hotkeys hotkeys(player);
     StreamingServicesViewModel streamingServices(streamingServicesManager);
 
     // Make c++ objects available to QML
