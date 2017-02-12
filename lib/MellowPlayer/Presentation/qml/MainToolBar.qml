@@ -1,7 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.0
-import QtQuick.Controls.Material 2.0
+import QtQuick.Controls 2.1
+import QtQuick.Controls.Material 2.1
 
 import MellowPlayer 1.0
 import "qrc:/MellowPlayer/Presentation"
@@ -40,7 +40,19 @@ ToolBar {
             }
         }
 
-        Item { Layout.preferredWidth: 5 }
+        Item {
+            Layout.preferredWidth: 1
+            Layout.fillHeight: true
+
+            Rectangle {
+                anchors.centerIn: parent
+                width: 1
+                height: parent.height * 0.33
+                color: Material.color(Material.Grey)
+            }
+
+            visible: body.state == "webview"
+        }
 
         ToolButton {
             text: MaterialIcons.icon_chevron_left
@@ -48,6 +60,8 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+
+            onClicked: webViewStack.currentWebView().goBack()
         }
 
         ToolButton {
@@ -56,6 +70,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+            onClicked: webViewStack.currentWebView().goForward()
         }
 
         ToolButton {
@@ -64,9 +79,33 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+            onClicked: webViewStack.currentWebView().reload()
         }
 
         ToolButton {
+            text: MaterialIcons.icon_home
+            font.family: MaterialIcons.family
+            font.pixelSize: toolBar.iconSize
+            hoverEnabled: true
+            visible: body.state == "webview"
+            onClicked: webViewStack.currentWebView().url = webViewStack.currentWebView().urlToLoad
+        }
+
+        Item {
+            Layout.preferredWidth: 1
+            Layout.fillHeight: true
+            visible: btFavorite.visible
+
+            Rectangle {
+                anchors.centerIn: parent
+                width: 1
+                height: parent.height * 0.33
+                color: Material.color(Material.Grey)
+            }
+        }
+
+        ToolButton {
+            id: btFavorite
             text: player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
@@ -82,26 +121,33 @@ ToolBar {
 
         ToolButton {
             id: btPrevious
+
             text: MaterialIcons.icon_fast_rewind
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             enabled: player.canGoPrevious
+
             onClicked: player.previous()
         }
 
         ToolButton {
+            id: btPlay
+
             text: player.playbackStatus === Player.Playing ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             enabled: webViewStack.loadProgress >= 100
+
             onClicked: player.togglePlayPause()
         }
 
         ToolButton {
+            id: btNext
+
             text: MaterialIcons.icon_fast_forward
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
@@ -111,15 +157,34 @@ ToolBar {
             onClicked: player.next()
         }
 
-        Item { Layout.preferredWidth: 5 }
+        Item {
+            Layout.preferredWidth: 1
+            Layout.fillHeight: true
+
+            Rectangle {
+                anchors.centerIn: parent
+                width: 1
+                height: parent.height * 0.33
+                color: Material.color(Material.Grey)
+            }
+
+            visible: body.state == "webview"
+        }
+
+        ToolButton {
+            text: MaterialIcons.icon_mic
+            font.family: MaterialIcons.family
+            font.pixelSize: toolBar.iconSize
+            hoverEnabled: true
+            visible: body.state == "webview"
+        }
 
         ToolButton {
             text: MaterialIcons.icon_notifications
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-//            visible: body.state == "webview"
-            visible: false
+            visible: body.state == "webview"
         }
 
         ToolButton {
@@ -132,6 +197,7 @@ ToolBar {
     }
 
     Item {
+        id: centerItem
         anchors.centerIn: parent
         height: toolBar.height
         width: 400
@@ -213,6 +279,5 @@ ToolBar {
                 }
             }
         }
-
     }
 }
