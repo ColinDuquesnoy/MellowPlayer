@@ -1,5 +1,5 @@
-#include "Hotkeys.hpp"
 #include <qxtglobalshortcut.h>
+#include "Hotkeys.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
