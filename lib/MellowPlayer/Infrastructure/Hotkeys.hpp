@@ -13,7 +13,7 @@ class Hotkeys: public QObject {
 public:
     Hotkeys(UseCases::IPlayer& player);
 
-private slots:
+public slots:
     void togglePlayPause();
     void next();
     void previous();

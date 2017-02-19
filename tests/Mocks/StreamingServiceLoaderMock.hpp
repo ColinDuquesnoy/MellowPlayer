@@ -1,3 +1,5 @@
+#pragma once
+
 #include <fakeit.hpp>
 #include <memory>
 #include <MellowPlayer/UseCases/IStreamingServicesLoader.hpp>
