@@ -3,6 +3,8 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
 
+class QQuickWindow;
+
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class Mpris2Root;
@@ -14,6 +16,8 @@ public:
     MprisMediaPlayer(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt,
                      Logging::LoggingManager& loggingManager);
     ~MprisMediaPlayer();
+
+    void setWindow(QQuickWindow* window);
 
 private:
     static QString SERVICE_NAME;

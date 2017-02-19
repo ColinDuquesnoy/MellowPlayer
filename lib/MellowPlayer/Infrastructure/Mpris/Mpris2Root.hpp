@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
+#include <QtQuick/QQuickWindow>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -21,6 +22,8 @@ public:
     Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
     explicit Mpris2Root(QObject *parent = NULL);
+    void setWindow(QQuickWindow* window);
+
 
 public slots:
     void Raise();
@@ -37,6 +40,8 @@ private:
     QString desktopEntry();
     QStringList supportedUriSchemes();
     QStringList supportedMimeTypes();
+
+    QQuickWindow* window;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -14,6 +14,9 @@ AlbumArtDownloader::AlbumArtDownloader(LoggingManager& loggingManager, QObject* 
 }
 
 void AlbumArtDownloader::download(const QString& url, const QString& songId) {
+    if (url.isEmpty() || songId.isEmpty())
+        return;
+
     artUrl = getLocalArtUrl(songId);
     LOG_INFO(logger, "downloading " << url << " to " << artUrl.absoluteFilePath());
     if (artUrl.exists()) {

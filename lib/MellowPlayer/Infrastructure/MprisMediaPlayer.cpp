@@ -1,6 +1,7 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <QtDBus/QDBusConnection>
+#include <QtQuick/QQuickWindow>
 #endif
 #include "MprisMediaPlayer.hpp"
 #include "Mpris/Mpris2Root.hpp"
@@ -41,4 +42,8 @@ MprisMediaPlayer::~MprisMediaPlayer() {
     QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
     QDBusConnection::sessionBus().unregisterObject(SERVICE_NAME);
 #endif
+}
+
+void MprisMediaPlayer::setWindow(QQuickWindow* window) {
+    mpris2Root->setWindow(window);
 }

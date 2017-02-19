@@ -3,12 +3,15 @@
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 Mpris2Root::Mpris2Root(QObject* parent)
-    : QDBusAbstractAdaptor(parent) {
+    : QDBusAbstractAdaptor(parent), window(nullptr) {
 
 }
 
 void Mpris2Root::Raise() {
-    // todo find a way to raise the main window (IMainWindow)
+    if (window != nullptr) {
+        window->show();
+        window->raise();
+    }
 }
 
 void Mpris2Root::Quit() {
@@ -53,4 +56,8 @@ QStringList Mpris2Root::supportedUriSchemes() {
 
 QStringList Mpris2Root::supportedMimeTypes() {
     return QStringList();
+}
+
+void Mpris2Root::setWindow(QQuickWindow* window) {
+    this->window = window;
 }

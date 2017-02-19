@@ -25,13 +25,14 @@ int main(int argc, char* argv[])
     qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
     qtApp.setOrganizationDomain("org.mellowplayer");
     qtApp.setOrganizationName("MellowPlayer");
+    qtApp.setWindowIcon(QIcon("://icons/mellowplayer.png"));
     QtWebEngine::initialize();
     QQmlApplicationEngine qmlApplicationEngine;
 
     // Init logging system
     SpdLoggerFactory loggerFactory;
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory);
-    loggingManager.setDefaultLogLevel(LogLevel::Debug);
+    loggingManager.setDefaultLogLevel(LogLevel::Trace);
     ILogger& logger = loggingManager.getLogger("main");
     LOG_INFO(logger, "-------------------------------------------------------------------------------");
     LOG_INFO(logger, "MellowPlayer v" << MELLOWPLAYER_VERSION << " started");
@@ -61,6 +62,10 @@ int main(int argc, char* argv[])
     LOG_TRACE(logger, "Loading qml application");
     qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
     LOG_TRACE(logger, "Qml application loaded");
+
+    QObject *rootObject = qmlApplicationEngine.rootObjects().first();
+    QQuickWindow* window = qobject_cast<QQuickWindow*>(rootObject);
+    mprisMediaPlayer.setWindow(window);
 
     LOG_TRACE(logger, "Running")
     return qtApp.exec();
