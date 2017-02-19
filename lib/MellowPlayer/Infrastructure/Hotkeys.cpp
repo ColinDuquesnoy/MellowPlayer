@@ -21,6 +21,20 @@ Hotkeys::Hotkeys(IPlayer& player): player(player) {
     favoriteShortcut = new QxtGlobalShortcut(this);
     favoriteShortcut->setShortcut(QKeySequence("Ctrl+Alt+F"));
     connect(favoriteShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::toggleFavoriteSong);
+
+#ifdef Q_OS_WIN
+    auto mediaShortcut = new QxtGlobalShortcut(this);
+    mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPlay));
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::togglePlayPause);
+
+    mediaShortcut = new QxtGlobalShortcut(this);
+    mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaNext));
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::next);
+
+    mediaShortcut = new QxtGlobalShortcut(this);
+    mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPrevious));
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::previous);
+#endif
 }
 
 void Hotkeys::togglePlayPause() {
