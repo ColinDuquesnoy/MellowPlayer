@@ -41,12 +41,18 @@ int main(int argc, char* argv[])
     StreamingServicesLoader streamingServicesLoader(loggingManager);
     StreamingServicesManager streamingServicesManager(streamingServicesLoader);
     PlayerProxy player(streamingServicesManager);
+    AlbumArtDownloader downloader(loggingManager);
+    LocalAlbumArt albumArt(player, downloader);
     Hotkeys hotkeys(player);
+#ifdef Q_OS_LINUX
+    MprisMediaPlayer mprisMediaPlayer(player, albumArt, loggingManager);
+#endif
     StreamingServicesViewModel streamingServices(streamingServicesManager);
 
     // Make c++ objects available to QML
     qmlApplicationEngine.rootContext()->setContextProperty("streamingServices", &streamingServices);
     qmlApplicationEngine.rootContext()->setContextProperty("player", &player);
+    qmlApplicationEngine.rootContext()->setContextProperty("albumArt", &albumArt);
     qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
     qRegisterMetaType<Player*>("Player*");
     qRegisterMetaType<Song*>("Entities::Song*");

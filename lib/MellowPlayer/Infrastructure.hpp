@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Infrastructure/Hotkeys.hpp"
+#include "Infrastructure/AlbumArtDownloader.hpp"
+#include "MellowPlayer/Infrastructure/Hotkeys.hpp"
+#include "MellowPlayer/Infrastructure/MprisMediaPlayer.hpp"
 #include "Infrastructure/StreamingServicesLoader.hpp"
 #include "Infrastructure/Logging/SpdLogger.hpp"
 #include "Infrastructure/Logging/SpdLoggerFactory.hpp"

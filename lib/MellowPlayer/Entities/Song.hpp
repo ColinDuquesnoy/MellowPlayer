@@ -34,6 +34,8 @@ public:
     bool operator==(const Song& other) const { return uniqueId == other.uniqueId; }
     bool operator!=(const Song& other) const { return !this->operator==(other); }
 
+    bool isValid() const { return uniqueId != "" && title != ""; }
+
 signals:
     void durationChanged();
     void isFavoriteChanged();

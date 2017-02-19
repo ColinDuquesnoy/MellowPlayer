@@ -1,7 +1,14 @@
 #pragma once
 
+#include <QString>
 #include <sstream>
 #include "LoggerConfig.hpp"
+
+inline std::ostream& operator<<(std::ostream& os, const QString& string)
+{
+    os << string.toStdString();
+    return os;
+}
 
 #define LOG(logger, logEvent, logLevel) {\
     std::stringstream ss; \

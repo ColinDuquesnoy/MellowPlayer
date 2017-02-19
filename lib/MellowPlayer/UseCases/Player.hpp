@@ -19,7 +19,7 @@ public:
     Q_INVOKABLE void pause() override;
     Q_INVOKABLE void next() override;
     Q_INVOKABLE void previous() override;
-    Q_INVOKABLE void seekToPosition(double position) override;
+    Q_INVOKABLE void seekToPosition(double value) override;
     Q_INVOKABLE void setVolume(double volume) override;
     Q_INVOKABLE void toggleFavoriteSong() override;
     Q_INVOKABLE void addToFavorites() override;
