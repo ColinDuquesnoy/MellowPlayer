@@ -10,10 +10,10 @@ class IAlbumArtDownloader: public QObject
 {
     Q_OBJECT
 public:
-    IAlbumArtDownloader(QObject* parent): QObject(parent) { }
+    IAlbumArtDownloader(QObject* parent=nullptr): QObject(parent) { }
     virtual ~IAlbumArtDownloader() = default;
 
-    virtual void download(const QString& artUrl, const QString& songId) = 0;
+    virtual bool download(const QString& artUrl, const QString& songId) = 0;
 
 signals:
     void downloadFinished(const QString& localUrl);

@@ -13,9 +13,9 @@ AlbumArtDownloader::AlbumArtDownloader(LoggingManager& loggingManager, QObject* 
     connect(networkAccessManager, &QNetworkAccessManager::finished, this, &AlbumArtDownloader::onDownloadFinished);
 }
 
-void AlbumArtDownloader::download(const QString& url, const QString& songId) {
+bool AlbumArtDownloader::download(const QString& url, const QString& songId) {
     if (url.isEmpty() || songId.isEmpty())
-        return;
+        return false;
 
     artUrl = getLocalArtUrl(songId);
     LOG_INFO(logger, "downloading " << url << " to " << artUrl.absoluteFilePath());
@@ -26,18 +26,15 @@ void AlbumArtDownloader::download(const QString& url, const QString& songId) {
         LOG_DEBUG(logger, "starting download");
         networkAccessManager->get(QNetworkRequest(url));
     }
+
+    return true;
 }
 
 QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
-    if (songId.isEmpty())
-        return QFileInfo();
-
     auto cacheDir = QDir(QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0]);
     auto dir = QFileInfo(cacheDir, "Covers");
     auto dirPath = dir.absoluteFilePath();
-    if (!dir.exists()) {
-        QDir(cacheDir).mkdir("Covers");
-    }
+    QDir(cacheDir).mkdir("Covers");
     QFileInfo localArtUrl = QFileInfo(dirPath, songId);
     return localArtUrl;
 }

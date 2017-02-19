@@ -26,10 +26,12 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
 
         return combined_logger;
     }
+    // LCOV_EXCL_START
     catch (const spdlog_ex &ex) {
         cout << "SpdLogger (" << name << ") initialization failed: " << ex.what() << endl;
         return nullptr;
     }
+    // LCOV_EXCL_STOP
 }
 
 SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)

@@ -12,13 +12,13 @@ class AlbumArtDownloader: public UseCases::IAlbumArtDownloader {
 public:
     AlbumArtDownloader(Logging::LoggingManager& loggingManager, QObject* parent= nullptr);
 
-    void download(const QString& artUrl, const QString& songId) override;
+    bool download(const QString& artUrl, const QString& songId) override;
+    QFileInfo getLocalArtUrl(const QString &songId);
 
 private slots:
     void onDownloadFinished(QNetworkReply* reply);
 
 private:
-    QFileInfo getLocalArtUrl(const QString &songId);
     QNetworkAccessManager *networkAccessManager;
     QFileInfo artUrl;
     Logging::ILogger& logger;

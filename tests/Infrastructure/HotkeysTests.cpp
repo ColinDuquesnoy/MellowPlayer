@@ -8,7 +8,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 TEST_CASE("HotkeysTests") {
-    auto playerMock = PlayerMock::basicMock();
+    auto playerMock = PlayerMock::get();
     Hotkeys hotkeys(playerMock.get());
 
     SECTION("togglePlayPause_Test") {

@@ -8,7 +8,7 @@ using namespace fakeit;
 using namespace std;
 
 TEST_CASE("StreamingServicesManagerTests") {
-    auto mock = StreamingServiceLoaderMock::basicMock();
+    auto mock = StreamingServiceLoaderMock::get();
     StreamingServicesManager streamingServicesManager(mock.get());
     QSignalSpy serviceAddedSpy(&streamingServicesManager, SIGNAL(serviceAdded(StreamingService*)));
     streamingServicesManager.load();
@@ -42,5 +42,11 @@ TEST_CASE("StreamingServicesManagerTests") {
         REQUIRE(currentServiceChangedSignal.count() == 1);
         streamingServicesManager.setCurrentService(&streamingServicesManager.getService("Deezer"));
         REQUIRE(currentServiceChangedSignal.count() == 1);
+    }
+
+    SECTION("reload ") {
+        serviceAddedSpy.clear();
+        streamingServicesManager.load();
+        REQUIRE(serviceAddedSpy.count() == 0);
     }
 }

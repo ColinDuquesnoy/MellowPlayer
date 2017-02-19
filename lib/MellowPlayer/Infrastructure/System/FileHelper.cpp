@@ -18,7 +18,6 @@ string FileHelper::logDirectory() {
 std::string FileHelper::createLogDirectory() {
     auto directory = logDirectory();
     QDir qDir(QString::fromStdString(directory));
-    if (!qDir.exists())
-        qDir.mkpath(qDir.path());
+    qDir.mkpath(qDir.path());
     return directory;
 }

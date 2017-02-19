@@ -41,6 +41,7 @@ void Player::previous() {
 
 void Player::seekToPosition(double value) {
     emit runJavascriptRequested(pluginScript.seekToPosition(value));
+    setPosition(value);
 }
 
 void Player::setVolume(double volume) {

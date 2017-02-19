@@ -11,8 +11,7 @@ class Mpris2Player : public QDBusAbstractAdaptor {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
 public:
-    explicit Mpris2Player(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt,
-                          QObject *parent=nullptr);
+    explicit Mpris2Player(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QObject *parent=nullptr);
 
     Q_PROPERTY(QVariantMap Metadata READ metadata)
     Q_PROPERTY(bool CanControl READ canControl)
@@ -30,6 +29,27 @@ public:
     Q_PROPERTY(int Shuffle READ shuffle WRITE setShuffle)
     Q_PROPERTY(QString LoopStatus READ loopStatus WRITE setLoopStatus)
     Q_PROPERTY(QString PlaybackStatus READ playbackStatus)
+
+    QString playbackStatus();
+    QString loopStatus();
+    void setLoopStatus(const QString &status);
+    bool shuffle();
+    void setShuffle(bool value);
+    double volume();
+    void setVolume(double value);
+    QVariantMap metadata();
+    double minimumRate();
+    double maximumRate();
+    double rate();
+    void setRate(float value);
+    qlonglong position();
+    bool canGoNext();
+    bool canGoPrevious();
+    bool canPlay();
+    bool canStop();
+    bool canPause();
+    bool canSeek();
+    bool canControl();
 
 public slots:
     void PlayPause();
@@ -56,27 +76,6 @@ private slots:
     void onVolumeChanged();
 
 private:
-    QString playbackStatus();
-    QString loopStatus();
-    void setLoopStatus(const QString &status);
-    bool shuffle();
-    void setShuffle(bool value);
-    double volume();
-    void setVolume(double value);
-    QVariantMap metadata();
-    double minimumRate();
-    double maximumRate();
-    double rate();
-    void setRate(float value);
-    qlonglong position();
-    bool canGoNext();
-    bool canGoPrevious();
-    bool canPlay();
-    bool canStop();
-    bool canPause();
-    bool canSeek();
-    bool canControl();
-
     QMap<QString, QVariant> toXesam(const Entities::Song& song);
     QString statusToString(UseCases::IPlayer::PlaybackStatus status);
     void signalPlayerUpdate(const QVariantMap &map);

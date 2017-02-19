@@ -20,6 +20,49 @@ Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArt& localAlbumA
     connect(&localAlbumArt, &LocalAlbumArt::urlChanged, this, &Mpris2Player::onArtUrlChanged);
 }
 
+QString Mpris2Player::playbackStatus() { return statusToString(player.getPlaybackStatus()); }
+
+QString Mpris2Player::loopStatus() { return "None"; }
+
+void Mpris2Player::setLoopStatus(const QString&) {}
+
+bool Mpris2Player::shuffle() { return false; }
+
+void Mpris2Player::setShuffle(bool) {}
+
+double Mpris2Player::volume() { return player.getVolume(); }
+
+void Mpris2Player::setVolume(double value) { player.setVolume(value); }
+
+QVariantMap Mpris2Player::metadata() {
+    lastMetadata = toXesam(*player.getCurrentSong());
+    return lastMetadata;
+}
+
+double Mpris2Player::minimumRate() { return 1.0; }
+
+double Mpris2Player::maximumRate() { return 1.0; }
+
+double Mpris2Player::rate() { return 1.0; }
+
+void Mpris2Player::setRate(float) {}
+
+qlonglong Mpris2Player::position() { return static_cast<qlonglong>(player.getPosition() * SEC_TO_MICROSEC); }
+
+bool Mpris2Player::canGoNext() { return player.getCanGoNext(); }
+
+bool Mpris2Player::canGoPrevious() { return player.getCanGoPrevious(); }
+
+bool Mpris2Player::canPlay() { return true; }
+
+bool Mpris2Player::canStop() { return false; }
+
+bool Mpris2Player::canPause() { return true; }
+
+bool Mpris2Player::canSeek() { return player.getCanSeek(); }
+
+bool Mpris2Player::canControl() { return true; }
+
 void Mpris2Player::PlayPause() { player.togglePlayPause(); }
 
 void Mpris2Player::Play() { player.play(); }
@@ -99,49 +142,6 @@ void Mpris2Player::onVolumeChanged() {
     signalPlayerUpdate(map);
 }
 
-QString Mpris2Player::playbackStatus() { return statusToString(player.getPlaybackStatus()); }
-
-QString Mpris2Player::loopStatus() { return "None"; }
-
-void Mpris2Player::setLoopStatus(const QString&) {}
-
-bool Mpris2Player::shuffle() { return false; }
-
-void Mpris2Player::setShuffle(bool) {}
-
-double Mpris2Player::volume() { return player.getVolume(); }
-
-void Mpris2Player::setVolume(double value) { player.setVolume(value); }
-
-QVariantMap Mpris2Player::metadata() {
-    lastMetadata = toXesam(*player.getCurrentSong());
-    return lastMetadata;
-}
-
-double Mpris2Player::minimumRate() { return 1.0; }
-
-double Mpris2Player::maximumRate() { return 1.0; }
-
-double Mpris2Player::rate() { return 1.0; }
-
-void Mpris2Player::setRate(float) {}
-
-qlonglong Mpris2Player::position() { return static_cast<qlonglong>(player.getPosition() * SEC_TO_MICROSEC); }
-
-bool Mpris2Player::canGoNext() { return player.getCanGoNext(); }
-
-bool Mpris2Player::canGoPrevious() { return player.getCanGoPrevious(); }
-
-bool Mpris2Player::canPlay() { return true; }
-
-bool Mpris2Player::canStop() { return false; }
-
-bool Mpris2Player::canPause() { return true; }
-
-bool Mpris2Player::canSeek() { return player.getCanSeek(); }
-
-bool Mpris2Player::canControl() { return true; }
-
 QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song) {
     QMap<QString, QVariant> map;
     if (song.isValid()) {
@@ -155,8 +155,7 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song) {
             map["mpris:length"] = (qlonglong) song.getDuration() * SEC_TO_MICROSEC;
         else
             map["mpris:length"] = 1;
-        QString trackId =
-            QString("/org/mpris/MediaPlayer2/Track/%1").arg(song.getUniqueId());
+        QString trackId = QString("/org/mpris/MediaPlayer2/Track/%1").arg(song.getUniqueId());
         map["mpris:trackid"] = QVariant(QDBusObjectPath(trackId).path());
         map["mpris:artUrl"] = "file://" + localAlbumArt.getUrl();
     }
@@ -168,8 +167,7 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song) {
         map["xesam:album"] = "";
         map["xesam:title"] = "";
         map["mpris:length"] = 0;
-        map["mpris:trackid"] =
-            QVariant(QDBusObjectPath("/org/mpris/MediaPlayer2/NoTrack").path());
+        map["mpris:trackid"] = QVariant(QDBusObjectPath("/org/mpris/MediaPlayer2/NoTrack").path());
         map["mpris:artUrl"] = "";
     }
 
@@ -193,14 +191,13 @@ QString Mpris2Player::statusToString(IPlayer::PlaybackStatus status) {
 void Mpris2Player::signalPlayerUpdate(const QVariantMap& map) { signalUpdate(map, "org.mpris.MediaPlayer2.Player"); }
 
 void Mpris2Player::signalUpdate(const QVariantMap& map, const QString& interfaceName) {
-    if (map.isEmpty()) {
-        return;
-    }
-    QDBusMessage signal = QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties",
-                                                     "PropertiesChanged");
-    QVariantList args = QVariantList() << interfaceName << map << QStringList();
-    signal.setArguments(args);
+    if (!map.isEmpty()) {
+        QDBusMessage signal = QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties",
+                                                         "PropertiesChanged");
+        QVariantList args = QVariantList() << interfaceName << map << QStringList();
+        signal.setArguments(args);
 
-    qDebug() << "MPRIS-PropertiesChanged:" << map;
-    QDBusConnection::sessionBus().send(signal);
+        qDebug() << "MPRIS-PropertiesChanged:" << map;
+        QDBusConnection::sessionBus().send(signal);
+    }
 }

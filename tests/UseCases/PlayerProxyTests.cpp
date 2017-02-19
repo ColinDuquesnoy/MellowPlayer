@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests") {
-    auto mock = StreamingServiceLoaderMock::basicMock();
+    auto mock = StreamingServiceLoaderMock::get();
     StreamingServicesManager streamingServices(mock.get());
     streamingServices.load();
     PlayerProxy proxy(streamingServices);

@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 using namespace fakeit;
 
 TEST_CASE("StreamingServicesViewModel") {
-    auto loaderMock = StreamingServiceLoaderMock::basicMock();
+    auto loaderMock = StreamingServiceLoaderMock::get();
     StreamingServicesManager servicesManager(loaderMock.get());
     StreamingServicesViewModel viewModel(servicesManager);
 

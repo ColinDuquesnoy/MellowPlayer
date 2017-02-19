@@ -45,9 +45,6 @@ int main(int argc, char* argv[])
     AlbumArtDownloader downloader(loggingManager);
     LocalAlbumArt albumArt(player, downloader);
     Hotkeys hotkeys(player);
-#ifdef Q_OS_LINUX
-    MprisMediaPlayer mprisMediaPlayer(player, albumArt, loggingManager);
-#endif
     StreamingServicesViewModel streamingServices(streamingServicesManager);
 
     // Make c++ objects available to QML
@@ -65,7 +62,11 @@ int main(int argc, char* argv[])
 
     QObject *rootObject = qmlApplicationEngine.rootObjects().first();
     QQuickWindow* window = qobject_cast<QQuickWindow*>(rootObject);
-    mprisMediaPlayer.setWindow(window);
+
+#ifdef Q_OS_LINUX
+    MprisMediaPlayer mprisMediaPlayer(player, albumArt, window, loggingManager);
+    mprisMediaPlayer.startService();
+#endif
 
     LOG_TRACE(logger, "Running")
     return qtApp.exec();

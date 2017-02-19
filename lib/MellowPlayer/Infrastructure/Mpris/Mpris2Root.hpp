@@ -21,15 +21,8 @@ public:
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
     Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-    explicit Mpris2Root(QObject *parent = NULL);
-    void setWindow(QQuickWindow* window);
+    explicit Mpris2Root(QQuickWindow* window, QObject *parent = NULL);
 
-
-public slots:
-    void Raise();
-    void Quit();
-
-private:
     bool canRaise();
     bool canQuit();
     bool hasTrackList();
@@ -41,6 +34,12 @@ private:
     QStringList supportedUriSchemes();
     QStringList supportedMimeTypes();
 
+
+public slots:
+    void Raise();
+    void Quit();
+
+private:
     QQuickWindow* window;
 };
 

@@ -8,5 +8,13 @@ using namespace fakeit;
 
 class PlayerMock{
 public:
-    static Mock<IPlayer> basicMock();
+    static Mock<IPlayer> get() {
+        Mock<IPlayer> mock;
+        When(Method(mock, togglePlayPause)).AlwaysReturn();
+        When(Method(mock, next)).AlwaysReturn();
+        When(Method(mock, previous)).AlwaysReturn();
+        When(Method(mock, toggleFavoriteSong)).AlwaysReturn();
+
+        return mock;
+    }
 };

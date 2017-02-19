@@ -60,13 +60,10 @@ QString StreamingServicesLoader::readFileContent(const QString &filePath) const 
     QString retVal;
 
     QFile file(filePath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        return retVal;
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream in(&file);
+        retVal = in.readAll();
     }
-
-    QTextStream in(&file);
-    retVal = in.readAll();
-    file.close();
 
     return retVal;
 }

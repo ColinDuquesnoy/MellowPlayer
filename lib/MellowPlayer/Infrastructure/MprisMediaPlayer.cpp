@@ -16,25 +16,11 @@ QString MprisMediaPlayer::SERVICE_NAME = "org.mpris.MediaPlayer2.MellowPlayer3";
 
 QString MprisMediaPlayer::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-MprisMediaPlayer::MprisMediaPlayer(IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt,
+MprisMediaPlayer::MprisMediaPlayer(IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QQuickWindow* window,
                                    LoggingManager& loggingManager)
-    : logger(loggingManager.getLogger("MprisMediaPlayer")) {
-#ifdef Q_OS_LINUX
-    if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME)) {
-        LOG_WARN(logger, "failed to register service on the session bus: " << SERVICE_NAME);
-        return;
-    }
-
-    mpris2Root = new Mpris2Root(this);
-    mpris2Player = new Mpris2Player(player, localAlbumArt, this);
-
-    if (!QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this)) {
-        LOG_WARN(logger, "failed to register object on the session bus: " << OBJECT_NAME);
-        return;
-    }
-
-    LOG_INFO(logger, "mpris service started: " << SERVICE_NAME.toStdString());
-#endif
+    : logger(loggingManager.getLogger("MprisMediaPlayer")),
+      mpris2Root(new Mpris2Root(window, this)),
+      mpris2Player(new Mpris2Player(player, localAlbumArt, this)) {
 }
 
 MprisMediaPlayer::~MprisMediaPlayer() {
@@ -44,6 +30,17 @@ MprisMediaPlayer::~MprisMediaPlayer() {
 #endif
 }
 
-void MprisMediaPlayer::setWindow(QQuickWindow* window) {
-    mpris2Root->setWindow(window);
+bool MprisMediaPlayer::startService() {
+#ifdef Q_OS_LINUX
+    if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME) ||
+        !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this)) {
+        LOG_WARN(logger, "failed to register service on the session bus: " << SERVICE_NAME);
+        LOG_WARN(logger, "failed to register object on the session bus: " << OBJECT_NAME);
+        return false;
+    }
+
+    LOG_INFO(logger, "mpris service started: " << SERVICE_NAME.toStdString());
+#endif
+
+    return true;
 }

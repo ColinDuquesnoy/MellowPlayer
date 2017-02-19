@@ -14,7 +14,7 @@ const QString& LocalAlbumArt::getUrl() const {
 }
 
 void LocalAlbumArt::onCurrentSongChanged(Song* song) {
-    if (song != nullptr)
+    if (song != nullptr && !song->getArtUrl().isEmpty() && !song->getUniqueId().isEmpty())
         downloader.download(song->getArtUrl(), song->getUniqueId());
 }
 

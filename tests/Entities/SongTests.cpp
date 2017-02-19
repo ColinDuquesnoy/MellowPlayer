@@ -66,4 +66,11 @@ TEST_CASE("SongTests") {
         REQUIRE(song1 != nullSong);
         REQUIRE(song1 != song2);
     }
+
+    SECTION("isValid") {
+        Song nullSong;
+        REQUIRE(!nullSong.isValid());
+        Song song1("uniqueId1", "title", "", "", "", 0, false);
+        REQUIRE(song1.isValid());
+    }
 }

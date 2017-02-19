@@ -2,8 +2,8 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-Mpris2Root::Mpris2Root(QObject* parent)
-    : QDBusAbstractAdaptor(parent), window(nullptr) {
+Mpris2Root::Mpris2Root(QQuickWindow* window, QObject* parent)
+    : QDBusAbstractAdaptor(parent), window(window) {
 
 }
 
@@ -14,9 +14,11 @@ void Mpris2Root::Raise() {
     }
 }
 
+// LCOV_EXCL_START
 void Mpris2Root::Quit() {
     qApp->exit(0);
 }
+// LCOV_EXCL_STOP
 
 bool Mpris2Root::canRaise() {
     return true;
@@ -56,8 +58,4 @@ QStringList Mpris2Root::supportedUriSchemes() {
 
 QStringList Mpris2Root::supportedMimeTypes() {
     return QStringList();
-}
-
-void Mpris2Root::setWindow(QQuickWindow* window) {
-    this->window = window;
 }

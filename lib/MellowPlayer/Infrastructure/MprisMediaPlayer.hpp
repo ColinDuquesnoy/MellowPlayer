@@ -13,11 +13,10 @@ class Mpris2Player;
 class MprisMediaPlayer: public QObject {
     Q_OBJECT
 public:
-    MprisMediaPlayer(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt,
+    MprisMediaPlayer(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QQuickWindow* window,
                      Logging::LoggingManager& loggingManager);
+    bool startService();
     ~MprisMediaPlayer();
-
-    void setWindow(QQuickWindow* window);
 
 private:
     static QString SERVICE_NAME;

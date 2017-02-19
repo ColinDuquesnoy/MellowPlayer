@@ -7,6 +7,9 @@ PlayerProxy::PlayerProxy(StreamingServicesManager& streamingServicesManager)
     : streamingServicesManager(streamingServicesManager), currentPlayer(nullptr) {
     connect(&streamingServicesManager, &StreamingServicesManager::currentServiceChanged,
             this, &PlayerProxy::onCurrentServiceChanged);
+
+    if(streamingServicesManager.getCurrentService() != nullptr)
+        onCurrentServiceChanged(streamingServicesManager.getCurrentService());
 }
 
 void PlayerProxy::togglePlayPause() {
