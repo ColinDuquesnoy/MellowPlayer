@@ -2,7 +2,7 @@
 #include <QObject>
 #include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include "../Models/StreamingServicesModel.hpp"
+#include <MellowPlayer/Presentation/ListModels.hpp>
 
 class QQmlApplicationEngine;
 
@@ -10,7 +10,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class StreamingServicesViewModel: public QObject {
     Q_OBJECT
-    Q_PROPERTY(StreamingServicesModel* model READ getModel CONSTANT)
+    Q_PROPERTY(QAbstractListModel* model READ getModel CONSTANT)
 
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)

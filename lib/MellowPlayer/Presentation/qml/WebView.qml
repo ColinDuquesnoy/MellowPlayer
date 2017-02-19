@@ -7,9 +7,9 @@ import QtWebEngine 1.3
 WebEngineView {
     id: root
 
-    property QtObject player: service.player
-    property string urlToLoad: service.url
-    property string toolBarColor: service.toolbarColor !== "" ? service.toolbarColor : Material.background
+    property QtObject player: object.player
+    property string urlToLoad: object.url
+    property string toolBarColor: object.toolbarColor !== "" ? object.toolbarColor : Material.background
     property var image: null
     property bool ready: image != null || url == ""
     signal updateImageFinished();

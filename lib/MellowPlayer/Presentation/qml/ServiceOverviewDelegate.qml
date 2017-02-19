@@ -124,7 +124,7 @@ Item {
                 Image {
                     Layout.maximumWidth: 32
                     Layout.maximumHeight: 32
-                    source: service.logo
+                    source: object.logo
                     antialiasing: true
                     mipmap: true
                 }
@@ -132,7 +132,7 @@ Item {
                 Label {
                     id: lblName
                     Layout.fillWidth: true
-                    text: service.name
+                    text: object.name
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -177,7 +177,7 @@ Item {
     }
 
     function activate() {
-        streamingServices.currentService = service;
+        streamingServices.currentService = object;
         preview.state = "selected";
     }
 

@@ -20,7 +20,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager&
     QSettings settings;
     auto currentServiceName = settings.value("currentService", "").toString();
     qDebug() << currentServiceName;
-    for (auto service: model.getServices()) {
+    for (auto service: model.getItems()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);
     }
@@ -48,7 +48,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     settings.setValue("currentService", value->property("name").toString());
     currentService = value;
     streamingServicesManager.setCurrentService(service);
-    setCurrentIndex(model.getServices().indexOf(service));
+    setCurrentIndex(model.getItems().indexOf(service));
     emit currentServiceChanged(currentService);
 }
 
@@ -65,5 +65,5 @@ void StreamingServicesViewModel::reload() {
 }
 
 void StreamingServicesViewModel::onServiceAdded(StreamingService* plugin) {
-    model.addService(plugin);
+    model.add(plugin);
 }

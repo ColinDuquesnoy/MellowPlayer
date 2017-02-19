@@ -17,10 +17,10 @@ TEST_CASE("StreamingServicesViewModel") {
     SECTION("setCurrentService_change_currentIndex") {
         REQUIRE(viewModel.getCurrentIndex() == -1);
         REQUIRE(viewModel.getCurrentService() == nullptr);
-        viewModel.setCurrentService(viewModel.getModel()->getServices()[1]);
+        viewModel.setCurrentService(viewModel.getModel()->getItems()[1]);
         REQUIRE(viewModel.getCurrentIndex() == 1);
-        REQUIRE(viewModel.getCurrentService() == viewModel.getModel()->getServices()[1]);
-        viewModel.setCurrentService(viewModel.getModel()->getServices()[1]);
+        REQUIRE(viewModel.getCurrentService() == viewModel.getModel()->getItems()[1]);
+        viewModel.setCurrentService(viewModel.getModel()->getItems()[1]);
         viewModel.setCurrentIndex(1);
 
         SECTION("currentIndexMemorizedForNextLoad") {
