@@ -4,7 +4,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("AlbumArtDownloaderTests", "[InetregrationTests]") {
+TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
     AlbumArtDownloader albumArtDownloader(LoggingManager::instance(), nullptr);
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
 
@@ -13,14 +13,17 @@ TEST_CASE("AlbumArtDownloaderTests", "[InetregrationTests]") {
     SECTION("download will take some time and a file will be created") {
         REQUIRE(albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg",
                                             "mellowplayer.svg"));
-        downloadFinishedSpy.wait(1000);
-        REQUIRE(downloadFinishedSpy.count() == 1);
-        REQUIRE(QFile(downloadFinishedSpy[0][0].toString()).exists());
+        if(downloadFinishedSpy.wait(1000)) {
+            REQUIRE(downloadFinishedSpy.count() == 1);
+            auto path = downloadFinishedSpy[0][0].toString();
+            REQUIRE(!path.isEmpty());
+            REQUIRE(QFile(path).exists());
 
-        SECTION("second download is immediate") {
-            albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg",
-                                        "mellowplayer.svg");
-            REQUIRE(downloadFinishedSpy.count() == 2);
+            SECTION("second download is immediate") {
+                albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg",
+                                            "mellowplayer.svg");
+                REQUIRE(downloadFinishedSpy.count() == 2);
+            }
         }
     }
 

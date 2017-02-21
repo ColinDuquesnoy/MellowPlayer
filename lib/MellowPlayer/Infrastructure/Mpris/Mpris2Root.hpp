@@ -21,7 +21,7 @@ public:
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
     Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-    explicit Mpris2Root(QQuickWindow* window, QObject *parent = NULL);
+    Mpris2Root(QQuickWindow* window, QObject *parent=nullptr);
 
     bool canRaise();
     bool canQuit();

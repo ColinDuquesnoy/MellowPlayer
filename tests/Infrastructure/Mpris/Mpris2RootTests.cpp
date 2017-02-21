@@ -6,8 +6,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2RootTests") {
-    QQuickWindow window;
-    Mpris2Root root(&window, nullptr);
+    Mpris2Root root(nullptr, nullptr);
 
     SECTION("canRaise") {
         REQUIRE(root.canRaise());
