@@ -30,14 +30,17 @@ MprisMediaPlayer::~MprisMediaPlayer() {
 }
 
 bool MprisMediaPlayer::startService() {
-    if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME) ||
-        !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
-        LOG_WARN(logger, "failed to register service on the session bus: " << SERVICE_NAME);
-        LOG_WARN(logger, "failed to register object on the session bus: " << OBJECT_NAME);
-        return false;
+    if (QDBusConnection::sessionBus().isConnected()) {
+        if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME) ||
+            !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
+            LOG_WARN(logger, "failed to register service on the session bus: " << SERVICE_NAME);
+            LOG_WARN(logger, "failed to register object on the session bus: " << OBJECT_NAME);
+            return false;
+        }
+        LOG_INFO(logger, "mpris service started: " << SERVICE_NAME.toStdString());
+    } else {
+        LOG_WARN(logger, "failed to start mprice service, unable to session bus");
     }
-
-    LOG_INFO(logger, "mpris service started: " << SERVICE_NAME.toStdString());
 
     return true;
 }
