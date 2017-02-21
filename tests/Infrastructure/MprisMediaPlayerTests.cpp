@@ -4,6 +4,7 @@
 #include <MellowPlayer/Infrastructure/MprisMediaPlayer.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
+#include <QtDBus/QDBusConnection>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -19,10 +20,12 @@ TEST_CASE("MprisMediaPlayerTests", "[IntegrationTests]")
 
     MprisMediaPlayer mediaPlayer(player, localAlbumArt, nullptr, LoggingManager::instance());
     SECTION("startService should succeed the first time") {
-        REQUIRE(mediaPlayer.startService());
+        if (QDBusConnection::sessionBus().isConnected()) {
+            REQUIRE(mediaPlayer.startService());
 
-        SECTION("should fail the second time ") {
-            REQUIRE(!mediaPlayer.startService());
+            SECTION("should fail the second time ") {
+                REQUIRE(!mediaPlayer.startService());
+            }
         }
     }
 }
