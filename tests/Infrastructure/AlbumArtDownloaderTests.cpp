@@ -1,6 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
+#include <iostream>
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -17,6 +18,7 @@ TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
             REQUIRE(downloadFinishedSpy.count() == 1);
             auto path = downloadFinishedSpy[0][0].toString();
             REQUIRE(!path.isEmpty());
+            std::cout << "cover path:" << path.toStdString() << std::endl;
             REQUIRE(QFile(path).exists());
 
             SECTION("second download is immediate") {

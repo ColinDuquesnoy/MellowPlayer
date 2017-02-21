@@ -3,7 +3,6 @@
 #include <catch.hpp>
 #include <MellowPlayer/Infrastructure/MprisMediaPlayer.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <QtQuick/QQuickWindow>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
@@ -16,10 +15,9 @@ TEST_CASE("MprisMediaPlayerTests", "[IntegrationTests]")
     StreamingServicesManager streamingServicesManager(streamingServicesLoaderMock.get());
     PlayerProxy player(streamingServicesManager);
     AlbumArtDownloaderMock albumArtDownloader;
-    QQuickWindow window;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
 
-    MprisMediaPlayer mediaPlayer(player, localAlbumArt, &window, LoggingManager::instance());
+    MprisMediaPlayer mediaPlayer(player, localAlbumArt, nullptr, LoggingManager::instance());
     SECTION("startService should succeed the first time") {
         REQUIRE(mediaPlayer.startService());
 
