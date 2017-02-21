@@ -1,7 +1,16 @@
 set(LIB_NAME "${PROJECT_NAME}.Infrastructure")
 
-file(GLOB_RECURSE SOURCE_FILES *.cpp)
-file(GLOB_RECURSE HEADER_FILES *.hpp)
+file(GLOB SOURCE_FILES *.cpp)
+file(GLOB HEADER_FILES *.hpp)
+file(GLOB LOGGING_SOURCE_FILES Logging/*.cpp)
+file(GLOB LOGGING_HEADER_FILES Logging/*.hpp)
+file(GLOB MPRIS_SOURCE_FILES Mpris/*.cpp)
+file(GLOB MPRIS_HEADER_FILES Mpris/*.hpp)
+file(GLOB SYSTEM_SOURCE_FILES System/*.cpp)
+file(GLOB SYSTEM_HEADER_FILES System/*.hpp)
+
+set(SOURCE_FILES ${SOURCE_FILES} ${LOGGING_SOURCE_FILES} ${SYSTEM_SOURCE_FILES})
+set(HEADER_FILES ${HEADER_FILES} ${LOGGING_HEADER_FILES} ${SYSTEM_HEADER_FILES})
 
 set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core/qxtglobal.cpp
                                  ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
@@ -12,6 +21,8 @@ elseif(APPLE)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/mac/qxtglobalshortcut_mac.cpp)
 elseif(UNIX)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/x11/qxtglobalshortcut_x11.cpp)
+    set(SOURCE_FILES ${SOURCE_FILES} ${MPRIS_SOURCE_FILES})
+    set(HEADER_FILES ${HEADER_FILES} ${MPRIS_HEADER_FILES})
 endif()
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/)

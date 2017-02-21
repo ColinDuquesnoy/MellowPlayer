@@ -9,12 +9,6 @@ TEST_CASE("Mpris2RootTests") {
     QQuickWindow window;
     Mpris2Root root(&window, nullptr);
 
-    SECTION("raise should make the window visible") {
-        window.hide();
-        root.Raise();
-        REQUIRE(window.isVisible());
-    }
-
     SECTION("canRaise") {
         REQUIRE(root.canRaise());
     }

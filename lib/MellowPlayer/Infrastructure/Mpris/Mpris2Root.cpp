@@ -7,6 +7,7 @@ Mpris2Root::Mpris2Root(QQuickWindow* window, QObject* parent)
 
 }
 
+// LCOV_EXCL_START
 void Mpris2Root::Raise() {
     if (window != nullptr) {
         window->show();
@@ -14,7 +15,6 @@ void Mpris2Root::Raise() {
     }
 }
 
-// LCOV_EXCL_START
 void Mpris2Root::Quit() {
     qApp->exit(0);
 }
