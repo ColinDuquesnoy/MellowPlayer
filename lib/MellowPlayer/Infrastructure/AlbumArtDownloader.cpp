@@ -34,7 +34,7 @@ QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
     auto cacheDir = QDir(QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0]);
     auto dir = QFileInfo(cacheDir, "Covers");
     auto dirPath = dir.absoluteFilePath();
-    QDir(cacheDir).mkdir("Covers");
+    QDir(cacheDir).mkpath("Covers");
     QFileInfo localArtUrl = QFileInfo(dirPath, songId);
     return localArtUrl;
 }
@@ -45,6 +45,8 @@ void AlbumArtDownloader::onDownloadFinished(QNetworkReply* reply) {
     if (file.open(QIODevice::WriteOnly)) {
         file.write(reply->readAll());
         file.close();
+    } else {
+        LOG_DEBUG(logger, "Could not open file in write only mode: " << artUrl.absoluteFilePath());
     }
     emit downloadFinished(artUrl.absoluteFilePath());
 }
