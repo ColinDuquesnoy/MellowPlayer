@@ -3,6 +3,8 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
 
+#ifdef Q_OS_LINUX
+
 class QQuickWindow;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -10,8 +12,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 class Mpris2Root;
 class Mpris2Player;
 
-class MprisMediaPlayer: public QObject {
-    Q_OBJECT
+class MprisMediaPlayer {
 public:
     MprisMediaPlayer(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QQuickWindow* window,
                      Logging::LoggingManager& loggingManager);
@@ -23,8 +24,11 @@ private:
     static QString OBJECT_NAME;
 
     Logging::ILogger& logger;
-    Mpris2Root* mpris2Root;
-    Mpris2Player* mpris2Player;
+    std::unique_ptr<QObject> parent;
+    QObject* mpris2Root;
+    QObject* mpris2Player;
 };
 
 END_MELLOWPLAYER_NAMESPACE
+
+#endif
