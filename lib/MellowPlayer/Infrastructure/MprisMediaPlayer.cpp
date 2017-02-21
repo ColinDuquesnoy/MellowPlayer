@@ -2,10 +2,10 @@
 #ifdef Q_OS_LINUX
 #include <QtDBus/QDBusConnection>
 #include <QtQuick/QQuickWindow>
-#endif
-#include "MprisMediaPlayer.hpp"
 #include "Mpris/Mpris2Root.hpp"
 #include "Mpris/Mpris2Player.hpp"
+#endif
+#include "MprisMediaPlayer.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
