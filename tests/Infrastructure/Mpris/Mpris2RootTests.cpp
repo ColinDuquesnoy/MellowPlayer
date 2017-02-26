@@ -1,15 +1,32 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
+#include <fakeit.hpp>
+#include <Mocks/MainWindowMock.hpp>
+#include <Mocks/QtApplicationMock.hpp>
 #include <MellowPlayer/Infrastructure/Mpris/Mpris2Root.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace fakeit;
 
 TEST_CASE("Mpris2RootTests") {
-    Mpris2Root root(nullptr, nullptr);
+    auto mainWindowMock = MainWindowMock::get();
+    auto qtAppMock = QtApplicationMock::get();
+    Mpris2Root root(mainWindowMock.get(), qtAppMock.get());
 
     SECTION("canRaise") {
         REQUIRE(root.canRaise());
+    }
+
+    SECTION("raise") {
+        root.Raise();
+        Verify(Method(mainWindowMock, show)).Exactly(1);
+    }
+
+    SECTION("quit") {
+        root.Quit();
+        Verify(Method(qtAppMock, quit)).Exactly(1);
     }
 
     SECTION("canQuit") {

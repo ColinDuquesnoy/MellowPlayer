@@ -13,5 +13,4 @@ else()
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
 qt5_use_modules(${LIB_NAME} Core)

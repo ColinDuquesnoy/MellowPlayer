@@ -1,26 +1,29 @@
 #include <qxtglobalshortcut.h>
-#include "Hotkeys.hpp"
+#include "HotkeysService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-Hotkeys::Hotkeys(IPlayer& player): player(player) {
+HotkeysService::HotkeysService(IPlayer& player): QObject(nullptr), player(player) {
 
+}
+
+void HotkeysService::startService() {
     playShortcut = new QxtGlobalShortcut(this);
     playShortcut->setShortcut(QKeySequence("Ctrl+Alt+P"));
-    connect(playShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::togglePlayPause);
+    connect(playShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::togglePlayPause);
 
     nextShortcut = new QxtGlobalShortcut(this);
     nextShortcut->setShortcut(QKeySequence("Ctrl+Alt+N"));
-    connect(nextShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::next);
+    connect(nextShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::next);
 
     previousShortcut = new QxtGlobalShortcut(this);
     previousShortcut->setShortcut(QKeySequence("Ctrl+Alt+B"));
-    connect(previousShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::previous);
+    connect(previousShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::previous);
 
     favoriteShortcut = new QxtGlobalShortcut(this);
     favoriteShortcut->setShortcut(QKeySequence("Ctrl+Alt+F"));
-    connect(favoriteShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::toggleFavoriteSong);
+    connect(favoriteShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::toggleFavoriteSong);
 
 #ifdef Q_OS_WIN
     auto mediaShortcut = new QxtGlobalShortcut(this);
@@ -37,18 +40,22 @@ Hotkeys::Hotkeys(IPlayer& player): player(player) {
 #endif
 }
 
-void Hotkeys::togglePlayPause() {
+void HotkeysService::togglePlayPause() {
     player.togglePlayPause();
 }
 
-void Hotkeys::next() {
+void HotkeysService::next() {
     player.next();
 }
 
-void Hotkeys::previous() {
+void HotkeysService::previous() {
     player.previous();
 }
 
-void Hotkeys::toggleFavoriteSong() {
+void HotkeysService::toggleFavoriteSong() {
     player.toggleFavoriteSong();
+}
+
+HotkeysService::~HotkeysService() {
+
 }

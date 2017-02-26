@@ -13,8 +13,8 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
-StreamingServicesLoader::StreamingServicesLoader(LoggingManager &loggingManager)
-    : logger(loggingManager.getLogger("StreamingServicesManager")) {
+StreamingServicesLoader::StreamingServicesLoader()
+    : logger(LoggingManager::instance().getLogger("StreamingServicesManager")) {
 
 }
 

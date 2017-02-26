@@ -26,6 +26,13 @@ LoggingManager& LoggingManager::initialize(ILoggerFactory &loggerFactory, const 
     return *instance_;
 }
 
+LoggingManager& LoggingManager::initialize(ILoggerFactory& loggerFactory, LogLevel logLevel) {
+    auto& loggingManager = initialize(loggerFactory);
+    loggingManager.setDefaultLogLevel(logLevel);
+    return loggingManager;
+}
+
+
 LoggingManager& LoggingManager::instance() {
     if (instance_ == nullptr)
         throw logic_error("LoggingManager::instance called before LoggingManager::initialize!");
@@ -69,3 +76,4 @@ ILogger& LoggingManager::createNewLogger(const std::string &name, const LoggerCo
 void LoggingManager::setDefaultLogLevel(LogLevel logLevel) {
     defaultLoggerConfig_.logLevel = logLevel;
 }
+

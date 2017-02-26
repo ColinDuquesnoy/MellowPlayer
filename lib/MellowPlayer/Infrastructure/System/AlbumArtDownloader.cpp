@@ -6,9 +6,9 @@ USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-AlbumArtDownloader::AlbumArtDownloader(LoggingManager& loggingManager, QObject* parent)
-    : IAlbumArtDownloader(parent), networkAccessManager(new QNetworkAccessManager(this)),
-      logger(loggingManager.getLogger("AlbumArtDownloader")) {
+AlbumArtDownloader::AlbumArtDownloader()
+    : networkAccessManager(new QNetworkAccessManager(this)),
+      logger(LoggingManager::instance().getLogger("AlbumArtDownloader")) {
 
     connect(networkAccessManager, &QNetworkAccessManager::finished, this, &AlbumArtDownloader::onDownloadFinished);
 }

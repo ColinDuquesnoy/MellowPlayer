@@ -24,6 +24,8 @@ public:
     };
     Q_ENUMS(PlaybackStatus)
 
+    virtual ~IPlayer() = default;
+
     virtual void togglePlayPause() = 0;
     virtual void play() = 0;
     virtual void pause() = 0;

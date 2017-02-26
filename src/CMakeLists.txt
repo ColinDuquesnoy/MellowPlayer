@@ -2,6 +2,7 @@ file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
 set(CMAKE_AUTOMOC OFF)
 
 add_executable(${PROJECT_NAME} main.cpp main.qrc qml/main.qml qtquickcontrols2.conf ${HEADER_FILES})
+include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
         ${PROJECT_NAME}.Logging
         ${PROJECT_NAME}.Entities

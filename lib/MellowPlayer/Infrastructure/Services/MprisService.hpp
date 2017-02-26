@@ -12,12 +12,12 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 class Mpris2Root;
 class Mpris2Player;
 
-class MprisMediaPlayer {
+class MprisService {
 public:
-    MprisMediaPlayer(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QQuickWindow* window,
-                     Logging::LoggingManager& loggingManager);
+    MprisService(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, UseCases::IMainWindow& window,
+                     UseCases::IQtApplication& application);
     bool startService();
-    ~MprisMediaPlayer();
+    ~MprisService();
 
 private:
     static QString SERVICE_NAME;

@@ -9,7 +9,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class StreamingServicesLoader: public UseCases::IStreamingServicesLoader {
 public:
-    StreamingServicesLoader(Logging::LoggingManager& loggingManager);
+    StreamingServicesLoader();
     UseCases::StreamingServicesList load() const override;
 
 private:

@@ -1,6 +1,6 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <MellowPlayer/Infrastructure/Hotkeys.hpp>
+#include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
 #include <Mocks/PlayerMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -9,7 +9,7 @@ using namespace fakeit;
 
 TEST_CASE("HotkeysTests") {
     auto playerMock = PlayerMock::get();
-    Hotkeys hotkeys(playerMock.get());
+    HotkeysService hotkeys(playerMock.get());
 
     SECTION("togglePlayPause_Test") {
         hotkeys.togglePlayPause();

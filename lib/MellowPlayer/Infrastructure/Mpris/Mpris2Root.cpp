@@ -1,24 +1,20 @@
 #include "Mpris2Root.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-Mpris2Root::Mpris2Root(QQuickWindow* window, QObject* parent)
-    : QDBusAbstractAdaptor(parent), window(window) {
+Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent)
+    : QDBusAbstractAdaptor(parent), window(window), qtApp(qtApp) {
 
 }
 
-// LCOV_EXCL_START
 void Mpris2Root::Raise() {
-    if (window != nullptr) {
-        window->show();
-        window->raise();
-    }
+    window.show();
 }
 
 void Mpris2Root::Quit() {
-    qApp->exit(0);
+    qtApp.quit();
 }
-// LCOV_EXCL_STOP
 
 bool Mpris2Root::canRaise() {
     return true;

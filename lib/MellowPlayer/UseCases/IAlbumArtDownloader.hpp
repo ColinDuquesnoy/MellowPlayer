@@ -10,7 +10,6 @@ class IAlbumArtDownloader: public QObject
 {
     Q_OBJECT
 public:
-    IAlbumArtDownloader(QObject* parent=nullptr): QObject(parent) { }
     virtual ~IAlbumArtDownloader() = default;
 
     virtual bool download(const QString& artUrl, const QString& songId) = 0;

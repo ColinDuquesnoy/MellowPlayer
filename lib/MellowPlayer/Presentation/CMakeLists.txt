@@ -10,10 +10,10 @@ if(WIN32)
     add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES})
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES})
-
+    target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.UseCases)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-qt5_use_modules(${LIB_NAME} Core Qml Quick)
+qt5_use_modules(${LIB_NAME} Core Qml Quick WebEngine Widgets)

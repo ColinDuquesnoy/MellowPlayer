@@ -17,6 +17,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager&
 
     reload();
 
+    // todo move this out
     QSettings settings;
     auto currentServiceName = settings.value("currentService", "").toString();
     qDebug() << currentServiceName;

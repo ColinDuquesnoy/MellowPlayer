@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
-#include <QtQuick/QQuickWindow>
+#include <MellowPlayer/UseCases.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -21,7 +21,7 @@ public:
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
     Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-    Mpris2Root(QQuickWindow* window, QObject *parent=nullptr);
+    Mpris2Root(UseCases::IMainWindow& window, UseCases::IQtApplication& qtApp, QObject *parent=nullptr);
 
     bool canRaise();
     bool canQuit();
@@ -40,7 +40,8 @@ public slots:
     void Quit();
 
 private:
-    QQuickWindow* window;
+    UseCases::IMainWindow& window;
+    UseCases::IQtApplication& qtApp;
 };
 
 END_MELLOWPLAYER_NAMESPACE

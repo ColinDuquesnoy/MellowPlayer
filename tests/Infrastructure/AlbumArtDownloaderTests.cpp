@@ -1,12 +1,12 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/System/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
 #include <iostream>
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
-    AlbumArtDownloader albumArtDownloader(LoggingManager::instance(), nullptr);
+    AlbumArtDownloader albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
 
     QFile::remove(albumArtDownloader.getLocalArtUrl("mellowplayer.svg").absoluteFilePath());

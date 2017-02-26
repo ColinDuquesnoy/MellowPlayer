@@ -10,7 +10,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class AlbumArtDownloader: public UseCases::IAlbumArtDownloader {
 public:
-    AlbumArtDownloader(Logging::LoggingManager& loggingManager, QObject* parent= nullptr);
+    AlbumArtDownloader();
 
     bool download(const QString& artUrl, const QString& songId) override;
     QFileInfo getLocalArtUrl(const QString &songId);

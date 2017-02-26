@@ -8,10 +8,13 @@ class QxtGlobalShortcut;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class Hotkeys: public QObject {
+class HotkeysService: public QObject {
     Q_OBJECT
 public:
-    Hotkeys(UseCases::IPlayer& player);
+    HotkeysService(UseCases::IPlayer& player);
+    ~HotkeysService();
+
+    void startService();
 
 public slots:
     void togglePlayPause();
