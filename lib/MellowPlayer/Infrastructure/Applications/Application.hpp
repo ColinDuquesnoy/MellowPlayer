@@ -8,7 +8,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class Application : public IApplication {
 public:
-    Application(UseCases::IQtApplication& qtApp, UseCases::IMainWindow& mainWindow, HotkeysService& kotkeys);
+    Application(UseCases::IQtApplication& qtApp, UseCases::IMainWindow& mainWindow, IHotkeysService& kotkeys);
 
     void initialize() override;
     int run() override;
@@ -18,7 +18,7 @@ public:
 private:
     UseCases::IQtApplication& qtApp;
     UseCases::IMainWindow& mainWindow;
-    HotkeysService& kotkeys;
+    IHotkeysService& kotkeys;
 };
 
 END_MELLOWPLAYER_NAMESPACE

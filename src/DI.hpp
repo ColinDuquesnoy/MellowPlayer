@@ -48,7 +48,7 @@ public:
 };
 
 auto defaultInjector = [](ScopedScope& scope) {
-    return make_injector(
+    return di::make_injector(
         di::bind<MellowPlayer::UseCases::IStreamingServicesLoader>()
             .to<MellowPlayer::Infrastructure::StreamingServicesLoader>().in(scope),
         di::bind<MellowPlayer::UseCases::IPlayer>()
@@ -57,14 +57,16 @@ auto defaultInjector = [](ScopedScope& scope) {
             .to<MellowPlayer::Infrastructure::AlbumArtDownloader>().in(scope),
         di::bind<MellowPlayer::UseCases::IMainWindow>()
             .to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
-        di::bind<MellowPlayer::Infrastructure::HotkeysService>().in(scope)
+        di::bind<MellowPlayer::Infrastructure::IHotkeysService>()
+            .to<MellowPlayer::Infrastructure::HotkeysService>().in(scope)
     );
 };
 
 auto platformInjector = [](ScopedScope& scope) {
 #ifdef Q_OS_LINUX
     return di::make_injector(
-        di::bind<MellowPlayer::Infrastructure::MprisService>().in(scope),
+        di::bind<MellowPlayer::Infrastructure::IMprisService>()
+            .to<MellowPlayer::Infrastructure::MprisService>().in(scope),
         di::bind<MellowPlayer::Infrastructure::IApplication>()
             .to<MellowPlayer::Infrastructure::LinuxApplication>().in(scope)
     );

@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/System/AlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
 #include <iostream>
 USE_MELLOWPLAYER_NAMESPACE(Logging)
@@ -14,7 +14,7 @@ TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
     SECTION("download will take some time and a file will be created") {
         REQUIRE(albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg",
                                             "mellowplayer.svg"));
-        if(downloadFinishedSpy.wait(1000)) {
+        if(downloadFinishedSpy.wait(2000)) {
             REQUIRE(downloadFinishedSpy.count() == 1);
             auto path = downloadFinishedSpy[0][0].toString();
             REQUIRE(!path.isEmpty());

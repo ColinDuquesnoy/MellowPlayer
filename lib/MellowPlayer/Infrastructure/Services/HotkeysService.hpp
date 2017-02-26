@@ -3,26 +3,28 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include "IHotkeysService.hpp"
 
 class QxtGlobalShortcut;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class HotkeysService: public QObject {
+class HotkeysService: public QObject, public IHotkeysService {
     Q_OBJECT
 public:
     HotkeysService(UseCases::IPlayer& player);
     ~HotkeysService();
 
-    void startService();
+    bool start() override;
 
 public slots:
-    void togglePlayPause();
-    void next();
-    void previous();
-    void toggleFavoriteSong();
+    void togglePlayPause() override;
+    void next() override;
+    void previous() override;
+    void toggleFavoriteSong() override;
 
 private:
+    Logging::ILogger& logger;
     UseCases::IPlayer& player;
     QxtGlobalShortcut* playShortcut;
     QxtGlobalShortcut* nextShortcut;

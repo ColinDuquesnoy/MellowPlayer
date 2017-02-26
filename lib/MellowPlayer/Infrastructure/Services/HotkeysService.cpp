@@ -1,14 +1,16 @@
 #include <qxtglobalshortcut.h>
 #include "HotkeysService.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-HotkeysService::HotkeysService(IPlayer& player): QObject(nullptr), player(player) {
+HotkeysService::HotkeysService(IPlayer& player) :
+    QObject(nullptr), logger(LoggingManager::instance().getLogger("Hotkeys")), player(player) {
 
 }
 
-void HotkeysService::startService() {
+bool HotkeysService::start() {
     playShortcut = new QxtGlobalShortcut(this);
     playShortcut->setShortcut(QKeySequence("Ctrl+Alt+P"));
     connect(playShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::togglePlayPause);
@@ -38,6 +40,9 @@ void HotkeysService::startService() {
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPrevious));
     connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::previous);
 #endif
+
+    LOG_INFO(logger, "service started");
+    return true;
 }
 
 void HotkeysService::togglePlayPause() {

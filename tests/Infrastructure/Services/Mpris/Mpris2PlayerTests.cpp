@@ -4,7 +4,7 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <MellowPlayer/UseCases/StreamingServicesManager.hpp>
 #include <MellowPlayer/UseCases/PlayerProxy.hpp>
-#include <MellowPlayer/Infrastructure/Mpris/Mpris2Player.hpp>
+#include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <QtTest/QSignalSpy>
 

@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(presentation);
 #endif
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, LogLevel::Trace);
+    LoggingManager::initialize(loggerFactory, LogLevel::Info);
     QtWebApplication qtApp(argc, argv);
     ScopedScope scope{};
     auto injector = di::make_injector(

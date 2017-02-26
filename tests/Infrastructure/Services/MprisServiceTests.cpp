@@ -23,12 +23,12 @@ TEST_CASE("MprisServiceTests", "[IntegrationTests]")
     auto qtAppMock = QtApplicationMock::get();
 
     MprisService mprisService(player, localAlbumArt, mainWindowMock.get(), qtAppMock.get());
-    SECTION("startService should succeed the first time") {
+    SECTION("start should succeed the first time") {
         if (QDBusConnection::sessionBus().isConnected()) {
-            REQUIRE(mprisService.startService());
+            REQUIRE(mprisService.start());
 
             SECTION("should fail the second time ") {
-                REQUIRE(!mprisService.startService());
+                REQUIRE(!mprisService.start());
             }
         }
     }
