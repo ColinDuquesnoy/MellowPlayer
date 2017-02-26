@@ -1,5 +1,7 @@
 #include "LinuxApplication.hpp"
 
+#ifdef Q_OS_LINUX
+
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -15,3 +17,5 @@ void LinuxApplication::initialize() {
     Application::initialize();
     mprisService.startService();
 }
+
+#endif

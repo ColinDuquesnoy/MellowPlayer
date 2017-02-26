@@ -28,15 +28,15 @@ void HotkeysService::startService() {
 #ifdef Q_OS_WIN
     auto mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPlay));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::togglePlayPause);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::togglePlayPause);
 
     mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaNext));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::next);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::next);
 
     mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPrevious));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::previous);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::previous);
 #endif
 }
 
