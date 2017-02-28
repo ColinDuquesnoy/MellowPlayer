@@ -22,39 +22,39 @@ bool PluginScript::isValid() const {
                                         return true;
                                     }
                                     else {
-                                        LOG_WARN(logger, "Invalid script: 'seekToPosition' function not found");
+                                        LOG_DEBUG(logger, "Invalid script: 'seekToPosition' function not found");
                                     }
                                 }
                                 else {
-                                    LOG_WARN(logger, "Invalid script: 'removeFromFavorites' function not found");
+                                    LOG_DEBUG(logger, "Invalid script: 'removeFromFavorites' function not found");
                                 }
                             }
                             else {
-                                LOG_WARN(logger, "Invalid script: 'addToFavorites' function not found");
+                                LOG_DEBUG(logger, "Invalid script: 'addToFavorites' function not found");
                             }
                         }
                         else {
-                            LOG_WARN(logger, "Invalid script: 'setVolume' function not found");
+                            LOG_DEBUG(logger, "Invalid script: 'setVolume' function not found");
                         }
                     }
                     else {
-                        LOG_WARN(logger, "Invalid script: 'goPrevious' function not found");
+                        LOG_DEBUG(logger, "Invalid script: 'goPrevious' function not found");
                     }
                 }
                 else {
-                    LOG_WARN(logger, "Invalid script: 'goNext' function not found");
+                    LOG_DEBUG(logger, "Invalid script: 'goNext' function not found");
                 }
             }
             else {
-                LOG_WARN(logger, "Invalid script: 'pause' function not found");
+                LOG_DEBUG(logger, "Invalid script: 'pause' function not found");
             }
         }
         else {
-            LOG_WARN(logger, "Invalid script: 'play' function not found");
+            LOG_DEBUG(logger, "Invalid script: 'play' function not found");
         }
     }
     else {
-        LOG_WARN(logger, "Invalid script: 'update' function not found");
+        LOG_DEBUG(logger, "Invalid script: 'update' function not found");
     }
     return false;
 }

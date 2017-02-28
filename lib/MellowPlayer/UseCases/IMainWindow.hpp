@@ -8,7 +8,7 @@ class IMainWindow {
 public:
     virtual ~IMainWindow() = default;
 
-    virtual void load() = 0;
+    virtual bool load() = 0;
     virtual void show() = 0;
     virtual void hide() = 0;
 };

@@ -11,7 +11,7 @@ class QmlMainWindow: public UseCases::IMainWindow {
 public:
     QmlMainWindow(StreamingServicesViewModel& streamingServices,
                   UseCases::IPlayer& player, UseCases::LocalAlbumArt& albumArt);
-    void load() override;
+    bool load() override;
     void show() override;
     void hide() override;
 

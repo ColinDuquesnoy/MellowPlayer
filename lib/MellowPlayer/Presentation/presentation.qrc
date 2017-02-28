@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/MellowPlayer/Presentation">
+        <file>qml/main.qml</file>
         <file>qml/ApplicationRoot.qml</file>
         <file>qml/BrowserDialog.qml</file>
         <file>qml/MaterialIcons.qml</file>

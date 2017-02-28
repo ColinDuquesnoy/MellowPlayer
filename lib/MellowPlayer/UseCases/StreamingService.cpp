@@ -15,8 +15,8 @@ StreamingService::StreamingService(const PluginMetadata& metadata)
     metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)),
     player(make_unique<Player>(*this)) {
 
-    if ((!metadata.isValid())) LOG_WARN(logger, "Invalid metadata, name or url is empty");
-    if (!script->isValid()) LOG_WARN(logger, metadata.name.toStdString() << " invalid integration script");
+    if ((!metadata.isValid())) LOG_DEBUG(logger, "Invalid metadata, name or url is empty");
+    if (!script->isValid()) LOG_DEBUG(logger, metadata.name.toStdString() << " invalid integration script");
 }
 
 StreamingService::~StreamingService() = default;

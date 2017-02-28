@@ -217,8 +217,9 @@ ToolBar {
                         return "<b>" + currentSong.title + "</b><i> by " + currentSong.artist;
                     else if (currentSong.title)
                         return "<b>" + currentSong.title + "</b>";
-                    else
+                    else if (streamingServices.currentService !== null)
                         return streamingServices.currentService.name;
+                    return "";
                 }
             }
 

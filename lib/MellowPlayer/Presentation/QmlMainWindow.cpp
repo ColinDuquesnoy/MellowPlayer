@@ -16,9 +16,12 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPla
     qmlApplicationEngine.rootContext()->setContextProperty("albumArt", &albumArt);
 }
 
-void QmlMainWindow::load() {
-    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
-    window = qobject_cast<QQuickWindow*>(qmlApplicationEngine.rootObjects().first());
+bool QmlMainWindow::load() {
+    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/MellowPlayer/Presentation/qml/main.qml")));
+    auto rootObjects = qmlApplicationEngine.rootObjects();
+    if (rootObjects.count() && rootObjects.first() != nullptr)
+        window = qobject_cast<QQuickWindow*>(rootObjects.first());
+    return window != nullptr;
 }
 
 void QmlMainWindow::show() {
