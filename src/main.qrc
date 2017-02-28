@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>icons/mellowplayer.ico</file>
         <file>icons/mellowplayer.png</file>
