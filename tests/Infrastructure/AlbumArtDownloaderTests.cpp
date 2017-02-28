@@ -18,7 +18,6 @@ TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
             REQUIRE(downloadFinishedSpy.count() == 1);
             auto path = downloadFinishedSpy[0][0].toString();
             REQUIRE(!path.isEmpty());
-            std::cout << "cover path:" << path.toStdString() << std::endl;
             REQUIRE(QFile(path).exists());
 
             SECTION("second download is immediate") {
