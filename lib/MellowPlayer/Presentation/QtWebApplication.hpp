@@ -10,7 +10,6 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 class QtWebApplication: public UseCases::IQtApplication, QApplication {
 public:
     QtWebApplication(int &argc, char **argv);
-    ~QtWebApplication();
 
     int run() override;
     void quit() override;

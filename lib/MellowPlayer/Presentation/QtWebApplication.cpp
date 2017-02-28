@@ -24,7 +24,3 @@ int QtWebApplication::run() {
 void QtWebApplication::quit() {
     exit(0);
 }
-
-QtWebApplication::~QtWebApplication() {
-
-}

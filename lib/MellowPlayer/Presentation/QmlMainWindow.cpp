@@ -1,3 +1,4 @@
+
 #include "QmlMainWindow.hpp"
 #include <QQmlContext>
 
@@ -32,8 +33,3 @@ void QmlMainWindow::hide() {
         window->hide();
     }
 }
-
-QmlMainWindow::~QmlMainWindow() {
-
-}
-
