@@ -10,6 +10,7 @@ class MainWindowMock {
 public:
     static Mock<IMainWindow> get() {
         Mock<IMainWindow> mock;
+        When(Method(mock, load)).AlwaysReturn();
         When(Method(mock, show)).AlwaysReturn();
         When(Method(mock, hide)).AlwaysReturn();
         return mock;
