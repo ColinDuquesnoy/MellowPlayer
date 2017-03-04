@@ -26,7 +26,7 @@ TEST_CASE("PluginScript.setCode") {
 
 TEST_CASE("PluginScript.update") {
     PluginScript script("code", "path");
-    REQUIRE(script.update() == "update();");
+    REQUIRE(script.update() == "if (typeof update !== 'undefined') update();");
 }
 
 TEST_CASE("PluginScript.play") {

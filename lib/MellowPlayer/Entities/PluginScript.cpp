@@ -75,7 +75,7 @@ const QString &PluginScript::getPath() const {
 }
 
 QString PluginScript::update() const {
-    return "update();";
+    return "if (typeof update !== 'undefined') update();";
 }
 
 QString PluginScript::play() const {
