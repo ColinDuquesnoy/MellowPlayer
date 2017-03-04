@@ -11,8 +11,8 @@ public:
     Application(UseCases::IQtApplication& qtApp, UseCases::IMainWindow& mainWindow, IHotkeysService& kotkeys);
 
     void initialize() override;
-    int run() override;
     void restoreWindow() override;
+    int run() override;
     void quit() override;
 
 private:

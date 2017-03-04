@@ -19,13 +19,8 @@ SingleInstanceApplication::SingleInstanceApplication(IApplication& application):
 }
 
 int SingleInstanceApplication::run() {
-#ifndef QT_DEBUG
     LOG_DEBUG(logger, "connecting to locale server");
     localSocket.connectToServer("MellowPlayer3", QIODevice::WriteOnly);
-#else
-    application.initialize();
-#endif
-
     return application.run();
 }
 
@@ -35,10 +30,7 @@ void SingleInstanceApplication::onSocketConnected() {
 }
 
 void SingleInstanceApplication::onSocketError() {
-    if (!localServer.listen("MellowPlayer3"))
-        LOG_WARN(logger, "Failed to start local server, cannot ensure unique application instance")
-    else
-        LOG_DEBUG(logger, "failed to connect to local server, single instance: TRUE")
+    localServer.listen("MellowPlayer3");
     connectSignalHandlers();
     application.initialize();
     application.restoreWindow();

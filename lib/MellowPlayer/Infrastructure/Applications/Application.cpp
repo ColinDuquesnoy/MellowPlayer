@@ -13,12 +13,12 @@ void Application::initialize() {
     mainWindow.load();
 }
 
-int Application::run() {
-    return qtApp.run();
-}
-
 void Application::restoreWindow() {
     mainWindow.show();
+}
+
+int Application::run() {
+    return qtApp.run();
 }
 
 void Application::quit() {
