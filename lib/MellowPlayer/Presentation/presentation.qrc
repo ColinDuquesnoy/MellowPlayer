@@ -1,17 +1,32 @@
 <RCC>
     <qresource prefix="/MellowPlayer/Presentation">
-        <file>qml/main.qml</file>
-        <file>qml/ApplicationRoot.qml</file>
-        <file>qml/BrowserDialog.qml</file>
-        <file>qml/MaterialIcons.qml</file>
-        <file>qml/MainWindow.qml</file>
-        <file>qml/MainPage.qml</file>
-        <file>qml/MainToolBar.qml</file>
-        <file>qml/ServiceOverviewDelegate.qml</file>
-        <file>qml/ServicesOverview.qml</file>
-        <file>qml/WebView.qml</file>
         <file>qmldir</file>
         <file>fonts/MaterialIcons-Regular.ttf</file>
         <file>images/home-background.png</file>
+        <file>icons/mellowplayer.ico</file>
+        <file>icons/mellowplayer.png</file>
+        <file>icons/mellowplayer.svg</file>
+        <file>fonts/Roboto/Roboto-Black.ttf</file>
+        <file>fonts/Roboto/Roboto-BlackItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Bold.ttf</file>
+        <file>fonts/Roboto/Roboto-BoldItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Italic.ttf</file>
+        <file>fonts/Roboto/Roboto-Light.ttf</file>
+        <file>fonts/Roboto/Roboto-LightItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Medium.ttf</file>
+        <file>fonts/Roboto/Roboto-MediumItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>fonts/Roboto/Roboto-Thin.ttf</file>
+        <file>fonts/Roboto/Roboto-ThinItalic.ttf</file>
+        <file>qml/ApplicationRoot.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/MaterialIcons.qml</file>
+        <file>qml/controls/BrowserDialog.qml</file>
+        <file>qml/controls/MainToolBar.qml</file>
+        <file>qml/controls/ServicesOverview.qml</file>
+        <file>qml/controls/WebView.qml</file>
+        <file>qml/delegates/ServiceOverviewDelegate.qml</file>
+        <file>qml/pages/MainPage.qml</file>
+        <file>qml/controls/MainWindow.qml</file>
     </qresource>
 </RCC>

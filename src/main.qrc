@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
-        <file>icons/mellowplayer.ico</file>
-        <file>icons/mellowplayer.png</file>
-        <file>icons/mellowplayer.svg</file>
     </qresource>
 </RCC>

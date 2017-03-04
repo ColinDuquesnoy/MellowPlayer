@@ -1,6 +1,8 @@
 import QtQuick 2.7
 import QtWebEngine 1.3
 
+import "controls"
+
 QtObject {
     id: root
 

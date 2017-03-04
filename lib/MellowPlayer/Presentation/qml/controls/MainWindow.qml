@@ -5,6 +5,8 @@ import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 
 import "qrc:/MellowPlayer/Presentation"
+import ".."
+import "../pages"
 
 ApplicationWindow {
     id: mainWindow
@@ -170,4 +172,6 @@ ApplicationWindow {
             }
         }
     }
+
+    Component.onCompleted: console.warn(font.family);
 }

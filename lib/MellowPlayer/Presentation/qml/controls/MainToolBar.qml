@@ -207,6 +207,7 @@ ToolBar {
                 horizontalAlignment: "AlignHCenter"
                 verticalAlignment: sliderGroup.visible ? "AlignTop" : "AlignVCenter"
                 elide: "ElideMiddle"
+                font.pixelSize: sliderGroup.visible ? 12 : 14
 
                 function getText() {
                     if (webViewStack.currentWebView() !== null && webViewStack.currentWebView().loading)
