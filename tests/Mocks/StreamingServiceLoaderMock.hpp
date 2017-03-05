@@ -3,6 +3,7 @@
 #include <fakeit.hpp>
 #include <memory>
 #include <MellowPlayer/UseCases/IStreamingServicesLoader.hpp>
+#include "ApplicationSettingsMock.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -24,10 +25,11 @@ public:
 
 private:
     static unique_ptr<StreamingService> createStreamingService(const QString& name) {
+        static auto applicationSettingsMock = ApplicationSettingsMock::get();
         PluginMetadata metadata;
         metadata.name = name;
         metadata.url = "http://" + name.toLower() + ".com";
-        auto plugin = make_unique<StreamingService>(metadata);
+        auto plugin = make_unique<StreamingService>(metadata, applicationSettingsMock.get());
         return plugin;
     }
 };

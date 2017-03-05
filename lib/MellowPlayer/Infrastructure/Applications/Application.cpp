@@ -3,14 +3,16 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-Application::Application(IQtApplication& qtApp, IMainWindow& mainWindow, IHotkeysService& kotkeys):
-    qtApp(qtApp), mainWindow(mainWindow), kotkeys(kotkeys) {
+Application::Application(IQtApplication& qtApp, IMainWindow& mainWindow, IHotkeysService& kotkeys,
+                         ISystemTrayIcon& systemTrayIcon):
+    qtApp(qtApp), mainWindow(mainWindow), kotkeys(kotkeys), systemTrayIcon(systemTrayIcon) {
 
 }
 
 void Application::initialize() {
     kotkeys.start();
     mainWindow.load();
+    systemTrayIcon.show();
 }
 
 void Application::restoreWindow() {

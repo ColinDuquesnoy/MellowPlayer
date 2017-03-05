@@ -6,6 +6,7 @@
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/MprisServiceMock.hpp>
+#include <Mocks/SystemTrayIconMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -14,7 +15,9 @@ TEST_CASE("LinuxApplicationTests") {
     auto hotkeysMock = HotkeysServiceMock::get();
     auto qtAppMock = QtApplicationMock::get();
     auto mprisMock = MprisServiceMock::get();
-    LinuxApplication app(qtAppMock.get(), mainWindowMock.get(), hotkeysMock.get(), mprisMock.get());
+    auto systemTrayIconMock = SystemTrayIconMock::get();
+    LinuxApplication app(qtAppMock.get(), mainWindowMock.get(), hotkeysMock.get(), systemTrayIconMock.get(),
+                         mprisMock.get());
 
     SECTION("initialize") {
         app.initialize();

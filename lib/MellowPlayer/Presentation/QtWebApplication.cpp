@@ -1,6 +1,7 @@
 #include <QtWebEngine>
 #include "QtWebApplication.hpp"
 #include "QmlMainWindow.hpp"
+#include "IconProvider.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -13,7 +14,7 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     setApplicationVersion(MELLOWPLAYER_VERSION);
     setOrganizationDomain("org.mellowplayer");
     setOrganizationName("MellowPlayer");
-    setWindowIcon(QIcon::fromTheme("mellowplayer", QIcon("://MellowPlayer/Presentation/icons/mellowplayer.png")));
+    setWindowIcon(IconProvider::windowIcon());
 
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/fonts/Roboto/Roboto-Black.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/fonts/Roboto/Roboto-BlackItalic.ttf");
@@ -37,4 +38,8 @@ int QtWebApplication::run() {
 
 void QtWebApplication::quit() {
     exit(0);
+}
+
+QIcon QtWebApplication::getWindowIcon() const {
+    return windowIcon();
 }

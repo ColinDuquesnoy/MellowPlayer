@@ -28,5 +28,10 @@
         <file>qml/delegates/ServiceOverviewDelegate.qml</file>
         <file>qml/pages/MainPage.qml</file>
         <file>qml/controls/MainWindow.qml</file>
+        <file>icons/application-exit.png</file>
+        <file>icons/media-playback-start.png</file>
+        <file>icons/media-seek-backward.png</file>
+        <file>icons/media-seek-forward.png</file>
+        <file>icons/view-restore.png</file>
     </qresource>
 </RCC>

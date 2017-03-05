@@ -5,12 +5,14 @@
 #include <MellowPlayer/Infrastructure.hpp>
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
+#include <Mocks/ApplicationSettingsMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/MprisServiceMock.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/SystemTrayIconMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -63,9 +65,8 @@ auto getTestInjector = [](ScopedScope& scope) {
     static auto playerMock = PlayerMock::get();
     static auto qtApplicationMock = QtApplicationMock::get();
     static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
-
-    streamingServiceLoaderMock.get().load();
-
+    static auto applicationSettingsMock = ApplicationSettingsMock::get();
+    static auto systemTrayIconMock = SystemTrayIconMock::get();
 
     return di::make_injector(
         di::bind<IStreamingServicesLoader>().to(streamingServiceLoaderMock.get()),
@@ -73,7 +74,9 @@ auto getTestInjector = [](ScopedScope& scope) {
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloaderMock>().in(scope),
         di::bind<IMainWindow>().to(mainWindowMock.get()),
         di::bind<IHotkeysService>().to(hotkeysServiceMock.get()),
-        di::bind<IQtApplication>().to(qtApplicationMock.get())
+        di::bind<IQtApplication>().to(qtApplicationMock.get()),
+        di::bind<IApplicationSettings>().to(applicationSettingsMock.get()),
+        di::bind<ISystemTrayIcon>().to(systemTrayIconMock.get())
     );
 };
 

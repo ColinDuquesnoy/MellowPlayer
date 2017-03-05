@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Infrastructure/AlbumArtDownloader.hpp"
+#include "Infrastructure/ApplicationSettings.hpp"
 #include "Infrastructure/StreamingServicesLoader.hpp"
 #include "Infrastructure/Applications/Application.hpp"
 #include "Infrastructure/Applications/IApplication.hpp"

@@ -6,6 +6,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Logging.hpp>
 #include <MellowPlayer/Entities.hpp>
+#include "IApplicationSettings.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -23,7 +24,7 @@ class StreamingService: public QObject {
     Q_PROPERTY(Player* player READ getPlayer CONSTANT)
     Q_PROPERTY(Entities::PluginScript* script READ getScript CONSTANT)
 public:
-    StreamingService(const Entities::PluginMetadata& metadata);
+    StreamingService(const Entities::PluginMetadata& metadata, IApplicationSettings& applicationSettings);
     ~StreamingService();
     bool isValid() const;
 
@@ -51,6 +52,7 @@ private:
 
     Logging::ILogger& logger;
     Entities::PluginMetadata metadata;
+    IApplicationSettings& applicationSettings;
     std::unique_ptr<Entities::PluginScript> script;
     std::unique_ptr<Player> player;
 };

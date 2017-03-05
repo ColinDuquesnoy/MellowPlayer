@@ -1,25 +1,24 @@
 #include "StreamingServicesViewModel.hpp"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QSettings>
 #include <QDebug>
+#include <QtWebEngine/QtWebEngine>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager)
-    :
-    QObject(), streamingServicesManager(pluginManager), currentService(nullptr), currentIndex(-1) {
+StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager,
+                                                       UseCases::IApplicationSettings& applicationSettings) :
+        QObject(), streamingServicesManager(pluginManager), applicationSettings(applicationSettings),
+        currentService(nullptr), currentIndex(-1) {
 
     connect(&pluginManager, &StreamingServicesManager::serviceAdded,
             this, &StreamingServicesViewModel::onServiceAdded);
 
     reload();
 
-    // todo move this out
-    QSettings settings;
-    auto currentServiceName = settings.value("currentService", "").toString();
+    auto currentServiceName = applicationSettings.getCurrentService();
     qDebug() << currentServiceName;
     for (auto service: model.getItems()) {
         if (service->getName() == currentServiceName)
@@ -45,8 +44,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
         return;
 
     auto service = static_cast<StreamingService*>(value);
-    QSettings settings;
-    settings.setValue("currentService", value->property("name").toString());
+    applicationSettings.setCurrentService(value->property("name").toString());
     currentService = value;
     streamingServicesManager.setCurrentService(service);
     setCurrentIndex(model.getItems().indexOf(service));

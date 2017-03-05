@@ -1,13 +1,14 @@
-
 #include "QmlMainWindow.hpp"
 #include <QQmlContext>
+#include <QMessageBox>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player, LocalAlbumArt& albumArt):
-        window(nullptr) {
+QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player, LocalAlbumArt& albumArt,
+                             IApplicationSettings& applicationSettings) :
+        window(nullptr), applicationSettings(applicationSettings) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
     qRegisterMetaType<Player*>("Player*");
     qRegisterMetaType<Song*>("Entities::Song*");
@@ -19,8 +20,10 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPla
 bool QmlMainWindow::load() {
     qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/MellowPlayer/Presentation/qml/main.qml")));
     auto rootObjects = qmlApplicationEngine.rootObjects();
-    if (rootObjects.count() && rootObjects.first() != nullptr)
+    if (rootObjects.count() && rootObjects.first() != nullptr) {
         window = qobject_cast<QQuickWindow*>(rootObjects.first());
+        window->installEventFilter(this);
+    }
     return window != nullptr;
 }
 
@@ -35,4 +38,22 @@ void QmlMainWindow::hide() {
     if (window != nullptr) {
         window->hide();
     }
+}
+
+bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
+    if (object == window) {
+        if (event->type() == QEvent::Close) {
+            if (applicationSettings.showCloseToSysemTrayMessage()) {
+                QMessageBox::information(nullptr, tr("Close to system tray"),
+                                         tr("The program will keep running in the system tray.<br><br>"
+                                            "To terminate the program, choose <b>Quit</b> in the context menu of the "
+                                            "system tray icon.<br><br>"
+                                            "To restore the window, double click on the system tray icon."));
+                applicationSettings.setShowCloseToSystemTrayMessage(false);
+            }
+            hide();
+            return true;
+        }
+    }
+    return QObject::eventFilter(object, event);
 }

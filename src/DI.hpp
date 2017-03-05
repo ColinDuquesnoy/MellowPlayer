@@ -7,6 +7,11 @@
 #include <MellowPlayer/Presentation.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Logging)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+
 namespace di = boost::di;
 
 /**
@@ -49,31 +54,28 @@ public:
 
 auto defaultInjector = [](ScopedScope& scope) {
     return di::make_injector(
-        di::bind<MellowPlayer::UseCases::IStreamingServicesLoader>()
-            .to<MellowPlayer::Infrastructure::StreamingServicesLoader>().in(scope),
-        di::bind<MellowPlayer::UseCases::IPlayer>()
-            .to<MellowPlayer::UseCases::PlayerProxy>().in(scope),
-        di::bind<MellowPlayer::UseCases::IAlbumArtDownloader>()
-            .to<MellowPlayer::Infrastructure::AlbumArtDownloader>().in(scope),
-        di::bind<MellowPlayer::UseCases::IMainWindow>()
-            .to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
-        di::bind<MellowPlayer::Infrastructure::IHotkeysService>()
-            .to<MellowPlayer::Infrastructure::HotkeysService>().in(scope)
+        di::bind<IStreamingServicesLoader>().to<StreamingServicesLoader>().in(scope),
+        di::bind<IPlayer>().to<PlayerProxy>().in(scope),
+        di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
+        di::bind<IMainWindow>().to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
+        di::bind<IHotkeysService>().to<HotkeysService>().in(scope),
+        di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
+        di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope)
     );
 };
 
 auto platformInjector = [](ScopedScope& scope) {
 #ifdef Q_OS_LINUX
     return di::make_injector(
-        di::bind<MellowPlayer::Infrastructure::IMprisService>()
-            .to<MellowPlayer::Infrastructure::MprisService>().in(scope),
-        di::bind<MellowPlayer::Infrastructure::IApplication>()
-            .to<MellowPlayer::Infrastructure::LinuxApplication>().in(scope)
+        di::bind<IMprisService>()
+            .to<MprisService>().in(scope),
+        di::bind<IApplication>()
+            .to<LinuxApplication>().in(scope)
     );
 #else
     return di::make_injector(
-        di::bind<MellowPlayer::Infrastructure::IApplication>()
-            .to<MellowPlayer::Infrastructure::Application>().in(scope)
+        di::bind<IApplication>()
+            .to<Application>().in(scope)
     );
 #endif
 };

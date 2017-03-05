@@ -9,7 +9,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class StreamingServicesLoader: public UseCases::IStreamingServicesLoader {
 public:
-    StreamingServicesLoader();
+    StreamingServicesLoader(UseCases::IApplicationSettings& applicationSettings);
     UseCases::StreamingServicesList load() const override;
 
 private:
@@ -23,6 +23,7 @@ private:
     bool containsPlugin(const UseCases::StreamingServicesList &plugins, std::shared_ptr<UseCases::StreamingService>& toCheck) const;
 
     Logging::ILogger& logger;
+    UseCases::IApplicationSettings& applicationSettings;
 
 };
 

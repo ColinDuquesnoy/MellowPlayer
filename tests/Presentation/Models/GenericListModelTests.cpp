@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation.hpp>
+#include <Mocks/ApplicationSettingsMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -9,13 +10,14 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("GenericListModelTests") {
     StreamingServicesModel model;
+    auto appSettingsMock = ApplicationSettingsMock::get();
     REQUIRE(model.rowCount() == 0);
 
     SECTION("add_Test") {
         PluginMetadata metadata;
         metadata.name = "Deezer";
         metadata.url = "https://deezer.com";
-        StreamingService service(metadata);
+        StreamingService service(metadata, appSettingsMock.get());
 
         model.add(&service);
         REQUIRE(model.rowCount() == 1);

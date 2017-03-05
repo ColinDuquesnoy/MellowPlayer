@@ -1,18 +1,18 @@
 #include <memory>
 #include <QtGui/QIcon>
-#include <QtCore/QSettings>
 #include "StreamingService.hpp"
 #include "Player.hpp"
+
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-StreamingService::StreamingService(const PluginMetadata& metadata)
-    :
+StreamingService::StreamingService(const PluginMetadata& metadata, IApplicationSettings& applicationSettings):
     logger(LoggingManager::instance().getLogger("StreamingService")),
-    metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)),
+    metadata(metadata), applicationSettings(applicationSettings),
+    script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)),
     player(make_unique<Player>(*this)) {
 
     if ((!metadata.isValid())) LOG_DEBUG(logger, "Invalid metadata, name or url is empty");
@@ -46,8 +46,7 @@ const QString& StreamingService::getName() const {
 }
 
 QString StreamingService::getUrl() const {
-    QSettings settings;
-    QString customUrl = settings.value(getCustomUrlSettingsKey(), "").toString();
+    QString customUrl = applicationSettings.getValue(getCustomUrlSettingsKey(), "").toString();
     return customUrl.isEmpty() ? metadata.url : customUrl;
 }
 
@@ -62,9 +61,8 @@ bool StreamingService::isValid() const {
 }
 
 void StreamingService::setCustomUrl(const QString& url) {
-    QSettings settings;
     if (url != getUrl()) {
-        settings.setValue(getCustomUrlSettingsKey(), url);
+        applicationSettings.setValue(getCustomUrlSettingsKey(), url);
         emit urlChanged(url);
     }
 }

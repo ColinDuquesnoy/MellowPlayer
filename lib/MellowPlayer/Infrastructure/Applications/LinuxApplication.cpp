@@ -8,8 +8,9 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 LinuxApplication::LinuxApplication(IQtApplication& qtApp,
                                    IMainWindow& mainWindow,
                                    IHotkeysService& kotkeys,
-                                   IMprisService& mprisService) : Application(qtApp, mainWindow, kotkeys),
-                                                                 mprisService(mprisService) {
+                                   ISystemTrayIcon& systemTrayIcon,
+                                   IMprisService& mprisService) :
+        Application(qtApp, mainWindow, kotkeys, systemTrayIcon), mprisService(mprisService) {
 
 }
 
