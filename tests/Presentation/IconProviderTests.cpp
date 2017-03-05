@@ -30,11 +30,8 @@ TEST_CASE("IconProviderTests") {
         // from file (not an image, should be null)
         REQUIRE(isNullIcon(iconProvider.trayIcon()));
 
-#ifdef Q_OS_LINUX
+#ifndef Q_OS_LINUX
         // from theme, should not be null on Linux
-        REQUIRE(!iconProvider.trayIcon().isNull());
-#else
-        // from theme, should be null on Windows and OSX
         REQUIRE(isNullIcon(iconProvider.trayIcon()));
 #endif
 
