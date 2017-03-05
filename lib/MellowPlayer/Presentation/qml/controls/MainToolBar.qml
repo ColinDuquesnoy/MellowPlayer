@@ -3,7 +3,9 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 import QtGraphicalEffects 1.0
+
 import MellowPlayer 1.0
+
 import "qrc:/MellowPlayer/Presentation"
 
 ToolBar {
@@ -15,7 +17,7 @@ ToolBar {
         anchors.fill: parent
 
         ToolButton {
-            text: MaterialIcons.icon_apps
+            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_arrow_back
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
@@ -37,6 +39,15 @@ ToolBar {
                 body.state = "between";
                 body.previewImage.state = "";
                 webViewStack.currentWebView().updateImageFinished.disconnect(switchToOverview);
+            }
+
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 3000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: body.state == "webview" ? qsTr("Select another service") : qsTr("Go back to ") + streamingServices.currentService.name
             }
         }
 
@@ -62,6 +73,14 @@ ToolBar {
             visible: body.state == "webview"
 
             onClicked: webViewStack.currentWebView().goBack()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Go back")
+            }
         }
 
         ToolButton {
@@ -71,6 +90,14 @@ ToolBar {
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().goForward()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Go forward")
+            }
         }
 
         ToolButton {
@@ -80,6 +107,14 @@ ToolBar {
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().reload()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Reload this page")
+            }
         }
 
         ToolButton {
@@ -89,6 +124,14 @@ ToolBar {
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().url = webViewStack.currentWebView().urlToLoad
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Go to the homepage")
+            }
         }
 
         Item {
@@ -113,6 +156,14 @@ ToolBar {
             visible: body.state == "webview" && player.canAddToFavorites
 
             onClicked: player.toggleFavoriteSong()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
+            }
         }
 
         Item {
@@ -130,6 +181,14 @@ ToolBar {
             enabled: player.canGoPrevious
 
             onClicked: player.previous()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Skip to previous song")
+            }
         }
 
         ToolButton {
@@ -143,6 +202,14 @@ ToolBar {
             enabled: webViewStack.loadProgress >= 100
 
             onClicked: player.togglePlayPause()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text:  player.playbackStatus === Player.Playing ? qsTr("Pause") : qsTr("Play")
+            }
         }
 
         ToolButton {
@@ -155,6 +222,14 @@ ToolBar {
             visible: body.state == "webview"
             enabled: player.canGoNext
             onClicked: player.next()
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Skip to next song")
+            }
         }
 
         Item {
@@ -177,6 +252,14 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Show listening history")
+            }
         }
 
         ToolButton {
@@ -185,6 +268,14 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             onClicked: viewStack.push(settingsPageComponent)
+
+            ToolTip {
+                visible: parent.hovered
+                delay: 1000
+                timeout: 5000
+                y: toolBar.implicitHeight
+                text: qsTr("Configure MellowPlayer")
+            }
         }
     }
 

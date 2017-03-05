@@ -37,6 +37,7 @@ ApplicationWindow {
 
         Page {
             header: ToolBar {
+                id: toolBar
                 Layout.fillWidth: true
                 Material.primary: Material.background
 
@@ -44,12 +45,42 @@ ApplicationWindow {
                     anchors.fill: parent
 
                     ToolButton {
+                        id: btBack
                         Layout.fillHeight: true
                         text: MaterialIcons.icon_exit_to_app
                         font { family: MaterialIcons.family; pixelSize: 22 }
                         hoverEnabled: true
 
                         onClicked: viewStack.pop()
+
+                        ToolTip {
+                            visible: parent.hovered
+                            delay: 1000
+                            timeout: 5000
+                            y: toolBar.implicitHeight
+                            text: qsTr("Back")
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    ToolButton {
+                        Layout.fillHeight: true
+                        text: MaterialIcons.icon_power_settings_new
+                        font { family: MaterialIcons.family; pixelSize: 22 }
+                        hoverEnabled: true
+
+                        onClicked: Qt.quit();
+
+                        ToolTip {
+                            visible: parent.hovered
+                            delay: 1000
+                            timeout: 5000
+                            y: toolBar.implicitHeight
+                            text: qsTr("Quit the application")
+                        }
                     }
                 }
 
