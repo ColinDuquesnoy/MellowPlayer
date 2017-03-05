@@ -13,7 +13,6 @@ public:
 
     virtual int run() = 0;
     virtual void quit() = 0;
-    virtual QIcon getWindowIcon() const = 0;
 };
 
 END_MELLOWPLAYER_NAMESPACE

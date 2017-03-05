@@ -29,6 +29,9 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/fonts/Roboto/Roboto-Thin.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/fonts/Roboto/Roboto-ThinItalic.ttf");
 
+    qRegisterMetaType<Player*>("Player*");
+    qRegisterMetaType<Song*>("Entities::Song*");
+
     QtWebEngine::initialize();
 }
 
@@ -38,8 +41,4 @@ int QtWebApplication::run() {
 
 void QtWebApplication::quit() {
     exit(0);
-}
-
-QIcon QtWebApplication::getWindowIcon() const {
-    return windowIcon();
 }

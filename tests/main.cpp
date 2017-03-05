@@ -3,16 +3,17 @@
 #include "catch.hpp"
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
-#include <QtWidgets/QApplication>
 #include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Presentation.hpp>
 #include <MellowPlayer/Logging.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USE_MELLOWPLAYER_NAMESPACE(Presentation)
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -20,15 +21,7 @@ int main(int argc, char* argv[])
 #ifdef Q_OS_WIN32
     Q_INIT_RESOURCE(presentation);
 #endif
-    QApplication qtApp(argc, argv);
-    qtApp.setApplicationName("MellowPlayer3");
-    qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
-    qtApp.setOrganizationDomain("org.mellowplayer");
-    qtApp.setOrganizationName("MellowPlayer");
-
-    qRegisterMetaType<Player*>("Player*");
-    qRegisterMetaType<Song*>("Entities::Song*");
-
+    QtWebApplication webApplication(argc, argv);
     QSettings settings;
     settings.clear();
 

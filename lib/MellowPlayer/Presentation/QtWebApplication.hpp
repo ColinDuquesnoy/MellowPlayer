@@ -13,8 +13,6 @@ public:
 
     int run() override;
     void quit() override;
-
-    QIcon getWindowIcon() const override;
 };
 
 END_MELLOWPLAYER_NAMESPACE

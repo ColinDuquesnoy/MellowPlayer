@@ -10,8 +10,6 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPla
                              IApplicationSettings& applicationSettings) :
         window(nullptr), applicationSettings(applicationSettings) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
-    qRegisterMetaType<Player*>("Player*");
-    qRegisterMetaType<Song*>("Entities::Song*");
     qmlApplicationEngine.rootContext()->setContextProperty("streamingServices", &streamingServices);
     qmlApplicationEngine.rootContext()->setContextProperty("player", &player);
     qmlApplicationEngine.rootContext()->setContextProperty("albumArt", &albumArt);
