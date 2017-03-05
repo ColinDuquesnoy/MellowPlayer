@@ -23,6 +23,7 @@ TEST_CASE("LinuxApplicationTests") {
         app.initialize();
         Verify(Method(hotkeysMock, start)).Exactly(1);
         Verify(Method(mainWindowMock, load)).Exactly(1);
+        Verify(Method(systemTrayIconMock, show)).Exactly(1);
         Verify(Method(mprisMock, start)).Exactly(1);
     }
 }
