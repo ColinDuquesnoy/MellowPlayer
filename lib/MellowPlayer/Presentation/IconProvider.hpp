@@ -22,31 +22,31 @@ public:
     }
 
     static QIcon windowIcon() {
-        return QIcon::fromTheme("mellowplayer", QIcon("://MellowPlayer/Presentation/icons/mellowplayer.png"));
+        return QIcon::fromTheme("mellowplayer", QIcon("://MellowPlayer/Presentation/resources/icons/mellowplayer.png"));
     }
 
     static QIcon restoreWindow() {
-        return QIcon::fromTheme("view-restore", QIcon("://MellowPlayer/Presentation/icons/view-restore.png"));
+        return QIcon::fromTheme("view-restore", QIcon("://MellowPlayer/Presentation/resources/icons/view-restore.png"));
     }
 
     static QIcon play() {
         return QIcon::fromTheme("media-playback-start",
-                                QIcon("://MellowPlayer/Presentation/icons/media-playback-start.png"));
+                                QIcon("://MellowPlayer/Presentation/resources/icons/media-playback-start.png"));
     }
 
     static QIcon next() {
         return QIcon::fromTheme("media-seek-forward",
-                                QIcon("://MellowPlayer/Presentation/icons/media-seek-forward.png"));
+                                QIcon("://MellowPlayer/Presentation/resources/icons/media-seek-forward.png"));
     }
 
     static QIcon previous() {
         return QIcon::fromTheme("media-seek-backward",
-                                QIcon("://MellowPlayer/Presentation/icons/media-seek-backward.png"));
+                                QIcon("://MellowPlayer/Presentation/resources/icons/media-seek-backward.png"));
     }
 
     static QIcon quit() {
         return QIcon::fromTheme("application-exit",
-                                QIcon("://MellowPlayer/Presentation/icons/application-exit.png"));
+                                QIcon("://MellowPlayer/Presentation/resources/icons/application-exit.png"));
     }
 
 private:

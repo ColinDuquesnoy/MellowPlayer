@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 
 import MellowPlayer 1.0
 
-import "qrc:/MellowPlayer/Presentation"
+import "qrc:/MellowPlayer/Presentation/resources"
 
 ToolBar {
     id: toolBar

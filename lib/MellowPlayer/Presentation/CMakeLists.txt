@@ -2,7 +2,7 @@ set(LIB_NAME "${PROJECT_NAME}.Presentation")
 
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
-file(GLOB_RECURSE QML_FILES qml/*.qml)
+file(GLOB_RECURSE QML_FILES resources/qml/*.qml)
 file(GLOB_RECURSE QRC_FILES *.qrc)
 
 SET(CMAKE_DEBUG_POSTFIX "")
@@ -15,5 +15,11 @@ else()
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
+endif()
+if (USE_SNORENOTIFY)
+    message(STATUS "Snorenotify support enabled")
+    add_definitions("-DUSE_SNORENOTIFY=1")
+else()
+    message(STATUS "Snorenotify support disabled, using QSystemTrayIcon instead")
 endif()
 qt5_use_modules(${LIB_NAME} Core Qml Quick WebEngine Widgets)

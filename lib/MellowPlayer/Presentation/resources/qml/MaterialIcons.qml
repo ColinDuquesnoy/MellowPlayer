@@ -3,7 +3,7 @@ import QtQuick 2.7
 
 Item {
     readonly property string family: "Material Icons, Regular"
-    property var loader: FontLoader { source: "qrc:/MellowPlayer/Presentation/fonts/MaterialIcons-Regular.ttf" }
+    property var loader: FontLoader { source: "qrc:/MellowPlayer/Presentation/resources/fonts/MaterialIcons-Regular.ttf" }
 
     readonly property string icon_3d_rotation: "\ue84d"
     readonly property string icon_ac_unit: "\ueb3b"

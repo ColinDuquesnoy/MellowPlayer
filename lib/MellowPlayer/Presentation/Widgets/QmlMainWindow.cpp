@@ -18,7 +18,7 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPla
 
 bool QmlMainWindow::load() {
     QtWebEngine::initialize();
-    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/MellowPlayer/Presentation/qml/main.qml")));
+    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/MellowPlayer/Presentation/resources/qml/main.qml")));
     auto rootObjects = qmlApplicationEngine.rootObjects();
     if (rootObjects.count() && rootObjects.first() != nullptr) {
         window = qobject_cast<QQuickWindow*>(rootObjects.first());

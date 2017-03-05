@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import "qrc:/MellowPlayer/Presentation"
+import "qrc:/MellowPlayer/Presentation/resources"
 import "controls"
 
 MainWindow {
