@@ -43,7 +43,7 @@ void QmlMainWindow::hide() {
 bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
     if (object == window) {
         if (event->type() == QEvent::Close) {
-            if (applicationSettings.showCloseToSysemTrayMessage()) {
+            if (applicationSettings.getShowCloseToSysemTrayMessage()) {
                 QMessageBox::information(nullptr, tr("Close to system tray"),
                                          tr("The program will keep running in the system tray.<br><br>"
                                             "To terminate the program, choose <b>Quit</b> in the context menu of the "

@@ -12,7 +12,7 @@ public:
     IconProvider(UseCases::IApplicationSettings& applicationSettings): applicationSettings(applicationSettings) { }
 
     QIcon trayIcon() {
-        QString iconString = applicationSettings.getValue("trayIcon").toString();
+        QString iconString = applicationSettings.getTrayIcon();
         if (iconString.trimmed().isEmpty())
             return windowIcon();
         else if (QFile::exists(iconString))

@@ -16,7 +16,7 @@ public:
     void hide() override;
     void showMessage(const QString &title, const QString &message) override;
 
-private slots:
+public slots:
     void onActivated(QSystemTrayIcon::ActivationReason reason);
     void togglePlayPause();
     void next();

@@ -16,11 +16,14 @@ public:
         When(Method(mock, getCurrentService)).AlwaysReturn("Deezer");
         When(Method(mock, setCurrentService)).AlwaysReturn();
 
-        When(Method(mock, showCloseToSysemTrayMessage)).AlwaysReturn(true);
+        When(Method(mock, getShowCloseToSysemTrayMessage)).AlwaysReturn(true);
         When(Method(mock, setShowCloseToSystemTrayMessage)).AlwaysReturn();
 
         When(Method(mock, getValue)).AlwaysReturn(QVariant());
         When(Method(mock, setValue)).AlwaysReturn();
+
+        When(Method(mock, getTrayIcon)).AlwaysReturn("");
+        When(Method(mock, setTrayIcon)).AlwaysReturn();
 
         return mock;
     }
