@@ -31,8 +31,6 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
 
     qRegisterMetaType<Player*>("Player*");
     qRegisterMetaType<Song*>("Entities::Song*");
-
-    QtWebEngine::initialize();
 }
 
 int QtWebApplication::run() {
