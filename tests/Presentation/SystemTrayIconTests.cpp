@@ -43,4 +43,16 @@ TEST_CASE("SystemTrayIconTests") {
         systemTrayIcon.quit();
         Verify(Method(qtAppMock, quit)).Exactly(1);
     }
+
+    SECTION("integration tests") {
+        SECTION("show icon") {
+            systemTrayIcon.show();
+        }
+        SECTION("hide icon") {
+            systemTrayIcon.hide();
+        }
+        SECTION("show message") {
+            systemTrayIcon.showMessage("Title", "Message");
+        }
+    }
 }
