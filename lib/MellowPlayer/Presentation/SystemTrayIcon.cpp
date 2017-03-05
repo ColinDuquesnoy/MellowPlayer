@@ -14,21 +14,15 @@ SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtAppl
     setUpMenu();
 }
 
-void SystemTrayIcon::show() {
-    qSystemTrayIcon.show();
-}
+void SystemTrayIcon::show() { qSystemTrayIcon.show(); }
 
-void SystemTrayIcon::hide() {
-    qSystemTrayIcon.hide();
-}
+void SystemTrayIcon::hide() { qSystemTrayIcon.hide(); }
 
 void SystemTrayIcon::showMessage(const QString& title, const QString& message) {
     qSystemTrayIcon.showMessage(title, message);
 }
 
-void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason) {
-    mainWindow.show();
-}
+void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason) { mainWindow.show(); }
 
 void SystemTrayIcon::setUpMenu() {
     playPauseAction = menu.addAction(iconProvider.play(), "Play/Pause");
