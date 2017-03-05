@@ -32,7 +32,7 @@ TEST_CASE("IconProviderTests") {
 
 #ifdef Q_OS_LINUX
         // from theme, should not be null on Linux
-        REQUIRE(!isNullIcon(iconProvider.trayIcon()));
+        REQUIRE(!iconProvider.trayIcon().isNull());
 #else
         // from theme, should be null on Windows and OSX
         REQUIRE(isNullIcon(iconProvider.trayIcon()));

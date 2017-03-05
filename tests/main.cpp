@@ -17,6 +17,9 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+#ifdef Q_OS_WIN32
+    Q_INIT_RESOURCE(presentation);
+#endif
     QGuiApplication qtApp(argc, argv);
     qtApp.setApplicationName("MellowPlayer3");
     qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
