@@ -119,6 +119,56 @@ Page {
                     }
                 }
             }
+
+            Shortcut {
+                sequence: "Ctrl+Tab"
+                onActivated: goToNextLoadedWebView()
+
+                function goToNextLoadedWebView() {
+                    var index = getNextIndex(webViewStack.currentIndex);
+
+                    while(index != webViewStack.currentIndex) {
+                        var webView = webViewStack.itemAt(index);
+                        if (webView.url != "") {
+                            streamingServices.currentService = webView.service;
+                            break;
+                        }
+                        index = getNextIndex(index);
+                    }
+                }
+
+                function getNextIndex(index) {
+                    var nextIndex = index + 1;
+                    if (nextIndex >= webViewStack.count)
+                        nextIndex = 0;
+                    return nextIndex;
+                }
+            }
+
+            Shortcut {
+                sequence: "Ctrl+Shift+Tab"
+                onActivated: goToPreviousLoadedWebView()
+
+                function goToPreviousLoadedWebView() {
+                    var index = getPreviousIndex(webViewStack.currentIndex);
+
+                    while(index != webViewStack.currentIndex) {
+                        var webView = webViewStack.itemAt(index);
+                        if (webView.url != "") {
+                            streamingServices.currentService = webView.service;
+                            break;
+                        }
+                        index = getPreviousIndex(index);
+                    }
+                }
+
+                function getPreviousIndex(index) {
+                    var previousIndex = index - 1;
+                    if (previousIndex < 0)
+                        previousIndex = webViewStack.count - 1;
+                    return previousIndex;
+                }
+            }
         }
 
         Pane {

@@ -12,6 +12,8 @@ WebEngineView {
     property string toolBarColor: object.toolbarColor !== "" ? object.toolbarColor : Material.background
     property var image: null
     property bool ready: image != null || url == ""
+    property var service: object
+
     signal updateImageFinished();
 
     settings.pluginsEnabled : true
