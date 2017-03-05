@@ -1,7 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/StreamingService.hpp>
+#include "../Core/StreamingService.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

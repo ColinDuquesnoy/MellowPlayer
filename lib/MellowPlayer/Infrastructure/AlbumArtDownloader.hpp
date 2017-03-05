@@ -4,7 +4,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <MellowPlayer/Logging.hpp>
-#include <MellowPlayer/UseCases/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/UseCases.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

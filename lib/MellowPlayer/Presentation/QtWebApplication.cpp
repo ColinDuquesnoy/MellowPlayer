@@ -1,6 +1,6 @@
 #include <QtWebEngine>
 #include "QtWebApplication.hpp"
-#include "QmlMainWindow.hpp"
+#include "MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp"
 #include "IconProvider.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)

@@ -2,7 +2,7 @@
 
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/IStreamingServicesLoader.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include "ApplicationSettingsMock.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)

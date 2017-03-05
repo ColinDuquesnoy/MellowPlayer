@@ -3,13 +3,12 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include "IHotkeysService.hpp"
 
 class QxtGlobalShortcut;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class HotkeysService: public QObject, public IHotkeysService {
+class HotkeysService: public QObject, public UseCases::IHotkeysService {
     Q_OBJECT
 public:
     HotkeysService(UseCases::IPlayer& player);

@@ -1,7 +1,7 @@
 #pragma once
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include "IStreamingServicesLoader.hpp"
+#include "../Interfaces/IStreamingServicesLoader.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

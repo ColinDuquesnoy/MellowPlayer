@@ -2,7 +2,6 @@
 
 #include <QAbstractListModel>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/StreamingService.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

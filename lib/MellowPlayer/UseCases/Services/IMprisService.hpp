@@ -2,7 +2,7 @@
 
 #include "IService.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IMprisService: public IService
 {

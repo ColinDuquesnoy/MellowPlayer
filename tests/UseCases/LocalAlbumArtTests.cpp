@@ -1,9 +1,9 @@
 #include <catch.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/UseCases/LocalAlbumArt.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/UseCases/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)

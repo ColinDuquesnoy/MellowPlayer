@@ -1,9 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include "IMainWindow.hpp"
-#include "LocalAlbumArt.hpp"
-#include "StreamingServicesManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

@@ -3,7 +3,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <MellowPlayer/UseCases.hpp>
-#include "IconProvider.hpp"
+#include "../IconProvider.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

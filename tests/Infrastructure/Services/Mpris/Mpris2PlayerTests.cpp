@@ -1,12 +1,11 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
+#include <QtTest/QSignalSpy>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/UseCases/StreamingServicesManager.hpp>
-#include <MellowPlayer/UseCases/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

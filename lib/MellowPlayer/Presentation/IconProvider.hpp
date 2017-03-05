@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QIcon>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

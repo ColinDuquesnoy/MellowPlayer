@@ -2,7 +2,6 @@
 
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include "IMprisService.hpp"
 
 #ifdef Q_OS_LINUX
 
@@ -13,7 +12,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 class Mpris2Root;
 class Mpris2Player;
 
-class MprisService: public IMprisService {
+class MprisService: public UseCases::IMprisService {
 public:
     MprisService(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, UseCases::IMainWindow& window,
                  UseCases::IQtApplication& application);

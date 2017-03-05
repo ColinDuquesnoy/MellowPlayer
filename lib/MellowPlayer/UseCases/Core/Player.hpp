@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Entities.hpp>
-#include "IPlayer.hpp"
+#include "../Interfaces/IPlayer.hpp"
 #include "StreamingService.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)

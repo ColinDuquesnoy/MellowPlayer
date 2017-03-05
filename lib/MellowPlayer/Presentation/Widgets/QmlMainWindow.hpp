@@ -3,7 +3,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases.hpp>
-#include "ViewModels/StreamingServicesViewModel.hpp"
+#include "../ViewModels/StreamingServicesViewModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

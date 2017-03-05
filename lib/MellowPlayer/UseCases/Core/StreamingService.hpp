@@ -6,7 +6,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Logging.hpp>
 #include <MellowPlayer/Entities.hpp>
-#include "IApplicationSettings.hpp"
+#include "../Interfaces/IApplicationSettings.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

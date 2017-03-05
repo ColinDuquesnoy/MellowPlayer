@@ -2,7 +2,7 @@
 #include <QObject>
 #include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Presentation/ListModels.hpp>
+#include "../Models/ListModels.hpp"
 
 class QQmlApplicationEngine;
 

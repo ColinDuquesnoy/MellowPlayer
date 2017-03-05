@@ -1,5 +1,6 @@
 #pragma once
 
+#include <MellowPlayer/UseCases.hpp>
 #include "GenericListModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)

@@ -1,6 +1,6 @@
 #include <catch.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/UseCases/StreamingServicesManager.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

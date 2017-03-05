@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IService
 {
