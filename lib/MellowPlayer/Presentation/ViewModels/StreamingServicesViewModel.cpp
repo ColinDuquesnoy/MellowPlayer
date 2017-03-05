@@ -9,7 +9,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager,
-                                                       UseCases::IApplicationSettings& applicationSettings) :
+                                                       IApplicationSettings& applicationSettings) :
         QObject(), streamingServicesManager(pluginManager), applicationSettings(applicationSettings),
         currentService(nullptr), currentIndex(-1) {
 
