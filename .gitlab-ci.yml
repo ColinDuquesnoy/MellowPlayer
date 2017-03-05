@@ -41,7 +41,6 @@ stages:
     - linux
   before_script:
     - ./scripts/env-setup/linux/archlinux-env-setup.sh
-    - nproc
     - export DISPLAY=:99
     - Xvfb :99 -ac &
 
