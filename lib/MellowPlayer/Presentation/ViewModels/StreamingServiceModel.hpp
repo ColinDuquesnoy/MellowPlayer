@@ -14,7 +14,7 @@ class StreamingServiceModel: public QObject
     Q_PROPERTY(UseCases::Player* player READ getPlayer CONSTANT)
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
 public:
-    StreamingServiceModel(Entities::Plugin& plugin,
+    StreamingServiceModel(UseCases::Plugin& plugin,
                           UseCases::IApplicationSettings& applicationSettings,
                           UseCases::PlayersManager& playerManager,
                           QObject* parent= nullptr);
@@ -29,7 +29,7 @@ public:
     bool operator==(const StreamingServiceModel& rhs) const;
     bool operator!=(const StreamingServiceModel& rhs) const;
 
-    Entities::Plugin* getPlugin() const;
+    UseCases::Plugin* getPlugin() const;
 
 signals:
     void urlChanged(const QString&);
@@ -37,7 +37,7 @@ signals:
 private:
     const QString getCustomUrlSettingsKey() const;
 
-    Entities::Plugin& plugin;
+    UseCases::Plugin& plugin;
     UseCases::IApplicationSettings& applicationSettings;
     UseCases::PlayersManager& players;
 };

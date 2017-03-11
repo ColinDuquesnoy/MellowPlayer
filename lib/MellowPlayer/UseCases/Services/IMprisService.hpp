@@ -1,13 +1,13 @@
 #pragma once
 
-#include "IService.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class IMprisService: public IService
+class IMprisService
 {
 public:
     virtual ~IMprisService() = default;
+    virtual bool start() = 0;
 };
 
 END_MELLOWPLAYER_NAMESPACE

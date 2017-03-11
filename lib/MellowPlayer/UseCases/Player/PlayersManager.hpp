@@ -2,7 +2,7 @@
 
 #include <qmap.h>
 #include "Player.hpp"
-#include "../PluginManager.hpp"
+#include "MellowPlayer/UseCases/Plugin/PluginManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -14,7 +14,7 @@ public:
     std::shared_ptr<Player> getPlayer(const QString& serviceName) const;
 
 private slots:
-    void onServiceAdded(Entities::Plugin* service);
+    void onServiceAdded(UseCases::Plugin* service);
 
 private:
     QMap<QString, std::shared_ptr<Player>> players;

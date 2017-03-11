@@ -16,7 +16,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginManager& pluginMana
 
     connect(&pluginManager, &PluginManager::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
 
-    for(auto& plugin: pluginManager.getServices()) {
+    for(auto& plugin: pluginManager.getAll()) {
         onPluginAdded(plugin.get());
     }
 
@@ -50,7 +50,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     auto service = static_cast<StreamingServiceModel*>(value);
     applicationSettings.setCurrentService(value->property("name").toString());
     currentService = value;
-    pluginManager.setCurrentPlugin(service->getPlugin());
+    pluginManager.setCurrent(service->getPlugin());
     setCurrentIndex(model.getItems().indexOf(service));
     emit currentServiceChanged(currentService);
 }

@@ -10,7 +10,6 @@ Application::Application(IQtApplication& qtApp, IMainWindow& mainWindow, IHotkey
 }
 
 void Application::initialize() {
-    kotkeys.start();
     mainWindow.load();
     systemTrayIcon.show();
 }

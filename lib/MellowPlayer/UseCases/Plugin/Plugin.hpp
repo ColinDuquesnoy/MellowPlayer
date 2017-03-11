@@ -5,10 +5,10 @@
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Logging.hpp>
-#include "PluginMetadata.hpp"
-#include "PluginScript.hpp"
+#include "MellowPlayer/Entities/PluginMetadata.hpp"
+#include "MellowPlayer/Entities/PluginScript.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Plugin: public QObject {
     Q_OBJECT
@@ -19,9 +19,9 @@ class Plugin: public QObject {
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(QString url READ getUrl CONSTANT)
     Q_PROPERTY(QString version READ getVersion CONSTANT)
-    Q_PROPERTY(PluginScript* script READ getScript CONSTANT)
+    Q_PROPERTY(Entities::PluginScript* script READ getScript CONSTANT)
 public:
-    Plugin(const PluginMetadata& metadata);
+    Plugin(const Entities::PluginMetadata& metadata);
     ~Plugin();
 
     bool isValid() const;
@@ -32,19 +32,19 @@ public:
     const QString& getName() const;
     QString getUrl() const;
     const QString& getVersion() const;
-    PluginScript* getScript() const;
+    Entities::PluginScript* getScript() const;
 
     bool operator==(const Plugin& rhs) const ;
     bool operator!=(const Plugin& rhs) const;
 
 private:
     Logging::ILogger& logger;
-    PluginMetadata metadata;
-    std::unique_ptr<PluginScript> script;
+    Entities::PluginMetadata metadata;
+    std::unique_ptr<Entities::PluginScript> script;
 };
 
 
-using PluginList = QList<std::shared_ptr<MellowPlayer::Entities::Plugin>>;
+using PluginList = QList<std::shared_ptr<MellowPlayer::UseCases::Plugin>>;
 
 END_MELLOWPLAYER_NAMESPACE
 

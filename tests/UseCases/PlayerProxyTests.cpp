@@ -31,9 +31,9 @@ TEST_CASE("PlayerProxyTests") {
         REQUIRE(!proxy.getCurrentSong()->getIsFavorite());
     }
 
-    Player& player1 = *playersManager.getPlayer(pluginManager.getServices()[0]->getName());
-    Player& player2 = *playersManager.getPlayer(pluginManager.getServices()[1]->getName());
-    pluginManager.setCurrentPlugin(pluginManager.getServices()[0].get());
+    Player& player1 = *playersManager.getPlayer(pluginManager.getAll()[0]->getName());
+    Player& player2 = *playersManager.getPlayer(pluginManager.getAll()[1]->getName());
+    pluginManager.setCurrent(pluginManager.getAll()[0].get());
 
     QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Entities::Song*)));
     QSignalSpy positionChanged(&proxy, SIGNAL(positionChanged()));
@@ -234,7 +234,7 @@ TEST_CASE("PlayerProxyTests") {
         map["volume"] = 0.5;
         map["duration"] = 350.0;
         player2.setUpdateResults(QVariant::fromValue(map));
-        pluginManager.setCurrentPlugin(pluginManager.getServices()[1].get());
+        pluginManager.setCurrent(pluginManager.getAll()[1].get());
 
         REQUIRE(proxy.getPosition() == 1.0);
         REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);

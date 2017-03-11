@@ -8,9 +8,6 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 HotkeysService::HotkeysService(IPlayer& player) :
     QObject(nullptr), logger(LoggingManager::instance().getLogger("Hotkeys")), player(player) {
 
-}
-
-bool HotkeysService::start() {
     playShortcut = new QxtGlobalShortcut(this);
     playShortcut->setShortcut(QKeySequence("Ctrl+Alt+P"));
     connect(playShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::togglePlayPause);
@@ -42,7 +39,6 @@ bool HotkeysService::start() {
 #endif
 
     LOG_INFO(logger, "service started");
-    return true;
 }
 
 void HotkeysService::togglePlayPause() {

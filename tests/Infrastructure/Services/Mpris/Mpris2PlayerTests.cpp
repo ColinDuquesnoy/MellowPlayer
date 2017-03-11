@@ -14,12 +14,12 @@ TEST_CASE("Mpris2PlayerTests") {
     auto mock = PluginLoaderMock::get();
     PluginManager pluginManager(mock.get());
     pluginManager.load();
-    pluginManager.setCurrentPlugin(pluginManager.getServices()[0].get());
+    pluginManager.setCurrent(pluginManager.getAll()[0].get());
     PlayersManager playersManager(pluginManager);
     PlayerProxy player(playersManager, pluginManager);
-    Player& currentPlayer = *playersManager.getPlayer(pluginManager.getCurrentPlugin()->getName());
+    Player& currentPlayer = *playersManager.getPlayer(pluginManager.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
-    LocalAlbumArt localAlbumArt(player, albumArtDownloader);
+    LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 
     QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Entities::Song * )));

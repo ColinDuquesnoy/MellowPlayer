@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player, LocalAlbumArt& albumArt,
+QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player, LocalAlbumArtService& albumArt,
                              IApplicationSettings& applicationSettings) :
         window(nullptr), applicationSettings(applicationSettings) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");

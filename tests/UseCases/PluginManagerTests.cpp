@@ -10,12 +10,12 @@ using namespace std;
 TEST_CASE("PluginManagerManagerTests") {
     auto mock = PluginLoaderMock::get();
     PluginManager pluginManager(mock.get());
-    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(Entities::Plugin*)));
+    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(UseCases::Plugin*)));
     pluginManager.load();
 
     SECTION("load called PluginLoader::load") {
         Verify(Method(mock, load)).Exactly(1);
-        REQUIRE(pluginManager.getServices().count() > 1);
+        REQUIRE(pluginManager.getAll().count() > 1);
     };
 
     SECTION("pluginAdded signal is emitted for each service loaded") {
@@ -31,16 +31,16 @@ TEST_CASE("PluginManagerManagerTests") {
     }
 
     SECTION("current service is initially empty") {
-        REQUIRE(pluginManager.getCurrentPlugin() == nullptr);
+        REQUIRE(pluginManager.getCurrent() == nullptr);
     }
 
     SECTION("set current service ") {
         QSignalSpy currentPluginChangedSignal(&pluginManager,
-                                               SIGNAL(currentPluginChanged(Entities::Plugin*)));
-        pluginManager.setCurrentPlugin(&pluginManager.get("Deezer"));
-        REQUIRE(pluginManager.getCurrentPlugin() != nullptr);
+                                               SIGNAL(currentPluginChanged(UseCases::Plugin*)));
+        pluginManager.setCurrent(&pluginManager.get("Deezer"));
+        REQUIRE(pluginManager.getCurrent() != nullptr);
         REQUIRE(currentPluginChangedSignal.count() == 1);
-        pluginManager.setCurrentPlugin(&pluginManager.get("Deezer"));
+        pluginManager.setCurrent(&pluginManager.get("Deezer"));
         REQUIRE(currentPluginChangedSignal.count() == 1);
     }
 

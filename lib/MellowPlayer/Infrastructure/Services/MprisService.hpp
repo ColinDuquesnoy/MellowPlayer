@@ -14,10 +14,11 @@ class Mpris2Player;
 
 class MprisService: public UseCases::IMprisService {
 public:
-    MprisService(UseCases::IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, UseCases::IMainWindow& window,
+    MprisService(UseCases::IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, UseCases::IMainWindow& window,
                  UseCases::IQtApplication& application);
-    bool start() override;
     ~MprisService();
+
+    bool start() override;
 
 private:
     static QString SERVICE_NAME;

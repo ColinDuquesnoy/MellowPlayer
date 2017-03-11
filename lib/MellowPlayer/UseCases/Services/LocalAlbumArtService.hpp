@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Player/IPlayer.hpp"
-#include "Interfaces/IAlbumArtDownloader.hpp"
+#include "../Player/IPlayer.hpp"
+#include "../Interfaces/IAlbumArtDownloader.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class LocalAlbumArt: public QObject {
+class LocalAlbumArtService: public QObject {
     Q_OBJECT
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
 public:
-    LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader);
+    LocalAlbumArtService(IPlayer& player, IAlbumArtDownloader& downloader);
 
     const QString& getUrl() const;
 

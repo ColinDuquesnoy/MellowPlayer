@@ -35,17 +35,17 @@ Plugin& PluginManager::get(const QString& name) const {
     throw invalid_argument("unknown plugin: " + name.toStdString());
 }
 
-const PluginList& PluginManager::getServices() const {
+const PluginList& PluginManager::getAll() const {
     return pluginList;
 }
 
-void PluginManager::setCurrentPlugin(Plugin* plugin) {
+void PluginManager::setCurrent(Plugin* plugin) {
     if (plugin == currentPlugin)
         return;
     currentPlugin = plugin;
     emit currentPluginChanged(plugin);
 }
 
-Plugin* PluginManager::getCurrentPlugin() const {
+Plugin* PluginManager::getCurrent() const {
     return currentPlugin;
 }

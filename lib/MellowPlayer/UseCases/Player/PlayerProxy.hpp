@@ -30,7 +30,7 @@ public:
     double getVolume() const override;
 
 private slots:
-    void onCurrentPluginChanged(Entities::Plugin* service);
+    void onCurrentPluginChanged(UseCases::Plugin* service);
 
 private:
     PlayersManager& playersManager;

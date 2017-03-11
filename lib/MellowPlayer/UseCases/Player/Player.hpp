@@ -3,6 +3,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Entities.hpp>
 #include "IPlayer.hpp"
+#include "../Plugin/Plugin.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -10,7 +11,7 @@ class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(Entities::Plugin& plugin);
+    Player(UseCases::Plugin& plugin);
 
     // IPlayer
     Q_INVOKABLE void togglePlayPause() override;
@@ -67,7 +68,7 @@ private:
     bool canAddToFavorites = false;
     double volume = 1;
     std::unique_ptr<Entities::Song> currentSong;
-    Entities::Plugin& plugin;
+    UseCases::Plugin& plugin;
     Entities::PluginScript& pluginScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };

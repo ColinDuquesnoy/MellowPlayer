@@ -19,7 +19,7 @@ TEST_CASE("MprisServiceTests", "[IntegrationTests]")
     PlayersManager playersManager(pluginManager);
     PlayerProxy player(playersManager, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
-    LocalAlbumArt localAlbumArt(player, albumArtDownloader);
+    LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
 

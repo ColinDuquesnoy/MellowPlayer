@@ -33,7 +33,7 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onPluginAdded(Entities::Plugin* plugin);
+    void onPluginAdded(UseCases::Plugin* plugin);
 
 private:
     UseCases::PluginManager& pluginManager;

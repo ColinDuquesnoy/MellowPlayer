@@ -6,6 +6,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 Plugin::Plugin(const PluginMetadata& metadata):

@@ -1,10 +1,9 @@
 #pragma once
 
-#include "IService.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class IHotkeysService: public IService
+class IHotkeysService
 {
 public:
     virtual ~IHotkeysService() = default;

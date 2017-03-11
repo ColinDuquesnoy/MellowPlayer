@@ -10,7 +10,6 @@ class HotkeysServiceMock {
 public:
     static Mock<IHotkeysService> get() {
         Mock<IHotkeysService> mock;
-        When(Method(mock, start)).AlwaysReturn();
         When(Method(mock, togglePlayPause)).AlwaysReturn();
         When(Method(mock, next)).AlwaysReturn();
         When(Method(mock, previous)).AlwaysReturn();

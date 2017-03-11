@@ -10,8 +10,8 @@ PlayerProxy::PlayerProxy(PlayersManager& playersManager, PluginManager& pluginMa
     connect(&pluginManager, &PluginManager::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);
 
-    if(pluginManager.getCurrentPlugin() != nullptr)
-        onCurrentPluginChanged(pluginManager.getCurrentPlugin());
+    if(pluginManager.getCurrent() != nullptr)
+        onCurrentPluginChanged(pluginManager.getCurrent());
 }
 
 void PlayerProxy::togglePlayPause() {

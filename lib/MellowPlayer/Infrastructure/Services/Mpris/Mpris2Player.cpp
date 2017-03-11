@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 #define SEC_TO_MICROSEC 1000000.0
 #define SEEK_DELTA_LIMIT SEC_TO_MICROSEC * 2
 
-Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArt& localAlbumArt, QObject* parent)
+Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, QObject* parent)
     : QDBusAbstractAdaptor(parent), player(player), localAlbumArt(localAlbumArt) {
     connect(&player, &IPlayer::playbackStatusChanged, this, &Mpris2Player::onPlaybackStatusChanged);
     connect(&player, &IPlayer::currentSongChanged, this, &Mpris2Player::onSongChanged);
@@ -17,7 +17,7 @@ Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArt& localAlbumA
     connect(&player, &IPlayer::canGoPreviousChanged, this, &Mpris2Player::onCanGoPreviousChanged);
     connect(&player, &IPlayer::volumeChanged, this, &Mpris2Player::onVolumeChanged);
 
-    connect(&localAlbumArt, &LocalAlbumArt::urlChanged, this, &Mpris2Player::onArtUrlChanged);
+    connect(&localAlbumArt, &LocalAlbumArtService::urlChanged, this, &Mpris2Player::onArtUrlChanged);
 }
 
 QString Mpris2Player::playbackStatus() { return statusToString(player.getPlaybackStatus()); }

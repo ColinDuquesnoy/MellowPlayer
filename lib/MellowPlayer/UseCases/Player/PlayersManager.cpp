@@ -7,7 +7,7 @@ using namespace std;
 PlayersManager::PlayersManager(PluginManager& pluginManager) {
     connect(&pluginManager, &PluginManager::pluginAdded,
             this, &PlayersManager::onServiceAdded);
-    for (auto& plugin: pluginManager.getServices()) {
+    for (auto& plugin: pluginManager.getAll()) {
         onServiceAdded(plugin.get());
     }
 }

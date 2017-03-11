@@ -10,7 +10,6 @@ using namespace fakeit;
 TEST_CASE("HotkeysServiceTests") {
     auto playerMock = PlayerMock::get();
     HotkeysService hotkeys(playerMock.get());
-    hotkeys.start();
 
     SECTION("togglePlayPause_Test") {
         hotkeys.togglePlayPause();

@@ -15,7 +15,7 @@ TEST_CASE("LocalAlbumArtTests"){
     PlayerProxy player(playersManager, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
-    LocalAlbumArt localAlbumArt(player, albumArtDownloader);
+    LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
 
     SECTION("download when current song changed") {
         QString url = "https://deezer.com/arUrl-123.png";

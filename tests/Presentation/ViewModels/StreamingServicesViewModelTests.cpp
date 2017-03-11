@@ -16,7 +16,7 @@ TEST_CASE("StreamingServicesViewModel") {
     servicesManager.load();
     StreamingServicesViewModel& viewModel = injector.create<StreamingServicesViewModel&>();
 
-    REQUIRE(viewModel.getModel()->rowCount() == servicesManager.getServices().count());
+    REQUIRE(viewModel.getModel()->rowCount() == servicesManager.getAll().count());
 
     SECTION("setCurrentService_change_currentIndex") {
         REQUIRE(viewModel.getCurrentIndex() == -1);

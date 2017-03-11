@@ -6,7 +6,7 @@ file(GLOB_RECURSE HEADER_FILES *.hpp)
 if(WIN32)
     add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
 else()
-    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} Player/PlayersManager.cpp Player/PlayersManager.hpp)
+    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
