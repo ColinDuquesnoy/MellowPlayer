@@ -5,7 +5,7 @@
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/PluginLoaderMock.hpp>
 #include <QtDBus/QDBusConnection>
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
@@ -14,9 +14,10 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("MprisServiceTests", "[IntegrationTests]")
 {
-    auto streamingServicesLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesManager streamingServicesManager(streamingServicesLoaderMock.get());
-    PlayerProxy player(streamingServicesManager);
+    auto plugionLoaderMock = PluginLoaderMock::get();
+    PluginManager pluginManager(plugionLoaderMock.get());
+    PlayersManager playersManager(pluginManager);
+    PlayerProxy player(playersManager, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();

@@ -1,6 +1,6 @@
 #include <catch.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/UseCases.hpp>
@@ -9,9 +9,10 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 
 TEST_CASE("LocalAlbumArtTests"){
-    auto streamingServicesLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesManager streamingServicesManager(streamingServicesLoaderMock.get());
-    PlayerProxy player(streamingServicesManager);
+    auto pluginLoaderMock = PluginLoaderMock::get();
+    PluginManager pluginManager(pluginLoaderMock.get());
+    PlayersManager playersManager(pluginManager);
+    PlayerProxy player(playersManager, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);

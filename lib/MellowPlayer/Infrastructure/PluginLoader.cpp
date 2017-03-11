@@ -5,7 +5,7 @@
 #include <QtCore/QStandardPaths>
 #include <QtCore/QTextStream>
 #include <QtGui/QIcon>
-#include "StreamingServicesLoader.hpp"
+#include "PluginLoader.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(Entities)
@@ -13,14 +13,13 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
-StreamingServicesLoader::StreamingServicesLoader(IApplicationSettings& applicationSettings):
-        logger(LoggingManager::instance().getLogger("StreamingServicesManager")),
-        applicationSettings(applicationSettings) {
+PluginLoader::PluginLoader():
+        logger(LoggingManager::instance().getLogger("PluginManager")) {
 
 }
 
-StreamingServicesList StreamingServicesLoader::load() const {
-    StreamingServicesList plugins;
+PluginList PluginLoader::load() const {
+    PluginList plugins;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
             LOG_TRACE(logger, "Skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
@@ -29,7 +28,7 @@ StreamingServicesList StreamingServicesLoader::load() const {
         LOG_TRACE(logger, "Looking for plugins in " << path.toStdString().c_str());
         for (const QFileInfo& directory: QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkPluginDirectory(directory.absoluteFilePath())) {
-                shared_ptr<StreamingService> plugin = loadPlugin(directory.absoluteFilePath());
+                shared_ptr<Plugin> plugin = loadPlugin(directory.absoluteFilePath());
                 if (plugin->isValid() && !containsPlugin(plugins, plugin)) {
                     LOG_DEBUG(logger, plugin->getName().toStdString().c_str()
                             << " plugin successfully loaded (from \"" <<
@@ -47,7 +46,7 @@ StreamingServicesList StreamingServicesLoader::load() const {
     return plugins;
 }
 
-QString StreamingServicesLoader::findFileByExtension(const QString& directory, const QString& suffix) const {
+QString PluginLoader::findFileByExtension(const QString& directory, const QString& suffix) const {
             foreach (const QFileInfo& fileInfo,
                      QDir(directory).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
             if (fileInfo.isFile() && fileInfo.suffix() == suffix)
@@ -56,7 +55,7 @@ QString StreamingServicesLoader::findFileByExtension(const QString& directory, c
     return QString();
 }
 
-QString StreamingServicesLoader::readFileContent(const QString& filePath) const {
+QString PluginLoader::readFileContent(const QString& filePath) const {
     QString retVal;
 
     QFile file(filePath);
@@ -68,7 +67,7 @@ QString StreamingServicesLoader::readFileContent(const QString& filePath) const 
     return retVal;
 }
 
-PluginMetadata StreamingServicesLoader::readMetadata(const QString& filePath) const {
+PluginMetadata PluginLoader::readMetadata(const QString& filePath) const {
     QSettings meta(filePath, QSettings::IniFormat);
 
     PluginMetadata pluginMetadata;
@@ -83,7 +82,7 @@ PluginMetadata StreamingServicesLoader::readMetadata(const QString& filePath) co
     return pluginMetadata;
 }
 
-unique_ptr<StreamingService> StreamingServicesLoader::loadPlugin(const QString& directory) const {
+unique_ptr<Plugin> PluginLoader::loadPlugin(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
     QString descPath = findFileByExtension(directory, "html");
@@ -92,22 +91,22 @@ unique_ptr<StreamingService> StreamingServicesLoader::loadPlugin(const QString& 
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
 
-    return make_unique<StreamingService>(metadata, applicationSettings);
+    return make_unique<Plugin>(metadata);
 }
 
-bool StreamingServicesLoader::checkPluginDirectory(const QString& directory) const {
+bool PluginLoader::checkPluginDirectory(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
 
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }
 
-QString StreamingServicesLoader::getUserPluginsDirectory() const {
+QString PluginLoader::getUserPluginsDirectory() const {
     return QFileInfo(QStandardPaths::standardLocations(
             QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
 }
 
-QStringList StreamingServicesLoader::getSearchPaths() const {
+QStringList PluginLoader::getSearchPaths() const {
     QStringList paths;
     paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "src" + QString(QDir::separator()) + "plugins");
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
@@ -132,8 +131,8 @@ QStringList StreamingServicesLoader::getSearchPaths() const {
     return paths;
 }
 
-bool StreamingServicesLoader::containsPlugin(const StreamingServicesList& plugins,
-                                             shared_ptr<StreamingService>& toCheck) const {
+bool PluginLoader::containsPlugin(const PluginList& plugins,
+                                             shared_ptr<Plugin>& toCheck) const {
     for (auto plugin: plugins) {
         if (*toCheck == *plugin)
             return true;

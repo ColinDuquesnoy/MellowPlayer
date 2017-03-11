@@ -9,7 +9,7 @@ SET(CMAKE_DEBUG_POSTFIX "")
 if(WIN32)
     add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES})
 else()
-    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES})
+    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES} ViewModels/StreamingServiceModel.hpp ViewModels/StreamingServiceModel.cpp)
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.UseCases)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin

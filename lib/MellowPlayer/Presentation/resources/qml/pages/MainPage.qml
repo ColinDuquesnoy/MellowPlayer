@@ -69,7 +69,7 @@ Page {
 
                 PropertyChanges {
                     target: toolBar
-                    Material.background: webViewStack.currentWebView().toolBarColor
+                    Material.background: webViewStack.currentWebView().color
                 }
             },
             State {

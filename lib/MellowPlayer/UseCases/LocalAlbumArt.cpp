@@ -1,4 +1,4 @@
-#include "LocalAlbumArt.hpp"
+#include "MellowPlayer/UseCases/LocalAlbumArt.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

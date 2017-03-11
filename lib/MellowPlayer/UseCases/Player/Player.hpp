@@ -2,8 +2,7 @@
 
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Entities.hpp>
-#include "../Interfaces/IPlayer.hpp"
-#include "StreamingService.hpp"
+#include "IPlayer.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -11,7 +10,7 @@ class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(StreamingService& streamingService);
+    Player(Entities::Plugin& plugin);
 
     // IPlayer
     Q_INVOKABLE void togglePlayPause() override;
@@ -43,6 +42,9 @@ public:
     void suspend();
     void resume();
 
+    bool operator==(const Player& other) const { return plugin == other.plugin; }
+    bool operator!=(const Player& other) const { return !operator==(other); }
+
 signals:
     void runJavascriptRequested(const QString& script);
     void updateRequested(const QString& script);
@@ -65,7 +67,7 @@ private:
     bool canAddToFavorites = false;
     double volume = 1;
     std::unique_ptr<Entities::Song> currentSong;
-    StreamingService& streamingService;
+    Entities::Plugin& plugin;
     Entities::PluginScript& pluginScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };

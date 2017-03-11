@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Player.hpp"
-#include "StreamingServicesManager.hpp"
+#include "PlayersManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT
 public:
-    PlayerProxy(StreamingServicesManager& streamingServicesManager);
+    PlayerProxy(PlayersManager& playersManager, PluginManager& pluginManager);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -31,12 +30,14 @@ public:
     double getVolume() const override;
 
 private slots:
-    void onCurrentServiceChanged(StreamingService* service);
+    void onCurrentPluginChanged(Entities::Plugin* service);
 
 private:
-    StreamingServicesManager& streamingServicesManager;
+    PlayersManager& playersManager;
+    PluginManager& pluginManager;
     Entities::Song nullSong;
-    Player* currentPlayer;
+
+    std::shared_ptr<Player> currentPlayer;
 };
 
 END_MELLOWPLAYER_NAMESPACE

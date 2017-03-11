@@ -2,7 +2,7 @@
 #include <QObject>
 #include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include "../Models/ListModels.hpp"
+#include "StreamingServiceModel.hpp"
 
 class QQmlApplicationEngine;
 
@@ -15,11 +15,12 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
-    StreamingServicesViewModel(UseCases::StreamingServicesManager& pluginManager,
+    StreamingServicesViewModel(UseCases::PluginManager& pluginManager,
+                               UseCases::PlayersManager& playersManager,
                                UseCases::IApplicationSettings& applicationSettings);
 
     Q_INVOKABLE void reload();
-    StreamingServicesModel* getModel();
+    StreamingServiceListModel* getModel();
     QObject* getCurrentService() const;
     int getCurrentIndex() const;
 
@@ -32,12 +33,13 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onServiceAdded(UseCases::StreamingService* plugin);
+    void onPluginAdded(Entities::Plugin* plugin);
 
 private:
-    UseCases::StreamingServicesManager& streamingServicesManager;
+    UseCases::PluginManager& pluginManager;
+    UseCases::PlayersManager& playersManager;
     UseCases::IApplicationSettings& applicationSettings;
-    StreamingServicesModel model;
+    StreamingServiceListModel model;
     QObject* currentService;
     QObject* currentPlayer;
     int currentIndex;

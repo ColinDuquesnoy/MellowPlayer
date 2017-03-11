@@ -7,7 +7,7 @@ add_definitions(-DPLUGINS_DIR=\"${CMAKE_SOURCE_DIR}/src/plugins\")
 
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 
-add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES})
+add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} Mocks/ApplicationSettingsMock.cpp)
 target_link_libraries(${TEST_EXECUTABLE_NAME}
                       ${PROJECT_NAME}.Logging
                       ${PROJECT_NAME}.Entities

@@ -29,8 +29,9 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Thin.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-ThinItalic.ttf");
 
-    qRegisterMetaType<Player*>("Player*");
+    qRegisterMetaType<Player*>("UseCases::Player*");
     qRegisterMetaType<Song*>("Entities::Song*");
+    qRegisterMetaType<Song*>("Entities::Plugin*");
 }
 
 int QtWebApplication::run() {

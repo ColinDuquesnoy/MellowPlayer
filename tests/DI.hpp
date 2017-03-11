@@ -11,7 +11,7 @@
 #include <Mocks/MprisServiceMock.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/PluginLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -64,12 +64,12 @@ auto getTestInjector = [](ScopedScope& scope) {
     static auto mainWindowMock = MainWindowMock::get();
     static auto playerMock = PlayerMock::get();
     static auto qtApplicationMock = QtApplicationMock::get();
-    static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
+    static auto pluginLoaderMock = PluginLoaderMock::get();
     static auto applicationSettingsMock = ApplicationSettingsMock::get();
     static auto systemTrayIconMock = SystemTrayIconMock::get();
 
     return di::make_injector(
-        di::bind<IStreamingServicesLoader>().to(streamingServiceLoaderMock.get()),
+        di::bind<IPluginLoader>().to(pluginLoaderMock.get()),
         di::bind<IPlayer>().to<PlayerProxy>().in(scope),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloaderMock>().in(scope),
         di::bind<IMainWindow>().to(mainWindowMock.get()),

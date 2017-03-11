@@ -5,8 +5,8 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-Player::Player(StreamingService& streamingService)
-    : currentSong(nullptr), streamingService(streamingService), pluginScript(*streamingService.getScript()) {
+Player::Player(Plugin& plugin)
+    : currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
 
 }
 

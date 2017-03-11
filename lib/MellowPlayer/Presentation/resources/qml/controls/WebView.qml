@@ -9,7 +9,7 @@ WebEngineView {
 
     property QtObject player: object.player
     property string urlToLoad: object.url
-    property string toolBarColor: object.toolbarColor !== "" ? object.toolbarColor : Material.background
+    property string color: object.color !== "" ? object.color : Material.background
     property var image: null
     property bool ready: image != null || url == ""
     property var service: object
@@ -20,7 +20,11 @@ WebEngineView {
     visible: webViewStack.visible && webViewStack.currentIndex == index;
     enabled: visible
 
-    onLoadingChanged: if (!loading) player.initialize()
+    onLoadingChanged: {
+        console.warn("onLoadingChanged: ", loading)
+        if (!loading)
+            player.initialize()
+    }
 
     onNewViewRequested: {
         if (!request.userInitiated)
@@ -38,8 +42,17 @@ WebEngineView {
 
     Connections {
         target: player
-        onRunJavascriptRequested: if(!loading) runJavaScript(script, function(result) {})
-        onUpdateRequested: if(!loading) runJavaScript(script, function(results) { player.setUpdateResults(results); })
+        onRunJavascriptRequested: {
+            if (!loading) {
+                runJavaScript(script, function(result) { })
+            }
+        }
+
+        onUpdateRequested: {
+            if (!loading) {
+                runJavaScript(script, function(results) { root.player.setUpdateResults(results); })
+            }
+        }
     }
 
     Timer {

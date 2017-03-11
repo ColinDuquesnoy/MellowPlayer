@@ -54,8 +54,8 @@ public:
 
 auto defaultInjector = [](ScopedScope& scope) {
     return di::make_injector(
-        di::bind<IStreamingServicesLoader>().to<StreamingServicesLoader>().in(scope),
-        di::bind<IPlayer>().to<PlayerProxy>().in(scope),
+        di::bind<IPluginLoader>().to<PluginLoader>().in(scope),
+        di::bind<IPlayer>().in(di::singleton).to<PlayerProxy>(),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
         di::bind<IMainWindow>().to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
         di::bind<IHotkeysService>().to<HotkeysService>().in(scope),

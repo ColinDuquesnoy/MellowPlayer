@@ -2,14 +2,16 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
+using namespace std;
 
-PlayerProxy::PlayerProxy(StreamingServicesManager& streamingServicesManager)
-    : streamingServicesManager(streamingServicesManager), currentPlayer(nullptr) {
-    connect(&streamingServicesManager, &StreamingServicesManager::currentServiceChanged,
-            this, &PlayerProxy::onCurrentServiceChanged);
+PlayerProxy::PlayerProxy(PlayersManager& playersManager, PluginManager& pluginManager)
+    : playersManager(playersManager), pluginManager(pluginManager), currentPlayer(nullptr) {
 
-    if(streamingServicesManager.getCurrentService() != nullptr)
-        onCurrentServiceChanged(streamingServicesManager.getCurrentService());
+    connect(&pluginManager, &PluginManager::currentPluginChanged,
+            this, &PlayerProxy::onCurrentPluginChanged);
+
+    if(pluginManager.getCurrentPlugin() != nullptr)
+        onCurrentPluginChanged(pluginManager.getCurrentPlugin());
 }
 
 void PlayerProxy::togglePlayPause() {
@@ -110,35 +112,34 @@ double PlayerProxy::getVolume() const {
     return 0;
 }
 
-void PlayerProxy::onCurrentServiceChanged(StreamingService* service) {
-    auto player = service->getPlayer();
-
+void PlayerProxy::onCurrentPluginChanged(Plugin* service) {
+    auto player = playersManager.getPlayer(service->getName());
     if (player != currentPlayer) {
         if (currentPlayer != nullptr) {
-            disconnect(currentPlayer, &Player::currentSongChanged, this, &PlayerProxy::currentSongChanged);
-            disconnect(currentPlayer, &Player::positionChanged, this, &PlayerProxy::positionChanged);
-            disconnect(currentPlayer, &Player::playbackStatusChanged, this, &PlayerProxy::playbackStatusChanged);
-            disconnect(currentPlayer, &Player::canSeekChanged, this, &PlayerProxy::canSeekChanged);
-            disconnect(currentPlayer, &Player::canGoNextChanged, this, &PlayerProxy::canGoNextChanged);
-            disconnect(currentPlayer, &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
-            disconnect(currentPlayer, &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
-            disconnect(currentPlayer, &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
+            disconnect(currentPlayer.get(), &Player::currentSongChanged, this, &PlayerProxy::currentSongChanged);
+            disconnect(currentPlayer.get(), &Player::positionChanged, this, &PlayerProxy::positionChanged);
+            disconnect(currentPlayer.get(), &Player::playbackStatusChanged, this, &PlayerProxy::playbackStatusChanged);
+            disconnect(currentPlayer.get(), &Player::canSeekChanged, this, &PlayerProxy::canSeekChanged);
+            disconnect(currentPlayer.get(), &Player::canGoNextChanged, this, &PlayerProxy::canGoNextChanged);
+            disconnect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
+            disconnect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
+            disconnect(currentPlayer.get(), &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
             currentPlayer->suspend();
         }
 
         currentPlayer = player;
 
-        connect(currentPlayer, &Player::currentSongChanged, this, &PlayerProxy::currentSongChanged);
-        connect(currentPlayer, &Player::positionChanged, this, &PlayerProxy::positionChanged);
-        connect(currentPlayer, &Player::playbackStatusChanged, this, &PlayerProxy::playbackStatusChanged);
-        connect(currentPlayer, &Player::canSeekChanged, this, &PlayerProxy::canSeekChanged);
-        connect(currentPlayer, &Player::canGoNextChanged, this, &PlayerProxy::canGoNextChanged);
-        connect(currentPlayer, &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
-        connect(currentPlayer, &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
-        connect(currentPlayer, &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
+        connect(currentPlayer.get(), &Player::currentSongChanged, this, &PlayerProxy::currentSongChanged);
+        connect(currentPlayer.get(), &Player::positionChanged, this, &PlayerProxy::positionChanged);
+        connect(currentPlayer.get(), &Player::playbackStatusChanged, this, &PlayerProxy::playbackStatusChanged);
+        connect(currentPlayer.get(), &Player::canSeekChanged, this, &PlayerProxy::canSeekChanged);
+        connect(currentPlayer.get(), &Player::canGoNextChanged, this, &PlayerProxy::canGoNextChanged);
+        connect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
+        connect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
+        connect(currentPlayer.get(), &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
         currentPlayer->resume();
 
-        emit currentSongChanged(player->getCurrentSong());
+        emit currentSongChanged(currentPlayer->getCurrentSong());
         emit positionChanged();
         emit playbackStatusChanged();
         emit canSeekChanged();

@@ -1,7 +1,8 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
-#include "../../Mocks/StreamingServiceLoaderMock.hpp"
+#include "../../Mocks/PluginLoaderMock.hpp"
+#include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -9,12 +10,12 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 TEST_CASE("StreamingServicesViewModel") {
-    auto loaderMock = StreamingServiceLoaderMock::get();
-    ApplicationSettings  appSettings;
-    StreamingServicesManager servicesManager(loaderMock.get());
-    StreamingServicesViewModel viewModel(servicesManager, appSettings);
+    ScopedScope scope;
+    auto injector = getTestInjector(scope);
+    PluginManager& servicesManager = injector.create<PluginManager&>();
+    servicesManager.load();
+    StreamingServicesViewModel& viewModel = injector.create<StreamingServicesViewModel&>();
 
-    Verify(Method(loaderMock, load)).Exactly(1);
     REQUIRE(viewModel.getModel()->rowCount() == servicesManager.getServices().count());
 
     SECTION("setCurrentService_change_currentIndex") {
@@ -25,13 +26,6 @@ TEST_CASE("StreamingServicesViewModel") {
         REQUIRE(viewModel.getCurrentService() == viewModel.getModel()->getItems()[1]);
         viewModel.setCurrentService(viewModel.getModel()->getItems()[1]);
         viewModel.setCurrentIndex(1);
-
-        SECTION("currentIndexMemorizedForNextLoad") {
-            StreamingServicesManager servicesManager2(loaderMock.get());
-            StreamingServicesViewModel viewModel2(servicesManager2, appSettings);
-            REQUIRE(viewModel2.getModel()->rowCount() == servicesManager2.getServices().count());
-            REQUIRE(viewModel2.getCurrentIndex() == 1);
-        }
     }
 }
 

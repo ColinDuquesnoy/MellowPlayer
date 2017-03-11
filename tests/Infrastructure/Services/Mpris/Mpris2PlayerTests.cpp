@@ -2,7 +2,7 @@
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
@@ -11,12 +11,13 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests") {
-    auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesManager streamingServices(mock.get());
-    streamingServices.load();
-    streamingServices.setCurrentService(streamingServices.getServices()[0].get());
-    Player* currentPlayer = streamingServices.getCurrentService()->getPlayer();
-    PlayerProxy player(streamingServices);
+    auto mock = PluginLoaderMock::get();
+    PluginManager pluginManager(mock.get());
+    pluginManager.load();
+    pluginManager.setCurrentPlugin(pluginManager.getServices()[0].get());
+    PlayersManager playersManager(pluginManager);
+    PlayerProxy player(playersManager, pluginManager);
+    Player& currentPlayer = *playersManager.getPlayer(pluginManager.getCurrentPlugin()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
@@ -29,8 +30,7 @@ TEST_CASE("Mpris2PlayerTests") {
     QSignalSpy canGoPreviousChanged(&player, SIGNAL(canGoPreviousChanged()));
     QSignalSpy canAddToFavoritesChanged(&player, SIGNAL(canAddToFavoritesChanged()));
     QSignalSpy volumeChanged(&player, SIGNAL(volumeChanged()));
-    QSignalSpy jsSpy(currentPlayer, SIGNAL(runJavascriptRequested(
-                                               const QString&)));
+    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString&)));
 
     SECTION("PlaybackStatus") {
         SECTION("Default") {
@@ -52,7 +52,7 @@ TEST_CASE("Mpris2PlayerTests") {
             REQUIRE(mpris2Player.playbackStatus() != "Paused");
             QVariantMap results;
             results["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Buffering);
-            currentPlayer->setUpdateResults(results);
+            currentPlayer.setUpdateResults(results);
             REQUIRE(mpris2Player.playbackStatus() == "Paused");
         }
     }
@@ -72,7 +72,7 @@ TEST_CASE("Mpris2PlayerTests") {
     SECTION("Volume") {
         QVariantMap results;
         results["volume"] = 0.75;
-        currentPlayer->setUpdateResults(results);
+        currentPlayer.setUpdateResults(results);
         REQUIRE(mpris2Player.volume() == 0.75);
         mpris2Player.setVolume(1.0);
     }
@@ -94,7 +94,7 @@ TEST_CASE("Mpris2PlayerTests") {
             results["isFavorite"] = false;
             results["volume"] = 0.5;
             results["duration"] = 350.0;
-            currentPlayer->setUpdateResults(results);
+            currentPlayer.setUpdateResults(results);
 
             auto map = mpris2Player.metadata();
             REQUIRE(map["xesam:artist"].toString().toStdString() == "artistName");
@@ -206,7 +206,7 @@ TEST_CASE("Mpris2PlayerTests") {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canSeek"] = true;
-        currentPlayer->setUpdateResults(results);
+        currentPlayer.setUpdateResults(results);
         REQUIRE(mpris2Player.canSeek());
     }
 
@@ -214,7 +214,7 @@ TEST_CASE("Mpris2PlayerTests") {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canGoPrevious"] = true;
-        currentPlayer->setUpdateResults(results);
+        currentPlayer.setUpdateResults(results);
         REQUIRE(mpris2Player.canGoPrevious());
     }
 
@@ -222,7 +222,7 @@ TEST_CASE("Mpris2PlayerTests") {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canGoNext"] = true;
-        currentPlayer->setUpdateResults(results);
+        currentPlayer.setUpdateResults(results);
         REQUIRE(mpris2Player.canGoNext());
     }
 }

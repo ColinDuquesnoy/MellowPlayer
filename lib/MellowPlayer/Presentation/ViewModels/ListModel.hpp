@@ -6,13 +6,11 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 template<typename T>
-class GenericListModel: public QAbstractListModel {
+class ListModel: public QAbstractListModel {
 public:
     enum Roles { Object };
 
-    GenericListModel(): QAbstractListModel() {
-
-    }
+    ListModel(): QAbstractListModel() { }
 
     void add(T* item) {
         beginInsertRows(QModelIndex(), rowCount(), rowCount());

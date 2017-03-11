@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Interfaces/IPlayer.hpp"
-#include "../Interfaces/IAlbumArtDownloader.hpp"
+#include "Player/IPlayer.hpp"
+#include "Interfaces/IAlbumArtDownloader.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

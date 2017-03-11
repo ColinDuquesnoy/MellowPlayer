@@ -1,16 +1,17 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <QtTest/QSignalSpy>
-#include "Mocks/StreamingServiceLoaderMock.hpp"
+#include "Mocks/PluginLoaderMock.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests") {
-    auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesManager streamingServices(mock.get());
-    streamingServices.load();
-    PlayerProxy proxy(streamingServices);
+    auto mock = PluginLoaderMock::get();
+    PluginManager pluginManager(mock.get());
+    pluginManager.load();
+    PlayersManager playersManager(pluginManager);
+    PlayerProxy proxy(playersManager, pluginManager);
 
     SECTION("default properties (currentPlayer is null)") {
         REQUIRE(proxy.getPosition() == 0);
@@ -30,9 +31,9 @@ TEST_CASE("PlayerProxyTests") {
         REQUIRE(!proxy.getCurrentSong()->getIsFavorite());
     }
 
-    Player* player1 = streamingServices.getServices()[0]->getPlayer();
-    Player* player2 = streamingServices.getServices()[1]->getPlayer();
-    streamingServices.setCurrentService(streamingServices.getServices()[0].get());
+    Player& player1 = *playersManager.getPlayer(pluginManager.getServices()[0]->getName());
+    Player& player2 = *playersManager.getPlayer(pluginManager.getServices()[1]->getName());
+    pluginManager.setCurrentPlugin(pluginManager.getServices()[0].get());
 
     QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Entities::Song*)));
     QSignalSpy positionChanged(&proxy, SIGNAL(positionChanged()));
@@ -44,7 +45,7 @@ TEST_CASE("PlayerProxyTests") {
     QSignalSpy volumeChanged(&proxy, SIGNAL(volumeChanged()));
 
     SECTION("control player1") {
-        QSignalSpy jsSpy(player1, SIGNAL(runJavascriptRequested(const QString&)));
+        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString&)));
 
         SECTION("togglePlayPause") {
             proxy.togglePlayPause();
@@ -105,7 +106,7 @@ TEST_CASE("PlayerProxyTests") {
             map["isFavorite"] = false;
             map["volume"] = 0.5;
             map["duration"] = 350.0;
-            player1->setUpdateResults(QVariant::fromValue(map));
+            player1.setUpdateResults(QVariant::fromValue(map));
 
             proxy.toggleFavoriteSong();
             REQUIRE(jsSpy.count() == 1);
@@ -141,7 +142,7 @@ TEST_CASE("PlayerProxyTests") {
         map["isFavorite"] = true;
         map["volume"] = 0.5;
         map["duration"] = 350.0;
-        player1->setUpdateResults(QVariant::fromValue(map));
+        player1.setUpdateResults(QVariant::fromValue(map));
 
         REQUIRE(proxy.getPosition() == 1.0);
         REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);
@@ -186,7 +187,7 @@ TEST_CASE("PlayerProxyTests") {
         map["isFavorite"] = true;
         map["volume"] = 0.5;
         map["duration"] = 350.0;
-        player2->setUpdateResults(QVariant::fromValue(map));
+        player2.setUpdateResults(QVariant::fromValue(map));
 
         REQUIRE(proxy.getPosition() == 0);
         REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Stopped);
@@ -232,8 +233,8 @@ TEST_CASE("PlayerProxyTests") {
         map["isFavorite"] = true;
         map["volume"] = 0.5;
         map["duration"] = 350.0;
-        player2->setUpdateResults(QVariant::fromValue(map));
-        streamingServices.setCurrentService(streamingServices.getServices()[1].get());
+        player2.setUpdateResults(QVariant::fromValue(map));
+        pluginManager.setCurrentPlugin(pluginManager.getServices()[1].get());
 
         REQUIRE(proxy.getPosition() == 1.0);
         REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);

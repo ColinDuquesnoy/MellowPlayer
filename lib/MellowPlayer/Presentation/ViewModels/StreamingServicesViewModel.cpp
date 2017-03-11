@@ -8,13 +8,17 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager& pluginManager,
+StreamingServicesViewModel::StreamingServicesViewModel(PluginManager& pluginManager,
+                                                       PlayersManager& playersManager,
                                                        IApplicationSettings& applicationSettings) :
-        QObject(), streamingServicesManager(pluginManager), applicationSettings(applicationSettings),
-        currentService(nullptr), currentIndex(-1) {
+        QObject(), pluginManager(pluginManager), playersManager(playersManager),
+        applicationSettings(applicationSettings), currentService(nullptr), currentIndex(-1) {
 
-    connect(&pluginManager, &StreamingServicesManager::serviceAdded,
-            this, &StreamingServicesViewModel::onServiceAdded);
+    connect(&pluginManager, &PluginManager::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
+
+    for(auto& plugin: pluginManager.getServices()) {
+        onPluginAdded(plugin.get());
+    }
 
     reload();
 
@@ -27,7 +31,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServicesManager&
 
 }
 
-StreamingServicesModel* StreamingServicesViewModel::getModel() {
+StreamingServiceListModel* StreamingServicesViewModel::getModel() {
     return &model;
 }
 
@@ -43,10 +47,10 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     if (currentService == value)
         return;
 
-    auto service = static_cast<StreamingService*>(value);
+    auto service = static_cast<StreamingServiceModel*>(value);
     applicationSettings.setCurrentService(value->property("name").toString());
     currentService = value;
-    streamingServicesManager.setCurrentService(service);
+    pluginManager.setCurrentPlugin(service->getPlugin());
     setCurrentIndex(model.getItems().indexOf(service));
     emit currentServiceChanged(currentService);
 }
@@ -60,9 +64,9 @@ void StreamingServicesViewModel::setCurrentIndex(int value) {
 }
 
 void StreamingServicesViewModel::reload() {
-    streamingServicesManager.load();
+    pluginManager.load();
 }
 
-void StreamingServicesViewModel::onServiceAdded(StreamingService* plugin) {
-    model.add(plugin);
+void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {
+    model.add(new StreamingServiceModel(*plugin, applicationSettings, playersManager, this));
 }

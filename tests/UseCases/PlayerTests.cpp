@@ -9,8 +9,8 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 TEST_CASE("PlayerTests") {
     PluginMetadata metadata;
     auto appSettingsMock = ApplicationSettingsMock::get();
-    StreamingService streamingService(metadata, appSettingsMock.get());
-    Player player(streamingService);
+    Plugin plugin(metadata);
+    Player player(plugin);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
 
     SECTION("initialize test") {

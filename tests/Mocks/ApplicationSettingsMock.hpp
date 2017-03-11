@@ -13,8 +13,10 @@ public:
 
         When(Method(mock, clear)).AlwaysReturn();
 
-        When(Method(mock, getCurrentService)).AlwaysReturn("Deezer");
-        When(Method(mock, setCurrentService)).AlwaysReturn();
+        When(Method(mock, getCurrentService)).AlwaysReturn(currentService);
+        When(Method(mock, setCurrentService)).AlwaysDo([](const QString& serviceName) {
+            ApplicationSettingsMock::currentService = serviceName;
+        });
 
         When(Method(mock, getShowCloseToSysemTrayMessage)).AlwaysReturn(true);
         When(Method(mock, setShowCloseToSystemTrayMessage)).AlwaysReturn();
@@ -27,4 +29,6 @@ public:
 
         return mock;
     }
+
+    static QString currentService;
 };
