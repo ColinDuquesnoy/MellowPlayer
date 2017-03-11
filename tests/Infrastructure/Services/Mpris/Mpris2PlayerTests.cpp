@@ -22,7 +22,7 @@ TEST_CASE("Mpris2PlayerTests") {
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 
-    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Entities::Song * )));
+    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song * )));
     QSignalSpy positionChanged(&player, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&player, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&player, SIGNAL(canSeekChanged()));

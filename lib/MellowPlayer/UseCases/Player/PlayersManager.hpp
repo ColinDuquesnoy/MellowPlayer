@@ -2,7 +2,7 @@
 
 #include <qmap.h>
 #include "Player.hpp"
-#include "MellowPlayer/UseCases/Plugin/PluginManager.hpp"
+#include "../Plugin/PluginManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

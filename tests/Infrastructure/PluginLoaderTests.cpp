@@ -3,8 +3,6 @@
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <Mocks/ApplicationSettingsMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

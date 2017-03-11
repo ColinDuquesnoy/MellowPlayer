@@ -3,7 +3,7 @@
 #include <QtCore/QObject>
 #include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Song: public QObject {
     Q_OBJECT

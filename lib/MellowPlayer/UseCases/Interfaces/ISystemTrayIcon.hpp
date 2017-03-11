@@ -1,7 +1,7 @@
 #pragma once
 
+#include <QString>
 #include <MellowPlayer/Macros.hpp>
-#include <QtCore/QString>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QLocalSocket>
 #include <QLocalServer>
-#include <MellowPlayer/Logging.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include "IApplication.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -23,7 +23,7 @@ private slots:
     void quit();
 
 private:
-    Logging::ILogger& logger;
+    UseCases::ILogger& logger;
     IApplication& application;
     QLocalSocket localSocket;
     QLocalServer localServer;

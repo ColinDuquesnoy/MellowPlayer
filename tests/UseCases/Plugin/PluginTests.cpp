@@ -1,11 +1,9 @@
 #include <catch.hpp>
-#include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/ApplicationSettingsMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

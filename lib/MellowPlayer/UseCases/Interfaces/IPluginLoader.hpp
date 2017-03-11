@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities.hpp>
 #include "../Plugin/Plugin.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)

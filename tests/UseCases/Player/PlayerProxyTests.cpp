@@ -3,7 +3,6 @@
 #include <QtTest/QSignalSpy>
 #include "Mocks/PluginLoaderMock.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests") {
@@ -35,7 +34,7 @@ TEST_CASE("PlayerProxyTests") {
     Player& player2 = *playersManager.getPlayer(pluginManager.getAll()[1]->getName());
     pluginManager.setCurrent(pluginManager.getAll()[0].get());
 
-    QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Entities::Song*)));
+    QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Song*)));
     QSignalSpy positionChanged(&proxy, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&proxy, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&proxy, SIGNAL(canSeekChanged()));

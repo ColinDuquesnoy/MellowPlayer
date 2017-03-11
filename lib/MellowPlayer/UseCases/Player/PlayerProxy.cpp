@@ -1,6 +1,5 @@
 #include "PlayerProxy.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 

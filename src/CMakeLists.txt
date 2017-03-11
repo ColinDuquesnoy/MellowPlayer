@@ -4,8 +4,6 @@ set(CMAKE_AUTOMOC OFF)
 add_executable(${PROJECT_NAME} main.cpp main.qrc qtquickcontrols2.conf ${HEADER_FILES})
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
-        ${PROJECT_NAME}.Logging
-        ${PROJECT_NAME}.Entities
         ${PROJECT_NAME}.UseCases
         ${PROJECT_NAME}.Presentation
         ${PROJECT_NAME}.Infrastructure)

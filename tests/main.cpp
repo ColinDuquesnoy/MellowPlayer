@@ -4,13 +4,9 @@
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
 #include <MellowPlayer/Infrastructure.hpp>
-#include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Presentation.hpp>
-#include <MellowPlayer/Logging.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

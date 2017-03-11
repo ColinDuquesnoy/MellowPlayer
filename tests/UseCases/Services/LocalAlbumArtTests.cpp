@@ -1,12 +1,10 @@
 #include <catch.hpp>
+#include <QtTest/QSignalSpy>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("LocalAlbumArtTests"){
     auto pluginLoaderMock = PluginLoaderMock::get();

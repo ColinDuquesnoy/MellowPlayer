@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities.hpp>
 #include "IPlayer.hpp"
 #include "../Plugin/Plugin.hpp"
 
@@ -11,7 +10,7 @@ class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(UseCases::Plugin& plugin);
+    Player(Plugin& plugin);
 
     // IPlayer
     Q_INVOKABLE void togglePlayPause() override;
@@ -25,7 +24,7 @@ public:
     Q_INVOKABLE void addToFavorites() override;
     Q_INVOKABLE void removeFromFavorites() override;
 
-    Entities::Song* getCurrentSong() override;
+    Song* getCurrentSong() override;
     double getPosition() const override;
     IPlayer::PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
@@ -51,7 +50,7 @@ signals:
     void updateRequested(const QString& script);
 
 private:
-    void setCurrentSong(std::unique_ptr<Entities::Song>& song);
+    void setCurrentSong(std::unique_ptr<Song>& song);
     void setPosition(double value);
     void setPlaybackStatus(PlaybackStatus value);
     void setCanSeek(bool value);
@@ -67,9 +66,9 @@ private:
     bool canGoPrevious = false;
     bool canAddToFavorites = false;
     double volume = 1;
-    std::unique_ptr<Entities::Song> currentSong;
+    std::unique_ptr<Song> currentSong;
     UseCases::Plugin& plugin;
-    Entities::PluginScript& pluginScript;
+    PluginScript& pluginScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };
 

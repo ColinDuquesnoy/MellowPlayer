@@ -7,7 +7,7 @@
 #include <unistd.h>
 #endif
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 SingleInstanceApplication::SingleInstanceApplication(IApplication& application):

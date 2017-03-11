@@ -7,7 +7,6 @@ if(WIN32)
     add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
-    target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib

@@ -6,7 +6,6 @@
 #include "Mpris/Mpris2Player.hpp"
 #include "MprisService.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;

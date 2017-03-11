@@ -1,8 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/Entities.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 TEST_CASE("PluginScript.getCode") {

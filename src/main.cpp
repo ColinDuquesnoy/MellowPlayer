@@ -1,11 +1,10 @@
-#include <MellowPlayer/Logging.hpp>
+#include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/Presentation.hpp>
 #include "DI.hpp"
 
 namespace di = boost::di;
 using namespace std;
-USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

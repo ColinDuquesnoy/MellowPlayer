@@ -3,7 +3,6 @@
 #include <QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <MellowPlayer/Logging.hpp>
 #include <MellowPlayer/UseCases.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -21,7 +20,7 @@ private slots:
 private:
     QNetworkAccessManager *networkAccessManager;
     QFileInfo artUrl;
-    Logging::ILogger& logger;
+    UseCases::ILogger& logger;
 };
 
 END_MELLOWPLAYER_NAMESPACE

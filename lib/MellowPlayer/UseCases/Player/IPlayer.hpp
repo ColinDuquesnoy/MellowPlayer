@@ -1,13 +1,14 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities.hpp>
+#include "Song.hpp"
+
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IPlayer: public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Entities::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
+    Q_PROPERTY(Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
     Q_PROPERTY(double position READ getPosition NOTIFY positionChanged)
     Q_PROPERTY(PlaybackStatus playbackStatus READ getPlaybackStatus NOTIFY playbackStatusChanged)
     Q_PROPERTY(bool canSeek READ getCanSeek NOTIFY canSeekChanged)
@@ -33,7 +34,7 @@ public:
     virtual void previous() = 0;
     virtual void seekToPosition(double position) = 0;
     virtual void setVolume(double volume) = 0;
-    virtual Entities::Song* getCurrentSong() = 0;
+    virtual Song* getCurrentSong() = 0;
     virtual void toggleFavoriteSong() = 0;
     virtual void addToFavorites() = 0;
     virtual void removeFromFavorites() = 0;
@@ -47,7 +48,7 @@ public:
     virtual double getVolume() const = 0;
 
 signals:
-    void currentSongChanged(Entities::Song* song);
+    void currentSongChanged(Song* song);
     void positionChanged();
     void playbackStatusChanged();
     void canSeekChanged();

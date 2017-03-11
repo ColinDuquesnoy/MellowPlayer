@@ -66,7 +66,7 @@ signals:
 
 private slots:
     void onPlaybackStatusChanged();
-    void onSongChanged(Entities::Song* song);
+    void onSongChanged(UseCases::Song* song);
     void onArtUrlChanged();
     void onPositionChanged();
     void onDurationChanged();
@@ -76,12 +76,11 @@ private slots:
     void onVolumeChanged();
 
 private:
-    QMap<QString, QVariant> toXesam(const Entities::Song& song);
+    QMap<QString, QVariant> toXesam(const UseCases::Song& song);
     QString statusToString(UseCases::IPlayer::PlaybackStatus status);
     void signalPlayerUpdate(const QVariantMap &map);
     void signalUpdate(const QVariantMap &map, const QString &interfaceName);
 
-    qlonglong m_length;
     qlonglong previousPosition;
     UseCases::IPlayer& player;
     UseCases::LocalAlbumArtService& localAlbumArt;

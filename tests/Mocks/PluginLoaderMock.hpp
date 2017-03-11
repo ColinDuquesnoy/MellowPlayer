@@ -4,7 +4,6 @@
 #include <memory>
 #include <MellowPlayer/UseCases.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 using namespace fakeit;

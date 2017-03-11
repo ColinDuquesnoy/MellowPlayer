@@ -1,11 +1,8 @@
 #include <memory>
 #include <QtGui/QIcon>
 #include "Plugin.hpp"
-#include "MellowPlayer/UseCases/Player/Player.hpp"
+#include "../Player/Player.hpp"
 
-
-USE_MELLOWPLAYER_NAMESPACE(Logging)
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 

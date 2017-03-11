@@ -7,7 +7,6 @@
 #include <MellowPlayer/Presentation.hpp>
 #include <MellowPlayer/Infrastructure.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

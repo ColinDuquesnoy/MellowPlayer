@@ -2,9 +2,10 @@
 
 #include <QtCore/QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Logging.hpp>
+#include "../Logging/ILogger.hpp"
+#include "../Logging/LoggingManager.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class PluginScript: public QObject {
     Q_OBJECT
@@ -35,7 +36,7 @@ signals:
     void codeChanged(QString);
 
 private:
-    Logging::ILogger& logger;
+    ILogger& logger;
     QString code;
     QString path;
 };

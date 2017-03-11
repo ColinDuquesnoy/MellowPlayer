@@ -4,8 +4,9 @@
 #include <map>
 #include <MellowPlayer/Macros.hpp>
 #include "ILoggerFactory.hpp"
+#include "LoggingMacros.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Logging)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class LoggingManager {
 public:

@@ -1,7 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/Entities.hpp>
+#include <MellowPlayer/UseCases.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 TEST_CASE("Plugin.DefaultCtor") {

@@ -3,7 +3,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include "LoggerConfig.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Logging)
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class ILogger {
 public:

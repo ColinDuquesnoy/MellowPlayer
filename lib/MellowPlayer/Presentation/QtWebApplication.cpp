@@ -3,7 +3,6 @@
 #include "MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp"
 #include "IconProvider.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -30,7 +29,7 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-ThinItalic.ttf");
 
     qRegisterMetaType<Player*>("UseCases::Player*");
-    qRegisterMetaType<Song*>("Entities::Song*");
+    qRegisterMetaType<Song*>("UseCases::Song*");
     qRegisterMetaType<Song*>("UseCases::Plugin*");
 }
 

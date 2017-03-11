@@ -4,9 +4,9 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Logging.hpp>
-#include "MellowPlayer/Entities/PluginMetadata.hpp"
-#include "MellowPlayer/Entities/PluginScript.hpp"
+#include "../Logging/LoggingManager.hpp"
+#include "PluginMetadata.hpp"
+#include "PluginScript.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -19,9 +19,9 @@ class Plugin: public QObject {
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(QString url READ getUrl CONSTANT)
     Q_PROPERTY(QString version READ getVersion CONSTANT)
-    Q_PROPERTY(Entities::PluginScript* script READ getScript CONSTANT)
+    Q_PROPERTY(PluginScript* script READ getScript CONSTANT)
 public:
-    Plugin(const Entities::PluginMetadata& metadata);
+    Plugin(const PluginMetadata& metadata);
     ~Plugin();
 
     bool isValid() const;
@@ -32,15 +32,15 @@ public:
     const QString& getName() const;
     QString getUrl() const;
     const QString& getVersion() const;
-    Entities::PluginScript* getScript() const;
+    PluginScript* getScript() const;
 
     bool operator==(const Plugin& rhs) const ;
     bool operator!=(const Plugin& rhs) const;
 
 private:
-    Logging::ILogger& logger;
-    Entities::PluginMetadata metadata;
-    std::unique_ptr<Entities::PluginScript> script;
+    ILogger& logger;
+    PluginMetadata metadata;
+    std::unique_ptr<PluginScript> script;
 };
 
 

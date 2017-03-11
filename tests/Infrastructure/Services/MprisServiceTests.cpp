@@ -8,7 +8,6 @@
 #include <Mocks/PluginLoaderMock.hpp>
 #include <QtDBus/QDBusConnection>
 
-USE_MELLOWPLAYER_NAMESPACE(Logging)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

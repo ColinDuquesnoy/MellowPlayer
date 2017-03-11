@@ -1,6 +1,5 @@
 #pragma once
 #include <QObject>
-#include <MellowPlayer/Entities.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include "StreamingServiceModel.hpp"
 

@@ -17,7 +17,7 @@ signals:
     void urlChanged();
 
 private slots:
-    void onCurrentSongChanged(Entities::Song* song);
+    void onCurrentSongChanged(Song* song);
     void onDownloadFinished(const QString& newUrl);
 
 private:

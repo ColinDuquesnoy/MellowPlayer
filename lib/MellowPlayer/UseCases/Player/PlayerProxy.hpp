@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE void addToFavorites() override;
     Q_INVOKABLE void removeFromFavorites() override;
 
-    Entities::Song* getCurrentSong() override;
+    Song* getCurrentSong() override;
     double getPosition() const override;
     PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
@@ -35,7 +35,7 @@ private slots:
 private:
     PlayersManager& playersManager;
     PluginManager& pluginManager;
-    Entities::Song nullSong;
+    Song nullSong;
 
     std::shared_ptr<Player> currentPlayer;
 };

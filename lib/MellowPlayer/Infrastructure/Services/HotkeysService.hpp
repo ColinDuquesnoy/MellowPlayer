@@ -21,7 +21,7 @@ public slots:
     void toggleFavoriteSong() override;
 
 private:
-    Logging::ILogger& logger;
+    UseCases::ILogger& logger;
     UseCases::IPlayer& player;
     QxtGlobalShortcut* playShortcut;
     QxtGlobalShortcut* nextShortcut;

@@ -1,7 +1,6 @@
 #include "PluginManager.hpp"
 #include <stdexcept>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 

@@ -1,8 +1,7 @@
 #pragma once
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities.hpp>
-#include "MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp"
+#include "../Interfaces/IPluginLoader.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
