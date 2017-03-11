@@ -16,7 +16,7 @@ class StreamingServiceModel: public QObject
 public:
     StreamingServiceModel(UseCases::Plugin& plugin,
                           UseCases::IApplicationSettings& applicationSettings,
-                          UseCases::PlayersManager& playerManager,
+                          UseCases::PlayersService& playerManager,
                           QObject* parent= nullptr);
 
     QString getColor() const;
@@ -39,7 +39,7 @@ private:
 
     UseCases::Plugin& plugin;
     UseCases::IApplicationSettings& applicationSettings;
-    UseCases::PlayersManager& players;
+    UseCases::PlayersService& players;
 };
 
 using StreamingServiceListModel = ListModel<StreamingServiceModel>;

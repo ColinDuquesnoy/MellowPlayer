@@ -9,8 +9,8 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 TEST_CASE("LocalAlbumArtTests"){
     auto pluginLoaderMock = PluginLoaderMock::get();
     PluginManager pluginManager(pluginLoaderMock.get());
-    PlayersManager playersManager(pluginManager);
-    PlayerProxy player(playersManager, pluginManager);
+    PlayersService playersService(pluginManager);
+    PlayerProxy player(playersService, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);

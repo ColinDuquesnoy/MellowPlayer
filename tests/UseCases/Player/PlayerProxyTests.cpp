@@ -9,8 +9,8 @@ TEST_CASE("PlayerProxyTests") {
     auto mock = PluginLoaderMock::get();
     PluginManager pluginManager(mock.get());
     pluginManager.load();
-    PlayersManager playersManager(pluginManager);
-    PlayerProxy proxy(playersManager, pluginManager);
+    PlayersService playersService(pluginManager);
+    PlayerProxy proxy(playersService, pluginManager);
 
     SECTION("default properties (currentPlayer is null)") {
         REQUIRE(proxy.getPosition() == 0);
@@ -30,8 +30,8 @@ TEST_CASE("PlayerProxyTests") {
         REQUIRE(!proxy.getCurrentSong()->getIsFavorite());
     }
 
-    Player& player1 = *playersManager.getPlayer(pluginManager.getAll()[0]->getName());
-    Player& player2 = *playersManager.getPlayer(pluginManager.getAll()[1]->getName());
+    Player& player1 = *playersService.get(pluginManager.getAll()[0]->getName());
+    Player& player2 = *playersService.get(pluginManager.getAll()[1]->getName());
     pluginManager.setCurrent(pluginManager.getAll()[0].get());
 
     QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Song*)));

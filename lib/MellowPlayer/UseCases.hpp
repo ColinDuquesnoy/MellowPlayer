@@ -16,7 +16,7 @@
 #include "UseCases/Player/IPlayer.hpp"
 #include "UseCases/Player/Player.hpp"
 #include "UseCases/Player/PlayerProxy.hpp"
-#include "UseCases/Player/PlayersManager.hpp"
+#include "MellowPlayer/UseCases/Player/PlayersService.hpp"
 #include "UseCases/Player/Song.hpp"
 
 #include "UseCases/Plugin/Plugin.hpp"

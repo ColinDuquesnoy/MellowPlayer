@@ -5,12 +5,12 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServiceModel::StreamingServiceModel(Plugin& plugin,
                                              IApplicationSettings& applicationSettings,
-                                             PlayersManager& playersManager,
+                                             PlayersService& playersService,
                                              QObject* parent) :
         QObject(parent),
         plugin(plugin),
         applicationSettings(applicationSettings),
-        players(playersManager) {
+        players(playersService) {
 }
 QString StreamingServiceModel::getColor() const {
     return plugin.getColor();
@@ -25,7 +25,7 @@ QString StreamingServiceModel::getName() const {
 }
 
 Player* StreamingServiceModel::getPlayer() {
-    return players.getPlayer(plugin.getName()).get();
+    return players.get(plugin.getName()).get();
 }
 
 QString StreamingServiceModel::getUrl() const {

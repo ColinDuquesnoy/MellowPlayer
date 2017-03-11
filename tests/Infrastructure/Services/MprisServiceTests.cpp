@@ -15,8 +15,8 @@ TEST_CASE("MprisServiceTests", "[IntegrationTests]")
 {
     auto plugionLoaderMock = PluginLoaderMock::get();
     PluginManager pluginManager(plugionLoaderMock.get());
-    PlayersManager playersManager(pluginManager);
-    PlayerProxy player(playersManager, pluginManager);
+    PlayersService playersService(pluginManager);
+    PlayerProxy player(playersService, pluginManager);
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();

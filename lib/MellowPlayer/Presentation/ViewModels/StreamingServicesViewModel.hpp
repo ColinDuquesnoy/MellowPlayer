@@ -15,7 +15,7 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
     StreamingServicesViewModel(UseCases::PluginManager& pluginManager,
-                               UseCases::PlayersManager& playersManager,
+                               UseCases::PlayersService& playersService,
                                UseCases::IApplicationSettings& applicationSettings);
 
     Q_INVOKABLE void reload();
@@ -36,7 +36,7 @@ private slots:
 
 private:
     UseCases::PluginManager& pluginManager;
-    UseCases::PlayersManager& playersManager;
+    UseCases::PlayersService& playersService;
     UseCases::IApplicationSettings& applicationSettings;
     StreamingServiceListModel model;
     QObject* currentService;

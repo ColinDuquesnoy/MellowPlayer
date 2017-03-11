@@ -6,12 +6,12 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class PlayersManager: public QObject {
+class PlayersService: public QObject {
     Q_OBJECT
 public:
-    PlayersManager(PluginManager& pluginManager);
+    PlayersService(PluginManager& pluginManager);
 
-    std::shared_ptr<Player> getPlayer(const QString& serviceName) const;
+    std::shared_ptr<Player> get(const QString& serviceName) const;
 
 private slots:
     void onServiceAdded(UseCases::Plugin* service);

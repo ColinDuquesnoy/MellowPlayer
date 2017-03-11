@@ -3,8 +3,8 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayerProxy::PlayerProxy(PlayersManager& playersManager, PluginManager& pluginManager)
-    : playersManager(playersManager), pluginManager(pluginManager), currentPlayer(nullptr) {
+PlayerProxy::PlayerProxy(PlayersService& playersService, PluginManager& pluginManager)
+    : players(playersService), pluginManager(pluginManager), currentPlayer(nullptr) {
 
     connect(&pluginManager, &PluginManager::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);
@@ -111,8 +111,8 @@ double PlayerProxy::getVolume() const {
     return 0;
 }
 
-void PlayerProxy::onCurrentPluginChanged(Plugin* service) {
-    auto player = playersManager.getPlayer(service->getName());
+void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
+    auto player = players.get(plugin->getName());
     if (player != currentPlayer) {
         if (currentPlayer != nullptr) {
             disconnect(currentPlayer.get(), &Player::currentSongChanged, this, &PlayerProxy::currentSongChanged);

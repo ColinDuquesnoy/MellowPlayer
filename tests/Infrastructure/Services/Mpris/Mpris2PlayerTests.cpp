@@ -15,9 +15,9 @@ TEST_CASE("Mpris2PlayerTests") {
     PluginManager pluginManager(mock.get());
     pluginManager.load();
     pluginManager.setCurrent(pluginManager.getAll()[0].get());
-    PlayersManager playersManager(pluginManager);
-    PlayerProxy player(playersManager, pluginManager);
-    Player& currentPlayer = *playersManager.getPlayer(pluginManager.getCurrent()->getName());
+    PlayersService playersService(pluginManager);
+    PlayerProxy player(playersService, pluginManager);
+    Player& currentPlayer = *playersService.get(pluginManager.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);

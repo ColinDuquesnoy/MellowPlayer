@@ -1,21 +1,21 @@
-#include "PlayersManager.hpp"
+#include "PlayersService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayersManager::PlayersManager(PluginManager& pluginManager) {
+PlayersService::PlayersService(PluginManager& pluginManager) {
     connect(&pluginManager, &PluginManager::pluginAdded,
-            this, &PlayersManager::onServiceAdded);
+            this, &PlayersService::onServiceAdded);
     for (auto& plugin: pluginManager.getAll()) {
         onServiceAdded(plugin.get());
     }
 }
 
-shared_ptr<Player> PlayersManager::getPlayer(const QString& serviceName) const {
+shared_ptr<Player> PlayersService::get(const QString& serviceName) const {
     return players[serviceName];
 }
 
-void PlayersManager::onServiceAdded(Plugin* service) {
+void PlayersService::onServiceAdded(Plugin* service) {
     if (players.contains(service->getName()))
         return;
     players[service->getName()] = make_shared<Player>(*service);
