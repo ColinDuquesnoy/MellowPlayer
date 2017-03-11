@@ -100,10 +100,10 @@ cmake --build . --config Release
 
 You can specify the following options when calling cmake:
 
-- ``-DUSE_SNORENOTIFY``: **ON** to use snorenotify based notifications, **OFF** to use QSystemTrayIcon based notifications *(no thumbnail and not quick actions)*. *Default is **ON***. 
-- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - *Default is **Debug***.
-- ``-DBUILD_TESTS=``: **ON** or **OFF** - *Default is **ON***.
-- ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - *Default is **OFF***.
+- ``-DUSE_SNORENOTIFY``: **ON** to use snorenotify based notifications, **OFF** to use QSystemTrayIcon based notifications *(no thumbnail and not quick actions)* - Default is **ON**. 
+- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Debug**.
+- ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **ON**.
+- ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .
 
 # Running the test suite
 
