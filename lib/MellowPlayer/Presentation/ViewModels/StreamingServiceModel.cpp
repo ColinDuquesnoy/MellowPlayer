@@ -12,6 +12,9 @@ StreamingServiceModel::StreamingServiceModel(Plugin& plugin,
         applicationSettings(applicationSettings),
         players(playersManager) {
 }
+QString StreamingServiceModel::getColor() const {
+    return plugin.getColor();
+}
 
 QString StreamingServiceModel::getLogo() const {
     return plugin.getLogo();

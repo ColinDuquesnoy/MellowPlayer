@@ -57,12 +57,6 @@ TEST_CASE("StreamingServiceTest") {
         pluginMetadata.url = "https://deezer.com";
         Plugin service(pluginMetadata);
         REQUIRE(service.getUrl() == pluginMetadata.url);
-
-        // todo move to StreamingServiceModel
-//        QSignalSpy spy(&service, SIGNAL(urlChanged(QString)));
-//        service.setCustomUrl("https://deezer.com/news");
-//        REQUIRE(service.getUrl() == "https://deezer.com/news");
-//        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Plugin.getScript") {

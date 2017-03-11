@@ -19,7 +19,7 @@ public:
                           UseCases::PlayersManager& playerManager,
                           QObject* parent= nullptr);
 
-    QString getColor() const { return plugin.getColor(); }
+    QString getColor() const;
     QString getLogo() const;
     QString getName() const;
     UseCases::Player* getPlayer();

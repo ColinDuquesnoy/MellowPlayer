@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(presentation);
 #endif
     QtWebApplication webApplication(argc, argv);
+
     QSettings settings;
     settings.clear();
 
@@ -37,5 +38,8 @@ int main(int argc, char* argv[])
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
 
-    return Catch::Session().run(argc, const_cast<char const* const* const>(argv));
+    auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
+
+    settings.clear();
+    return retCode;
 }
