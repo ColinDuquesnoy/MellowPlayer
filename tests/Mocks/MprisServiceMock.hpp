@@ -1,5 +1,9 @@
 #pragma once
 
+#include <QtCore>
+
+#ifdef Q_OS_LINUX
+
 #include <fakeit.hpp>
 #include <memory>
 #include <MellowPlayer/UseCases.hpp>
@@ -15,3 +19,5 @@ public:
         return mock;
     }
 };
+
+#endif
