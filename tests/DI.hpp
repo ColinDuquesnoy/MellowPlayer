@@ -1,4 +1,5 @@
 #pragma once
+
 #include <boost/di.hpp>
 #include <MellowPlayer/UseCases.hpp>
 #include <MellowPlayer/Presentation.hpp>
@@ -58,7 +59,7 @@ public:
     };
 };
 
-auto getTestInjector = [](ScopedScope& scope) {
+inline auto getTestInjector(ScopedScope& scope) {
 
     static auto hotkeysServiceMock = HotkeysServiceMock::get();
     static auto mainWindowMock = MainWindowMock::get();
