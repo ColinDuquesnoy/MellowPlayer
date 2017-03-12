@@ -3,6 +3,8 @@
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
+#include <Mocks/NotificationServiceMock.hpp>
+#include <Mocks/PluginLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -12,7 +14,15 @@ TEST_CASE("ApplicationTests") {
     auto hotkeysMock = HotkeysServiceMock::get();
     auto qtAppMock = QtApplicationMock::get();
     auto systemTrayIconMock = SystemTrayIconMock::get();
-    Application app(qtAppMock.get(), mainWindowMock.get(), hotkeysMock.get(), systemTrayIconMock.get());
+    auto notificationServiceMock = NotificationServiceMock::get();
+    auto pluginLoaderMock = PluginLoaderMock::get();
+    PluginManager pluginManager(pluginLoaderMock.get());
+    Application app(qtAppMock.get(),
+                    mainWindowMock.get(),
+                    pluginManager,
+                    hotkeysMock.get(),
+                    systemTrayIconMock.get(),
+                    notificationServiceMock.get());
 
     SECTION("initialize") {
         app.initialize();

@@ -9,12 +9,17 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class LinuxApplication: public Application {
 public:
-    LinuxApplication(UseCases::IQtApplication& qtApp, UseCases::IMainWindow& mainWindow,
-                     UseCases::IHotkeysService& kotkeys, UseCases::ISystemTrayIcon& systemTrayIcon,
+    LinuxApplication(UseCases::IQtApplication& qtApp,
+                     UseCases::IMainWindow& mainWindow,
+                     UseCases::PluginManager& pluginManager,
+                     UseCases::IHotkeysService& kotkeys,
+                     UseCases::ISystemTrayIcon& systemTrayIcon,
+                     UseCases::INotificationService& playerNotificationService,
                      UseCases::IMprisService& mprisService);
     void initialize() override;
 
 private:
+    UseCases::ILogger& logger;
     UseCases::IMprisService& mprisService;
 };
 

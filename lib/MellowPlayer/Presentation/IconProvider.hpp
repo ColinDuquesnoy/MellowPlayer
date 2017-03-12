@@ -34,6 +34,11 @@ public:
                                 QIcon("://MellowPlayer/Presentation/resources/icons/media-playback-start.png"));
     }
 
+    static QIcon pause() {
+        return QIcon::fromTheme("media-playback-start",
+                                QIcon("://MellowPlayer/Presentation/resources/icons/media-playback-pause.png"));
+    }
+
     static QIcon next() {
         return QIcon::fromTheme("media-seek-forward",
                                 QIcon("://MellowPlayer/Presentation/resources/icons/media-seek-forward.png"));

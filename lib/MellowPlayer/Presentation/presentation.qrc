@@ -30,6 +30,7 @@
         <file>resources/qml/controls/MainWindow.qml</file>
         <file>resources/icons/application-exit.png</file>
         <file>resources/icons/media-playback-start.png</file>
+        <file>resources/icons/media-playback-pause.png</file>
         <file>resources/icons/media-seek-backward.png</file>
         <file>resources/icons/media-seek-forward.png</file>
         <file>resources/icons/view-restore.png</file>

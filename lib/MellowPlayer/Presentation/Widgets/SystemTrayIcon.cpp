@@ -5,24 +5,34 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtApplication& qtApplication,
                                IApplicationSettings& applicationSettings) :
-        QObject(), player(player), mainWindow(mainWindow), qtApplication(qtApplication),
+        QObject(), logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
+        player(player), mainWindow(mainWindow), qtApplication(qtApplication),
         applicationSettings(applicationSettings), iconProvider(applicationSettings),
-        qSystemTrayIcon(iconProvider.trayIcon())
-{
+        qSystemTrayIcon(iconProvider.trayIcon()) {
     connect(&qSystemTrayIcon, &QSystemTrayIcon::activated, this, &SystemTrayIcon::onActivated);
 
     setUpMenu();
 }
 
-void SystemTrayIcon::show() { qSystemTrayIcon.show(); }
+void SystemTrayIcon::show() {
+    LOG_DEBUG(logger, "show");
+    qSystemTrayIcon.show();
+}
 
-void SystemTrayIcon::hide() { qSystemTrayIcon.hide(); }
+void SystemTrayIcon::hide() {
+    LOG_DEBUG(logger, "hide");
+    qSystemTrayIcon.hide();
+}
 
 void SystemTrayIcon::showMessage(const QString& title, const QString& message) {
+    LOG_DEBUG(logger, "show message: " + title + " - " + message);
     qSystemTrayIcon.showMessage(title, message);
 }
 
-void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason) { mainWindow.show(); }
+void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason) {
+    LOG_TRACE(logger, "activated");
+    mainWindow.show();
+}
 
 void SystemTrayIcon::setUpMenu() {
     playPauseAction = menu.addAction(iconProvider.play(), "Play/Pause");
@@ -47,12 +57,27 @@ void SystemTrayIcon::setUpMenu() {
     qSystemTrayIcon.setContextMenu(&menu);
 }
 
-void SystemTrayIcon::togglePlayPause() { player.togglePlayPause(); }
+void SystemTrayIcon::togglePlayPause() {
+    LOG_TRACE(logger, "togglePlayPause");
+    player.togglePlayPause();
+}
 
-void SystemTrayIcon::next() { player.next(); }
+void SystemTrayIcon::next() {
+    LOG_TRACE(logger, "next");
+    player.next();
+}
 
-void SystemTrayIcon::previous() { player.previous(); }
+void SystemTrayIcon::previous() {
+    LOG_TRACE(logger, "previous");
+    player.previous();
+}
 
-void SystemTrayIcon::restoreWindow() { mainWindow.show(); }
+void SystemTrayIcon::restoreWindow() {
+    LOG_TRACE(logger, "restore window");
+    mainWindow.show();
+}
 
-void SystemTrayIcon::quit() { qtApplication.quit(); }
+void SystemTrayIcon::quit() {
+    LOG_TRACE(logger, "quit");
+    qtApplication.quit();
+}

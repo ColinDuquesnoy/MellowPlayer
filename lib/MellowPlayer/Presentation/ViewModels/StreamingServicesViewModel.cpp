@@ -18,16 +18,15 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginManager& pluginMana
     for(auto& plugin: pluginManager.getAll()) {
         onPluginAdded(plugin.get());
     }
+}
 
-    reload();
-
+void StreamingServicesViewModel::initialize() {
     auto currentServiceName = applicationSettings.getCurrentService();
     qDebug() << currentServiceName;
     for (auto service: model.getItems()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);
     }
-
 }
 
 StreamingServiceListModel* StreamingServicesViewModel::getModel() {

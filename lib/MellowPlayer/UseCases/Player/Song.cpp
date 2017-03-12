@@ -2,30 +2,13 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-Song::Song()
-    : uniqueId(""),
-      title(""),
-      artist(""),
-      album(""),
-      artUrl(""),
-      duration(0),
-      isFavorite(false) {
+Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false) {
 }
 
-Song::Song(const QString& uniqueId,
-           const QString& title,
-           const QString& artist,
-           const QString& album,
-           const QString& artUrl,
-           double duration,
-           bool isFavorite)
-    : uniqueId(uniqueId),
-      title(title),
-      artist(artist),
-      album(album),
-      artUrl(artUrl),
-      duration(duration),
-      isFavorite(isFavorite) {
+Song::Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album,
+           const QString& artUrl, double duration, bool isFavorite) :
+        uniqueId(uniqueId), title(title), artist(artist), album(album), artUrl(artUrl), duration(duration),
+        isFavorite(isFavorite) {
 }
 
 QString Song::getUniqueId() const {
@@ -57,7 +40,7 @@ bool Song::getIsFavorite() const {
 }
 
 void Song::setDuration(double value) {
-    if( value == duration)
+    if (value == duration)
         return;
 
     duration = value;
@@ -65,7 +48,7 @@ void Song::setDuration(double value) {
 }
 
 void Song::setIsFavorite(bool value) {
-    if( value == isFavorite)
+    if (value == isFavorite)
         return;
 
     isFavorite = value;

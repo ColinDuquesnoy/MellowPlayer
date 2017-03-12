@@ -19,14 +19,15 @@ public:
     void hide() override;
 
 private:
-    bool eventFilter(QObject *object, QEvent *event);
-
     QmlMainWindow(const QmlMainWindow&) = delete;
     QmlMainWindow operator=(const QmlMainWindow&) = delete;
-    QQuickWindow* window;
-    UseCases::IApplicationSettings& applicationSettings;
-    QQmlApplicationEngine qmlApplicationEngine;
+    bool eventFilter(QObject *object, QEvent *event);
 
+    QQuickWindow* window;
+    UseCases::ILogger& logger;
+    UseCases::IApplicationSettings& applicationSettings;
+    StreamingServicesViewModel& streamingServices;
+    QQmlApplicationEngine qmlApplicationEngine;
 };
 
 END_MELLOWPLAYER_NAMESPACE

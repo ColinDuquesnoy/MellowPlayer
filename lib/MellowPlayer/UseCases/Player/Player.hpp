@@ -59,6 +59,7 @@ private:
     void setCanAddToFavorites(bool value);
     void setCurrentVolume(double value);
 
+    ILogger& logger;
     double position = false;
     PlaybackStatus playbackStatus = PlaybackStatus::Stopped;
     bool canSeek = false;

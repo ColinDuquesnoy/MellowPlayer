@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QFileInfo>
 #include <QObject>
 #include <QString>
 #include <MellowPlayer/Macros.hpp>
@@ -13,6 +14,7 @@ public:
     virtual ~IAlbumArtDownloader() = default;
 
     virtual bool download(const QString& artUrl, const QString& songId) = 0;
+    virtual QFileInfo getLocalArtUrl(const QString &songId) = 0;
 
 signals:
     void downloadFinished(const QString& localUrl);

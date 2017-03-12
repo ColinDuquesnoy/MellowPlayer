@@ -204,5 +204,5 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: console.warn(font.family);
+    Component.onCompleted: console.log("application font: " + font.family);
 }

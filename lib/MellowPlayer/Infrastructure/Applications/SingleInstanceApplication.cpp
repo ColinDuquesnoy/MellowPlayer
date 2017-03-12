@@ -19,21 +19,22 @@ SingleInstanceApplication::SingleInstanceApplication(IApplication& application):
 }
 
 int SingleInstanceApplication::run() {
-    LOG_DEBUG(logger, "connecting to locale server");
+    LOG_TRACE(logger, "run");
+    LOG_DEBUG(logger, "starting, connecting to local server");
     localSocket.connectToServer("MellowPlayer3", QIODevice::WriteOnly);
     return application.run();
 }
 
 void SingleInstanceApplication::onSocketConnected() {
-    LOG_DEBUG(logger, "Another instance is already running, quitting");
+    LOG_INFO(logger, "another instance is already running, quitting");
     QTimer::singleShot(100, this, &SingleInstanceApplication::quit);
 }
 
 void SingleInstanceApplication::onSocketError() {
+    LOG_DEBUG(logger, "initializaing");
     localServer.listen("MellowPlayer3");
     connectSignalHandlers();
     application.initialize();
-    application.restoreWindow();
 }
 
 void SingleInstanceApplication::onNewConnection() {
@@ -57,5 +58,6 @@ void SingleInstanceApplication::connectSignalHandlers()
 }
 
 void SingleInstanceApplication::quit() {
+    LOG_TRACE(logger, "quit");
     application.quit();
 }

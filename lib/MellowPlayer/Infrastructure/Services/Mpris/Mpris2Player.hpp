@@ -81,7 +81,13 @@ private:
     void signalPlayerUpdate(const QVariantMap &map);
     void signalUpdate(const QVariantMap &map, const QString &interfaceName);
 
+    QString qMapToString(const QMap<QString, QVariant>& map);
+
+    static const qlonglong SEC_TO_MICROSEC;
+    static const qlonglong SEEK_DELTA_LIMIT;
+
     qlonglong previousPosition;
+    UseCases::ILogger& logger;
     UseCases::IPlayer& player;
     UseCases::LocalAlbumArtService& localAlbumArt;
     QMap<QString, QVariant> lastMetadata;

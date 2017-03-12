@@ -14,6 +14,8 @@ public:
     HotkeysService(UseCases::IPlayer& player);
     ~HotkeysService();
 
+    void start() override;
+
 public slots:
     void togglePlayPause() override;
     void next() override;

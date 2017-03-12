@@ -16,11 +16,15 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(presentation);
 #endif
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, LogLevel::Info);
+    LoggingManager::initialize(loggerFactory, LogLevel::Debug);
     QtWebApplication qtApp(argc, argv);
     ScopedScope scope{};
     auto injector = di::make_injector(
-        di::bind<IQtApplication>().to(qtApp), defaultInjector(scope), platformInjector(scope));
+        di::bind<IQtApplication>().to(qtApp),
+        defaultInjector(scope),
+        platformInjector(scope),
+        notificationPresenterInjector(scope)
+    );
 
     SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
     return app.run();

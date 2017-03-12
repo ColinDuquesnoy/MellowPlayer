@@ -8,8 +8,12 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class Application : public IApplication {
 public:
-    Application(UseCases::IQtApplication& qtApp, UseCases::IMainWindow& mainWindow, UseCases::IHotkeysService& kotkeys,
-                UseCases::ISystemTrayIcon& systemTrayIcon);
+    Application(UseCases::IQtApplication& qtApp,
+                UseCases::IMainWindow& mainWindow,
+                UseCases::PluginManager& pluginManager,
+                UseCases::IHotkeysService& kotkeys,
+                UseCases::ISystemTrayIcon& systemTrayIcon,
+                UseCases::INotificationService& notificationService);
 
     void initialize() override;
     void restoreWindow() override;
@@ -17,10 +21,13 @@ public:
     void quit() override;
 
 private:
+    UseCases::ILogger& logger;
     UseCases::IQtApplication& qtApp;
     UseCases::IMainWindow& mainWindow;
+    UseCases::PluginManager& pluginManager;
     UseCases::IHotkeysService& kotkeys;
     UseCases::ISystemTrayIcon& systemTrayIcon;
+    UseCases::INotificationService& notificationService;
 };
 
 END_MELLOWPLAYER_NAMESPACE

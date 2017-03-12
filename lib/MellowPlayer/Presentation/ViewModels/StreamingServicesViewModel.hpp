@@ -17,6 +17,7 @@ public:
     StreamingServicesViewModel(UseCases::PluginManager& pluginManager,
                                UseCases::PlayersService& playersService,
                                UseCases::IApplicationSettings& applicationSettings);
+    void initialize();
 
     Q_INVOKABLE void reload();
     StreamingServiceListModel* getModel();

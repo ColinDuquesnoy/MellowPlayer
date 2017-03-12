@@ -21,14 +21,14 @@ WebEngineView {
     enabled: visible
 
     onLoadingChanged: {
-        console.warn("onLoadingChanged: ", loading)
+        console.log("onLoadingChanged: ", loading)
         if (!loading)
             player.initialize()
     }
 
     onNewViewRequested: {
         if (!request.userInitiated)
-            console.warn("Blocked a popup window")
+            console.info("Blocked a popup window")
         else {
             var dialog = applicationRoot.createDialog(root.profile);
             request.openIn(dialog.currentWebView);
@@ -56,7 +56,7 @@ WebEngineView {
     }
 
     Timer {
-        interval: 100
+        interval: 300
         onTriggered: player.refresh()
         running: root.enabled && !root.loading
         repeat: true

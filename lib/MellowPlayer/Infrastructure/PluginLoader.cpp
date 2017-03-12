@@ -11,7 +11,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
-PluginLoader::PluginLoader():
+PluginLoader::PluginLoader() :
         logger(LoggingManager::instance().getLogger("PluginManager")) {
 
 }
@@ -20,22 +20,20 @@ PluginList PluginLoader::load() const {
     PluginList plugins;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
-            LOG_TRACE(logger, "Skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
+            LOG_DEBUG(logger, "Skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
-        LOG_TRACE(logger, "Looking for plugins in " << path.toStdString().c_str());
+        LOG_DEBUG(logger, "Looking for plugins in " << path.toStdString().c_str());
         for (const QFileInfo& directory: QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkPluginDirectory(directory.absoluteFilePath())) {
                 shared_ptr<Plugin> plugin = loadPlugin(directory.absoluteFilePath());
                 if (plugin->isValid() && !containsPlugin(plugins, plugin)) {
-                    LOG_DEBUG(logger, plugin->getName().toStdString().c_str()
-                            << " plugin successfully loaded (from \"" <<
-                            directory.absoluteFilePath().toStdString().c_str() << "\")");
+                    LOG_INFO(logger, plugin->getName() + " plugin successfully loaded (from \"" +
+                                     directory.absoluteFilePath() + "\")");
                     plugins.append(plugin);
                 } else {
-                    LOG_DEBUG(logger,
-                              "Skipping plugin " << plugin->getName().toStdString().c_str()
-                                                 << ", already loaded from another source or invalid");
+                    LOG_DEBUG(logger, "Skipping plugin " + plugin->getName() +
+                                      ", already loaded from another source or invalid");
                 }
             }
         }
@@ -130,7 +128,7 @@ QStringList PluginLoader::getSearchPaths() const {
 }
 
 bool PluginLoader::containsPlugin(const PluginList& plugins,
-                                             shared_ptr<Plugin>& toCheck) const {
+                                  shared_ptr<Plugin>& toCheck) const {
     for (auto plugin: plugins) {
         if (*toCheck == *plugin)
             return true;

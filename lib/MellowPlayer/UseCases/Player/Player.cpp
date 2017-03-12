@@ -4,12 +4,14 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-Player::Player(Plugin& plugin)
-    : currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
+Player::Player(Plugin& plugin) :
+        logger(LoggingManager::instance().getLogger("Player")),
+        currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
 
 }
 
 void Player::togglePlayPause() {
+    LOG_TRACE(logger, "togglePlayePause");
     if (playbackStatus == PlaybackStatus::Playing)
         pause();
     else
@@ -17,6 +19,7 @@ void Player::togglePlayPause() {
 }
 
 void Player::play() {
+    LOG_DEBUG(logger, "play()");
     if (playbackStatus != PlaybackStatus::Playing) {
         emit runJavascriptRequested(pluginScript.play());
         setPlaybackStatus(PlaybackStatus::Playing);
@@ -24,6 +27,7 @@ void Player::play() {
 }
 
 void Player::pause() {
+    LOG_DEBUG(logger, "pause()");
     if (playbackStatus == PlaybackStatus::Playing) {
         emit runJavascriptRequested(pluginScript.pause());
         setPlaybackStatus(PlaybackStatus::Paused);
@@ -31,23 +35,28 @@ void Player::pause() {
 }
 
 void Player::next() {
+    LOG_DEBUG(logger, "next()");
     emit runJavascriptRequested(pluginScript.next());
 }
 
 void Player::previous() {
+    LOG_DEBUG(logger, "previous()");
     emit runJavascriptRequested(pluginScript.previous());
 }
 
 void Player::seekToPosition(double value) {
+    LOG_DEBUG(logger, "seekToPosition(" << value << ")");
     emit runJavascriptRequested(pluginScript.seekToPosition(value));
     setPosition(value);
 }
 
 void Player::setVolume(double volume) {
+    LOG_TRACE(logger, "setVolume(" << volume << ")");
     emit runJavascriptRequested(pluginScript.setVolume(volume));
 }
 
 void Player::toggleFavoriteSong() {
+    LOG_TRACE(logger, "toggleFavoriteSong()");
     if (currentSong == nullptr)
         return;
 
@@ -58,10 +67,12 @@ void Player::toggleFavoriteSong() {
 }
 
 void Player::addToFavorites() {
+    LOG_TRACE(logger, "addToFavorites()");
     emit runJavascriptRequested(pluginScript.addToFavorites());
 }
 
 void Player::removeFromFavorites() {
+    LOG_TRACE(logger, "removeFromFavorites()");
     emit runJavascriptRequested(pluginScript.removeFromFavorites());
 }
 
@@ -98,14 +109,17 @@ double Player::getVolume() const {
 }
 
 void Player::initialize() {
+    LOG_TRACE(logger, "initialize()");
     emit runJavascriptRequested(pluginScript.getConstants() + "\n" + pluginScript.getCode());
 }
 
 void Player::refresh() {
+    LOG_TRACE(logger, "initialize()");
     emit updateRequested(pluginScript.update());
 }
 
 void Player::setUpdateResults(const QVariant& results) {
+    LOG_TRACE(logger, "setUpdateResults()");
     QVariantMap resultsMap = results.toMap();
 
     QString uniqueId = resultsMap.value("songId").toString();
@@ -128,16 +142,19 @@ void Player::setUpdateResults(const QVariant& results) {
 }
 
 void Player::suspend() {
+    LOG_DEBUG(logger, "suspend()");
     suspendedState = playbackStatus;
     pause();
 }
 
 void Player::resume() {
+    LOG_DEBUG(logger, "resume()");
     if (suspendedState == PlaybackStatus::Playing)
         play();
 }
 
 void Player::setCurrentSong(unique_ptr<Song>& song) {
+    LOG_TRACE(logger, "setCurrentSong()");
     if (currentSong != nullptr && *currentSong == *song) {
         currentSong->setDuration(song->getDuration());
         currentSong->setIsFavorite(song->getIsFavorite());
@@ -145,15 +162,16 @@ void Player::setCurrentSong(unique_ptr<Song>& song) {
     }
 
     currentSong = std::move(song);
+    LOG_DEBUG(logger, "song changed: " + currentSong->toString());
     emit currentSongChanged(currentSong.get());
 }
 
 void Player::setPosition(double value) {
     if (value == position)
         return;
-    
+
     position = value;
-    emit positionChanged();        
+    emit positionChanged();
 }
 
 void Player::setPlaybackStatus(PlaybackStatus value) {
@@ -161,6 +179,7 @@ void Player::setPlaybackStatus(PlaybackStatus value) {
         return;
 
     playbackStatus = value;
+    LOG_DEBUG(logger, "playback status changed: " << static_cast<int>(value));
     emit playbackStatusChanged();
 }
 

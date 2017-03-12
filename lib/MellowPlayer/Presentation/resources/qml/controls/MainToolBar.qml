@@ -15,6 +15,7 @@ ToolBar {
 
     RowLayout {
         anchors.fill: parent
+        spacing: 0
 
         ToolButton {
             text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_arrow_back

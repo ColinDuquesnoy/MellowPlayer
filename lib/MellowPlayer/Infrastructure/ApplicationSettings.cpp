@@ -2,10 +2,13 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace std;
 
 const QString ApplicationSettings::CURRENT_SERVICE_KEY = "currentService";
 const QString ApplicationSettings::SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY = "showCloseToSystemTrayMessage";
 const QString ApplicationSettings::TRAY_ICON_KEY = "getTrayIcon";
+const QString ApplicationSettings::NOTIFICATIONS_ENABLED_KEY = "notificationsEnabled";
+const QString ApplicationSettings::NOTIFICATION_ENABLED_KEY = "notification/%1";
 
 ApplicationSettings::ApplicationSettings(): qSettings() {
 
@@ -47,3 +50,25 @@ void ApplicationSettings::setTrayIcon(const QString& trayIcon) {
     qSettings.setValue(TRAY_ICON_KEY, trayIcon);
 }
 
+bool ApplicationSettings::getNotificationsEnabled() const {
+    return qSettings.value(NOTIFICATIONS_ENABLED_KEY, true).toBool();
+}
+
+void ApplicationSettings::setNotificationsEnabled(bool enable) {
+    qSettings.setValue(NOTIFICATIONS_ENABLED_KEY, enable);
+
+}
+
+bool ApplicationSettings::isNotificationTypeEnabled(NotificationType notificationType) const {
+    if (!getNotificationsEnabled())
+        return false;
+    return qSettings.value(getNotificationEnabledKey(notificationType), true).toBool();
+}
+
+void ApplicationSettings::enableNotificationType(NotificationType notificationType, bool enable) {
+    qSettings.setValue(getNotificationEnabledKey(notificationType), enable);
+}
+
+QString ApplicationSettings::getNotificationEnabledKey(NotificationType type) const {
+    return NOTIFICATION_ENABLED_KEY.arg(static_cast<int>(type));
+}

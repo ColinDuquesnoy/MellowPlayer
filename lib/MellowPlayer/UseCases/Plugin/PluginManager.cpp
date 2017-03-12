@@ -4,9 +4,9 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PluginManager::PluginManager(IPluginLoader& pluginLoader)
-    : pluginLoader(pluginLoader),
-      currentPlugin(nullptr) {
+PluginManager::PluginManager(IPluginLoader& pluginLoader) :
+        logger(LoggingManager::instance().getLogger("PluginManager")),
+        pluginLoader(pluginLoader), currentPlugin(nullptr) {
 }
 
 void PluginManager::load() {
@@ -21,6 +21,7 @@ void PluginManager::load() {
             }
         }
         if (!pluginFound) {
+            LOG_DEBUG(logger, "add plugin: " + newPlugin->getName());
             pluginList.append(newPlugin);
             emit pluginAdded(newPlugin.get());
         }
@@ -41,6 +42,8 @@ const PluginList& PluginManager::getAll() const {
 void PluginManager::setCurrent(Plugin* plugin) {
     if (plugin == currentPlugin)
         return;
+
+    LOG_DEBUG(logger, "current plugin: " + plugin->getName());
     currentPlugin = plugin;
     emit currentPluginChanged(plugin);
 }

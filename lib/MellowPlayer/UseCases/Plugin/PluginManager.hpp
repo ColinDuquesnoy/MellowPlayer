@@ -7,25 +7,26 @@ BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class PluginManager: public QObject {
     Q_OBJECT
-    Q_PROPERTY(UseCases::Plugin* currentPlugin READ getCurrent WRITE setCurrent NOTIFY currentPluginChanged)
+    Q_PROPERTY(Plugin* currentPlugin READ getCurrent WRITE setCurrent NOTIFY currentPluginChanged)
 public:
     PluginManager(IPluginLoader& pluginLoader);
 
     void load();
-    UseCases::Plugin& get(const QString& name) const;
-    const UseCases::PluginList& getAll() const;
+    Plugin& get(const QString& name) const;
+    const PluginList& getAll() const;
     
-    void setCurrent(UseCases::Plugin* plugin);
+    void setCurrent(Plugin* plugin);
     UseCases::Plugin* getCurrent() const;
 
 signals:
-    void pluginAdded(UseCases::Plugin* plugin);
-    void currentPluginChanged(UseCases::Plugin* service);
+    void pluginAdded(Plugin* plugin);
+    void currentPluginChanged(Plugin* service);
 
 private:
+    ILogger& logger;
     IPluginLoader& pluginLoader;
-    UseCases::PluginList pluginList;
-    UseCases::Plugin* currentPlugin;
+    PluginList pluginList;
+    Plugin* currentPlugin;
 };
 
 END_MELLOWPLAYER_NAMESPACE

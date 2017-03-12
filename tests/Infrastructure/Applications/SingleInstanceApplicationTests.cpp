@@ -14,7 +14,6 @@ TEST_CASE("SingleInstanceApplication", "[IntegrationTest]") {
     Verify(Method(appMock1, run)).Exactly(1);
     QTest::qWait(100);
     Verify(Method(appMock1, initialize)).Exactly(1);
-    Verify(Method(appMock1, restoreWindow)).Exactly(1);
 
     SECTION("Second instance should quit") {
         auto appMock2 = ApplicationMock::get();

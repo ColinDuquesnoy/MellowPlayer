@@ -26,11 +26,14 @@ public slots:
 
 private:
     void setUpMenu();
+
+    UseCases::ILogger& logger;
     UseCases::IPlayer& player;
     UseCases::IMainWindow& mainWindow;
     UseCases::IQtApplication& qtApplication;
     UseCases::IApplicationSettings& applicationSettings;
     IconProvider iconProvider;
+
     QSystemTrayIcon qSystemTrayIcon;
     QMenu menu;
     QAction* playPauseAction;

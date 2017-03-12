@@ -8,6 +8,7 @@ class IHotkeysService
 public:
     virtual ~IHotkeysService() = default;
 
+    virtual void start() = 0;
     virtual void togglePlayPause() = 0;
     virtual void next() = 0;
     virtual void previous() = 0;

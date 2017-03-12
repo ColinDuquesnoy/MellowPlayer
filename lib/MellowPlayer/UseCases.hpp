@@ -13,10 +13,13 @@
 #include "UseCases/Logging/LoggingMacros.hpp"
 #include "UseCases/Logging/LoggingManager.hpp"
 
+#include "UseCases/Notifications/INotificationPresenter.hpp"
+#include "UseCases/Notifications/Notifications.hpp"
+
 #include "UseCases/Player/IPlayer.hpp"
 #include "UseCases/Player/Player.hpp"
 #include "UseCases/Player/PlayerProxy.hpp"
-#include "MellowPlayer/UseCases/Player/PlayersService.hpp"
+#include "UseCases/Player/PlayersService.hpp"
 #include "UseCases/Player/Song.hpp"
 
 #include "UseCases/Plugin/Plugin.hpp"
@@ -26,6 +29,7 @@
 
 #include "UseCases/Services/LocalAlbumArtService.hpp"
 #include "UseCases/Services/IHotkeysService.hpp"
+#include "UseCases/Services/IPlayerNotificationsService.hpp"
 #ifdef Q_OS_LINUX
 #include "UseCases/Services/IMprisService.hpp"
 #endif

@@ -6,6 +6,29 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 HotkeysService::HotkeysService(IPlayer& player) :
     QObject(nullptr), logger(LoggingManager::instance().getLogger("Hotkeys")), player(player) {
+}
+
+void HotkeysService::togglePlayPause() {
+    player.togglePlayPause();
+}
+
+void HotkeysService::next() {
+    player.next();
+}
+
+void HotkeysService::previous() {
+    player.previous();
+}
+
+void HotkeysService::toggleFavoriteSong() {
+    player.toggleFavoriteSong();
+}
+
+HotkeysService::~HotkeysService() {
+
+}
+
+void HotkeysService::start() {
 
     playShortcut = new QxtGlobalShortcut(this);
     playShortcut->setShortcut(QKeySequence("Ctrl+Alt+P"));
@@ -38,24 +61,4 @@ HotkeysService::HotkeysService(IPlayer& player) :
 #endif
 
     LOG_INFO(logger, "service started");
-}
-
-void HotkeysService::togglePlayPause() {
-    player.togglePlayPause();
-}
-
-void HotkeysService::next() {
-    player.next();
-}
-
-void HotkeysService::previous() {
-    player.previous();
-}
-
-void HotkeysService::toggleFavoriteSong() {
-    player.toggleFavoriteSong();
-}
-
-HotkeysService::~HotkeysService() {
-
 }

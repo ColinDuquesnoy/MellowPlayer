@@ -59,6 +59,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IMainWindow>().to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
         di::bind<IHotkeysService>().to<HotkeysService>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
+        di::bind<INotificationService>().to<NotificationService>().in(scope),
         di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope)
     );
 };
@@ -66,15 +67,24 @@ auto defaultInjector = [](ScopedScope& scope) {
 auto platformInjector = [](ScopedScope& scope) {
 #ifdef Q_OS_LINUX
     return di::make_injector(
-        di::bind<IMprisService>()
-            .to<MprisService>().in(scope),
-        di::bind<IApplication>()
-            .to<LinuxApplication>().in(scope)
+            di::bind<IMprisService>().to<MprisService>().in(scope),
+            di::bind<IApplication>().to<LinuxApplication>().in(scope)
     );
 #else
     return di::make_injector(
-        di::bind<IApplication>()
-            .to<Application>().in(scope)
+        di::bind<IApplication>().to<Application>().in(scope)
+    );
+#endif
+};
+
+auto notificationPresenterInjector = [](ScopedScope& scope) {
+#ifdef USE_SNORENOTIFY
+    return di::make_injector(
+        di::bind<INotificationPresenter>().to<SnorenotifyPresenter>().in(scope)
+    );
+#else
+    return di::make_injector(
+            di::bind<INotificationPresenter>().to<SystemTrayIconPresenter>().in(scope)
     );
 #endif
 };

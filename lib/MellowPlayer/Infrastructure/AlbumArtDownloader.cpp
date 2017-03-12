@@ -17,7 +17,7 @@ bool AlbumArtDownloader::download(const QString& url, const QString& songId) {
         return false;
 
     artUrl = getLocalArtUrl(songId);
-    LOG_INFO(logger, "downloading " << url << " to " << artUrl.absoluteFilePath());
+    LOG_DEBUG(logger, "downloading " + url + " to " + artUrl.absoluteFilePath());
     if (artUrl.exists()) {
         LOG_DEBUG(logger, "album art already exists locally")
         emit downloadFinished(artUrl.absoluteFilePath());
@@ -45,7 +45,7 @@ void AlbumArtDownloader::onDownloadFinished(QNetworkReply* reply) {
         file.write(reply->readAll());
         file.close();
     } else {
-        LOG_DEBUG(logger, "Could not open file in write only mode: " << artUrl.absoluteFilePath());
+        LOG_DEBUG(logger, "could not open file in write only mode: " +artUrl.absoluteFilePath());
     }
     emit downloadFinished(artUrl.absoluteFilePath());
 }

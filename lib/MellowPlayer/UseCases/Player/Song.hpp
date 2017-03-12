@@ -36,6 +36,8 @@ public:
 
     bool isValid() const { return uniqueId != "" && title != ""; }
 
+    QString toString() const { return title + " by " + artist; }
+
 signals:
     void durationChanged();
     void isFavoriteChanged();

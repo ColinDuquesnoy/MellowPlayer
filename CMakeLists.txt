@@ -10,7 +10,7 @@ add_definitions(-DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
-include(scripts/cmake/Qt5Config.cmake)
+include(scripts/cmake/FindDependencies.cmake)
 
 # Options
 set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release).")
@@ -27,7 +27,7 @@ if(ENABLE_COVERAGE)
 endif()
 add_subdirectory(lib)
 add_subdirectory(src)
-if(${BUILD_TESTS})
+if(BUILD_TESTS)
     enable_testing(true)
     add_subdirectory(tests)
 endif()

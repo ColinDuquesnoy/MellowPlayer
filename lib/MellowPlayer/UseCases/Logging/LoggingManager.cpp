@@ -1,12 +1,14 @@
 #include <QtCore/qlogging.h>
 #include <QString>
+#include <QtCore/QLoggingCategory>
 #include "LoggingManager.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message) {
-    ILogger& logger = LoggingManager::instance().getLogger("qt");
+    string category(context.category);
+    ILogger& logger = LoggingManager::instance().getLogger(category == "default" ? "qt" : category);
 
     // QtCriticalMsg, QtFatalMsg, QtSystemMsg = QtCriticalMsg
     std::map<int, LogLevel> toLogLevel = {
@@ -43,6 +45,7 @@ LoggingManager& LoggingManager::instance() {
 LoggingManager::LoggingManager(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig):
         loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig) {
     qInstallMessageHandler(messageHandler);
+    QLoggingCategory::setFilterRules("*.warning=false");
 }
 
 ILogger& LoggingManager::getLogger() {

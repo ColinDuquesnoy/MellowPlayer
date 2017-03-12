@@ -3,8 +3,11 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent)
-    : QDBusAbstractAdaptor(parent), window(window), qtApp(qtApp) {
+Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent) :
+        QDBusAbstractAdaptor(parent),
+        logger(LoggingManager::instance().getLogger("Mpris2Root")),
+        window(window),
+        qtApp(qtApp) {
 
 }
 

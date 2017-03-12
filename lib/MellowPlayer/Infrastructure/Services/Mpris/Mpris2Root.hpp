@@ -40,6 +40,7 @@ public slots:
     void Quit();
 
 private:
+    UseCases::ILogger& logger;
     UseCases::IMainWindow& window;
     UseCases::IQtApplication& qtApp;
 };

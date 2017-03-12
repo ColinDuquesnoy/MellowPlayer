@@ -10,7 +10,7 @@ using namespace std;
 TEST_CASE("PluginManagerManagerTests") {
     auto mock = PluginLoaderMock::get();
     PluginManager pluginManager(mock.get());
-    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(UseCases::Plugin*)));
+    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(Plugin*)));
     pluginManager.load();
 
     SECTION("load called PluginLoader::load") {
@@ -36,7 +36,7 @@ TEST_CASE("PluginManagerManagerTests") {
 
     SECTION("set current service ") {
         QSignalSpy currentPluginChangedSignal(&pluginManager,
-                                               SIGNAL(currentPluginChanged(UseCases::Plugin*)));
+                                               SIGNAL(currentPluginChanged(Plugin*)));
         pluginManager.setCurrent(&pluginManager.get("Deezer"));
         REQUIRE(pluginManager.getCurrent() != nullptr);
         REQUIRE(currentPluginChangedSignal.count() == 1);

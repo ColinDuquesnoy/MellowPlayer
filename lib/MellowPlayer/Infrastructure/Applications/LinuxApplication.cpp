@@ -7,14 +7,19 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 LinuxApplication::LinuxApplication(IQtApplication& qtApp,
                                    IMainWindow& mainWindow,
+                                   PluginManager& pluginManager,
                                    IHotkeysService& kotkeys,
                                    ISystemTrayIcon& systemTrayIcon,
+                                   INotificationService& playerNotificationService,
                                    IMprisService& mprisService) :
-        Application(qtApp, mainWindow, kotkeys, systemTrayIcon), mprisService(mprisService) {
+        Application(qtApp, mainWindow, pluginManager, kotkeys, systemTrayIcon, playerNotificationService),
+        logger(LoggingManager::instance().getLogger("LinuxApplication")),
+        mprisService(mprisService) {
 
 }
 
 void LinuxApplication::initialize() {
+    LOG_TRACE(logger, "initialize");
     Application::initialize();
     mprisService.start();
 }
