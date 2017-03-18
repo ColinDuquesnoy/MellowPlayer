@@ -14,7 +14,9 @@ class Mpris2Player;
 
 class MprisService: public UseCases::IMprisService {
 public:
-    MprisService(UseCases::IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, UseCases::IMainWindow& window,
+    MprisService(UseCases::IPlayer& player,
+                 UseCases::ILocalAlbumArtService& localAlbumArt,
+                 UseCases::IMainWindow& window,
                  UseCases::IQtApplication& application);
     ~MprisService();
 

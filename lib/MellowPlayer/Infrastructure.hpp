@@ -13,6 +13,7 @@
 #include "Infrastructure/Logging/SpdLoggerFactory.hpp"
 
 #include "Infrastructure/Services/HotkeysService.hpp"
+#include "Infrastructure/Services/LocalAlbumArtService.hpp"
 
 #include "Infrastructure/System/FileHelper.hpp"
 

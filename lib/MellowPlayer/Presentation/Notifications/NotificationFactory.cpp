@@ -18,10 +18,6 @@ Notification NotificationFactory::createPaused(const QString& serviceName, const
     return createPlaybackNotif(serviceName, serviceLogo, "Paused", NotificationType::Paused);
 }
 
-Notification NotificationFactory::createStopped(const QString& serviceName, const QString& serviceLogo) {
-    return createPlaybackNotif(serviceName, serviceLogo, "Stopped", NotificationType::Stopped);
-}
-
 QString NotificationFactory::getTitle(const QString& serviceName) const {
     return serviceName;
 }

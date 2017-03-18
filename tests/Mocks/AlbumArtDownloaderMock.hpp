@@ -6,7 +6,7 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace fakeit;
 
-#define LOCAL_URL "/path/to/art"
+#define LOCAL_URL "/path/to/art/songId"
 
 class AlbumArtDownloaderMock : public IAlbumArtDownloader {
 public:

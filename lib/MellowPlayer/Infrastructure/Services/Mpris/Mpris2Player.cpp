@@ -6,7 +6,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 const qlonglong Mpris2Player::SEC_TO_MICROSEC = 1000000;
 const qlonglong Mpris2Player::SEEK_DELTA_LIMIT = Mpris2Player::SEC_TO_MICROSEC * 2;
 
-Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, QObject* parent)
+Mpris2Player::Mpris2Player(IPlayer& player, ILocalAlbumArtService& localAlbumArt, QObject* parent)
     : QDBusAbstractAdaptor(parent),
       previousPosition(0),
       logger(LoggingManager::instance().getLogger("Mpris2Player")),
@@ -20,7 +20,7 @@ Mpris2Player::Mpris2Player(IPlayer& player, UseCases::LocalAlbumArtService& loca
     connect(&player, &IPlayer::canGoPreviousChanged, this, &Mpris2Player::onCanGoPreviousChanged);
     connect(&player, &IPlayer::volumeChanged, this, &Mpris2Player::onVolumeChanged);
 
-    connect(&localAlbumArt, &LocalAlbumArtService::urlChanged, this, &Mpris2Player::onArtUrlChanged);
+    connect(&localAlbumArt, &ILocalAlbumArtService::urlChanged, this, &Mpris2Player::onArtUrlChanged);
 }
 
 QString Mpris2Player::playbackStatus() {

@@ -8,28 +8,27 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 class NotificationService: public QObject, public UseCases::INotificationService {
     Q_OBJECT
 public:
-    NotificationService(UseCases::IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArtService,
+    NotificationService(UseCases::IPlayer& player, UseCases::ILocalAlbumArtService& localAlbumArtService,
                         UseCases::INotificationPresenter& presenter, UseCases::PluginManager& pluginManager,
                         UseCases::IApplicationSettings& applicationSettings);
 
     void initialize() override;
-    void display(const UseCases::Notification& notification) override;
+    bool display(const UseCases::Notification& notification) override;
 
-private slots:
+public slots:
     void onCurrentSongChanged(UseCases::Song* song);
     void onPlaybackStatusChanged();
     void onCurrentSongUrlChanged();
 
 private:
     void showNewSongNotification(UseCases::Song* song, const QString& localAlbumArtUrl);
-    bool isAlbumArtReady(const UseCases::Song* song) const;
     bool isPlaying() const;
     const QString getCurrentServiceName() const;
     const QString getCurrentServiceLogo() const;
 
     UseCases::ILogger& logger;
     UseCases::IPlayer& player;
-    UseCases::LocalAlbumArtService& localAlbumArtService;
+    UseCases::ILocalAlbumArtService& localAlbumArtService;
     UseCases::INotificationPresenter& presenter;
     UseCases::PluginManager& pluginManager;
     UseCases::IApplicationSettings& applicationSettings;

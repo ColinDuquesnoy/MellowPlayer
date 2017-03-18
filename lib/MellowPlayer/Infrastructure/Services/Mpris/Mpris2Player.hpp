@@ -11,7 +11,9 @@ class Mpris2Player : public QDBusAbstractAdaptor {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
 public:
-    explicit Mpris2Player(UseCases::IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, QObject *parent=nullptr);
+    explicit Mpris2Player(UseCases::IPlayer& player,
+                          UseCases::ILocalAlbumArtService& localAlbumArt,
+                          QObject *parent=nullptr);
 
     Q_PROPERTY(QVariantMap Metadata READ metadata)
     Q_PROPERTY(bool CanControl READ canControl)
@@ -89,7 +91,7 @@ private:
     qlonglong previousPosition;
     UseCases::ILogger& logger;
     UseCases::IPlayer& player;
-    UseCases::LocalAlbumArtService& localAlbumArt;
+    UseCases::ILocalAlbumArtService& localAlbumArt;
     QMap<QString, QVariant> lastMetadata;
 };
 

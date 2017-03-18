@@ -15,6 +15,8 @@ TEST_CASE("StreamingServicesViewModel") {
     PluginManager& servicesManager = injector.create<PluginManager&>();
     servicesManager.load();
     StreamingServicesViewModel& viewModel = injector.create<StreamingServicesViewModel&>();
+    viewModel.initialize();
+    viewModel.reload();
 
     REQUIRE(viewModel.getModel()->rowCount() == servicesManager.getAll().count());
 

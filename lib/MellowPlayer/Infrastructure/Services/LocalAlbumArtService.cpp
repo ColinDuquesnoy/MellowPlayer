@@ -1,6 +1,7 @@
 #include "LocalAlbumArtService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 
 LocalAlbumArtService::LocalAlbumArtService(IPlayer& player, IAlbumArtDownloader& downloader): downloader(downloader) {
@@ -22,4 +23,8 @@ void LocalAlbumArtService::onDownloadFinished(const QString& newUrl) {
         url = newUrl;
         emit urlChanged();
     }
+}
+
+bool LocalAlbumArtService::isSongArtReady(const Song& song) {
+    return url.contains(song.getUniqueId()) && QFileInfo(url).exists();
 }

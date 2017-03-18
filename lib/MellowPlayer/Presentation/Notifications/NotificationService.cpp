@@ -5,7 +5,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 
 NotificationService::NotificationService(IPlayer& player,
-                                         LocalAlbumArtService& localAlbumArtService,
+                                         ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
                                          PluginManager& pluginManager,
                                          IApplicationSettings& applicationSettings) :
@@ -23,19 +23,20 @@ void NotificationService::initialize() {
             this, &NotificationService::onCurrentSongChanged);
     connect(&player, &IPlayer::playbackStatusChanged,
             this, &NotificationService::onPlaybackStatusChanged);
-    connect(&localAlbumArtService, &LocalAlbumArtService::urlChanged,
+    connect(&localAlbumArtService, &ILocalAlbumArtService::urlChanged,
             this, &NotificationService::onCurrentSongUrlChanged);
     presenter.initialize();
 }
 
-void NotificationService::display(const Notification& notification) {
+bool NotificationService::display(const Notification& notification) {
     LOG_TRACE(logger, "display");
     if (!applicationSettings.isNotificationTypeEnabled(notification.type)) {
         LOG_DEBUG(logger, "notification disabled: " + notification.toString());
-        return;
+        return false;
     }
     LOG_INFO(logger, "display notification: " + notification.toString());
     presenter.display(notification);
+    return true;
 }
 
 void NotificationService::onCurrentSongChanged(Song* song) {
@@ -64,13 +65,8 @@ void NotificationService::onCurrentSongUrlChanged() {
 
 void NotificationService::showNewSongNotification(Song* song, const QString& localAlbumArtUrl) {
     LOG_TRACE(logger, "showNewSongNotification");
-    if (song != nullptr && song->isValid() && isPlaying() && isAlbumArtReady(song))
+    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song))
         display(notificationFactory.createNewSong(getCurrentServiceName(), song, localAlbumArtUrl));
-}
-
-bool NotificationService::isAlbumArtReady(const Song* song) const {
-    return localAlbumArtService.getUrl().contains(song->getUniqueId()) &&
-           QFileInfo(localAlbumArtService.getUrl()).exists();
 }
 
 bool NotificationService::isPlaying() const {
@@ -78,9 +74,11 @@ bool NotificationService::isPlaying() const {
 }
 
 const QString NotificationService::getCurrentServiceName() const {
-    return pluginManager.getCurrent()->getName();
+    auto currentPlugin = pluginManager.getCurrent();
+    return currentPlugin != nullptr ? currentPlugin->getName() : "";
 }
 
 const QString NotificationService::getCurrentServiceLogo() const {
-    return pluginManager.getCurrent()->getLogo();
+    auto currentPlugin = pluginManager.getCurrent();
+    return currentPlugin != nullptr ? currentPlugin->getLogo() : "";
 }

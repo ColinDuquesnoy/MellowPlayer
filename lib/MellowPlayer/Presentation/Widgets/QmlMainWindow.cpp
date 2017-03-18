@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player,
-                             LocalAlbumArtService& albumArt,
+                             ILocalAlbumArtService& albumArt,
                              IApplicationSettings& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
         applicationSettings(applicationSettings), streamingServices(streamingServices) {

@@ -11,7 +11,7 @@ public:
     static Mock<INotificationService> get() {
         Mock<INotificationService> mock;
         When(Method(mock, initialize)).AlwaysReturn();
-        When(Method(mock, display)).AlwaysReturn();
+        When(Method(mock, display)).AlwaysReturn(true);
         return mock;
     }
 };

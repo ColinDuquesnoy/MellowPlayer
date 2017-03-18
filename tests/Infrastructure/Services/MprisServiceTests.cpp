@@ -1,6 +1,7 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
+#include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/Infrastructure/Services/MprisService.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/MainWindowMock.hpp>

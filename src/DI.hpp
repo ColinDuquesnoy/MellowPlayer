@@ -57,6 +57,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IPlayer>().in(di::singleton).to<PlayerProxy>(),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
         di::bind<IMainWindow>().to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
+        di::bind<ILocalAlbumArtService>().to<LocalAlbumArtService>().in(scope),
         di::bind<IHotkeysService>().to<HotkeysService>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<INotificationService>().to<NotificationService>().in(scope),

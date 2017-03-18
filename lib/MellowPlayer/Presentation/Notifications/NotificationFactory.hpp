@@ -8,7 +8,6 @@ class NotificationFactory {
 public:
     UseCases::Notification createNewSong(const QString& serviceName, UseCases::Song* song, const QString& albumArtUrl);
     UseCases::Notification createPaused(const QString& serviceName, const QString& serviceLogo);
-    UseCases::Notification createStopped(const QString& serviceName, const QString& serviceLogo);
 
 private:
     QString getTitle(const QString& serviceName) const;

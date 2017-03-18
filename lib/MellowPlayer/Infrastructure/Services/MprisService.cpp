@@ -14,8 +14,10 @@ QString MprisService::SERVICE_NAME = "org.mpris.MediaPlayer2.MellowPlayer3";
 
 QString MprisService::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-MprisService::MprisService(IPlayer& player, UseCases::LocalAlbumArtService& localAlbumArt, IMainWindow& window,
-                                   IQtApplication& application)
+MprisService::MprisService(IPlayer& player,
+                           ILocalAlbumArtService& localAlbumArt,
+                           IMainWindow& window,
+                           IQtApplication& application)
     : logger(LoggingManager::instance().getLogger("Mpris")),
       parent(make_unique<QObject>()),
       mpris2Root(new Mpris2Root(window, application, parent.get())),
@@ -31,11 +33,11 @@ MprisService::~MprisService() {
 bool MprisService::start() {
     if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME) ||
         !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
-        LOG_WARN(logger, "failed to register service on the session bus: " << SERVICE_NAME);
-        LOG_WARN(logger, "failed to register object on the session bus: " << OBJECT_NAME);
+        LOG_WARN(logger, "failed to register service on the session bus: " + SERVICE_NAME);
+        LOG_WARN(logger, "failed to register object on the session bus: " + OBJECT_NAME);
         return false;
     }
-    LOG_INFO(logger, "service started: " << SERVICE_NAME.toStdString());
+    LOG_INFO(logger, "service started: " + SERVICE_NAME);
     return true;
 }
 

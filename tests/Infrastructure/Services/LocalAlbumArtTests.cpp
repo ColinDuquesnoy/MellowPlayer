@@ -3,8 +3,10 @@
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Infrastructure.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("LocalAlbumArtTests"){
     auto pluginLoaderMock = PluginLoaderMock::get();
@@ -24,5 +26,6 @@ TEST_CASE("LocalAlbumArtTests"){
         REQUIRE(downloadFinishedSpy.count() == 1);
         REQUIRE(downloadFinishedSpy[0][0] == LOCAL_URL);
         REQUIRE(localAlbumArt.getUrl() == LOCAL_URL);
+        REQUIRE(!localAlbumArt.isSongArtReady(song)); // file does not exist because we use a downloader mock
     }
 }

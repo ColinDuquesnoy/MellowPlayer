@@ -27,9 +27,9 @@
 #include "UseCases/Plugin/PluginMetadata.hpp"
 #include "UseCases/Plugin/PluginScript.hpp"
 
-#include "UseCases/Services/LocalAlbumArtService.hpp"
+#include "UseCases/Services/ILocalAlbumArtService.hpp"
 #include "UseCases/Services/IHotkeysService.hpp"
-#include "UseCases/Services/IPlayerNotificationsService.hpp"
+#include "UseCases/Services/INotificationsService.hpp"
 #ifdef Q_OS_LINUX
 #include "UseCases/Services/IMprisService.hpp"
 #endif

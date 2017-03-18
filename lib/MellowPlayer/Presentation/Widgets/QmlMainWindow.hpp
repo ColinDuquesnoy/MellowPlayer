@@ -12,7 +12,7 @@ class QmlMainWindow: public QObject, public UseCases::IMainWindow {
 public:
     QmlMainWindow(StreamingServicesViewModel& streamingServices,
                   UseCases::IPlayer& player,
-                  UseCases::LocalAlbumArtService& albumArt,
+                  UseCases::ILocalAlbumArtService& albumArt,
                   UseCases::IApplicationSettings& applicationSettings);
     bool load() override;
     void show() override;

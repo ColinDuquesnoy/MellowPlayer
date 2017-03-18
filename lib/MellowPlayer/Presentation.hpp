@@ -4,7 +4,7 @@
 #include "Presentation/QtWebApplication.hpp"
 
 #include "Presentation/Notifications/SnorenotifyPresenter.hpp"
-#include "MellowPlayer/Presentation/Notifications/NotificationService.hpp"
+#include "Presentation/Notifications/NotificationService.hpp"
 #include "Presentation/Notifications/SystemTrayIconPresenter.hpp"
 
 #include "Presentation/ViewModels/ListModel.hpp"

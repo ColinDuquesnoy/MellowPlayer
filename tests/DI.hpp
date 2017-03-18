@@ -10,6 +10,7 @@
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/MprisServiceMock.hpp>
+#include <Mocks/NotificationPresenterMock.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
@@ -59,19 +60,20 @@ public:
     };
 };
 
-inline auto getTestInjector(ScopedScope& scope) {
+static auto hotkeysServiceMock = HotkeysServiceMock::get();
+static auto mainWindowMock = MainWindowMock::get();
+static auto qtApplicationMock = QtApplicationMock::get();
+static auto pluginLoaderMock = PluginLoaderMock::get();
+static auto applicationSettingsMock = ApplicationSettingsMock::get();
+static auto systemTrayIconMock = SystemTrayIconMock::get();
+static auto notificationPresenterMock = NotificationPresenterMock::get();
 
-    static auto hotkeysServiceMock = HotkeysServiceMock::get();
-    static auto mainWindowMock = MainWindowMock::get();
-    static auto playerMock = PlayerMock::get();
-    static auto qtApplicationMock = QtApplicationMock::get();
-    static auto pluginLoaderMock = PluginLoaderMock::get();
-    static auto applicationSettingsMock = ApplicationSettingsMock::get();
-    static auto systemTrayIconMock = SystemTrayIconMock::get();
+inline auto getTestInjector(ScopedScope& scope) {
 
     return di::make_injector(
         di::bind<IPluginLoader>().to(pluginLoaderMock.get()),
         di::bind<IPlayer>().to<PlayerProxy>().in(scope),
+        di::bind<INotificationPresenter>().to(notificationPresenterMock.get()),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloaderMock>().in(scope),
         di::bind<IMainWindow>().to(mainWindowMock.get()),
         di::bind<IHotkeysService>().to(hotkeysServiceMock.get()),

@@ -4,6 +4,7 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Infrastructure.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 

@@ -16,7 +16,6 @@ shared_ptr<Player> PlayersService::get(const QString& serviceName) const {
 }
 
 void PlayersService::onServiceAdded(Plugin* service) {
-    if (players.contains(service->getName()))
-        return;
-    players[service->getName()] = make_shared<Player>(*service);
+    if (!players.contains(service->getName()))
+        players[service->getName()] = make_shared<Player>(*service);
 }
