@@ -18,6 +18,8 @@ branches:
     - gh-pages
 
 before_build:
+  - cd scripts\env-setup\windows
+  - env-setup.bat
   - cd scripts\build\windows
 
 build_script:
