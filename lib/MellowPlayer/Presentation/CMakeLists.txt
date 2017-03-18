@@ -20,7 +20,7 @@ else()
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-if (USE_SNORENOTIFY AND LibsnoreQt5_FOUND)
+if (LibsnoreQt5_FOUND)
     target_link_libraries(${LIB_NAME} Snore::Libsnore)
 endif()
 qt5_use_modules(${LIB_NAME} Core Qml Quick WebEngine Widgets)
