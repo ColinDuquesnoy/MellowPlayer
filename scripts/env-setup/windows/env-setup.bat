@@ -12,7 +12,7 @@ cmake --build . --config Release
 cmake --build . --config Release --target install
 cd ..\..
 
-git clone hhttps://github.com/KDE/snorenotify.git
+git clone https://github.com/KDE/snorenotify.git
 cd snorenotify
 mkdir build
 cd build
