@@ -14,8 +14,8 @@ TEST_CASE("LibnotifyPresenterTests") {
 
     SECTION("display test") {
         Notification notif{"title", "message", "", NotificationType::Song};
-        REQUIRE(presenter.display(notif));
-        REQUIRE(presenter.display(notif));
+        presenter.display(notif);
+        presenter.display(notif);
     }
 
     SECTION("action callback show main window") {
