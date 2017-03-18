@@ -7,7 +7,7 @@ git clone https://github.com/KDE/extra-cmake-modules.git
 cd extra-cmake-modules
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%QTDIR% ..
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%QTDIR% ..
 cmake --build . --config Release
 cmake --build . --config Release --target install
 cd ..\..
@@ -17,7 +17,7 @@ cd snorenotify
 git checkout tags/v0.7.0
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%QTDIR% ..
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%QTDIR% ..
 cmake --build . --config Release
 cmake --build . --config Release --target install
 cd ..\..
