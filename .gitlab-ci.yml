@@ -71,6 +71,10 @@ commit-build:linux:
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
     - ./scripts/build/linux/runtests.sh --debug --coverage
+  artifacts:
+    name: "coverage"
+    paths:
+      - cmake-build-debug/coverage/
 
 #--------------------------------------------------------------------
 # Full Build
