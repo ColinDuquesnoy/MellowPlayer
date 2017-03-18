@@ -47,7 +47,8 @@ MellowPlayer is licensed under the GPL license.
 
 - [Qt](https://www.qt.io/) >= 5.7
 - [CMake](https://cmake.org/) >= 3.5
-- [Snorenotify]() >= 0.7 (optional, enabled by default)
+- [Snorenotify]() >= 0.7 (Windows/OSX, optional)
+- [libnotify]() (GNU/Linux only, optional)
 
 ## Bundled 3rd-parties
 
@@ -100,7 +101,6 @@ cmake --build . --config Release
 
 You can specify the following options when calling cmake:
 
-- ``-DUSE_SNORENOTIFY``: **ON** to use snorenotify based notifications, **OFF** to use QSystemTrayIcon based notifications *(no thumbnail and not quick actions)* - Default is **ON**. 
 - ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Debug**.
 - ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **ON**.
 - ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .

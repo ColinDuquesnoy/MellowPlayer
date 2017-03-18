@@ -9,7 +9,7 @@ class INotificationPresenter
 public:
     virtual ~INotificationPresenter() = default;
     virtual void initialize() = 0;
-    virtual void display(const Notification& notification) = 0;
+    virtual bool display(const Notification& notification) = 0;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -79,9 +79,13 @@ auto platformInjector = [](ScopedScope& scope) {
 };
 
 auto notificationPresenterInjector = [](ScopedScope& scope) {
-#ifdef USE_SNORENOTIFY
+#if defined(USE_SNORENOTIFY)
     return di::make_injector(
         di::bind<INotificationPresenter>().to<SnorenotifyPresenter>().in(scope)
+    );
+#elif defined(USE_LIBNOTIFY)
+    return di::make_injector(
+            di::bind<INotificationPresenter>().to<LibnotifyPresenter>().in(scope)
     );
 #else
     return di::make_injector(

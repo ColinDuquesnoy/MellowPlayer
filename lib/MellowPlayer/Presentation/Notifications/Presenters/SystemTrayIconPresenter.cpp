@@ -8,8 +8,9 @@ SystemTrayIconPresenter::SystemTrayIconPresenter(ISystemTrayIcon& systemTrayIcon
 
 }
 
-void SystemTrayIconPresenter::display(const Notification& notification) {
+bool SystemTrayIconPresenter::display(const Notification& notification) {
     systemTrayIcon.showMessage(notification.title, notification.description);
+    return true;
 }
 
 void SystemTrayIconPresenter::initialize() {

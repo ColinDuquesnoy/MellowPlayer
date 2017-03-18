@@ -21,8 +21,8 @@ TEST_CASE("NotificationServiceTests") {
                                             pluginManager, appSettings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    appSettings.enableNotificationType(NotificationType::NewSong, true);
-    REQUIRE(appSettings.isNotificationTypeEnabled(NotificationType::NewSong));
+    appSettings.enableNotificationType(NotificationType::Song, true);
+    REQUIRE(appSettings.isNotificationTypeEnabled(NotificationType::Song));
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
     REQUIRE(validSong.isValid());
@@ -40,14 +40,14 @@ TEST_CASE("NotificationServiceTests") {
     }
 
     SECTION("display allowed notification") {
-        Notification notif{"title", "message", QIcon(), NotificationType::NewSong};
+        Notification notif{"title", "message", "", NotificationType::Song};
         REQUIRE(notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
     SECTION("display disallowed notification") {
-        appSettings.enableNotificationType(NotificationType::NewSong, false);
-        Notification notif{"title", "message", QIcon(), NotificationType::NewSong};
+        appSettings.enableNotificationType(NotificationType::Song, false);
+        Notification notif{"title", "message", "", NotificationType::Song};
         REQUIRE(!notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Never();
     }

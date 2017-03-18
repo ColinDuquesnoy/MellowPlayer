@@ -12,7 +12,7 @@ class SnorenotifyPresenter: public QObject, public UseCases::INotificationPresen
 public:
     SnorenotifyPresenter(UseCases::IMainWindow& mainWindow);
     void initialize() override;
-    void display(const UseCases::Notification& notification) override;
+    bool display(const UseCases::Notification& notification) override;
 
 private slots:
     void onActionInvoked(const Snore::Notification &notification);

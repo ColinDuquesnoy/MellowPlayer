@@ -10,14 +10,17 @@ add_definitions(-DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
-include(scripts/cmake/FindDependencies.cmake)
 
 # Options
 set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release).")
 set_option(BUILD_TESTS TRUE BOOL "TRUE to build the tests, FALSE to ignore them.")
 set_option(ENABLE_COVERAGE FALSE BOOL "True to build code coverage targerts")
-set_option(USE_SNORENOTIFY TRUE BOOL "True to build notification backend using snorenotify,
-                                       False to use basic system tray icon messages")
+
+if (UNIX AND NOT APPLE)
+    set(USE_LIBNOTIFY TRUE)
+endif()
+
+include(scripts/cmake/FindDependencies.cmake)
 
 include_directories(lib/)
 

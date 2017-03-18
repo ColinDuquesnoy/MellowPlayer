@@ -48,7 +48,7 @@ void NotificationService::onPlaybackStatusChanged() {
     LOG_TRACE(logger, "onPlaybackStatusChanged");
     switch (player.getPlaybackStatus()) {
         case IPlayer::PlaybackStatus::Paused:
-            display(notificationFactory.createPaused(getCurrentServiceName(), getCurrentServiceLogo()));
+            display(notificationFactory.createPausedNotification(getCurrentServiceName(), getCurrentServiceLogo()));
             break;
         case IPlayer::PlaybackStatus::Playing:
             showNewSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
@@ -66,7 +66,7 @@ void NotificationService::onCurrentSongUrlChanged() {
 void NotificationService::showNewSongNotification(Song* song, const QString& localAlbumArtUrl) {
     LOG_TRACE(logger, "showNewSongNotification");
     if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song))
-        display(notificationFactory.createNewSong(getCurrentServiceName(), song, localAlbumArtUrl));
+        display(notificationFactory.createSongNotification(getCurrentServiceName(), song, localAlbumArtUrl));
 }
 
 bool NotificationService::isPlaying() const {

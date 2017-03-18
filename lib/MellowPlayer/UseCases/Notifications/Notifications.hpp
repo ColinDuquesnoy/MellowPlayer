@@ -8,7 +8,7 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 enum class NotificationType {
-    NewSong,
+    Song,
     Paused,
     Stopped,
     NewVersionAvailable
@@ -17,7 +17,7 @@ enum class NotificationType {
 struct Notification {
     QString title;
     QString description;
-    QIcon icon;
+    QString icon;
     NotificationType type;
 
     QString toString() const { return title + " - " + description; }

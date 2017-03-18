@@ -5,26 +5,13 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 
-Notification NotificationFactory::createNewSong(const QString& serviceName, Song* song, const QString& albumArtUrl) {
-    return Notification {
-            getTitle(serviceName),
-            song->toString(),
-            QIcon(albumArtUrl),
-            NotificationType::NewSong
-    };
+Notification NotificationFactory::createSongNotification(
+        const QString& serviceName, Song* song, const QString& albumArtUrl) {
+    return Notification { serviceName, song->toString(), albumArtUrl, NotificationType::Song };
 }
 
-Notification NotificationFactory::createPaused(const QString& serviceName, const QString& serviceLogo) {
-    return createPlaybackNotif(serviceName, serviceLogo, "Paused", NotificationType::Paused);
-}
-
-QString NotificationFactory::getTitle(const QString& serviceName) const {
-    return serviceName;
-}
-
-Notification NotificationFactory::createPlaybackNotif(const QString& serviceName, const QString& serviceLogo,
-                                                      const QString& message, NotificationType type) {
+Notification NotificationFactory::createPausedNotification(const QString& serviceName, const QString& serviceLogo) {
     QString sanitizedServiceLogo = serviceLogo;
     sanitizedServiceLogo = sanitizedServiceLogo.replace("file://", "");
-    return Notification { getTitle(serviceName), message, QIcon(sanitizedServiceLogo), type };
+    return Notification { serviceName, "Paused", sanitizedServiceLogo, NotificationType::Paused };
 }

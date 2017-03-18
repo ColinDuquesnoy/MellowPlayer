@@ -12,7 +12,7 @@ TEST_CASE("SystemTrayIconPresenterTests") {
     Verify(Method(systemTrayIconMock, show)).Once();
 
     SECTION("display test") {
-        Notification notif{"title", "message", QIcon(), NotificationType::NewSong};
+        Notification notif{"title", "message", "", NotificationType::Song};
         presenter.display(notif);
         Verify(Method(systemTrayIconMock, showMessage).Using("title", "message")).Once();
     }

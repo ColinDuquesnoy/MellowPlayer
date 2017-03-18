@@ -17,7 +17,7 @@ public:
     static void Reset(Mock<INotificationPresenter>& mock) {
         mock.Reset();
         When(Method(mock, initialize)).AlwaysReturn();
-        When(Method(mock, display)).AlwaysReturn();
+        When(Method(mock, display)).AlwaysReturn(true);
     }
 };
 

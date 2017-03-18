@@ -11,6 +11,10 @@ if(WIN32)
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES})
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.UseCases)
+    if(USE_LIBNOTIFY)
+        include_directories(${LIBNOTIFY_INCLUDE_DIRS})
+        target_link_libraries(${LIB_NAME} ${LIBNOTIFY_LIBRARIES})
+    endif()
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib

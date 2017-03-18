@@ -21,12 +21,12 @@ void SnorenotifyPresenter::initialize() {
     connect(&snoreCore, &Snore::SnoreCore::actionInvoked, this, &SnorenotifyPresenter::onActionInvoked);
 }
 
-void SnorenotifyPresenter::display(const Notification& notification) {
+bool SnorenotifyPresenter::display(const Notification& notification) {
     LOG_TRACE(logger, "display(" + notification.toString() + ")");
     Snore::SnoreCore &snoreCore = Snore::SnoreCore::instance();
     QString title = notification.title;
     QString message = notification.description;
-    QIcon icon = notification.icon;
+    QIcon icon(notification.icon);
     
     if (icon.isNull())
         icon = IconProvider::windowIcon();
@@ -44,6 +44,7 @@ void SnorenotifyPresenter::display(const Notification& notification) {
     notif.addAction(Snore::Action(0, tr("Open")));
     snoreCore.broadcastNotification(notif);
     oldNotification = notif;
+    return true;
 }
 
 void SnorenotifyPresenter::onActionInvoked(const Snore::Notification&) {
