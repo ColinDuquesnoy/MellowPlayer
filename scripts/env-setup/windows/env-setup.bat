@@ -14,6 +14,7 @@ cd ..\..
 
 git clone https://github.com/KDE/snorenotify.git
 cd snorenotify
+git checkout tags/v0.7.0
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=%QTDIR% ..
