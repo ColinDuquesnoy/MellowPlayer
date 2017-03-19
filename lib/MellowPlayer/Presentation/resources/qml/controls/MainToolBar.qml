@@ -206,6 +206,25 @@ ToolBar {
             }
         }
 
+        ToolButton {
+            id: btEnableNotifications
+
+            Layout.fillHeight: true
+            Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+
+            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+            font.family: MaterialIcons.family
+            font.pixelSize: toolBar.iconSize
+            hoverEnabled: true
+            checkable: true
+            checked: true
+
+            Tooltip {
+                y: toolBar.implicitHeight
+                text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
+            }
+        }
+
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
@@ -221,20 +240,15 @@ ToolBar {
         }
 
         ToolButton {
-            id: btEnableNotifications
-            Layout.fillHeight: true
-            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+            text: MaterialIcons.icon_history
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-            checkable: true
-            checked: true
-
-            Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+            onClicked: listeningHistoryDrawer.open()
 
             Tooltip {
                 y: toolBar.implicitHeight
-                text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
+                text: qsTr("Listening history")
             }
         }
 

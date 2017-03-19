@@ -24,14 +24,59 @@ ApplicationWindow {
     Material.theme: style.theme == "light" ? Material.Light : Material.Dark
 
     overlay.modal: Rectangle {
-        color: "#8f000000"
+        color: "#Af" + style.primary.replace("#", "")
     }
 
     overlay.modeless: Rectangle {
-        color: "#8f000000"
+        color: "#2f" + style.primary.replace("#", "")
     }
 
     MainPage { anchors.fill: parent }
+
+    Drawer {
+        id: listeningHistoryDrawer
+        edge: Qt.RightEdge
+        dragMargin: 0
+        height: mainWindow.height; width: 450
+
+        Page {
+            anchors.fill: parent
+            header: ToolBar {
+                id: toolBarListeningHistoru
+                Material.primary: style.primary
+                Material.foreground: style.primaryForeground
+                Material.elevation: 0
+
+                RowLayout {
+                    anchors.fill: parent
+
+                    ToolButton {
+                        id: btBackFromListeningHistory
+                        Layout.fillHeight: true
+                        text: MaterialIcons.icon_exit_to_app
+                        font { family: MaterialIcons.family; pixelSize: 22 }
+                        hoverEnabled: true
+
+                        onClicked: listeningHistoryDrawer.close()
+
+                        Tooltip {
+                            y: toolBarListeningHistoru.implicitHeight
+                            text: qsTr("Back")
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+                }
+
+                Label {
+                    anchors.centerIn: parent
+                    text: "Listening history"
+                }
+            }
+        }
+    }
 
     Drawer {
         id: settingsDrawer
@@ -128,11 +173,6 @@ ApplicationWindow {
                             }
 
                             ListElement {
-                                title: "Listening history"
-                                icon:  "\ue889"
-                            }
-
-                            ListElement {
                                 title: "Plugins"
                                 icon:  "\ue87b"
                             }
@@ -222,16 +262,6 @@ ApplicationWindow {
 
                         TextField {
                             text: "Notifications"
-                            anchors.centerIn: parent
-                        }
-                    }
-
-                    Item {
-                        id: listeningHistoryPage
-
-                        ComboBox {
-                            model: ["Dark", "Light", "Web" ]
-
                             anchors.centerIn: parent
                         }
                     }
