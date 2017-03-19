@@ -43,7 +43,6 @@ void PluginManager::setCurrent(Plugin* plugin) {
     if (plugin == currentPlugin)
         return;
 
-    LOG_DEBUG(logger, "current plugin: " + plugin->getName());
     currentPlugin = plugin;
     emit currentPluginChanged(plugin);
 }

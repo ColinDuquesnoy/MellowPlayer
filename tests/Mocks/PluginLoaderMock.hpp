@@ -21,11 +21,13 @@ public:
         return mock;
     }
 
+    static PluginStyle PLUGIN_STYLE;
+
 private:
     static unique_ptr<Plugin> createPlugin(const QString& name) {
         PluginMetadata metadata;
         metadata.name = name;
         metadata.url = "http://" + name.toLower() + ".com";
-        return make_unique<Plugin>(metadata);
+        return make_unique<Plugin>(metadata, PLUGIN_STYLE);
     }
 };

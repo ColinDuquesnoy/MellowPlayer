@@ -112,6 +112,8 @@ double PlayerProxy::getVolume() const {
 }
 
 void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
+    if (plugin == nullptr)
+        return;
     auto player = players.get(plugin->getName());
     if (player != currentPlayer) {
         if (currentPlayer != nullptr) {
