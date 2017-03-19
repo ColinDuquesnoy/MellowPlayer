@@ -75,7 +75,6 @@ commit-build:linux:
 commit-build:coverage:
   <<: *commit_build_def
   <<: *archlinux_def
-  stage: coverage
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
     - ./scripts/build/linux/runtests.sh --debug --coverage
