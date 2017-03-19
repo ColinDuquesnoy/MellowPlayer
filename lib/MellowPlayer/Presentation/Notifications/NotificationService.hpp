@@ -32,6 +32,7 @@ private:
     UseCases::INotificationPresenter& presenter;
     UseCases::PluginManager& pluginManager;
     UseCases::IApplicationSettings& applicationSettings;
+    UseCases::Notification previousNotif;
     NotificationFactory notificationFactory;
 };
 

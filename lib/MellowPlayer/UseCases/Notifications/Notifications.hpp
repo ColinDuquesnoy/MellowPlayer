@@ -21,6 +21,14 @@ struct Notification {
     NotificationType type;
 
     QString toString() const { return title + " - " + description; }
+
+    inline bool operator==(const Notification& other) const {
+        return title == other.title && description == other.description;
+    }
+
+    inline bool operator!=(const Notification& other) const {
+        return !this->operator==(other);
+    }
 };
 
 END_MELLOWPLAYER_NAMESPACE

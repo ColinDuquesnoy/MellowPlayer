@@ -30,7 +30,7 @@ void NotificationService::initialize() {
 
 bool NotificationService::display(const Notification& notification) {
     LOG_TRACE(logger, "display");
-    if (!applicationSettings.isNotificationTypeEnabled(notification.type)) {
+    if (!applicationSettings.isNotificationTypeEnabled(notification.type) || previousNotif == notification) {
         LOG_DEBUG(logger, "notification disabled: " + notification.toString());
         return false;
     }
