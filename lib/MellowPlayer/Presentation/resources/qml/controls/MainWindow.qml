@@ -23,6 +23,14 @@ ApplicationWindow {
     Material.primary: style.primary
     Material.theme: style.theme == "light" ? Material.Light : Material.Dark
 
+    overlay.modal: Rectangle {
+        color: "#8f000000"
+    }
+
+    overlay.modeless: Rectangle {
+        color: "#8f000000"
+    }
+
     MainPage { anchors.fill: parent }
 
     Drawer {
