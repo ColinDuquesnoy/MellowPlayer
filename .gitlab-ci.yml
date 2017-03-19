@@ -72,7 +72,7 @@ commit-build:linux:
     - ./scripts/build/linux/build.sh --release --coverage
     - ./scripts/build/linux/runtests.sh --release
 
-commit-build:coverage:
+coverage:
   <<: *commit_build_def
   <<: *archlinux_def
   script:
