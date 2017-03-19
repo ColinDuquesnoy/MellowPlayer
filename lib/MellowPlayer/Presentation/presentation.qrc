@@ -1,4 +1,7 @@
 <RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
     <qresource prefix="/MellowPlayer/Presentation">
         <file>resources/qmldir</file>
         <file>resources/fonts/MaterialIcons-Regular.ttf</file>
@@ -24,6 +27,7 @@
         <file>resources/qml/controls/BrowserDialog.qml</file>
         <file>resources/qml/controls/MainToolBar.qml</file>
         <file>resources/qml/controls/ServicesOverview.qml</file>
+        <file>resources/qml/controls/Tooltip.qml</file>
         <file>resources/qml/controls/WebView.qml</file>
         <file>resources/qml/delegates/ServiceOverviewDelegate.qml</file>
         <file>resources/qml/pages/MainPage.qml</file>
