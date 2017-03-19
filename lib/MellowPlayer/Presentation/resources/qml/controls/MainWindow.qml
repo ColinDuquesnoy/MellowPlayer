@@ -17,29 +17,27 @@ ApplicationWindow {
     minimumWidth: 1280
     minimumHeight: 720
 
-    StackView {
-        id: viewStack
-        anchors.fill: parent
-        initialItem: mainPageComponent
+    Material.accent: style.accent
+    Material.background: style.background
+    Material.foreground: style.foreground
+    Material.primary: style.primary
+    Material.theme: style.theme == "light" ? Material.Light : Material.Dark
 
-    }
+    MainPage { anchors.fill: parent }
 
-    Component {
-        id: mainPageComponent
+    Drawer {
+        id: settingsDrawer
 
-        MainPage {
-
-        }
-    }
-
-    Component {
-        id: settingsPageComponent
+        edge: Qt.RightEdge
+        dragMargin: 0
+        height: mainWindow.height; width: mainWindow.width
 
         Page {
+            anchors.fill: parent
             header: ToolBar {
                 id: toolBar
-                Layout.fillWidth: true
-                Material.primary: Material.background
+                Material.primary: style.primary
+                Material.foreground: style.primaryForeground
 
                 RowLayout {
                     anchors.fill: parent
@@ -51,12 +49,9 @@ ApplicationWindow {
                         font { family: MaterialIcons.family; pixelSize: 22 }
                         hoverEnabled: true
 
-                        onClicked: viewStack.pop()
+                        onClicked: settingsDrawer.close()
 
-                        ToolTip {
-                            visible: parent.hovered
-                            delay: 1000
-                            timeout: 5000
+                        Tooltip {
                             y: toolBar.implicitHeight
                             text: qsTr("Back")
                         }
@@ -74,10 +69,7 @@ ApplicationWindow {
 
                         onClicked: Qt.quit();
 
-                        ToolTip {
-                            visible: parent.hovered
-                            delay: 1000
-                            timeout: 5000
+                        Tooltip {
                             y: toolBar.implicitHeight
                             text: qsTr("Quit the application")
                         }
@@ -95,11 +87,12 @@ ApplicationWindow {
 
                 Pane {
                     Layout.fillHeight: true
-                    Layout.maximumWidth: 450
-                    Layout.minimumWidth: 450
+                    Layout.maximumWidth: 256
+                    Layout.minimumWidth: 256
                     Material.elevation: 8
                     padding: 0
-
+                    Material.background: style.secondary
+                    Material.foreground: style.secondaryForeground
 
                     ListView {
                         id: settingsPageList
@@ -117,13 +110,28 @@ ApplicationWindow {
                             }
 
                             ListElement {
+                                title: "Shortcuts"
+                                icon:  "\ue312"
+                            }
+
+                            ListElement {
                                 title: "Notifications"
                                 icon:  "\ue7f4"
                             }
 
                             ListElement {
+                                title: "Listening history"
+                                icon:  "\ue889"
+                            }
+
+                            ListElement {
                                 title: "Plugins"
                                 icon:  "\ue87b"
+                            }
+
+                            ListElement {
+                                title: "Cache"
+                                icon:  "\ue16c"
                             }
                         }
 
@@ -131,9 +139,19 @@ ApplicationWindow {
                             id: settingsPageDelegate
 
                             Rectangle {
-                                color: mouseArea.containsMouse ? Qt.lighter(Material.background, 1.5) : settingsPageList.currentIndex == index  ?  Qt.lighter(Material.background, 1.4) :  Material.background
+                                property double colorFactor: style.getColorScaleFactor(style.secondary);
+                                color: settingsPageList.currentIndex == index ||  mouseArea.containsMouse ? Qt.darker(style.secondary, colorFactor) : style.secondary
                                 width: parent.width
-                                height: 90
+                                height: 60
+
+                                Rectangle {
+                                    anchors.top: parent.top
+                                    anchors.left: parent.left
+                                    anchors.bottom: parent.bottom
+
+                                    width: 3
+                                    color: settingsPageList.currentIndex == index ? style.accent : "transparent"
+                                }
 
                                 RowLayout {
                                     anchors.fill: parent
@@ -143,13 +161,13 @@ ApplicationWindow {
                                     Label {
                                         text: icon
                                         font.family: MaterialIcons.family
-                                        font.pixelSize: 26
+                                        font.pixelSize: 22
                                     }
 
                                     Label {
                                         verticalAlignment: "AlignVCenter"
                                         text: title
-                                        font.pixelSize: 26
+                                        font.pixelSize: 20
                                     }
 
                                     Item { Layout.fillWidth: true; }
@@ -176,8 +194,17 @@ ApplicationWindow {
                     Item {
                         id: generalSettingsPage
 
-                        Label {
+                        CheckBox {
                             text: "General"
+                            anchors.centerIn: parent
+                        }
+                    }
+
+                    Item {
+                        id: shortcutsSettingsPage
+
+                        Switch {
+                            text: "Shortcuts"
                             anchors.centerIn: parent
                         }
                     }
@@ -185,8 +212,18 @@ ApplicationWindow {
                     Item {
                         id: notificationsSettingsPage
 
-                        Label {
+                        TextField {
                             text: "Notifications"
+                            anchors.centerIn: parent
+                        }
+                    }
+
+                    Item {
+                        id: listeningHistoryPage
+
+                        ComboBox {
+                            model: ["Dark", "Light", "Web" ]
+
                             anchors.centerIn: parent
                         }
                     }
@@ -194,8 +231,18 @@ ApplicationWindow {
                     Item {
                         id: pluginsSettingsPage
 
-                        Label {
+                        Switch {
                             text: "Plugins"
+                            anchors.centerIn: parent
+                        }
+                    }
+
+
+                    Item {
+                        id: cacheSettingsPage
+
+                        Switch {
+                            text: "Cache"
                             anchors.centerIn: parent
                         }
                     }
@@ -203,6 +250,4 @@ ApplicationWindow {
             }
         }
     }
-
-    Component.onCompleted: console.log("application font: " + font.family);
 }

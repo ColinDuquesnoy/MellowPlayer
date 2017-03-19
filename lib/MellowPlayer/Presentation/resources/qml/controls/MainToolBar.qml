@@ -12,6 +12,8 @@ ToolBar {
     id: toolBar
 
     property int iconSize: 22
+    Material.primary: style.primary
+    Material.foreground: style.primaryForeground
 
     RowLayout {
         anchors.fill: parent
@@ -43,10 +45,7 @@ ToolBar {
             }
 
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 3000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: body.state == "webview" ? qsTr("Select another service") : qsTr("Go back to ") + streamingServices.currentService.name
             }
@@ -75,10 +74,7 @@ ToolBar {
 
             onClicked: webViewStack.currentWebView().goBack()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Go back")
             }
@@ -92,10 +88,7 @@ ToolBar {
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().goForward()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Go forward")
             }
@@ -109,10 +102,7 @@ ToolBar {
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().reload()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Reload this page")
             }
@@ -126,10 +116,7 @@ ToolBar {
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().url = webViewStack.currentWebView().urlToLoad
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Go to the homepage")
             }
@@ -158,10 +145,7 @@ ToolBar {
 
             onClicked: player.toggleFavoriteSong()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
             }
@@ -179,14 +163,10 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            enabled: player.canGoPrevious
 
             onClicked: player.previous()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Skip to previous song")
             }
@@ -200,14 +180,10 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            enabled: webViewStack.loadProgress >= 100
 
             onClicked: player.togglePlayPause()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text:  player.playbackStatus === Player.Playing ? qsTr("Pause") : qsTr("Play")
             }
@@ -221,13 +197,10 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            enabled: player.canGoNext
+
             onClicked: player.next()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Skip to next song")
             }
@@ -248,18 +221,20 @@ ToolBar {
         }
 
         ToolButton {
-            text: MaterialIcons.icon_notifications
+            id: btEnableNotifications
+            Layout.fillHeight: true
+            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            checkable: true
+            checked: true
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+
+            Tooltip {
                 y: toolBar.implicitHeight
-                text: qsTr("Show listening history")
+                text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
             }
         }
 
@@ -268,12 +243,9 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-            onClicked: viewStack.push(settingsPageComponent)
+            onClicked: settingsDrawer.open()
 
-            ToolTip {
-                visible: parent.hovered
-                delay: 1000
-                timeout: 5000
+            Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Configure MellowPlayer")
             }

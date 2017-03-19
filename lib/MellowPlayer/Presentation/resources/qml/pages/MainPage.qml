@@ -42,8 +42,8 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: toolBar
-                    Material.background: body.originalBackgroundColor
+                    target: style
+                    usePluginStyle: false
                 }
 
             },
@@ -68,8 +68,8 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: toolBar
-                    Material.background: webViewStack.currentWebView().color
+                    target: style
+                    usePluginStyle: true
                 }
             },
             State {
@@ -94,6 +94,7 @@ Page {
         ]
         state: "overview"
 
+        // todo move into a separate file
         StackLayout {
             id: webViewStack
 
@@ -171,18 +172,10 @@ Page {
             }
         }
 
-        Pane {
-            id: mask
-            anchors.fill: parent
-        }
+        Pane { id: mask; anchors.fill: parent }
 
-        Loader { id: overviewLoader; anchors.fill: parent; anchors.margins: 50; visible: false }
+        Loader { id: overviewLoader; anchors.fill: parent; visible: false }
 
-        Component {
-            id: overviewComponent
-
-            ServicesOverview { }
-
-        }
+        Component { id: overviewComponent; ServicesOverview { } }
     }
 }

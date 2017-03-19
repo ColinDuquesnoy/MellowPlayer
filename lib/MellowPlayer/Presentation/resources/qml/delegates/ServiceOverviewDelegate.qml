@@ -19,8 +19,7 @@ Item {
         id: highlight
         anchors.fill: parent
         anchors.margins: parent.width / 50
-        Material.background: state == "hover" ? Qt.lighter(backgroundColor) : backgroundColor
-        Material.elevation: 5
+        Material.elevation: state == "hover" ? 6 : 4
 
         Image {
             id: preview
@@ -116,6 +115,9 @@ Item {
 
         Pane {
             anchors.centerIn: parent
+            Material.background: "#404040"
+            Material.elevation: 2
+            opacity: 0.9
 
             RowLayout {
                 anchors.fill: parent
@@ -129,9 +131,11 @@ Item {
                     mipmap: true
                 }
 
-                Label {
+                Text {
                     id: lblName
                     Layout.fillWidth: true
+
+                    color: "white"
                     text: object.name
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -148,32 +152,6 @@ Item {
             onClicked: root.activate();
         }
 
-        Rectangle {
-            anchors.top: parent.top
-            anchors.right: parent.right
-            anchors.margins: 10
-            width: 32
-            height: 32
-            radius: 32
-            color: Material.background
-            visible: preview.source != "qrc:/MellowPlayer/Presentation/resources/images/home-background.png" && highlight.state == "hover"
-
-            ToolButton {
-                id: btOff
-                hoverEnabled: true
-                anchors.centerIn: parent
-
-                text: MaterialIcons.icon_power_settings_new
-                font.family: MaterialIcons.family
-                font.pointSize: 22
-
-                onClicked: {
-                    webView.url = "";
-                    webView.reload();
-                    webView.image = null;
-                }
-            }
-        }
     }
 
     function activate() {
@@ -185,6 +163,34 @@ Item {
         if (streamingServices.currentIndex == index) {
             root.activate();
             preview.visible = false;
+        }
+    }
+
+    Rectangle {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.margins: 10
+        width: 32
+        height: 32
+        radius: 32
+        color: Material.color(Material.Red)
+        visible: preview.source != "qrc:/MellowPlayer/Presentation/resources/images/home-background.png" && highlight.state == "hover"
+
+        ToolButton {
+            id: btOff
+            hoverEnabled: true
+            anchors.centerIn: parent
+            Material.foreground: "white"
+
+            text: MaterialIcons.icon_power_settings_new
+            font.family: MaterialIcons.family
+            font.pointSize: 22
+
+            onClicked: {
+                webView.url = "";
+                webView.reload();
+                webView.image = null;
+            }
         }
     }
 }
