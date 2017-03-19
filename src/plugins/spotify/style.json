@@ -1,0 +1,10 @@
+{
+  "theme": "dark",
+  "accent": "#84bd00",
+  "background": "#121314",
+  "foreground": "#ffffff",
+  "primary": "#1c1c1f",
+  "primaryForeground": "#dfe0e6",
+  "secondary": "#1c1c1f",
+  "secondaryForeground": "#dfe0e6"
+}

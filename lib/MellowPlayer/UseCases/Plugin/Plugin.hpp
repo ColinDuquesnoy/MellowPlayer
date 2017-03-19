@@ -6,6 +6,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include "../Logging/LoggingManager.hpp"
 #include "PluginMetadata.hpp"
+#include "PluginStyle.hpp"
 #include "PluginScript.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -21,7 +22,7 @@ class Plugin: public QObject {
     Q_PROPERTY(QString version READ getVersion CONSTANT)
     Q_PROPERTY(PluginScript* script READ getScript CONSTANT)
 public:
-    Plugin(const PluginMetadata& metadata);
+    Plugin(const PluginMetadata& metadata, const PluginStyle& style = PluginStyle::defaultStyle());
     ~Plugin();
 
     bool isValid() const;
@@ -33,13 +34,15 @@ public:
     QString getUrl() const;
     const QString& getVersion() const;
     PluginScript* getScript() const;
+    const PluginStyle& getStyle() const;
 
-    bool operator==(const Plugin& rhs) const ;
+    bool operator==(const Plugin& rhs) const;
     bool operator!=(const Plugin& rhs) const;
 
 private:
     ILogger& logger;
     PluginMetadata metadata;
+    PluginStyle style;
     std::unique_ptr<PluginScript> script;
 };
 

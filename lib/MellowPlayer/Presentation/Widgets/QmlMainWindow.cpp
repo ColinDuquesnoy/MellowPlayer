@@ -6,13 +6,16 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices, IPlayer& player,
+QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
+                             StyleViewModel& style,
+                             IPlayer& player,
                              ILocalAlbumArtService& albumArt,
                              IApplicationSettings& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
         applicationSettings(applicationSettings), streamingServices(streamingServices) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
     qmlApplicationEngine.rootContext()->setContextProperty("streamingServices", &streamingServices);
+    qmlApplicationEngine.rootContext()->setContextProperty("style", &style);
     qmlApplicationEngine.rootContext()->setContextProperty("player", &player);
     qmlApplicationEngine.rootContext()->setContextProperty("albumArt", &albumArt);
 }

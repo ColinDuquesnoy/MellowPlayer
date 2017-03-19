@@ -5,6 +5,8 @@
 #include <QtCore/QStandardPaths>
 #include <QtCore/QTextStream>
 #include <QtGui/QIcon>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
 #include "PluginLoader.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -78,16 +80,39 @@ PluginMetadata PluginLoader::readMetadata(const QString& filePath) const {
     return pluginMetadata;
 }
 
+PluginStyle PluginLoader::readStyle(const QString& filePath) const {
+    PluginStyle style;
+
+    if (QFileInfo(filePath).exists()) {
+        QFile file(filePath);
+        if (file.open(QFile::ReadOnly | QFile::Text)) {
+            QJsonDocument document = QJsonDocument::fromJson(file.readAll().data());
+            QJsonObject object = document.object();
+            style.accent = object.value("accent").toString();
+            style.background = object.value("background").toString();
+            style.foreground = object.value("foreground").toString();
+            style.primary = object.value("primary").toString();
+            style.primaryForeground = object.value("primaryForeground").toString();
+            style.secondary = object.value("secondary").toString();
+            style.secondaryForeground = object.value("secondaryForeground").toString();
+            style.theme = object.value("theme").toString();
+        }
+    }
+
+    return style;
+}
+
 unique_ptr<Plugin> PluginLoader::loadPlugin(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
-    QString descPath = findFileByExtension(directory, "html");
+    QString stylePath = findFileByExtension(directory, "json");
     QString locale = QLocale::system().name().split("_")[0];
     PluginMetadata metadata = readMetadata(metadataPath);
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
+    PluginStyle style = readStyle(stylePath);
 
-    return make_unique<Plugin>(metadata);
+    return make_unique<Plugin>(metadata, style);
 }
 
 bool PluginLoader::checkPluginDirectory(const QString& directory) const {

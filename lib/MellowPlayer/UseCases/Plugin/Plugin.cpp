@@ -6,9 +6,9 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-Plugin::Plugin(const PluginMetadata& metadata):
+Plugin::Plugin(const PluginMetadata& metadata,  const PluginStyle& style):
     logger(LoggingManager::instance().getLogger("Plugin")),
-    metadata(metadata), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
+    metadata(metadata), style(style), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
 
     if ((!metadata.isValid())) LOG_DEBUG(logger, "Invalid metadata, name or url is empty");
     if (!script->isValid()) LOG_DEBUG(logger, metadata.name.toStdString() << " invalid integration script");
@@ -52,7 +52,13 @@ bool Plugin::isValid() const {
     return metadata.isValid() && script->isValid();
 }
 
+PluginScript* Plugin::getScript() const {
+    return script.get();
+}
 
+const PluginStyle& Plugin::getStyle() const {
+    return style;
+}
 
 bool Plugin::operator==(const Plugin& rhs) const {
     return getName() == rhs.getName() && getUrl() == rhs.getUrl();
@@ -60,8 +66,4 @@ bool Plugin::operator==(const Plugin& rhs) const {
 
 bool Plugin::operator!=(const Plugin& rhs) const {
     return !operator==(rhs);
-}
-
-PluginScript* Plugin::getScript() const {
-    return script.get();
 }

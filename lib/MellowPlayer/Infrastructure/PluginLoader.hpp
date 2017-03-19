@@ -15,6 +15,7 @@ private:
     QString findFileByExtension(const QString &directory, const QString &suffix) const;
     QString readFileContent(const QString &filePath) const;
     UseCases::PluginMetadata readMetadata(const QString &filePath) const;
+    UseCases::PluginStyle readStyle(const QString &filePath) const;
     bool checkPluginDirectory(const QString &directory) const;
     QString getUserPluginsDirectory() const;
     QStringList getSearchPaths() const;

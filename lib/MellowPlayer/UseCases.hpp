@@ -26,6 +26,7 @@
 #include "UseCases/Plugin/PluginManager.hpp"
 #include "UseCases/Plugin/PluginMetadata.hpp"
 #include "UseCases/Plugin/PluginScript.hpp"
+#include "UseCases/Plugin/PluginStyle.hpp"
 
 #include "UseCases/Services/ILocalAlbumArtService.hpp"
 #include "UseCases/Services/IHotkeysService.hpp"

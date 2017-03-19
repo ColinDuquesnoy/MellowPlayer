@@ -4,6 +4,7 @@
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases.hpp>
 #include "../ViewModels/StreamingServicesViewModel.hpp"
+#include "../ViewModels/StyleViewModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -11,6 +12,7 @@ class QmlMainWindow: public QObject, public UseCases::IMainWindow {
     Q_OBJECT
 public:
     QmlMainWindow(StreamingServicesViewModel& streamingServices,
+                  StyleViewModel& style,
                   UseCases::IPlayer& player,
                   UseCases::ILocalAlbumArtService& albumArt,
                   UseCases::IApplicationSettings& applicationSettings);
