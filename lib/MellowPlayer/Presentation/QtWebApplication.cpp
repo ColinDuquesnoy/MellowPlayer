@@ -15,22 +15,23 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     setOrganizationName("MellowPlayer");
     setWindowIcon(IconProvider::windowIcon());
 
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Black.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-BlackItalic.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Bold.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-BoldItalic.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Italic.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Light.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-LightItalic.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Medium.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-MediumItalic.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Regular.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-Thin.ttf");
-    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/resources/fonts/Roboto/Roboto-ThinItalic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Black.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-BlackItalic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-BoldItalic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Italic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Light.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-LightItalic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Medium.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-MediumItalic.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Thin.ttf");
+    QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-ThinItalic.ttf");
 
     qRegisterMetaType<Player*>("UseCases::Player*");
     qRegisterMetaType<Song*>("UseCases::Song*");
     qRegisterMetaType<Song*>("UseCases::Plugin*");
+    qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
 }
 
 int QtWebApplication::run() {

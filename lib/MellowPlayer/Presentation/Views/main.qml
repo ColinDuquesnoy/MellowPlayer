@@ -1,6 +1,5 @@
 import QtQuick 2.7
-import "qrc:/MellowPlayer/Presentation/resources"
-import "controls"
+import MellowPlayer 3.0
 
 MainWindow {
     id: mainWindow

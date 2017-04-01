@@ -4,6 +4,7 @@
 #include "Infrastructure/AlbumArtDownloader.hpp"
 #include "Infrastructure/ApplicationSettings.hpp"
 #include "Infrastructure/PluginLoader.hpp"
+#include "MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp"
 
 #include "Infrastructure/Applications/Application.hpp"
 #include "Infrastructure/Applications/IApplication.hpp"

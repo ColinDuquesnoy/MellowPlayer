@@ -66,5 +66,5 @@ void StreamingServicesViewModel::reload() {
 }
 
 void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {
-    model.add(new StreamingServiceModel(*plugin, applicationSettings, playersService, this));
+    model.append(new StreamingServiceModel(*plugin, applicationSettings, playersService, this));
 }

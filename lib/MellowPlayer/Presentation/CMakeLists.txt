@@ -2,9 +2,11 @@ set(LIB_NAME "${PROJECT_NAME}.Presentation")
 
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
-file(GLOB_RECURSE QML_FILES resources/qml/*.qml)
+file(GLOB_RECURSE QML_FILES Views/*.qml)
 file(GLOB_RECURSE QRC_FILES *.qrc)
 file(GLOB_RECURSE CONF_FILES *.conf)
+
+set(QML_FILES ${QML_FILES} Views/MellowPlayer/qmldir)
 
 SET(CMAKE_DEBUG_POSTFIX "")
 if(WIN32)

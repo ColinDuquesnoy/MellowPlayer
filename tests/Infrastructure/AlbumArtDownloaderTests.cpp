@@ -10,7 +10,7 @@ TEST_CASE("AlbumArtDownloaderTests", "[IntregrationTests]") {
 
     QFile::remove(albumArtDownloader.getLocalArtUrl("mellowplayer.svg").absoluteFilePath());
 
-    SECTION("download will take some time and a file will be created") {
+    SECTION("download will remove some time and a file will be created") {
         REQUIRE(albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg",
                                             "mellowplayer.svg"));
         if(downloadFinishedSpy.wait(2000)) {

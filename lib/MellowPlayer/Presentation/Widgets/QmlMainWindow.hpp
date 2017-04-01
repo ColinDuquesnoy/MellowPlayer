@@ -3,6 +3,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases.hpp>
+#include "../ViewModels/ListeningHistoryViewModel.hpp"
 #include "../ViewModels/StreamingServicesViewModel.hpp"
 #include "../ViewModels/StyleViewModel.hpp"
 
@@ -12,6 +13,7 @@ class QmlMainWindow: public QObject, public UseCases::IMainWindow {
     Q_OBJECT
 public:
     QmlMainWindow(StreamingServicesViewModel& streamingServices,
+                  ListeningHistoryViewModel& listeningHistory,
                   StyleViewModel& style,
                   UseCases::IPlayer& player,
                   UseCases::ILocalAlbumArtService& albumArt,
@@ -29,6 +31,7 @@ private:
     UseCases::ILogger& logger;
     UseCases::IApplicationSettings& applicationSettings;
     StreamingServicesViewModel& streamingServices;
+    ListeningHistoryViewModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
 };
 

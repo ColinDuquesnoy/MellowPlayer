@@ -14,12 +14,17 @@ file(GLOB SYSTEM_SOURCE_FILES System/*.cpp)
 file(GLOB SYSTEM_HEADER_FILES System/*.hpp)
 
 set(SOURCE_FILES ${SOURCE_FILES}
-        ${LOGGING_SOURCE_FILES} ${SYSTEM_SOURCE_FILES} ${APPLICATIONS_SOURCE_FILES} ${SERVICES_SOURCE_FILES})
+        ${LOGGING_SOURCE_FILES}
+        ${SYSTEM_SOURCE_FILES}
+        ${APPLICATIONS_SOURCE_FILES}
+        ${SERVICES_SOURCE_FILES}
+        ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core/qxtglobal.cpp
+        ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
 set(HEADER_FILES ${HEADER_FILES}
-        ${LOGGING_HEADER_FILES} ${SYSTEM_HEADER_FILES} ${APPLICATIONS_HEADER_FILES} ${SERVICES_HEADER_FILES})
-
-set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core/qxtglobal.cpp
-                                 ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
+        ${LOGGING_HEADER_FILES}
+        ${SYSTEM_HEADER_FILES}
+        ${APPLICATIONS_HEADER_FILES}
+        ${SERVICES_HEADER_FILES})
 
 if (WIN32)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/win/qxtglobalshortcut_win.cpp)
@@ -46,7 +51,7 @@ else()
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-qt5_use_modules(${LIB_NAME} Core Widgets Network)
+qt5_use_modules(${LIB_NAME} Core Widgets Network Sql)
 
 if(UNIX AND NOT APPLE)
     qt5_use_modules(${LIB_NAME} DBus)

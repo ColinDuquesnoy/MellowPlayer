@@ -1,4 +1,4 @@
-# set a local qml import dir for developers (to avoid to have to install the plugins to test and develop them).
+# set a local Views import dir for developers (to avoid to have to install the plugins to test and develop them).
 set(QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/imports" CACHE STRING "" FORCE)
 add_definitions(-DQML_IMPORT_PATH=\"${QML_IMPORT_PATH}\")
 set(BUILDING_HACKEDIT_EDITOR TRUE)

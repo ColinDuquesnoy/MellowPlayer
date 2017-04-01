@@ -21,11 +21,11 @@ TEST_CASE("GenericListModelTests") {
         Plugin service(metadata);
         StreamingServiceModel serviceModel(service, appSettingsMock.get(), playersService);
 
-        model.add(&serviceModel);
+        model.append(&serviceModel);
         REQUIRE(model.rowCount() == 1);
 
         SECTION("take_Test") {
-            model.take(&serviceModel);
+            model.remove(&serviceModel);
             REQUIRE(model.rowCount() == 0);
 
             SECTION("invalidData") {

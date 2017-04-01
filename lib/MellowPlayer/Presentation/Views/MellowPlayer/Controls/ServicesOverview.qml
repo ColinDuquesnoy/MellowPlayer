@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 
-import '../delegates'
+import MellowPlayer 3.0
 
 Item {
     id: overview

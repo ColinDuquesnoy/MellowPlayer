@@ -15,7 +15,7 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
         if (config.createConsoleLogger) {
             sinks.push_back(make_shared<sinks::ansicolor_sink>(make_shared<sinks::stdout_sink_mt>()));
         }
-        auto logFileName = FileHelper::createLogDirectory() + name;
+        auto logFileName = FileHelper::createLogDirectory().toStdString() + name;
         sinks.push_back(make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5));
 
         // create and register logger

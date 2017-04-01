@@ -4,9 +4,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 
-import "qrc:/MellowPlayer/Presentation/resources"
-import ".."
-import "../pages"
+import MellowPlayer 3.0
 
 ApplicationWindow {
     id: mainWindow
@@ -33,50 +31,7 @@ ApplicationWindow {
 
     MainPage { anchors.fill: parent }
 
-    Drawer {
-        id: listeningHistoryDrawer
-        edge: Qt.RightEdge
-        dragMargin: 0
-        height: mainWindow.height; width: 450
-
-        Page {
-            anchors.fill: parent
-            header: ToolBar {
-                id: toolBarListeningHistoru
-                Material.primary: style.primary
-                Material.foreground: style.primaryForeground
-                Material.elevation: 0
-
-                RowLayout {
-                    anchors.fill: parent
-
-                    ToolButton {
-                        id: btBackFromListeningHistory
-                        Layout.fillHeight: true
-                        text: MaterialIcons.icon_exit_to_app
-                        font { family: MaterialIcons.family; pixelSize: 22 }
-                        hoverEnabled: true
-
-                        onClicked: listeningHistoryDrawer.close()
-
-                        Tooltip {
-                            y: toolBarListeningHistoru.implicitHeight
-                            text: qsTr("Back")
-                        }
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
-                }
-
-                Label {
-                    anchors.centerIn: parent
-                    text: "Listening history"
-                }
-            }
-        }
-    }
+    ListeningHistoryDrawer { id: listeningHistoryDrawer }
 
     Drawer {
         id: settingsDrawer

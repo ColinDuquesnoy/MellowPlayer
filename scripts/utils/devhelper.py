@@ -150,11 +150,11 @@ def make_win32_release():
         os.path.join(qt_bin_dir, 'SnoreToast.exe'),
         os.path.join(qt_bin_dir, 'png2ico.exe'),
         os.path.join(qt_bin_dir, 'snore-qt5.dll'),
-        os.path.join(qt_root_dir, 'resources', 'qtwebengine_devtools_resources.pak'),
-        os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources.pak'),
-        os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources_100p.pak'),
-        os.path.join(qt_root_dir, 'resources', 'qtwebengine_resources_200p.pak'),
-        os.path.join(qt_root_dir, 'resources', 'icudtl.dat'),
+        os.path.join(qt_root_dir, 'Resources', 'qtwebengine_devtools_resources.pak'),
+        os.path.join(qt_root_dir, 'Resources', 'qtwebengine_resources.pak'),
+        os.path.join(qt_root_dir, 'Resources', 'qtwebengine_resources_100p.pak'),
+        os.path.join(qt_root_dir, 'Resources', 'qtwebengine_resources_200p.pak'),
+        os.path.join(qt_root_dir, 'Resources', 'icudtl.dat'),
         os.path.join(snore_plugins_dir, 'libsnore_backend_windowstoast.dll'),
     ]
 

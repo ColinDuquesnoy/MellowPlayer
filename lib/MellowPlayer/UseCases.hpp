@@ -7,6 +7,10 @@
 #include "UseCases/Interfaces/IPluginLoader.hpp"
 #include "UseCases/Interfaces/ISystemTrayIcon.hpp"
 
+#include "MellowPlayer/UseCases/ListeningHistory/IListeningHistoryDataProvider.hpp"
+#include "UseCases/ListeningHistory/ListeningHistory.hpp"
+#include "UseCases/ListeningHistory/ListeningHistoryEntry.hpp"
+
 #include "UseCases/Logging/LoggerConfig.hpp"
 #include "UseCases/Logging/ILogger.hpp"
 #include "UseCases/Logging/ILoggerFactory.hpp"

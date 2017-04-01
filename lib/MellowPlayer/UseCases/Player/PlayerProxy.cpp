@@ -150,3 +150,9 @@ void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
         emit volumeChanged();
     }
 }
+
+QString PlayerProxy::getServiceName() const {
+    if (currentPlayer)
+        return currentPlayer->getServiceName();
+    return "";
+}

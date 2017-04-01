@@ -60,6 +60,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ILocalAlbumArtService>().to<LocalAlbumArtService>().in(scope),
         di::bind<IHotkeysService>().to<HotkeysService>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
+        di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotificationService>().to<NotificationService>().in(scope),
         di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope)
     );

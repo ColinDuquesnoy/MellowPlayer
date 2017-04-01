@@ -16,6 +16,7 @@ class IPlayer: public QObject
     Q_PROPERTY(bool canGoPrevious READ getCanGoPrevious NOTIFY canGoPreviousChanged)
     Q_PROPERTY(bool canAddToFavorites READ getCanAddToFavorites NOTIFY canAddToFavoritesChanged)
     Q_PROPERTY(int volume READ getVolume NOTIFY volumeChanged)
+    Q_PROPERTY(QString serviceName READ getServiceName CONSTANT)
 public:
     enum class PlaybackStatus {
         Stopped = 0,
@@ -46,6 +47,7 @@ public:
     virtual bool getCanGoPrevious() const = 0;
     virtual bool getCanAddToFavorites() const = 0;
     virtual double getVolume() const = 0;
+    virtual QString getServiceName() const = 0;
 
 signals:
     void currentSongChanged(Song* song);

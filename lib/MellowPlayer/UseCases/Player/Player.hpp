@@ -32,6 +32,7 @@ public:
     bool getCanGoPrevious() const override;
     bool getCanAddToFavorites() const override;
     double getVolume() const override;
+    QString getServiceName() const override;
 
     // invoked by WebView (QML)
     Q_INVOKABLE void initialize();

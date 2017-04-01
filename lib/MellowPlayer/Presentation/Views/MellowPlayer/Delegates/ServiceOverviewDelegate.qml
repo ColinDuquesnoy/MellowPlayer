@@ -5,7 +5,7 @@ import QtQuick.Controls.Material 2.0
 import QtWebEngine 1.3
 import QtGraphicalEffects 1.0
 
-import "qrc:/MellowPlayer/Presentation/resources"
+import MellowPlayer 3.0
 
 Item {
     id: root
@@ -28,7 +28,7 @@ Item {
             width: parent.width
             height: parent.height
             source: {
-                return webView !== null && webView.image !== null ? webView.image.url : "qrc:/MellowPlayer/Presentation/resources/images/home-background.png"
+                return webView !== null && webView.image !== null ? webView.image.url : "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png"
             }
             states: State {
                 name: "selected"
@@ -174,7 +174,7 @@ Item {
         height: 32
         radius: 32
         color: Material.color(Material.Red)
-        visible: preview.source != "qrc:/MellowPlayer/Presentation/resources/images/home-background.png" && highlight.state == "hover"
+        visible: preview.source != "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png" && highlight.state == "hover"
 
         ToolButton {
             id: btOff

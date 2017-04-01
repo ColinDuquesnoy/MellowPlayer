@@ -7,24 +7,29 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
+                             ListeningHistoryViewModel& listeningHistory,
                              StyleViewModel& style,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
                              IApplicationSettings& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
-        applicationSettings(applicationSettings), streamingServices(streamingServices) {
-    qmlRegisterUncreatableType<Player>("MellowPlayer", 1, 0, "Player", "Player cannot be instantiated from QML");
-    qmlApplicationEngine.rootContext()->setContextProperty("streamingServices", &streamingServices);
-    qmlApplicationEngine.rootContext()->setContextProperty("style", &style);
-    qmlApplicationEngine.rootContext()->setContextProperty("player", &player);
-    qmlApplicationEngine.rootContext()->setContextProperty("albumArt", &albumArt);
+        applicationSettings(applicationSettings), streamingServices(streamingServices),
+        listeningHistory(listeningHistory) {
+    qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
+    auto context = qmlApplicationEngine.rootContext();
+    context->setContextProperty("streamingServices", &streamingServices);
+    context->setContextProperty("listeningHistory", &listeningHistory);
+    context->setContextProperty("style", &style);
+    context->setContextProperty("player", &player);
+    context->setContextProperty("albumArt", &albumArt);
 }
 
 bool QmlMainWindow::load() {
     LOG_TRACE(logger, "loading");
     QtWebEngine::initialize();
     streamingServices.initialize();
-    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/MellowPlayer/Presentation/resources/qml/main.qml")));
+    qmlApplicationEngine.addImportPath("qrc:/MellowPlayer/Presentation/Views");
+    qmlApplicationEngine.load(QUrl("qrc:/MellowPlayer/Presentation/Views/main.qml"));
     auto rootObjects = qmlApplicationEngine.rootObjects();
     if (rootObjects.count() && rootObjects.first() != nullptr) {
         window = qobject_cast<QQuickWindow*>(rootObjects.first());

@@ -12,16 +12,34 @@ public:
 
     ListModel(): QAbstractListModel() { }
 
-    void add(T* item) {
+    void prepend(T* item) {
+        beginInsertRows(QModelIndex(), 0, 0);
+        items.prepend(item);
+        endInsertRows();
+    }
+
+    void append(T* item) {
         beginInsertRows(QModelIndex(), rowCount(), rowCount());
         items.append(item);
         endInsertRows();
     }
 
-    void take(T* item) {
+    void removeAt(int index) {
+        beginRemoveRows(QModelIndex(), index, index);
+        items.removeAt(index);
+        endRemoveRows();
+    }
+
+    void remove(T* item) {
         auto index = items.indexOf(item);
         beginRemoveRows(QModelIndex(), index, index);
         items.removeAt(index);
+        endRemoveRows();
+    }
+
+    void clear() {
+        beginRemoveRows(QModelIndex(), 0, rowCount());
+        items.clear();
         endRemoveRows();
     }
 

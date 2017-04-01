@@ -4,9 +4,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 import QtGraphicalEffects 1.0
 
-import MellowPlayer 1.0
-
-import "qrc:/MellowPlayer/Presentation/resources"
+import MellowPlayer 3.0
 
 ToolBar {
     id: toolBar

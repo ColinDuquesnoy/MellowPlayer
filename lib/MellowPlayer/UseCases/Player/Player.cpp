@@ -108,6 +108,10 @@ double Player::getVolume() const {
     return volume;
 }
 
+QString Player::getServiceName() const {
+    return plugin.getName();
+}
+
 void Player::initialize() {
     LOG_TRACE(logger, "initialize()");
     emit runJavascriptRequested(pluginScript.getConstants() + "\n" + pluginScript.getCode());
@@ -162,7 +166,7 @@ void Player::setCurrentSong(unique_ptr<Song>& song) {
     }
 
     currentSong = std::move(song);
-    LOG_DEBUG(logger, "song changed: " + currentSong->toString());
+    LOG_DEBUG(logger, "song changed: " + (currentSong->isValid() ? currentSong->toString() : "NullSong"));
     emit currentSongChanged(currentSong.get());
 }
 

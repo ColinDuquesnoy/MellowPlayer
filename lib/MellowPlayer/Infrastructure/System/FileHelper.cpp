@@ -5,19 +5,17 @@
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
-string FileHelper::appDataDirectory() {
-    auto retVal = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator();
-    return retVal.toStdString();
+QString FileHelper::appDataDirectory() {
+    return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator();
 }
 
-string FileHelper::logDirectory() {
-    auto retVal = QString::fromStdString(appDataDirectory()) + "Logs" + QDir::separator();
-    return retVal.toStdString();
+QString FileHelper::logDirectory() {
+    return appDataDirectory() + "Logs" + QDir::separator();
 }
 
-std::string FileHelper::createLogDirectory() {
+QString FileHelper::createLogDirectory() {
     auto directory = logDirectory();
-    QDir qDir(QString::fromStdString(directory));
+    QDir qDir(directory);
     qDir.mkpath(qDir.path());
     return directory;
 }
