@@ -1,8 +1,9 @@
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
 #include "StreamingServiceModel.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Player/Song.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/Entities/Song.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/ApplicationSettingsMock.hpp>
 

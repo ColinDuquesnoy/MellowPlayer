@@ -1,6 +1,6 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
 #include <MellowPlayer/Infrastructure/Applications/Application.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
@@ -18,7 +18,7 @@ TEST_CASE("ApplicationTests") {
     auto systemTrayIconMock = SystemTrayIconMock::get();
     auto notificationServiceMock = NotificationServiceMock::get();
     auto pluginLoaderMock = PluginLoaderMock::get();
-    PluginManager pluginManager(pluginLoaderMock.get());
+    PluginsService pluginManager(pluginLoaderMock.get());
     Application app(qtAppMock.get(),
                     mainWindowMock.get(),
                     pluginManager,

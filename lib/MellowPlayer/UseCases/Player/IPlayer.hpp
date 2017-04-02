@@ -3,9 +3,9 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 
-class Song;
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 enum class PlaybackStatus {
     Stopped = 0,
@@ -17,7 +17,7 @@ enum class PlaybackStatus {
 class IPlayer: public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
+    Q_PROPERTY(Entities::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
     Q_PROPERTY(double position READ getPosition NOTIFY positionChanged)
     Q_PROPERTY(PlaybackStatus playbackStatus READ getPlaybackStatus NOTIFY playbackStatusChanged)
     Q_PROPERTY(bool canSeek READ getCanSeek NOTIFY canSeekChanged)
@@ -26,6 +26,7 @@ class IPlayer: public QObject
     Q_PROPERTY(bool canAddToFavorites READ getCanAddToFavorites NOTIFY canAddToFavoritesChanged)
     Q_PROPERTY(int volume READ getVolume NOTIFY volumeChanged)
     Q_PROPERTY(QString serviceName READ getServiceName CONSTANT)
+    Q_PROPERTY(bool isPlaying READ isPlaying NOTIFY isPlayingChanged)
 public:
     Q_ENUMS(PlaybackStatus)
 
@@ -38,7 +39,7 @@ public:
     virtual void previous() = 0;
     virtual void seekToPosition(double position) = 0;
     virtual void setVolume(double volume) = 0;
-    virtual Song* getCurrentSong() = 0;
+    virtual Entities::Song* getCurrentSong() = 0;
     virtual void toggleFavoriteSong() = 0;
     virtual void addToFavorites() = 0;
     virtual void removeFromFavorites() = 0;
@@ -51,9 +52,10 @@ public:
     virtual bool getCanAddToFavorites() const = 0;
     virtual double getVolume() const = 0;
     virtual QString getServiceName() const = 0;
+    virtual bool isPlaying() const = 0;
 
 signals:
-    void currentSongChanged(Song* song);
+    void currentSongChanged(Entities::Song* song);
     void positionChanged();
     void playbackStatusChanged();
     void canSeekChanged();
@@ -61,6 +63,7 @@ signals:
     void canGoPreviousChanged();
     void canAddToFavoritesChanged();
     void volumeChanged();
+    void isPlayingChanged();
 };
 
 END_MELLOWPLAYER_NAMESPACE

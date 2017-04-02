@@ -4,10 +4,10 @@
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
 
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Song)
 PREDECLARE_MELLOWPLAYER_ENUM(UseCases, PlaybackStatus)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -73,7 +73,7 @@ signals:
 
 private slots:
     void onPlaybackStatusChanged();
-    void onSongChanged(UseCases::Song* song);
+    void onSongChanged(Entities::Song* song);
     void onArtUrlChanged();
     void onPositionChanged();
     void onDurationChanged();
@@ -83,7 +83,7 @@ private slots:
     void onVolumeChanged();
 
 private:
-    QMap<QString, QVariant> toXesam(const UseCases::Song& song);
+    QMap<QString, QVariant> toXesam(const Entities::Song& song);
     QString statusToString(UseCases::PlaybackStatus status);
     void signalPlayerUpdate(const QVariantMap &map);
     void signalUpdate(const QVariantMap &map, const QString &interfaceName);

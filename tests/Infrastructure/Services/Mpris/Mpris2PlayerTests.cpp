@@ -3,19 +3,20 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests") {
     auto mock = PluginLoaderMock::get();
-    PluginManager pluginManager(mock.get());
+    PluginsService pluginManager(mock.get());
     pluginManager.load();
     pluginManager.setCurrent(pluginManager.getAll()[0].get());
     PlayersService playersService(pluginManager);

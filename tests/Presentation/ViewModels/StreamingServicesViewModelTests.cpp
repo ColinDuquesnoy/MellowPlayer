@@ -11,7 +11,7 @@ using namespace fakeit;
 TEST_CASE("StreamingServicesViewModel") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PluginManager& servicesManager = injector.create<PluginManager&>();
+    PluginsService& servicesManager = injector.create<PluginsService&>();
     servicesManager.load();
     StreamingServicesViewModel& viewModel = injector.create<StreamingServicesViewModel&>();
     viewModel.initialize();

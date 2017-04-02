@@ -22,13 +22,13 @@ endif()
 
 include(scripts/cmake/FindDependencies.cmake)
 
-include_directories(lib/)
+include_directories(lib)
 
 # Sources
 if(ENABLE_COVERAGE)
     include(scripts/cmake/CodeCoverage.cmake)
 endif()
-add_subdirectory(lib)
+add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)
 if(BUILD_TESTS)
     enable_testing(true)

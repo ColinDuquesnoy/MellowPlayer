@@ -1,7 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Services/IMprisService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
 #include <memory>
 
 #ifdef Q_OS_LINUX

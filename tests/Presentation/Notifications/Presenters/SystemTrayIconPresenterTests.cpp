@@ -1,8 +1,9 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+#include <MellowPlayer/Entities/Notifications.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

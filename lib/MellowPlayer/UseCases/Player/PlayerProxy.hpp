@@ -4,19 +4,20 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 #include "IPlayer.hpp"
-#include "Song.hpp"
+#include "MellowPlayer/Entities/Song.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Player;
 class PlayersService;
-class Plugin;
-class PluginManager;
+class PluginsService;
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT
 public:
-    PlayerProxy(PlayersService& playersService, PluginManager& pluginManager);
+    PlayerProxy(PlayersService& playersService, PluginsService& pluginManager);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -29,7 +30,7 @@ public:
     Q_INVOKABLE void addToFavorites() override;
     Q_INVOKABLE void removeFromFavorites() override;
 
-    Song* getCurrentSong() override;
+    Entities::Song* getCurrentSong() override;
     double getPosition() const override;
     PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
@@ -38,14 +39,15 @@ public:
     bool getCanAddToFavorites() const override;
     double getVolume() const override;
     QString getServiceName() const override;
+    bool isPlaying() const override;
 
 private slots:
-    void onCurrentPluginChanged(UseCases::Plugin* plugin);
+    void onCurrentPluginChanged(Entities::Plugin* plugin);
 
 private:
     PlayersService& players;
-    PluginManager& pluginManager;
-    Song nullSong;
+    PluginsService& pluginManager;
+    Entities::Song nullSong;
 
     std::shared_ptr<Player> currentPlayer;
 };

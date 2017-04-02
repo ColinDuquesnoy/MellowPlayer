@@ -1,17 +1,18 @@
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include "PluginManager.hpp"
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include "PluginsService.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PluginManager::PluginManager(IPluginLoader& pluginLoader) :
-        logger(LoggingManager::instance().getLogger("PluginManager")),
+PluginsService::PluginsService(IPluginLoader& pluginLoader) :
+        logger(LoggingManager::instance().getLogger("PluginsService")),
         pluginLoader(pluginLoader), currentPlugin(nullptr) {
 }
 
-void PluginManager::load() {
+void PluginsService::load() {
     auto newPlugins = pluginLoader.load();
 
     for (auto newPlugin: newPlugins) {
@@ -30,18 +31,18 @@ void PluginManager::load() {
     }
 }
 
-Plugin& PluginManager::get(const QString& name) const {
+Plugin& PluginsService::get(const QString& name) const {
     for (const auto& plugin: pluginList)
         if (plugin->getName() == name)
             return *plugin;
     throw invalid_argument("unknown plugin: " + name.toStdString());
 }
 
-const PluginList& PluginManager::getAll() const {
+const PluginList& PluginsService::getAll() const {
     return pluginList;
 }
 
-void PluginManager::setCurrent(Plugin* plugin) {
+void PluginsService::setCurrent(Plugin* plugin) {
     if (plugin == currentPlugin)
         return;
 
@@ -49,6 +50,6 @@ void PluginManager::setCurrent(Plugin* plugin) {
     emit currentPluginChanged(plugin);
 }
 
-Plugin* PluginManager::getCurrent() const {
+Plugin* PluginsService::getCurrent() const {
     return currentPlugin;
 }

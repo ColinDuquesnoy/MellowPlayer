@@ -1,8 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/PluginLoaderMock.hpp"
 
@@ -10,7 +10,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests") {
     auto mock = PluginLoaderMock::get();
-    PluginManager pluginManager(mock.get());
+    PluginsService pluginManager(mock.get());
     pluginManager.load();
     PlayersService playersService(pluginManager);
     PlayerProxy proxy(playersService, pluginManager);

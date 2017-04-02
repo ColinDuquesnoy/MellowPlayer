@@ -2,7 +2,7 @@
 
 #ifdef USE_LIBNOTIFY
 
-#include <MellowPlayer/UseCases/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
@@ -14,7 +14,7 @@ class LibnotifyPresenter: public UseCases::INotificationPresenter {
 public:
     LibnotifyPresenter(UseCases::IMainWindow& mainWindow);
     void initialize() override;
-    bool display(const UseCases::Notification& notification) override;
+    bool display(const Entities::Notification& notification) override;
 
     static void onActionCallback();
 

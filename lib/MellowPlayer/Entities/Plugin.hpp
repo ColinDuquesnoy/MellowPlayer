@@ -8,7 +8,7 @@
 #include "PluginMetadata.hpp"
 #include "PluginStyle.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 class PluginScript;
 
@@ -41,14 +41,13 @@ public:
     bool operator!=(const Plugin& rhs) const;
 
 private:
-    ILogger& logger;
     PluginMetadata metadata;
     PluginStyle style;
     std::unique_ptr<PluginScript> script;
 };
 
 
-using PluginList = QList<std::shared_ptr<MellowPlayer::UseCases::Plugin>>;
+using PluginList = QList<std::shared_ptr<MellowPlayer::Entities::Plugin>>;
 
 END_MELLOWPLAYER_NAMESPACE
 

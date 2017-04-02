@@ -5,7 +5,7 @@
 #include <QIcon>
 #include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 enum class NotificationType {
     Song,

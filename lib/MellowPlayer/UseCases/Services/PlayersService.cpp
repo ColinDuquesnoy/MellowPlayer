@@ -1,11 +1,12 @@
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 #include "PlayersService.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayersService::PlayersService(PluginManager& pluginManager) {
-    connect(&pluginManager, &PluginManager::pluginAdded,
+PlayersService::PlayersService(PluginsService& pluginManager) {
+    connect(&pluginManager, &PluginsService::pluginAdded,
             this, &PlayersService::onServiceAdded);
     for (auto& plugin: pluginManager.getAll()) {
         onServiceAdded(plugin.get());

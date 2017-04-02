@@ -3,20 +3,21 @@
 #include <QDebug>
 #include <QtWebEngine/QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 #include "StreamingServicesViewModel.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesViewModel::StreamingServicesViewModel(PluginManager& pluginManager,
+StreamingServicesViewModel::StreamingServicesViewModel(PluginsService& pluginManager,
                                                        PlayersService& playersService,
                                                        IApplicationSettings& applicationSettings) :
         QObject(), pluginManager(pluginManager), playersService(playersService),
         applicationSettings(applicationSettings), currentService(nullptr), currentIndex(-1) {
 
-    connect(&pluginManager, &PluginManager::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
+    connect(&pluginManager, &PluginsService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
 
     for(auto& plugin: pluginManager.getAll()) {
         onPluginAdded(plugin.get());

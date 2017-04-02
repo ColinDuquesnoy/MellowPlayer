@@ -2,9 +2,9 @@
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include <MellowPlayer/UseCases/Services/IHotkeysService.hpp>
-#include <MellowPlayer/UseCases/Services/INotificationsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/INotificationsService.hpp>
 
 #include "Application.hpp"
 
@@ -13,7 +13,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 Application::Application(IQtApplication& qtApp,
                          IMainWindow& mainWindow,
-                         PluginManager& pluginManager,
+                         PluginsService& pluginManager,
                          IHotkeysService& kotkeys,
                          ISystemTrayIcon& systemTrayIcon,
                          INotificationService& notificationService) :

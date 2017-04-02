@@ -1,7 +1,8 @@
 #include <catch.hpp>
+#include <MellowPlayer/Entities/Notifications.hpp>
 #include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
 #include <QtSql/QSqlDatabase>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ListeningHistoryEntry)
+PREDECLARE_MELLOWPLAYER_STRUCT(Entities, ListeningHistoryEntry)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -13,10 +13,10 @@ public:
     SqlLiteListeningHistoryDataProvider();
     ~SqlLiteListeningHistoryDataProvider();
 
-    int add(const UseCases::ListeningHistoryEntry& entry) override;
+    int add(const Entities::ListeningHistoryEntry& entry) override;
     void clear() override;
     void remove(const QString& filterKey, const QString& filterValue) override;
-    QList<UseCases::ListeningHistoryEntry> getAll() const override;
+    QList<Entities::ListeningHistoryEntry> getAll() const override;
 
 private:
     bool openDatabase();

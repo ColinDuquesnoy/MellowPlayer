@@ -2,11 +2,12 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlRecord>
+#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistoryEntry.hpp>
 #include "System/FileHelper.hpp"
 #include "SqlLiteListeningHistoryDataProvider.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

@@ -5,6 +5,7 @@
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
 #include "DI.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -17,7 +18,7 @@ TEST_CASE("NotificationServiceTests") {
     PlayerProxy& player = injector.create<PlayerProxy&>();
     Mock<PlayerProxy> playerSpy(player);
     INotificationPresenter& notificationPresenter = injector.create<INotificationPresenter&>();
-    PluginManager& pluginManager = injector.create<PluginManager&>();
+    PluginsService& pluginManager = injector.create<PluginsService&>();
     IApplicationSettings& appSettings = injector.create<IApplicationSettings&>();
     NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(), notificationPresenter,
                                             pluginManager, appSettings);

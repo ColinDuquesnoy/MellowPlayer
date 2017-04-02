@@ -4,18 +4,19 @@
 #include <MellowPlayer/Macros.hpp>
 #include "IPlayer.hpp"
 
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, PluginScript)
+
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class ILogger;
-class Song;
-class Plugin;
-class PluginScript;
 
 class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(Plugin& plugin);
+    Player(Entities::Plugin& plugin);
     ~Player();
 
     // IPlayer
@@ -30,7 +31,7 @@ public:
     Q_INVOKABLE void addToFavorites() override;
     Q_INVOKABLE void removeFromFavorites() override;
 
-    Song* getCurrentSong() override;
+    Entities::Song* getCurrentSong() override;
     double getPosition() const override;
     PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
@@ -39,6 +40,7 @@ public:
     bool getCanAddToFavorites() const override;
     double getVolume() const override;
     QString getServiceName() const override;
+    bool isPlaying() const override;
 
     // invoked by WebView (QML)
     Q_INVOKABLE void initialize();
@@ -57,7 +59,7 @@ signals:
     void updateRequested(const QString& script);
 
 private:
-    void setCurrentSong(std::unique_ptr<Song>& song);
+    void setCurrentSong(std::unique_ptr<Entities::Song>& song);
     void setPosition(double value);
     void setPlaybackStatus(PlaybackStatus value);
     void setCanSeek(bool value);
@@ -74,9 +76,9 @@ private:
     bool canGoPrevious = false;
     bool canAddToFavorites = false;
     double volume = 1;
-    std::unique_ptr<Song> currentSong;
-    UseCases::Plugin& plugin;
-    PluginScript& pluginScript;
+    std::unique_ptr<Entities::Song> currentSong;
+    Entities::Plugin& plugin;
+    Entities::PluginScript& pluginScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };
 

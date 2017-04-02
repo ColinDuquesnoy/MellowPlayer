@@ -3,10 +3,9 @@
 #include <QString>
 #include <QVariant>
 #include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/Entities/Notifications.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
-
-enum class NotificationType;
 
 class IApplicationSettings
 {
@@ -30,8 +29,8 @@ public:
     virtual bool getNotificationsEnabled() const = 0;
     virtual void setNotificationsEnabled(bool enable) = 0;
 
-    virtual bool isNotificationTypeEnabled(NotificationType notificationType) const = 0;
-    virtual void enableNotificationType(NotificationType notificationType, bool enable) = 0;
+    virtual bool isNotificationTypeEnabled(Entities::NotificationType notificationType) const = 0;
+    virtual void enableNotificationType(Entities::NotificationType notificationType, bool enable) = 0;
 };
 
 END_MELLOWPLAYER_NAMESPACE

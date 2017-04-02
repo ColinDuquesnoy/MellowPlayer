@@ -3,6 +3,7 @@
 #include <memory>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace fakeit;
 

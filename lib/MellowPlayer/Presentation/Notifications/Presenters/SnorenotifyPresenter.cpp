@@ -1,8 +1,12 @@
 #ifdef USE_SNORENOTIFY
 
-#include "SnorenotifyPresenter.hpp"
+#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
+#include "SnorenotifyPresenter.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

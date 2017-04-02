@@ -1,20 +1,20 @@
 #pragma once
 
 #include <QMap>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include "Player.hpp"
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include "MellowPlayer/UseCases/Player/Player.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class PlayersService: public QObject {
     Q_OBJECT
 public:
-    PlayersService(PluginManager& pluginManager);
+    PlayersService(PluginsService& pluginManager);
 
     std::shared_ptr<Player> get(const QString& serviceName) const;
 
 private slots:
-    void onServiceAdded(UseCases::Plugin* service);
+    void onServiceAdded(Entities::Plugin* service);
 
 private:
     QMap<QString, std::shared_ptr<Player>> players;

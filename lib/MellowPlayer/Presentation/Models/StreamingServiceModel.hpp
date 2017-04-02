@@ -3,7 +3,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include "ListModel.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Player)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
@@ -19,7 +19,7 @@ class StreamingServiceModel: public QObject
     Q_PROPERTY(UseCases::Player* player READ getPlayer CONSTANT)
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
 public:
-    StreamingServiceModel(UseCases::Plugin& plugin,
+    StreamingServiceModel(Entities::Plugin& plugin,
                           UseCases::IApplicationSettings& applicationSettings,
                           UseCases::PlayersService& playerManager,
                           QObject* parent= nullptr);
@@ -34,7 +34,7 @@ public:
     bool operator==(const StreamingServiceModel& rhs) const;
     bool operator!=(const StreamingServiceModel& rhs) const;
 
-    UseCases::Plugin* getPlugin() const;
+    Entities::Plugin* getPlugin() const;
 
 signals:
     void urlChanged(const QString&);
@@ -42,7 +42,7 @@ signals:
 private:
     const QString getCustomUrlSettingsKey() const;
 
-    UseCases::Plugin& plugin;
+    Entities::Plugin& plugin;
     UseCases::IApplicationSettings& applicationSettings;
     UseCases::PlayersService& players;
 };

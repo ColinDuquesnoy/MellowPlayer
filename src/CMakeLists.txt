@@ -10,6 +10,7 @@ set(CMAKE_AUTOMOC OFF)
 add_executable(${PROJECT_NAME} main.cpp ${HEADER_FILES} ${JS_FILES} ${JSON_FILES} ${INI_FILES} ${SVG_FILES})
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
+        ${PROJECT_NAME}.Entities
         ${PROJECT_NAME}.UseCases
         ${PROJECT_NAME}.Presentation
         ${PROJECT_NAME}.Infrastructure)

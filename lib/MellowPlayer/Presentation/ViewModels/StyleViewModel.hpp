@@ -2,10 +2,10 @@
 
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginStyle.hpp>
+#include <MellowPlayer/Entities/PluginStyle.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginsService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -21,7 +21,7 @@ class StyleViewModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
 public:
-    StyleViewModel(UseCases::PluginManager& pluginManager);
+    StyleViewModel(UseCases::PluginsService& pluginManager);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -48,7 +48,7 @@ signals:
     void usePluginStyleChanged();
 
 private slots:
-    void onPluginChanged(UseCases::Plugin* plugin);
+    void onPluginChanged(Entities::Plugin* plugin);
 
 private:
     void setTheme(const QString& value);
@@ -59,11 +59,11 @@ private:
     void setPrimaryForeground(const QString& value);
     void setSecondary(const QString& value);
     void setSecondaryForeground(const QString& value);
-    void updateStyle(const UseCases::PluginStyle& newStyle);
+    void updateStyle(const Entities::PluginStyle& newStyle);
 
     bool usePluginStyle;
-    UseCases::PluginStyle style;
-    UseCases::PluginManager& pluginManager;
+    Entities::PluginStyle style;
+    UseCases::PluginsService& pluginManager;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -1,6 +1,6 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginScript.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/Entities/PluginScript.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/ApplicationSettingsMock.hpp>
 

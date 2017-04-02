@@ -1,7 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+#include <MellowPlayer/Entities/Notifications.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 
 TEST_CASE("NotificationTests") {
     Notification notification1 { "title", "message", "", NotificationType::Song };

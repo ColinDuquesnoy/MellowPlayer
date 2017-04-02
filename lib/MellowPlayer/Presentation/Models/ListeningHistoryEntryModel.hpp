@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 #include "ListModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -15,7 +15,7 @@ class ListeningHistoryEntryModel: public QObject {
     Q_PROPERTY(QString time READ getTime CONSTANT)
     Q_OBJECT
 public:
-    ListeningHistoryEntryModel(const UseCases::ListeningHistoryEntry& entry, QObject* parent = nullptr);
+    ListeningHistoryEntryModel(const Entities::ListeningHistoryEntry& entry, QObject* parent = nullptr);
 
     QString getSongId() const;
     QString getTitle() const;
@@ -26,7 +26,7 @@ public:
     QString getTime() const;
 
 private:
-    UseCases::ListeningHistoryEntry entry;
+    Entities::ListeningHistoryEntry entry;
 };
 
 using ListeningHistoryEntryListModel = ListModel<ListeningHistoryEntryModel>;

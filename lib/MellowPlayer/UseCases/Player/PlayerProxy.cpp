@@ -1,16 +1,17 @@
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 #include "PlayerProxy.hpp"
 #include "Player.hpp"
-#include "PlayersService.hpp"
+#include "MellowPlayer/UseCases/Services/PlayersService.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayerProxy::PlayerProxy(PlayersService& playersService, PluginManager& pluginManager)
+PlayerProxy::PlayerProxy(PlayersService& playersService, PluginsService& pluginManager)
     : players(playersService), pluginManager(pluginManager), currentPlayer(nullptr) {
 
-    connect(&pluginManager, &PluginManager::currentPluginChanged,
+    connect(&pluginManager, &PluginsService::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);
 
     if(pluginManager.getCurrent() != nullptr)
@@ -142,6 +143,7 @@ void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
         connect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
         connect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
         connect(currentPlayer.get(), &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
+        connect(currentPlayer.get(), &Player::isPlayingChanged, this, &PlayerProxy::isPlayingChanged);
         currentPlayer->resume();
 
         emit currentSongChanged(currentPlayer->getCurrentSong());
@@ -159,4 +161,10 @@ QString PlayerProxy::getServiceName() const {
     if (currentPlayer)
         return currentPlayer->getServiceName();
     return "";
+}
+
+bool PlayerProxy::isPlaying() const {
+    if (currentPlayer)
+        return currentPlayer->isPlaying();
+    return false;
 }

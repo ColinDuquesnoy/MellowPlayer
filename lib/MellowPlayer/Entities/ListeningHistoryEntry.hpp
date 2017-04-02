@@ -1,9 +1,9 @@
 #pragma once
 
 #include <QDateTime>
-#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/Entities/Song.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 struct ListeningHistoryEntry {
     int id;
@@ -60,7 +60,3 @@ struct ListeningHistoryEntry {
 };
 
 END_MELLOWPLAYER_NAMESPACE
-
-//inline uint qHash(const MellowPlayer::UseCases::ListeningHistoryEntry& entry) {
-//    return qHash(entry.id, 0xa03f);
-//}

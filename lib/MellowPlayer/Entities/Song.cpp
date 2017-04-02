@@ -1,6 +1,6 @@
 #include "Song.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 
 Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false) {
 }

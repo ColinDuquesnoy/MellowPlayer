@@ -10,7 +10,7 @@ TEST_CASE("StreamingServiceModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     PlayersService& playersService = injector.create<PlayersService&>();
-    PluginManager& pluginManager = injector.create<PluginManager&>();
+    PluginsService& pluginManager = injector.create<PluginsService&>();
     pluginManager.load();
     ApplicationSettings applicationSettings;
     Plugin& plugin1 = *pluginManager.getAll()[0];

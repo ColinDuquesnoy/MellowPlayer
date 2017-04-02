@@ -19,7 +19,7 @@ void requireMatchStyle(StyleViewModel& styleViewModel, const PluginStyle& style)
 TEST_CASE("StyleViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PluginManager& pluginManager = injector.create<PluginManager&>();
+    PluginsService& pluginManager = injector.create<PluginsService&>();
     StyleViewModel styleViewModel(pluginManager);
     pluginManager.setCurrent(nullptr);
 

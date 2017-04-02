@@ -1,15 +1,14 @@
-
+#include <MellowPlayer/Entities/Song.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Player/Song.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
-#include <MellowPlayer/UseCases/Notifications/INotificationPresenter.hpp>
-#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
-
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
 #include "NotificationService.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -17,7 +16,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 NotificationService::NotificationService(IPlayer& player,
                                          ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
-                                         PluginManager& pluginManager,
+                                         PluginsService& pluginManager,
                                          IApplicationSettings& applicationSettings) :
         logger(LoggingManager::instance().getLogger("NotificationService")),
         player(player),

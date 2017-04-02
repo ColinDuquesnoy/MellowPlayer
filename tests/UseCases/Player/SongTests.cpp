@@ -1,8 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/Entities/Song.hpp>
 #include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
 TEST_CASE("SongTests") {

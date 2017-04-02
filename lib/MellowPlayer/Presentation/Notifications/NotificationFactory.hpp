@@ -1,19 +1,20 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Song)
+#include <MellowPlayer/Entities/Notifications.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class NotificationFactory {
 public:
-    UseCases::Notification createSongNotification(const QString& serviceName, UseCases::Song* song,
+    Entities::Notification createSongNotification(const QString& serviceName, Entities::Song* song,
                                                   const QString& albumArtUrl);
-    UseCases::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
+    Entities::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
 
 private:
-    UseCases::Notification createPlaybackNotif(const QString& serviceName, const QString& serviceLogo,
-                                               const QString& message, UseCases::NotificationType type);
+    Entities::Notification createPlaybackNotif(const QString& serviceName, const QString& serviceLogo,
+                                               const QString& message, Entities::NotificationType type);
 };
 
 END_MELLOWPLAYER_NAMESPACE

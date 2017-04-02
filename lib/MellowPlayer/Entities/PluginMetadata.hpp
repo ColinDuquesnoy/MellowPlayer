@@ -3,7 +3,7 @@
 #include <MellowPlayer/Macros.hpp>
 #include <QtCore/QString>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 struct PluginMetadata {
     /**

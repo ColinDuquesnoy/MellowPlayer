@@ -5,8 +5,8 @@
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginsService)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
 class QQmlApplicationEngine;
 
@@ -19,7 +19,7 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
-    StreamingServicesViewModel(UseCases::PluginManager& pluginManager,
+    StreamingServicesViewModel(UseCases::PluginsService& pluginManager,
                                UseCases::PlayersService& playersService,
                                UseCases::IApplicationSettings& applicationSettings);
     void initialize();
@@ -38,10 +38,10 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onPluginAdded(UseCases::Plugin* plugin);
+    void onPluginAdded(Entities::Plugin* plugin);
 
 private:
-    UseCases::PluginManager& pluginManager;
+    UseCases::PluginsService& pluginManager;
     UseCases::PlayersService& playersService;
     UseCases::IApplicationSettings& applicationSettings;
     StreamingServiceListModel model;

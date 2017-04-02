@@ -8,17 +8,18 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginMetadata.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginStyle.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/Entities/PluginMetadata.hpp>
+#include <MellowPlayer/Entities/PluginStyle.hpp>
 #include "PluginLoader.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 PluginLoader::PluginLoader() :
-        logger(LoggingManager::instance().getLogger("PluginManager")) {
+        logger(LoggingManager::instance().getLogger("PluginsService")) {
 
 }
 

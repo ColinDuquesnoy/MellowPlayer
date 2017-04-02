@@ -174,7 +174,7 @@ ToolBar {
         ToolButton {
             id: btPlay
 
-            text: player.playbackStatus === Player.Playing ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
+            text: player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
@@ -184,7 +184,7 @@ ToolBar {
 
             Tooltip {
                 y: toolBar.implicitHeight
-                text:  player.playbackStatus === Player.Playing ? qsTr("Pause") : qsTr("Play")
+                text:  player.isPlaying ? qsTr("Pause") : qsTr("Play")
             }
         }
 

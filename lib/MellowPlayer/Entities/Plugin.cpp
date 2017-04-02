@@ -4,15 +4,11 @@
 #include "Plugin.hpp"
 #include "PluginScript.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
 Plugin::Plugin(const PluginMetadata& metadata,  const PluginStyle& style):
-    logger(LoggingManager::instance().getLogger("Plugin")),
     metadata(metadata), style(style), script(make_unique<PluginScript>(metadata.script, metadata.scriptPath)) {
-
-    if ((!metadata.isValid())) LOG_DEBUG(logger, "Invalid metadata, name or url is empty");
-    if (!script->isValid()) LOG_DEBUG(logger, metadata.name.toStdString() << " invalid integration script");
 }
 
 Plugin::~Plugin() = default;

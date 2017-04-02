@@ -1,7 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IAlbumArtDownloader)
 
@@ -13,10 +14,10 @@ public:
     LocalAlbumArtService(UseCases::IPlayer& player, UseCases::IAlbumArtDownloader& downloader);
 
     const QString& getUrl() const override;
-    bool isSongArtReady(const UseCases::Song& song) override;
+    bool isSongArtReady(const Entities::Song& song) override;
 
 private slots:
-    void onCurrentSongChanged(UseCases::Song* song);
+    void onCurrentSongChanged(Entities::Song* song);
     void onDownloadFinished(const QString& newUrl);
 
 private:

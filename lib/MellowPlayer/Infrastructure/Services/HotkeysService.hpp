@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Services/IHotkeysService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
 
 class QxtGlobalShortcut;
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)

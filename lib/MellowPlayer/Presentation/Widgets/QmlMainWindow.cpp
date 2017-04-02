@@ -2,7 +2,7 @@
 #include <QQmlContext>
 #include <QMessageBox>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistoryViewModel.hpp>

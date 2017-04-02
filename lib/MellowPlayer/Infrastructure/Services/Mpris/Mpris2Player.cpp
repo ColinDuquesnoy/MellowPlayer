@@ -1,9 +1,10 @@
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
-#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/Entities/Song.hpp>
 #include "Mpris2Player.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

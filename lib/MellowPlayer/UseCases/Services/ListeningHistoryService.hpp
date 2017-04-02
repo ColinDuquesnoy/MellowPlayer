@@ -4,40 +4,41 @@
 #include <QMutex>
 #include <QList>
 #include <MellowPlayer/Macros.hpp>
-#include "ListeningHistoryEntry.hpp"
+#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IListeningHistoryDataProvider;
 class ILogger;
 class IPlayer;
-class Song;
 
-class ListeningHistory: public QObject {
+class ListeningHistoryService: public QObject {
     Q_OBJECT
 public:
-    ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player);
+    ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player);
 
-    const QList<ListeningHistoryEntry>& getEntries() const;
+    const QList<Entities::ListeningHistoryEntry>& getEntries() const;
     void clear();
     void removeById(int entryId);
     void removeByService(const QString& serviceName);
 
 signals:
-    void entryAdded(const ListeningHistoryEntry& entry);
+    void entryAdded(const Entities::ListeningHistoryEntry& entry);
     void entryRemoved(int i);
     void entriesCleared();
 
 private slots:
     void onPlaybackStatusChanged();
-    void onCurrentSongChanged(Song* song);
+    void onCurrentSongChanged(Entities::Song* song);
 
 private:
     ILogger& logger;
     IListeningHistoryDataProvider& model;
     IPlayer& player;
-    QMap<QString, ListeningHistoryEntry> previousEntryPerPlayer;
-    QList<ListeningHistoryEntry> entries;
+    QMap<QString, Entities::ListeningHistoryEntry> previousEntryPerPlayer;
+    QList<Entities::ListeningHistoryEntry> entries;
     QMutex mutex;
 };
 

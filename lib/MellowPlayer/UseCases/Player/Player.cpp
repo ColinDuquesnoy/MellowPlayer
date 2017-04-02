@@ -1,11 +1,11 @@
 #include <QDebug>
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/Entities/PluginScript.hpp>
+#include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginScript.hpp>
 #include "Player.hpp"
-#include "Player.hpp"
-#include "Song.hpp"
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
@@ -192,6 +192,7 @@ void Player::setPlaybackStatus(PlaybackStatus value) {
     playbackStatus = value;
     LOG_DEBUG(logger, "playback status changed: " << static_cast<int>(value));
     emit playbackStatusChanged();
+    emit isPlayingChanged();
 }
 
 void Player::setCanSeek(bool value) {
@@ -237,3 +238,7 @@ void Player::setCurrentVolume(double value) {
 bool Player::operator==(const Player &other) const { return plugin == other.plugin; }
 
 bool Player::operator!=(const Player &other) const { return !operator==(other); }
+
+bool Player::isPlaying() const {
+    return playbackStatus == PlaybackStatus::Playing;
+}

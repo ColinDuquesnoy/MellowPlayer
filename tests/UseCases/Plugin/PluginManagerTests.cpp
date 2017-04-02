@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
-#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -10,8 +10,8 @@ using namespace std;
 
 TEST_CASE("PluginManagerManagerTests") {
     auto mock = PluginLoaderMock::get();
-    PluginManager pluginManager(mock.get());
-    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(Plugin*)));
+    PluginsService pluginManager(mock.get());
+    QSignalSpy pluginAddedSpy(&pluginManager, SIGNAL(pluginAdded(Entities::Plugin*)));
     pluginManager.load();
 
     SECTION("load called PluginLoader::load") {
@@ -37,7 +37,7 @@ TEST_CASE("PluginManagerManagerTests") {
 
     SECTION("set current service ") {
         QSignalSpy currentPluginChangedSignal(&pluginManager,
-                                               SIGNAL(currentPluginChanged(Plugin*)));
+                                               SIGNAL(currentPluginChanged(Entities::Plugin*)));
         pluginManager.setCurrent(&pluginManager.get("Deezer"));
         REQUIRE(pluginManager.getCurrent() != nullptr);
         REQUIRE(currentPluginChangedSignal.count() == 1);

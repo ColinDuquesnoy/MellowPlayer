@@ -3,8 +3,9 @@
 #include <fakeit.hpp>
 #include <memory>
 #include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
-#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/Entities/Plugin.hpp>
 
+USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 using namespace fakeit;
