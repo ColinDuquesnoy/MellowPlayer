@@ -59,7 +59,7 @@ void Player::seekToPosition(double value) {
 
 void Player::setVolume(double value) {
     LOG_TRACE(logger, "setVolume(" << value << ")");
-    emit runJavascriptRequested(pluginScript.setVolume(volume));
+    emit runJavascriptRequested(pluginScript.setVolume(value));
 }
 
 void Player::toggleFavoriteSong() {
