@@ -4,7 +4,7 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_STRUCT(Entities, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

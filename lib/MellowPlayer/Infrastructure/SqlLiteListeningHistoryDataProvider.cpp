@@ -23,7 +23,7 @@ SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider() {
 }
 
 bool SqlLiteListeningHistoryDataProvider::openDatabase() {
-    std::stringstream ss;
+    std::stringstream stream;
     auto path = FileHelper::appDataDirectory() + "history.db";
     LOG_DEBUG(logger, "Opening listening history db: " + path)
     database.setDatabaseName(path);

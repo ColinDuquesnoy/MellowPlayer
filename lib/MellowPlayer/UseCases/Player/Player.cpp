@@ -57,8 +57,8 @@ void Player::seekToPosition(double value) {
     setPosition(value);
 }
 
-void Player::setVolume(double volume) {
-    LOG_TRACE(logger, "setVolume(" << volume << ")");
+void Player::setVolume(double value) {
+    LOG_TRACE(logger, "setVolume(" << value << ")");
     emit runJavascriptRequested(pluginScript.setVolume(volume));
 }
 

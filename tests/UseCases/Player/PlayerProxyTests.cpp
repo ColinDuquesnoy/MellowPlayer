@@ -89,7 +89,7 @@ TEST_CASE("PlayerProxyTests") {
         SECTION("setVolume") {
             proxy.setVolume(0.5);
             REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "setVolume(0.5);");
+            REQUIRE(jsSpy[0][0].toString().toStdString() == "setVolume(0.5);");
         }
 
         SECTION("toggleFavoriteSong") {

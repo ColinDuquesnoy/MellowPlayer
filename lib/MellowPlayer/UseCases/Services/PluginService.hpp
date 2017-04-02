@@ -5,7 +5,7 @@
 #include <QList>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_STRUCT(Entities, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -21,7 +21,7 @@ public:
 
     void load();
     Entities::Plugin& get(const QString& name) const;
-    const QList<std::shared_ptr<Entities::Plugin>>& getAll() const;
+    const QList<std::shared_ptr<Entities::Plugin>>& getAll() const { return pluginList; }
     
     void setCurrent(Entities::Plugin* plugin);
     Entities::Plugin* getCurrent() const;

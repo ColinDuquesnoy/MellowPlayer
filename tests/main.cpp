@@ -27,10 +27,10 @@ int main(int argc, char* argv[])
     loggerConfig.createFileLogger = false;
 
     try {
-        auto& loggingManager = LoggingManager::instance();
+        LoggingManager::instance();
         assert(false);
     }
-    catch (const logic_error& e) {
+    catch (const logic_error&) {
         assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
     }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);

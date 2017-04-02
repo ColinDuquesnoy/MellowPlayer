@@ -38,10 +38,6 @@ Plugin& PluginService::get(const QString& name) const {
     throw invalid_argument("unknown plugin: " + name.toStdString());
 }
 
-const QList<shared_ptr<Plugin>>& PluginService::getAll() const {
-    return pluginList;
-}
-
 void PluginService::setCurrent(Plugin* plugin) {
     if (plugin == currentPlugin)
         return;

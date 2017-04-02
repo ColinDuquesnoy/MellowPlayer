@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Presentation/Models/ListeningHistoryEntryModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_STRUCT(UseCases, ListeningHistoryService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ListeningHistoryService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

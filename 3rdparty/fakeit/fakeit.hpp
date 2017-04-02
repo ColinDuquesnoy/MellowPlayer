@@ -15663,9 +15663,10 @@ return vtSize;
 
 }
 #ifdef _MSC_VER
+#include "Windows.h"
 namespace fakeit {
 
-typedef unsigned long DWORD;
+// typedef unsigned long DWORD;
 
 struct TypeDescriptor {
 TypeDescriptor() :

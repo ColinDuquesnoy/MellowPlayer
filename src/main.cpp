@@ -1,3 +1,7 @@
+#include <QtCore>
+#ifdef Q_OS_WIN32
+    #include <Windows.h>
+#endif
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/QtWebApplication.hpp>
