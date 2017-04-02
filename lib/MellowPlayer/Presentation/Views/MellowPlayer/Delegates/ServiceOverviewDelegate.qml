@@ -126,7 +126,7 @@ Item {
                 Image {
                     Layout.maximumWidth: 32
                     Layout.maximumHeight: 32
-                    source: object.logo
+                    source: model.logo
                     antialiasing: true
                     mipmap: true
                 }
@@ -136,7 +136,7 @@ Item {
                     Layout.fillWidth: true
 
                     color: "white"
-                    text: object.name
+                    text: model.name
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -155,7 +155,7 @@ Item {
     }
 
     function activate() {
-        streamingServices.currentService = object;
+        streamingServices.currentService = model.qtObject;
         preview.state = "selected";
     }
 

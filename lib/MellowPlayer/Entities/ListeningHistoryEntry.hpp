@@ -15,6 +15,10 @@ struct ListeningHistoryEntry {
     QString serviceName;
     QString time;
 
+    QDateTime dateTime() const {
+        return QDateTime::fromString(time, Qt::ISODate);
+    }
+
     bool isValid() const {
         return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !artist.isEmpty() && !artUrl.isEmpty() && !serviceName.isEmpty();
     }

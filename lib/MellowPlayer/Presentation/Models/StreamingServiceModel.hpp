@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include "ListModel.hpp"
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
@@ -46,7 +45,5 @@ private:
     UseCases::IApplicationSettings& applicationSettings;
     UseCases::PlayerService& players;
 };
-
-using StreamingServiceListModel = ListModel<StreamingServiceModel>;
 
 END_MELLOWPLAYER_NAMESPACE

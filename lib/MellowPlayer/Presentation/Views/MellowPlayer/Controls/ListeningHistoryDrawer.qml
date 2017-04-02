@@ -10,6 +10,7 @@ Drawer {
     dragMargin: 0
     edge: Qt.RightEdge
     height: mainWindow.height; width: 450
+    clip: true
 
     Page {
         anchors.fill: parent
@@ -18,6 +19,7 @@ Drawer {
             Material.primary: style.primary
             Material.foreground: style.primaryForeground
             Material.elevation: 0
+            Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
 
             RowLayout {
                 anchors.fill: parent
@@ -56,22 +58,6 @@ Drawer {
                             searchPane.state = "closed"
                     }
                 }
-
-                ToolButton {
-                    id: btShowFilters
-                    checkable: true
-                    checked: false
-                    text: MaterialIcons.icon_filter_list
-                    font { family: MaterialIcons.family; pixelSize: 22 }
-                    Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
-
-                    onCheckedChanged: {
-                        if (checked)
-                            flowFilter.state = "open"
-                        else
-                            flowFilter.state = "closed"
-                    }
-                }
             }
 
             Label {
@@ -82,7 +68,6 @@ Drawer {
 
         Item {
             anchors.fill: parent
-            anchors.margins: 12
 
             ColumnLayout {
                 anchors.fill: parent
@@ -90,19 +75,72 @@ Drawer {
 
                 Pane {
                     id: searchPane
-                    padding: 0
+
                     Layout.fillWidth: true
                     Layout.preferredHeight: height
                     Layout.minimumHeight: 0
+                    Material.elevation: 2
 
-                    TextField {
-                        id: searchField
+                    ColumnLayout {
                         anchors.fill: parent
-                        placeholderText: "Search"
 
-                        onVisibleChanged: {
-                            focus = true
-                            forceActiveFocus();
+                        TextField {
+                            id: searchField
+
+                            placeholderText: qsTr("Search")
+                            onVisibleChanged: {
+                                focus = true
+                                forceActiveFocus();
+                            }
+                            Layout.fillWidth: true
+                        }
+
+                        Flow {
+                            id: filters
+                            spacing: 3
+
+                            width: parent.width
+
+                            Repeater {
+                                z: 1
+                                model: streamingServices.model
+
+                                Button {
+                                    flat: true
+                                    checkable: true; checked: true
+                                    text: model.name
+                                }
+                            }
+
+                            state: "closed"
+                            states: [
+                                State {
+                                    name: "closed"
+
+                                    PropertyChanges {
+                                        target: filters
+                                        height: 0
+                                    }
+                                },
+                                State {
+                                    name: "open"
+
+                                    PropertyChanges {
+                                        target: filters
+                                        height: filters.implicitHeight
+                                    }
+                                }
+                            ]
+
+                            transitions: Transition {
+                                from: "*"
+                                to: "*"
+
+                                PropertyAnimation {
+                                    properties: "height"
+                                    easing.type: "InOutCubic"
+                                }
+                            }
                         }
                     }
 
@@ -148,61 +186,24 @@ Drawer {
                         }
                     }
                 }
-
-                ListeningHistoryListView {
-                    id: listeningHistoryListView
-
+                Pane {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                }
 
-                Flow {
-                    id: flowFilter
+                    ListeningHistoryListView {
+                        id: listeningHistoryListView
 
-                    spacing: 3
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: height
-
-                    Repeater {
-                        model: streamingServices.model
-
-                        Button {
-                            flat: true
-                            checkable: true; checked: true
-                            text: model.object.name
-                        }
-                    }
-
-                    state: "closed"
-                    states: [
-                        State {
-                            name: "closed"
-
-                            PropertyChanges {
-                                target: flowFilter
-                                height: 0
-                            }
-                        },
-                        State {
-                            name: "open"
-
-                            PropertyChanges {
-                                target: flowFilter
-                                height: flowFilter.implicitHeight
-                            }
-                        }
-                    ]
-
-                    transitions: Transition {
-                        from: "*"
-                        to: "*"
-
-                        PropertyAnimation {
-                            properties: "height"
-                            easing.type: "InOutCubic"
-                        }
+                        anchors.fill: parent
                     }
                 }
+
+//                Rectangle {
+//                    color: style.primary
+
+//                    Layout.fillWidth: true
+//                    Layout.preferredHeight: filters.height
+//                    height: filters.height
+//                }
             }
         }
     } 

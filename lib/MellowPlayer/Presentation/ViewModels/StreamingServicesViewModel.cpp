@@ -6,6 +6,7 @@
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include "StreamingServicesViewModel.hpp"
+#include "QQmlObjectListModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -15,7 +16,8 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginServ
                                                        PlayerService& playerService,
                                                        IApplicationSettings& applicationSettings) :
         QObject(), pluginService(pluginService), playerService(playerService),
-        applicationSettings(applicationSettings), currentService(nullptr), currentIndex(-1) {
+        applicationSettings(applicationSettings), model(new QQmlObjectListModel<StreamingServiceModel>(this)),
+        currentService(nullptr), currentIndex(-1) {
 
     connect(&pluginService, &PluginService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
 
@@ -27,14 +29,10 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginServ
 void StreamingServicesViewModel::initialize() {
     auto currentServiceName = applicationSettings.getCurrentService();
     qDebug() << currentServiceName;
-    for (auto service: model.getItems()) {
+    for (auto service: model->toList()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);
     }
-}
-
-StreamingServiceListModel* StreamingServicesViewModel::getModel() {
-    return &model;
 }
 
 QObject* StreamingServicesViewModel::getCurrentService() const {
@@ -53,7 +51,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     applicationSettings.setCurrentService(value->property("name").toString());
     currentService = value;
     pluginService.setCurrent(service->getPlugin());
-    setCurrentIndex(model.getItems().indexOf(service));
+    setCurrentIndex(model->toList().indexOf(service));
     emit currentServiceChanged(currentService);
 }
 
@@ -70,5 +68,5 @@ void StreamingServicesViewModel::reload() {
 }
 
 void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {
-    model.append(new StreamingServiceModel(*plugin, applicationSettings, playerService, this));
+    model->append(new StreamingServiceModel(*plugin, applicationSettings, playerService, this));
 }

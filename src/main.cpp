@@ -31,6 +31,11 @@ int main(int argc, char** argv)
         notificationPresenterInjector(scope)
     );
 
+#ifdef QT_DEBUG
+    IApplication& app = injector.create<IApplication&>();
+    app.initialize();
+#else
     SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
+#endif
     return app.run();
 }

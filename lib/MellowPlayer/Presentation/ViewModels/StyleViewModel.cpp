@@ -149,5 +149,9 @@ double StyleViewModel::getColorScaleFactor(const QString& color) {
     return 1.2;
 }
 
+bool StyleViewModel::isDark(const QString &color) {
+    return QColor(color).lightness() < 128;
+}
+
 
 

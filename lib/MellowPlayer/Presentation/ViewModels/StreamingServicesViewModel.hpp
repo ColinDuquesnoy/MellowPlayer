@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QAbstractListModel>
 #include <MellowPlayer/Presentation/Models/StreamingServiceModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
@@ -9,6 +10,7 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginService)
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
 class QQmlApplicationEngine;
+template <class T> class QQmlObjectListModel;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -25,7 +27,7 @@ public:
     void initialize();
 
     Q_INVOKABLE void reload();
-    StreamingServiceListModel* getModel();
+    QQmlObjectListModel<StreamingServiceModel>* getModel() { return model; }
     QObject* getCurrentService() const;
     int getCurrentIndex() const;
 
@@ -44,7 +46,7 @@ private:
     UseCases::PluginService& pluginService;
     UseCases::PlayerService& playerService;
     UseCases::IApplicationSettings& applicationSettings;
-    StreamingServiceListModel model;
+    QQmlObjectListModel<StreamingServiceModel>* model;
     QObject* currentService;
     QObject* currentPlayer;
     int currentIndex;

@@ -7,8 +7,10 @@ import MellowPlayer 3.0
 
 Pane {
     id: root
-    Material.elevation: 4
-    Material.background: Qt.darker(style.background, 1.1)
+
+    property string section: ListView.section
+
+    clip: true
     hoverEnabled: true
     onHoveredChanged: {
         if (hovered) {
@@ -19,6 +21,9 @@ Pane {
             stackLayout.currentIndex = 0
         }
     }
+
+    Material.elevation: 4
+    Material.background: Qt.darker(style.background, 1.1)
 
     Timer {
         id: delayTimer
@@ -32,7 +37,7 @@ Pane {
         spacing: 8
 
         Image {
-            source: model.object.artUrl
+            source: model.artUrl
 
             Layout.preferredHeight: 48
             Layout.preferredWidth: 48
@@ -40,7 +45,7 @@ Pane {
 
         Label {
             Layout.fillHeight: true
-            text: "<b>" + model.object.title + "</b><br><i>by " + model.object.artist + "<br>on " + model.object.service + "</i>"
+            text: "<b>" + model.title + "</b><br><i>by " + model.artist + "<br>on " + model.service + "</i>"
         }
 
         Item {
@@ -58,12 +63,10 @@ Pane {
                 anchors.fill: parent
 
                 text: {
-                    var date = new Date();
-                    var dateString = date.toISOString().split('T')[0]
-                    if (model.object.date === dateString)
-                        return model.object.time
+                    if (model.dateCategory === qsTr("Today") || model.dateCategory === qsTr("Yesterday"))
+                        return model.time
                     else
-                        return model.object.date + "\n" + model.object.time
+                        return model.date + "\n" + model.time
                 }
             }
 

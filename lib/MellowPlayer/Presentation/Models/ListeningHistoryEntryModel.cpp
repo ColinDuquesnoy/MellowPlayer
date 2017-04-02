@@ -30,9 +30,13 @@ QString ListeningHistoryEntryModel::getService() const {
 }
 
 QString ListeningHistoryEntryModel::getDate() const {
-    return entry.time.split("T")[0];
+    return dateTimeConverter.dateToString(entry.dateTime());
 }
 
 QString ListeningHistoryEntryModel::getTime() const {
-    return QDateTime::fromString(entry.time, Qt::ISODate).toLocalTime().time().toString(Qt::SystemLocaleShortDate);
+    return dateTimeConverter.timeToString(entry.dateTime());
+}
+
+QString ListeningHistoryEntryModel::getDateCategory() const {
+    return dateTimeConverter.dateToCategory(entry.dateTime());
 }

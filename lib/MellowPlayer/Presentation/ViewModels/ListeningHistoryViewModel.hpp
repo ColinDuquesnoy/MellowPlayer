@@ -1,8 +1,10 @@
 #pragma once
 
+#include <QAbstractListModel>
 #include <MellowPlayer/Presentation/Models/ListeningHistoryEntryModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ListeningHistoryService)
+template <class T> class QQmlObjectListModel;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -12,7 +14,7 @@ class ListeningHistoryViewModel: public QObject {
 public:
     ListeningHistoryViewModel(UseCases::ListeningHistoryService& listeningHistory);
 
-    ListeningHistoryEntryListModel* getModel();
+    QAbstractListModel* getModel();
 
 private slots:
     void onEntryAdded(const Entities::ListeningHistoryEntry& entry);
@@ -20,7 +22,7 @@ private slots:
     void onEntriesCleared();
 
 private:
-    ListeningHistoryEntryListModel model;
+    QQmlObjectListModel<ListeningHistoryEntryModel>* model;
 };
 
 END_MELLOWPLAYER_NAMESPACE

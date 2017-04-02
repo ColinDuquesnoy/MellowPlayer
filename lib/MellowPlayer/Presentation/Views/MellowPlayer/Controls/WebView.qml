@@ -9,12 +9,12 @@ import MellowPlayer 3.0
 WebEngineView {
     id: root
 
-    property QtObject player: object.player
-    property string urlToLoad: object.url
-    property string color: object.color !== "" ? object.color : Material.background
+    property QtObject player: model.player
+    property string urlToLoad: model.url
+    property string color: model.color !== "" ? model.color : Material.background
     property var image: null
     property bool ready: image != null || url == ""
-    property var service: object
+    property var service: model.qtObject
 
     signal updateImageFinished();
 

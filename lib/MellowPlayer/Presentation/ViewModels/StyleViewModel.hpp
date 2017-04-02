@@ -35,6 +35,7 @@ public:
     void setUsePluginStyle(bool value);
 
     Q_INVOKABLE double getColorScaleFactor(const QString& color);
+    Q_INVOKABLE bool isDark(const QString& color);
 
 signals:
     void themeChanged();
