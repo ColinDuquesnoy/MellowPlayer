@@ -30,13 +30,14 @@
 #include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
 #include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
 #include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
-#include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
-#include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/Application.hpp>
+#include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 
 #ifdef USE_SNORENOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
