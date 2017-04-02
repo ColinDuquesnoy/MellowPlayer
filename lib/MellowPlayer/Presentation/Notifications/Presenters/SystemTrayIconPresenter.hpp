@@ -1,6 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/UseCases/Notifications/INotificationPresenter.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISystemTrayIcon)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

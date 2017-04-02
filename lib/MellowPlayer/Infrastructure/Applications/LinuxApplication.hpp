@@ -1,9 +1,16 @@
 #pragma once
 
-#include "Application.hpp"
-#include "../Services/MprisService.hpp"
-
 #ifdef Q_OS_LINUX
+
+#include "Application.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IHotkeysService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISystemTrayIcon)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, INotificationService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMprisService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

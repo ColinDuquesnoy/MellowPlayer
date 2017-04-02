@@ -1,14 +1,18 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_STRUCT(UseCases, PluginMetadata)
+PREDECLARE_MELLOWPLAYER_STRUCT(UseCases, PluginStyle)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class PluginLoader: public UseCases::IPluginLoader {
 public:
     PluginLoader();
-    UseCases::PluginList load() const override;
+    QList<std::shared_ptr<UseCases::Plugin>> load() const override;
 
 private:
     std::unique_ptr<UseCases::Plugin> loadPlugin(const QString &directory) const;
@@ -19,7 +23,8 @@ private:
     bool checkPluginDirectory(const QString &directory) const;
     QString getUserPluginsDirectory() const;
     QStringList getSearchPaths() const;
-    bool containsPlugin(const UseCases::PluginList &plugins, std::shared_ptr<UseCases::Plugin>& toCheck) const;
+    bool containsPlugin(const QList<std::shared_ptr<UseCases::Plugin>> &plugins,
+                        std::shared_ptr<UseCases::Plugin>& toCheck) const;
 
     UseCases::ILogger& logger;
 };

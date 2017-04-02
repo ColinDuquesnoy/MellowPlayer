@@ -1,7 +1,12 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/Macros.hpp>
 #include "ListModel.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Player)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

@@ -1,6 +1,7 @@
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
+#include <MellowPlayer/Presentation/QtWebApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include "DI.hpp"
 
 namespace di = boost::di;

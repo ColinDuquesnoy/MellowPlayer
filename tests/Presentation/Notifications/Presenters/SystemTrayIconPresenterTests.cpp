@@ -1,5 +1,6 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

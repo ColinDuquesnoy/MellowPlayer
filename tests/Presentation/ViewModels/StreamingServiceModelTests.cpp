@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include "DI.hpp"
 

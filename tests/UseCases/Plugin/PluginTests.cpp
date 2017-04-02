@@ -1,11 +1,10 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginScript.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/ApplicationSettingsMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("StreamingServiceTest") {
     PluginMetadata pluginMetadata;

@@ -4,6 +4,8 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
+struct Notification;
+
 class INotificationService {
 public:
     virtual ~INotificationService() = default;

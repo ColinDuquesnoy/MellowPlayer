@@ -2,12 +2,18 @@
 
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
-#include <MellowPlayer/UseCases.hpp>
-#include "../ViewModels/ListeningHistoryViewModel.hpp"
-#include "../ViewModels/StreamingServicesViewModel.hpp"
-#include "../ViewModels/StyleViewModel.hpp"
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+
+class ListeningHistoryViewModel;
+class StreamingServicesViewModel;
+class StyleViewModel;
 
 class QmlMainWindow: public QObject, public UseCases::IMainWindow {
     Q_OBJECT

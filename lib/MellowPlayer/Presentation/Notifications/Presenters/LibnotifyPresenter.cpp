@@ -1,6 +1,9 @@
 #ifdef USE_LIBNOTIFY
 
 #include <libnotify/notify.h>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
 #include "LibnotifyPresenter.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

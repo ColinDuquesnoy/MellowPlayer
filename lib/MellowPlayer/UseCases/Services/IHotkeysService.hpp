@@ -1,5 +1,6 @@
 #pragma once
 
+#include <MellowPlayer/Macros.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

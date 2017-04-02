@@ -2,9 +2,10 @@
 
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include "../Player/Song.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class Song;
 
 class ILocalAlbumArtService: public QObject {
     Q_OBJECT

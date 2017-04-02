@@ -1,7 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <QtSql/QSqlDatabase>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ListeningHistoryEntry)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

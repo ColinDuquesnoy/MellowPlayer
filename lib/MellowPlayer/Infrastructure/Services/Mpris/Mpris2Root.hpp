@@ -3,7 +3,10 @@
 #include <QObject>
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

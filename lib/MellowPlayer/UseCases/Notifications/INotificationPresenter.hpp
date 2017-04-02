@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Notifications.hpp"
+#include <MellowPlayer/Macros.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+struct Notification;
 
 class INotificationPresenter
 {

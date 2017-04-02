@@ -1,6 +1,7 @@
 #include <catch.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

@@ -1,7 +1,8 @@
 #ifdef USE_LIBNOTIFY
 
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include "Mocks/MainWindowMock.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

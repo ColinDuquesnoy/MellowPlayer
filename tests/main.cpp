@@ -3,9 +3,9 @@
 #include "catch.hpp"
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
-#include <MellowPlayer/Infrastructure.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Presentation/QtWebApplication.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

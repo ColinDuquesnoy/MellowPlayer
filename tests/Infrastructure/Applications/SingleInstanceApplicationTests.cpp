@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include <Mocks/ApplicationMock.hpp>
 #include <QtTest/QtTest>
 

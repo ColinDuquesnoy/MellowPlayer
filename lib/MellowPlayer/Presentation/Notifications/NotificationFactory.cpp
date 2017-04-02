@@ -1,3 +1,4 @@
+#include <MellowPlayer/UseCases/Player/Song.hpp>
 #include "../IconProvider.hpp"
 #include "NotificationFactory.hpp"
 

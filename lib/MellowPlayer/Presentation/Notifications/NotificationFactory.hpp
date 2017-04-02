@@ -1,6 +1,7 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Song)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

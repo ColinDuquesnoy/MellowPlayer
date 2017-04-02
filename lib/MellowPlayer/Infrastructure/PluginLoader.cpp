@@ -7,6 +7,10 @@
 #include <QtGui/QIcon>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginMetadata.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginStyle.hpp>
 #include "PluginLoader.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

@@ -7,9 +7,10 @@
 #include "../Logging/LoggingManager.hpp"
 #include "PluginMetadata.hpp"
 #include "PluginStyle.hpp"
-#include "PluginScript.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class PluginScript;
 
 class Plugin: public QObject {
     Q_OBJECT

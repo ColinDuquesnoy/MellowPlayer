@@ -1,4 +1,7 @@
 #include <QtWebEngine>
+#include <MellowPlayer/UseCases/Player/Player.hpp>
+#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistoryEntry.hpp>
 #include "QtWebApplication.hpp"
 #include "MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp"
 #include "IconProvider.hpp"
@@ -30,7 +33,11 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
 
     qRegisterMetaType<Player*>("UseCases::Player*");
     qRegisterMetaType<Song*>("UseCases::Song*");
+    qRegisterMetaType<Song*>("Song*");
     qRegisterMetaType<Song*>("UseCases::Plugin*");
+    qRegisterMetaType<Song*>("Plugin*");
+    qRegisterMetaType<PlaybackStatus >("UseCases::PlaybackStatus");
+    qRegisterMetaType<PlaybackStatus >("PlaybackStatus");
     qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
 }
 

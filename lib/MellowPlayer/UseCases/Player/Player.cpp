@@ -1,5 +1,10 @@
 #include <QDebug>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginScript.hpp>
 #include "Player.hpp"
+#include "Player.hpp"
+#include "Song.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
@@ -9,6 +14,8 @@ Player::Player(Plugin& plugin) :
         currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
 
 }
+
+Player::~Player() = default;
 
 void Player::togglePlayPause() {
     LOG_TRACE(logger, "togglePlayePause");
@@ -84,7 +91,7 @@ double Player::getPosition() const {
     return position;
 }
 
-IPlayer::PlaybackStatus Player::getPlaybackStatus() const {
+PlaybackStatus Player::getPlaybackStatus() const {
     return playbackStatus;
 }
 
@@ -226,3 +233,7 @@ void Player::setCurrentVolume(double value) {
     volume = value;
     emit volumeChanged();
 }
+
+bool Player::operator==(const Player &other) const { return plugin == other.plugin; }
+
+bool Player::operator!=(const Player &other) const { return !operator==(other); }

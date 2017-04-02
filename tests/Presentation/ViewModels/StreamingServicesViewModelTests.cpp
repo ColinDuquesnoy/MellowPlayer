@@ -1,7 +1,6 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
-#include "../../Mocks/PluginLoaderMock.hpp"
+#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
+#include "Mocks/PluginLoaderMock.hpp"
 #include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

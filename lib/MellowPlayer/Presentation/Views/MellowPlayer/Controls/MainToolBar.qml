@@ -12,6 +12,7 @@ ToolBar {
     property int iconSize: 22
     Material.primary: style.primary
     Material.foreground: style.primaryForeground
+    
 
     RowLayout {
         anchors.fill: parent
@@ -315,8 +316,13 @@ ToolBar {
                             var date = new Date(null);
                             date.setSeconds(player.position); // specify value for SECONDS here
                             var text = date.toISOString().substr(11, 8);
-                            if (text.startsWith("00:"))
-                                text = text.substr(3);
+                            try {
+                                if (text.startsWith("00:"))
+                                    text = text.substr(3);
+                            }
+                            catch (TypeError) {
+
+                            }
                             return text;
                         }
                         font.pixelSize: 11
@@ -341,8 +347,13 @@ ToolBar {
                             var date = new Date(null);
                             date.setSeconds(player.currentSong.duration - player.position); // specify value for SECONDS here
                             var text = date.toISOString().substr(11, 8);
-                            if (text.startsWith("00:"))
-                                text = text.substr(3);
+                            try {
+                                if (text.startsWith("00:"))
+                                    text = text.substr(3);
+                            }
+                            catch (TypeError) {
+
+                            }
                             return "-" + text;
                         }
                         font.pixelSize: 11

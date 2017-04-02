@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Logging/ILoggerFactory.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

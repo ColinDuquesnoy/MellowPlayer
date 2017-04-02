@@ -58,7 +58,7 @@ WebEngineView {
     }
 
     Timer {
-        interval: 300
+        interval: 1000
         onTriggered: player.refresh()
         running: root.enabled && !root.loading
         repeat: true

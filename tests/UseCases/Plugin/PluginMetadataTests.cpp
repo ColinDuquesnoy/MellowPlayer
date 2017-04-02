@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginMetadata.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;

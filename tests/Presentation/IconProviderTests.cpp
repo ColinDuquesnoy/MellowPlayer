@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

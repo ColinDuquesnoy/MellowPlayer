@@ -6,7 +6,7 @@ file(GLOB_RECURSE QML_FILES Views/*.qml)
 file(GLOB_RECURSE QRC_FILES *.qrc)
 file(GLOB_RECURSE CONF_FILES *.conf)
 
-set(QML_FILES ${QML_FILES} Views/MellowPlayer/qmldir)
+set(QML_FILES ${QML_FILES} Views/MellowPlayer/qmldir IconProvider.cpp)
 
 SET(CMAKE_DEBUG_POSTFIX "")
 if(WIN32)

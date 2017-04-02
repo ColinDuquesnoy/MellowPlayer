@@ -1,9 +1,14 @@
 #pragma once
+
+#include <memory>
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include "../Interfaces/IPluginLoader.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class Plugin;
+class ILogger;
+class IPluginLoader;
 
 class PluginManager: public QObject {
     Q_OBJECT
@@ -13,7 +18,7 @@ public:
 
     void load();
     Plugin& get(const QString& name) const;
-    const PluginList& getAll() const;
+    const QList<std::shared_ptr<MellowPlayer::UseCases::Plugin>>& getAll() const;
     
     void setCurrent(Plugin* plugin);
     UseCases::Plugin* getCurrent() const;
@@ -25,7 +30,7 @@ signals:
 private:
     ILogger& logger;
     IPluginLoader& pluginLoader;
-    PluginList pluginList;
+    QList<std::shared_ptr<MellowPlayer::UseCases::Plugin>> pluginList;
     Plugin* currentPlugin;
 };
 

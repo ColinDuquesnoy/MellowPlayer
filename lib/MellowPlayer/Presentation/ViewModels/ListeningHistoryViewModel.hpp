@@ -1,7 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
 #include "ListeningHistoryEntryModel.hpp"
+
+PREDECLARE_MELLOWPLAYER_STRUCT(UseCases, ListeningHistory)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

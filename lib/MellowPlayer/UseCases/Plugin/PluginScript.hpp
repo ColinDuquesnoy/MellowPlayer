@@ -2,10 +2,10 @@
 
 #include <QtCore/QObject>
 #include <MellowPlayer/Macros.hpp>
-#include "../Logging/ILogger.hpp"
-#include "../Logging/LoggingManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class ILogger;
 
 class PluginScript: public QObject {
     Q_OBJECT

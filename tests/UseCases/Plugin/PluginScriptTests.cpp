@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginScript.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

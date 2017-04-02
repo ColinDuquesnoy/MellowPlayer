@@ -1,8 +1,11 @@
-#include "StreamingServicesViewModel.hpp"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDebug>
 #include <QtWebEngine/QtWebEngine>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include "StreamingServicesViewModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

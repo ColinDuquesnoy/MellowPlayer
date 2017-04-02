@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QSettings>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

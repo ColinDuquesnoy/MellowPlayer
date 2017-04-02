@@ -1,5 +1,7 @@
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 #include "PluginManager.hpp"
-#include <stdexcept>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;

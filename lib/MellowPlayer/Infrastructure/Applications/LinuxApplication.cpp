@@ -1,3 +1,10 @@
+#include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Services/IHotkeysService.hpp>
+#include <MellowPlayer/UseCases/Services/IMprisService.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include "LinuxApplication.hpp"
 
 #ifdef Q_OS_LINUX

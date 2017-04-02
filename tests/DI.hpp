@@ -1,9 +1,48 @@
 #pragma once
 
 #include <boost/di.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Presentation.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/UseCases/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Services/INotificationsService.hpp>
+#include <MellowPlayer/UseCases/Services/IHotkeysService.hpp>
+#include <MellowPlayer/UseCases/Services/IMprisService.hpp>
+#include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ListeningHistoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
+#include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
+#include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
+#include <MellowPlayer/Infrastructure/PluginLoader.hpp>
+#include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+
+#ifdef USE_SNORENOTIFY
+#include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
+#endif
+
+#ifdef Q_OS_LINUX
+#include <MellowPlayer/Infrastructure/Services/MprisService.hpp>
+#include <MellowPlayer/Infrastructure/Applications/LinuxApplication.hpp>
+#endif
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/ApplicationSettingsMock.hpp>

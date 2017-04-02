@@ -1,6 +1,13 @@
 #include <QtWebEngine>
 #include <QQmlContext>
 #include <QMessageBox>
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Player/Player.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ListeningHistoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
 #include "QmlMainWindow.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

@@ -1,3 +1,7 @@
+#include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
 #include "SystemTrayIcon.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

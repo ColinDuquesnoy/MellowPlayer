@@ -1,3 +1,4 @@
+#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistory.hpp>
 #include "ListeningHistoryViewModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

@@ -3,9 +3,10 @@
 #include <QString>
 #include <QVariant>
 #include <MellowPlayer/Macros.hpp>
-#include "../Notifications/Notifications.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+enum class NotificationType;
 
 class IApplicationSettings
 {

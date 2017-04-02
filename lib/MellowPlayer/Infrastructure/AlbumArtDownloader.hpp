@@ -3,7 +3,9 @@
 #include <QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

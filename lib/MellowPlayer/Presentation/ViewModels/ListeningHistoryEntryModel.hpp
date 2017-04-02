@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/ListeningHistory/ListeningHistoryEntry.hpp>
 #include "ListModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)

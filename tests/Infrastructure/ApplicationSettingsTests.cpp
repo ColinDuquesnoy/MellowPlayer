@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

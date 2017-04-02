@@ -1,7 +1,9 @@
 #include <QtConcurrent>
 #include <QtCore/QThreadPool>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include "IListeningHistoryDataProvider.hpp"
 #include "ListeningHistory.hpp"
-#include "../Logging/LoggingManager.hpp"
 
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -25,7 +27,7 @@ void ListeningHistory::onCurrentSongChanged(Song* song) {
         auto previousEntry = previousEntryPerPlayer[player.getServiceName()];
 
         if (previousEntry.equals(newEntry) || !newEntry.isValid() ||
-            player.getPlaybackStatus() != IPlayer::PlaybackStatus::Playing)
+            player.getPlaybackStatus() != PlaybackStatus::Playing)
             return;
 
         newEntry.id = model.add(newEntry);

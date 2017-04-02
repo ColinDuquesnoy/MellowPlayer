@@ -3,7 +3,12 @@
 #include <QObject>
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Song)
+PREDECLARE_MELLOWPLAYER_ENUM(UseCases, PlaybackStatus)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -79,7 +84,7 @@ private slots:
 
 private:
     QMap<QString, QVariant> toXesam(const UseCases::Song& song);
-    QString statusToString(UseCases::IPlayer::PlaybackStatus status);
+    QString statusToString(UseCases::PlaybackStatus status);
     void signalPlayerUpdate(const QVariantMap &map);
     void signalUpdate(const QVariantMap &map, const QString &interfaceName);
 

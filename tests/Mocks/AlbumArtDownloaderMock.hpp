@@ -1,7 +1,7 @@
 #pragma once
 
 #include <fakeit.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace fakeit;

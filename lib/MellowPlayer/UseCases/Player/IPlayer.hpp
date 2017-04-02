@@ -1,9 +1,18 @@
 #pragma once
 
+#include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include "Song.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class Song;
+
+enum class PlaybackStatus {
+    Stopped = 0,
+    Playing = 1,
+    Paused = 2,
+    Buffering = 3
+};
 
 class IPlayer: public QObject
 {
@@ -18,12 +27,6 @@ class IPlayer: public QObject
     Q_PROPERTY(int volume READ getVolume NOTIFY volumeChanged)
     Q_PROPERTY(QString serviceName READ getServiceName CONSTANT)
 public:
-    enum class PlaybackStatus {
-        Stopped = 0,
-        Playing = 1,
-        Paused = 2,
-        Buffering = 3
-    };
     Q_ENUMS(PlaybackStatus)
 
     virtual ~IPlayer() = default;
@@ -62,4 +65,4 @@ signals:
 
 END_MELLOWPLAYER_NAMESPACE
 
-Q_DECLARE_METATYPE(MellowPlayer::UseCases::IPlayer::PlaybackStatus);
+Q_DECLARE_METATYPE(MellowPlayer::UseCases::PlaybackStatus);

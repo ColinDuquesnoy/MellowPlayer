@@ -1,7 +1,14 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Services/INotificationsService.hpp>
 #include "NotificationFactory.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, INotificationPresenter)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

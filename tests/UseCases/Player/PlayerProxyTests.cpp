@@ -1,5 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Player/Player.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/PluginLoaderMock.hpp"
 
@@ -14,7 +17,7 @@ TEST_CASE("PlayerProxyTests") {
 
     SECTION("default properties (currentPlayer is null)") {
         REQUIRE(proxy.getPosition() == 0);
-        REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Stopped);
+        REQUIRE(proxy.getPlaybackStatus() == PlaybackStatus::Stopped);
         REQUIRE(!proxy.getCanSeek());
         REQUIRE(!proxy.getCanGoNext());
         REQUIRE(!proxy.getCanGoPrevious());
@@ -92,7 +95,7 @@ TEST_CASE("PlayerProxyTests") {
         SECTION("toggleFavoriteSong") {
             QVariantMap map;
             map["position"] = 1.0;
-            map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+            map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
             map["canSeek"] = true;
             map["canGoNext"] = true;
             map["canGoPrevious"] = true;
@@ -128,7 +131,7 @@ TEST_CASE("PlayerProxyTests") {
     SECTION("setUpdateResults of active player") {
         QVariantMap map;
         map["position"] = 1.0;
-        map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+        map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
         map["canSeek"] = true;
         map["canGoNext"] = true;
         map["canGoPrevious"] = true;
@@ -144,7 +147,7 @@ TEST_CASE("PlayerProxyTests") {
         player1.setUpdateResults(QVariant::fromValue(map));
 
         REQUIRE(proxy.getPosition() == 1.0);
-        REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);
+        REQUIRE(proxy.getPlaybackStatus() == PlaybackStatus::Playing);
         REQUIRE(proxy.getCanSeek());
         REQUIRE(proxy.getCanGoNext());
         REQUIRE(proxy.getCanGoPrevious());
@@ -173,7 +176,7 @@ TEST_CASE("PlayerProxyTests") {
     SECTION("setUpdateResults of inactive player") {
         QVariantMap map;
         map["position"] = 1.0;
-        map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+        map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
         map["canSeek"] = true;
         map["canGoNext"] = true;
         map["canGoPrevious"] = true;
@@ -189,7 +192,7 @@ TEST_CASE("PlayerProxyTests") {
         player2.setUpdateResults(QVariant::fromValue(map));
 
         REQUIRE(proxy.getPosition() == 0);
-        REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Stopped);
+        REQUIRE(proxy.getPlaybackStatus() == PlaybackStatus::Stopped);
         REQUIRE(!proxy.getCanSeek());
         REQUIRE(!proxy.getCanGoNext());
         REQUIRE(!proxy.getCanGoPrevious());
@@ -219,7 +222,7 @@ TEST_CASE("PlayerProxyTests") {
     SECTION("setUpdateResults of new active player") {
         QVariantMap map;
         map["position"] = 1.0;
-        map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+        map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
         map["canSeek"] = true;
         map["canGoNext"] = true;
         map["canGoPrevious"] = true;
@@ -236,7 +239,7 @@ TEST_CASE("PlayerProxyTests") {
         pluginManager.setCurrent(pluginManager.getAll()[1].get());
 
         REQUIRE(proxy.getPosition() == 1.0);
-        REQUIRE(proxy.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);
+        REQUIRE(proxy.getPlaybackStatus() == PlaybackStatus::Playing);
         REQUIRE(proxy.getCanSeek());
         REQUIRE(proxy.getCanGoNext());
         REQUIRE(proxy.getCanGoPrevious());

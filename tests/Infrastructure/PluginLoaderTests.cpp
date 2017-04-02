@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <Mocks/ApplicationSettingsMock.hpp>
 

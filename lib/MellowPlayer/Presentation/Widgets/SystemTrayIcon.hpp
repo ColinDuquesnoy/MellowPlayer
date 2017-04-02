@@ -2,8 +2,13 @@
 
 #include <QSystemTrayIcon>
 #include <QMenu>
-#include <MellowPlayer/UseCases.hpp>
-#include "../IconProvider.hpp"
+#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Logging/ILogger.hpp>
 
 namespace spdlog {
 class logger;

@@ -2,8 +2,10 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

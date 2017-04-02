@@ -1,3 +1,4 @@
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 #include "PlayersService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

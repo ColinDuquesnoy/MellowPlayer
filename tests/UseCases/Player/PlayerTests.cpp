@@ -1,5 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Player/Player.hpp>
+#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/ApplicationSettingsMock.hpp>
 
@@ -29,7 +31,7 @@ TEST_CASE("PlayerTests") {
         player.setUpdateResults(QVariant());
 
         REQUIRE(player.getPosition() == 0);
-        REQUIRE(player.getPlaybackStatus() == IPlayer::PlaybackStatus::Stopped);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Stopped);
         REQUIRE(!player.getCanSeek());
         REQUIRE(!player.getCanGoNext());
         REQUIRE(!player.getCanGoPrevious());
@@ -48,7 +50,7 @@ TEST_CASE("PlayerTests") {
     SECTION("setUpdateResults with valid QVariant") {
         QVariantMap map;
         map["position"] = 1.0;
-        map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+        map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
         map["canSeek"] = true;
         map["canGoNext"] = true;
         map["canGoPrevious"] = true;
@@ -65,7 +67,7 @@ TEST_CASE("PlayerTests") {
         player.setUpdateResults(QVariant::fromValue(map));
 
         REQUIRE(player.getPosition() == 1.0);
-        REQUIRE(player.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
         REQUIRE(player.getCanSeek());
         REQUIRE(player.getCanGoNext());
         REQUIRE(player.getCanGoPrevious());
@@ -85,18 +87,18 @@ TEST_CASE("PlayerTests") {
         player.togglePlayPause();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Playing);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
         player.togglePlayPause();
         REQUIRE(runJavascriptRequestedSpy.count() == 2);
         REQUIRE(runJavascriptRequestedSpy[1][0].toString() == "pause();");
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Paused);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("play") {
         player.play();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Playing);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
     }
 
     SECTION("pause") {
@@ -107,7 +109,7 @@ TEST_CASE("PlayerTests") {
         REQUIRE(runJavascriptRequestedSpy.count() == 2);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
         REQUIRE(runJavascriptRequestedSpy[1][0].toString() == "pause();");
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Paused);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("next") {
@@ -144,7 +146,7 @@ TEST_CASE("PlayerTests") {
     SECTION("toggleFavoriteSong valid song") {
         QVariantMap map;
         map["position"] = 1.0;
-        map["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+        map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
         map["canSeek"] = true;
         map["canGoNext"] = true;
         map["canGoPrevious"] = true;
@@ -177,7 +179,7 @@ TEST_CASE("PlayerTests") {
     SECTION("suspend when playing") {
         player.play();
         player.suspend();
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Paused);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("resume when not playing") {
@@ -190,8 +192,8 @@ TEST_CASE("PlayerTests") {
     SECTION("resume when playing") {
         player.play();
         player.suspend();
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Paused);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
         player.resume();
-        REQUIRE(player.getPlaybackStatus() == Player::PlaybackStatus::Playing);
+        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
     }
 }

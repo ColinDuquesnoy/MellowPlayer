@@ -2,11 +2,16 @@
 
 #include <QMap>
 #include <QMutex>
-#include "IListeningHistoryDataProvider.hpp"
-#include "../Logging/ILogger.hpp"
-#include "../Player/IPlayer.hpp"
+#include <QList>
+#include <MellowPlayer/Macros.hpp>
+#include "ListeningHistoryEntry.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class IListeningHistoryDataProvider;
+class ILogger;
+class IPlayer;
+class Song;
 
 class ListeningHistory: public QObject {
     Q_OBJECT

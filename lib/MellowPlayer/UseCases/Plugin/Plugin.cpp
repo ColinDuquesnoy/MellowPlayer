@@ -1,7 +1,8 @@
 #include <memory>
 #include <QtGui/QIcon>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
 #include "Plugin.hpp"
-#include "../Player/Player.hpp"
+#include "PluginScript.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;

@@ -3,8 +3,9 @@
 #include <QObject>
 #include <QLocalSocket>
 #include <QLocalServer>
-#include <MellowPlayer/UseCases.hpp>
 #include "IApplication.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

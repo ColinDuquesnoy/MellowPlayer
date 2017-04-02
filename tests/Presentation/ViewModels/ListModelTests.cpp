@@ -1,7 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
-#include <Mocks/ApplicationSettingsMock.hpp>
 #include <DI.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ListModel.hpp>
+#include <Mocks/ApplicationSettingsMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

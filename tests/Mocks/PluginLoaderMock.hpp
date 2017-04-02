@@ -2,7 +2,8 @@
 
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;

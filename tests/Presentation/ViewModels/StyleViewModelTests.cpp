@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
 #include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

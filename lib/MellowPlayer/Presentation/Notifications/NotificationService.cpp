@@ -1,3 +1,13 @@
+
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/UseCases/Player/Song.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+
 #include "NotificationService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -47,10 +57,10 @@ void NotificationService::onCurrentSongChanged(Song* song) {
 void NotificationService::onPlaybackStatusChanged() {
     LOG_TRACE(logger, "onPlaybackStatusChanged");
     switch (player.getPlaybackStatus()) {
-        case IPlayer::PlaybackStatus::Paused:
+        case PlaybackStatus::Paused:
             display(notificationFactory.createPausedNotification(getCurrentServiceName(), getCurrentServiceLogo()));
             break;
-        case IPlayer::PlaybackStatus::Playing:
+        case PlaybackStatus::Playing:
             showNewSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
             break;
         default:
@@ -70,7 +80,7 @@ void NotificationService::showNewSongNotification(Song* song, const QString& loc
 }
 
 bool NotificationService::isPlaying() const {
-    return player.getPlaybackStatus() == IPlayer::PlaybackStatus::Playing;
+    return player.getPlaybackStatus() == PlaybackStatus::Playing;
 }
 
 const QString NotificationService::getCurrentServiceName() const {

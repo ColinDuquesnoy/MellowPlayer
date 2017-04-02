@@ -1,8 +1,17 @@
 #pragma once
 
-#include "PlayersService.hpp"
+#include <memory>
+#include <QObject>
+#include <MellowPlayer/Macros.hpp>
+#include "IPlayer.hpp"
+#include "Song.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class Player;
+class PlayersService;
+class Plugin;
+class PluginManager;
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT

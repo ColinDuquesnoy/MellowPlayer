@@ -1,8 +1,15 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
 #include "IApplication.hpp"
-#include "../Services/HotkeysService.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IHotkeysService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISystemTrayIcon)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, INotificationService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

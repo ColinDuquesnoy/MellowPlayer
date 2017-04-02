@@ -1,11 +1,17 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Services/IMprisService.hpp>
+#include <memory>
 
 #ifdef Q_OS_LINUX
 
 class QQuickWindow;
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

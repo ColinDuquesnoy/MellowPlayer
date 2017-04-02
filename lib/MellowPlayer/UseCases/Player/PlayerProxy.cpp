@@ -1,4 +1,8 @@
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
 #include "PlayerProxy.hpp"
+#include "Player.hpp"
+#include "PlayersService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
@@ -75,7 +79,7 @@ double PlayerProxy::getPosition() const {
     return 0;
 }
 
-IPlayer::PlaybackStatus PlayerProxy::getPlaybackStatus() const {
+PlaybackStatus PlayerProxy::getPlaybackStatus() const {
     if (currentPlayer)
         return currentPlayer->getPlaybackStatus();
     return PlaybackStatus::Stopped;

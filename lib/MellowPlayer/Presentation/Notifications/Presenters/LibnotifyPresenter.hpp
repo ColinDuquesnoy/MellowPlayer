@@ -2,8 +2,10 @@
 
 #ifdef USE_LIBNOTIFY
 
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Notifications/INotificationPresenter.hpp>
 
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
 struct _NotifyNotification;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)

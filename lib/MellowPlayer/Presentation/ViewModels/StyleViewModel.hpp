@@ -1,6 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/UseCases.hpp>
+#include <QObject>
+#include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginStyle.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 

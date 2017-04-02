@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 

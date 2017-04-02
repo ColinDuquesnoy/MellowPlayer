@@ -1,8 +1,12 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/MprisService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>

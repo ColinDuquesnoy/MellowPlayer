@@ -1,3 +1,5 @@
+#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
 #include "SystemTrayIconPresenter.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

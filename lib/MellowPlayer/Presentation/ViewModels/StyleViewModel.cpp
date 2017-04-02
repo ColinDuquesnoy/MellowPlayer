@@ -1,3 +1,5 @@
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
 #include "StyleViewModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

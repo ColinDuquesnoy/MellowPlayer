@@ -1,7 +1,11 @@
 #pragma once
 #include <QObject>
-#include <MellowPlayer/UseCases.hpp>
 #include "StreamingServiceModel.hpp"
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginManager)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Plugin)
 
 class QQmlApplicationEngine;
 

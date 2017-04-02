@@ -3,8 +3,10 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
@@ -52,7 +54,7 @@ TEST_CASE("Mpris2PlayerTests") {
         SECTION("Paused When buffering") {
             REQUIRE(mpris2Player.playbackStatus() != "Paused");
             QVariantMap results;
-            results["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Buffering);
+            results["playbackStatus"] = static_cast<int>(PlaybackStatus::Buffering);
             currentPlayer.setUpdateResults(results);
             REQUIRE(mpris2Player.playbackStatus() == "Paused");
         }
@@ -82,7 +84,7 @@ TEST_CASE("Mpris2PlayerTests") {
         SECTION("ValidSong") {
             QVariantMap results;
             results["position"] = 1.0;
-            results["playbackStatus"] = static_cast<int>(IPlayer::PlaybackStatus::Playing);
+            results["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
             results["canSeek"] = true;
             results["canGoNext"] = true;
             results["canGoPrevious"] = true;

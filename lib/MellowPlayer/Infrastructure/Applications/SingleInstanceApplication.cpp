@@ -5,6 +5,8 @@
 #ifdef Q_OS_UNIX
 #include <signal.h>
 #include <unistd.h>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+
 #endif
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

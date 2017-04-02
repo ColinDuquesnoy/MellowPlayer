@@ -3,56 +3,23 @@
 #include <QFile>
 #include <QIcon>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class IconProvider {
 public:
-    IconProvider(UseCases::IApplicationSettings& applicationSettings): applicationSettings(applicationSettings) { }
+    IconProvider(UseCases::IApplicationSettings& applicationSettings);
+    QIcon trayIcon();
 
-    QIcon trayIcon() {
-        QString iconString = applicationSettings.getTrayIcon();
-        if (iconString.trimmed().isEmpty())
-            return windowIcon();
-        else if (QFile::exists(iconString))
-            return QIcon(iconString);
-        else
-            return QIcon::fromTheme(iconString);
-    }
-
-    static QIcon windowIcon() {
-        return QIcon::fromTheme("mellowplayer", QIcon("://MellowPlayer/Presentation/Resources/icons/mellowplayer.png"));
-    }
-
-    static QIcon restoreWindow() {
-        return QIcon::fromTheme("view-restore", QIcon("://MellowPlayer/Presentation/Resources/icons/view-restore.png"));
-    }
-
-    static QIcon play() {
-        return QIcon::fromTheme("media-playback-start",
-                                QIcon("://MellowPlayer/Presentation/Resources/icons/media-playback-start.png"));
-    }
-
-    static QIcon pause() {
-        return QIcon::fromTheme("media-playback-start",
-                                QIcon("://MellowPlayer/Presentation/Resources/icons/media-playback-pause.png"));
-    }
-
-    static QIcon next() {
-        return QIcon::fromTheme("media-seek-forward",
-                                QIcon("://MellowPlayer/Presentation/Resources/icons/media-seek-forward.png"));
-    }
-
-    static QIcon previous() {
-        return QIcon::fromTheme("media-seek-backward",
-                                QIcon("://MellowPlayer/Presentation/Resources/icons/media-seek-backward.png"));
-    }
-
-    static QIcon quit() {
-        return QIcon::fromTheme("application-exit",
-                                QIcon("://MellowPlayer/Presentation/Resources/icons/application-exit.png"));
-    }
+    static QIcon windowIcon();
+    static QIcon restoreWindow();
+    static QIcon play();
+    static QIcon pause();
+    static QIcon next();
+    static QIcon previous();
+    static QIcon quit();
 
 private:
     UseCases::IApplicationSettings& applicationSettings;

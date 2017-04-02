@@ -1,4 +1,6 @@
 #include <catch.hpp>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
+#include <MellowPlayer/UseCases/Notifications/Notifications.hpp>
 #include <MellowPlayer/Infrastructure/Applications/Application.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>

@@ -1,3 +1,6 @@
+#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Plugin/Plugin.hpp>
+#include <MellowPlayer/UseCases/Player/PlayersService.hpp>
 #include "StreamingServiceModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

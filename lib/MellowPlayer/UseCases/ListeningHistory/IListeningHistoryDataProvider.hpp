@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ListeningHistoryEntry.hpp"
-
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+struct ListeningHistoryEntry;
 
 class IListeningHistoryDataProvider {
 public:

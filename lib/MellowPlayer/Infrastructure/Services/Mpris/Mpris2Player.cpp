@@ -1,3 +1,7 @@
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/UseCases/Services/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/UseCases/Player/Song.hpp>
 #include "Mpris2Player.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -267,14 +271,14 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song) {
     return map;
 }
 
-QString Mpris2Player::statusToString(IPlayer::PlaybackStatus status) {
+QString Mpris2Player::statusToString(PlaybackStatus status) {
     // a player that is buffering is considered to be paused for mpris, otherwise the player disappear on Plasma 5.
-    if (status == IPlayer::PlaybackStatus::Buffering)
-        status = IPlayer::PlaybackStatus::Paused;
+    if (status == PlaybackStatus::Buffering)
+        status = PlaybackStatus::Paused;
     switch (status) {
-        case IPlayer::PlaybackStatus::Playing:
+        case PlaybackStatus::Playing:
             return "Playing";
-        case IPlayer::PlaybackStatus::Paused:
+        case PlaybackStatus::Paused:
             return "Paused";
         default:
             return "Stopped";

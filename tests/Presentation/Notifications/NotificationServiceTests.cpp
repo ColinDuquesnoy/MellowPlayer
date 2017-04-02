@@ -1,5 +1,7 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation.hpp>
+#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
 #include "DI.hpp"
 
@@ -29,7 +31,7 @@ TEST_CASE("NotificationServiceTests") {
     Song invalidSong("", "", "", "", "", 50, false);
     REQUIRE(!invalidSong.isValid());
 
-    When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(IPlayer::PlaybackStatus::Playing);
+    When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Playing);
     When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(true);
     When(Method(playerSpy, getCurrentSong)).AlwaysReturn(&validSong);
 
@@ -61,7 +63,7 @@ TEST_CASE("NotificationServiceTests") {
     }
 
     SECTION("don't display current song changed notification if player is not playing") {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(IPlayer::PlaybackStatus::Paused);
+        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Paused);
         notificationService.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Never();
     }
@@ -89,13 +91,13 @@ TEST_CASE("NotificationServiceTests") {
     }
 
     SECTION("display paused notification when playback status changed to Paused")  {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(IPlayer::PlaybackStatus::Paused);
+        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Paused);
         notificationService.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
     SECTION("don't display paused notification when playback status changed to Stopped")  {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(IPlayer::PlaybackStatus::Stopped);
+        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Stopped);
         notificationService.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Never();
     }

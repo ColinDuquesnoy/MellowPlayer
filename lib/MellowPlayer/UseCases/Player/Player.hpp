@@ -1,16 +1,22 @@
 #pragma once
 
+#include <memory>
 #include <MellowPlayer/Macros.hpp>
 #include "IPlayer.hpp"
-#include "../Plugin/Plugin.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class ILogger;
+class Song;
+class Plugin;
+class PluginScript;
 
 class Player: public IPlayer
 {
     Q_OBJECT
 public:
     Player(Plugin& plugin);
+    ~Player();
 
     // IPlayer
     Q_INVOKABLE void togglePlayPause() override;
@@ -26,7 +32,7 @@ public:
 
     Song* getCurrentSong() override;
     double getPosition() const override;
-    IPlayer::PlaybackStatus getPlaybackStatus() const override;
+    PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
     bool getCanGoNext() const override;
     bool getCanGoPrevious() const override;
@@ -43,8 +49,8 @@ public:
     void suspend();
     void resume();
 
-    bool operator==(const Player& other) const { return plugin == other.plugin; }
-    bool operator!=(const Player& other) const { return !operator==(other); }
+    bool operator==(const Player& other) const;
+    bool operator!=(const Player& other) const;
 
 signals:
     void runJavascriptRequested(const QString& script);
