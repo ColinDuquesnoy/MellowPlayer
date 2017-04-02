@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
         LoggingManager::instance();
         assert(false);
     }
-    catch (const logic_error&) {
+    catch (const logic_error& e) {
         assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
     }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
