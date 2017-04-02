@@ -5,7 +5,7 @@
 #include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include "NotificationService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
@@ -16,13 +16,13 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 NotificationService::NotificationService(IPlayer& player,
                                          ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
-                                         PluginsService& pluginManager,
+                                         PluginService& pluginService,
                                          IApplicationSettings& applicationSettings) :
         logger(LoggingManager::instance().getLogger("NotificationService")),
         player(player),
         localAlbumArtService(localAlbumArtService),
         presenter(presenter),
-        pluginManager(pluginManager),
+        pluginService(pluginService),
         applicationSettings(applicationSettings) {
 }
 
@@ -83,11 +83,11 @@ bool NotificationService::isPlaying() const {
 }
 
 const QString NotificationService::getCurrentServiceName() const {
-    auto currentPlugin = pluginManager.getCurrent();
+    auto currentPlugin = pluginService.getCurrent();
     return currentPlugin != nullptr ? currentPlugin->getName() : "";
 }
 
 const QString NotificationService::getCurrentServiceLogo() const {
-    auto currentPlugin = pluginManager.getCurrent();
+    auto currentPlugin = pluginService.getCurrent();
     return currentPlugin != nullptr ? currentPlugin->getLogo() : "";
 }

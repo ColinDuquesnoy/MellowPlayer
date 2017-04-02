@@ -8,7 +8,7 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, INotificationPresenter)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginsService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -16,7 +16,7 @@ class NotificationService: public QObject, public UseCases::INotificationService
     Q_OBJECT
 public:
     NotificationService(UseCases::IPlayer& player, UseCases::ILocalAlbumArtService& localAlbumArtService,
-                        UseCases::INotificationPresenter& presenter, UseCases::PluginsService& pluginManager,
+                        UseCases::INotificationPresenter& presenter, UseCases::PluginService& pluginService,
                         UseCases::IApplicationSettings& applicationSettings);
 
     void initialize() override;
@@ -37,7 +37,7 @@ private:
     UseCases::IPlayer& player;
     UseCases::ILocalAlbumArtService& localAlbumArtService;
     UseCases::INotificationPresenter& presenter;
-    UseCases::PluginsService& pluginManager;
+    UseCases::PluginService& pluginService;
     UseCases::IApplicationSettings& applicationSettings;
     Entities::Notification previousNotif;
     NotificationFactory notificationFactory;

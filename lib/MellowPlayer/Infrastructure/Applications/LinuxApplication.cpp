@@ -1,6 +1,6 @@
 #include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -14,12 +14,12 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 LinuxApplication::LinuxApplication(IQtApplication& qtApp,
                                    IMainWindow& mainWindow,
-                                   PluginsService& pluginManager,
+                                   PluginService& pluginService,
                                    IHotkeysService& kotkeys,
                                    ISystemTrayIcon& systemTrayIcon,
                                    INotificationService& playerNotificationService,
                                    IMprisService& mprisService) :
-        Application(qtApp, mainWindow, pluginManager, kotkeys, systemTrayIcon, playerNotificationService),
+        Application(qtApp, mainWindow, pluginService, kotkeys, systemTrayIcon, playerNotificationService),
         logger(LoggingManager::instance().getLogger("LinuxApplication")),
         mprisService(mprisService) {
 

@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QtWebEngine/QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include "StreamingServicesViewModel.hpp"
 
@@ -11,15 +11,15 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesViewModel::StreamingServicesViewModel(PluginsService& pluginManager,
+StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginService,
                                                        PlayersService& playersService,
                                                        IApplicationSettings& applicationSettings) :
-        QObject(), pluginManager(pluginManager), playersService(playersService),
+        QObject(), pluginService(pluginService), playersService(playersService),
         applicationSettings(applicationSettings), currentService(nullptr), currentIndex(-1) {
 
-    connect(&pluginManager, &PluginsService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
+    connect(&pluginService, &PluginService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
 
-    for(auto& plugin: pluginManager.getAll()) {
+    for(auto& plugin: pluginService.getAll()) {
         onPluginAdded(plugin.get());
     }
 }
@@ -52,7 +52,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
     auto service = static_cast<StreamingServiceModel*>(value);
     applicationSettings.setCurrentService(value->property("name").toString());
     currentService = value;
-    pluginManager.setCurrent(service->getPlugin());
+    pluginService.setCurrent(service->getPlugin());
     setCurrentIndex(model.getItems().indexOf(service));
     emit currentServiceChanged(currentService);
 }
@@ -66,7 +66,7 @@ void StreamingServicesViewModel::setCurrentIndex(int value) {
 }
 
 void StreamingServicesViewModel::reload() {
-    pluginManager.load();
+    pluginService.load();
 }
 
 void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {

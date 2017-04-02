@@ -12,11 +12,11 @@ BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 class ILogger;
 class IPluginLoader;
 
-class PluginsService: public QObject {
+class PluginService: public QObject {
     Q_OBJECT
     Q_PROPERTY(Entities::Plugin* currentPlugin READ getCurrent WRITE setCurrent NOTIFY currentPluginChanged)
 public:
-    PluginsService(IPluginLoader& pluginLoader);
+    PluginService(IPluginLoader& pluginLoader);
 
     void load();
     Entities::Plugin& get(const QString& name) const;

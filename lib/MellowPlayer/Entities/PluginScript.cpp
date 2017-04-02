@@ -9,9 +9,9 @@ PluginScript::PluginScript(const QString &code, const QString &path):
 
 bool PluginScript::isValid() const {
     return code.contains("function update") && code.contains("function play") && (code.contains("function pause") &&
-            code.contains("function goNext") && code.contains("function goPrevious") &&
-            code.contains("function setVolume") && code.contains("function addToFavorites")) &&
-            code.contains("function removeFromFavorites") && code.contains("function seekToPosition");
+           code.contains("function goNext") && code.contains("function goPrevious") &&
+           code.contains("function setVolume") && code.contains("function addToFavorites")) &&
+           code.contains("function removeFromFavorites") && code.contains("function seekToPosition");
 }
 
 QString PluginScript::getCode() const {

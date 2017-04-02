@@ -1,7 +1,7 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Services/PlayersService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -19,9 +19,9 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 TEST_CASE("MprisServiceTests", "[IntegrationTests]")
 {
     auto plugionLoaderMock = PluginLoaderMock::get();
-    PluginsService pluginManager(plugionLoaderMock.get());
-    PlayersService playersService(pluginManager);
-    PlayerProxy player(playersService, pluginManager);
+    PluginService pluginService(plugionLoaderMock.get());
+    PlayersService playersService(pluginService);
+    PlayerProxy player(playersService, pluginService);
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();

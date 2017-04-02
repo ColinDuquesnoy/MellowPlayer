@@ -19,7 +19,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 PluginLoader::PluginLoader() :
-        logger(LoggingManager::instance().getLogger("PluginsService")) {
+        logger(LoggingManager::instance().getLogger("PluginService")) {
 
 }
 

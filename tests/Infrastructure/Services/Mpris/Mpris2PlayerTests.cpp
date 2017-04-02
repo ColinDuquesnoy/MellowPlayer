@@ -3,7 +3,7 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Services/PlayersService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -16,12 +16,12 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests") {
     auto mock = PluginLoaderMock::get();
-    PluginsService pluginManager(mock.get());
-    pluginManager.load();
-    pluginManager.setCurrent(pluginManager.getAll()[0].get());
-    PlayersService playersService(pluginManager);
-    PlayerProxy player(playersService, pluginManager);
-    Player& currentPlayer = *playersService.get(pluginManager.getCurrent()->getName());
+    PluginService pluginService(mock.get());
+    pluginService.load();
+    pluginService.setCurrent(pluginService.getAll()[0].get());
+    PlayersService playersService(pluginService);
+    PlayerProxy player(playersService, pluginService);
+    Player& currentPlayer = *playersService.get(pluginService.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);

@@ -1,16 +1,16 @@
 #include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include "StyleViewModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StyleViewModel::StyleViewModel(PluginsService& pluginManager) :
+StyleViewModel::StyleViewModel(PluginService& pluginService) :
         usePluginStyle(true),
         style(PluginStyle::defaultStyle()),
-        pluginManager(pluginManager) {
-    connect(&pluginManager, &PluginsService::currentPluginChanged, this, &StyleViewModel::onPluginChanged);
+        pluginService(pluginService) {
+    connect(&pluginService, &PluginService::currentPluginChanged, this, &StyleViewModel::onPluginChanged);
 }
 
 QString StyleViewModel::getTheme() const {
@@ -56,7 +56,7 @@ void StyleViewModel::setUsePluginStyle(bool value) {
     usePluginStyle = value;
     emit usePluginStyleChanged();
 
-    Plugin* currentPlugin = pluginManager.getCurrent();
+    Plugin* currentPlugin = pluginService.getCurrent();
     if (usePluginStyle && currentPlugin != nullptr)
         updateStyle(currentPlugin->getStyle());
     else

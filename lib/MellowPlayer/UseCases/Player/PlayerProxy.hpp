@@ -12,12 +12,12 @@ BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Player;
 class PlayersService;
-class PluginsService;
+class PluginService;
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT
 public:
-    PlayerProxy(PlayersService& playersService, PluginsService& pluginManager);
+    PlayerProxy(PlayersService& playersService, PluginService& pluginService);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -46,7 +46,7 @@ private slots:
 
 private:
     PlayersService& players;
-    PluginsService& pluginManager;
+    PluginService& pluginService;
     Entities::Song nullSong;
 
     std::shared_ptr<Player> currentPlayer;

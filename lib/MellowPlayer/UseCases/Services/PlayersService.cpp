@@ -5,10 +5,10 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayersService::PlayersService(PluginsService& pluginManager) {
-    connect(&pluginManager, &PluginsService::pluginAdded,
+PlayersService::PlayersService(PluginService& pluginService) {
+    connect(&pluginService, &PluginService::pluginAdded,
             this, &PlayersService::onServiceAdded);
-    for (auto& plugin: pluginManager.getAll()) {
+    for (auto& plugin: pluginService.getAll()) {
         onServiceAdded(plugin.get());
     }
 }

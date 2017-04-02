@@ -1,4 +1,4 @@
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include "PlayerProxy.hpp"
 #include "Player.hpp"
@@ -8,14 +8,14 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayerProxy::PlayerProxy(PlayersService& playersService, PluginsService& pluginManager)
-    : players(playersService), pluginManager(pluginManager), currentPlayer(nullptr) {
+PlayerProxy::PlayerProxy(PlayersService& playersService, PluginService& pluginService)
+    : players(playersService), pluginService(pluginService), currentPlayer(nullptr) {
 
-    connect(&pluginManager, &PluginsService::currentPluginChanged,
+    connect(&pluginService, &PluginService::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);
 
-    if(pluginManager.getCurrent() != nullptr)
-        onCurrentPluginChanged(pluginManager.getCurrent());
+    if(pluginService.getCurrent() != nullptr)
+        onCurrentPluginChanged(pluginService.getCurrent());
 }
 
 void PlayerProxy::togglePlayPause() {

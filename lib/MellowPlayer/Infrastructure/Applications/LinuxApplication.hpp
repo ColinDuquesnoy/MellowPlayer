@@ -6,7 +6,7 @@
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginsService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IHotkeysService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISystemTrayIcon)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, INotificationService)
@@ -18,7 +18,7 @@ class LinuxApplication: public Application {
 public:
     LinuxApplication(UseCases::IQtApplication& qtApp,
                      UseCases::IMainWindow& mainWindow,
-                     UseCases::PluginsService& pluginManager,
+                     UseCases::PluginService& pluginService,
                      UseCases::IHotkeysService& kotkeys,
                      UseCases::ISystemTrayIcon& systemTrayIcon,
                      UseCases::INotificationService& playerNotificationService,

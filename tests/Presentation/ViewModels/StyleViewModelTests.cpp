@@ -19,24 +19,24 @@ void requireMatchStyle(StyleViewModel& styleViewModel, const PluginStyle& style)
 TEST_CASE("StyleViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PluginsService& pluginManager = injector.create<PluginsService&>();
-    StyleViewModel styleViewModel(pluginManager);
-    pluginManager.setCurrent(nullptr);
+    PluginService& pluginService = injector.create<PluginService&>();
+    StyleViewModel styleViewModel(pluginService);
+    pluginService.setCurrent(nullptr);
 
     SECTION("initially use PluginStyle::defaultStyle") {
         requireMatchStyle(styleViewModel, PluginStyle::defaultStyle());
     }
 
     SECTION("use pluginStyle when current plugin changed") {
-        pluginManager.setCurrent(&pluginManager.get("Deezer"));
+        pluginService.setCurrent(&pluginService.get("Deezer"));
         requireMatchStyle(styleViewModel, PluginLoaderMock::PLUGIN_STYLE);
-        pluginManager.setCurrent(&pluginManager.get("Spotify"));
+        pluginService.setCurrent(&pluginService.get("Spotify"));
         requireMatchStyle(styleViewModel, PluginLoaderMock::PLUGIN_STYLE);
     }
 
     SECTION("setUsePluginTests") {
         REQUIRE(styleViewModel.getUsePluginStyle());
-        pluginManager.setCurrent(&pluginManager.get("Deezer"));
+        pluginService.setCurrent(&pluginService.get("Deezer"));
         requireMatchStyle(styleViewModel, PluginLoaderMock::PLUGIN_STYLE);
         styleViewModel.setUsePluginStyle(false);
         REQUIRE(!styleViewModel.getUsePluginStyle());

@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Services/PluginsService.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/UseCases/Services/PlayersService.hpp>
@@ -10,10 +10,10 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests") {
     auto mock = PluginLoaderMock::get();
-    PluginsService pluginManager(mock.get());
-    pluginManager.load();
-    PlayersService playersService(pluginManager);
-    PlayerProxy proxy(playersService, pluginManager);
+    PluginService pluginService(mock.get());
+    pluginService.load();
+    PlayersService playersService(pluginService);
+    PlayerProxy proxy(playersService, pluginService);
 
     SECTION("default properties (currentPlayer is null)") {
         REQUIRE(proxy.getPosition() == 0);
@@ -33,9 +33,9 @@ TEST_CASE("PlayerProxyTests") {
         REQUIRE(!proxy.getCurrentSong()->getIsFavorite());
     }
 
-    Player& player1 = *playersService.get(pluginManager.getAll()[0]->getName());
-    Player& player2 = *playersService.get(pluginManager.getAll()[1]->getName());
-    pluginManager.setCurrent(pluginManager.getAll()[0].get());
+    Player& player1 = *playersService.get(pluginService.getAll()[0]->getName());
+    Player& player2 = *playersService.get(pluginService.getAll()[1]->getName());
+    pluginService.setCurrent(pluginService.getAll()[0].get());
 
     QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Song*)));
     QSignalSpy positionChanged(&proxy, SIGNAL(positionChanged()));
@@ -236,7 +236,7 @@ TEST_CASE("PlayerProxyTests") {
         map["volume"] = 0.5;
         map["duration"] = 350.0;
         player2.setUpdateResults(QVariant::fromValue(map));
-        pluginManager.setCurrent(pluginManager.getAll()[1].get());
+        pluginService.setCurrent(pluginService.getAll()[1].get());
 
         REQUIRE(proxy.getPosition() == 1.0);
         REQUIRE(proxy.getPlaybackStatus() == PlaybackStatus::Playing);

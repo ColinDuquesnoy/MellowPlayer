@@ -5,7 +5,7 @@
 #include <MellowPlayer/Entities/PluginStyle.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginsService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -21,7 +21,7 @@ class StyleViewModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
 public:
-    StyleViewModel(UseCases::PluginsService& pluginManager);
+    StyleViewModel(UseCases::PluginService& pluginService);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -63,7 +63,7 @@ private:
 
     bool usePluginStyle;
     Entities::PluginStyle style;
-    UseCases::PluginsService& pluginManager;
+    UseCases::PluginService& pluginService;
 };
 
 END_MELLOWPLAYER_NAMESPACE

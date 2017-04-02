@@ -11,6 +11,7 @@ file(GLOB_RECURSE SOURCE_FILES *.cpp)
 
 add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} Presentation/ViewModels/StreamingServiceModelTests.cpp)
 target_link_libraries(${TEST_EXECUTABLE_NAME}
+                      ${PROJECT_NAME}.Entities
                       ${PROJECT_NAME}.UseCases
                       ${PROJECT_NAME}.Presentation
                       ${PROJECT_NAME}.Infrastructure)
