@@ -4,10 +4,11 @@ file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
 file(GLOB_RECURSE JS_FILES *.js)
 file(GLOB_RECURSE JSON_FILES *.json)
 file(GLOB_RECURSE INI_FILES *.ini)
+file(GLOB_RECURSE DESKTOP_FILES *.desktop)
 file(GLOB_RECURSE SVG_FILES *.svg)
 set(CMAKE_AUTOMOC OFF)
 
-add_executable(${PROJECT_NAME} main.cpp ${HEADER_FILES} ${JS_FILES} ${JSON_FILES} ${INI_FILES} ${SVG_FILES})
+add_executable(${PROJECT_NAME} main.cpp DI.hpp ${HEADER_FILES} ${JS_FILES} ${JSON_FILES} ${INI_FILES} ${SVG_FILES} ${DESKTOP_FILES})
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
         ${PROJECT_NAME}.Entities
@@ -21,3 +22,5 @@ install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib/static)
 install(DIRECTORY plugins DESTINATION share/mellowplayer)
+install(DIRECTORY share/applications DESTINATION share)
+install(DIRECTORY share/icons DESTINATION share)
