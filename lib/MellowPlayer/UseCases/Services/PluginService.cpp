@@ -38,7 +38,7 @@ Plugin& PluginService::get(const QString& name) const {
     throw invalid_argument("unknown plugin: " + name.toStdString());
 }
 
-const PluginList& PluginService::getAll() const {
+const QList<shared_ptr<Plugin>>& PluginService::getAll() const {
     return pluginList;
 }
 

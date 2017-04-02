@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <QObject>
+#include <QList>
 #include <MellowPlayer/Macros.hpp>
 
 PREDECLARE_MELLOWPLAYER_STRUCT(Entities, Plugin)
@@ -20,7 +21,7 @@ public:
 
     void load();
     Entities::Plugin& get(const QString& name) const;
-    const QList<std::shared_ptr<MellowPlayer::Entities::Plugin>>& getAll() const;
+    const QList<std::shared_ptr<Entities::Plugin>>& getAll() const;
     
     void setCurrent(Entities::Plugin* plugin);
     Entities::Plugin* getCurrent() const;

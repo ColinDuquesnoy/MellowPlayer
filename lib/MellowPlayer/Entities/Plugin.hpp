@@ -46,8 +46,5 @@ private:
     std::unique_ptr<PluginScript> script;
 };
 
-
-using PluginList = QList<std::shared_ptr<MellowPlayer::Entities::Plugin>>;
-
 END_MELLOWPLAYER_NAMESPACE
 

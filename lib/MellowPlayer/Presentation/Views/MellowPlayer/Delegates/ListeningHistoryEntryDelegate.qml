@@ -22,7 +22,7 @@ Pane {
 
     Timer {
         id: delayTimer
-        interval: 600
+        interval: 250
         onTriggered: stackLayout.currentIndex = 1
     }
 

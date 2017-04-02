@@ -23,8 +23,8 @@ PluginLoader::PluginLoader() :
 
 }
 
-PluginList PluginLoader::load() const {
-    PluginList plugins;
+QList<shared_ptr<Plugin>> PluginLoader::load() const {
+    QList<shared_ptr<Plugin>> plugins;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
             LOG_DEBUG(logger, "Skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
@@ -157,7 +157,7 @@ QStringList PluginLoader::getSearchPaths() const {
     return paths;
 }
 
-bool PluginLoader::containsPlugin(const PluginList& plugins,
+bool PluginLoader::containsPlugin(const QList<shared_ptr<Plugin>>& plugins,
                                   shared_ptr<Plugin>& toCheck) const {
     for (auto plugin: plugins) {
         if (*toCheck == *plugin)

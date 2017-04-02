@@ -15,7 +15,7 @@ public:
     static Mock<IPluginLoader> get() {
         Mock<IPluginLoader> mock;
         When(Method(mock, load)).AlwaysDo([]() {
-            PluginList list;
+            QList<shared_ptr<Plugin>> list;
             list.append(createPlugin("Deezer"));
             list.append(createPlugin("Spotify"));
             return list;
