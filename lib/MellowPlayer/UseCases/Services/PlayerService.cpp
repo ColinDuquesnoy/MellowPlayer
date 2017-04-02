@@ -1,4 +1,5 @@
 #include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include "PlayerService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
