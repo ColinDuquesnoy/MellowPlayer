@@ -1,5 +1,5 @@
 #include <MellowPlayer/UseCases/Player/Song.hpp>
-#include "../IconProvider.hpp"
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 #include "NotificationFactory.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

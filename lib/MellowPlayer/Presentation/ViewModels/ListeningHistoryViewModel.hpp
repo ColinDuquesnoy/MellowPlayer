@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ListeningHistoryEntryModel.hpp"
+#include <MellowPlayer/Presentation/Models/ListeningHistoryEntryModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_STRUCT(UseCases, ListeningHistory)
 

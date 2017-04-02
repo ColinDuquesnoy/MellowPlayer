@@ -1,6 +1,6 @@
 #include <catch.hpp>
 #include <DI.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ListModel.hpp>
+#include <MellowPlayer/Presentation/Models/ListModel.hpp>
 #include <Mocks/ApplicationSettingsMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)

@@ -4,7 +4,7 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
-#include "../Logging/LoggingManager.hpp"
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include "PluginMetadata.hpp"
 #include "PluginStyle.hpp"
 

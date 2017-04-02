@@ -1,7 +1,7 @@
 #ifdef USE_SNORENOTIFY
 
 #include "SnorenotifyPresenter.hpp"
-#include "../../IconProvider.hpp"
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

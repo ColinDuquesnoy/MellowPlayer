@@ -1,6 +1,7 @@
 #pragma once
+
 #include <QObject>
-#include "StreamingServiceModel.hpp"
+#include <MellowPlayer/Presentation/Models/StreamingServiceModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)

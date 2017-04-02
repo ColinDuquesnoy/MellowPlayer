@@ -1,8 +1,8 @@
 #pragma once
 
-#include <qmap.h>
+#include <QMap>
+#include <MellowPlayer/UseCases/Plugin/PluginManager.hpp>
 #include "Player.hpp"
-#include "../Plugin/PluginManager.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 

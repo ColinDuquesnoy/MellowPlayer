@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QDateTime>
-#include "../Player/Song.hpp"
+#include <MellowPlayer/UseCases/Player/Song.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
