@@ -11,7 +11,7 @@ TEST_CASE("GenericListModelTests") {
     auto appSettingsMock = ApplicationSettingsMock::get();
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PlayersService& playersService = injector.create<PlayersService&>();
+    PlayerService& playerService = injector.create<PlayerService&>();
     REQUIRE(model.rowCount() == 0);
 
     SECTION("add_Test") {
@@ -19,7 +19,7 @@ TEST_CASE("GenericListModelTests") {
         metadata.name = "Deezer";
         metadata.url = "https://deezer.com";
         Plugin service(metadata);
-        StreamingServiceModel serviceModel(service, appSettingsMock.get(), playersService);
+        StreamingServiceModel serviceModel(service, appSettingsMock.get(), playerService);
 
         model.append(&serviceModel);
         REQUIRE(model.rowCount() == 1);

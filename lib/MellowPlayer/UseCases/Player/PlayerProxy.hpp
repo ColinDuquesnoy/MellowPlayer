@@ -11,13 +11,13 @@ PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Player;
-class PlayersService;
+class PlayerService;
 class PluginService;
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT
 public:
-    PlayerProxy(PlayersService& playersService, PluginService& pluginService);
+    PlayerProxy(PlayerService& playerService, PluginService& pluginService);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -45,7 +45,7 @@ private slots:
     void onCurrentPluginChanged(Entities::Plugin* plugin);
 
 private:
-    PlayersService& players;
+    PlayerService& players;
     PluginService& pluginService;
     Entities::Song nullSong;
 

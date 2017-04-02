@@ -5,7 +5,7 @@
 #include <Mocks/PluginLoaderMock.hpp>
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
@@ -19,9 +19,9 @@ TEST_CASE("Mpris2PlayerTests") {
     PluginService pluginService(mock.get());
     pluginService.load();
     pluginService.setCurrent(pluginService.getAll()[0].get());
-    PlayersService playersService(pluginService);
-    PlayerProxy player(playersService, pluginService);
-    Player& currentPlayer = *playersService.get(pluginService.getCurrent()->getName());
+    PlayerService playerService(pluginService);
+    PlayerProxy player(playerService, pluginService);
+    Player& currentPlayer = *playerService.get(pluginService.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);

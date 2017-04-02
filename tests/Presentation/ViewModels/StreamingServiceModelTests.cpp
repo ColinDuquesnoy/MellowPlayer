@@ -9,21 +9,21 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 TEST_CASE("StreamingServiceModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PlayersService& playersService = injector.create<PlayersService&>();
+    PlayerService& playerService = injector.create<PlayerService&>();
     PluginService& pluginService = injector.create<PluginService&>();
     pluginService.load();
     ApplicationSettings applicationSettings;
     Plugin& plugin1 = *pluginService.getAll()[0];
     Plugin& plugin2 = *pluginService.getAll()[1];
 
-    StreamingServiceModel model(plugin1, applicationSettings, playersService);
-    StreamingServiceModel sameModel(plugin1, applicationSettings, playersService);
-    StreamingServiceModel model2(plugin2, applicationSettings, playersService);
+    StreamingServiceModel model(plugin1, applicationSettings, playerService);
+    StreamingServiceModel sameModel(plugin1, applicationSettings, playerService);
+    StreamingServiceModel model2(plugin2, applicationSettings, playerService);
 
     REQUIRE(model.getColor() == plugin1.getColor());
     REQUIRE(model.getLogo() == plugin1.getLogo());
     REQUIRE(model.getName() == plugin1.getName());
-    REQUIRE(model.getPlayer() == playersService.get(plugin1.getName()).get());
+    REQUIRE(model.getPlayer() == playerService.get(plugin1.getName()).get());
 
     REQUIRE(model != model2);
     REQUIRE(model == sameModel);

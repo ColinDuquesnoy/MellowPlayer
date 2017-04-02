@@ -6,7 +6,7 @@
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Player)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayerService)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -21,7 +21,7 @@ class StreamingServiceModel: public QObject
 public:
     StreamingServiceModel(Entities::Plugin& plugin,
                           UseCases::IApplicationSettings& applicationSettings,
-                          UseCases::PlayersService& playerManager,
+                          UseCases::PlayerService& playerManager,
                           QObject* parent= nullptr);
 
     QString getColor() const;
@@ -44,7 +44,7 @@ private:
 
     Entities::Plugin& plugin;
     UseCases::IApplicationSettings& applicationSettings;
-    UseCases::PlayersService& players;
+    UseCases::PlayerService& players;
 };
 
 using StreamingServiceListModel = ListModel<StreamingServiceModel>;

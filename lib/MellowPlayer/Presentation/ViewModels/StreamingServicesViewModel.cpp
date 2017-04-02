@@ -12,9 +12,9 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginService,
-                                                       PlayersService& playersService,
+                                                       PlayerService& playerService,
                                                        IApplicationSettings& applicationSettings) :
-        QObject(), pluginService(pluginService), playersService(playersService),
+        QObject(), pluginService(pluginService), playerService(playerService),
         applicationSettings(applicationSettings), currentService(nullptr), currentIndex(-1) {
 
     connect(&pluginService, &PluginService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
@@ -70,5 +70,5 @@ void StreamingServicesViewModel::reload() {
 }
 
 void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {
-    model.append(new StreamingServiceModel(*plugin, applicationSettings, playersService, this));
+    model.append(new StreamingServiceModel(*plugin, applicationSettings, playerService, this));
 }

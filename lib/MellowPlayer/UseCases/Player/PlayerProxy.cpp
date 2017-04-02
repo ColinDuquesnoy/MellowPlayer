@@ -2,14 +2,14 @@
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include "PlayerProxy.hpp"
 #include "Player.hpp"
-#include "MellowPlayer/UseCases/Services/PlayersService.hpp"
+#include "MellowPlayer/UseCases/Services/PlayerService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayerProxy::PlayerProxy(PlayersService& playersService, PluginService& pluginService)
-    : players(playersService), pluginService(pluginService), currentPlayer(nullptr) {
+PlayerProxy::PlayerProxy(PlayerService& playerService, PluginService& pluginService)
+    : players(playerService), pluginService(pluginService), currentPlayer(nullptr) {
 
     connect(&pluginService, &PluginService::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);

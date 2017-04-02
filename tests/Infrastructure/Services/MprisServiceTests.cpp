@@ -3,7 +3,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/MprisService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -20,8 +20,8 @@ TEST_CASE("MprisServiceTests", "[IntegrationTests]")
 {
     auto plugionLoaderMock = PluginLoaderMock::get();
     PluginService pluginService(plugionLoaderMock.get());
-    PlayersService playersService(pluginService);
-    PlayerProxy player(playersService, pluginService);
+    PlayerService playerService(pluginService);
+    PlayerProxy player(playerService, pluginService);
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();

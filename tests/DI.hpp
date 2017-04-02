@@ -15,7 +15,7 @@
 #include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>

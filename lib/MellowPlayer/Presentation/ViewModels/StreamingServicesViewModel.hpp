@@ -4,7 +4,7 @@
 #include <MellowPlayer/Presentation/Models/StreamingServiceModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayersService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayerService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PluginService)
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
 
@@ -20,7 +20,7 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
     StreamingServicesViewModel(UseCases::PluginService& pluginService,
-                               UseCases::PlayersService& playersService,
+                               UseCases::PlayerService& playerService,
                                UseCases::IApplicationSettings& applicationSettings);
     void initialize();
 
@@ -42,7 +42,7 @@ private slots:
 
 private:
     UseCases::PluginService& pluginService;
-    UseCases::PlayersService& playersService;
+    UseCases::PlayerService& playerService;
     UseCases::IApplicationSettings& applicationSettings;
     StreamingServiceListModel model;
     QObject* currentService;

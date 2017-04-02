@@ -6,10 +6,10 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class PlayersService: public QObject {
+class PlayerService: public QObject {
     Q_OBJECT
 public:
-    PlayersService(PluginService& pluginService);
+    PlayerService(PluginService& pluginService);
 
     std::shared_ptr<Player> get(const QString& serviceName) const;
 

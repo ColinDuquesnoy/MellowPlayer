@@ -2,7 +2,7 @@
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/PluginLoaderMock.hpp"
 
@@ -12,8 +12,8 @@ TEST_CASE("PlayerProxyTests") {
     auto mock = PluginLoaderMock::get();
     PluginService pluginService(mock.get());
     pluginService.load();
-    PlayersService playersService(pluginService);
-    PlayerProxy proxy(playersService, pluginService);
+    PlayerService playerService(pluginService);
+    PlayerProxy proxy(playerService, pluginService);
 
     SECTION("default properties (currentPlayer is null)") {
         REQUIRE(proxy.getPosition() == 0);
@@ -33,8 +33,8 @@ TEST_CASE("PlayerProxyTests") {
         REQUIRE(!proxy.getCurrentSong()->getIsFavorite());
     }
 
-    Player& player1 = *playersService.get(pluginService.getAll()[0]->getName());
-    Player& player2 = *playersService.get(pluginService.getAll()[1]->getName());
+    Player& player1 = *playerService.get(pluginService.getAll()[0]->getName());
+    Player& player2 = *playerService.get(pluginService.getAll()[1]->getName());
     pluginService.setCurrent(pluginService.getAll()[0].get());
 
     QSignalSpy currentSongChanged(&proxy, SIGNAL(currentSongChanged(Song*)));

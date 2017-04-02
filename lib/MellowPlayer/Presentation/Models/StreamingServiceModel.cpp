@@ -1,6 +1,6 @@
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/UseCases/Services/PlayersService.hpp>
+#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include "StreamingServiceModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
@@ -9,12 +9,12 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServiceModel::StreamingServiceModel(Plugin& plugin,
                                              IApplicationSettings& applicationSettings,
-                                             PlayersService& playersService,
+                                             PlayerService& playerService,
                                              QObject* parent) :
         QObject(parent),
         plugin(plugin),
         applicationSettings(applicationSettings),
-        players(playersService) {
+        players(playerService) {
 }
 QString StreamingServiceModel::getColor() const {
     return plugin.getColor();
