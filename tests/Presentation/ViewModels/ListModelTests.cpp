@@ -14,7 +14,7 @@ TEST_CASE("GenericListModelTests") {
     PlayerService& playerService = injector.create<PlayerService&>();
     REQUIRE(model.rowCount() == 0);
 
-    SECTION("add_Test") {
+    SECTION("add") {
         PluginMetadata metadata;
         metadata.name = "Deezer";
         metadata.url = "https://deezer.com";
@@ -24,7 +24,7 @@ TEST_CASE("GenericListModelTests") {
         model.append(&serviceModel);
         REQUIRE(model.rowCount() == 1);
 
-        SECTION("take_Test") {
+        SECTION("take") {
             model.remove(&serviceModel);
             REQUIRE(model.rowCount() == 0);
 
@@ -34,7 +34,7 @@ TEST_CASE("GenericListModelTests") {
             }
         }
 
-        SECTION("data_Test") {
+        SECTION("data") {
             auto data = model.data(model.index(0, 0), StreamingServiceListModel::Object);
             REQUIRE(bool(!data.isNull() && data.isValid()));
             auto obj = data.value<QObject*>();
@@ -42,7 +42,7 @@ TEST_CASE("GenericListModelTests") {
         }
     }
 
-    SECTION("roleNames_Test") {
+    SECTION("roleNames") {
         REQUIRE(model.roleNames().count() == 1);
     }
 }

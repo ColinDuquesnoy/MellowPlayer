@@ -16,7 +16,7 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("MprisServiceTests", "[IntegrationTests]")
+TEST_CASE("MprisServiceTests", "[IntegrationTest]")
 {
     auto plugionLoaderMock = PluginLoaderMock::get();
     PluginService pluginService(plugionLoaderMock.get());

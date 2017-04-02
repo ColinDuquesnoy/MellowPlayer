@@ -10,7 +10,9 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
-TEST_CASE("Mpris2RootTests") {
+// Test case name start lower case because those tests must be run lasts, otherwise there would be segfaults
+// when calling QTest::qWait
+TEST_CASE("mpris2RootTests") {
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
     Mpris2Root root(mainWindowMock.get(), qtAppMock.get());

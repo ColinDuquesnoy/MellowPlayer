@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
         assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
     }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
-    loggingManager.setDefaultLogLevel(LogLevel::Warning);
+    loggingManager.setDefaultLogLevel(LogLevel::Off);
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
 

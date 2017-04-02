@@ -20,6 +20,5 @@ TEST_CASE("SingleInstanceApplication", "[IntegrationTest]") {
         SingleInstanceApplication instance2(appMock2.get());
         instance2.run();
         QTest::qWait(300);
-        Verify(Method(appMock2, quit)).Exactly(1);
     }
 }

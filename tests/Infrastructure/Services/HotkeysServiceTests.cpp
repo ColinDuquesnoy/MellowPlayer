@@ -12,22 +12,22 @@ TEST_CASE("HotkeysServiceTests") {
     HotkeysService hotkeys(playerMock.get());
     hotkeys.start();
 
-    SECTION("togglePlayPause_Test") {
+    SECTION("togglePlayPause") {
         hotkeys.togglePlayPause();
         Verify(Method(playerMock, togglePlayPause)).Exactly(1);
     }
 
-    SECTION("next_Test") {
+    SECTION("next") {
         hotkeys.next();
         Verify(Method(playerMock, next)).Exactly(1);
     }
 
-    SECTION("previous_Test") {
+    SECTION("previous") {
         hotkeys.previous();
         Verify(Method(playerMock, previous)).Exactly(1);
     }
 
-    SECTION("toggleFavoriteSong_Test") {
+    SECTION("toggleFavoriteSong") {
         hotkeys.toggleFavoriteSong();
         Verify(Method(playerMock, toggleFavoriteSong)).Exactly(1);
     }
