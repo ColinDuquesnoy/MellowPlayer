@@ -1,12 +1,11 @@
 #include <QTimer>
 #include <QFile>
 #include <QCoreApplication>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include "SingleInstanceApplication.hpp"
 #ifdef Q_OS_UNIX
 #include <signal.h>
 #include <unistd.h>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-
 #endif
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
