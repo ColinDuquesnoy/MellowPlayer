@@ -27,17 +27,20 @@ function hashCode(str) {
         hash = ((hash << 5) - hash) + chr;
         hash |= 0; // Convert to 32bit integer
     }
-    return hash;
+    return Math.abs(hash);
 };
 
 function getPlaybackStatus() {
-    var retVal = mellowplayer.PlaybackStatus.STOPPED;
     var stateStr = TuneIn.app.getPlayState();
-    if (stateStr === 'playing')
-        retVal = mellowplayer.PlaybackStatus.PLAYING;
-    else if (stateStr === 'stopped')
-        retVal = mellowplayer.PlaybackStatus.PAUSED;
-    return retVal;
+    if (stateStr === 'playing') {
+        return mellowplayer.PlaybackStatus.PLAYING;
+    }
+    else {
+        if (stateStr === 'stopped') {
+            return mellowplayer.PlaybackStatus.PAUSED;
+        }
+    }
+    return mellowplayer.PlaybackStatus.STOPPED;
 }
 
 function update() {
@@ -50,7 +53,7 @@ function update() {
         "volume": 1,
         "songId": 0,
         "songTitle": '',
-        "artistName": '',
+        "artistName": 'TuneIn',
         "albumTitle": '',
         "artUrl": '',
         "isFavorite": false,
@@ -60,16 +63,21 @@ function update() {
 
     var broadcast = TuneIn.app.getNowPlaying();
     var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
-    if (broadcast == undefined) {
-        if (!stopped && oldSongInfo != null) {
-            retVal = oldSongInfo;
+    console.error(broadcast);
+    if (broadcast === undefined) {
+        if (!stopped && oldSongInfo !== null) {
+            retVal.songId = oldSongInfo.songId
+            retVal.songTitle = oldSongInfo.songTitle
+            retVal.artistName = oldSongInfo.artistName
+            retVal.artUrl = oldSongInfo.artUrl
+            retVal.isFavorite = oldSongInfo.isFavorite;
         }
     } else {
-        retVal.SongId = hashCode(broadcast.Title + broadcast.Subtitle);
-        retVal.SongTitle = broadcast.Title;
-        retVal.albumTitle = broadcast.Subtitle;
+        retVal.songId = hashCode(broadcast.Title + broadcast.Subtitle);
+        retVal.songTitle = broadcast.Title;
+        retVal.artistName = broadcast.Subtitle;
         retVal.artUrl = broadcast.Image;
-        retVal.Favorite = $(".in").length > 0;
+        retVal.isFavorite = $(".in").length > 0;
         oldSongInfo = retVal;
     }
     return retVal;
