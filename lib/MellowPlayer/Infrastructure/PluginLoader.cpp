@@ -134,7 +134,7 @@ QString PluginLoader::getUserPluginsDirectory() const {
 
 QStringList PluginLoader::getSearchPaths() const {
     QStringList paths;
-    paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "src" + QString(QDir::separator()) + "plugins");
+    paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
     paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
     paths.append(getUserPluginsDirectory());

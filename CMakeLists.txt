@@ -35,6 +35,10 @@ if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
+install(DIRECTORY plugins DESTINATION share/mellowplayer)
+install(DIRECTORY share/applications DESTINATION share)
+install(DIRECTORY share/icons DESTINATION share)
+
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
