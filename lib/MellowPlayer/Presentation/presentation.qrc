@@ -42,5 +42,6 @@
         <file>Views/MellowPlayer/Controls/WebViewStack.qml</file>
         <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
     </qresource>
 </RCC>

@@ -15,63 +15,7 @@ Item {
        model: listeningHistory.model
        delegate: ListeningHistoryEntryDelegate { width: listView.width; }
        section.criteria: ViewSection.FullString
-       section.delegate: Pane {
-           id: sectionHeader
-           property bool collapsed: false
-
-           width: parent.width
-           padding: 0
-           Material.elevation: 2
-
-           ColumnLayout {
-               anchors.fill: parent
-
-               RowLayout {
-                   Layout.fillWidth: true
-
-                   ToolButton {
-                       text: sectionHeader.collapsed ? MaterialIcons.icon_arrow_drop_down : MaterialIcons.icon_arrow_drop_up
-                       font.pixelSize: 22
-                       font.family: MaterialIcons.family
-
-                       onClicked: {
-                           sectionHeader.collapsed = !sectionHeader.collapsed;
-                       }
-
-                       Layout.fillHeight: true
-                   }
-
-                   Pane {
-                       Layout.fillWidth: true
-
-                       Label {
-                           text: section
-                           font.weight: Font.Bold
-                           verticalAlignment: "AlignVCenter"
-
-                           Material.foreground: style.accent
-                           anchors.fill: parent
-                       }
-                   }
-
-                   ToolButton {
-                       text: MaterialIcons.icon_clear
-                       font.pixelSize: 22
-                       font.family: MaterialIcons.family
-
-                       Layout.fillHeight: true
-                   }
-               }
-
-               Rectangle {
-                   color: style.accent
-                   width: parent.width
-                   height: 3
-
-                   Layout.fillWidth: true
-               }
-           }
-       }
+       section.delegate: ListeningHistorySectionDelegate { width: listView.width; }
        section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
        section.property: "dateCategory"
 
