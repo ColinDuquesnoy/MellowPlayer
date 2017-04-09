@@ -123,6 +123,11 @@ Drawer {
                                 target: searchPane
                                 height: 0
                             }
+
+                            PropertyChanges {
+                                target: searchField
+                                visible: false
+                            }
                         },
                         State {
                             name: "open"
@@ -130,6 +135,12 @@ Drawer {
                             PropertyChanges {
                                 target: searchPane
                                 height: searchPane.implicitHeight
+                            }
+
+                            PropertyChanges {
+                                target: searchField
+                                visible: true
+
                             }
                         }
                     ]
@@ -141,6 +152,8 @@ Drawer {
                         PropertyAnimation {
                             properties: "height"
                             easing.type: "InOutCubic"
+
+                            onRunningChanged: searchField.visible = !running
                         }
                     }
                 }
