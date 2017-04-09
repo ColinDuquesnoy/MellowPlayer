@@ -70,7 +70,7 @@ void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const
 QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const {
     QList<ListeningHistoryEntry> retVal;
 
-    QSqlQuery query("SELECT * FROM song");
+    QSqlQuery query("SELECT * FROM song ORDER BY time");
     int idId = query.record().indexOf("id");
     int idUniqueId = query.record().indexOf("songUniqueId");
     int idTitle = query.record().indexOf("songTitle");
