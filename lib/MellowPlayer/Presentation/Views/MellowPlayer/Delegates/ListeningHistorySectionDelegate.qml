@@ -5,31 +5,20 @@ import QtQuick.Controls.Material 2.0
 
 import MellowPlayer 3.0
 
-Pane {
-   id: sectionHeader
+Rectangle {
+   id: root
+
    property bool collapsed: false
 
-   padding: 0
-
-   Material.elevation: 2
+   height: 64
+   color: style.background
 
    ColumnLayout {
        anchors.fill: parent
+       anchors.margins: 3
 
        RowLayout {
            Layout.fillWidth: true
-
-           ToolButton {
-               text: sectionHeader.collapsed ? MaterialIcons.icon_arrow_drop_down : MaterialIcons.icon_arrow_drop_up
-               font.pixelSize: 22
-               font.family: MaterialIcons.family
-
-               onClicked: {
-                   sectionHeader.collapsed = !sectionHeader.collapsed;
-               }
-
-               Layout.fillHeight: true
-           }
 
            Pane {
                Layout.fillWidth: true
@@ -44,13 +33,20 @@ Pane {
                }
            }
 
-           ToolButton {
-               text: MaterialIcons.icon_clear
+           Label {
+               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
                font.pixelSize: 22
                font.family: MaterialIcons.family
-
-               Layout.fillHeight: true
            }
+
+//           ToolButton {
+//               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
+//               font.pixelSize: 22
+//               font.family: MaterialIcons.family
+//               hoverEnabled: true
+
+//               Layout.fillHeight: true
+//           }
        }
 
        Rectangle {
@@ -59,6 +55,18 @@ Pane {
            height: 3
 
            Layout.fillWidth: true
+       }
+   }
+
+   MouseArea {
+       anchors.fill: parent
+       hoverEnabled: true
+       cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
+
+       onClicked: {
+           root.collapsed = !root.collapsed;
+           listView.collapsedSections[section] = root.collapsed;
+           listView.sectionCollapsedChanged(section, root.collapsed);
        }
    }
 }

@@ -88,9 +88,11 @@ Drawer {
                             id: searchField
 
                             placeholderText: qsTr("Search")
-                            onVisibleChanged: {
-                                focus = true
-                                forceActiveFocus();
+                            onEnabledChanged: {
+                                if (enabled) {
+                                    focus = true;
+                                    forceActiveFocus();
+                                }
                             }
                             Layout.fillWidth: true
                         }
@@ -126,7 +128,7 @@ Drawer {
 
                             PropertyChanges {
                                 target: searchField
-                                visible: false
+                                enabled: false
                             }
                         },
                         State {
@@ -139,7 +141,7 @@ Drawer {
 
                             PropertyChanges {
                                 target: searchField
-                                visible: true
+                                enabled: true
 
                             }
                         }
@@ -152,8 +154,6 @@ Drawer {
                         PropertyAnimation {
                             properties: "height"
                             easing.type: "InOutCubic"
-
-                            onRunningChanged: searchField.visible = !running
                         }
                     }
                 }
