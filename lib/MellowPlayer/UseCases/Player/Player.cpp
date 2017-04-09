@@ -1,4 +1,4 @@
-#include <QDebug>
+#include <QVariantMap>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include <MellowPlayer/Entities/PluginScript.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
@@ -10,7 +10,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 Player::Player(Plugin& plugin) :
-        logger(LoggingManager::instance().getLogger("Player")),
+        logger(LoggingManager::instance().getLogger("Player-" + plugin.getName().toStdString())),
         currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
 
 }

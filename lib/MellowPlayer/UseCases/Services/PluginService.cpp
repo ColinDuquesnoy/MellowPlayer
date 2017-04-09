@@ -44,6 +44,8 @@ void PluginService::setCurrent(Plugin* plugin) {
 
     currentPlugin = plugin;
     emit currentPluginChanged(plugin);
+    if (plugin)
+        LOG_INFO(logger, "current plugin changed: " + plugin->getName());
 }
 
 Plugin* PluginService::getCurrent() const {

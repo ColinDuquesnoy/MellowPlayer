@@ -25,7 +25,7 @@ SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider() {
 bool SqlLiteListeningHistoryDataProvider::openDatabase() {
     std::stringstream stream;
     auto path = FileHelper::appDataDirectory() + "history.db";
-    LOG_DEBUG(logger, "Opening listening history db: " + path)
+    LOG_DEBUG(logger, "opening listening history db: " + path)
     database.setDatabaseName(path);
     if (!database.open()) {
         LOG_WARN(logger, "connection with database failed: " + path)
@@ -101,13 +101,13 @@ QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
 
 void SqlLiteListeningHistoryDataProvider::initDatabase() {
     if (database.tables().count() == 0) {
-        LOG_DEBUG(logger, "initializing empty database");
+        LOG_DEBUG(logger, "creating database");
         QSqlQuery query;
         query.prepare("CREATE TABLE song(id INTEGER PRIMARY KEY, songUniqueId TEXT, songTitle TEXT, artist TEXT, album TEXT, "
                       "artUrl TEXT, serviceName TEXT, time TEXT);");
         if (!query.exec())
             LOG_WARN(logger, "failed to create song table: " + query.lastError().text());
     } else {
-        LOG_DEBUG(logger, "database already initialized");
+        LOG_DEBUG(logger, "database already created");
     }
 }

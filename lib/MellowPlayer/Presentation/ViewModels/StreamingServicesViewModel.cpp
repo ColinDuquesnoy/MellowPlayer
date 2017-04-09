@@ -1,6 +1,5 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QDebug>
 #include <QtWebEngine/QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
 #include <MellowPlayer/UseCases/Services/PluginService.hpp>
@@ -28,7 +27,6 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginServ
 
 void StreamingServicesViewModel::initialize() {
     auto currentServiceName = applicationSettings.getCurrentService();
-    qDebug() << currentServiceName;
     for (auto service: model->toList()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);

@@ -1,5 +1,4 @@
 #include "ListeningHistoryEntryModel.hpp"
-#include <QDebug>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

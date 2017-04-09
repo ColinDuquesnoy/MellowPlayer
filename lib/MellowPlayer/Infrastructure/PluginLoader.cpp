@@ -19,7 +19,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 PluginLoader::PluginLoader() :
-        logger(LoggingManager::instance().getLogger("PluginService")) {
+        logger(LoggingManager::instance().getLogger("PluginLoader")) {
 
 }
 
@@ -27,10 +27,10 @@ QList<shared_ptr<Plugin>> PluginLoader::load() const {
     QList<shared_ptr<Plugin>> plugins;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
-            LOG_DEBUG(logger, "Skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
+            LOG_DEBUG(logger, "skipping plugin path: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
-        LOG_DEBUG(logger, "Looking for plugins in " << path.toStdString().c_str());
+        LOG_DEBUG(logger, "looking for plugins in " << path.toStdString().c_str());
         for (const QFileInfo& directory: QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkPluginDirectory(directory.absoluteFilePath())) {
                 shared_ptr<Plugin> plugin = loadPlugin(directory.absoluteFilePath());
@@ -39,7 +39,7 @@ QList<shared_ptr<Plugin>> PluginLoader::load() const {
                                      directory.absoluteFilePath() + "\")");
                     plugins.append(plugin);
                 } else {
-                    LOG_DEBUG(logger, "Skipping plugin " + plugin->getName() +
+                    LOG_DEBUG(logger, "skipping plugin " + plugin->getName() +
                                       ", already loaded from another source or invalid");
                 }
             }

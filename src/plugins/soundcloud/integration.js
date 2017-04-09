@@ -71,7 +71,6 @@ function readTime(elementClassName) {
         var m = html.match("<span .*>(\\d+:\\d+)<\/span>");
         if (m != null) {
             var data = m[1].split(':');
-            console.log(data);
             minutes = parseInt(data[0]);
             seconds = parseInt(data[1]);
         }
