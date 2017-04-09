@@ -29,6 +29,18 @@ Item {
                RowLayout {
                    Layout.fillWidth: true
 
+                   ToolButton {
+                       text: sectionHeader.collapsed ? MaterialIcons.icon_arrow_drop_down : MaterialIcons.icon_arrow_drop_up
+                       font.pixelSize: 22
+                       font.family: MaterialIcons.family
+
+                       onClicked: {
+                           sectionHeader.collapsed = !sectionHeader.collapsed;
+                       }
+
+                       Layout.fillHeight: true
+                   }
+
                    Pane {
                        Layout.fillWidth: true
 
@@ -43,13 +55,9 @@ Item {
                    }
 
                    ToolButton {
-                       text: sectionHeader.collapsed ? MaterialIcons.icon_arrow_drop_down : MaterialIcons.icon_arrow_drop_up
+                       text: MaterialIcons.icon_clear
                        font.pixelSize: 22
                        font.family: MaterialIcons.family
-
-                       onClicked: {
-                           sectionHeader.collapsed = !sectionHeader.collapsed;
-                       }
 
                        Layout.fillHeight: true
                    }
