@@ -46,7 +46,9 @@ ToolBar {
 
             Tooltip {
                 y: toolBar.implicitHeight
-                text: body.state == "webview" ? qsTr("Select another service") : qsTr("Go back to ") + streamingServices.currentService.name
+                text: body.state == "webview" ? qsTr("Select another service") :
+                      streamingServices.currentService != null ?
+                      qsTr("Go back to ") + streamingServices.currentService.name : ""
             }
         }
 
