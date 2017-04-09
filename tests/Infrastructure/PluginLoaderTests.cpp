@@ -10,7 +10,10 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("PluginLoaderTests", "[IntegrationTest]") {
     PluginLoader pluginLoader;
-    auto plugins = pluginLoader.load();
-    REQUIRE(plugins.count() > 1);
+
+    SECTION("load") {
+        auto plugins = pluginLoader.load();
+        REQUIRE(plugins.count() > 1);
+    }
 }
 

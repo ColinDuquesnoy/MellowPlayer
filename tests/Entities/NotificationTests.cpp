@@ -8,8 +8,12 @@ TEST_CASE("NotificationTests", "[UnitTest]") {
     Notification sameAsnotification1 { "title", "message", "", NotificationType::Song };
     Notification notification2 { "title2", "message2", "", NotificationType::Paused };
 
-    REQUIRE(notification1.toString() == "title - message");
+    SECTION("toString") {
+        REQUIRE(notification1.toString() == "title - message");
+    }
 
-    REQUIRE(notification1 != notification2);
-    REQUIRE(notification1 == sameAsnotification1);
+    SECTION("equality operator") {
+        REQUIRE(notification1 != notification2);
+        REQUIRE(notification1 == sameAsnotification1);
+    }
 }

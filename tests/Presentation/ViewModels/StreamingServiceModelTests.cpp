@@ -20,18 +20,23 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     StreamingServiceModel sameModel(plugin1, applicationSettings, playerService);
     StreamingServiceModel model2(plugin2, applicationSettings, playerService);
 
-    REQUIRE(model.getColor() == plugin1.getColor());
-    REQUIRE(model.getLogo() == plugin1.getLogo());
-    REQUIRE(model.getName() == plugin1.getName());
-    REQUIRE(model.getPlayer() == playerService.get(plugin1.getName()).get());
+    SECTION("basic properties") {
+        REQUIRE(model.getColor() == plugin1.getColor());
+        REQUIRE(model.getLogo() == plugin1.getLogo());
+        REQUIRE(model.getName() == plugin1.getName());
+        REQUIRE(model.getPlayer() == playerService.get(plugin1.getName()).get());
+        REQUIRE(model.getUrl() == plugin1.getUrl());
+    }
 
-    REQUIRE(model != model2);
-    REQUIRE(model == sameModel);
+    SECTION("equality operator") {
+        REQUIRE(model != model2);
+        REQUIRE(model == sameModel);
+    }
 
-    REQUIRE(model.getUrl() == plugin1.getUrl());
-
-    QSignalSpy spy(&model, SIGNAL(urlChanged(const QString&)));
-    model.setCustomUrl("https://deezer.com/news");
-    REQUIRE(model.getUrl() == "https://deezer.com/news");
-    REQUIRE(spy.count() == 1);
+    SECTION("set custom url") {
+        QSignalSpy spy(&model, SIGNAL(urlChanged(const QString&)));
+        model.setCustomUrl("https://deezer.com/news");
+        REQUIRE(model.getUrl() == "https://deezer.com/news");
+        REQUIRE(spy.count() == 1);
+    }
 }
