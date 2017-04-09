@@ -49,3 +49,4 @@ gpg_key
 *.user
 coverage
 build/
+lcov-1\.13/
