@@ -13,6 +13,7 @@ public:
     SqlLiteListeningHistoryDataProvider();
     ~SqlLiteListeningHistoryDataProvider();
 
+    void initialize() override;
     int add(const Entities::ListeningHistoryEntry& entry) override;
     void clear() override;
     void remove(const QString& filterKey, const QString& filterValue) override;

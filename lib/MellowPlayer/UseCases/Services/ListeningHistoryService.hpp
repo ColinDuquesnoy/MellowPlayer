@@ -19,6 +19,7 @@ class ListeningHistoryService: public QObject {
 public:
     ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player);
 
+    void initialize();
     const QList<Entities::ListeningHistoryEntry>& getEntries() const;
     void clear();
     void removeById(int entryId);
@@ -35,7 +36,7 @@ private slots:
 
 private:
     ILogger& logger;
-    IListeningHistoryDataProvider& model;
+    IListeningHistoryDataProvider& dataProvider;
     IPlayer& player;
     QMap<QString, Entities::ListeningHistoryEntry> previousEntryPerPlayer;
     QList<Entities::ListeningHistoryEntry> entries;

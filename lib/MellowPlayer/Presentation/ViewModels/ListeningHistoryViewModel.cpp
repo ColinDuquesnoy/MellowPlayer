@@ -7,13 +7,10 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistoryService& listeningHistory):
-        model(new QQmlObjectListModel<ListeningHistoryEntryModel>(this) ) {
+        listeningHistory(listeningHistory), model(new QQmlObjectListModel<ListeningHistoryEntryModel>(this) ) {
     connect(&listeningHistory, &ListeningHistoryService::entryAdded, this, &ListeningHistoryViewModel::onEntryAdded);
     connect(&listeningHistory, &ListeningHistoryService::entryRemoved, this, &ListeningHistoryViewModel::onEntryRemoved);
     connect(&listeningHistory, &ListeningHistoryService::entriesCleared, this, &ListeningHistoryViewModel::onEntriesCleared);
-
-    for(auto entry: listeningHistory.getEntries())
-        onEntryAdded(entry);
 }
 
 QAbstractListModel* ListeningHistoryViewModel::getModel() {
@@ -30,4 +27,10 @@ void ListeningHistoryViewModel::onEntryRemoved(int index) {
 
 void ListeningHistoryViewModel::onEntriesCleared() {
     model->clear();
+}
+
+void ListeningHistoryViewModel::initialize() {
+    listeningHistory.initialize();
+    for(auto entry: listeningHistory.getEntries())
+        onEntryAdded(entry);
 }

@@ -13,9 +13,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider() :
         logger(LoggingManager::instance().getLogger("SqlLiteListeningHistoryDataProvider")) {
-    database = QSqlDatabase::addDatabase("QSQLITE");
-    if (openDatabase())
-        initDatabase();
+
 }
 
 SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider() {
@@ -110,4 +108,10 @@ void SqlLiteListeningHistoryDataProvider::initDatabase() {
     } else {
         LOG_DEBUG(logger, "database already created");
     }
+}
+
+void SqlLiteListeningHistoryDataProvider::initialize() {
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    if (openDatabase())
+        initDatabase();
 }

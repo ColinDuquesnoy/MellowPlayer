@@ -10,6 +10,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace std;
 
 Application::Application(IQtApplication& qtApp,
                          IMainWindow& mainWindow,
@@ -29,6 +30,7 @@ Application::Application(IQtApplication& qtApp,
 
 void Application::initialize() {
     LOG_TRACE(logger, "initialize");
+    LOG_INFO(logger, "MellowPlayer " + string(MELLOWPLAYER_VERSION))
     pluginService.load();
     mainWindow.load();
     kotkeys.start();

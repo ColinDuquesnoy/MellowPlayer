@@ -35,6 +35,7 @@ bool QmlMainWindow::load() {
     LOG_TRACE(logger, "loading");
     QtWebEngine::initialize();
     streamingServices.initialize();
+    listeningHistory.initialize();
     qmlApplicationEngine.addImportPath("qrc:/MellowPlayer/Presentation/Views");
     qmlApplicationEngine.load(QUrl("qrc:/MellowPlayer/Presentation/Views/main.qml"));
     auto rootObjects = qmlApplicationEngine.rootObjects();

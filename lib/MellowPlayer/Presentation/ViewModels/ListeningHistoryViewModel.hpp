@@ -14,6 +14,8 @@ class ListeningHistoryViewModel: public QObject {
 public:
     ListeningHistoryViewModel(UseCases::ListeningHistoryService& listeningHistory);
 
+    void initialize();
+
     QAbstractListModel* getModel();
 
 private slots:
@@ -22,6 +24,7 @@ private slots:
     void onEntriesCleared();
 
 private:
+    UseCases::ListeningHistoryService& listeningHistory;
     QQmlObjectListModel<ListeningHistoryEntryModel>* model;
 };
 
