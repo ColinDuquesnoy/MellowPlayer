@@ -27,6 +27,7 @@ class IPlayer: public QObject
     Q_PROPERTY(int volume READ getVolume NOTIFY volumeChanged)
     Q_PROPERTY(QString serviceName READ getServiceName CONSTANT)
     Q_PROPERTY(bool isPlaying READ isPlaying NOTIFY isPlayingChanged)
+    Q_PROPERTY(bool isStopped READ isStopped NOTIFY isStoppedChanged)
 public:
     Q_ENUMS(PlaybackStatus)
 
@@ -53,6 +54,7 @@ public:
     virtual double getVolume() const = 0;
     virtual QString getServiceName() const = 0;
     virtual bool isPlaying() const = 0;
+    virtual bool isStopped() const = 0;
 
 signals:
     void currentSongChanged(Entities::Song* song);
@@ -64,6 +66,7 @@ signals:
     void canAddToFavoritesChanged();
     void volumeChanged();
     void isPlayingChanged();
+    void isStoppedChanged();
 };
 
 END_MELLOWPLAYER_NAMESPACE

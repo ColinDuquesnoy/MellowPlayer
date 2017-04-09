@@ -40,6 +40,7 @@ public:
     double getVolume() const override;
     QString getServiceName() const override;
     bool isPlaying() const override;
+    bool isStopped() const override;
 
 private slots:
     void onCurrentPluginChanged(Entities::Plugin* plugin);

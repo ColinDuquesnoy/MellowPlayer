@@ -130,6 +130,8 @@ void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
             disconnect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &PlayerProxy::canGoPreviousChanged);
             disconnect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
             disconnect(currentPlayer.get(), &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
+            disconnect(currentPlayer.get(), &Player::isPlayingChanged, this, &PlayerProxy::isPlayingChanged);
+            disconnect(currentPlayer.get(), &Player::isStoppedChanged, this, &PlayerProxy::isStoppedChanged);
             currentPlayer->suspend();
         }
 
@@ -144,6 +146,7 @@ void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
         connect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &PlayerProxy::canAddToFavoritesChanged);
         connect(currentPlayer.get(), &Player::volumeChanged, this, &PlayerProxy::volumeChanged);
         connect(currentPlayer.get(), &Player::isPlayingChanged, this, &PlayerProxy::isPlayingChanged);
+        connect(currentPlayer.get(), &Player::isStoppedChanged, this, &PlayerProxy::isStoppedChanged);
         currentPlayer->resume();
 
         emit currentSongChanged(currentPlayer->getCurrentSong());
@@ -154,6 +157,8 @@ void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
         emit canGoPreviousChanged();
         emit canAddToFavoritesChanged();
         emit volumeChanged();
+        emit isPlayingChanged();
+        emit isStoppedChanged();
     }
 }
 
@@ -167,4 +172,10 @@ bool PlayerProxy::isPlaying() const {
     if (currentPlayer)
         return currentPlayer->isPlaying();
     return false;
+}
+
+bool PlayerProxy::isStopped() const {
+    if (currentPlayer)
+        return currentPlayer->isStopped();
+    return true;
 }

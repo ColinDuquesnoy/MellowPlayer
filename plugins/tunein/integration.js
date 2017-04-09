@@ -63,7 +63,6 @@ function update() {
 
     var broadcast = TuneIn.app.getNowPlaying();
     var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
-    console.error(broadcast);
     if (broadcast === undefined) {
         if (!stopped && oldSongInfo !== null) {
             retVal.songId = oldSongInfo.songId

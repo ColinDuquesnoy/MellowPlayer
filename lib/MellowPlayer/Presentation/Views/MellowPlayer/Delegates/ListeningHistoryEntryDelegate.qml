@@ -23,6 +23,7 @@ Frame {
         }
     }
     clip: true
+    padding: 1
     hoverEnabled: true
     onHoveredChanged: {
         if (hovered) {
@@ -30,12 +31,9 @@ Frame {
         }
         else {
             delayTimer.stop();
-            stackLayout.currentIndex = 0
+            controlPane.visible = false
         }
     }
-
-    Material.background: Qt.darker(style.background, 1.1)
-
 
     Connections {
         target: listView
@@ -47,40 +45,38 @@ Frame {
 
     Timer {
         id: delayTimer
-        interval: 250
-        onTriggered: stackLayout.currentIndex = 1
+        interval: 400
+        onTriggered: controlPane.visible = true
     }
 
-
-    RowLayout {
+    Pane {
         anchors.fill: parent
-        spacing: 8
-        visible: root.state == "visible"
 
-        Image {
-            source: model.artUrl
+        RowLayout {
+            anchors.fill: parent
+            spacing: 8
             visible: root.state == "visible"
 
-            Layout.preferredHeight: 48
-            Layout.preferredWidth: 48
-        }
+            Image {
+                source: model.artUrl
+                visible: root.state == "visible"
 
-        Label {
-            text: "<b>" + model.title + "</b><br><i>by " + model.artist + "<br>on " + model.service + "</i>"
-            visible: root.state == "visible"
-
-            Layout.fillHeight: true
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
-
-        StackLayout {
-            id: stackLayout
+                Layout.preferredHeight: 48
+                Layout.preferredWidth: 48
+            }
 
             Label {
-                anchors.fill: parent
+                text: "<b>" + model.title + "</b><br><i>by " + model.artist + "<br>on " + model.service + "</i>"
+                visible: root.state == "visible"
+
+                Layout.fillHeight: true
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Label {
                 text: {
                     if (model.dateCategory === qsTr("Today") || model.dateCategory === qsTr("Yesterday"))
                         return model.time
@@ -91,35 +87,43 @@ Frame {
                 horizontalAlignment:"AlignRight"
                 visible: root.state == "visible"
             }
+        }
+    }
 
-            RowLayout {
-                anchors.top: parent.top
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
+    Pane {
+        id: controlPane
 
-                ToolButton {
-                    id: btCopy
-                    hoverEnabled: true
-                    text: MaterialIcons.MaterialIcons.icon_content_copy
-                    font { family: MaterialIcons.family; pixelSize: 16 }
-                    Layout.fillHeight: true
-                }
+        anchors.fill: parent
+        opacity: 0.9
+        visible: false
 
-                ToolButton {
-                    id: btPlay
-                    hoverEnabled: true
-                    text: MaterialIcons.MaterialIcons.icon_play_arrow
-                    font { family: MaterialIcons.family; pixelSize: 16 }
-                    Layout.fillHeight: true
-                }
+        RowLayout {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
 
-                ToolButton {
-                    id: btClose
-                    hoverEnabled: true
-                    text: MaterialIcons.MaterialIcons.icon_close
-                    font { family: MaterialIcons.family; pixelSize: 16 }
-                    Layout.fillHeight: true
-                }
+            ToolButton {
+                id: btCopy
+                hoverEnabled: true
+                text: MaterialIcons.MaterialIcons.icon_content_copy
+                font { family: MaterialIcons.family; pixelSize: 16 }
+                Layout.fillHeight: true
+            }
+
+            ToolButton {
+                id: btPlay
+                hoverEnabled: true
+                text: MaterialIcons.MaterialIcons.icon_play_arrow
+                font { family: MaterialIcons.family; pixelSize: 16 }
+                Layout.fillHeight: true
+            }
+
+            ToolButton {
+                id: btClose
+                hoverEnabled: true
+                text: MaterialIcons.MaterialIcons.icon_delete
+                font { family: MaterialIcons.family; pixelSize: 16 }
+                Layout.fillHeight: true
             }
         }
     }
@@ -132,7 +136,7 @@ Frame {
             PropertyChanges {
                 target: root
                 visible: true
-                height: implicitHeight
+                height: 72
             }
         },
         State {

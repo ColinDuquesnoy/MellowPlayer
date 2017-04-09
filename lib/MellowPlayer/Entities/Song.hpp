@@ -34,7 +34,7 @@ public:
     bool operator==(const Song& other) const { return uniqueId == other.uniqueId; }
     bool operator!=(const Song& other) const { return !this->operator==(other); }
 
-    bool isValid() const { return uniqueId != "" && title != ""; }
+    Q_INVOKABLE bool isValid() const { return uniqueId != "" && title != ""; }
 
     QString toString() const { return title + " by " + artist; }
 

@@ -194,6 +194,7 @@ void Player::setPlaybackStatus(PlaybackStatus value) {
     LOG_DEBUG(logger, "playback status changed: " << static_cast<int>(value));
     emit playbackStatusChanged();
     emit isPlayingChanged();
+    emit isStoppedChanged();
 }
 
 void Player::setCanSeek(bool value) {
@@ -242,4 +243,8 @@ bool Player::operator!=(const Player &other) const { return !operator==(other); 
 
 bool Player::isPlaying() const {
     return playbackStatus == PlaybackStatus::Playing;
+}
+
+bool Player::isStopped() const {
+    return playbackStatus == PlaybackStatus ::Stopped;
 }

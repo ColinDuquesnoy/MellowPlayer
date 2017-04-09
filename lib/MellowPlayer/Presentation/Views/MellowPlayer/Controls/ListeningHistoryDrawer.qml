@@ -130,6 +130,11 @@ Drawer {
                                 target: searchField
                                 enabled: false
                             }
+
+                            PropertyChanges {
+                                target: filters
+                                enabled: false
+                            }
                         },
                         State {
                             name: "open"
@@ -144,6 +149,11 @@ Drawer {
                                 enabled: true
 
                             }
+
+                            PropertyChanges {
+                                target: filters
+                                enabled: true
+                            }
                         }
                     ]
 
@@ -157,24 +167,32 @@ Drawer {
                         }
                     }
                 }
+
                 Pane {
+                    padding: 0
+
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    ListeningHistoryListView {
-                        id: listeningHistoryListView
-
+                    RowLayout {
                         anchors.fill: parent
+
+                        ListeningHistoryListView {
+                            id: listeningHistoryListView
+
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                        }
+
+                        Item {
+                            id: scrollArea
+
+                            Layout.preferredWidth: 8
+                            Layout.fillHeight: true
+                        }
                     }
+
                 }
-
-//                Rectangle {
-//                    color: style.primary
-
-//                    Layout.fillWidth: true
-//                    Layout.preferredHeight: filters.height
-//                    height: filters.height
-//                }
             }
         }
     } 

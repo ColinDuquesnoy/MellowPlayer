@@ -41,6 +41,7 @@ public:
     double getVolume() const override;
     QString getServiceName() const override;
     bool isPlaying() const override;
+    bool isStopped() const override;
 
     // invoked by WebView (QML)
     Q_INVOKABLE void initialize();

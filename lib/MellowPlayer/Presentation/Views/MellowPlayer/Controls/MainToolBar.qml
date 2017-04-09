@@ -12,6 +12,7 @@ ToolBar {
     property int iconSize: 22
     Material.primary: style.primary
     Material.foreground: style.primaryForeground
+    Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
     
 
     RowLayout {
@@ -142,7 +143,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-            visible: body.state == "webview" && player.canAddToFavorites
+            enabled: body.state == "webview" && player.canAddToFavorites
 
             onClicked: player.toggleFavoriteSong()
 
@@ -164,6 +165,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+            enabled: player.canGoPrevious && (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.previous()
 
@@ -181,6 +183,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+            enabled: !player.isStopped || (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.togglePlayPause()
 
@@ -198,6 +201,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
+            enabled: player.canGoNext && (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.next()
 

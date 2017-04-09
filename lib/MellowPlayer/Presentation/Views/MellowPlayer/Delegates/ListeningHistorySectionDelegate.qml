@@ -15,10 +15,10 @@ Rectangle {
 
    ColumnLayout {
        anchors.fill: parent
-       anchors.margins: 3
 
        RowLayout {
            Layout.fillWidth: true
+           spacing: 0
 
            Pane {
                Layout.fillWidth: true
@@ -33,20 +33,28 @@ Rectangle {
                }
            }
 
-           Label {
-               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
-               font.pixelSize: 22
+           ToolButton {
+               text: MaterialIcons.icon_delete
+               font.pixelSize: 16
                font.family: MaterialIcons.family
+               hoverEnabled: true
+
+               Layout.fillHeight: true
            }
 
-//           ToolButton {
-//               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
-//               font.pixelSize: 22
-//               font.family: MaterialIcons.family
-//               hoverEnabled: true
+           ToolButton {
+               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
+               font.pixelSize: 16
+               font.family: MaterialIcons.family
+               hoverEnabled: true
+               onClicked: {
+                   root.collapsed = !root.collapsed;
+                   listView.collapsedSections[section] = root.collapsed;
+                   listView.sectionCollapsedChanged(section, root.collapsed);
+               }
 
-//               Layout.fillHeight: true
-//           }
+               Layout.fillHeight: true
+           }
        }
 
        Rectangle {
@@ -55,18 +63,6 @@ Rectangle {
            height: 3
 
            Layout.fillWidth: true
-       }
-   }
-
-   MouseArea {
-       anchors.fill: parent
-       hoverEnabled: true
-       cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
-
-       onClicked: {
-           root.collapsed = !root.collapsed;
-           listView.collapsedSections[section] = root.collapsed;
-           listView.sectionCollapsedChanged(section, root.collapsed);
        }
    }
 }
