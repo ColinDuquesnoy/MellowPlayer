@@ -54,6 +54,8 @@ public:
     bool operator==(const Player& other) const;
     bool operator!=(const Player& other) const;
 
+    void setPlaybackStatus(PlaybackStatus value);
+
 signals:
     void runJavascriptRequested(const QString& script);
     void updateRequested(const QString& script);
@@ -61,7 +63,6 @@ signals:
 private:
     void setCurrentSong(std::unique_ptr<Entities::Song>& song);
     void setPosition(double value);
-    void setPlaybackStatus(PlaybackStatus value);
     void setCanSeek(bool value);
     void setCanGoNext(bool value);
     void setCanGoPrevious(bool value);

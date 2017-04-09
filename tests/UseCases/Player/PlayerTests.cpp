@@ -87,29 +87,22 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         player.togglePlayPause();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
+        player.setPlaybackStatus(PlaybackStatus::Playing);
         player.togglePlayPause();
         REQUIRE(runJavascriptRequestedSpy.count() == 2);
         REQUIRE(runJavascriptRequestedSpy[1][0].toString() == "pause();");
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("play") {
         player.play();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
     }
 
     SECTION("pause") {
         player.pause();
-        REQUIRE(runJavascriptRequestedSpy.count() == 0);
-        player.play();
-        player.pause();
-        REQUIRE(runJavascriptRequestedSpy.count() == 2);
-        REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
-        REQUIRE(runJavascriptRequestedSpy[1][0].toString() == "pause();");
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
+        REQUIRE(runJavascriptRequestedSpy.count() == 1);
+        REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "pause();");
     }
 
     SECTION("next") {
@@ -172,17 +165,20 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
     }
 
     SECTION("suspend when not playing") {
+        player.setPlaybackStatus(PlaybackStatus::Paused);
         player.suspend();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
     }
 
     SECTION("suspend when playing") {
         player.play();
+        player.setPlaybackStatus(PlaybackStatus::Playing);
         player.suspend();
         REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("resume when not playing") {
+        player.setPlaybackStatus(PlaybackStatus::Paused);
         player.suspend();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
         player.resume();
@@ -191,9 +187,13 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
 
     SECTION("resume when playing") {
         player.play();
+        REQUIRE(runJavascriptRequestedSpy.count() == 1);
+        player.setPlaybackStatus(PlaybackStatus::Playing);
         player.suspend();
+        REQUIRE(runJavascriptRequestedSpy.count() == 2);
         REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
         player.resume();
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
+        REQUIRE(runJavascriptRequestedSpy.count() == 3);
+
     }
 }

@@ -45,12 +45,14 @@ TEST_CASE("mpris2PlayerTests", "[IntegrationTest]") {
 
         SECTION("Playing") {
             mpris2Player.Play();
+            currentPlayer.setPlaybackStatus(PlaybackStatus::Playing);
             REQUIRE(mpris2Player.playbackStatus() == "Playing");
         }
 
         SECTION("Paused") {
             mpris2Player.Play();
             mpris2Player.Pause();
+            currentPlayer.setPlaybackStatus(PlaybackStatus::Paused);
             REQUIRE(mpris2Player.playbackStatus() == "Paused");
         }
 

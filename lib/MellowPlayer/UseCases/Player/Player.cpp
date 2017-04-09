@@ -27,18 +27,12 @@ void Player::togglePlayPause() {
 
 void Player::play() {
     LOG_DEBUG(logger, "play()");
-    if (playbackStatus != PlaybackStatus::Playing) {
-        emit runJavascriptRequested(pluginScript.play());
-        setPlaybackStatus(PlaybackStatus::Playing);
-    }
+    emit runJavascriptRequested(pluginScript.play());
 }
 
 void Player::pause() {
     LOG_DEBUG(logger, "pause()");
-    if (playbackStatus == PlaybackStatus::Playing) {
-        emit runJavascriptRequested(pluginScript.pause());
-        setPlaybackStatus(PlaybackStatus::Paused);
-    }
+    emit runJavascriptRequested(pluginScript.pause());
 }
 
 void Player::next() {
@@ -155,13 +149,17 @@ void Player::setUpdateResults(const QVariant& results) {
 void Player::suspend() {
     LOG_DEBUG(logger, "suspend()");
     suspendedState = playbackStatus;
-    pause();
+    if (playbackStatus == PlaybackStatus::Playing) {
+        pause();
+        playbackStatus = PlaybackStatus::Paused;
+    }
 }
 
 void Player::resume() {
     LOG_DEBUG(logger, "resume()");
-    if (suspendedState == PlaybackStatus::Playing)
+    if (suspendedState == PlaybackStatus::Playing) {
         play();
+    }
 }
 
 void Player::setCurrentSong(unique_ptr<Song>& song) {
