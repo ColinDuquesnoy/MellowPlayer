@@ -31,9 +31,10 @@ function update() {
         var playerContext = Spotify.Shuttle._initContext.contextPlayer;
         var player = playerContext._player._player;
         var track = playerContext.getCurrentTrack();
-        if (player.isPaused) {
+        if (player.isPaused && !playerContext._fakePlayingState) {
             playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
-        } else if (player.isStopped) {
+        }
+        else if (player.isStopped) {
             playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
         }
 
