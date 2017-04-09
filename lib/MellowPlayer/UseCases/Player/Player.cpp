@@ -135,10 +135,13 @@ void Player::setUpdateResults(const QVariant& results) {
     double duration = resultsMap.value("duration").toDouble();
     bool isFavorite = resultsMap.value("isFavorite").toBool();
     auto song = make_unique<Song>(uniqueId, title, artist, album, artUrl, duration, isFavorite);
-    setCurrentSong(song);
 
+    PlaybackStatus status = static_cast<PlaybackStatus>(resultsMap.value("playbackStatus").toInt());
+    if (status == PlaybackStatus::Paused && !song->isValid())
+        status = PlaybackStatus::Stopped;
+    setPlaybackStatus(status);
+    setCurrentSong(song);
     setPosition(resultsMap.value("position").toDouble());
-    setPlaybackStatus(static_cast<PlaybackStatus>(resultsMap.value("playbackStatus").toInt()));
     setCanSeek(resultsMap.value("canSeek").toBool());
     setCanGoNext(resultsMap.value("canGoNext").toBool());
     setCanGoPrevious(resultsMap.value("canGoPrevious").toBool());
