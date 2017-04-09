@@ -6,7 +6,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-TEST_CASE("StreamingServiceTest") {
+TEST_CASE("PluginTest", "[UnitTest]") {
     PluginMetadata pluginMetadata;
 
     SECTION("Plugin::getAuthor") {

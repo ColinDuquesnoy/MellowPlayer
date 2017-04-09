@@ -6,7 +6,7 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("StreamingServiceModelTests") {
+TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     PlayerService& playerService = injector.create<PlayerService&>();

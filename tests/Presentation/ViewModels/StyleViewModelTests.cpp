@@ -16,7 +16,7 @@ void requireMatchStyle(StyleViewModel& styleViewModel, const PluginStyle& style)
     REQUIRE(styleViewModel.getSecondaryForeground() == style.secondaryForeground);
 }
 
-TEST_CASE("StyleViewModelTests") {
+TEST_CASE("StyleViewModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     PluginService& pluginService = injector.create<PluginService&>();

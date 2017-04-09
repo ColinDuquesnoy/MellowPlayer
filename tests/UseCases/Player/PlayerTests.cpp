@@ -7,7 +7,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-TEST_CASE("PlayerTests") {
+TEST_CASE("PlayerTests", "[UnitTest]") {
     PluginMetadata metadata;
     auto appSettingsMock = ApplicationSettingsMock::get();
     Plugin plugin(metadata);

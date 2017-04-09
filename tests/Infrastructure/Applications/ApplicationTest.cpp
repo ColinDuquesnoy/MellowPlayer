@@ -11,7 +11,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("ApplicationTests") {
+TEST_CASE("ApplicationTests", "[UnitTest]") {
     auto mainWindowMock = MainWindowMock::get();
     auto hotkeysMock = HotkeysServiceMock::get();
     auto qtAppMock = QtApplicationMock::get();

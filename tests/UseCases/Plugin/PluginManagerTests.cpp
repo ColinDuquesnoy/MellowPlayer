@@ -8,7 +8,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace fakeit;
 using namespace std;
 
-TEST_CASE("PluginServiceTests") {
+TEST_CASE("PluginServiceTests", "[UnitTest]") {
     auto mock = PluginLoaderMock::get();
     PluginService pluginService(mock.get());
     QSignalSpy pluginAddedSpy(&pluginService, SIGNAL(pluginAdded(Entities::Plugin*)));

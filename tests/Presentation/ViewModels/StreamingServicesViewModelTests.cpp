@@ -9,7 +9,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
-TEST_CASE("StreamingServicesViewModel") {
+TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     PluginService& servicesManager = injector.create<PluginService&>();

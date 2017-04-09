@@ -4,7 +4,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("PluginTests") {
+TEST_CASE("PluginTests", "[UnitTest]") {
     SECTION("Plugin.DefaultCtor") {
         PluginMetadata plugin;
 

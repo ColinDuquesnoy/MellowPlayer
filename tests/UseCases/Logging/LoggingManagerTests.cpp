@@ -3,7 +3,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-TEST_CASE("LoggingManagerTests") {
+TEST_CASE("LoggingManagerTests", "[UnitTest]") {
     SECTION("getLogger given no args returns root logger") {
         auto& logger = LoggingManager::instance().getLogger();
         REQUIRE(logger.getName() == "root");

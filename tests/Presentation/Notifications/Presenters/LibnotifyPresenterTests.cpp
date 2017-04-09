@@ -9,7 +9,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("LibnotifyPresenterTests") {
+TEST_CASE("LibnotifyPresenterTests", "[IntegrationTest]") {
     auto mainWindowMock = MainWindowMock::get();
     LibnotifyPresenter presenter(mainWindowMock.get());
     presenter.initialize();

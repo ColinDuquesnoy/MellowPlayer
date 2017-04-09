@@ -6,7 +6,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("ApplicationSettingsTests") {
+TEST_CASE("ApplicationSettingsTests", "[IntegrationTest]") {
     ApplicationSettings applicationSettings;
 
     SECTION("currentService") {

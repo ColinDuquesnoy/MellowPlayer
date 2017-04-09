@@ -16,7 +16,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 // Test case name start lower case because those tests must be run lasts, otherwise there would be segfaults
 // when calling QTest::qWait
-TEST_CASE("mpris2PlayerTests") {
+TEST_CASE("mpris2PlayerTests", "[IntegrationTest]") {
     auto mock = PluginLoaderMock::get();
     PluginService pluginService(mock.get());
     pluginService.load();

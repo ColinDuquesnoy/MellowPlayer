@@ -12,7 +12,7 @@ using namespace fakeit;
 
 // Test case name start lower case because those tests must be run lasts, otherwise there would be segfaults
 // when calling QTest::qWait
-TEST_CASE("mpris2RootTests") {
+TEST_CASE("mpris2RootTests", "[IntegrationTest]") {
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
     Mpris2Root root(mainWindowMock.get(), qtAppMock.get());

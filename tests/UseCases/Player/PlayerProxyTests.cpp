@@ -8,7 +8,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-TEST_CASE("PlayerProxyTests") {
+TEST_CASE("PlayerProxyTests", "[UnitTest]") {
     auto mock = PluginLoaderMock::get();
     PluginService pluginService(mock.get());
     pluginService.load();

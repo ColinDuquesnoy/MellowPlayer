@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
-TEST_CASE("HotkeysServiceTests") {
+TEST_CASE("HotkeysServiceTests", "[UnitTest]") {
     auto playerMock = PlayerMock::get();
     HotkeysService hotkeys(playerMock.get());
     hotkeys.start();

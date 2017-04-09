@@ -5,7 +5,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("SongTests") {
+TEST_CASE("SongTests", "[UnitTest]") {
 
     SECTION("Parametrized ctor") {
         Song song("uniqueId", "title", "artist", "album", "artUrl", 1534, true);

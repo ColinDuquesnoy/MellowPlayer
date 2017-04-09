@@ -10,7 +10,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("NotificationServiceTests") {
+TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     LocalAlbumArtService& service = injector.create<LocalAlbumArtService&>();

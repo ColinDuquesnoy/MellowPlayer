@@ -11,7 +11,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("LocalAlbumArtTests"){
+TEST_CASE("LocalAlbumArtTests", "[UnitTest]"){
     auto pluginLoaderMock = PluginLoaderMock::get();
     PluginService pluginService(pluginLoaderMock.get());
     PlayerService playerService(pluginService);

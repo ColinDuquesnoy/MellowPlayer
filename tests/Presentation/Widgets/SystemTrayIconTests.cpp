@@ -7,7 +7,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("SystemTrayIconTests") {
+TEST_CASE("SystemTrayIconTests", "[IntegrationTest]") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
@@ -43,16 +43,22 @@ TEST_CASE("SystemTrayIconTests") {
         systemTrayIcon.quit();
         Verify(Method(qtAppMock, quit)).Exactly(1);
     }
+}
 
-    SECTION("integration tests") {
-        SECTION("show icon") {
-            systemTrayIcon.show();
-        }
-        SECTION("hide icon") {
-            systemTrayIcon.hide();
-        }
-        SECTION("show message") {
-            systemTrayIcon.showMessage("Title", "Message");
-        }
+TEST_CASE("SystemTrayIconIntegrationTests", "[IntegrationTest]") {
+    auto playerMock = PlayerMock::get();
+    auto mainWindowMock = MainWindowMock::get();
+    auto qtAppMock = QtApplicationMock::get();
+    auto appSettingsMock = ApplicationSettingsMock::get();
+    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), appSettingsMock.get());
+
+    SECTION("show icon") {
+        systemTrayIcon.show();
+    }
+    SECTION("hide icon") {
+        systemTrayIcon.hide();
+    }
+    SECTION("show message") {
+        systemTrayIcon.showMessage("Title", "Message");
     }
 }

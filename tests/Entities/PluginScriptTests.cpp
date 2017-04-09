@@ -5,7 +5,7 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 using namespace std;
 
-TEST_CASE("PluginScriptTests") {
+TEST_CASE("PluginScriptTests", "[UnitTest]") {
     SECTION("PluginScript.getCode") {
         PluginScript script("code", "path");
         REQUIRE(script.getCode().toStdString() == "code");
