@@ -5,6 +5,7 @@
 #include <QList>
 #include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/UseCases/IWorkDispatcher.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 
@@ -17,7 +18,7 @@ class IPlayer;
 class ListeningHistoryService: public QObject {
     Q_OBJECT
 public:
-    ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player);
+    ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher);
 
     void initialize();
     const QList<Entities::ListeningHistoryEntry>& getEntries() const;
@@ -38,6 +39,7 @@ private:
     ILogger& logger;
     IListeningHistoryDataProvider& dataProvider;
     IPlayer& player;
+    IWorkDispatcher& workDispatcher;
     QMap<QString, Entities::ListeningHistoryEntry> previousEntryPerPlayer;
     QList<Entities::ListeningHistoryEntry> entries;
     QMutex mutex;

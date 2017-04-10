@@ -33,6 +33,7 @@
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
+#include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/Application.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
@@ -104,7 +105,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotificationService>().to<NotificationService>().in(scope),
-        di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope)
+        di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope),
+        di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope).in(di::singleton)
     );
 };
 

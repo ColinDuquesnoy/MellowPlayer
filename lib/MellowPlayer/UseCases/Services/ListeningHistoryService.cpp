@@ -1,5 +1,4 @@
-#include <QtConcurrent>
-#include <QtCore/QThreadPool>
+#include <QSet>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
@@ -8,8 +7,10 @@
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-ListeningHistoryService::ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player):
-        logger(LoggingManager::instance().getLogger("ListeningHistoryService")), dataProvider(model), player(player) {
+ListeningHistoryService::ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player,
+                                                 IWorkDispatcher& workDispatcher):
+        logger(LoggingManager::instance().getLogger("ListeningHistoryService")), dataProvider(model), player(player),
+        workDispatcher(workDispatcher) {
     connect(&player, &IPlayer::currentSongChanged, this, &ListeningHistoryService::onCurrentSongChanged);
     connect(&player, &IPlayer::playbackStatusChanged, this, &ListeningHistoryService::onPlaybackStatusChanged);
 }
@@ -20,7 +21,7 @@ void ListeningHistoryService::onPlaybackStatusChanged() {
 
 void ListeningHistoryService::onCurrentSongChanged(Song* song) {
     auto newEntry = ListeningHistoryEntry::fromData(song, player.getServiceName());
-    QtConcurrent::run(QThreadPool::globalInstance(), [=]() mutable {
+    workDispatcher.execute([=]() mutable {
         QMutexLocker mutexLocker(&mutex);
         auto previousEntry = previousEntryPerPlayer[player.getServiceName()];
 
@@ -41,7 +42,7 @@ const QList<ListeningHistoryEntry>& ListeningHistoryService::getEntries() const 
 }
 
 void ListeningHistoryService::clear() {
-    QtConcurrent::run(QThreadPool::globalInstance(), [=]() mutable {
+    workDispatcher.execute([=]() mutable {
         QMutexLocker mutexLocker(&mutex);
         dataProvider.clear();
         entries.clear();
@@ -50,7 +51,7 @@ void ListeningHistoryService::clear() {
 }
 
 void ListeningHistoryService::removeById(int entryId) {
-    QtConcurrent::run(QThreadPool::globalInstance(), [=]() mutable {
+    workDispatcher.execute([=]() mutable {
         QMutexLocker mutexLocker(&mutex);
         dataProvider.remove("id", QString("%1").arg(entryId));
         auto entry = entries.toSet().subtract(dataProvider.getAll().toSet()).toList().first();
@@ -61,7 +62,7 @@ void ListeningHistoryService::removeById(int entryId) {
 }
 
 void ListeningHistoryService::removeByService(const QString& serviceName) {
-    QtConcurrent::run(QThreadPool::globalInstance(), [=]() mutable {
+    workDispatcher.execute([=]() mutable {
         QMutexLocker mutexLocker(&mutex);
         dataProvider.remove("serviceName", serviceName);
 

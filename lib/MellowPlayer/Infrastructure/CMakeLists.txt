@@ -51,7 +51,7 @@ else()
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-qt5_use_modules(${LIB_NAME} Core Widgets Network Sql)
+qt5_use_modules(${LIB_NAME} Concurrent Core Widgets Network Sql)
 
 if(UNIX AND NOT APPLE)
     qt5_use_modules(${LIB_NAME} DBus)
