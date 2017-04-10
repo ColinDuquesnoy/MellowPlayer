@@ -7,6 +7,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 class IApplication
 {
 public:
+    virtual ~IApplication() = default;
     virtual void initialize() = 0;
     virtual void restoreWindow() = 0;
     virtual int run() = 0;

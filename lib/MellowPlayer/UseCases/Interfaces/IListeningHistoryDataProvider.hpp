@@ -8,6 +8,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IListeningHistoryDataProvider {
 public:
+    virtual ~IListeningHistoryDataProvider() = default;
     virtual void initialize() = 0;
     virtual int add(const Entities::ListeningHistoryEntry& entry) = 0;
     virtual void clear() = 0;
