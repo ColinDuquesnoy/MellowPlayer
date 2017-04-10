@@ -103,6 +103,14 @@ Frame {
             anchors.right: parent.right
 
             ToolButton {
+                id: btDelete
+                hoverEnabled: true
+                text: MaterialIcons.MaterialIcons.icon_delete
+                font { family: MaterialIcons.family; pixelSize: 16 }
+                Layout.fillHeight: true
+            }
+
+            ToolButton {
                 id: btCopy
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_content_copy
@@ -114,14 +122,6 @@ Frame {
                 id: btPlay
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_play_arrow
-                font { family: MaterialIcons.family; pixelSize: 16 }
-                Layout.fillHeight: true
-            }
-
-            ToolButton {
-                id: btClose
-                hoverEnabled: true
-                text: MaterialIcons.MaterialIcons.icon_delete
                 font { family: MaterialIcons.family; pixelSize: 16 }
                 Layout.fillHeight: true
             }
