@@ -22,7 +22,7 @@ QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const {
     else if (date >= lastYear)
         return tr("Last year");
     else
-        return tr("All time");
+        return tr("Years ago");
 }
 
 QString DateTimeConverter::dateToString(const QDateTime &dateTime) const {

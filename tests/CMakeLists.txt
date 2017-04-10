@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC OFF)
 
 file(GLOB_RECURSE SOURCE_FILES *.cpp)
 
-add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} Presentation/ViewModels/StreamingServiceModelTests.cpp)
+add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES})
 target_link_libraries(${TEST_EXECUTABLE_NAME}
                       ${PROJECT_NAME}.Entities
                       ${PROJECT_NAME}.UseCases

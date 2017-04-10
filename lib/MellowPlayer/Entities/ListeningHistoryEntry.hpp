@@ -20,7 +20,7 @@ struct ListeningHistoryEntry {
     }
 
     bool isValid() const {
-        return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !artist.isEmpty() && !artUrl.isEmpty() && !serviceName.isEmpty();
+        return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !serviceName.isEmpty();
     }
 
     bool equals(const ListeningHistoryEntry& other) const {
