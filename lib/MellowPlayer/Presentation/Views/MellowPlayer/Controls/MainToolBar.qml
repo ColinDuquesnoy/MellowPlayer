@@ -144,6 +144,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             enabled: body.state == "webview" && player.canAddToFavorites
+            visible: body.state == "webview"
 
             onClicked: player.toggleFavoriteSong()
 

@@ -46,6 +46,7 @@ ApplicationWindow {
                 id: toolBar
                 Material.primary: style.primary
                 Material.foreground: style.primaryForeground
+                Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
 
                 RowLayout {
                     anchors.fill: parent
