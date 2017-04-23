@@ -6,7 +6,10 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class QtConcurrentWorkDispatcher: public UseCases::IWorkDispatcher {
 public:
-    void execute(const std::function<void(void)>& workerFunction) override;
+    void invoke(const std::function<void(void)>& workerFunction) override;
+
+private:
+    QMutex mutex;
 };
 
 END_MELLOWPLAYER_NAMESPACE

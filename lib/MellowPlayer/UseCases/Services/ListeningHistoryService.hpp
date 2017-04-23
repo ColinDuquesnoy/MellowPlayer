@@ -42,7 +42,6 @@ private:
     IWorkDispatcher& workDispatcher;
     QMap<QString, Entities::ListeningHistoryEntry> previousEntryPerPlayer;
     QList<Entities::ListeningHistoryEntry> entries;
-    QMutex mutex;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -7,8 +7,9 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 
-void QtConcurrentWorkDispatcher::execute(const function<void(void)>& workerFunction) {
+void QtConcurrentWorkDispatcher::invoke(const function<void(void)>& workerFunction) {
     QtConcurrent::run(QThreadPool::globalInstance(), [=]() {
+        QMutexLocker mutexLocker(&mutex);
         workerFunction();
     });
 }

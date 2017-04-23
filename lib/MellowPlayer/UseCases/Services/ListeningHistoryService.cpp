@@ -21,8 +21,7 @@ void ListeningHistoryService::onPlaybackStatusChanged() {
 
 void ListeningHistoryService::onCurrentSongChanged(Song* song) {
     auto newEntry = ListeningHistoryEntry::fromData(song, player.getServiceName());
-    workDispatcher.execute([=]() mutable {
-        QMutexLocker mutexLocker(&mutex);
+    workDispatcher.invoke([=]() mutable {
         auto previousEntry = previousEntryPerPlayer[player.getServiceName()];
 
         if (previousEntry.equals(newEntry) || !newEntry.isValid() ||
@@ -42,8 +41,7 @@ const QList<ListeningHistoryEntry>& ListeningHistoryService::getEntries() const 
 }
 
 void ListeningHistoryService::clear() {
-    workDispatcher.execute([=]() mutable {
-        QMutexLocker mutexLocker(&mutex);
+    workDispatcher.invoke([=]() mutable {
         dataProvider.clear();
         entries.clear();
         emit entriesCleared();
@@ -51,8 +49,7 @@ void ListeningHistoryService::clear() {
 }
 
 void ListeningHistoryService::removeById(int entryId) {
-    workDispatcher.execute([=]() mutable {
-        QMutexLocker mutexLocker(&mutex);
+    workDispatcher.invoke([=]() mutable {
         dataProvider.remove("id", QString("%1").arg(entryId));
         auto entry = entries.toSet().subtract(dataProvider.getAll().toSet()).toList().first();
         int index = entries.indexOf(entry);
@@ -62,8 +59,7 @@ void ListeningHistoryService::removeById(int entryId) {
 }
 
 void ListeningHistoryService::removeByService(const QString& serviceName) {
-    workDispatcher.execute([=]() mutable {
-        QMutexLocker mutexLocker(&mutex);
+    workDispatcher.invoke([=]() mutable {
         dataProvider.remove("serviceName", serviceName);
 
         for (auto entry: entries.toSet().subtract(dataProvider.getAll().toSet()).toList()) {

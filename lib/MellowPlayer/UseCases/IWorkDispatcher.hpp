@@ -9,8 +9,7 @@ class IWorkDispatcher {
 public:
     virtual ~IWorkDispatcher() = default;
 
-    virtual void execute(const std::function<void(void)>& workerFunction) = 0;
+    virtual void invoke(const std::function<void(void)>& workerFunction) = 0;
 };
-
 
 END_MELLOWPLAYER_NAMESPACE
