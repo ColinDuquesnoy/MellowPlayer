@@ -16,100 +16,171 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function updatePlayerInfo() {
-    var playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    var volume = 1.0;
-    if (Spotify.Shuttle._initContext != null) {
-        var playerContext = Spotify.Shuttle._initContext.contextPlayer;
-        var player = playerContext._player._player;
-        if (player.isPaused) {
-            playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
-        } else if (player.isStopped) {
-            playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-        }
-        volume = player.getVolume();
+function getHashCode(s) {
+    return s.split("").reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
+}
+
+function getButtons() {
+    function getPlayPauseButton() {
+        var playButton = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-play-16.control-button--circled");
+        var pauseButton = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-pause-16.control-button--circled");
+
+        if (playButton === null)
+            return pauseButton;
+        else
+            return playButton;
     }
+
+    function getSkipPreviousSongButton() {
+        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-back-16");
+    }
+
+    function getSkipNextSongButton() {
+        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-forward-16");
+    }
+
+    function getAddRemoveToMusicButton() {
+        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > button");
+    }
+
     return {
-        "PlaybackStatus": playbackStatus,
-        "CanSeek": true,
+        "playPause": getPlayPauseButton(),
+        "next": getSkipNextSongButton(),
+        "previous": getSkipPreviousSongButton(),
+        "addRemoveToMusic": getAddRemoveToMusicButton()
+    };
+}
+
+function getPlaybackStatus() {
+    var button = getButtons().playPause;
+    if (button === null)
+        return mellowplayer.PlaybackStatus.STOPPED;
+    else if (button.title === "Play")
+        return mellowplayer.PlaybackStatus.PAUSED;
+    return mellowplayer.PlaybackStatus.PLAYING;
+}
+
+function getArtist() {
+    return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].text;
+}
+
+function getSongTitle() {
+    return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].text;
+}
+
+function readTime(timeString) {
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+    var m = timeString.match("\\d+:\\d+:\\d+");
+    if (m != null) {
+        var data = timeString.split(':');
+        hours = parseInt(data[0]);
+        minutes = parseInt(data[1]);
+        seconds = parseInt(data[2]);
+    } else {
+        var m = timeString.match("\\d+:\\d+");
+        if (m != null) {
+            var data = timeString.split(':');
+            minutes = parseInt(data[0]);
+            seconds = parseInt(data[1]);
+        }
+    }
+    var total = hours * 3600 + minutes * 60 + seconds;
+    return total;
+}
+
+function getSongUrl() {
+    var href = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div > a")
+    if (href)
+        return href.href;
+    return "";
+}
+
+function getSongId() {
+    var url = getSongUrl();
+    var tokens = url.split("/");
+    return tokens[tokens.length - 1];
+}
+
+function getPosition() {
+    return readTime(document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(1)").innerText);
+}
+
+function getDuration() {
+    return readTime(document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(3)").innerText);
+}
+
+function getVolume() {
+    var volumeStr = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__right > div > div > div > div > div > div.progress-bar__fg").style.width.replace("%", "");
+    return parseFloat(volumeStr) / 100.0;
+}
+
+function getArtUrl() {
+    var artUrlDiv = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > a > div > div > div.cover-art-image.cover-art-image-loaded");
+    var artUrl = artUrlDiv.style.backgroundImage;
+    return artUrl.replace('url("', "").replace('")', "");
+}
+
+function isFavorite() {
+    return getButtons().addRemoveToMusic.attributes.class.value.match(".*added.*") !== null;
+}
+
+function updatePlayerInfo() {
+    return {
+        "PlaybackStatus": getPlaybackStatus(),
+        "CanSeek": false,
         "CanGoNext": true,
         "CanGoPrevious": true,
-        "CanAddToFavorites": false,
-        "Volume": volume
+        "CanAddToFavorites": true,
+        "Volume": getVolume()
     }
 }
 
 function updateSongInfo() {
-    if (Spotify.Shuttle._initContext != null) {
-        var playerContext = Spotify.Shuttle._initContext.contextPlayer;
-        var player = playerContext._player._player;
-        var track = playerContext.getCurrentTrack();
-        if (track != null) {
-            return {
-                "SongId": track._pid,
-                "SongTitle": track.name,
-                "ArtistName": track.artistName,
-                "AlbumTitle": track.albumTitle,
-                "ArtUrl": playerContext.getCurrentTrack().image.replace('https://d3rt1990lpmkn.cloudfront.net/unbranded/', 'https://i.scdn.co/image/'),
-                "Favorite": false,
-                "Duration": track.duration / 1000,
-                "Position": player.position() / 1000
-            }
-        }
-    }
     return {
-        "SongId": '0',
-        "SongTitle": '',
-        "ArtistName": '',
+        "SongId": getSongId(),
+        "SongTitle": getSongTitle(),
+        "ArtistName": getArtist(),
         "AlbumTitle": '',
-        "ArtUrl": '',
-        "Favorite": false,
-        "Duration": 0,
-        "Position": 0
+        "ArtUrl": getArtUrl(),
+        "Favorite": isFavorite(),
+        "Duration": getDuration(),
+        "Position": getPosition()
     }
 }
 
 function play() {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    player.playpause();
+    getButtons().playPause.click();
 }
 
 function pause() {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    player.playpause();
+    getButtons().playPause.click();
 }
 
 function goNext() {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    playerContext.next('fwdbtn');
+    getButtons().next.click();
 }
 
 function goPrevious() {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    playerContext.previous('backbtn');
+    getButtons().previous.click();
 }
 
 function setVolume(volume) {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    player.setVolume(volume);
+    // not supported
 }
 
-
 function addToFavorites() {
-    // not supported
+    getButtons().addRemoveToMusic.click();
 }
 
 function removeFromFavorites() {
-    // not supported
+    getButtons().addRemoveToMusic.click();
 }
 
 function seekToPosition(position) {
-    var playerContext = playerContext = Spotify.Shuttle._initContext.contextPlayer;
-    var player = playerContext._player._player;
-    player.seek(position * 1000) // spotify works with milliseconds
+    // not supported
 }
