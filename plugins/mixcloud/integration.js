@@ -24,6 +24,9 @@ function getMixcloudPlayer() {
 }
 
 function update() {
+    // hide header ad
+    $("body > div.cf > div:nth-child(1)").hide()
+
     // Get a reference to the mixcloud's player queue controller
     var M = getMixcloudPlayer();
 
