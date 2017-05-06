@@ -27,4 +27,4 @@ script:
   - ./scripts/build/linux/runtests.sh --debug --coverage
 
 after_success:
-  - coveralls --exclude /opt --exclude /usr  --exclude tests --exclude .local --exclude 3rdparty --exclude qrc_* --exclude moc_* --gcov-options '\-lp'
+  - coveralls -exclude-pattern /opt/* -exclude-pattern /usr/*  -exclude-pattern *tests/* -exclude-pattern *.local/* -exclude-pattern *3rdparty/* -exclude-pattern *qrc_* -exclude-pattern *moc_* --gcov-options '\-lp'
