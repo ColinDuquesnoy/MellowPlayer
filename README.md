@@ -1,5 +1,6 @@
-[![Build status](https://gitlab.com/ColinDuquesnoy/MellowPlayer/badges/develop/build.svg)](https://gitlab.com/ColinDuquesnoy/MellowPlayer/commits/develop)
-[![Coverage report](https://gitlab.com/ColinDuquesnoy/MellowPlayer/badges/develop/coverage.svg)](https://gitlab.com/ColinDuquesnoy/MellowPlayer/commits/develop)
+[![Build Status](https://travis-ci.org/ColinDuquesnoy/MellowPlayer.svg?branch=master)](https://travis-ci.org/ColinDuquesnoy/MellowPlayer)
+[![Build status](https://ci.appveyor.com/api/projects/status/f65ajgawyxnxjs2a?svg=true)](https://ci.appveyor.com/project/ColinDuquesnoy/mellowplayer)
+[![Coverage Status](https://coveralls.io/repos/github/ColinDuquesnoy/MellowPlayer/badge.svg?branch=feature%2Ftravis-ci-setup)](https://coveralls.io/github/ColinDuquesnoy/MellowPlayer?branch=feature%2Ftravis-ci-setup)
 [![Release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
 
 # About
