@@ -11,7 +11,7 @@ fi
 cd $build_dir
 
 if [ "$2" == "--coverage" ]; then
-    make coverage;
+    catchsegv make coverage;
 else
-    ctest -V;
+    catchsegv ctest -V;
 fi
