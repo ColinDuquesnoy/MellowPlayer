@@ -1,4 +1,3 @@
-set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.Tests)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/catch)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/fakeit)
 include_directories(../3rdparty)
@@ -8,17 +7,23 @@ add_definitions(-DTEST_SUITE=1)
 
 set(CMAKE_AUTOMOC OFF)
 
-file(GLOB_RECURSE SOURCE_FILES *.cpp)
+macro(add_mellowplayer_test TEST_TYPE)
+    set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.${TEST_TYPE})
+    file(GLOB_RECURSE SOURCE_FILES ${TEST_TYPE}/*.cpp)
+    file(GLOB_RECURSE HEADER_FILES *.hpp)
+    file(GLOB_RECURSE MOCK_SOURCES Mocks/*.cpp)
+    add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} main.cpp)
+    target_link_libraries(${TEST_EXECUTABLE_NAME}
+            ${PROJECT_NAME}.Entities
+            ${PROJECT_NAME}.UseCases
+            ${PROJECT_NAME}.Presentation
+            ${PROJECT_NAME}.Infrastructure)
+    qt5_use_modules(${TEST_EXECUTABLE_NAME} Core Test)
+    add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)
+endmacro()
 
-add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES})
-target_link_libraries(${TEST_EXECUTABLE_NAME}
-                      ${PROJECT_NAME}.Entities
-                      ${PROJECT_NAME}.UseCases
-                      ${PROJECT_NAME}.Presentation
-                      ${PROJECT_NAME}.Infrastructure)
-qt5_use_modules(${TEST_EXECUTABLE_NAME} Core Test)
-
-add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)
-if(${ENABLE_COVERAGE})
-    setup_target_for_coverage(coverage ${TEST_EXECUTABLE_NAME} coverage)
+add_mellowplayer_test("UnitTests")
+add_mellowplayer_test("IntegrationTests")
+if (UNIX AND NOT APPLE)
+    add_mellowplayer_test("MprisTests")
 endif()

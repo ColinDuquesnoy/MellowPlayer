@@ -103,11 +103,11 @@ static auto hotkeysServiceMock = HotkeysServiceMock::get();
 static auto mainWindowMock = MainWindowMock::get();
 static auto qtApplicationMock = QtApplicationMock::get();
 static auto pluginLoaderMock = PluginLoaderMock::get();
-static auto applicationSettingsMock = ApplicationSettingsMock::get();
 static auto systemTrayIconMock = SystemTrayIconMock::get();
 static auto notificationPresenterMock = NotificationPresenterMock::get();
 
 inline auto getTestInjector(ScopedScope& scope) {
+    static auto applicationSettingsMock = ApplicationSettingsMock::get();
 
     return di::make_injector(
         di::bind<IPluginLoader>().to(pluginLoaderMock.get()),
