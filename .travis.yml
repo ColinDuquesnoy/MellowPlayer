@@ -24,7 +24,7 @@ before_script:
 
 script:
   - ./scripts/build/linux/build.sh --debug --coverage
-  - ./scripts/build/linux/runtests.sh --debug --coverage
+  - ./scripts/build/linux/runtests.sh --debug
 
 after_success:
   - coveralls -exclude-pattern /opt/* -exclude-pattern /usr/*  -exclude-pattern *tests/* -exclude-pattern *.local/* -exclude-pattern *3rdparty/* -exclude-pattern *qrc_* -exclude-pattern *moc_* --gcov-options '\-lp'
