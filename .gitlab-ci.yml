@@ -46,7 +46,7 @@ stages:
 
 ### Ubuntu 16.04
 .job_template: &ubuntu_def
-  image: ubuntu:latest
+  image: ubuntu:16.04
   tags:
     - linux
   before_script:
@@ -67,14 +67,14 @@ stages:
 #--------------------------------------------------------------------
 commit-build:linux:
   <<: *commit_build_def
-  <<: *archlinux_def
+  <<: *ubuntu_def
   script:
     - ./scripts/build/linux/build.sh --release --coverage
     - ./scripts/build/linux/runtests.sh --release
 
 coverage:
   <<: *commit_build_def
-  <<: *archlinux_def
+  <<: *ubuntu_def
   script:
     - ./scripts/build/linux/build.sh --debug --coverage
     - ./scripts/build/linux/runtests.sh --debug --coverage
