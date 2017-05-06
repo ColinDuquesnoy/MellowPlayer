@@ -15,4 +15,4 @@ if [ "$2" == "--coverage" ]; then
     cmake -DCMAKE_BUILD_TYPE=$build_type -DENABLE_COVERAGE=1 ..;
 fi
 
-make
+make -j2

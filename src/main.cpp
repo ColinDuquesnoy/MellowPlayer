@@ -1,44 +1,41 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QtWebEngine>
-#include <MellowPlayer/UseCases.hpp>
-#include <MellowPlayer/Infrastructure.hpp>
+#include <QtCore>
+#ifdef Q_OS_WIN32
+    #include <Windows.h>
+#endif
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
+#include <MellowPlayer/Presentation/QtWebApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
+#include "DI.hpp"
 
+namespace di = boost::di;
+using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-int main(int argc, char* argv[])
+
+int main(int argc, char** argv)
 {
+#ifdef Q_OS_WIN32
     Q_INIT_RESOURCE(presentation);
-
-    // Init Qt Application
-    QGuiApplication qtApp(argc, argv);
-    qtApp.setApplicationDisplayName("MellowPlayer");
-    qtApp.setApplicationName("MellowPlayer3");
-    qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
-    qtApp.setOrganizationDomain("org.mellowplayer");
-    qtApp.setOrganizationName("MellowPlayer");
-    QtWebEngine::initialize();
-    QQmlApplicationEngine qmlApplicationEngine;
-
-    // Init logging system
+#endif
     SpdLoggerFactory loggerFactory;
-    LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory);
-    loggingManager.setDefaultLogLevel(LogLevel::Info);
-    ILogger& logger = loggingManager.getLogger("main");
-    LOG_INFO(logger, "-------------------------------------------------------------------------------");
-    LOG_INFO(logger, "MellowPlayer v" << MELLOWPLAYER_VERSION << " started");
-    LOG_INFO(logger, "Log directory: " + FileHelper::logDirectory());
+    LoggingManager::initialize(loggerFactory, LogLevel::Debug);
+    QtWebApplication qtApp(argc, argv);
+    ScopedScope scope{};
+    auto injector = di::make_injector(
+        di::bind<IQtApplication>().to(qtApp),
+        defaultInjector(scope),
+        platformInjector(scope),
+        notificationPresenterInjector(scope)
+    );
 
-    // Init systems
-    PluginLoader pluginLoader(loggingManager);
-    PluginManager pluginManager(pluginLoader);
-
-    // Load qml application
-    LOG_TRACE(logger, "Loading qml application");
-    qmlApplicationEngine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
-    LOG_TRACE(logger, "Qml application loaded");
-
-    LOG_TRACE(logger, "Running")
-    return qtApp.exec();
+#ifdef QT_DEBUG
+    IApplication& app = injector.create<IApplication&>();
+    app.initialize();
+#else
+    SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
+#endif
+    return app.run();
 }

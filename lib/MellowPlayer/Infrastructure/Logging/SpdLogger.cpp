@@ -15,7 +15,7 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
         if (config.createConsoleLogger) {
             sinks.push_back(make_shared<sinks::ansicolor_sink>(make_shared<sinks::stdout_sink_mt>()));
         }
-        auto logFileName = FileHelper::createLogDirectory() + name;
+        auto logFileName = FileHelper::createLogDirectory().toStdString() + name;
         sinks.push_back(make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5));
 
         // create and register logger
@@ -26,22 +26,28 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
 
         return combined_logger;
     }
+    // LCOV_EXCL_START
     catch (const spdlog_ex &ex) {
         cout << "SpdLogger (" << name << ") initialization failed: " << ex.what() << endl;
         return nullptr;
     }
+    // LCOV_EXCL_STOP
 }
 
 SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)
-    : logger_(createLogger(name, config)), includeFileAndLine_(config.showFileAndLine) {
+    : logger(createLogger(name, config)), includeFileAndLine(config.showFileAndLine), name(name) {
 
 }
 
 SpdLogger::~SpdLogger() = default;
 
 void SpdLogger::log(const string& message, LogLevel level, const char* file, int line) {
-    if (includeFileAndLine_ && file != NULL && level == LogLevel::Trace)
-        logger_->log(static_cast<level::level_enum>(level), "{} ( \"{}:{}\" )", message, file, line);
+    if (includeFileAndLine && file != NULL && level == LogLevel::Trace)
+        logger->log(static_cast<level::level_enum>(level), "{} ( \"{}:{}\" )", message, file, line);
     else
-        logger_->log(static_cast<level::level_enum>(level), message.c_str());
+        logger->log(static_cast<level::level_enum>(level), message.c_str());
+}
+
+const string& SpdLogger::getName() const {
+    return name;
 }

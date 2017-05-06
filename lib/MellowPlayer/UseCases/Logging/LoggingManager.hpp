@@ -4,6 +4,7 @@
 #include <map>
 #include <MellowPlayer/Macros.hpp>
 #include "ILoggerFactory.hpp"
+#include "LoggingMacros.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -15,6 +16,7 @@ public:
     LoggingManager& operator=(LoggingManager&&) = default;
 
     static LoggingManager& initialize(ILoggerFactory& loggerFactory, const LoggerConfig& defaultConfig=LoggerConfig());
+    static LoggingManager& initialize(ILoggerFactory& loggerFactory, LogLevel logLevel);
     static LoggingManager& instance();
 
     ILogger& getLogger();
@@ -29,6 +31,7 @@ private:
     bool loggerExists(const std::string& name);
     ILogger& getExistingLogger(const std::string& name);
     ILogger& createNewLogger(const std::string& name, const LoggerConfig& loggerConfig);
+    void installQtMessageHandler();
 
     ILoggerFactory& loggerFactory_;
     std::map<std::string, std::unique_ptr<ILogger>> loggersMap_;

@@ -1,85 +1,50 @@
 #pragma once
 
-#include <MellowPlayer/Macros.hpp>
+#include <memory>
 #include <QtCore/QString>
 #include <QtGui/QImage>
+#include <MellowPlayer/Macros.hpp>
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include "PluginMetadata.hpp"
+#include "PluginStyle.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
-/**
- * @brief The plugin structure holds the data of a streaming service integration plugin.
- */
-struct Plugin {
-    /**
-     * @brief Name of the plugin's author.
-     */
-    QString author;
+class PluginScript;
 
-    /**
-     * @brief Url of the plugin's author's website.
-     */
-    QString authorWebsite;
+class Plugin: public QObject {
+    Q_OBJECT
+    Q_PROPERTY(QString author READ getAuthor CONSTANT)
+    Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
+    Q_PROPERTY(QString color READ getColor CONSTANT)
+    Q_PROPERTY(QString logo READ getLogo CONSTANT)
+    Q_PROPERTY(QString name READ getName CONSTANT)
+    Q_PROPERTY(QString url READ getUrl CONSTANT)
+    Q_PROPERTY(QString version READ getVersion CONSTANT)
+    Q_PROPERTY(PluginScript* script READ getScript CONSTANT)
+public:
+    Plugin(const PluginMetadata& metadata, const PluginStyle& style = PluginStyle::defaultStyle());
+    ~Plugin();
 
-    /**
-     * @brief Color of the plugin (affects the color of the application toolbar).
-     *
-     * @remarks Leave empty to use the default toolbar color.
-     */
-    QString color;
+    bool isValid() const;
+    const QString& getAuthor() const;
+    const QString& getAuthorWebsite() const;
+    QString getColor() const;
+    QString getLogo() const;
+    const QString& getName() const;
+    QString getUrl() const;
+    const QString& getVersion() const;
+    PluginScript* getScript() const;
+    const PluginStyle& getStyle() const;
 
-    /**
-     * @brief Logo of the plugin/service.
-     */
-    QImage logo;
+    bool operator==(const Plugin& rhs) const;
+    bool operator!=(const Plugin& rhs) const;
 
-    /**
-     * @brief The name of the plugin.
-     */
-    QString name;
-
-    /**
-     * @brief The url of the streaming service
-     */
-    QString url;
-
-    /**
-     * @brief The javascript code of the plugin.
-     */
-    QString script;
-
-    /**
-     * @brief Path to the plugin script.
-     */
-    QString scriptPath;
-
-    /**
-     * @brief The version of the plugin.
-     */
-    QString version;
-
-    Plugin()
-        : author(""),
-          authorWebsite(""),
-          color(""),
-          logo(),
-          name(""),
-          url(""),
-          script(""),
-          scriptPath(""),
-          version("") {
-
-    }
-
-    bool isValid() const {
-        return !name.isEmpty() && !url.isEmpty();
-    }
-
-    inline bool operator==(const Plugin& rhs) {
-        return name == rhs.name && url == rhs.url;
-    }
+private:
+    PluginMetadata metadata;
+    PluginStyle style;
+    std::unique_ptr<PluginScript> script;
 };
-
-using PluginList = QList<MellowPlayer::Entities::Plugin>;
 
 END_MELLOWPLAYER_NAMESPACE
 

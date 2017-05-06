@@ -45,14 +45,24 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-- **Qt** >= 5.7
-- **CMake** >= 3.5
+- [Qt](https://www.qt.io/) >= 5.7
+- [CMake](https://cmake.org/) >= 3.5
+- [Snorenotify]() >= 0.7 (Windows/OSX, optional)
+- [libnotify]() (GNU/Linux only, optional)
 
-## bundled 3rd-parties
+## Bundled 3rd-parties
 
-- **Catch**
-- some parts of **libqxt**
+### Frameworks
 
+- [Boost.DI](http://boost-experimental.github.io/di/)
+- [spdlog](https://github.com/gabime/spdlog)
+- [libqxt](https://bitbucket.org/libqxt/libqxt/wiki/Home) *(QxtGlobalShortcut)*
+
+### Testing
+
+- [catch](https://github.com/philsquared/Catch)
+- [fakeit](https://github.com/eranpeer/FakeIt)
+- [lcov](https://github.com/linux-test-project/lcov)
 
 # Compilation
 
@@ -91,9 +101,18 @@ cmake --build . --config Release
 
 You can specify the following options when calling cmake:
 
-- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - *Default is Debug*
-- ``-DBUILD_TESTS=``: **ON** or **OFF** - *Default is ON*
-- ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - *Default is OFF*
+- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Debug**.
+- ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **ON**.
+- ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .
+
+# Running the test suite
+
+Make sure you've built MellowPlayer with -DBUILD_TEST.
+
+```bash
+cd build\tests
+./MellowPlayer.Tests
+```
 
 # Contributing
 

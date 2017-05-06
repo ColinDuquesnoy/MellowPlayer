@@ -1,0 +1,44 @@
+#pragma once
+
+#include <QtQml/QQmlApplicationEngine>
+#include <QtQuick/QQuickWindow>
+#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
+
+BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+
+class ListeningHistoryViewModel;
+class StreamingServicesViewModel;
+class StyleViewModel;
+
+class QmlMainWindow: public QObject, public UseCases::IMainWindow {
+    Q_OBJECT
+public:
+    QmlMainWindow(StreamingServicesViewModel& streamingServices,
+                  ListeningHistoryViewModel& listeningHistory,
+                  StyleViewModel& style,
+                  UseCases::IPlayer& player,
+                  UseCases::ILocalAlbumArtService& albumArt,
+                  UseCases::IApplicationSettings& applicationSettings);
+    bool load() override;
+    void show() override;
+    void hide() override;
+
+private:
+    QmlMainWindow(const QmlMainWindow&) = delete;
+    QmlMainWindow operator=(const QmlMainWindow&) = delete;
+    bool eventFilter(QObject *object, QEvent *event);
+
+    QQuickWindow* window;
+    UseCases::ILogger& logger;
+    UseCases::IApplicationSettings& applicationSettings;
+    StreamingServicesViewModel& streamingServices;
+    ListeningHistoryViewModel& listeningHistory;
+    QQmlApplicationEngine qmlApplicationEngine;
+};
+
+END_MELLOWPLAYER_NAMESPACE

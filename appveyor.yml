@@ -18,13 +18,14 @@ branches:
     - gh-pages
 
 before_build:
-  - cd scripts/build/windows
+  - cd scripts\env-setup\windows
+  - env-setup.bat
+  - cd scripts\build\windows
 
 build_script:
   - build.bat
 
 test_script:
-  - cd
-  - dir
+  - cd ..\scripts\build\windows
   - runtests.bat
 

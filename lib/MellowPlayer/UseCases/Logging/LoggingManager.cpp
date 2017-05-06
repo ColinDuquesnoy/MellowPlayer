@@ -1,12 +1,14 @@
 #include <QtCore/qlogging.h>
 #include <QString>
+#include <QtCore/QLoggingCategory>
 #include "LoggingManager.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message) {
-    ILogger& logger = LoggingManager::instance().getLogger("qt");
+    string category(context.category);
+    ILogger& logger = LoggingManager::instance().getLogger(category == "default" ? "qt" : category);
 
     // QtCriticalMsg, QtFatalMsg, QtSystemMsg = QtCriticalMsg
     std::map<int, LogLevel> toLogLevel = {
@@ -26,6 +28,13 @@ LoggingManager& LoggingManager::initialize(ILoggerFactory &loggerFactory, const 
     return *instance_;
 }
 
+LoggingManager& LoggingManager::initialize(ILoggerFactory& loggerFactory, LogLevel logLevel) {
+    auto& loggingManager = initialize(loggerFactory);
+    loggingManager.setDefaultLogLevel(logLevel);
+    return loggingManager;
+}
+
+
 LoggingManager& LoggingManager::instance() {
     if (instance_ == nullptr)
         throw logic_error("LoggingManager::instance called before LoggingManager::initialize!");
@@ -36,6 +45,7 @@ LoggingManager& LoggingManager::instance() {
 LoggingManager::LoggingManager(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig):
         loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig) {
     qInstallMessageHandler(messageHandler);
+    QLoggingCategory::setFilterRules("js.warning=false");
 }
 
 ILogger& LoggingManager::getLogger() {
@@ -69,3 +79,4 @@ ILogger& LoggingManager::createNewLogger(const std::string &name, const LoggerCo
 void LoggingManager::setDefaultLogLevel(LogLevel logLevel) {
     defaultLoggerConfig_.logLevel = logLevel;
 }
+

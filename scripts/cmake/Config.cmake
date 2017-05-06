@@ -1,4 +1,4 @@
-# set a local qml import dir for developers (to avoid to have to install the plugins to test and develop them).
+# set a local Views import dir for developers (to avoid to have to install the plugins to test and develop them).
 set(QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/imports" CACHE STRING "" FORCE)
 add_definitions(-DQML_IMPORT_PATH=\"${QML_IMPORT_PATH}\")
 set(BUILDING_HACKEDIT_EDITOR TRUE)
@@ -23,6 +23,11 @@ if(MSVC_COMPILER)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
     endif()
     add_definitions("/wd4251")
+    add_definitions("/wd4127")
+    add_definitions("/wd4515")
+    add_definitions("/wd4714")
+    add_definitions("/wd4100")
+    add_definitions("/wd4718")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field")
 endif()

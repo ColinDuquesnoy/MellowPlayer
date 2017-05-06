@@ -1,15 +1,15 @@
 #pragma once
 
-#include <string>
+#include <QString>
 #include <MellowPlayer/Macros.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class FileHelper {
 public:
-    static std::string createLogDirectory();
-    static std::string appDataDirectory();
-    static std::string logDirectory();
+    static QString createLogDirectory();
+    static QString appDataDirectory();
+    static QString logDirectory();
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -1,0 +1,18 @@
+module MellowPlayer
+
+singleton MaterialIcons 3.0 MaterialIcons.qml
+
+ApplicationRoot 3.0 ApplicationRoot.qml
+MainWindow 3.0 MainWindow.qml
+MainPage 3.0 MainPage.qml
+BrowserDialog 3.0 Controls/BrowserDialog.qml
+ListeningHistoryDrawer 3.0 Controls/ListeningHistoryDrawer.qml
+ListeningHistoryListView 3.0 Controls/ListeningHistoryListView.qml
+MainToolBar 3.0 Controls/MainToolBar.qml
+ServicesOverview 3.0 Controls/ServicesOverview.qml
+Tooltip 3.0 Controls/Tooltip.qml
+WebView 3.0 Controls/WebView.qml
+WebViewStack 3.0 Controls/WebViewStack.qml
+ListeningHistoryEntryDelegate 3.0 Delegates/ListeningHistoryEntryDelegate.qml
+ListeningHistorySectionDelegate 3.0 Delegates/ListeningHistorySectionDelegate.qml
+ServiceOverviewDelegate 3.0 Delegates/ServiceOverviewDelegate.qml

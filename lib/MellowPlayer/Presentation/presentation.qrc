@@ -1,12 +1,47 @@
 <RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
     <qresource prefix="/MellowPlayer/Presentation">
-        <file>fonts/MaterialIcons-Regular.ttf</file>
-        <file>qml/MaterialIcons.qml</file>
-        <file>qml/MainWindow.qml</file>
-        <file>qml/MainToolBar.qml</file>
-        <file>qml/ServiceDelegate.qml</file>
-        <file>qmldir</file>
-        <file>qml/EnabledServices.qml</file>
-        <file>images/home-background.png</file>
+        <file>Resources/fonts/MaterialIcons-Regular.ttf</file>
+        <file>Resources/images/home-background.png</file>
+        <file>Resources/icons/mellowplayer.ico</file>
+        <file>Resources/icons/mellowplayer.png</file>
+        <file>Resources/icons/mellowplayer.svg</file>
+        <file>Resources/fonts/Roboto/Roboto-Black.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-BlackItalic.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Bold.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-BoldItalic.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Italic.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Light.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-LightItalic.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Medium.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-MediumItalic.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-Thin.ttf</file>
+        <file>Resources/fonts/Roboto/Roboto-ThinItalic.ttf</file>
+        <file>Resources/icons/application-exit.png</file>
+        <file>Resources/icons/media-playback-start.png</file>
+        <file>Resources/icons/media-playback-pause.png</file>
+        <file>Resources/icons/media-seek-backward.png</file>
+        <file>Resources/icons/media-seek-forward.png</file>
+        <file>Resources/icons/view-restore.png</file>
+        <file>Views/main.qml</file>
+        <file>Views/MellowPlayer/qmldir</file>
+        <file>Views/MellowPlayer/ApplicationRoot.qml</file>
+        <file>Views/MellowPlayer/MainPage.qml</file>
+        <file>Views/MellowPlayer/MainWindow.qml</file>
+        <file>Views/MellowPlayer/MaterialIcons.qml</file>
+        <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
+        <file>Views/MellowPlayer/Controls/MainToolBar.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistoryDrawer.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistoryListView.qml</file>
+        <file>Views/MellowPlayer/Controls/ServicesOverview.qml</file>
+        <file>Views/MellowPlayer/Controls/Tooltip.qml</file>
+        <file>Views/MellowPlayer/Controls/WebView.qml</file>
+        <file>Views/MellowPlayer/Controls/WebViewStack.qml</file>
+        <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
     </qresource>
 </RCC>

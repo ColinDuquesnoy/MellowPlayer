@@ -1,4 +1,0 @@
-add_subdirectory(MellowPlayer/Entities)
-add_subdirectory(MellowPlayer/UseCases)
-add_subdirectory(MellowPlayer/Infrastructure)
-add_subdirectory(MellowPlayer/Presentation)
