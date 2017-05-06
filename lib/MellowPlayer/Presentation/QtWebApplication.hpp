@@ -7,7 +7,7 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class QtWebApplication: public UseCases::IQtApplication, QApplication {
+class QtWebApplication: public UseCases::IQtApplication, public QApplication {
 public:
     QtWebApplication(int &argc, char **argv);
 

@@ -36,6 +36,7 @@ private:
     std::unique_ptr<QObject> parent;
     QObject* mpris2Root;
     QObject* mpris2Player;
+    QString serviceName;
 };
 
 END_MELLOWPLAYER_NAMESPACE

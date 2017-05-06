@@ -22,7 +22,7 @@ SingleInstanceApplication::SingleInstanceApplication(IApplication& application):
 int SingleInstanceApplication::run() {
     LOG_TRACE(logger, "run");
     LOG_DEBUG(logger, "starting, connecting to local server");
-    localSocket.connectToServer("MellowPlayer3", QIODevice::WriteOnly);
+    localSocket.connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
     return application.run();
 }
 
@@ -33,7 +33,7 @@ void SingleInstanceApplication::onSocketConnected() {
 
 void SingleInstanceApplication::onSocketError() {
     LOG_DEBUG(logger, "initializaing");
-    localServer.listen("MellowPlayer3");
+    localServer.listen(qApp->applicationName());
     connectSignalHandlers();
     application.initialize();
 }

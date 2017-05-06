@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(presentation);
 #endif
     QtWebApplication webApplication(argc, argv);
+    webApplication.setApplicationName("MellowPlayer3.Tests");
 
     QSettings settings;
     settings.clear();
