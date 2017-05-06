@@ -51,6 +51,8 @@ stages:
     - linux
   before_script:
     - ./scripts/env-setup/linux/ubuntu-16.04-env-setup.sh
+    - export DISPLAY=:99
+    - Xvfb :99 -ac &
   variables:
     CMAKE_PREFIX_PATH: "/opt/qt57"
 
