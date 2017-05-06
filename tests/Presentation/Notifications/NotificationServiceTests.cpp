@@ -17,11 +17,10 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     Mock<LocalAlbumArtService> localAlbumArtServiceSpy(service);
     PlayerProxy& player = injector.create<PlayerProxy&>();
     Mock<PlayerProxy> playerSpy(player);
-    INotificationPresenter& notificationPresenter = injector.create<INotificationPresenter&>();
     PluginService& pluginService = injector.create<PluginService&>();
     IApplicationSettings& appSettings = injector.create<IApplicationSettings&>();
-    NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(), notificationPresenter,
-                                            pluginService, appSettings);
+    NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
+                                            notificationPresenterMock.get(), pluginService, appSettings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
     appSettings.enableNotificationType(NotificationType::Song, true);
