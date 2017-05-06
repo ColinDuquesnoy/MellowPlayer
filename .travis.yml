@@ -1,0 +1,27 @@
+language: cpp
+compiler: gcc
+sudo: require
+dist: trusty
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-5
+            - gcc-5
+   
+install: 
+    - ./scripts/env-setup/linux/ubuntu-14.04-env-setup.sh
+    - source /opt/qt*/bin/qt*-env.sh
+    - export CXX="g++-5" CC="gcc-5";
+    
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+script:
+  - ./scripts/build/linux/build.sh --debug --coverage
+  - ./scripts/build/linux/runtests.sh --debug --coverage
+
