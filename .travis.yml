@@ -12,7 +12,7 @@ addons:
             - gcc-5
    
 install: 
-    - ./scripts/env-setup/linux/ubuntu-14.04-env-setup.sh
+    - sudo ./scripts/env-setup/linux/ubuntu-14.04-env-setup.sh
     - source /opt/qt*/bin/qt*-env.sh
     - export CXX="g++-5" CC="gcc-5";
     
