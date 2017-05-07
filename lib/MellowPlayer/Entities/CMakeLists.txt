@@ -12,4 +12,4 @@ else()
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 endif()
-qt5_use_modules(${LIB_NAME} Core)
+qt5_use_modules(${LIB_NAME} Core Gui)
