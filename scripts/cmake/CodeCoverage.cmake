@@ -124,6 +124,8 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
 
     IF(NOT LCOV_PATH)
         MESSAGE(FATAL_ERROR "lcov not found! Aborting...")
+    ELSE()
+        MESSAGE(STATUS "Found lcov: ${LCOV_PATH}")
     ENDIF() # NOT LCOV_PATH
 
     IF(NOT GENHTML_PATH)
@@ -157,7 +159,7 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
     # Show info where to find the report
     ADD_CUSTOM_COMMAND(TARGET ${_targetname} POST_BUILD
             COMMAND ;
-            COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
+            COMMENT "Open ${CMAKE_BINARY_DIR}}/${_outputname}/index.html in your browser to view the coverage report."
             )
 
 ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE

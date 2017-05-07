@@ -13,8 +13,9 @@ include(scripts/cmake/Config.cmake)
 
 # Options
 set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release).")
-set_option(BUILD_TESTS TRUE BOOL "TRUE to build the tests, FALSE to ignore them.")
+set_option(BUILD_TESTS True BOOL "TRUE to build the tests, FALSE to ignore them.")
 set_option(ENABLE_COVERAGE FALSE BOOL "True to build code coverage targerts")
+set_option(ENABLE_LCOV_REPORT FALSE BOOL "True to enable lcov coverage report. Default is False.")
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)
@@ -42,4 +43,8 @@ install(DIRECTORY share/icons DESTINATION share)
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "Build tests: ${BUILD_TESTS}")
+message(STATUS "Testing enabled: ${BUILD_TESTS}")
+message(STATUS "Code coverage enabled: ${ENABLE_COVERAGE}")
+if (ENABLE_COVERAGE)
+    message(STATUS "Generate lcov code coverage report: ${ENABLE_LCOV_REPORT}")
+endif()

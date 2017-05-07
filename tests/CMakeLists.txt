@@ -27,3 +27,7 @@ add_mellowplayer_test("IntegrationTests")
 if (UNIX AND NOT APPLE)
     add_mellowplayer_test("MprisTests")
 endif()
+
+if(${ENABLE_COVERAGE} AND ${ENABLE_LCOV_REPORT})
+    setup_target_for_coverage(coverage "ctest" coverage)
+endif()
