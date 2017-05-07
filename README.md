@@ -4,7 +4,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/f65ajgawyxnxjs2a?svg=true)](https://ci.appveyor.com/project/ColinDuquesnoy/mellowplayer)
 [![Coverage Status](https://coveralls.io/repos/github/ColinDuquesnoy/MellowPlayer/badge.svg?branch=feature%2Ftravis-ci-setup)](https://coveralls.io/github/ColinDuquesnoy/MellowPlayer?branch=feature%2Ftravis-ci-setup)
 [![Latest stable release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
-
 [![Stories in progress](https://img.shields.io/waffle/label/ColinDuquesnoy/MellowPlayer/ready.svg)](http://waffle.io/ColinDuquesnoy/MellowPlayer)
 [![Stories in progress](https://img.shields.io/waffle/label/ColinDuquesnoy/MellowPlayer/in%20progress.svg)](http://waffle.io/ColinDuquesnoy/MellowPlayer)
 
