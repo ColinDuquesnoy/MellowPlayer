@@ -1,11 +1,21 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(MellowPlayer VERSION 3.0.0)
+set(BUILD_NUMBER $ENV{TRAVIS_BUILD_NUMBER})
+if (NOT BUILD_NUMBER)
+    set(BUILD_NUMBER $ENV{APPVEYOR_BUILD_NUMBER})
+    if (NOT BUILD_NUMBER)
+        # use zero for local builds.
+        set(BUILD_NUMBER 0)
+    endif()
+endif()
+
+project(MellowPlayer VERSION 3.0.0.${BUILD_NUMBER})
 
 add_definitions(-DMELLOWPLAYER_VERSION="${MellowPlayer_VERSION}")
 add_definitions(-DMELLOWPLAYER_VERSION_MAJOR="${MellowPlayer_VERSION_MAJOR}")
 add_definitions(-DMELLOWPLAYER_VERSION_MINOR="${MellowPlayer_VERSION_MINOR}")
 add_definitions(-DMELLOWPLAYER_VERSION_PATCH="${MellowPlayer_VERSION_PATCH}")
+add_definitions(-DMELLOWPLAYER_VERSION_TWEAK="${MellowPlayer_VERSION_TWEAK}")
 add_definitions(-DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 include(scripts/cmake/Macros.cmake)
