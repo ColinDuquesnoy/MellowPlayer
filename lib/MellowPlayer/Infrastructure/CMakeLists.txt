@@ -1,3 +1,5 @@
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/Macros.cmake)
+
 set(LIB_NAME "${PROJECT_NAME}.Infrastructure")
 
 file(GLOB SOURCE_FILES *.cpp)
@@ -46,8 +48,9 @@ if(WIN32)
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.UseCases)
-    if(APPLE)
-        target_link_libraries(${LIB_NAME} ${CoreFoundation_LIBRARIES})
+    if (APPLE)
+        add_framework(Carbon ${LIB_NAME})
+        add_framework(Cocoa ${LIB_NAME})
     endif()
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
