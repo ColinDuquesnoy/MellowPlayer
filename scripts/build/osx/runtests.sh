@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -e
 build_type="Release"
 build_dir="cmake-build-release"
 
