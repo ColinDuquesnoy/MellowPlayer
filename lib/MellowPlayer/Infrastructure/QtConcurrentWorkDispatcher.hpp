@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QMutex>
 #include <MellowPlayer/UseCases/IWorkDispatcher.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
