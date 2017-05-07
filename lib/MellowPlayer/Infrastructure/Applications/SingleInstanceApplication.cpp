@@ -48,7 +48,7 @@ void SingleInstanceApplication::connectSignalHandlers()
 #ifdef Q_OS_UNIX
     auto handler = [](int sig) ->void {
         printf("\nquit the application (user request signal = %d).\n", sig);
-        QFile::remove("/tmp/MellowPlayer");
+        QFile::remove("/tmp/" + qApp->applicationName());
         QCoreApplication::quit();
     };
     QList<int> unix_signals = {SIGKILL, SIGTERM, SIGQUIT, SIGINT};
