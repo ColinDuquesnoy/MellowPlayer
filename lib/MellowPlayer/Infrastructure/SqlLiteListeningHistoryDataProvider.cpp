@@ -22,7 +22,7 @@ SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider() {
 
 bool SqlLiteListeningHistoryDataProvider::openDatabase() {
     std::stringstream stream;
-    auto path = FileHelper::appDataDirectory() + "history.db";
+    auto path = getDatabasePath();
     LOG_DEBUG(logger, "opening listening history db: " + path)
     database.setDatabaseName(path);
     if (!database.open()) {
@@ -105,8 +105,6 @@ void SqlLiteListeningHistoryDataProvider::initDatabase() {
                       "artUrl TEXT, serviceName TEXT, time TEXT);");
         if (!query.exec())
             LOG_WARN(logger, "failed to create song table: " + query.lastError().text());
-    } else {
-        LOG_DEBUG(logger, "database already created");
     }
 }
 
@@ -114,4 +112,8 @@ void SqlLiteListeningHistoryDataProvider::initialize() {
     database = QSqlDatabase::addDatabase("QSQLITE");
     if (openDatabase())
         initDatabase();
+}
+
+QString SqlLiteListeningHistoryDataProvider::getDatabasePath() {
+    return FileHelper::appDataDirectory() + "history.db";
 }

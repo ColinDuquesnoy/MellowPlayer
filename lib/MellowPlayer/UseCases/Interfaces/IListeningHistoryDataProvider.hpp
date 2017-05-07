@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QList>
+#include <QString>
 #include <MellowPlayer/Macros.hpp>
 
 PREDECLARE_MELLOWPLAYER_STRUCT(Entities, ListeningHistoryEntry)

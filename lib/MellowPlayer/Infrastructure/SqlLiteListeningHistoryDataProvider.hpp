@@ -19,6 +19,8 @@ public:
     void remove(const QString& filterKey, const QString& filterValue) override;
     QList<Entities::ListeningHistoryEntry> getAll() const override;
 
+    static QString getDatabasePath();
+
 private:
     bool openDatabase();
     void initDatabase();
