@@ -14,7 +14,7 @@ public:
     AlbumArtDownloader();
 
     bool download(const QString& artUrl, const QString& songId) override;
-    QFileInfo getLocalArtUrl(const QString &songId);
+    QFileInfo getLocalArtUrl(const QString &songId) override;
 
 private slots:
     void onDownloadFinished(QNetworkReply* reply);
