@@ -11,7 +11,7 @@ bool isNullIcon(QIcon icon) {
     return icon.pixmap(64, 64).isNull();
 }
 
-TEST_CASE("IconProviderTests", "[IntegrationTest]") {
+TEST_CASE("IconProviderTests") {
     SECTION("windowIcon") { REQUIRE(!isNullIcon(IconProvider::windowIcon())); }
     SECTION("restoreWindow") { REQUIRE(!isNullIcon(IconProvider::restoreWindow())); }
     SECTION("play") { REQUIRE(!isNullIcon(IconProvider::play())); }

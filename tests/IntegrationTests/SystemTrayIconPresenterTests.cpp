@@ -7,7 +7,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("SystemTrayIconPresenterTests", "[IntegrationTest]") {
+TEST_CASE("SystemTrayIconPresenterTests") {
     auto systemTrayIconMock = SystemTrayIconMock::get();
     SystemTrayIconPresenter presenter(systemTrayIconMock.get());
     presenter.initialize();

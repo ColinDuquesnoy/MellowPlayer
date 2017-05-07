@@ -6,7 +6,7 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("SingleInstanceApplication", "[IntegrationTest]") {
+TEST_CASE("SingleInstanceApplication") {
     auto appMock1 = ApplicationMock::get();
     SingleInstanceApplication instance1(appMock1.get());
 

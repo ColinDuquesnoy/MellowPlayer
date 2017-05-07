@@ -8,7 +8,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 
-TEST_CASE("PluginLoaderTests", "[IntegrationTest]") {
+TEST_CASE("PluginLoaderTests") {
     PluginLoader pluginLoader;
 
     SECTION("load") {

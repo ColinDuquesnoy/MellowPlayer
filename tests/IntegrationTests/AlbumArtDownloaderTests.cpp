@@ -4,7 +4,7 @@
 #include <iostream>
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("AlbumArtDownloaderTests", "[IntegrationTest]") {
+TEST_CASE("AlbumArtDownloaderTests") {
     AlbumArtDownloader albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
 

@@ -7,7 +7,7 @@
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-TEST_CASE("SystemTrayIconTests", "[IntegrationTest]") {
+TEST_CASE("SystemTrayIconTests") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
