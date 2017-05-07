@@ -36,3 +36,8 @@ else()
         message(STATUS "snorenotify not found, system tray icon based notifications will be enabled")
     endif()
 endif()
+
+
+IF (APPLE)
+    FIND_LIBRARY(COREFOUNDATION_LIBRARY CoreFoundation)
+ENDIF (APPLE)

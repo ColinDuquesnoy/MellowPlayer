@@ -46,6 +46,9 @@ if(WIN32)
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.UseCases)
+    if(APPLE)
+        target_link_libraries(${LIB_NAME} ${CoreFoundation_LIBRARIES})
+    endif()
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib
