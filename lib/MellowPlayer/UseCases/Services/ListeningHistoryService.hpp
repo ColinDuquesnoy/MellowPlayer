@@ -22,6 +22,7 @@ public:
 
     void initialize();
     const QList<Entities::ListeningHistoryEntry>& getEntries() const;
+    int count() const ;
     void clear();
     void removeById(int entryId);
     void removeByService(const QString& serviceName);
@@ -36,6 +37,8 @@ private slots:
     void onCurrentSongChanged(Entities::Song* song);
 
 private:
+    void updateRemovedEntries();
+
     ILogger& logger;
     IListeningHistoryDataProvider& dataProvider;
     IPlayer& player;

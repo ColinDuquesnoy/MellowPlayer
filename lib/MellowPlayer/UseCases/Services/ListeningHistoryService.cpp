@@ -40,6 +40,10 @@ const QList<ListeningHistoryEntry>& ListeningHistoryService::getEntries() const 
     return entries;
 }
 
+int ListeningHistoryService::count() const {
+    return getEntries().count();
+}
+
 void ListeningHistoryService::clear() {
     workDispatcher.invoke([=]() mutable {
         dataProvider.clear();
@@ -51,26 +55,27 @@ void ListeningHistoryService::clear() {
 void ListeningHistoryService::removeById(int entryId) {
     workDispatcher.invoke([=]() mutable {
         dataProvider.remove("id", QString("%1").arg(entryId));
-        auto entry = entries.toSet().subtract(dataProvider.getAll().toSet()).toList().first();
-        int index = entries.indexOf(entry);
-        entries.removeAt(index);
-        emit entryRemoved(index);
+        updateRemovedEntries();
     });
 }
 
 void ListeningHistoryService::removeByService(const QString& serviceName) {
     workDispatcher.invoke([=]() mutable {
         dataProvider.remove("serviceName", serviceName);
-
-        for (auto entry: entries.toSet().subtract(dataProvider.getAll().toSet()).toList()) {
-            int index = entries.indexOf(entry);
-            entries.removeAt(index);
-            emit entryRemoved(index);
-        }
+        updateRemovedEntries();
     });
 }
 
 void ListeningHistoryService::initialize() {
     dataProvider.initialize();
     entries = this->dataProvider.getAll();
+}
+
+void ListeningHistoryService::updateRemovedEntries() {
+    auto removedEntries = entries.toSet().subtract(dataProvider.getAll().toSet()).toList();
+    for (auto entry: removedEntries) {
+        int index = entries.indexOf(entry);
+        entries.removeAt(index);
+        emit entryRemoved(index);
+    }
 }
