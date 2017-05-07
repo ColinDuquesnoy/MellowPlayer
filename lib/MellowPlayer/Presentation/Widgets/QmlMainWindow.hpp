@@ -31,7 +31,7 @@ public:
 private:
     QmlMainWindow(const QmlMainWindow&) = delete;
     QmlMainWindow operator=(const QmlMainWindow&) = delete;
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
 
     QQuickWindow* window;
     UseCases::ILogger& logger;
