@@ -8,7 +8,7 @@ import MellowPlayer 3.0
 Rectangle {
    id: root
 
-   property bool collapsed: false
+   property bool collapsed: listView.collapsedSections[section]
 
    height: 64
    color: style.background

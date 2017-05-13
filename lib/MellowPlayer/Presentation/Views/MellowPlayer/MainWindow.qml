@@ -21,14 +21,6 @@ ApplicationWindow {
     Material.primary: style.primary
     Material.theme: style.theme == "light" ? Material.Light : Material.Dark
 
-    overlay.modal: Rectangle {
-        color: "#Af" + style.primary.replace("#", "")
-    }
-
-    overlay.modeless: Rectangle {
-        color: "#2f" + style.primary.replace("#", "")
-    }
-
     MainPage { anchors.fill: parent }
 
     ListeningHistoryDrawer { id: listeningHistoryDrawer }

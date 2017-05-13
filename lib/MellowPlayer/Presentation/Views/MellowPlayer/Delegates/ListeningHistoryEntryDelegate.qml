@@ -93,7 +93,9 @@ Frame {
     Pane {
         id: controlPane
 
-        anchors.fill: parent
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         opacity: 0.9
         visible: false
 

@@ -7,30 +7,38 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistoryService& listeningHistory):
-        listeningHistory(listeningHistory), model(new QQmlObjectListModel<ListeningHistoryEntryModel>(this) ) {
+        listeningHistoryService(listeningHistory),
+        sourceListModel(new QQmlObjectListModel<ListeningHistoryEntryModel>(this)),
+        proxyListModel(sourceListModel) {
     connect(&listeningHistory, &ListeningHistoryService::entryAdded, this, &ListeningHistoryViewModel::onEntryAdded);
     connect(&listeningHistory, &ListeningHistoryService::entryRemoved, this, &ListeningHistoryViewModel::onEntryRemoved);
     connect(&listeningHistory, &ListeningHistoryService::entriesCleared, this, &ListeningHistoryViewModel::onEntriesCleared);
+
+    proxyListModel.setSourceModel(sourceListModel);
 }
 
-QAbstractListModel* ListeningHistoryViewModel::getModel() {
-    return model;
+QAbstractItemModel* ListeningHistoryViewModel::getModel() {
+    return &proxyListModel;
 }
 
 void ListeningHistoryViewModel::onEntryAdded(const ListeningHistoryEntry& entry) {
-    model->prepend(new ListeningHistoryEntryModel(entry, this));
+    sourceListModel->prepend(new ListeningHistoryEntryModel(entry, this));
 }
 
 void ListeningHistoryViewModel::onEntryRemoved(int index) {
-    model->remove(index);
+    sourceListModel->remove(index);
 }
 
 void ListeningHistoryViewModel::onEntriesCleared() {
-    model->clear();
+    sourceListModel->clear();
 }
 
 void ListeningHistoryViewModel::initialize() {
-    listeningHistory.initialize();
-    for(auto entry: listeningHistory.getEntries())
+    listeningHistoryService.initialize();
+    for(auto entry: listeningHistoryService.getEntries())
         onEntryAdded(entry);
+}
+
+void ListeningHistoryViewModel::disableService(const QString &serviceName, bool disable) {
+    proxyListModel.disableService(serviceName, disable);
 }

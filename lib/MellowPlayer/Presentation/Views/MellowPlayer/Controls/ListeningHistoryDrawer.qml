@@ -7,10 +7,19 @@ import MellowPlayer 3.0
 
 Drawer {
     id: listeningHistoryDrawer
+
+    property bool filtering: false
+
     dragMargin: 0
     edge: Qt.RightEdge
     height: mainWindow.height; width: 450
     clip: true
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.ArrowCursor
+    }
 
     Page {
         anchors.fill: parent
@@ -81,6 +90,11 @@ Drawer {
                     Layout.minimumHeight: 0
                     Material.elevation: 2
 
+                    Connections {
+                        target: listeningHistoryDrawer
+                        onPositionChanged: if (position == 0) btSearch.checked = false
+                    }
+
                     ColumnLayout {
                         anchors.fill: parent
 
@@ -111,6 +125,11 @@ Drawer {
                                     flat: true
                                     checkable: true; checked: true
                                     text: model.name
+
+                                    onCheckedChanged: {
+
+                                        listeningHistory.disableService(model.name, !checked)
+                                    }
                                 }
                             }
                         }
@@ -179,21 +198,14 @@ Drawer {
 
                         ListeningHistoryListView {
                             id: listeningHistoryListView
+                            filtersEnabled: searchPane.state == "closed"
 
                             Layout.fillHeight: true
                             Layout.fillWidth: true
                         }
-
-                        Item {
-                            id: scrollArea
-
-                            Layout.preferredWidth: 8
-                            Layout.fillHeight: true
-                        }
                     }
-
                 }
             }
         }
-    } 
+    }
 }
