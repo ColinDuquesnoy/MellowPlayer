@@ -43,7 +43,6 @@ Drawer {
                     onClicked: listeningHistoryDrawer.close()
 
                     Tooltip {
-                        y: toolBarListeningHistoru.implicitHeight
                         text: qsTr("Back")
                     }
                 }
@@ -58,7 +57,7 @@ Drawer {
                     checked: false
                     text: MaterialIcons.icon_search
                     font { family: MaterialIcons.family; pixelSize: 22 }
-                    Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+                    hoverEnabled: true
 
                     onCheckedChanged: {
                         if (checked) {
@@ -71,6 +70,12 @@ Drawer {
                             searchPane.state = "closed"
                             disableListViewFiltersTimer.running = true;
                         }
+                    }
+
+                    Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+
+                    Tooltip {
+                        text: qsTr("Search/filter")
                     }
 
                     Timer {
@@ -115,7 +120,7 @@ Drawer {
                             id: searchField
 
                             focus: true
-                            placeholderText: qsTr("Search")
+                            placeholderText: qsTr("Search by title or by artist")
                             onEnabledChanged: {
                                 if (enabled) {
                                     focus = true;
@@ -124,6 +129,10 @@ Drawer {
                             }
                             selectByMouse: true
                             onTextChanged: listeningHistory.setSearchFilter(text)
+
+                            Tooltip {
+                                text: qsTr("Filter song by title or by artist")
+                            }
 
                             Layout.fillWidth: true
                         }
@@ -143,9 +152,14 @@ Drawer {
 
                                     flat: true
                                     checkable: true; checked: true
+                                    hoverEnabled: true
                                     text: model.name
                                     onCheckedChanged: {
                                         listeningHistory.disableService(model.name, !checked)
+                                    }
+
+                                    Tooltip {
+                                        text: filter.checked ? qsTr("Click to remove songs from")  + model.name : qsTr("Click to add songs from ") + model.name
                                     }
 
                                     Connections {
@@ -274,6 +288,11 @@ Drawer {
                                 Button {
                                     text: "Enable listening history"
                                     highlighted: true
+                                    hoverEnabled: true
+
+                                    Tooltip {
+                                        text: qsTr("Click to enable listening history")
+                                    }
 
                                     Layout.fillWidth: true
                                 }

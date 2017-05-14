@@ -7,6 +7,7 @@ ToolTip {
     visible: parent.hovered
     delay: 1000
     timeout: 5000
+    y: parent.implicitHeight
 
     contentItem: Text {
         text: tooltip.text
