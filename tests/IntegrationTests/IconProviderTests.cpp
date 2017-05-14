@@ -1,3 +1,4 @@
+#include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
@@ -15,6 +16,7 @@ TEST_CASE("IconProviderTests") {
     SECTION("windowIcon") { REQUIRE(!isNullIcon(IconProvider::windowIcon())); }
     SECTION("restoreWindow") { REQUIRE(!isNullIcon(IconProvider::restoreWindow())); }
     SECTION("play") { REQUIRE(!isNullIcon(IconProvider::play())); }
+    SECTION("pause") { REQUIRE(!isNullIcon(IconProvider::pause())); }
     SECTION("next") { REQUIRE(!isNullIcon(IconProvider::next())); }
     SECTION("previous") { REQUIRE(!isNullIcon(IconProvider::previous())); }
     SECTION("quit") { REQUIRE(!isNullIcon(IconProvider::quit())); }
@@ -30,11 +32,5 @@ TEST_CASE("IconProviderTests") {
 
         // from file (not an image, should be null)
         REQUIRE(isNullIcon(iconProvider.trayIcon()));
-
-#ifndef Q_OS_LINUX
-        // from theme, should not be null on Linux
-        REQUIRE(isNullIcon(iconProvider.trayIcon()));
-#endif
-
     }
 }

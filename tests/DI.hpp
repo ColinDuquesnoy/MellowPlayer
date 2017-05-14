@@ -34,6 +34,9 @@
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <Mocks/LocalAlbumArtServiceMock.hpp>
+#include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
+#include <Mocks/FakeWorkDispatcher.hpp>
 
 #ifdef USE_SNORENOTIFY
 #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
@@ -105,9 +108,12 @@ static auto qtApplicationMock = QtApplicationMock::get();
 static auto pluginLoaderMock = PluginLoaderMock::get();
 static auto systemTrayIconMock = SystemTrayIconMock::get();
 static auto notificationPresenterMock = NotificationPresenterMock::get();
+static auto localAlbumArtServiceMock = LocalAlbumArtServiceMock::getMockWithUrlOk();
 
 inline auto getTestInjector(ScopedScope& scope) {
     static auto applicationSettingsMock = ApplicationSettingsMock::get();
+    static InMemoryListeningHistoryDataProvider dataProvider;
+    static FakeWorkDispatcher workDispatcher;
 
     return di::make_injector(
         di::bind<IPluginLoader>().to(pluginLoaderMock.get()),
@@ -118,7 +124,10 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<IHotkeysService>().to(hotkeysServiceMock.get()),
         di::bind<IQtApplication>().to(qtApplicationMock.get()),
         di::bind<IApplicationSettings>().to(applicationSettingsMock.get()),
-        di::bind<ISystemTrayIcon>().to(systemTrayIconMock.get())
+        di::bind<ISystemTrayIcon>().to(systemTrayIconMock.get()),
+        di::bind<ILocalAlbumArtService>().to(localAlbumArtServiceMock.get()),
+        di::bind<IListeningHistoryDataProvider>().to(dataProvider),
+        di::bind<IWorkDispatcher>().to(workDispatcher)
     );
 };
 
