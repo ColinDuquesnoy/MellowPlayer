@@ -5,13 +5,14 @@ import QtQuick.Controls.Material 2.0
 
 import MellowPlayer 3.0
 
-Rectangle {
+Pane {
    id: root
 
-   property bool collapsed: listView.collapsedSections[section]
-
    height: 64
-   color: style.background
+   padding: 0
+
+   Material.background: style.background
+   Material.elevation: 2
 
    ColumnLayout {
        anchors.fill: parent
@@ -38,20 +39,7 @@ Rectangle {
                font.pixelSize: 16
                font.family: MaterialIcons.family
                hoverEnabled: true
-
-               Layout.fillHeight: true
-           }
-
-           ToolButton {
-               text: root.collapsed ? MaterialIcons.icon_expand_more : MaterialIcons.icon_expand_less
-               font.pixelSize: 16
-               font.family: MaterialIcons.family
-               hoverEnabled: true
-               onClicked: {
-                   root.collapsed = !root.collapsed;
-                   listView.collapsedSections[section] = root.collapsed;
-                   listView.sectionCollapsedChanged(section, root.collapsed);
-               }
+               onClicked: listeningHistory.removeByDateCategory(section)
 
                Layout.fillHeight: true
            }

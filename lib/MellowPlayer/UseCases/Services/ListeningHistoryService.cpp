@@ -76,6 +76,13 @@ void ListeningHistoryService::updateRemovedEntries() {
     for (auto entry: removedEntries) {
         int index = entries.indexOf(entry);
         entries.removeAt(index);
-        emit entryRemoved(index);
+        emit entryRemoved(entry.id);
     }
+}
+
+void ListeningHistoryService::removeManyById(const QList<int> &ids) {
+    workDispatcher.invoke([=]() mutable {
+        dataProvider.removeMany(ids);
+        updateRemovedEntries();
+    });
 }

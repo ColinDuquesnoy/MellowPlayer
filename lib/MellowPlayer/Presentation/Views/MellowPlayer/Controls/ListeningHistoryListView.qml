@@ -8,72 +8,35 @@ import MellowPlayer 3.0
 ListView {
     id: listView
 
-    property var collapsedSections: { return {
-            "Today": false,
-            "Yesterday": false,
-            "Last week": false,
-            "Last month": false,
-            "Last year": false,
-            "Years ago": false
-        }
-    }
     property bool filtersEnabled
     property real transitionDuration: 200
-    property real noDuration: 1
 
-    signal sectionCollapsedChanged(var sectionName, var sectionIsCollapsed)
-
+    cacheBuffer: 500
     clip: true
-    spacing: 0
     model: listeningHistory.model
     delegate: ListeningHistoryEntryDelegate { width: listView.width; }
     section.criteria: ViewSection.FullString
     section.delegate: ListeningHistorySectionDelegate { width: listView.width; }
-    section.property: filtersEnabled ? "dateCategory" : ""
+    section.property: "dateCategory"
+    section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.NextLabelAtEnd | ViewSection.InlineLabels
 
     add: Transition {
-        id: addTrans
+        enabled: !filtersEnabled
 
         SequentialAnimation {
             NumberAnimation { properties: "x"; duration: 0; from: 0; to: 950 }
-            PauseAnimation { duration: filtersEnabled ? listView.transitionDuration / 2 : listView.noDuration }
-            NumberAnimation { properties: "x"; duration: filtersEnabled ? listView.transitionDuration : listView.noDuration ; from: 950; to: 0 }
+            PauseAnimation { duration: listView.transitionDuration / 2 }
+            NumberAnimation { properties: "x"; duration: listView.transitionDuration ; from: 950; to: 0; easing.type: Easing.InOutQuad }
         }
     }
     addDisplaced: Transition {
-        id: addDispTrans
+        enabled: !filtersEnabled
 
-        NumberAnimation { properties: "x, y"; duration: filtersEnabled ? listView.transitionDuration : listView.noDuration }
+        NumberAnimation { properties: "x,y"; duration: listView.transitionDuration; easing.type: Easing.InOutQuad }
     }
 
-    remove: Transition {
-        id: rmTrans
-
-        NumberAnimation { properties: "x"; duration: filtersEnabled ? listView.transitionDuration : listView.noDuration ; from: 0; to: 950 }
-    }
-    removeDisplaced: Transition {
-        id: rmDispTrans
-
-        SequentialAnimation {
-            PauseAnimation { duration: filtersEnabled ? listView.transitionDuration / 2 : listView.noDuration }
-            NumberAnimation { properties: "x, y"; duration: filtersEnabled ? listView.transitionDuration : listView.noDuration }
-        }
-    }
-
-    ScrollBar.vertical: ScrollBar {
-        id: scrollBar
-
+    ScrollBar.vertical: DesktopScrollBar {
+        anchors { top: listView.top; left: listView.right; bottom: listView.bottom }
         parent: listView.parent
-        anchors { top: listView.top; left: listView.right; bottom: listView.bottom; margins: 2 }
-        hoverEnabled: true
-
-        Timer {
-            interval: 1
-            repeat: Animation.Infinite
-            running: true
-            onTriggered: scrollBar.active = true;
-        }
     }
 }
-
-

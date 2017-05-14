@@ -61,10 +61,23 @@ Drawer {
                     Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
 
                     onCheckedChanged: {
-                        if (checked)
+                        if (checked) {
+                            listeningHistoryListView.filtersEnabled = true;
                             searchPane.state = "open"
-                        else
+                        }
+                        else {
+                            searchField.text = ""
+                            filters.enabled = false;
                             searchPane.state = "closed"
+                            disableListViewFiltersTimer.running = true;
+                        }
+                    }
+
+                    Timer {
+                        id: disableListViewFiltersTimer
+
+                        interval: 200
+                        onTriggered: listeningHistoryListView.filtersEnabled = false;
                     }
                 }
             }
@@ -101,6 +114,7 @@ Drawer {
                         TextField {
                             id: searchField
 
+                            focus: true
                             placeholderText: qsTr("Search")
                             onEnabledChanged: {
                                 if (enabled) {
@@ -108,6 +122,9 @@ Drawer {
                                     forceActiveFocus();
                                 }
                             }
+                            selectByMouse: true
+                            onTextChanged: listeningHistory.setSearchFilter(text)
+
                             Layout.fillWidth: true
                         }
 
@@ -122,13 +139,18 @@ Drawer {
                                 model: streamingServices.model
 
                                 Button {
+                                    id: filter
+
                                     flat: true
                                     checkable: true; checked: true
                                     text: model.name
-
                                     onCheckedChanged: {
-
                                         listeningHistory.disableService(model.name, !checked)
+                                    }
+
+                                    Connections {
+                                        target: filters
+                                        onEnabledChanged: filter.checked = true;
                                     }
                                 }
                             }
@@ -194,11 +216,12 @@ Drawer {
                     Layout.fillWidth: true
 
                     RowLayout {
+                        id: listViewLayout
+
                         anchors.fill: parent
 
                         ListeningHistoryListView {
                             id: listeningHistoryListView
-                            filtersEnabled: searchPane.state == "closed"
 
                             Layout.fillHeight: true
                             Layout.fillWidth: true

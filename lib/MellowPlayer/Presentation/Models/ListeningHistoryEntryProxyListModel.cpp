@@ -19,7 +19,7 @@ void ListeningHistoryEntryProxyListModel::disableService(const QString &serviceN
 }
 
 void ListeningHistoryEntryProxyListModel::setSearchFilter(const QString &newSearchFilter) {
-    searchFilter = newSearchFilter;
+    searchFilter = newSearchFilter.toLower();
     invalidateFilter();
 }
 
@@ -30,5 +30,5 @@ bool ListeningHistoryEntryProxyListModel::filterAcceptsRow(int sourceRow, const 
     if (searchFilter.isEmpty())
         return true;
     else
-        return !entry->getTitle().contains(searchFilter) && !entry->getArtist().contains(searchFilter);
+        return entry->getTitle().toLower().contains(searchFilter) || entry->getArtist().toLower().contains(searchFilter);
 }

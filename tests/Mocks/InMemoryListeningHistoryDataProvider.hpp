@@ -33,6 +33,12 @@ public:
             entries.removeOne(entry);
     };
 
+    void removeMany(const QList<int>& items) {
+        for(int id: items) {
+            remove("id", QString::number(id));
+        }
+    }
+
     QList<MellowPlayer::Entities::ListeningHistoryEntry> getAll() const {
         return entries;
     };

@@ -26,10 +26,11 @@ public:
     void clear();
     void removeById(int entryId);
     void removeByService(const QString& serviceName);
+    void removeManyById(const QList<int> &ids);
 
 signals:
     void entryAdded(const Entities::ListeningHistoryEntry& entry);
-    void entryRemoved(int i);
+    void entryRemoved(int entryId);
     void entriesCleared();
 
 private slots:

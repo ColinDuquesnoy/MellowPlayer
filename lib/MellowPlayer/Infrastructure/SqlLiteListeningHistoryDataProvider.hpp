@@ -17,6 +17,7 @@ public:
     int add(const Entities::ListeningHistoryEntry& entry) override;
     void clear() override;
     void remove(const QString& filterKey, const QString& filterValue) override;
+    void removeMany(const QList<int>& identifiers) override;
     QList<Entities::ListeningHistoryEntry> getAll() const override;
 
     static QString getDatabasePath();

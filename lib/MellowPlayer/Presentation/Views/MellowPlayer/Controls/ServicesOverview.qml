@@ -42,14 +42,10 @@ Item {
                 height: parent.height
                 clip: true
 
-                ScrollBar.vertical: ScrollBar {
+                ScrollBar.vertical: DesktopScrollBar {
+                    anchors { top: servicesGridView.top; left: servicesGridView.right; bottom: servicesGridView.bottom }
                     parent: servicesGridView.parent
-                    anchors.top: servicesGridView.top
-                    anchors.left: servicesGridView.right
-                    anchors.bottom: servicesGridView.bottom
-                    active: hovered
-                    hoverEnabled: true
-
+                    visible: active
                 }
 
                 cellWidth: servicesGridView.width / 3

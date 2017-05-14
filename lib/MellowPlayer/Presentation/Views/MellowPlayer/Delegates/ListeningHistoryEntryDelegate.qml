@@ -10,6 +10,8 @@ Frame {
 
     property string section: ListView.section
 
+    height: 72
+
     background: Rectangle {
         color: "transparent"
         visible: index != listView.count - 1
@@ -35,14 +37,6 @@ Frame {
         }
     }
 
-    Connections {
-        target: listView
-        onSectionCollapsedChanged: {
-            if (sectionName === model.dateCategory)
-                state = sectionIsCollapsed ? "collapsed" : "visible";
-        }
-    }
-
     Timer {
         id: delayTimer
         interval: 400
@@ -55,11 +49,9 @@ Frame {
         RowLayout {
             anchors.fill: parent
             spacing: 8
-            visible: root.state == "visible"
 
             Image {
                 source: model.artUrl
-                visible: root.state == "visible"
 
                 Layout.preferredHeight: 48
                 Layout.preferredWidth: 48
@@ -67,7 +59,6 @@ Frame {
 
             Label {
                 text: "<b>" + model.title + "</b><br><i>by " + model.artist + "<br>on " + model.service + "</i>"
-                visible: root.state == "visible"
 
                 Layout.fillHeight: true
             }
@@ -79,13 +70,12 @@ Frame {
             Label {
                 text: {
                     if (model.dateCategory === qsTr("Today") || model.dateCategory === qsTr("Yesterday"))
-                        return model.time
+                        return model.dateCategory + "\n" + model.time
                     else
                         return model.date + "\n" + model.time
                 }
                 verticalAlignment: "AlignVCenter"
                 horizontalAlignment:"AlignRight"
-                visible: root.state == "visible"
             }
         }
     }
@@ -109,6 +99,8 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_delete
                 font { family: MaterialIcons.family; pixelSize: 16 }
+                onClicked: listeningHistory.removeById(model.entryId)
+
                 Layout.fillHeight: true
             }
 
@@ -117,6 +109,7 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_content_copy
                 font { family: MaterialIcons.family; pixelSize: 16 }
+
                 Layout.fillHeight: true
             }
 
@@ -125,39 +118,15 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_play_arrow
                 font { family: MaterialIcons.family; pixelSize: 16 }
+
                 Layout.fillHeight: true
             }
         }
     }
 
-    state: "visible"
-    states: [
-        State {
-            name: "visible"
-
-            PropertyChanges {
-                target: root
-                visible: true
-                height: 72
-            }
-        },
-        State {
-            name: "collapsed"
-
-            PropertyChanges {
-                target: root
-                visible: false
-                height: 0
-            }
-        }
-    ]
-
-    Component.onCompleted: {
-        var collapsed = listView.collapsedSections[model.dateCategory];
-        var isVisible = collapsed === undefined || !collapsed;
-        if (!isVisible)
-            state = "collapsed";
-        else
-            state = "visible";
+    ListView.onRemove: SequentialAnimation {
+        PropertyAction { target: root; property: "ListView.delayRemove"; value: true }
+        NumberAnimation { target: root; property: "x"; to: 950; duration: listView.filtersEnabled ? 0 : listView.transitionDuration * 3 ; easing.type: Easing.InOutQuad }
+        PropertyAction { target: root; property: "ListView.delayRemove"; value: false }
     }
 }

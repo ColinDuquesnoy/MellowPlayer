@@ -6,6 +6,7 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class ListeningHistoryEntryModel: public QObject {
+    Q_PROPERTY(int entryId READ getEntryId CONSTANT)
     Q_PROPERTY(QString songId READ getSongId CONSTANT)
     Q_PROPERTY(QString title READ getTitle CONSTANT)
     Q_PROPERTY(QString artist READ getArtist CONSTANT)
@@ -18,6 +19,7 @@ class ListeningHistoryEntryModel: public QObject {
 public:
     ListeningHistoryEntryModel(const Entities::ListeningHistoryEntry& entry, QObject* parent = nullptr);
 
+    int getEntryId() const { return entry.id; }
     QString getSongId() const;
     QString getTitle() const;
     QString getArtist() const;

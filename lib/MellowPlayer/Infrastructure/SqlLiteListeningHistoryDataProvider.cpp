@@ -60,10 +60,23 @@ void SqlLiteListeningHistoryDataProvider::clear() {
 
 void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const QString& filterValue) {
     QSqlQuery query;
-    query.prepare(QString("DELETE FROM song WHERE %1= (:%1)").arg(filterKey));
+    query.prepare(QString("DELETE FROM song WHERE %1=(:%1)").arg(filterKey));
     query.bindValue(QString(":%1").arg(filterKey), filterValue);
 
     if (!query.exec())
+        LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
+}
+
+void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifiers) {
+    QStringList idStrings;
+    foreach(int id, identifiers)
+        idStrings << QString::number(id);
+    QString numberList = idStrings.join(",");
+
+    QSqlQuery query;
+    QString queryString = QString("DELETE FROM song WHERE id IN (%1)").arg(numberList);
+
+    if (!query.exec(queryString))
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
