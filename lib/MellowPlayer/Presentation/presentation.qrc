@@ -44,5 +44,7 @@
         <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
         <file>Views/MellowPlayer/Controls/DesktopScrollBar.qml</file>
+        <file>Views/MellowPlayer/Controls/MenuIconItem.qml</file>
+        <file>Views/MellowPlayer/SettingsPage.qml</file>
     </qresource>
 </RCC>

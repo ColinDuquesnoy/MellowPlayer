@@ -259,15 +259,43 @@ ToolBar {
         }
 
         ToolButton {
-            text: MaterialIcons.icon_settings
+            text: MaterialIcons.icon_more_vert
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
-            onClicked: settingsDrawer.open()
+            onClicked: menu.open()
+
+            Menu {
+                id: menu
+                y: parent.implicitHeight
+
+                MenuIconItem {
+                    icon: MaterialIcons.icon_settings
+                    onClicked: stackView.push(settingsPageComponent)
+                    text: "Settings"
+                }
+
+                MenuIconItem {
+                    icon: MaterialIcons.icon_info_outline
+                    text: "About"
+                }
+
+                Rectangle {
+                    color: style.isDark(style.background) ? Qt.lighter(style.background) : Qt.darker(style.background, 1.1)
+                    height: 1
+                    width: parent.width
+                }
+
+                MenuIconItem {
+                    icon: MaterialIcons.icon_power_settings_new
+                    text: "Quit"
+                    onClicked: Qt.quit();
+                }
+            }
 
             Tooltip {
                 y: toolBar.implicitHeight
-                text: qsTr("Configure MellowPlayer")
+                text: qsTr("Main menu")
             }
         }
     }
