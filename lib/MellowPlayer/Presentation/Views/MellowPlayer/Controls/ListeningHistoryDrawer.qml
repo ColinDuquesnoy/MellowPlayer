@@ -27,7 +27,7 @@ Drawer {
             id: toolBarListeningHistoru
             Material.primary: style.primary
             Material.foreground: style.primaryForeground
-            Material.elevation: 0
+            Material.elevation: 4
             Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
 
             RowLayout {
@@ -215,17 +215,75 @@ Drawer {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    RowLayout {
-                        id: listViewLayout
-
+                    StackLayout {
                         anchors.fill: parent
+                        currentIndex: listeningHistoryListView.count > 0 ? 0 : 1
 
-                        ListeningHistoryListView {
-                            id: listeningHistoryListView
+                        RowLayout {
+                            id: listViewLayout
 
-                            Layout.fillHeight: true
-                            Layout.fillWidth: true
+                            anchors.fill: parent
+
+                            ListeningHistoryListView {
+                                id: listeningHistoryListView
+
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                            }
                         }
+
+                        Pane {
+                            ColumnLayout {
+                                anchors.centerIn: parent
+                                spacing: 20
+
+                                Item {
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: true
+                                }
+
+                                Label {
+                                    text: MaterialIcons.icon_history
+                                    font.pixelSize: 48
+                                    font.family: MaterialIcons.family
+                                    color: Material.accent
+
+                                    horizontalAlignment: "AlignHCenter"
+
+                                    Layout.fillWidth: true
+                                }
+
+                                Label {
+                                    text: "Nothing in history"
+                                    font.bold: true
+                                    font.pixelSize: 32
+
+                                    horizontalAlignment: "AlignHCenter"
+
+                                    Layout.fillWidth: true
+                                }
+
+                                Label {
+                                    text: "Enable listening history and the songs you \nlistened to will appear here..."
+
+                                    horizontalAlignment: "AlignHCenter"
+
+                                    Layout.fillWidth: true
+                                }
+
+                                Button {
+                                    text: "Enable listening history"
+                                    highlighted: true
+
+                                    Layout.fillWidth: true
+                                }
+
+                                Item {
+                                    Layout.fillHeight: true
+                                }
+                            }
+                        }
+
                     }
                 }
             }

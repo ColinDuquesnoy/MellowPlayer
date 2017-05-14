@@ -109,15 +109,7 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_content_copy
                 font { family: MaterialIcons.family; pixelSize: 16 }
-
-                Layout.fillHeight: true
-            }
-
-            ToolButton {
-                id: btPlay
-                hoverEnabled: true
-                text: MaterialIcons.MaterialIcons.icon_play_arrow
-                font { family: MaterialIcons.family; pixelSize: 16 }
+                onClicked: clipboard.setText(model.title)
 
                 Layout.fillHeight: true
             }

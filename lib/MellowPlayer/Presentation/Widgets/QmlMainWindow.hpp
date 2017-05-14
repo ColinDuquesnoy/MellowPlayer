@@ -3,6 +3,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
@@ -39,6 +40,7 @@ private:
     StreamingServicesViewModel& streamingServices;
     ListeningHistoryViewModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
+    ClipBoardViewModel clipBoardViewModel;
 };
 
 END_MELLOWPLAYER_NAMESPACE

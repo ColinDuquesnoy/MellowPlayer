@@ -29,6 +29,7 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
     context->setContextProperty("style", &style);
     context->setContextProperty("player", &player);
     context->setContextProperty("albumArt", &albumArt);
+    context->setContextProperty("clipboard", &clipBoardViewModel);
 }
 
 bool QmlMainWindow::load() {
