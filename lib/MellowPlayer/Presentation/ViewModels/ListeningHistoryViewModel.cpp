@@ -10,10 +10,6 @@ ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistoryService& li
         listeningHistoryService(listeningHistory),
         sourceListModel(new QQmlObjectListModel<ListeningHistoryEntryModel>(this, "title", "entryId")),
         proxyListModel(sourceListModel) {
-    connect(&listeningHistory, &ListeningHistoryService::entryAdded, this, &ListeningHistoryViewModel::onEntryAdded);
-    connect(&listeningHistory, &ListeningHistoryService::entryRemoved, this, &ListeningHistoryViewModel::onEntryRemoved);
-    connect(&listeningHistory, &ListeningHistoryService::entriesCleared, this, &ListeningHistoryViewModel::onEntriesCleared);
-
     proxyListModel.setSourceModel(sourceListModel);
 }
 
@@ -29,11 +25,9 @@ void ListeningHistoryViewModel::onEntryRemoved(int entryId) {
     sourceListModel->remove(sourceListModel->getByUid(QString("%1").arg(entryId)));
 }
 
-void ListeningHistoryViewModel::onEntriesCleared() {
-    sourceListModel->clear();
-}
-
 void ListeningHistoryViewModel::initialize() {
+    connect(&listeningHistoryService, &ListeningHistoryService::entryAdded, this, &ListeningHistoryViewModel::onEntryAdded);
+    connect(&listeningHistoryService, &ListeningHistoryService::entryRemoved, this, &ListeningHistoryViewModel::onEntryRemoved);
     listeningHistoryService.initialize();
     for(auto entry: listeningHistoryService.getEntries())
         onEntryAdded(entry);

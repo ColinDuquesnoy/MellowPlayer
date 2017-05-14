@@ -2,7 +2,7 @@
 
 #include <QVariant>
 
-inline QVariantMap getSongVariantMap(QString title, QString uniqueId, bool playing=true) {
+inline QVariantMap getSongVariantMap(QString title, QString uniqueId, bool playing=true, QString artist="artistName") {
     QVariantMap map;
     map["position"] = 1.0;
     map["playbackStatus"] = static_cast<int>(playing ? PlaybackStatus::Playing: PlaybackStatus::Paused);
@@ -12,7 +12,7 @@ inline QVariantMap getSongVariantMap(QString title, QString uniqueId, bool playi
     map["canAddToFavorites"] = true;
     map["songId"] = uniqueId;
     map["songTitle"] = title;
-    map["artistName"] = "artistName";
+    map["artistName"] = artist;
     map["albumTitle"] = "albumTitle";
     map["artUrl"] = "artUrl";
     map["isFavorite"] = true;

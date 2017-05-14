@@ -25,7 +25,6 @@ public:
 private slots:
     void onEntryAdded(const Entities::ListeningHistoryEntry& entry);
     void onEntryRemoved(int entryId);
-    void onEntriesCleared();
 
 private:
     UseCases::ListeningHistoryService& listeningHistoryService;
