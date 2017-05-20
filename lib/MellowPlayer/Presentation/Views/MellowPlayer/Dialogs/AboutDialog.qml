@@ -11,7 +11,7 @@ Popup {
 
     padding: 20
     modal: true
-    height: 600
+    height: 460
     width: height
 
     onVisibleChanged: if (!visible) btCredits.checked = false
@@ -69,12 +69,6 @@ Popup {
                     url: 'https://colinduquesnoy.github.io/MellowPlayer'
 
                     Layout.alignment: Qt.AlignCenter
-
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
-                        cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-                    }
                 }
 
                 Label {
@@ -115,7 +109,10 @@ Popup {
 
                         Layout.alignment: Qt.AlignCenter
                     }
+                }
 
+                Item {
+                    Layout.fillHeight: true
                 }
             }
 
@@ -158,13 +155,11 @@ Popup {
                                 Link {
                                     name: '@ColinDuquesnoy'
                                     url: "https://github.com/ColinDuquesnoy"
-                                    onLinkActivated: Qt.openUrlExternally(link)
                                 }
 
                                 Link {
                                     name: '@ConorIA'
                                     url: "https://github.com/ConorIA"
-                                    onLinkActivated: Qt.openUrlExternally(link)
                                 }
                             }
                         }
@@ -184,7 +179,6 @@ Popup {
                                 Link {
                                     name: '@CelineThiry'
                                     url: "https://github.com/CelineThiry"
-                                    onLinkActivated: Qt.openUrlExternally(link)
                                 }
                             }
                         }
