@@ -278,6 +278,7 @@ ToolBar {
                 MenuIconItem {
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
+                    onClicked: aboutDialog.visible = true
                 }
 
                 Rectangle {

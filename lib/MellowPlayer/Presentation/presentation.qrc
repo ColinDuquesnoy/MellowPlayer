@@ -46,5 +46,7 @@
         <file>Views/MellowPlayer/Controls/DesktopScrollBar.qml</file>
         <file>Views/MellowPlayer/Controls/MenuIconItem.qml</file>
         <file>Views/MellowPlayer/SettingsPage.qml</file>
+        <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
+        <file>Views/MellowPlayer/Controls/Link.qml</file>
     </qresource>
 </RCC>
