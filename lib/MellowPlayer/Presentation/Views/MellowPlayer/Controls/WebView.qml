@@ -15,6 +15,7 @@ WebEngineView {
     property var image: null
     property bool ready: image != null || url == ""
     property var service: model.qtObject
+    property bool isRunning: false
 
     signal updateImageFinished();
 
@@ -23,7 +24,6 @@ WebEngineView {
     enabled: visible
 
     onLoadingChanged: {
-        console.log("onLoadingChanged: ", loading)
         if (!loading)
             player.initialize()
     }

@@ -70,8 +70,11 @@ Item {
             ]
             onStateChanged: {
                 preview.visible = true;
-                if (webView.url == "" )
+                if (webView.url == "" ) {
                     webView.url = webView.urlToLoad;
+                    webView.isRunning = true;
+
+                }
             }
         }
 
@@ -190,6 +193,7 @@ Item {
                 webView.url = "";
                 webView.reload();
                 webView.image = null;
+                webView.isRunning = false;
             }
         }
     }

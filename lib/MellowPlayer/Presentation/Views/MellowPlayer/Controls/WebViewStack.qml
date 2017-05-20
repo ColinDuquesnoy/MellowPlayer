@@ -36,7 +36,7 @@ StackLayout {
 
             while(index != webViewStack.currentIndex) {
                 var webView = webViewStack.itemAt(index);
-                if (webView.url != "") {
+                if (webView.url != "" && webView.isRunning) {
                     streamingServices.currentService = webView.service;
                     break;
                 }
@@ -61,7 +61,7 @@ StackLayout {
 
             while(index != webViewStack.currentIndex) {
                 var webView = webViewStack.itemAt(index);
-                if (webView.url != "") {
+                if (webView.url != "" && webView.isRunning) {
                     streamingServices.currentService = webView.service;
                     break;
                 }
