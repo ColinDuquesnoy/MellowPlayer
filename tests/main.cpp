@@ -32,9 +32,7 @@ int main(int argc, char* argv[])
         LoggingManager::instance();
         assert(false);
     }
-    catch (const logic_error& e) {
-        assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
-    }
+    catch (const logic_error&) { }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
     loggingManager.setDefaultLogLevel(LogLevel::Off);
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");

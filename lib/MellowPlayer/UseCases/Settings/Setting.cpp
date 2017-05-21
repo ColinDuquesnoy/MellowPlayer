@@ -8,9 +8,9 @@
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-Setting::Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Setting::Data& data) :
+Setting::Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Setting::Data& settingData) :
         QObject(&category), settingsProvider(appSettings.getSettingsProvider()), appSettings(appSettings),
-        category(category), data(data) {
+        category(category), data(settingData) {
 }
 
 void Setting::resolveDependency() {
@@ -25,7 +25,7 @@ void Setting::resolveDependency() {
         if (parentSetting->getType() == "bool")
             connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
     }
-    catch (const runtime_error& e) {
+    catch (const runtime_error&) {
         return;
     }
 }
