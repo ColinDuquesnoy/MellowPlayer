@@ -2,7 +2,7 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
@@ -25,13 +25,13 @@ TEST_CASE("IconProviderTests") {
     SECTION("quit") { REQUIRE(!isNullIcon(IconProvider::quit())); }
 
     SECTION("trayIcon") {
-        Mock<ISettingsProvider> appSettingsMock;
-        When(Method(appSettingsMock, getValue)).Return("", __FILE__, "folder-music");
+        Mock<ISettingsProvider> settingsProviderMock;
+        When(Method(settingsProviderMock, getValue)).Return("", __FILE__, "folder-music");
 
         SettingsSchemaLoader loader;
-        ApplicationSettings applicationSettings(loader, appSettingsMock.get());
+        Settings settings(loader, settingsProviderMock.get());
 
-        IconProvider iconProvider(applicationSettings);
+        IconProvider iconProvider(settings);
 
         // default icon
         REQUIRE(!isNullIcon(iconProvider.trayIcon()));

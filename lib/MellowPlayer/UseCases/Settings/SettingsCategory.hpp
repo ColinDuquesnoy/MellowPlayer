@@ -7,7 +7,7 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class ApplicationSettings;
+class Settings;
 class Setting;
 class ISettingsProvider;
 
@@ -21,7 +21,7 @@ public:
         QString key;
     };
 
-    SettingsCategory(const Data& data, ApplicationSettings* appSettings);
+    SettingsCategory(const Data& data, Settings* appSettings);
     void resolveDependencies();
 
     const QString& getName() const;

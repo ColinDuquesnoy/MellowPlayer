@@ -3,7 +3,7 @@
 #include <MellowPlayer/UseCases/Interfaces/INotificationsService.hpp>
 #include "NotificationFactory.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
@@ -17,7 +17,7 @@ class NotificationService: public QObject, public UseCases::INotificationService
 public:
     NotificationService(UseCases::IPlayer& player, UseCases::ILocalAlbumArtService& localAlbumArtService,
                         UseCases::INotificationPresenter& presenter, UseCases::StreamingServicePluginService& pluginService,
-                        UseCases::ApplicationSettings& appSettings);
+                        UseCases::Settings& settings);
 
     void initialize() override;
     bool display(const Entities::Notification& notification) override;
@@ -39,7 +39,7 @@ private:
     UseCases::ILocalAlbumArtService& localAlbumArtService;
     UseCases::INotificationPresenter& presenter;
     UseCases::StreamingServicePluginService& pluginService;
-    UseCases::ApplicationSettings& applicationSettings;
+    UseCases::Settings& settings;
     Entities::Notification previousNotif;
     NotificationFactory notificationFactory;
 };

@@ -3,7 +3,7 @@
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
@@ -18,9 +18,9 @@ QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
                              StreamingServiceStyleModel& pluginStyleModel,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
-                             ApplicationSettings& applicationSettings) :
+                             Settings& settings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
-        applicationSettings(applicationSettings), streamingServices(streamingServicesModel),
+        settings(settings), streamingServices(streamingServicesModel),
         listeningHistory(listeningHistoryModel) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
@@ -67,7 +67,7 @@ void QmlMainWindow::hide() {
 bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
     if (object == window) {
         if (event->type() == QEvent::Close) {
-            Setting& setting = applicationSettings.getSetting(SettingKey::PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE);
+            Setting& setting = settings.get(SettingKey::PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE);
             bool showMessage = setting.getValue().toBool();
             if (showMessage) {
                 // todo: send signal to qml window to show a QML popup instead

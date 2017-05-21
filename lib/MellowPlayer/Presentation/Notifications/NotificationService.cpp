@@ -1,6 +1,6 @@
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
@@ -18,13 +18,13 @@ NotificationService::NotificationService(IPlayer& player,
                                          ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
                                          StreamingServicePluginService& pluginService,
-                                         ApplicationSettings& applicationSettings) :
+                                         Settings& settings) :
         logger(LoggingManager::instance().getLogger("NotificationService")),
         player(player),
         localAlbumArtService(localAlbumArtService),
         presenter(presenter),
         pluginService(pluginService),
-        applicationSettings(applicationSettings) {
+        settings(settings) {
 }
 
 void NotificationService::initialize() {
@@ -100,15 +100,15 @@ bool NotificationService::isNotificationTypeEnabled(NotificationType type) const
 
     switch (type) {
         case NotificationType::NewVersionAvailable: {
-            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_NEW_VERSION);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
             return check(setting);
         }
         case NotificationType::Paused: {
-            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_PAUSE);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PAUSE);
             return check(setting);
         }
         case NotificationType::Song: {
-            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_PLAY);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PLAY);
             return check(setting);
         }
     }

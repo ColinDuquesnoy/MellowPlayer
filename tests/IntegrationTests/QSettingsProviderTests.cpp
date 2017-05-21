@@ -6,17 +6,17 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-TEST_CASE("ApplicationSettingsTests") {
-    QSettingsProvider applicationSettings;
+TEST_CASE("QSettingsProviderTests") {
+    QSettingsProvider settingsProvider;
 
     SECTION("defaultValue") {
-        REQUIRE(applicationSettings.getValue("foo", "fooBar").toString() == "fooBar");
+        REQUIRE(settingsProvider.getValue("foo", "fooBar").toString() == "fooBar");
     }
 
     SECTION("setValue") {
-        applicationSettings.setValue("foo", "bar");
-        REQUIRE(applicationSettings.getValue("foo").toString() == "bar");
+        settingsProvider.setValue("foo", "bar");
+        REQUIRE(settingsProvider.getValue("foo").toString() == "bar");
     }
 
-    applicationSettings.clear();
+    settingsProvider.clear();
 }

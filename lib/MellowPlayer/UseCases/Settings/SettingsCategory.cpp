@@ -1,13 +1,13 @@
 #include <QtCore/QJsonObject>
 #include "SettingsCategory.hpp"
-#include "ApplicationSettings.hpp"
+#include "Settings.hpp"
 #include "Setting.hpp"
 
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 SettingsCategory::SettingsCategory(const SettingsCategory::Data& categoryData,
-                                   ApplicationSettings* appSettings): QObject(appSettings), data(categoryData) {
+                                   Settings* appSettings): QObject(appSettings), data(categoryData) {
     for(int i = 0; i < data.parameters.count(); ++i) {
         QJsonObject parameterObj = data.parameters.at(i).toObject();
         Setting::Data settingData;

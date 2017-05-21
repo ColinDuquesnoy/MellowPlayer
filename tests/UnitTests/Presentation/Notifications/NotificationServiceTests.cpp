@@ -1,6 +1,6 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -20,12 +20,12 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     PlayerProxy& player = injector.create<PlayerProxy&>();
     Mock<PlayerProxy> playerSpy(player);
     StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
-    ApplicationSettings& appSettings = injector.create<ApplicationSettings&>();
+    Settings& settings = injector.create<Settings&>();
     NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
-                                            notificationPresenterMock.get(), pluginService, appSettings);
+                                            notificationPresenterMock.get(), pluginService, settings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    Setting& playNotifEnabled = appSettings.getSetting(SettingKey::NOTIFICATIONS_PLAY);
+    Setting& playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_PLAY);
     playNotifEnabled.setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);

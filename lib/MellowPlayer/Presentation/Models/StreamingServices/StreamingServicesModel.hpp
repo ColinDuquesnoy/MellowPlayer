@@ -4,7 +4,7 @@
 #include <QAbstractListModel>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicePluginModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayerService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, StreamingServicePluginService)
@@ -24,7 +24,7 @@ class StreamingServicesModel: public QObject {
 public:
     StreamingServicesModel(UseCases::StreamingServicePluginService& pluginService,
                                UseCases::PlayerService& playerService,
-                               UseCases::ApplicationSettings& applicationSettings);
+                               UseCases::Settings& settings);
     void initialize();
 
     Q_INVOKABLE void reload();
@@ -46,7 +46,7 @@ private slots:
 private:
     UseCases::StreamingServicePluginService& pluginService;
     UseCases::PlayerService& playerService;
-    UseCases::ApplicationSettings& applicationSettings;
+    UseCases::Settings& settings;
     UseCases::Setting& currentServiceSetting;
     QQmlObjectListModel<StreamingServicePluginModel>* model;
     QObject* currentService;

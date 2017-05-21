@@ -12,13 +12,13 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     PlayerService& playerService = injector.create<PlayerService&>();
     StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
     pluginService.load();
-    QSettingsProvider applicationSettings;
+    QSettingsProvider settingsProvider;
     StreamingServicePlugin& plugin1 = *pluginService.getAll()[0];
     StreamingServicePlugin& plugin2 = *pluginService.getAll()[1];
 
-    StreamingServicePluginModel model(plugin1, applicationSettings, playerService);
-    StreamingServicePluginModel sameModel(plugin1, applicationSettings, playerService);
-    StreamingServicePluginModel model2(plugin2, applicationSettings, playerService);
+    StreamingServicePluginModel model(plugin1, settingsProvider, playerService);
+    StreamingServicePluginModel sameModel(plugin1, settingsProvider, playerService);
+    StreamingServicePluginModel model2(plugin2, settingsProvider, playerService);
 
     SECTION("basic properties") {
         REQUIRE(model.getColor() == plugin1.getColor());

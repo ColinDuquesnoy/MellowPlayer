@@ -12,16 +12,16 @@ class ISettingsSchemaLoader;
 class SettingsCategory;
 class Setting;
 
-class ApplicationSettings: public QObject {
+class Settings: public QObject {
     Q_OBJECT
 public:
-    ApplicationSettings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
+    Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
 
     const QList<SettingsCategory*>& getCategories() const;
 
     SettingsCategory& getCategory(const QString& key) const;
-    Setting& getSetting(const QString& key) const;
-    Setting& getSetting(SettingKey::Keys key);
+    Setting& get(const QString& key) const;
+    Setting& get(SettingKey::Keys key);
 
     ISettingsProvider& getSettingsProvider() const;
 

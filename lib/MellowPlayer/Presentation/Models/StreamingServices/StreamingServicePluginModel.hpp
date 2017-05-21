@@ -19,7 +19,7 @@ class StreamingServicePluginModel: public QObject
     Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
 public:
     StreamingServicePluginModel(Entities::StreamingServicePlugin& plugin,
-                          UseCases::ISettingsProvider& applicationSettings,
+                          UseCases::ISettingsProvider& settings,
                           UseCases::PlayerService& playerManager,
                           QObject* parent= nullptr);
 

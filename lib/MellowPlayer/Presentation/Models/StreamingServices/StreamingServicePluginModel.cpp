@@ -8,12 +8,12 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicePluginModel::StreamingServicePluginModel(StreamingServicePlugin& plugin,
-                                             ISettingsProvider& applicationSettings,
+                                             ISettingsProvider& settings,
                                              PlayerService& playerService,
                                              QObject* parent) :
         QObject(parent),
         plugin(plugin),
-        settingsProvider(applicationSettings),
+        settingsProvider(settings),
         players(playerService) {
 }
 QString StreamingServicePluginModel::getColor() const {

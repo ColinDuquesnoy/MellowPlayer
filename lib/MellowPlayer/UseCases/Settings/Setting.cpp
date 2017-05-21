@@ -1,15 +1,15 @@
 #include <QtCore/QVariant>
 #include "Setting.hpp"
 #include "SettingsCategory.hpp"
-#include "ApplicationSettings.hpp"
+#include "Settings.hpp"
 #include "ISettingsProvider.hpp"
 #include <QDebug>
 
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-Setting::Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Setting::Data& settingData) :
-        QObject(&category), settingsProvider(appSettings.getSettingsProvider()), appSettings(appSettings),
+Setting::Setting(Settings& settings, SettingsCategory& category, const Setting::Data& settingData) :
+        QObject(&category), settingsProvider(settings.getSettingsProvider()), settings(settings),
         category(category), data(settingData) {
 }
 
@@ -21,7 +21,7 @@ void Setting::resolveDependency() {
     key = key.replace("!", "");
 
     try {
-        parentSetting = &appSettings.getSetting(key);
+        parentSetting = &settings.get(key);
         if (parentSetting->getType() == "bool")
             connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
     }

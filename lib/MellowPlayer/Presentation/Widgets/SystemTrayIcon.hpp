@@ -16,7 +16,7 @@ class SystemTrayIcon: public QObject, public UseCases::ISystemTrayIcon {
     Q_OBJECT
 public:
     SystemTrayIcon(UseCases::IPlayer& player, UseCases::IMainWindow& mainWindow,
-                   UseCases::IQtApplication& qtApplication, UseCases::ApplicationSettings& applicationSettings);
+                   UseCases::IQtApplication& qtApplication, UseCases::Settings& settings);
     void show() override;
     void hide() override;
     void showMessage(const QString &title, const QString &message) override;
@@ -36,7 +36,7 @@ private:
     UseCases::IPlayer& player;
     UseCases::IMainWindow& mainWindow;
     UseCases::IQtApplication& qtApplication;
-    UseCases::ApplicationSettings& applicationSettings;
+    UseCases::Settings& settings;
     IconProvider iconProvider;
 
     QSystemTrayIcon qSystemTrayIcon;

@@ -1,6 +1,6 @@
 #include <QtCore/QJsonObject>
 #include <QtCore/QJsonArray>
-#include "ApplicationSettings.hpp"
+#include "Settings.hpp"
 #include "ISettingsSchemaLoader.hpp"
 #include "ISettingsProvider.hpp"
 #include "SettingsCategory.hpp"
@@ -8,7 +8,7 @@
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-ApplicationSettings::ApplicationSettings(ISettingsSchemaLoader& configurationLoader,
+Settings::Settings(ISettingsSchemaLoader& configurationLoader,
                                          ISettingsProvider& settingsProvider):
         settingsProvider(settingsProvider) {
     QJsonDocument jsonDocument = configurationLoader.load();
@@ -29,18 +29,18 @@ ApplicationSettings::ApplicationSettings(ISettingsSchemaLoader& configurationLoa
         category->resolveDependencies();
 }
 
-const QList<SettingsCategory*>& ApplicationSettings::getCategories() const {
+const QList<SettingsCategory*>& Settings::getCategories() const {
     return categories;
 }
 
-SettingsCategory& ApplicationSettings::getCategory(const QString& key) const {
+SettingsCategory& Settings::getCategory(const QString& key) const {
     for (SettingsCategory* category: categories)
         if (category->getKey() == key)
             return *category;
     throw runtime_error("Unknown category: " + key.toStdString());
 }
 
-Setting& ApplicationSettings::getSetting(const QString& key) const {
+Setting& Settings::get(const QString& key) const {
     QStringList tokens = key.split("/");
 
     if (tokens.count() != 2)
@@ -54,10 +54,10 @@ Setting& ApplicationSettings::getSetting(const QString& key) const {
     return category.getSetting(parameterKey);
 }
 
-ISettingsProvider& ApplicationSettings::getSettingsProvider() const {
+ISettingsProvider& Settings::getSettingsProvider() const {
     return settingsProvider;
 }
 
-Setting& ApplicationSettings::getSetting(SettingKey::Keys key) {
-    return getSetting(SettingKey::toString(key));
+Setting& Settings::get(SettingKey::Keys key) {
+    return get(SettingKey::toString(key));
 }

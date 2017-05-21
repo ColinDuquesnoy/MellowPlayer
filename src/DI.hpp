@@ -6,7 +6,7 @@
 #include <QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>

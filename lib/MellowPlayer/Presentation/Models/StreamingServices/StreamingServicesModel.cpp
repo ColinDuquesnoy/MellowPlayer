@@ -1,7 +1,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
@@ -14,10 +14,10 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesModel::StreamingServicesModel(StreamingServicePluginService& pluginService,
                                                PlayerService& playerService,
-                                               ApplicationSettings& applicationSettings) :
+                                               Settings& settings) :
         QObject(), pluginService(pluginService), playerService(playerService),
-        applicationSettings(applicationSettings),
-        currentServiceSetting(applicationSettings.getSetting(SettingKey::PRIVATE_CURRENT_SERVICE)),
+        settings(settings),
+        currentServiceSetting(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
         model(new QQmlObjectListModel<StreamingServicePluginModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 
@@ -70,5 +70,5 @@ void StreamingServicesModel::reload() {
 
 void StreamingServicesModel::onPluginAdded(StreamingServicePlugin* plugin) {
     model->append(new StreamingServicePluginModel(
-            *plugin, applicationSettings.getSettingsProvider(), playerService, this));
+            *plugin, settings.getSettingsProvider(), playerService, this));
 }

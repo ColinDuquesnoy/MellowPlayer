@@ -4,7 +4,7 @@
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/SettingsProviderMock.hpp>
-#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -14,10 +14,10 @@ TEST_CASE("SystemTrayIconTests") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
-    auto appSettingsMock = SettingsProviderMock::get();
+    auto settingsProviderMock = SettingsProviderMock::get();
     SettingsSchemaLoader loader;
-    ApplicationSettings applicationSettings(loader, appSettingsMock.get());
-    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), applicationSettings);
+    Settings settings(loader, settingsProviderMock.get());
+    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), settings);
 
     SECTION("show window onActivated") {
         systemTrayIcon.onActivated(QSystemTrayIcon::Context);

@@ -7,7 +7,7 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class ISettingsProvider;
-class ApplicationSettings;
+class Settings;
 class SettingsCategory;
 
 class Setting: public QObject {
@@ -21,7 +21,7 @@ public:
         QString enableCondition;
     };
 
-    Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Data& settingData);
+    Setting(Settings& settings, SettingsCategory& category, const Data& settingData);
 
     void resolveDependency();
 
@@ -46,7 +46,7 @@ private:
     QString getFullKey() const;
 
     ISettingsProvider& settingsProvider;
-    ApplicationSettings& appSettings;
+    Settings& settings;
     SettingsCategory& category;
     Data data;
     bool notOperator = false;
