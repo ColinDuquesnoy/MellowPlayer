@@ -12,6 +12,5 @@ public:
     static Mock<ISettingsProvider> get();
 
     static QString currentService;
-    static QMap<NotificationType, bool> enabledNotifications;
-    static bool notificationsEnabled;
+    static QMap<QString, QVariant> values;
 };

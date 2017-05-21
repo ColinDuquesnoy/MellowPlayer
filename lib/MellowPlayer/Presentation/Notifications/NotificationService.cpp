@@ -1,6 +1,7 @@
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
@@ -17,7 +18,7 @@ NotificationService::NotificationService(IPlayer& player,
                                          ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
                                          PluginService& pluginService,
-                                         ISettingsProvider& applicationSettings) :
+                                         ApplicationSettings& applicationSettings) :
         logger(LoggingManager::instance().getLogger("NotificationService")),
         player(player),
         localAlbumArtService(localAlbumArtService),
@@ -39,7 +40,7 @@ void NotificationService::initialize() {
 
 bool NotificationService::display(const Notification& notification) {
     LOG_TRACE(logger, "display");
-    if (!applicationSettings.isNotificationTypeEnabled(notification.type) || previousNotif == notification) {
+    if (!isNotificationTypeEnabled(notification.type) || previousNotif == notification) {
         LOG_DEBUG(logger, "notification disabled: " + notification.toString());
         return false;
     }
@@ -90,4 +91,22 @@ const QString NotificationService::getCurrentServiceName() const {
 const QString NotificationService::getCurrentServiceLogo() const {
     auto currentPlugin = pluginService.getCurrent();
     return currentPlugin != nullptr ? currentPlugin->getLogo() : "";
+}
+
+bool NotificationService::isNotificationTypeEnabled(NotificationType type) const {
+    Setting* setting = nullptr;
+    
+    switch (type) {
+        case NotificationType::NewVersionAvailable:
+            setting = applicationSettings.getSetting("notifications/new-version");
+            break;
+        case NotificationType::Paused:
+            setting = applicationSettings.getSetting("notifications/pause");
+            break;
+        case NotificationType::Song:
+            setting = applicationSettings.getSetting("notifications/play");
+            break;
+    }
+    
+    return setting != nullptr && setting->isEnabled() && setting->getValue().toBool();
 }

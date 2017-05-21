@@ -1,5 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
@@ -18,13 +20,13 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     PlayerProxy& player = injector.create<PlayerProxy&>();
     Mock<PlayerProxy> playerSpy(player);
     PluginService& pluginService = injector.create<PluginService&>();
-    ISettingsProvider& appSettings = injector.create<ISettingsProvider&>();
+    ApplicationSettings& appSettings = injector.create<ApplicationSettings&>();
     NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
                                             notificationPresenterMock.get(), pluginService, appSettings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    appSettings.enableNotificationType(NotificationType::Song, true);
-    REQUIRE(appSettings.isNotificationTypeEnabled(NotificationType::Song));
+    Setting* playNotifEnabled = appSettings.getSetting("notifications/play");
+    playNotifEnabled->setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
     REQUIRE(validSong.isValid());
@@ -48,7 +50,7 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     }
 
     SECTION("display disallowed notification") {
-        appSettings.enableNotificationType(NotificationType::Song, false);
+        playNotifEnabled->setValue(false);
         Notification notif{"title", "message", "", NotificationType::Song};
         REQUIRE(!notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Never();

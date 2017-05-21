@@ -6,7 +6,9 @@
 #include <QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -30,11 +32,12 @@
 #include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
 #include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/Application.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -105,7 +108,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotificationService>().to<NotificationService>().in(scope),
         di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
-        di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope).in(di::singleton)
+        di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope)
     );
 };
 

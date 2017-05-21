@@ -23,20 +23,11 @@ public:
     QString getTrayIcon() const override;
     void setTrayIcon(const QString& trayIcon) override;
 
-    bool getNotificationsEnabled() const override;
-    void setNotificationsEnabled(bool enable) override;
-
-    bool isNotificationTypeEnabled(Entities::NotificationType notificationType) const override;
-    void enableNotificationType(Entities::NotificationType notificationType, bool enable) override;
-
     static const QString CURRENT_SERVICE_KEY;
     static const QString SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY;
     static const QString TRAY_ICON_KEY;
-    static const QString NOTIFICATIONS_ENABLED_KEY;
-    static const QString NOTIFICATION_ENABLED_KEY;
-private:
-    QString getNotificationEnabledKey(Entities::NotificationType type) const;
 
+private:
     QSettings qSettings;
 };
 

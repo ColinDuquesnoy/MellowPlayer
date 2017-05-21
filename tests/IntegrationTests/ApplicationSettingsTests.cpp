@@ -47,25 +47,5 @@ TEST_CASE("ApplicationSettingsTests") {
         REQUIRE(applicationSettings.getValue("foo").toString() == "bar");
     }
 
-    SECTION("enable notifications") {
-        REQUIRE(applicationSettings.getNotificationsEnabled());
-        applicationSettings.setNotificationsEnabled(false);
-        REQUIRE(!applicationSettings.getNotificationsEnabled());
-    }
-
-    SECTION("enable specific notifications") {
-        REQUIRE(applicationSettings.isNotificationTypeEnabled(NotificationType::Song));
-        applicationSettings.enableNotificationType(NotificationType::Song, false);
-        REQUIRE(!applicationSettings.isNotificationTypeEnabled(NotificationType::Song));
-    }
-
-    SECTION("specific notifications disabled if notifications disabled") {
-        applicationSettings.setNotificationsEnabled(true);
-        applicationSettings.enableNotificationType(NotificationType::Song, true);
-        REQUIRE(applicationSettings.isNotificationTypeEnabled(NotificationType::Song));
-        applicationSettings.setNotificationsEnabled(false);
-        REQUIRE(!applicationSettings.isNotificationTypeEnabled(NotificationType::Song));
-    }
-
     applicationSettings.clear();
 }

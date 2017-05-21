@@ -1,8 +1,7 @@
 #include "SettingsProviderMock.hpp"
 
 QString SettingsProviderMock::currentService;
-QMap<NotificationType, bool> SettingsProviderMock::enabledNotifications;
-bool SettingsProviderMock::notificationsEnabled = true;
+QMap<QString, QVariant> SettingsProviderMock::values;
 
 Mock<ISettingsProvider> SettingsProviderMock::get() {
     Mock<ISettingsProvider> mock;
@@ -20,23 +19,13 @@ Mock<ISettingsProvider> SettingsProviderMock::get() {
     When(Method(mock, getTrayIcon)).AlwaysReturn("");
     When(Method(mock, setTrayIcon)).AlwaysReturn();
 
-    When(Method(mock, getValue)).AlwaysReturn(QVariant());
-    When(Method(mock, setValue)).AlwaysReturn();
-
-    When(Method(mock, getNotificationsEnabled)).AlwaysDo([]() -> bool {
-        return notificationsEnabled;
+    When(Method(mock, getValue)).AlwaysDo([](const QString& key, const QVariant& defaultValue) -> QVariant {
+        if (values.contains(key))
+            return values[key];
+        return defaultValue;
     });
-    When(Method(mock, setNotificationsEnabled)).AlwaysDo([](bool enable) {
-        notificationsEnabled = enable;
-    });
-
-    When(Method(mock, isNotificationTypeEnabled)).AlwaysDo([](NotificationType type) -> bool {
-        if (enabledNotifications.contains(type))
-            return enabledNotifications[type];
-        return true;
-    });
-    When(Method(mock, enableNotificationType)).AlwaysDo([](NotificationType type, bool enable) {
-        enabledNotifications[type] = enable;
+    When(Method(mock, setValue)).AlwaysDo([](const QString& key, const QVariant& value){
+        values[key] = value;
     });
 
     return mock;

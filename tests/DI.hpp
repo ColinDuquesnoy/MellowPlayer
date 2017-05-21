@@ -4,6 +4,7 @@
 #include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -33,6 +34,7 @@
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
@@ -126,7 +128,8 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<ISystemTrayIcon>().to(systemTrayIconMock.get()),
         di::bind<ILocalAlbumArtService>().to(localAlbumArtServiceMock.get()),
         di::bind<IListeningHistoryDataProvider>().to(dataProvider),
-        di::bind<IWorkDispatcher>().to(workDispatcher)
+        di::bind<IWorkDispatcher>().to(workDispatcher),
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope)
     );
 };
 
