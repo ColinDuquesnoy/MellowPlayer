@@ -8,6 +8,7 @@
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
+#include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
 #include "QmlMainWindow.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -21,8 +22,9 @@ QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
                              Settings& settings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
         settings(settings), streamingServices(streamingServicesModel),
-        listeningHistory(listeningHistoryModel) {
+        listeningHistory(listeningHistoryModel), settingsModel(settings) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
+    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey", "SettingKey caanot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
     context->setContextProperty("streamingServices", &streamingServicesModel);
     context->setContextProperty("listeningHistory", &listeningHistoryModel);
@@ -30,6 +32,7 @@ QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
     context->setContextProperty("player", &player);
     context->setContextProperty("albumArt", &albumArt);
     context->setContextProperty("clipboard", &clipBoardModel);
+    context->setContextProperty("settings", &settingsModel);
 }
 
 bool QmlMainWindow::load() {

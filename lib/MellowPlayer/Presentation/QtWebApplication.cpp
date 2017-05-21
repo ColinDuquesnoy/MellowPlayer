@@ -1,10 +1,12 @@
 #include <QtWebEngine>
-#include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
-#include "QtWebApplication.hpp"
-#include "MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp"
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
+#include <MellowPlayer/UseCases/Player/Player.hpp>
 #include "IconProvider.hpp"
+#include "QtWebApplication.hpp"
+#include "MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp"
+#include "Widgets/QmlMainWindow.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -32,15 +34,16 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Thin.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-ThinItalic.ttf");
 
-    qRegisterMetaType<Player*>("UseCases::Player*");
     qRegisterMetaType<Song*>("Entities::Song*");
     qRegisterMetaType<Song*>("Song*");
-    qRegisterMetaType<Song*>("Entities::StreamingServicePlugin*");
-    qRegisterMetaType<Song*>("StreamingServicePlugin*");
-    qRegisterMetaType<PlaybackStatus >("UseCases::PlaybackStatus");
-    qRegisterMetaType<PlaybackStatus >("PlaybackStatus");
+    qRegisterMetaType<StreamingServicePlugin*>("Entities::StreamingServicePlugin*");
+    qRegisterMetaType<StreamingServicePlugin*>("StreamingServicePlugin*");
     qRegisterMetaType<ListeningHistoryEntry>("Entities::ListeningHistoryEntry");
     qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
+    qRegisterMetaType<Player*>("UseCases::Player*");
+    qRegisterMetaType<Player*>("Player*");
+    qRegisterMetaType<SettingModel*>("Presentation::SettingModel*");
+    qRegisterMetaType<SettingModel*>("SettingModel*");
 }
 
 int QtWebApplication::run() {

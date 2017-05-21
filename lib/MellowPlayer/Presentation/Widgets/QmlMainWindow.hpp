@@ -4,6 +4,7 @@
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
+#include <MellowPlayer/Presentation/Models/Settings/SettingsModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
@@ -39,6 +40,7 @@ private:
     ListeningHistoryModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
     ClipBoardModel clipBoardModel;
+    SettingsModel settingsModel;
 };
 
 END_MELLOWPLAYER_NAMESPACE

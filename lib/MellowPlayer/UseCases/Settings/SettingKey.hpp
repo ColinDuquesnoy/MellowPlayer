@@ -5,6 +5,7 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class SettingKey: public QObject {
+    Q_OBJECT
 public:
     enum Keys {
         APPEARANCE_ACCENT,
@@ -30,7 +31,7 @@ public:
         SHORTCUTS_PLAY,
         SHORTCUTS_PREVIOUS
     };
-    Q_ENUMS(Keys);
+    Q_ENUM(Keys);
 
     static QString toString(SettingKey::Keys key) {
         QStringList enumToString;

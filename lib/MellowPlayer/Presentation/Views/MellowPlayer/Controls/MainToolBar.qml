@@ -217,15 +217,21 @@ ToolBar {
         ToolButton {
             id: btEnableNotifications
 
+            property var setting: settings.get(SettingKey.NOTIFICATIONS_ENABLED)
+
+            checkable: true
+            checked: setting != null ? setting.value : false
+            font { family: MaterialIcons.family; pixelSize: toolBar.iconSize }
+            hoverEnabled: true
+            onClicked: {
+                console.error('onCheckedChanged before: ' + setting.value)
+                setting.value = checked
+                console.error('onCheckedChanged after: ' + setting.value)
+            }
+            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+
             Layout.fillHeight: true
             Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
-
-            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
-            font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
-            hoverEnabled: true
-            checkable: true
-            checked: true
 
             Tooltip {
                 y: toolBar.implicitHeight
