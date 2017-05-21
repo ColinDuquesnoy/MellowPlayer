@@ -67,7 +67,7 @@ void QmlMainWindow::hide() {
 bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
     if (object == window) {
         if (event->type() == QEvent::Close) {
-            Setting& setting = applicationSettings.getSetting("private/show-close-to-tray-message");
+            Setting& setting = applicationSettings.getSetting(SettingKey::PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE);
             bool showMessage = setting.getValue().toBool();
             if (showMessage) {
                 // todo: send signal to qml window to show a QML popup instead

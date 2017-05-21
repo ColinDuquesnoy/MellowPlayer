@@ -25,7 +25,7 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
                                             notificationPresenterMock.get(), pluginService, appSettings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    Setting& playNotifEnabled = appSettings.getSetting("notifications/play");
+    Setting& playNotifEnabled = appSettings.getSetting(SettingKey::NOTIFICATIONS_PLAY);
     playNotifEnabled.setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);

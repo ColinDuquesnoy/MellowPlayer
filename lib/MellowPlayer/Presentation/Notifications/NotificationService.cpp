@@ -100,15 +100,15 @@ bool NotificationService::isNotificationTypeEnabled(NotificationType type) const
 
     switch (type) {
         case NotificationType::NewVersionAvailable: {
-            const Setting& setting = applicationSettings.getSetting("notifications/new-version");
+            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_NEW_VERSION);
             return check(setting);
         }
         case NotificationType::Paused: {
-            const Setting& setting = applicationSettings.getSetting("notifications/pause");
+            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_PAUSE);
             return check(setting);
         }
         case NotificationType::Song: {
-            const Setting& setting = applicationSettings.getSetting("notifications/play");
+            const Setting& setting = applicationSettings.getSetting(SettingKey::NOTIFICATIONS_PLAY);
             return check(setting);
         }
     }

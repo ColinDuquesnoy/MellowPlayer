@@ -17,7 +17,7 @@ StreamingServicesModel::StreamingServicesModel(StreamingServicePluginService& pl
                                                ApplicationSettings& applicationSettings) :
         QObject(), pluginService(pluginService), playerService(playerService),
         applicationSettings(applicationSettings),
-        currentServiceSetting(applicationSettings.getSetting("private/current-service")),
+        currentServiceSetting(applicationSettings.getSetting(SettingKey::PRIVATE_CURRENT_SERVICE)),
         model(new QQmlObjectListModel<StreamingServicePluginModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 

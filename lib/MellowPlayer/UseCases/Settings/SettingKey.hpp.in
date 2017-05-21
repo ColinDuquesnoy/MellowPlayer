@@ -1,0 +1,23 @@
+#pragma once
+
+#include <MellowPlayer/Macros.hpp>
+
+BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
+
+class SettingKey: public QObject {
+public:
+    enum Keys {
+%(enum_values)s
+    };
+    Q_ENUMS(Keys);
+
+    static QString toString(SettingKey::Keys key) {
+        QStringList enumToString;
+
+%(enum_names)s
+
+        return enumToString[static_cast<int>(key)];
+    }
+};
+
+END_MELLOWPLAYER_NAMESPACE

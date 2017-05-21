@@ -57,3 +57,7 @@ Setting& ApplicationSettings::getSetting(const QString& key) const {
 ISettingsProvider& ApplicationSettings::getSettingsProvider() const {
     return settingsProvider;
 }
+
+Setting& ApplicationSettings::getSetting(SettingKey::Keys key) {
+    return getSetting(SettingKey::toString(key));
+}

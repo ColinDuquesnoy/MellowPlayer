@@ -10,7 +10,7 @@ IconProvider::IconProvider(ApplicationSettings& applicationSettings) : applicati
 }
 
 QIcon IconProvider::trayIcon() {
-    Setting& setting = applicationSettings.getSetting("general/tray-icon");
+    Setting& setting = applicationSettings.getSetting(SettingKey::GENERAL_TRAY_ICON);
     QString iconString = setting.getValue().toString();
     if (iconString.trimmed().isEmpty())
         return windowIcon();
