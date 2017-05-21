@@ -2,7 +2,7 @@
 #include <fakeit.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

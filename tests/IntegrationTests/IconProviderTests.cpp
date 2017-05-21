@@ -1,7 +1,7 @@
 #include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -22,7 +22,7 @@ TEST_CASE("IconProviderTests") {
     SECTION("quit") { REQUIRE(!isNullIcon(IconProvider::quit())); }
 
     SECTION("trayIcon") {
-        Mock<IApplicationSettings> appSettingsMock;
+        Mock<ISettingsProvider> appSettingsMock;
         When(Method(appSettingsMock, getTrayIcon)).Return("", __FILE__, "folder-music");
 
         IconProvider iconProvider(appSettingsMock.get());

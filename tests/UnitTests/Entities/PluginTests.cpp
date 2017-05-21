@@ -2,7 +2,7 @@
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include <MellowPlayer/Entities/PluginScript.hpp>
 #include <QtTest/QSignalSpy>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 

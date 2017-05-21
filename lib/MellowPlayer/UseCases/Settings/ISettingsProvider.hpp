@@ -7,10 +7,9 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
-class IApplicationSettings
-{
+class ISettingsProvider {
 public:
-    virtual ~IApplicationSettings() = default;
+    virtual ~ISettingsProvider() = default;
 
     virtual void clear() = 0;
 

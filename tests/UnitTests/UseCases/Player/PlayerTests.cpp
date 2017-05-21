@@ -3,13 +3,13 @@
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include <QtTest/QSignalSpy>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerTests", "[UnitTest]") {
     PluginMetadata metadata;
-    auto appSettingsMock = ApplicationSettingsMock::get();
+    auto appSettingsMock = SettingsProviderMock::get();
     Plugin plugin(metadata);
     Player player(plugin);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));

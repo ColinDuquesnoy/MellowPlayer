@@ -1,7 +1,7 @@
 #include <QtWebEngine>
 #include <QQmlContext>
 #include <QMessageBox>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
@@ -18,7 +18,7 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
                              StyleViewModel& style,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
-                             IApplicationSettings& applicationSettings) :
+                             ISettingsProvider& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
         applicationSettings(applicationSettings), streamingServices(streamingServices),
         listeningHistory(listeningHistory) {

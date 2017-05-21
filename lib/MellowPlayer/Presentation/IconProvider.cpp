@@ -1,10 +1,10 @@
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include "IconProvider.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-IconProvider::IconProvider(IApplicationSettings& applicationSettings) : applicationSettings(applicationSettings) {
+IconProvider::IconProvider(ISettingsProvider& applicationSettings) : applicationSettings(applicationSettings) {
 
 }
 

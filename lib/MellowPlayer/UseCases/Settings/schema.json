@@ -1,0 +1,163 @@
+{
+	"categories": [
+		{
+			"name": "General",
+			"icon": "",
+			"key": "general",
+			"settings": [
+				{
+					"name": "Close to system tray",
+					"type": "bool",
+					"default": true,
+					"key": "close-to-tray"
+				},
+				{
+					"name": "Tray icon",
+					"type": "path",
+					"default": "",
+					"key": "tray-icon"
+				},
+				{
+					"name": "Check for updates",
+					"type": "bool",
+					"default": true,
+					"key": "check-for-updates"
+				},
+				{
+					"name": "Confirm application exit",
+					"type": "bool",
+					"default": "false",
+					"key": "confirm-exit"
+				}
+			]
+		},
+		{
+			"name": "Appearance",
+			"icon": "",
+			"key": "appearance",
+			"settings": [
+				{
+					"name": "Adaptive theme",
+					"type": "bool",
+					"default": true,
+					"key": "adaptive-theme"
+				},
+				{
+					"name": "Theme",
+					"type": "Material.Theme",
+					"default": "Light",
+					"key": "theme",
+					"enabled": "appearance/adaptive-theme"
+				},
+				{
+					"name": "Accent",
+					"type": "color",
+					"default": "#FFC107",
+					"key": "accent",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Background",
+					"type": "color",
+					"default": "#ffffff",
+					"key": "background",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Foreground",
+					"type": "color",
+					"default": "#505050",
+					"key": "foreground",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Primary Background",
+					"type": "color",
+					"default": "#5f81d4",
+					"key": "primary-background",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Primary Foreground",
+					"type": "color",
+					"default": "#ffffff",
+					"key": "primary-foreground",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Secondary Background",
+					"type": "color",
+					"default": "#5f81d4",
+					"key": "secondary-background",
+					"enabled": "!appearance/adaptive-theme"
+				},
+				{
+					"name": "Secondary Foreground",
+					"type": "color",
+					"default": "#ffffff",
+					"key": "secondary-foreground",
+					"enabled": "!appearance/adaptive-theme"
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"icon": "",
+			"key": "notifications",
+			"settings": [
+				{
+					"name": "Enable notifications",
+					"type": "bool",
+					"default": true,
+					"key": "enabled"
+				},
+				{
+					"name": "Display a notification on play/resume",
+					"type": "bool",
+					"default": true,
+					"key": "play",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification on pause",
+					"type": "bool",
+					"default": true,
+					"key": "pause",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification at startup when a new version of MellowPlayer is available,",
+					"type": "bool",
+					"default": true,
+					"key": "new-version",
+					"enabled": "notifications/enabled"
+				}
+			]
+		},
+		{
+			"name": "Shortcuts",
+			"icon": "",
+			"key": "shortcuts",
+			"settings": [
+				{
+					"name": "Play",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+P",
+					"key": "play"
+				},
+				{
+					"name": "Next",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+F",
+					"key": "next"
+				},
+				{
+					"name": "Previous",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+B",
+					"key": "previous"
+				}
+			]
+		}
+	]
+}

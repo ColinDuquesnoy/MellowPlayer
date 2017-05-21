@@ -14,7 +14,7 @@ TEST_CASE("QmlMainWindowTests") {
     StyleViewModel& style = injector.create<StyleViewModel&>();
     IPlayer& player = injector.create<PlayerProxy&>();
     ILocalAlbumArtService& albumArt = injector.create<ILocalAlbumArtService&>();
-    IApplicationSettings& applicationSettings = injector.create<IApplicationSettings&>();
+    ISettingsProvider& applicationSettings = injector.create<ISettingsProvider&>();
 
     QmlMainWindow mainWindow(streamingServices, listeningHistory, style, player, albumArt, applicationSettings);
 

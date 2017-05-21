@@ -6,8 +6,7 @@
 #include <QtWebEngine>
 #include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -31,7 +30,7 @@
 #include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
 #include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
 #include <MellowPlayer/Infrastructure/PluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
@@ -105,7 +104,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotificationService>().to<NotificationService>().in(scope),
-        di::bind<IApplicationSettings>().to<ApplicationSettings>().in(scope),
+        di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
         di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope).in(di::singleton)
     );
 };

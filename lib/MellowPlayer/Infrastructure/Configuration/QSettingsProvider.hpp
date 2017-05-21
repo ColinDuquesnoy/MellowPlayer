@@ -1,13 +1,13 @@
 #pragma once
 
 #include <QSettings>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class ApplicationSettings: public UseCases::IApplicationSettings {
+class QSettingsProvider: public UseCases::ISettingsProvider {
 public:
-    ApplicationSettings();
+    QSettingsProvider();
 
     void clear() override;
 

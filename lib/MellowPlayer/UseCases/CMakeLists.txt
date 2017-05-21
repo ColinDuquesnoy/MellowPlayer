@@ -4,9 +4,9 @@ file(GLOB_RECURSE SOURCE_FILES *.cpp)
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 
 if(WIN32)
-    add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
+    add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} use-cases.qrc)
 else()
-    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
+    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} use-cases.qrc)
     target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION bin

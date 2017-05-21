@@ -1,11 +1,11 @@
-#include "ApplicationSettingsMock.hpp"
+#include "SettingsProviderMock.hpp"
 
-QString ApplicationSettingsMock::currentService;
-QMap<NotificationType, bool> ApplicationSettingsMock::enabledNotifications;
-bool ApplicationSettingsMock::notificationsEnabled = true;
+QString SettingsProviderMock::currentService;
+QMap<NotificationType, bool> SettingsProviderMock::enabledNotifications;
+bool SettingsProviderMock::notificationsEnabled = true;
 
-Mock<IApplicationSettings> ApplicationSettingsMock::get() {
-    Mock<IApplicationSettings> mock;
+Mock<ISettingsProvider> SettingsProviderMock::get() {
+    Mock<ISettingsProvider> mock;
 
     When(Method(mock, clear)).AlwaysReturn();
 

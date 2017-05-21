@@ -1,6 +1,6 @@
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
@@ -17,7 +17,7 @@ NotificationService::NotificationService(IPlayer& player,
                                          ILocalAlbumArtService& localAlbumArtService,
                                          INotificationPresenter& presenter,
                                          PluginService& pluginService,
-                                         IApplicationSettings& applicationSettings) :
+                                         ISettingsProvider& applicationSettings) :
         logger(LoggingManager::instance().getLogger("NotificationService")),
         player(player),
         localAlbumArtService(localAlbumArtService),

@@ -15,6 +15,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 #ifdef Q_OS_WIN32
+    Q_INIT_RESOURCE(use-cases);
     Q_INIT_RESOURCE(presentation);
 #endif
     QtWebApplication webApplication(argc, argv);

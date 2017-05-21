@@ -3,7 +3,7 @@
 #include <MellowPlayer/Macros.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISettingsProvider)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Player)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayerService)
 
@@ -19,7 +19,7 @@ class StreamingServiceModel: public QObject
     Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
 public:
     StreamingServiceModel(Entities::Plugin& plugin,
-                          UseCases::IApplicationSettings& applicationSettings,
+                          UseCases::ISettingsProvider& applicationSettings,
                           UseCases::PlayerService& playerManager,
                           QObject* parent= nullptr);
 
@@ -42,7 +42,7 @@ private:
     const QString getCustomUrlSettingsKey() const;
 
     Entities::Plugin& plugin;
-    UseCases::IApplicationSettings& applicationSettings;
+    UseCases::ISettingsProvider& applicationSettings;
     UseCases::PlayerService& players;
 };
 

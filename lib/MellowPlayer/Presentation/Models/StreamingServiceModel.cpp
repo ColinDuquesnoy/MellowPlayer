@@ -1,4 +1,4 @@
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Entities/Plugin.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include "StreamingServiceModel.hpp"
@@ -8,7 +8,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServiceModel::StreamingServiceModel(Plugin& plugin,
-                                             IApplicationSettings& applicationSettings,
+                                             ISettingsProvider& applicationSettings,
                                              PlayerService& playerService,
                                              QObject* parent) :
         QObject(parent),

@@ -3,7 +3,7 @@
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -11,7 +11,7 @@ TEST_CASE("SystemTrayIconTests") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
-    auto appSettingsMock = ApplicationSettingsMock::get();
+    auto appSettingsMock = SettingsProviderMock::get();
     SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), appSettingsMock.get());
 
     SECTION("show window onActivated") {
@@ -49,7 +49,7 @@ TEST_CASE("SystemTrayIconIntegrationTests", "[IntegrationTest]") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
-    auto appSettingsMock = ApplicationSettingsMock::get();
+    auto appSettingsMock = SettingsProviderMock::get();
     SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), appSettingsMock.get());
 
     SECTION("show icon") {

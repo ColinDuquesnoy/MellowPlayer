@@ -4,13 +4,13 @@
 #include <QIcon>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IApplicationSettings)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISettingsProvider)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class IconProvider {
 public:
-    IconProvider(UseCases::IApplicationSettings& applicationSettings);
+    IconProvider(UseCases::ISettingsProvider& applicationSettings);
     QIcon trayIcon();
 
     static QIcon windowIcon();
@@ -22,7 +22,7 @@ public:
     static QIcon quit();
 
 private:
-    UseCases::IApplicationSettings& applicationSettings;
+    UseCases::ISettingsProvider& applicationSettings;
 };
 
 END_MELLOWPLAYER_NAMESPACE

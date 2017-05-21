@@ -10,7 +10,6 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 enum class NotificationType {
     Song,
     Paused,
-    Stopped,
     NewVersionAvailable
 };
 

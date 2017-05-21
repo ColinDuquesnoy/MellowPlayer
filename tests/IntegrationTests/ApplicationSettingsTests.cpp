@@ -1,13 +1,13 @@
 #include <catch.hpp>
 #include <MellowPlayer/Entities/Notifications.hpp>
-#include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("ApplicationSettingsTests") {
-    ApplicationSettings applicationSettings;
+    QSettingsProvider applicationSettings;
 
     SECTION("currentService") {
         SECTION("defaultValue") {

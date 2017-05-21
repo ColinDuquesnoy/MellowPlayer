@@ -12,7 +12,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     PlayerService& playerService = injector.create<PlayerService&>();
     PluginService& pluginService = injector.create<PluginService&>();
     pluginService.load();
-    ApplicationSettings applicationSettings;
+    QSettingsProvider applicationSettings;
     Plugin& plugin1 = *pluginService.getAll()[0];
     Plugin& plugin2 = *pluginService.getAll()[1];
 
