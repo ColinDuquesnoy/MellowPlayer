@@ -21,8 +21,7 @@ public:
         QString enableCondition;
     };
 
-    Setting(ISettingsProvider& settingsProvider, ApplicationSettings& appSettings, SettingsCategory& category,
-            const Data& data);
+    Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Data& data);
 
     void resolveDependency();
 

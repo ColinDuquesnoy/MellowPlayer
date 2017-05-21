@@ -94,19 +94,24 @@ const QString NotificationService::getCurrentServiceLogo() const {
 }
 
 bool NotificationService::isNotificationTypeEnabled(NotificationType type) const {
-    Setting* setting = nullptr;
-    
+    auto check = [](const Setting& setting) {
+        return setting.isEnabled() && setting.getValue().toBool();
+    };
+
     switch (type) {
-        case NotificationType::NewVersionAvailable:
-            setting = applicationSettings.getSetting("notifications/new-version");
-            break;
-        case NotificationType::Paused:
-            setting = applicationSettings.getSetting("notifications/pause");
-            break;
-        case NotificationType::Song:
-            setting = applicationSettings.getSetting("notifications/play");
-            break;
+        case NotificationType::NewVersionAvailable: {
+            const Setting& setting = applicationSettings.getSetting("notifications/new-version");
+            return check(setting);
+        }
+        case NotificationType::Paused: {
+            const Setting& setting = applicationSettings.getSetting("notifications/pause");
+            return check(setting);
+        }
+        case NotificationType::Song: {
+            const Setting& setting = applicationSettings.getSetting("notifications/play");
+            return check(setting);
+        }
     }
-    
-    return setting != nullptr && setting->isEnabled() && setting->getValue().toBool();
+
+    return false;
 }

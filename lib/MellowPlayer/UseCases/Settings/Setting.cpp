@@ -5,14 +5,12 @@
 #include "ISettingsProvider.hpp"
 #include <QDebug>
 
+using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-Setting::Setting(ISettingsProvider& settingsProvider, ApplicationSettings& appSettings, SettingsCategory& category,
-                 const Setting::Data& data) :
-        QObject(&category), settingsProvider(settingsProvider), appSettings(appSettings), category(category),
-        data(data) {
-
-    resolveDependency();
+Setting::Setting(ApplicationSettings& appSettings, SettingsCategory& category, const Setting::Data& data) :
+        QObject(&category), settingsProvider(appSettings.getSettingsProvider()), appSettings(appSettings),
+        category(category), data(data) {
 }
 
 void Setting::resolveDependency() {
@@ -21,10 +19,15 @@ void Setting::resolveDependency() {
 
     QString key = QString(data.enableCondition);
     key = key.replace("!", "");
-    parentSetting = appSettings.getSetting(key);
 
-    if (parentSetting && parentSetting->getType() == "bool")
-        connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
+    try {
+        parentSetting = &appSettings.getSetting(key);
+        if (parentSetting->getType() == "bool")
+            connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
+    }
+    catch (const runtime_error& e) {
+        return;
+    }
 }
 
 const QString& Setting::getKey() const {

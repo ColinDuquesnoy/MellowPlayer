@@ -3,10 +3,11 @@
 #include "ApplicationSettings.hpp"
 #include "Setting.hpp"
 
+using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-SettingsCategory::SettingsCategory(ISettingsProvider& settingsProvider, const SettingsCategory::Data& data,
-                               ApplicationSettings* appSettings): QObject(appSettings), data(data) {
+SettingsCategory::SettingsCategory(const SettingsCategory::Data& data,
+                                   ApplicationSettings* appSettings): QObject(appSettings), data(data) {
     for(int i = 0; i < data.parameters.count(); ++i) {
         QJsonObject parameterObj = data.parameters.at(i).toObject();
         Setting::Data data;
@@ -15,7 +16,7 @@ SettingsCategory::SettingsCategory(ISettingsProvider& settingsProvider, const Se
         data.key = parameterObj.value("key").toString();
         data.defaultValue = parameterObj.value("default").toVariant();
         data.enableCondition = parameterObj.value("enabled").toString();
-        settings.append(new Setting(settingsProvider, *appSettings, *this, data));
+        settings.append(new Setting(*appSettings, *this, data));
     }
 }
 
@@ -40,9 +41,9 @@ const QList<Setting*>& SettingsCategory::getSettings() const {
     return settings;
 }
 
-Setting* SettingsCategory::getSetting(const QString& key) const {
+Setting& SettingsCategory::getSetting(const QString& key) const {
     for(Setting* param: settings)
         if (param->getKey() == key)
-            return param;
-    return nullptr;
+            return *param;
+    throw runtime_error("Unknown setting: " + data.key.toStdString() + "/" + key.toStdString());
 }

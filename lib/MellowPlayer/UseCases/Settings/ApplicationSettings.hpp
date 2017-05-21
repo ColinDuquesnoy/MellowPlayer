@@ -18,10 +18,13 @@ public:
 
     const QList<SettingsCategory*>& getCategories() const;
 
-    const SettingsCategory* getCategory(const QString& key) const;
-    Setting* getSetting(const QString& key) const;
+    SettingsCategory& getCategory(const QString& key) const;
+    Setting& getSetting(const QString& key) const;
+
+    ISettingsProvider& getSettingsProvider() const;
 
 private:
+    ISettingsProvider& settingsProvider;
     QList<SettingsCategory*> categories;
 };
 

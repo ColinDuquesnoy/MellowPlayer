@@ -5,21 +5,24 @@
 #include "ISettingsProvider.hpp"
 #include "SettingsCategory.hpp"
 
+using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-ApplicationSettings::ApplicationSettings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider) {
+ApplicationSettings::ApplicationSettings(ISettingsSchemaLoader& configurationLoader,
+                                         ISettingsProvider& settingsProvider):
+        settingsProvider(settingsProvider) {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();
     QJsonArray categoriesArray = rootObject.value("categories").toArray();
 
-    for(int i = 0; i < categoriesArray.count(); ++i) {
+    for (int i = 0; i < categoriesArray.count(); ++i) {
         QJsonObject categoryObject = categoriesArray.at(i).toObject();
         SettingsCategory::Data data;
         data.name = categoryObject.value("name").toString();
         data.icon = categoryObject.value("icon").toString();
         data.key = categoryObject.value("key").toString();
         data.parameters = categoryObject.value("settings").toArray();
-        categories.append(new SettingsCategory(settingsProvider, data, this));
+        categories.append(new SettingsCategory(data, this));
     }
 
     for (SettingsCategory* category: categories)
@@ -30,26 +33,27 @@ const QList<SettingsCategory*>& ApplicationSettings::getCategories() const {
     return categories;
 }
 
-const SettingsCategory* ApplicationSettings::getCategory(const QString& key) const {
-    for(SettingsCategory* category: categories)
+SettingsCategory& ApplicationSettings::getCategory(const QString& key) const {
+    for (SettingsCategory* category: categories)
         if (category->getKey() == key)
-            return category;
-    return nullptr;
+            return *category;
+    throw runtime_error("Unknown category: " + key.toStdString());
 }
 
-Setting* ApplicationSettings::getSetting(const QString& key) const {
+Setting& ApplicationSettings::getSetting(const QString& key) const {
     QStringList tokens = key.split("/");
 
     if (tokens.count() != 2)
-        return nullptr;
+        throw runtime_error("Malformed setting key: " + key.toStdString());
 
     QString categoryKey = tokens[0];
     QString parameterKey = tokens[1];
 
-    auto* category = getCategory(categoryKey);
+    auto& category = getCategory(categoryKey);
 
-    if (category == nullptr)
-        return nullptr;
+    return category.getSetting(parameterKey);
+}
 
-    return category->getSetting(parameterKey);
+ISettingsProvider& ApplicationSettings::getSettingsProvider() const {
+    return settingsProvider;
 }

@@ -25,8 +25,8 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
                                             notificationPresenterMock.get(), pluginService, appSettings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    Setting* playNotifEnabled = appSettings.getSetting("notifications/play");
-    playNotifEnabled->setValue(true);
+    Setting& playNotifEnabled = appSettings.getSetting("notifications/play");
+    playNotifEnabled.setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
     REQUIRE(validSong.isValid());
@@ -50,7 +50,7 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     }
 
     SECTION("display disallowed notification") {
-        playNotifEnabled->setValue(false);
+        playNotifEnabled.setValue(false);
         Notification notif{"title", "message", "", NotificationType::Song};
         REQUIRE(!notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Never();

@@ -21,7 +21,7 @@ public:
         QString key;
     };
 
-    SettingsCategory(ISettingsProvider& settingsProvider, const Data& data, ApplicationSettings* appSettings);
+    SettingsCategory(const Data& data, ApplicationSettings* appSettings);
     void resolveDependencies();
 
     const QString& getName() const;
@@ -29,7 +29,7 @@ public:
     const QString& getKey() const;
     const QList<Setting*>& getSettings() const;
 
-    Setting* getSetting(const QString& key) const;
+    Setting& getSetting(const QString& key) const;
 
 private:
     Data data;
