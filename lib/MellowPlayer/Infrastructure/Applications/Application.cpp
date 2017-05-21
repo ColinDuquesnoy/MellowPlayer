@@ -2,7 +2,7 @@
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
 #include <MellowPlayer/UseCases/Interfaces/INotificationsService.hpp>
 
@@ -14,7 +14,7 @@ using namespace std;
 
 Application::Application(IQtApplication& qtApp,
                          IMainWindow& mainWindow,
-                         PluginService& pluginService,
+                         StreamingServicePluginService& pluginService,
                          IHotkeysService& kotkeys,
                          ISystemTrayIcon& systemTrayIcon,
                          INotificationService& notificationService) :

@@ -9,9 +9,9 @@ TEST_CASE("QmlMainWindowTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
 
-    StreamingServicesViewModel& streamingServices = injector.create<StreamingServicesViewModel&>();
-    ListeningHistoryViewModel& listeningHistory = injector.create<ListeningHistoryViewModel&>();
-    StyleViewModel& style = injector.create<StyleViewModel&>();
+    StreamingServicesModel& streamingServices = injector.create<StreamingServicesModel&>();
+    ListeningHistoryModel& listeningHistory = injector.create<ListeningHistoryModel&>();
+    StreamingServiceStyleModel& style = injector.create<StreamingServiceStyleModel&>();
     IPlayer& player = injector.create<PlayerProxy&>();
     ILocalAlbumArtService& albumArt = injector.create<ILocalAlbumArtService&>();
     ISettingsProvider& applicationSettings = injector.create<ISettingsProvider&>();

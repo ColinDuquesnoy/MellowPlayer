@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -10,11 +10,11 @@ using namespace std;
 
 TEST_CASE("PluginServiceTests", "[UnitTest]") {
     auto mock = PluginLoaderMock::get();
-    PluginService pluginService(mock.get());
-    QSignalSpy pluginAddedSpy(&pluginService, SIGNAL(pluginAdded(Entities::Plugin*)));
+    StreamingServicePluginService pluginService(mock.get());
+    QSignalSpy pluginAddedSpy(&pluginService, SIGNAL(pluginAdded(Entities::StreamingServicePlugin*)));
     pluginService.load();
 
-    SECTION("load called PluginLoader::load") {
+    SECTION("load called StreamingServicePluginLoader::load") {
         Verify(Method(mock, load)).Exactly(1);
         REQUIRE(pluginService.getAll().count() > 1);
     };
@@ -37,7 +37,7 @@ TEST_CASE("PluginServiceTests", "[UnitTest]") {
 
     SECTION("set current service ") {
         QSignalSpy currentPluginChangedSignal(&pluginService,
-                                               SIGNAL(currentPluginChanged(Entities::Plugin*)));
+                                               SIGNAL(currentPluginChanged(Entities::StreamingServicePlugin*)));
         pluginService.setCurrent(&pluginService.get("Deezer"));
         REQUIRE(pluginService.getCurrent() != nullptr);
         REQUIRE(currentPluginChangedSignal.count() == 1);

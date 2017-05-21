@@ -35,8 +35,8 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     qRegisterMetaType<Player*>("UseCases::Player*");
     qRegisterMetaType<Song*>("Entities::Song*");
     qRegisterMetaType<Song*>("Song*");
-    qRegisterMetaType<Song*>("Entities::Plugin*");
-    qRegisterMetaType<Song*>("Plugin*");
+    qRegisterMetaType<Song*>("Entities::StreamingServicePlugin*");
+    qRegisterMetaType<Song*>("StreamingServicePlugin*");
     qRegisterMetaType<PlaybackStatus >("UseCases::PlaybackStatus");
     qRegisterMetaType<PlaybackStatus >("PlaybackStatus");
     qRegisterMetaType<ListeningHistoryEntry>("Entities::ListeningHistoryEntry");

@@ -1,6 +1,6 @@
 #include <QVariantMap>
-#include <MellowPlayer/Entities/Plugin.hpp>
-#include <MellowPlayer/Entities/PluginScript.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePluginScript.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include "Player.hpp"
@@ -9,7 +9,7 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-Player::Player(Plugin& plugin) :
+Player::Player(StreamingServicePlugin& plugin) :
         logger(LoggingManager::instance().getLogger("Player-" + plugin.getName().toStdString())),
         currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
 

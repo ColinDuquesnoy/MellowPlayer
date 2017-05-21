@@ -5,31 +5,31 @@
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
 #include "QmlMainWindow.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
-                             ListeningHistoryViewModel& listeningHistory,
-                             StyleViewModel& style,
+QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
+                             ListeningHistoryModel& listeningHistoryModel,
+                             StreamingServiceStyleModel& pluginStyleModel,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
                              ISettingsProvider& settingsProvider) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
-        settingsProvider(settingsProvider), streamingServices(streamingServices),
-        listeningHistory(listeningHistory) {
+        settingsProvider(settingsProvider), streamingServices(streamingServicesModel),
+        listeningHistory(listeningHistoryModel) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
-    context->setContextProperty("streamingServices", &streamingServices);
-    context->setContextProperty("listeningHistory", &listeningHistory);
-    context->setContextProperty("style", &style);
+    context->setContextProperty("streamingServices", &streamingServicesModel);
+    context->setContextProperty("listeningHistory", &listeningHistoryModel);
+    context->setContextProperty("style", &pluginStyleModel);
     context->setContextProperty("player", &player);
     context->setContextProperty("albumArt", &albumArt);
-    context->setContextProperty("clipboard", &clipBoardViewModel);
+    context->setContextProperty("clipboard", &clipBoardModel);
 }
 
 bool QmlMainWindow::load() {

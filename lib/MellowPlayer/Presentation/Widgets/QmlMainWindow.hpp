@@ -3,7 +3,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
+#include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISettingsProvider)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
@@ -12,16 +12,16 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class ListeningHistoryViewModel;
-class StreamingServicesViewModel;
-class StyleViewModel;
+class ListeningHistoryModel;
+class StreamingServicesModel;
+class StreamingServiceStyleModel;
 
 class QmlMainWindow: public QObject, public UseCases::IMainWindow {
     Q_OBJECT
 public:
-    QmlMainWindow(StreamingServicesViewModel& streamingServices,
-                  ListeningHistoryViewModel& listeningHistory,
-                  StyleViewModel& style,
+    QmlMainWindow(StreamingServicesModel& streamingServicesModel,
+                  ListeningHistoryModel& listeningHistoryModel,
+                  StreamingServiceStyleModel& pluginStyleModel,
                   UseCases::IPlayer& player,
                   UseCases::ILocalAlbumArtService& albumArt,
                   UseCases::ISettingsProvider& settingsProvider);
@@ -37,10 +37,10 @@ private:
     QQuickWindow* window;
     UseCases::ILogger& logger;
     UseCases::ISettingsProvider& settingsProvider;
-    StreamingServicesViewModel& streamingServices;
-    ListeningHistoryViewModel& listeningHistory;
+    StreamingServicesModel& streamingServices;
+    ListeningHistoryModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
-    ClipBoardViewModel clipBoardViewModel;
+    ClipBoardModel clipBoardModel;
 };
 
 END_MELLOWPLAYER_NAMESPACE

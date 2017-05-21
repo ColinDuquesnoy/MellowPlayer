@@ -1,5 +1,5 @@
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
-#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include "PlayerProxy.hpp"
 #include "Player.hpp"
 #include "MellowPlayer/UseCases/Services/PlayerService.hpp"
@@ -8,10 +8,10 @@ USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 using namespace std;
 
-PlayerProxy::PlayerProxy(PlayerService& playerService, PluginService& pluginService)
+PlayerProxy::PlayerProxy(PlayerService& playerService, StreamingServicePluginService& pluginService)
     : players(playerService), pluginService(pluginService), currentPlayer(nullptr) {
 
-    connect(&pluginService, &PluginService::currentPluginChanged,
+    connect(&pluginService, &StreamingServicePluginService::currentPluginChanged,
             this, &PlayerProxy::onCurrentPluginChanged);
 
     if(pluginService.getCurrent() != nullptr)
@@ -116,7 +116,7 @@ double PlayerProxy::getVolume() const {
     return 0;
 }
 
-void PlayerProxy::onCurrentPluginChanged(Plugin* plugin) {
+void PlayerProxy::onCurrentPluginChanged(StreamingServicePlugin* plugin) {
     if (plugin == nullptr)
         return;
     auto player = players.get(plugin->getName());

@@ -6,7 +6,7 @@
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <Utils/Helpers.hpp>
 
@@ -15,7 +15,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("ListeningHistoryServiceTests") {
     auto mock = PluginLoaderMock::get();
-    PluginService pluginService(mock.get());
+    StreamingServicePluginService pluginService(mock.get());
     pluginService.load();
     PlayerService playerService(pluginService);
     PlayerProxy player(playerService, pluginService);

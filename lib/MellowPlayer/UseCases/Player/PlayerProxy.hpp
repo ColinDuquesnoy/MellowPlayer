@@ -6,18 +6,18 @@
 #include "IPlayer.hpp"
 #include "MellowPlayer/Entities/Song.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class Player;
 class PlayerService;
-class PluginService;
+class StreamingServicePluginService;
 
 class PlayerProxy: public IPlayer {
     Q_OBJECT
 public:
-    PlayerProxy(PlayerService& playerService, PluginService& pluginService);
+    PlayerProxy(PlayerService& playerService, StreamingServicePluginService& pluginService);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -43,11 +43,11 @@ public:
     bool isStopped() const override;
 
 private slots:
-    void onCurrentPluginChanged(Entities::Plugin* plugin);
+    void onCurrentPluginChanged(Entities::StreamingServicePlugin* plugin);
 
 private:
     PlayerService& players;
-    PluginService& pluginService;
+    StreamingServicePluginService& pluginService;
     Entities::Song nullSong;
 
     std::shared_ptr<Player> currentPlayer;

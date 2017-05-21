@@ -1,6 +1,6 @@
 #include "PluginLoaderMock.hpp"
 
-PluginStyle PluginLoaderMock::PLUGIN_STYLE = {
+StreamingServiceStyle PluginLoaderMock::PLUGIN_STYLE = {
         "dark",
         "#ff00ff",
         "#00ff00",
