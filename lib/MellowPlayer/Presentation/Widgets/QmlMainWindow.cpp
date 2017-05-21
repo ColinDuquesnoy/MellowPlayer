@@ -18,7 +18,7 @@ QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
                              StreamingServiceStyleModel& pluginStyleModel,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
-                             UseCases::ApplicationSettings& applicationSettings) :
+                             ApplicationSettings& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
         applicationSettings(applicationSettings), streamingServices(streamingServicesModel),
         listeningHistory(listeningHistoryModel) {

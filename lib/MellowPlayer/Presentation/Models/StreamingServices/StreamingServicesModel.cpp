@@ -14,7 +14,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesModel::StreamingServicesModel(StreamingServicePluginService& pluginService,
                                                PlayerService& playerService,
-                                               UseCases::ApplicationSettings& applicationSettings) :
+                                               ApplicationSettings& applicationSettings) :
         QObject(), pluginService(pluginService), playerService(playerService),
         applicationSettings(applicationSettings),
         currentServiceSetting(applicationSettings.getSetting("private/current-service")),
