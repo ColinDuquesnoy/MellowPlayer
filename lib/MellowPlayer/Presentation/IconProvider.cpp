@@ -1,15 +1,17 @@
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include "IconProvider.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-IconProvider::IconProvider(ISettingsProvider& applicationSettings) : applicationSettings(applicationSettings) {
+IconProvider::IconProvider(ApplicationSettings& applicationSettings) : applicationSettings(applicationSettings) {
 
 }
 
 QIcon IconProvider::trayIcon() {
-    QString iconString = applicationSettings.getTrayIcon();
+    Setting& setting = applicationSettings.getSetting("general/tray-icon");
+    QString iconString = setting.getValue().toString();
     if (iconString.trimmed().isEmpty())
         return windowIcon();
     else if (QFile::exists(iconString))

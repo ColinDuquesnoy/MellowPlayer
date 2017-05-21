@@ -8,7 +8,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtApplication& qtApplication,
-                               ISettingsProvider& applicationSettings) :
+                               ApplicationSettings& applicationSettings) :
         QObject(), logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
         player(player), mainWindow(mainWindow), qtApplication(qtApplication),
         applicationSettings(applicationSettings), iconProvider(applicationSettings),

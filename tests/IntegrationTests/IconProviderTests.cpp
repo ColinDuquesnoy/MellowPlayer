@@ -2,10 +2,13 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
+#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 bool isNullIcon(QIcon icon) {
@@ -23,9 +26,12 @@ TEST_CASE("IconProviderTests") {
 
     SECTION("trayIcon") {
         Mock<ISettingsProvider> appSettingsMock;
-        When(Method(appSettingsMock, getTrayIcon)).Return("", __FILE__, "folder-music");
+        When(Method(appSettingsMock, getValue)).Return("", __FILE__, "folder-music");
 
-        IconProvider iconProvider(appSettingsMock.get());
+        SettingsSchemaLoader loader;
+        ApplicationSettings applicationSettings(loader, appSettingsMock.get());
+
+        IconProvider iconProvider(applicationSettings);
 
         // default icon
         REQUIRE(!isNullIcon(iconProvider.trayIcon()));
