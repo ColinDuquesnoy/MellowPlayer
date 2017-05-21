@@ -7,7 +7,6 @@ using namespace std;
 
 const QString QSettingsProvider::CURRENT_SERVICE_KEY = "currentService";
 const QString QSettingsProvider::SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY = "showCloseToSystemTrayMessage";
-const QString QSettingsProvider::TRAY_ICON_KEY = "getTrayIcon";
 
 QSettingsProvider::QSettingsProvider(): qSettings() {
 
@@ -39,12 +38,4 @@ QVariant QSettingsProvider::getValue(const QString& key, const QVariant& default
 
 void QSettingsProvider::setValue(const QString& key, const QVariant& value) {
     qSettings.setValue(key, value);
-}
-
-QString QSettingsProvider::getTrayIcon() const {
-    return qSettings.value(TRAY_ICON_KEY).toString();
-}
-
-void QSettingsProvider::setTrayIcon(const QString& trayIcon) {
-    qSettings.setValue(TRAY_ICON_KEY, trayIcon);
 }

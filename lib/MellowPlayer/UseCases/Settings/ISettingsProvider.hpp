@@ -19,9 +19,6 @@ public:
     virtual bool getShowCloseToSysemTrayMessage() const = 0;
     virtual void setShowCloseToSystemTrayMessage(bool value) = 0;
 
-    virtual QString getTrayIcon() const = 0;
-    virtual void setTrayIcon(const QString& trayIcon) = 0;
-
     virtual QVariant getValue(const QString& key, const QVariant& defaultValue = QVariant()) const = 0;
     virtual void setValue(const QString& key, const QVariant& value) = 0;
 };

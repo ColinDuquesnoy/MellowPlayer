@@ -20,17 +20,6 @@ TEST_CASE("ApplicationSettingsTests") {
         }
     }
 
-    SECTION("trayIcon") {
-        SECTION("defaultValue") {
-            REQUIRE(applicationSettings.getTrayIcon().isEmpty());
-        }
-
-        SECTION("change tray icon") {
-            applicationSettings.setTrayIcon("foo");
-            REQUIRE(applicationSettings.getTrayIcon() == "foo");
-        }
-    }
-
     SECTION("getShowCloseToSysemTrayMessage") {
         SECTION("defaultValue") {
             REQUIRE(applicationSettings.getShowCloseToSysemTrayMessage());
