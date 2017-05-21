@@ -13,9 +13,6 @@ public:
 
     virtual void clear() = 0;
 
-    virtual QString getCurrentService() const = 0;
-    virtual void setCurrentService(const QString& service) = 0;
-
     virtual QVariant getValue(const QString& key, const QVariant& defaultValue = QVariant()) const = 0;
     virtual void setValue(const QString& key, const QVariant& value) = 0;
 };

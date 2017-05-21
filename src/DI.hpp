@@ -36,8 +36,8 @@
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/Application.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>

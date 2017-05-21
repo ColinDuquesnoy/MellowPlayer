@@ -1,17 +1,11 @@
 #include "SettingsProviderMock.hpp"
 
-QString SettingsProviderMock::currentService;
 QMap<QString, QVariant> SettingsProviderMock::values;
 
 Mock<ISettingsProvider> SettingsProviderMock::get() {
     Mock<ISettingsProvider> mock;
 
     When(Method(mock, clear)).AlwaysReturn();
-
-    When(Method(mock, getCurrentService)).AlwaysReturn(currentService);
-    When(Method(mock, setCurrentService)).AlwaysDo([](const QString& serviceName) {
-        currentService = serviceName;
-    });
 
     When(Method(mock, getValue)).AlwaysDo([](const QString& key, const QVariant& defaultValue) -> QVariant {
         if (values.contains(key))

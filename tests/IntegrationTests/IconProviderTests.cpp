@@ -3,8 +3,8 @@
 #include <fakeit.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

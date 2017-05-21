@@ -5,6 +5,8 @@
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -30,11 +32,11 @@
 #include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServicePluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>

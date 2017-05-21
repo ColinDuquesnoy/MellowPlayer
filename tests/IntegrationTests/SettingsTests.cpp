@@ -2,14 +2,14 @@
 #include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
 #include <MellowPlayer/UseCases/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/SettingsSchemaLoader.hpp>
-#include <MellowPlayer/Infrastructure/Configuration/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <QtTest/QSignalSpy>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-#define NB_CONFIGS 4
+#define NB_CONFIGS 5
 
 TEST_CASE("SettingsTests") {
     QSettingsProvider settingsProvider;

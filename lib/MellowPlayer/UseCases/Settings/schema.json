@@ -158,6 +158,25 @@
 					"key": "previous"
 				}
 			]
+		},
+		{
+			"name": "Private",
+			"icon": "",
+			"key": "private",
+			"settings": [
+				{
+					"name": "Show close to tray message",
+					"type": "bool",
+					"default": true,
+					"key": "show-close-to-tray-message"
+				},
+				{
+					"name": "Current service",
+					"type": "string",
+					"default": "",
+					"key": "current-service"
+				}
+			]
 		}
 	]
 }

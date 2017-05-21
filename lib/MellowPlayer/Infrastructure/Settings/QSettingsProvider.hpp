@@ -11,13 +11,8 @@ public:
 
     void clear() override;
 
-    QString getCurrentService() const override;
-    void setCurrentService(const QString& service) override;
-
     QVariant getValue(const QString& key, const QVariant& defaultValue=QVariant()) const override;
     void setValue(const QString& key, const QVariant& value) override;
-
-    static const QString CURRENT_SERVICE_KEY;
 
 private:
     QSettings qSettings;

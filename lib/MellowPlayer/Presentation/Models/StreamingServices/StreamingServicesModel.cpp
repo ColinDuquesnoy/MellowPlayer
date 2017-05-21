@@ -1,7 +1,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include "StreamingServicesModel.hpp"
@@ -12,21 +13,23 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesModel::StreamingServicesModel(StreamingServicePluginService& pluginService,
-                                                       PlayerService& playerService,
-                                                       ISettingsProvider& settingsProvider) :
+                                               PlayerService& playerService,
+                                               UseCases::ApplicationSettings& applicationSettings) :
         QObject(), pluginService(pluginService), playerService(playerService),
-        settingsProvider(settingsProvider), model(new QQmlObjectListModel<StreamingServicePluginModel>(this)),
+        applicationSettings(applicationSettings),
+        currentServiceSetting(applicationSettings.getSetting("private/current-service")),
+        model(new QQmlObjectListModel<StreamingServicePluginModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 
     connect(&pluginService, &StreamingServicePluginService::pluginAdded, this, &StreamingServicesModel::onPluginAdded);
 
-    for(auto& plugin: pluginService.getAll()) {
+    for (auto& plugin: pluginService.getAll()) {
         onPluginAdded(plugin.get());
     }
 }
 
 void StreamingServicesModel::initialize() {
-    auto currentServiceName = settingsProvider.getCurrentService();
+    auto currentServiceName = currentServiceSetting.getValue().toString();
     for (auto service: model->toList()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);
@@ -46,7 +49,7 @@ void StreamingServicesModel::setCurrentService(QObject* value) {
         return;
 
     auto service = static_cast<StreamingServicePluginModel*>(value);
-    settingsProvider.setCurrentService(value->property("name").toString());
+    currentServiceSetting.setValue(value->property("name").toString());
     currentService = value;
     pluginService.setCurrent(service->getPlugin());
     setCurrentIndex(model->toList().indexOf(service));
@@ -66,5 +69,6 @@ void StreamingServicesModel::reload() {
 }
 
 void StreamingServicesModel::onPluginAdded(StreamingServicePlugin* plugin) {
-    model->append(new StreamingServicePluginModel(*plugin, settingsProvider, playerService, this));
+    model->append(new StreamingServicePluginModel(
+            *plugin, applicationSettings.getSettingsProvider(), playerService, this));
 }
