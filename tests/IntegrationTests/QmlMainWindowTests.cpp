@@ -1,4 +1,5 @@
 #include <catch.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
 #include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
 #include <DI.hpp>
 
@@ -14,7 +15,7 @@ TEST_CASE("QmlMainWindowTests") {
     StreamingServiceStyleModel& style = injector.create<StreamingServiceStyleModel&>();
     IPlayer& player = injector.create<PlayerProxy&>();
     ILocalAlbumArtService& albumArt = injector.create<ILocalAlbumArtService&>();
-    ISettingsProvider& applicationSettings = injector.create<ISettingsProvider&>();
+    ApplicationSettings& applicationSettings = injector.create<ApplicationSettings&>();
 
     QmlMainWindow mainWindow(streamingServices, listeningHistory, style, player, albumArt, applicationSettings);
 

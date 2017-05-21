@@ -5,7 +5,7 @@
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISettingsProvider)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ApplicationSettings)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
@@ -24,19 +24,17 @@ public:
                   StreamingServiceStyleModel& pluginStyleModel,
                   UseCases::IPlayer& player,
                   UseCases::ILocalAlbumArtService& albumArt,
-                  UseCases::ISettingsProvider& settingsProvider);
+                  UseCases::ApplicationSettings& applicationSettings);
     bool load() override;
     void show() override;
     void hide() override;
 
 private:
-    QmlMainWindow(const QmlMainWindow&) = delete;
-    QmlMainWindow operator=(const QmlMainWindow&) = delete;
     bool eventFilter(QObject *object, QEvent *event) override;
 
     QQuickWindow* window;
     UseCases::ILogger& logger;
-    UseCases::ISettingsProvider& settingsProvider;
+    UseCases::ApplicationSettings& applicationSettings;
     StreamingServicesModel& streamingServices;
     ListeningHistoryModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;

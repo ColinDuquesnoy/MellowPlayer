@@ -1,10 +1,10 @@
 #include <QtWebEngine>
-#include <QQmlContext>
 #include <QMessageBox>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
+#include <MellowPlayer/UseCases/Settings/ApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
@@ -18,9 +18,9 @@ QmlMainWindow::QmlMainWindow(StreamingServicesModel& streamingServicesModel,
                              StreamingServiceStyleModel& pluginStyleModel,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
-                             ISettingsProvider& settingsProvider) :
+                             UseCases::ApplicationSettings& applicationSettings) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
-        settingsProvider(settingsProvider), streamingServices(streamingServicesModel),
+        applicationSettings(applicationSettings), streamingServices(streamingServicesModel),
         listeningHistory(listeningHistoryModel) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
@@ -67,14 +67,16 @@ void QmlMainWindow::hide() {
 bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
     if (object == window) {
         if (event->type() == QEvent::Close) {
-            if (settingsProvider.getShowCloseToSysemTrayMessage()) {
+            Setting& setting = applicationSettings.getSetting("general/close-to-tray");
+            bool showMessage = setting.getValue().toBool();
+            if (showMessage) {
                 // todo: send signal to qml window to show a QML popup instead
                 QMessageBox::information(nullptr, tr("Close to system tray"),
                                          tr("The program will keep running in the system tray.<br><br>"
                                                     "To terminate the program, choose <b>Quit</b> in the context menu of the "
                                                     "system tray icon.<br><br>"
                                                     "To restore the window, double click on the system tray icon."));
-                settingsProvider.setShowCloseToSystemTrayMessage(false);
+                setting.setValue(false);
             }
             hide(); // todo hide should be done from QML
             return true;
