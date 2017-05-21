@@ -35,7 +35,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
 
     SECTION("set custom url") {
         QSignalSpy spy(&model, SIGNAL(urlChanged(const QString&)));
-        model.setCustomUrl("https://deezer.com/news");
+        model.setUrl("https://deezer.com/news");
         REQUIRE(model.getUrl() == "https://deezer.com/news");
         REQUIRE(spy.count() == 1);
     }

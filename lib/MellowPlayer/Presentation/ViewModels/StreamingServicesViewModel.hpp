@@ -23,7 +23,7 @@ class StreamingServicesViewModel: public QObject {
 public:
     StreamingServicesViewModel(UseCases::PluginService& pluginService,
                                UseCases::PlayerService& playerService,
-                               UseCases::ISettingsProvider& applicationSettings);
+                               UseCases::ISettingsProvider& settingsProvider);
     void initialize();
 
     Q_INVOKABLE void reload();
@@ -45,10 +45,9 @@ private slots:
 private:
     UseCases::PluginService& pluginService;
     UseCases::PlayerService& playerService;
-    UseCases::ISettingsProvider& applicationSettings;
+    UseCases::ISettingsProvider& settingsProvider;
     QQmlObjectListModel<StreamingServiceModel>* model;
     QObject* currentService;
-    QObject* currentPlayer;
     int currentIndex;
 };
 

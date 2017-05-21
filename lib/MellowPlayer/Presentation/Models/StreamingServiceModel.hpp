@@ -16,7 +16,7 @@ class StreamingServiceModel: public QObject
     Q_PROPERTY(QString logo READ getLogo CONSTANT)
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(UseCases::Player* player READ getPlayer CONSTANT)
-    Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
+    Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
 public:
     StreamingServiceModel(Entities::Plugin& plugin,
                           UseCases::ISettingsProvider& applicationSettings,
@@ -28,7 +28,7 @@ public:
     QString getName() const;
     UseCases::Player* getPlayer();
     QString getUrl() const;
-    Q_INVOKABLE void setCustomUrl(const QString& url);
+    void setUrl(const QString& url);
 
     bool operator==(const StreamingServiceModel& rhs) const;
     bool operator!=(const StreamingServiceModel& rhs) const;
@@ -42,7 +42,7 @@ private:
     const QString getCustomUrlSettingsKey() const;
 
     Entities::Plugin& plugin;
-    UseCases::ISettingsProvider& applicationSettings;
+    UseCases::ISettingsProvider& settingsProvider;
     UseCases::PlayerService& players;
 };
 

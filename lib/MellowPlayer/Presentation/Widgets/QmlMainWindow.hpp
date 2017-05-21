@@ -24,7 +24,7 @@ public:
                   StyleViewModel& style,
                   UseCases::IPlayer& player,
                   UseCases::ILocalAlbumArtService& albumArt,
-                  UseCases::ISettingsProvider& applicationSettings);
+                  UseCases::ISettingsProvider& settingsProvider);
     bool load() override;
     void show() override;
     void hide() override;
@@ -36,7 +36,7 @@ private:
 
     QQuickWindow* window;
     UseCases::ILogger& logger;
-    UseCases::ISettingsProvider& applicationSettings;
+    UseCases::ISettingsProvider& settingsProvider;
     StreamingServicesViewModel& streamingServices;
     ListeningHistoryViewModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;

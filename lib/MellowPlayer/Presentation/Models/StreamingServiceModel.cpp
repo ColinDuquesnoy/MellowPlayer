@@ -13,7 +13,7 @@ StreamingServiceModel::StreamingServiceModel(Plugin& plugin,
                                              QObject* parent) :
         QObject(parent),
         plugin(plugin),
-        applicationSettings(applicationSettings),
+        settingsProvider(applicationSettings),
         players(playerService) {
 }
 QString StreamingServiceModel::getColor() const {
@@ -33,13 +33,13 @@ Player* StreamingServiceModel::getPlayer() {
 }
 
 QString StreamingServiceModel::getUrl() const {
-    QString customUrl = applicationSettings.getValue(getCustomUrlSettingsKey(), "").toString();
+    QString customUrl = settingsProvider.getValue(getCustomUrlSettingsKey(), "").toString();
     return customUrl.isEmpty() ? plugin.getUrl() : customUrl;
 }
 
-void StreamingServiceModel::setCustomUrl(const QString& url) {
+void StreamingServiceModel::setUrl(const QString& url) {
     if (url != getUrl()) {
-        applicationSettings.setValue(getCustomUrlSettingsKey(), url);
+        settingsProvider.setValue(getCustomUrlSettingsKey(), url);
         emit urlChanged(url);
     }
 }

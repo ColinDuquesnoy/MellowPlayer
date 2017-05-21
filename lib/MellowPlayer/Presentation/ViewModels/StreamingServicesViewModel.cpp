@@ -13,9 +13,9 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginService,
                                                        PlayerService& playerService,
-                                                       ISettingsProvider& applicationSettings) :
+                                                       ISettingsProvider& settingsProvider) :
         QObject(), pluginService(pluginService), playerService(playerService),
-        applicationSettings(applicationSettings), model(new QQmlObjectListModel<StreamingServiceModel>(this)),
+        settingsProvider(settingsProvider), model(new QQmlObjectListModel<StreamingServiceModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 
     connect(&pluginService, &PluginService::pluginAdded, this, &StreamingServicesViewModel::onPluginAdded);
@@ -26,7 +26,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(PluginService& pluginServ
 }
 
 void StreamingServicesViewModel::initialize() {
-    auto currentServiceName = applicationSettings.getCurrentService();
+    auto currentServiceName = settingsProvider.getCurrentService();
     for (auto service: model->toList()) {
         if (service->getName() == currentServiceName)
             setCurrentService(service);
@@ -46,7 +46,7 @@ void StreamingServicesViewModel::setCurrentService(QObject* value) {
         return;
 
     auto service = static_cast<StreamingServiceModel*>(value);
-    applicationSettings.setCurrentService(value->property("name").toString());
+    settingsProvider.setCurrentService(value->property("name").toString());
     currentService = value;
     pluginService.setCurrent(service->getPlugin());
     setCurrentIndex(model->toList().indexOf(service));
@@ -66,5 +66,5 @@ void StreamingServicesViewModel::reload() {
 }
 
 void StreamingServicesViewModel::onPluginAdded(Plugin* plugin) {
-    model->append(new StreamingServiceModel(*plugin, applicationSettings, playerService, this));
+    model->append(new StreamingServiceModel(*plugin, settingsProvider, playerService, this));
 }

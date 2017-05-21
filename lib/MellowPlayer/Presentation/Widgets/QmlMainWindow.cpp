@@ -18,9 +18,9 @@ QmlMainWindow::QmlMainWindow(StreamingServicesViewModel& streamingServices,
                              StyleViewModel& style,
                              IPlayer& player,
                              ILocalAlbumArtService& albumArt,
-                             ISettingsProvider& applicationSettings) :
+                             ISettingsProvider& settingsProvider) :
         window(nullptr), logger(LoggingManager::instance().getLogger("QmlMainWindow")),
-        applicationSettings(applicationSettings), streamingServices(streamingServices),
+        settingsProvider(settingsProvider), streamingServices(streamingServices),
         listeningHistory(listeningHistory) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
@@ -67,15 +67,16 @@ void QmlMainWindow::hide() {
 bool QmlMainWindow::eventFilter(QObject* object, QEvent* event) {
     if (object == window) {
         if (event->type() == QEvent::Close) {
-            if (applicationSettings.getShowCloseToSysemTrayMessage()) {
+            if (settingsProvider.getShowCloseToSysemTrayMessage()) {
+                // todo: send signal to qml window to show a QML popup instead
                 QMessageBox::information(nullptr, tr("Close to system tray"),
                                          tr("The program will keep running in the system tray.<br><br>"
                                                     "To terminate the program, choose <b>Quit</b> in the context menu of the "
                                                     "system tray icon.<br><br>"
                                                     "To restore the window, double click on the system tray icon."));
-                applicationSettings.setShowCloseToSystemTrayMessage(false);
+                settingsProvider.setShowCloseToSystemTrayMessage(false);
             }
-            hide();
+            hide(); // todo hide should be done from QML
             return true;
         }
     }
