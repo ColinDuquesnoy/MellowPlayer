@@ -6,17 +6,17 @@
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
-SettingsCategory::SettingsCategory(const SettingsCategory::Data& data,
-                                   ApplicationSettings* appSettings): QObject(appSettings), data(data) {
+SettingsCategory::SettingsCategory(const SettingsCategory::Data& categoryData,
+                                   ApplicationSettings* appSettings): QObject(appSettings), data(categoryData) {
     for(int i = 0; i < data.parameters.count(); ++i) {
         QJsonObject parameterObj = data.parameters.at(i).toObject();
-        Setting::Data data;
-        data.name = parameterObj.value("name").toString();
-        data.type = parameterObj.value("type").toString();
-        data.key = parameterObj.value("key").toString();
-        data.defaultValue = parameterObj.value("default").toVariant();
-        data.enableCondition = parameterObj.value("enabled").toString();
-        settings.append(new Setting(*appSettings, *this, data));
+        Setting::Data settingData;
+        settingData.name = parameterObj.value("name").toString();
+        settingData.type = parameterObj.value("type").toString();
+        settingData.key = parameterObj.value("key").toString();
+        settingData.defaultValue = parameterObj.value("default").toVariant();
+        settingData.enableCondition = parameterObj.value("enabled").toString();
+        settings.append(new Setting(*appSettings, *this, settingData));
     }
 }
 

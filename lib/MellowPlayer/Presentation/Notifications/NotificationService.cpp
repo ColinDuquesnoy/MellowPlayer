@@ -112,4 +112,6 @@ bool NotificationService::isNotificationTypeEnabled(NotificationType type) const
             return check(setting);
         }
     }
+
+    return false;
 }
