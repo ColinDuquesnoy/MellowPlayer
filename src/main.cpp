@@ -18,7 +18,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 int main(int argc, char** argv)
 {
 #ifdef Q_OS_WIN32
-    Q_INIT_RESOURCE(use-cases);
+    Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 #endif
     SpdLoggerFactory loggerFactory;
