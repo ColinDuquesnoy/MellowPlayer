@@ -28,7 +28,7 @@ TEST_CASE("SettingsTests") {
         }
 
         SECTION("getSetting") {
-            REQUIRE(&settings.getSetting("general/confirm-exit") != nullptr);
+            REQUIRE_NOTHROW(settings.getSetting("general/confirm-exit"));
             REQUIRE_THROWS(settings.getCategory("foo"));
         }
     }
@@ -42,7 +42,7 @@ TEST_CASE("SettingsTests") {
         }
 
         SECTION("getSetting") {
-            REQUIRE(&generalCategory->getSetting("confirm-exit") != nullptr);
+            REQUIRE_NOTHROW(generalCategory->getSetting("confirm-exit"));
             REQUIRE_THROWS(generalCategory->getSetting("foo"));
         }
     }
