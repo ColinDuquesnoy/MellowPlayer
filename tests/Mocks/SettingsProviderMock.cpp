@@ -13,9 +13,6 @@ Mock<ISettingsProvider> SettingsProviderMock::get() {
         currentService = serviceName;
     });
 
-    When(Method(mock, getShowCloseToSysemTrayMessage)).AlwaysReturn(true);
-    When(Method(mock, setShowCloseToSystemTrayMessage)).AlwaysReturn();
-
     When(Method(mock, getValue)).AlwaysDo([](const QString& key, const QVariant& defaultValue) -> QVariant {
         if (values.contains(key))
             return values[key];

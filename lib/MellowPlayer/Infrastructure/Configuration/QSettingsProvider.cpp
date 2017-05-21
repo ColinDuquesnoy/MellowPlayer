@@ -6,7 +6,6 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 const QString QSettingsProvider::CURRENT_SERVICE_KEY = "currentService";
-const QString QSettingsProvider::SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY = "showCloseToSystemTrayMessage";
 
 QSettingsProvider::QSettingsProvider(): qSettings() {
 
@@ -22,14 +21,6 @@ QString QSettingsProvider::getCurrentService() const {
 
 void QSettingsProvider::setCurrentService(const QString& service) {
     qSettings.setValue(CURRENT_SERVICE_KEY, service);
-}
-
-bool QSettingsProvider::getShowCloseToSysemTrayMessage() const {
-    return qSettings.value(SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY, true).toBool();
-}
-
-void QSettingsProvider::setShowCloseToSystemTrayMessage(bool value) {
-    qSettings.setValue(SHOW_CLOSE_TO_SYS_TRAY_MESSAGE_KEY, value);
 }
 
 QVariant QSettingsProvider::getValue(const QString& key, const QVariant& defaultValue) const {

@@ -16,9 +16,6 @@ public:
     virtual QString getCurrentService() const = 0;
     virtual void setCurrentService(const QString& service) = 0;
 
-    virtual bool getShowCloseToSysemTrayMessage() const = 0;
-    virtual void setShowCloseToSystemTrayMessage(bool value) = 0;
-
     virtual QVariant getValue(const QString& key, const QVariant& defaultValue = QVariant()) const = 0;
     virtual void setValue(const QString& key, const QVariant& value) = 0;
 };

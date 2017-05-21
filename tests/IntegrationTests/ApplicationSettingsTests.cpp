@@ -20,18 +20,11 @@ TEST_CASE("ApplicationSettingsTests") {
         }
     }
 
-    SECTION("getShowCloseToSysemTrayMessage") {
-        SECTION("defaultValue") {
-            REQUIRE(applicationSettings.getShowCloseToSysemTrayMessage());
-        }
-
-        SECTION("change getShowCloseToSysemTrayMessage") {
-            applicationSettings.setShowCloseToSystemTrayMessage(false);
-            REQUIRE(!applicationSettings.getShowCloseToSysemTrayMessage());
-        }
+    SECTION("defaultValue") {
+        REQUIRE(applicationSettings.getValue("foo", "fooBar").toString() == "fooBar");
     }
 
-    SECTION("custom value") {
+    SECTION("setValue") {
         applicationSettings.setValue("foo", "bar");
         REQUIRE(applicationSettings.getValue("foo").toString() == "bar");
     }
