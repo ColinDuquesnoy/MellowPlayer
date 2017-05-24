@@ -14,7 +14,7 @@ StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServicePluginSer
 }
 
 QString StreamingServiceStyleModel::getTheme() const {
-    return style.theme;
+    return style.theme.toLower();
 }
 
 QString StreamingServiceStyleModel::getAccent() const {
@@ -144,13 +144,13 @@ void StreamingServiceStyleModel::updateStyle(const StreamingServiceStyle& newSty
 }
 
 double StreamingServiceStyleModel::getColorScaleFactor(const QString& color) {
-    if (QColor(color).lightness() > 128)
+    if (QColor(color).lightness() > 164)
         return 1.05;
     return 1.2;
 }
 
 bool StreamingServiceStyleModel::isDark(const QString &color) {
-    return QColor(color).lightness() < 128;
+    return QColor(color).lightness() < 164;
 }
 
 

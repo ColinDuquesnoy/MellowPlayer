@@ -13,6 +13,10 @@ QString SettingModel::getName() const {
     return setting.getName();
 }
 
+QString SettingModel::getToolTip() const {
+    return setting.getToolTip();
+}
+
 QString SettingModel::getType() const {
     return setting.getType();
 }

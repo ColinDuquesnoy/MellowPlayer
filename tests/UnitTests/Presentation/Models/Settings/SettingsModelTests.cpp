@@ -14,17 +14,14 @@ TEST_CASE("SettingsModelTests") {
     Settings& settings = injector.create<Settings&>();
     SettingsModel model(settings);
 
-    SECTION("createBoolSettingModel") {
+    SECTION("get") {
         SettingModel* settingModel = model.get(SettingKey::NOTIFICATIONS_ENABLED);
-        BoolSettingModel* boolSettingModel = qobject_cast<BoolSettingModel*>(settingModel);
-        REQUIRE(boolSettingModel != nullptr);
+        REQUIRE(settingModel != nullptr);
     }
 
-    SECTION("createStringSettingModel by default") {
-        Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
-        SettingModel* settingModel = model.get(SettingKey::APPEARANCE_ACCENT);
-        StringSettingModel* stringSettingModel = qobject_cast<StringSettingModel*>(settingModel);
-        REQUIRE(stringSettingModel != nullptr);
+    SECTION("getCategories") {
+        int extraCategories = 2;
+        REQUIRE(model.getCategories()->rowCount() - extraCategories == (settings.getCategories().count() - 1));
     }
 }
 

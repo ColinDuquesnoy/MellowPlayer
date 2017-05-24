@@ -16,6 +16,7 @@ public:
     struct Data {
         QString name;
         QString key;
+        QString toolTip;
         QString type;
         QVariant defaultValue;
         QString enableCondition;
@@ -27,6 +28,7 @@ public:
 
     const QString& getKey() const;
     const QString& getName() const;
+    const QString& getToolTip() const;
     const QString& getType() const;
     QVariant getDefaultValue() const;
 

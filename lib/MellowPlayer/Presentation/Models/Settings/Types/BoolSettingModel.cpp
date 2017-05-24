@@ -18,3 +18,7 @@ void BoolSettingModel::setValue(bool value) {
 void BoolSettingModel::onValueChanged() {
     emit valueChanged();
 }
+
+QString BoolSettingModel::getQmlComponent() {
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/BoolSettingDelegate.qml";
+}

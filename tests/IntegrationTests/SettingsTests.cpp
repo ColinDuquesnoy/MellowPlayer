@@ -9,7 +9,7 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-#define NB_CONFIGS 5
+#define NB_CONFIGS 6
 
 TEST_CASE("SettingsTests") {
     QSettingsProvider settingsProvider;
@@ -19,7 +19,7 @@ TEST_CASE("SettingsTests") {
 
     SECTION("ConfigSchemaTests") {
         SECTION("getCategories") {
-            REQUIRE(settings.getCategories().count() == NB_CONFIGS);
+            REQUIRE(settings.getCategories().count() >= NB_CONFIGS);
         }
         SECTION("getCategory") {
             REQUIRE(&settings.getCategory("general") == generalCategory);
@@ -36,7 +36,7 @@ TEST_CASE("SettingsTests") {
         SECTION("attributes") {
             REQUIRE(generalCategory->getName() == "General");
             REQUIRE(generalCategory->getKey() == "general");
-            REQUIRE(generalCategory->getIcon() == "");
+            REQUIRE(!generalCategory->getIcon().isEmpty());
             REQUIRE(generalCategory->getSettings().count() > 1);
         }
 
@@ -88,18 +88,6 @@ TEST_CASE("SettingsTests") {
             notificationsEnabled.setValue(false);
             REQUIRE(spy.count() == 1);
             REQUIRE(!playNotificationEnabled.isEnabled());
-        }
-
-        SECTION("isEnabled setting enabled if enableCondition is not true") {
-            Setting& adaptiveTheme = settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME);
-            Setting& accent = settings.get(SettingKey::APPEARANCE_ACCENT);
-            QSignalSpy spy(&accent, SIGNAL(isEnabledChanged()));
-            REQUIRE(adaptiveTheme.getValue().toBool());
-            REQUIRE(!accent.isEnabled());
-
-            adaptiveTheme.setValue(false);
-            REQUIRE(spy.count() == 1);
-            REQUIRE(accent.isEnabled());
         }
     }
 }

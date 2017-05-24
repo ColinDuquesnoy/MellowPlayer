@@ -78,3 +78,7 @@ QString Setting::getFullKey() const {
 void Setting::onParentValueChanged() {
     emit isEnabledChanged();
 }
+
+const QString& Setting::getToolTip() const {
+    return data.toolTip;
+}

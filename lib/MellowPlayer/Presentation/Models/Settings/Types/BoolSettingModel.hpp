@@ -12,6 +12,7 @@ public:
     BoolSettingModel(UseCases::Setting& setting, QObject* parent);
 
     bool getValue() const;
+    QString getQmlComponent() override;
 
 signals:
     void valueChanged();

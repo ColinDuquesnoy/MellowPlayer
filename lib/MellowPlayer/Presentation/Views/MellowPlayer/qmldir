@@ -4,8 +4,10 @@ singleton MaterialIcons 3.0 MaterialIcons.qml
 
 ApplicationRoot 3.0 ApplicationRoot.qml
 MainWindow 3.0 MainWindow.qml
-MainPage 3.0 MainPage.qml
-SettingsPage 3.0 SettingsPage.qml
+
+MainPage 3.0 Pages/MainPage.qml
+SettingsPage 3.0 Pages/SettingsPage.qml
+
 BrowserDialog 3.0 Controls/BrowserDialog.qml
 DesktopScrollBar 3.0 Controls/DesktopScrollBar.qml
 Link 3.0 Controls/Link.qml
@@ -18,6 +20,8 @@ AboutDialog 3.0 Dialogs/AboutDialog.qml
 Tooltip 3.0 Controls/Tooltip.qml
 WebView 3.0 Controls/WebView.qml
 WebViewStack 3.0 Controls/WebViewStack.qml
+
 ListeningHistoryEntryDelegate 3.0 Delegates/ListeningHistoryEntryDelegate.qml
 ListeningHistorySectionDelegate 3.0 Delegates/ListeningHistorySectionDelegate.qml
 ServiceOverviewDelegate 3.0 Delegates/ServiceOverviewDelegate.qml
+

@@ -23,20 +23,5 @@ TEST_CASE("IconProviderTests") {
     SECTION("next") { REQUIRE(!isNullIcon(IconProvider::next())); }
     SECTION("previous") { REQUIRE(!isNullIcon(IconProvider::previous())); }
     SECTION("quit") { REQUIRE(!isNullIcon(IconProvider::quit())); }
-
-    SECTION("trayIcon") {
-        Mock<ISettingsProvider> settingsProviderMock;
-        When(Method(settingsProviderMock, getValue)).Return("", __FILE__, "folder-music");
-
-        SettingsSchemaLoader loader;
-        Settings settings(loader, settingsProviderMock.get());
-
-        IconProvider iconProvider(settings);
-
-        // default icon
-        REQUIRE(!isNullIcon(iconProvider.trayIcon()));
-
-        // from file (not an image, should be null)
-        REQUIRE(isNullIcon(iconProvider.trayIcon()));
-    }
+    SECTION("trayIcon") { REQUIRE(!isNullIcon(IconProvider::trayIcon())); }
 }

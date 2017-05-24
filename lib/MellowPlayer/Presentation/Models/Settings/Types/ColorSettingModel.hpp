@@ -1,24 +1,25 @@
 #pragma once
 
+#include <QColor>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include "SettingModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class StringSettingModel: public SettingModel {
+class ColorSettingModel: public SettingModel {
     Q_OBJECT
-    Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
+    Q_PROPERTY(QColor value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    StringSettingModel(UseCases::Setting& setting, QObject* parent);
+    ColorSettingModel(UseCases::Setting& setting, QObject* parent);
 
-    QString getValue() const;
+    QColor getValue() const;
     QString getQmlComponent() override;
-
-public slots:
-    void setValue(QString value);
 
 signals:
     void valueChanged();
+
+public slots:
+    void setValue(QColor value);
 
 protected slots:
     void onValueChanged() override;

@@ -20,11 +20,12 @@ public:
         GENERAL_CHECK_FOR_UPDATES,
         GENERAL_CLOSE_TO_TRAY,
         GENERAL_CONFIRM_EXIT,
-        GENERAL_TRAY_ICON,
+        GENERAL_SHOW_TRAY_ICON,
         NOTIFICATIONS_ENABLED,
         NOTIFICATIONS_NEW_VERSION,
         NOTIFICATIONS_PAUSE,
         NOTIFICATIONS_PLAY,
+        PRIVACY_ENABLE_LISTENING_HISTORY,
         PRIVATE_CURRENT_SERVICE,
         PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
         SHORTCUTS_NEXT,
@@ -48,11 +49,12 @@ public:
         enumToString << "general/check-for-updates";
         enumToString << "general/close-to-tray";
         enumToString << "general/confirm-exit";
-        enumToString << "general/tray-icon";
+        enumToString << "general/show-tray-icon";
         enumToString << "notifications/enabled";
         enumToString << "notifications/new-version";
         enumToString << "notifications/pause";
         enumToString << "notifications/play";
+        enumToString << "privacy/enable-listening-history";
         enumToString << "private/current-service";
         enumToString << "private/show-close-to-tray-message";
         enumToString << "shortcuts/next";

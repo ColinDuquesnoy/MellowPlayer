@@ -11,8 +11,8 @@ SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtAppl
                                Settings& settings) :
         QObject(), logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
         player(player), mainWindow(mainWindow), qtApplication(qtApplication),
-        settings(settings), iconProvider(settings),
-        qSystemTrayIcon(iconProvider.trayIcon()) {
+        settings(settings),
+        qSystemTrayIcon(IconProvider::trayIcon()) {
     connect(&qSystemTrayIcon, &QSystemTrayIcon::activated, this, &SystemTrayIcon::onActivated);
 
     setUpMenu();
@@ -39,23 +39,23 @@ void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason) {
 }
 
 void SystemTrayIcon::setUpMenu() {
-    playPauseAction = menu.addAction(iconProvider.play(), "Play/Pause");
+    playPauseAction = menu.addAction(IconProvider::play(), "Play/Pause");
     connect(playPauseAction, &QAction::triggered, this, &SystemTrayIcon::togglePlayPause);
 
-    nextSongAction = menu.addAction(iconProvider.next(), "Next");
+    nextSongAction = menu.addAction(IconProvider::next(), "Next");
     connect(nextSongAction, &QAction::triggered, this, &SystemTrayIcon::next);
 
-    previousSongAction = menu.addAction(iconProvider.previous(), "Previous");
+    previousSongAction = menu.addAction(IconProvider::previous(), "Previous");
     connect(previousSongAction, &QAction::triggered, this, &SystemTrayIcon::previous);
 
     menu.addSeparator();
 
-    restoreWindowAction = menu.addAction(iconProvider.restoreWindow(), "Restore window");
+    restoreWindowAction = menu.addAction(IconProvider::restoreWindow(), "Restore window");
     connect(restoreWindowAction, &QAction::triggered, this, &SystemTrayIcon::restoreWindow);
 
     menu.addSeparator();
 
-    quitApplicationAction = menu.addAction(iconProvider.quit(), "Quit");
+    quitApplicationAction = menu.addAction(IconProvider::quit(), "Quit");
     connect(quitApplicationAction, &QAction::triggered, this, &SystemTrayIcon::quit);
 
     qSystemTrayIcon.setContextMenu(&menu);

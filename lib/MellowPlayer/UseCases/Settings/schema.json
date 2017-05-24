@@ -2,117 +2,117 @@
 	"categories": [
 		{
 			"name": "General",
-			"icon": "",
+			"icon": "\ue8b8",
 			"key": "general",
 			"settings": [
-				{
-					"name": "Close to system tray",
-					"type": "bool",
-					"default": true,
-					"key": "close-to-tray"
-				},
-				{
-					"name": "Tray icon",
-					"type": "path",
-					"default": "",
-					"key": "tray-icon"
-				},
-				{
-					"name": "Check for updates",
-					"type": "bool",
-					"default": true,
-					"key": "check-for-updates"
-				},
-				{
-					"name": "Confirm application exit",
-					"type": "bool",
-					"default": "false",
-					"key": "confirm-exit"
-				}
+                {
+                    "name": "Confirm application exit",
+                    "tooltip": "Enable this option to get a confirmation message when you leave MellowPlayer.",
+                    "type": "bool",
+                    "default": "false",
+                    "key": "confirm-exit"
+                },
+                {
+                    "name": "Close application to system tray",
+                    "tooltip": "Enable this option to close the application in the system tray and continue listening to your musing in background.",
+                    "type": "bool",
+                    "default": true,
+                    "key": "close-to-tray"
+                },
+                {
+                    "name": "Show system tray icon",
+                    "tooltip": "Disable this option to hide the system tray icon",
+                    "type": "bool",
+                    "default": true,
+                    "key": "show-tray-icon"
+                }
 			]
 		},
 		{
 			"name": "Appearance",
-			"icon": "",
+			"icon": "\ue40a",
 			"key": "appearance",
 			"settings": [
 				{
 					"name": "Adaptive theme",
+                    "tooltip": "Application theme follow the current streaming service theme",
 					"type": "bool",
 					"default": true,
 					"key": "adaptive-theme"
 				},
 				{
-					"name": "Theme",
-					"type": "Material.Theme",
+                    "name": "Theme",
+                    "tooltip": "Change default theme (when adaptive theme is off or when in overview mode)",
+					"type": "enum['Light','Dark']",
 					"default": "Light",
-					"key": "theme",
-					"enabled": "appearance/adaptive-theme"
+                    "key": "theme"
 				},
 				{
-					"name": "Accent",
+                    "name": "Accent",
+                    "tooltip": "Change material accent color",
 					"type": "color",
 					"default": "#FFC107",
-					"key": "accent",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "accent"
 				},
 				{
-					"name": "Background",
+                    "name": "Background",
+                    "tooltip": "Change material background color",
 					"type": "color",
 					"default": "#ffffff",
-					"key": "background",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "background"
 				},
 				{
-					"name": "Foreground",
+                    "name": "Foreground",
+                    "tooltip": "Change material foreground color",
 					"type": "color",
 					"default": "#505050",
-					"key": "foreground",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "foreground"
 				},
 				{
-					"name": "Primary Background",
+                    "name": "Primary Background",
+                    "tooltip": "Change material primary background color",
 					"type": "color",
 					"default": "#5f81d4",
-					"key": "primary-background",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "primary-background"
 				},
 				{
-					"name": "Primary Foreground",
+                    "name": "Primary Foreground",
+                    "tooltip": "Change material primary foreground color",
 					"type": "color",
 					"default": "#ffffff",
-					"key": "primary-foreground",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "primary-foreground"
 				},
 				{
-					"name": "Secondary Background",
+                    "name": "Secondary Background",
+                    "tooltip": "Change material secondary background color",
 					"type": "color",
 					"default": "#5f81d4",
-					"key": "secondary-background",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "secondary-background"
 				},
 				{
-					"name": "Secondary Foreground",
-					"type": "color",
+                    "name": "Secondary Foreground",
+                    "tooltip": "Change material secondary foreground color",
+				    "type": "color",
 					"default": "#ffffff",
-					"key": "secondary-foreground",
-					"enabled": "!appearance/adaptive-theme"
+                    "key": "secondary-foreground"
 				}
 			]
 		},
 		{
 			"name": "Notifications",
-			"icon": "",
+			"icon": "\ue7f4",
 			"key": "notifications",
 			"settings": [
 				{
 					"name": "Enable notifications",
+                    "tooltip": "Enable or disable notifications",
 					"type": "bool",
 					"default": true,
 					"key": "enabled"
 				},
 				{
 					"name": "Display a notification on play/resume",
+                    "tooltip": "Enabled/Disable displaying a notification when a new song starts playing or is resumed",
 					"type": "bool",
 					"default": true,
 					"key": "play",
@@ -120,6 +120,7 @@
 				},
 				{
 					"name": "Display a notification on pause",
+                    "tooltip": "Enabled/Disable displaying a notification when the player paused",
 					"type": "bool",
 					"default": true,
 					"key": "pause",
@@ -127,6 +128,7 @@
 				},
 				{
 					"name": "Display a notification at startup when a new version of MellowPlayer is available,",
+                    "tooltip": "Enabled/Disable displaying a notification when a new version of MellowPlayer is available",
 					"type": "bool",
 					"default": true,
 					"key": "new-version",
@@ -136,42 +138,66 @@
 		},
 		{
 			"name": "Shortcuts",
-			"icon": "",
+			"icon": "\ue312",
 			"key": "shortcuts",
 			"settings": [
 				{
-					"name": "Play",
+					"name": "Play / Pause",
+                    "tooltip": "Sets the shortcut for playing or pausing the player.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+P",
 					"key": "play"
 				},
 				{
 					"name": "Next",
+                    "tooltip": "Sets the shortcut for skipping to the next song.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+F",
 					"key": "next"
 				},
 				{
 					"name": "Previous",
+                    "tooltip": "Sets the shortcut for skipping to the previous song.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+B",
 					"key": "previous"
 				}
 			]
 		},
+        {
+            "name": "Privacy",
+            "icon": "\ue32a",
+            "key": "privacy",
+            "settings": [
+                {
+                    "name": "Enable listening history",
+                    "tooltip": "Enable listening history to keep track of the songs you listened to.",
+                    "type": "bool",
+                    "default": false,
+                    "key": "enable-listening-history"
+                },
+                {
+                    "name": "Automatically check for updates",
+                    "tooltip": "Enable this option to be notified when a new version of MellowPlayer is available.",
+                    "type": "bool",
+                    "default": true,
+                    "key": "check-for-updates"
+                }
+            ]
+        },
 		{
-			"name": "Private",
+			"name": "",
 			"icon": "",
 			"key": "private",
 			"settings": [
 				{
-					"name": "Show close to tray message",
+					"name": "",
 					"type": "bool",
 					"default": true,
 					"key": "show-close-to-tray-message"
 				},
 				{
-					"name": "Current service",
+					"name": "",
 					"type": "string",
 					"default": "",
 					"key": "current-service"

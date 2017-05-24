@@ -11,8 +11,8 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 class IconProvider {
 public:
     IconProvider(UseCases::Settings& settings);
-    QIcon trayIcon();
 
+    static QIcon trayIcon();
     static QIcon windowIcon();
     static QIcon restoreWindow();
     static QIcon play();
@@ -20,9 +20,6 @@ public:
     static QIcon next();
     static QIcon previous();
     static QIcon quit();
-
-private:
-    UseCases::Settings& settings;
 };
 
 END_MELLOWPLAYER_NAMESPACE

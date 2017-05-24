@@ -12,6 +12,7 @@ SettingsCategory::SettingsCategory(const SettingsCategory::Data& categoryData,
         QJsonObject parameterObj = data.parameters.at(i).toObject();
         Setting::Data settingData;
         settingData.name = parameterObj.value("name").toString();
+        settingData.toolTip = parameterObj.value("tooltip").toString();
         settingData.type = parameterObj.value("type").toString();
         settingData.key = parameterObj.value("key").toString();
         settingData.defaultValue = parameterObj.value("default").toVariant();

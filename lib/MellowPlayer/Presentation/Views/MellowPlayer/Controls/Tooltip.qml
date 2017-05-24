@@ -8,6 +8,7 @@ ToolTip {
     delay: 1000
     timeout: 5000
     y: parent.implicitHeight
+    x: 0
 
     contentItem: Text {
         text: tooltip.text

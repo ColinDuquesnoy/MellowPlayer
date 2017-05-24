@@ -5,20 +5,22 @@
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class StringSettingModel: public SettingModel {
+class EnumSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
+    Q_PROPERTY(QStringList values READ getValues CONSTANT)
 public:
-    StringSettingModel(UseCases::Setting& setting, QObject* parent);
+    EnumSettingModel(UseCases::Setting& setting, QObject* parent);
 
     QString getValue() const;
+    QStringList getValues() const;
     QString getQmlComponent() override;
-
-public slots:
-    void setValue(QString value);
 
 signals:
     void valueChanged();
+
+public slots:
+    void setValue(QString value);
 
 protected slots:
     void onValueChanged() override;

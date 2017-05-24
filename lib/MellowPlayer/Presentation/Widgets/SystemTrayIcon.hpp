@@ -37,7 +37,6 @@ private:
     UseCases::IMainWindow& mainWindow;
     UseCases::IQtApplication& qtApplication;
     UseCases::Settings& settings;
-    IconProvider iconProvider;
 
     QSystemTrayIcon qSystemTrayIcon;
     QMenu menu;

@@ -3,6 +3,9 @@
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/SettingModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/BoolSettingModel.hpp>
+#include <MellowPlayer/Presentation/Models/Settings/Types/ColorSettingModel.hpp>
+#include <MellowPlayer/Presentation/Models/Settings/Types/ShortcutSettingModel.hpp>
+#include <MellowPlayer/Presentation/Models/Settings/Types/EnumSettingModel.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/StringSettingModel.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -17,15 +20,36 @@ TEST_CASE("SettingModelFactoryTests") {
     SECTION("createBoolSettingModel") {
         Setting& setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
         SettingModel* settingModel = factory.create(setting, &settings);
-        BoolSettingModel* boolSettingModel = qobject_cast<BoolSettingModel*>(settingModel);
-        REQUIRE(boolSettingModel != nullptr);
+        BoolSettingModel* specificSettingModel = qobject_cast<BoolSettingModel*>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
+    }
+
+    SECTION("createColorSettingModel") {
+        Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
+        SettingModel* settingModel = factory.create(setting, &settings);
+        ColorSettingModel* specificSettingModel = qobject_cast<ColorSettingModel*>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
+    }
+
+    SECTION("createShortcutSettingModel") {
+        Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+        SettingModel* settingModel = factory.create(setting, &settings);
+        ShortcutSettingModel* specificSettingModel = qobject_cast<ShortcutSettingModel*>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
+    }
+
+    SECTION("createEnumSettingModel") {
+        Setting& setting = settings.get(SettingKey::APPEARANCE_THEME);
+        SettingModel* settingModel = factory.create(setting, &settings);
+        EnumSettingModel* specificSettingModel = qobject_cast<EnumSettingModel*>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
     }
 
     SECTION("createStringSettingModel by default") {
-        Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
+        Setting& setting = settings.get(SettingKey::PRIVATE_CURRENT_SERVICE);
         SettingModel* settingModel = factory.create(setting, &settings);
-        StringSettingModel* stringSettingModel = qobject_cast<StringSettingModel*>(settingModel);
-        REQUIRE(stringSettingModel != nullptr);
+        StringSettingModel* specificSettingModel = qobject_cast<StringSettingModel*>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
     }
 }
 

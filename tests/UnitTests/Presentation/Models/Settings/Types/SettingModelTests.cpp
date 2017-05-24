@@ -19,6 +19,7 @@ TEST_CASE("SettingModelTests") {
         REQUIRE(model.getType() == "bool");
         REQUIRE(!model.getName().isEmpty());
         REQUIRE(model.getEnabled());
+        REQUIRE(!model.getToolTip().isEmpty());
     }
 
     SECTION("enabled should change when enableCondition is met") {

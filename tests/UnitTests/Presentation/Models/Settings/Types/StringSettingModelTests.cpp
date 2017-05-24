@@ -22,5 +22,9 @@ TEST_CASE("StringSettingModelTests") {
         REQUIRE(model.getValue() == "Ctrl+P");
         REQUIRE(spy.count() == 1);
     }
+
+    SECTION("QML Component looks valid") {
+        REQUIRE(model.getQmlComponent().toLower().contains("string"));
+    }
 }
 

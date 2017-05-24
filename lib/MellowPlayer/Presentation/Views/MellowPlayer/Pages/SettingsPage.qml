@@ -8,6 +8,7 @@ import MellowPlayer 3.0
 Page {
     header: ToolBar {
         id: toolBar
+
         Material.primary: style.primary
         Material.foreground: style.primaryForeground
         Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
@@ -45,58 +46,32 @@ Page {
         anchors.fill: parent
 
         Pane {
+            padding: 0
+
             Layout.fillHeight: true
             Layout.maximumWidth: 256
             Layout.minimumWidth: 256
-            Material.elevation: 8
-            padding: 0
+
             Material.background: style.secondary
             Material.foreground: style.secondaryForeground
+            Material.elevation: 4
 
             ListView {
                 id: settingsPageList
                 anchors.fill: parent
 
-                model: settingsPagesModel
-                delegate: settingsPageDelegate
-
-                ListModel {
-                    id: settingsPagesModel
-
-                    ListElement {
-                        title: "General"
-                        icon:  "\ue8b8"
-                    }
-
-                    ListElement {
-                        title: "Shortcuts"
-                        icon:  "\ue312"
-                    }
-
-                    ListElement {
-                        title: "Notifications"
-                        icon:  "\ue7f4"
-                    }
-
-                    ListElement {
-                        title: "Plugins"
-                        icon:  "\ue87b"
-                    }
-
-                    ListElement {
-                        title: "Cache"
-                        icon:  "\ue16c"
-                    }
-                }
+                model: settings.categories
+                delegate: settingsCategoryDelegate
 
                 Component {
-                    id: settingsPageDelegate
+                    id: settingsCategoryDelegate
 
                     Rectangle {
                         property double colorFactor: style.getColorScaleFactor(style.secondary);
+
                         color: settingsPageList.currentIndex == index ||  mouseArea.containsMouse ? Qt.darker(style.secondary, colorFactor) : style.secondary
-                        width: parent.width
-                        height: 60
+                        height: 60; width: parent.width
+
 
                         Rectangle {
                             anchors.top: parent.top
@@ -113,14 +88,14 @@ Page {
                             spacing: 10
 
                             Label {
-                                text: icon
+                                text: model.icon
                                 font.family: MaterialIcons.family
-                                font.pixelSize: 22
+                                font.pixelSize: 24
                             }
 
                             Label {
                                 verticalAlignment: "AlignVCenter"
-                                text: title
+                                text: model.name
                                 font.pixelSize: 20
                             }
 
@@ -141,53 +116,17 @@ Page {
         }
 
         StackLayout {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             currentIndex: settingsPageList.currentIndex
 
-            Item {
-                id: generalSettingsPage
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
-                CheckBox {
-                    text: "General"
-                    anchors.centerIn: parent
-                }
-            }
+            Repeater {
+                model: settings.categories
 
-            Item {
-                id: shortcutsSettingsPage
-
-                Switch {
-                    text: "Shortcuts"
-                    anchors.centerIn: parent
-                }
-            }
-
-            Item {
-                id: notificationsSettingsPage
-
-                TextField {
-                    text: "Notifications"
-                    anchors.centerIn: parent
-                }
-            }
-
-            Item {
-                id: pluginsSettingsPage
-
-                Switch {
-                    text: "Plugins"
-                    anchors.centerIn: parent
-                }
-            }
-
-
-            Item {
-                id: cacheSettingsPage
-
-                Switch {
-                    text: "Cache"
-                    anchors.centerIn: parent
+                Loader {
+                    anchors.fill: parent
+                    source: model.qmlComponent
                 }
             }
         }

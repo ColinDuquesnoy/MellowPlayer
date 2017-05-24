@@ -18,3 +18,7 @@ void StringSettingModel::setValue(QString value) {
 void StringSettingModel::onValueChanged() {
     emit valueChanged();
 }
+
+QString StringSettingModel::getQmlComponent() {
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/StringSettingDelegate.qml";
+}
