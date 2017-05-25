@@ -12,6 +12,7 @@ TEST_CASE("ShortcutSettingModelTests") {
     Settings& settings = injector.create<Settings&>();
     Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     ShortcutSettingModel model(setting, nullptr);
+    model.setValue("Ctrl+Alt+P");
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
     SECTION("setValue") {
