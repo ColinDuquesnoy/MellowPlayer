@@ -3,13 +3,13 @@
 		{
 			"name": "General",
 			"icon": "\ue8b8",
-			"key": "general",
+			"key": "main",
 			"settings": [
                 {
                     "name": "Confirm application exit",
                     "tooltip": "Enable this option to get a confirmation message when you leave MellowPlayer.",
                     "type": "bool",
-                    "default": "false",
+                    "default": "true",
                     "key": "confirm-exit"
                 },
                 {
@@ -24,7 +24,8 @@
                     "tooltip": "Disable this option to hide the system tray icon",
                     "type": "bool",
                     "default": true,
-                    "key": "show-tray-icon"
+                    "key": "show-tray-icon",
+                    "enabled": "default/close-to-tray"
                 }
 			]
 		},
@@ -194,7 +195,8 @@
 					"name": "",
 					"type": "bool",
 					"default": true,
-					"key": "show-close-to-tray-message"
+                    "key": "show-close-to-tray-message",
+                    "enabled": "default/close-to-tray"
 				},
 				{
 					"name": "",

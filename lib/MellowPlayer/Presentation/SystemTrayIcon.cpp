@@ -2,6 +2,9 @@
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/UseCases/Settings/SettingKey.hpp>
 #include "SystemTrayIcon.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -12,15 +15,17 @@ SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtAppl
         QObject(), logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
         player(player), mainWindow(mainWindow), qtApplication(qtApplication),
         settings(settings),
+        showTrayIconSetting(settings.get(SettingKey::MAIN_SHOW_TRAY_ICON)),
         qSystemTrayIcon(IconProvider::trayIcon()) {
     connect(&qSystemTrayIcon, &QSystemTrayIcon::activated, this, &SystemTrayIcon::onActivated);
-
+    connect(&showTrayIconSetting, &Setting::valueChanged, this, &SystemTrayIcon::onShowTrayIconSettingValueChanged);
     setUpMenu();
 }
 
 void SystemTrayIcon::show() {
     LOG_DEBUG(logger, "show");
-    qSystemTrayIcon.show();
+    if (showTrayIconSetting.getValue().toBool())
+        qSystemTrayIcon.show();
 }
 
 void SystemTrayIcon::hide() {
@@ -83,5 +88,12 @@ void SystemTrayIcon::restoreWindow() {
 
 void SystemTrayIcon::quit() {
     LOG_TRACE(logger, "quit");
-    qtApplication.quit();
+    qtApplication.requestQuit();
+}
+
+void SystemTrayIcon::onShowTrayIconSettingValueChanged() {
+    if (showTrayIconSetting.getValue().toBool())
+        show();
+    else
+        hide();
 }

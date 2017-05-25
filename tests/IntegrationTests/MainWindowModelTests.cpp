@@ -1,6 +1,7 @@
 #include <catch.hpp>
+#include <QtTest/QSignalSpy>
 #include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
+#include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
 #include <DI.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -16,12 +17,24 @@ TEST_CASE("QmlMainWindowTests") {
     IPlayer& player = injector.create<PlayerProxy&>();
     ILocalAlbumArtService& albumArt = injector.create<ILocalAlbumArtService&>();
     Settings& settings = injector.create<Settings&>();
+    IQtApplication& qtApp = injector.create<IQtApplication&>();
 
-    QmlMainWindow mainWindow(streamingServices, listeningHistory, style, player, albumArt, settings);
+    MainWindowModel mainWindow(streamingServices, listeningHistory, style, qtApp, player, albumArt, settings);
+    QSignalSpy visibleChangedSpy(&mainWindow, SIGNAL(visibleChanged()));
 
-    mainWindow.show();
-    mainWindow.hide();
     REQUIRE(mainWindow.load());
-    mainWindow.show();
-    mainWindow.hide();
+
+    SECTION("show emit visibleChanged") {
+        REQUIRE(!mainWindow.isVisible());
+        REQUIRE(visibleChangedSpy.count() == 0);
+        mainWindow.show();
+        REQUIRE(mainWindow.isVisible());
+        REQUIRE(visibleChangedSpy.count() == 1);
+
+        SECTION("hide") {
+            mainWindow.hide();
+            REQUIRE(!mainWindow.isVisible());
+            REQUIRE(visibleChangedSpy.count() == 2);
+        }
+    }
 }

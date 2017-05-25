@@ -12,6 +12,7 @@ public:
         Mock<IQtApplication> mock;
         When(Method(mock, run)).AlwaysReturn();
         When(Method(mock, quit)).AlwaysReturn();
+        When(Method(mock, requestQuit)).AlwaysReturn();
         return mock;
     }
 };

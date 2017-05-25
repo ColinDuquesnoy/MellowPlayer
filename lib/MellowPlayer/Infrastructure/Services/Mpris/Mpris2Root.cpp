@@ -19,7 +19,7 @@ void Mpris2Root::Raise() {
 }
 
 void Mpris2Root::Quit() {
-    qtApp.quit();
+    qtApp.requestQuit();
 }
 
 bool Mpris2Root::canRaise() {

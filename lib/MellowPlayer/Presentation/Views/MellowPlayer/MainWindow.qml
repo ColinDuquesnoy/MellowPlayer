@@ -14,12 +14,57 @@ ApplicationWindow {
     title: streamingServices.currentService !== null ? streamingServices.currentService.name : ""
     minimumWidth: 1280
     minimumHeight: 720
+    onClosing: {
+        var closeToTray = settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
+        console.error("close to tray", closeToTray);
+        if (closeToTray) {
+            var showMessageSetting = settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
+            if (showMessageSetting.value) {
+                showMessageSetting.value = false;
+                messageBoxExitToTray.open();
+            }
+            else {
+                windowModel.visible = false;
+            }
+            close.accepted = false;
+        }
+    }
 
     Material.accent: style.accent
     Material.background: style.background
     Material.foreground: style.foreground
     Material.primary: style.primary
     Material.theme: style.theme == "light" ? Material.Light : Material.Dark
+
+    function restoreWindow() {
+        mainWindow.raise();
+        mainWindow.show();
+    }
+
+    Connections {
+        target: windowModel
+        onVisibleChanged: {
+            if (windowModel.visible) {
+                restoreWindow();
+            }
+            else {
+                mainWindow.hide();
+            }
+        }
+    }
+
+    Connections {
+        target: qtApp
+        onQuitRequested: {
+            var confirmExit = settings.get(SettingKey.MAIN_CONFIRM_EXIT).value;
+            if (confirmExit) {
+                restoreWindow();
+                messageBoxConfirmQuit.open();
+            }
+            else
+                qtApp.quit();
+        }
+    }
 
     StackView {
         id: stackView
@@ -48,5 +93,28 @@ ApplicationWindow {
         x: mainWindow.width / 2 - width / 2
         y: mainWindow.height / 2 - height / 2
         visible: false
+    }
+
+    MessageBoxDialog {
+        id: messageBoxConfirmQuit
+
+        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        message: qsTr("Are you sure you want to quit MellowPlayer?")
+        title: qsTr("Quit MellowPlayer?")
+        onAccepted: qtApp.quit()
+        x: mainWindow.width / 2 - width / 2
+        y: mainWindow.height / 2 - height / 2
+    }
+
+    MessageBoxDialog {
+        id: messageBoxExitToTray
+
+        title: qsTr("Closing to system tray...")
+        message: qsTr("<p>MellowPlayer will continue to run in background.<br>" +
+                      "You can quit the application or restore the main window via the system tray icon menu.</p>")
+        buttonTexts: [qsTr("Ok")]
+        onAccepted: windowModel.visible = false
+        x: mainWindow.width / 2 - width / 2
+        y: mainWindow.height / 2 - height / 2
     }
 }

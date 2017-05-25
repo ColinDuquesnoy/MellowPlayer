@@ -298,7 +298,7 @@ ToolBar {
                 MenuIconItem {
                     icon: MaterialIcons.icon_power_settings_new
                     text: "Quit"
-                    onClicked: Qt.quit();
+                    onClicked: qtApp.requestQuit()
                 }
             }
 

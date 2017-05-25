@@ -9,6 +9,8 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -29,6 +31,9 @@ public slots:
     void restoreWindow();
     void quit();
 
+private slots:
+    void onShowTrayIconSettingValueChanged();
+
 private:
     void setUpMenu();
 
@@ -37,6 +42,7 @@ private:
     UseCases::IMainWindow& mainWindow;
     UseCases::IQtApplication& qtApplication;
     UseCases::Settings& settings;
+    UseCases::Setting& showTrayIconSetting;
 
     QSystemTrayIcon qSystemTrayIcon;
     QMenu menu;

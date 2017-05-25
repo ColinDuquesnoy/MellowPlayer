@@ -3,23 +3,25 @@
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
-#include "IconProvider.hpp"
-#include "QtWebApplication.hpp"
-#include "MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp"
-#include "Widgets/QmlMainWindow.hpp"
+#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include "MellowPlayer/Presentation/IconProvider.hpp"
+#include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
+#include "ApplicationModel.hpp"
+
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-QtWebApplication::QtWebApplication(int &argc, char **argv) :
-    QApplication(argc, argv) {
-    setApplicationDisplayName("MellowPlayer");
-    setApplicationName("MellowPlayer3");
-    setApplicationVersion(MELLOWPLAYER_VERSION);
-    setOrganizationDomain("org.mellowplayer");
-    setOrganizationName("MellowPlayer");
-    setWindowIcon(IconProvider::windowIcon());
+ApplicationModel::ApplicationModel(int &argc, char **argv, const QString& appName) :
+        qtApp(argc, argv),
+        logger(LoggingManager::instance().getLogger("ApplicationModel")) {
+    qtApp.setApplicationDisplayName("MellowPlayer");
+    qtApp.setApplicationName(appName);
+    qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
+    qtApp.setOrganizationDomain("org.mellowplayer");
+    qtApp.setOrganizationName("MellowPlayer");
+    qtApp.setWindowIcon(IconProvider::windowIcon());
 
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Black.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-BlackItalic.ttf");
@@ -46,10 +48,16 @@ QtWebApplication::QtWebApplication(int &argc, char **argv) :
     qRegisterMetaType<SettingModel*>("SettingModel*");
 }
 
-int QtWebApplication::run() {
-    return exec();
+int ApplicationModel::run() {
+    return qtApp.exec();
 }
 
-void QtWebApplication::quit() {
-    exit(0);
+void ApplicationModel::quit() {
+    LOG_TRACE(logger, "quitting");
+    qtApp.exit(0);
+}
+
+void ApplicationModel::requestQuit() {
+    LOG_TRACE(logger, "quit requested");
+    emit quitRequested();
 }

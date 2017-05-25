@@ -29,8 +29,8 @@
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
-#include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
-#include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
+#include <MellowPlayer/Presentation/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServicePluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
@@ -101,7 +101,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IStreamingServicePluginLoader>().to<StreamingServicePluginLoader>().in(scope),
         di::bind<IPlayer>().in(di::singleton).to<PlayerProxy>(),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
-        di::bind<IMainWindow>().to<MellowPlayer::Presentation::QmlMainWindow>().in(scope),
+        di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowModel>().in(scope),
         di::bind<ILocalAlbumArtService>().to<LocalAlbumArtService>().in(scope),
         di::bind<IHotkeysService>().to<HotkeysService>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),

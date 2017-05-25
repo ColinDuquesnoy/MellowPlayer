@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/SystemTrayIcon.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
@@ -46,7 +46,7 @@ TEST_CASE("SystemTrayIconTests") {
 
     SECTION("quit quits the application") {
         systemTrayIcon.quit();
-        Verify(Method(qtAppMock, quit)).Exactly(1);
+        Verify(Method(qtAppMock, requestQuit)).Exactly(1);
     }
 
     SECTION("show icon") {

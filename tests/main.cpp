@@ -5,7 +5,7 @@
 #include <QtCore/QSettings>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Presentation/QtWebApplication.hpp>
+#include <MellowPlayer/Presentation/Models/ApplicationModel.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -18,9 +18,6 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 #endif
-    QtWebApplication webApplication(argc, argv);
-    webApplication.setApplicationName("MellowPlayer3.Tests");
-
     QSettings settings;
     settings.clear();
 
@@ -35,9 +32,11 @@ int main(int argc, char* argv[])
     catch (const logic_error&) { }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
     loggingManager.setDefaultLogLevel(LogLevel::Off);
+
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
 
+    ApplicationModel webApplication(argc, argv, "MellowPlayer3.Tests");
     auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
 
     settings.clear();

@@ -17,14 +17,14 @@ public:
         APPEARANCE_SECONDARY_BACKGROUND,
         APPEARANCE_SECONDARY_FOREGROUND,
         APPEARANCE_THEME,
-        GENERAL_CHECK_FOR_UPDATES,
-        GENERAL_CLOSE_TO_TRAY,
-        GENERAL_CONFIRM_EXIT,
-        GENERAL_SHOW_TRAY_ICON,
+        MAIN_CLOSE_TO_TRAY,
+        MAIN_CONFIRM_EXIT,
+        MAIN_SHOW_TRAY_ICON,
         NOTIFICATIONS_ENABLED,
         NOTIFICATIONS_NEW_VERSION,
         NOTIFICATIONS_PAUSE,
         NOTIFICATIONS_PLAY,
+        PRIVACY_CHECK_FOR_UPDATES,
         PRIVACY_ENABLE_LISTENING_HISTORY,
         PRIVATE_CURRENT_SERVICE,
         PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
@@ -46,14 +46,14 @@ public:
         enumToString << "appearance/secondary-background";
         enumToString << "appearance/secondary-foreground";
         enumToString << "appearance/theme";
-        enumToString << "general/check-for-updates";
-        enumToString << "general/close-to-tray";
-        enumToString << "general/confirm-exit";
-        enumToString << "general/show-tray-icon";
+        enumToString << "main/close-to-tray";
+        enumToString << "main/confirm-exit";
+        enumToString << "main/show-tray-icon";
         enumToString << "notifications/enabled";
         enumToString << "notifications/new-version";
         enumToString << "notifications/pause";
         enumToString << "notifications/play";
+        enumToString << "privacy/check-for-updates";
         enumToString << "privacy/enable-listening-history";
         enumToString << "private/current-service";
         enumToString << "private/show-close-to-tray-message";

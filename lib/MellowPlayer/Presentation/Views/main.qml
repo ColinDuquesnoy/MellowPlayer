@@ -7,7 +7,7 @@ MainWindow {
 
     Shortcut {
         sequence: "Ctrl+Q"
-        onActivated: Qt.quit()
+        onActivated: qtApp.requestQuit()
         context: Qt.ApplicationShortcut
     }
 }

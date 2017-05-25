@@ -8,9 +8,9 @@ TEST_CASE("SettingsCategoryModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    SettingsCategoryModel model(&settings.getCategory("general"), nullptr);
+    SettingsCategoryModel model(&settings.getCategory("main"), nullptr);
 
-    REQUIRE(model.getName() == "General");
+    REQUIRE(model.getName().toStdString() == "General");
     REQUIRE(!model.getIcon().isEmpty());
     REQUIRE(!model.getQmlComponent().isEmpty());
     REQUIRE(model.getSettingsModel()->rowCount() > 1);

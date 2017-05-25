@@ -26,7 +26,7 @@ TEST_CASE("Mpris2RootTests", "[IntegrationTest]") {
 
     SECTION("quit") {
         root.Quit();
-        Verify(Method(qtAppMock, quit)).Exactly(1);
+        Verify(Method(qtAppMock, requestQuit)).Exactly(1);
     }
 
     SECTION("canQuit") {
