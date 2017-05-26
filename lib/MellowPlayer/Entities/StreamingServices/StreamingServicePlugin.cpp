@@ -58,7 +58,7 @@ const StreamingServiceStyle& StreamingServicePlugin::getStyle() const {
 }
 
 bool StreamingServicePlugin::operator==(const StreamingServicePlugin& rhs) const {
-    return getName() == rhs.getName() && getUrl() == rhs.getUrl();
+    return getName() == rhs.getName();
 }
 
 bool StreamingServicePlugin::operator!=(const StreamingServicePlugin& rhs) const {
