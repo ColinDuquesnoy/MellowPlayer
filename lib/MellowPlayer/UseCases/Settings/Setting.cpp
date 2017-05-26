@@ -20,6 +20,9 @@ void Setting::resolveDependency() {
     QString key = QString(data.enableCondition);
     key = key.replace("!", "");
 
+    if (key.isEmpty())
+        return;
+
     try {
         parentSetting = &settings.get(key);
         if (parentSetting->getType() == "bool")

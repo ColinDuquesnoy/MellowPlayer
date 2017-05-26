@@ -5,26 +5,30 @@
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-void requireMatchStyle(StreamingServiceStyleModel& styleViewModel, const StreamingServiceStyle& style) {
-    REQUIRE(styleViewModel.getTheme() == style.theme);
-    REQUIRE(styleViewModel.getAccent() == style.accent);
-    REQUIRE(styleViewModel.getBackground() == style.background);
-    REQUIRE(styleViewModel.getForeground() == style.foreground);
-    REQUIRE(styleViewModel.getPrimary() == style.primary);
-    REQUIRE(styleViewModel.getPrimaryForeground() == style.primaryForeground);
-    REQUIRE(styleViewModel.getSecondary() == style.secondary);
-    REQUIRE(styleViewModel.getSecondaryForeground() == style.secondaryForeground);
+void requireMatchStyle(StreamingServiceStyleModel& styleModel, const StreamingServiceStyle& style) {
+    if (styleModel.isDark(styleModel.getBackground()))
+        REQUIRE(styleModel.getTheme() == "dark");
+    else
+        REQUIRE(styleModel.getTheme() == "light");
+    REQUIRE(styleModel.getAccent() == style.accent);
+    REQUIRE(styleModel.getBackground() == style.background);
+    REQUIRE(styleModel.getForeground() == style.foreground);
+    REQUIRE(styleModel.getPrimary() == style.primary);
+    REQUIRE(styleModel.getPrimaryForeground() == style.primaryForeground);
+    REQUIRE(styleModel.getSecondary() == style.secondary);
+    REQUIRE(styleModel.getSecondaryForeground() == style.secondaryForeground);
 }
 
 TEST_CASE("StyleViewModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
+    Settings& settings = injector.create<Settings&>();
     StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
-    StreamingServiceStyleModel pluginStyleModel(pluginService);
+    StreamingServiceStyleModel pluginStyleModel(pluginService, settings);
     pluginService.setCurrent(nullptr);
 
     SECTION("initially use StreamingServiceStyle::defaultStyle") {
-        requireMatchStyle(pluginStyleModel, StreamingServiceStyle::defaultStyle());
+        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
     }
 
     SECTION("use pluginStyle when current plugin changed") {
@@ -40,9 +44,9 @@ TEST_CASE("StyleViewModelTests", "[UnitTest]") {
         requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
         pluginStyleModel.setUsePluginStyle(false);
         REQUIRE(!pluginStyleModel.getUsePluginStyle());
-        requireMatchStyle(pluginStyleModel, StreamingServiceStyle::defaultStyle());
+        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
         pluginStyleModel.setUsePluginStyle(false);
-        requireMatchStyle(pluginStyleModel, StreamingServiceStyle::defaultStyle());
+        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
         pluginStyleModel.setUsePluginStyle(true);
         requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
     }

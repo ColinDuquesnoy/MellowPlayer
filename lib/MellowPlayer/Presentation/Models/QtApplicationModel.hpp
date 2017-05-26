@@ -11,15 +11,14 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class ApplicationModel: public UseCases::IQtApplication {
+class QtApplicationModel: public UseCases::IQtApplication {
 
 public:
-    ApplicationModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
+    QtApplicationModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
 
     int run() override;
     Q_INVOKABLE void quit() override;
     Q_INVOKABLE void requestQuit() override;
-    void registerToQml(QQmlApplicationEngine& applicationEngine);
 
 private:
     QApplication qtApp;

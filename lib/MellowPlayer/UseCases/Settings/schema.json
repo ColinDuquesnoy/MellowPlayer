@@ -25,7 +25,7 @@
                     "type": "bool",
                     "default": true,
                     "key": "show-tray-icon",
-                    "enabled": "default/close-to-tray"
+                    "enabled": "main/close-to-tray"
                 }
 			]
 		},
@@ -40,13 +40,6 @@
 					"type": "bool",
 					"default": true,
 					"key": "adaptive-theme"
-				},
-				{
-                    "name": "Theme",
-                    "tooltip": "Change default theme (when adaptive theme is off or when in overview mode)",
-					"type": "enum['Light','Dark']",
-					"default": "Light",
-                    "key": "theme"
 				},
 				{
                     "name": "Accent",
@@ -196,7 +189,7 @@
 					"type": "bool",
 					"default": true,
                     "key": "show-close-to-tray-message",
-                    "enabled": "default/close-to-tray"
+                    "enabled": "main/close-to-tray"
 				},
 				{
 					"name": "",

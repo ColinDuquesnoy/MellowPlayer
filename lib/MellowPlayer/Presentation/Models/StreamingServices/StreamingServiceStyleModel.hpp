@@ -6,6 +6,8 @@
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, StreamingServicePluginService)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -21,7 +23,7 @@ class StreamingServiceStyleModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
 public:
-    StreamingServiceStyleModel(UseCases::StreamingServicePluginService& pluginService);
+    StreamingServiceStyleModel(UseCases::StreamingServicePluginService& pluginService, UseCases::Settings& settings);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -34,8 +36,10 @@ public:
     bool getUsePluginStyle() const;
     void setUsePluginStyle(bool value);
 
-    Q_INVOKABLE double getColorScaleFactor(const QString& color);
-    Q_INVOKABLE bool isDark(const QString& color);
+    Q_INVOKABLE double getColorScaleFactor(const QString& color) const;
+    Q_INVOKABLE bool isDark(const QString& color) const;
+
+    Entities::StreamingServiceStyle getDefaultStyle();
 
 signals:
     void themeChanged();
@@ -49,10 +53,10 @@ signals:
     void usePluginStyleChanged();
 
 private slots:
+    void updateStyle();
     void onPluginChanged(Entities::StreamingServicePlugin* plugin);
 
 private:
-    void setTheme(const QString& value);
     void setAccent(const QString& value);
     void setBackground(const QString& value);
     void setForeground(const QString& value);
@@ -60,11 +64,19 @@ private:
     void setPrimaryForeground(const QString& value);
     void setSecondary(const QString& value);
     void setSecondaryForeground(const QString& value);
-    void updateStyle(const Entities::StreamingServiceStyle& newStyle);
+    void fromStyle(const Entities::StreamingServiceStyle& newStyle);
 
     bool usePluginStyle;
-    Entities::StreamingServiceStyle style;
     UseCases::StreamingServicePluginService& pluginService;
+    UseCases::Setting& accentColorSetting;
+    UseCases::Setting& adaptiveThemeSetting;
+    UseCases::Setting& backgroundSetting;
+    UseCases::Setting& foregroundSetting;
+    UseCases::Setting& primaryBackgroundSetting;
+    UseCases::Setting& primaryForegroundSetting;
+    UseCases::Setting& secondaryBackgroundSetting;
+    UseCases::Setting& secondaryForegroundSetting;
+    Entities::StreamingServiceStyle style;
 };
 
 END_MELLOWPLAYER_NAMESPACE

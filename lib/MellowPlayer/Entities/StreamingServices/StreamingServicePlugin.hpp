@@ -23,7 +23,7 @@ class StreamingServicePlugin: public QObject {
     Q_PROPERTY(QString version READ getVersion CONSTANT)
     Q_PROPERTY(StreamingServicePluginScript* script READ getScript CONSTANT)
 public:
-    StreamingServicePlugin(const StreamingServicePluginMetadata& metadata, const StreamingServiceStyle& style = StreamingServiceStyle::defaultStyle());
+    StreamingServicePlugin(const StreamingServicePluginMetadata& metadata, const StreamingServiceStyle& style=StreamingServiceStyle());
     ~StreamingServicePlugin();
 
     bool isValid() const;

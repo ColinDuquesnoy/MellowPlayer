@@ -100,7 +100,6 @@ StreamingServiceStyle StreamingServicePluginLoader::readStyle(const QString& fil
             style.primaryForeground = object.value("primaryForeground").toString();
             style.secondary = object.value("secondary").toString();
             style.secondaryForeground = object.value("secondaryForeground").toString();
-            style.theme = object.value("theme").toString();
         }
     }
 

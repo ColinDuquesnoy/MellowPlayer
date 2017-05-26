@@ -1,20 +1,38 @@
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include "StreamingServiceStyleModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServicePluginService& pluginService) :
+StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServicePluginService& pluginService, Settings& settings) :
         usePluginStyle(true),
-        style(StreamingServiceStyle::defaultStyle()),
-        pluginService(pluginService) {
+        pluginService(pluginService),
+        accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
+        adaptiveThemeSetting(settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME)),
+        backgroundSetting(settings.get(SettingKey::APPEARANCE_BACKGROUND)),
+        foregroundSetting(settings.get(SettingKey::APPEARANCE_FOREGROUND)),
+        primaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_BACKGROUND)),
+        primaryForegroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_FOREGROUND)),
+        secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
+        secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
+        style(getDefaultStyle()) {
     connect(&pluginService, &StreamingServicePluginService::currentPluginChanged, this, &StreamingServiceStyleModel::onPluginChanged);
+    connect(&accentColorSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&adaptiveThemeSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&backgroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&foregroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&primaryBackgroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&primaryForegroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&secondaryBackgroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
+    connect(&secondaryForegroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
 }
 
 QString StreamingServiceStyleModel::getTheme() const {
-    return style.theme.toLower();
+    return isDark(style.background) ? "dark" : "light";
 }
 
 QString StreamingServiceStyleModel::getAccent() const {
@@ -55,25 +73,20 @@ void StreamingServiceStyleModel::setUsePluginStyle(bool value) {
 
     usePluginStyle = value;
     emit usePluginStyleChanged();
+    updateStyle();
+}
 
+void StreamingServiceStyleModel::updateStyle() {
     StreamingServicePlugin* currentPlugin = pluginService.getCurrent();
-    if (usePluginStyle && currentPlugin != nullptr)
-        updateStyle(currentPlugin->getStyle());
+    if (usePluginStyle && currentPlugin != nullptr && adaptiveThemeSetting.getValue().toBool())
+        fromStyle(currentPlugin->getStyle());
     else
-        updateStyle(StreamingServiceStyle::defaultStyle());
+        fromStyle(getDefaultStyle());
 }
 
 void StreamingServiceStyleModel::onPluginChanged(StreamingServicePlugin* plugin) {
     if (plugin != nullptr)
-        updateStyle(plugin->getStyle());
-}
-
-void StreamingServiceStyleModel::setTheme(const QString& value) {
-    if (value == style.theme)
-        return;
-
-    style.theme = value;
-    emit themeChanged();
+        fromStyle(plugin->getStyle());
 }
 
 void StreamingServiceStyleModel::setAccent(const QString& value) {
@@ -90,6 +103,7 @@ void StreamingServiceStyleModel::setBackground(const QString& value) {
 
     style.background = value;
     emit backgroundChanged();
+    emit themeChanged();
 }
 
 void StreamingServiceStyleModel::setForeground(const QString& value) {
@@ -132,8 +146,7 @@ void StreamingServiceStyleModel::setSecondaryForeground(const QString& value) {
     emit secondaryForegroundChanged();
 }
 
-void StreamingServiceStyleModel::updateStyle(const StreamingServiceStyle& newStyle) {
-    setTheme(newStyle.theme);
+void StreamingServiceStyleModel::fromStyle(const StreamingServiceStyle& newStyle) {
     setAccent(newStyle.accent);
     setBackground(newStyle.background);
     setForeground(newStyle.foreground);
@@ -143,15 +156,24 @@ void StreamingServiceStyleModel::updateStyle(const StreamingServiceStyle& newSty
     setSecondaryForeground(newStyle.secondaryForeground);
 }
 
-double StreamingServiceStyleModel::getColorScaleFactor(const QString& color) {
+double StreamingServiceStyleModel::getColorScaleFactor(const QString& color) const {
     if (QColor(color).lightness() > 164)
         return 1.05;
     return 1.2;
 }
 
-bool StreamingServiceStyleModel::isDark(const QString &color) {
+bool StreamingServiceStyleModel::isDark(const QString &color) const {
     return QColor(color).lightness() < 164;
 }
 
-
-
+StreamingServiceStyle StreamingServiceStyleModel::getDefaultStyle() {
+    return StreamingServiceStyle {
+            accentColorSetting.getValue().toString(),
+            backgroundSetting.getValue().toString(),
+            foregroundSetting.getValue().toString(),
+            primaryBackgroundSetting.getValue().toString(),
+            primaryForegroundSetting.getValue().toString(),
+            secondaryBackgroundSetting.getValue().toString(),
+            secondaryForegroundSetting.getValue().toString()
+    };
+}

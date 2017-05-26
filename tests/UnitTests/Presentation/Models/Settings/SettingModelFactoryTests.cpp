@@ -38,13 +38,6 @@ TEST_CASE("SettingModelFactoryTests") {
         REQUIRE(specificSettingModel != nullptr);
     }
 
-    SECTION("createEnumSettingModel") {
-        Setting& setting = settings.get(SettingKey::APPEARANCE_THEME);
-        SettingModel* settingModel = factory.create(setting, &settings);
-        EnumSettingModel* specificSettingModel = qobject_cast<EnumSettingModel*>(settingModel);
-        REQUIRE(specificSettingModel != nullptr);
-    }
-
     SECTION("createStringSettingModel by default") {
         Setting& setting = settings.get(SettingKey::PRIVATE_CURRENT_SERVICE);
         SettingModel* settingModel = factory.create(setting, &settings);

@@ -1,5 +1,8 @@
 #include "catch.hpp"
 #include "DI.hpp"
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/UseCases/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/EnumSettingModel.hpp>
 #include <QtTest/QSignalSpy>
 
@@ -10,7 +13,14 @@ TEST_CASE("EnumSettingModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    Setting& setting = settings.get(SettingKey::APPEARANCE_THEME);
+    SettingsCategory& category = settings.getCategory("appearance");
+    Setting::Data settingData;
+    settingData.name = "Theme";
+    settingData.defaultValue = "Light";
+    settingData.enableCondition = "!appearance/adaptive-theme";
+    settingData.key = "theme";
+    settingData.type = "enum[\"Light\", \"Dark\"]";
+    Setting setting(settings, category, settingData);
     EnumSettingModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 

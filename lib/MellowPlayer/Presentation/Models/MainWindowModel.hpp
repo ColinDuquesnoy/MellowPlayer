@@ -14,7 +14,7 @@ PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class ApplicationModel;
+class QtApplicationModel;
 class ListeningHistoryModel;
 class StreamingServicesModel;
 class StreamingServiceStyleModel;

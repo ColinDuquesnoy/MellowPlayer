@@ -5,7 +5,7 @@
 #include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include <MellowPlayer/UseCases/Settings/Setting.hpp>
-#include <MellowPlayer/Presentation/Models/ApplicationModel.hpp>
+#include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>

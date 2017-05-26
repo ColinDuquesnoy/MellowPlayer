@@ -25,6 +25,6 @@ QString EnumSettingModel::getQmlComponent() {
 
 QStringList EnumSettingModel::getValues() const {
     QString list = setting.getType();
-    list = list.replace("enum[", "").replace("]", "").replace("'", "").trimmed();
+    list = list.replace("enum[", "").replace("]", "").replace("'", "").replace("\"", "").replace(" ", "");
     return list.split(",");
 }

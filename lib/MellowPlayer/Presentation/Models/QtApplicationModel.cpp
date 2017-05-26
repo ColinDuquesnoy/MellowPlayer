@@ -6,16 +6,16 @@
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include "MellowPlayer/Presentation/IconProvider.hpp"
 #include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
-#include "ApplicationModel.hpp"
+#include "QtApplicationModel.hpp"
 
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-ApplicationModel::ApplicationModel(int &argc, char **argv, const QString& appName) :
+QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& appName) :
         qtApp(argc, argv),
-        logger(LoggingManager::instance().getLogger("ApplicationModel")) {
+        logger(LoggingManager::instance().getLogger("QtApplicationModel")) {
     qtApp.setApplicationDisplayName("MellowPlayer");
     qtApp.setApplicationName(appName);
     qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
@@ -48,16 +48,16 @@ ApplicationModel::ApplicationModel(int &argc, char **argv, const QString& appNam
     qRegisterMetaType<SettingModel*>("SettingModel*");
 }
 
-int ApplicationModel::run() {
+int QtApplicationModel::run() {
     return qtApp.exec();
 }
 
-void ApplicationModel::quit() {
+void QtApplicationModel::quit() {
     LOG_TRACE(logger, "quitting");
     qtApp.exit(0);
 }
 
-void ApplicationModel::requestQuit() {
+void QtApplicationModel::requestQuit() {
     LOG_TRACE(logger, "quit requested");
     emit quitRequested();
 }
