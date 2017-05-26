@@ -224,6 +224,10 @@ Drawer {
                 }
 
                 Pane {
+                    id: paneInfo
+
+                    property var enabledSetting: settings.get(SettingKey.PRIVACY_ENABLE_LISTENING_HISTORY)
+
                     padding: 0
 
                     Layout.fillHeight: true
@@ -231,7 +235,7 @@ Drawer {
 
                     StackLayout {
                         anchors.fill: parent
-                        currentIndex: listeningHistoryListView.count > 0 ? 0 : 1
+                        currentIndex: listeningHistoryListView.count > 0 && paneInfo.enabledSetting.value ? 0 : 1
 
                         RowLayout {
                             id: listViewLayout
@@ -278,8 +282,8 @@ Drawer {
                                 }
 
                                 Label {
-                                    text: "Enable listening history and the songs you \nlistened to will appear here..."
-
+                                    text: paneInfo.enabledSetting.value ? "The songs you listened to will appear here..." :
+                                                                          "Enable listening history and the songs you \nlistened to will appear here..."
                                     horizontalAlignment: "AlignHCenter"
 
                                     Layout.fillWidth: true
@@ -289,6 +293,8 @@ Drawer {
                                     text: "Enable listening history"
                                     highlighted: true
                                     hoverEnabled: true
+                                    visible: !paneInfo.enabledSetting.value
+                                    onClicked: paneInfo.enabledSetting.value = true
 
                                     Tooltip {
                                         text: qsTr("Click to enable listening history")

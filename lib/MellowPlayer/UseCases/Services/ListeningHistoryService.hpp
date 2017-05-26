@@ -8,17 +8,21 @@
 #include <MellowPlayer/UseCases/IWorkDispatcher.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
 class IListeningHistoryDataProvider;
 class ILogger;
 class IPlayer;
+class Setting;
+class Settings;
 
 class ListeningHistoryService: public QObject {
     Q_OBJECT
 public:
-    ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher);
+    ListeningHistoryService(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher,
+                            Settings& settings);
 
     void initialize();
     const QList<Entities::ListeningHistoryEntry>& getEntries() const;
@@ -36,8 +40,10 @@ signals:
 private slots:
     void onPlaybackStatusChanged();
     void onCurrentSongChanged(Entities::Song* song);
+    void onIsEnabledChanged();
 
 private:
+    void addSong(const Entities::Song* song, Entities::ListeningHistoryEntry& newEntry);
     void updateRemovedEntries();
 
     ILogger& logger;
@@ -46,6 +52,7 @@ private:
     IWorkDispatcher& workDispatcher;
     QMap<QString, Entities::ListeningHistoryEntry> previousEntryPerPlayer;
     QList<Entities::ListeningHistoryEntry> entries;
+    Setting& isEnabledSetting;
 };
 
 END_MELLOWPLAYER_NAMESPACE

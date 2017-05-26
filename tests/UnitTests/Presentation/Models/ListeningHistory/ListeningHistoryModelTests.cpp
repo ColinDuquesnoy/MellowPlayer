@@ -10,6 +10,7 @@
 #include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <Utils/Helpers.hpp>
+#include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -17,16 +18,21 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ListeningHistoryViewModelTests") {
     auto mock = PluginLoaderMock::get();
+    ScopedScope scope;
+    auto injector = getTestInjector(scope);
     StreamingServicePluginService pluginService(mock.get());
     pluginService.load();
     PlayerService playerService(pluginService);
     PlayerProxy player(playerService, pluginService);
     FakeWorkDispatcher workDispatcher;
     InMemoryListeningHistoryDataProvider dataProvider;
-    ListeningHistoryService listeningHistoryService(dataProvider, player, workDispatcher);
+    Settings& settings = injector.create<Settings&>();
+    ListeningHistoryService listeningHistoryService(dataProvider, player, workDispatcher, settings);
     Player& currentPlayer = *playerService.get(pluginService.getAll()[0]->getName());
     pluginService.setCurrent(pluginService.getAll()[0].get());
     ListeningHistoryModel listeningHistoryViewModel(listeningHistoryService);
+    Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
+    isEnabledSetting.setValue(true);
     
     SECTION("Initialize") {
         REQUIRE(listeningHistoryViewModel.getModel()->rowCount() == 0);
