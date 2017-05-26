@@ -55,7 +55,7 @@ ColumnLayout {
         Button {
             highlighted: true
             hoverEnabled: true
-            text: "Reset defaults"
+            text: "Restore defaults"
             onClicked: model.qtObject.restoreDefaults()
 
             Tooltip {

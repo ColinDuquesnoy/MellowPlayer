@@ -16,17 +16,29 @@ Page {
         RowLayout {
             anchors.fill: parent
 
+            ToolButton {
+                id: btRestoreDefaults
+
+                font { pixelSize: 24; family: MaterialIcons.family }
+                hoverEnabled: true
+                text: MaterialIcons.icon_settings_backup_restore
+                onClicked: settings.restoreDefaults()
+
+                Tooltip {
+                    text: 'Restore all settings to their <b>default value</b>.'
+                }
+            }
+
             Item {
                 Layout.fillWidth: true
             }
 
             ToolButton {
                 id: btBack
-                Layout.fillHeight: true
-                text: MaterialIcons.icon_exit_to_app
+
                 font { family: MaterialIcons.family; pixelSize: 22 }
                 hoverEnabled: true
-
+                text: MaterialIcons.icon_exit_to_app
                 onClicked: stackView.pop()
 
                 Tooltip {
