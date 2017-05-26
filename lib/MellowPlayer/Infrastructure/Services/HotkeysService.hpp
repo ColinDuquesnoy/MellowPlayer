@@ -7,13 +7,15 @@
 class QxtGlobalShortcut;
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 class HotkeysService: public QObject, public UseCases::IHotkeysService {
     Q_OBJECT
 public:
-    HotkeysService(UseCases::IPlayer& player);
+    HotkeysService(UseCases::IPlayer& player, UseCases::Settings& settings);
     ~HotkeysService();
 
     void start() override;
@@ -31,6 +33,19 @@ private:
     QxtGlobalShortcut* nextShortcut;
     QxtGlobalShortcut* previousShortcut;
     QxtGlobalShortcut* favoriteShortcut;
+
+    UseCases::Setting& playShortcutSetting;
+    UseCases::Setting& nextShortcutSetting;
+    UseCases::Setting& previousShortcutSetting;
+    UseCases::Setting& favoriteShortcutSetting;
+
+    void updateFavoriteShortcut() const;
+
+    void updatePreviousShorcut() const;
+
+    void updateNextShortcut() const;
+
+    void updatePlayShortcut() const;
 };
 
 END_MELLOWPLAYER_NAMESPACE

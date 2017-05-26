@@ -28,9 +28,19 @@ public:
         PRIVACY_ENABLE_LISTENING_HISTORY,
         PRIVATE_CURRENT_SERVICE,
         PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
+        SHORTCUTS_ABOUT,
+        SHORTCUTS_FAVORITE,
+        SHORTCUTS_LISTENING_HISTORY,
         SHORTCUTS_NEXT,
+        SHORTCUTS_NOTIFICATIONS,
         SHORTCUTS_PLAY,
-        SHORTCUTS_PREVIOUS
+        SHORTCUTS_PREVIOUS,
+        SHORTCUTS_QUIT,
+        SHORTCUTS_RELOAD,
+        SHORTCUTS_SELECT_NEXT_SERVICE,
+        SHORTCUTS_SELECT_PREVIOUS_SERVICE,
+        SHORTCUTS_SELECT_SERVICE,
+        SHORTCUTS_SETTINGS
     };
     Q_ENUM(Keys);
 
@@ -57,9 +67,19 @@ public:
         enumToString << "privacy/enable-listening-history";
         enumToString << "private/current-service";
         enumToString << "private/show-close-to-tray-message";
+        enumToString << "shortcuts/about";
+        enumToString << "shortcuts/favorite";
+        enumToString << "shortcuts/listening-history";
         enumToString << "shortcuts/next";
+        enumToString << "shortcuts/notifications";
         enumToString << "shortcuts/play";
         enumToString << "shortcuts/previous";
+        enumToString << "shortcuts/quit";
+        enumToString << "shortcuts/reload";
+        enumToString << "shortcuts/select-next-service";
+        enumToString << "shortcuts/select-previous-service";
+        enumToString << "shortcuts/select-service";
+        enumToString << "shortcuts/settings";
 
         return enumToString[static_cast<int>(key)];
     }

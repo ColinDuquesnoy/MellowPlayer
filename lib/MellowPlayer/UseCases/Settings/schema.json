@@ -163,6 +163,76 @@
 					"type": "shortcut",
 					"default": "Ctrl+Alt+B",
 					"key": "previous"
+				},
+				{
+					"name": "Add to favorites",
+					"tooltip": "Adds current song to favorites.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+R",
+					"key": "favorite"
+				},
+				{
+					"name": "Reload page",
+					"tooltip": "Reload current web page.",
+					"type": "shortcut",
+					"default": "F5",
+					"key": "reload"
+				},
+				{
+					"name": "Select service",
+					"tooltip": "Show service selection page.",
+					"type": "shortcut",
+					"default": "F8",
+					"key": "select-service"
+				},
+				{
+					"name": "Next service",
+					"tooltip": "Switch to the next open service.",
+					"type": "shortcut",
+					"default": "Ctrl+Tab",
+					"key": "select-next-service"
+				},
+				{
+					"name": "Previous service",
+					"tooltip": "Switch to the previous open service.",
+					"type": "shortcut",
+					"default": "Ctrl+Shift+Tab",
+					"key": "select-previous-service"
+				},
+                {
+                    "name": "Toggle notifications",
+                    "tooltip": "Quickly enable or disable notifications",
+                    "type": "shortcut",
+                    "default": "F9",
+                    "key": "notifications"
+                },
+                {
+                    "name": "Listening history",
+                    "tooltip": "Show or hide listening history",
+                    "type": "shortcut",
+                    "default": "F10",
+                    "key": "listening-history"
+                },
+				{
+					"name": "Settings",
+					"tooltip": "Show settings page",
+					"type": "shortcut",
+					"default": "F2",
+					"key": "settings"
+				},
+				{
+					"name": "About",
+					"tooltip": "Show about page.",
+					"type": "shortcut",
+					"default": "F1",
+					"key": "about"
+				},
+				{
+					"name": "Quit",
+					"tooltip": "Quit the application.",
+					"type": "shortcut",
+					"default": "Ctrl+Q",
+					"key": "quit"
 				}
 			]
 		},

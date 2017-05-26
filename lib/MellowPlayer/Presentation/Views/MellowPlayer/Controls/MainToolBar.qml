@@ -19,13 +19,17 @@ ToolBar {
         spacing: 0
 
         ToolButton {
+            id: btSelectService
+
             text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_arrow_back
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.previewImage !== undefined || body.state == "webview"
 
-            onClicked:  {
+            onClicked: switchView()
+
+            function switchView() {
                 if (body.previewImage.state === "selected") {
                     // to overview
                     webViewStack.currentWebView().updateImageFinished.connect(switchToOverview);
@@ -43,6 +47,12 @@ ToolBar {
                 webViewStack.currentWebView().updateImageFinished.disconnect(switchToOverview);
             }
 
+            Shortcut {
+                property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
+
+                sequence: setting.value
+                onActivated: btSelectService.switchView()
+            }
 
             Tooltip {
                 y: toolBar.implicitHeight
@@ -96,16 +106,29 @@ ToolBar {
         }
 
         ToolButton {
+            id: btReload
+
             text: MaterialIcons.icon_refresh
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            onClicked: webViewStack.currentWebView().reload()
+            onClicked: reload()
 
             Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Reload this page")
+            }
+
+            Shortcut {
+                property var setting: settings.get(SettingKey.SHORTCUTS_RELOAD)
+
+                sequence: setting.value
+                onActivated: btReload.reload()
+            }
+
+            function reload() {
+                webViewStack.currentWebView().reload()
             }
         }
 
@@ -223,11 +246,7 @@ ToolBar {
             checked: setting != null ? setting.value : false
             font { family: MaterialIcons.family; pixelSize: toolBar.iconSize }
             hoverEnabled: true
-            onClicked: {
-                console.error('onCheckedChanged before: ' + setting.value)
-                setting.value = checked
-                console.error('onCheckedChanged after: ' + setting.value)
-            }
+            onClicked: setting.value = checked
             text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
 
             Layout.fillHeight: true
@@ -236,6 +255,13 @@ ToolBar {
             Tooltip {
                 y: toolBar.implicitHeight
                 text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
+
+                sequence: shortcut.value
+                onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
             }
         }
 
@@ -264,6 +290,13 @@ ToolBar {
                 y: toolBar.implicitHeight
                 text: qsTr("Listening history")
             }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
+
+                sequence: shortcut.value
+                onActivated: listeningHistoryDrawer.visible = !listeningHistoryDrawer.visible
+            }
         }
 
         ToolButton {
@@ -273,20 +306,64 @@ ToolBar {
             hoverEnabled: true
             onClicked: menu.open()
 
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_SETTINGS)
+
+                sequence: shortcut.value
+                onActivated: menuItemSettings.toggleSettings()
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_ABOUT)
+
+                sequence: shortcut.value
+                onActivated: menuItemAbout.toggleDialog()
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_QUIT)
+
+                sequence: shortcut.value
+                onActivated: qtApp.requestQuit();
+            }
+
             Menu {
                 id: menu
                 y: parent.implicitHeight
 
                 MenuIconItem {
+                    id: menuItemSettings
+
                     icon: MaterialIcons.icon_settings
-                    onClicked: stackView.push(settingsPageComponent)
+                    onClicked: openSettings()
                     text: "Settings"
+
+                    function toggleSettings() {
+                        if (stackView.depth > 1)
+                            closeSettings()
+                        else
+                            openSettings()
+                    }
+
+                    function openSettings() {
+                        stackView.push(settingsPageComponent)
+                    }
+
+                    function closeSettings() {
+                        stackView.pop()
+                    }
                 }
 
                 MenuIconItem {
+                    id: menuItemAbout
+
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
-                    onClicked: aboutDialog.visible = true
+                    onClicked: toggleDialog()
+
+                    function toggleDialog() {
+                        aboutDialog.visible = !aboutDialog.visible
+                    }
                 }
 
                 Rectangle {

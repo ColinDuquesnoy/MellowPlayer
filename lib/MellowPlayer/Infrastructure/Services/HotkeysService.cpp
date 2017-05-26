@@ -1,13 +1,25 @@
 #include <qxtglobalshortcut.h>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
 #include "HotkeysService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-HotkeysService::HotkeysService(IPlayer& player) :
-    QObject(nullptr), logger(LoggingManager::instance().getLogger("Hotkeys")), player(player) {
+HotkeysService::HotkeysService(IPlayer& player, Settings& settings) :
+        QObject(nullptr),
+        logger(LoggingManager::instance().getLogger("Hotkeys")),
+        player(player),
+        playShortcutSetting(settings.get(SettingKey::SHORTCUTS_PLAY)),
+        nextShortcutSetting(settings.get(SettingKey::SHORTCUTS_NEXT)),
+        previousShortcutSetting(settings.get(SettingKey::SHORTCUTS_PREVIOUS)),
+        favoriteShortcutSetting(settings.get(SettingKey::SHORTCUTS_FAVORITE)) {
+    connect(&playShortcutSetting, &Setting::valueChanged, this, &HotkeysService::updatePlayShortcut);
+    connect(&nextShortcutSetting, &Setting::valueChanged, this, &HotkeysService::updateNextShortcut);
+    connect(&previousShortcutSetting, &Setting::valueChanged, this, &HotkeysService::updatePreviousShorcut);
+    connect(&favoriteShortcutSetting, &Setting::valueChanged, this, &HotkeysService::updateFavoriteShortcut);
 }
 
 void HotkeysService::togglePlayPause() {
@@ -33,19 +45,19 @@ HotkeysService::~HotkeysService() {
 void HotkeysService::start() {
 
     playShortcut = new QxtGlobalShortcut(this);
-    playShortcut->setShortcut(QKeySequence("Ctrl+Alt+P"));
+    updatePlayShortcut();
     connect(playShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::togglePlayPause);
 
     nextShortcut = new QxtGlobalShortcut(this);
-    nextShortcut->setShortcut(QKeySequence("Ctrl+Alt+N"));
+    updateNextShortcut();
     connect(nextShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::next);
 
     previousShortcut = new QxtGlobalShortcut(this);
-    previousShortcut->setShortcut(QKeySequence("Ctrl+Alt+B"));
+    updatePreviousShorcut();
     connect(previousShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::previous);
 
     favoriteShortcut = new QxtGlobalShortcut(this);
-    favoriteShortcut->setShortcut(QKeySequence("Ctrl+Alt+F"));
+    updateFavoriteShortcut();
     connect(favoriteShortcut, &QxtGlobalShortcut::activated, this, &HotkeysService::toggleFavoriteSong);
 
 #ifdef Q_OS_WIN
@@ -63,4 +75,20 @@ void HotkeysService::start() {
 #endif
 
     LOG_INFO(logger, "service started");
+}
+
+void HotkeysService::updatePlayShortcut() const {
+    playShortcut->setShortcut(QKeySequence(playShortcutSetting.getValue().toString()));
+}
+
+void HotkeysService::updateNextShortcut() const {
+    nextShortcut->setShortcut(QKeySequence(nextShortcutSetting.getValue().toString()));
+}
+
+void HotkeysService::updatePreviousShorcut() const {
+    previousShortcut->setShortcut(QKeySequence(previousShortcutSetting.getValue().toString()));
+}
+
+void HotkeysService::updateFavoriteShortcut() const {
+    favoriteShortcut->setShortcut(QKeySequence(favoriteShortcutSetting.getValue().toString()));
 }

@@ -16,19 +16,6 @@ Page {
         RowLayout {
             anchors.fill: parent
 
-            ToolButton {
-                id: btRestoreDefaults
-
-                font { pixelSize: 24; family: MaterialIcons.family }
-                hoverEnabled: true
-                text: MaterialIcons.icon_settings_backup_restore
-                onClicked: settings.restoreDefaults()
-
-                Tooltip {
-                    text: 'Restore all settings to their <b>default value</b>.'
-                }
-            }
-
             Item {
                 Layout.fillWidth: true
             }
@@ -38,7 +25,7 @@ Page {
 
                 font { family: MaterialIcons.family; pixelSize: 22 }
                 hoverEnabled: true
-                text: MaterialIcons.icon_exit_to_app
+                text: MaterialIcons.icon_done
                 onClicked: stackView.pop()
 
                 Tooltip {
@@ -68,60 +55,84 @@ Page {
             Material.foreground: style.secondaryForeground
             Material.elevation: 4
 
-            ListView {
-                id: settingsPageList
+            ColumnLayout {
                 anchors.fill: parent
 
-                model: settings.categories
-                delegate: settingsCategoryDelegate
+                ListView {
+                    id: settingsPageList
 
-                Component {
-                    id: settingsCategoryDelegate
+                    model: settings.categories
+                    delegate: settingsCategoryDelegate
 
-                    Rectangle {
-                        property double colorFactor: style.getColorScaleFactor(style.secondary);
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
-                        color: settingsPageList.currentIndex == index ||  mouseArea.containsMouse ? Qt.darker(style.secondary, colorFactor) : style.secondary
-                        height: 60; width: parent.width
-
+                    Component {
+                        id: settingsCategoryDelegate
 
                         Rectangle {
-                            anchors.top: parent.top
-                            anchors.left: parent.left
-                            anchors.bottom: parent.bottom
+                            property double colorFactor: style.getColorScaleFactor(style.secondary);
 
-                            width: 3
-                            color: settingsPageList.currentIndex == index ? style.accent : "transparent"
-                        }
+                            color: settingsPageList.currentIndex == index ||  mouseArea.containsMouse ? Qt.darker(style.secondary, colorFactor) : style.secondary
+                            height: 60; width: parent.width
 
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.margins: 20
-                            spacing: 10
 
-                            Label {
-                                text: model.icon
-                                font.family: MaterialIcons.family
-                                font.pixelSize: 24
+                            Rectangle {
+                                anchors.top: parent.top
+                                anchors.left: parent.left
+                                anchors.bottom: parent.bottom
+
+                                width: 3
+                                color: settingsPageList.currentIndex == index ? style.accent : "transparent"
                             }
 
-                            Label {
-                                verticalAlignment: "AlignVCenter"
-                                text: model.name
-                                font.pixelSize: 20
+                            RowLayout {
+                                anchors.fill: parent
+                                anchors.margins: 20
+                                spacing: 10
+
+                                Label {
+                                    text: model.icon
+                                    font.family: MaterialIcons.family
+                                    font.pixelSize: 24
+                                }
+
+                                Label {
+                                    verticalAlignment: "AlignVCenter"
+                                    text: model.name
+                                    font.pixelSize: 20
+                                }
+
+                                Item { Layout.fillWidth: true; }
                             }
 
-                            Item { Layout.fillWidth: true; }
-                        }
+                            MouseArea {
+                                id: mouseArea
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: containsMouse && settingsPageList.currentIndex != index ? "PointingHandCursor" : "ArrowCursor"
 
-                        MouseArea {
-                            id: mouseArea
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: containsMouse && settingsPageList.currentIndex != index ? "PointingHandCursor" : "ArrowCursor"
-
-                            onClicked: settingsPageList.currentIndex = index
+                                onClicked: settingsPageList.currentIndex = index
+                            }
                         }
+                    }
+                }
+
+                Button {
+                    id: btRestoreDefaults
+
+                    flat: true
+                    highlighted: true
+                    hoverEnabled: true
+                    text: "Restore all to defaults"
+                    onClicked: settings.restoreDefaults()
+
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 4
+                    Layout.rightMargin: 4
+
+                    Tooltip {
+                        text: 'Restore all settings to their <b>default value</b>.'
                     }
                 }
             }
