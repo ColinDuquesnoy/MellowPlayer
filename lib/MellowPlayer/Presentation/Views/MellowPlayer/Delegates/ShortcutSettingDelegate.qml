@@ -15,6 +15,8 @@ Pane {
         Label {
             text: model.name
             font.pixelSize: 16
+
+            Layout.preferredWidth: 150
         }
 
         TextField {
@@ -31,12 +33,16 @@ Pane {
 
             Keys.onPressed: {
                 nbKeyPressed += 1
-                if (nbKeyPressed > 3)
+
+                if (nbKeyPressed > 3) {
                     nbKeyPressed = 3
-                if( nbKeyPressed == 1)
-                    startRecording();
-                else
-                    placeholderText = model.qtObject.keySequenceToString(event.key, event.modifiers, event.text);
+                }
+
+                if( nbKeyPressed == 1) {
+                    startRecording()
+                }
+                placeholderText = model.qtObject.keySequenceToString(event.key, event.modifiers);
+                console.error(placeholderText, model.qtObject.keySequenceToString(event.key, event.modifiers))
                 newKey = event.key;
                 newMofifiers = event.modifiers
                 event.accepted = true;

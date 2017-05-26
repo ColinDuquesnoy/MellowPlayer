@@ -43,6 +43,8 @@ QString ShortcutSettingModel::keySequenceToString(int keyInt, int modifiers)
 
 bool ShortcutSettingModel::isValidKeySequence(int key, int modifiers)
 {
+    if (keySequenceToString(key, modifiers).startsWith("F"))
+        return true;
     if (modifiers == 0)
         return false;
     if(key == Qt::Key_unknown)
