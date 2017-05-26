@@ -78,7 +78,8 @@ void StreamingServiceStyleModel::setUsePluginStyle(bool value) {
 
 void StreamingServiceStyleModel::updateStyle() {
     StreamingServicePlugin* currentPlugin = pluginService.getCurrent();
-    if (usePluginStyle && currentPlugin != nullptr && adaptiveThemeSetting.getValue().toBool())
+    if (usePluginStyle && currentPlugin != nullptr && adaptiveThemeSetting.getValue().toBool() &&
+            !currentPlugin->getStyle().isEmpty())
         fromStyle(currentPlugin->getStyle());
     else
         fromStyle(getDefaultStyle());
@@ -86,7 +87,7 @@ void StreamingServiceStyleModel::updateStyle() {
 
 void StreamingServiceStyleModel::onPluginChanged(StreamingServicePlugin* plugin) {
     if (plugin != nullptr)
-        fromStyle(plugin->getStyle());
+        updateStyle();
 }
 
 void StreamingServiceStyleModel::setAccent(const QString& value) {
