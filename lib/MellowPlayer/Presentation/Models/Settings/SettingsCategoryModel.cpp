@@ -29,6 +29,10 @@ QAbstractItemModel* SettingsCategoryModel::getSettingsModel() {
     return settingsListModel;
 }
 
+void SettingsCategoryModel::restoreDefaults() {
+    settingsCategory->restoreDefaults();
+}
+
 CustomSettingsCategoryModel::CustomSettingsCategoryModel(const QString& name, const QString& icon,
                                                          const QString& qmlComponent, QObject* parent):
     SettingsCategoryModel(nullptr, parent), name(name), icon(icon), qmlComponent(qmlComponent) {

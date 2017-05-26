@@ -22,6 +22,8 @@ public:
     virtual QString getQmlComponent() const;;
     QAbstractItemModel* getSettingsModel();
 
+    Q_INVOKABLE void restoreDefaults();
+
 private:
     UseCases::SettingsCategory* settingsCategory;
     QQmlObjectListModel<SettingModel>* settingsListModel;

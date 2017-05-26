@@ -29,3 +29,7 @@ SettingModel* SettingsModel::get(int key) {
 QAbstractItemModel* SettingsModel::getCategories() const {
     return categories;
 }
+
+void SettingsModel::restoreDefaults() {
+    settings.restoreDefaults();
+}

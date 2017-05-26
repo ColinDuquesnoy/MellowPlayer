@@ -25,6 +25,8 @@ public:
 
     ISettingsProvider& getSettingsProvider() const;
 
+    void restoreDefaults();
+
 private:
     ISettingsProvider& settingsProvider;
     QList<SettingsCategory*> categories;

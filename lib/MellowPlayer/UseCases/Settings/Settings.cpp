@@ -61,3 +61,8 @@ ISettingsProvider& Settings::getSettingsProvider() const {
 Setting& Settings::get(SettingKey::Keys key) {
     return get(SettingKey::toString(key));
 }
+
+void Settings::restoreDefaults() {
+    for(SettingsCategory* category: categories)
+        category->restoreDefaults();
+}

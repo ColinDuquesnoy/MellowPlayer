@@ -48,3 +48,8 @@ Setting& SettingsCategory::getSetting(const QString& key) const {
             return *param;
     throw runtime_error("Unknown setting: " + data.key.toStdString() + "/" + key.toStdString());
 }
+
+void SettingsCategory::restoreDefaults() {
+    for(Setting* setting: settings)
+        setting->restoreDefaults();
+}

@@ -33,6 +33,10 @@ void Setting::resolveDependency() {
     }
 }
 
+void Setting::restoreDefaults() {
+    setValue(data.defaultValue);
+}
+
 const QString& Setting::getKey() const {
     return data.key;
 }

@@ -24,6 +24,8 @@ public:
     SettingsCategory(const Data& data, Settings* appSettings);
     void resolveDependencies();
 
+    void restoreDefaults();
+
     const QString& getName() const;
     const QString& getIcon() const;
     const QString& getKey() const;

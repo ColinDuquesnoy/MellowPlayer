@@ -14,6 +14,7 @@ public:
 
     Q_INVOKABLE SettingModel* get(int key);
     QAbstractItemModel* getCategories() const;
+    Q_INVOKABLE void restoreDefaults();
 
 private:
     UseCases::Settings& settings;

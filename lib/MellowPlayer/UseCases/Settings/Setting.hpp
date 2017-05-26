@@ -25,6 +25,7 @@ public:
     Setting(Settings& settings, SettingsCategory& category, const Data& settingData);
 
     void resolveDependency();
+    void restoreDefaults();
 
     const QString& getKey() const;
     const QString& getName() const;

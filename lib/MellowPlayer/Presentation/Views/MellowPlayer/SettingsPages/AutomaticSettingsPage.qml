@@ -3,37 +3,64 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 
-Flickable {
-    id: root
+import MellowPlayer 3.0
 
-    property var settingsModel: model.settings
+ColumnLayout {
+    anchors.fill: parent
 
-    contentHeight: pane.implicitHeight
-    contentWidth: parent.width
+    Flickable {
+        id: root
 
-    Pane {
-        id: pane
+        property var settingsModel: model.settings
 
-        anchors.fill: parent
-        padding: 16
+        contentHeight: pane.implicitHeight
+        contentWidth: parent.width
 
-        ColumnLayout {
+        Layout.fillHeight: true
+
+        Pane {
+            id: pane
 
             anchors.fill: parent
-            spacing: 0
+            padding: 16
 
-            Repeater {
-                model: root.settingsModel
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+                clip: true
 
-                Loader {
-                    source: model.qmlComponent
+                Repeater {
+                    model: root.settingsModel
+
+                    Loader {
+                        source: model.qmlComponent
+                    }
+                }
+
+                Item {
+                    Layout.fillHeight: true
                 }
             }
+        }
+        ScrollBar.vertical: ScrollBar { }
+    }
 
-            Item {
-                Layout.fillHeight: true
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.rightMargin: 16
+        Layout.bottomMargin: 8
+
+        Item { Layout.fillWidth: true }
+
+        Button {
+            highlighted: true
+            hoverEnabled: true
+            text: "Reset defaults"
+            onClicked: model.qtObject.restoreDefaults()
+
+            Tooltip {
+                text: 'Reset <b>' + model.name.toLowerCase() + '</b> settings to their <b>default value</b>.'
             }
         }
     }
-    ScrollBar.vertical: ScrollBar { }
 }

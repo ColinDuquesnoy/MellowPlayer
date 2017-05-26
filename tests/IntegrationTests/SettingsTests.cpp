@@ -30,6 +30,19 @@ TEST_CASE("SettingsTests") {
             REQUIRE_NOTHROW(settings.get(SettingKey::MAIN_CONFIRM_EXIT));
             REQUIRE_THROWS(settings.getCategory("foo"));
         }
+
+        SECTION("restoreDefaults") {
+            Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
+            setting1.setValue(!setting1.getDefaultValue().toBool());
+            Setting& setting2 = settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME);
+            setting2.setValue(!setting1.getDefaultValue().toBool());
+            REQUIRE(setting1.getValue() != setting1.getDefaultValue());
+            REQUIRE(setting2.getValue() != setting2.getDefaultValue());
+
+            settings.restoreDefaults();
+            REQUIRE(setting1.getValue() == setting1.getDefaultValue());
+            REQUIRE(setting2.getValue() == setting2.getDefaultValue());
+        }
     }
 
     SECTION("ConfigCategoryTests") {
@@ -43,6 +56,24 @@ TEST_CASE("SettingsTests") {
         SECTION("get") {
             REQUIRE_NOTHROW(mainCategory->getSetting("confirm-exit"));
             REQUIRE_THROWS(mainCategory->getSetting("foo"));
+        }
+
+        SECTION("restoreDefaults") {
+            Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
+            setting1.setValue(!setting1.getDefaultValue().toBool());
+            Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
+            setting2.setValue(!setting1.getDefaultValue().toBool());
+            Setting& fromOtherCategory = settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME);
+            fromOtherCategory.setValue(!setting1.getDefaultValue().toBool());
+            REQUIRE(setting1.getValue() != setting1.getDefaultValue());
+            REQUIRE(setting2.getValue() != setting2.getDefaultValue());
+            REQUIRE(fromOtherCategory.getValue() != fromOtherCategory.getDefaultValue());
+
+            mainCategory->restoreDefaults();
+            REQUIRE(setting1.getValue() == setting1.getDefaultValue());
+            REQUIRE(setting2.getValue() == setting2.getDefaultValue());
+            REQUIRE(fromOtherCategory.getValue() != fromOtherCategory.getDefaultValue());
+            fromOtherCategory.restoreDefaults();
         }
     }
 
@@ -69,8 +100,11 @@ TEST_CASE("SettingsTests") {
 
         SECTION("setValue") {
             Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
+            REQUIRE(setting.getValue() == setting.getDefaultValue());
             setting.setValue(true);
             REQUIRE(setting.getValue().toBool());
+            setting.restoreDefaults();
+            REQUIRE(setting.getValue() == setting.getDefaultValue());
         }
 
         SECTION("isEnabled always enabled setting") {
