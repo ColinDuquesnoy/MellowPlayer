@@ -26,11 +26,20 @@ Page {
                 font { family: MaterialIcons.family; pixelSize: 22 }
                 hoverEnabled: true
                 text: MaterialIcons.icon_done
-                onClicked: stackView.pop()
+                onClicked: back()
+
+                function back() {
+                    stackView.pop()
+                }
 
                 Tooltip {
                     y: toolBar.implicitHeight
                     text: qsTr("Back")
+                }
+
+                Shortcut {
+                    sequence: "Escape"
+                    onActivated: btBack.back()
                 }
             }
         }

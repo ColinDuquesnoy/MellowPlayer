@@ -132,7 +132,7 @@ Popup {
 
                     padding: 16
 
-                    Material.elevation: 2
+                    Material.elevation: 8
 
                     ColumnLayout {
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -151,16 +151,12 @@ Popup {
                             }
 
                             ColumnLayout {
-
                                 Link {
                                     name: '@ColinDuquesnoy'
                                     url: "https://github.com/ColinDuquesnoy"
                                 }
 
-                                Link {
-                                    name: '@ConorIA'
-                                    url: "https://github.com/ConorIA"
-                                }
+                                Item { Layout.fillHeight: true }
                             }
                         }
 
@@ -180,6 +176,29 @@ Popup {
                                     name: '@CelineThiry'
                                     url: "https://github.com/CelineThiry"
                                 }
+
+                                Item { Layout.fillHeight: true }
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: 9
+
+                            ColumnLayout {
+                                Label {
+                                    text: "Contributors"
+                                }
+
+                                Item { Layout.fillHeight: true }
+                            }
+
+                            ColumnLayout {
+                                Link {
+                                    name: '@ConorIA'
+                                    url: "https://github.com/ConorIA"
+                                }
+
+                                Item { Layout.fillHeight: true }
                             }
                         }
                     }

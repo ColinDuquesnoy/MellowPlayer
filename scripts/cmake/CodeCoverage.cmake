@@ -149,7 +149,7 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
 
             # Capturing lcov counters and generating report
             COMMAND ${LCOV_PATH} --directory . --capture --output-file ${coverage_info}
-            COMMAND ${LCOV_PATH} --remove ${coverage_info} '*tests/*' '*.local/*' '*Qt5*/*' '*3rdparty/*' '*qrc_*' '*moc_*' '/usr/*' '/opt/*' --output-file ${coverage_cleaned}
+            COMMAND ${LCOV_PATH} --remove ${coverage_info} '*tests/*' '*.local/*' '*Qt5*/*' '*Qt/5.*' '*3rdparty/*' '*qrc_*' '*moc_*' '/usr/*' '/opt/*' --output-file ${coverage_cleaned}
             COMMAND ${GENHTML_PATH} -o ${_outputname} ${coverage_cleaned}
 
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
