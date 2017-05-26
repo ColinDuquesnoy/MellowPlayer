@@ -23,7 +23,7 @@ TEST_CASE("SettingModelTests") {
     }
 
     SECTION("enabled should change when enableCondition is met") {
-        Setting& dependantSetting = settings.get(SettingKey::NOTIFICATIONS_PAUSE);
+        Setting& dependantSetting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
         BoolSettingModel dependantModel(dependantSetting, nullptr);
         QSignalSpy enabledSpy(&dependantModel, SIGNAL(enabledChanged()));
 

@@ -20,9 +20,10 @@ public:
         MAIN_CONFIRM_EXIT,
         MAIN_SHOW_TRAY_ICON,
         NOTIFICATIONS_ENABLED,
+        NOTIFICATIONS_NEW_SONG,
         NOTIFICATIONS_NEW_VERSION,
-        NOTIFICATIONS_PAUSE,
-        NOTIFICATIONS_PLAY,
+        NOTIFICATIONS_PAUSED,
+        NOTIFICATIONS_RESUMED,
         PRIVACY_CHECK_FOR_UPDATES,
         PRIVACY_ENABLE_LISTENING_HISTORY,
         PRIVATE_CURRENT_SERVICE,
@@ -48,9 +49,10 @@ public:
         enumToString << "main/confirm-exit";
         enumToString << "main/show-tray-icon";
         enumToString << "notifications/enabled";
+        enumToString << "notifications/new-song";
         enumToString << "notifications/new-version";
-        enumToString << "notifications/pause";
-        enumToString << "notifications/play";
+        enumToString << "notifications/paused";
+        enumToString << "notifications/resumed";
         enumToString << "privacy/check-for-updates";
         enumToString << "privacy/enable-listening-history";
         enumToString << "private/current-service";

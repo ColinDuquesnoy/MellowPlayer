@@ -51,7 +51,7 @@ bool NotificationService::display(const Notification& notification) {
 
 void NotificationService::onCurrentSongChanged(Song* song) {
     LOG_TRACE(logger, "onCurrentSongChanged");
-    showNewSongNotification(song, localAlbumArtService.getUrl());
+    showSongNotification(song, localAlbumArtService.getUrl());
 }
 
 void NotificationService::onPlaybackStatusChanged() {
@@ -61,7 +61,7 @@ void NotificationService::onPlaybackStatusChanged() {
             display(notificationFactory.createPausedNotification(getCurrentServiceName(), getCurrentServiceLogo()));
             break;
         case PlaybackStatus::Playing:
-            showNewSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
+            showSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
             break;
         default:
             break;
@@ -70,13 +70,16 @@ void NotificationService::onPlaybackStatusChanged() {
 
 void NotificationService::onCurrentSongUrlChanged() {
     LOG_TRACE(logger, "onCurrentSongUrlChanged");
-    showNewSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
+    showSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
 }
 
-void NotificationService::showNewSongNotification(Song* song, const QString& localAlbumArtUrl) {
-    LOG_TRACE(logger, "showNewSongNotification");
-    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song))
-        display(notificationFactory.createSongNotification(getCurrentServiceName(), song, localAlbumArtUrl));
+void NotificationService::showSongNotification(Song* song, const QString& localAlbumArtUrl) {
+    LOG_TRACE(logger, "showSongNotification");
+    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song)) {
+        bool resume = song->getUniqueId() == previousSongId;
+        previousSongId = song->getUniqueId();
+        display(notificationFactory.createSongNotification(getCurrentServiceName(), song, localAlbumArtUrl, resume));
+    }
 }
 
 bool NotificationService::isPlaying() const {
@@ -104,11 +107,15 @@ bool NotificationService::isNotificationTypeEnabled(NotificationType type) const
             return check(setting);
         }
         case NotificationType::Paused: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PAUSE);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
             return check(setting);
         }
-        case NotificationType::Song: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PLAY);
+        case NotificationType::NewSong: {
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+            return check(setting);
+        }
+        case NotificationType::Resumed: {
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_RESUMED);
             return check(setting);
         }
     }

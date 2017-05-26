@@ -105,19 +105,27 @@
 					"key": "enabled"
 				},
 				{
-					"name": "Display a notification on play/resume",
-                    "tooltip": "Enabled/Disable displaying a notification when a new song starts playing or is resumed",
+					"name": "Display a notification when a new song starts playing",
+                    "tooltip": "Enabled/Disable displaying a notification when a new song starts playing",
 					"type": "bool",
 					"default": true,
-					"key": "play",
+					"key": "new-song",
 					"enabled": "notifications/enabled"
 				},
 				{
-					"name": "Display a notification on pause",
-                    "tooltip": "Enabled/Disable displaying a notification when the player paused",
+					"name": "Display a notification when player has paused",
+                    "tooltip": "Enabled/Disable displaying a notification when the player has paused",
 					"type": "bool",
 					"default": true,
-					"key": "pause",
+					"key": "paused",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification when player has resumed",
+					"tooltip": "Enabled/Disable displaying a notification when the player has resumed",
+					"type": "bool",
+					"default": true,
+					"key": "resumed",
 					"enabled": "notifications/enabled"
 				},
 				{

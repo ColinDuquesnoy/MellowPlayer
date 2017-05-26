@@ -28,7 +28,7 @@ public slots:
     void onCurrentSongUrlChanged();
 
 private:
-    void showNewSongNotification(Entities::Song* song, const QString& localAlbumArtUrl);
+    void showSongNotification(Entities::Song* song, const QString& localAlbumArtUrl);
     bool isPlaying() const;
     const QString getCurrentServiceName() const;
     const QString getCurrentServiceLogo() const;
@@ -42,6 +42,7 @@ private:
     UseCases::Settings& settings;
     Entities::Notification previousNotif;
     NotificationFactory notificationFactory;
+    QString previousSongId;
 };
 
 END_MELLOWPLAYER_NAMESPACE

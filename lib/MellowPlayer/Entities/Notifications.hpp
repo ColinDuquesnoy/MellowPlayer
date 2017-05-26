@@ -7,7 +7,8 @@
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 enum class NotificationType {
-    Song,
+    NewSong,
+    Resumed,
     Paused,
     NewVersionAvailable
 };

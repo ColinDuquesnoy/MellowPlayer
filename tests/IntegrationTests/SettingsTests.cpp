@@ -80,7 +80,7 @@ TEST_CASE("SettingsTests") {
 
         SECTION("isEnabled setting enabled if enableCondition is true") {
             Setting& notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
-            Setting& playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_PLAY);
+            Setting& playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
             QSignalSpy spy(&playNotificationEnabled, SIGNAL(isEnabledChanged()));
             REQUIRE(notificationsEnabled.getValue().toBool());
             REQUIRE(playNotificationEnabled.isEnabled());
