@@ -59,7 +59,7 @@ ColumnLayout {
             onClicked: model.qtObject.restoreDefaults()
 
             Tooltip {
-                text: 'Reset <b>' + model.name.toLowerCase() + '</b> settings to their <b>default value</b>.'
+                text: 'Restore <b>' + model.name.toLowerCase() + '</b> settings to their <b>default value</b>.'
             }
         }
     }
