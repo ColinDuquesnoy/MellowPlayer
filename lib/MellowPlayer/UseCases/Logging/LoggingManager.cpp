@@ -45,7 +45,7 @@ LoggingManager& LoggingManager::instance() {
 LoggingManager::LoggingManager(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig):
         loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig) {
     qInstallMessageHandler(messageHandler);
-    QLoggingCategory::setFilterRules("js.warning=false");
+//    QLoggingCategory::setFilterRules("js.warning=false");
 }
 
 ILogger& LoggingManager::getLogger() {
