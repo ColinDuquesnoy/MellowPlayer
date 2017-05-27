@@ -73,6 +73,7 @@ Item {
             ToolButton {
                 highlighted: true
                 text: "Restart now"
+                onClicked: qtApp.restart()
             }
         }
 

@@ -70,12 +70,17 @@ void QtApplicationModel::clearCookies() const
     storageDir.removeRecursively();
 }
 
-void QtApplicationModel::quit() {
-    LOG_TRACE(logger, "quitting");
-    qtApp.exit(0);
+void QtApplicationModel::restart() {
+    quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
 
 void QtApplicationModel::requestQuit() {
     LOG_TRACE(logger, "quit requested");
     emit quitRequested();
+}
+
+void QtApplicationModel::quit() {
+    LOG_TRACE(logger, "quitting");
+    qtApp.exit(0);
 }

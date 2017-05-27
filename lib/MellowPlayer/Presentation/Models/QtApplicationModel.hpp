@@ -19,8 +19,9 @@ public:
     int run() override;
     Q_INVOKABLE void clearCache() const override;
     Q_INVOKABLE void clearCookies() const override;
-    Q_INVOKABLE void quit() override;
+    Q_INVOKABLE void restart() override;
     Q_INVOKABLE void requestQuit() override;
+    Q_INVOKABLE void quit() override;
 
 private:
     QApplication qtApp;
