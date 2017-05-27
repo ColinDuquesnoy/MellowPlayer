@@ -1,4 +1,5 @@
 #include <QtWebEngine>
+#include <QWebEngineProfile>
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
@@ -50,6 +51,23 @@ QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& ap
 
 int QtApplicationModel::run() {
     return qtApp.exec();
+}
+
+void QtApplicationModel::clearCache() const
+{
+    QWebEngineProfile profile("Default");
+    profile.clearHttpCache();
+    QDir cacheDir(QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0]);
+    qDebug() << "removing cache directory: " << cacheDir;
+    cacheDir.removeRecursively();
+}
+
+void QtApplicationModel::clearCookies() const
+{
+    QWebEngineProfile profile("Default");
+    QDir storageDir(profile.persistentStoragePath());
+    qDebug() << "removing persistent storage directory: " << storageDir;
+    storageDir.removeRecursively();
 }
 
 void QtApplicationModel::quit() {

@@ -52,6 +52,7 @@ Page {
 
     RowLayout {
         anchors.fill: parent
+        spacing: 0
 
         Pane {
             padding: 0
@@ -63,6 +64,7 @@ Page {
             Material.background: style.secondary
             Material.foreground: style.secondaryForeground
             Material.elevation: 4
+            Material.theme: style.isDark(style.secondary) ? Material.Dark : Material.Light
 
             ColumnLayout {
                 anchors.fill: parent

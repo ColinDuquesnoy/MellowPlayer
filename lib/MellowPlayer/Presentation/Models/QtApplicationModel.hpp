@@ -17,6 +17,8 @@ public:
     QtApplicationModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
 
     int run() override;
+    Q_INVOKABLE void clearCache() const override;
+    Q_INVOKABLE void clearCookies() const override;
     Q_INVOKABLE void quit() override;
     Q_INVOKABLE void requestQuit() override;
 
