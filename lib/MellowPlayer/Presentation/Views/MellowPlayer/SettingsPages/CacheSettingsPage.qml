@@ -46,7 +46,6 @@ Item {
         Material.elevation: 8
         Material.foreground: style.primaryForeground
         Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
-        Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
 
         RowLayout {
             id: rowLayout

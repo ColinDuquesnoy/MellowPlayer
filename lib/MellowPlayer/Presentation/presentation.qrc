@@ -44,6 +44,7 @@
         <file>Views/MellowPlayer/Delegates/EnumSettingDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ShortcutSettingDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/StringSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
@@ -53,7 +54,7 @@
         <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
         <file>Views/MellowPlayer/Controls/Link.qml</file>
         <file>Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
-        <file>Views/MellowPlayer/SettingsPages/PluginSettingsPage.qml</file>
+        <file>Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml</file>
         <file>Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml</file>
         <file>Views/MellowPlayer/Pages/MainPage.qml</file>
         <file>Views/MellowPlayer/Pages/SettingsPage.qml</file>

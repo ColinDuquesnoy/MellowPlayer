@@ -150,6 +150,7 @@ Page {
         }
 
         StackLayout {
+            clip: true
             currentIndex: settingsPageList.currentIndex
 
             Layout.fillHeight: true

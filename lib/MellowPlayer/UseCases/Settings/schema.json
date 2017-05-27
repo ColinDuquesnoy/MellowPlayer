@@ -45,7 +45,7 @@
                     "name": "Accent",
                     "tooltip": "Change material accent color",
 					"type": "color",
-					"default": "#FFC107",
+					"default": "#ffc107",
                     "key": "accent"
 				},
 				{

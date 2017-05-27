@@ -17,23 +17,31 @@ class StreamingServicePluginModel: public QObject
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(UseCases::Player* player READ getPlayer CONSTANT)
     Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
+    Q_PROPERTY(QString version READ getVersion CONSTANT)
+    Q_PROPERTY(QString authorName READ getAuthorName CONSTANT)
+    Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
 public:
     StreamingServicePluginModel(Entities::StreamingServicePlugin& plugin,
-                          UseCases::ISettingsProvider& settings,
-                          UseCases::PlayerService& playerManager,
-                          QObject* parent= nullptr);
+                                UseCases::ISettingsProvider& settings,
+                                UseCases::PlayerService& playerManager,
+                                QObject* parent= nullptr);
 
     QString getColor() const;
     QString getLogo() const;
     QString getName() const;
     UseCases::Player* getPlayer();
     QString getUrl() const;
-    void setUrl(const QString& url);
+    QString getVersion() const;
+    QString getAuthorName() const;
+    QString getAuthorWebsite() const;
 
     bool operator==(const StreamingServicePluginModel& rhs) const;
     bool operator!=(const StreamingServicePluginModel& rhs) const;
 
     Entities::StreamingServicePlugin* getPlugin() const;
+
+public slots:
+    void setUrl(const QString& url);
 
 signals:
     void urlChanged(const QString&);

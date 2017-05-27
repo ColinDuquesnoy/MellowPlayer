@@ -58,6 +58,8 @@ ColumnLayout {
             text: "Restore defaults"
             onClicked: model.qtObject.restoreDefaults()
 
+            Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
+
             Tooltip {
                 text: 'Restore <b>' + model.name.toLowerCase() + '</b> settings to their <b>default value</b>.'
             }

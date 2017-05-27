@@ -24,7 +24,7 @@ Popup {
 
     modal: true
 
-    Material.accent: style.accent.toLowerCase() == "#ffc107" ? Material.color(Material.Blue) : style.accent
+    Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
 
     ColumnLayout {
         anchors.fill: parent

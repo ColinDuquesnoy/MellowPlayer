@@ -37,11 +37,16 @@ QString StreamingServicePluginModel::getUrl() const {
     return customUrl.isEmpty() ? plugin.getUrl() : customUrl;
 }
 
-void StreamingServicePluginModel::setUrl(const QString& url) {
-    if (url != getUrl()) {
-        settingsProvider.setValue(getCustomUrlSettingsKey(), url);
-        emit urlChanged(url);
-    }
+QString StreamingServicePluginModel::getVersion() const {
+    return plugin.getVersion();
+}
+
+QString StreamingServicePluginModel::getAuthorName() const {
+    return plugin.getAuthor();
+}
+
+QString StreamingServicePluginModel::getAuthorWebsite() const {
+    return plugin.getAuthorWebsite();
 }
 
 bool StreamingServicePluginModel::operator==(const StreamingServicePluginModel& rhs) const {
@@ -54,6 +59,13 @@ bool StreamingServicePluginModel::operator!=(const StreamingServicePluginModel& 
 
 StreamingServicePlugin* StreamingServicePluginModel::getPlugin() const {
     return &plugin;
+}
+
+void StreamingServicePluginModel::setUrl(const QString& url) {
+    if (url != getUrl()) {
+        settingsProvider.setValue(getCustomUrlSettingsKey(), url);
+        emit urlChanged(url);
+    }
 }
 
 const QString StreamingServicePluginModel::getCustomUrlSettingsKey() const {

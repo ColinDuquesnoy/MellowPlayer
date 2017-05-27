@@ -26,4 +26,5 @@ MessageBoxDialog 3.0 Dialogs/MessageBoxDialog.qml
 ListeningHistoryEntryDelegate 3.0 Delegates/ListeningHistoryEntryDelegate.qml
 ListeningHistorySectionDelegate 3.0 Delegates/ListeningHistorySectionDelegate.qml
 ServiceOverviewDelegate 3.0 Delegates/ServiceOverviewDelegate.qml
+ServiceSettingDelegate 3.0 Delegates/ServiceSettingDelegate.qml
 
