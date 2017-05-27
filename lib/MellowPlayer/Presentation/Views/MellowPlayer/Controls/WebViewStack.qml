@@ -33,7 +33,7 @@ StackLayout {
     Shortcut {
         property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_NEXT_SERVICE)
 
-        sequence: setting.value
+        sequence: setting != null ? setting.value : ""
         onActivated: goToNextLoadedWebView()
 
         function goToNextLoadedWebView() {
@@ -60,7 +60,7 @@ StackLayout {
     Shortcut {
         property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_PREVIOUS_SERVICE)
 
-        sequence: setting.value
+        sequence: setting != null ? setting.value : ""
         onActivated: goToPreviousLoadedWebView()
 
         function goToPreviousLoadedWebView() {

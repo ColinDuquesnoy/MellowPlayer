@@ -50,7 +50,7 @@ ToolBar {
             Shortcut {
                 property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
 
-                sequence: setting.value
+                sequence: setting != null ? setting.value : ""
                 onActivated: btSelectService.switchView()
             }
 
@@ -123,7 +123,7 @@ ToolBar {
             Shortcut {
                 property var setting: settings.get(SettingKey.SHORTCUTS_RELOAD)
 
-                sequence: setting.value
+                sequence: setting != null ? setting.value : ""
                 onActivated: btReload.reload()
             }
 
@@ -260,7 +260,7 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
 
-                sequence: shortcut.value
+                sequence: shortcut != null ? shortcut.value : ""
                 onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
             }
         }
@@ -294,7 +294,7 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
 
-                sequence: shortcut.value
+                sequence: shortcut != null ? shortcut.value : ""
                 onActivated: listeningHistoryDrawer.visible = !listeningHistoryDrawer.visible
             }
         }
@@ -309,21 +309,21 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_SETTINGS)
 
-                sequence: shortcut.value
+                sequence: shortcut != null ? shortcut.value : ""
                 onActivated: menuItemSettings.toggleSettings()
             }
 
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_ABOUT)
 
-                sequence: shortcut.value
+                sequence: shortcut != null ? shortcut.value : ""
                 onActivated: menuItemAbout.toggleDialog()
             }
 
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_QUIT)
 
-                sequence: shortcut.value
+                sequence: shortcut != null ? shortcut.value : ""
                 onActivated: qtApp.requestQuit();
             }
 
