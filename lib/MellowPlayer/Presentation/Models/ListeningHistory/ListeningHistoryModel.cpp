@@ -13,8 +13,13 @@ ListeningHistoryModel::ListeningHistoryModel(ListeningHistoryService& listeningH
     proxyListModel.setSourceModel(sourceListModel);
 }
 
-QAbstractItemModel* ListeningHistoryModel::getModel() {
+QAbstractItemModel* ListeningHistoryModel::getFilteredModel() {
     return &proxyListModel;
+}
+
+QAbstractItemModel *ListeningHistoryModel::getSourceModel()
+{
+    return sourceListModel;
 }
 
 void ListeningHistoryModel::onEntryAdded(const ListeningHistoryEntry& entry) {

@@ -29,6 +29,9 @@ bool ListeningHistoryEntryProxyListModel::filterAcceptsRow(int sourceRow, const 
         return false;
     if (searchFilter.isEmpty())
         return true;
-    else
-        return entry->getTitle().toLower().contains(searchFilter) || entry->getArtist().toLower().contains(searchFilter);
+    else {
+        bool titleContainsFilter = entry->getTitle().toLower().contains(searchFilter.toLower());
+        bool artistContainsFilter = entry->getArtist().toLower().contains(searchFilter.toLower());
+        return titleContainsFilter || artistContainsFilter;
+    }
 }

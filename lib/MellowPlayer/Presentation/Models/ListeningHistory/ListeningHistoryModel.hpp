@@ -11,12 +11,14 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class ListeningHistoryModel: public QObject {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* model READ getModel CONSTANT)
+    Q_PROPERTY(QAbstractItemModel* filteredModel READ getFilteredModel CONSTANT)
+    Q_PROPERTY(QAbstractItemModel* sourceModel READ getSourceModel CONSTANT)
 public:
     ListeningHistoryModel(UseCases::ListeningHistoryService& listeningHistory);
 
     void initialize();
-    QAbstractItemModel* getModel();
+    QAbstractItemModel* getFilteredModel();
+    QAbstractItemModel* getSourceModel();
     Q_INVOKABLE void disableService(const QString &serviceName, bool disable);
     Q_INVOKABLE void setSearchFilter(const QString& searchFilter);
     Q_INVOKABLE void removeById(int entryId);

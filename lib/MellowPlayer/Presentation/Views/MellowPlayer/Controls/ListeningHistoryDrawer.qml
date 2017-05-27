@@ -58,6 +58,7 @@ Drawer {
                     text: MaterialIcons.icon_search
                     font { family: MaterialIcons.family; pixelSize: 22 }
                     hoverEnabled: true
+                    enabled: listeningHistoryListView.count > 1
 
                     onCheckedChanged: {
                         if (checked) {
@@ -308,7 +309,6 @@ Drawer {
                                 }
                             }
                         }
-
                     }
                 }
             }
