@@ -89,15 +89,15 @@ TEST_CASE("ListeningHistoryViewModelTests") {
     }
 
     SECTION("Disable service") {
-        REQUIRE(listeningHistoryViewModel.getSourceModel()->rowCount() == 0);
+        REQUIRE(listeningHistoryViewModel.getFilteredModel()->rowCount() == 0);
         currentPlayer.setUpdateResults(getSongVariantMap("Song1", "Id1"));
         currentPlayer.setUpdateResults(getSongVariantMap("Song2", "Id2"));
         currentPlayer.setUpdateResults(getSongVariantMap("Song3", "Id3"));
-        REQUIRE(listeningHistoryViewModel.getSourceModel()->rowCount() == 3);
+        REQUIRE(listeningHistoryViewModel.getFilteredModel()->rowCount() == 3);
         listeningHistoryViewModel.disableService(currentPlayer.getServiceName(), true);
-        REQUIRE(listeningHistoryViewModel.getSourceModel()->rowCount() == 0);
+        REQUIRE(listeningHistoryViewModel.getFilteredModel()->rowCount() == 0);
         listeningHistoryViewModel.disableService(currentPlayer.getServiceName(), false);
-        REQUIRE(listeningHistoryViewModel.getSourceModel()->rowCount() == 3);
+        REQUIRE(listeningHistoryViewModel.getFilteredModel()->rowCount() == 3);
     }
 
     SECTION("Search by title") {
