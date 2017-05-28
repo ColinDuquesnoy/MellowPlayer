@@ -21,9 +21,9 @@ ToolBar {
         ToolButton {
             id: btSelectService
 
-            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_arrow_back
+            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: toolBar.iconSize + 2
             hoverEnabled: true
             visible: body.previewImage !== undefined || body.state == "webview"
 
@@ -302,7 +302,7 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_more_vert
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: toolBar.iconSize + 2
             hoverEnabled: true
             onClicked: menu.open()
 

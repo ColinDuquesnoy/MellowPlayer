@@ -34,24 +34,6 @@ Drawer {
                 anchors.fill: parent
 
                 ToolButton {
-                    id: btBackFromListeningHistory
-                    Layout.fillHeight: true
-                    text: MaterialIcons.icon_exit_to_app
-                    font { family: MaterialIcons.family; pixelSize: 22 }
-                    hoverEnabled: true
-
-                    onClicked: listeningHistoryDrawer.close()
-
-                    Tooltip {
-                        text: qsTr("Back")
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                ToolButton {
                     id: btSearch
                     checkable: true
                     checked: false
@@ -84,6 +66,24 @@ Drawer {
 
                         interval: 200
                         onTriggered: listeningHistoryListView.filtersEnabled = false;
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                ToolButton {
+                    id: btBackFromListeningHistory
+                    Layout.fillHeight: true
+                    text: MaterialIcons.icon_keyboard_arrow_right
+                    font { family: MaterialIcons.family; pixelSize: 22 }
+                    hoverEnabled: true
+
+                    onClicked: listeningHistoryDrawer.close()
+
+                    Tooltip {
+                        text: qsTr("Back")
                     }
                 }
             }
@@ -344,7 +344,7 @@ Drawer {
 
             Label {
                 anchors.centerIn: parent
-                text: '"' + clipBoardCopyConfirmation.text + '" copied to clipboard'
+                text: '<b>' + clipBoardCopyConfirmation.text + '</b> copied to clipboard'
                 font.pixelSize: 16
             }
 
