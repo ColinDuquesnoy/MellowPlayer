@@ -12,7 +12,7 @@ target_link_libraries(${PROJECT_NAME}
         ${PROJECT_NAME}.Infrastructure)
 qt5_use_modules(${PROJECT_NAME} Core Gui Quick QuickControls2 WebEngine Widgets)
 
-install(TARGETS ${LIB_NAME}
+install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)
