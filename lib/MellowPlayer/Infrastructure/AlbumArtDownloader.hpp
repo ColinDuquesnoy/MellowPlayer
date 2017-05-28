@@ -4,6 +4,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include "Base64Helper.hpp"
 
 PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
 
@@ -20,9 +21,15 @@ private slots:
     void onDownloadFinished(QNetworkReply* reply);
 
 private:
+    bool isBase64Image(const QString& artUrl);
+    bool createBase64Image(const QString base64String);
+
     QNetworkAccessManager *networkAccessManager;
-    QFileInfo artUrl;
+    QFileInfo localUrl;
     UseCases::ILogger& logger;
+    Base64Helper base64;
+
+    void downloadImage(const QString& url) const;
 };
 
 END_MELLOWPLAYER_NAMESPACE

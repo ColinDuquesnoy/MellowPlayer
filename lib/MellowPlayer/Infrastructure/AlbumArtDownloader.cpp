@@ -1,6 +1,7 @@
 #include "AlbumArtDownloader.hpp"
 #include <QStandardPaths>
 #include <QDir>
+#include <QImage>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -17,17 +18,24 @@ bool AlbumArtDownloader::download(const QString& url, const QString& songId) {
     if (url.isEmpty() || songId.isEmpty())
         return false;
 
-    artUrl = getLocalArtUrl(songId);
-    LOG_DEBUG(logger, "downloading " + url + " to " + artUrl.absoluteFilePath());
-    if (artUrl.exists()) {
+    localUrl = getLocalArtUrl(songId);
+
+    if (localUrl.exists()) {
         LOG_DEBUG(logger, "album art already exists locally")
-        emit downloadFinished(artUrl.absoluteFilePath());
-    } else {
-        LOG_DEBUG(logger, "starting download");
-        networkAccessManager->get(QNetworkRequest(url));
+        emit downloadFinished(localUrl.absoluteFilePath());
+        return true;
     }
 
+    if (isBase64Image(url))
+        return createBase64Image(url);
+
+    downloadImage(url);
     return true;
+}
+
+void AlbumArtDownloader::downloadImage(const QString& url) const {
+    LOG_DEBUG(logger, "downloading " + url + " to " + localUrl.absoluteFilePath());
+    networkAccessManager->get(QNetworkRequest(url));
 }
 
 QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
@@ -41,12 +49,21 @@ QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
 
 void AlbumArtDownloader::onDownloadFinished(QNetworkReply* reply) {
     LOG_DEBUG(logger, "download finished");
-    QFile file(artUrl.absoluteFilePath());
+    QFile file(localUrl.absoluteFilePath());
     if (file.open(QIODevice::WriteOnly)) {
         file.write(reply->readAll());
         file.close();
     } else {
-        LOG_DEBUG(logger, "could not open file in write only mode: " +artUrl.absoluteFilePath());
+        LOG_DEBUG(logger, "could not open file in write only mode: " +localUrl.absoluteFilePath());
     }
-    emit downloadFinished(artUrl.absoluteFilePath());
+    emit downloadFinished(localUrl.absoluteFilePath());
+}
+
+bool AlbumArtDownloader::isBase64Image(const QString& artUrl) {
+    return base64.isBase64(artUrl);
+}
+
+bool AlbumArtDownloader::createBase64Image(const QString base64String) {
+    LOG_DEBUG(logger, "creating base64 image from " + base64String + " to " + localUrl.absoluteFilePath());
+    return base64.saveToFile(base64String, localUrl.absoluteFilePath());
 }
