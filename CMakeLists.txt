@@ -20,6 +20,7 @@ add_definitions(-DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
+include(scripts/cmake/InstallDirs.cmake)
 
 # Options
 set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release).")
