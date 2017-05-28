@@ -23,9 +23,9 @@ else()
         target_link_libraries(${LIB_NAME} ${LIBNOTIFY_LIBRARIES})
     endif()
     install(TARGETS ${LIB_NAME}
-            RUNTIME DESTINATION bin
-            LIBRARY DESTINATION lib
-            ARCHIVE DESTINATION lib/static)
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)
 endif()
 if (LibsnoreQt5_FOUND)
     target_link_libraries(${LIB_NAME} Snore::Libsnore)
