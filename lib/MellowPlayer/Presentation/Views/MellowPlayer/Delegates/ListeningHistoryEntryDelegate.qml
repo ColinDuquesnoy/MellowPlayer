@@ -37,6 +37,12 @@ Frame {
         }
     }
 
+    ListView.onRemove: SequentialAnimation {
+        PropertyAction { target: root; property: "ListView.delayRemove"; value: true }
+        NumberAnimation { target: root; property: "x"; to: 950; duration: listView.filtersEnabled ? 0 : listView.transitionDuration * 3 ; easing.type: Easing.InOutQuad }
+        PropertyAction { target: root; property: "ListView.delayRemove"; value: false }
+    }
+
     Timer {
         id: delayTimer
         interval: 400
@@ -99,7 +105,18 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_delete
                 font { family: MaterialIcons.family; pixelSize: 16 }
-                onClicked: listeningHistory.removeById(model.entryId)
+                onClicked: {
+                    messageBoxConfirmDelete.message = qsTr('Are you sure you want to remote that song from the history?')
+                    messageBoxConfirmDelete.title = qsTr("Confirm remove")
+                    messageBoxConfirmDelete.closed.connect(onActivated);
+                    messageBoxConfirmDelete.open()
+                }
+
+                function onActivated() {
+                    messageBoxConfirmDelete.closed.disconnect(onActivated);
+                    if (messageBoxConfirmDelete.dialogResult === messageBoxConfirmDelete.dialogAccepted)
+                        listeningHistory.removeById(model.entryId)
+                }
 
                 Layout.fillHeight: true
             }
@@ -114,11 +131,5 @@ Frame {
                 Layout.fillHeight: true
             }
         }
-    }
-
-    ListView.onRemove: SequentialAnimation {
-        PropertyAction { target: root; property: "ListView.delayRemove"; value: true }
-        NumberAnimation { target: root; property: "x"; to: 950; duration: listView.filtersEnabled ? 0 : listView.transitionDuration * 3 ; easing.type: Easing.InOutQuad }
-        PropertyAction { target: root; property: "ListView.delayRemove"; value: false }
     }
 }

@@ -39,7 +39,20 @@ Pane {
                font.pixelSize: 16
                font.family: MaterialIcons.family
                hoverEnabled: true
-               onClicked: listeningHistory.removeByDateCategory(section)
+               // onClicked: listeningHistory.removeByDateCategory(section)
+
+               onClicked: {
+                   messageBoxConfirmDelete.message = qsTr('Are you sure you want to remote history of ' + section + '?')
+                   messageBoxConfirmDelete.title = qsTr("Confirm remove")
+                   messageBoxConfirmDelete.closed.connect(onActivated);
+                   messageBoxConfirmDelete.open()
+               }
+
+               function onActivated() {
+                   messageBoxConfirmDelete.closed.disconnect(onActivated);
+                   if (messageBoxConfirmDelete.dialogResult === messageBoxConfirmDelete.dialogAccepted)
+                       listeningHistory.removeByDateCategory(section)
+               }
 
                Layout.fillHeight: true
            }

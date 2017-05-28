@@ -6,6 +6,8 @@ import QtQuick.Controls.Material 2.0
 import MellowPlayer 3.0
 
 Page {
+    id: settingsPage
+
     header: ToolBar {
         id: toolBar
 
@@ -136,7 +138,7 @@ Page {
                     highlighted: true
                     hoverEnabled: true
                     text: "Restore all to defaults"
-                    onClicked: settings.restoreDefaults()
+                    onClicked: messageBoxConfirmRestore.open()
 
                     Layout.fillWidth: true
                     Layout.leftMargin: 4
@@ -165,5 +167,17 @@ Page {
                 }
             }
         }
+    }
+
+    MessageBoxDialog {
+        id: messageBoxConfirmRestore
+
+        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        message: qsTr("Are you sure you want to restore all settings to their default values?")
+        title: qsTr("Confirm restore defaults")
+        x: settingsPage.width / 2 - width / 2
+        y: settingsPage.height / 2 - height / 2
+
+        onAccepted: settings.restoreDefaults()
     }
 }

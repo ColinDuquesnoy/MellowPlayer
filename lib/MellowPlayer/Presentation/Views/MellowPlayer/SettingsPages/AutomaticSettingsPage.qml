@@ -6,6 +6,7 @@ import QtQuick.Controls.Material 2.0
 import MellowPlayer 3.0
 
 ColumnLayout {
+    id: page
     anchors.fill: parent
 
     Flickable {
@@ -56,13 +57,25 @@ ColumnLayout {
             highlighted: true
             hoverEnabled: true
             text: "Restore defaults"
-            onClicked: model.qtObject.restoreDefaults()
+            onClicked: messageBoxConfirmRestore.open()
 
             Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
 
             Tooltip {
-                text: 'Restore <b>' + model.name.toLowerCase() + '</b> settings to their <b>default value</b>.'
+                text: 'Restore <b>' + model.name.toLowerCase() + '</b> settings to their <b>default values</b>.'
             }
         }
+    }
+
+    MessageBoxDialog {
+        id: messageBoxConfirmRestore
+
+        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        message: qsTr("Are you sure you want to restore all " + model.name.toLowerCase() + " settings to their default values?")
+        title: qsTr("Confirm restore defaults")
+        x: page.width / 2 - width / 2
+        y: page.height / 2 - height / 2
+
+        onAccepted: model.qtObject.restoreDefaults()
     }
 }

@@ -23,6 +23,7 @@ Popup {
     signal rejected()
 
     modal: true
+    padding: 16
 
     Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
 

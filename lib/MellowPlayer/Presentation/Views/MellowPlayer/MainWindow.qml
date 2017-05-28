@@ -100,7 +100,7 @@ ApplicationWindow {
 
         buttonTexts: [qsTr("Yes"), qsTr("No")]
         message: qsTr("Are you sure you want to quit MellowPlayer?")
-        title: qsTr("Quitting MellowPlayer")
+        title: qsTr("Confirm quit")
         onAccepted: qtApp.quit()
         x: mainWindow.width / 2 - width / 2
         y: mainWindow.height / 2 - height / 2

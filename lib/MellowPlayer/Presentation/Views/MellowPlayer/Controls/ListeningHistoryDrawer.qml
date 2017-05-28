@@ -317,4 +317,12 @@ Drawer {
             }
         }
     }
+
+    MessageBoxDialog {
+        id: messageBoxConfirmDelete
+
+        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        x: listeningHistoryDrawer.width / 2 - width / 2
+        y: listeningHistoryDrawer.height / 2 - height / 2
+    }
 }
