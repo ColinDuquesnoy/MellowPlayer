@@ -316,6 +316,79 @@ Drawer {
                 }
             }
         }
+
+        Pane {
+            id: clipBoardCopyConfirmation
+
+            property string text: ""
+
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.rightMargin: 32
+            anchors.leftMargin: 8
+            anchors.bottomMargin: 4
+
+            onTextChanged: {
+                if (text !== "") {
+                    state = "visible";
+                    disappearTimer.restart();
+                }
+                else
+                    state = "hidden"
+            }
+
+            Material.background: style.primary
+            Material.foreground: style.primaryForeground
+            Material.elevation: 4
+
+            Label {
+                anchors.centerIn: parent
+                text: '"' + clipBoardCopyConfirmation.text + '" copied to clipboard'
+                font.pixelSize: 16
+            }
+
+            Timer {
+                id: disappearTimer
+                interval: 3000
+                onTriggered: clipBoardCopyConfirmation.state = "hidden"
+            }
+
+            state: "hidden"
+            states: [
+                State {
+                    name: "hidden"
+
+                    PropertyChanges {
+                        target: clipBoardCopyConfirmation
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "visible"
+
+                    PropertyChanges {
+                        target: clipBoardCopyConfirmation
+                        opacity: 1
+                    }
+                }
+            ]
+            transitions: Transition {
+                from: "hidden"
+                to: "visible"
+                reversible: true
+
+                PropertyAnimation {
+                    properties: "opacity"
+                }
+
+                onRunningChanged: {
+                    if (clipBoardCopyConfirmation.state === "hidden" && running == false)
+                        clipBoardCopyConfirmation.text = "";
+                }
+
+            }
+        }
     }
 
     MessageBoxDialog {

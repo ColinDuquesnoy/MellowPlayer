@@ -25,9 +25,9 @@ Page {
             ToolButton {
                 id: btBack
 
-                font { family: MaterialIcons.family; pixelSize: 22 }
+                font { family: MaterialIcons.family; pixelSize: 24 }
                 hoverEnabled: true
-                text: MaterialIcons.icon_done
+                text: MaterialIcons.icon_keyboard_arrow_right
                 onClicked: back()
 
                 function back() {
