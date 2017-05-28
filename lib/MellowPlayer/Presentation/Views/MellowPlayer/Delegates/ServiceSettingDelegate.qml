@@ -142,7 +142,7 @@ Pane {
 
             ColumnLayout {
                 Switch {
-                    enabled: false
+                    visible: false
                     Layout.alignment: Qt.AlignRight
                 }
 
