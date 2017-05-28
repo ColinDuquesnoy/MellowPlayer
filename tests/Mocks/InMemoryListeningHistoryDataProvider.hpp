@@ -1,3 +1,5 @@
+#pragma once
+
 #include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 

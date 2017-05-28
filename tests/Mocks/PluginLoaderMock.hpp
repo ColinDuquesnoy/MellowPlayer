@@ -2,8 +2,8 @@
 
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
-#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
@@ -12,10 +12,10 @@ using namespace fakeit;
 
 class PluginLoaderMock {
 public:
-    static Mock<IPluginLoader> get() {
-        Mock<IPluginLoader> mock;
+    static Mock<IStreamingServicePluginLoader> get() {
+        Mock<IStreamingServicePluginLoader> mock;
         When(Method(mock, load)).AlwaysDo([]() {
-            QList<shared_ptr<Plugin>> list;
+            QList<shared_ptr<StreamingServicePlugin>> list;
             list.append(createPlugin("Deezer"));
             list.append(createPlugin("Spotify"));
             return list;
@@ -23,13 +23,13 @@ public:
         return mock;
     }
 
-    static PluginStyle PLUGIN_STYLE;
+    static StreamingServiceStyle PLUGIN_STYLE;
 
 private:
-    static unique_ptr<Plugin> createPlugin(const QString& name) {
-        PluginMetadata metadata;
+    static unique_ptr<StreamingServicePlugin> createPlugin(const QString& name) {
+        StreamingServicePluginMetadata metadata;
         metadata.name = name;
         metadata.url = "http://" + name.toLower() + ".com";
-        return make_unique<Plugin>(metadata, PLUGIN_STYLE);
+        return make_unique<StreamingServicePlugin>(metadata, PLUGIN_STYLE);
     }
 };

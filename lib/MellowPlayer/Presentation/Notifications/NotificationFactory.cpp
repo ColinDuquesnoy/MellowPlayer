@@ -8,8 +8,9 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 
 Notification NotificationFactory::createSongNotification(
-        const QString& serviceName, Song* song, const QString& albumArtUrl) {
-    return Notification { serviceName, song->toString(), albumArtUrl, NotificationType::Song };
+        const QString& serviceName, Song* song, const QString& albumArtUrl, bool resumed) {
+    return Notification { serviceName, song->toString(), albumArtUrl,
+                          resumed ? NotificationType::Resumed : NotificationType::NewSong };
 }
 
 Notification NotificationFactory::createPausedNotification(const QString& serviceName, const QString& serviceLogo) {

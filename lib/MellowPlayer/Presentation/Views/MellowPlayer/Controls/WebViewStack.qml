@@ -31,6 +31,11 @@ StackLayout {
     }
 
     Shortcut {
+        property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_NEXT_SERVICE)
+
+        sequence: setting != null ? setting.value : ""
+        onActivated: goToNextLoadedWebView()
+
         function goToNextLoadedWebView() {
             var index = getNextIndex(webViewStack.currentIndex);
 
@@ -50,12 +55,14 @@ StackLayout {
                 nextIndex = 0;
             return nextIndex;
         }
-
-        sequence: "Ctrl+Tab"
-        onActivated: goToNextLoadedWebView()
     }
 
     Shortcut {
+        property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_PREVIOUS_SERVICE)
+
+        sequence: setting != null ? setting.value : ""
+        onActivated: goToPreviousLoadedWebView()
+
         function goToPreviousLoadedWebView() {
             var index = getPreviousIndex(webViewStack.currentIndex);
 
@@ -75,8 +82,5 @@ StackLayout {
                 previousIndex = webViewStack.count - 1;
             return previousIndex;
         }
-
-        sequence: "Ctrl+Shift+Tab"
-        onActivated: goToPreviousLoadedWebView()
     }
 }

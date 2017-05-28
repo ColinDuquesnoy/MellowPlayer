@@ -29,7 +29,6 @@
         <file>Views/main.qml</file>
         <file>Views/MellowPlayer/qmldir</file>
         <file>Views/MellowPlayer/ApplicationRoot.qml</file>
-        <file>Views/MellowPlayer/MainPage.qml</file>
         <file>Views/MellowPlayer/MainWindow.qml</file>
         <file>Views/MellowPlayer/MaterialIcons.qml</file>
         <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
@@ -40,13 +39,24 @@
         <file>Views/MellowPlayer/Controls/Tooltip.qml</file>
         <file>Views/MellowPlayer/Controls/WebView.qml</file>
         <file>Views/MellowPlayer/Controls/WebViewStack.qml</file>
+        <file>Views/MellowPlayer/Delegates/BoolSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ColorSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/EnumSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ShortcutSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/StringSettingDelegate.qml</file>
+        <file>Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
         <file>Views/MellowPlayer/Controls/DesktopScrollBar.qml</file>
         <file>Views/MellowPlayer/Controls/MenuIconItem.qml</file>
-        <file>Views/MellowPlayer/SettingsPage.qml</file>
         <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
+        <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
         <file>Views/MellowPlayer/Controls/Link.qml</file>
+        <file>Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
+        <file>Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml</file>
+        <file>Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml</file>
+        <file>Views/MellowPlayer/Pages/MainPage.qml</file>
+        <file>Views/MellowPlayer/Pages/SettingsPage.qml</file>
     </qresource>
 </RCC>

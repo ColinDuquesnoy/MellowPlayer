@@ -34,30 +34,13 @@ Drawer {
                 anchors.fill: parent
 
                 ToolButton {
-                    id: btBackFromListeningHistory
-                    Layout.fillHeight: true
-                    text: MaterialIcons.icon_exit_to_app
-                    font { family: MaterialIcons.family; pixelSize: 22 }
-                    hoverEnabled: true
-
-                    onClicked: listeningHistoryDrawer.close()
-
-                    Tooltip {
-                        text: qsTr("Back")
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                ToolButton {
                     id: btSearch
                     checkable: true
                     checked: false
                     text: MaterialIcons.icon_search
                     font { family: MaterialIcons.family; pixelSize: 22 }
                     hoverEnabled: true
+                    enabled: listeningHistoryListView.count > 1
 
                     onCheckedChanged: {
                         if (checked) {
@@ -83,6 +66,24 @@ Drawer {
 
                         interval: 200
                         onTriggered: listeningHistoryListView.filtersEnabled = false;
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                ToolButton {
+                    id: btBackFromListeningHistory
+                    Layout.fillHeight: true
+                    text: MaterialIcons.icon_keyboard_arrow_right
+                    font { family: MaterialIcons.family; pixelSize: 22 }
+                    hoverEnabled: true
+
+                    onClicked: listeningHistoryDrawer.close()
+
+                    Tooltip {
+                        text: qsTr("Back")
                     }
                 }
             }
@@ -224,6 +225,10 @@ Drawer {
                 }
 
                 Pane {
+                    id: paneInfo
+
+                    property var enabledSetting: settings.get(SettingKey.PRIVACY_ENABLE_LISTENING_HISTORY)
+
                     padding: 0
 
                     Layout.fillHeight: true
@@ -231,7 +236,9 @@ Drawer {
 
                     StackLayout {
                         anchors.fill: parent
-                        currentIndex: listeningHistoryListView.count > 0 ? 0 : 1
+                        currentIndex: paneInfo.enabledSetting != null &&
+                                      listeningHistoryListView.count > 0 &&
+                                      paneInfo.enabledSetting.value ? 0 : 1
 
                         RowLayout {
                             id: listViewLayout
@@ -278,8 +285,9 @@ Drawer {
                                 }
 
                                 Label {
-                                    text: "Enable listening history and the songs you \nlistened to will appear here..."
-
+                                    text: paneInfo.enabledSetting != null && paneInfo.enabledSetting.value ?
+                                            "The songs you listened to will appear here..." :
+                                            "Enable listening history and the songs you \nlistened to will appear here..."
                                     horizontalAlignment: "AlignHCenter"
 
                                     Layout.fillWidth: true
@@ -289,6 +297,8 @@ Drawer {
                                     text: "Enable listening history"
                                     highlighted: true
                                     hoverEnabled: true
+                                    visible: paneInfo.enabledSetting != null && !paneInfo.enabledSetting.value
+                                    onClicked: paneInfo.enabledSetting.value = true
 
                                     Tooltip {
                                         text: qsTr("Click to enable listening history")
@@ -302,10 +312,90 @@ Drawer {
                                 }
                             }
                         }
-
                     }
                 }
             }
         }
+
+        Pane {
+            id: clipBoardCopyConfirmation
+
+            property string text: ""
+
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.rightMargin: 32
+            anchors.leftMargin: 8
+            anchors.bottomMargin: 4
+
+            onTextChanged: {
+                if (text !== "") {
+                    state = "visible";
+                    disappearTimer.restart();
+                }
+                else
+                    state = "hidden"
+            }
+
+            Material.background: style.primary
+            Material.foreground: style.primaryForeground
+            Material.elevation: 4
+
+            Label {
+                anchors.centerIn: parent
+                text: '<b>' + clipBoardCopyConfirmation.text + '</b> copied to clipboard'
+                font.pixelSize: 16
+            }
+
+            Timer {
+                id: disappearTimer
+                interval: 3000
+                onTriggered: clipBoardCopyConfirmation.state = "hidden"
+            }
+
+            state: "hidden"
+            states: [
+                State {
+                    name: "hidden"
+
+                    PropertyChanges {
+                        target: clipBoardCopyConfirmation
+                        opacity: 0
+                    }
+                },
+                State {
+                    name: "visible"
+
+                    PropertyChanges {
+                        target: clipBoardCopyConfirmation
+                        opacity: 1
+                    }
+                }
+            ]
+            transitions: Transition {
+                from: "hidden"
+                to: "visible"
+                reversible: true
+
+                PropertyAnimation {
+                    properties: "opacity"
+                }
+
+                onRunningChanged: {
+                    if (clipBoardCopyConfirmation.state === "hidden" && running == false)
+                        clipBoardCopyConfirmation.text = "";
+                }
+
+            }
+        }
+    }
+
+    MessageBoxDialog {
+        id: messageBoxConfirmDelete
+
+        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        x: listeningHistoryDrawer.width / 2 - width / 2
+        y: listeningHistoryDrawer.height / 2 - height / 2
     }
 }

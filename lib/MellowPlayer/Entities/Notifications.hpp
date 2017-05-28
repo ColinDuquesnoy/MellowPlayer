@@ -2,15 +2,14 @@
 
 #include <QString>
 #include <QDateTime>
-#include <QIcon>
 #include <MellowPlayer/Macros.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Entities)
 
 enum class NotificationType {
-    Song,
+    NewSong,
+    Resumed,
     Paused,
-    Stopped,
     NewVersionAvailable
 };
 

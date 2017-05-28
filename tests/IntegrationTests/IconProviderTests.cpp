@@ -1,11 +1,14 @@
 #include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 bool isNullIcon(QIcon icon) {
@@ -20,17 +23,5 @@ TEST_CASE("IconProviderTests") {
     SECTION("next") { REQUIRE(!isNullIcon(IconProvider::next())); }
     SECTION("previous") { REQUIRE(!isNullIcon(IconProvider::previous())); }
     SECTION("quit") { REQUIRE(!isNullIcon(IconProvider::quit())); }
-
-    SECTION("trayIcon") {
-        Mock<IApplicationSettings> appSettingsMock;
-        When(Method(appSettingsMock, getTrayIcon)).Return("", __FILE__, "folder-music");
-
-        IconProvider iconProvider(appSettingsMock.get());
-
-        // default icon
-        REQUIRE(!isNullIcon(iconProvider.trayIcon()));
-
-        // from file (not an image, should be null)
-        REQUIRE(isNullIcon(iconProvider.trayIcon()));
-    }
+    SECTION("trayIcon") { REQUIRE(!isNullIcon(IconProvider::trayIcon())); }
 }

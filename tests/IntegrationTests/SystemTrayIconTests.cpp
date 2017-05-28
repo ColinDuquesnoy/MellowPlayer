@@ -1,18 +1,23 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/SystemTrayIcon.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("SystemTrayIconTests") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
-    auto appSettingsMock = ApplicationSettingsMock::get();
-    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), appSettingsMock.get());
+    auto settingsProviderMock = SettingsProviderMock::get();
+    SettingsSchemaLoader loader;
+    Settings settings(loader, settingsProviderMock.get());
+    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), settings);
 
     SECTION("show window onActivated") {
         systemTrayIcon.onActivated(QSystemTrayIcon::Context);
@@ -41,16 +46,8 @@ TEST_CASE("SystemTrayIconTests") {
 
     SECTION("quit quits the application") {
         systemTrayIcon.quit();
-        Verify(Method(qtAppMock, quit)).Exactly(1);
+        Verify(Method(qtAppMock, requestQuit)).Exactly(1);
     }
-}
-
-TEST_CASE("SystemTrayIconIntegrationTests", "[IntegrationTest]") {
-    auto playerMock = PlayerMock::get();
-    auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = QtApplicationMock::get();
-    auto appSettingsMock = ApplicationSettingsMock::get();
-    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), appSettingsMock.get());
 
     SECTION("show icon") {
         systemTrayIcon.show();

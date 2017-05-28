@@ -1,5 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
@@ -17,14 +19,14 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     Mock<LocalAlbumArtService> localAlbumArtServiceSpy(service);
     PlayerProxy& player = injector.create<PlayerProxy&>();
     Mock<PlayerProxy> playerSpy(player);
-    PluginService& pluginService = injector.create<PluginService&>();
-    IApplicationSettings& appSettings = injector.create<IApplicationSettings&>();
+    StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
+    Settings& settings = injector.create<Settings&>();
     NotificationService notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
-                                            notificationPresenterMock.get(), pluginService, appSettings);
+                                            notificationPresenterMock.get(), pluginService, settings);
     NotificationPresenterMock::Reset(notificationPresenterMock);
 
-    appSettings.enableNotificationType(NotificationType::Song, true);
-    REQUIRE(appSettings.isNotificationTypeEnabled(NotificationType::Song));
+    Setting& playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+    playNotifEnabled.setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
     REQUIRE(validSong.isValid());
@@ -42,14 +44,14 @@ TEST_CASE("NotificationServiceTests", "[UnitTest]") {
     }
 
     SECTION("display allowed notification") {
-        Notification notif{"title", "message", "", NotificationType::Song};
+        Notification notif{"title", "message", "", NotificationType::NewSong};
         REQUIRE(notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
     SECTION("display disallowed notification") {
-        appSettings.enableNotificationType(NotificationType::Song, false);
-        Notification notif{"title", "message", "", NotificationType::Song};
+        playNotifEnabled.setValue(false);
+        Notification notif{"title", "message", "", NotificationType::NewSong};
         REQUIRE(!notificationService.display(notif));
         Verify(Method(notificationPresenterMock, display)).Never();
     }

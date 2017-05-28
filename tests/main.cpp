@@ -5,7 +5,7 @@
 #include <QtCore/QSettings>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Presentation/QtWebApplication.hpp>
+#include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -15,13 +15,9 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 #ifdef Q_OS_WIN32
+    Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 #endif
-    QtWebApplication webApplication(argc, argv);
-    webApplication.setApplicationName("MellowPlayer3.Tests");
-
-    QSettings settings;
-    settings.clear();
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
@@ -31,14 +27,16 @@ int main(int argc, char* argv[])
         LoggingManager::instance();
         assert(false);
     }
-    catch (const logic_error& e) {
-        assert(e.what() == string("LoggingManager::instance called before LoggingManager::initialize!"));
-    }
+    catch (const logic_error&) { }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
     loggingManager.setDefaultLogLevel(LogLevel::Off);
+
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
 
+    QtApplicationModel webApplication(argc, argv, "MellowPlayer3.Tests");
+    QSettings settings;
+    settings.clear();
     auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
 
     settings.clear();

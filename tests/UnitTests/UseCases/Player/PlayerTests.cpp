@@ -1,16 +1,16 @@
 #include <catch.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/Entities/Plugin.hpp>
+#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include <QtTest/QSignalSpy>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerTests", "[UnitTest]") {
-    PluginMetadata metadata;
-    auto appSettingsMock = ApplicationSettingsMock::get();
-    Plugin plugin(metadata);
+    StreamingServicePluginMetadata metadata;
+    auto settingsProviderMock = SettingsProviderMock::get();
+    StreamingServicePlugin plugin(metadata);
     Player player(plugin);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
 

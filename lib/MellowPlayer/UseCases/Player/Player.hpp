@@ -5,8 +5,8 @@
 #include "IPlayer.hpp"
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, Plugin)
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, PluginScript)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePluginScript)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(UseCases)
 
@@ -16,7 +16,7 @@ class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(Entities::Plugin& plugin);
+    Player(Entities::StreamingServicePlugin& plugin);
     ~Player();
 
     // IPlayer
@@ -79,8 +79,8 @@ private:
     bool canAddToFavorites = false;
     double volume = 1;
     std::unique_ptr<Entities::Song> currentSong;
-    Entities::Plugin& plugin;
-    Entities::PluginScript& pluginScript;
+    Entities::StreamingServicePlugin& plugin;
+    Entities::StreamingServicePluginScript& pluginScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };
 

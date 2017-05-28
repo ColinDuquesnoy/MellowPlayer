@@ -9,7 +9,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 class NotificationFactory {
 public:
     Entities::Notification createSongNotification(const QString& serviceName, Entities::Song* song,
-                                                  const QString& albumArtUrl);
+                                                  const QString& albumArtUrl, bool resumed=false);
     Entities::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
 
 private:

@@ -15,7 +15,7 @@ TEST_CASE("LibnotifyPresenterTests") {
     presenter.initialize();
 
     SECTION("display test") {
-        Notification notif{"title", "message", "", NotificationType::Song};
+        Notification notif{"title", "message", "", NotificationType::NewSong};
         presenter.display(notif);
         presenter.display(notif);
     }

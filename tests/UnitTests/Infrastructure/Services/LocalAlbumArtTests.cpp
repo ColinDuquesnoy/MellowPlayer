@@ -2,7 +2,7 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -13,7 +13,7 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("LocalAlbumArtTests", "[UnitTest]"){
     auto pluginLoaderMock = PluginLoaderMock::get();
-    PluginService pluginService(pluginLoaderMock.get());
+    StreamingServicePluginService pluginService(pluginLoaderMock.get());
     PlayerService playerService(pluginService);
     PlayerProxy player(playerService, pluginService);
     AlbumArtDownloaderMock albumArtDownloader;

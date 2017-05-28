@@ -8,7 +8,10 @@ Label {
     property string url: ""
     property string name: ""
 
-    onLinkActivated: Qt.openUrlExternally(link)
+    onLinkActivated: {
+        console.log("opening external link: " + link);
+        Qt.openUrlExternally(link)
+    }
     text: '<a href="' + url + '">' + name + '</a>'
 
     MouseArea {

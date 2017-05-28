@@ -6,6 +6,8 @@ file(GLOB SOURCE_FILES *.cpp)
 file(GLOB HEADER_FILES *.hpp)
 file(GLOB APPLICATIONS_SOURCE_FILES Applications/*.cpp)
 file(GLOB APPLICATIONS_HEADER_FILES Applications/*.hpp)
+file(GLOB CONFIG_SOURCE_FILES Settings/*.cpp)
+file(GLOB CONFIG_HEADER_FILES Settings/*.hpp)
 file(GLOB LOGGING_SOURCE_FILES Logging/*.cpp)
 file(GLOB LOGGING_HEADER_FILES Logging/*.hpp)
 file(GLOB MPRIS_SOURCE_FILES Services/Mpris/*.cpp)
@@ -19,6 +21,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
         ${LOGGING_SOURCE_FILES}
         ${SYSTEM_SOURCE_FILES}
         ${APPLICATIONS_SOURCE_FILES}
+        ${CONFIG_SOURCE_FILES}
         ${SERVICES_SOURCE_FILES}
         ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core/qxtglobal.cpp
         ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
@@ -26,6 +29,7 @@ set(HEADER_FILES ${HEADER_FILES}
         ${LOGGING_HEADER_FILES}
         ${SYSTEM_HEADER_FILES}
         ${APPLICATIONS_HEADER_FILES}
+        ${CONFIG_HEADER_FILES}
         ${SERVICES_HEADER_FILES})
 
 if (WIN32)

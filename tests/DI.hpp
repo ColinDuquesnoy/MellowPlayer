@@ -1,10 +1,12 @@
 #pragma once
 
 #include <boost/di.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IPluginLoader.hpp>
+#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IApplicationSettings.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/UseCases/Settings/Setting.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
@@ -16,22 +18,23 @@
 #include <MellowPlayer/UseCases/Player/IPlayer.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServicesViewModel.hpp>
-#include <MellowPlayer/Presentation/Widgets/QmlMainWindow.hpp>
-#include <MellowPlayer/Presentation/Widgets/SystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
+#include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
+#include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
+#include <MellowPlayer/Presentation/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Services/HotkeysService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/ApplicationSettings.hpp>
-#include <MellowPlayer/Infrastructure/PluginLoader.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
+#include <MellowPlayer/Infrastructure/StreamingServicePluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
@@ -48,7 +51,7 @@
 #endif
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/ApplicationSettingsMock.hpp>
+#include <Mocks/SettingsProviderMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/MprisServiceMock.hpp>
@@ -111,23 +114,24 @@ static auto notificationPresenterMock = NotificationPresenterMock::get();
 static auto localAlbumArtServiceMock = LocalAlbumArtServiceMock::getMockWithUrlOk();
 
 inline auto getTestInjector(ScopedScope& scope) {
-    static auto applicationSettingsMock = ApplicationSettingsMock::get();
+    static auto settingsProviderMock = SettingsProviderMock::get();
     static InMemoryListeningHistoryDataProvider dataProvider;
     static FakeWorkDispatcher workDispatcher;
 
     return di::make_injector(
-        di::bind<IPluginLoader>().to(pluginLoaderMock.get()),
+        di::bind<IStreamingServicePluginLoader>().to(pluginLoaderMock.get()),
         di::bind<IPlayer>().to<PlayerProxy>().in(scope),
         di::bind<INotificationPresenter>().to(notificationPresenterMock.get()),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloaderMock>().in(scope),
         di::bind<IMainWindow>().to(mainWindowMock.get()),
         di::bind<IHotkeysService>().to(hotkeysServiceMock.get()),
         di::bind<IQtApplication>().to(qtApplicationMock.get()),
-        di::bind<IApplicationSettings>().to(applicationSettingsMock.get()),
+        di::bind<ISettingsProvider>().to(settingsProviderMock.get()),
         di::bind<ISystemTrayIcon>().to(systemTrayIconMock.get()),
         di::bind<ILocalAlbumArtService>().to(localAlbumArtServiceMock.get()),
         di::bind<IListeningHistoryDataProvider>().to(dataProvider),
-        di::bind<IWorkDispatcher>().to(workDispatcher)
+        di::bind<IWorkDispatcher>().to(workDispatcher),
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope)
     );
 };
 

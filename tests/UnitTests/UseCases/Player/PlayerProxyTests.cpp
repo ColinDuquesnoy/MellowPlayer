@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Services/PluginService.hpp>
+#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
 #include <MellowPlayer/UseCases/Player/Player.hpp>
 #include <MellowPlayer/UseCases/Services/PlayerService.hpp>
@@ -10,7 +10,7 @@ USE_MELLOWPLAYER_NAMESPACE(UseCases)
 
 TEST_CASE("PlayerProxyTests", "[UnitTest]") {
     auto mock = PluginLoaderMock::get();
-    PluginService pluginService(mock.get());
+    StreamingServicePluginService pluginService(mock.get());
     pluginService.load();
     PlayerService playerService(pluginService);
     PlayerProxy proxy(playerService, pluginService);

@@ -2,7 +2,6 @@ import QtQuick 2.7
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
-import QtGraphicalEffects 1.0
 
 import MellowPlayer 3.0
 
@@ -20,13 +19,17 @@ ToolBar {
         spacing: 0
 
         ToolButton {
-            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_arrow_back
+            id: btSelectService
+
+            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: toolBar.iconSize + 2
             hoverEnabled: true
             visible: body.previewImage !== undefined || body.state == "webview"
 
-            onClicked:  {
+            onClicked: switchView()
+
+            function switchView() {
                 if (body.previewImage.state === "selected") {
                     // to overview
                     webViewStack.currentWebView().updateImageFinished.connect(switchToOverview);
@@ -44,6 +47,12 @@ ToolBar {
                 webViewStack.currentWebView().updateImageFinished.disconnect(switchToOverview);
             }
 
+            Shortcut {
+                property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
+
+                sequence: setting != null ? setting.value : ""
+                onActivated: btSelectService.switchView()
+            }
 
             Tooltip {
                 y: toolBar.implicitHeight
@@ -97,16 +106,29 @@ ToolBar {
         }
 
         ToolButton {
+            id: btReload
+
             text: MaterialIcons.icon_refresh
             font.family: MaterialIcons.family
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            onClicked: webViewStack.currentWebView().reload()
+            onClicked: reload()
 
             Tooltip {
                 y: toolBar.implicitHeight
                 text: qsTr("Reload this page")
+            }
+
+            Shortcut {
+                property var setting: settings.get(SettingKey.SHORTCUTS_RELOAD)
+
+                sequence: setting != null ? setting.value : ""
+                onActivated: btReload.reload()
+            }
+
+            function reload() {
+                webViewStack.currentWebView().reload()
             }
         }
 
@@ -218,19 +240,28 @@ ToolBar {
         ToolButton {
             id: btEnableNotifications
 
+            property var setting: settings.get(SettingKey.NOTIFICATIONS_ENABLED)
+
+            checkable: true
+            checked: setting != null ? setting.value : false
+            font { family: MaterialIcons.family; pixelSize: toolBar.iconSize }
+            hoverEnabled: true
+            onClicked: setting.value = checked
+            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+
             Layout.fillHeight: true
             Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
-
-            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
-            font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
-            hoverEnabled: true
-            checkable: true
-            checked: true
 
             Tooltip {
                 y: toolBar.implicitHeight
                 text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
+
+                sequence: shortcut != null ? shortcut.value : ""
+                onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
             }
         }
 
@@ -259,29 +290,80 @@ ToolBar {
                 y: toolBar.implicitHeight
                 text: qsTr("Listening history")
             }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
+
+                sequence: shortcut != null ? shortcut.value : ""
+                onActivated: listeningHistoryDrawer.visible = !listeningHistoryDrawer.visible
+            }
         }
 
         ToolButton {
             text: MaterialIcons.icon_more_vert
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: toolBar.iconSize + 2
             hoverEnabled: true
             onClicked: menu.open()
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_SETTINGS)
+
+                sequence: shortcut != null ? shortcut.value : ""
+                onActivated: menuItemSettings.toggleSettings()
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_ABOUT)
+
+                sequence: shortcut != null ? shortcut.value : ""
+                onActivated: menuItemAbout.toggleDialog()
+            }
+
+            Shortcut {
+                property var shortcut: settings.get(SettingKey.SHORTCUTS_QUIT)
+
+                sequence: shortcut != null ? shortcut.value : ""
+                onActivated: qtApp.requestQuit();
+            }
 
             Menu {
                 id: menu
                 y: parent.implicitHeight
 
                 MenuIconItem {
+                    id: menuItemSettings
+
                     icon: MaterialIcons.icon_settings
-                    onClicked: stackView.push(settingsPageComponent)
+                    onClicked: openSettings()
                     text: "Settings"
+
+                    function toggleSettings() {
+                        if (stackView.depth > 1)
+                            closeSettings()
+                        else
+                            openSettings()
+                    }
+
+                    function openSettings() {
+                        stackView.push(settingsPageComponent)
+                    }
+
+                    function closeSettings() {
+                        stackView.pop()
+                    }
                 }
 
                 MenuIconItem {
+                    id: menuItemAbout
+
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
-                    onClicked: aboutDialog.visible = true
+                    onClicked: toggleDialog()
+
+                    function toggleDialog() {
+                        aboutDialog.visible = !aboutDialog.visible
+                    }
                 }
 
                 Rectangle {
@@ -293,7 +375,7 @@ ToolBar {
                 MenuIconItem {
                     icon: MaterialIcons.icon_power_settings_new
                     text: "Quit"
-                    onClicked: Qt.quit();
+                    onClicked: qtApp.requestQuit()
                 }
             }
 

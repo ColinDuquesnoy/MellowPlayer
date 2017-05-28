@@ -4,7 +4,7 @@
 #endif
 #include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/Presentation/QtWebApplication.hpp>
+#include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include "DI.hpp"
 
@@ -18,11 +18,12 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 int main(int argc, char** argv)
 {
 #ifdef Q_OS_WIN32
+    Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 #endif
     SpdLoggerFactory loggerFactory;
     LoggingManager::initialize(loggerFactory, LogLevel::Debug);
-    QtWebApplication qtApp(argc, argv);
+    QtApplicationModel qtApp(argc, argv);
     ScopedScope scope{};
     auto injector = di::make_injector(
         di::bind<IQtApplication>().to(qtApp),

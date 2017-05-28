@@ -14,7 +14,7 @@ TEST_CASE("SystemTrayIconPresenterTests") {
     Verify(Method(systemTrayIconMock, show)).Once();
 
     SECTION("display test") {
-        Notification notif{"title", "message", "", NotificationType::Song};
+        Notification notif{"title", "message", "", NotificationType::NewSong};
         presenter.display(notif);
         Verify(Method(systemTrayIconMock, showMessage).Using("title", "message")).Once();
     }
