@@ -2,23 +2,23 @@
 
 #include <QSystemTrayIcon>
 #include <QMenu>
-#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class SystemTrayIcon: public QObject, public UseCases::ISystemTrayIcon {
+class SystemTrayIcon: public QObject, public Application::ISystemTrayIcon {
     Q_OBJECT
 public:
-    SystemTrayIcon(UseCases::IPlayer& player, UseCases::IMainWindow& mainWindow,
-                   UseCases::IQtApplication& qtApplication, UseCases::Settings& settings);
+    SystemTrayIcon(Application::IPlayer& player, Application::IMainWindow& mainWindow,
+                   Application::IQtApplication& qtApplication, Application::Settings& settings);
     void show() override;
     void hide() override;
     void showMessage(const QString &title, const QString &message) override;
@@ -37,12 +37,12 @@ private slots:
 private:
     void setUpMenu();
 
-    UseCases::ILogger& logger;
-    UseCases::IPlayer& player;
-    UseCases::IMainWindow& mainWindow;
-    UseCases::IQtApplication& qtApplication;
-    UseCases::Settings& settings;
-    UseCases::Setting& showTrayIconSetting;
+    Application::ILogger& logger;
+    Application::IPlayer& player;
+    Application::IMainWindow& mainWindow;
+    Application::IQtApplication& qtApplication;
+    Application::Settings& settings;
+    Application::Setting& showTrayIconSetting;
 
     QSystemTrayIcon qSystemTrayIcon;
     QMenu menu;

@@ -6,7 +6,7 @@
 
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
+#include <MellowPlayer/Application/Interfaces/IMprisService.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;

@@ -1,11 +1,11 @@
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Interfaces/ILocalAlbumArtService.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
 #include "Mpris2Player.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 const qlonglong Mpris2Player::SEC_TO_MICROSEC = 1000000;

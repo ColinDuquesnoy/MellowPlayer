@@ -1,7 +1,7 @@
 #include "QSettingsProvider.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 

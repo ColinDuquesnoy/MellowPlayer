@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -12,7 +12,7 @@ class SettingModel: public QObject {
     Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
     Q_PROPERTY(bool enabled READ getEnabled NOTIFY enabledChanged)
 public:
-    SettingModel(UseCases::Setting& setting, QObject* parent);
+    SettingModel(Application::Setting& setting, QObject* parent);
 
     QString getName() const;
     QString getToolTip() const;
@@ -27,7 +27,7 @@ protected slots:
     virtual void onValueChanged() = 0;
 
 protected:
-    UseCases::Setting& setting;
+    Application::Setting& setting;
 
 private slots:
     void onIsEnabledChanged();

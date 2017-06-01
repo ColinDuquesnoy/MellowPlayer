@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtCore/QAbstractItemModel>
-#include <MellowPlayer/UseCases/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
 #include "SettingModelFactory.hpp"
 
 template <class T> class QQmlObjectListModel;
@@ -15,7 +15,7 @@ class SettingsCategoryModel: public QObject {
     Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
     Q_PROPERTY(QAbstractItemModel* settings READ getSettingsModel CONSTANT)
 public:
-    SettingsCategoryModel(UseCases::SettingsCategory* settingsCategory= nullptr, QObject* parent= nullptr);
+    SettingsCategoryModel(Application::SettingsCategory* settingsCategory= nullptr, QObject* parent= nullptr);
 
     virtual QString getName() const;
     virtual QString getIcon() const;
@@ -25,7 +25,7 @@ public:
     Q_INVOKABLE void restoreDefaults();
 
 private:
-    UseCases::SettingsCategory* settingsCategory;
+    Application::SettingsCategory* settingsCategory;
     QQmlObjectListModel<SettingModel>* settingsListModel;
     SettingModelFactory settingModelFactory;
 };

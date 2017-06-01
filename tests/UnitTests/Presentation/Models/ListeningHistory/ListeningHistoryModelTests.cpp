@@ -1,19 +1,19 @@
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <QVariant>
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
 #include <Utils/Helpers.hpp>
 #include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ListeningHistoryViewModelTests") {

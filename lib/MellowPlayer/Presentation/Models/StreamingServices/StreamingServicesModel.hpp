@@ -4,10 +4,10 @@
 #include <QAbstractListModel>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicePluginModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, PlayerService)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, StreamingServicePluginService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, PlayerService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicePluginService)
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
 
 class QQmlApplicationEngine;
@@ -22,9 +22,9 @@ class StreamingServicesModel: public QObject {
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
-    StreamingServicesModel(UseCases::StreamingServicePluginService& pluginService,
-                               UseCases::PlayerService& playerService,
-                               UseCases::Settings& settings);
+    StreamingServicesModel(Application::StreamingServicePluginService& pluginService,
+                               Application::PlayerService& playerService,
+                               Application::Settings& settings);
     void initialize();
 
     Q_INVOKABLE void reload();
@@ -44,10 +44,10 @@ private slots:
     void onPluginAdded(Entities::StreamingServicePlugin* plugin);
 
 private:
-    UseCases::StreamingServicePluginService& pluginService;
-    UseCases::PlayerService& playerService;
-    UseCases::Settings& settings;
-    UseCases::Setting& currentServiceSetting;
+    Application::StreamingServicePluginService& pluginService;
+    Application::PlayerService& playerService;
+    Application::Settings& settings;
+    Application::Setting& currentServiceSetting;
     QQmlObjectListModel<StreamingServicePluginModel>* model;
     QObject* currentService;
     int currentIndex;

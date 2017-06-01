@@ -4,9 +4,9 @@
 #include <QtDBus>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -24,7 +24,7 @@ public:
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
     Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-    Mpris2Root(UseCases::IMainWindow& window, UseCases::IQtApplication& qtApp, QObject *parent=nullptr);
+    Mpris2Root(Application::IMainWindow& window, Application::IQtApplication& qtApp, QObject *parent=nullptr);
 
     bool canRaise();
     bool canQuit();
@@ -43,9 +43,9 @@ public slots:
     void Quit();
 
 private:
-    UseCases::ILogger& logger;
-    UseCases::IMainWindow& window;
-    UseCases::IQtApplication& qtApp;
+    Application::ILogger& logger;
+    Application::IMainWindow& window;
+    Application::IQtApplication& qtApp;
 };
 
 END_MELLOWPLAYER_NAMESPACE

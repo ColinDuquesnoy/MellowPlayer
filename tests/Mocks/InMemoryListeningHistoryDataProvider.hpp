@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/Interfaces/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 
 
-class InMemoryListeningHistoryDataProvider: public MellowPlayer::UseCases::IListeningHistoryDataProvider {
+class InMemoryListeningHistoryDataProvider: public MellowPlayer::Application::IListeningHistoryDataProvider {
 public:
     bool initialized = false;
 

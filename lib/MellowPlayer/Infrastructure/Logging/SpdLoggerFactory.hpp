@@ -1,13 +1,13 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Logging/ILoggerFactory.hpp>
+#include <MellowPlayer/Application/Logging/ILoggerFactory.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class SpdLoggerFactory: public UseCases::ILoggerFactory {
+class SpdLoggerFactory: public Application::ILoggerFactory {
 public:
-    std::unique_ptr<UseCases::ILogger> create(
-        const std::string &name, const UseCases::LoggerConfig &loggerConfig) const override;
+    std::unique_ptr<Application::ILogger> create(
+        const std::string &name, const Application::LoggerConfig &loggerConfig) const override;
 };
 
 END_MELLOWPLAYER_NAMESPACE

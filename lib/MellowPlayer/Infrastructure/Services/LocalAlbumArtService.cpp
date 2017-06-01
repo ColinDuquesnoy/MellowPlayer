@@ -1,10 +1,10 @@
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
 #include "LocalAlbumArtService.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 

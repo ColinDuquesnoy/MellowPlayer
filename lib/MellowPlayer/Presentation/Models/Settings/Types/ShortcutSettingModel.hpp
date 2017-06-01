@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingModel.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -9,7 +9,7 @@ class ShortcutSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    ShortcutSettingModel(UseCases::Setting& setting, QObject* parent);
+    ShortcutSettingModel(Application::Setting& setting, QObject* parent);
 
     QString getValue() const;
     QString getQmlComponent() override;

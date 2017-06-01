@@ -2,12 +2,12 @@
 
 #include <libnotify/notify.h>
 #include <MellowPlayer/Entities/Notifications.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "LibnotifyPresenter.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 LibnotifyPresenter* LibnotifyPresenter::instance = nullptr;

@@ -1,9 +1,9 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class PlayerMock{

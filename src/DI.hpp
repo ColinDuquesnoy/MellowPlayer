@@ -4,24 +4,24 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
-#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/INotificationsService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
+#include <MellowPlayer/Application/Interfaces/IStreamingServicePluginLoader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Interfaces/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/Application/Interfaces/INotificationsService.hpp>
+#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/Application/Interfaces/IMprisService.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
@@ -35,7 +35,7 @@
 #include <MellowPlayer/Infrastructure/StreamingServicePluginLoader.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
-#include <MellowPlayer/Infrastructure/Applications/Application.hpp>
+#include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
@@ -52,7 +52,7 @@
 #endif
 
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -121,7 +121,7 @@ auto platformInjector = [](ScopedScope& scope) {
     );
 #else
     return di::make_injector(
-        di::bind<IApplication>().to<Application>().in(scope)
+        di::bind<IApplication>().to<CoreApplication>().in(scope)
     );
 #endif
 };

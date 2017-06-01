@@ -1,9 +1,9 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
+#include <MellowPlayer/Application/Interfaces/INotificationPresenter.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class NotificationPresenterMock {

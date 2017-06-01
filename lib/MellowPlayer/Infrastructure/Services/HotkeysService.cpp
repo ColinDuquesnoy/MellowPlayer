@@ -1,11 +1,11 @@
 #include <qxtglobalshortcut.h>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "HotkeysService.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 HotkeysService::HotkeysService(IPlayer& player, Settings& settings) :

@@ -7,7 +7,7 @@ add_executable(${PROJECT_NAME} main.cpp DI.hpp)
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
         ${PROJECT_NAME}.Entities
-        ${PROJECT_NAME}.UseCases
+        ${PROJECT_NAME}.Application
         ${PROJECT_NAME}.Presentation
         ${PROJECT_NAME}.Infrastructure)
 qt5_use_modules(${PROJECT_NAME} Core Gui Quick QuickControls2 WebEngine Widgets)

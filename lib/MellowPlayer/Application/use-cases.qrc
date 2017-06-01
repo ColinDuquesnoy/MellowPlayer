@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/MellowPlayer/Application">
+        <file>Settings/schema.json</file>
+    </qresource>
+</RCC>

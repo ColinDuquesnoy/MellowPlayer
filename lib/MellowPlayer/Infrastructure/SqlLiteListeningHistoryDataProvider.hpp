@@ -1,14 +1,14 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/Interfaces/IListeningHistoryDataProvider.hpp>
 #include <QtSql/QSqlDatabase>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 PREDECLARE_MELLOWPLAYER_STRUCT(Entities, ListeningHistoryEntry)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class SqlLiteListeningHistoryDataProvider: public UseCases::IListeningHistoryDataProvider {
+class SqlLiteListeningHistoryDataProvider: public Application::IListeningHistoryDataProvider {
 public:
     SqlLiteListeningHistoryDataProvider();
     ~SqlLiteListeningHistoryDataProvider();
@@ -26,7 +26,7 @@ private:
     bool openDatabase();
     void initDatabase();
 
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
     QSqlDatabase database;
 };
 

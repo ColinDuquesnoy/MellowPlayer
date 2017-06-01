@@ -1,15 +1,15 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
+#include <MellowPlayer/Application/Interfaces/IStreamingServicePluginLoader.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 PREDECLARE_MELLOWPLAYER_STRUCT(Entities, StreamingServicePluginMetadata)
 PREDECLARE_MELLOWPLAYER_STRUCT(Entities, StreamingServiceStyle)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class StreamingServicePluginLoader: public UseCases::IStreamingServicePluginLoader {
+class StreamingServicePluginLoader: public Application::IStreamingServicePluginLoader {
 public:
     StreamingServicePluginLoader();
     QList<std::shared_ptr<Entities::StreamingServicePlugin>> load() const override;
@@ -26,7 +26,7 @@ private:
     bool containsPlugin(const QList<std::shared_ptr<Entities::StreamingServicePlugin>> &plugins,
                         std::shared_ptr<Entities::StreamingServicePlugin>& toCheck) const;
 
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
 };
 
 END_MELLOWPLAYER_NAMESPACE

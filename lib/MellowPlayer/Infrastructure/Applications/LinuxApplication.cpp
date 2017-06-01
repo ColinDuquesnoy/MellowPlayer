@@ -1,15 +1,15 @@
-#include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Interfaces/IQtApplication.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/Application/Interfaces/IMprisService.hpp>
+#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "LinuxApplication.hpp"
 
 #ifdef Q_OS_LINUX
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 LinuxApplication::LinuxApplication(IQtApplication& qtApp,
@@ -19,7 +19,7 @@ LinuxApplication::LinuxApplication(IQtApplication& qtApp,
                                    ISystemTrayIcon& systemTrayIcon,
                                    INotificationService& playerNotificationService,
                                    IMprisService& mprisService) :
-        Application(qtApp, mainWindow, pluginService, kotkeys, systemTrayIcon, playerNotificationService),
+        CoreApplication(qtApp, mainWindow, pluginService, kotkeys, systemTrayIcon, playerNotificationService),
         logger(LoggingManager::instance().getLogger("LinuxApplication")),
         mprisService(mprisService) {
 
@@ -27,7 +27,7 @@ LinuxApplication::LinuxApplication(IQtApplication& qtApp,
 
 void LinuxApplication::initialize() {
     LOG_TRACE(logger, "initialize");
-    Application::initialize();
+    CoreApplication::initialize();
     mprisService.start();
 }
 

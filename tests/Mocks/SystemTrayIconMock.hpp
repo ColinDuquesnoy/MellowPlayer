@@ -1,9 +1,9 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class SystemTrayIconMock {

@@ -2,7 +2,7 @@
 #ifdef Q_OS_WIN32
     #include <Windows.h>
 #endif
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
@@ -10,7 +10,7 @@
 
 namespace di = boost::di;
 using namespace std;
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

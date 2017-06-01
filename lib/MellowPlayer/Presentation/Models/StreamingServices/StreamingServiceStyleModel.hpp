@@ -5,9 +5,9 @@
 #include <MellowPlayer/Entities/StreamingServices/StreamingServiceStyle.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, StreamingServicePluginService)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicePluginService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -23,7 +23,7 @@ class StreamingServiceStyleModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
 public:
-    StreamingServiceStyleModel(UseCases::StreamingServicePluginService& pluginService, UseCases::Settings& settings);
+    StreamingServiceStyleModel(Application::StreamingServicePluginService& pluginService, Application::Settings& settings);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -67,15 +67,15 @@ private:
     void fromStyle(const Entities::StreamingServiceStyle& newStyle);
 
     bool usePluginStyle;
-    UseCases::StreamingServicePluginService& pluginService;
-    UseCases::Setting& accentColorSetting;
-    UseCases::Setting& adaptiveThemeSetting;
-    UseCases::Setting& backgroundSetting;
-    UseCases::Setting& foregroundSetting;
-    UseCases::Setting& primaryBackgroundSetting;
-    UseCases::Setting& primaryForegroundSetting;
-    UseCases::Setting& secondaryBackgroundSetting;
-    UseCases::Setting& secondaryForegroundSetting;
+    Application::StreamingServicePluginService& pluginService;
+    Application::Setting& accentColorSetting;
+    Application::Setting& adaptiveThemeSetting;
+    Application::Setting& backgroundSetting;
+    Application::Setting& foregroundSetting;
+    Application::Setting& primaryBackgroundSetting;
+    Application::Setting& primaryForegroundSetting;
+    Application::Setting& secondaryBackgroundSetting;
+    Application::Setting& secondaryForegroundSetting;
     Entities::StreamingServiceStyle style;
 };
 

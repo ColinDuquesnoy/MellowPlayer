@@ -7,14 +7,14 @@
 #include <QtGui/QIcon>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePluginMetadata.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServiceStyle.hpp>
 #include "StreamingServicePluginLoader.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 

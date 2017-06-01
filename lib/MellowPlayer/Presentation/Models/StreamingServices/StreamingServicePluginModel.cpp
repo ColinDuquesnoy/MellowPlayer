@@ -1,10 +1,10 @@
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
 #include "StreamingServicePluginModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicePluginModel::StreamingServicePluginModel(StreamingServicePlugin& plugin,

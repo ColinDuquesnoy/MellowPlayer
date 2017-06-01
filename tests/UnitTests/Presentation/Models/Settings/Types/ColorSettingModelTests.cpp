@@ -3,7 +3,7 @@
 #include <MellowPlayer/Presentation/Models/Settings/Types/ColorSettingModel.hpp>
 #include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ColorSettingModelTests") {

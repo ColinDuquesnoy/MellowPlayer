@@ -1,25 +1,25 @@
 #pragma once
 
 #include <boost/di.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IListeningHistoryDataProvider.hpp>
-#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/INotificationsService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IMprisService.hpp>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
+#include <MellowPlayer/Application/Interfaces/IStreamingServicePluginLoader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Interfaces/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/Application/Interfaces/INotificationsService.hpp>
+#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/Application/Interfaces/IMprisService.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
@@ -61,7 +61,7 @@
 #include <Mocks/PluginLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

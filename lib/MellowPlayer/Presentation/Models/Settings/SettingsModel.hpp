@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "SettingModelFactory.hpp"
 #include "SettingsCategoryModel.hpp"
 
@@ -10,14 +10,14 @@ class SettingsModel: public QObject {
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel* categories READ getCategories CONSTANT)
 public:
-    SettingsModel(UseCases::Settings& settings, QObject* parent= nullptr);
+    SettingsModel(Application::Settings& settings, QObject* parent= nullptr);
 
     Q_INVOKABLE SettingModel* get(int key);
     QAbstractItemModel* getCategories() const;
     Q_INVOKABLE void restoreDefaults();
 
 private:
-    UseCases::Settings& settings;
+    Application::Settings& settings;
     SettingModelFactory settingModelFactory;
     QQmlObjectListModel<SettingsCategoryModel>* categories;
 };

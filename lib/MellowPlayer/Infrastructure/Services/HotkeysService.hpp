@@ -2,20 +2,20 @@
 
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
 
 class QxtGlobalShortcut;
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class HotkeysService: public QObject, public UseCases::IHotkeysService {
+class HotkeysService: public QObject, public Application::IHotkeysService {
     Q_OBJECT
 public:
-    HotkeysService(UseCases::IPlayer& player, UseCases::Settings& settings);
+    HotkeysService(Application::IPlayer& player, Application::Settings& settings);
     ~HotkeysService();
 
     void start() override;
@@ -27,17 +27,17 @@ public slots:
     void toggleFavoriteSong() override;
 
 private:
-    UseCases::ILogger& logger;
-    UseCases::IPlayer& player;
+    Application::ILogger& logger;
+    Application::IPlayer& player;
     QxtGlobalShortcut* playShortcut;
     QxtGlobalShortcut* nextShortcut;
     QxtGlobalShortcut* previousShortcut;
     QxtGlobalShortcut* favoriteShortcut;
 
-    UseCases::Setting& playShortcutSetting;
-    UseCases::Setting& nextShortcutSetting;
-    UseCases::Setting& previousShortcutSetting;
-    UseCases::Setting& favoriteShortcutSetting;
+    Application::Setting& playShortcutSetting;
+    Application::Setting& nextShortcutSetting;
+    Application::Setting& previousShortcutSetting;
+    Application::Setting& favoriteShortcutSetting;
 
     void updateFavoriteShortcut() const;
 

@@ -1,7 +1,7 @@
 #include "SettingModel.hpp"
 #include <QDebug>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 SettingModel::SettingModel(Setting& setting, QObject* parent): QObject(parent), setting(setting) {

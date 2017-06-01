@@ -1,9 +1,9 @@
 #pragma once
 
 #include <fakeit.hpp>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 #define LOCAL_URL "/path/to/art/songId"

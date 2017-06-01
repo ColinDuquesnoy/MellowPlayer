@@ -4,7 +4,7 @@
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/SettingsProviderMock.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)

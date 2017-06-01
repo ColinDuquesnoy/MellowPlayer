@@ -1,20 +1,20 @@
 #pragma once
 
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Interfaces/INotificationPresenter.hpp>
+#include <MellowPlayer/Application/Interfaces/INotificationPresenter.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ISystemTrayIcon)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ISystemTrayIcon)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class SystemTrayIconPresenter: public UseCases::INotificationPresenter {
+class SystemTrayIconPresenter: public Application::INotificationPresenter {
 public:
-    SystemTrayIconPresenter(UseCases::ISystemTrayIcon& systemTrayIcon);
+    SystemTrayIconPresenter(Application::ISystemTrayIcon& systemTrayIcon);
     void initialize() override;
     bool display(const Entities::Notification& notification) override;
 
 private:
-    UseCases::ISystemTrayIcon& systemTrayIcon;
+    Application::ISystemTrayIcon& systemTrayIcon;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -1,7 +1,7 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IHotkeysService.hpp>
+#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;

@@ -1,10 +1,10 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
 #include <DI.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("QmlMainWindowTests") {

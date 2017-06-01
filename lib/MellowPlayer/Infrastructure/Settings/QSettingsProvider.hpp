@@ -1,11 +1,11 @@
 #pragma once
 
 #include <QSettings>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class QSettingsProvider: public UseCases::ISettingsProvider {
+class QSettingsProvider: public Application::ISettingsProvider {
 public:
     QSettingsProvider();
 

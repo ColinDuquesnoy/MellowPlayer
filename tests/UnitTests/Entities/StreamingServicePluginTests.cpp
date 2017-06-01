@@ -4,7 +4,7 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/SettingsProviderMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("PluginTest", "[UnitTest]") {
     StreamingServicePluginMetadata pluginMetadata;

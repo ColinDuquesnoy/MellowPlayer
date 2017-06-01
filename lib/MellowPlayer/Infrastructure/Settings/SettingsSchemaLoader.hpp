@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/UseCases/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsSchemaLoader.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class SettingsSchemaLoader: public UseCases::ISettingsSchemaLoader {
+class SettingsSchemaLoader: public Application::ISettingsSchemaLoader {
 public:
     QJsonDocument load() const override;
 

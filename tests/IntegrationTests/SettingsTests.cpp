@@ -1,12 +1,12 @@
 #include "catch.hpp"
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/UseCases/Settings/SettingsCategory.hpp>
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 #define NB_CONFIGS 6

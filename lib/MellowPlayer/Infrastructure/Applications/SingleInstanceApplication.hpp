@@ -5,7 +5,7 @@
 #include <QLocalServer>
 #include "IApplication.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -24,7 +24,7 @@ private slots:
     void quit();
 
 private:
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
     IApplication& application;
     QLocalSocket localSocket;
     QLocalServer localServer;

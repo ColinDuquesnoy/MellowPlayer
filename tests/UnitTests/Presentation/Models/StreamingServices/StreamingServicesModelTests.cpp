@@ -4,7 +4,7 @@
 #include "Mocks/PluginLoaderMock.hpp"
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;

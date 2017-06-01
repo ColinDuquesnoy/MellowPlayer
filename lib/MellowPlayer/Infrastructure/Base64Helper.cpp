@@ -1,7 +1,7 @@
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "Base64Helper.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 Base64Helper::Base64Helper(QObject* parent) :

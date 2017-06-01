@@ -4,7 +4,7 @@
 
 using namespace std;
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 
 
 void QtConcurrentWorkDispatcher::invoke(const function<void(void)>& workerFunction) {

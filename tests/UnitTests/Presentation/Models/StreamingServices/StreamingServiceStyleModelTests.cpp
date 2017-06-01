@@ -2,7 +2,7 @@
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 void requireMatchStyle(StreamingServiceStyleModel& styleModel, const StreamingServiceStyle& style) {

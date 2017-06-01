@@ -4,10 +4,10 @@
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 using namespace std;

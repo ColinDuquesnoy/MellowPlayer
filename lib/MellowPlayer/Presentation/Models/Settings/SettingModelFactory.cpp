@@ -1,4 +1,4 @@
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingModelFactory.hpp"
 #include "Types/BoolSettingModel.hpp"
 #include "Types/ColorSettingModel.hpp"
@@ -7,7 +7,7 @@
 #include "Types/StringSettingModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 
 SettingModel* SettingModelFactory::create(Setting& setting, QObject* parent) const {
     QString type = setting.getType().toLower();

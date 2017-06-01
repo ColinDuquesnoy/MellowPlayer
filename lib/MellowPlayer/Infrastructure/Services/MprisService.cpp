@@ -2,12 +2,12 @@
 #ifdef Q_OS_LINUX
 #include <QtDBus/QDBusConnection>
 #include <QtQuick/QQuickWindow>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "Mpris/Mpris2Root.hpp"
 #include "Mpris/Mpris2Player.hpp"
 #include "MprisService.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 

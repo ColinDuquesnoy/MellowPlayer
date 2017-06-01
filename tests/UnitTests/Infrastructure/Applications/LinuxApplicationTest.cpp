@@ -2,7 +2,7 @@
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
 #include <MellowPlayer/Entities/Notifications.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
 #include <MellowPlayer/Infrastructure/Applications/LinuxApplication.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>

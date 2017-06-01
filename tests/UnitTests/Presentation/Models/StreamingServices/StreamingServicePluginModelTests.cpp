@@ -3,7 +3,7 @@
 #include <QtTest/QSignalSpy>
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {

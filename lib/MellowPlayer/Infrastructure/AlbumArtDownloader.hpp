@@ -3,14 +3,14 @@
 #include <QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <MellowPlayer/UseCases/Interfaces/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/Interfaces/IAlbumArtDownloader.hpp>
 #include "Base64Helper.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class AlbumArtDownloader: public UseCases::IAlbumArtDownloader {
+class AlbumArtDownloader: public Application::IAlbumArtDownloader {
 public:
     AlbumArtDownloader();
 
@@ -26,7 +26,7 @@ private:
 
     QNetworkAccessManager *networkAccessManager;
     QFileInfo localUrl;
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
     Base64Helper base64;
 
     void downloadImage(const QString& url) const;

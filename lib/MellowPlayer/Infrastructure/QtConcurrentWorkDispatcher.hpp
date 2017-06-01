@@ -1,11 +1,11 @@
 #pragma once
 
 #include <QMutex>
-#include <MellowPlayer/UseCases/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/IWorkDispatcher.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
-class QtConcurrentWorkDispatcher: public UseCases::IWorkDispatcher {
+class QtConcurrentWorkDispatcher: public Application::IWorkDispatcher {
 public:
     void invoke(const std::function<void(void)>& workerFunction) override;
 

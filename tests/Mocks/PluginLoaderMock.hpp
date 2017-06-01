@@ -2,11 +2,11 @@
 
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IStreamingServicePluginLoader.hpp>
+#include <MellowPlayer/Application/Interfaces/IStreamingServicePluginLoader.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 using namespace fakeit;
 

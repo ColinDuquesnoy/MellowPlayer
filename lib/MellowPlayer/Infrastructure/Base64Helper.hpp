@@ -3,7 +3,7 @@
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -18,7 +18,7 @@ public:
     Q_INVOKABLE QString getImageProviderUrl(const QString& url);
 
 private:
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
 
 };
 

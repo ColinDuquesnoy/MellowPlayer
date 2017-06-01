@@ -1,12 +1,12 @@
 #include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <MellowPlayer/UseCases/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;

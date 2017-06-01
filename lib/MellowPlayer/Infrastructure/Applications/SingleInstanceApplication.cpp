@@ -1,14 +1,14 @@
 #include <QTimer>
 #include <QFile>
 #include <QCoreApplication>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "SingleInstanceApplication.hpp"
 #ifdef Q_OS_UNIX
 #include <signal.h>
 #include <unistd.h>
 #endif
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 SingleInstanceApplication::SingleInstanceApplication(IApplication& application):

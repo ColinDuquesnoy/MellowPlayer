@@ -1,9 +1,9 @@
-#include <MellowPlayer/UseCases/Services/ListeningHistoryService.hpp>
+#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
 #include "ListeningHistoryModel.hpp"
 #include "QQmlObjectListModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 ListeningHistoryModel::ListeningHistoryModel(ListeningHistoryService& listeningHistory):

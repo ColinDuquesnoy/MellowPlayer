@@ -2,9 +2,9 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QImage>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 AlbumArtDownloader::AlbumArtDownloader()

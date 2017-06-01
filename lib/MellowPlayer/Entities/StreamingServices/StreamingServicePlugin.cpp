@@ -1,6 +1,6 @@
 #include <memory>
 #include <QtGui/QIcon>
-#include <MellowPlayer/UseCases/Player/IPlayer.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include "StreamingServicePlugin.hpp"
 #include "StreamingServicePluginScript.hpp"
 

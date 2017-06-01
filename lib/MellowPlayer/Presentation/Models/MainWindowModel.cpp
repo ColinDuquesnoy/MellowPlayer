@@ -1,10 +1,10 @@
 #include <QtWebEngine>
 #include <QMessageBox>
-#include <MellowPlayer/UseCases/Interfaces/ILocalAlbumArtService.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
-#include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Interfaces/ILocalAlbumArtService.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
@@ -12,7 +12,7 @@
 #include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
 #include "MainWindowModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,

@@ -1,9 +1,9 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
+#include <MellowPlayer/Application/Interfaces/IQtApplication.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class QtApplicationMock {

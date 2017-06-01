@@ -4,7 +4,7 @@
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryEntryModel.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryEntryProxyListModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ListeningHistoryService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ListeningHistoryService)
 template <class T> class QQmlObjectListModel;
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -14,7 +14,7 @@ class ListeningHistoryModel: public QObject {
     Q_PROPERTY(QAbstractItemModel* filteredModel READ getFilteredModel CONSTANT)
     Q_PROPERTY(QAbstractItemModel* sourceModel READ getSourceModel CONSTANT)
 public:
-    ListeningHistoryModel(UseCases::ListeningHistoryService& listeningHistory);
+    ListeningHistoryModel(Application::ListeningHistoryService& listeningHistory);
 
     void initialize();
     QAbstractItemModel* getFilteredModel();
@@ -29,7 +29,7 @@ private slots:
     void onEntryRemoved(int entryId);
 
 private:
-    UseCases::ListeningHistoryService& listeningHistoryService;
+    Application::ListeningHistoryService& listeningHistoryService;
     QQmlObjectListModel<ListeningHistoryEntryModel>* sourceListModel;
     ListeningHistoryEntryProxyListModel proxyListModel;
 };

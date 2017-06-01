@@ -1,9 +1,9 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class MainWindowMock {

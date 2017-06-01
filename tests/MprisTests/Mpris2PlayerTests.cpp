@@ -3,15 +3,15 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {

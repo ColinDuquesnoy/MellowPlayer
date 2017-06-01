@@ -3,15 +3,15 @@
 #include <MellowPlayer/Entities/Song.hpp>
 #include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
-#include <MellowPlayer/UseCases/Player/Player.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "MellowPlayer/Presentation/IconProvider.hpp"
 #include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
 #include "QtApplicationModel.hpp"
 
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& appName) :
@@ -43,7 +43,7 @@ QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& ap
     qRegisterMetaType<StreamingServicePlugin*>("StreamingServicePlugin*");
     qRegisterMetaType<ListeningHistoryEntry>("Entities::ListeningHistoryEntry");
     qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
-    qRegisterMetaType<Player*>("UseCases::Player*");
+    qRegisterMetaType<Player*>("Application::Player*");
     qRegisterMetaType<Player*>("Player*");
     qRegisterMetaType<SettingModel*>("Presentation::SettingModel*");
     qRegisterMetaType<SettingModel*>("SettingModel*");

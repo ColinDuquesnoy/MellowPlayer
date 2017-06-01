@@ -4,7 +4,7 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/UseCases/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "StreamingServicePluginMetadata.hpp"
 #include "StreamingServiceStyle.hpp"
 

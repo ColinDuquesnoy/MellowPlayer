@@ -1,14 +1,14 @@
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Settings/Settings.hpp>
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Notifications/NotificationService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <Mocks/LocalAlbumArtServiceMock.hpp>
 #include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Entities)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

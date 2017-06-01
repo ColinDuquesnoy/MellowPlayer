@@ -5,10 +5,10 @@
 #include <MellowPlayer/Macros.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_ENUM(UseCases, PlaybackStatus)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+PREDECLARE_MELLOWPLAYER_ENUM(Application, PlaybackStatus)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
@@ -16,8 +16,8 @@ class Mpris2Player : public QDBusAbstractAdaptor {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
 public:
-    explicit Mpris2Player(UseCases::IPlayer& player,
-                          UseCases::ILocalAlbumArtService& localAlbumArt,
+    explicit Mpris2Player(Application::IPlayer& player,
+                          Application::ILocalAlbumArtService& localAlbumArt,
                           QObject *parent=nullptr);
 
     Q_PROPERTY(QVariantMap Metadata READ metadata)
@@ -84,7 +84,7 @@ private slots:
 
 private:
     QMap<QString, QVariant> toXesam(const Entities::Song& song);
-    QString statusToString(UseCases::PlaybackStatus status);
+    QString statusToString(Application::PlaybackStatus status);
     void signalPlayerUpdate(const QVariantMap &map);
     void signalUpdate(const QVariantMap &map, const QString &interfaceName);
 
@@ -94,9 +94,9 @@ private:
     static const qlonglong SEEK_DELTA_LIMIT;
 
     qlonglong previousPosition;
-    UseCases::ILogger& logger;
-    UseCases::IPlayer& player;
-    UseCases::ILocalAlbumArtService& localAlbumArt;
+    Application::ILogger& logger;
+    Application::IPlayer& player;
+    Application::ILocalAlbumArtService& localAlbumArt;
     QMap<QString, QVariant> lastMetadata;
 };
 

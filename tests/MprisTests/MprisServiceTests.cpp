@@ -1,9 +1,9 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
-#include <MellowPlayer/UseCases/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/UseCases/Player/PlayerProxy.hpp>
-#include <MellowPlayer/UseCases/Services/PlayerService.hpp>
+#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/Services/PlayerService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
 #include <MellowPlayer/Infrastructure/Services/MprisService.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
@@ -13,7 +13,7 @@
 #include <Mocks/PluginLoaderMock.hpp>
 #include <QtDBus/QDBusConnection>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("MprisServiceTests", "[IntegrationTest]")

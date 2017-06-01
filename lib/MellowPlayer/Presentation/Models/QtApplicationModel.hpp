@@ -2,16 +2,16 @@
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include <MellowPlayer/UseCases/Interfaces/IQtApplication.hpp>
+#include <MellowPlayer/Application/Interfaces/IQtApplication.hpp>
 #include "MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp"
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer3"
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
-class QtApplicationModel: public UseCases::IQtApplication {
+class QtApplicationModel: public Application::IQtApplication {
 
 public:
     QtApplicationModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
@@ -25,7 +25,7 @@ public:
 
 private:
     QApplication qtApp;
-    UseCases::ILogger& logger;
+    Application::ILogger& logger;
 };
 
 END_MELLOWPLAYER_NAMESPACE

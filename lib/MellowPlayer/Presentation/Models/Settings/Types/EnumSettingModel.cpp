@@ -1,7 +1,7 @@
 #include "EnumSettingModel.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 
 EnumSettingModel::EnumSettingModel(Setting& setting, QObject* parent) : SettingModel(setting, parent) {
 

@@ -1,6 +1,6 @@
 #include "catch.hpp"
 #include "DI.hpp"
-#include <MellowPlayer/UseCases/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/SettingModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/BoolSettingModel.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/ColorSettingModel.hpp>
@@ -8,7 +8,7 @@
 #include <MellowPlayer/Presentation/Models/Settings/Types/EnumSettingModel.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/Types/StringSettingModel.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("SettingModelFactoryTests") {

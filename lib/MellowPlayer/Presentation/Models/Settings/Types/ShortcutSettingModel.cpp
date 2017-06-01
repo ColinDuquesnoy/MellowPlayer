@@ -3,7 +3,7 @@
 #include <QDebug>
 
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(UseCases)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 
 ShortcutSettingModel::ShortcutSettingModel(Setting& setting, QObject* parent) : SettingModel(setting, parent) {
 

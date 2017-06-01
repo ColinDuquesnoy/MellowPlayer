@@ -2,15 +2,15 @@
 
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
-#include <MellowPlayer/UseCases/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/SettingsModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, Settings)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, ILocalAlbumArtService)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(UseCases, IQtApplication)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -19,17 +19,17 @@ class ListeningHistoryModel;
 class StreamingServicesModel;
 class StreamingServiceStyleModel;
 
-class MainWindowModel: public QObject, public UseCases::IMainWindow {
+class MainWindowModel: public QObject, public Application::IMainWindow {
     Q_OBJECT
     Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
 public:
     MainWindowModel(StreamingServicesModel& streamingServicesModel,
                     ListeningHistoryModel& listeningHistoryModel,
                     StreamingServiceStyleModel& pluginStyleModel,
-                    UseCases::IQtApplication& qtApp,
-                    UseCases::IPlayer& player,
-                    UseCases::ILocalAlbumArtService& albumArt,
-                    UseCases::Settings& settings);
+                    Application::IQtApplication& qtApp,
+                    Application::IPlayer& player,
+                    Application::ILocalAlbumArtService& albumArt,
+                    Application::Settings& settings);
     bool load() override;
     void show() override;
     void hide() override;
@@ -44,8 +44,8 @@ private slots:
 
 private:
     bool visible = false;
-    UseCases::ILogger& logger;
-    UseCases::Settings& settings;
+    Application::ILogger& logger;
+    Application::Settings& settings;
     StreamingServicesModel& streamingServices;
     ListeningHistoryModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
