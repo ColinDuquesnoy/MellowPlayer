@@ -459,7 +459,10 @@ ToolBar {
                         value: player.position
                         to: player.currentSong.duration
 
-                        onValueChanged: if (player.position != value) player.seekToPosition(value)
+                        onValueChanged: {
+                            if (player.position !== value && player.position < player.currentSong.duration)
+                                player.seekToPosition(value)
+                        }
 
                     }
 
