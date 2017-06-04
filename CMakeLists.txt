@@ -9,7 +9,7 @@ if (NOT BUILD_NUMBER)
     endif()
 endif()
 
-project(MellowPlayer VERSION 3.0.0.${BUILD_NUMBER})
+project(MellowPlayer VERSION 2.95.0.${BUILD_NUMBER})
 
 add_definitions(-DMELLOWPLAYER_VERSION="${MellowPlayer_VERSION}")
 add_definitions(-DMELLOWPLAYER_VERSION_MAJOR="${MellowPlayer_VERSION_MAJOR}")
