@@ -1,7 +1,7 @@
-#include <MellowPlayer/Application/Notifications.hpp>
-#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Presentation/IconProvider.hpp>
+#include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
 #include "SnorenotifyPresenter.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
