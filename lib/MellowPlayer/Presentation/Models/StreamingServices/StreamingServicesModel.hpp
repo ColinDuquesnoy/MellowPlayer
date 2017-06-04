@@ -41,7 +41,7 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onPluginAdded(Application::StreamingService* streamingService);
+    void onServiceAdded(Application::StreamingService* streamingService);
 
 private:
     Application::StreamingServices& streamingServices;

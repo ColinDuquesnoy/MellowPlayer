@@ -17,8 +17,8 @@ TEST_CASE("CoreApplicationTests", "[UnitTest]") {
     auto qtAppMock = QtApplicationMock::get();
     auto systemTrayIconMock = SystemTrayIconMock::get();
     auto notificationServiceMock = NotifierMock::get();
-    auto pluginLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(pluginLoaderMock.get());
+    auto serviceLoaderMock = StreamingServiceLoaderMock::get();
+    StreamingServices streamingServices(serviceLoaderMock.get());
     CoreApplication app(qtAppMock.get(),
                     mainWindowMock.get(),
                     streamingServices,

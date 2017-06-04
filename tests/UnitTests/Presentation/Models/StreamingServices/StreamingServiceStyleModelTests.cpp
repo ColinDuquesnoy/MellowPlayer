@@ -24,34 +24,34 @@ TEST_CASE("StyleViewModelTests", "[UnitTest]") {
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
     StreamingServices& streamingServices = injector.create<StreamingServices&>();
-    StreamingServiceStyleModel pluginStyleModel(streamingServices, settings);
+    StreamingServiceStyleModel streamingServiceStyleModel(streamingServices, settings);
     streamingServices.setCurrent(nullptr);
 
     SECTION("initially use StreamingServiceStyle::defaultStyle") {
-        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
+        requireMatchStyle(streamingServiceStyleModel, streamingServiceStyleModel.getDefaultStyle());
     }
 
-    SECTION("use pluginStyle when current streamingService changed") {
+    SECTION("useServiceStyle when current streamingService changed") {
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
-        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
+        requireMatchStyle(streamingServiceStyleModel, StreamingServiceLoaderMock::DEFAULT_STYLE);
         streamingServices.setCurrent(&streamingServices.get("Spotify"));
-        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
+        requireMatchStyle(streamingServiceStyleModel, StreamingServiceLoaderMock::DEFAULT_STYLE);
     }
 
-    SECTION("setUsePluginTests") {
-        REQUIRE(pluginStyleModel.getUsePluginStyle());
+    SECTION("setUseServiceStyle") {
+        REQUIRE(streamingServiceStyleModel.getUseServiceStyle());
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
-        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
-        pluginStyleModel.setUsePluginStyle(false);
-        REQUIRE(!pluginStyleModel.getUsePluginStyle());
-        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
-        pluginStyleModel.setUsePluginStyle(false);
-        requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
-        pluginStyleModel.setUsePluginStyle(true);
-        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
+        requireMatchStyle(streamingServiceStyleModel, StreamingServiceLoaderMock::DEFAULT_STYLE);
+        streamingServiceStyleModel.setUseServiceStyle(false);
+        REQUIRE(!streamingServiceStyleModel.getUseServiceStyle());
+        requireMatchStyle(streamingServiceStyleModel, streamingServiceStyleModel.getDefaultStyle());
+        streamingServiceStyleModel.setUseServiceStyle(false);
+        requireMatchStyle(streamingServiceStyleModel, streamingServiceStyleModel.getDefaultStyle());
+        streamingServiceStyleModel.setUseServiceStyle(true);
+        requireMatchStyle(streamingServiceStyleModel, StreamingServiceLoaderMock::DEFAULT_STYLE);
     }
 
     SECTION("getColorScaleFactor") {
-        REQUIRE(pluginStyleModel.getColorScaleFactor("black") > pluginStyleModel.getColorScaleFactor("white"));
+        REQUIRE(streamingServiceStyleModel.getColorScaleFactor("black") > streamingServiceStyleModel.getColorScaleFactor("white"));
     }
 }

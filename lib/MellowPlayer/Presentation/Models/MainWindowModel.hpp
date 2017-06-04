@@ -25,7 +25,7 @@ class MainWindowModel: public QObject, public Application::IMainWindow {
 public:
     MainWindowModel(StreamingServicesModel& streamingServicesModel,
                     ListeningHistoryModel& listeningHistoryModel,
-                    StreamingServiceStyleModel& pluginStyleModel,
+                    StreamingServiceStyleModel& serviceStyleModel,
                     Application::IQtApplication& qtApp,
                     Application::IPlayer& player,
                     Application::ILocalAlbumArt& albumArt,

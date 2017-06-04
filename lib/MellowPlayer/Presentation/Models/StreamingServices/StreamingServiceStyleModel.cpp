@@ -9,7 +9,7 @@ USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServices& streamingServices, Settings& settings) :
-        usePluginStyle(true),
+        useServiceStyle(true),
         streamingServices(streamingServices),
         accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
         adaptiveThemeSetting(settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME)),
@@ -20,7 +20,8 @@ StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServices& stream
         secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
         secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
         style(getDefaultStyle()) {
-    connect(&streamingServices, &StreamingServices::currentChanged, this, &StreamingServiceStyleModel::onPluginChanged);
+    connect(&streamingServices, &StreamingServices::currentChanged, this,
+            &StreamingServiceStyleModel::onCurrentServiceChanged);
     connect(&accentColorSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
     connect(&adaptiveThemeSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
     connect(&backgroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
@@ -63,29 +64,29 @@ QString StreamingServiceStyleModel::getSecondaryForeground() const {
     return style.secondaryForeground;
 }
 
-bool StreamingServiceStyleModel::getUsePluginStyle() const {
-    return usePluginStyle;
+bool StreamingServiceStyleModel::getUseServiceStyle() const {
+    return useServiceStyle;
 }
 
-void StreamingServiceStyleModel::setUsePluginStyle(bool value) {
-    if (value == usePluginStyle)
+void StreamingServiceStyleModel::setUseServiceStyle(bool value) {
+    if (value == useServiceStyle)
         return;
 
-    usePluginStyle = value;
-    emit usePluginStyleChanged();
+    useServiceStyle = value;
+    emit useServiceStyleChanged();
     updateStyle();
 }
 
 void StreamingServiceStyleModel::updateStyle() {
     StreamingService* currentService = streamingServices.getCurrent();
-    if (usePluginStyle && currentService != nullptr && adaptiveThemeSetting.getValue().toBool() &&
+    if (useServiceStyle && currentService != nullptr && adaptiveThemeSetting.getValue().toBool() &&
             !currentService->getStyle().isEmpty())
         fromStyle(currentService->getStyle());
     else
         fromStyle(getDefaultStyle());
 }
 
-void StreamingServiceStyleModel::onPluginChanged(StreamingService* streamingService) {
+void StreamingServiceStyleModel::onCurrentServiceChanged(StreamingService* streamingService) {
     if (streamingService != nullptr)
         updateStyle();
 }

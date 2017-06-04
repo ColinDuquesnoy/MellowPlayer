@@ -18,7 +18,7 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,
                                  ListeningHistoryModel& listeningHistoryModel,
-                                 StreamingServiceStyleModel& pluginStyleModel,
+                                 StreamingServiceStyleModel& serviceStyleModel,
                                  IQtApplication& qtApp,
                                  IPlayer& player,
                                  ILocalAlbumArt& albumArt,
@@ -32,7 +32,7 @@ MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,
     auto context = qmlApplicationEngine.rootContext();
     context->setContextProperty("streamingServices", &streamingServicesModel);
     context->setContextProperty("listeningHistory", &listeningHistoryModel);
-    context->setContextProperty("style", &pluginStyleModel);
+    context->setContextProperty("style", &serviceStyleModel);
     context->setContextProperty("player", &player);
     context->setContextProperty("albumArt", &albumArt);
     context->setContextProperty("clipboard", &clipBoardModel);

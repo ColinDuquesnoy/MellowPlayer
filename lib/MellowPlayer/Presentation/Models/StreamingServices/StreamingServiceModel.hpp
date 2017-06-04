@@ -38,7 +38,7 @@ public:
     bool operator==(const StreamingServiceModel& rhs) const;
     bool operator!=(const StreamingServiceModel& rhs) const;
 
-    Application::StreamingService* getPlugin() const;
+    Application::StreamingService* getStreamingService() const;
 
 public slots:
     void setUrl(const QString& url);

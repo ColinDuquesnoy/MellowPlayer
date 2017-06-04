@@ -20,8 +20,8 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]") {
     auto qtAppMock = QtApplicationMock::get();
     auto mprisMock = MprisServiceMock::get();
     auto notificationServiceMock = NotifierMock::get();
-    auto pluginLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(pluginLoaderMock.get());
+    auto serviceLoaderMock = StreamingServiceLoaderMock::get();
+    StreamingServices streamingServices(serviceLoaderMock.get());
     auto systemTrayIconMock = SystemTrayIconMock::get();
     LinuxApplication app(qtAppMock.get(),
                          mainWindowMock.get(),

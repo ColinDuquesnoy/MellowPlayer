@@ -6,39 +6,39 @@ using namespace std;
 
 TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {
     SECTION("StreamingService.DefaultCtor") {
-        StreamingServiceMetadata plugin;
+        StreamingServiceMetadata metadata;
 
-        REQUIRE(plugin.author == "");
-        REQUIRE(plugin.authorWebsite == "");
-        REQUIRE(plugin.color == "");
-        REQUIRE(plugin.logoPath == "");
-        REQUIRE(plugin.name == "");
-        REQUIRE(plugin.url == "");
-        REQUIRE(plugin.script == "");
-        REQUIRE(plugin.version == "");
+        REQUIRE(metadata.author == "");
+        REQUIRE(metadata.authorWebsite == "");
+        REQUIRE(metadata.color == "");
+        REQUIRE(metadata.logoPath == "");
+        REQUIRE(metadata.name == "");
+        REQUIRE(metadata.url == "");
+        REQUIRE(metadata.script == "");
+        REQUIRE(metadata.version == "");
     }
 
     SECTION("StreamingService.isValid") {
-        StreamingServiceMetadata plugin;
+        StreamingServiceMetadata metadata;
 
-        REQUIRE(!plugin.isValid());
-        plugin.url = "https://deezer.com";
-        REQUIRE(!plugin.isValid());
-        plugin.name = "Deezer";
-        REQUIRE(!plugin.isValid());
-        plugin.script = "function test() { }";
-        REQUIRE(plugin.isValid());
+        REQUIRE(!metadata.isValid());
+        metadata.url = "https://deezer.com";
+        REQUIRE(!metadata.isValid());
+        metadata.name = "Deezer";
+        REQUIRE(!metadata.isValid());
+        metadata.script = "function test() { }";
+        REQUIRE(metadata.isValid());
     }
 
     SECTION("StreamingService.operator==") {
-        StreamingServiceMetadata plugin;
-        StreamingServiceMetadata test;
+        StreamingServiceMetadata metadata;
+        StreamingServiceMetadata metadata1;
 
-        REQUIRE(plugin == test);
-        plugin.url = "https://deezer.com";
-        REQUIRE(plugin != test);
-        plugin.url = "";
-        plugin.name = "Deezer";
-        REQUIRE(plugin != test);
+        REQUIRE(metadata == metadata1);
+        metadata.url = "https://deezer.com";
+        REQUIRE(metadata != metadata1);
+        metadata.url = "";
+        metadata.name = "Deezer";
+        REQUIRE(metadata != metadata1);
     }
 }

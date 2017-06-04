@@ -21,7 +21,7 @@ class StreamingServiceStyleModel: public QObject {
     Q_PROPERTY(QString primaryForeground READ getPrimaryForeground NOTIFY primaryForegroundChanged)
     Q_PROPERTY(QString secondary READ getSecondary NOTIFY secondaryChanged)
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
-    Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
+    Q_PROPERTY(bool useServiceStyle READ getUseServiceStyle WRITE setUseServiceStyle NOTIFY useServiceStyleChanged)
 public:
     StreamingServiceStyleModel(Application::StreamingServices& streamingServices, Application::Settings& settings);
 
@@ -33,8 +33,8 @@ public:
     QString getPrimaryForeground() const;
     QString getSecondary() const;
     QString getSecondaryForeground() const;
-    bool getUsePluginStyle() const;
-    void setUsePluginStyle(bool value);
+    bool getUseServiceStyle() const;
+    void setUseServiceStyle(bool value);
 
     Q_INVOKABLE double getColorScaleFactor(const QString& color) const;
     Q_INVOKABLE bool isDark(const QString& color) const;
@@ -50,11 +50,11 @@ signals:
     void primaryForegroundChanged();
     void secondaryChanged();
     void secondaryForegroundChanged();
-    void usePluginStyleChanged();
+    void useServiceStyleChanged();
 
 private slots:
     void updateStyle();
-    void onPluginChanged(Application::StreamingService* streamingService);
+    void onCurrentServiceChanged(Application::StreamingService* streamingService);
 
 private:
     void setAccent(const QString& value);
@@ -66,7 +66,7 @@ private:
     void setSecondaryForeground(const QString& value);
     void fromStyle(const Application::StreamingServiceStyle& newStyle);
 
-    bool usePluginStyle;
+    bool useServiceStyle;
     Application::StreamingServices& streamingServices;
     Application::Setting& accentColorSetting;
     Application::Setting& adaptiveThemeSetting;

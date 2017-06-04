@@ -58,7 +58,7 @@ bool StreamingServiceModel::operator!=(const StreamingServiceModel& rhs) const {
     return !operator==(rhs);
 }
 
-StreamingService* StreamingServiceModel::getPlugin() const {
+StreamingService* StreamingServiceModel::getStreamingService() const {
     return &streamingService;
 }
 

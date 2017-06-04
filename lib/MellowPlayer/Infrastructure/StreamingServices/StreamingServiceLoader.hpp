@@ -15,16 +15,16 @@ public:
     QList<std::shared_ptr<Application::StreamingService>> load() const override;
 
 private:
-    std::unique_ptr<Application::StreamingService> loadPlugin(const QString &directory) const;
+    std::unique_ptr<Application::StreamingService> loadService(const QString& directory) const;
     QString findFileByExtension(const QString &directory, const QString &suffix) const;
     QString readFileContent(const QString &filePath) const;
     Application::StreamingServiceMetadata readMetadata(const QString &filePath) const;
     Application::StreamingServiceStyle readStyle(const QString &filePath) const;
-    bool checkPluginDirectory(const QString &directory) const;
-    QString getUserPluginsDirectory() const;
+    bool checkServiceDirectory(const QString& directory) const;
+    QString getUserDirectory() const;
     QStringList getSearchPaths() const;
-    bool containsPlugin(const QList<std::shared_ptr<Application::StreamingService>> &plugins,
-                        std::shared_ptr<Application::StreamingService>& toCheck) const;
+    bool containsService(const QList<std::shared_ptr<Application::StreamingService>>& services,
+                         std::shared_ptr<Application::StreamingService>& toCheck) const;
 
     Application::ILogger& logger;
 };

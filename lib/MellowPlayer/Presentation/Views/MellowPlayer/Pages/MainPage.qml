@@ -43,7 +43,7 @@ Page {
 
                 PropertyChanges {
                     target: style
-                    usePluginStyle: false
+                    useServiceStyle: false
                 }
 
             },
@@ -69,7 +69,7 @@ Page {
 
                 PropertyChanges {
                     target: style
-                    usePluginStyle: true
+                    useServiceStyle: true
                 }
             },
             State {

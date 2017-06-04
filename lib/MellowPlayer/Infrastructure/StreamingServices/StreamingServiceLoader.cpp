@@ -24,29 +24,29 @@ StreamingServiceLoader::StreamingServiceLoader() :
 }
 
 QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const {
-    QList<shared_ptr<StreamingService>> plugins;
+    QList<shared_ptr<StreamingService>> services;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
             LOG_DEBUG(logger, "skipping streamingService path: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
-        LOG_DEBUG(logger, "looking for plugins in " << path.toStdString().c_str());
+        LOG_DEBUG(logger, "looking for services in " << path.toStdString().c_str());
         for (const QFileInfo& directory: QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            if (checkPluginDirectory(directory.absoluteFilePath())) {
-                shared_ptr<StreamingService> plugin = loadPlugin(directory.absoluteFilePath());
-                if (plugin->isValid() && !containsPlugin(plugins, plugin)) {
-                    LOG_INFO(logger, plugin->getName() + " streamingService successfully loaded (from \"" +
+            if (checkServiceDirectory(directory.absoluteFilePath())) {
+                shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
+                if (service->isValid() && !containsService(services, service)) {
+                    LOG_INFO(logger, service->getName() + " streamingService successfully loaded (from \"" +
                                      directory.absoluteFilePath() + "\")");
-                    plugins.append(plugin);
+                    services.append(service);
                 } else {
-                    LOG_DEBUG(logger, "skipping streamingService " + plugin->getName() +
+                    LOG_DEBUG(logger, "skipping streamingService " + service->getName() +
                                       ", already loaded from another source or invalid");
                 }
             }
         }
     }
 
-    return plugins;
+    return services;
 }
 
 QString StreamingServiceLoader::findFileByExtension(const QString& directory, const QString& suffix) const {
@@ -73,16 +73,16 @@ QString StreamingServiceLoader::readFileContent(const QString& filePath) const {
 StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& filePath) const {
     QSettings meta(filePath, QSettings::IniFormat);
 
-    StreamingServiceMetadata pluginMetadata;
-    pluginMetadata.author = meta.value("author").toString();
-    pluginMetadata.authorWebsite = meta.value("author_website").toString();
-    pluginMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
-    pluginMetadata.name = meta.value("name").toString();
-    pluginMetadata.url = meta.value("url").toString();
-    pluginMetadata.version = meta.value("version").toString();
-    pluginMetadata.color = meta.value("color").toString();
+    StreamingServiceMetadata serviceMetadata;
+    serviceMetadata.author = meta.value("author").toString();
+    serviceMetadata.authorWebsite = meta.value("author_website").toString();
+    serviceMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
+    serviceMetadata.name = meta.value("name").toString();
+    serviceMetadata.url = meta.value("url").toString();
+    serviceMetadata.version = meta.value("version").toString();
+    serviceMetadata.color = meta.value("color").toString();
 
-    return pluginMetadata;
+    return serviceMetadata;
 }
 
 StreamingServiceStyle StreamingServiceLoader::readStyle(const QString& filePath) const {
@@ -106,7 +106,7 @@ StreamingServiceStyle StreamingServiceLoader::readStyle(const QString& filePath)
     return style;
 }
 
-unique_ptr<StreamingService> StreamingServiceLoader::loadPlugin(const QString& directory) const {
+unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
     QString stylePath = findFileByExtension(directory, "json");
@@ -119,14 +119,14 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadPlugin(const QString& d
     return make_unique<StreamingService>(metadata, style);
 }
 
-bool StreamingServiceLoader::checkPluginDirectory(const QString& directory) const {
+bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
 
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }
 
-QString StreamingServiceLoader::getUserPluginsDirectory() const {
+QString StreamingServiceLoader::getUserDirectory() const {
     return QFileInfo(QStandardPaths::standardLocations(
             QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
 }
@@ -136,13 +136,13 @@ QStringList StreamingServiceLoader::getSearchPaths() const {
     paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
     paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
-    paths.append(getUserPluginsDirectory());
+    paths.append(getUserDirectory());
 
 #ifdef Q_OS_MAC
     QDir pluginsDir(qApp->applicationDirPath());
     pluginsDir.cdUp();
     pluginsDir.cd("PlugIns");
-    pluginsDir.cd("services");
+    pluginsDir.cd("plugins");
     paths.append(pluginsDir.path());
 #endif
 
@@ -156,10 +156,10 @@ QStringList StreamingServiceLoader::getSearchPaths() const {
     return paths;
 }
 
-bool StreamingServiceLoader::containsPlugin(const QList<shared_ptr<StreamingService>>& plugins,
-                                  shared_ptr<StreamingService>& toCheck) const {
-    for (auto plugin: plugins) {
-        if (*toCheck == *plugin)
+bool StreamingServiceLoader::containsService(const QList<shared_ptr<StreamingService>>& services,
+                                             shared_ptr<StreamingService>& toCheck) const {
+    for (auto service: services) {
+        if (*toCheck == *service)
             return true;
     }
     return false;

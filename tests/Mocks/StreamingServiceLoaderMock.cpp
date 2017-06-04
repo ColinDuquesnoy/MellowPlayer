@@ -1,6 +1,6 @@
 #include "StreamingServiceLoaderMock.hpp"
 
-StreamingServiceStyle StreamingServiceLoaderMock::PLUGIN_STYLE = {
+StreamingServiceStyle StreamingServiceLoaderMock::DEFAULT_STYLE = {
         "#ff00ff",
         "#00ff00",
         "#ff0000",

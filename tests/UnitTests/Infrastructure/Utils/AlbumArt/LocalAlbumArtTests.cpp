@@ -12,8 +12,8 @@ USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("LocalAlbumArtTests", "[UnitTest]"){
-    auto pluginLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(pluginLoaderMock.get());
+    auto serviceLoaderMock = StreamingServiceLoaderMock::get();
+    StreamingServices streamingServices(serviceLoaderMock.get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

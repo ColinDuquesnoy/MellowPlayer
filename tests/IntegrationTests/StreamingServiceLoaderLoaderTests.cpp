@@ -9,10 +9,10 @@ USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 
 TEST_CASE("StreamingServiceLoaderTests") {
-    StreamingServiceLoader pluginLoader;
+    StreamingServiceLoader loader;
 
     SECTION("load") {
-        auto plugins = pluginLoader.load();
-        REQUIRE(plugins.count() > 1);
+        auto services = loader.load();
+        REQUIRE(services.count() > 1);
     }
 }

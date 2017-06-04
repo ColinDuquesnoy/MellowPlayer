@@ -21,10 +21,10 @@ StreamingServicesModel::StreamingServicesModel(StreamingServices& streamingServi
         model(new QQmlObjectListModel<StreamingServiceModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 
-    connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesModel::onPluginAdded);
+    connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesModel::onServiceAdded);
 
-    for (auto& plugin: streamingServices.getAll()) {
-        onPluginAdded(plugin.get());
+    for (auto& service: streamingServices.getAll()) {
+        onServiceAdded(service.get());
     }
 }
 
@@ -51,7 +51,7 @@ void StreamingServicesModel::setCurrentService(QObject* value) {
     auto service = static_cast<StreamingServiceModel*>(value);
     currentServiceSetting.setValue(value->property("name").toString());
     currentService = value;
-    streamingServices.setCurrent(service->getPlugin());
+    streamingServices.setCurrent(service->getStreamingService());
     setCurrentIndex(model->toList().indexOf(service));
     emit currentServiceChanged(currentService);
 }
@@ -68,7 +68,7 @@ void StreamingServicesModel::reload() {
     streamingServices.load();
 }
 
-void StreamingServicesModel::onPluginAdded(StreamingService* streamingService) {
+void StreamingServicesModel::onServiceAdded(StreamingService* streamingService) {
     model->append(new StreamingServiceModel(
             *streamingService, settings.getSettingsProvider(), players, this));
 }

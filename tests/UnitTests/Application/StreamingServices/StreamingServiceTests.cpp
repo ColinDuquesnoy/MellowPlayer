@@ -7,84 +7,71 @@
 USE_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("StreamingServiceTest", "[UnitTest]") {
-    StreamingServiceMetadata pluginMetadata;
+    StreamingServiceMetadata serviceMetadata;
 
-    SECTION("StreamingService::getAuthor") {
-        pluginMetadata.author = "Colin Duquesnoy";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getAuthor() == pluginMetadata.author);
+    SECTION("StreamingService.getAuthor") {
+        serviceMetadata.author = "Colin Duquesnoy";
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getAuthor() == serviceMetadata.author);
     }
 
-    SECTION("StreamingService::getAuthorWebsite") {
-        pluginMetadata.authorWebsite = "https://gitlab.com/ColinDuquesnoy";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getAuthorWebsite() == pluginMetadata.authorWebsite);
+    SECTION("StreamingService.getAuthorWebsite") {
+        serviceMetadata.authorWebsite = "https://gitlab.com/ColinDuquesnoy";
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getAuthorWebsite() == serviceMetadata.authorWebsite);
     }
 
-    SECTION("Plugins::getColor_validColor") {
-        pluginMetadata.color = "#ffff00";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getColor() == pluginMetadata.color);
+    SECTION("StreamingService.getName") {
+        serviceMetadata.name = "Deezer";
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getName() == serviceMetadata.name);
     }
 
-    SECTION("Plugins::getToolbarColor_invalidColor") {
-        pluginMetadata.color = "qzpodkqpodzkpqokzd";
-        StreamingService service(pluginMetadata);
-        QString color = service.getColor();
-        REQUIRE(color == "");
+    SECTION("StreamingService.getLogo_validImage") {
+        serviceMetadata.logoPath = QString(PLUGINS_DIR) + QString("/deezer/logo.svg");
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getLogo() == "file://" + serviceMetadata.logoPath);
     }
 
-    SECTION("Plugins.getName") {
-        pluginMetadata.name = "Deezer";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getName() == pluginMetadata.name);
-    }
-
-    SECTION("Plugins.getLogo_validImage") {
-        pluginMetadata.logoPath = QString(PLUGINS_DIR) + QString("/deezer/logo.svg");
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getLogo() == "file://" + pluginMetadata.logoPath);
-    }
-
-    SECTION("Plugins.getLogo_nullImage") {
-        pluginMetadata.logoPath = "";
-        StreamingService service(pluginMetadata);
+    SECTION("StreamingService.getLogo_nullImage") {
+        serviceMetadata.logoPath = "";
+        StreamingService service(serviceMetadata);
         REQUIRE(service.getLogo().isEmpty());
     }
 
     SECTION("StreamingService.getUrl") {
-        pluginMetadata.url = "https://deezer.com";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getUrl() == pluginMetadata.url);
+        serviceMetadata.url = "https://deezer.com";
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getUrl() == serviceMetadata.url);
     }
 
     SECTION("StreamingService.getScript") {
-        pluginMetadata.script = "code";
-        pluginMetadata.scriptPath = "path";
-        StreamingService service(pluginMetadata);
+        serviceMetadata.script = "code";
+        serviceMetadata.scriptPath = "path";
+        StreamingService service(serviceMetadata);
         auto script = service.getScript();
         REQUIRE(script->getCode() == "code");
         REQUIRE(script->getPath() == "path");
     }
 
     SECTION("StreamingService.getVersion") {
-        pluginMetadata.version = "1.2";
-        StreamingService service(pluginMetadata);
-        REQUIRE(service.getVersion() == pluginMetadata.version);
+        serviceMetadata.version = "1.2";
+        StreamingService service(serviceMetadata);
+        REQUIRE(service.getVersion() == serviceMetadata.version);
     }
 
     SECTION("StreamingService.equalityOperator") {
-        StreamingServiceMetadata pluginMetadata1;
-        pluginMetadata1.name = "Deezer";
-        pluginMetadata1.url = "https://deezer.com";
-        StreamingService service0(pluginMetadata1);
+        StreamingServiceMetadata serviceMetadata1;
+        serviceMetadata1.name = "Deezer";
+        serviceMetadata1.url = "https://deezer.com";
+        StreamingService service0(serviceMetadata1);
 
-        StreamingServiceMetadata pluginMetadata2;
-        pluginMetadata2.name = "Spotify";
-        pluginMetadata2.url = "https://play.spotify.com";
-        StreamingService service1(pluginMetadata2);
+        StreamingServiceMetadata serviceMetadata2;
+        serviceMetadata2.name = "Spotify";
+        serviceMetadata2.url = "https://play.spotify.com";
+        StreamingService service1(serviceMetadata2);
 
-        StreamingService service2(pluginMetadata1);
+        StreamingService service2(serviceMetadata1);
 
         REQUIRE(service0 != service1);
         REQUIRE(service0 == service2);

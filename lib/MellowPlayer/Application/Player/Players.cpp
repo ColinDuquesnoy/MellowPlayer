@@ -9,8 +9,8 @@ using namespace std;
 Players::Players(StreamingServices& streamingServices) {
     connect(&streamingServices, &StreamingServices::added,
             this, &Players::onServiceAdded);
-    for (auto& plugin: streamingServices.getAll()) {
-        onServiceAdded(plugin.get());
+    for (auto& service: streamingServices.getAll()) {
+        onServiceAdded(service.get());
     }
 }
 
