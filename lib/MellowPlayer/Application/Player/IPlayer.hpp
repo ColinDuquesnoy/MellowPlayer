@@ -3,7 +3,7 @@
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 
@@ -17,7 +17,7 @@ enum class PlaybackStatus {
 class IPlayer: public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Entities::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
+    Q_PROPERTY(Application::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
     Q_PROPERTY(double position READ getPosition NOTIFY positionChanged)
     Q_PROPERTY(PlaybackStatus playbackStatus READ getPlaybackStatus NOTIFY playbackStatusChanged)
     Q_PROPERTY(bool canSeek READ getCanSeek NOTIFY canSeekChanged)
@@ -40,7 +40,7 @@ public:
     virtual void previous() = 0;
     virtual void seekToPosition(double position) = 0;
     virtual void setVolume(double volume) = 0;
-    virtual Entities::Song* getCurrentSong() = 0;
+    virtual Application::Song* getCurrentSong() = 0;
     virtual void toggleFavoriteSong() = 0;
     virtual void addToFavorites() = 0;
     virtual void removeFromFavorites() = 0;
@@ -57,7 +57,7 @@ public:
     virtual bool isStopped() const = 0;
 
 signals:
-    void currentSongChanged(Entities::Song* song);
+    void currentSongChanged(Application::Song* song);
     void positionChanged();
     void playbackStatusChanged();
     void canSeekChanged();

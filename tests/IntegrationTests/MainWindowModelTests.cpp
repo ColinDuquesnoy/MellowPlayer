@@ -14,8 +14,8 @@ TEST_CASE("QmlMainWindowTests") {
     StreamingServicesModel& streamingServices = injector.create<StreamingServicesModel&>();
     ListeningHistoryModel& listeningHistory = injector.create<ListeningHistoryModel&>();
     StreamingServiceStyleModel& style = injector.create<StreamingServiceStyleModel&>();
-    IPlayer& player = injector.create<PlayerProxy&>();
-    ILocalAlbumArtService& albumArt = injector.create<ILocalAlbumArtService&>();
+    IPlayer& player = injector.create<CurrentPlayer&>();
+    ILocalAlbumArt& albumArt = injector.create<ILocalAlbumArt&>();
     Settings& settings = injector.create<Settings&>();
     IQtApplication& qtApp = injector.create<IQtApplication&>();
 

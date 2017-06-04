@@ -1,7 +1,7 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;

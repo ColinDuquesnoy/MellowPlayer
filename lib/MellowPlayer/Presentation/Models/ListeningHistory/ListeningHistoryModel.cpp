@@ -1,12 +1,12 @@
-#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include "ListeningHistoryModel.hpp"
 #include "QQmlObjectListModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-ListeningHistoryModel::ListeningHistoryModel(ListeningHistoryService& listeningHistory):
+ListeningHistoryModel::ListeningHistoryModel(ListeningHistory& listeningHistory):
         listeningHistoryService(listeningHistory),
         sourceListModel(new QQmlObjectListModel<ListeningHistoryEntryModel>(this, "title", "entryId")),
         proxyListModel(sourceListModel) {
@@ -31,8 +31,8 @@ void ListeningHistoryModel::onEntryRemoved(int entryId) {
 }
 
 void ListeningHistoryModel::initialize() {
-    connect(&listeningHistoryService, &ListeningHistoryService::entryAdded, this, &ListeningHistoryModel::onEntryAdded);
-    connect(&listeningHistoryService, &ListeningHistoryService::entryRemoved, this, &ListeningHistoryModel::onEntryRemoved);
+    connect(&listeningHistoryService, &ListeningHistory::entryAdded, this, &ListeningHistoryModel::onEntryAdded);
+    connect(&listeningHistoryService, &ListeningHistory::entryRemoved, this, &ListeningHistoryModel::onEntryRemoved);
     listeningHistoryService.initialize();
     for(auto entry: listeningHistoryService.getEntries())
         onEntryAdded(entry);

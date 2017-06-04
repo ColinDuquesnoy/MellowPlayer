@@ -3,27 +3,27 @@
 #include <QtWebEngine/QtWebEngine>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include "StreamingServicesModel.hpp"
 #include "QQmlObjectListModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServicesModel::StreamingServicesModel(StreamingServicePluginService& pluginService,
-                                               PlayerService& playerService,
+StreamingServicesModel::StreamingServicesModel(StreamingServices& streamingServices,
+                                               Players& players,
                                                Settings& settings) :
-        QObject(), pluginService(pluginService), playerService(playerService),
+        QObject(), streamingServices(streamingServices), players(players),
         settings(settings),
         currentServiceSetting(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
-        model(new QQmlObjectListModel<StreamingServicePluginModel>(this)),
+        model(new QQmlObjectListModel<StreamingServiceModel>(this)),
         currentService(nullptr), currentIndex(-1) {
 
-    connect(&pluginService, &StreamingServicePluginService::pluginAdded, this, &StreamingServicesModel::onPluginAdded);
+    connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesModel::onPluginAdded);
 
-    for (auto& plugin: pluginService.getAll()) {
+    for (auto& plugin: streamingServices.getAll()) {
         onPluginAdded(plugin.get());
     }
 }
@@ -48,10 +48,10 @@ void StreamingServicesModel::setCurrentService(QObject* value) {
     if (currentService == value)
         return;
 
-    auto service = static_cast<StreamingServicePluginModel*>(value);
+    auto service = static_cast<StreamingServiceModel*>(value);
     currentServiceSetting.setValue(value->property("name").toString());
     currentService = value;
-    pluginService.setCurrent(service->getPlugin());
+    streamingServices.setCurrent(service->getPlugin());
     setCurrentIndex(model->toList().indexOf(service));
     emit currentServiceChanged(currentService);
 }
@@ -65,10 +65,10 @@ void StreamingServicesModel::setCurrentIndex(int value) {
 }
 
 void StreamingServicesModel::reload() {
-    pluginService.load();
+    streamingServices.load();
 }
 
-void StreamingServicesModel::onPluginAdded(StreamingServicePlugin* plugin) {
-    model->append(new StreamingServicePluginModel(
-            *plugin, settings.getSettingsProvider(), playerService, this));
+void StreamingServicesModel::onPluginAdded(StreamingService* streamingService) {
+    model->append(new StreamingServiceModel(
+            *streamingService, settings.getSettingsProvider(), players, this));
 }

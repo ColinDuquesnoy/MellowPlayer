@@ -3,7 +3,7 @@
 #include <QString>
 #include <QVariant>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 

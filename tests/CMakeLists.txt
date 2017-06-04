@@ -13,9 +13,11 @@ macro(add_mellowplayer_test TEST_TYPE)
     file(GLOB_RECURSE SOURCE_FILES ${TEST_TYPE}/*.cpp)
     file(GLOB_RECURSE HEADER_FILES *.hpp)
     file(GLOB_RECURSE MOCK_SOURCES Mocks/*.cpp)
-    add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} main.cpp)
+    file(GLOB_RECURSE MOCK_HEADERS Mocks/*.hpp)
+    file(GLOB_RECURSE UTILS_HEADERS Utils/*.hpp)
+    add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} ${MOCK_HEADERS} ${UTILS_HEADERS} main.cpp DI)
     target_link_libraries(${TEST_EXECUTABLE_NAME}
-            ${PROJECT_NAME}.Entities
+            ${PROJECT_NAME}.Application
             ${PROJECT_NAME}.Application
             ${PROJECT_NAME}.Presentation
             ${PROJECT_NAME}.Infrastructure)

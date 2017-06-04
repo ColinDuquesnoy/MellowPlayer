@@ -1,11 +1,11 @@
 #ifdef USE_LIBNOTIFY
 
 #include <catch.hpp>
-#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include "Mocks/MainWindowMock.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

@@ -2,45 +2,22 @@ include(${CMAKE_SOURCE_DIR}/scripts/cmake/Macros.cmake)
 
 set(LIB_NAME "${PROJECT_NAME}.Infrastructure")
 
-file(GLOB SOURCE_FILES *.cpp)
-file(GLOB HEADER_FILES *.hpp)
-file(GLOB APPLICATIONS_SOURCE_FILES Applications/*.cpp)
-file(GLOB APPLICATIONS_HEADER_FILES Applications/*.hpp)
-file(GLOB CONFIG_SOURCE_FILES Settings/*.cpp)
-file(GLOB CONFIG_HEADER_FILES Settings/*.hpp)
-file(GLOB LOGGING_SOURCE_FILES Logging/*.cpp)
-file(GLOB LOGGING_HEADER_FILES Logging/*.hpp)
-file(GLOB MPRIS_SOURCE_FILES Services/Mpris/*.cpp)
-file(GLOB MPRIS_HEADER_FILES Services/Mpris/*.hpp)
-file(GLOB SERVICES_SOURCE_FILES Services/*.cpp)
-file(GLOB SERVICES_HEADER_FILES Services/*.hpp)
-file(GLOB SYSTEM_SOURCE_FILES System/*.cpp)
-file(GLOB SYSTEM_HEADER_FILES System/*.hpp)
+glob_recurse_excl(SOURCE_FILES *.cpp "Platform")
+glob_recurse_excl(HEADER_FILES *.hpp "Platform")
 
-set(SOURCE_FILES ${SOURCE_FILES}
-        ${LOGGING_SOURCE_FILES}
-        ${SYSTEM_SOURCE_FILES}
-        ${APPLICATIONS_SOURCE_FILES}
-        ${CONFIG_SOURCE_FILES}
-        ${SERVICES_SOURCE_FILES}
-        ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core/qxtglobal.cpp
-        ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
-set(HEADER_FILES ${HEADER_FILES}
-        ${LOGGING_HEADER_FILES}
-        ${SYSTEM_HEADER_FILES}
-        ${APPLICATIONS_HEADER_FILES}
-        ${CONFIG_HEADER_FILES}
-        ${SERVICES_HEADER_FILES})
-
+set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
 if (WIN32)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/win/qxtglobalshortcut_win.cpp)
 elseif(APPLE)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/mac/qxtglobalshortcut_mac.cpp)
 elseif(UNIX)
+    file(GLOB_RECURSE LINUX_SOURCE_FILES Platform/Linux/*.cpp)
+    file(GLOB_RECURSE LINUX_HEADER_FILES Platform/Linux/*.hpp)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/x11/qxtglobalshortcut_x11.cpp)
-    set(SOURCE_FILES ${SOURCE_FILES} ${MPRIS_SOURCE_FILES})
-    set(HEADER_FILES ${HEADER_FILES} ${MPRIS_HEADER_FILES})
+    set(SOURCE_FILES ${SOURCE_FILES} ${LINUX_SOURCE_FILES})
+    set(HEADER_FILES ${HEADER_FILES} ${LINUX_HEADER_FILES})
 endif()
+message(STATUS ${LINUX_SOURCE_FILES})
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.11.0/include/)
@@ -66,3 +43,4 @@ qt5_use_modules(${LIB_NAME} Concurrent Core Widgets Network Sql)
 if(UNIX AND NOT APPLE)
     qt5_use_modules(${LIB_NAME} DBus)
 endif()
+

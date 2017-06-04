@@ -2,10 +2,10 @@
 
 #include <QObject>
 #include <MellowPlayer/Macros.hpp>
-#include <MellowPlayer/Entities/StreamingServices/StreamingServiceStyle.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServiceStyle.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicePluginService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
@@ -23,7 +23,7 @@ class StreamingServiceStyleModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool usePluginStyle READ getUsePluginStyle WRITE setUsePluginStyle NOTIFY usePluginStyleChanged)
 public:
-    StreamingServiceStyleModel(Application::StreamingServicePluginService& pluginService, Application::Settings& settings);
+    StreamingServiceStyleModel(Application::StreamingServices& streamingServices, Application::Settings& settings);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -39,7 +39,7 @@ public:
     Q_INVOKABLE double getColorScaleFactor(const QString& color) const;
     Q_INVOKABLE bool isDark(const QString& color) const;
 
-    Entities::StreamingServiceStyle getDefaultStyle();
+    Application::StreamingServiceStyle getDefaultStyle();
 
 signals:
     void themeChanged();
@@ -54,7 +54,7 @@ signals:
 
 private slots:
     void updateStyle();
-    void onPluginChanged(Entities::StreamingServicePlugin* plugin);
+    void onPluginChanged(Application::StreamingService* streamingService);
 
 private:
     void setAccent(const QString& value);
@@ -64,10 +64,10 @@ private:
     void setPrimaryForeground(const QString& value);
     void setSecondary(const QString& value);
     void setSecondaryForeground(const QString& value);
-    void fromStyle(const Entities::StreamingServiceStyle& newStyle);
+    void fromStyle(const Application::StreamingServiceStyle& newStyle);
 
     bool usePluginStyle;
-    Application::StreamingServicePluginService& pluginService;
+    Application::StreamingServices& streamingServices;
     Application::Setting& accentColorSetting;
     Application::Setting& adaptiveThemeSetting;
     Application::Setting& backgroundSetting;
@@ -76,7 +76,7 @@ private:
     Application::Setting& primaryForegroundSetting;
     Application::Setting& secondaryBackgroundSetting;
     Application::Setting& secondaryForegroundSetting;
-    Entities::StreamingServiceStyle style;
+    Application::StreamingServiceStyle style;
 };
 
 END_MELLOWPLAYER_NAMESPACE

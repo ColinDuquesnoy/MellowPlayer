@@ -15,7 +15,7 @@ SettingsModel::SettingsModel(Settings& settings, QObject* parent) : QObject(pare
     }
 
     categories->append(new CustomSettingsCategoryModel(
-            "Services", "\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", this));
+            "ListeningHistory", "\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", this));
     categories->append(new CustomSettingsCategoryModel(
             "Cache", "\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", this));
 }

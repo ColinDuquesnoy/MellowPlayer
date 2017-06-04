@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryEntryModel.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ListeningHistoryEntryModelTests") {

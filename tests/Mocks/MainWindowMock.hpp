@@ -1,7 +1,7 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;

@@ -1,8 +1,6 @@
 #pragma once
 
-#ifdef USE_LIBNOTIFY
-
-#include <MellowPlayer/Application/Interfaces/INotificationPresenter.hpp>
+#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
@@ -14,7 +12,7 @@ class LibnotifyPresenter: public Application::INotificationPresenter {
 public:
     LibnotifyPresenter(Application::IMainWindow& mainWindow);
     void initialize() override;
-    bool display(const Entities::Notification& notification) override;
+    bool display(const Application::Notification& notification) override;
 
     static void onActionCallback();
 
@@ -27,5 +25,3 @@ private:
 };
 
 END_MELLOWPLAYER_NAMESPACE
-
-#endif

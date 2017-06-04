@@ -2,28 +2,28 @@
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
-#include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
-#include <MellowPlayer/Application/Services/PlayerService.hpp>
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArtService.hpp>
-#include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Player.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
-    auto mock = PluginLoaderMock::get();
-    StreamingServicePluginService pluginService(mock.get());
-    pluginService.load();
-    pluginService.setCurrent(pluginService.getAll()[0].get());
-    PlayerService playerService(pluginService);
-    PlayerProxy player(playerService, pluginService);
-    Player& currentPlayer = *playerService.get(pluginService.getCurrent()->getName());
+    auto mock = StreamingServiceLoaderMock::get();
+    StreamingServices streamingServices(mock.get());
+    streamingServices.load();
+    streamingServices.setCurrent(streamingServices.getAll()[0].get());
+    Players players(streamingServices);
+    CurrentPlayer player(players, streamingServices);
+    Player& currentPlayer = *players.get(streamingServices.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
-    LocalAlbumArtService localAlbumArt(player, albumArtDownloader);
+    LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 
     QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song * )));

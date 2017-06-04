@@ -4,9 +4,9 @@
 #include <MellowPlayer/Macros.hpp>
 #include "IPlayer.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, Song)
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePluginScript)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServiceScript)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 
@@ -16,7 +16,7 @@ class Player: public IPlayer
 {
     Q_OBJECT
 public:
-    Player(Entities::StreamingServicePlugin& plugin);
+    Player(Application::StreamingService& streamingService);
     ~Player();
 
     // IPlayer
@@ -31,7 +31,7 @@ public:
     Q_INVOKABLE void addToFavorites() override;
     Q_INVOKABLE void removeFromFavorites() override;
 
-    Entities::Song* getCurrentSong() override;
+    Application::Song* getCurrentSong() override;
     double getPosition() const override;
     PlaybackStatus getPlaybackStatus() const override;
     bool getCanSeek() const override;
@@ -48,7 +48,7 @@ public:
     Q_INVOKABLE void refresh();
     Q_INVOKABLE void setUpdateResults(const QVariant& results);
 
-    // invoked by PlayerProxy
+    // invoked by CurrentPlayer
     void suspend();
     void resume();
 
@@ -62,7 +62,7 @@ signals:
     void updateRequested(const QString& script);
 
 private:
-    void setCurrentSong(std::unique_ptr<Entities::Song>& song);
+    void setCurrentSong(std::unique_ptr<Application::Song>& song);
     void setPosition(double value);
     void setCanSeek(bool value);
     void setCanGoNext(bool value);
@@ -78,9 +78,9 @@ private:
     bool canGoPrevious = false;
     bool canAddToFavorites = false;
     double volume = 1;
-    std::unique_ptr<Entities::Song> currentSong;
-    Entities::StreamingServicePlugin& plugin;
-    Entities::StreamingServicePluginScript& pluginScript;
+    std::unique_ptr<Application::Song> currentSong;
+    Application::StreamingService& streamingService;
+    Application::StreamingServiceScript& streamingServiceScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
 };
 

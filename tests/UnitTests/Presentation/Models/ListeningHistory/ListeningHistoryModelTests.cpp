@@ -1,35 +1,35 @@
 #include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
 #include <QVariant>
 #include <catch.hpp>
-#include <MellowPlayer/Application/Services/ListeningHistoryService.hpp>
-#include <MellowPlayer/Application/Player/PlayerProxy.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
-#include <Mocks/PluginLoaderMock.hpp>
-#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/Application/Services/PlayerService.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/Player/Players.hpp>
 #include <Utils/Helpers.hpp>
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ListeningHistoryViewModelTests") {
-    auto mock = PluginLoaderMock::get();
+    auto mock = StreamingServiceLoaderMock::get();
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    StreamingServicePluginService pluginService(mock.get());
-    pluginService.load();
-    PlayerService playerService(pluginService);
-    PlayerProxy player(playerService, pluginService);
+    StreamingServices streamingServices(mock.get());
+    streamingServices.load();
+    Players players(streamingServices);
+    CurrentPlayer player(players, streamingServices);
     FakeWorkDispatcher workDispatcher;
     InMemoryListeningHistoryDataProvider dataProvider;
     Settings& settings = injector.create<Settings&>();
-    ListeningHistoryService listeningHistoryService(dataProvider, player, workDispatcher, settings);
-    Player& currentPlayer = *playerService.get(pluginService.getAll()[0]->getName());
-    pluginService.setCurrent(pluginService.getAll()[0].get());
+    ListeningHistory listeningHistoryService(dataProvider, player, workDispatcher, settings);
+    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
+    streamingServices.setCurrent(streamingServices.getAll()[0].get());
     ListeningHistoryModel listeningHistoryViewModel(listeningHistoryService);
     Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);

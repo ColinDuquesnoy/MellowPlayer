@@ -3,7 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 

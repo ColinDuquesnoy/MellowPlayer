@@ -1,8 +1,8 @@
-#include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/Presentation/IconProvider.hpp>
+#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
 #include "NotificationFactory.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

@@ -7,7 +7,6 @@ if(WIN32)
     add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} use-cases.qrc)
 else()
     add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} use-cases.qrc)
-    target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Entities)
     install(TARGETS ${LIB_NAME}
             RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
             LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -23,32 +23,32 @@ TEST_CASE("StyleViewModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
-    StreamingServiceStyleModel pluginStyleModel(pluginService, settings);
-    pluginService.setCurrent(nullptr);
+    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    StreamingServiceStyleModel pluginStyleModel(streamingServices, settings);
+    streamingServices.setCurrent(nullptr);
 
     SECTION("initially use StreamingServiceStyle::defaultStyle") {
         requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
     }
 
-    SECTION("use pluginStyle when current plugin changed") {
-        pluginService.setCurrent(&pluginService.get("Deezer"));
-        requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
-        pluginService.setCurrent(&pluginService.get("Spotify"));
-        requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
+    SECTION("use pluginStyle when current streamingService changed") {
+        streamingServices.setCurrent(&streamingServices.get("Deezer"));
+        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
+        streamingServices.setCurrent(&streamingServices.get("Spotify"));
+        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
     }
 
     SECTION("setUsePluginTests") {
         REQUIRE(pluginStyleModel.getUsePluginStyle());
-        pluginService.setCurrent(&pluginService.get("Deezer"));
-        requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
+        streamingServices.setCurrent(&streamingServices.get("Deezer"));
+        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
         pluginStyleModel.setUsePluginStyle(false);
         REQUIRE(!pluginStyleModel.getUsePluginStyle());
         requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
         pluginStyleModel.setUsePluginStyle(false);
         requireMatchStyle(pluginStyleModel, pluginStyleModel.getDefaultStyle());
         pluginStyleModel.setUsePluginStyle(true);
-        requireMatchStyle(pluginStyleModel, PluginLoaderMock::PLUGIN_STYLE);
+        requireMatchStyle(pluginStyleModel, StreamingServiceLoaderMock::PLUGIN_STYLE);
     }
 
     SECTION("getColorScaleFactor") {

@@ -1,8 +1,7 @@
 #pragma once
 
-#ifdef USE_SNORENOTIFY
 
-#include <MellowPlayer/Application/Interfaces/INotificationPresenter.hpp>
+#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <libsnore/snore.h>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
@@ -15,7 +14,7 @@ class SnorenotifyPresenter: public QObject, public Application::INotificationPre
 public:
     SnorenotifyPresenter(Application::IMainWindow& mainWindow);
     void initialize() override;
-    bool display(const Entities::Notification& notification) override;
+    bool display(const Application::Notification& notification) override;
 
 private slots:
     void onActionInvoked(const Snore::Notification &notification);
@@ -28,5 +27,3 @@ private:
 };
 
 END_MELLOWPLAYER_NAMESPACE
-
-#endif

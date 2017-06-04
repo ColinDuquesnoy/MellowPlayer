@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 
 class FakeWorkDispatcher: public MellowPlayer::Application::IWorkDispatcher {
 public:

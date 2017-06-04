@@ -1,12 +1,10 @@
-#ifdef USE_LIBNOTIFY
-
 #include <libnotify/notify.h>
-#include <MellowPlayer/Entities/Notifications.hpp>
-#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "LibnotifyPresenter.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -43,5 +41,3 @@ bool LibnotifyPresenter::display(const Notification& notification) {
 void LibnotifyPresenter::onActionCallback() {
     instance->mainWindow.show();
 }
-
-#endif

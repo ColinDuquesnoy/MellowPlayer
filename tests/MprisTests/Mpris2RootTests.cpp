@@ -4,7 +4,7 @@
 #include <fakeit.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <MellowPlayer/Infrastructure/Services/Mpris/Mpris2Root.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp>
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -17,7 +17,7 @@ class ListeningHistoryEntryModel: public QObject {
     Q_PROPERTY(QString dateCategory READ getDateCategory CONSTANT)
     Q_OBJECT
 public:
-    ListeningHistoryEntryModel(const Entities::ListeningHistoryEntry& entry, QObject* parent = nullptr);
+    ListeningHistoryEntryModel(const Application::ListeningHistoryEntry& entry, QObject* parent = nullptr);
 
     int getEntryId() const { return entry.id; }
     QString getSongId() const;
@@ -30,7 +30,7 @@ public:
     QString getDateCategory() const;
 
 private:
-    Entities::ListeningHistoryEntry entry;
+    Application::ListeningHistoryEntry entry;
     DateTimeConverter dateTimeConverter;
 };
 

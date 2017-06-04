@@ -1,8 +1,8 @@
-#include <MellowPlayer/Entities/Notifications.hpp>
-#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 #include "SystemTrayIconPresenter.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 

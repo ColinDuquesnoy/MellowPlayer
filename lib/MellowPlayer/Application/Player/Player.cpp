@@ -1,17 +1,17 @@
 #include <QVariantMap>
-#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
-#include <MellowPlayer/Entities/StreamingServices/StreamingServicePluginScript.hpp>
-#include <MellowPlayer/Entities/Song.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
+#include <MellowPlayer/Application/Player/Song.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "Player.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
-Player::Player(StreamingServicePlugin& plugin) :
-        logger(LoggingManager::instance().getLogger("Player-" + plugin.getName().toStdString())),
-        currentSong(nullptr), plugin(plugin), pluginScript(*plugin.getScript()) {
+Player::Player(StreamingService& streamingService) :
+        logger(LoggingManager::instance().getLogger("Player-" + streamingService.getName().toStdString())),
+        currentSong(nullptr), streamingService(streamingService), streamingServiceScript(*streamingService.getScript()) {
 
 }
 
@@ -27,33 +27,33 @@ void Player::togglePlayPause() {
 
 void Player::play() {
     LOG_DEBUG(logger, "play()");
-    emit runJavascriptRequested(pluginScript.play());
+    emit runJavascriptRequested(streamingServiceScript.play());
 }
 
 void Player::pause() {
     LOG_DEBUG(logger, "pause()");
-    emit runJavascriptRequested(pluginScript.pause());
+    emit runJavascriptRequested(streamingServiceScript.pause());
 }
 
 void Player::next() {
     LOG_DEBUG(logger, "next()");
-    emit runJavascriptRequested(pluginScript.next());
+    emit runJavascriptRequested(streamingServiceScript.next());
 }
 
 void Player::previous() {
     LOG_DEBUG(logger, "previous()");
-    emit runJavascriptRequested(pluginScript.previous());
+    emit runJavascriptRequested(streamingServiceScript.previous());
 }
 
 void Player::seekToPosition(double value) {
     LOG_DEBUG(logger, "seekToPosition(" << value << ")");
-    emit runJavascriptRequested(pluginScript.seekToPosition(value));
+    emit runJavascriptRequested(streamingServiceScript.seekToPosition(value));
     setPosition(value);
 }
 
 void Player::setVolume(double value) {
     LOG_TRACE(logger, "setVolume(" << value << ")");
-    emit runJavascriptRequested(pluginScript.setVolume(value));
+    emit runJavascriptRequested(streamingServiceScript.setVolume(value));
 }
 
 void Player::toggleFavoriteSong() {
@@ -69,12 +69,12 @@ void Player::toggleFavoriteSong() {
 
 void Player::addToFavorites() {
     LOG_TRACE(logger, "addToFavorites()");
-    emit runJavascriptRequested(pluginScript.addToFavorites());
+    emit runJavascriptRequested(streamingServiceScript.addToFavorites());
 }
 
 void Player::removeFromFavorites() {
     LOG_TRACE(logger, "removeFromFavorites()");
-    emit runJavascriptRequested(pluginScript.removeFromFavorites());
+    emit runJavascriptRequested(streamingServiceScript.removeFromFavorites());
 }
 
 Song* Player::getCurrentSong() {
@@ -110,17 +110,17 @@ double Player::getVolume() const {
 }
 
 QString Player::getServiceName() const {
-    return plugin.getName();
+    return streamingService.getName();
 }
 
 void Player::initialize() {
     LOG_TRACE(logger, "initialize()");
-    emit runJavascriptRequested(pluginScript.getConstants() + "\n" + pluginScript.getCode());
+    emit runJavascriptRequested(streamingServiceScript.getConstants() + "\n" + streamingServiceScript.getCode());
 }
 
 void Player::refresh() {
     LOG_TRACE(logger, "initialize()");
-    emit updateRequested(pluginScript.update());
+    emit updateRequested(streamingServiceScript.update());
 }
 
 void Player::setUpdateResults(const QVariant& results) {
@@ -237,7 +237,7 @@ void Player::setCurrentVolume(double value) {
     emit volumeChanged();
 }
 
-bool Player::operator==(const Player &other) const { return plugin == other.plugin; }
+bool Player::operator==(const Player &other) const { return streamingService == other.streamingService; }
 
 bool Player::operator!=(const Player &other) const { return !operator==(other); }
 

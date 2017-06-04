@@ -1,12 +1,10 @@
-#ifdef USE_SNORENOTIFY
-
-#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/Application/Notifications.hpp>
 #include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 #include "SnorenotifyPresenter.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -55,5 +53,3 @@ void SnorenotifyPresenter::onActionInvoked(const Snore::Notification&) {
     LOG_TRACE(logger, "onActionInvoked()");
     mainWindow.show();
 }
-
-#endif

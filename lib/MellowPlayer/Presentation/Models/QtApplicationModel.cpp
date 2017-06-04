@@ -1,16 +1,16 @@
 #include <QtWebEngine>
 #include <QWebEngineProfile>
-#include <MellowPlayer/Entities/Song.hpp>
-#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
+#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "MellowPlayer/Presentation/IconProvider.hpp"
+#include "MellowPlayer/Presentation/Utils/IconProvider.hpp"
 #include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
 #include "QtApplicationModel.hpp"
 
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -37,11 +37,11 @@ QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& ap
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Thin.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-ThinItalic.ttf");
 
-    qRegisterMetaType<Song*>("Entities::Song*");
+    qRegisterMetaType<Song*>("Application::Song*");
     qRegisterMetaType<Song*>("Song*");
-    qRegisterMetaType<StreamingServicePlugin*>("Entities::StreamingServicePlugin*");
-    qRegisterMetaType<StreamingServicePlugin*>("StreamingServicePlugin*");
-    qRegisterMetaType<ListeningHistoryEntry>("Entities::ListeningHistoryEntry");
+    qRegisterMetaType<StreamingService*>("Application::StreamingService*");
+    qRegisterMetaType<StreamingService*>("StreamingService*");
+    qRegisterMetaType<ListeningHistoryEntry>("Application::ListeningHistoryEntry");
     qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
     qRegisterMetaType<Player*>("Application::Player*");
     qRegisterMetaType<Player*>("Player*");

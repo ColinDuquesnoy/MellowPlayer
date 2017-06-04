@@ -1,6 +1,7 @@
 #include <QtWebEngine>
 #include <QMessageBox>
-#include <MellowPlayer/Application/Interfaces/ILocalAlbumArtService.hpp>
+#include <QQuickStyle>
+#include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
@@ -20,7 +21,7 @@ MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,
                                  StreamingServiceStyleModel& pluginStyleModel,
                                  IQtApplication& qtApp,
                                  IPlayer& player,
-                                 ILocalAlbumArtService& albumArt,
+                                 ILocalAlbumArt& albumArt,
                                  Settings& settings) :
         logger(LoggingManager::instance().getLogger("MainWindowModel")),
         settings(settings), streamingServices(streamingServicesModel),
@@ -42,6 +43,7 @@ MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,
 
 bool MainWindowModel::load() {
     LOG_TRACE(logger, "loading");
+    QQuickStyle::setStyle("Material");
     QtWebEngine::initialize();
     streamingServices.initialize();
     listeningHistory.initialize();

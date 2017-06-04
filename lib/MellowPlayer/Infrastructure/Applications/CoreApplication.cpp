@@ -1,10 +1,10 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
-#include <MellowPlayer/Application/Interfaces/IQtApplication.hpp>
-#include <MellowPlayer/Application/Interfaces/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
-#include <MellowPlayer/Application/Interfaces/IHotkeysService.hpp>
-#include <MellowPlayer/Application/Interfaces/INotificationsService.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
+#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Application/Notifications/INotifier.hpp>
 
 #include "CoreApplication.hpp"
 
@@ -14,27 +14,27 @@ using namespace std;
 
 CoreApplication::CoreApplication(IQtApplication& qtApp,
                            IMainWindow& mainWindow,
-                           StreamingServicePluginService& pluginService,
-                           IHotkeysService& kotkeys,
+                           StreamingServices& streamingServices,
+                           IHotkeysController& kotkeys,
                            ISystemTrayIcon& systemTrayIcon,
-                           INotificationService& notificationService) :
+                           INotifier& notifier) :
         logger(LoggingManager::instance().getLogger("Application")),
         qtApp(qtApp),
         mainWindow(mainWindow),
-        pluginService(pluginService),
+        streamingServices(streamingServices),
         kotkeys(kotkeys),
         systemTrayIcon(systemTrayIcon),
-        notificationService(notificationService) {
+        notifier(notifier) {
 
 }
 
 void CoreApplication::initialize() {
     LOG_TRACE(logger, "initialize");
     LOG_INFO(logger, "MellowPlayer " + string(MELLOWPLAYER_VERSION))
-    pluginService.load();
+    streamingServices.load();
     mainWindow.load();
     kotkeys.start();
-    notificationService.initialize();
+    notifier.initialize();
     mainWindow.show();
     systemTrayIcon.show();
 }

@@ -2,13 +2,13 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicePluginModel.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, PlayerService)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicePluginService)
-PREDECLARE_MELLOWPLAYER_CLASS(Entities, StreamingServicePlugin)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, Players)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
 
 class QQmlApplicationEngine;
 template <class T> class QQmlObjectListModel;
@@ -22,13 +22,13 @@ class StreamingServicesModel: public QObject {
     Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
     Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
 public:
-    StreamingServicesModel(Application::StreamingServicePluginService& pluginService,
-                               Application::PlayerService& playerService,
-                               Application::Settings& settings);
+    StreamingServicesModel(Application::StreamingServices& streamingServices,
+                           Application::Players& players,
+                           Application::Settings& settings);
     void initialize();
 
     Q_INVOKABLE void reload();
-    QQmlObjectListModel<StreamingServicePluginModel>* getModel() { return model; }
+    QQmlObjectListModel<StreamingServiceModel>* getModel() { return model; }
     QObject* getCurrentService() const;
     int getCurrentIndex() const;
 
@@ -41,14 +41,14 @@ signals:
     void currentIndexChanged(int currentIndex);
 
 private slots:
-    void onPluginAdded(Entities::StreamingServicePlugin* plugin);
+    void onPluginAdded(Application::StreamingService* streamingService);
 
 private:
-    Application::StreamingServicePluginService& pluginService;
-    Application::PlayerService& playerService;
+    Application::StreamingServices& streamingServices;
+    Application::Players& players;
     Application::Settings& settings;
     Application::Setting& currentServiceSetting;
-    QQmlObjectListModel<StreamingServicePluginModel>* model;
+    QQmlObjectListModel<StreamingServiceModel>* model;
     QObject* currentService;
     int currentIndex;
 };

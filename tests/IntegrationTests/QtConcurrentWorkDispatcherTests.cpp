@@ -1,7 +1,7 @@
 #include <chrono>
 #include <thread>
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
+#include <MellowPlayer/Infrastructure/Utils/QtConcurrentWorkDispatcher.hpp>
 
 using namespace std::this_thread;
 using namespace std::chrono;

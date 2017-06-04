@@ -1,16 +1,16 @@
-#include <MellowPlayer/Entities/StreamingServices/StreamingServicePlugin.hpp>
-#include <MellowPlayer/Application/Services/StreamingServicePluginService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "StreamingServiceStyleModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServicePluginService& pluginService, Settings& settings) :
+StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServices& streamingServices, Settings& settings) :
         usePluginStyle(true),
-        pluginService(pluginService),
+        streamingServices(streamingServices),
         accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
         adaptiveThemeSetting(settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME)),
         backgroundSetting(settings.get(SettingKey::APPEARANCE_BACKGROUND)),
@@ -20,7 +20,7 @@ StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServicePluginSer
         secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
         secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
         style(getDefaultStyle()) {
-    connect(&pluginService, &StreamingServicePluginService::currentPluginChanged, this, &StreamingServiceStyleModel::onPluginChanged);
+    connect(&streamingServices, &StreamingServices::currentChanged, this, &StreamingServiceStyleModel::onPluginChanged);
     connect(&accentColorSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
     connect(&adaptiveThemeSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
     connect(&backgroundSetting, &Setting::valueChanged, this, &StreamingServiceStyleModel::updateStyle);
@@ -77,16 +77,16 @@ void StreamingServiceStyleModel::setUsePluginStyle(bool value) {
 }
 
 void StreamingServiceStyleModel::updateStyle() {
-    StreamingServicePlugin* currentPlugin = pluginService.getCurrent();
-    if (usePluginStyle && currentPlugin != nullptr && adaptiveThemeSetting.getValue().toBool() &&
-            !currentPlugin->getStyle().isEmpty())
-        fromStyle(currentPlugin->getStyle());
+    StreamingService* currentService = streamingServices.getCurrent();
+    if (usePluginStyle && currentService != nullptr && adaptiveThemeSetting.getValue().toBool() &&
+            !currentService->getStyle().isEmpty())
+        fromStyle(currentService->getStyle());
     else
         fromStyle(getDefaultStyle());
 }
 
-void StreamingServiceStyleModel::onPluginChanged(StreamingServicePlugin* plugin) {
-    if (plugin != nullptr)
+void StreamingServiceStyleModel::onPluginChanged(StreamingService* streamingService) {
+    if (streamingService != nullptr)
         updateStyle();
 }
 

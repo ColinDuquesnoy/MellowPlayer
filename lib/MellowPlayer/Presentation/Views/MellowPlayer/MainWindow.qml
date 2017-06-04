@@ -16,7 +16,6 @@ ApplicationWindow {
     minimumHeight: 720
     onClosing: {
         var closeToTray = settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
-        console.error("close to tray", closeToTray);
         if (closeToTray) {
             var showMessageSetting = settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
             if (showMessageSetting.value) {

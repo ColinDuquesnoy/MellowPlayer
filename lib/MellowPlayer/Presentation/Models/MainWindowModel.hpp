@@ -2,13 +2,13 @@
 
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQuick/QQuickWindow>
-#include <MellowPlayer/Application/Interfaces/IMainWindow.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
 #include <MellowPlayer/Presentation/Models/Settings/SettingsModel.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArtService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArt)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
 
@@ -28,7 +28,7 @@ public:
                     StreamingServiceStyleModel& pluginStyleModel,
                     Application::IQtApplication& qtApp,
                     Application::IPlayer& player,
-                    Application::ILocalAlbumArtService& albumArt,
+                    Application::ILocalAlbumArt& albumArt,
                     Application::Settings& settings);
     bool load() override;
     void show() override;

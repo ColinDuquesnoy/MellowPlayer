@@ -27,7 +27,6 @@ Pane {
             property int newMofifiers: 0
             property string memText: text
 
-            hoverEnabled: true
             onTextChanged: model.qtObject.value = text
             text: model.qtObject.value
 
@@ -42,7 +41,6 @@ Pane {
                     startRecording()
                 }
                 placeholderText = model.qtObject.keySequenceToString(event.key, event.modifiers);
-                console.error(placeholderText, model.qtObject.keySequenceToString(event.key, event.modifiers))
                 newKey = event.key;
                 newMofifiers = event.modifiers
                 event.accepted = true;
@@ -82,6 +80,15 @@ Pane {
 
             Tooltip {
                 text: model.toolTip
+            }
+
+            Component.onCompleted: {
+                try {
+                    hoverEnabled = true
+                }
+                catch (e) {
+                    // not available with Qt < 5.8
+                }
             }
 
             Layout.fillWidth: true

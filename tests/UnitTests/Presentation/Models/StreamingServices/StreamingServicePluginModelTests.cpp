@@ -9,23 +9,23 @@ USE_MELLOWPLAYER_NAMESPACE(Presentation)
 TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    PlayerService& playerService = injector.create<PlayerService&>();
-    StreamingServicePluginService& pluginService = injector.create<StreamingServicePluginService&>();
-    pluginService.load();
+    Players& players = injector.create<Players&>();
+    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    streamingServices.load();
     QSettingsProvider settingsProvider;
-    StreamingServicePlugin& plugin1 = *pluginService.getAll()[0];
-    StreamingServicePlugin& plugin2 = *pluginService.getAll()[1];
+    StreamingService& service1 = *streamingServices.getAll()[0];
+    StreamingService& service2 = *streamingServices.getAll()[1];
 
-    StreamingServicePluginModel model(plugin1, settingsProvider, playerService);
-    StreamingServicePluginModel sameModel(plugin1, settingsProvider, playerService);
-    StreamingServicePluginModel model2(plugin2, settingsProvider, playerService);
+    StreamingServiceModel model(service1, settingsProvider, players);
+    StreamingServiceModel sameModel(service1, settingsProvider, players);
+    StreamingServiceModel model2(service2, settingsProvider, players);
 
     SECTION("basic properties") {
-        REQUIRE(model.getColor() == plugin1.getColor());
-        REQUIRE(model.getLogo() == plugin1.getLogo());
-        REQUIRE(model.getName() == plugin1.getName());
-        REQUIRE(model.getPlayer() == playerService.get(plugin1.getName()).get());
-        REQUIRE(model.getUrl() == plugin1.getUrl());
+        REQUIRE(model.getColor() == service1.getColor());
+        REQUIRE(model.getLogo() == service1.getLogo());
+        REQUIRE(model.getName() == service1.getName());
+        REQUIRE(model.getPlayer() == players.get(service1.getName()).get());
+        REQUIRE(model.getUrl() == service1.getUrl());
     }
 
     SECTION("equality operator") {

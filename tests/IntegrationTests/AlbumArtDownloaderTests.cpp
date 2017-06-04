@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/AlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
 #include <iostream>
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)

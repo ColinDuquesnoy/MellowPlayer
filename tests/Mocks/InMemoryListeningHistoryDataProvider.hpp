@@ -1,7 +1,7 @@
 #pragma once
 
-#include <MellowPlayer/Application/Interfaces/IListeningHistoryDataProvider.hpp>
-#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 
 
 class InMemoryListeningHistoryDataProvider: public MellowPlayer::Application::IListeningHistoryDataProvider {
@@ -12,7 +12,7 @@ public:
         initialized = true;
     };
 
-    int add(const MellowPlayer::Entities::ListeningHistoryEntry& entry) {
+    int add(const MellowPlayer::Application::ListeningHistoryEntry& entry) {
         auto newEntry(entry);
         newEntry.id = entries.count() + 1;
         entries.append(newEntry);
@@ -24,7 +24,7 @@ public:
     };
 
     void remove(const QString& filterKey, const QString& filterValue) {
-        QList<MellowPlayer::Entities::ListeningHistoryEntry> toRemove;
+        QList<MellowPlayer::Application::ListeningHistoryEntry> toRemove;
         for (int i = 0; i < entries.count(); ++i) {
             auto& entry = entries.at(i);
             if ((filterKey == "id" && entry.id == filterValue.toInt()) ||
@@ -41,10 +41,10 @@ public:
         }
     }
 
-    QList<MellowPlayer::Entities::ListeningHistoryEntry> getAll() const {
+    QList<MellowPlayer::Application::ListeningHistoryEntry> getAll() const {
         return entries;
     };
 
 private:
-    QList<MellowPlayer::Entities::ListeningHistoryEntry> entries;
+    QList<MellowPlayer::Application::ListeningHistoryEntry> entries;
 };

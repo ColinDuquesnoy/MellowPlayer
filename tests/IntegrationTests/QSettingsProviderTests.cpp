@@ -1,8 +1,8 @@
 #include <catch.hpp>
-#include <MellowPlayer/Entities/Notifications.hpp>
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 

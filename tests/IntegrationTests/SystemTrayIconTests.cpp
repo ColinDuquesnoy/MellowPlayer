@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/SystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>

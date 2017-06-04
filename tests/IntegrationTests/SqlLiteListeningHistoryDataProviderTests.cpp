@@ -1,9 +1,9 @@
 #include <catch.hpp>
 #include <QDir>
-#include <MellowPlayer/Entities/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Infrastructure/SqlLiteListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Entities)
+USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {

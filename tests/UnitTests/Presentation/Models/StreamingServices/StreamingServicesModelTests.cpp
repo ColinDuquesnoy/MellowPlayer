@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
 #include "qt-qml-models/QQmlObjectListModel.hpp"
-#include "Mocks/PluginLoaderMock.hpp"
+#include "Mocks/StreamingServiceLoaderMock.hpp"
 #include "DI.hpp"
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
@@ -12,13 +12,13 @@ using namespace fakeit;
 TEST_CASE("StreamingServicesModel", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    StreamingServicePluginService& servicesManager = injector.create<StreamingServicePluginService&>();
-    servicesManager.load();
+    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    streamingServices.load();
     StreamingServicesModel& viewModel = injector.create<StreamingServicesModel&>();
     viewModel.initialize();
     viewModel.reload();
 
-    REQUIRE(viewModel.getModel()->count() == servicesManager.getAll().count());
+    REQUIRE(viewModel.getModel()->count() == streamingServices.getAll().count());
 
     SECTION("setCurrentService_change_currentIndex") {
         REQUIRE(viewModel.getCurrentIndex() == -1);

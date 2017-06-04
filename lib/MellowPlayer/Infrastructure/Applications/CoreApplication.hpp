@@ -4,10 +4,10 @@
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicePluginService)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IHotkeysService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IHotkeysController)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ISystemTrayIcon)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, INotificationService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, INotifier)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 
 
@@ -17,10 +17,10 @@ class CoreApplication : public IApplication {
 public:
     CoreApplication(Application::IQtApplication& qtApp,
                     Application::IMainWindow& mainWindow,
-                    Application::StreamingServicePluginService& pluginService,
-                    Application::IHotkeysService& kotkeys,
+                    Application::StreamingServices& streamingServices,
+                    Application::IHotkeysController& kotkeys,
                     Application::ISystemTrayIcon& systemTrayIcon,
-                    Application::INotificationService& notificationService);
+                    Application::INotifier& notifier);
 
     void initialize() override;
     void restoreWindow() override;
@@ -31,10 +31,10 @@ private:
     Application::ILogger& logger;
     Application::IQtApplication& qtApp;
     Application::IMainWindow& mainWindow;
-    Application::StreamingServicePluginService& pluginService;
-    Application::IHotkeysService& kotkeys;
+    Application::StreamingServices& streamingServices;
+    Application::IHotkeysController& kotkeys;
     Application::ISystemTrayIcon& systemTrayIcon;
-    Application::INotificationService& notificationService;
+    Application::INotifier& notifier;
 };
 
 END_MELLOWPLAYER_NAMESPACE
