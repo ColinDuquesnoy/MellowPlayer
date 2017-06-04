@@ -16,12 +16,24 @@ macro(add_mellowplayer_test TEST_TYPE)
     file(GLOB_RECURSE MOCK_HEADERS Mocks/*.hpp)
     file(GLOB_RECURSE UTILS_HEADERS Utils/*.hpp)
     add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} ${MOCK_HEADERS} ${UTILS_HEADERS} main.cpp DI)
-    target_link_libraries(${TEST_EXECUTABLE_NAME}
-            ${PROJECT_NAME}.Application
-            ${PROJECT_NAME}.Application
-            ${PROJECT_NAME}.Presentation
-            ${PROJECT_NAME}.Infrastructure)
-    qt5_use_modules(${TEST_EXECUTABLE_NAME} Core Test)
+    target_link_libraries(${TEST_EXECUTABLE_NAME} MellowPlayer.Application MellowPlayer.Presentation MellowPlayer.Infrastructure)
+    qt5_use_modules(${TEST_EXECUTABLE_NAME} Concurrent Core Qml Quick WebEngine WebEngineWidgets Widgets QuickControls2 Network Sql Test)
+    if (APPLE)
+        add_framework(Carbon ${TEST_EXECUTABLE_NAME})
+        add_framework(Cocoa ${TEST_EXECUTABLE_NAME})
+    elseif(UNIX)
+        qt5_use_modules(${TEST_EXECUTABLE_NAME} DBus)
+        find_package(X11)
+        target_link_libraries(${TEST_EXECUTABLE_NAME} ${X11_LIBRARIES})
+    endif()
+
+    if(USE_LIBNOTIFY)
+        target_link_libraries(${TEST_EXECUTABLE_NAME} ${LIBNOTIFY_LIBRARIES})
+    endif()
+
+    if (LibsnoreQt5_FOUND)
+        target_link_libraries(${TEST_EXECUTABLE_NAME} Snore::Libsnore)
+    endif()
     add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)
 endmacro()
 

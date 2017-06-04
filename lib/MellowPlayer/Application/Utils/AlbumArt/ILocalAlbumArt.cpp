@@ -5,3 +5,4 @@ USE_MELLOWPLAYER_NAMESPACE(Application)
 ILocalAlbumArt::~ILocalAlbumArt() {
 
 }
+

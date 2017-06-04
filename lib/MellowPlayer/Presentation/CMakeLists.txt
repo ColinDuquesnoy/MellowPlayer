@@ -10,6 +10,10 @@ set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQml
 set(HEADER_FILES ${HEADER_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQmlObjectListModel.hpp)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models)
 
+if(USE_LIBNOTIFY)
+    include_directories(${LIBNOTIFY_INCLUDE_DIRS})
+endif()
+
 set(QML_FILES ${QML_FILES} Views/MellowPlayer/qmldir)
 
 set(SOURCE_FILES ${SOURCE_FILES} Notifications/Presenters/SystemTrayIconPresenter.cpp)
@@ -23,25 +27,6 @@ elseif(LibsnoreQt5_FOUND)
 endif()
 
 SET(CMAKE_DEBUG_POSTFIX "")
-if(WIN32)
-    add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES} ${CONF_FILES})
-else()
-    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES} ${CONF_FILES})
-    target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application)
-    install(TARGETS ${LIB_NAME}
-            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)
-endif()
-
-if(USE_LIBNOTIFY)
-    include_directories(${LIBNOTIFY_INCLUDE_DIRS})
-    target_link_libraries(${LIB_NAME} ${LIBNOTIFY_LIBRARIES})
-endif()
-
-if (LibsnoreQt5_FOUND)
-    target_link_libraries(${LIB_NAME} Snore::Libsnore)
-endif()
-
-
+add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QML_FILES} ${CONF_FILES})
+target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application)
 qt5_use_modules(${LIB_NAME} Core Qml Quick WebEngine WebEngineWidgets Widgets QuickControls2)

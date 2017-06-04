@@ -24,20 +24,8 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.11.0/include/)
 
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 include_directories(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
-if(WIN32)
-    add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
-else()
-    add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
-    target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application)
-    if (APPLE)
-        add_framework(Carbon ${LIB_NAME})
-        add_framework(Cocoa ${LIB_NAME})
-    endif()
-    install(TARGETS ${LIB_NAME}
-            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)
-endif()
+add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
+target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application)
 qt5_use_modules(${LIB_NAME} Concurrent Core Widgets Network Sql)
 
 if(UNIX AND NOT APPLE)
