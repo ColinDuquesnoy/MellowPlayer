@@ -50,3 +50,6 @@ gpg_key
 coverage
 build/
 lcov-1\.13/
+
+*.AppImage
+appdir/

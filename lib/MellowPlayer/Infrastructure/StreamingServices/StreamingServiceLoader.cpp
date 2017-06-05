@@ -12,6 +12,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceStyle.hpp>
 #include "StreamingServiceLoader.hpp"
+#include <QDebug>
 
 USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Application)
@@ -27,7 +28,7 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const {
     QList<shared_ptr<StreamingService>> services;
     for (const QString& path: getSearchPaths()) {
         if (!QDir(path).exists()) {
-            LOG_DEBUG(logger, "skipping streamingService path: " << path.toStdString().c_str() << " (directory not found)");
+            LOG_DEBUG(logger, "skipping plugin directory: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
         LOG_DEBUG(logger, "looking for services in " << path.toStdString().c_str());
@@ -133,8 +134,13 @@ QString StreamingServiceLoader::getUserDirectory() const {
 
 QStringList StreamingServiceLoader::getSearchPaths() const {
     QStringList paths;
+
+#ifdef QT_DEBUG
     paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
+#endif
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
+    // appimage path is in /$mountpoint/usr/bin/../share/mellowplayer/plugins
+    paths.append(QFileInfo(qApp->applicationDirPath(), "../share/mellowplayer/plugins").absoluteFilePath());
     paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
     paths.append(getUserDirectory());
 
