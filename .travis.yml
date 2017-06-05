@@ -46,16 +46,11 @@ script:
 
 after_success:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      # Create AppImage
       ./scripts/packaging/make_appimage.sh /opt/qt59;
-
-      # upload AppImage to transfer.sh
       for file in MellowPlayer-*.AppImage; do
           echo "transferring $file, this may take some time...";
           curl --upload-file ./$file https://transfer.sh/$file;
       done;
-
-      # Code coverage
       sudo pip install cpp-coveralls;
       ./scripts/build/linux/build.sh --debug --coverage;
       ./scripts/build/linux/runtests.sh --debug;
