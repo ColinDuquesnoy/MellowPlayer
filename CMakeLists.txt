@@ -27,6 +27,7 @@ set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or R
 set_option(BUILD_TESTS True BOOL "TRUE to build the tests, FALSE to ignore them.")
 set_option(ENABLE_COVERAGE FALSE BOOL "True to build code coverage targerts")
 set_option(ENABLE_LCOV_REPORT FALSE BOOL "True to enable lcov coverage report. Default is False.")
+set_option(STATIC_LIBSTDCPP FALSE BOOL "True to link statically with libstdc++ and libgcc")
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)

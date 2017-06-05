@@ -24,7 +24,7 @@ chmod a+x linuxdeployqt*.AppImage
 mkdir -p appdir
 mkdir -p cmake-build-release
 pushd cmake-build-release
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=FALSE -DCMAKE_PREFIX_PATH=/home/colin/Qt/5.9/gcc_64/ ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=FALSE -DCMAKE_PREFIX_PATH=/home/colin/Qt/5.9/gcc_64/ -DSTATIC_LIBSTDCPP=TRUE ..
 make -j$(nproc)
 make DESTDIR=../appdir install
 VERSION="$(cat CMakeCache.txt | grep MELLOWPLAYER_VERSION:STRING= | cut -d "=" -f2)"
