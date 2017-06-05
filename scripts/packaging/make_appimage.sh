@@ -36,5 +36,4 @@ ldd appdir/usr/bin/MellowPlayer
 cp $QT_DIR/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
 
-mv MellowPlayer-x86_64.AppImage MellowPlayer-$VERSION-x86_64.AppImage
-chmod +x MellowPlayer-$VERSION-x86_64.AppImage
+chmod +x MellowPlayer-x86_64.AppImage
