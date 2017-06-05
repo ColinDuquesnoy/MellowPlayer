@@ -12,7 +12,7 @@ mkdir -p $build_dir
 pushd $build_dir
 cmake -DCMAKE_BUILD_TYPE=$build_type ..
 if [ "$2" == "--coverage" ]; then
-    cmake -DCMAKE_BUILD_TYPE=$build_type -DENABLE_COVERAGE=1 ..;
+    cmake -DCMAKE_BUILD_TYPE=$build_type -DENABLE_COVERAGE=1 -DCMAKE_INSTALL_PREFIX=/usr ..;
 fi
 
 make -j2
