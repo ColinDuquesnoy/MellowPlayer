@@ -135,9 +135,7 @@ QString StreamingServiceLoader::getUserDirectory() const {
 QStringList StreamingServiceLoader::getSearchPaths() const {
     QStringList paths;
 
-#ifdef QT_DEBUG
     paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
-#endif
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
     // appimage path is in /$mountpoint/usr/bin/../share/mellowplayer/plugins
     paths.append(QFileInfo(qApp->applicationDirPath(), "../share/mellowplayer/plugins").absoluteFilePath());
