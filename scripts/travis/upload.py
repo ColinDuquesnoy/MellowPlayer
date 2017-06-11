@@ -30,6 +30,8 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "github3.zip"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "requests.zip"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "certifi"))
 print(sys.path)
 
 from github3 import login, GitHubError
