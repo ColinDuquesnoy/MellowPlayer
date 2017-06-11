@@ -111,7 +111,7 @@ def update_continuous_release(repo, repo_slug, commit):
         print(e)
         release = create_continuous_release(repo, repo_slug, commit)
     else:
-        if release.target_commitish == commit:
+        if release.target_commitish != commit:
             print("deleting pre-existing release")
             release.delete()
             delete_tag(repo, CONTINUOUS_RELEASE_NAME)
@@ -174,7 +174,7 @@ def main():
         release = get_tag_release(commit, repo, tag)
 
     # upload binaries
-    # upload_binaries(release, glob_expression)
+    upload_binaries(release, glob_expression)
 
 
 if __name__ == "__main__":
