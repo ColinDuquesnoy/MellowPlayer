@@ -29,6 +29,9 @@ import re
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "github3.zip"))
+print(sys.path)
+
 from github3 import login, GitHubError
 
 CONTINUOUS_RELEASE_NAME = "Continuous"
@@ -92,7 +95,7 @@ def get_git_commit():
 
 
 def find_release(repo, release_name):
-    for release in repo.iter_releases():
+    for release in repo.releases():
         if release.name == release_name:
             print("release found: %s" % release_name)
             return release
