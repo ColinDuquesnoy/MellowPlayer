@@ -21,4 +21,4 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   # todo: create dmg image...
 fi
 
-python ./scripts/travis/upload.py ${tagName} dist/*
+python3 ./scripts/travis/upload.py ${tagName} dist/*
