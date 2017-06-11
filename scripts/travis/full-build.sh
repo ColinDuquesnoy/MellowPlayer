@@ -13,6 +13,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   ./scripts/build/linux/runtests.sh;
   # create package
   ./scripts/packaging/make_appimage.sh /opt/qt59;
+  pip install github3.py
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
