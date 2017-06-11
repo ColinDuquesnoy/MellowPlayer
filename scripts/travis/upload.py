@@ -99,6 +99,11 @@ def find_release(repo, release_name):
     raise ValueError("release not found: " + release_name)
 
 
+def delete_tag(repo, tag_name):
+    subprocess.check_call(['git', 'push', '--delete', 'origin', tag_name])
+    subprocess.check_call(['git', 'tag', '--delete', 'tagname', tag_name])
+
+
 def update_continuous_release(repo, repo_slug, commit):
     try:
         release = find_release(repo, CONTINUOUS_RELEASE_NAME)
@@ -106,9 +111,10 @@ def update_continuous_release(repo, repo_slug, commit):
         print(e)
         release = create_continuous_release(repo, repo_slug, commit)
     else:
-        if release.target_commitish != commit:
+        if release.target_commitish == commit:
             print("deleting pre-existing release")
             release.delete()
+            delete_tag(repo, CONTINUOUS_RELEASE_NAME)
             release = create_continuous_release(repo, repo_slug, commit)
         else:
             print('release is up to date and does not need to be recreated')
@@ -166,8 +172,9 @@ def main():
         release = update_continuous_release(repo, repo_slug, commit)
     else:
         release = get_tag_release(commit, repo, tag)
+
     # upload binaries
-    upload_binaries(release, glob_expression)
+    # upload_binaries(release, glob_expression)
 
 
 if __name__ == "__main__":
