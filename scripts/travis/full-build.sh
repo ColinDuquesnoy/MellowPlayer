@@ -3,14 +3,17 @@
 # the built package may be uploaded to a github release if on a deployement build.
 echo "*************************** Performing a FULL build"
 
+tagname = "Continuous";
+if [[ -n "$TRAVIS_TAG" ]]; then
+    tagname = "$TRAVIS_TAG";
+fi
+
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   # build and run tests
   ./scripts/build/linux/build.sh;
   ./scripts/build/linux/runtests.sh;
   # create package
   ./scripts/packaging/make_appimage.sh /opt/qt59;
-  curl --upload-file ./dist/MellowPlayer-x86_64.AppImage https://transfer.sh/MellowPlayer-x86_64.AppImage;
-  echo ""
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -18,3 +21,5 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   ./scripts/build/osx/runtests.sh --release;
   # todo: create dmg image...
 fi
+
+python ./scripts/travis/upload.py $tagname dist/*
