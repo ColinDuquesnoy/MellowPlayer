@@ -3,7 +3,7 @@
 # the built package may be uploaded to a github release if on a deployement build.
 echo "*************************** Performing a FULL build"
 
-tagname = "Continuous";
+tagName='Continuous';
 if [[ -n "$TRAVIS_TAG" ]]; then
     tagname = "$TRAVIS_TAG";
 fi
@@ -22,4 +22,4 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   # todo: create dmg image...
 fi
 
-python ./scripts/travis/upload.py $tagname dist/*
+python ./scripts/travis/upload.py ${tagName} dist/*
