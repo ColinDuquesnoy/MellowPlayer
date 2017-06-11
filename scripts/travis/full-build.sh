@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Compile in release mode, run all tests and create a package and upload it to transfer.sh
-# the built package may be uploaded to a github release if on a deployement build.
+# Compile in release mode, run all tests and create a package and upload it to a github release.
 echo "*************************** Performing a FULL build"
 
 tagName='Continuous';
