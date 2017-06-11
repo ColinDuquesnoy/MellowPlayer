@@ -32,9 +32,13 @@ import sys
 from github3 import login, GitHubError
 
 CONTINUOUS_RELEASE_NAME = "Continuous"
-CONTINUOUS_RELEASE_DESCRIPTION = """This release contains the artifacts of a continuous build.
+CONTINUOUS_RELEASE_DESCRIPTION = """## Description
+
+This release contains the artifacts of a continuous build.
 
 *While this is not an official release, this build is considered stable as all unit tests and integration tests passed. Use it if you want to try the latest features!*
+
+*Since we use the same git commit to create the continuous release, the Source code of the tag is outdated. **Use MellowPlayer-Continuous tarballs** instead of Source code tarballs.*
 
 """
 DEFAULT_GLOB_EXPR = "dist/*"
@@ -127,7 +131,7 @@ def create_continuous_release(repo, repo_slug, commit):
     description = CONTINUOUS_RELEASE_DESCRIPTION
 
     if travis_build_id:
-        description = description + "\n" + \
+        description = description + "\n\n" + \
                       "Travis CI build log: https://travis-ci.org/" + repo_slug + "/builds/" + travis_build_id + "/"
     print("creating release: %s" % CONTINUOUS_RELEASE_NAME)
     return repo.create_release(
