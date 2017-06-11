@@ -2,7 +2,6 @@
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     source ./scripts/env-setup/linux/ubuntu-14.04-env-setup.sh;
-    sudo apt-get install python3 python3-pip
     sudo pip3 install github3.py
 fi
 
