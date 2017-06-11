@@ -36,7 +36,7 @@ CONTINUOUS_RELEASE_DESCRIPTION = """## Description
 
 This release contains the artifacts of a continuous build.
 
-*While this is not an official release, this build is considered stable as all unit tests and integration tests passed. Use it if you want to try the latest features!*
+**While this is not an official release, this build is considered stable as all unit tests and integration tests passed. Use it if you want to try the latest features!**
 
 *Since we use the same git commit to create the continuous release, the Source code of the tag is outdated. **Use MellowPlayer-Continuous tarballs** instead of Source code tarballs.*
 

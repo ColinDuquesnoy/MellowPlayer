@@ -5,6 +5,9 @@ echo "*************************** Performing a FULL build"
 tagName='Continuous';
 if [[ -n "$TRAVIS_TAG" ]]; then
     tagname = "$TRAVIS_TAG";
+else
+    git archive --format zip --output dist/MellowPlayer-${tagName}.zip HEAD;
+    git archive --format tar.gz --output dist/MellowPlayer-${tagName}.tar.gz HEAD;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
@@ -13,8 +16,6 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   ./scripts/build/linux/runtests.sh;
   # create package
   ./scripts/packaging/make_appimage.sh /opt/qt59;
-  git archive --format zip --output dist/MellowPlayer-${tagName}.zip HEAD
-  git archive --format tar.gz --output dist/MellowPlayer-${tagName}.tar.gz HEAD
   pip install github3.py
 fi
 
