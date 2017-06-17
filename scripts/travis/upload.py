@@ -5,7 +5,7 @@ Upload binaries on the specified github release.
 If the specified tag name is "continuous", it will delete any pre-existing release and tag with the name "continuous" and create a new one.
 
 Usage:
-    ./upload.py TAG_NAME GLOB_EXPR
+    ./scripts/upload.py TAG_NAME GLOB_EXPR
 
     TAG_NAME and GLOB_EXPR are optional. They defaults to "Continuous" and "dist/*".
 
@@ -13,23 +13,21 @@ Examples:
 
 - continuous build:
 
-    ./upload.py Continuous dist/*
+    ./scripts/upload.py Continuous dist/*
 
 - release build
 
-    ./upload.py 2.95.0 dist/*
+    ./scripts/upload.py 2.95.0 dist/*
 
 .. note:: This script depends on github3.py (pip install github3.py)
 
 """
-from datetime import datetime
 import glob
 import os
-import re
 import subprocess
 import sys
 
-from github3 import login, GitHubError
+from github3 import login
 
 CONTINUOUS_RELEASE_NAME = "Continuous"
 CONTINUOUS_RELEASE_DESCRIPTION = """## Description
@@ -37,9 +35,6 @@ CONTINUOUS_RELEASE_DESCRIPTION = """## Description
 This release contains the artifacts of a continuous build.
 
 **While this is not an official release, this build is considered stable as all unit tests and integration tests passed. Use it if you want to try the latest features!**
-
-*Since we use the same git tag to create the continuous release, the Source code of the tag is outdated. **Use MellowPlayer-Continuous tarballs** instead of Source code tarballs.*
-
 """
 DEFAULT_GLOB_EXPR = "dist/*"
 
@@ -107,7 +102,7 @@ def find_release(repo, release_name):
     raise ValueError("release not found: " + release_name)
 
 
-def update_continuous_release(repo, repo_slug, commit):
+def update_continuous_release(repo, repo_slug, commit, github_token):
     try:
         release = find_release(repo, CONTINUOUS_RELEASE_NAME)
     except ValueError as e:
@@ -117,6 +112,7 @@ def update_continuous_release(repo, repo_slug, commit):
         print(release.target_commitish, commit)
         if release.target_commitish != commit:
             print("deleting pre-existing release")
+            delete_tag(repo_slug, github_token)
             release.delete()
             release = create_continuous_release(repo, repo_slug, commit)
         else:
@@ -162,6 +158,13 @@ def get_tag_release(commit, repo, tag):
     return release
 
 
+def delete_tag(repo_slug, github_token):
+    delete_url = "https://api.github.com/repos/%s/git/refs/tags/%s" % (repo_slug, CONTINUOUS_RELEASE_NAME)
+    args = ['curl', '-XDELETE', '--header', 'Authorization: token %s' % github_token, delete_url]
+    print("deleting tag: %r" % ' '.join(args))
+    subprocess.check_call(args)
+
+
 def main():
     tag, glob_expression = parse_command_line_args()
     repo_slug = get_repo_slug()
@@ -172,7 +175,7 @@ def main():
     repo = github.repository(owner_name, repository_name)
 
     if tag == CONTINUOUS_RELEASE_NAME:
-        release = update_continuous_release(repo, repo_slug, commit)
+        release = update_continuous_release(repo, repo_slug, commit, github_token)
     else:
         release = get_tag_release(commit, repo, tag)
 
