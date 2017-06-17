@@ -1,55 +1,50 @@
-configuration: Release
-clone_folder: C:\projects\MellowPlayer
-os: Visual Studio 2015
-platform: x64
-version: "3.0.0.{build}"
-    
 # Commit build on master and develop branches
 -
-  branches:
-    only:
-      - master
-      - develop
-      
+    branches:
+        only:
+        - master
+        - develop
+    configuration: Release
+    clone_folder: C:\projects\MellowPlayer
+    os: Visual Studio 2015
+    platform: x64
+    version: "3.0.0.{build}"      
     init:
         - echo "******************** Performing a COMMIT BUILD"
         - cmake --version
-        - msbuild /version
-      
+        - msbuild /version        
     before_build:
         - cd scripts\env-setup\windows
         - env-setup.bat
         - cd scripts\build\windows
-
     build_script:
         - build.bat
-
     test_script:
         - cd ..\scripts\build\windows
         - runtests.bat
   
 # Full build on a release branch and on official tags
 - 
-  branches:
-    only:
-        - /release.*/
-        - /3.*/
-
+    branches:
+        only:
+            - /release.*/
+            - /3.*/
+    configuration: Release
+    clone_folder: C:\projects\MellowPlayer
+    os: Visual Studio 2015
+    platform: x64
+    version: "3.0.0.{build}"
     init:
         - echo "******************** Performing a FULL BUILD"
         - cmake --version
         - msbuild /version
-
     before_build:
         - cd scripts\env-setup\windows
         - env-setup.bat
         - cd scripts\build\windows
-
     build_script:
         - build.bat
-
     test_script:
         - cd ..\scripts\build\windows
         - runtests.bat
         - echo "run packaging tools"
-
