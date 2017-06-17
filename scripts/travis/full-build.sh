@@ -22,7 +22,7 @@ fi
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   ./scripts/build/osx/build.sh --release;
   ./scripts/build/osx/runtests.sh --release;
-  # todo: create dmg image...
+  ./scripts/packaging/osx/make_dmg.sh
 fi
 
 python ./scripts/upload.py ${tagName} dist/*

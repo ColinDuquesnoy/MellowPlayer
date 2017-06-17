@@ -146,7 +146,7 @@ QStringList StreamingServiceLoader::getSearchPaths() const {
     QDir pluginsDir(qApp->applicationDirPath());
     pluginsDir.cdUp();
     pluginsDir.cd("PlugIns");
-    pluginsDir.cd("plugins");
+    pluginsDir.cd("services");
     paths.append(pluginsDir.path());
 #endif
 

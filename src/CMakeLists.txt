@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC OFF)
 
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 
-add_executable(${PROJECT_NAME} main.cpp DI.hpp)
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE main.cpp DI.hpp)
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application
@@ -35,6 +35,7 @@ if (LibsnoreQt5_FOUND)
 endif()
 
 install(TARGETS ${PROJECT_NAME}
+        BUNDLE DESTINATION MacOS
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)

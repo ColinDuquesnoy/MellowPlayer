@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-export CMAKE_PREFIX_PATH=/usr/local/opt/qt5
+export CMAKE_PREFIX_PATH=$PWD/qt
 build_type="Release"
 build_dir="cmake-build-release"
 
