@@ -33,7 +33,7 @@ function update() {
         var artUrl = '';
     }
     try {
-        var songTitle = document.getElementsByClassName('playbackSoundBadge__title')[0].title;
+        var songTitle = document.getElementsByClassName('playbackSoundBadge__titleLink')[0].title;
     } catch (e) {
         songTitle = '';
     }
