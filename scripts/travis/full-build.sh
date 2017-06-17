@@ -5,9 +5,6 @@ echo "*************************** Performing a FULL build"
 tagName='Continuous';
 if [[ -n "$TRAVIS_TAG" ]]; then
     tagname = "$TRAVIS_TAG";
-else
-    git archive --format zip --output dist/MellowPlayer-${tagName}.zip HEAD;
-    git archive --format tar.gz --output dist/MellowPlayer-${tagName}.tar.gz HEAD;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
