@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 # Compile in release mode, run all tests and create a package and upload it to a github release.
 echo "*************************** Performing a FULL build"
 
