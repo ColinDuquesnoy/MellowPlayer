@@ -25,7 +25,6 @@ public:
 
 private:
     QApplication qtApp;
-    Application::ILogger& logger;
 };
 
 END_MELLOWPLAYER_NAMESPACE
