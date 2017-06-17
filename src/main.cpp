@@ -22,9 +22,10 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 
+    QtApplicationModel qtApp(argc, argv);
+
     SpdLoggerFactory loggerFactory;
     LoggingManager::initialize(loggerFactory, LogLevel::Debug);
-    QtApplicationModel qtApp(argc, argv);
     ScopedScope scope{};
 
     LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());

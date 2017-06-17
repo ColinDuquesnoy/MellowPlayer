@@ -17,6 +17,8 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 
+    QtApplicationModel webApplication(argc, argv, "MellowPlayer3.Tests");
+
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
     loggerConfig.createFileLogger = false;
@@ -32,7 +34,6 @@ int main(int argc, char* argv[])
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
 
-    QtApplicationModel webApplication(argc, argv, "MellowPlayer3.Tests");
     QSettings settings;
     settings.clear();
     auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
