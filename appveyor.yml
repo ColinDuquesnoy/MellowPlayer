@@ -15,7 +15,6 @@ clone_folder: C:\projects\MellowPlayer
 branches:
   except:
     - gh-pages
-    - Continuous
 
 before_build:
   - cd scripts\env-setup\windows
