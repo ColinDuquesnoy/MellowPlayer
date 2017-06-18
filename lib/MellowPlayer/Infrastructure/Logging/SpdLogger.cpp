@@ -13,7 +13,11 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
         // configure sinks
         vector<sink_ptr> sinks;
         if (config.createConsoleLogger) {
+#ifdef Q_OS_WIN
+            sinks.push_back(make_shared<sinks::stdout_sink_mt>());
+#else
             sinks.push_back(make_shared<sinks::ansicolor_sink>(make_shared<sinks::stdout_sink_mt>()));
+#endif
         }
         auto logFileName = FileHelper::createLogDirectory().toStdString() + name;
         sinks.push_back(make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5));
