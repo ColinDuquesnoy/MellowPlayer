@@ -28,6 +28,6 @@ test_script:
   - cd ..\scripts\build\windows
   - runtests.bat
 
-on_success:
-  - cd ..\scripts\packaging\windows
-  - make_installer.bat
+#on_success:
+#  - cd ..\scripts\packaging\windows
+#  - make_installer.bat
