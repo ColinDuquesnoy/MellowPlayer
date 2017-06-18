@@ -30,7 +30,11 @@ QString StreamingService::getColor() const {
 QString StreamingService::getLogo() const {
     if (metadata.logoPath.isEmpty())
         return "";
+#ifdef Q_OS_WIN
+    return "file:" + metadata.logoPath;
+#else
     return "file://" + metadata.logoPath;
+#endif
 }
 
 const QString& StreamingService::getName() const {
