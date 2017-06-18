@@ -38,7 +38,7 @@ artifacts:
     name: Windows Installer x64
 
 deploy:
-  deploy_script:
-    - python C:\projects\MellowPlayer\scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+  provider: "Release"
+  deploy_script: 'python C:\projects\MellowPlayer\scripts\upload.py ${env:APPVEYOR_REPO_TAG_NAME} dist/*'
   on:
     appveyor_repo_tag: true
