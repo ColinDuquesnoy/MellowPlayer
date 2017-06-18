@@ -21,9 +21,6 @@ set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/SystemTrayIconPresente
 if(USE_LIBNOTIFY)
     set(SOURCE_FILES ${SOURCE_FILES} Notifications/Presenters/LibnotifyPresenter.cpp)
     set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/LibnotifyPresenter.hpp)
-elseif(LibsnoreQt5_FOUND)
-    set(SOURCE_FILES ${SOURCE_FILES} Notifications/Presenters/SnorenotifyPresenter.cpp)
-    set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/SnorenotifyPresenter.hpp)
 endif()
 
 SET(CMAKE_DEBUG_POSTFIX "")

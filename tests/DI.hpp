@@ -39,10 +39,6 @@
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
 
-#ifdef USE_SNORENOTIFY
-#include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
-#endif
-
 #ifdef USE_LIBNOTIFY
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #endif
