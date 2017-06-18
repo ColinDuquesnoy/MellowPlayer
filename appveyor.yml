@@ -20,18 +20,15 @@ install:
   - choco install -y InnoSetup
 
 build_script:
-  - cd scripts\build\windows
+  - cd C:\projects\MellowPlayer\scripts\build\windows
   - build.bat
+  - cd C:\projects\MellowPlayer\scripts\packaging\windows
+  - make_installer.bat
 
 test_script:
   - cd C:\projects\MellowPlayer\scripts\build\windows
   - runtests.bat
 
-on_success:
-  - cd C:\projects\MellowPlayer\scripts\packaging\windows
-  - make_installer.bat
-
 artifacts:
-  - path: dist/MellowPlayer_Setup.exe
+  - path: C:\projects\MellowPlayer\dist\MellowPlayer_Setup.exe
     name: Windows Installer x64
-
