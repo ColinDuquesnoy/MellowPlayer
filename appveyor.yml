@@ -36,9 +36,3 @@ test_script:
 artifacts:
   - path: dist\MellowPlayer_Setup.exe
     name: Windows Installer x64
-
-deploy:
-  provider: "Release"
-  deploy_script: 'python C:\projects\MellowPlayer\scripts\upload.py ${env:APPVEYOR_REPO_TAG_NAME} dist/*'
-  on:
-    appveyor_repo_tag: true
