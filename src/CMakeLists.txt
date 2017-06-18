@@ -5,7 +5,15 @@ set(CMAKE_AUTOMOC OFF)
 
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 
-add_executable(${PROJECT_NAME} MACOSX_BUNDLE main.cpp DI.hpp)
+
+set(SOURCE_FILES main.cpp DI.hpp)
+
+if(WIN32)
+    set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
+    configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
+endif()
+
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES})
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application
