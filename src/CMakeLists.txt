@@ -14,6 +14,17 @@ if(WIN32)
 endif()
 
 add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES})
+
+if (WIN32)
+    # add a console based executable for easier debugging
+    add_executable(${PROJECT_NAME}.Console MACOSX_BUNDLE ${SOURCE_FILES})
+    target_link_libraries(${PROJECT_NAME}.Console
+                          ${PROJECT_NAME}.Application
+                          ${PROJECT_NAME}.Presentation
+                          ${PROJECT_NAME}.Infrastructure)
+    qt5_use_modules(${PROJECT_NAME}.Console Concurrent Core Qml Quick WebEngine WebEngineWidgets Widgets QuickControls2 Network Sql)
+endif()
+
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application
@@ -36,10 +47,6 @@ endif()
 
 if(USE_LIBNOTIFY)
     target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
-endif()
-
-if (LibsnoreQt5_FOUND)
-    target_link_libraries(${PROJECT_NAME} Snore::Libsnore)
 endif()
 
 install(TARGETS ${PROJECT_NAME}
