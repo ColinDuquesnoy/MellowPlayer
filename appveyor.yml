@@ -17,7 +17,7 @@ branches:
     - gh-pages
 
 build_script:
-  - cd ..\scripts\build\windows
+  - cd scripts\build\windows
   - build.bat
 
 test_script:
