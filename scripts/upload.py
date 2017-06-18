@@ -54,17 +54,21 @@ def parse_command_line_args():
 
 def get_repo_slug():
     travis_repo_slug = os.getenv("TRAVIS_REPO_SLUG")
+    appveyor_repo_slug = os.getenv("APPVEYOR_PROJECT_SLUG")
     if travis_repo_slug:
         print("running on Travis CI")
         repo_slug = travis_repo_slug
+    elif appveyor_repo_slug:
+        print("running on AppVeyor")
+        repo_slug = appveyor_repo_slug
     else:
         print("not running on travis")
         repo_slug = os.getenv("REPO_SLUG")
         if repo_slug is None:
             try:
-                repo_slug = raw_input("Repo slug (GitHub and Travis CI username/reponame): ")
+                repo_slug = raw_input("Repo slug (username/reponame): ")
             except NameError:
-                repo_slug = input("Repo slug (GitHub and Travis CI username/reponame): ")
+                repo_slug = input("Repo slug (username/reponame): ")
 
     print("repo slug: %r" % repo_slug)
     return repo_slug
@@ -84,7 +88,9 @@ def get_github_token():
 def get_git_commit():
     commit_sha1 = os.getenv("TRAVIS_COMMIT")
     if commit_sha1 is None:
-        commit_sha1 = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().replace("\n", "")
+        commit_sha1 = os.getenv("APPVEYOR_REPO_COMMIT")
+        if commit_sha1 is None:
+            commit_sha1 = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().replace("\n", "")
 
     print("commit: %r" % commit_sha1)
     return commit_sha1
