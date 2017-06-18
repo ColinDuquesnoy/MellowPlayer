@@ -3,6 +3,10 @@ os: Visual Studio 2015
 platform:
   - x64
 
+environment:
+  GITHUB_TOKEN:
+    secure: wg7W1ZZ7YFwdtZOJ6lhEgTzHuHuELoE0Zu+FjVliK0LBi24TUq6zSfYLuhtrVMsn
+
 configuration:
   - Release
 
@@ -32,3 +36,9 @@ test_script:
 artifacts:
   - path: dist\MellowPlayer_Setup.exe
     name: Windows Installer x64
+
+deploy:
+  deploy_script:
+    - python C:\projects\MellowPlayer\scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+  on:
+    appveyor_repo_tag: true
