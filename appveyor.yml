@@ -16,14 +16,22 @@ branches:
   except:
     - gh-pages
 
+install:
+  - choco install -y InnoSetup
+
 build_script:
   - cd scripts\build\windows
   - build.bat
 
 test_script:
-  - cd ..\scripts\build\windows
+  - cd C:\projects\MellowPlayer\scripts\build\windows
   - runtests.bat
 
-#on_success:
-#  - cd ..\scripts\packaging\windows
-#  - make_installer.bat
+on_success:
+  - cd C:\projects\MellowPlayer\scripts\packaging\windows
+  - make_installer.bat
+
+artifacts:
+  - path: dist/MellowPlayer_Setup.exe
+    name: Windows Installer x64
+
