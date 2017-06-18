@@ -30,5 +30,5 @@ test_script:
   - runtests.bat
 
 artifacts:
-  - path: C:\projects\MellowPlayer\dist\MellowPlayer_Setup.exe
+  - path: dist\MellowPlayer_Setup.exe
     name: Windows Installer x64
