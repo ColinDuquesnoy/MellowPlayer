@@ -56,8 +56,13 @@ MellowPlayer is licensed under the GPL license.
 
 ## Browser plugins:
 
-- Most services requires flash ppapi plugin to work.
-- Spotify requires widevine plugin for chromium.
+For licensing reason, we do not ship the the flash player plugin and the widevine DRM plugins in our official releases. 
+
+Note that spotify now requires qt webengine to be compiled with proprietary codecs, which is not the case in our official releases.
+
+Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website.
+
+Spotify requires the widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
 
 ## Bundled 3rd-parties
 
