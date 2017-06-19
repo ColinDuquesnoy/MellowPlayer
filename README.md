@@ -58,7 +58,7 @@ MellowPlayer is licensed under the GPL license.
 
 For licensing reason, we do not ship the the flash player plugin and the widevine DRM plugins in our official releases. 
 
-Note that spotify now requires qt webengine to be compiled with proprietary codecs, which is not the case in our official releases.
+Note that Spotify and Mixcloud requires qt-webengine to be compiled with proprietary codecs, which is not the case in our official releases. *You can always compile qtwebengine yourself with proprietary codecs (or use a version from your linux distribution if available) and replace the webengine libraries in the application folder.*
 
 Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website.
 
