@@ -39,21 +39,12 @@ MellowPlayer is licensed under the GPL license.
 
 # Requirements
 
-## Supported platforms
+## Build dependencies
 
-- GNU/Linux
-    - KaOS
-    - ArchLinux
-    - Fedora >= 25
-- Mac OSX
-- Windows
-
-## Dependencies
-
-- **Qt5** (>= 5.6.0)
-- **SnoreNotify** (>= 0.7.0)
-- **PepperFlash** (runtime dependency)
-- **Widevine** (runtime dependency for Spotify)
+- cmake
+- a c++14 compiler (gcc5, msvc 2015 or clang)
+- Qt5 (>= 5.9.0, WebEngine, QuickControls2 and QtConcurrent modules needed)
+- Libnotify (optional, GNU/Linux only)
 
 ## Browser plugins:
 
