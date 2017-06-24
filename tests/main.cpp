@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     }
     catch (const logic_error&) { }
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
-    loggingManager.setDefaultLogLevel(LogLevel::Debug);
+    loggingManager.setDefaultLogLevel(LogLevel::Off);
 
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
     qDebug() << "Starting tests";
