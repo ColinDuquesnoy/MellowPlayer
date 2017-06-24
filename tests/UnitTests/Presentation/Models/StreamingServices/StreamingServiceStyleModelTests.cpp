@@ -24,6 +24,7 @@ TEST_CASE("StyleViewModelTests", "[UnitTest]") {
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
     StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    streamingServices.load();
     StreamingServiceStyleModel streamingServiceStyleModel(streamingServices, settings);
     streamingServices.setCurrent(nullptr);
 
