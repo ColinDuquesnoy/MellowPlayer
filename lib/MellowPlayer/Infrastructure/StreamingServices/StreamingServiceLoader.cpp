@@ -36,8 +36,8 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const {
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
                 if (service->isValid() && !containsService(services, service)) {
-                    LOG_INFO(logger, service->getName() + " streamingService successfully loaded (from \"" +
-                                     directory.absoluteFilePath() + "\")");
+                    LOG_DEBUG(logger, service->getName() + " streamingService successfully loaded (from \"" +
+                                      directory.absoluteFilePath() + "\")");
                     services.append(service);
                 } else {
                     LOG_DEBUG(logger, "skipping streamingService " + service->getName() +
