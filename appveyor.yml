@@ -34,7 +34,8 @@ test_script:
   - runtests.bat
 
 deploy_script:
-  - if defined APPVEYOR_REPO_TAG_NAME python upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+  - cd C:\projects\MellowPlayer
+  - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
 
 artifacts:
   - path: dist\MellowPlayer_Setup.exe
