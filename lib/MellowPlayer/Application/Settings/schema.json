@@ -1,0 +1,281 @@
+{
+	"categories": [
+		{
+			"name": "General",
+			"icon": "\ue8b8",
+			"key": "main",
+			"settings": [
+                {
+                    "name": "Confirm application exit",
+                    "tooltip": "Enable this option to get a confirmation message when you leave MellowPlayer.",
+                    "type": "bool",
+                    "default": "true",
+                    "key": "confirm-exit"
+                },
+                {
+                    "name": "Close application to system tray",
+                    "tooltip": "Enable this option to close the application in the system tray and continue listening to your musing in background.",
+                    "type": "bool",
+                    "default": true,
+                    "key": "close-to-tray"
+                },
+                {
+                    "name": "Show system tray icon",
+                    "tooltip": "Disable this option to hide the system tray icon",
+                    "type": "bool",
+                    "default": true,
+                    "key": "show-tray-icon",
+                    "enabled": "main/close-to-tray"
+                }
+			]
+		},
+		{
+			"name": "Appearance",
+			"icon": "\ue40a",
+			"key": "appearance",
+			"settings": [
+				{
+					"name": "Adaptive theme",
+                    "tooltip": "Application theme follow the current streaming service theme",
+					"type": "bool",
+					"default": true,
+					"key": "adaptive-theme"
+				},
+				{
+                    "name": "Accent",
+                    "tooltip": "Change material accent color",
+					"type": "color",
+					"default": "#ffc107",
+                    "key": "accent"
+				},
+				{
+                    "name": "Background",
+                    "tooltip": "Change material background color",
+					"type": "color",
+					"default": "#ffffff",
+                    "key": "background"
+				},
+				{
+                    "name": "Foreground",
+                    "tooltip": "Change material foreground color",
+					"type": "color",
+					"default": "#505050",
+                    "key": "foreground"
+				},
+				{
+                    "name": "Primary Background",
+                    "tooltip": "Change material primary background color",
+					"type": "color",
+					"default": "#5f81d4",
+                    "key": "primary-background"
+				},
+				{
+                    "name": "Primary Foreground",
+                    "tooltip": "Change material primary foreground color",
+					"type": "color",
+					"default": "#ffffff",
+                    "key": "primary-foreground"
+				},
+				{
+                    "name": "Secondary Background",
+                    "tooltip": "Change material secondary background color",
+					"type": "color",
+					"default": "#5f81d4",
+                    "key": "secondary-background"
+				},
+				{
+                    "name": "Secondary Foreground",
+                    "tooltip": "Change material secondary foreground color",
+				    "type": "color",
+					"default": "#ffffff",
+                    "key": "secondary-foreground"
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"icon": "\ue7f4",
+			"key": "notifications",
+			"settings": [
+				{
+					"name": "Enable notifications",
+                    "tooltip": "Enable or disable notifications",
+					"type": "bool",
+					"default": true,
+					"key": "enabled"
+				},
+				{
+					"name": "Display a notification when a new song starts playing",
+                    "tooltip": "Enabled/Disable displaying a notification when a new song starts playing",
+					"type": "bool",
+					"default": true,
+					"key": "new-song",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification when player has paused",
+                    "tooltip": "Enabled/Disable displaying a notification when the player has paused",
+					"type": "bool",
+					"default": true,
+					"key": "paused",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification when player has resumed",
+					"tooltip": "Enabled/Disable displaying a notification when the player has resumed",
+					"type": "bool",
+					"default": true,
+					"key": "resumed",
+					"enabled": "notifications/enabled"
+				},
+				{
+					"name": "Display a notification at startup when a new version of MellowPlayer is available,",
+                    "tooltip": "Enabled/Disable displaying a notification when a new version of MellowPlayer is available",
+					"type": "bool",
+					"default": true,
+					"key": "new-version",
+					"enabled": "notifications/enabled"
+				}
+			]
+		},
+		{
+			"name": "Shortcuts",
+			"icon": "\ue312",
+			"key": "shortcuts",
+			"settings": [
+				{
+					"name": "Play / Pause",
+                    "tooltip": "Sets the shortcut for playing or pausing the player.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+P",
+					"key": "play"
+				},
+				{
+					"name": "Next",
+                    "tooltip": "Sets the shortcut for skipping to the next song.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+F",
+					"key": "next"
+				},
+				{
+					"name": "Previous",
+                    "tooltip": "Sets the shortcut for skipping to the previous song.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+B",
+					"key": "previous"
+				},
+				{
+					"name": "Add to favorites",
+					"tooltip": "Adds current song to favorites.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+R",
+					"key": "favorite"
+				},
+				{
+					"name": "Reload page",
+					"tooltip": "Reload current web page.",
+					"type": "shortcut",
+					"default": "F5",
+					"key": "reload"
+				},
+				{
+					"name": "Select service",
+					"tooltip": "Show service selection page.",
+					"type": "shortcut",
+					"default": "F8",
+					"key": "select-service"
+				},
+				{
+					"name": "Next service",
+					"tooltip": "Switch to the next open service.",
+					"type": "shortcut",
+					"default": "Ctrl+Tab",
+					"key": "select-next-service"
+				},
+				{
+					"name": "Previous service",
+					"tooltip": "Switch to the previous open service.",
+					"type": "shortcut",
+					"default": "Ctrl+Shift+Tab",
+					"key": "select-previous-service"
+				},
+                {
+                    "name": "Toggle notifications",
+                    "tooltip": "Quickly enable or disable notifications",
+                    "type": "shortcut",
+                    "default": "F9",
+                    "key": "notifications"
+                },
+                {
+                    "name": "Listening history",
+                    "tooltip": "Show or hide listening history",
+                    "type": "shortcut",
+                    "default": "F10",
+                    "key": "listening-history"
+                },
+				{
+					"name": "Settings",
+					"tooltip": "Show settings page",
+					"type": "shortcut",
+					"default": "F2",
+					"key": "settings"
+				},
+				{
+					"name": "About",
+					"tooltip": "Show about page.",
+					"type": "shortcut",
+					"default": "F1",
+					"key": "about"
+				},
+				{
+					"name": "Quit",
+					"tooltip": "Quit the application.",
+					"type": "shortcut",
+					"default": "Ctrl+Q",
+					"key": "quit"
+				}
+			]
+		},
+        {
+            "name": "Privacy",
+            "icon": "\ue32a",
+            "key": "privacy",
+            "settings": [
+                {
+                    "name": "Enable listening history",
+                    "tooltip": "Enable listening history to keep track of the songs you listened to.",
+                    "type": "bool",
+                    "default": false,
+                    "key": "enable-listening-history"
+                },
+                {
+                    "name": "Automatically check for updates",
+                    "tooltip": "Enable this option to be notified when a new version of MellowPlayer is available.",
+                    "type": "bool",
+                    "default": true,
+                    "key": "check-for-updates"
+                }
+            ]
+        },
+		{
+			"name": "",
+			"icon": "",
+			"key": "private",
+			"settings": [
+				{
+					"name": "",
+					"type": "bool",
+					"default": true,
+                    "key": "show-close-to-tray-message",
+                    "enabled": "main/close-to-tray"
+				},
+				{
+					"name": "",
+					"type": "string",
+					"default": "",
+					"key": "current-service"
+				}
+			]
+		}
+	]
+}

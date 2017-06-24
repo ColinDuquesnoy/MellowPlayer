@@ -1,0 +1,37 @@
+version: "3.0.0.{build}"
+os: Visual Studio 2015
+platform:
+  - x64
+
+environment:
+  GITHUB_TOKEN:
+    secure: wg7W1ZZ7YFwdtZOJ6lhEgTzHuHuELoE0Zu+FjVliK0LBi24TUq6zSfYLuhtrVMsn
+
+configuration:
+  - Release
+
+init:
+  - cmake --version
+  - msbuild /version
+
+clone_folder: C:\projects\MellowPlayer
+
+branches:
+  except:
+    - gh-pages
+
+build_script:
+  - cd C:\projects\MellowPlayer\scripts\build\windows
+  - build.bat
+
+test_script:
+  - cd C:\projects\MellowPlayer\scripts\build\windows
+  - runtests.bat
+
+deploy_script:
+  - if defined APPVEYOR_REPO_TAG_NAME choco install -y InnoSetup
+  - if defined APPVEYOR_REPO_TAG_NAME pip install github3.py
+  - cd C:\projects\MellowPlayer\scripts\packaging\windows
+  - if defined APPVEYOR_REPO_TAG_NAME make_installer.bat
+  - cd C:\projects\MellowPlayer
+  - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*

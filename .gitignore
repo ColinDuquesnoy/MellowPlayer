@@ -42,8 +42,20 @@ changelog
 gpg_key
 *.build
 *.dsc
-*.tar.gz
 *.changes
 *.upload
 
 *~
+*.user
+coverage
+build/
+lcov-1\.13/
+
+*.AppImage
+appdir/
+
+\.DS_Store
+
+qt/
+
+qt\.zip

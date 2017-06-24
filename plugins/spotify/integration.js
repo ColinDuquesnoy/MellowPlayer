@@ -129,28 +129,23 @@ function isFavorite() {
     return getButtons().addRemoveToMusic.attributes.class.value.match(".*added.*") !== null;
 }
 
-function updatePlayerInfo() {
+function update() {
     return {
-        "PlaybackStatus": getPlaybackStatus(),
-        "CanSeek": false,
-        "CanGoNext": true,
-        "CanGoPrevious": true,
-        "CanAddToFavorites": true,
-        "Volume": getVolume()
-    }
-}
-
-function updateSongInfo() {
-    return {
-        "SongId": getSongId(),
-        "SongTitle": getSongTitle(),
-        "ArtistName": getArtist(),
-        "AlbumTitle": '',
-        "ArtUrl": getArtUrl(),
-        "Favorite": isFavorite(),
-        "Duration": getDuration(),
-        "Position": getPosition()
-    }
+        "songId": getHashCode(getSongTitle()).toString().replace("-", ""),
+        "songTitle": getSongTitle(),
+        "artistName": getArtist(),
+        "albumTitle": "",
+        "artUrl": getArtUrl(),
+        "isFavorite": isFavorite(),
+        "duration": getDuration(),
+        "position": getPosition(),
+        "playbackStatus": getPlaybackStatus(),
+        "canSeek": false,
+        "canGoNext": true,
+        "canGoPrevious": true,
+        "canAddToFavorites": true,
+        "volume": getVolume()
+    };
 }
 
 function play() {

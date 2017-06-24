@@ -36,7 +36,10 @@ function getButtons() {
     };
 }
 
-function updatePlayerInfo() {
+//-----------------------------------------------------------------------------
+// Much of this was adapted from: https://github.com/tiliado/nuvola-app-google-play-music
+//-----------------------------------------------------------------------------
+function update() {
     var controlClassName = document.querySelector("#player div.material-player-middle").children[3].className;
     var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     if (controlClassName == "x-scope paper-icon-button-0 playing")
@@ -44,27 +47,12 @@ function updatePlayerInfo() {
     else if (controlClassName == "x-scope paper-icon-button-0")
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
 
-    return {
-        "PlaybackStatus": playbackStatus,
-        "CanSeek": true,
-        "CanGoNext": true,
-        "CanGoPrevious": true,
-        "CanAddToFavorites": false,
-        "Volume": 1,
-    }
-}
-
-//-----------------------------------------------------------------------------
-// Much of this was adapted from: https://github.com/tiliado/nuvola-app-google-play-music
-//-----------------------------------------------------------------------------
-
-function updateSongInfo() {
     var elm;
 
     try {
-        ArtUrl = document.querySelector("#playerSongInfo #playerBarArt").src.replace("=s90-", "=s500-");
+        artUrl = document.querySelector("#playerSongInfo #playerBarArt").src.replace("=s90-", "=s500-");
     } catch (e) {
-        ArtUrl = null;
+        artUrl = null;
     }
 
     try {
@@ -82,52 +70,56 @@ function updateSongInfo() {
 
     try {
         elm = document.getElementById('player-artist').firstChild;
-        ArtistName = elm.innerText || elm.textContent;
+        artistName = elm.innerText || elm.textContent;
     } catch (e) {
-        ArtistName = null;
+        artistName = null;
     }
 
     try {
         elm = document.querySelector("#playerSongInfo .player-album");
-        AlbumTitle = elm.innerText || elm.textContent;
+        albumTitle = elm.innerText || elm.textContent;
     } catch (e) {
-        AlbumTitle = null;
+        albumTitle = null;
     }
 
     //-----------------------------------------------------------------------------
     // Credit for this code to http://stackoverflow.com/questions/13437796/convert-any-string-time-to-seconds
     //-----------------------------------------------------------------------------
-
     try {
-        Duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText
-        var dtimes = Duration.split(":");
+        duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText
+        var dtimes = duration.split(":");
         var dminutes = dtimes[0];
         var dseconds = dtimes[1];
-        Duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
+        duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
     } catch (e) {
-        Duration = null;
+        duration = null;
     }
 
     try {
-        Position = document.querySelector("#material-player-right-wrapper #time_container_current").innerText;
-        var ptimes = Position.split(":");
+        position = document.querySelector("#material-player-right-wrapper #time_container_current").innerText;
+        var ptimes = position.split(":");
         var pminutes = ptimes[0];
         var pseconds = ptimes[1];
-        Position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
+        position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
     } catch (e) {
-        Position = null;
+        position = null;
     }
 
     return {
-        "SongId": songID,
-        "SongTitle": songTitle,
-        "ArtistName": ArtistName,
-        "AlbumTitle": AlbumTitle,
-        "ArtUrl": ArtUrl,
-        "Favorite": false,
-        "Duration": Duration,
-        "Position": Position
-
+        "playbackStatus": playbackStatus,
+        "canSeek": true,
+        "canGoNext": true,
+        "canGoPrevious": true,
+        "canAddToFavorites": false,
+        "volume": 1,
+        "duration": duration,
+        "position": position,
+        "songId": songID,
+        "songTitle": songTitle,
+        "artistName": artistName,
+        "albumTitle": albumTitle,
+        "artUrl": artUrl,
+        "isFavorite": false
     }
 }
 

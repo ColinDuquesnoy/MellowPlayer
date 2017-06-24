@@ -1,0 +1,27 @@
+language: cpp
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      sudo: require
+      dist: trusty
+    - os: osx
+      compiler: clang
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-5
+            - gcc-5
+
+branches:
+    except:
+        - # Do not build tags that we create when we upload to GitHub Releases
+        - /^(?i:Continuous)$/
+
+install: source ./scripts/travis/install.sh
+before_script: source ./scripts/travis/before_script.sh
+script: ./scripts/travis/script.sh

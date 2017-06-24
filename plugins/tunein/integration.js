@@ -27,54 +27,56 @@ function hashCode(str) {
         hash = ((hash << 5) - hash) + chr;
         hash |= 0; // Convert to 32bit integer
     }
-    return hash;
+    return Math.abs(hash);
 };
 
 function getPlaybackStatus() {
-    var retVal = mellowplayer.PlaybackStatus.STOPPED;
     var stateStr = TuneIn.app.getPlayState();
-    if (stateStr === 'playing')
-        retVal = mellowplayer.PlaybackStatus.PLAYING;
-    else if (stateStr === 'stopped')
-        retVal = mellowplayer.PlaybackStatus.PAUSED;
-    return retVal;
-}
-
-
-function updatePlayerInfo() {
-    return {
-        "PlaybackStatus": getPlaybackStatus(),
-        "CanSeek": false,
-        "CanGoNext": false,
-        "CanGoPrevious": false,
-        "CanAddToFavorites": true,
-        "Volume": 1,
+    if (stateStr === 'playing') {
+        return mellowplayer.PlaybackStatus.PLAYING;
     }
+    else {
+        if (stateStr === 'stopped') {
+            return mellowplayer.PlaybackStatus.PAUSED;
+        }
+    }
+    return mellowplayer.PlaybackStatus.STOPPED;
 }
 
-function updateSongInfo() {
+function update() {
+    var retVal = {
+        "playbackStatus": getPlaybackStatus(),
+        "canSeek": false,
+        "canGoNext": false,
+        "canGoPrevious": false,
+        "canAddToFavorites": true,
+        "volume": 1,
+        "songId": 0,
+        "songTitle": '',
+        "artistName": 'TuneIn',
+        "albumTitle": '',
+        "artUrl": '',
+        "isFavorite": false,
+        "duration": 0,
+        "position": 0
+    };
+
     var broadcast = TuneIn.app.getNowPlaying();
     var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
-    var retVal = {
-        "SongId": 0,
-        "SongTitle": '',
-        "ArtistName": '',
-        "AlbumTitle": '',
-        "ArtUrl": '',
-        "Favorite": false,
-        "Duration": 0,
-        "Position": 0
-    };
-    if (broadcast == undefined) {
-        if (!stopped && oldSongInfo != null) {
-            retVal = oldSongInfo;
+    if (broadcast === undefined) {
+        if (!stopped && oldSongInfo !== null) {
+            retVal.songId = oldSongInfo.songId
+            retVal.songTitle = oldSongInfo.songTitle
+            retVal.artistName = oldSongInfo.artistName
+            retVal.artUrl = oldSongInfo.artUrl
+            retVal.isFavorite = oldSongInfo.isFavorite;
         }
     } else {
-        retVal.SongId = hashCode(broadcast.Title + broadcast.Subtitle);
-        retVal.SongTitle = broadcast.Title;
-        retVal.AlbumTitle = broadcast.Subtitle;
-        retVal.ArtUrl = broadcast.Image;
-        retVal.Favorite = $(".in").length > 0;
+        retVal.songId = hashCode(broadcast.Title + broadcast.Subtitle);
+        retVal.songTitle = broadcast.Title;
+        retVal.artistName = broadcast.Subtitle;
+        retVal.artUrl = broadcast.Image;
+        retVal.isFavorite = $(".in").length > 0;
         oldSongInfo = retVal;
     }
     return retVal;
