@@ -35,7 +35,3 @@ deploy_script:
   - if defined APPVEYOR_REPO_TAG_NAME make_installer.bat
   - cd C:\projects\MellowPlayer
   - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
-
-artifacts:
-  - path: dist\MellowPlayer_Setup.exe
-    name: Windows Installer x64
