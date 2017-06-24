@@ -54,7 +54,7 @@ def parse_command_line_args():
 
 def get_repo_slug():
     travis_repo_slug = os.getenv("TRAVIS_REPO_SLUG")
-    appveyor_repo_slug = os.getenv("APPVEYOR_PROJECT_SLUG")
+    appveyor_repo_slug = os.getenv("APPVEYOR_REPO_NAME")
     if travis_repo_slug:
         print("running on Travis CI")
         repo_slug = travis_repo_slug
