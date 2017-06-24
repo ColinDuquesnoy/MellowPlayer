@@ -26,7 +26,7 @@ install:
 build_script:
   - cd C:\projects\MellowPlayer\scripts\build\windows
   - build.bat
-  - cd C:\projects\MellowPlayer\scripts\packaging\window
+  - cd C:\projects\MellowPlayer\scripts\packaging\windows
   - make_installer.bat
 
 test_script:
