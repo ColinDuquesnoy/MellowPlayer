@@ -62,7 +62,7 @@ To start the program, either start it from your applications menu or run the fol
 
     $ mellowplayer
 
-Before compiling MellowPlayer 2, you will need to install **Qt >= 5.6 (with QtWebEngine)** and **Snorenotify**.
+Before compiling MellowPlayer 2, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
 
 
 OS X

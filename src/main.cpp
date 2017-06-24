@@ -4,6 +4,7 @@
 #endif
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
+#include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
 #include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include "DI.hpp"
@@ -21,10 +22,14 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 
-    SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, LogLevel::Debug);
     QtApplicationModel qtApp(argc, argv);
+
+    SpdLoggerFactory loggerFactory;
+    LoggingManager::initialize(loggerFactory, LogLevel::Info);
     ScopedScope scope{};
+
+    LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
+
     auto injector = di::make_injector(
         di::bind<IQtApplication>().to(qtApp),
         defaultInjector(scope),

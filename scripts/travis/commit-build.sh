@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 # On Linux, compile in debug mode, run tests and measure coverage
 # On OSX, compile in release mode and run all tests
 echo "*************************** Performing a COMMIT build"

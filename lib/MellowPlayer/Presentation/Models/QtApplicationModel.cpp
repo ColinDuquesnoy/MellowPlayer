@@ -15,8 +15,7 @@ USE_MELLOWPLAYER_NAMESPACE(Application)
 USE_MELLOWPLAYER_NAMESPACE(Presentation)
 
 QtApplicationModel::QtApplicationModel(int &argc, char **argv, const QString& appName) :
-        qtApp(argc, argv),
-        logger(LoggingManager::instance().getLogger("QtApplicationModel")) {
+        qtApp(argc, argv){
     qtApp.setApplicationDisplayName("MellowPlayer");
     qtApp.setApplicationName(appName);
     qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
@@ -76,11 +75,9 @@ void QtApplicationModel::restart() {
 }
 
 void QtApplicationModel::requestQuit() {
-    LOG_TRACE(logger, "quit requested");
     emit quitRequested();
 }
 
 void QtApplicationModel::quit() {
-    LOG_TRACE(logger, "quitting");
     qtApp.exit(0);
 }

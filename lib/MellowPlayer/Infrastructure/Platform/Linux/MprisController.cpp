@@ -41,7 +41,7 @@ bool MprisController::start() {
         LOG_WARN(logger, "failed to register object on the session bus: " + OBJECT_NAME);
         return false;
     }
-    LOG_INFO(logger, "service started: " + serviceName);
+    LOG_DEBUG(logger, "service started: " + serviceName);
     return true;
 }
 

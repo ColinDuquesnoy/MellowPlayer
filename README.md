@@ -50,10 +50,19 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-- [Qt](https://www.qt.io/) >= 5.7
+- [Qt](https://www.qt.io/) >= 5.9
 - [CMake](https://cmake.org/) >= 3.5
-- [Snorenotify]() >= 0.7 (Windows/OSX, optional)
 - [libnotify]() (GNU/Linux only, optional)
+
+## Browser plugins:
+
+For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases. 
+
+Note that Spotify and Mixcloud requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases. *You can always compile QtWebEngine yourself with proprietary codecs (or use a version from your linux distribution if available) and replace the webengine libraries in the application folder.*
+
+Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website.
+
+Spotify requires the widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
 
 ## Bundled 3rd-parties
 

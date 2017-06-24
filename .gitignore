@@ -53,3 +53,9 @@ lcov-1\.13/
 
 *.AppImage
 appdir/
+
+\.DS_Store
+
+qt/
+
+qt\.zip

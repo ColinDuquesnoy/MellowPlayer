@@ -29,7 +29,7 @@ bool SqlLiteListeningHistoryDataProvider::openDatabase() {
         LOG_WARN(logger, "connection with database failed: " + path)
         return false;
     }
-    LOG_INFO(logger, "connected to database: " + path)
+    LOG_DEBUG(logger, "connected to database: " + path)
     return true;
 }
 

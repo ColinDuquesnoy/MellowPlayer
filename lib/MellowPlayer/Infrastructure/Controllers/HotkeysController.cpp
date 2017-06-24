@@ -74,7 +74,7 @@ void HotkeysController::start() {
     connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::previous);
 #endif
 
-    LOG_INFO(logger, "service started");
+    LOG_DEBUG(logger, "service started");
 }
 
 void HotkeysController::updatePlayShortcut() const {

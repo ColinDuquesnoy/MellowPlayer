@@ -5,7 +5,26 @@ set(CMAKE_AUTOMOC OFF)
 
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 
-add_executable(${PROJECT_NAME} main.cpp DI.hpp)
+
+set(SOURCE_FILES main.cpp DI.hpp)
+
+if(WIN32)
+    set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
+    configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
+endif()
+
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES})
+
+if (WIN32)
+    # add a console based executable for easier debugging
+    add_executable(${PROJECT_NAME}.Console MACOSX_BUNDLE ${SOURCE_FILES})
+    target_link_libraries(${PROJECT_NAME}.Console
+                          ${PROJECT_NAME}.Application
+                          ${PROJECT_NAME}.Presentation
+                          ${PROJECT_NAME}.Infrastructure)
+    qt5_use_modules(${PROJECT_NAME}.Console Concurrent Core Qml Quick WebEngine WebEngineWidgets Widgets QuickControls2 Network Sql)
+endif()
+
 include_directories(../3rdparty)
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application
@@ -30,11 +49,8 @@ if(USE_LIBNOTIFY)
     target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
 endif()
 
-if (LibsnoreQt5_FOUND)
-    target_link_libraries(${PROJECT_NAME} Snore::Libsnore)
-endif()
-
 install(TARGETS ${PROJECT_NAME}
+        BUNDLE DESTINATION MacOS
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)

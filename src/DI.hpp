@@ -40,10 +40,6 @@
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 
-#ifdef USE_SNORENOTIFY
-    #include <MellowPlayer/Presentation/Notifications/Presenters/SnorenotifyPresenter.hpp>
-#endif
-
 #ifdef USE_LIBNOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #endif
@@ -129,11 +125,7 @@ auto platformInjector = [](ScopedScope& scope) {
 };
 
 auto notificationPresenterInjector = [](ScopedScope& scope) {
-#if defined(USE_SNORENOTIFY)
-    return di::make_injector(
-        di::bind<INotificationPresenter>().to<SnorenotifyPresenter>().in(scope)
-    );
-#elif defined(USE_LIBNOTIFY)
+#if defined(USE_LIBNOTIFY)
     return di::make_injector(
             di::bind<INotificationPresenter>().to<LibnotifyPresenter>().in(scope)
     );

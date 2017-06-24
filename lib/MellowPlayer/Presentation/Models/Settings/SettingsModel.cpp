@@ -13,11 +13,10 @@ SettingsModel::SettingsModel(Settings& settings, QObject* parent) : QObject(pare
         if (category->getKey() != "private")
             categories->append(new SettingsCategoryModel(category, this));
     }
-
     categories->append(new CustomSettingsCategoryModel(
-            "ListeningHistory", "\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", this));
+            "Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", this));
     categories->append(new CustomSettingsCategoryModel(
-            "Cache", "\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", this));
+            "Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", this));
 }
 
 SettingModel* SettingsModel::get(int key) {

@@ -44,7 +44,7 @@ bool Notifier::display(const Notification& notification) {
         LOG_DEBUG(logger, "notification disabled: " + notification.toString());
         return false;
     }
-    LOG_INFO(logger, "display notification: " + notification.toString());
+    LOG_DEBUG(logger, "display notification: " + notification.toString());
     presenter.display(notification);
     return true;
 }

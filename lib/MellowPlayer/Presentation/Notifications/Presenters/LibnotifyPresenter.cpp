@@ -21,7 +21,7 @@ LibnotifyPresenter::LibnotifyPresenter(IMainWindow& mainWindow) :
 
 void LibnotifyPresenter::initialize() {
     notify_init("MellowPlayer");
-    LOG_INFO(logger, "service started")
+    LOG_DEBUG(logger, "service started")
 }
 
 bool LibnotifyPresenter::display(const Notification& notification) {
