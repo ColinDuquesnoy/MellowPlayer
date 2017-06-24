@@ -4,7 +4,7 @@ Contributing to MellowPlayer
 Reporting bugs or Wishes
 ------------------------
 
-Report any bugs you encountered or any wishes on our [issue tracker](https://gitlab.com/ColinDuquesnoy/MellowPlayer/issues.
+Report any bugs you encountered or any wishes on our [issue tracker](https://gitlab.com/ColinDuquesnoy/MellowPlayer/issues).
 
 If you're reporting a bug, **make sure to provide the following information**:
 
