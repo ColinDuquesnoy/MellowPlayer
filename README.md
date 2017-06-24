@@ -50,9 +50,10 @@ MellowPlayer is licensed under the GPL license.
 
 ## Dependencies
 
-- [Qt](https://www.qt.io/) >= 5.9
-- [CMake](https://cmake.org/) >= 3.5
-- [libnotify]() (GNU/Linux only, optional)
+- **Qt5** (>= 5.6.0)
+- **SnoreNotify** (>= 0.7.0)
+- **PepperFlash** (runtime dependency)
+- **Widevine** (runtime dependency for Spotify)
 
 ## Browser plugins:
 

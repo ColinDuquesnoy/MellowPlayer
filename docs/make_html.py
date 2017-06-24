@@ -1,2 +1,3 @@
 import os
-os.system('make html')
+
+os.system('sphinx-build -b html . build ')
