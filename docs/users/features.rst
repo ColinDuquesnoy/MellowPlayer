@@ -12,13 +12,11 @@ Features
    - `8tracks`_
    - `Google Play Music`_
 
-- On GNU/Linux, each service can be turned into a standalone app
 - System tray integration and notifications
 - Mpris2 support (GNU/Linux only)
 - Hotkeys and media player keys support
 - Plugin based application (you can add support for a new web-based music
   streaming service by writing a **javascript plugin**)
-
 
 .. _Spotify: http://spotify.com
 .. _Mixcloud: http://www.mixcloud.com

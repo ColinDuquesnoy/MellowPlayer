@@ -1,17 +1,17 @@
 FAQ & Known issues
 ==================
 
-Known issues
-------------
+Frequently asked questions
+--------------------------
 
-- Some services fail to load due to an ERR_SSL_PROTOCOL_ERROR on GNU/Linux with nss>=3.21. This is a known issue for chromium < 47. QtWebEngine needs to be `patched`_ or you need to downgrad nss to 3.20...
-- Media Player Keys support on OSX and Windows might not work.
+- I cannot play music on Spotify and on Mixcloud. What can I do?
 
+Spotify and Mixcloud streaming has become quite tricky since they moved away from flash for managing content.
 
-FAQ
----
+The official release of Qt and our official releases are not built with proprietary codecs for licensing reasons.
 
-*Empty*
+**You need to recompile Qt WebEngine yourself with proprietary codecs support**. *Note that some linux distributions such as KaOS and OpenSuse ships QtWebEngine with proprietary codecs related.*
 
+Spotify also requires the Widevine plugin to work. You can find more information in this `blog post`_.
 
-.. _patched: http://pkgs.fedoraproject.org/cgit/rpms/qt5-qtwebengine.git/commit/?id=9a15e3c582902772e7876660afd06f57c4ff48d2
+.. _blog post: http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/

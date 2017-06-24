@@ -7,6 +7,10 @@ supported operating systems.
 GNU/Linux
 ---------
 
+We provide an AppImage so that you can try MellowPlayer on any distribution.
+
+Download MellowPlayer-x86_64.AppImage from a `github release`_, make it executable (chmod +x MellowPlayer-x86_64.AppImage) and run it, that's all.
+
 KaOS
 ++++
 
@@ -21,7 +25,7 @@ To start the program, either start it from your applications menu (*Multimedia/M
 
 .. code-block:: bash
 
-    $ mellowplayer
+    $ MellowPlayer
 
 .. _KaOSx/apps: http://kaosx.tk/packages/index.php?subdir=apps&sortby=name
 
@@ -35,14 +39,9 @@ To start the program, either start it from your applications menu or run the fol
 
 .. code-block:: bash
 
-    $ mellowplayer
+    $ MellowPlayer
 
 .. _AUR: https://aur.archlinux.org/packages/mellowplayer
-
-Ubuntu
-++++++
-
-Not supported until qt 5.6 is available in the official ubuntu repositories.
 
 
 Other distributions
@@ -52,7 +51,7 @@ You will have to compile from source. Grab the latest source release from the `o
 
 .. code-block:: bash
 
-    $ qmake-qt5
+    $ cmake -DBUILD_TESTS=FALSE -DCMAKE_BUILD_TYPE=Release
     $ make
     $ sudo make install
 
@@ -60,7 +59,7 @@ To start the program, either start it from your applications menu or run the fol
 
 .. code-block:: bash
 
-    $ mellowplayer
+    $ MellowPlayer
 
 Before compiling MellowPlayer 2, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
 
@@ -78,3 +77,4 @@ Just grab the windows installer from the `official website`_ (click on the **Win
 
 .. _README: https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/README.md
 .. _official website: http://colinduquesnoy.github.io/MellowPlayer
+.. _github release: https://github.com/ColinDuquesnoy/MellowPlayer/releases

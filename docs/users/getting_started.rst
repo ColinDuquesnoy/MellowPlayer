@@ -9,18 +9,39 @@ On the first startup, you'll be presented with the following screen:
 .. image:: ../_static/home-page.png
     :align: center
 
-Just click on "Select a music streaming service" button. This will bring the following
-dialog:
+Just click on a service to start running it. You can start multiple service at the same time and quickly switch between
+them using Ctrl+Tab/Ctrl+Shift+Tab.
 
-.. image:: ../_static/dlg-select-services.png
+.. image:: ../_static/main-window.png
     :align: center
 
-Make your choice and press OK.
+You can get back to the service selection page using F8 or the select service button:
 
-The music streaming service will start loading. Once it has loaded you may log-in or start playing some music!
-
-.. image:: ../_static/mellowplayer-kaos.png
+.. image:: ../_static/select-services-button.png
     :align: center
+
+Application Settings
+--------------------
+
+You can change application settings by clicking on the menu button and by selecting the Settings entry or by pressing F2:
+
+.. image:: ../_static/settings-menu.png
+    :align: center
+
+This will bring the following page:
+
+.. image:: ../_static/general-settings.png
+    :align: center
+
+There are a series of settings category:
+
+- General: general options
+- Appearance: let you change the appearance of the application
+- Notifications: let you change some notification settings
+- Shortcuts: let you change all the application shortcuts
+- Privacy: enable or disable privacy related options
+- Services: list the available services and let you change their default url.
+- Cache: a few buttons that let you clear the application cache (album art covers,...) and clear the web cookies.
 
 
 Notifications
@@ -33,9 +54,35 @@ By default, MellowPlayer will display a notification whenever the current track 
     :align: center
 
 
-You can turn this feature off:
+You can change the notifications behaviour in the application settings page
 
-**Application > Preferences > Notifications**: uncheck the notifications you're not interested in.
+.. image:: ../_static/notification-settings.png
+    :align: center
+
+and you can also quickly toggle notifications on/off using the button in the toolbar:
+
+.. image:: ../_static/notification-button.png
+    :align: center
+
+Listening History
+-----------------
+
+MellowPlayer can keep track of your listens and display it in a side panel. This feature is OFF by default.
+
+You can see your listening history by pressing the listening history button:
+
+.. image:: ../_static/listening-history-button.png
+    :align: center
+
+Here is what the history look like:
+
+.. image:: ../_static/listening-history.png
+    :align: center
+
+You can search the history and filter by service by clicking on the search icon
+
+.. image:: ../_static/listening-history-search.png
+    :align: center
 
 MPRIS2 Interface
 ----------------

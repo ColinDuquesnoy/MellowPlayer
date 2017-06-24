@@ -8,11 +8,10 @@ MellowPlayer can be extended by writing a *streaming service integration plugin*
 
 *A streaming service integration plugin* is just a directoy that contains some specific files:
 
-- **description.html**: describes the web streaming service. This description
-  appear in the service selector dialog.
 - **integration.js**: the actual code that integrates the service into MellowPlayer
 - **logo.svg**: the logo of the service
 - **metadata.ini**: plugin's metadata
+- **style.json**: optional style definition. The colors defined in this file are used through the whole user interface if theme is set to **adaptive**.
 
 The file **integration.js** contains a series of function that you must implement. Those functions will get called
 by the C++ application for updating the player state or when the user triggered an action (play, pause,...).
@@ -28,6 +27,8 @@ MellowPlayer will look for plugins in the following directories:
 
 Create a new plugin
 -------------------
+
+**This feature does not exists anymore in v2.95.0, we will be back for v3.0.0**
 
 To create a plugin, go to the **Control** drop down menu or the **Developer** main menu and click on **Create plugin**. 
 
@@ -55,7 +56,7 @@ Here is a brief description of the functions you need to implement in order to
 integrate a new web-based streaming service.
 
 update()
-++++++++++++++++++
+++++++++
 
 This function is called regularly to update the player information.
 
@@ -104,7 +105,7 @@ Sets the player's volume.
 **volume** is a *float* in the range [0-1].
 
 addToFavorites()
-+++++++++++++++++++
+++++++++++++++++
 
 Adds song to favorites.
 
