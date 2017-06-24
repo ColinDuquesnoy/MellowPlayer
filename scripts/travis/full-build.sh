@@ -6,7 +6,7 @@ echo "*************************** Performing a FULL build"
 
 tagName='Continuous';
 if [[ -n "$TRAVIS_TAG" ]]; then
-    tagname = "$TRAVIS_TAG";
+    tagName="$TRAVIS_TAG";
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
