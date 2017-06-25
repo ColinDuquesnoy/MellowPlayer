@@ -33,8 +33,12 @@
         <file>Views/MellowPlayer/MaterialIcons.qml</file>
         <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
         <file>Views/MellowPlayer/Controls/MainToolBar.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistoryBody.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistoryClipboardConfirmation.qml</file>
         <file>Views/MellowPlayer/Controls/ListeningHistoryDrawer.qml</file>
         <file>Views/MellowPlayer/Controls/ListeningHistoryListView.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml</file>
+        <file>Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml</file>
         <file>Views/MellowPlayer/Controls/ServicesOverview.qml</file>
         <file>Views/MellowPlayer/Controls/Tooltip.qml</file>
         <file>Views/MellowPlayer/Controls/WebView.qml</file>

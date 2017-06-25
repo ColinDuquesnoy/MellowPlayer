@@ -11,6 +11,7 @@ Frame {
     property string section: ListView.section
 
     height: 72
+    width: ListView.view.width
 
     background: Rectangle {
         color: "transparent"
@@ -39,7 +40,7 @@ Frame {
 
     ListView.onRemove: SequentialAnimation {
         PropertyAction { target: root; property: "ListView.delayRemove"; value: true }
-        NumberAnimation { target: root; property: "x"; to: 950; duration: listView.filtersEnabled ? 0 : listView.transitionDuration * 3 ; easing.type: Easing.InOutQuad }
+        NumberAnimation { target: root; property: "x"; to: 950; duration: 200 ; easing.type: Easing.InOutQuad }
         PropertyAction { target: root; property: "ListView.delayRemove"; value: false }
     }
 
@@ -63,10 +64,27 @@ Frame {
                 Layout.preferredWidth: 48
             }
 
-            Label {
-                text: "<b>" + model.title + "</b><br><i>by " + model.artist + "<br>on " + model.service + "</i>"
+            Column {
+                Label {
+                    text: model.title
+                    elide: "ElideMiddle"
+                    font.bold: true
+                    width: 250
+                }
 
-                Layout.fillHeight: true
+                Label {
+                    text: "by " + model.artist
+                    font.italic: true
+                    elide: "ElideMiddle"
+                    width: 250
+                }
+
+                Label {
+                    text: "on " + model.service
+                    font.italic: true
+                    elide: "ElideMiddle"
+                    width: 250
+                }
             }
 
             Item {

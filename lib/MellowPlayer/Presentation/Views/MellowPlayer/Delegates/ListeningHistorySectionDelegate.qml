@@ -9,6 +9,7 @@ Pane {
    id: root
 
    height: 64
+   width: ListView.view.width
    padding: 0
 
    Material.background: style.background

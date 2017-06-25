@@ -25,7 +25,7 @@ int main(int argc, char** argv)
     QtApplicationModel qtApp(argc, argv);
 
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, LogLevel::Info);
+    LoggingManager::initialize(loggerFactory, LogLevel::Debug);
     ScopedScope scope{};
 
     LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());

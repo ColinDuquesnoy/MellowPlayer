@@ -9,15 +9,18 @@ ColumnLayout {
     id: page
     anchors.fill: parent
 
-    Flickable {
+    ScrollView {
         id: root
 
         property var settingsModel: model.settings
 
         contentHeight: pane.implicitHeight
         contentWidth: parent.width
+        clip: true
 
         Layout.fillHeight: true
+        ScrollBar.horizontal.policy: ScrollBar.horizontal.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
 
         Pane {
             id: pane
@@ -43,7 +46,6 @@ ColumnLayout {
                 }
             }
         }
-        ScrollBar.vertical: ScrollBar { }
     }
 
     RowLayout {
