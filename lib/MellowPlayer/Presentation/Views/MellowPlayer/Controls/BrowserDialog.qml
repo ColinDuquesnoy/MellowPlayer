@@ -1,6 +1,6 @@
-import QtQuick 2.7
+import QtQuick 2.9
 import QtQuick.Window 2.2
-import QtWebEngine 1.3
+import QtWebEngine 1.5
 
 Window {
     id: window
