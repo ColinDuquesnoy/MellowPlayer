@@ -72,6 +72,11 @@ Popup {
         onActivated: accept()
     }
 
+    Shortcut {
+        sequence: "Escape"
+        onActivated: reject()
+    }
+
     function accept() {
         dialogResult = dialogAccepted;
         accepted();
