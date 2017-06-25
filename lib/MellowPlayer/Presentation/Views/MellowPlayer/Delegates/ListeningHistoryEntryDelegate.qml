@@ -8,10 +8,9 @@ import MellowPlayer 3.0
 Frame {
     id: root
 
-    property string section: ListView.section
+    property bool expanded: false
 
-    height: 72
-    width: ListView.view.width
+    height: expanded ? 72 : 0; width: ListView.view.width
 
     background: Rectangle {
         color: "transparent"
@@ -23,6 +22,7 @@ Frame {
             anchors.right: parent.right
             color: style.isDark(style.background) ? Qt.lighter(style.background) : Qt.darker(style.background, 1.1)
             height: 1
+            visible: expanded
         }
     }
     clip: true
@@ -36,6 +36,10 @@ Frame {
             delayTimer.stop();
             controlPane.visible = false
         }
+    }
+
+    Behavior on height {
+        NumberAnimation { duration:  100 }
     }
 
     ListView.onRemove: SequentialAnimation {

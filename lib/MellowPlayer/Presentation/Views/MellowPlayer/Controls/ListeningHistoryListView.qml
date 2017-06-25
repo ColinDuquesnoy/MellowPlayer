@@ -14,10 +14,13 @@ ScrollView {
     contentHeight: listView.contentHeight
     contentWidth: listView.contentWidth
 
+    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
     ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
 
     ListView {
         id: listView
+
+        property var collapsed: ({})
 
         anchors {
             fill: parent
@@ -26,9 +29,9 @@ ScrollView {
         clip: true
         cacheBuffer: 500 * 72
         model: listeningHistory.filteredModel
-        delegate: ListeningHistoryEntryDelegate { }
+        delegate: ListeningHistoryEntryDelegate { expanded: listView.isSectionExpanded(model.dateCategory) }
         section.criteria: ViewSection.FullString
-        section.delegate: ListeningHistorySectionDelegate { }
+        section.delegate: ListeningHistorySectionDelegate { expanded: listView.isSectionExpanded(section) }
         section.property: "dateCategory"
         add: Transition {
             SequentialAnimation {
@@ -45,6 +48,33 @@ ScrollView {
         }
         removeDisplaced: Transition {
             NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.InOutQuad }
+        }
+
+        function isSectionExpanded( section ) {
+            return !(section in collapsed);
+        }
+
+        function showSection( section ) {
+            delete collapsed[section]
+            collapsedChanged();
+        }
+
+        function hideSection( section ) {
+            collapsed[section] = true
+            collapsedChanged();
+        }
+
+        function toggleSection( section ) {
+            if ( isSectionExpanded( section ) ) {
+                hideSection( section )
+            } else {
+                showSection( section )
+            }
+        }
+
+        function expandAll() {
+            collapsed = { }
+            collapsedChanged()
         }
     }
 }
