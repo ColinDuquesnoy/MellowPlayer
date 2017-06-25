@@ -48,7 +48,8 @@ Page {
 
         Label {
             anchors.centerIn: parent
-            text: "Settings"
+            font.pixelSize: 20
+            text: "Settings - " + settingsPageList.currentItem.category
         }
     }
 
@@ -71,64 +72,59 @@ Page {
             ColumnLayout {
                 anchors.fill: parent
 
+                Component {
+                    id: settingsCategoryDelegate
+
+                    ItemDelegate {
+                        property string category: model.name
+
+                        height: 60; width: parent.width
+                        hoverEnabled: true
+
+                        contentItem: RowLayout {
+                            anchors.fill: parent
+                            anchors.margins: 20
+                            spacing: 10
+
+                            Label {
+                                text: model.icon
+                                font.family: MaterialIcons.family
+                                font.pixelSize: 24
+                            }
+
+                            Label {
+                                verticalAlignment: "AlignVCenter"
+                                text: model.name
+                                font.pixelSize: 20
+                            }
+
+                            Item { Layout.fillWidth: true; }
+                        }
+
+                        onClicked: settingsPageList.currentIndex = index
+                    }
+                }
+
                 ListView {
                     id: settingsPageList
 
+                    highlight: Rectangle {
+                        color: style.isDark(style.secondary) ? "#10ffffff" : "#10000000"
+                        Rectangle {
+                            anchors.top: parent.top
+                            anchors.left: parent.left
+                            anchors.bottom: parent.bottom
+
+                            width: 3
+                            color: style.accent
+                        }
+                    }
+                    highlightMoveDuration: 200
                     model: settings.categories
                     delegate: settingsCategoryDelegate
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-
-                    Component {
-                        id: settingsCategoryDelegate
-
-                        Rectangle {
-                            property double colorFactor: style.getColorScaleFactor(style.secondary);
-
-                            color: settingsPageList.currentIndex == index ||  mouseArea.containsMouse ? Qt.darker(style.secondary, colorFactor) : style.secondary
-                            height: 60; width: parent.width
-
-
-                            Rectangle {
-                                anchors.top: parent.top
-                                anchors.left: parent.left
-                                anchors.bottom: parent.bottom
-
-                                width: 3
-                                color: settingsPageList.currentIndex == index ? style.accent : "transparent"
-                            }
-
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.margins: 20
-                                spacing: 10
-
-                                Label {
-                                    text: model.icon
-                                    font.family: MaterialIcons.family
-                                    font.pixelSize: 24
-                                }
-
-                                Label {
-                                    verticalAlignment: "AlignVCenter"
-                                    text: model.name
-                                    font.pixelSize: 20
-                                }
-
-                                Item { Layout.fillWidth: true; }
-                            }
-
-                            MouseArea {
-                                id: mouseArea
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: containsMouse && settingsPageList.currentIndex != index ? "PointingHandCursor" : "ArrowCursor"
-
-                                onClicked: settingsPageList.currentIndex = index
-                            }
-                        }
-                    }
                 }
 
                 Button {
