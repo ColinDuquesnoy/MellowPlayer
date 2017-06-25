@@ -30,7 +30,7 @@ Pane {
 
                Item {
                    Layout.fillWidth: true
-                   Layout.leftMargin: 12
+                   Layout.margins: 12
 
                    RowLayout {
                        anchors.fill: parent

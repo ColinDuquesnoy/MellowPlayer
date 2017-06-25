@@ -8,8 +8,6 @@ import MellowPlayer 3.0
 Drawer {
     id: drawer
 
-    property bool filtering: false
-
     clip: true
     edge: Qt.RightEdge
     height: mainWindow.height; width: 450
@@ -18,6 +16,7 @@ Drawer {
 
     Page {
         anchors.fill: parent
+        padding: 0
 
         header: ListeningHistoryToolBar { id: toolBar; onQuitRequested: drawer.close() }
 
@@ -26,7 +25,7 @@ Drawer {
 
             ColumnLayout {
                 anchors.fill: parent
-                spacing: 8
+                spacing: 0
 
                 ListeningHistorySearchPane {
                     id: searchPane
