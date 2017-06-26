@@ -9,7 +9,6 @@ MainPage 3.0 Pages/MainPage.qml
 SettingsPage 3.0 Pages/SettingsPage.qml
 
 BrowserDialog 3.0 Controls/BrowserDialog.qml
-DesktopScrollBar 3.0 Controls/DesktopScrollBar.qml
 Link 3.0 Controls/Link.qml
 ListeningHistoryBody 3.0 Controls/ListeningHistoryBody.qml
 ListeningHistoryClipboardConfirmation 3.0 Controls/ListeningHistoryClipboardConfirmation.qml

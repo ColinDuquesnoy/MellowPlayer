@@ -14,12 +14,13 @@ Pane {
     width: ListView.view.width
     padding: 0
 
+    Material.elevation: 2
+    Material.background: style.background
+    Material.theme: style.isDark(style.background) ? Material.Dark : Material.Light
+
     ItemDelegate {
        anchors.fill: parent
        hoverEnabled: true
-
-       Material.background: style.background
-       Material.elevation: 2
 
        contentItem: ColumnLayout {
            anchors.fill: parent

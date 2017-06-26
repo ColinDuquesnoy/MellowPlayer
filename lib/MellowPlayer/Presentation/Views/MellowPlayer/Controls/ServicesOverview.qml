@@ -22,10 +22,12 @@ Item {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        Item {
+        ScrollView {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.margins: 50
+
+            ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
 
             GridView {
                 id: servicesGridView
@@ -41,12 +43,6 @@ Item {
                 }
                 height: parent.height
                 clip: true
-
-                ScrollBar.vertical: DesktopScrollBar {
-                    anchors { top: servicesGridView.top; left: servicesGridView.right; bottom: servicesGridView.bottom }
-                    parent: servicesGridView.parent
-                    visible: active
-                }
 
                 cellWidth: servicesGridView.width / 3
                 cellHeight: cellWidth / 16 * 9

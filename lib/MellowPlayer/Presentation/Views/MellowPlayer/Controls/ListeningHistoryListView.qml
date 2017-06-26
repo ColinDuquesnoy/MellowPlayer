@@ -16,6 +16,7 @@ ScrollView {
 
     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
     ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+    ScrollBar.vertical.visible: ScrollBar.vertical.size != 1
 
     ListView {
         id: listView
