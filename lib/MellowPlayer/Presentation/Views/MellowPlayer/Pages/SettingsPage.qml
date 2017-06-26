@@ -168,7 +168,7 @@ Page {
     MessageBoxDialog {
         id: messageBoxConfirmRestore
 
-        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        standardButtons: Dialog.Yes | Dialog.No
         message: qsTr("Are you sure you want to restore all settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: settingsPage.width / 2 - width / 2

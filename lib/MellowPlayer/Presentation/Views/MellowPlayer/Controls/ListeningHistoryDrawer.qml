@@ -60,7 +60,7 @@ Drawer {
     MessageBoxDialog {
         id: messageBoxConfirmDelete
 
-        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        standardButtons: Dialog.Yes | Dialog.No
         x: drawer.width / 2 - width / 2
         y: drawer.height / 2 - height / 2
     }

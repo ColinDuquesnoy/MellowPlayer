@@ -97,7 +97,7 @@ ApplicationWindow {
     MessageBoxDialog {
         id: messageBoxConfirmQuit
 
-        buttonTexts: [qsTr("Yes"), qsTr("No")]
+        standardButtons: Dialog.Ok | Dialog.Cancel
         message: qsTr("Are you sure you want to quit MellowPlayer?")
         title: qsTr("Confirm quit")
         onAccepted: qtApp.quit()
@@ -111,7 +111,7 @@ ApplicationWindow {
         title: qsTr("Closing to system tray")
         message: qsTr("<p>MellowPlayer will continue to run in background.<br>" +
                       "You can quit the application or restore the main window via the system tray icon menu.</p>")
-        buttonTexts: [qsTr("Ok")]
+        standardButtons: Dialog.Ok
         onAccepted: windowModel.visible = false
         x: mainWindow.width / 2 - width / 2
         y: mainWindow.height / 2 - height / 2
