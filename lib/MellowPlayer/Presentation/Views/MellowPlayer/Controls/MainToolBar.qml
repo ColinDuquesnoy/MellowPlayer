@@ -138,10 +138,7 @@ ToolBar {
             font.pixelSize: toolBar.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
-            onClicked: {
-                webViewStack.currentWebView().url = webViewStack.currentWebView().urlToLoad
-                webViewStack.currentWebView().isRunning = true;
-            }
+            onClicked: webViewStack.currentWebView().start()
 
             Tooltip {
                 y: toolBar.implicitHeight

@@ -61,5 +61,6 @@
         <file>Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml</file>
         <file>Views/MellowPlayer/Pages/MainPage.qml</file>
         <file>Views/MellowPlayer/Pages/SettingsPage.qml</file>
+        <file>Views/MellowPlayer/Controls/CustomUrlPane.qml</file>
     </qresource>
 </RCC>

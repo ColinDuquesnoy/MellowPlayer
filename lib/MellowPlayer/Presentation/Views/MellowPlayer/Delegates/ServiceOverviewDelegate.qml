@@ -70,11 +70,8 @@ Item {
             ]
             onStateChanged: {
                 preview.visible = true;
-                if (webView.url == "" ) {
-                    webView.url = webView.urlToLoad;
-                    webView.isRunning = true;
-
-                }
+                if (webView.url == "" )
+                    webView.start()
             }
         }
 
@@ -189,12 +186,7 @@ Item {
             font.family: MaterialIcons.family
             font.pointSize: 22
 
-            onClicked: {
-                webView.url = "";
-                webView.reload();
-                webView.image = null;
-                webView.isRunning = false;
-            }
+            onClicked: webView.stop()
         }
     }
 }

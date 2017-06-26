@@ -3,6 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Macros.hpp>
 #include "IPlayer.hpp"
+#include <QTimer>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
@@ -15,6 +16,7 @@ class ILogger;
 class Player: public IPlayer
 {
     Q_OBJECT
+    Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
 public:
     Player(Application::StreamingService& streamingService);
     ~Player();
@@ -44,8 +46,9 @@ public:
     bool isStopped() const override;
 
     // invoked by WebView (QML)
-    Q_INVOKABLE void initialize();
-    Q_INVOKABLE void refresh();
+    Q_INVOKABLE void start();
+    Q_INVOKABLE void stop();
+    Q_INVOKABLE bool isRunning() const;
     Q_INVOKABLE void setUpdateResults(const QVariant& results);
 
     // invoked by CurrentPlayer
@@ -60,6 +63,10 @@ public:
 signals:
     void runJavascriptRequested(const QString& script);
     void updateRequested(const QString& script);
+    void isRunningChanged();
+
+public slots:
+    void refresh();
 
 private:
     void setCurrentSong(std::unique_ptr<Application::Song>& song);
@@ -82,6 +89,8 @@ private:
     Application::StreamingService& streamingService;
     Application::StreamingServiceScript& streamingServiceScript;
     PlaybackStatus suspendedState = PlaybackStatus::Stopped;
+    bool isRunning_ = false;
+    QTimer* refreshTimer;
 };
 
 END_MELLOWPLAYER_NAMESPACE

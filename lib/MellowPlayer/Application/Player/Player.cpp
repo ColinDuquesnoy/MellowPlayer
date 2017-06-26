@@ -11,8 +11,10 @@ using namespace std;
 
 Player::Player(StreamingService& streamingService) :
         logger(LoggingManager::instance().getLogger("Player-" + streamingService.getName().toStdString())),
-        currentSong(nullptr), streamingService(streamingService), streamingServiceScript(*streamingService.getScript()) {
-
+        currentSong(nullptr), streamingService(streamingService), streamingServiceScript(*streamingService.getScript()),
+        refreshTimer(new QTimer()){
+    connect(refreshTimer, &QTimer::timeout, this, &Player::refresh);
+    refreshTimer->setInterval(100);
 }
 
 Player::~Player() = default;
@@ -113,14 +115,29 @@ QString Player::getServiceName() const {
     return streamingService.getName();
 }
 
-void Player::initialize() {
-    LOG_TRACE(logger, "initialize()");
+void Player::start() {
+    LOG_TRACE(logger, "start()");
+    isRunning_ = true;
     emit runJavascriptRequested(streamingServiceScript.getConstants() + "\n" + streamingServiceScript.getCode());
+    refreshTimer->start();
+}
+
+void Player::stop()
+{
+    isRunning_ = false;
+    emit isRunningChanged();
+    refreshTimer->stop();
+}
+
+bool Player::isRunning() const
+{
+    return isRunning_;
 }
 
 void Player::refresh() {
     LOG_TRACE(logger, "initialize()");
     emit updateRequested(streamingServiceScript.update());
+    refreshTimer->start();
 }
 
 void Player::setUpdateResults(const QVariant& results) {

@@ -17,8 +17,6 @@ Page {
         anchors.margins: 0
 
         property var previewImage
-        property string originalBackgroundColor: Material.background
-        property string originalForegroundColor: Material.foreground
 
         states: [
             State {
@@ -30,7 +28,7 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: overviewLoader
+                    target: servicesOverview
                     visible: true
                     enabled: true
                 }
@@ -56,7 +54,7 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: overviewLoader
+                    target: servicesOverview
                     visible: false
                     enabled: false
                 }
@@ -82,7 +80,7 @@ Page {
 
 
                 PropertyChanges {
-                    target: overviewLoader
+                    target: servicesOverview
                     visible: false
                 }
 
@@ -97,11 +95,13 @@ Page {
         WebViewStack {
             id: webViewStack
             anchors.fill: parent
+
+            Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }
 
         Pane { id: mask; anchors.fill: parent }
 
-        Loader { id: overviewLoader; anchors.fill: parent; visible: false }
+        Loader { id: servicesOverview; anchors.fill: parent; visible: false }
 
         Component { id: overviewComponent; ServicesOverview { } }
     }

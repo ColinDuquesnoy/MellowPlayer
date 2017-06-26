@@ -5,15 +5,13 @@ import QtQuick.Controls 2.2
 import MellowPlayer 3.0
 
 StackLayout {
-    id: webViewStack
+    id: root
 
-    property int loadProgress: 0
     function currentWebView() {
-        return webViewStack.itemAt(webViewStack.currentIndex);
+        return root.itemAt(root.currentIndex);
     }
 
     currentIndex: streamingServices.currentIndex
-    Component.onCompleted: overviewLoader.sourceComponent = overviewComponent;
 
     Repeater {
         id: repeater
@@ -24,9 +22,8 @@ StackLayout {
             id: webView
 
             anchors.fill: parent
-            onLoadProgressChanged: {
-                webViewStack.loadProgress = loadProgress
-            }
+            visible: visible && root.currentIndex == index;
+            enabled: visible
         }
     }
 
@@ -37,10 +34,10 @@ StackLayout {
         onActivated: goToNextLoadedWebView()
 
         function goToNextLoadedWebView() {
-            var index = getNextIndex(webViewStack.currentIndex);
+            var index = getNextIndex(root.currentIndex);
 
-            while(index != webViewStack.currentIndex) {
-                var webView = webViewStack.itemAt(index);
+            while(index != root.currentIndex) {
+                var webView = root.itemAt(index);
                 if (webView.url != "" && webView.isRunning) {
                     streamingServices.currentService = webView.service;
                     break;
@@ -51,7 +48,7 @@ StackLayout {
 
         function getNextIndex(index) {
             var nextIndex = index + 1;
-            if (nextIndex >= webViewStack.count)
+            if (nextIndex >= root.count)
                 nextIndex = 0;
             return nextIndex;
         }
@@ -64,10 +61,10 @@ StackLayout {
         onActivated: goToPreviousLoadedWebView()
 
         function goToPreviousLoadedWebView() {
-            var index = getPreviousIndex(webViewStack.currentIndex);
+            var index = getPreviousIndex(root.currentIndex);
 
-            while(index != webViewStack.currentIndex) {
-                var webView = webViewStack.itemAt(index);
+            while(index != root.currentIndex) {
+                var webView = root.itemAt(index);
                 if (webView.url != "" && webView.isRunning) {
                     streamingServices.currentService = webView.service;
                     break;
@@ -79,7 +76,7 @@ StackLayout {
         function getPreviousIndex(index) {
             var previousIndex = index - 1;
             if (previousIndex < 0)
-                previousIndex = webViewStack.count - 1;
+                previousIndex = root.count - 1;
             return previousIndex;
         }
     }

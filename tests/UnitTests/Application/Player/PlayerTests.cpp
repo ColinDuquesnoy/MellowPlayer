@@ -14,13 +14,17 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
     Player player(service);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
 
-    SECTION("initialize test") {
-        player.initialize();
+    SECTION("start test") {
+        REQUIRE(!player.isRunning());
+        player.start();
+        REQUIRE(player.isRunning());
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(!runJavascriptRequestedSpy[0][0].toString().isEmpty());
+        player.stop();
+        REQUIRE(!player.isRunning());
     }
 
-    SECTION("initialize test") {
+    SECTION("refresh test") {
         QSignalSpy updateRequestedSpy(&player, SIGNAL(updateRequested(const QString&)));
         player.refresh();
         REQUIRE(updateRequestedSpy.count() == 1);
