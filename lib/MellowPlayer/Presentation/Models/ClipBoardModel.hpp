@@ -11,6 +11,9 @@ public:
     ClipBoardModel(QObject* parent= nullptr);
 
     Q_INVOKABLE void setText(const QString& text);
+
+signals:
+    void textCopied(const QString& text);
 };
 
 END_MELLOWPLAYER_NAMESPACE

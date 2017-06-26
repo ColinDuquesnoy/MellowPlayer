@@ -148,10 +148,7 @@ Frame {
                 hoverEnabled: true
                 text: MaterialIcons.MaterialIcons.icon_content_copy
                 font { family: MaterialIcons.family; pixelSize: 16 }
-                onClicked: {
-                    clipboard.setText(model.title)
-                    clipBoardCopyConfirmation.text = model.title
-                }
+                onClicked: clipboard.setText(model.title)
 
                 Layout.fillHeight: true
             }

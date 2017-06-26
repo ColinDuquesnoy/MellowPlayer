@@ -10,4 +10,5 @@ ClipBoardModel::ClipBoardModel(QObject *parent) : QObject(parent) {
 
 void ClipBoardModel::setText(const QString &text) {
     qApp->clipboard()->setText(text);
+    emit textCopied(text);
 }

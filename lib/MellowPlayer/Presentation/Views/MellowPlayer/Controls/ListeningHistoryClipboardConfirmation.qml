@@ -32,6 +32,11 @@ Pane {
 
     Component.onCompleted: { background.opacity = 0.98 }
 
+    Connections {
+        target: clipboard
+        onTextCopied: root.text = text
+    }
+
     Column {
         anchors.fill: parent
         spacing: 4

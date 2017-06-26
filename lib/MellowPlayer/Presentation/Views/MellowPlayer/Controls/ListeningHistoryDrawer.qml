@@ -47,8 +47,6 @@ Drawer {
             }
 
             ListeningHistoryClipboardConfirmation {
-                id: clipBoardCopyConfirmation
-
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
