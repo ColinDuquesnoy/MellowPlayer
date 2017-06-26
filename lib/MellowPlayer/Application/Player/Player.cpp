@@ -173,6 +173,7 @@ void Player::suspend() {
         pause();
         playbackStatus = PlaybackStatus::Paused;
     }
+    refreshTimer->stop();
 }
 
 void Player::resume() {
@@ -180,6 +181,7 @@ void Player::resume() {
     if (suspendedState == PlaybackStatus::Playing) {
         play();
     }
+    refreshTimer->start();
 }
 
 void Player::setCurrentSong(unique_ptr<Song>& song) {
