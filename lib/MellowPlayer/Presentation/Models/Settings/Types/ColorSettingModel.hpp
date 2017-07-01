@@ -10,7 +10,7 @@ class ColorSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(QColor value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    ColorSettingModel(Application::Setting& setting, QObject* parent);
+    ColorSettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QColor getValue() const;
     QString getQmlComponent() override;

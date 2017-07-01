@@ -12,7 +12,7 @@ Page {
 
     header: MainToolBar {
         id: toolBar;
-        isWebViewMode: body.state == "webview"
+        isWebViewMode: body.state === "webview"
     }
 
     Item {

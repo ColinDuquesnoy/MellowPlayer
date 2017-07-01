@@ -22,7 +22,7 @@ SettingsModel::SettingsModel(Settings& settings, QObject* parent) : QObject(pare
 SettingModel* SettingsModel::get(int key) {
     SettingKey::Keys settingKey = static_cast<SettingKey::Keys>(key);
     Setting& setting = settings.get(settingKey);
-    return settingModelFactory.create(setting, this);
+    return settingModelFactory.create(setting, nullptr);
 }
 
 QAbstractItemModel* SettingsModel::getCategories() const {

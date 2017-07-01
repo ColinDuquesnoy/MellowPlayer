@@ -9,7 +9,7 @@ class ShortcutSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    ShortcutSettingModel(Application::Setting& setting, QObject* parent);
+    ShortcutSettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QString getValue() const;
     QString getQmlComponent() override;

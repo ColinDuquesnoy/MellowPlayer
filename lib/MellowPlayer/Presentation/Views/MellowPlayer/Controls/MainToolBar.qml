@@ -63,7 +63,7 @@ ToolBar {
 
             Tooltip {
                 y: root.implicitHeight
-                text: body.state === "webview" ? qsTr("Select another service") :
+                text: root.isWebViewMode ? qsTr("Select another service") :
                       streamingServices.currentService != null ?
                       qsTr("Go back to ") + streamingServices.currentService.name : ""
             }
@@ -80,7 +80,7 @@ ToolBar {
                 color: Material.color(Material.Grey)
             }
 
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
         }
 
         ToolButton {
@@ -88,7 +88,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
 
             onClicked: webViewStack.currentWebView().goBack()
 
@@ -103,7 +103,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             onClicked: webViewStack.currentWebView().goForward()
 
             Tooltip {
@@ -119,7 +119,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             onClicked: reload()
 
             Tooltip {
@@ -130,7 +130,7 @@ ToolBar {
             Shortcut {
                 property var setting: settings.get(SettingKey.SHORTCUTS_RELOAD)
 
-                sequence: setting != null ? setting.value : ""
+                sequence: setting.value
                 onActivated: btReload.reload()
             }
 
@@ -144,7 +144,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             onClicked: webViewStack.currentWebView().start()
 
             Tooltip {
@@ -172,8 +172,8 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            enabled: body.state == "webview" && player.canAddToFavorites
-            visible: body.state == "webview"
+            enabled: root.isWebViewMode && player.canAddToFavorites
+            visible: root.isWebViewMode
 
             onClicked: player.toggleFavoriteSong()
 
@@ -194,7 +194,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             enabled: player.canGoPrevious && (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.previous()
@@ -212,7 +212,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             enabled: !player.isStopped || (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.togglePlayPause()
@@ -230,7 +230,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
             enabled: player.canGoNext && (player.currentSong !== null && player.currentSong.isValid())
 
             onClicked: player.next()
@@ -247,7 +247,7 @@ ToolBar {
             property var setting: settings.get(SettingKey.NOTIFICATIONS_ENABLED)
 
             checkable: true
-            checked: setting != null ? setting.value : false
+            checked: setting.value
             font { family: MaterialIcons.family; pixelSize: d.iconSize }
             hoverEnabled: true
             onClicked: setting.value = checked
@@ -264,7 +264,7 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
 
-                sequence: shortcut != null ? shortcut.value : ""
+                sequence: shortcut.value
                 onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
             }
         }
@@ -280,7 +280,7 @@ ToolBar {
                 color: Material.color(Material.Grey)
             }
 
-            visible: body.state == "webview"
+            visible: root.isWebViewMode
         }
 
         ToolButton {
@@ -298,7 +298,7 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
 
-                sequence: shortcut != null ? shortcut.value : ""
+                sequence: shortcut.value
                 onActivated: listeningHistoryDrawer.visible = !listeningHistoryDrawer.visible
             }
         }
@@ -313,21 +313,21 @@ ToolBar {
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_SETTINGS)
 
-                sequence: shortcut != null ? shortcut.value : ""
+                sequence: shortcut.value
                 onActivated: menuItemSettings.toggleSettings()
             }
 
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_ABOUT)
 
-                sequence: shortcut != null ? shortcut.value : ""
+                sequence: shortcut.value
                 onActivated: menuItemAbout.toggleDialog()
             }
 
             Shortcut {
                 property var shortcut: settings.get(SettingKey.SHORTCUTS_QUIT)
 
-                sequence: shortcut != null ? shortcut.value : ""
+                sequence: shortcut.value
                 onActivated: qtApp.requestQuit();
             }
 
@@ -398,7 +398,7 @@ ToolBar {
         anchors.centerIn: parent
         height: root.height
         width: 300
-        visible: body.state == "webview"
+        visible: root.isWebViewMode
 
         ColumnLayout {
             anchors.fill: parent

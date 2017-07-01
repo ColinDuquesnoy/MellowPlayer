@@ -16,7 +16,7 @@ ScrollView {
 
         anchors.fill: parent
         anchors.margins: 8
-        anchors.rightMargin: parent.ScrollBar.vertical.size != 1 ? 24 : 8
+        anchors.rightMargin: parent.ScrollBar.vertical.size !== 1 ? 24 : 8
         clip: true
         delegate: ServiceSettingDelegate { width: listView.width; }
         model: streamingServices.model

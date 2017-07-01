@@ -9,7 +9,7 @@ class StringSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    StringSettingModel(Application::Setting& setting, QObject* parent);
+    StringSettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QString getValue() const;
     QString getQmlComponent() override;

@@ -30,14 +30,14 @@ StackLayout {
     Shortcut {
         property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_NEXT_SERVICE)
 
-        sequence: setting != null ? setting.value : ""
+        sequence: setting.value
         onActivated: streamingServices.next()
     }
 
     Shortcut {
         property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_PREVIOUS_SERVICE)
 
-        sequence: setting != null ? setting.value : ""
+        sequence: setting.value
         onActivated: streamingServices.previous()
     }
 }

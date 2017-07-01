@@ -10,7 +10,7 @@ class EnumSettingModel: public SettingModel {
     Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
     Q_PROPERTY(QStringList values READ getValues CONSTANT)
 public:
-    EnumSettingModel(Application::Setting& setting, QObject* parent);
+    EnumSettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QString getValue() const;
     QStringList getValues() const;

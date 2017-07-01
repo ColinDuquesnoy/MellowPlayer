@@ -9,7 +9,7 @@ class BoolSettingModel: public SettingModel {
     Q_OBJECT
     Q_PROPERTY(bool value READ getValue WRITE setValue NOTIFY valueChanged)
 public:
-    BoolSettingModel(Application::Setting& setting, QObject* parent);
+    BoolSettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     bool getValue() const;
     QString getQmlComponent() override;

@@ -12,7 +12,7 @@ class SettingModel: public QObject {
     Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
     Q_PROPERTY(bool enabled READ getEnabled NOTIFY enabledChanged)
 public:
-    SettingModel(Application::Setting& setting, QObject* parent);
+    SettingModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QString getName() const;
     QString getToolTip() const;
