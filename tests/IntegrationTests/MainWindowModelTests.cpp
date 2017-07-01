@@ -4,8 +4,8 @@
 #include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
 #include <DI.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("QmlMainWindowTests") {
     ScopedScope scope;

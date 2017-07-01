@@ -7,9 +7,9 @@
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("LocalAlbumArtTests", "[UnitTest]"){
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();

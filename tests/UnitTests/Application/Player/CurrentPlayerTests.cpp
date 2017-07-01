@@ -6,7 +6,7 @@
 #include <QtTest/QSignalSpy>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
     auto mock = StreamingServiceLoaderMock::get();

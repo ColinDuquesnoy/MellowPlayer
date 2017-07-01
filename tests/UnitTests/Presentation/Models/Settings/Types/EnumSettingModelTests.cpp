@@ -6,8 +6,8 @@
 #include <MellowPlayer/Presentation/Models/Settings/Types/EnumSettingModel.hpp>
 #include <QtTest/QSignalSpy>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("EnumSettingModelTests") {
     ScopedScope scope;

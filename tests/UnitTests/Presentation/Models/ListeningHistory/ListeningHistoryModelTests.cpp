@@ -12,9 +12,9 @@
 #include <Utils/Helpers.hpp>
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ListeningHistoryViewModelTests") {
     auto mock = StreamingServiceLoaderMock::get();

@@ -2,8 +2,8 @@
 #include "ShortcutSettingModel.hpp"
 #include <QDebug>
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 ShortcutSettingModel::ShortcutSettingModel(Setting& setting, QObject* parent) : SettingModel(setting, parent) {
 

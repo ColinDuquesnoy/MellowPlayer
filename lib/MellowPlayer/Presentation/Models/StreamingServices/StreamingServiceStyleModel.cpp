@@ -4,9 +4,9 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "StreamingServiceStyleModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServiceStyleModel::StreamingServiceStyleModel(StreamingServices& streamingServices, Settings& settings) :
         useServiceStyle(true),

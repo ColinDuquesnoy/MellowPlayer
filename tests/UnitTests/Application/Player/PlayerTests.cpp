@@ -5,7 +5,7 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/SettingsProviderMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("PlayerTests", "[UnitTest]") {
     StreamingServiceMetadata metadata;

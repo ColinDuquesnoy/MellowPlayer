@@ -3,8 +3,8 @@
 #include <QtTest/QSignalSpy>
 #include "DI.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     ScopedScope scope;

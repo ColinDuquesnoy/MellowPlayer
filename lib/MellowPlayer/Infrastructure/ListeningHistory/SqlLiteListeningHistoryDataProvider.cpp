@@ -7,9 +7,9 @@
 #include "MellowPlayer/Infrastructure/Utils/FileHelper.hpp"
 #include "SqlLiteListeningHistoryDataProvider.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider() :
         logger(LoggingManager::instance().getLogger("SqlLiteListeningHistoryDataProvider")) {

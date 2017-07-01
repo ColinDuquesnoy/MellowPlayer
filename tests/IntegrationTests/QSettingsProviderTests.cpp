@@ -2,9 +2,9 @@
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("QSettingsProviderTests") {
     QSettingsProvider settingsProvider;

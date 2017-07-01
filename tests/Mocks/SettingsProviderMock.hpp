@@ -3,8 +3,8 @@
 #include <memory>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class SettingsProviderMock {

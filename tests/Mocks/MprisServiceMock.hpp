@@ -8,7 +8,7 @@
 #include <memory>
 #include <MellowPlayer/Application/Controllers/IMprisController.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 class MprisServiceMock {

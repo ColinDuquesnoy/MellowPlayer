@@ -4,7 +4,7 @@
 #include "StreamingService.hpp"
 #include "StreamingServiceScript.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
 StreamingService::StreamingService(const StreamingServiceMetadata& metadata,  const StreamingServiceStyle& style):

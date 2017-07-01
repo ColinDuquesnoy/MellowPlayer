@@ -2,7 +2,7 @@
 #include "ListeningHistoryEntryProxyListModel.hpp"
 #include "QQmlObjectListModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 ListeningHistoryEntryProxyListModel::ListeningHistoryEntryProxyListModel(
         QQmlObjectListModel<ListeningHistoryEntryModel> *sourceModel): sourceModel(sourceModel) {

@@ -7,8 +7,8 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("SystemTrayIconTests") {
     auto playerMock = PlayerMock::get();

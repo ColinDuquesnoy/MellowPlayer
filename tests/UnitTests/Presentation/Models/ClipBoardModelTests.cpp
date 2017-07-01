@@ -3,7 +3,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/Models/ClipBoardModel.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("ClipBoardViewModelTests") {
     ClipBoardModel clipBoardViewModel;

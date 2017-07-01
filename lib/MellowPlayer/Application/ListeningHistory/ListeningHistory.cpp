@@ -6,8 +6,8 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "ListeningHistory.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player,
                                                  IWorkDispatcher& workDispatcher, Settings& settings):

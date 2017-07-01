@@ -13,8 +13,8 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <QtDBus/QDBusConnection>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("MprisServiceTests", "[IntegrationTest]")
 {

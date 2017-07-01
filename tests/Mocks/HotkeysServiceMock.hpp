@@ -3,7 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
 class HotkeysControllerMock {

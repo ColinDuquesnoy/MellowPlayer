@@ -2,7 +2,7 @@
 #include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
 #include <iostream>
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("AlbumArtDownloaderTests") {
     AlbumArtDownloader albumArtDownloader;

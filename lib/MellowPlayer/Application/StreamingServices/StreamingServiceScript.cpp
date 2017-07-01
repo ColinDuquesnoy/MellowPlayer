@@ -1,6 +1,6 @@
 #include "StreamingServiceScript.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 StreamingServiceScript::StreamingServiceScript(const QString &code, const QString &path):
         QObject(), code(code), path(path) {

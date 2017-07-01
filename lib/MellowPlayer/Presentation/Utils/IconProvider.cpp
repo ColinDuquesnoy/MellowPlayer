@@ -1,7 +1,7 @@
 #include "IconProvider.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 QIcon IconProvider::trayIcon() {
     return windowIcon();

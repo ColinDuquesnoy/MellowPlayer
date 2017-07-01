@@ -2,7 +2,7 @@
 #include <QtCore/QDir>
 #include "FileHelper.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 QString FileHelper::appDataDirectory() {

@@ -60,9 +60,9 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 namespace di = boost::di;
 

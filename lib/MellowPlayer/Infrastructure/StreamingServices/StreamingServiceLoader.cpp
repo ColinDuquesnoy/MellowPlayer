@@ -14,9 +14,9 @@
 #include "StreamingServiceLoader.hpp"
 #include <QDebug>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 StreamingServiceLoader::StreamingServiceLoader() :

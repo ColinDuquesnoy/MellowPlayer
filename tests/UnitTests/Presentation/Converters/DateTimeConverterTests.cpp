@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 TEST_CASE("DateConverterTests", "[UnitTest]") {
     DateTimeConverter converter;

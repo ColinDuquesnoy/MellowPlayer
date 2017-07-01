@@ -9,8 +9,8 @@
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp"
 #include "MprisController.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace std;
 
 QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";

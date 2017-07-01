@@ -13,8 +13,8 @@
 #include <MellowPlayer/Presentation/Models/Settings/Types/SettingModel.hpp>
 #include "MainWindowModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 MainWindowModel::MainWindowModel(StreamingServicesModel& streamingServicesModel,
                                  ListeningHistoryModel& listeningHistoryModel,

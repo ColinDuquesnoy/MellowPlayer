@@ -12,7 +12,7 @@
 #include <Mocks/NotifierMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("LinuxApplicationTests", "[UnitTest]") {
     auto mainWindowMock = MainWindowMock::get();

@@ -3,7 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace fakeit;
 
 class MainWindowMock {

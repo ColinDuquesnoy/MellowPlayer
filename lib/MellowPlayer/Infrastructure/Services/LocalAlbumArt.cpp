@@ -3,9 +3,9 @@
 #include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
 #include "LocalAlbumArt.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 
 LocalAlbumArt::LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader): downloader(downloader) {

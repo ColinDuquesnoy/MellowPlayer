@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
 TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {

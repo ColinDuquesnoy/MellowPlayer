@@ -2,7 +2,7 @@
 #include <QClipboard>
 #include "MellowPlayer/Presentation/Models/ClipBoardModel.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 ClipBoardModel::ClipBoardModel(QObject *parent) : QObject(parent) {
 

@@ -6,7 +6,7 @@
 #include <QDebug>
 
 using namespace std;
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 Setting::Setting(Settings& settings, SettingsCategory& category, const Setting::Data& settingData) :
         QObject(&category), settingsProvider(settings.getSettingsProvider()), settings(settings),

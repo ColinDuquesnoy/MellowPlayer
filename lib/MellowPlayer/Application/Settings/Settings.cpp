@@ -6,7 +6,7 @@
 #include "SettingsCategory.hpp"
 
 using namespace std;
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 Settings::Settings(ISettingsSchemaLoader& configurationLoader,
                                          ISettingsProvider& settingsProvider):

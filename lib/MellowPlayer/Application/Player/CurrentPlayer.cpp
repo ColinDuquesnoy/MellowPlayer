@@ -4,8 +4,8 @@
 #include "Player.hpp"
 #include "Players.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
 CurrentPlayer::CurrentPlayer(Players& players, StreamingServices& streamingServices)

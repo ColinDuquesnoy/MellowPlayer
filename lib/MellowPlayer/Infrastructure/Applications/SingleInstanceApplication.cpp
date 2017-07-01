@@ -8,8 +8,8 @@
 #include <unistd.h>
 #endif
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Infrastructure)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 SingleInstanceApplication::SingleInstanceApplication(IApplication& application):
         logger(LoggingManager::instance().getLogger("SingleInstanceApplication")),

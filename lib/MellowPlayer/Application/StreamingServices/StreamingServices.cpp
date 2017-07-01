@@ -3,8 +3,8 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include "StreamingServices.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
 StreamingServices::StreamingServices(IStreamingServiceLoader& loader) :

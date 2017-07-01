@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("ListeningHistoryEntryTests") {
     Song song1("uniqueId1", "title1", "artist1", "album1", "artUrl1", 5, false);

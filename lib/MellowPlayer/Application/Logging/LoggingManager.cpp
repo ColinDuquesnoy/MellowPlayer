@@ -3,7 +3,7 @@
 #include <QtCore/QLoggingCategory>
 #include "LoggingManager.hpp"
 
-USE_MELLOWPLAYER_NAMESPACE(Application)
+USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message) {

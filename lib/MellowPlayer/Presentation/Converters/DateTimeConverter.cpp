@@ -1,6 +1,6 @@
 #include "DateTimeConverter.h"
 
-USE_MELLOWPLAYER_NAMESPACE(Presentation)
+USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 
 QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const {
