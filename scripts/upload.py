@@ -140,7 +140,7 @@ def create_continuous_release(repo, repo_slug, commit):
         CONTINUOUS_RELEASE_NAME, commit, CONTINUOUS_RELEASE_NAME, description, prerelease=True)
 
 
-def upload_binaries(release, glob_expr):
+def upload_binaries(release, glob_expr, github):
     print('uploading binaries: ' + glob_expr)
     for file in glob.glob(glob_expr):
         with open(file, 'rb') as f:
@@ -149,10 +149,15 @@ def upload_binaries(release, glob_expr):
         name = os.path.split(file)[1]
         content_type = "application/octet-stream"
 
-        print(" - uploading asset")
-        print("     path: " + file)
-        print("     name: " + name)
-        release.upload_asset(content_type, name, data)
+        for asset in release.assets:
+            if asset.name == name:
+                print("asset %r already uploaded" % asset.name)
+                break
+        else:
+            print(" - uploading asset")
+            print("     path: " + file)
+            print("     name: " + name)            
+            release.upload_asset(content_type, name, data)
 
 
 def get_tag_release(commit, repo, tag):
@@ -186,7 +191,7 @@ def main():
         release = get_tag_release(commit, repo, tag)
 
     # upload binaries
-    upload_binaries(release, glob_expression)
+    upload_binaries(release, glob_expression, github)
 
 
 if __name__ == "__main__":
