@@ -4,14 +4,21 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
+import ".."
 
 ToolBar {
-    id: toolBar
+    id: root
 
-    property int iconSize: 22
+    property bool isWebViewMode: false
+
     Material.primary: style.primary
     Material.foreground: style.primaryForeground
     Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
+
+    QtObject {
+        id: d
+        property int iconSize: 22
+    }
     
 
     RowLayout {
@@ -21,11 +28,11 @@ ToolBar {
         ToolButton {
             id: btSelectService
 
-            text: body.state == "webview" ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
+            text: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize + 2
+            font.pixelSize: d.iconSize + 2
             hoverEnabled: true
-            visible: body.previewImage !== undefined || body.state == "webview"
+            visible: root.isWebViewMode
 
             onClicked: switchView()
 
@@ -50,13 +57,13 @@ ToolBar {
             Shortcut {
                 property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
 
-                sequence: setting != null ? setting.value : ""
+                sequence: setting.value
                 onActivated: btSelectService.switchView()
             }
 
             Tooltip {
-                y: toolBar.implicitHeight
-                text: body.state == "webview" ? qsTr("Select another service") :
+                y: root.implicitHeight
+                text: body.state === "webview" ? qsTr("Select another service") :
                       streamingServices.currentService != null ?
                       qsTr("Go back to ") + streamingServices.currentService.name : ""
             }
@@ -79,14 +86,14 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_chevron_left
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
 
             onClicked: webViewStack.currentWebView().goBack()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Go back")
             }
         }
@@ -94,13 +101,13 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_chevron_right
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().goForward()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Go forward")
             }
         }
@@ -110,13 +117,13 @@ ToolBar {
 
             text: MaterialIcons.icon_refresh
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: reload()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Reload this page")
             }
 
@@ -135,13 +142,13 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_home
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             onClicked: webViewStack.currentWebView().start()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Go to the homepage")
             }
         }
@@ -163,7 +170,7 @@ ToolBar {
             id: btFavorite
             text: player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             enabled: body.state == "webview" && player.canAddToFavorites
             visible: body.state == "webview"
@@ -171,7 +178,7 @@ ToolBar {
             onClicked: player.toggleFavoriteSong()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
             }
         }
@@ -185,7 +192,7 @@ ToolBar {
 
             text: MaterialIcons.icon_fast_rewind
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             enabled: player.canGoPrevious && (player.currentSong !== null && player.currentSong.isValid())
@@ -193,7 +200,7 @@ ToolBar {
             onClicked: player.previous()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Skip to previous song")
             }
         }
@@ -203,7 +210,7 @@ ToolBar {
 
             text: player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             enabled: !player.isStopped || (player.currentSong !== null && player.currentSong.isValid())
@@ -211,7 +218,7 @@ ToolBar {
             onClicked: player.togglePlayPause()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text:  player.isPlaying ? qsTr("Pause") : qsTr("Play")
             }
         }
@@ -221,7 +228,7 @@ ToolBar {
 
             text: MaterialIcons.icon_fast_forward
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: body.state == "webview"
             enabled: player.canGoNext && (player.currentSong !== null && player.currentSong.isValid())
@@ -229,7 +236,7 @@ ToolBar {
             onClicked: player.next()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Skip to next song")
             }
         }
@@ -241,7 +248,7 @@ ToolBar {
 
             checkable: true
             checked: setting != null ? setting.value : false
-            font { family: MaterialIcons.family; pixelSize: toolBar.iconSize }
+            font { family: MaterialIcons.family; pixelSize: d.iconSize }
             hoverEnabled: true
             onClicked: setting.value = checked
             text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
@@ -250,7 +257,7 @@ ToolBar {
             Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
             }
 
@@ -279,12 +286,12 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_history
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize
+            font.pixelSize: d.iconSize
             hoverEnabled: true
             onClicked: listeningHistoryDrawer.open()
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: parent.implicitHeight
                 text: qsTr("Listening history")
             }
 
@@ -299,7 +306,7 @@ ToolBar {
         ToolButton {
             text: MaterialIcons.icon_more_vert
             font.family: MaterialIcons.family
-            font.pixelSize: toolBar.iconSize + 2
+            font.pixelSize: d.iconSize + 2
             hoverEnabled: true
             onClicked: menu.open()
 
@@ -332,6 +339,7 @@ ToolBar {
                     id: menuItemSettings
 
                     icon: MaterialIcons.icon_settings
+                    // @disable-check M16 M31
                     onClicked: openSettings()
                     text: "Settings"
 
@@ -356,6 +364,7 @@ ToolBar {
 
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
+                    // @disable-check M16 M31
                     onClicked: toggleDialog()
 
                     function toggleDialog() {
@@ -372,12 +381,13 @@ ToolBar {
                 MenuIconItem {
                     icon: MaterialIcons.icon_power_settings_new
                     text: "Quit"
+                    // @disable-check M16 M31
                     onClicked: qtApp.requestQuit()
                 }
             }
 
             Tooltip {
-                y: toolBar.implicitHeight
+                y: root.implicitHeight
                 text: qsTr("Main menu")
             }
         }
@@ -386,7 +396,7 @@ ToolBar {
     Item {
         id: centerItem
         anchors.centerIn: parent
-        height: toolBar.height
+        height: root.height
         width: 300
         visible: body.state == "webview"
 

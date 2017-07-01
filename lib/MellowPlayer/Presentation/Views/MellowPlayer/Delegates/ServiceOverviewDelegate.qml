@@ -6,6 +6,7 @@ import QtWebEngine 1.5
 import QtGraphicalEffects 1.0
 
 import MellowPlayer 3.0
+import ".."
 
 Item {
     id: root

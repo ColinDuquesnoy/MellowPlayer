@@ -5,11 +5,15 @@ import QtQuick.Controls.Material 2.2
 import QtWebEngine 1.5
 
 import MellowPlayer 3.0
+import ".."
 
 Page {
     id: mainPage
 
-    header: MainToolBar { id: toolBar }
+    header: MainToolBar {
+        id: toolBar;
+        isWebViewMode: body.state == "webview"
+    }
 
     Item {
         id: body
@@ -43,7 +47,6 @@ Page {
                     target: style
                     useServiceStyle: false
                 }
-
             },
             State {
                 name: "webview"

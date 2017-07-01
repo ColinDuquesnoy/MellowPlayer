@@ -10,6 +10,8 @@ set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQml
 set(HEADER_FILES ${HEADER_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQmlObjectListModel.hpp)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models)
 
+set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/Views ${CMAKE_SOURCE_DIR}/Views/MellowPlayer CACHE string "" FORCE)
+
 if(USE_LIBNOTIFY)
     include_directories(${LIBNOTIFY_INCLUDE_DIRS})
 endif()

@@ -11,6 +11,7 @@ Window {
     width: 800
     height: 600
     visible: true
+    // @disable-check M16
     onClosing: destroy()
 
     WebEngineView {

@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 
 import MellowPlayer 3.0
+import ".."
 
 Pane {
     property var values: model.qtObject.values

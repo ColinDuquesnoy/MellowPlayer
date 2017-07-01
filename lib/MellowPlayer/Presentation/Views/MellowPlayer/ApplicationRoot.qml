@@ -6,6 +6,7 @@ QtObject {
     id: root
 
     property Component browserDialogComponent: BrowserDialog {
+        // @disable-check M16
         onClosing: destroy();
     }
 
