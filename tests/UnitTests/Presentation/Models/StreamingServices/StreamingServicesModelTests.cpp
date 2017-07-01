@@ -18,6 +18,10 @@ TEST_CASE("StreamingServicesModel", "[UnitTest]") {
     viewModel.initialize();
     viewModel.reload();
 
+    StreamingServiceModel* service1 = viewModel.getModel()->at(0);
+    StreamingServiceModel* service2 = viewModel.getModel()->at(1);
+    StreamingServiceModel* service3 = viewModel.getModel()->at(2);
+
     REQUIRE(viewModel.getModel()->count() == streamingServices.getAll().count());
 
     SECTION("setCurrentService_change_currentIndex") {
@@ -28,6 +32,54 @@ TEST_CASE("StreamingServicesModel", "[UnitTest]") {
         REQUIRE(viewModel.getCurrentService() == viewModel.getModel()->toList()[1]);
         viewModel.setCurrentService(viewModel.getModel()->toList()[1]);
         viewModel.setCurrentIndex(1);
+    }
+
+    SECTION("next does not change current service if only one running service") {
+        service1->getPlayer()->start();
+        service2->getPlayer()->stop();
+        service3->getPlayer()->stop();
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentService() == service1);
+        viewModel.next();
+        REQUIRE(viewModel.getCurrentService() == service1);
+    }
+
+    SECTION("next change current service if more than one service is running") {
+        service1->getPlayer()->start();
+        service2->getPlayer()->start();
+        service3->getPlayer()->start();
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentService() == service1);
+        viewModel.next();
+        REQUIRE(viewModel.getCurrentService() == service2);
+        viewModel.next();
+        REQUIRE(viewModel.getCurrentService() == service3);
+        viewModel.next();
+        REQUIRE(viewModel.getCurrentService() == service1);
+    }
+
+    SECTION("previous does not change current service if only one running service") {
+        service1->getPlayer()->start();
+        service2->getPlayer()->stop();
+        service3->getPlayer()->stop();
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentService() == service1);
+        viewModel.previous();
+        REQUIRE(viewModel.getCurrentService() == service1);
+    }
+
+    SECTION("previous change current service if more than one service is running") {
+        service1->getPlayer()->start();
+        service2->getPlayer()->start();
+        service3->getPlayer()->start();
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentService() == service1);
+        viewModel.previous();
+        REQUIRE(viewModel.getCurrentService() == service3);
+        viewModel.previous();
+        REQUIRE(viewModel.getCurrentService() == service2);
+        viewModel.previous();
+        REQUIRE(viewModel.getCurrentService() == service1);
     }
 }
 

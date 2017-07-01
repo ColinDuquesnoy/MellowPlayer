@@ -13,21 +13,20 @@ WebEngineView {
     property string urlToLoad: model.url
     property var image: null
     property var service: model.qtObject
-    property bool isRunning: false
 
-    signal updateImageFinished();
+    signal updateImageFinished()
 
     function start() {
         url = urlToLoad
-        isRunning = true
         checkForCustomUrlRequired()
+        player.start()
     }
 
     function stop() {
         url = "";
         reload();
         image = null;
-        isRunning = false;
+        player.stop();
     }
 
     function setCustomUrl(customUrl) {
@@ -48,13 +47,10 @@ WebEngineView {
     settings.pluginsEnabled : true
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank")
-            player.start()
-        else {
-            player.stop()
+            player.loadPlugin();
+        else
             checkForCustomUrlRequired();
-        }
     }
-
     onNewViewRequested: {
         if (request.userInitiated) {
             var dialog = applicationRoot.createDialog(root.profile);

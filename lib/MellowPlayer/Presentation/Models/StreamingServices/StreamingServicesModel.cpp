@@ -49,11 +49,7 @@ void StreamingServicesModel::setCurrentService(QObject* value) {
         return;
 
     auto service = static_cast<StreamingServiceModel*>(value);
-    currentServiceSetting.setValue(value->property("name").toString());
-    currentService = value;
-    streamingServices.setCurrent(service->getStreamingService());
     setCurrentIndex(model->toList().indexOf(service));
-    emit currentServiceChanged(currentService);
 }
 
 void StreamingServicesModel::setCurrentIndex(int value) {
@@ -61,7 +57,12 @@ void StreamingServicesModel::setCurrentIndex(int value) {
         return;
 
     currentIndex = value;
+    currentService = model->at(currentIndex);
+
+    currentServiceSetting.setValue(currentService->getName());
+    streamingServices.setCurrent(currentService->getStreamingService());
     emit currentIndexChanged(currentIndex);
+    emit currentServiceChanged(currentService);
 }
 
 void StreamingServicesModel::reload() {
@@ -71,4 +72,44 @@ void StreamingServicesModel::reload() {
 void StreamingServicesModel::onServiceAdded(StreamingService* streamingService) {
     model->append(new StreamingServiceModel(
             *streamingService, settings.getSettingsProvider(), players, this));
+}
+
+void StreamingServicesModel::next() {
+    int index = getNextIndex(currentIndex);
+
+    while(index != currentIndex) {
+        auto* sv = model->at(index);
+        if (sv->isRunning()) {
+            setCurrentIndex(index);
+            break;
+        }
+        index = getNextIndex(index);
+    }
+}
+
+void StreamingServicesModel::previous() {
+    int index = getPreviousIndex(currentIndex);
+
+    while(index != currentIndex) {
+        auto* sv = model->at(index);
+        if (sv->isRunning()) {
+            setCurrentIndex(index);
+            break;
+        }
+        index = getPreviousIndex(index);
+    }
+}
+
+int StreamingServicesModel::getNextIndex(int index) const {
+    int nextIndex = index + 1;
+    if (nextIndex >= model->count())
+        nextIndex = 0;
+    return nextIndex;
+}
+
+int StreamingServicesModel::getPreviousIndex(int index) const {
+    int previousIndex = index - 1;
+    if (previousIndex < 0)
+        previousIndex = model->count() - 1;
+    return previousIndex;
 }

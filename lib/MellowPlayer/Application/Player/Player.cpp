@@ -116,14 +116,14 @@ QString Player::getServiceName() const {
 }
 
 void Player::start() {
-    LOG_TRACE(logger, "start()");
+    LOG_DEBUG(logger, "start()");
     isRunning_ = true;
-    emit runJavascriptRequested(streamingServiceScript.getConstants() + "\n" + streamingServiceScript.getCode());
-    refreshTimer->start();
+    emit isRunningChanged();
 }
 
 void Player::stop()
 {
+    LOG_DEBUG(logger, "stop()");
     isRunning_ = false;
     emit isRunningChanged();
     refreshTimer->stop();
@@ -135,7 +135,7 @@ bool Player::isRunning() const
 }
 
 void Player::refresh() {
-    LOG_TRACE(logger, "initialize()");
+    LOG_TRACE(logger, "refresh()");
     emit updateRequested(streamingServiceScript.update());
     refreshTimer->start();
 }
@@ -266,4 +266,9 @@ bool Player::isPlaying() const {
 
 bool Player::isStopped() const {
     return playbackStatus == PlaybackStatus ::Stopped;
+}
+
+void Player::loadPlugin() {
+    emit runJavascriptRequested(streamingServiceScript.getConstants() + "\n" + streamingServiceScript.getCode());
+    refreshTimer->start();
 }

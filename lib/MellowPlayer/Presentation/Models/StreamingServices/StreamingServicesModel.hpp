@@ -32,6 +32,9 @@ public:
     QObject* getCurrentService() const;
     int getCurrentIndex() const;
 
+    Q_INVOKABLE void next();
+    Q_INVOKABLE void previous();
+
 public slots:
     void setCurrentService(QObject* value);
     void setCurrentIndex(int value);
@@ -44,12 +47,15 @@ private slots:
     void onServiceAdded(Application::StreamingService* streamingService);
 
 private:
+    int getNextIndex(int index) const;
+    int getPreviousIndex(int index) const;
+
     Application::StreamingServices& streamingServices;
     Application::Players& players;
     Application::Settings& settings;
     Application::Setting& currentServiceSetting;
     QQmlObjectListModel<StreamingServiceModel>* model;
-    QObject* currentService;
+    StreamingServiceModel* currentService;
     int currentIndex;
 };
 

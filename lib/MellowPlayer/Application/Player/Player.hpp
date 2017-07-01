@@ -47,6 +47,7 @@ public:
 
     // invoked by WebView (QML)
     Q_INVOKABLE void start();
+    Q_INVOKABLE void loadPlugin();
     Q_INVOKABLE void stop();
     Q_INVOKABLE bool isRunning() const;
     Q_INVOKABLE void setUpdateResults(const QVariant& results);

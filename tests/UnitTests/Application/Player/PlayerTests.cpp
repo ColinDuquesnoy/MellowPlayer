@@ -18,10 +18,14 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(!player.isRunning());
         player.start();
         REQUIRE(player.isRunning());
-        REQUIRE(runJavascriptRequestedSpy.count() == 1);
-        REQUIRE(!runJavascriptRequestedSpy[0][0].toString().isEmpty());
         player.stop();
         REQUIRE(!player.isRunning());
+    }
+
+    SECTION("loadPlugin emit runJavascriptRequested") {
+        player.loadPlugin();
+        REQUIRE(runJavascriptRequestedSpy.count() == 1);
+        REQUIRE(!runJavascriptRequestedSpy[0][0].toString().isEmpty());
     }
 
     SECTION("refresh test") {

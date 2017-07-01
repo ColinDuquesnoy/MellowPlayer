@@ -72,3 +72,7 @@ void StreamingServiceModel::setUrl(const QString& url) {
 const QString StreamingServiceModel::getCustomUrlSettingsKey() const {
     return streamingService.getName() + "/url";
 }
+
+bool StreamingServiceModel::isRunning() const {
+    return players.get(streamingService.getName()).get()->isRunning();
+}

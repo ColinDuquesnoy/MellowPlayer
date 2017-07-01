@@ -34,6 +34,7 @@ public:
     QString getVersion() const;
     QString getAuthorName() const;
     QString getAuthorWebsite() const;
+    bool isRunning() const;
 
     bool operator==(const StreamingServiceModel& rhs) const;
     bool operator!=(const StreamingServiceModel& rhs) const;
@@ -52,6 +53,7 @@ private:
     Application::StreamingService& streamingService;
     Application::ISettingsProvider& settingsProvider;
     Application::Players& players;
+    bool isCurrent_ = false;
 };
 
 END_MELLOWPLAYER_NAMESPACE

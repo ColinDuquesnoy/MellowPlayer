@@ -18,6 +18,8 @@ public:
             QList<shared_ptr<StreamingService>> list;
             list.append(createPlugin("Deezer"));
             list.append(createPlugin("Spotify"));
+            list.append(createPlugin("Mixcloud"));
+            list.append(createPlugin("Soundcloud"));
             return list;
         });
         return mock;
