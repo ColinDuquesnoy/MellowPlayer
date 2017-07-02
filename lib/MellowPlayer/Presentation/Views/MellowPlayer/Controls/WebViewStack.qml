@@ -7,16 +7,54 @@ import MellowPlayer 3.0
 StackLayout {
     id: root
 
+    signal newViewRequested(var request)
+
     function currentWebView() {
         return root.itemAt(root.currentIndex);
     }
+    function goBack() {
+        currentWebView().goBack();
+    }
+    function goHome() {
+        var webView = currentWebView();
+        webView.url = webView.urlToLoad
+        webView.reload();
+    }
+    function goForward() {
+        currentWebView().goForward();
+    }
+    function reload() {
+        currentWebView().reload();
+    }
+    function toList() {
+        var list = []
+        for(var i = 0; i < root.count; i++)
+            list.push(root.itemAt(i));
+        return list;
+    }
+    function updatePreviewImage(callback) {
+        d.callback = callback
+        currentWebView().updateImageFinished.connect(d.onUpdatePreviewImageFinished);
+        currentWebView().updateImage();
+    }
 
-    currentIndex: streamingServices.currentIndex
+    currentIndex: _streamingServices.currentIndex
+
+    QtObject {
+        id: d
+
+        property var callback
+
+        function onUpdatePreviewImageFinished() {
+            currentWebView().updateImageFinished.disconnect(d.onUpdatePreviewImageFinished);
+            callback()
+        }
+    }
 
     Repeater {
         id: repeater
 
-        model: streamingServices.model
+        model: _streamingServices.model
 
         WebView {
             id: webView
@@ -24,20 +62,24 @@ StackLayout {
             anchors.fill: parent
             visible: visible && root.currentIndex == index;
             enabled: visible
+
+            onNewViewRequested: {
+                root.newViewRequested()
+            }
         }
     }
 
     Shortcut {
-        property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_NEXT_SERVICE)
+        property var setting: _settings.get(SettingKey.SHORTCUTS_SELECT_NEXT_SERVICE)
 
         sequence: setting.value
-        onActivated: streamingServices.next()
+        onActivated: _streamingServices.next()
     }
 
     Shortcut {
-        property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_PREVIOUS_SERVICE)
+        property var setting: _settings.get(SettingKey.SHORTCUTS_SELECT_PREVIOUS_SERVICE)
 
         sequence: setting.value
-        onActivated: streamingServices.previous()
+        onActivated: _streamingServices.previous()
     }
 }

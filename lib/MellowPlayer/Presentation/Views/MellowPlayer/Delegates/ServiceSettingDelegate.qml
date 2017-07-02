@@ -42,7 +42,7 @@ Pane {
                         RowLayout {
                             spacing: 0
 
-                            Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
+                            Material.accent: _style.accent === "#ffc107" ? _style.primary : _style.accent
 
                             Label {
                                 font.bold: true

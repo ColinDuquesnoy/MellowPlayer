@@ -21,12 +21,6 @@ const QString& StreamingService::getAuthorWebsite() const {
     return metadata.authorWebsite;
 }
 
-QString StreamingService::getColor() const {
-    if (QColor(metadata.color).isValid())
-        return metadata.color;
-    return "";
-}
-
 QString StreamingService::getLogo() const {
     if (metadata.logoPath.isEmpty())
         return "";

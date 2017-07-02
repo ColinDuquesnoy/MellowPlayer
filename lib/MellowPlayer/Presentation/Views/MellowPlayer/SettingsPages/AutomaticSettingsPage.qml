@@ -62,10 +62,10 @@ ColumnLayout {
             text: "Restore defaults"
             onClicked: messageBoxConfirmRestore.open()
 
-            Material.accent: style.accent === "#ffc107" ? style.primary : style.accent
+            Material.accent: _style.accent === "#ffc107" ? _style.primary : _style.accent
 
             Tooltip {
-                text: 'Restore <b>' + model.name.toLowerCase() + '</b> settings to their <b>default values</b>.'
+                text: 'Restore <b>' + model.name.toLowerCase() + '</b> _settings to their <b>default values</b>.'
             }
         }
     }
@@ -74,7 +74,7 @@ ColumnLayout {
         id: messageBoxConfirmRestore
 
         standardButtons: Dialog.Yes | Dialog.No
-        message: qsTr("Are you sure you want to restore all " + model.name.toLowerCase() + " settings to their default values?")
+        message: qsTr("Are you sure you want to restore all " + model.name.toLowerCase() + " _settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: page.width / 2 - width / 2
         y: page.height / 2 - height / 2

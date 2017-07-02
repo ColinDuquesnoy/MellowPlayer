@@ -22,10 +22,10 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
-#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
-#include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
-#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
-#include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>

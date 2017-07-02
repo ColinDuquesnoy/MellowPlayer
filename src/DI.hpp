@@ -24,10 +24,10 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
-#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServiceStyleModel.hpp>
-#include <MellowPlayer/Presentation/Models/ListeningHistory/ListeningHistoryModel.hpp>
-#include <MellowPlayer/Presentation/Models/StreamingServices/StreamingServicesModel.hpp>
-#include <MellowPlayer/Presentation/Models/MainWindowModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
@@ -99,7 +99,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope),
         di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
-        di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowModel>().in(scope),
+        di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
         di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
         di::bind<IHotkeysController>().to<HotkeysController>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),

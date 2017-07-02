@@ -10,9 +10,7 @@ MenuItem {
 
     property string icon
 
-    // @disable-check M16 M31
     hoverEnabled: true
-    // @disable-check M16 M31
     contentItem: RowLayout {
         spacing: 8
 

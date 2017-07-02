@@ -5,7 +5,7 @@
 #include <QtCore/QSettings>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 
-    QtApplicationModel webApplication(argc, argv, "MellowPlayer3.Tests");
+    ApplicationViewModel webApplication(argc, argv, "MellowPlayer3.Tests");
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;

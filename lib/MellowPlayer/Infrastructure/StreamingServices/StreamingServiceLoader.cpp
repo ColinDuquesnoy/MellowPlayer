@@ -81,7 +81,6 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     serviceMetadata.name = meta.value("name").toString();
     serviceMetadata.url = meta.value("url").toString();
     serviceMetadata.version = meta.value("version").toString();
-    serviceMetadata.color = meta.value("color").toString();
 
     return serviceMetadata;
 }

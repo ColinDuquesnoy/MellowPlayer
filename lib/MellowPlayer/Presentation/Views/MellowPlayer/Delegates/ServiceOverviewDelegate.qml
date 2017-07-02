@@ -10,11 +10,12 @@ import ".."
 
 Item {
     id: root
-    width: servicesGridView.cellWidth
-    height: servicesGridView.cellHeight
+    width: GridView.view.cellWidth
+    height: GridView.view.cellHeight
 
     property string backgroundColor: Material.background
-    property var webView: webViewStack.itemAt(index)
+    property Item transitionItem
+    property var webView
 
     Pane {
         id: highlight
@@ -35,16 +36,17 @@ Item {
                 name: "selected"
 
                 PropertyChanges {
-                    target: body
+                    target: root.transitionItem
                     state: "between"
+                    // @disable-check M16
                     previewImage: preview
                 }
 
                 ParentChange {
                     target: preview
-                    parent: body
-                    width: body.width
-                    height: body.height
+                    parent: root.transitionItem
+                    width: root.transitionItem.width
+                    height: root.transitionItem.height
                     x: 0
                     y: 0
                 }
@@ -52,7 +54,7 @@ Item {
             transitions: [
                 Transition {
                     ParentAnimation {
-                        via: body
+                        via: root.transitionItem
 
                         PropertyAnimation {
                             properties: "x,y,width,height"
@@ -62,8 +64,8 @@ Item {
 
                     onRunningChanged: {
                         if(!running) {
-                            body.state = preview.state == "selected" ? "webview" : "overview";
-                            body.previewImage = preview;
+                            root.transitionItem.state = preview.state == "selected" ? "webview" : "overview";
+                            root.transitionItem.previewImage = preview;
                             preview.visible = preview.state != "selected";
                         }
                     }
@@ -71,8 +73,7 @@ Item {
             ]
             onStateChanged: {
                 preview.visible = true;
-                if (webView.url == "" )
-                    webView.start()
+                webView.start()
             }
         }
 
@@ -156,12 +157,12 @@ Item {
     }
 
     function activate() {
-        streamingServices.currentService = model.qtObject;
+        _streamingServices.currentService = model.qtObject;
         preview.state = "selected";
     }
 
     Component.onCompleted: {
-        if (streamingServices.currentIndex == index) {
+        if (_streamingServices.currentIndex == index) {
             root.activate();
             preview.visible = false;
         }

@@ -11,7 +11,6 @@ Drawer {
 
     clip: true
     edge: Qt.RightEdge
-    height: mainWindow.height; width: 450
 
     onPositionChanged: if (position == 0) toolBar.searchChecked = false
 

@@ -31,7 +31,7 @@ Pane {
                 }
             }
             selectByMouse: true
-            onTextChanged: listeningHistory.setSearchFilter(text)
+            onTextChanged: _listeningHistory.setSearchFilter(text)
 
             Tooltip {
                 text: qsTr("Filter song by title or by artist")
@@ -48,7 +48,7 @@ Pane {
 
             Repeater {
                 z: 1
-                model: streamingServices.model
+                model: _streamingServices.model
 
                 Button {
                     id: filter
@@ -58,7 +58,7 @@ Pane {
                     hoverEnabled: true
                     text: model.name
                     onCheckedChanged: {
-                        listeningHistory.disableService(model.name, !checked)
+                        _listeningHistory.disableService(model.name, !checked)
                     }
 
                     Tooltip {

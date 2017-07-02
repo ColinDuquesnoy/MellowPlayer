@@ -7,10 +7,12 @@ import MellowPlayer 3.0
 import ".."
 
 Item {
-    id: overview
+    id: root
 
-    width: parent.width
-    height: parent.height
+    property int mainWindowWidth
+    property int mainWindowHeight
+    property Item transitionItem
+    property var webViews
 
     ColumnLayout {
         anchors.fill: parent
@@ -31,24 +33,26 @@ Item {
             ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
 
             GridView {
-                id: servicesGridView
                 anchors.centerIn: parent
                 focus: true
                 width: {
-                    if (mainWindow.width <= 1680 )
-                        return 0.80 * mainWindow.width;
-                    else if( mainWindow.width < 1920)
-                        return 0.70 * mainWindow.width;
+                    if (mainWindowWidth <= 1680 )
+                        return 0.80 * mainWindowWidth;
+                    else if( mainWindowWidth < 1920)
+                        return 0.70 * mainWindowWidth;
                     else
-                        return 0.60 * mainWindow.width;
+                        return 0.60 * mainWindowWidth;
                 }
                 height: parent.height
                 clip: true
 
-                cellWidth: servicesGridView.width / 3
+                cellWidth: width / 3
                 cellHeight: cellWidth / 16 * 9
-                model: streamingServices.model
-                delegate: ServiceOverviewDelegate {}
+                model: _streamingServices.model
+                delegate: ServiceOverviewDelegate {
+                    transitionItem: root.transitionItem
+                    webView: webViews[model.index]
+                }
             }
         }
     }

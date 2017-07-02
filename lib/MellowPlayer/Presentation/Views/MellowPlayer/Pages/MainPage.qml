@@ -8,11 +8,29 @@ import MellowPlayer 3.0
 import ".."
 
 Page {
-    id: mainPage
+    id: root
+
+    property int mainWindowWidth
+    signal newViewRequested(var request)
+    signal openListeningHistoryRequested()
+    signal openSettingsRequested()
+    signal openAboutDialogRequested()
 
     header: MainToolBar {
-        id: toolBar;
+        id: toolBar
+
         isWebViewMode: body.state === "webview"
+        hasRunningServices: _streamingServices.hasRunningServices
+
+        onShowOverviewRequested: webViewStack.updatePreviewImage(body.showOverview)
+        onShowWebViewRequested: body.showWebView()
+        onGoBackRequested: webViewStack.goBack()
+        onGoHomeRequested: webViewStack.goHome()
+        onGoForwardRequested: webViewStack.goForward()
+        onReloadRequested: webViewStack.reload()
+        onOpenListeningHistoryRequested: root.openListeningHistoryRequested()
+        onOpenSettingsRequested: root.openSettingsRequested()
+        onOpenAboutDialogRequested: root.openAboutDialogRequested()
     }
 
     Item {
@@ -21,6 +39,16 @@ Page {
         anchors.margins: 0
 
         property var previewImage
+
+        function showWebView() {
+            state = "between";
+            previewImage.state = "selected";
+        }
+
+        function showOverview() {
+            state = "between";
+            previewImage.state = "";
+        }
 
         states: [
             State {
@@ -44,8 +72,8 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: style
-                    useServiceStyle: false
+                    target: _style
+                    useServiceStyle: true
                 }
             },
             State {
@@ -69,7 +97,7 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: style
+                    target: _style
                     useServiceStyle: true
                 }
             },
@@ -97,7 +125,9 @@ Page {
 
         WebViewStack {
             id: webViewStack
+
             anchors.fill: parent
+            onNewViewRequested: root.newViewRequested(request)
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }
@@ -106,6 +136,15 @@ Page {
 
         Loader { id: servicesOverview; anchors.fill: parent; visible: false }
 
-        Component { id: overviewComponent; ServicesOverview { } }
+        Component {
+            id: overviewComponent
+
+            ServicesOverview {
+                height: parent.height; width: parent.width
+                mainWindowWidth: root.mainWindowWidth
+                transitionItem: body
+                webViews: webViewStack.toList();
+            }
+        }
     }
 }

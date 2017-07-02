@@ -5,7 +5,7 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
-#include <MellowPlayer/Presentation/Models/QtApplicationModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include "DI.hpp"
 
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(use_cases);
     Q_INIT_RESOURCE(presentation);
 
-    QtApplicationModel qtApp(argc, argv);
+    ApplicationViewModel qtApp(argc, argv);
 
     SpdLoggerFactory loggerFactory;
     LoggingManager::initialize(loggerFactory, LogLevel::Debug);

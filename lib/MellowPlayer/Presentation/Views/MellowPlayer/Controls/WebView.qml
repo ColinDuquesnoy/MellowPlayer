@@ -17,9 +17,11 @@ WebEngineView {
     signal updateImageFinished()
 
     function start() {
-        url = urlToLoad
-        checkForCustomUrlRequired()
-        player.start()
+        if (url == "" ) {
+            url = urlToLoad
+            checkForCustomUrlRequired()
+            player.start()
+        }
     }
 
     function stop() {
@@ -50,12 +52,6 @@ WebEngineView {
             player.loadPlugin();
         else
             checkForCustomUrlRequired();
-    }
-    onNewViewRequested: {
-        if (request.userInitiated) {
-            var dialog = applicationRoot.createDialog(root.profile);
-            request.openIn(dialog.currentWebView);
-        }
     }
 
     Connections {

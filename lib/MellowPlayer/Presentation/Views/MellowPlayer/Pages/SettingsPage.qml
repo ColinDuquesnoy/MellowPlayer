@@ -9,12 +9,14 @@ import ".."
 Page {
     id: settingsPage
 
+    signal closeRequested()
+
     header: ToolBar {
         id: toolBar
 
-        Material.primary: style.primary
-        Material.foreground: style.primaryForeground
-        Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
+        Material.primary: _style.primary
+        Material.foreground: _style.primaryForeground
+        Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
 
         RowLayout {
             anchors.fill: parent
@@ -29,20 +31,15 @@ Page {
                 font { family: MaterialIcons.family; pixelSize: 24 }
                 hoverEnabled: true
                 text: MaterialIcons.icon_keyboard_arrow_right
-                onClicked: back()
-
-                function back() {
-                    stackView.pop()
-                }
-
+                onClicked: settingsPage.closeRequested()
                 Tooltip {
                     y: toolBar.implicitHeight
                     text: qsTr("Back")
                 }
 
                 Shortcut {
-                    sequence: "Escape"
-                    onActivated: btBack.back()
+                    sequence: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
+                    onActivated: settingsPage.closeRequested()
                 }
             }
         }
@@ -65,10 +62,10 @@ Page {
             Layout.maximumWidth: 256
             Layout.minimumWidth: 256
 
-            Material.background: style.secondary
-            Material.foreground: style.secondaryForeground
+            Material.background: _style.secondary
+            Material.foreground: _style.secondaryForeground
             Material.elevation: 4
-            Material.theme: style.isDark(style.secondary) ? Material.Dark : Material.Light
+            Material.theme: _style.isDark(_style.secondary) ? Material.Dark : Material.Light
 
             ColumnLayout {
                 anchors.fill: parent
@@ -110,18 +107,18 @@ Page {
                     id: settingsPageList
 
                     highlight: Rectangle {
-                        color: style.isDark(style.secondary) ? "#10ffffff" : "#10000000"
+                        color: _style.isDark(_style.secondary) ? "#10ffffff" : "#10000000"
                         Rectangle {
                             anchors.top: parent.top
                             anchors.left: parent.left
                             anchors.bottom: parent.bottom
 
                             width: 3
-                            color: style.accent
+                            color: _style.accent
                         }
                     }
                     highlightMoveDuration: 200
-                    model: settings.categories
+                    model: _settings.categories
                     delegate: settingsCategoryDelegate
 
                     Layout.fillHeight: true
@@ -142,7 +139,7 @@ Page {
                     Layout.rightMargin: 4
 
                     Tooltip {
-                        text: 'Restore all settings to their <b>default value</b>.'
+                        text: 'Restore all _settings to their <b>default value</b>.'
                     }
                 }
             }
@@ -156,7 +153,7 @@ Page {
             Layout.fillWidth: true
 
             Repeater {
-                model: settings.categories
+                model: _settings.categories
 
                 Loader {
                     anchors.fill: parent
@@ -170,11 +167,11 @@ Page {
         id: messageBoxConfirmRestore
 
         standardButtons: Dialog.Yes | Dialog.No
-        message: qsTr("Are you sure you want to restore all settings to their default values?")
+        message: qsTr("Are you sure you want to restore all _settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: settingsPage.width / 2 - width / 2
         y: settingsPage.height / 2 - height / 2
 
-        onAccepted: settings.restoreDefaults()
+        onAccepted: _settings.restoreDefaults()
     }
 }

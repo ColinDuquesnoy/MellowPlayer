@@ -10,7 +10,6 @@ TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {
 
         REQUIRE(metadata.author == "");
         REQUIRE(metadata.authorWebsite == "");
-        REQUIRE(metadata.color == "");
         REQUIRE(metadata.logoPath == "");
         REQUIRE(metadata.name == "");
         REQUIRE(metadata.url == "");

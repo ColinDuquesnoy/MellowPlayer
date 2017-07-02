@@ -17,13 +17,6 @@ struct StreamingServiceMetadata {
     QString authorWebsite;
 
     /**
-     * @brief Color of the plugin (affects the color of the application toolbar).
-     *
-     * @remarks Leave empty to use the default toolbar color.
-     */
-    QString color;
-
-    /**
      * @brief Logo of the plugin/service.
      */
     QString logoPath;
@@ -56,7 +49,6 @@ struct StreamingServiceMetadata {
     StreamingServiceMetadata()
         : author(""),
           authorWebsite(""),
-          color(""),
           logoPath(""),
           name(""),
           url(""),

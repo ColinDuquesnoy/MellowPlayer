@@ -19,7 +19,7 @@ Item {
             text: "Clear cookies"
             onClicked: {
                 paneRestart.state = "visible"
-                qtApp.clearCookies();
+                _app.clearCookies();
             }
         }
 
@@ -27,7 +27,7 @@ Item {
             text: "Clear cache"
             onClicked: {
                 paneRestart.state = "visible"
-                qtApp.clearCache()
+                _app.clearCache()
             }
         }
 
@@ -43,10 +43,10 @@ Item {
         clip: true
         width: parent.width
 
-        Material.background: style.primary
+        Material.background: _style.primary
         Material.elevation: 8
-        Material.foreground: style.primaryForeground
-        Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
+        Material.foreground: _style.primaryForeground
+        Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
 
         RowLayout {
             id: rowLayout
@@ -73,7 +73,7 @@ Item {
             ToolButton {
                 highlighted: true
                 text: "Restart now"
-                onClicked: qtApp.restart()
+                onClicked: _app.restart()
             }
         }
 

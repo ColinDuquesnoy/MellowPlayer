@@ -26,14 +26,14 @@ Pane {
             state = "hidden"
     }
 
-    Material.background: style.primary
-    Material.foreground: style.primaryForeground
+    Material.background: _style.primary
+    Material.foreground: _style.primaryForeground
     Material.elevation: 4
 
     Component.onCompleted: { background.opacity = 0.98 }
 
     Connections {
-        target: clipboard
+        target: _clipboard
         onTextCopied: root.text = text
     }
 
@@ -54,7 +54,7 @@ Pane {
             height: implicitHeight; width: parent.width
             font.pixelSize: 14
             horizontalAlignment: "AlignHCenter"
-            text: 'copied to clipboard'
+            text: 'copied to _clipboard'
         }
     }
 

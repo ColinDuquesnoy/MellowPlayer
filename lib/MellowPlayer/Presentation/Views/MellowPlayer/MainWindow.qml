@@ -7,90 +7,112 @@ import QtWebEngine 1.5
 import MellowPlayer 3.0
 
 ApplicationWindow {
-    id: mainWindow
+    id: root
 
     property QtObject applicationRoot: ApplicationRoot { }
 
-    title: streamingServices.currentService !== null ? streamingServices.currentService.name : ""
+    function restoreWindow() {
+        root.raise();
+        root.show();
+    }
+
+    title: _streamingServices.currentService !== null ? _streamingServices.currentService.name : ""
     minimumWidth: 1280
     minimumHeight: 720
     onClosing: {
-        var closeToTray = settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
+        var closeToTray = _settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
         if (closeToTray) {
-            var showMessageSetting = settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
+            var showMessageSetting = _settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
             if (showMessageSetting.value) {
                 showMessageSetting.value = false;
                 messageBoxExitToTray.open();
             }
             else {
-                windowModel.visible = false;
+                _window.visible = false;
             }
             close.accepted = false;
         }
     }
 
-    Material.accent: style.accent
-    Material.background: style.background
-    Material.foreground: style.foreground
-    Material.primary: style.primary
-    Material.theme: style.theme == "light" ? Material.Light : Material.Dark
-
-    function restoreWindow() {
-        mainWindow.raise();
-        mainWindow.show();
-    }
+    Material.accent: _style.accent
+    Material.background: _style.background
+    Material.foreground: _style.foreground
+    Material.primary: _style.primary
+    Material.theme: _style.theme == "light" ? Material.Light : Material.Dark
 
     Connections {
-        target: windowModel
+        target: _window
         onVisibleChanged: {
-            if (windowModel.visible) {
+            if (_window.visible) {
                 restoreWindow();
             }
             else {
-                mainWindow.hide();
+                root.hide();
             }
         }
     }
 
     Connections {
-        target: qtApp
+        target: _app
         onQuitRequested: {
-            var confirmExit = settings.get(SettingKey.MAIN_CONFIRM_EXIT).value;
+            var confirmExit = _settings.get(SettingKey.MAIN_CONFIRM_EXIT).value;
             if (confirmExit) {
                 restoreWindow();
                 messageBoxConfirmQuit.open();
             }
             else
-                qtApp.quit();
+                _app.quit();
         }
     }
 
-    StackView {
-        id: stackView
-
+    MainPage {
         anchors.fill: parent
-        initialItem: mainPage
+        mainWindowWidth: root.width
+        onNewViewRequested: {
+            if (request.userInitiated) {
+                var dialog = applicationRoot.createDialog(root.profile);
+                request.openIn(dialog.currentWebView);
+            }
+        }
+        onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
+        onOpenSettingsRequested: settingsDrawer.open()
+        onOpenAboutDialogRequested: aboutDialog.open()
     }
 
-    Component {
-        id: mainPage
+    Drawer {
+        id: settingsDrawer
 
-        MainPage { }
+        clip: true
+        width: root.width
+        height: root.height
+        edge: Qt.RightEdge
+        interactive: false
+        closePolicy: Popup.CloseOnPressOutside
+
+        Shortcut {
+            sequence: "Escape"
+            onActivated: settingsDrawer.close()
+        }
+
+        SettingsPage {
+            id: settingsPage
+
+            anchors.fill: parent
+            onCloseRequested: settingsDrawer.close()
+        }
     }
 
-    Component {
-        id: settingsPageComponent
-
-        SettingsPage { }
+    ListeningHistoryDrawer {
+        id: listeningHistoryDrawer
+        height: root.height;
+        width: 450
     }
-
-    ListeningHistoryDrawer { id: listeningHistoryDrawer }
 
     AboutDialog {
         id: aboutDialog
 
-        x: mainWindow.width / 2 - width / 2
-        y: mainWindow.height / 2 - height / 2
+        x: root.width / 2 - width / 2
+        y: root.height / 2 - height / 2
         visible: false
     }
 
@@ -100,9 +122,9 @@ ApplicationWindow {
         standardButtons: Dialog.Ok | Dialog.Cancel
         message: qsTr("Are you sure you want to quit MellowPlayer?")
         title: qsTr("Confirm quit")
-        onAccepted: qtApp.quit()
-        x: mainWindow.width / 2 - width / 2
-        y: mainWindow.height / 2 - height / 2
+        onAccepted: _app.quit()
+        x: root.width / 2 - width / 2
+        y: root.height / 2 - height / 2
     }
 
     MessageBoxDialog {
@@ -112,8 +134,8 @@ ApplicationWindow {
         message: qsTr("<p>MellowPlayer will continue to run in background.<br>" +
                       "You can quit the application or restore the main window via the system tray icon menu.</p>")
         standardButtons: Dialog.Ok
-        onAccepted: windowModel.visible = false
-        x: mainWindow.width / 2 - width / 2
-        y: mainWindow.height / 2 - height / 2
+        onAccepted: _window.visible = false
+        x: root.width / 2 - width / 2
+        y: root.height / 2 - height / 2
     }
 }

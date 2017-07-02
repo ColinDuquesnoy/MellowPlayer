@@ -14,12 +14,11 @@ Pane {
     signal reloadRequested()
 
     function open() {
-        console.error("opening custom url pane")
         state = "visible";
     }
 
-    Material.background: style.primary
-    Material.foreground: style.primaryForeground
+    Material.background: _style.primary
+    Material.foreground: _style.primaryForeground
     Material.elevation: 4
 
     ColumnLayout {

@@ -14,10 +14,10 @@ ToolBar {
 
     signal quitRequested()
 
-    Material.primary: style.primary
-    Material.foreground: style.primaryForeground
+    Material.primary: _style.primary
+    Material.foreground: _style.primaryForeground
     Material.elevation: 4
-    Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
+    Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
 
     RowLayout {
         anchors.fill: parent
@@ -33,7 +33,7 @@ ToolBar {
             hoverEnabled: true
             enabled: root.enabled
 
-            Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+            Material.accent: _style.accent == _style.primary ? _style.primaryForeground : _style.accent
 
             Tooltip {
                 text: qsTr("Search/filter")
@@ -56,6 +56,11 @@ ToolBar {
 
             Tooltip {
                 text: qsTr("Back")
+            }
+
+            Shortcut {
+                sequence: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
+                onActivated: quitRequested()
             }
         }
     }

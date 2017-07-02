@@ -6,10 +6,6 @@ file(GLOB_RECURSE QML_FILES Views/*.qml)
 file(GLOB_RECURSE QRC_FILES *.qrc)
 file(GLOB_RECURSE CONF_FILES *.conf)
 
-set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQmlObjectListModel.cpp)
-set(HEADER_FILES ${HEADER_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models/QQmlObjectListModel.hpp)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/qt-qml-models)
-
 set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/Views ${CMAKE_SOURCE_DIR}/Views/MellowPlayer CACHE string "" FORCE)
 
 if(USE_LIBNOTIFY)

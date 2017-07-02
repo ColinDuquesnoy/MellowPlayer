@@ -10,14 +10,30 @@ ToolBar {
     id: root
 
     property bool isWebViewMode: false
+    property bool hasRunningServices: false
 
-    Material.primary: style.primary
-    Material.foreground: style.primaryForeground
-    Material.theme: style.isDark(style.primary) ? Material.Dark : Material.Light
+    signal showOverviewRequested()
+    signal showWebViewRequested()
+    signal goBackRequested()
+    signal goHomeRequested()
+    signal goForwardRequested()
+    signal reloadRequested()
+    signal openListeningHistoryRequested()
+    signal openSettingsRequested()
+    signal openAboutDialogRequested()
+
+    Material.primary: _style.primary
+    Material.foreground: _style.primaryForeground
+    Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
+
 
     QtObject {
         id: d
         property int iconSize: 22
+
+        function isPlayerActive() {
+            return _player.currentSong !== null && _player.currentSong.isValid()
+        }
     }
     
 
@@ -32,40 +48,34 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize + 2
             hoverEnabled: true
-            visible: root.isWebViewMode
+            visible: hasRunningServices || isWebViewMode
 
             onClicked: switchView()
 
             function switchView() {
-                if (body.previewImage.state === "selected") {
-                    // to overview
-                    webViewStack.currentWebView().updateImageFinished.connect(switchToOverview);
-                    webViewStack.currentWebView().updateImage();
-                } else {
-                    // back
-                    body.state = "between";
-                    body.previewImage.state = "selected";
-                }
-            }
-
-            function switchToOverview() {
-                body.state = "between";
-                body.previewImage.state = "";
-                webViewStack.currentWebView().updateImageFinished.disconnect(switchToOverview);
+                if (isWebViewMode)
+                    root.showOverviewRequested()
+                else
+                    root.showWebViewRequested()
             }
 
             Shortcut {
-                property var setting: settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
+                property var setting: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
 
                 sequence: setting.value
                 onActivated: btSelectService.switchView()
             }
 
+            Shortcut {
+                sequence: "escape"
+                onActivated: if (!root.isWebViewMode) btSelectService.switchView()
+            }
+
             Tooltip {
                 y: root.implicitHeight
                 text: root.isWebViewMode ? qsTr("Select another service") :
-                      streamingServices.currentService != null ?
-                      qsTr("Go back to ") + streamingServices.currentService.name : ""
+                      _streamingServices.currentService != null ?
+                      qsTr("Go back to ") + _streamingServices.currentService.name : ""
             }
         }
 
@@ -90,7 +100,7 @@ ToolBar {
             hoverEnabled: true
             visible: root.isWebViewMode
 
-            onClicked: webViewStack.currentWebView().goBack()
+            onClicked: root.goBackRequested()
 
             Tooltip {
                 y: root.implicitHeight
@@ -104,7 +114,7 @@ ToolBar {
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            onClicked: webViewStack.currentWebView().goForward()
+            onClicked: root.goForwardRequested();
 
             Tooltip {
                 y: root.implicitHeight
@@ -120,7 +130,7 @@ ToolBar {
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            onClicked: reload()
+            onClicked: root.reloadRequested()
 
             Tooltip {
                 y: root.implicitHeight
@@ -128,14 +138,10 @@ ToolBar {
             }
 
             Shortcut {
-                property var setting: settings.get(SettingKey.SHORTCUTS_RELOAD)
+                property var setting: _settings.get(SettingKey.SHORTCUTS_RELOAD)
 
                 sequence: setting.value
-                onActivated: btReload.reload()
-            }
-
-            function reload() {
-                webViewStack.currentWebView().reload()
+                onActivated: root.reloadRequested()
             }
         }
 
@@ -145,7 +151,7 @@ ToolBar {
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            onClicked: webViewStack.currentWebView().start()
+            onClicked: root.goHomeRequested()
 
             Tooltip {
                 y: root.implicitHeight
@@ -168,18 +174,18 @@ ToolBar {
 
         ToolButton {
             id: btFavorite
-            text: player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
+            text: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            enabled: root.isWebViewMode && player.canAddToFavorites
+            enabled: root.isWebViewMode && _player.canAddToFavorites
             visible: root.isWebViewMode
 
-            onClicked: player.toggleFavoriteSong()
+            onClicked: _player.toggleFavoriteSong()
 
             Tooltip {
                 y: root.implicitHeight
-                text: player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
+                text: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
             }
         }
 
@@ -195,9 +201,9 @@ ToolBar {
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            enabled: player.canGoPrevious && (player.currentSong !== null && player.currentSong.isValid())
+            enabled: _player.canGoPrevious && d.isPlayerActive()
 
-            onClicked: player.previous()
+            onClicked: _player.previous()
 
             Tooltip {
                 y: root.implicitHeight
@@ -208,18 +214,18 @@ ToolBar {
         ToolButton {
             id: btPlay
 
-            text: player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
+            text: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            enabled: !player.isStopped || (player.currentSong !== null && player.currentSong.isValid())
+            enabled: !_player.isStopped || d.isPlayerActive()
 
-            onClicked: player.togglePlayPause()
+            onClicked: _player.togglePlayPause()
 
             Tooltip {
                 y: root.implicitHeight
-                text:  player.isPlaying ? qsTr("Pause") : qsTr("Play")
+                text:  _player.isPlaying ? qsTr("Pause") : qsTr("Play")
             }
         }
 
@@ -231,9 +237,9 @@ ToolBar {
             font.pixelSize: d.iconSize
             hoverEnabled: true
             visible: root.isWebViewMode
-            enabled: player.canGoNext && (player.currentSong !== null && player.currentSong.isValid())
+            enabled: _player.canGoNext && d.isPlayerActive()
 
-            onClicked: player.next()
+            onClicked: _player.next()
 
             Tooltip {
                 y: root.implicitHeight
@@ -244,7 +250,7 @@ ToolBar {
         ToolButton {
             id: btEnableNotifications
 
-            property var setting: settings.get(SettingKey.NOTIFICATIONS_ENABLED)
+            property var setting: _settings.get(SettingKey.NOTIFICATIONS_ENABLED)
 
             checkable: true
             checked: setting.value
@@ -254,7 +260,7 @@ ToolBar {
             text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
 
             Layout.fillHeight: true
-            Material.accent: style.accent == style.primary ? style.primaryForeground : style.accent
+            Material.accent: _style.accent == _style.primary ? _style.primaryForeground : _style.accent
 
             Tooltip {
                 y: root.implicitHeight
@@ -262,7 +268,7 @@ ToolBar {
             }
 
             Shortcut {
-                property var shortcut: settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
+                property var shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
 
                 sequence: shortcut.value
                 onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
@@ -288,7 +294,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize
             hoverEnabled: true
-            onClicked: listeningHistoryDrawer.open()
+            onClicked: root.openListeningHistoryRequested()
 
             Tooltip {
                 y: parent.implicitHeight
@@ -296,10 +302,10 @@ ToolBar {
             }
 
             Shortcut {
-                property var shortcut: settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
+                property var shortcut: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
 
                 sequence: shortcut.value
-                onActivated: listeningHistoryDrawer.visible = !listeningHistoryDrawer.visible
+                onActivated: root.openListeningHistoryRequested()
             }
         }
 
@@ -311,24 +317,24 @@ ToolBar {
             onClicked: menu.open()
 
             Shortcut {
-                property var shortcut: settings.get(SettingKey.SHORTCUTS_SETTINGS)
+                property var shortcut: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
 
                 sequence: shortcut.value
-                onActivated: menuItemSettings.toggleSettings()
+                onActivated: root.openSettingsRequested()
             }
 
             Shortcut {
-                property var shortcut: settings.get(SettingKey.SHORTCUTS_ABOUT)
+                property var shortcut: _settings.get(SettingKey.SHORTCUTS_ABOUT)
 
                 sequence: shortcut.value
-                onActivated: menuItemAbout.toggleDialog()
+                onActivated: root.openAboutDialogRequested()
             }
 
             Shortcut {
-                property var shortcut: settings.get(SettingKey.SHORTCUTS_QUIT)
+                property var shortcut: _settings.get(SettingKey.SHORTCUTS_QUIT)
 
                 sequence: shortcut.value
-                onActivated: qtApp.requestQuit();
+                onActivated: _app.requestQuit();
             }
 
             Menu {
@@ -339,24 +345,8 @@ ToolBar {
                     id: menuItemSettings
 
                     icon: MaterialIcons.icon_settings
-                    // @disable-check M16 M31
-                    onClicked: openSettings()
+                    onClicked: root.openSettingsRequested()
                     text: "Settings"
-
-                    function toggleSettings() {
-                        if (stackView.depth > 1)
-                            closeSettings()
-                        else
-                            openSettings()
-                    }
-
-                    function openSettings() {
-                        stackView.push(settingsPageComponent)
-                    }
-
-                    function closeSettings() {
-                        stackView.pop()
-                    }
                 }
 
                 MenuIconItem {
@@ -364,16 +354,11 @@ ToolBar {
 
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
-                    // @disable-check M16 M31
-                    onClicked: toggleDialog()
-
-                    function toggleDialog() {
-                        aboutDialog.visible = !aboutDialog.visible
-                    }
+                    onClicked: root.openAboutDialogRequested()
                 }
 
                 Rectangle {
-                    color: style.isDark(style.background) ? Qt.lighter(style.background) : Qt.darker(style.background, 1.1)
+                    color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
                     height: 1
                     width: parent.width
                 }
@@ -381,8 +366,7 @@ ToolBar {
                 MenuIconItem {
                     icon: MaterialIcons.icon_power_settings_new
                     text: "Quit"
-                    // @disable-check M16 M31
-                    onClicked: qtApp.requestQuit()
+                    onClicked: _app.requestQuit()
                 }
             }
 
@@ -415,16 +399,13 @@ ToolBar {
                 font.pixelSize: sliderGroup.visible ? 12 : 14
 
                 function getText() {
-                    if (webViewStack.currentWebView() !== null && webViewStack.currentWebView().loading)
-                        return "Loading " + streamingServices.currentService.name;
-
-                    var currentSong = player.currentSong;
+                    var currentSong = _player.currentSong;
                     if (currentSong.title && currentSong.artist)
                         return "<b>" + currentSong.title + "</b><i> by " + currentSong.artist;
                     else if (currentSong.title)
                         return "<b>" + currentSong.title + "</b>";
-                    else if (streamingServices.currentService !== null)
-                        return streamingServices.currentService.name;
+                    else if (_streamingServices.currentService !== null)
+                        return _streamingServices.currentService.name;
                     return "";
                 }
             }
@@ -434,7 +415,7 @@ ToolBar {
                 Layout.fillWidth: true
                 Layout.preferredHeight: visible ? slider.implicitHeight : 0
                 Layout.margins: 0
-                visible: player.canSeek
+                visible: _player.canSeek
 
                 RowLayout {
                     anchors.fill: parent
@@ -442,7 +423,7 @@ ToolBar {
                     Label {
                         text: {
                             var date = new Date(null);
-                            date.setSeconds(player.position); // specify value for SECONDS here
+                            date.setSeconds(_player.position); // specify value for SECONDS here
                             var text = date.toISOString().substr(11, 8);
                             try {
                                 if (text.startsWith("00:"))
@@ -463,12 +444,12 @@ ToolBar {
                         hoverEnabled: true
 
                         from: 0
-                        value: player.position
-                        to: player.currentSong.duration
+                        value: _player.position
+                        to: _player.currentSong.duration
 
                         onValueChanged: {
-                            if (player.position !== value && player.position < player.currentSong.duration)
-                                player.seekToPosition(value)
+                            if (_player.position !== value && _player.position < _player.currentSong.duration)
+                                _player.seekToPosition(value)
                         }
 
                     }
@@ -476,7 +457,7 @@ ToolBar {
                     Label {
                         text: {
                             var date = new Date(null);
-                            date.setSeconds(player.currentSong.duration - player.position); // specify value for SECONDS here
+                            date.setSeconds(_player.currentSong.duration - _player.position); // specify value for SECONDS here
                             var text = date.toISOString().substr(11, 8);
                             try {
                                 if (text.startsWith("00:"))
