@@ -9,6 +9,7 @@ TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting& setting, QObject* 
     registerEnumTranslation(TimeLimits::LastWeek, tr("Last week"));
     registerEnumTranslation(TimeLimits::LastMonth, tr("Last month"));
     registerEnumTranslation(TimeLimits::LastYear, tr("Last year"));
+    registerEnumTranslation(TimeLimits::Never, tr("Never"));
 }
 
 void TimeLimitSettingViewModel::registerEnumTranslation(TimeLimits value, const QString& translation) {

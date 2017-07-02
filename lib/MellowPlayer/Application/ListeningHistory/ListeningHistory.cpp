@@ -4,6 +4,8 @@
 #include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Utils/TimeLimits.hpp>
+#include <QtCore/QTimer>
 #include "ListeningHistory.hpp"
 
 #define DELAY 5000
@@ -13,11 +15,16 @@ USING_MELLOWPLAYER_NAMESPACE(Application)
 
 ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player,
                                                  IWorkDispatcher& workDispatcher, Settings& settings):
-        logger(LoggingManager::instance().getLogger("ListeningHistory")), dataProvider(model), player(player),
-        workDispatcher(workDispatcher), isEnabledSetting(settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY)) {
+        logger(LoggingManager::instance().getLogger("ListeningHistory")),
+        dataProvider(model),
+        player(player),
+        workDispatcher(workDispatcher),
+        isEnabledSetting(settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY)),
+        limitSetting(settings.get(SettingKey::PRIVACY_LISTENING_HISTORY_LIMIT)) {
     connect(&player, &IPlayer::currentSongChanged, this, &ListeningHistory::onCurrentSongChanged);
     connect(&player, &IPlayer::playbackStatusChanged, this, &ListeningHistory::onPlaybackStatusChanged);
     connect(&isEnabledSetting, &Setting::valueChanged, this, &ListeningHistory::onIsEnabledChanged);
+    connect(&limitSetting, &Setting::valueChanged, this, &ListeningHistory::clearOutdatedEntries);
 }
 
 void ListeningHistory::onPlaybackStatusChanged() {
@@ -32,6 +39,7 @@ void ListeningHistory::onCurrentSongChanged(Song* song) {
 void ListeningHistory::initialize() {
     dataProvider.initialize();
     entries = this->dataProvider.getAll();
+    clearOutdatedEntries();
 }
 
 const QList<ListeningHistoryEntry>& ListeningHistory::getEntries() const {
@@ -99,4 +107,49 @@ void ListeningHistory::updateRemovedEntries() {
 void ListeningHistory::onIsEnabledChanged() {
     if (!isEnabledSetting.getValue().toBool())
         clear();
+}
+
+TimeLimits dateToTimeLimit(const QDateTime &dateTime) {
+    QDate date = dateTime.date();
+    QDate today = QDateTime::currentDateTime().date();
+    QDate yesterday = today.addDays(-1);
+    QDate lastWeek = today.addDays(-7);
+    QDate lastMonth = today.addMonths(-1);
+    QDate lastYear = today.addYears(-1);
+
+    if (date == today)
+        return TimeLimits::Today;
+    else if (date == yesterday)
+        return TimeLimits::Yesterday;
+    else if (date >= lastWeek)
+        return TimeLimits::LastWeek;
+    else if (date >= lastMonth)
+        return TimeLimits::LastMonth;
+    else if (date >= lastYear)
+        return TimeLimits::LastYear;
+    else
+        return TimeLimits::Never;
+
+}
+
+void ListeningHistory::clearOutdatedEntries() {
+    TimeLimits limit = static_cast<TimeLimits>(limitSetting.getValue().toInt());
+
+    if (limit == TimeLimits::Never)
+        return;
+
+    workDispatcher.invoke([=]() mutable {
+        LOG_DEBUG(logger, "Cleaning history ");
+        QList<int> items;
+        for(auto entry: entries) {
+            TimeLimits entryLimit = dateToTimeLimit(entry.dateTime());
+            if (entryLimit > limit) {
+                items.append(entry.id);
+                LOG_DEBUG(logger, "Removing entry " << entry.songTitle);
+            }
+
+        }
+        dataProvider.removeMany(items);
+        updateRemovedEntries();
+    });
 }

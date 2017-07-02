@@ -41,6 +41,7 @@ private slots:
     void onPlaybackStatusChanged();
     void onCurrentSongChanged(Application::Song* song);
     void onIsEnabledChanged();
+    void clearOutdatedEntries();
 
 private:
     void addSong(const Application::Song* song, Application::ListeningHistoryEntry& newEntry);
@@ -53,6 +54,7 @@ private:
     QMap<QString, Application::ListeningHistoryEntry> previousEntryPerPlayer;
     QList<Application::ListeningHistoryEntry> entries;
     Setting& isEnabledSetting;
+    Setting& limitSetting;
 };
 
 END_MELLOWPLAYER_NAMESPACE

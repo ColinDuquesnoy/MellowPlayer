@@ -252,8 +252,9 @@
 					"name": "Listening history limit",
 					"tooltip": "Specifies the limit of the listening history",
 					"type": "time-limit",
-					"default": "2",
-					"key": "listening-history-limit"
+					"default": 3,
+					"key": "listening-history-limit",
+                    "enabled": "privacy/enable-listening-history"
 				},
                 {
                     "name": "Automatically check for updates",
