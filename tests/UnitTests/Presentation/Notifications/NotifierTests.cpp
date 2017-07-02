@@ -27,6 +27,9 @@ TEST_CASE("NotifierTests", "[UnitTest]") {
 
     Setting& playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
     playNotifEnabled.setValue(true);
+    Setting& pausedNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
+    pausedNotifEnabled.setValue(true);
+
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
     REQUIRE(validSong.isValid());
