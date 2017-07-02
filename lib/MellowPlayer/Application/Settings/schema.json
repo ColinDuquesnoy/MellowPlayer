@@ -116,7 +116,7 @@
 					"name": "Display a notification when player has paused",
                     "tooltip": "Enabled/Disable displaying a notification when the player has paused",
 					"type": "bool",
-					"default": true,
+					"default": false,
 					"key": "paused",
 					"enabled": "notifications/enabled"
 				},
@@ -124,7 +124,7 @@
 					"name": "Display a notification when player has resumed",
 					"tooltip": "Enabled/Disable displaying a notification when the player has resumed",
 					"type": "bool",
-					"default": true,
+					"default": false,
 					"key": "resumed",
 					"enabled": "notifications/enabled"
 				},
