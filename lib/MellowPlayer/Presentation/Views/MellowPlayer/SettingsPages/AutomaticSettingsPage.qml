@@ -8,7 +8,6 @@ import ".."
 
 ColumnLayout {
     id: page
-    anchors.fill: parent
 
     ScrollView {
         id: root
@@ -29,7 +28,7 @@ ColumnLayout {
 
             anchors {
                 fill: parent;
-                margins: 24
+                rightMargin: parent.ScrollBar.vertical.size != 1 ? 16 : 0
             }
             clip: true
             delegate: ColumnLayout {

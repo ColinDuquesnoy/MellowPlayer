@@ -153,6 +153,7 @@ ItemDelegate {
         Rectangle {
             color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
             height: 1
+            visible: model.index != (root.ListView.view.count - 1)
 
             Layout.fillWidth: true
         }

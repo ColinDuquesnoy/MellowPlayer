@@ -7,7 +7,6 @@ import MellowPlayer 3.0
 import ".."
 
 Item {
-    anchors { fill: parent; margins: 24 }
     clip: true
 
     ColumnLayout {
