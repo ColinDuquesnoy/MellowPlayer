@@ -55,13 +55,20 @@ StackLayout {
         id: repeater
 
         model: _streamingServices.model
-
-        WebView {
+        delegate: WebView {
             id: webView
 
             anchors.fill: parent
             visible: visible && root.currentIndex == index;
             enabled: visible
+            player: model.player
+            urlToLoad: model.url
+            service: model.qtObject
+            onCustomUrlSet: {
+                model.url = customUrl
+                start()
+            }
+
 
             onNewViewRequested: {
                 root.newViewRequested()

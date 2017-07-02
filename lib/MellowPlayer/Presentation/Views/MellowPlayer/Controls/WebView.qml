@@ -9,19 +9,18 @@ import MellowPlayer 3.0
 WebEngineView {
     id: root
 
-    property QtObject player: model.player
-    property string urlToLoad: model.url
+    property QtObject player
+    property string urlToLoad
+    property var service
     property var image: null
-    property var service: model.qtObject
 
     signal updateImageFinished()
+    signal customUrlSet(var customUrl)
 
     function start() {
-        if (url == "" ) {
-            url = urlToLoad
-            checkForCustomUrlRequired()
-            player.start()
-        }
+        url = urlToLoad
+        checkForCustomUrlRequired()
+        player.start()
     }
 
     function stop() {
@@ -29,10 +28,6 @@ WebEngineView {
         reload();
         image = null;
         player.stop();
-    }
-
-    function setCustomUrl(customUrl) {
-        model.url = customUrl
     }
 
     function checkForCustomUrlRequired() {
@@ -69,6 +64,6 @@ WebEngineView {
         z: 1
         onReloadRequested: root.reload()
         customUrl: urlToLoad
-        onCustomUrlChanged: root.setCustomUrl(customUrl)
+        onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
     }
 }

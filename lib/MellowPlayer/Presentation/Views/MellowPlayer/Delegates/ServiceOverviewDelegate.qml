@@ -73,7 +73,8 @@ Item {
             ]
             onStateChanged: {
                 preview.visible = true;
-                webView.start()
+                if (webView.url == "" )
+                    webView.start()
             }
         }
 
