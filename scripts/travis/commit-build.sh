@@ -9,7 +9,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   sudo pip install cpp-coveralls;
   ./scripts/build/linux/build.sh --debug --coverage;
   ./scripts/build/linux/runtests.sh --debug;
-  coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*cmake-build-.*' -b 'cmake-build-debug' -r '.';
+  coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*cmake-build-.*' -E '.*QQmlObjectListModel.* -b 'cmake-build-debug' -r '.';
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
