@@ -6,6 +6,8 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "ListeningHistory.hpp"
 
+#define DELAY 5000
+
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Application)
 
@@ -24,9 +26,7 @@ void ListeningHistory::onPlaybackStatusChanged() {
 
 void ListeningHistory::onCurrentSongChanged(Song* song) {
     auto newEntry = ListeningHistoryEntry::fromData(song, player.getServiceName());
-    workDispatcher.invoke([=]() mutable {
-        addSong(song, newEntry);
-    });
+    workDispatcher.delayInvoke(DELAY, [=]() mutable { addSong(song, newEntry); });
 }
 
 void ListeningHistory::initialize() {

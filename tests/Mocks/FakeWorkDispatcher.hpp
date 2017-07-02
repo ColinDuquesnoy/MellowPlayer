@@ -7,4 +7,8 @@ public:
     void invoke(const std::function<void(void)>& workerFunction) override {
         workerFunction();
     };
+
+    void delayInvoke(int, const std::function<void(void)>& workerFunction) override {
+        workerFunction();
+    }
 };
