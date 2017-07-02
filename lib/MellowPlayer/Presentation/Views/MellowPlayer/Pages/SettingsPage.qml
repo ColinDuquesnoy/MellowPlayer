@@ -47,7 +47,7 @@ Page {
         Label {
             anchors.centerIn: parent
             font.pixelSize: 16
-            text: "Settings - " + settingsPageList.currentItem.category
+            text: settingsPageList.currentItem.category
         }
     }
 

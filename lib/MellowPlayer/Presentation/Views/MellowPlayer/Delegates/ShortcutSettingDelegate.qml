@@ -5,23 +5,24 @@ import QtQuick.Controls 2.2
 import MellowPlayer 3.0
 import ".."
 
-Pane {
+ItemDelegate {
     bottomPadding: 3; topPadding: 3
     enabled: model.enabled
-    width: parent.width
+    hoverEnabled: true
 
-    RowLayout {
-        spacing: 16
+    onClicked: keySequenceEdit.forceActiveFocus()
 
+    contentItem: RowLayout {
         Label {
             text: model.name
             font.pixelSize: 16
 
-            Layout.preferredWidth: 150
+            Layout.fillWidth: true
         }
 
         TextField {
             id: keySequenceEdit
+            hoverEnabled: false
 
             property int nbKeyPressed: 0
             property int newKey: 0
@@ -83,23 +84,13 @@ Pane {
                 text: model.toolTip
             }
 
-            Component.onCompleted: {
-                try {
-                    hoverEnabled = true
-                }
-                catch (e) {
-                    // not available with Qt < 5.8
-                }
-            }
 
-            Layout.fillWidth: true
+            Timer {
+                id: timerRecording
+                running: true
+                interval: 2000
+            }
         }
     }
 
-    Timer {
-        id: timerRecording
-        running: true
-        interval: 2000
-//        onTriggered: keySequenceEdit.finishRecording();
-    }
 }

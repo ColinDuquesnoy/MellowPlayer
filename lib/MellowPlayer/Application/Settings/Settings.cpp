@@ -8,8 +8,7 @@
 using namespace std;
 USING_MELLOWPLAYER_NAMESPACE(Application)
 
-Settings::Settings(ISettingsSchemaLoader& configurationLoader,
-                                         ISettingsProvider& settingsProvider):
+Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider):
         settingsProvider(settingsProvider) {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();

@@ -5,33 +5,36 @@ import QtQuick.Controls 2.2
 import MellowPlayer 3.0
 import ".."
 
-Pane {
+ItemDelegate {
     property var values: model.qtObject.values
     property var qtObject: model.qtObject
 
     bottomPadding: 3; topPadding: 3
+    hoverEnabled: true
     enabled: model.enabled
-    width: parent.width
+    onClicked: comboBox.popup.open()
 
-    RowLayout {
-        spacing: 16
-
+    contentItem: RowLayout {
         Label {
             text: model.name
             font.pixelSize: 16
+
+            Layout.fillWidth: true
         }
 
         ComboBox {
+            id: comboBox
+
             hoverEnabled: true
             model: values
             currentIndex: values.indexOf(qtObject.value)
             onCurrentTextChanged: qtObject.value = currentText
 
+            Layout.preferredWidth: 250
+
             Tooltip {
                 text: model.toolTip
             }
-
-            Layout.fillWidth: true
         }
     }
 }

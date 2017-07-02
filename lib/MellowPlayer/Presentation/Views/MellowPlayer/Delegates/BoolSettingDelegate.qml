@@ -6,6 +6,7 @@ import ".."
 
 CheckDelegate {
     bottomPadding: 3; topPadding: 3
+    anchors.fill: parent
     checked: model.qtObject.value
     enabled: model.enabled
     hoverEnabled: true

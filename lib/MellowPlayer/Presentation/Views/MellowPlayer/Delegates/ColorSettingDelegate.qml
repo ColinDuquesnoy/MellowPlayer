@@ -7,17 +7,17 @@ import QtQuick.Layouts 1.3
 import MellowPlayer 3.0
 import ".."
 
-Pane {
+ItemDelegate {
     bottomPadding: 3; topPadding: 3
     enabled: model.enabled
-    width: parent.width
+    hoverEnabled: true
+    onClicked: colorDialog.open()
 
-    RowLayout {
-        spacing: 16
-
+    contentItem: RowLayout {
         Label {
             text: model.name
             font.pixelSize: 16
+            Layout.fillWidth: true
         }
 
         Button {
@@ -26,8 +26,6 @@ Pane {
             onTextChanged: model.qtObject.value = text
             onClicked: colorDialog.open()
 
-
-            Layout.fillWidth: true
             Material.background: model.qtObject.value
             Material.foreground: _style.isDark(model.qtObject.value) ? "white" : "#303030"
 

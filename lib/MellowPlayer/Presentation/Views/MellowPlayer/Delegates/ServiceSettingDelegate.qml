@@ -6,23 +6,36 @@ import QtQuick.Controls.Material 2.2
 import MellowPlayer 3.0
 import ".."
 
-Pane {
-    padding: 2
+ItemDelegate {
+    id: root
 
-    Pane {
-        padding: 8
-        anchors.fill: parent
-        Material.elevation: 2
+    function enterEditMode() {
+        stack.currentIndex = 1
+        textField.forceActiveFocus()
+    }
 
+    hoverEnabled: true
+    padding: 0
+    onClicked: enterEditMode()
+
+    Material.elevation: 2
+
+    contentItem: ColumnLayout {
         RowLayout {
-            anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.margins: 16
 
-            Pane {
-                padding: 4
+            Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Material.background: "transparent"
+
+                implicitWidth: layout.implicitWidth
+                implicitHeight: layout.implicitHeight
 
                 RowLayout {
+                    id: layout
                     spacing: 16
                     anchors.fill: parent
 
@@ -81,24 +94,8 @@ Pane {
                                 anchors.fill: parent
 
                                 Label {
-                                    id: labelEditUrl
-                                    text: MaterialIcons.icon_edit
-                                    font.family: MaterialIcons.family
-                                    font.pixelSize: 20
-                                    visible: mouseAreaUrl.containsMouse
-                                }
-
-                                Label {
                                     font.italic: true
                                     text: model.url
-
-                                    MouseArea {
-                                        id: mouseAreaUrl
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
-                                        onClicked: stack.currentIndex = 1
-                                    }
                                 }
 
                                 Item {
@@ -151,6 +148,13 @@ Pane {
                     Layout.fillHeight: true
                 }
             }
+        }
+
+        Rectangle {
+            color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+            height: 1
+
+            Layout.fillWidth: true
         }
     }
 }

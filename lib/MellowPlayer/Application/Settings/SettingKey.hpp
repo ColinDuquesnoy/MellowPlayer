@@ -26,6 +26,7 @@ public:
         NOTIFICATIONS_RESUMED,
         PRIVACY_CHECK_FOR_UPDATES,
         PRIVACY_ENABLE_LISTENING_HISTORY,
+        PRIVACY_LISTENING_HISTORY_LIMIT,
         PRIVATE_CURRENT_SERVICE,
         PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
         SHORTCUTS_ABOUT,
@@ -65,6 +66,7 @@ public:
         enumToString << "notifications/resumed";
         enumToString << "privacy/check-for-updates";
         enumToString << "privacy/enable-listening-history";
+        enumToString << "privacy/listening-history-limit";
         enumToString << "private/current-service";
         enumToString << "private/show-close-to-tray-message";
         enumToString << "shortcuts/about";

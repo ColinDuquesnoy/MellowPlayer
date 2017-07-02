@@ -9,7 +9,7 @@
                     "name": "Confirm application exit",
                     "tooltip": "Enable this option to get a confirmation message when you leave MellowPlayer.",
                     "type": "bool",
-                    "default": "true",
+                    "default": true,
                     "key": "confirm-exit"
                 },
                 {
@@ -248,6 +248,13 @@
                     "default": false,
                     "key": "enable-listening-history"
                 },
+				{
+					"name": "Listening history limit",
+					"tooltip": "Specifies the limit of the listening history",
+					"type": "time-limit",
+					"default": "2",
+					"key": "listening-history-limit"
+				},
                 {
                     "name": "Automatically check for updates",
                     "tooltip": "Enable this option to be notified when a new version of MellowPlayer is available.",

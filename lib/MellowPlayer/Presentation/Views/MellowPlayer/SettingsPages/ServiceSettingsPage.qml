@@ -15,11 +15,13 @@ ScrollView {
         id: listView
 
         anchors.fill: parent
-        anchors.margins: 8
-        anchors.rightMargin: parent.ScrollBar.vertical.size !== 1 ? 24 : 8
+        anchors.margins: 24
+        anchors.rightMargin: parent.ScrollBar.vertical.size !== 1 ? 32 : 24
         clip: true
-        delegate: ServiceSettingDelegate { width: listView.width; }
+        delegate: ServiceSettingDelegate {
+            width: listView.width;
+        }
         model: _streamingServices.model
-        spacing: 8
+        spacing: 0
     }
 }

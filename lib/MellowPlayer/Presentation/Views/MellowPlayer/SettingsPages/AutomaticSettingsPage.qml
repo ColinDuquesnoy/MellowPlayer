@@ -15,37 +15,45 @@ ColumnLayout {
 
         property var settingsModel: model.settings
 
-        contentHeight: pane.implicitHeight
-        contentWidth: parent.width
+        contentHeight: listView.contentHeight
+        contentWidth: width
         clip: true
 
         Layout.fillHeight: true
-        ScrollBar.horizontal.policy: ScrollBar.horizontal.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+        Layout.fillWidth: true
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
 
-        Pane {
-            id: pane
+        ListView {
+            id: listView
 
-            anchors.fill: parent
-            padding: 16
-
-            ColumnLayout {
-                anchors.fill: parent
+            anchors {
+                fill: parent;
+                margins: 24
+            }
+            clip: true
+            delegate: ColumnLayout {
+                width: ListView.view.width
                 spacing: 0
-                clip: true
 
-                Repeater {
-                    model: root.settingsModel
+                Loader {
+                    id: loader
+                    source: model.qmlComponent
 
-                    Loader {
-                        source: model.qmlComponent
-                    }
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 56
                 }
 
-                Item {
-                    Layout.fillHeight: true
+                Rectangle {
+                    color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+                    visible: model.index != parent.ListView.view.count - 1
+
+                    Layout.preferredHeight: 1
+                    Layout.fillWidth: true
                 }
             }
+            model: root.settingsModel
+            spacing: 0
         }
     }
 

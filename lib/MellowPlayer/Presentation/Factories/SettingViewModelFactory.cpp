@@ -4,6 +4,7 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/ColorSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp"
 
 USING_MELLOWPLAYER_NAMESPACE(Presentation)
@@ -22,6 +23,8 @@ SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* par
     }
     else if (type.startsWith("enum")) {
         return new EnumSettingViewModel(setting, parent);
+    } else if (type.startsWith("time-limit")) {
+        return new TimeLimitSettingViewModel(setting, parent);
     }
     return new StringSettingViewModel(setting, parent);
 }

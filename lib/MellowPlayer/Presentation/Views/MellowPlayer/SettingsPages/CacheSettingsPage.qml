@@ -7,28 +7,47 @@ import MellowPlayer 3.0
 import ".."
 
 Item {
-    anchors { fill: parent; margins: 16 }
+    anchors { fill: parent; margins: 24 }
     clip: true
 
     ColumnLayout {
         anchors.fill: parent
         clip: true
-        spacing: 8
+        spacing: 0
 
-        Button {
-            text: "Clear cookies"
+        ItemDelegate {
+            hoverEnabled: true
+            contentItem: Label {
+                text: "Clear cookies"
+                horizontalAlignment: Text.AlignHCenter
+            }
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCookies();
             }
+
+            Layout.fillWidth: true
         }
 
-        Button {
-            text: "Clear cache"
+        Rectangle {
+            color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+            height: 1
+            Layout.fillWidth: true
+        }
+
+        ItemDelegate {
+            hoverEnabled: true
+            contentItem: Label {
+                text: "Clear cache"
+                horizontalAlignment: Text.AlignHCenter
+            }
+
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCache()
             }
+
+            Layout.fillWidth: true
         }
 
         Item {
