@@ -23,7 +23,10 @@ int SingleInstanceApplication::run() {
     LOG_TRACE(logger, "run");
     LOG_DEBUG(logger, "starting, connecting to local server");
     localSocket.connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
-    return application.run();
+    auto retCode = application.run();
+    localSocket.disconnectFromServer();
+    localServer.close();
+    return retCode;
 }
 
 void SingleInstanceApplication::onSocketConnected() {

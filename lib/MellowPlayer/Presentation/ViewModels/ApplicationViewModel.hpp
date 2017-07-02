@@ -23,8 +23,11 @@ public:
     Q_INVOKABLE void requestQuit() override;
     Q_INVOKABLE void quit() override;
 
+    bool restartRequested() const override { return restartRequested_; }
+
 private:
     QApplication qtApp;
+    bool restartRequested_ = false;
 };
 
 END_MELLOWPLAYER_NAMESPACE

@@ -18,8 +18,8 @@ TEST_CASE("SingleInstanceApplication") {
     SECTION("Second instance should quit") {
         auto appMock2 = ApplicationMock::get();
         SingleInstanceApplication instance2(appMock2.get());
-        instance2.run();
+        auto retCode = instance2.run();
         QTest::qWait(500);
-        Verify(Method(appMock2, quit)).Exactly(1);
+        REQUIRE(retCode == 0);
     }
 }

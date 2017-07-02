@@ -17,6 +17,8 @@ public:
     Q_INVOKABLE virtual void restart() = 0;
     Q_INVOKABLE virtual void quit() = 0;
 
+    virtual bool restartRequested() const = 0;
+
 signals:
     void quitRequested();
 };

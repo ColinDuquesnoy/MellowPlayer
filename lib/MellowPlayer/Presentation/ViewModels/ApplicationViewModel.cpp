@@ -70,8 +70,8 @@ void ApplicationViewModel::clearCookies() const
 }
 
 void ApplicationViewModel::restart() {
-    quit();
-    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    restartRequested_ = true;
+    qApp->quit();
 }
 
 void ApplicationViewModel::requestQuit() {

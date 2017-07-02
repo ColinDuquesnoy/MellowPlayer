@@ -43,5 +43,10 @@ int main(int argc, char** argv)
 #else
     SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
 #endif
-    return app.run();
+    auto retCode = app.run();
+
+    if (qtApp.restartRequested())
+        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+
+    return retCode;
 }
