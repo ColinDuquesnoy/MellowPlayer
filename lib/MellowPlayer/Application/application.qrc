@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/MellowPlayer/Application">
+        <file>Settings/schema.json</file>
+        <file>PluginTemplate/integration.js</file>
+        <file>PluginTemplate/logo.svg</file>
+        <file>PluginTemplate/metadata.ini</file>
+        <file>PluginTemplate/style.json</file>
+    </qresource>
+</RCC>

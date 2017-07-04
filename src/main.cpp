@@ -19,7 +19,7 @@ USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 int main(int argc, char** argv)
 {
     // Init resources embedded in static libraries
-    Q_INIT_RESOURCE(use_cases);
+    Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
 
     ApplicationViewModel qtApp(argc, argv);

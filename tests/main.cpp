@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Q_INIT_RESOURCE(use_cases);
+    Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
 
     ApplicationViewModel webApplication(argc, argv, "MellowPlayer3.Tests");
