@@ -63,7 +63,7 @@ private:
     StreamingServiceListModel* model;
     StreamingServiceViewModel* currentService = nullptr;
     Application::IWorkDispatcher& workDispatcher;
-    int currentIndex = 0;
+    int currentIndex = -1;
     bool hasRunningServices = false;
 };
 
