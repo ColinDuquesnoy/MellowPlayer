@@ -26,7 +26,7 @@ TEST_CASE("StreamingServiceCreatorTests") {
     files.append(QFileInfo(pluginDir + "/" + "style.json"));
     files.append(QFileInfo(pluginDir + "/" + "metadata.ini"));
     for(auto fileInfo: files) {
-        CAPTURE("file: " + fileInfo.absoluteFilePath());
+        CAPTURE("file: " + fileInfo.absoluteFilePath().toStdString());
         REQUIRE(fileInfo.exists());
         REQUIRE(!readFile(fileInfo.absoluteFilePath()).isEmpty());
     }
