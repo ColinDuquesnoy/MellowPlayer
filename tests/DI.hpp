@@ -19,6 +19,7 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
@@ -38,6 +39,7 @@
 #include <Mocks/LocalAlbumArtMock.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
+#include <Mocks/StreamingServiceCreatorMock.hpp>
 
 #ifdef USE_LIBNOTIFY
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
@@ -111,6 +113,7 @@ static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
 static auto systemTrayIconMock = SystemTrayIconMock::get();
 static auto notificationPresenterMock = NotificationPresenterMock::get();
 static auto localAlbumArtMock = LocalAlbumArtMock::getMockWithUrlOk();
+static auto streamingServiceCreatorMock = StreamingServiceCreatorMock::get();
 
 inline auto getTestInjector(ScopedScope& scope) {
     static auto settingsProviderMock = SettingsProviderMock::get();
@@ -130,7 +133,8 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<ILocalAlbumArt>().to(localAlbumArtMock.get()),
         di::bind<IListeningHistoryDataProvider>().to(dataProvider),
         di::bind<IWorkDispatcher>().to(workDispatcher),
-        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope)
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
+        di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get())
     );
 };
 

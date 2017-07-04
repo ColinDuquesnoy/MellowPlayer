@@ -14,6 +14,8 @@ public:
     StreamingServiceLoader();
     QList<std::shared_ptr<Application::StreamingService>> load() const override;
 
+    static QString getUserDirectory();
+
 private:
     std::unique_ptr<Application::StreamingService> loadService(const QString& directory) const;
     QString findFileByExtension(const QString &directory, const QString &suffix) const;
@@ -21,7 +23,6 @@ private:
     Application::StreamingServiceMetadata readMetadata(const QString &filePath) const;
     Application::StreamingServiceStyle readStyle(const QString &filePath) const;
     bool checkServiceDirectory(const QString& directory) const;
-    QString getUserDirectory() const;
     QStringList getSearchPaths() const;
     bool containsService(const QList<std::shared_ptr<Application::StreamingService>>& services,
                          std::shared_ptr<Application::StreamingService>& toCheck) const;

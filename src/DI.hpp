@@ -20,6 +20,7 @@
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
@@ -31,6 +32,7 @@
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
+#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <MellowPlayer/Infrastructure/Utils/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
@@ -107,7 +109,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<INotifier>().to<Notifier>().in(scope),
         di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
         di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
-        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope)
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
+        di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope)
     );
 };
 

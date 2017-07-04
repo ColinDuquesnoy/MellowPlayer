@@ -5,6 +5,7 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 #include "StreamingServicesViewModel.hpp"
@@ -16,12 +17,14 @@ USING_MELLOWPLAYER_NAMESPACE(Presentation)
 StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& streamingServices,
                                                Players& players,
                                                Settings& settings,
-                                               IWorkDispatcher& workDispatcher) :
+                                               IWorkDispatcher& workDispatcher,
+                                               IStreamingServiceCreator& streamingServiceCreator) :
         QObject(), streamingServices(streamingServices), players(players),
         settings(settings),
         currentServiceSetting(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
-        model(new StreamingServiceListModel(this)),
-        workDispatcher(workDispatcher) {
+        workDispatcher(workDispatcher),
+        streamingServiceCreator(streamingServiceCreator),
+        model(new StreamingServiceListModel(this)) {
 
     connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesViewModel::onServiceAdded);
 
@@ -104,11 +107,13 @@ void StreamingServicesViewModel::previous() {
     }
 }
 
-void StreamingServicesViewModel::createService(const QString &svName, const QString &svUrl, const QString &authorName, const QString &authorWebsite)
+void StreamingServicesViewModel::createService(const QString &serviceName, const QString &serviceUrl,
+                                               const QString &authorName, const QString &authorWebsite)
 {
     workDispatcher.invoke([=]() {
-        QThread::msleep(1000);
-        emit serviceCreated("/" + svName + "/" + svUrl + "/" + authorName + "/" + authorWebsite);
+        QString pluginDir = streamingServiceCreator.create(serviceName, serviceUrl, authorName, authorWebsite);
+        emit serviceCreated(pluginDir);
+        streamingServices.load();
     });
 }
 

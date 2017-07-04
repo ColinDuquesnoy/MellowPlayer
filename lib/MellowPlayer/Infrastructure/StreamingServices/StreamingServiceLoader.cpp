@@ -126,7 +126,7 @@ bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) con
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }
 
-QString StreamingServiceLoader::getUserDirectory() const {
+QString StreamingServiceLoader::getUserDirectory() {
     return QFileInfo(QStandardPaths::standardLocations(
             QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
 }

@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <QtTest/QSignalSpy>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
 #include "DI.hpp"
 
@@ -11,9 +12,14 @@ using namespace fakeit;
 TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    auto loaderMock = StreamingServiceLoaderMock::get();
+    StreamingServices streamingServices(loaderMock.get());
     streamingServices.load();
-    StreamingServicesViewModel& viewModel = injector.create<StreamingServicesViewModel&>();
+    Players& players = injector.create<Players&>();
+    Settings& settings = injector.create<Settings&>();
+    FakeWorkDispatcher fakeWorkDispatcher;
+    auto creatorMock = StreamingServiceCreatorMock::get();
+    StreamingServicesViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get());
     viewModel.initialize();
     viewModel.reload();
 
@@ -21,9 +27,9 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
     StreamingServiceViewModel* service2 = viewModel.getModel()->at(1);
     StreamingServiceViewModel* service3 = viewModel.getModel()->at(2);
 
-    REQUIRE(viewModel.getModel()->count() == streamingServices.getAll().count());
 
-    SECTION("setCurrentService_change_currentIndex") {
+    SECTION("setCurrentService changes currentIndex") {
+        REQUIRE(viewModel.getModel()->count() == streamingServices.getAll().count());
         REQUIRE(viewModel.getCurrentIndex() == -1);
         REQUIRE(viewModel.getCurrentService() == nullptr);
         viewModel.setCurrentService(viewModel.getModel()->toList()[1]);
@@ -43,7 +49,7 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
         REQUIRE(viewModel.getCurrentService() == service1);
     }
 
-    SECTION("next change current service if more than one service is running") {
+    SECTION("next changes current service if more than one service is running") {
         service1->getPlayer()->start();
         service2->getPlayer()->start();
         service3->getPlayer()->start();
@@ -67,7 +73,7 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
         REQUIRE(viewModel.getCurrentService() == service1);
     }
 
-    SECTION("previous change current service if more than one service is running") {
+    SECTION("previous changes current service if more than one service is running") {
         service1->getPlayer()->start();
         service2->getPlayer()->start();
         service3->getPlayer()->start();
@@ -80,5 +86,12 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
         viewModel.previous();
         REQUIRE(viewModel.getCurrentService() == service1);
     }
-}
 
+    SECTION("create service call creator and reload services") {
+        QSignalSpy spy(&viewModel, &StreamingServicesViewModel::serviceCreated);
+        viewModel.createService("svName", "svUrl", "authorName", "authorUrl");
+        Verify(Method(creatorMock, create));
+        Verify(Method(loaderMock, load));
+        REQUIRE(spy.count() == 1);
+    }
+}
