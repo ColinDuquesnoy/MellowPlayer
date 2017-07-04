@@ -15,7 +15,6 @@ TEST_CASE("MainWindowViewModel") {
     ListeningHistoryViewModel& listeningHistory = injector.create<ListeningHistoryViewModel&>();
     StyleViewModel& style = injector.create<StyleViewModel&>();
     IPlayer& player = injector.create<CurrentPlayer&>();
-    ILocalAlbumArt& albumArt = injector.create<ILocalAlbumArt&>();
     Settings& settings = injector.create<Settings&>();
     IQtApplication& qtApp = injector.create<IQtApplication&>();
 
