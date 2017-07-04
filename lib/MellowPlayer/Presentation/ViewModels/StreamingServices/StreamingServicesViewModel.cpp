@@ -6,6 +6,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
+#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 #include "StreamingServicesViewModel.hpp"
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
@@ -14,12 +15,13 @@ USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
 StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& streamingServices,
                                                Players& players,
-                                               Settings& settings) :
+                                               Settings& settings,
+                                               IWorkDispatcher& workDispatcher) :
         QObject(), streamingServices(streamingServices), players(players),
         settings(settings),
         currentServiceSetting(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
         model(new StreamingServiceListModel(this)),
-        currentService(nullptr), currentIndex(-1) {
+        workDispatcher(workDispatcher) {
 
     connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesViewModel::onServiceAdded);
 
@@ -100,6 +102,14 @@ void StreamingServicesViewModel::previous() {
         }
         index = getPreviousIndex(index);
     }
+}
+
+void StreamingServicesViewModel::createService(const QString &svName, const QString &svUrl, const QString &authorName, const QString &authorWebsite)
+{
+    workDispatcher.invoke([=]() {
+        QThread::msleep(1000);
+        emit serviceCreated("/" + svName + "/" + svUrl + "/" + authorName + "/" + authorWebsite);
+    });
 }
 
 int StreamingServicesViewModel::getNextIndex(int index) const {

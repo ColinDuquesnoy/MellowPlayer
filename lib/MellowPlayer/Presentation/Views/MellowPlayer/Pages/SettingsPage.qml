@@ -174,4 +174,11 @@ Page {
 
         onAccepted: _settings.restoreDefaults()
     }
+
+    NewPluginWizard {
+        id: wizardNewPlugin
+
+        height: 540; width: 960
+        x: parent.width / 2 - width / 2; y: parent.height / 2 - height / 2
+    }
 }

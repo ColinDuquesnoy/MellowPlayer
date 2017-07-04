@@ -62,5 +62,11 @@
         <file>Views/MellowPlayer/Pages/MainPage.qml</file>
         <file>Views/MellowPlayer/Pages/SettingsPage.qml</file>
         <file>Views/MellowPlayer/Controls/CustomUrlPane.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/CreatingPage.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/DetailsPage.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/FinishPage.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/StartPage.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml</file>
+        <file>Views/MellowPlayer/NewPluginWizard/WizardPage.qml</file>
     </qresource>
 </RCC>

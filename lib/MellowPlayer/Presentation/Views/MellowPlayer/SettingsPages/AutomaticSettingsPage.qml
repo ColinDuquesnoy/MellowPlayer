@@ -58,7 +58,7 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillWidth: true
-        Layout.rightMargin: 16
+        Layout.rightMargin: 24
         Layout.bottomMargin: 8
 
         Item { Layout.fillWidth: true }

@@ -9,6 +9,7 @@ PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Players)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, IWorkDispatcher)
 
 class QQmlApplicationEngine;
 
@@ -22,8 +23,9 @@ class StreamingServicesViewModel: public QObject {
     Q_PROPERTY(bool hasRunningServices READ getHasRunningServices NOTIFY hasRunningServicesChanged)
 public:
     StreamingServicesViewModel(Application::StreamingServices& streamingServices,
-                           Application::Players& players,
-                           Application::Settings& settings);
+                               Application::Players& players,
+                               Application::Settings& settings,
+                               Application::IWorkDispatcher& workDispatcher);
     void initialize();
 
     Q_INVOKABLE void reload();
@@ -34,6 +36,7 @@ public:
 
     Q_INVOKABLE void next();
     Q_INVOKABLE void previous();
+    Q_INVOKABLE void createService(const QString& svName, const QString& svUrl, const QString& authorName, const QString& authorWebsite);
 
 public slots:
     void setCurrentService(QObject* value);
@@ -43,6 +46,7 @@ signals:
     void currentServiceChanged(QObject* currentService);
     void currentIndexChanged(int currentIndex);
     void hasRunningServicesChanged();
+    void serviceCreated(const QString& directory);
 
 private slots:
     void onServiceAdded(Application::StreamingService* streamingService);
@@ -57,8 +61,9 @@ private:
     Application::Settings& settings;
     Application::Setting& currentServiceSetting;
     StreamingServiceListModel* model;
-    StreamingServiceViewModel* currentService;
-    int currentIndex;
+    StreamingServiceViewModel* currentService = nullptr;
+    Application::IWorkDispatcher& workDispatcher;
+    int currentIndex = 0;
     bool hasRunningServices = false;
 };
 

@@ -23,7 +23,7 @@ Item {
                 id: listView
 
                 anchors.fill: parent
-                anchors.rightMargin: parent.ScrollBar.vertical.size !== 1 ? 16 : 0
+                anchors.rightMargin: 16
                 clip: true
                 delegate: ServiceSettingDelegate {
                     width: listView.width;
@@ -35,7 +35,7 @@ Item {
 
         RowLayout {
             Layout.fillWidth: true
-            Layout.rightMargin: 16
+            Layout.rightMargin: 24
             Layout.bottomMargin: 8
 
             Item {
@@ -46,6 +46,7 @@ Item {
                 highlighted: true
                 hoverEnabled: true
                 text: "Create plugin"
+                onClicked: wizardNewPlugin.open()
             }
         }
     }
