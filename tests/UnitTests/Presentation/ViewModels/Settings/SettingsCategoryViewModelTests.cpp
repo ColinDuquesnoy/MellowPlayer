@@ -19,6 +19,7 @@ TEST_CASE("SettingsCategoryViewModelTests") {
 TEST_CASE("CustomSettingsCategoryViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
+    Settings& settings = injector.create<Settings&>();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", nullptr);
 
     REQUIRE(model.getName() == "CategoryName");
@@ -26,3 +27,4 @@ TEST_CASE("CustomSettingsCategoryViewModelTests") {
     REQUIRE(model.getQmlComponent() == "CategoryQmlComponent");
     REQUIRE(model.getSettingsModel()->count() == 0);
 }
+
