@@ -11,7 +11,8 @@ fi
 cd $build_dir
 
 if [ "$2" == "--coverage" ]; then
-    catchsegv make coverage;
+    make coverage;
 else
-    catchsegv ctest -V;
+#    ctest -V;
+    catchsegv ./tests/MellowPlayer.UnitTests
 fi
