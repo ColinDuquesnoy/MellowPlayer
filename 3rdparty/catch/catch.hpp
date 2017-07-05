@@ -5881,12 +5881,12 @@ namespace Catch {
     struct SignalDefs { int id; const char* name; };
     extern SignalDefs signalDefs[];
     SignalDefs signalDefs[] = {
-//            { SIGINT,  "SIGINT - Terminal interrupt signal" },
-//            { SIGILL,  "SIGILL - Illegal instruction signal" },
-//            { SIGFPE,  "SIGFPE - Floating point error signal" },
-//            { SIGSEGV, "SIGSEGV - Segmentation violation signal" },
-//            { SIGTERM, "SIGTERM - Termination request signal" },
-//            { SIGABRT, "SIGABRT - Abort (abnormal termination) signal" }
+            { SIGINT,  "SIGINT - Terminal interrupt signal" },
+            { SIGILL,  "SIGILL - Illegal instruction signal" },
+            { SIGFPE,  "SIGFPE - Floating point error signal" },
+            { SIGSEGV, "SIGSEGV - Segmentation violation signal" },
+            { SIGTERM, "SIGTERM - Termination request signal" },
+            { SIGABRT, "SIGABRT - Abort (abnormal termination) signal" }
         };
 
     struct FatalConditionHandler {

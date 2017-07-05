@@ -40,7 +40,6 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
     }
 
     SECTION("next does not change current service if only one running service") {
-        REQUIRE(service1->getPlayer() != nullptr);
         service1->getPlayer()->start();
         service2->getPlayer()->stop();
         service3->getPlayer()->stop();
