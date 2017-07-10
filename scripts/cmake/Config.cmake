@@ -29,7 +29,7 @@ if(MSVC_COMPILER)
     add_definitions("/wd4100")
     add_definitions("/wd4718")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions")
 endif()
 
 # Setup compiler settings
