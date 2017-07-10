@@ -22,6 +22,8 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
 
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     ApplicationViewModel qtApp(argc, argv);
 
     SpdLoggerFactory loggerFactory;
