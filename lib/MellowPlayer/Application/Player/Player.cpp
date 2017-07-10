@@ -4,6 +4,7 @@
 #include <MellowPlayer/Application/Player/Song.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "Player.hpp"
+#include <qdebug.h>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -145,10 +146,10 @@ void Player::setUpdateResults(const QVariant& results) {
     LOG_TRACE(logger, "setUpdateResults()");
     QVariantMap resultsMap = results.toMap();
 
-    QString uniqueId = resultsMap.value("songId").toString();
-    QString title = resultsMap.value("songTitle").toString();
-    QString artist = resultsMap.value("artistName").toString();
-    QString album = resultsMap.value("albumTitle").toString();
+    QString uniqueId = resultsMap.value("songId").toString().replace("-", "");
+    QString title = resultsMap.value("songTitle").toString().replace("\n", "").trimmed();
+    QString artist = resultsMap.value("artistName").toString().replace("\n", "").trimmed();
+    QString album = resultsMap.value("albumTitle").toString().replace("\n", "").trimmed();
     QString artUrl = resultsMap.value("artUrl").toString();
     double duration = resultsMap.value("duration").toDouble();
     bool isFavorite = resultsMap.value("isFavorite").toBool();
