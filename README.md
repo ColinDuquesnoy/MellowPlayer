@@ -42,7 +42,7 @@ MellowPlayer is licensed under the GPL license.
 ## Build dependencies
 
 - cmake
-- a c++14 compiler (gcc5, msvc 2015 or clang)
+- a c++17 compiler (gcc6, msvc 2015 or clang)
 - Qt5 (>= 5.9.0, WebEngine, QuickControls2 and QtConcurrent modules needed)
 - Libnotify (optional, GNU/Linux only)
 
