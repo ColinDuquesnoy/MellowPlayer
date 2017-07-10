@@ -27,10 +27,10 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(bool hasRunningServices READ getHasRunningServices NOTIFY hasRunningServicesChanged)
     public:
         StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices,
-                                   Application::Players& players,
-                                   Application::Settings& settings,
-                                   Application::IWorkDispatcher& workDispatcher,
-                                   Application::IStreamingServiceCreator& streamingServiceCreator);
+                                             Application::Players& players,
+                                             Application::Settings& settings,
+                                             Application::IWorkDispatcher& workDispatcher,
+                                             Application::IStreamingServiceCreator& streamingServiceCreator);
         void initialize();
 
         Q_INVOKABLE void reload();

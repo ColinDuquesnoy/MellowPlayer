@@ -40,6 +40,8 @@ namespace MellowPlayer::Application {
          */
         QString scriptPath;
 
+        QString pluginDirectory;
+
         /**
          * @brief The version of the plugin.
          */

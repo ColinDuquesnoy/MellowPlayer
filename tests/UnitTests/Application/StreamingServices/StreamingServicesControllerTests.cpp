@@ -3,20 +3,23 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <QtTest/QSignalSpy>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 using namespace std;
 
-TEST_CASE("StreamingServicesTests", "[UnitTest]") {
-    auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(mock.get());
+TEST_CASE("StreamingServicesControllerTests", "[UnitTest]") {
+    auto loaderMock = StreamingServiceLoaderMock::get();
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
     QSignalSpy addedSpy(&streamingServices, SIGNAL(added(StreamingService*)));
     streamingServices.load();
 
-    SECTION("load called StreamingServiceLoader::load") {
-        Verify(Method(mock, load)).Exactly(1);
+    SECTION("load called StreamingServiceLoader::load and watch every new service") {
         REQUIRE(streamingServices.getAll().count() > 1);
+        Verify(Method(loaderMock, load)).Exactly(1);
+        Verify(Method(watcherMock, watch)).Exactly(streamingServices.getAll().count());
     };
 
     SECTION("added signal is emitted for each service loaded") {

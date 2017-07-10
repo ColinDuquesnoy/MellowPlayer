@@ -62,3 +62,17 @@ bool StreamingService::operator==(const StreamingService& rhs) const {
 bool StreamingService::operator!=(const StreamingService& rhs) const {
     return !operator==(rhs);
 }
+
+void StreamingService::updateStyle(StreamingServiceStyle& newStyle) {
+    style = newStyle;
+    emit styleChanged();
+}
+
+void StreamingService::updateScript(const QString& scriptCode) {
+    script->setCode(scriptCode);
+    emit scriptChanged();
+}
+
+QString StreamingService::getPluginDirectory() const {
+    return metadata.pluginDirectory;
+}

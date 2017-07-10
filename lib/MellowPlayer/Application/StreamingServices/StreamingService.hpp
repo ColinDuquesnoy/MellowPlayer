@@ -35,8 +35,17 @@ namespace MellowPlayer::Application {
         StreamingServiceScript* getScript() const;
         const StreamingServiceStyle& getStyle() const;
 
+        QString getPluginDirectory() const;
+
+        void updateStyle(StreamingServiceStyle& style);
+        void updateScript(const QString& script);
+
         bool operator==(const StreamingService& rhs) const;
         bool operator!=(const StreamingService& rhs) const;
+
+    signals:
+        void scriptChanged();
+        void styleChanged();
 
     private:
         StreamingServiceMetadata metadata;

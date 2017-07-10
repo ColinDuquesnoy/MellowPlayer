@@ -4,13 +4,15 @@
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <QtTest/QSignalSpy>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
 
 using namespace MellowPlayer::Application;
 
 TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(mock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(mock.get(), watcherMock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer currentPlayer(players, streamingServices);

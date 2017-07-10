@@ -17,10 +17,11 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("ListeningHistoryViewModelTests") {
-    auto mock = StreamingServiceLoaderMock::get();
+    auto loaderMock = StreamingServiceLoaderMock::get();
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    StreamingServicesController streamingServices(mock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);

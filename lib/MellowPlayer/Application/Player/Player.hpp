@@ -45,7 +45,6 @@ namespace MellowPlayer::Application {
 
         // invoked by WebView (QML)
         Q_INVOKABLE void start();
-        Q_INVOKABLE void loadPlugin();
         Q_INVOKABLE void stop();
         Q_INVOKABLE bool isRunning() const;
         Q_INVOKABLE void setUpdateResults(const QVariant& results);
@@ -66,6 +65,7 @@ namespace MellowPlayer::Application {
 
     public slots:
         void refresh();
+        void loadPlugin();
 
     private:
         void setCurrentSong(std::unique_ptr<Application::Song>& song);

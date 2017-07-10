@@ -4,7 +4,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
@@ -21,6 +20,8 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
+#include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
@@ -31,8 +32,9 @@
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
+#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
+#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <MellowPlayer/Infrastructure/Utils/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
@@ -110,7 +112,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
         di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
-        di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope)
+        di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
+        di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope)
     );
 };
 

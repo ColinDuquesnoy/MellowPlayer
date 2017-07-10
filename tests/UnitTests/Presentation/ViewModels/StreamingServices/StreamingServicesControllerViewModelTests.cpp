@@ -13,7 +13,8 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     auto loaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(loaderMock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
     streamingServices.load();
     Players players(streamingServices);
     Settings& settings = injector.create<Settings&>();

@@ -3,18 +3,10 @@
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QTextStream>
+#include <iostream>
+#include "Utils/Helpers.hpp"
 
 using namespace MellowPlayer::Infrastructure;
-
-QString readFile(const QString& path) {
-    QFile file(path);
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return "";
-
-    QTextStream in(&file);
-    return in.readAll();
-}
 
 TEST_CASE("StreamingServiceCreatorTests") {
     StreamingServiceCreator creator;
@@ -25,8 +17,9 @@ TEST_CASE("StreamingServiceCreatorTests") {
     files.append(QFileInfo(pluginDir + "/" + "logo.svg"));
     files.append(QFileInfo(pluginDir + "/" + "style.json"));
     files.append(QFileInfo(pluginDir + "/" + "metadata.ini"));
+
     for(auto fileInfo: files) {
-        CAPTURE("file: " + fileInfo.absoluteFilePath().toStdString());
+        std::cerr << fileInfo.absoluteFilePath().toStdString() << std::endl;
         REQUIRE(fileInfo.exists());
         REQUIRE(!readFile(fileInfo.absoluteFilePath()).isEmpty());
     }

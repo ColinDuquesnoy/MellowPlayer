@@ -204,4 +204,11 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(runJavascriptRequestedSpy.count() == 3);
 
     }
+
+    SECTION("reload plugin when streaming service script has changed") {
+        QSignalSpy spy(&player, &Player::runJavascriptRequested);
+        REQUIRE(spy.count() == 0);
+        emit service.scriptChanged();
+        REQUIRE(spy.count() == 1);
+    }
 }

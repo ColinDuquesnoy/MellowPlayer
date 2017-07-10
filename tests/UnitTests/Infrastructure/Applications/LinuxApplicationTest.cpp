@@ -11,6 +11,7 @@
 #include <Mocks/SystemTrayIconMock.hpp>
 #include <Mocks/NotifierMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 
@@ -21,7 +22,8 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]") {
     auto mprisMock = MprisServiceMock::get();
     auto notificationServiceMock = NotifierMock::get();
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(serviceLoaderMock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
     auto systemTrayIconMock = SystemTrayIconMock::get();
     LinuxApplication app(qtAppMock.get(),
                          mainWindowMock.get(),

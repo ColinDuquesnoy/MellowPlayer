@@ -9,14 +9,16 @@
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
-    auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(mock.get());
+    auto loaderMock = StreamingServiceLoaderMock::get();
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
     Players players(streamingServices);

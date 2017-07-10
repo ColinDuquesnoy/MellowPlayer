@@ -61,6 +61,7 @@
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -114,6 +115,7 @@ static auto systemTrayIconMock = SystemTrayIconMock::get();
 static auto notificationPresenterMock = NotificationPresenterMock::get();
 static auto localAlbumArtMock = LocalAlbumArtMock::getMockWithUrlOk();
 static auto streamingServiceCreatorMock = StreamingServiceCreatorMock::get();
+static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
 
 inline auto getTestInjector(ScopedScope& scope) {
     static auto settingsProviderMock = SettingsProviderMock::get();
@@ -134,7 +136,8 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<IListeningHistoryDataProvider>().to(dataProvider),
         di::bind<IWorkDispatcher>().to(workDispatcher),
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
-        di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get())
+        di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get()),
+        di::bind<IStreamingServiceWatcher>().to(streamingServiceWatcherMock.get())
     );
 };
 

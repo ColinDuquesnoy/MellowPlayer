@@ -12,6 +12,7 @@
 #include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <QtDBus/QDBusConnection>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
@@ -19,7 +20,8 @@ using namespace MellowPlayer::Infrastructure;
 TEST_CASE("MprisServiceTests", "[IntegrationTest]")
 {
     auto plugionLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(plugionLoaderMock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(plugionLoaderMock.get(), watcherMock.get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

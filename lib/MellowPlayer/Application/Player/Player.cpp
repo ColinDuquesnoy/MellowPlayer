@@ -14,6 +14,7 @@ Player::Player(StreamingService& streamingService) :
         currentSong(nullptr), streamingService(streamingService), streamingServiceScript(*streamingService.getScript()),
         refreshTimer(new QTimer()){
     connect(refreshTimer, &QTimer::timeout, this, &Player::refresh);
+    connect(&streamingService, &StreamingService::scriptChanged, this, &Player::loadPlugin);
     refreshTimer->setInterval(100);
 }
 

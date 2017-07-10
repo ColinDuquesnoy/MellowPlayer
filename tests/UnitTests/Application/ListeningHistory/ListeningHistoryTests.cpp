@@ -16,7 +16,8 @@ using namespace MellowPlayer::Application;
 
 TEST_CASE("ListeningHistoryTests") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(mock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(mock.get(), watcherMock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);

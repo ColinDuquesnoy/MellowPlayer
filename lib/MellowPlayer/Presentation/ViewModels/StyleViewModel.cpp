@@ -87,6 +87,8 @@ void StyleViewModel::updateStyle() {
 }
 
 void StyleViewModel::onCurrentServiceChanged(StreamingService* streamingService) {
+    connect(streamingService, &StreamingService::styleChanged, this, &StyleViewModel::updateStyle, Qt::UniqueConnection);
+    
     if (streamingService != nullptr)
         updateStyle();
 }

@@ -8,6 +8,7 @@
 #include <Mocks/NotifierMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
+#include <Mocks/StreamingServiceWatcherMock.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 
@@ -18,7 +19,8 @@ TEST_CASE("CoreApplicationTests", "[UnitTest]") {
     auto systemTrayIconMock = SystemTrayIconMock::get();
     auto notificationServiceMock = NotifierMock::get();
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServicesController streamingServices(serviceLoaderMock.get());
+    auto watcherMock = StreamingServiceWatcherMock::get();
+    StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
     CoreApplication app(qtAppMock.get(),
                     mainWindowMock.get(),
                     streamingServices,

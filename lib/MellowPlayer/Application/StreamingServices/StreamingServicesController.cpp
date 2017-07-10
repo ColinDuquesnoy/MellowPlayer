@@ -1,15 +1,17 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include "StreamingServicesController.hpp"
+#include "IStreamingServiceLoader.hpp"
+#include "StreamingService.hpp"
+#include "IStreamingServiceWatcher.hpp"
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
-StreamingServicesController::StreamingServicesController(IStreamingServiceLoader& loader) :
+StreamingServicesController::StreamingServicesController(IStreamingServiceLoader& loader,
+                                                         IStreamingServiceWatcher& watcher) :
         logger(LoggingManager::instance().getLogger("StreamingServicesController")),
-        loader(loader), current(nullptr) {
+        loader(loader), watcher(watcher), current(nullptr) {
 }
 
 void StreamingServicesController::load() {
@@ -26,6 +28,7 @@ void StreamingServicesController::load() {
         if (!found) {
             LOG_DEBUG(logger, "service added: " + newService->getName());
             services.append(newService);
+            watcher.watch(*newService);
             emit added(newService.get());
         }
     }

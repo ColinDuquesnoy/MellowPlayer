@@ -59,7 +59,7 @@ QString StreamingServiceLoader::findFileByExtension(const QString& directory, co
     return QString();
 }
 
-QString StreamingServiceLoader::readFileContent(const QString& filePath) const {
+QString StreamingServiceLoader::readFileContent(const QString& filePath) {
     QString retVal;
 
     QFile file(filePath);
@@ -85,7 +85,8 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     return serviceMetadata;
 }
 
-StreamingServiceStyle StreamingServiceLoader::readStyle(const QString& filePath) const {
+StreamingServiceStyle StreamingServiceLoader::readStyle(const QString& filePath) {
+
     StreamingServiceStyle style;
 
     if (QFileInfo(filePath).exists()) {
@@ -112,6 +113,7 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
     QString stylePath = findFileByExtension(directory, "json");
     QString locale = QLocale::system().name().split("_")[0];
     StreamingServiceMetadata metadata = readMetadata(metadataPath);
+    metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
     StreamingServiceStyle style = readStyle(stylePath);
