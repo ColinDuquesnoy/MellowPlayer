@@ -2,26 +2,30 @@
 
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
 struct _NotifyNotification;
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class ILogger;
+    class IMainWindow;
 
-class LibnotifyPresenter: public Application::INotificationPresenter {
-public:
-    LibnotifyPresenter(Application::IMainWindow& mainWindow);
-    void initialize() override;
-    bool display(const Application::Notification& notification) override;
+}
 
-    static void onActionCallback();
+namespace MellowPlayer::Presentation {
 
-private:
-    Application::ILogger& logger;
-    Application::IMainWindow& mainWindow;
-    _NotifyNotification* previousNotification;
-    static LibnotifyPresenter* instance;
+    class LibnotifyPresenter: public Application::INotificationPresenter {
+    public:
+        LibnotifyPresenter(Application::IMainWindow& mainWindow);
+        void initialize() override;
+        bool display(const Application::Notification& notification) override;
 
-};
+        static void onActionCallback();
 
-END_MELLOWPLAYER_NAMESPACE
+    private:
+        Application::ILogger& logger;
+        Application::IMainWindow& mainWindow;
+        _NotifyNotification* previousNotification;
+        static LibnotifyPresenter* instance;
+
+    };
+
+}

@@ -5,29 +5,33 @@
 #include <QLocalServer>
 #include "IApplication.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class ILogger;
 
-class SingleInstanceApplication : public QObject {
-    Q_OBJECT
-public:
-    SingleInstanceApplication(IApplication& application);
+}
 
-    int run();
+namespace MellowPlayer::Infrastructure {
 
-private slots:
-    void onSocketConnected();
-    void onSocketError();
-    void onNewConnection();
-    void connectSignalHandlers();
-    void quit();
+    class SingleInstanceApplication : public QObject {
+        Q_OBJECT
+    public:
+        SingleInstanceApplication(IApplication& application);
 
-private:
-    Application::ILogger& logger;
-    IApplication& application;
-    QLocalSocket localSocket;
-    QLocalServer localServer;
-};
+        int run();
 
-END_MELLOWPLAYER_NAMESPACE
+    private slots:
+        void onSocketConnected();
+        void onSocketError();
+        void onNewConnection();
+        void connectSignalHandlers();
+        void quit();
+
+    private:
+        Application::ILogger& logger;
+        IApplication& application;
+        QLocalSocket localSocket;
+        QLocalServer localServer;
+    };
+
+}

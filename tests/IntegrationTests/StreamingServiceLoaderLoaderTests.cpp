@@ -4,8 +4,8 @@
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
 #include <Mocks/SettingsProviderMock.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 
 TEST_CASE("StreamingServiceLoaderTests") {

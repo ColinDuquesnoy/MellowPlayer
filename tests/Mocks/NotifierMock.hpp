@@ -3,7 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Application/Notifications/INotifier.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace fakeit;
 
 class NotifierMock {

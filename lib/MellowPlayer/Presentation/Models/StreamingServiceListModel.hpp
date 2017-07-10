@@ -3,8 +3,8 @@
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServiceViewModel.hpp>
 #include "QQmlObjectListModel.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
-using StreamingServiceListModel = QQmlObjectListModel<StreamingServiceViewModel>;
+    using StreamingServiceListModel = QQmlObjectListModel<StreamingServiceViewModel>;
 
-END_MELLOWPLAYER_NAMESPACE
+}

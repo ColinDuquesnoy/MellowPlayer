@@ -9,9 +9,9 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include "Notifier.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 
 Notifier::Notifier(IPlayer& player,

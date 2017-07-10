@@ -1,7 +1,7 @@
 #include "TimeLimitSettingViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Application;
 
 TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent) {
     registerEnumTranslation(TimeLimits::Today, tr("Today"));

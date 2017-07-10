@@ -4,7 +4,7 @@
 #include "Setting.hpp"
 
 using namespace std;
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 SettingsCategory::SettingsCategory(const SettingsCategory::Data& categoryData,
                                    Settings* appSettings): QObject(appSettings), data(categoryData) {

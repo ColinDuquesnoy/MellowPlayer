@@ -1,7 +1,7 @@
 #include <QtCore/QFile>
 #include "SettingsSchemaLoader.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Infrastructure;
 
 QJsonDocument SettingsSchemaLoader::load() const {
     QFile jsonFile(":/MellowPlayer/Application/Settings/schema.json");

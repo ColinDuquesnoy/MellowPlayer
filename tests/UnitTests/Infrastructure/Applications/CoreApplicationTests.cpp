@@ -9,7 +9,7 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("CoreApplicationTests", "[UnitTest]") {
     auto mainWindowMock = MainWindowMock::get();

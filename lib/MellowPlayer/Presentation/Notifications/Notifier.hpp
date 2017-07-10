@@ -3,46 +3,50 @@
 #include <MellowPlayer/Application/Notifications/INotifier.hpp>
 #include "NotificationFactory.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArt)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, INotificationPresenter)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicesController)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class Settings;
+    class ILogger;
+    class ILocalAlbumArt;
+    class IPlayer;
+    class INotificationPresenter;
+    class StreamingServicesController;
 
-class Notifier: public QObject, public Application::INotifier {
-    Q_OBJECT
-public:
-    Notifier(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArtService,
-                        Application::INotificationPresenter& presenter, Application::StreamingServicesController& streamingServices,
-                        Application::Settings& settings);
+}
 
-    void initialize() override;
-    bool display(const Application::Notification& notification) override;
+namespace MellowPlayer::Presentation {
 
-public slots:
-    void onCurrentSongChanged(Application::Song* song);
-    void onPlaybackStatusChanged();
-    void onCurrentSongUrlChanged();
+    class Notifier: public QObject, public Application::INotifier {
+        Q_OBJECT
+    public:
+        Notifier(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArtService,
+                            Application::INotificationPresenter& presenter, Application::StreamingServicesController& streamingServices,
+                            Application::Settings& settings);
 
-private:
-    void showSongNotification(Application::Song* song, const QString& localAlbumArtUrl);
-    bool isPlaying() const;
-    const QString getCurrentServiceName() const;
-    const QString getCurrentServiceLogo() const;
-    bool isNotificationTypeEnabled(Application::NotificationType type) const;
+        void initialize() override;
+        bool display(const Application::Notification& notification) override;
 
-    Application::ILogger& logger;
-    Application::IPlayer& player;
-    Application::ILocalAlbumArt& localAlbumArtService;
-    Application::INotificationPresenter& presenter;
-    Application::StreamingServicesController& streamingServices;
-    Application::Settings& settings;
-    Application::Notification previousNotif;
-    NotificationFactory notificationFactory;
-    QString previousSongId;
-};
+    public slots:
+        void onCurrentSongChanged(Application::Song* song);
+        void onPlaybackStatusChanged();
+        void onCurrentSongUrlChanged();
 
-END_MELLOWPLAYER_NAMESPACE
+    private:
+        void showSongNotification(Application::Song* song, const QString& localAlbumArtUrl);
+        bool isPlaying() const;
+        const QString getCurrentServiceName() const;
+        const QString getCurrentServiceLogo() const;
+        bool isNotificationTypeEnabled(Application::NotificationType type) const;
+
+        Application::ILogger& logger;
+        Application::IPlayer& player;
+        Application::ILocalAlbumArt& localAlbumArtService;
+        Application::INotificationPresenter& presenter;
+        Application::StreamingServicesController& streamingServices;
+        Application::Settings& settings;
+        Application::Notification previousNotif;
+        NotificationFactory notificationFactory;
+        QString previousSongId;
+    };
+
+}

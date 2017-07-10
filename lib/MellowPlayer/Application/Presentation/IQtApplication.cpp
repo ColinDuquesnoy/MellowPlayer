@@ -1,6 +1,6 @@
 #include "IQtApplication.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 
 IQtApplication::~IQtApplication() = default;

@@ -1,6 +1,6 @@
 #include "ListeningHistoryProxyListModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Presentation;
 
 ListeningHistoryProxyListModel::ListeningHistoryProxyListModel(
         QQmlObjectListModel<ListeningHistoryEntryViewModel> *sourceModel): sourceModel(sourceModel) {

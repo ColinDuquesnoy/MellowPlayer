@@ -4,9 +4,9 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "LibnotifyPresenter.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 LibnotifyPresenter* LibnotifyPresenter::instance = nullptr;
 

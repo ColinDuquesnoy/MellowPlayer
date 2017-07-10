@@ -5,8 +5,8 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("SettingsViewModelTests") {
     ScopedScope scope;

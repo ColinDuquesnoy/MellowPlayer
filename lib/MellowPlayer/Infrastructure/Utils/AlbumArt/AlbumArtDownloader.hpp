@@ -6,30 +6,34 @@
 #include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
 #include "MellowPlayer/Infrastructure/Utils/Base64Helper.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class ILogger;
 
-class AlbumArtDownloader: public Application::IAlbumArtDownloader {
-public:
-    AlbumArtDownloader();
+}
 
-    bool download(const QString& artUrl, const QString& songId) override;
-    QFileInfo getLocalArtUrl(const QString &songId) override;
+namespace MellowPlayer::Infrastructure {
 
-private slots:
-    void onDownloadFinished(QNetworkReply* reply);
+    class AlbumArtDownloader: public Application::IAlbumArtDownloader {
+    public:
+        AlbumArtDownloader();
 
-private:
-    bool isBase64Image(const QString& artUrl);
-    bool createBase64Image(const QString base64String);
+        bool download(const QString& artUrl, const QString& songId) override;
+        QFileInfo getLocalArtUrl(const QString &songId) override;
 
-    QNetworkAccessManager *networkAccessManager;
-    QFileInfo localUrl;
-    Application::ILogger& logger;
-    Base64Helper base64;
+    private slots:
+        void onDownloadFinished(QNetworkReply* reply);
 
-    void downloadImage(const QString& url) const;
-};
+    private:
+        bool isBase64Image(const QString& artUrl);
+        bool createBase64Image(const QString base64String);
 
-END_MELLOWPLAYER_NAMESPACE
+        QNetworkAccessManager *networkAccessManager;
+        QFileInfo localUrl;
+        Application::ILogger& logger;
+        Base64Helper base64;
+
+        void downloadImage(const QString& url) const;
+    };
+
+}

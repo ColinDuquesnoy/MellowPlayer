@@ -7,9 +7,9 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Presentation;
 using namespace std;
 
 int main(int argc, char* argv[])

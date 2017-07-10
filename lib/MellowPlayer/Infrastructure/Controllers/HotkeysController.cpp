@@ -5,8 +5,8 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "HotkeysController.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 HotkeysController::HotkeysController(IPlayer& player, Settings& settings) :
         QObject(nullptr),

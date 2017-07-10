@@ -5,7 +5,7 @@
 #include <QtTest/QSignalSpy>
 #include <Mocks/SettingsProviderMock.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 TEST_CASE("PlayerTests", "[UnitTest]") {
     StreamingServiceMetadata metadata;

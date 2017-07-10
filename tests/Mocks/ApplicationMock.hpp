@@ -3,7 +3,7 @@
 #include <memory>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 
 class ApplicationMock {

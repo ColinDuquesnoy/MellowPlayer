@@ -8,8 +8,8 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("SettingModelFactoryTests") {
     ScopedScope scope;

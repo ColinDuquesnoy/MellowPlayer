@@ -14,9 +14,9 @@
 #include "StreamingServiceLoader.hpp"
 #include <QDebug>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
 StreamingServiceLoader::StreamingServiceLoader() :

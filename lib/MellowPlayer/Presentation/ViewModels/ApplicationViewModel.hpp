@@ -7,27 +7,30 @@
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer3"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class ILogger;
 
-class ApplicationViewModel: public Application::IQtApplication {
+}
 
-public:
-    ApplicationViewModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
+namespace MellowPlayer::Presentation {
 
-    int run() override;
-    Q_INVOKABLE void clearCache() const override;
-    Q_INVOKABLE void clearCookies() const override;
-    Q_INVOKABLE void restart() override;
-    Q_INVOKABLE void requestQuit() override;
-    Q_INVOKABLE void quit() override;
+    class ApplicationViewModel: public Application::IQtApplication {
+    public:
+        ApplicationViewModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
 
-    bool restartRequested() const override { return restartRequested_; }
+        int run() override;
+        Q_INVOKABLE void clearCache() const override;
+        Q_INVOKABLE void clearCookies() const override;
+        Q_INVOKABLE void restart() override;
+        Q_INVOKABLE void requestQuit() override;
+        Q_INVOKABLE void quit() override;
 
-private:
-    QApplication qtApp;
-    bool restartRequested_ = false;
-};
+        bool restartRequested() const override { return restartRequested_; }
 
-END_MELLOWPLAYER_NAMESPACE
+    private:
+        QApplication qtApp;
+        bool restartRequested_ = false;
+    };
+
+}

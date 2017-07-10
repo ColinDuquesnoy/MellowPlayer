@@ -2,34 +2,33 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QList>
-#include <MellowPlayer/Macros.hpp>
 #include "SettingKey.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-class ISettingsProvider;
-class ISettingsSchemaLoader;
-class SettingsCategory;
-class Setting;
+    class ISettingsProvider;
+    class ISettingsSchemaLoader;
+    class SettingsCategory;
+    class Setting;
 
-class Settings: public QObject {
-    Q_OBJECT
-public:
-    Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
+    class Settings: public QObject {
+        Q_OBJECT
+    public:
+        Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
 
-    const QList<SettingsCategory*>& getCategories() const;
+        const QList<SettingsCategory*>& getCategories() const;
 
-    SettingsCategory& getCategory(const QString& key) const;
-    Setting& get(const QString& key) const;
-    Setting& get(SettingKey::Keys key);
+        SettingsCategory& getCategory(const QString& key) const;
+        Setting& get(const QString& key) const;
+        Setting& get(SettingKey::Keys key);
 
-    ISettingsProvider& getSettingsProvider() const;
+        ISettingsProvider& getSettingsProvider() const;
 
-    void restoreDefaults();
+        void restoreDefaults();
 
-private:
-    ISettingsProvider& settingsProvider;
-    QList<SettingsCategory*> categories;
-};
+    private:
+        ISettingsProvider& settingsProvider;
+        QList<SettingsCategory*> categories;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

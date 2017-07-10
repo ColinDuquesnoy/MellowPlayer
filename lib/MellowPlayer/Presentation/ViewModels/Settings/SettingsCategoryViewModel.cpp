@@ -1,7 +1,7 @@
 #include "SettingsCategoryViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 
 SettingsCategoryViewModel::SettingsCategoryViewModel(SettingsCategory* settingsCategory, QObject* parent) :

@@ -2,7 +2,7 @@
 #include <MellowPlayer/Application/Player/Song.hpp>
 #include <QtTest/QSignalSpy>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace std;
 
 TEST_CASE("SongTests", "[UnitTest]") {

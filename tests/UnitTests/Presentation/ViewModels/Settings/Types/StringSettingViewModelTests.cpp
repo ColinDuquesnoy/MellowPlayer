@@ -4,8 +4,8 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("StringSettingViewModelTests") {
     ScopedScope scope;

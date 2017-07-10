@@ -1,8 +1,8 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("ListeningHistoryEntryViewModelTests") {
     Song song("uniqueId1", "title1", "artist1", "album1", "artUrl1", 5, false);

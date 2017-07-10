@@ -3,8 +3,8 @@
 #include <Mocks/ApplicationMock.hpp>
 #include <QtTest/QtTest>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SingleInstanceApplication") {
     auto appMock1 = ApplicationMock::get();

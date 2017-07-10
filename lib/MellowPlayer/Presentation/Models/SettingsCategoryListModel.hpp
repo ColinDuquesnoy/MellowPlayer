@@ -3,8 +3,8 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
 #include "QQmlObjectListModel.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
-using SettingsCategoryListModel = QQmlObjectListModel<SettingsCategoryViewModel>;
+    using SettingsCategoryListModel = QQmlObjectListModel<SettingsCategoryViewModel>;
 
-END_MELLOWPLAYER_NAMESPACE
+}

@@ -7,44 +7,44 @@
 
 template <class T> class QQmlObjectListModel;
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
-class SettingsCategoryViewModel: public QObject {
-    Q_OBJECT
-    Q_PROPERTY(QString name READ getName CONSTANT)
-    Q_PROPERTY(QString icon READ getIcon CONSTANT)
-    Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
-    Q_PROPERTY(QAbstractItemModel* settings READ getSettingsModel CONSTANT)
-public:
-    SettingsCategoryViewModel(Application::SettingsCategory* settingsCategory= nullptr, QObject* parent= nullptr);
+    class SettingsCategoryViewModel: public QObject {
+        Q_OBJECT
+        Q_PROPERTY(QString name READ getName CONSTANT)
+        Q_PROPERTY(QString icon READ getIcon CONSTANT)
+        Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
+        Q_PROPERTY(QAbstractItemModel* settings READ getSettingsModel CONSTANT)
+    public:
+        SettingsCategoryViewModel(Application::SettingsCategory* settingsCategory= nullptr, QObject* parent= nullptr);
 
-    virtual QString getName() const;
-    virtual QString getIcon() const;
-    virtual QString getQmlComponent() const;;
-    SettingListModel* getSettingsModel();
+        virtual QString getName() const;
+        virtual QString getIcon() const;
+        virtual QString getQmlComponent() const;;
+        SettingListModel* getSettingsModel();
 
-    Q_INVOKABLE void restoreDefaults();
+        Q_INVOKABLE void restoreDefaults();
 
-private:
-    Application::SettingsCategory* settingsCategory;
-    SettingListModel* settingsListModel;
-    SettingViewModelFactory settingModelFactory;
-};
+    private:
+        Application::SettingsCategory* settingsCategory;
+        SettingListModel* settingsListModel;
+        SettingViewModelFactory settingModelFactory;
+    };
 
-class CustomSettingsCategoryViewModel: public SettingsCategoryViewModel
-{
-    Q_OBJECT
-public:
-    CustomSettingsCategoryViewModel(const QString& name, const QString& icon, const QString& qmlComponent, QObject* parent);
+    class CustomSettingsCategoryViewModel: public SettingsCategoryViewModel
+    {
+        Q_OBJECT
+    public:
+        CustomSettingsCategoryViewModel(const QString& name, const QString& icon, const QString& qmlComponent, QObject* parent);
 
-    QString getName() const override;
-    QString getIcon() const override;
-    QString getQmlComponent() const override;
+        QString getName() const override;
+        QString getIcon() const override;
+        QString getQmlComponent() const override;
 
-private:
-    QString name;
-    QString icon;
-    QString qmlComponent;
-};
+    private:
+        QString name;
+        QString icon;
+        QString qmlComponent;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

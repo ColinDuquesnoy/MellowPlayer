@@ -4,32 +4,36 @@
 
 #include "MellowPlayer/Infrastructure/Applications/CoreApplication.hpp"
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicesController)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IHotkeysController)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ISystemTrayIcon)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, INotifier)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IMprisController)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class IQtApplication;
+    class IMainWindow;
+    class StreamingServicesController;
+    class IHotkeysController;
+    class ISystemTrayIcon;
+    class INotifier;
+    class IMprisController;
 
-class LinuxApplication: public CoreApplication {
-public:
-    LinuxApplication(Application::IQtApplication& qtApp,
-                     Application::IMainWindow& mainWindow,
-                     Application::StreamingServicesController& streamingServices,
-                     Application::IHotkeysController& kotkeys,
-                     Application::ISystemTrayIcon& systemTrayIcon,
-                     Application::INotifier& notifier,
-                     Application::IMprisController& mprisService);
-    void initialize() override;
+}
 
-private:
-    Application::ILogger& logger;
-    Application::IMprisController& mprisService;
-};
+namespace MellowPlayer::Infrastructure {
 
-END_MELLOWPLAYER_NAMESPACE
+    class LinuxApplication: public CoreApplication {
+    public:
+        LinuxApplication(Application::IQtApplication& qtApp,
+                         Application::IMainWindow& mainWindow,
+                         Application::StreamingServicesController& streamingServices,
+                         Application::IHotkeysController& kotkeys,
+                         Application::ISystemTrayIcon& systemTrayIcon,
+                         Application::INotifier& notifier,
+                         Application::IMprisController& mprisService);
+        void initialize() override;
+
+    private:
+        Application::ILogger& logger;
+        Application::IMprisController& mprisService;
+    };
+
+}
 
 #endif

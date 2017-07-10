@@ -4,8 +4,8 @@
 #include <Mocks/PlayerMock.hpp>
 #include "DI.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 
 TEST_CASE("HotkeysServiceTests", "[UnitTest]") {

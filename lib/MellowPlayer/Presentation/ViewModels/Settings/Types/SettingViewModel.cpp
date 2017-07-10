@@ -1,8 +1,8 @@
 #include "SettingViewModel.hpp"
 #include <QDebug>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 SettingViewModel::SettingViewModel(Setting& setting, QObject* parent): QObject(parent), setting(setting) {
     connect(&setting, &Setting::valueChanged, this, &SettingViewModel::onValueChanged);

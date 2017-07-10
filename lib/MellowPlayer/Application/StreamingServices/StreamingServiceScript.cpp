@@ -1,6 +1,6 @@
 #include "StreamingServiceScript.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 StreamingServiceScript::StreamingServiceScript(const QString &code, const QString &path):
         QObject(), code(code), path(path) {

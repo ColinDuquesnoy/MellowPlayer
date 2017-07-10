@@ -1,7 +1,6 @@
 #include "DateTimeConverter.h"
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-
+using namespace MellowPlayer::Presentation;
 
 QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const {
     QDate date = dateTime.date();

@@ -1,22 +1,21 @@
 #pragma once
 
 #include <QObject>
-#include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+    class Song;
 
-class ILocalAlbumArt: public QObject {
-    Q_OBJECT
-    Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
-public:
-    virtual ~ILocalAlbumArt();
-    virtual const QString& getUrl() const = 0;
-    virtual bool isSongArtReady(const Application::Song& song) = 0;
+    class ILocalAlbumArt: public QObject {
+        Q_OBJECT
+        Q_PROPERTY(QString url READ getUrl NOTIFY urlChanged)
+    public:
+        virtual ~ILocalAlbumArt();
+        virtual const QString& getUrl() const = 0;
+        virtual bool isSongArtReady(const Application::Song& song) = 0;
 
-signals:
-    void urlChanged();
-};
+    signals:
+        void urlChanged();
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

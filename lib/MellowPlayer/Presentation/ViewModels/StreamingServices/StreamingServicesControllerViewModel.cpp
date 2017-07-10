@@ -10,9 +10,9 @@
 #include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 #include "StreamingServicesControllerViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices,
                                                Players& players,

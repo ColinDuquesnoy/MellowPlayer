@@ -4,9 +4,9 @@
 #include <MellowPlayer/Application/Player/Song.hpp>
 #include "Mpris2Player.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 const qlonglong Mpris2Player::SEC_TO_MICROSEC = 1000000;
 const qlonglong Mpris2Player::SEEK_DELTA_LIMIT = Mpris2Player::SEC_TO_MICROSEC * 2;

@@ -6,8 +6,8 @@
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <QtTest/QSignalSpy>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 #define NB_CONFIGS 6
 

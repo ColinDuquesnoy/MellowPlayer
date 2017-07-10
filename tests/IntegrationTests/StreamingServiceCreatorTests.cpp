@@ -4,7 +4,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QTextStream>
 
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Infrastructure;
 
 QString readFile(const QString& path) {
     QFile file(path);

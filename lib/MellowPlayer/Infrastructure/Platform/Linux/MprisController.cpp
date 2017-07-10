@@ -3,14 +3,13 @@
 #ifdef Q_OS_LINUX
 
 #include <QtDBus/QDBusConnection>
-#include <QtQuick/QQuickWindow>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp"
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp"
 #include "MprisController.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
 QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";

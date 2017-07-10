@@ -1,8 +1,8 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "Base64Helper.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 Base64Helper::Base64Helper(QObject* parent) :
         QObject(parent),

@@ -5,22 +5,22 @@
 #include <MellowPlayer/Presentation/Models/SettingsCategoryListModel.hpp>
 #include "SettingsCategoryViewModel.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
-class SettingsViewModel: public QObject {
-    Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* categories READ getCategories CONSTANT)
-public:
-    SettingsViewModel(Application::Settings& settings, QObject* parent= nullptr);
+    class SettingsViewModel: public QObject {
+        Q_OBJECT
+        Q_PROPERTY(QAbstractItemModel* categories READ getCategories CONSTANT)
+    public:
+        SettingsViewModel(Application::Settings& settings, QObject* parent= nullptr);
 
-    Q_INVOKABLE SettingViewModel* get(int key);
-    SettingsCategoryListModel* getCategories() const;
-    Q_INVOKABLE void restoreDefaults();
+        Q_INVOKABLE SettingViewModel* get(int key);
+        SettingsCategoryListModel* getCategories() const;
+        Q_INVOKABLE void restoreDefaults();
 
-private:
-    Application::Settings& settings;
-    SettingViewModelFactory settingModelFactory;
-    SettingsCategoryListModel* categories;
-};
+    private:
+        Application::Settings& settings;
+        SettingViewModelFactory settingModelFactory;
+        SettingsCategoryListModel* categories;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

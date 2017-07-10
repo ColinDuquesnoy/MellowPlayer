@@ -2,27 +2,31 @@
 
 #include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IAlbumArtDownloader)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class Song;
+    class IPlayer;
+    class IAlbumArtDownloader;
 
-class LocalAlbumArt: public Application::ILocalAlbumArt {
-    Q_OBJECT
-public:
-    LocalAlbumArt(Application::IPlayer& player, Application::IAlbumArtDownloader& downloader);
+}
 
-    const QString& getUrl() const override;
-    bool isSongArtReady(const Application::Song& song) override;
+namespace MellowPlayer::Infrastructure {
 
-private slots:
-    void onCurrentSongChanged(Application::Song* song);
-    void onDownloadFinished(const QString& newUrl);
+    class LocalAlbumArt: public Application::ILocalAlbumArt {
+        Q_OBJECT
+    public:
+        LocalAlbumArt(Application::IPlayer& player, Application::IAlbumArtDownloader& downloader);
 
-private:
-    Application::IAlbumArtDownloader& downloader;
-    QString url;
-};
+        const QString& getUrl() const override;
+        bool isSongArtReady(const Application::Song& song) override;
 
-END_MELLOWPLAYER_NAMESPACE
+    private slots:
+        void onCurrentSongChanged(Application::Song* song);
+        void onDownloadFinished(const QString& newUrl);
+
+    private:
+        Application::IAlbumArtDownloader& downloader;
+        QString url;
+    };
+
+}

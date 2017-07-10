@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 TEST_CASE("LoggingManagerTests", "[UnitTest]") {
     SECTION("getLogger given no args returns root logger") {

@@ -3,7 +3,7 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
 class EnumSettingViewModel: public SettingViewModel {
     Q_OBJECT
@@ -27,4 +27,4 @@ protected slots:
 
 };
 
-END_MELLOWPLAYER_NAMESPACE
+}

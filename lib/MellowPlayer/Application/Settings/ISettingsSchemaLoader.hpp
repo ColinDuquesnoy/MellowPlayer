@@ -1,15 +1,14 @@
 #pragma once
 
 #include <QJsonDocument>
-#include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-class ISettingsSchemaLoader {
-public:
-    virtual ~ISettingsSchemaLoader() = default;
+    class ISettingsSchemaLoader {
+    public:
+        virtual ~ISettingsSchemaLoader() = default;
 
-    virtual QJsonDocument load() const = 0;
-};
+        virtual QJsonDocument load() const = 0;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

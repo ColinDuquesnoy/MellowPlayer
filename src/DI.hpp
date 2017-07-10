@@ -52,9 +52,9 @@
 #endif
 
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Infrastructure;
 
 namespace di = boost::di;
 

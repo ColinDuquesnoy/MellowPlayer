@@ -1,8 +1,8 @@
 #include "catch.hpp"
 #include "DI.hpp"
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("SettingsCategoryViewModelTests") {
     ScopedScope scope;

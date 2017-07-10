@@ -1,44 +1,46 @@
 #pragma once
 
-#include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Application/Controllers/IMprisController.hpp>
 #include <memory>
 
 #ifdef Q_OS_LINUX
 
-class QQuickWindow;
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArt)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IMainWindow)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class IPlayer;
+    class ILocalAlbumArt;
+    class IMainWindow;
+    class IQtApplication;
+    class ILogger;
 
-class Mpris2Root;
-class Mpris2Player;
+}
 
-class MprisController: public Application::IMprisController {
-public:
-    MprisController(Application::IPlayer& player,
-                    Application::ILocalAlbumArt& localAlbumArt,
-                    Application::IMainWindow& window,
-                    Application::IQtApplication& application);
-    ~MprisController();
+namespace MellowPlayer::Infrastructure {
 
-    bool start() override;
+    class Mpris2Root;
+    class Mpris2Player;
 
-private:
-    static QString SERVICE_NAME;
-    static QString OBJECT_NAME;
+    class MprisController: public Application::IMprisController {
+    public:
+        MprisController(Application::IPlayer& player,
+                        Application::ILocalAlbumArt& localAlbumArt,
+                        Application::IMainWindow& window,
+                        Application::IQtApplication& application);
+        ~MprisController();
 
-    Application::ILogger& logger;
-    std::unique_ptr<QObject> parent;
-    QObject* mpris2Root;
-    QObject* mpris2Player;
-    QString serviceName;
-};
+        bool start() override;
 
-END_MELLOWPLAYER_NAMESPACE
+    private:
+        static QString SERVICE_NAME;
+        static QString OBJECT_NAME;
+
+        Application::ILogger& logger;
+        std::unique_ptr<QObject> parent;
+        QObject* mpris2Root;
+        QObject* mpris2Player;
+        QString serviceName;
+    };
+
+}
 
 #endif

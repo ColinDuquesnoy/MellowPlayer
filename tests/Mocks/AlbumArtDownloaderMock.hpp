@@ -3,7 +3,7 @@
 #include <fakeit.hpp>
 #include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace fakeit;
 
 #define LOCAL_URL "/path/to/art/songId"

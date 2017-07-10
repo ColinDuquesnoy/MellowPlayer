@@ -10,9 +10,9 @@
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
     auto mock = StreamingServiceLoaderMock::get();

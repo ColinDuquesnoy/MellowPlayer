@@ -2,8 +2,8 @@
 #include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
 #include "DI.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 void requireMatchStyle(StyleViewModel& styleModel, const StreamingServiceStyle& style) {
     if (styleModel.isDark(styleModel.getBackground()))

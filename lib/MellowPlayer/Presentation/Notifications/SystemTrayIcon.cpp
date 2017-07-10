@@ -7,8 +7,8 @@
 #include <MellowPlayer/Application/Settings/SettingKey.hpp>
 #include "SystemTrayIcon.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtApplication& qtApplication,
                                Settings& settings) :

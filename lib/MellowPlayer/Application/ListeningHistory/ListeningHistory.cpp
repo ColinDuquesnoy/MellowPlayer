@@ -10,8 +10,7 @@
 
 #define DELAY 5000
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player,
                                                  IWorkDispatcher& workDispatcher, Settings& settings):

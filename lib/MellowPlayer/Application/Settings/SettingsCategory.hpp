@@ -3,39 +3,38 @@
 #include <QtCore/QJsonArray>
 #include <QtCore/QObject>
 #include <QtCore/QList>
-#include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-class Settings;
-class Setting;
-class ISettingsProvider;
+    class Settings;
+    class Setting;
+    class ISettingsProvider;
 
-class SettingsCategory: public QObject {
-    Q_OBJECT
-public:
-    struct Data {
-        QJsonArray parameters;
-        QString name;
-        QString icon;
-        QString key;
+    class SettingsCategory: public QObject {
+        Q_OBJECT
+    public:
+        struct Data {
+            QJsonArray parameters;
+            QString name;
+            QString icon;
+            QString key;
+        };
+
+        SettingsCategory(const Data& data, Settings* appSettings);
+        void resolveDependencies();
+
+        void restoreDefaults();
+
+        const QString& getName() const;
+        const QString& getIcon() const;
+        const QString& getKey() const;
+        const QList<Setting*>& getSettings() const;
+
+        Setting& getSetting(const QString& key) const;
+
+    private:
+        Data data;
+        QList<Setting*> settings;
     };
 
-    SettingsCategory(const Data& data, Settings* appSettings);
-    void resolveDependencies();
-
-    void restoreDefaults();
-
-    const QString& getName() const;
-    const QString& getIcon() const;
-    const QString& getKey() const;
-    const QList<Setting*>& getSettings() const;
-
-    Setting& getSetting(const QString& key) const;
-
-private:
-    Data data;
-    QList<Setting*> settings;
-};
-
-END_MELLOWPLAYER_NAMESPACE
+}

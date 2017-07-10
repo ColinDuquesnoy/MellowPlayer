@@ -4,31 +4,35 @@
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
 #include <MellowPlayer/Presentation/Models/ListeningHistoryProxyListModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ListeningHistory)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class ListeningHistory;
 
-class ListeningHistoryViewModel: public QObject {
-    Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* model READ getModel CONSTANT)
-public:
-    ListeningHistoryViewModel(Application::ListeningHistory& listeningHistory);
+}
 
-    void initialize();
-    ListeningHistoryProxyListModel* getModel();
-    Q_INVOKABLE void disableService(const QString &serviceName, bool disable);
-    Q_INVOKABLE void setSearchFilter(const QString& searchFilter);
-    Q_INVOKABLE void removeById(int entryId);
-    Q_INVOKABLE void removeByDateCategory(const QString &dateCategory);
+namespace MellowPlayer::Presentation {
 
-private slots:
-    void onEntryAdded(const Application::ListeningHistoryEntry& entry);
-    void onEntryRemoved(int entryId);
+    class ListeningHistoryViewModel: public QObject {
+        Q_OBJECT
+        Q_PROPERTY(QAbstractItemModel* model READ getModel CONSTANT)
+    public:
+        ListeningHistoryViewModel(Application::ListeningHistory& listeningHistory);
 
-private:
-    Application::ListeningHistory& listeningHistoryService;
-    ListeningHistoryListModel* sourceModel;
-    ListeningHistoryProxyListModel proxyModel;
-};
+        void initialize();
+        ListeningHistoryProxyListModel* getModel();
+        Q_INVOKABLE void disableService(const QString &serviceName, bool disable);
+        Q_INVOKABLE void setSearchFilter(const QString& searchFilter);
+        Q_INVOKABLE void removeById(int entryId);
+        Q_INVOKABLE void removeByDateCategory(const QString &dateCategory);
 
-END_MELLOWPLAYER_NAMESPACE
+    private slots:
+        void onEntryAdded(const Application::ListeningHistoryEntry& entry);
+        void onEntryRemoved(int entryId);
+
+    private:
+        Application::ListeningHistory& listeningHistoryService;
+        ListeningHistoryListModel* sourceModel;
+        ListeningHistoryProxyListModel proxyModel;
+    };
+
+}

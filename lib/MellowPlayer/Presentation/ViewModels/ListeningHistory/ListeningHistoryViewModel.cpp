@@ -1,9 +1,9 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include "ListeningHistoryViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistory& listeningHistory):
         listeningHistoryService(listeningHistory),

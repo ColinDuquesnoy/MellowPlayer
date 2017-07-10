@@ -4,9 +4,9 @@
 #include "Mocks/StreamingServiceLoaderMock.hpp"
 #include "DI.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {

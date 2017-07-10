@@ -6,7 +6,7 @@
 #include "SettingsCategory.hpp"
 
 using namespace std;
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider):
         settingsProvider(settingsProvider) {

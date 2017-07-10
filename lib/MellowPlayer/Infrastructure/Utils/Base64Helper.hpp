@@ -1,25 +1,29 @@
 #pragma once
 
 #include <QtGui/QImage>
-#include <MellowPlayer/Macros.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class ILogger;
 
-class Base64Helper: public QObject {
-    Q_OBJECT
-public:
-    Base64Helper(QObject* parent=nullptr);
+}
 
-    Q_INVOKABLE bool isBase64(const QString& uri);
-    Q_INVOKABLE QImage getImage(const QString& uri);
-    Q_INVOKABLE bool saveToFile(const QString& uri, const QString& path);
-    Q_INVOKABLE QString getImageProviderUrl(const QString& url);
 
-private:
-    Application::ILogger& logger;
+namespace MellowPlayer::Infrastructure {
 
-};
+    class Base64Helper: public QObject {
+        Q_OBJECT
+    public:
+        Base64Helper(QObject* parent=nullptr);
 
-END_MELLOWPLAYER_NAMESPACE
+        Q_INVOKABLE bool isBase64(const QString& uri);
+        Q_INVOKABLE QImage getImage(const QString& uri);
+        Q_INVOKABLE bool saveToFile(const QString& uri, const QString& path);
+        Q_INVOKABLE QString getImageProviderUrl(const QString& url);
+
+    private:
+        Application::ILogger& logger;
+
+    };
+
+}

@@ -1,6 +1,6 @@
 #include "ILocalAlbumArt.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 ILocalAlbumArt::~ILocalAlbumArt() {
 

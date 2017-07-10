@@ -1,7 +1,7 @@
 #include "BoolSettingViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Application;
 
 BoolSettingViewModel::BoolSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent) {
 

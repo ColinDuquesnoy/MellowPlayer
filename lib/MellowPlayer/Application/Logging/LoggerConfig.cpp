@@ -1,6 +1,6 @@
 #include "LoggerConfig.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace std;
 
 string LoggerConfig::DEFAULT_LOG_FORMAT = "[%L] [%Y-%m-%d %H-%M-%S:%f] [%n] %v";

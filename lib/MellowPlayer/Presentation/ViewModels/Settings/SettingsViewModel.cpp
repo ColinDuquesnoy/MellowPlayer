@@ -2,8 +2,8 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp"
 #include "SettingsViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 
 SettingsViewModel::SettingsViewModel(Settings& settings, QObject* parent) : QObject(parent), settings(settings), categories(

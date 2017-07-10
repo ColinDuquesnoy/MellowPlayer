@@ -1,16 +1,14 @@
 #pragma once
 
-#include <MellowPlayer/Macros.hpp>
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+    class IMainWindow {
+    public:
+        virtual ~IMainWindow() = default;
 
-class IMainWindow {
-public:
-    virtual ~IMainWindow() = default;
+        virtual bool load() = 0;
+        virtual void show() = 0;
+        virtual void hide() = 0;
+    };
 
-    virtual bool load() = 0;
-    virtual void show() = 0;
-    virtual void hide() = 0;
-};
-
-END_MELLOWPLAYER_NAMESPACE
+}

@@ -4,8 +4,8 @@
 #include <QImage>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 AlbumArtDownloader::AlbumArtDownloader()
     : networkAccessManager(new QNetworkAccessManager(this)),

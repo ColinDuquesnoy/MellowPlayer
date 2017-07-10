@@ -4,7 +4,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <QtTest/QSignalSpy>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace fakeit;
 using namespace std;
 

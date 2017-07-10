@@ -3,8 +3,8 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
     QString dbPath = SqlLiteListeningHistoryDataProvider::getDatabasePath();

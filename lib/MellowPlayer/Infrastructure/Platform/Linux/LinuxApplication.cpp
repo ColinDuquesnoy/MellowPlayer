@@ -9,8 +9,8 @@
 
 #ifdef Q_OS_LINUX
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 LinuxApplication::LinuxApplication(IQtApplication& qtApp,
                                    IMainWindow& mainWindow,

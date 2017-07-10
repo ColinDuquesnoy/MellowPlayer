@@ -2,32 +2,31 @@
 
 #include <QString>
 #include <QDateTime>
-#include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-enum class NotificationType {
-    NewSong,
-    Resumed,
-    Paused,
-    NewVersionAvailable
-};
+    enum class NotificationType {
+        NewSong,
+        Resumed,
+        Paused,
+        NewVersionAvailable
+    };
 
-struct Notification {
-    QString title;
-    QString description;
-    QString icon;
-    NotificationType type;
+    struct Notification {
+        QString title;
+        QString description;
+        QString icon;
+        NotificationType type;
 
-    QString toString() const { return title + " - " + description; }
+        QString toString() const { return title + " - " + description; }
 
-    inline bool operator==(const Notification& other) const {
-        return title == other.title && description == other.description;
-    }
+        inline bool operator==(const Notification& other) const {
+            return title == other.title && description == other.description;
+        }
 
-    inline bool operator!=(const Notification& other) const {
-        return !this->operator==(other);
-    }
-};
+        inline bool operator!=(const Notification& other) const {
+            return !this->operator==(other);
+        }
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

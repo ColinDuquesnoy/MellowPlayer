@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 
 TEST_CASE("NotificationTests", "[UnitTest]") {
     Notification notification1 { "title", "message", "", NotificationType::NewSong };

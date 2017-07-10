@@ -11,8 +11,8 @@
 #include <Utils/Helpers.hpp>
 #include <DI.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
 
 TEST_CASE("ListeningHistoryTests") {
     auto mock = StreamingServiceLoaderMock::get();

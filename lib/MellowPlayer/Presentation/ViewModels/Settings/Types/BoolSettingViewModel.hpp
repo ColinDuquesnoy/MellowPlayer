@@ -3,26 +3,26 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+namespace MellowPlayer::Presentation {
 
-class BoolSettingViewModel: public SettingViewModel {
-    Q_OBJECT
-    Q_PROPERTY(bool value READ getValue WRITE setValue NOTIFY valueChanged)
-public:
-    BoolSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+    class BoolSettingViewModel: public SettingViewModel {
+        Q_OBJECT
+        Q_PROPERTY(bool value READ getValue WRITE setValue NOTIFY valueChanged)
+    public:
+        BoolSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
 
-    bool getValue() const;
-    QString getQmlComponent() override;
+        bool getValue() const;
+        QString getQmlComponent() override;
 
-signals:
-    void valueChanged();
+    signals:
+        void valueChanged();
 
-public slots:
-    void setValue(bool value);
+    public slots:
+        void setValue(bool value);
 
-protected slots:
-    void onValueChanged() override;
+    protected slots:
+        void onValueChanged() override;
 
-};
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

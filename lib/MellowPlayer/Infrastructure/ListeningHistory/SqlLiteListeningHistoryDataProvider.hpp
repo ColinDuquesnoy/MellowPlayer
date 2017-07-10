@@ -3,31 +3,35 @@
 #include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <QtSql/QSqlDatabase>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_STRUCT(Application, ListeningHistoryEntry)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+    class ILogger;
+    struct ListeningHistoryEntry;
 
-class SqlLiteListeningHistoryDataProvider: public Application::IListeningHistoryDataProvider {
-public:
-    SqlLiteListeningHistoryDataProvider();
-    ~SqlLiteListeningHistoryDataProvider();
+}
 
-    void initialize() override;
-    int add(const Application::ListeningHistoryEntry& entry) override;
-    void clear() override;
-    void remove(const QString& filterKey, const QString& filterValue) override;
-    void removeMany(const QList<int>& identifiers) override;
-    QList<Application::ListeningHistoryEntry> getAll() const override;
+namespace MellowPlayer::Infrastructure {
 
-    static QString getDatabasePath();
+    class SqlLiteListeningHistoryDataProvider: public Application::IListeningHistoryDataProvider {
+    public:
+        SqlLiteListeningHistoryDataProvider();
+        ~SqlLiteListeningHistoryDataProvider();
 
-private:
-    bool openDatabase();
-    void initDatabase();
+        void initialize() override;
+        int add(const Application::ListeningHistoryEntry& entry) override;
+        void clear() override;
+        void remove(const QString& filterKey, const QString& filterValue) override;
+        void removeMany(const QList<int>& identifiers) override;
+        QList<Application::ListeningHistoryEntry> getAll() const override;
 
-    Application::ILogger& logger;
-    QSqlDatabase database;
-};
+        static QString getDatabasePath();
 
-END_MELLOWPLAYER_NAMESPACE
+    private:
+        bool openDatabase();
+        void initDatabase();
+
+        Application::ILogger& logger;
+        QSqlDatabase database;
+    };
+
+}

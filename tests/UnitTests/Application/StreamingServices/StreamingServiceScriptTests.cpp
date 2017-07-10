@@ -2,7 +2,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
 #include <QtTest/QSignalSpy>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
 using namespace std;
 
 TEST_CASE("StreamingServiceScriptTests", "[UnitTest]") {

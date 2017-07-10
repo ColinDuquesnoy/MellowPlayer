@@ -3,8 +3,8 @@
 #include "QtConcurrentWorkDispatcher.hpp"
 
 using namespace std;
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Application;
 
 QtConcurrentWorkDispatcher::QtConcurrentWorkDispatcher() {
     connect(&timer, &QTimer::timeout, this, &QtConcurrentWorkDispatcher::onTimeout);

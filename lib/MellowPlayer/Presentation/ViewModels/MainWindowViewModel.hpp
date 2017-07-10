@@ -1,53 +1,56 @@
 #pragma once
 
 #include <QtQml/QQmlApplicationEngine>
-#include <QtQuick/QQuickWindow>
 #include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IQtApplication)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class Settings;
+    class ILogger;
+    class IPlayer;
+    class IQtApplication;
 
-class ApplicationViewModel;
-class ListeningHistoryViewModel;
-class StreamingServicesControllerViewModel;
-class StyleViewModel;
+}
 
-class MainWindowViewModel: public QObject, public Application::IMainWindow {
-    Q_OBJECT
-    Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
-public:
-    MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
-                        ListeningHistoryViewModel& listeningHistoryModel,
-                        StyleViewModel& serviceStyleModel,
-                        Application::IQtApplication& qtApp,
-                        Application::IPlayer& player,
-                        Application::Settings& settings);
-    bool load() override;
-    void show() override;
-    void hide() override;
-    bool isVisible() const;
+namespace MellowPlayer::Presentation {
 
-signals:
-    void visibleChanged();
+    class ApplicationViewModel;
+    class ListeningHistoryViewModel;
+    class StreamingServicesControllerViewModel;
+    class StyleViewModel;
 
-private slots:
-    void setVisible(bool value);
+    class MainWindowViewModel: public QObject, public Application::IMainWindow {
+        Q_OBJECT
+        Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
+    public:
+        MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
+                            ListeningHistoryViewModel& listeningHistoryModel,
+                            StyleViewModel& serviceStyleModel,
+                            Application::IQtApplication& qtApp,
+                            Application::IPlayer& player,
+                            Application::Settings& settings);
+        bool load() override;
+        void show() override;
+        void hide() override;
+        bool isVisible() const;
 
-private:
-    bool visible = false;
-    Application::ILogger& logger;
-    Application::Settings& settings;
-    StreamingServicesControllerViewModel& streamingServices;
-    ListeningHistoryViewModel& listeningHistory;
-    QQmlApplicationEngine qmlApplicationEngine;
-    ClipBoardViewModel clipBoardModel;
-    SettingsViewModel settingsModel;
-};
+    signals:
+        void visibleChanged();
 
-END_MELLOWPLAYER_NAMESPACE
+    private slots:
+        void setVisible(bool value);
+
+    private:
+        bool visible = false;
+        Application::ILogger& logger;
+        Application::Settings& settings;
+        StreamingServicesControllerViewModel& streamingServices;
+        ListeningHistoryViewModel& listeningHistory;
+        QQmlApplicationEngine qmlApplicationEngine;
+        ClipBoardViewModel clipBoardModel;
+        SettingsViewModel settingsModel;
+    };
+
+}

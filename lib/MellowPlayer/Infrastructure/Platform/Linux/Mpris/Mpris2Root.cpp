@@ -3,8 +3,8 @@
 #include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
 #include "Mpris2Root.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent) :
         QDBusAbstractAdaptor(parent),

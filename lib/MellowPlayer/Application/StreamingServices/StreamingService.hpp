@@ -3,7 +3,6 @@
 #include <memory>
 #include <QtCore/QString>
 #include <QtGui/QImage>
-#include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "StreamingServiceMetadata.hpp"
 #include "StreamingServiceStyle.hpp"

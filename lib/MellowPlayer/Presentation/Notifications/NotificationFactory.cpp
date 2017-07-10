@@ -2,9 +2,9 @@
 #include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
 #include "NotificationFactory.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 
 Notification NotificationFactory::createSongNotification(

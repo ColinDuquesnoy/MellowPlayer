@@ -1,74 +1,73 @@
 #pragma once
 
-#include <MellowPlayer/Macros.hpp>
 #include <QtCore/QString>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-struct StreamingServiceMetadata {
-    /**
-     * @brief Name of the plugin's author.
-     */
-    QString author;
+    struct StreamingServiceMetadata {
+        /**
+         * @brief Name of the plugin's author.
+         */
+        QString author;
 
-    /**
-     * @brief Url of the plugin's author's website.
-     */
-    QString authorWebsite;
+        /**
+         * @brief Url of the plugin's author's website.
+         */
+        QString authorWebsite;
 
-    /**
-     * @brief Logo of the plugin/service.
-     */
-    QString logoPath;
+        /**
+         * @brief Logo of the plugin/service.
+         */
+        QString logoPath;
 
-    /**
-     * @brief The name of the plugin.
-     */
-    QString name;
+        /**
+         * @brief The name of the plugin.
+         */
+        QString name;
 
-    /**
-     * @brief The url of the streaming service
-     */
-    QString url;
+        /**
+         * @brief The url of the streaming service
+         */
+        QString url;
 
-    /**
-     * @brief The javascript code of the plugin.
-     */
-    QString script;
+        /**
+         * @brief The javascript code of the plugin.
+         */
+        QString script;
 
-    /**
-     * @brief Path to the plugin script.
-     */
-    QString scriptPath;
+        /**
+         * @brief Path to the plugin script.
+         */
+        QString scriptPath;
 
-    /**
-     * @brief The version of the plugin.
-     */
-    QString version;
+        /**
+         * @brief The version of the plugin.
+         */
+        QString version;
 
-    StreamingServiceMetadata()
-        : author(""),
-          authorWebsite(""),
-          logoPath(""),
-          name(""),
-          url(""),
-          script(""),
-          scriptPath(""),
-          version("") {
+        StreamingServiceMetadata()
+            : author(""),
+              authorWebsite(""),
+              logoPath(""),
+              name(""),
+              url(""),
+              script(""),
+              scriptPath(""),
+              version("") {
 
-    }
+        }
 
-    bool isValid() const {
-        return !name.isEmpty() && !url.isEmpty() && !script.isEmpty();
-    }
+        bool isValid() const {
+            return !name.isEmpty() && !url.isEmpty() && !script.isEmpty();
+        }
 
-    bool operator==(const StreamingServiceMetadata& rhs) const {
-        return name == rhs.name && url == rhs.url;
-    }
+        bool operator==(const StreamingServiceMetadata& rhs) const {
+            return name == rhs.name && url == rhs.url;
+        }
 
-    bool operator!=(const StreamingServiceMetadata& rhs) const {
-        return !operator==(rhs);
-    }
-};
+        bool operator!=(const StreamingServiceMetadata& rhs) const {
+            return !operator==(rhs);
+        }
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

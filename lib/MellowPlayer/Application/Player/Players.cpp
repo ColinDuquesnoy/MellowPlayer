@@ -2,8 +2,8 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include "Players.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
 using namespace std;
 
 Players::Players(StreamingServicesController& streamingServices) {

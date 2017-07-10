@@ -2,8 +2,8 @@
 #include "ShortcutSettingViewModel.hpp"
 #include <QDebug>
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Application;
 
 ShortcutSettingViewModel::ShortcutSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent) {
 

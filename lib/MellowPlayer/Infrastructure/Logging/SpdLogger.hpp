@@ -3,22 +3,24 @@
 #include <MellowPlayer/Application/Logging/ILogger.hpp>
 
 namespace spdlog {
-class logger;
+
+    class logger;
+
 }
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+namespace MellowPlayer::Infrastructure {
 
-class SpdLogger: public Application::ILogger {
-public:
-    SpdLogger(const std::string& name, const Application::LoggerConfig& config);
-    ~SpdLogger();
-    void log(const std::string &message, Application::LogLevel level, const char* file, int line) override;
-    const std::string& getName() const override;
+    class SpdLogger: public Application::ILogger {
+    public:
+        SpdLogger(const std::string& name, const Application::LoggerConfig& config);
+        ~SpdLogger();
+        void log(const std::string &message, Application::LogLevel level, const char* file, int line) override;
+        const std::string& getName() const override;
 
-private:
-    std::shared_ptr<spdlog::logger> logger;
-    bool includeFileAndLine;
-    std::string name;
-};
+    private:
+        std::shared_ptr<spdlog::logger> logger;
+        bool includeFileAndLine;
+        std::string name;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}

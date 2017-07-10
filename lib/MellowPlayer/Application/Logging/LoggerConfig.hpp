@@ -1,60 +1,59 @@
 #pragma once
 
 #include <string>
-#include <MellowPlayer/Macros.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
-
-/**
- * @brief Enumerates the possible log levels.
- */
-enum class LogLevel {
-    Trace = 0,
-    Debug = 1,
-    Info = 2,
-    Warning = 3,
-    Error = 4,
-    Critical = 5,
-    Off = 6
-};
-
-/**
- * @brief Stores the configuration of a logger.
- */
-struct LoggerConfig
-{
-    /**
-     * @brief Global log level.
-     *
-     * Default is LogLevel::Info.
-     */
-    LogLevel logLevel;
+namespace MellowPlayer::Application {
 
     /**
-     * @brief Log format, see https://github.com/gabime/spdlog/wiki/3.-Custom-formatting.
-     *
-     * Default is "%l [%H:%M:%S] - %n: "%v"".
+     * @brief Enumerates the possible log levels.
      */
-    std::string logFormat;
+    enum class LogLevel {
+        Trace = 0,
+        Debug = 1,
+        Info = 2,
+        Warning = 3,
+        Error = 4,
+        Critical = 5,
+        Off = 6
+    };
 
     /**
-     * @brief True to create console logger. Default is true.
+     * @brief Stores the configuration of a logger.
      */
-    bool createConsoleLogger;
+    struct LoggerConfig
+    {
+        /**
+         * @brief Global log level.
+         *
+         * Default is LogLevel::Info.
+         */
+        LogLevel logLevel;
 
-    /**
-     * @brief True to create a (rotating) file logger. Default is true.
-     */
-    bool createFileLogger;
+        /**
+         * @brief Log format, see https://github.com/gabime/spdlog/wiki/3.-Custom-formatting.
+         *
+         * Default is "%l [%H:%M:%S] - %n: "%v"".
+         */
+        std::string logFormat;
 
-    /**
-     * @brief True to show file and line where log record was emitted. Default is true.
-     */
-    bool showFileAndLine;
+        /**
+         * @brief True to create console logger. Default is true.
+         */
+        bool createConsoleLogger;
 
-    LoggerConfig();
+        /**
+         * @brief True to create a (rotating) file logger. Default is true.
+         */
+        bool createFileLogger;
 
-    static std::string DEFAULT_LOG_FORMAT;
-};
+        /**
+         * @brief True to show file and line where log record was emitted. Default is true.
+         */
+        bool showFileAndLine;
 
-END_MELLOWPLAYER_NAMESPACE
+        LoggerConfig();
+
+        static std::string DEFAULT_LOG_FORMAT;
+    };
+
+}

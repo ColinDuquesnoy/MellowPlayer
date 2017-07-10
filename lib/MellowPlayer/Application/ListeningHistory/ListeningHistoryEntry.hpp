@@ -3,64 +3,64 @@
 #include <QDateTime>
 #include <MellowPlayer/Application/Player/Song.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Application)
+namespace MellowPlayer::Application {
 
-struct ListeningHistoryEntry {
-    int id;
-    QString songUniqueId;
-    QString songTitle;
-    QString artist;
-    QString album;
-    QString artUrl;
-    QString serviceName;
-    QString time;
+    struct ListeningHistoryEntry {
+        int id;
+        QString songUniqueId;
+        QString songTitle;
+        QString artist;
+        QString album;
+        QString artUrl;
+        QString serviceName;
+        QString time;
 
-    QDateTime dateTime() const {
-        return QDateTime::fromString(time, Qt::ISODate);
-    }
-
-    bool isValid() const {
-        return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !serviceName.isEmpty();
-    }
-
-    bool equals(const ListeningHistoryEntry& other) const {
-        return other.serviceName == serviceName &&
-               other.songUniqueId == songUniqueId &&
-               other.songTitle == songTitle &&
-               other.artist == artist &&
-               other.album == album &&
-               other.artUrl == artUrl;
-    }
-
-    bool operator==(const ListeningHistoryEntry& other) const {
-        return other.id == id;
-    }
-
-    bool operator!=(const ListeningHistoryEntry& other) const {
-        return !operator==(other);
-    }
-
-    static ListeningHistoryEntry fromData(const Song* song, const QString& serviceName) {
-        ListeningHistoryEntry entry;
-        entry.id = 0;
-        QDateTime now = QDateTime::currentDateTime();
-
-        if (song != nullptr && song->isValid()) {
-            entry.songUniqueId = song->getUniqueId();
-            entry.songTitle = song->getTitle();
-            entry.artist = song->getArtist();
-            entry.album = song->getAlbum();
-            entry.artUrl = song->getArtUrl();
-            entry.serviceName = serviceName;
-            entry.time = now.toString(Qt::ISODate);
+        QDateTime dateTime() const {
+            return QDateTime::fromString(time, Qt::ISODate);
         }
 
-        return entry;
-    }
+        bool isValid() const {
+            return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !serviceName.isEmpty();
+        }
 
-    operator int() const {
-        return id;
-    }
-};
+        bool equals(const ListeningHistoryEntry& other) const {
+            return other.serviceName == serviceName &&
+                   other.songUniqueId == songUniqueId &&
+                   other.songTitle == songTitle &&
+                   other.artist == artist &&
+                   other.album == album &&
+                   other.artUrl == artUrl;
+        }
 
-END_MELLOWPLAYER_NAMESPACE
+        bool operator==(const ListeningHistoryEntry& other) const {
+            return other.id == id;
+        }
+
+        bool operator!=(const ListeningHistoryEntry& other) const {
+            return !operator==(other);
+        }
+
+        static ListeningHistoryEntry fromData(const Song* song, const QString& serviceName) {
+            ListeningHistoryEntry entry;
+            entry.id = 0;
+            QDateTime now = QDateTime::currentDateTime();
+
+            if (song != nullptr && song->isValid()) {
+                entry.songUniqueId = song->getUniqueId();
+                entry.songTitle = song->getTitle();
+                entry.artist = song->getArtist();
+                entry.album = song->getAlbum();
+                entry.artUrl = song->getArtUrl();
+                entry.serviceName = serviceName;
+                entry.time = now.toString(Qt::ISODate);
+            }
+
+            return entry;
+        }
+
+        operator int() const {
+            return id;
+        }
+    };
+
+}

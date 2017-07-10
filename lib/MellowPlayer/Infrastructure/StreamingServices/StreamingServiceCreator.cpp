@@ -6,8 +6,8 @@
 #include <QDebug>
 
 using namespace std;
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 
 const QString StreamingServiceCreator::RESOURCE_PATH = ":/MellowPlayer/Application/PluginTemplate/%1";
 const QString StreamingServiceCreator::SCRIPT_FILE_NAME = "integration.js";

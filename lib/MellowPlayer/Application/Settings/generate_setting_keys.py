@@ -38,7 +38,7 @@ def get_enum_values(keys):
     names = []
     for key in keys:
         cat_key, setting_key = key.split('/')
-        names.append('        ' + cat_key.replace('-', '_').upper() + '_' +
+        names.append('            ' + cat_key.replace('-', '_').upper() + '_' +
                       setting_key.replace('-', '_').upper())
 
     names.sort()
@@ -48,7 +48,7 @@ def get_enum_values(keys):
 def get_enum_names(keys):
     strings = []
     for key in keys:
-        strings.append('        enumToString << "%s";' % key)
+        strings.append('            enumToString << "%s";' % key)
 
     strings.sort()
     return '\n'.join(strings)

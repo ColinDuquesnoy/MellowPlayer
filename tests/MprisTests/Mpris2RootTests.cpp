@@ -6,8 +6,8 @@
 #include <Mocks/QtApplicationMock.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp>
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 
 TEST_CASE("Mpris2RootTests", "[IntegrationTest]") {

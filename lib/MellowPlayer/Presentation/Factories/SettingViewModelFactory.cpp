@@ -7,8 +7,8 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
-USING_MELLOWPLAYER_NAMESPACE(Application)
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Application;
 
 SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* parent) const {
     QString type = setting.getType().toLower();

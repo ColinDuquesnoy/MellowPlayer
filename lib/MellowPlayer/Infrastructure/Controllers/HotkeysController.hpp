@@ -1,51 +1,55 @@
 #pragma once
 
 #include <QObject>
-#include <MellowPlayer/Macros.hpp>
 #include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
 
 class QxtGlobalShortcut;
-PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+namespace MellowPlayer::Application {
 
-class HotkeysController: public QObject, public Application::IHotkeysController {
-    Q_OBJECT
-public:
-    HotkeysController(Application::IPlayer& player, Application::Settings& settings);
-    ~HotkeysController();
+    class IPlayer;
+    class ILogger;
+    class Setting;
+    class Settings;
 
-    void start() override;
+}
 
-public slots:
-    void togglePlayPause() override;
-    void next() override;
-    void previous() override;
-    void toggleFavoriteSong() override;
+namespace MellowPlayer::Infrastructure {
 
-private:
-    Application::ILogger& logger;
-    Application::IPlayer& player;
-    QxtGlobalShortcut* playShortcut;
-    QxtGlobalShortcut* nextShortcut;
-    QxtGlobalShortcut* previousShortcut;
-    QxtGlobalShortcut* favoriteShortcut;
+    class HotkeysController: public QObject, public Application::IHotkeysController {
+        Q_OBJECT
+    public:
+        HotkeysController(Application::IPlayer& player, Application::Settings& settings);
+        ~HotkeysController();
 
-    Application::Setting& playShortcutSetting;
-    Application::Setting& nextShortcutSetting;
-    Application::Setting& previousShortcutSetting;
-    Application::Setting& favoriteShortcutSetting;
+        void start() override;
 
-    void updateFavoriteShortcut() const;
+    public slots:
+        void togglePlayPause() override;
+        void next() override;
+        void previous() override;
+        void toggleFavoriteSong() override;
 
-    void updatePreviousShorcut() const;
+    private:
+        Application::ILogger& logger;
+        Application::IPlayer& player;
+        QxtGlobalShortcut* playShortcut;
+        QxtGlobalShortcut* nextShortcut;
+        QxtGlobalShortcut* previousShortcut;
+        QxtGlobalShortcut* favoriteShortcut;
 
-    void updateNextShortcut() const;
+        Application::Setting& playShortcutSetting;
+        Application::Setting& nextShortcutSetting;
+        Application::Setting& previousShortcutSetting;
+        Application::Setting& favoriteShortcutSetting;
 
-    void updatePlayShortcut() const;
-};
+        void updateFavoriteShortcut() const;
 
-END_MELLOWPLAYER_NAMESPACE
+        void updatePreviousShorcut() const;
+
+        void updateNextShortcut() const;
+
+        void updatePlayShortcut() const;
+    };
+
+}

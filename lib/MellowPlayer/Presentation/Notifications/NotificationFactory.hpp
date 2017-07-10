@@ -2,19 +2,19 @@
 
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
 
-PREDECLARE_MELLOWPLAYER_CLASS(Application, Song)
+namespace MellowPlayer::Application {
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
+    class Song;
 
-class NotificationFactory {
-public:
-    Application::Notification createSongNotification(const QString& serviceName, Application::Song* song,
-                                                  const QString& albumArtUrl, bool resumed=false);
-    Application::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
+}
 
-private:
-    Application::Notification createPlaybackNotif(const QString& serviceName, const QString& serviceLogo,
-                                               const QString& message, Application::NotificationType type);
-};
+namespace MellowPlayer::Presentation {
 
-END_MELLOWPLAYER_NAMESPACE
+    class NotificationFactory {
+    public:
+        Application::Notification createSongNotification(const QString& serviceName, Application::Song* song,
+                                                      const QString& albumArtUrl, bool resumed=false);
+        Application::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
+    };
+
+}

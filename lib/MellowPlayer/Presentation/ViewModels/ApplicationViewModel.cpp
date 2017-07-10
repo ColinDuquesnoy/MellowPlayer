@@ -10,9 +10,9 @@
 #include "ApplicationViewModel.hpp"
 
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 ApplicationViewModel::ApplicationViewModel(int &argc, char **argv, const QString& appName) :
         qtApp(argc, argv){

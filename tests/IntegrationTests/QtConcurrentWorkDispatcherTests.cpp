@@ -5,7 +5,7 @@
 
 using namespace std::this_thread;
 using namespace std::chrono;
-USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
+using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("QtConcurrentWorkDispatcherTests") {
     QtConcurrentWorkDispatcher workDispatcher;

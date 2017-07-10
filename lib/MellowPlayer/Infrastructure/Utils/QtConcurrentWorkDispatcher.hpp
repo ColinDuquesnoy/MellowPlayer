@@ -5,23 +5,23 @@
 #include <QTimer>
 #include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 
-BEGIN_MELLOWPLAYER_NAMESPACE(Infrastructure)
+namespace MellowPlayer::Infrastructure {
 
-class QtConcurrentWorkDispatcher: public QObject, public Application::IWorkDispatcher {
-    Q_OBJECT
-public:
-    QtConcurrentWorkDispatcher();
-    void invoke(const std::function<void(void)>& workerFunction) override;
-    void delayInvoke(int delayMilliseconds, const std::function<void(void)>& workerFunction) override;
+    class QtConcurrentWorkDispatcher: public QObject, public Application::IWorkDispatcher {
+        Q_OBJECT
+    public:
+        QtConcurrentWorkDispatcher();
+        void invoke(const std::function<void(void)>& workerFunction) override;
+        void delayInvoke(int delayMilliseconds, const std::function<void(void)>& workerFunction) override;
 
-private slots:
-    void onTimeout();
+    private slots:
+        void onTimeout();
 
-private:
-    QMutex mutex;
-    QTimer timer;
-    std::function<void(void)> delayedWorkerFunction;
-};
+    private:
+        QMutex mutex;
+        QTimer timer;
+        std::function<void(void)> delayedWorkerFunction;
+    };
 
-END_MELLOWPLAYER_NAMESPACE
+}
 

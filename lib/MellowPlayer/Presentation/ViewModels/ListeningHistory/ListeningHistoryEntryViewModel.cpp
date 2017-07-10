@@ -1,7 +1,7 @@
 #include "ListeningHistoryEntryViewModel.hpp"
 
-USING_MELLOWPLAYER_NAMESPACE(Application)
-USING_MELLOWPLAYER_NAMESPACE(Presentation)
+using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Presentation;
 
 ListeningHistoryEntryViewModel::ListeningHistoryEntryViewModel(const ListeningHistoryEntry& entry, QObject* parent):
         QObject(parent), entry(entry) {
