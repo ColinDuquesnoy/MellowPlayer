@@ -31,6 +31,8 @@ TEST_CASE("StreamingServiceWatcherTests") {
     REQUIRE(scriptChangedSpy.count() == 0);
     REQUIRE(styleChangedSpy.count() == 0);
 
+#ifndef Q_OS_WIN32
+
     SECTION("change script file content") {
         REQUIRE(writeFile(pluginDir + "/" + "integration.js", "test"));
         QTest::qWait(1000);
@@ -42,6 +44,8 @@ TEST_CASE("StreamingServiceWatcherTests") {
         QTest::qWait(1000);
         REQUIRE(styleChangedSpy.count() == 1);
     }
+
+#endif
 
     QDir().rmpath(pluginDir);
 }
