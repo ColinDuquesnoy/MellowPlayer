@@ -42,6 +42,12 @@ WebEngineView {
     }
 
     settings.pluginsEnabled : true
+    settings.fullScreenSupportEnabled: true
+    settings.autoLoadImages: true
+    settings.javascriptEnabled: true
+    settings.errorPageEnabled: true
+    settings.autoLoadIconsForPage: true
+
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank")
             player.loadPlugin();

@@ -9,6 +9,7 @@ import MellowPlayer 3.0
 ApplicationWindow {
     id: root
 
+    property int previousVisibility: ApplicationWindow.Windowed
     property QtObject applicationRoot: ApplicationRoot { }
 
     function restoreWindow() {
@@ -73,6 +74,13 @@ ApplicationWindow {
                 var dialog = applicationRoot.createDialog(root.profile);
                 request.openIn(dialog.currentWebView);
             }
+        }
+        onFullScreenRequested: {
+            if (request.toggleOn)
+                root.showFullScreen();
+            else
+                root.visibility = root.previousVisibility;
+            request.accept();
         }
         onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
         onOpenSettingsRequested: settingsDrawer.open()

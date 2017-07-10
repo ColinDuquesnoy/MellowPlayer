@@ -8,6 +8,7 @@ StackLayout {
     id: root
 
     signal newViewRequested(var request)
+    signal fullScreenRequested(var request)
 
     function currentWebView() {
         return root.itemAt(root.currentIndex);
@@ -64,15 +65,13 @@ StackLayout {
             player: model.player
             urlToLoad: model.url
             service: model.qtObject
+
             onCustomUrlSet: {
                 model.url = customUrl
                 start()
             }
-
-
-            onNewViewRequested: {
-                root.newViewRequested()
-            }
+            onFullScreenRequested: root.fullScreenRequested(request);
+            onNewViewRequested: root.newViewRequested()
         }
     }
 

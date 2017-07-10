@@ -12,6 +12,7 @@ Page {
 
     property int mainWindowWidth
     signal newViewRequested(var request)
+    signal fullScreenRequested(var request)
     signal openListeningHistoryRequested()
     signal openSettingsRequested()
     signal openAboutDialogRequested()
@@ -128,6 +129,10 @@ Page {
 
             anchors.fill: parent
             onNewViewRequested: root.newViewRequested(request)
+            onFullScreenRequested: {
+                toolBar.visible = !request.toggleOn
+                root.fullScreenRequested(request)
+            }
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }
