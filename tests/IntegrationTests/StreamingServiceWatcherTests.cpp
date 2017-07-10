@@ -33,13 +33,13 @@ TEST_CASE("StreamingServiceWatcherTests") {
 
     SECTION("change script file content") {
         REQUIRE(writeFile(pluginDir + "/" + "integration.js", "test"));
-        QTest::qWait(200);
+        QTest::qWait(1000);
         REQUIRE(scriptChangedSpy.count() == 1);
     }
 
     SECTION("change style file content") {
         REQUIRE(writeFile(pluginDir + "/" + "style.json", "test"));
-        QTest::qWait(200);
+        QTest::qWait(1000);
         REQUIRE(styleChangedSpy.count() == 1);
     }
 
