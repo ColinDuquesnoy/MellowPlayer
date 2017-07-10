@@ -21,13 +21,13 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>

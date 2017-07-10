@@ -15,14 +15,14 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
 class ApplicationViewModel;
 class ListeningHistoryViewModel;
-class StreamingServicesViewModel;
+class StreamingServicesControllerViewModel;
 class StyleViewModel;
 
 class MainWindowViewModel: public QObject, public Application::IMainWindow {
     Q_OBJECT
     Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
 public:
-    MainWindowViewModel(StreamingServicesViewModel& streamingServicesModel,
+    MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                         ListeningHistoryViewModel& listeningHistoryModel,
                         StyleViewModel& serviceStyleModel,
                         Application::IQtApplication& qtApp,
@@ -43,7 +43,7 @@ private:
     bool visible = false;
     Application::ILogger& logger;
     Application::Settings& settings;
-    StreamingServicesViewModel& streamingServices;
+    StreamingServicesControllerViewModel& streamingServices;
     ListeningHistoryViewModel& listeningHistory;
     QQmlApplicationEngine qmlApplicationEngine;
     ClipBoardViewModel clipBoardModel;

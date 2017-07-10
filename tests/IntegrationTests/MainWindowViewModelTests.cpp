@@ -11,7 +11,7 @@ TEST_CASE("MainWindowViewModel") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
 
-    StreamingServicesViewModel& streamingServices = injector.create<StreamingServicesViewModel&>();
+    StreamingServicesControllerViewModel& streamingServices = injector.create<StreamingServicesControllerViewModel&>();
     ListeningHistoryViewModel& listeningHistory = injector.create<ListeningHistoryViewModel&>();
     StyleViewModel& style = injector.create<StyleViewModel&>();
     IPlayer& player = injector.create<CurrentPlayer&>();

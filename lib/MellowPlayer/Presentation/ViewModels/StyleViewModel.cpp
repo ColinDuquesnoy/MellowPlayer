@@ -1,5 +1,5 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include "StyleViewModel.hpp"
@@ -8,7 +8,7 @@ USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
-StyleViewModel::StyleViewModel(StreamingServices& streamingServices, Settings& settings) :
+StyleViewModel::StyleViewModel(StreamingServicesController& streamingServices, Settings& settings) :
         useServiceStyle(true),
         streamingServices(streamingServices),
         accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
@@ -20,7 +20,7 @@ StyleViewModel::StyleViewModel(StreamingServices& streamingServices, Settings& s
         secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
         secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
         style(getDefaultStyle()) {
-    connect(&streamingServices, &StreamingServices::currentChanged, this,
+    connect(&streamingServices, &StreamingServicesController::currentChanged, this,
             &StyleViewModel::onCurrentServiceChanged);
     connect(&accentColorSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&adaptiveThemeSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);

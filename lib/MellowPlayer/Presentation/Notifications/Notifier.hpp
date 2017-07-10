@@ -8,7 +8,7 @@ PREDECLARE_MELLOWPLAYER_CLASS(Application, ILogger)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, ILocalAlbumArt)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, IPlayer)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, INotificationPresenter)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicesController)
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Presentation)
 
@@ -16,7 +16,7 @@ class Notifier: public QObject, public Application::INotifier {
     Q_OBJECT
 public:
     Notifier(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArtService,
-                        Application::INotificationPresenter& presenter, Application::StreamingServices& streamingServices,
+                        Application::INotificationPresenter& presenter, Application::StreamingServicesController& streamingServices,
                         Application::Settings& settings);
 
     void initialize() override;
@@ -38,7 +38,7 @@ private:
     Application::IPlayer& player;
     Application::ILocalAlbumArt& localAlbumArtService;
     Application::INotificationPresenter& presenter;
-    Application::StreamingServices& streamingServices;
+    Application::StreamingServicesController& streamingServices;
     Application::Settings& settings;
     Application::Notification previousNotif;
     NotificationFactory notificationFactory;

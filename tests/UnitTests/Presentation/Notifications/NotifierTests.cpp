@@ -19,7 +19,7 @@ TEST_CASE("NotifierTests", "[UnitTest]") {
     Mock<LocalAlbumArt> localAlbumArtServiceSpy(service);
     CurrentPlayer& player = injector.create<CurrentPlayer&>();
     Mock<CurrentPlayer> playerSpy(player);
-    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    StreamingServicesController& streamingServices = injector.create<StreamingServicesController&>();
     Settings& settings = injector.create<Settings&>();
     Notifier notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
                                             notificationPresenterMock.get(), streamingServices, settings);

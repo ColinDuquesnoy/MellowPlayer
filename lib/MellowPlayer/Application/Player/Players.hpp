@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QMap>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include "MellowPlayer/Application/Player/Player.hpp"
 
 BEGIN_MELLOWPLAYER_NAMESPACE(Application)
@@ -9,7 +9,7 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 class Players: public QObject {
     Q_OBJECT
 public:
-    Players(StreamingServices& streamingServices);
+    Players(StreamingServicesController& streamingServices);
 
     std::shared_ptr<Player> get(const QString& serviceName) const;
 

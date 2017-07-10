@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include "DI.hpp"
 
@@ -10,7 +10,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Players& players = injector.create<Players&>();
-    StreamingServices& streamingServices = injector.create<StreamingServices&>();
+    StreamingServicesController& streamingServices = injector.create<StreamingServicesController&>();
     streamingServices.load();
     QSettingsProvider settingsProvider;
     StreamingService& service1 = *streamingServices.getAll()[0];

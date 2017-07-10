@@ -13,11 +13,11 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 class ILogger;
 class IStreamingServiceLoader;
 
-class StreamingServices: public QObject {
+class StreamingServicesController: public QObject {
     Q_OBJECT
     Q_PROPERTY(Application::StreamingService* currentService READ getCurrent WRITE setCurrent NOTIFY currentChanged)
 public:
-    StreamingServices(IStreamingServiceLoader& loader);
+    StreamingServicesController(IStreamingServiceLoader& loader);
 
     void load();
     Application::StreamingService& get(const QString& name) const;

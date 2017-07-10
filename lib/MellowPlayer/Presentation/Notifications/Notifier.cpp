@@ -6,7 +6,7 @@
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include "Notifier.hpp"
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
@@ -17,7 +17,7 @@ USING_MELLOWPLAYER_NAMESPACE(Presentation)
 Notifier::Notifier(IPlayer& player,
                    ILocalAlbumArt& localAlbumArtService,
                    INotificationPresenter& presenter,
-                   StreamingServices& streamingServices,
+                   StreamingServicesController& streamingServices,
                    Settings& settings) :
         logger(LoggingManager::instance().getLogger("Notifier")),
         player(player),

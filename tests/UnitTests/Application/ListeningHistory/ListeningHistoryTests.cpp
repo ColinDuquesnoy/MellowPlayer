@@ -6,7 +6,7 @@
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <Utils/Helpers.hpp>
 #include <DI.hpp>
@@ -16,7 +16,7 @@ USING_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("ListeningHistoryTests") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(mock.get());
+    StreamingServicesController streamingServices(mock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);

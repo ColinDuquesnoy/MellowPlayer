@@ -1,18 +1,18 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include "StreamingServices.hpp"
+#include "StreamingServicesController.hpp"
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
-StreamingServices::StreamingServices(IStreamingServiceLoader& loader) :
-        logger(LoggingManager::instance().getLogger("StreamingServices")),
+StreamingServicesController::StreamingServicesController(IStreamingServiceLoader& loader) :
+        logger(LoggingManager::instance().getLogger("StreamingServicesController")),
         loader(loader), current(nullptr) {
 }
 
-void StreamingServices::load() {
+void StreamingServicesController::load() {
     auto newServices = loader.load();
 
     for (auto newService: newServices) {
@@ -31,14 +31,14 @@ void StreamingServices::load() {
     }
 }
 
-StreamingService& StreamingServices::get(const QString& name) const {
+StreamingService& StreamingServicesController::get(const QString& name) const {
     for (const auto& service: services)
         if (service->getName() == name)
             return *service;
     throw invalid_argument("unknown service: " + name.toStdString());
 }
 
-void StreamingServices::setCurrent(StreamingService* service) {
+void StreamingServicesController::setCurrent(StreamingService* service) {
     if (service == current)
         return;
 
@@ -48,6 +48,6 @@ void StreamingServices::setCurrent(StreamingService* service) {
         LOG_DEBUG(logger, "current service changed: " + current->getName());
 }
 
-StreamingService* StreamingServices::getCurrent() const {
+StreamingService* StreamingServicesController::getCurrent() const {
     return current;
 }

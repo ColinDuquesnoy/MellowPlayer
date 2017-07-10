@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
-#include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp"
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer3"
 

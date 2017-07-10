@@ -1,4 +1,4 @@
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include "CurrentPlayer.hpp"
 #include "Player.hpp"
@@ -8,10 +8,10 @@ USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
-CurrentPlayer::CurrentPlayer(Players& players, StreamingServices& streamingServices)
+CurrentPlayer::CurrentPlayer(Players& players, StreamingServicesController& streamingServices)
     : players(players), streamingServices(streamingServices), currentPlayer(nullptr) {
 
-    connect(&streamingServices, &StreamingServices::currentChanged,
+    connect(&streamingServices, &StreamingServicesController::currentChanged,
             this, &CurrentPlayer::onCurrentServiceChanged);
 
     if(streamingServices.getCurrent() != nullptr)

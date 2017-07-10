@@ -1,13 +1,13 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include "Players.hpp"
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Application)
 using namespace std;
 
-Players::Players(StreamingServices& streamingServices) {
-    connect(&streamingServices, &StreamingServices::added,
+Players::Players(StreamingServicesController& streamingServices) {
+    connect(&streamingServices, &StreamingServicesController::added,
             this, &Players::onServiceAdded);
     for (auto& service: streamingServices.getAll()) {
         onServiceAdded(service.get());

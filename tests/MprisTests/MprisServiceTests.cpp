@@ -1,7 +1,7 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
@@ -19,7 +19,7 @@ USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 TEST_CASE("MprisServiceTests", "[IntegrationTest]")
 {
     auto plugionLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(plugionLoaderMock.get());
+    StreamingServicesController streamingServices(plugionLoaderMock.get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

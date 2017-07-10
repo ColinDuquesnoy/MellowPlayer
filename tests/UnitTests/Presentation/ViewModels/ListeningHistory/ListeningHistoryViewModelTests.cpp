@@ -7,7 +7,7 @@
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <Utils/Helpers.hpp>
 #include "DI.hpp"
@@ -20,7 +20,7 @@ TEST_CASE("ListeningHistoryViewModelTests") {
     auto mock = StreamingServiceLoaderMock::get();
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    StreamingServices streamingServices(mock.get());
+    StreamingServicesController streamingServices(mock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);

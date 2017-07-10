@@ -8,7 +8,7 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include "MainWindowViewModel.hpp"
@@ -16,7 +16,7 @@
 USING_MELLOWPLAYER_NAMESPACE(Application)
 USING_MELLOWPLAYER_NAMESPACE(Presentation)
 
-MainWindowViewModel::MainWindowViewModel(StreamingServicesViewModel& streamingServicesModel,
+MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                                  ListeningHistoryViewModel& listeningHistoryModel,
                                  StyleViewModel& serviceStyleModel,
                                  IQtApplication& qtApp,

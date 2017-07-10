@@ -12,12 +12,12 @@ BEGIN_MELLOWPLAYER_NAMESPACE(Application)
 
 class Player;
 class Players;
-class StreamingServices;
+class StreamingServicesController;
 
 class CurrentPlayer: public IPlayer {
     Q_OBJECT
 public:
-    CurrentPlayer(Players& players, StreamingServices& streamingServices);
+    CurrentPlayer(Players& players, StreamingServicesController& streamingServices);
 
     Q_INVOKABLE void togglePlayPause() override;
     Q_INVOKABLE void play() override;
@@ -47,7 +47,7 @@ private slots:
 
 private:
     Players& players;
-    StreamingServices& streamingServices;
+    StreamingServicesController& streamingServices;
     Application::Song nullSong;
 
     std::shared_ptr<Player> currentPlayer;

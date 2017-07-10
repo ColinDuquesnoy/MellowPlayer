@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <QtTest/QSignalSpy>
 
 USING_MELLOWPLAYER_NAMESPACE(Application)
@@ -10,7 +10,7 @@ using namespace std;
 
 TEST_CASE("StreamingServicesTests", "[UnitTest]") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(mock.get());
+    StreamingServicesController streamingServices(mock.get());
     QSignalSpy addedSpy(&streamingServices, SIGNAL(added(StreamingService*)));
     streamingServices.load();
 

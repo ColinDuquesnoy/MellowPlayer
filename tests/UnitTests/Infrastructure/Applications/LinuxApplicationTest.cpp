@@ -2,7 +2,7 @@
 #ifdef Q_OS_LINUX
 #include <catch.hpp>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
@@ -21,7 +21,7 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]") {
     auto mprisMock = MprisServiceMock::get();
     auto notificationServiceMock = NotifierMock::get();
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(serviceLoaderMock.get());
+    StreamingServicesController streamingServices(serviceLoaderMock.get());
     auto systemTrayIconMock = SystemTrayIconMock::get();
     LinuxApplication app(qtAppMock.get(),
                          mainWindowMock.get(),

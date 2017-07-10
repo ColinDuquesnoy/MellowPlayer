@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
@@ -10,7 +10,7 @@ USING_MELLOWPLAYER_NAMESPACE(Application)
 
 TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(mock.get());
+    StreamingServicesController streamingServices(mock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer currentPlayer(players, streamingServices);

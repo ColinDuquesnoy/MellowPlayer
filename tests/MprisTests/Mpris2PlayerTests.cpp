@@ -3,7 +3,7 @@
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
@@ -16,7 +16,7 @@ USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
     auto mock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(mock.get());
+    StreamingServicesController streamingServices(mock.get());
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
     Players players(streamingServices);

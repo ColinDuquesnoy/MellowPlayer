@@ -5,7 +5,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceStyle.hpp>
 
 PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingService)
-PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServices)
+PREDECLARE_MELLOWPLAYER_CLASS(Application, StreamingServicesController)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Setting)
 PREDECLARE_MELLOWPLAYER_CLASS(Application, Settings)
 
@@ -23,7 +23,7 @@ class StyleViewModel: public QObject {
     Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
     Q_PROPERTY(bool useServiceStyle READ getUseServiceStyle WRITE setUseServiceStyle NOTIFY useServiceStyleChanged)
 public:
-    StyleViewModel(Application::StreamingServices& streamingServices, Application::Settings& settings);
+    StyleViewModel(Application::StreamingServicesController& streamingServices, Application::Settings& settings);
 
     QString getTheme() const;
     QString getAccent() const;
@@ -67,7 +67,7 @@ private:
     void fromStyle(const Application::StreamingServiceStyle& newStyle);
 
     bool useServiceStyle;
-    Application::StreamingServices& streamingServices;
+    Application::StreamingServicesController& streamingServices;
     Application::Setting& accentColorSetting;
     Application::Setting& adaptiveThemeSetting;
     Application::Setting& backgroundSetting;

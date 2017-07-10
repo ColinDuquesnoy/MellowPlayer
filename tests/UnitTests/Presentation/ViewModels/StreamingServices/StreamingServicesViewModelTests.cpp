@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
 #include "DI.hpp"
@@ -9,17 +9,17 @@ USING_MELLOWPLAYER_NAMESPACE(Presentation)
 USING_MELLOWPLAYER_NAMESPACE(Infrastructure)
 using namespace fakeit;
 
-TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
+TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     auto loaderMock = StreamingServiceLoaderMock::get();
-    StreamingServices streamingServices(loaderMock.get());
+    StreamingServicesController streamingServices(loaderMock.get());
     streamingServices.load();
     Players players(streamingServices);
     Settings& settings = injector.create<Settings&>();
     FakeWorkDispatcher fakeWorkDispatcher;
     auto creatorMock = StreamingServiceCreatorMock::get();
-    StreamingServicesViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get());
+    StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get());
     viewModel.initialize();
     viewModel.reload();
 
@@ -88,7 +88,7 @@ TEST_CASE("StreamingServicesViewModel", "[UnitTest]") {
     }
 
     SECTION("create service call creator and reload services") {
-        QSignalSpy spy(&viewModel, &StreamingServicesViewModel::serviceCreated);
+        QSignalSpy spy(&viewModel, &StreamingServicesControllerViewModel::serviceCreated);
         viewModel.createService("svName", "svUrl", "authorName", "authorUrl");
         Verify(Method(creatorMock, create));
         Verify(Method(loaderMock, load));
