@@ -66,11 +66,6 @@ ToolBar {
                 onActivated: btSelectService.switchView()
             }
 
-            Shortcut {
-                sequence: "escape"
-                onActivated: if (!root.isWebViewMode) btSelectService.switchView()
-            }
-
             Tooltip {
                 y: root.implicitHeight
                 text: root.isWebViewMode ? qsTr("Select another service") :

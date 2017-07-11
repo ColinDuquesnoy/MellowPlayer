@@ -41,6 +41,10 @@ WebEngineView {
         root.grabToImage(function(result) { image = result; updateImageFinished(); }, Qt.size(root.width, root.height));
     }
 
+    function exitFullScreen() {
+        root.triggerWebAction(WebEngineView.ExitFullScreen);
+    }
+
     settings.pluginsEnabled : true
     settings.fullScreenSupportEnabled: true
     settings.autoLoadImages: true

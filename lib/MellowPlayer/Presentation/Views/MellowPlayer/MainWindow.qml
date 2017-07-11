@@ -66,7 +66,21 @@ ApplicationWindow {
         }
     }
 
+    Shortcut {
+        sequence: "Escape"
+        onActivated: {
+            if (root.visibility === ApplicationWindow.FullScreen) {
+                root.visibility = root.previousVisibility;
+                mainPage.exitFullScreen();
+            }
+            else if (!mainPage.isWebViewMode)
+                mainPage.showWebView();
+        }
+    }
+
     MainPage {
+        id: mainPage
+
         anchors.fill: parent
         mainWindowWidth: root.width
         onNewViewRequested: {

@@ -38,6 +38,9 @@ StackLayout {
         currentWebView().updateImageFinished.connect(d.onUpdatePreviewImageFinished);
         currentWebView().updateImage();
     }
+    function exitFullScreen() {
+        currentWebView().exitFullScreen();
+    }
 
     currentIndex: _streamingServices.currentIndex
 

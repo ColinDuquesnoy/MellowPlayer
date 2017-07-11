@@ -17,6 +17,14 @@ Page {
     signal openSettingsRequested()
     signal openAboutDialogRequested()
 
+    function showWebView() {
+        body.showWebView();
+    }
+
+    function exitFullScreen() {
+        webViewStack.exitFullScreen();
+    }
+
     header: MainToolBar {
         id: toolBar
 
@@ -24,7 +32,7 @@ Page {
         hasRunningServices: _streamingServices.hasRunningServices
 
         onShowOverviewRequested: webViewStack.updatePreviewImage(body.showOverview)
-        onShowWebViewRequested: body.showWebView()
+        onShowWebViewRequested: root.showWebView()
         onGoBackRequested: webViewStack.goBack()
         onGoHomeRequested: webViewStack.goHome()
         onGoForwardRequested: webViewStack.goForward()
