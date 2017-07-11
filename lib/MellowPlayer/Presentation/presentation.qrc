@@ -33,6 +33,7 @@
         <file>Views/MellowPlayer/MaterialIcons.qml</file>
         <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
         <file>Views/MellowPlayer/Controls/MainToolBar.qml</file>
+        <file>Views/MellowPlayer/Controls/FullScreenNotification.qml</file>
         <file>Views/MellowPlayer/Controls/ListeningHistoryBody.qml</file>
         <file>Views/MellowPlayer/Controls/ListeningHistoryClipboardConfirmation.qml</file>
         <file>Views/MellowPlayer/Controls/ListeningHistoryDrawer.qml</file>

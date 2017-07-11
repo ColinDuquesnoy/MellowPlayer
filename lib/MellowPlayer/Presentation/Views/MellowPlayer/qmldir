@@ -10,6 +10,7 @@ SettingsPage 3.0 Pages/SettingsPage.qml
 
 BrowserDialog 3.0 Controls/BrowserDialog.qml
 CustomUrlPane 3.0 Controls/CustomUrlPane.qml
+FullScreenNotification 3.0 Controls/FullScreenNotification.qml
 Link 3.0 Controls/Link.qml
 ListeningHistoryBody 3.0 Controls/ListeningHistoryBody.qml
 ListeningHistoryClipboardConfirmation 3.0 Controls/ListeningHistoryClipboardConfirmation.qml

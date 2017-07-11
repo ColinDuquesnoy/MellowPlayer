@@ -23,6 +23,7 @@ Page {
 
     function exitFullScreen() {
         webViewStack.exitFullScreen();
+        notif.visible = false;
     }
 
     header: MainToolBar {
@@ -139,10 +140,17 @@ Page {
             onNewViewRequested: root.newViewRequested(request)
             onFullScreenRequested: {
                 toolBar.visible = !request.toggleOn
-                root.fullScreenRequested(request)
+                notif.visible = true;
+                root.fullScreenRequested(request);
             }
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
+        }
+
+        FullScreenNotification {
+            id: notif
+
+            x: parent.width / 2 - width / 2; y: 12
         }
 
         Pane { id: mask; anchors.fill: parent }
