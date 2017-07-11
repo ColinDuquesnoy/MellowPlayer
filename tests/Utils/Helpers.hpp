@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QDebug>
 #include <QVariant>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
@@ -41,6 +42,8 @@ inline bool writeFile(const QString& path, const QString& content) {
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
+
+    qDebug() << "Writing file: " << path;
 
     QTextStream stream(&file);
     stream << content;
