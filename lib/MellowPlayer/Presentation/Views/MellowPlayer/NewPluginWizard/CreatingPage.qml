@@ -34,7 +34,6 @@ WizardPage {
     Connections {
         target: _streamingServices
         onServiceCreated: {
-            console.error("service created")
             root.directory = directory
             root.goNextRequested()
         }
