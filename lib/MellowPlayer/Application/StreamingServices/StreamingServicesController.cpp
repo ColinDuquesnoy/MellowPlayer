@@ -28,7 +28,8 @@ void StreamingServicesController::load() {
         if (!found) {
             LOG_DEBUG(logger, "service added: " + newService->getName());
             services.append(newService);
-            watcher.watch(*newService);
+            if (!newService->getPluginDirectory().startsWith("/usr/"))
+                watcher.watch(*newService);
             emit added(newService.get());
         }
     }
