@@ -14,8 +14,8 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - g++-7
-            - gcc-7
+            - g++-6
+            - gcc-6
 
 branches:
     except:
