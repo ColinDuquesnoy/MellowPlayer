@@ -64,6 +64,9 @@ Frame {
 
             Image {
                 source: model.artUrl
+                antialiasing: true
+                mipmap: true
+                smooth: true
 
                 Layout.preferredHeight: 48
                 Layout.preferredWidth: 48
