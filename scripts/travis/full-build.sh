@@ -13,7 +13,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   # build and run tests
   ./scripts/build/linux/build.sh;
   ./scripts/build/linux/runtests.sh;
-  ./scripts/build/functional-tests.sh;
+  ./scripts/build/linux/functional-tests.sh;
   # create package
   ./scripts/packaging/make_appimage.sh /opt/qt59;
   pip install github3.py
