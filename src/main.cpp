@@ -28,6 +28,7 @@ int main(int argc, char** argv)
     ApplicationViewModel qtApp(argc, argv);
 
     CommandLineParser commandLineParser;
+    qtApp.setAutoQuitDelay(commandLineParser.getAutoQuitDelay());
 
     SpdLoggerFactory loggerFactory;
     LoggingManager::initialize(loggerFactory, commandLineParser.getLogLevel());

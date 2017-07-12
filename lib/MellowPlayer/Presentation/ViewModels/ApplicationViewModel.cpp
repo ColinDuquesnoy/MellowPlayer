@@ -81,3 +81,7 @@ void ApplicationViewModel::requestQuit() {
 void ApplicationViewModel::quit() {
     qtApp.exit(0);
 }
+
+void ApplicationViewModel::setAutoQuitDelay(int delay) {
+    QTimer::singleShot(delay, qtApp.quit);
+}

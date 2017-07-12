@@ -40,7 +40,7 @@ CommandLineParser::CommandLineParser():
     service = parser.value(serviceOption);
     int logLevelValue = parser.value(logLevelOption).toInt();
     if (logLevelValue < 0 || logLevelValue > static_cast<int>(LogLevel::Off))
-        logLevel = LogLevel::Error;
+        logLevel = LogLevel::Info;
     logLevel = static_cast<LogLevel>(logLevelValue);
     autoQuitDelay = parser.value(autoQuitDelayOption).toInt();
 
