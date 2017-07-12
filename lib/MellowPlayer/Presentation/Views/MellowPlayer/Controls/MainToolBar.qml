@@ -352,6 +352,14 @@ ToolBar {
                     onClicked: root.openAboutDialogRequested()
                 }
 
+                MenuIconItem {
+                    id: menuReportIssue
+
+                    icon: MaterialIcons.icon_bug_report
+                    text: "Report issue"
+                    onClicked: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
+                }
+
                 Rectangle {
                     color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
                     height: 1

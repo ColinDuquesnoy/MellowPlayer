@@ -180,6 +180,13 @@ ApplicationWindow {
                 onTriggered: aboutDialog.open()
                 role: Platform.MenuItem.AboutRole
             }
+
+            Platform.MenuItem {
+                text: qsTr("Report issue")
+
+                onTriggered: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
+                role: Platform.MenuItem.ApplicationSpecificRole
+            }
         }
     }
 
