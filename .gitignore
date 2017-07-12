@@ -48,7 +48,8 @@ gpg_key
 *~
 *.user
 coverage
-build/
+/build/
+/docs/build/
 lcov-1\.13/
 
 *.AppImage
