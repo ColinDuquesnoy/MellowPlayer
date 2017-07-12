@@ -16,5 +16,4 @@ fi
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   ./scripts/build/osx/build.sh --release;
   ./scripts/build/osx/runtests.sh --release;
-  ./scripts/build/functional-tests.sh --release;
 fi
