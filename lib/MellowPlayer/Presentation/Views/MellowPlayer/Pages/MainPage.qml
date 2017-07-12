@@ -26,6 +26,22 @@ Page {
         notif.visible = false;
     }
 
+    function goBack() {
+        webViewStack.goBack()
+    }
+
+    function goHome() {
+        webViewStack.goHome()
+    }
+
+    function goForward() {
+        webViewStack.goForward()
+    }
+
+    function reload() {
+        webViewStack.reload()
+    }
+
     header: MainToolBar {
         id: toolBar
 
@@ -34,10 +50,10 @@ Page {
 
         onShowOverviewRequested: webViewStack.updatePreviewImage(body.showOverview)
         onShowWebViewRequested: root.showWebView()
-        onGoBackRequested: webViewStack.goBack()
-        onGoHomeRequested: webViewStack.goHome()
-        onGoForwardRequested: webViewStack.goForward()
-        onReloadRequested: webViewStack.reload()
+        onGoBackRequested: root.goBack()
+        onGoHomeRequested: root.goHome()
+        onGoForwardRequested: root.goForward()
+        onReloadRequested: root.reload()
         onOpenListeningHistoryRequested: root.openListeningHistoryRequested()
         onOpenSettingsRequested: root.openSettingsRequested()
         onOpenAboutDialogRequested: root.openAboutDialogRequested()
@@ -169,3 +185,4 @@ Page {
         }
     }
 }
+

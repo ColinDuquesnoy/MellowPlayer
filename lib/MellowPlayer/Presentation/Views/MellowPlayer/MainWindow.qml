@@ -82,27 +82,104 @@ ApplicationWindow {
         id: menuBar
 
         Platform.Menu {
-            id: fileMenu
-            title: qsTr("File")
-            // ...
+            id: appMenu
+            title: qsTr("Application")
+
+            Platform.MenuItem {
+                text: qsTr("Preferences")
+
+                property var shortcutSetting: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
+                shortcut: shortcutSetting.value
+                onTriggered: settingsDrawer.open()
+                role: Platform.MenuItem.PreferencesRole
+            }
         }
 
         Platform.Menu {
-            id: editMenu
-            title: qsTr("&Edit")
-            // ...
+            id: navigationMenu
+            title: qsTr("Navigation")
+
+            Platform.MenuItem {
+                text: qsTr("Go Home")
+
+                onTriggered: mainPage.goHome()
+            }
+
+            Platform.MenuItem {
+                text: qsTr("Go Back")
+
+                onTriggered: mainPage.goBack()
+            }
+
+            Platform.MenuItem {
+                text: qsTr("Go Forward")
+
+                onTriggered: mainPage.goForward()
+            }
+
+            Platform.MenuSeparator { }
+
+            Platform.MenuItem {
+                text: qsTr("Reload page")
+
+                onTriggered: mainPage.reload()
+            }
         }
 
         Platform.Menu {
-            id: viewMenu
-            title: qsTr("&View")
-            // ...
+            id: playerMenu
+            title: qsTr("Player")
+
+            Platform.MenuItem {
+                text: qsTr("Play/Pause")
+
+                onTriggered: _player.togglePlayPause()
+            }
+
+            Platform.MenuItem {
+                text: qsTr("Next")
+
+                onTriggered: _player.next()
+            }
+
+            Platform.MenuItem {
+                text: qsTr("Previous")
+
+                onTriggered: _player.previous()
+            }
+
+            Platform.MenuSeparator { }
+
+            Platform.MenuItem {
+                text: qsTr("Add to favorites")
+
+                onTriggered: _player.toggleFavoriteSong()
+            }
+        }
+
+        Platform.Menu {
+            id: devMenu
+            title: qsTr("Developer")
+
+            Platform.MenuItem {
+                text: qsTr("Create new plugin")
+
+                onTriggered: wizardNewPlugin.open()
+            }
         }
 
         Platform.Menu {
             id: helpMenu
-            title: qsTr("&Help")
-            // ...
+            title: qsTr("Help")
+
+            Platform.MenuItem {
+                text: qsTr("Preferences")
+
+                property var shortcutSetting: _settings.get(SettingKey.SHORTCUTS_ABOUT)
+                shortcut: shortcutSetting.value
+                onTriggered: aboutDialog.open()
+                role: Platform.MenuItem.AboutRole
+            }
         }
     }
 
@@ -127,6 +204,13 @@ ApplicationWindow {
         onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
         onOpenSettingsRequested: settingsDrawer.open()
         onOpenAboutDialogRequested: aboutDialog.open()
+
+        NewPluginWizard {
+            id: wizardNewPlugin
+
+            height: 540; width: 960
+            x: root.width / 2 - width / 2; y: root.height / 2 - height / 2
+        }
     }
 
     Drawer {
