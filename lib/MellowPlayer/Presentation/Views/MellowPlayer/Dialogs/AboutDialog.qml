@@ -12,8 +12,8 @@ Popup {
 
     padding: 20
     modal: true
-    height: 460
-    width: height
+    height: 480
+    width: Math.max(labelBuildInfo.implicitWidth + 48, height)
 
     onVisibleChanged: if (!visible) btCredits.checked = false
 
@@ -59,8 +59,6 @@ Popup {
                 Label {
                     font.pixelSize: 16
                     text: "Cloud music integration for your desktop"
-
-
 
                     Layout.alignment: Qt.AlignCenter
                 }
@@ -114,6 +112,16 @@ Popup {
 
                 Item {
                     Layout.fillHeight: true
+                }
+
+                Label {
+                    id: labelBuildInfo
+                    font.pixelSize: 10
+                    font.italic: true
+                    text: _app.buildInfo
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.bottomMargin: 12
                 }
             }
 

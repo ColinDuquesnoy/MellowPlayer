@@ -26,6 +26,8 @@ namespace MellowPlayer::Presentation {
         Q_INVOKABLE void requestQuit() override;
         Q_INVOKABLE void quit() override;
 
+        QString getBuildInfo() const override;
+
         void setAutoQuitDelay(int delay);
 
         bool restartRequested() const override { return restartRequested_; }
