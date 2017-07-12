@@ -2,6 +2,7 @@
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
+#include "Mocks/CommnanLineParserMock.hpp"
 #include "DI.hpp"
 
 using namespace MellowPlayer::Application;
@@ -20,7 +21,8 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
     Settings& settings = injector.create<Settings&>();
     FakeWorkDispatcher fakeWorkDispatcher;
     auto creatorMock = StreamingServiceCreatorMock::get();
-    StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get());
+    auto commandLineParserMock = CommnanLineParserMock::get();
+    StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get(), commandLineParserMock.get());
     viewModel.initialize();
     viewModel.reload();
 
@@ -94,5 +96,15 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
         Verify(Method(creatorMock, create));
         Verify(Method(loaderMock, load));
         REQUIRE(spy.count() == 1);
+    }
+
+    SECTION("Initialize with service set by command line") {
+        settings.get(SettingKey::PRIVATE_CURRENT_SERVICE).setValue("");
+        When(Method(commandLineParserMock, getService)).AlwaysReturn("Deezer");
+        StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get(), commandLineParserMock.get());
+        REQUIRE(viewModelWithCmdLine.getCurrentIndex() == -1);
+        viewModelWithCmdLine.initialize();
+        viewModelWithCmdLine.reload();
+        REQUIRE(viewModelWithCmdLine.getCurrentIndex() != -1);
     }
 }

@@ -17,7 +17,7 @@ Comment[fr]=Lecteur de services de musique en ligne
 Actions=PlayPause;Next;Previous;Restore
 
 [Desktop Action PlayPause]
-Exec=MellowPlayer --playpause
+Exec=MellowPlayer --play-pause
 Name=Play/Pause
 Icon=media-playback-start
 
@@ -34,7 +34,7 @@ Name[fr]=Piste précédente
 Icon=media-seek-backward
 
 [Desktop Action Restore]
-Exec=MellowPlayer --restore-window
+Exec=MellowPlayer
 Name=Restore window
 Name[fr]=Restaurer la fenêtre
 Icon=view-restore

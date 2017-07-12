@@ -1,32 +1,39 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
+#include <MellowPlayer/Application/ICommandLineParser.hpp>
+#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
 #include "StreamingServicesControllerViewModel.hpp"
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices,
-                                               Players& players,
-                                               Settings& settings,
-                                               IWorkDispatcher& workDispatcher,
-                                               IStreamingServiceCreator& streamingServiceCreator) :
-        QObject(), streamingServices(streamingServices), players(players),
+StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(
+            StreamingServicesController& streamingServices,
+            Players& players,
+            Settings& settings,
+            IWorkDispatcher& workDispatcher,
+            IStreamingServiceCreator& streamingServiceCreator,
+            ICommandLineParser& commandLineParser) :
+        QObject(),
+        streamingServices(streamingServices),
+        players(players),
         settings(settings),
         currentServiceSetting(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
         workDispatcher(workDispatcher),
         streamingServiceCreator(streamingServiceCreator),
+        commandLineParser(commandLineParser),
         model(new StreamingServiceListModel(this)) {
 
-    connect(&streamingServices, &StreamingServicesController::added, this, &StreamingServicesControllerViewModel::onServiceAdded);
+    connect(&streamingServices, &StreamingServicesController::added, this,
+            &StreamingServicesControllerViewModel::onServiceAdded);
 
     for (auto& service: streamingServices.getAll()) {
         onServiceAdded(service.get());
@@ -35,8 +42,10 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(Strea
 
 void StreamingServicesControllerViewModel::initialize() {
     auto currentServiceName = currentServiceSetting.getValue().toString();
+    if (!commandLineParser.getService().isEmpty())
+        currentServiceName = commandLineParser.getService();
     for (auto service: model->toList()) {
-        if (service->getName() == currentServiceName)
+        if (service->getName().toLower() == currentServiceName.toLower())
             setCurrentService(service);
     }
 }
@@ -84,7 +93,7 @@ void StreamingServicesControllerViewModel::onServiceAdded(StreamingService* stre
 void StreamingServicesControllerViewModel::next() {
     int index = getNextIndex(currentIndex);
 
-    while(index != currentIndex) {
+    while (index != currentIndex) {
         auto* sv = model->at(index);
         if (sv->isRunning()) {
             setCurrentIndex(index);
@@ -97,7 +106,7 @@ void StreamingServicesControllerViewModel::next() {
 void StreamingServicesControllerViewModel::previous() {
     int index = getPreviousIndex(currentIndex);
 
-    while(index != currentIndex) {
+    while (index != currentIndex) {
         auto* sv = model->at(index);
         if (sv->isRunning()) {
             setCurrentIndex(index);
@@ -107,9 +116,8 @@ void StreamingServicesControllerViewModel::previous() {
     }
 }
 
-void StreamingServicesControllerViewModel::createService(const QString &serviceName, const QString &serviceUrl,
-                                               const QString &authorName, const QString &authorWebsite)
-{
+void StreamingServicesControllerViewModel::createService(const QString& serviceName, const QString& serviceUrl,
+                                                         const QString& authorName, const QString& authorWebsite) {
     workDispatcher.invoke([=]() {
         QString pluginDir = streamingServiceCreator.create(serviceName, serviceUrl, authorName, authorWebsite);
         emit serviceCreated(pluginDir);
@@ -138,7 +146,7 @@ bool StreamingServicesControllerViewModel::getHasRunningServices() const {
 void StreamingServicesControllerViewModel::onPlayerRunningChanged() {
     bool hadRunningServices = hasRunningServices;
     hasRunningServices = false;
-    for(int i = 0; i < model->count(); ++i)  {
+    for (int i = 0; i < model->count(); ++i) {
         if (model->at(i)->isRunning()) {
             hasRunningServices = true;
             break;

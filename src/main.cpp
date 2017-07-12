@@ -7,6 +7,7 @@
 #include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineParser.hpp>
 #include "DI.hpp"
 
 namespace di = boost::di;
@@ -26,14 +27,16 @@ int main(int argc, char** argv)
 
     ApplicationViewModel qtApp(argc, argv);
 
+    CommandLineParser commandLineParser;
+
     SpdLoggerFactory loggerFactory;
     LoggingManager::initialize(loggerFactory, LogLevel::Debug);
     ScopedScope scope{};
-
     LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
 
     auto injector = di::make_injector(
         di::bind<IQtApplication>().to(qtApp),
+        di::bind<ICommandLineParser>().to(commandLineParser),
         defaultInjector(scope),
         platformInjector(scope),
         notificationPresenterInjector(scope)

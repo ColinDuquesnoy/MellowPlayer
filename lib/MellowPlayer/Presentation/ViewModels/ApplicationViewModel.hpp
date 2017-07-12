@@ -5,7 +5,7 @@
 #include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
 #include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp"
 
-#define MELLOWPLAYER_APP_NAME "MellowPlayer3"
+#define MELLOWPLAYER_APP_NAME "MellowPlayer"
 
 namespace MellowPlayer::Application {
 

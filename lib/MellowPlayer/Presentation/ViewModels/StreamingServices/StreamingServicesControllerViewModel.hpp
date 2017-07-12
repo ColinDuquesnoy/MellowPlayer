@@ -3,6 +3,7 @@
 #include <QObject>
 #include <MellowPlayer/Presentation/Models/StreamingServiceListModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServiceViewModel.hpp>
+#include <MellowPlayer/Application/ICommandLineParser.hpp>
 
 class QQmlApplicationEngine;
 namespace MellowPlayer::Application {
@@ -14,6 +15,7 @@ namespace MellowPlayer::Application {
     class StreamingService;
     class IWorkDispatcher;
     class IStreamingServiceCreator;
+    class ICommandLineParser;
 
 }
 
@@ -30,7 +32,8 @@ namespace MellowPlayer::Presentation {
                                              Application::Players& players,
                                              Application::Settings& settings,
                                              Application::IWorkDispatcher& workDispatcher,
-                                             Application::IStreamingServiceCreator& streamingServiceCreator);
+                                             Application::IStreamingServiceCreator& streamingServiceCreator,
+                                             Application::ICommandLineParser& commandLineParser);
         void initialize();
 
         Q_INVOKABLE void reload();
@@ -67,6 +70,7 @@ namespace MellowPlayer::Presentation {
         Application::Setting& currentServiceSetting;
         Application::IWorkDispatcher& workDispatcher;
         Application::IStreamingServiceCreator& streamingServiceCreator;
+        Application::ICommandLineParser& commandLineParser;
         StreamingServiceListModel* model;
         StreamingServiceViewModel* currentService = nullptr;
         int currentIndex = -1;
