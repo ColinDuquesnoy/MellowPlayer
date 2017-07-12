@@ -31,6 +31,8 @@ namespace MellowPlayer::Presentation {
         bool restartRequested() const override { return restartRequested_; }
 
     private:
+        void onAboutToQuit();
+
         QApplication qtApp;
         bool restartRequested_ = false;
     };

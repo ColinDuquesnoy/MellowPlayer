@@ -46,6 +46,8 @@ ApplicationViewModel::ApplicationViewModel(int &argc, char **argv, const QString
     qRegisterMetaType<Player*>("Player*");
     qRegisterMetaType<SettingViewModel*>("Presentation::SettingViewModel*");
     qRegisterMetaType<SettingViewModel*>("SettingViewModel*");
+
+    connect(&qtApp, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
 }
 
 int ApplicationViewModel::run() {
@@ -85,4 +87,8 @@ void ApplicationViewModel::quit() {
 void ApplicationViewModel::setAutoQuitDelay(int delay) {
     if (delay > 0)
         QTimer::singleShot(delay, qtApp.quit);
+}
+
+void ApplicationViewModel::onAboutToQuit() {
+    clearCache();
 }
