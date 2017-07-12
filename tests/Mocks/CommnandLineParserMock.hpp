@@ -7,7 +7,7 @@
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class CommnanLineParserMock {
+class CommandLineParserMock {
 public:
     static Mock<ICommandLineParser> get() {
         Mock<ICommandLineParser> mock;

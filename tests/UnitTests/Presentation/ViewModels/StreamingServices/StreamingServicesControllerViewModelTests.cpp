@@ -2,7 +2,7 @@
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include "Mocks/StreamingServiceLoaderMock.hpp"
-#include "Mocks/CommnanLineParserMock.hpp"
+#include "Mocks/CommnandLineParserMock.hpp"
 #include "DI.hpp"
 
 using namespace MellowPlayer::Application;
@@ -21,7 +21,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
     Settings& settings = injector.create<Settings&>();
     FakeWorkDispatcher fakeWorkDispatcher;
     auto creatorMock = StreamingServiceCreatorMock::get();
-    auto commandLineParserMock = CommnanLineParserMock::get();
+    auto commandLineParserMock = CommandLineParserMock::get();
     StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get(), commandLineParserMock.get());
     viewModel.initialize();
     viewModel.reload();
