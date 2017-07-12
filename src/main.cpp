@@ -22,6 +22,7 @@ int main(int argc, char** argv)
     // Init resources embedded in static libraries
     Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
+    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
