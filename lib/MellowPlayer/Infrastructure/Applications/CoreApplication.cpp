@@ -30,7 +30,6 @@ CoreApplication::CoreApplication(IQtApplication& qtApp,
 
 void CoreApplication::initialize() {
     LOG_TRACE(logger, "initialize");
-    LOG_INFO(logger, "MellowPlayer " + string(MELLOWPLAYER_VERSION))
     streamingServices.load();
     mainWindow.load();
     kotkeys.start();

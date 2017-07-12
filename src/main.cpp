@@ -35,6 +35,7 @@ int main(int argc, char** argv)
     LoggingManager::initialize(loggerFactory, commandLineParser.getLogLevel());
     ScopedScope scope{};
     LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
+    LOG_INFO(LoggingManager::instance().getLogger("main"), QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.getBuildInfo()));
 
     auto injector = di::make_injector(
         di::bind<IQtApplication>().to(qtApp),
