@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     CommandLineParser commandLineParser;
 
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, LogLevel::Debug);
+    LoggingManager::initialize(loggerFactory, commandLineParser.getLogLevel());
     ScopedScope scope{};
     LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
 
