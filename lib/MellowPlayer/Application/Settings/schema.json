@@ -145,31 +145,38 @@
 			"settings": [
 				{
 					"name": "Play / Pause",
-                    "tooltip": "Sets the shortcut for playing or pausing the player.",
+                    "tooltip": "Global hotkey that plays or pauses the current player.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+P",
 					"key": "play"
 				},
 				{
 					"name": "Next",
-                    "tooltip": "Sets the shortcut for skipping to the next song.",
+					"tooltip": "Global hotkey that skips to the next song.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+F",
 					"key": "next"
 				},
 				{
 					"name": "Previous",
-                    "tooltip": "Sets the shortcut for skipping to the previous song.",
+					"tooltip": "Global hotkey that skips to the previous song.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+B",
 					"key": "previous"
 				},
 				{
 					"name": "Add to favorites",
-					"tooltip": "Adds current song to favorites.",
+					"tooltip": "Global hotkey that adds or removes the current song to or from your favorites.",
 					"type": "shortcut",
 					"default": "Ctrl+Alt+R",
 					"key": "favorite"
+				},
+				{
+					"name": "Restore window",
+					"tooltip": "Global hotkey that restore the main window.",
+					"type": "shortcut",
+					"default": "Ctrl+Alt+W",
+					"key": "restore-window"
 				},
 				{
 					"name": "Reload page",

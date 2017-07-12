@@ -12,6 +12,7 @@ namespace MellowPlayer::Application {
         virtual void next() = 0;
         virtual void previous() = 0;
         virtual void toggleFavoriteSong() = 0;
+        virtual void restoreWindow() = 0;
     };
 
 }

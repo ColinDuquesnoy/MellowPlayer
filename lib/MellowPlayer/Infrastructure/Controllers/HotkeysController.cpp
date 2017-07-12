@@ -3,23 +3,27 @@
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include "HotkeysController.hpp"
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-HotkeysController::HotkeysController(IPlayer& player, Settings& settings) :
+HotkeysController::HotkeysController(IPlayer& player, Settings& settings, IMainWindow& application) :
         QObject(nullptr),
         logger(LoggingManager::instance().getLogger("Hotkeys")),
         player(player),
+        mainWindow(application),
         playShortcutSetting(settings.get(SettingKey::SHORTCUTS_PLAY)),
         nextShortcutSetting(settings.get(SettingKey::SHORTCUTS_NEXT)),
         previousShortcutSetting(settings.get(SettingKey::SHORTCUTS_PREVIOUS)),
-        favoriteShortcutSetting(settings.get(SettingKey::SHORTCUTS_FAVORITE)) {
+        favoriteShortcutSetting(settings.get(SettingKey::SHORTCUTS_FAVORITE)),
+        restoreWindowShortcutSetting(settings.get(SettingKey::SHORTCUTS_RESTORE_WINDOW)) {
     connect(&playShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updatePlayShortcut);
     connect(&nextShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateNextShortcut);
     connect(&previousShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updatePreviousShorcut);
     connect(&favoriteShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateFavoriteShortcut);
+    connect(&restoreWindowShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateRestoreWindowShortcut);
 }
 
 void HotkeysController::togglePlayPause() {
@@ -60,6 +64,10 @@ void HotkeysController::start() {
     updateFavoriteShortcut();
     connect(favoriteShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::toggleFavoriteSong);
 
+    restoreWindowShortcut = new QxtGlobalShortcut(this);
+    updateRestoreWindowShortcut();
+    connect(restoreWindowShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::restoreWindow);
+
 #ifdef Q_OS_WIN
     auto mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPlay));
@@ -91,4 +99,12 @@ void HotkeysController::updatePreviousShorcut() const {
 
 void HotkeysController::updateFavoriteShortcut() const {
     favoriteShortcut->setShortcut(QKeySequence(favoriteShortcutSetting.getValue().toString()));
+}
+
+void HotkeysController::restoreWindow() {
+    mainWindow.show();
+}
+
+void HotkeysController::updateRestoreWindowShortcut() const {
+    restoreWindowShortcut->setShortcut(QKeySequence(restoreWindowShortcutSetting.getValue().toString()));
 }

@@ -38,6 +38,7 @@ namespace MellowPlayer::Application {
             SHORTCUTS_PREVIOUS,
             SHORTCUTS_QUIT,
             SHORTCUTS_RELOAD,
+            SHORTCUTS_RESTORE_WINDOW,
             SHORTCUTS_SELECT_NEXT_SERVICE,
             SHORTCUTS_SELECT_PREVIOUS_SERVICE,
             SHORTCUTS_SELECT_SERVICE,
@@ -78,6 +79,7 @@ namespace MellowPlayer::Application {
             enumToString << "shortcuts/previous";
             enumToString << "shortcuts/quit";
             enumToString << "shortcuts/reload";
+            enumToString << "shortcuts/restore-window";
             enumToString << "shortcuts/select-next-service";
             enumToString << "shortcuts/select-previous-service";
             enumToString << "shortcuts/select-service";

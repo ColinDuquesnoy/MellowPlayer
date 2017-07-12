@@ -2,6 +2,7 @@
 #include <fakeit.hpp>
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <Mocks/PlayerMock.hpp>
+#include <Mocks/MainWindowMock.hpp>
 #include "DI.hpp"
 
 using namespace MellowPlayer::Application;
@@ -10,10 +11,12 @@ using namespace fakeit;
 
 TEST_CASE("HotkeysServiceTests", "[UnitTest]") {
     auto playerMock = PlayerMock::get();
+    auto mainWindowMock = MainWindowMock::get();
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    HotkeysController hotkeys(playerMock.get(), settings);
+
+    HotkeysController hotkeys(playerMock.get(), settings, mainWindowMock.get());
     hotkeys.start();
 
     SECTION("togglePlayPause") {
@@ -34,5 +37,10 @@ TEST_CASE("HotkeysServiceTests", "[UnitTest]") {
     SECTION("toggleFavoriteSong") {
         hotkeys.toggleFavoriteSong();
         Verify(Method(playerMock, toggleFavoriteSong)).Exactly(1);
+    }
+
+    SECTION("toggleFavoriteSong") {
+        hotkeys.restoreWindow();
+        Verify(Method(mainWindowMock, show)).Exactly(1);
     }
 }
