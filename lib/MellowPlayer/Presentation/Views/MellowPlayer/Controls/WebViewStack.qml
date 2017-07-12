@@ -7,7 +7,7 @@ import MellowPlayer 3.0
 StackLayout {
     id: root
 
-    signal newViewRequested(var request)
+    signal newViewRequested(var request, var profile)
     signal fullScreenRequested(var request)
 
     function currentWebView() {
@@ -74,7 +74,7 @@ StackLayout {
                 start()
             }
             onFullScreenRequested: root.fullScreenRequested(request);
-            onNewViewRequested: root.newViewRequested()
+            onNewViewRequested: root.newViewRequested(request, webView.profile)
         }
     }
 

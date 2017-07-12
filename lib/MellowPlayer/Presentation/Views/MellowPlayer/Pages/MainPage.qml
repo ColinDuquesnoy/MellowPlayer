@@ -11,7 +11,7 @@ Page {
     id: root
 
     property int mainWindowWidth
-    signal newViewRequested(var request)
+    signal newViewRequested(var request, var profile)
     signal fullScreenRequested(var request)
     signal openListeningHistoryRequested()
     signal openSettingsRequested()
@@ -137,7 +137,7 @@ Page {
             id: webViewStack
 
             anchors.fill: parent
-            onNewViewRequested: root.newViewRequested(request)
+            onNewViewRequested: root.newViewRequested(request, profile)
             onFullScreenRequested: {
                 toolBar.visible = !request.toggleOn
                 notif.visible = true;

@@ -2,7 +2,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
-import QtWebEngine 1.5
+import Qt.labs.platform 1.0 as Platform
 
 import MellowPlayer 3.0
 
@@ -78,6 +78,34 @@ ApplicationWindow {
         }
     }
 
+    Platform.MenuBar {
+        id: menuBar
+
+        Platform.Menu {
+            id: fileMenu
+            title: qsTr("File")
+            // ...
+        }
+
+        Platform.Menu {
+            id: editMenu
+            title: qsTr("&Edit")
+            // ...
+        }
+
+        Platform.Menu {
+            id: viewMenu
+            title: qsTr("&View")
+            // ...
+        }
+
+        Platform.Menu {
+            id: helpMenu
+            title: qsTr("&Help")
+            // ...
+        }
+    }
+
     MainPage {
         id: mainPage
 
@@ -85,7 +113,7 @@ ApplicationWindow {
         mainWindowWidth: root.width
         onNewViewRequested: {
             if (request.userInitiated) {
-                var dialog = applicationRoot.createDialog(root.profile);
+                var dialog = applicationRoot.createDialog(profile);
                 request.openIn(dialog.currentWebView);
             }
         }
