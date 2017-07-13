@@ -35,60 +35,67 @@
 			"key": "appearance",
 			"settings": [
 				{
-					"name": "Adaptive theme",
-                    "tooltip": "Application theme follow the current streaming service theme",
-					"type": "bool",
-					"default": true,
-					"key": "adaptive-theme"
+					"name": "Theme",
+                    "tooltip": "Application theme",
+					"type": "style",
+					"default": "Adaptive",
+					"key": "theme"
 				},
 				{
                     "name": "Accent",
                     "tooltip": "Change material accent color",
 					"type": "color",
 					"default": "#ffc107",
-                    "key": "accent"
+                    "key": "accent",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Background",
                     "tooltip": "Change material background color",
 					"type": "color",
 					"default": "#ffffff",
-                    "key": "background"
+                    "key": "background",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Foreground",
                     "tooltip": "Change material foreground color",
 					"type": "color",
 					"default": "#505050",
-                    "key": "foreground"
+                    "key": "foreground",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Primary Background",
                     "tooltip": "Change material primary background color",
 					"type": "color",
 					"default": "#5f81d4",
-                    "key": "primary-background"
+                    "key": "primary-background",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Primary Foreground",
                     "tooltip": "Change material primary foreground color",
 					"type": "color",
 					"default": "#ffffff",
-                    "key": "primary-foreground"
+                    "key": "primary-foreground",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Secondary Background",
                     "tooltip": "Change material secondary background color",
 					"type": "color",
 					"default": "#5f81d4",
-                    "key": "secondary-background"
+                    "key": "secondary-background",
+					"enabled": "appearance/theme == Custom"
 				},
 				{
                     "name": "Secondary Foreground",
                     "tooltip": "Change material secondary foreground color",
 				    "type": "color",
 					"default": "#ffffff",
-                    "key": "secondary-foreground"
+                    "key": "secondary-foreground",
+					"enabled": "appearance/theme == Custom"
 				}
 			]
 		},

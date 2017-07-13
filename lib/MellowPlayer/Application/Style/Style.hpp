@@ -4,7 +4,7 @@
 
 namespace MellowPlayer::Application {
 
-    struct StreamingServiceStyle {
+    struct Style {
         QString accent;
         QString background;
         QString foreground;

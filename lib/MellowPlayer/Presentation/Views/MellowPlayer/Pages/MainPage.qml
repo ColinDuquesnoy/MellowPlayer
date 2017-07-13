@@ -96,11 +96,6 @@ Page {
                     visible: true
                     enabled: true
                 }
-
-                PropertyChanges {
-                    target: _style
-                    useServiceStyle: true
-                }
             },
             State {
                 name: "webview"
@@ -124,7 +119,6 @@ Page {
 
                 PropertyChanges {
                     target: _style
-                    useServiceStyle: true
                 }
             },
             State {

@@ -2,88 +2,91 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Style/IStyleLoader.hpp>
 #include "StyleViewModel.hpp"
+
+#include <QDebug>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StyleViewModel::StyleViewModel(StreamingServicesController& streamingServices, Settings& settings) :
+StyleViewModel::StyleViewModel(StreamingServicesController& streamingServices, Settings& settings,
+                               IStyleLoader& styleLoader) :
         useServiceStyle(true),
         streamingServices(streamingServices),
+        styleLoader(styleLoader),
         accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
-        adaptiveThemeSetting(settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME)),
+        themeSetting(settings.get(SettingKey::APPEARANCE_THEME)),
         backgroundSetting(settings.get(SettingKey::APPEARANCE_BACKGROUND)),
         foregroundSetting(settings.get(SettingKey::APPEARANCE_FOREGROUND)),
         primaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_BACKGROUND)),
         primaryForegroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_FOREGROUND)),
         secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
         secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
-        style(getDefaultStyle()) {
+        currentStyle(getCustomStyle()) {
     connect(&streamingServices, &StreamingServicesController::currentChanged, this,
             &StyleViewModel::onCurrentServiceChanged);
     connect(&accentColorSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
-    connect(&adaptiveThemeSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
+    connect(&themeSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&backgroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&foregroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&primaryBackgroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&primaryForegroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&secondaryBackgroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
     connect(&secondaryForegroundSetting, &Setting::valueChanged, this, &StyleViewModel::updateStyle);
+    connect(&streamingServices, &StreamingServicesController::added, this,
+            &StyleViewModel::onServiceAdded);
+
+    collectStyles();
 }
 
 QString StyleViewModel::getTheme() const {
-    return isDark(style.background) ? "dark" : "light";
+    return isDark(currentStyle.background) ? "dark" : "light";
 }
 
 QString StyleViewModel::getAccent() const {
-    return style.accent;
+    return currentStyle.accent;
 }
 
 QString StyleViewModel::getBackground() const {
-    return style.background;
+    return currentStyle.background;
 }
 
 QString StyleViewModel::getForeground() const {
-    return style.foreground;
+    return currentStyle.foreground;
 }
 
 QString StyleViewModel::getPrimary() const {
-    return style.primary;
+    return currentStyle.primary;
 }
 
 QString StyleViewModel::getPrimaryForeground() const {
-    return style.primaryForeground;
+    return currentStyle.primaryForeground;
 }
 
 QString StyleViewModel::getSecondary() const {
-    return style.secondary;
+    return currentStyle.secondary;
 }
 
 QString StyleViewModel::getSecondaryForeground() const {
-    return style.secondaryForeground;
-}
-
-bool StyleViewModel::getUseServiceStyle() const {
-    return useServiceStyle;
-}
-
-void StyleViewModel::setUseServiceStyle(bool value) {
-    if (value == useServiceStyle)
-        return;
-
-    useServiceStyle = value;
-    emit useServiceStyleChanged();
-    updateStyle();
+    return currentStyle.secondaryForeground;
 }
 
 void StyleViewModel::updateStyle() {
     StreamingService* currentService = streamingServices.getCurrent();
-    if (useServiceStyle && currentService != nullptr && adaptiveThemeSetting.getValue().toBool() &&
-            !currentService->getStyle().isEmpty())
-        fromStyle(currentService->getStyle());
+    if (useServiceStyle && currentService != nullptr && isAdaptiveTheme() &&
+        !currentService->getStyle().isEmpty()) {
+        Style style = currentService->getStyle();
+        availableStyles["Adaptive"] = style;
+        fromStyle(style);
+    }
     else
-        fromStyle(getDefaultStyle());
+        fromStyle(availableStyles[themeSetting.getValue().toString()]);
+}
+
+bool StyleViewModel::isAdaptiveTheme() const {
+    return themeSetting.getValue().toString() ==  "Adaptive";
 }
 
 void StyleViewModel::onCurrentServiceChanged(StreamingService* streamingService) {
@@ -94,63 +97,63 @@ void StyleViewModel::onCurrentServiceChanged(StreamingService* streamingService)
 }
 
 void StyleViewModel::setAccent(const QString& value) {
-    if (value == style.accent)
+    if (value == currentStyle.accent)
         return;
 
-    style.accent = value;
+    currentStyle.accent = value;
     emit accentChanged();
 }
 
 void StyleViewModel::setBackground(const QString& value) {
-    if (value == style.background)
+    if (value == currentStyle.background)
         return;
 
-    style.background = value;
+    currentStyle.background = value;
     emit backgroundChanged();
     emit themeChanged();
 }
 
 void StyleViewModel::setForeground(const QString& value) {
-    if (value == style.foreground)
+    if (value == currentStyle.foreground)
         return;
 
-    style.foreground = value;
+    currentStyle.foreground = value;
     emit foregroundChanged();
 }
 
 void StyleViewModel::setPrimary(const QString& value) {
-    if (value == style.primary)
+    if (value == currentStyle.primary)
         return;
 
-    style.primary = value;
+    currentStyle.primary = value;
     emit primaryChanged();
 }
 
 void StyleViewModel::setPrimaryForeground(const QString& value) {
-    if (value == style.primaryForeground)
+    if (value == currentStyle.primaryForeground)
         return;
 
-    style.primaryForeground = value;
+    currentStyle.primaryForeground = value;
     emit primaryForegroundChanged();
 }
 
 void StyleViewModel::setSecondary(const QString& value) {
-    if (value == style.secondary)
+    if (value == currentStyle.secondary)
         return;
 
-    style.secondary = value;
+    currentStyle.secondary = value;
     emit secondaryChanged();
 }
 
 void StyleViewModel::setSecondaryForeground(const QString& value) {
-    if (value == style.secondaryForeground)
+    if (value == currentStyle.secondaryForeground)
         return;
 
-    style.secondaryForeground = value;
+    currentStyle.secondaryForeground = value;
     emit secondaryForegroundChanged();
 }
 
-void StyleViewModel::fromStyle(const StreamingServiceStyle& newStyle) {
+void StyleViewModel::fromStyle(const Style& newStyle) {
     setAccent(newStyle.accent);
     setBackground(newStyle.background);
     setForeground(newStyle.foreground);
@@ -170,8 +173,8 @@ bool StyleViewModel::isDark(const QString &color) const {
     return QColor(color).lightness() < 164;
 }
 
-StreamingServiceStyle StyleViewModel::getDefaultStyle() {
-    return StreamingServiceStyle {
+Style StyleViewModel::getCustomStyle() {
+    return Style {
             accentColorSetting.getValue().toString(),
             backgroundSetting.getValue().toString(),
             foregroundSetting.getValue().toString(),
@@ -180,4 +183,23 @@ StreamingServiceStyle StyleViewModel::getDefaultStyle() {
             secondaryBackgroundSetting.getValue().toString(),
             secondaryForegroundSetting.getValue().toString()
     };
+}
+
+void StyleViewModel::collectStyles() {
+    availableStyles["Default"] = styleLoader.load(":/MellowPlayer/Application/Style/DefaultStyle.json");
+    availableStyles["Custom"] = getCustomStyle();
+    for(auto service: streamingServices.getAll()) {
+        availableStyles[service->getName()] = service->getStyle();
+    }
+    availableStyles["Adaptive"] = currentStyle;
+    emit availableStylesChanged();
+}
+
+void StyleViewModel::onServiceAdded(StreamingService *service) {
+    availableStyles[service->getName()] = service->getStyle();
+    emit availableStylesChanged();
+}
+
+QStringList StyleViewModel::getAvailableStyles() const {
+    return availableStyles.keys();
 }

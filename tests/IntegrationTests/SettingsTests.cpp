@@ -34,8 +34,8 @@ TEST_CASE("SettingsTests") {
         SECTION("restoreDefaults") {
             Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
             setting1.setValue(!setting1.getDefaultValue().toBool());
-            Setting& setting2 = settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME);
-            setting2.setValue(!setting1.getDefaultValue().toBool());
+            Setting& setting2 = settings.get(SettingKey::APPEARANCE_THEME);
+            setting2.setValue("Other");
             REQUIRE(setting1.getValue() != setting1.getDefaultValue());
             REQUIRE(setting2.getValue() != setting2.getDefaultValue());
 
@@ -63,8 +63,8 @@ TEST_CASE("SettingsTests") {
             setting1.setValue(!setting1.getDefaultValue().toBool());
             Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
             setting2.setValue(!setting1.getDefaultValue().toBool());
-            Setting& fromOtherCategory = settings.get(SettingKey::APPEARANCE_ADAPTIVE_THEME);
-            fromOtherCategory.setValue(!setting1.getDefaultValue().toBool());
+            Setting& fromOtherCategory = settings.get(SettingKey::APPEARANCE_THEME);
+            fromOtherCategory.setValue("Other");
             REQUIRE(setting1.getValue() != setting1.getDefaultValue());
             REQUIRE(setting2.getValue() != setting2.getDefaultValue());
             REQUIRE(fromOtherCategory.getValue() != fromOtherCategory.getDefaultValue());
@@ -113,15 +113,29 @@ TEST_CASE("SettingsTests") {
         }
 
         SECTION("isEnabled setting enabled if enableCondition is true") {
-            Setting& notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
-            Setting& playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
-            QSignalSpy spy(&playNotificationEnabled, SIGNAL(isEnabledChanged()));
-            REQUIRE(notificationsEnabled.getValue().toBool());
-            REQUIRE(playNotificationEnabled.isEnabled());
+            SECTION("bool condition") {
+                Setting &notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+                Setting &playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+                QSignalSpy spy(&playNotificationEnabled, SIGNAL(isEnabledChanged()));
+                REQUIRE(notificationsEnabled.getValue().toBool());
+                REQUIRE(playNotificationEnabled.isEnabled());
 
-            notificationsEnabled.setValue(false);
-            REQUIRE(spy.count() == 1);
-            REQUIRE(!playNotificationEnabled.isEnabled());
+                notificationsEnabled.setValue(false);
+                REQUIRE(spy.count() == 1);
+                REQUIRE(!playNotificationEnabled.isEnabled());
+            }
+
+            SECTION("string comparison condition") {
+                Setting &theme = settings.get(SettingKey::APPEARANCE_THEME);
+                Setting &accent = settings.get(SettingKey::APPEARANCE_ACCENT);
+                QSignalSpy spy(&accent, SIGNAL(isEnabledChanged()));
+                REQUIRE(theme.getValue().toString() == "Adaptive");
+                REQUIRE(!accent.isEnabled());
+
+                theme.setValue("Custom");
+                REQUIRE(spy.count() == 1);
+                REQUIRE(accent.isEnabled());
+            }
         }
     }
 }

@@ -9,13 +9,13 @@ namespace MellowPlayer::Application {
     public:
         enum Keys {
             APPEARANCE_ACCENT,
-            APPEARANCE_ADAPTIVE_THEME,
             APPEARANCE_BACKGROUND,
             APPEARANCE_FOREGROUND,
             APPEARANCE_PRIMARY_BACKGROUND,
             APPEARANCE_PRIMARY_FOREGROUND,
             APPEARANCE_SECONDARY_BACKGROUND,
             APPEARANCE_SECONDARY_FOREGROUND,
+            APPEARANCE_THEME,
             MAIN_CLOSE_TO_TRAY,
             MAIN_CONFIRM_EXIT,
             MAIN_SHOW_TRAY_ICON,
@@ -50,13 +50,13 @@ namespace MellowPlayer::Application {
             QStringList enumToString;
 
             enumToString << "appearance/accent";
-            enumToString << "appearance/adaptive-theme";
             enumToString << "appearance/background";
             enumToString << "appearance/foreground";
             enumToString << "appearance/primary-background";
             enumToString << "appearance/primary-foreground";
             enumToString << "appearance/secondary-background";
             enumToString << "appearance/secondary-foreground";
+            enumToString << "appearance/theme";
             enumToString << "main/close-to-tray";
             enumToString << "main/confirm-exit";
             enumToString << "main/show-tray-icon";

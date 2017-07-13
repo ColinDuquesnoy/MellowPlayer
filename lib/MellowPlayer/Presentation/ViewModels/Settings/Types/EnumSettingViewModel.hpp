@@ -13,7 +13,7 @@ public:
     EnumSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
 
     QString getValue() const;
-    QStringList getValues() const;
+    virtual QStringList getValues() const;
     QString getQmlComponent() override;
 
 signals:

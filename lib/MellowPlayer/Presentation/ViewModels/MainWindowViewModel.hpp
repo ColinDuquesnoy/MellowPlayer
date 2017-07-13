@@ -27,7 +27,7 @@ namespace MellowPlayer::Presentation {
     public:
         MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                             ListeningHistoryViewModel& listeningHistoryModel,
-                            StyleViewModel& serviceStyleModel,
+                            StyleViewModel& styleViewModel,
                             Application::IQtApplication& qtApp,
                             Application::IPlayer& player,
                             Application::Settings& settings);
@@ -50,7 +50,7 @@ namespace MellowPlayer::Presentation {
         ListeningHistoryViewModel& listeningHistory;
         QQmlApplicationEngine qmlApplicationEngine;
         ClipBoardViewModel clipBoardModel;
-        SettingsViewModel settingsModel;
+        SettingsViewModel settingsViewModel;
     };
 
 }

@@ -4,12 +4,16 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 
-SettingsCategoryViewModel::SettingsCategoryViewModel(SettingsCategory* settingsCategory, QObject* parent) :
-        QObject(parent), settingsCategory(settingsCategory),
-        settingsListModel(new SettingListModel(this, "name")) {
+SettingsCategoryViewModel::SettingsCategoryViewModel(StyleViewModel& styleViewModel,
+                                                     SettingsCategory* settingsCategory,
+                                                     QObject* parent) :
+        QObject(parent),
+        settingsCategory(settingsCategory),
+        settingsListModel(new SettingListModel(this, "name")),
+        settingViewModelFactory(styleViewModel) {
     if (settingsCategory != nullptr)
         for(Setting* setting: settingsCategory->getSettings())
-            settingsListModel->append(settingModelFactory.create(*setting, this));
+            settingsListModel->append(settingViewModelFactory.create(*setting, this));
 }
 
 QString SettingsCategoryViewModel::getName() const {
@@ -32,9 +36,10 @@ void SettingsCategoryViewModel::restoreDefaults() {
     settingsCategory->restoreDefaults();
 }
 
-CustomSettingsCategoryViewModel::CustomSettingsCategoryViewModel(const QString& name, const QString& icon,
-                                                         const QString& qmlComponent, QObject* parent):
-    SettingsCategoryViewModel(nullptr, parent), name(name), icon(icon), qmlComponent(qmlComponent) {
+CustomSettingsCategoryViewModel::CustomSettingsCategoryViewModel(
+        const QString& name, const QString& icon, const QString& qmlComponent,
+        StyleViewModel& styleViewModel, QObject* parent):
+    SettingsCategoryViewModel(styleViewModel, nullptr, parent), name(name), icon(icon), qmlComponent(qmlComponent) {
 
 }
 

@@ -7,7 +7,7 @@
 using namespace MellowPlayer::Application;
 using namespace std;
 
-StreamingService::StreamingService(const StreamingServiceMetadata& metadata,  const StreamingServiceStyle& style):
+StreamingService::StreamingService(const StreamingServiceMetadata& metadata,  const Style& style):
     metadata(metadata), style(style), script(make_unique<StreamingServiceScript>(metadata.script, metadata.scriptPath)) {
 }
 
@@ -51,7 +51,7 @@ StreamingServiceScript* StreamingService::getScript() const {
     return script.get();
 }
 
-const StreamingServiceStyle& StreamingService::getStyle() const {
+const Style& StreamingService::getStyle() const {
     return style;
 }
 
@@ -63,7 +63,7 @@ bool StreamingService::operator!=(const StreamingService& rhs) const {
     return !operator==(rhs);
 }
 
-void StreamingService::updateStyle(StreamingServiceStyle& newStyle) {
+void StreamingService::updateStyle(Style& newStyle) {
     style = newStyle;
     emit styleChanged();
 }

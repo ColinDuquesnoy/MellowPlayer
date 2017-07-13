@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "DI.hpp"
-#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
@@ -8,7 +9,8 @@ TEST_CASE("SettingsCategoryViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    SettingsCategoryViewModel model(&settings.getCategory("main"), nullptr);
+    StyleViewModel& styleViewModel = injector.create<StyleViewModel&>();
+    SettingsCategoryViewModel model(styleViewModel, &settings.getCategory("main"));
 
     REQUIRE(model.getName().toStdString() == "General");
     REQUIRE(!model.getIcon().isEmpty());
@@ -20,7 +22,8 @@ TEST_CASE("CustomSettingsCategoryViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", nullptr);
+    StyleViewModel& styleViewModel = injector.create<StyleViewModel&>();
+    CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", styleViewModel);
 
     REQUIRE(model.getName() == "CategoryName");
     REQUIRE(model.getIcon() == "CategoryIcon");

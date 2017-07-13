@@ -43,6 +43,7 @@
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Infrastructure/Style/StyleLoader.hpp>
 
 #ifdef USE_LIBNOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
@@ -113,7 +114,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
         di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
-        di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope)
+        di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
+        di::bind<IStyleLoader>().to<StyleLoader>().in(scope)
     );
 };
 

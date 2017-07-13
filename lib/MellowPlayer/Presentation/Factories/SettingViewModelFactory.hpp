@@ -10,9 +10,15 @@ namespace MellowPlayer::Application {
 
 namespace MellowPlayer::Presentation {
 
+    class StyleViewModel;
+
     class SettingViewModelFactory {
     public:
+        SettingViewModelFactory(StyleViewModel& styleViewModel);
         SettingViewModel* create(Application::Setting& setting, QObject* parent=nullptr) const;
+
+    private:
+        StyleViewModel& styleViewModel;
     };
 
 }

@@ -10,9 +10,10 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServiceStyle.hpp>
+#include <MellowPlayer/Application/Style/Style.hpp>
 #include "StreamingServiceLoader.hpp"
 #include <QDebug>
+#include <MellowPlayer/Infrastructure/Style/StyleLoader.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -85,26 +86,10 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     return serviceMetadata;
 }
 
-StreamingServiceStyle StreamingServiceLoader::readStyle(const QString& filePath) {
+Style StreamingServiceLoader::readStyle(const QString& filePath) {
 
-    StreamingServiceStyle style;
-
-    if (QFileInfo(filePath).exists()) {
-        QFile file(filePath);
-        if (file.open(QFile::ReadOnly | QFile::Text)) {
-            QJsonDocument document = QJsonDocument::fromJson(file.readAll().data());
-            QJsonObject object = document.object();
-            style.accent = object.value("accent").toString();
-            style.background = object.value("background").toString();
-            style.foreground = object.value("foreground").toString();
-            style.primary = object.value("primary").toString();
-            style.primaryForeground = object.value("primaryForeground").toString();
-            style.secondary = object.value("secondary").toString();
-            style.secondaryForeground = object.value("secondaryForeground").toString();
-        }
-    }
-
-    return style;
+    static StyleLoader loader;
+    return loader.load(filePath);
 }
 
 unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& directory) const {
@@ -116,7 +101,7 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
     metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
-    StreamingServiceStyle style = readStyle(stylePath);
+    Style style = readStyle(stylePath);
 
     return make_unique<StreamingService>(metadata, style);
 }

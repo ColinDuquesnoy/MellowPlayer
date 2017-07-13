@@ -25,7 +25,7 @@ public:
         return mock;
     }
 
-    static StreamingServiceStyle DEFAULT_STYLE;
+    static Style DEFAULT_STYLE;
 
 private:
     static unique_ptr<StreamingService> createPlugin(const QString& name) {

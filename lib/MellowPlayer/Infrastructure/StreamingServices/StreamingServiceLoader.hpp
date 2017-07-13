@@ -6,7 +6,7 @@ namespace MellowPlayer::Application {
 
     class ILogger;
     struct StreamingServiceMetadata;
-    struct StreamingServiceStyle;
+    struct Style;
     
 }
 namespace MellowPlayer::Infrastructure {
@@ -18,7 +18,7 @@ namespace MellowPlayer::Infrastructure {
 
         static QString getUserDirectory();
 
-        static Application::StreamingServiceStyle readStyle(const QString &filePath);
+        static Application::Style readStyle(const QString &filePath);
         static QString readFileContent(const QString &filePath);
 
     private:

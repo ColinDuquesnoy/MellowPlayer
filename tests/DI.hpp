@@ -63,6 +63,7 @@
 #include <Mocks/SystemTrayIconMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/CommnandLineParserMock.hpp>
+#include <Mocks/StyleLoaderMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -118,6 +119,7 @@ static auto localAlbumArtMock = LocalAlbumArtMock::getMockWithUrlOk();
 static auto streamingServiceCreatorMock = StreamingServiceCreatorMock::get();
 static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
 static auto commandLineParserMock = CommandLineParserMock::get();
+static auto styleLoaderMock = StyleLoaderMock::get();
 
 inline auto getTestInjector(ScopedScope& scope) {
     static auto settingsProviderMock = SettingsProviderMock::get();
@@ -140,7 +142,8 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
         di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get()),
         di::bind<IStreamingServiceWatcher>().to(streamingServiceWatcherMock.get()),
-        di::bind<ICommandLineParser>().to(commandLineParserMock.get())
+        di::bind<ICommandLineParser>().to(commandLineParserMock.get()),
+        di::bind<IStyleLoader>().to(styleLoaderMock.get())
     );
 };
 

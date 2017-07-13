@@ -19,14 +19,14 @@ void Setting::resolveDependency() {
 
     QString key = QString(data.enableCondition);
     key = key.replace("!", "");
+    key = key.split("==")[0].trimmed();
 
     if (key.isEmpty())
         return;
 
     try {
         parentSetting = &settings.get(key);
-        if (parentSetting->getType() == "bool")
-            connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
+        connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
     }
     catch (const runtime_error&) {
         return;
@@ -65,17 +65,24 @@ void Setting::setValue(const QVariant& value) {
 }
 
 bool Setting::isEnabled() const {
-    std::string cond = data.enableCondition.toStdString();
+    QString cond = data.enableCondition;
 
     if (parentSetting == nullptr)
         return true;
 
-    bool parentValue = parentSetting->getValue().toBool();
+    if (cond.contains("==")) {
+        QString value = cond.split("==")[1].trimmed().toLower();
+        QString parentValue = parentSetting->getValue().toString();
+        return parentValue.trimmed().toLower() == value;
+    }
+    else {
+        bool parentValue = parentSetting->getValue().toBool();
 
-    if (notOperator)
-        return !parentValue;
+        if (notOperator)
+            return !parentValue;
 
-    return parentValue;
+        return parentValue;
+    }
 }
 
 QString Setting::getFullKey() const {

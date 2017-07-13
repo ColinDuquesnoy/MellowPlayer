@@ -1,7 +1,8 @@
 #pragma once
 
 #include <QObject>
-#include <MellowPlayer/Application/StreamingServices/StreamingServiceStyle.hpp>
+#include <QMap>
+#include <MellowPlayer/Application/Style/Style.hpp>
 
 namespace MellowPlayer::Application {
  
@@ -9,6 +10,7 @@ namespace MellowPlayer::Application {
     class StreamingServicesController;
     class Setting;
     class Settings;
+    class IStyleLoader;
     
 }
 
@@ -24,9 +26,11 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString primaryForeground READ getPrimaryForeground NOTIFY primaryForegroundChanged)
         Q_PROPERTY(QString secondary READ getSecondary NOTIFY secondaryChanged)
         Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
-        Q_PROPERTY(bool useServiceStyle READ getUseServiceStyle WRITE setUseServiceStyle NOTIFY useServiceStyleChanged)
+        Q_PROPERTY(QStringList availableStyles READ getAvailableStyles NOTIFY availableStylesChanged)
     public:
-        StyleViewModel(Application::StreamingServicesController& streamingServices, Application::Settings& settings);
+        StyleViewModel(Application::StreamingServicesController& streamingServices,
+                       Application::Settings& settings,
+                       Application::IStyleLoader& styleLoader);
 
         QString getTheme() const;
         QString getAccent() const;
@@ -36,13 +40,12 @@ namespace MellowPlayer::Presentation {
         QString getPrimaryForeground() const;
         QString getSecondary() const;
         QString getSecondaryForeground() const;
-        bool getUseServiceStyle() const;
-        void setUseServiceStyle(bool value);
+        QStringList getAvailableStyles() const;
 
         Q_INVOKABLE double getColorScaleFactor(const QString& color) const;
         Q_INVOKABLE bool isDark(const QString& color) const;
 
-        Application::StreamingServiceStyle getDefaultStyle();
+        Application::Style getCustomStyle();
 
     signals:
         void themeChanged();
@@ -53,11 +56,12 @@ namespace MellowPlayer::Presentation {
         void primaryForegroundChanged();
         void secondaryChanged();
         void secondaryForegroundChanged();
-        void useServiceStyleChanged();
+        void availableStylesChanged();
 
     private slots:
         void updateStyle();
         void onCurrentServiceChanged(Application::StreamingService* streamingService);
+        void onServiceAdded(Application::StreamingService* service);
 
     private:
         void setAccent(const QString& value);
@@ -67,19 +71,24 @@ namespace MellowPlayer::Presentation {
         void setPrimaryForeground(const QString& value);
         void setSecondary(const QString& value);
         void setSecondaryForeground(const QString& value);
-        void fromStyle(const Application::StreamingServiceStyle& newStyle);
+        void fromStyle(const Application::Style& newStyle);
+        void collectStyles();
 
         bool useServiceStyle;
         Application::StreamingServicesController& streamingServices;
+        Application::IStyleLoader& styleLoader;
         Application::Setting& accentColorSetting;
-        Application::Setting& adaptiveThemeSetting;
+        Application::Setting& themeSetting;
         Application::Setting& backgroundSetting;
         Application::Setting& foregroundSetting;
         Application::Setting& primaryBackgroundSetting;
         Application::Setting& primaryForegroundSetting;
         Application::Setting& secondaryBackgroundSetting;
         Application::Setting& secondaryForegroundSetting;
-        Application::StreamingServiceStyle style;
+        Application::Style currentStyle;
+        QMap<QString, Application::Style> availableStyles;
+
+        bool isAdaptiveTheme() const;
     };
 
 }

@@ -18,13 +18,13 @@ using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                                  ListeningHistoryViewModel& listeningHistoryModel,
-                                 StyleViewModel& serviceStyleModel,
+                                 StyleViewModel& styleViewModel,
                                  IQtApplication& qtApp,
                                  IPlayer& player,
                                  Settings& settings) :
         logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
         settings(settings), streamingServices(streamingServicesModel),
-        listeningHistory(listeningHistoryModel), settingsModel(settings) {
+        listeningHistory(listeningHistoryModel), settingsViewModel(settings, styleViewModel) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey",
                                            "SettingKey cannot be instantiated from QML");
@@ -33,10 +33,10 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& s
     auto context = qmlApplicationEngine.rootContext();
     context->setContextProperty("_streamingServices", &streamingServicesModel);
     context->setContextProperty("_listeningHistory", &listeningHistoryModel);
-    context->setContextProperty("_style", &serviceStyleModel);
+    context->setContextProperty("_style", &styleViewModel);
     context->setContextProperty("_player", &player);
     context->setContextProperty("_clipboard", &clipBoardModel);
-    context->setContextProperty("_settings", &settingsModel);
+    context->setContextProperty("_settings", &settingsViewModel);
     context->setContextProperty("_window", this);
     context->setContextProperty("_app", &qtApp);
 

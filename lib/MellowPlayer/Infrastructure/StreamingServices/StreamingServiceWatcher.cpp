@@ -38,7 +38,7 @@ void StreamingServiceWatcher::onFileChanged(const QString& path) {
         service.updateScript(StreamingServiceLoader::readFileContent(path));
     }
     else {
-        StreamingServiceStyle style = StreamingServiceLoader::readStyle(path);
+        Style style = StreamingServiceLoader::readStyle(path);
         service.updateStyle(style);
     }
 

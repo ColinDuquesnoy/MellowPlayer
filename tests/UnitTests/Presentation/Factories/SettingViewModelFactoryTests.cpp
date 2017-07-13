@@ -7,6 +7,7 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StyleSettingViewModel.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -14,35 +15,42 @@ using namespace MellowPlayer::Presentation;
 TEST_CASE("SettingModelFactoryTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    SettingViewModelFactory factory;
+    Settings &settings = injector.create<Settings &>();
+    StyleViewModel &styleViewModel = injector.create<StyleViewModel &>();
+    SettingViewModelFactory factory(styleViewModel);
 
     SECTION("createBoolSettingModel") {
-        Setting& setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
-        SettingViewModel* settingModel = factory.create(setting, &settings);
-        BoolSettingViewModel* specificSettingModel = qobject_cast<BoolSettingViewModel*>(settingModel);
+        Setting &setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+        SettingViewModel *settingModel = factory.create(setting, &settings);
+        BoolSettingViewModel *specificSettingModel = qobject_cast<BoolSettingViewModel *>(settingModel);
         REQUIRE(specificSettingModel != nullptr);
     }
 
     SECTION("createColorSettingModel") {
-        Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
-        SettingViewModel* settingModel = factory.create(setting, &settings);
-        ColorSettingViewModel* specificSettingModel = qobject_cast<ColorSettingViewModel*>(settingModel);
+        Setting &setting = settings.get(SettingKey::APPEARANCE_ACCENT);
+        SettingViewModel *settingModel = factory.create(setting, &settings);
+        ColorSettingViewModel *specificSettingModel = qobject_cast<ColorSettingViewModel *>(settingModel);
         REQUIRE(specificSettingModel != nullptr);
     }
 
     SECTION("createShortcutSettingModel") {
-        Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
-        SettingViewModel* settingModel = factory.create(setting, &settings);
-        ShortcutSettingViewModel* specificSettingModel = qobject_cast<ShortcutSettingViewModel*>(settingModel);
+        Setting &setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+        SettingViewModel *settingModel = factory.create(setting, &settings);
+        ShortcutSettingViewModel *specificSettingModel = qobject_cast<ShortcutSettingViewModel *>(settingModel);
         REQUIRE(specificSettingModel != nullptr);
     }
 
     SECTION("createStringSettingModel by default") {
-        Setting& setting = settings.get(SettingKey::PRIVATE_CURRENT_SERVICE);
-        SettingViewModel* settingModel = factory.create(setting, &settings);
-        StringSettingViewModel* specificSettingModel = qobject_cast<StringSettingViewModel*>(settingModel);
+        Setting &setting = settings.get(SettingKey::PRIVATE_CURRENT_SERVICE);
+        SettingViewModel *settingModel = factory.create(setting, &settings);
+        StringSettingViewModel *specificSettingModel = qobject_cast<StringSettingViewModel *>(settingModel);
+        REQUIRE(specificSettingModel != nullptr);
+    }
+
+    SECTION("createStyleSettingViewModel") {
+        Setting &setting = settings.get(SettingKey::APPEARANCE_THEME);
+        SettingViewModel *settingModel = factory.create(setting, &settings);
+        StyleSettingViewModel* specificSettingModel = qobject_cast<StyleSettingViewModel*>(settingModel);
         REQUIRE(specificSettingModel != nullptr);
     }
 }
-

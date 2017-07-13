@@ -12,16 +12,16 @@ TEST_CASE("SettingsViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    SettingsViewModel model(settings);
+    StyleViewModel& styleViewModel = injector.create<StyleViewModel&>();
+    SettingsViewModel viewModel(settings, styleViewModel);
 
     SECTION("get") {
-        SettingViewModel* settingModel = model.get(SettingKey::NOTIFICATIONS_ENABLED);
+        SettingViewModel* settingModel = viewModel.get(SettingKey::NOTIFICATIONS_ENABLED);
         REQUIRE(settingModel != nullptr);
     }
 
     SECTION("getCategories") {
         int extraCategories = 2;
-        REQUIRE(model.getCategories()->count() - extraCategories == (settings.getCategories().count() - 1));
+        REQUIRE(viewModel.getCategories()->count() - extraCategories == (settings.getCategories().count() - 1));
     }
 }
-
