@@ -58,6 +58,24 @@ StreamingService* StreamingServiceViewModel::getStreamingService() const {
     return &streamingService;
 }
 
+int StreamingServiceViewModel::getSortOrder() const {
+    return settingsProvider.getValue(getSortOrderSettingsKey(), "-1").toInt();
+}
+
+void StreamingServiceViewModel::setSortOrder(int newOrder) {
+    settingsProvider.setValue(getSortOrderSettingsKey(), newOrder);
+    emit sortOrderChanged();
+}
+
+bool StreamingServiceViewModel::isEnabled() const {
+    return settingsProvider.getValue(getIsEnabledSettingsKey(), "true").toBool();
+}
+
+void StreamingServiceViewModel::setEnabled(bool enabled) {
+    settingsProvider.setValue(getIsEnabledSettingsKey(), enabled);
+    emit isEnabledChanged();
+}
+
 void StreamingServiceViewModel::setUrl(const QString& url) {
     if (url != getUrl()) {
         settingsProvider.setValue(getCustomUrlSettingsKey(), url);
@@ -65,10 +83,18 @@ void StreamingServiceViewModel::setUrl(const QString& url) {
     }
 }
 
-const QString StreamingServiceViewModel::getCustomUrlSettingsKey() const {
+QString StreamingServiceViewModel::getCustomUrlSettingsKey() const {
     return streamingService.getName() + "/url";
 }
 
 bool StreamingServiceViewModel::isRunning() const {
     return players.get(streamingService.getName()).get()->isRunning();
+}
+
+QString StreamingServiceViewModel::getSortOrderSettingsKey() const {
+    return streamingService.getName() + "/sortOrder";
+}
+
+QString StreamingServiceViewModel::getIsEnabledSettingsKey() const {
+    return streamingService.getName() + "/isEnabled";
 }

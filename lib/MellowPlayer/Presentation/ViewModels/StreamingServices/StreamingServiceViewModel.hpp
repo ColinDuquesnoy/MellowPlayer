@@ -21,6 +21,7 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString version READ getVersion CONSTANT)
         Q_PROPERTY(QString authorName READ getAuthorName CONSTANT)
         Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
+        Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
     public:
         StreamingServiceViewModel(Application::StreamingService& streamingService,
                               Application::ISettingsProvider& settings,
@@ -41,14 +42,24 @@ namespace MellowPlayer::Presentation {
 
         Application::StreamingService* getStreamingService() const;
 
+        int getSortOrder() const;
+        void setSortOrder(int newOrder);
+
+        bool isEnabled() const;
+        void setEnabled(bool enabled);
+
     public slots:
         void setUrl(const QString& url);
 
     signals:
         void urlChanged(const QString&);
+        void sortOrderChanged();
+        void isEnabledChanged();
 
     private:
-        const QString getCustomUrlSettingsKey() const;
+        QString getCustomUrlSettingsKey() const;
+        QString getSortOrderSettingsKey() const;
+        QString getIsEnabledSettingsKey() const;
 
         Application::StreamingService& streamingService;
         Application::ISettingsProvider& settingsProvider;
