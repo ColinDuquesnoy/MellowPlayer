@@ -72,8 +72,13 @@ bool StreamingServiceViewModel::isEnabled() const {
 }
 
 void StreamingServiceViewModel::setEnabled(bool enabled) {
-    settingsProvider.setValue(getIsEnabledSettingsKey(), enabled);
-    emit isEnabledChanged();
+    if (enabled != isEnabled()) {
+        settingsProvider.setValue(getIsEnabledSettingsKey(), enabled);
+        emit isEnabledChanged();
+
+//        if (!enabled)
+//            getPlayer()->stop();
+    }
 }
 
 void StreamingServiceViewModel::setUrl(const QString& url) {

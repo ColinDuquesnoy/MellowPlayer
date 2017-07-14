@@ -53,8 +53,10 @@ WebEngineView {
     settings.autoLoadIconsForPage: true
 
     onLoadingChanged: {
-        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank")
+        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank") {
             player.loadPlugin();
+            updateImage();
+        }
         else
             checkForCustomUrlRequired();
     }

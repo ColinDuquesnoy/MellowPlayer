@@ -68,12 +68,22 @@ Page {
 
         function showWebView() {
             state = "between";
-            previewImage.state = "selected";
+            try {
+                previewImage.state = "selected";
+            }
+            catch (e) {
+                state = "webview";
+            }
         }
 
         function showOverview() {
-            state = "between";
-            previewImage.state = "";
+            try {
+                state = "between";
+                previewImage.state = "";
+            }
+            catch (e) {
+                state = "overview";
+            }
         }
 
         states: [
@@ -143,6 +153,13 @@ Page {
         ]
         state: "overview"
 
+        Component.onCompleted: {
+            if (_streamingServices.currentIndex != -1) {
+                state = "webview"
+                webViewStack.currentWebView().start();
+            }
+        }
+
         WebViewStack {
             id: webViewStack
 
@@ -152,6 +169,10 @@ Page {
                 toolBar.visible = !request.toggleOn
                 notif.visible = true;
                 root.fullScreenRequested(request);
+            }
+            onCurrentIndexChanged: if (currentIndex === -1) {
+                console.log("current index is -1");
+                body.showOverview()
             }
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;

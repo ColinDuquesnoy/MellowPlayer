@@ -140,7 +140,9 @@ ItemDelegate {
 
             ColumnLayout {
                 Switch {
-                    visible: false
+                    checked: model.isEnabled
+                    onCheckedChanged: model.isEnabled = checked;
+
                     Layout.alignment: Qt.AlignRight
                 }
 

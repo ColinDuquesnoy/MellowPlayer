@@ -28,7 +28,7 @@ Item {
                 delegate: ServiceSettingDelegate {
                     width: listView.width;
                 }
-                model: _streamingServices.model
+                model: _streamingServices.allServices
                 spacing: 0
             }
         }

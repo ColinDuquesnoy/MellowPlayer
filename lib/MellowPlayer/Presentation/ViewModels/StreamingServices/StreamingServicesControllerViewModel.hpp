@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <MellowPlayer/Presentation/Models/StreamingServiceListModel.hpp>
+#include <MellowPlayer/Presentation/Models/StreamingServiceProxyListModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServiceViewModel.hpp>
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
 
@@ -23,7 +24,8 @@ namespace MellowPlayer::Presentation {
 
     class StreamingServicesControllerViewModel: public QObject {
         Q_OBJECT
-        Q_PROPERTY(QAbstractListModel* model READ getModel CONSTANT)
+        Q_PROPERTY(QAbstractListModel* allServices READ getAllServices CONSTANT)
+        Q_PROPERTY(QAbstractItemModel* enabledServices READ getEnabledServices CONSTANT)
         Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
         Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
         Q_PROPERTY(bool hasRunningServices READ getHasRunningServices NOTIFY hasRunningServicesChanged)
@@ -37,10 +39,13 @@ namespace MellowPlayer::Presentation {
         void initialize();
 
         Q_INVOKABLE void reload();
-        StreamingServiceListModel* getModel() { return model; }
+        StreamingServiceListModel* getAllServices() { return allServices; }
+        StreamingServiceProxyListModel* getEnabledServices() { return &enabledServices; }
         StreamingServiceViewModel* getCurrentService() const;
         int getCurrentIndex() const;
         bool getHasRunningServices() const;
+
+        Q_INVOKABLE int getWebViewIndex(const QString& serviceName) const;
 
         Q_INVOKABLE void next();
         Q_INVOKABLE void previous();
@@ -59,6 +64,7 @@ namespace MellowPlayer::Presentation {
     private slots:
         void onServiceAdded(Application::StreamingService* streamingService);
         void onPlayerRunningChanged();
+        void onServiceEnabledChanged();
 
     private:
         int getNextIndex(int index) const;
@@ -71,7 +77,8 @@ namespace MellowPlayer::Presentation {
         Application::IWorkDispatcher& workDispatcher;
         Application::IStreamingServiceCreator& streamingServiceCreator;
         Application::ICommandLineParser& commandLineParser;
-        StreamingServiceListModel* model;
+        StreamingServiceListModel* allServices;
+        StreamingServiceProxyListModel enabledServices;
         StreamingServiceViewModel* currentService = nullptr;
         int currentIndex = -1;
         bool hasRunningServices = false;

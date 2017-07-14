@@ -162,13 +162,6 @@ Item {
         preview.state = "selected";
     }
 
-    Component.onCompleted: {
-        if (_streamingServices.currentIndex == index) {
-            root.activate();
-            preview.visible = false;
-        }
-    }
-
     Rectangle {
         anchors.top: parent.top
         anchors.right: parent.right

@@ -48,10 +48,10 @@ Item {
 
                 cellWidth: width / 3
                 cellHeight: cellWidth / 16 * 9
-                model: _streamingServices.model
+                model: _streamingServices.enabledServices
                 delegate: ServiceOverviewDelegate {
                     transitionItem: root.transitionItem
-                    webView: webViews[model.index]
+                    webView: webViews[_streamingServices.getWebViewIndex(model.name)]
                 }
             }
         }

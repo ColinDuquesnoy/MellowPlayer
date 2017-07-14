@@ -30,7 +30,8 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(
         workDispatcher(workDispatcher),
         streamingServiceCreator(streamingServiceCreator),
         commandLineParser(commandLineParser),
-        model(new StreamingServiceListModel(this)) {
+        allServices(new StreamingServiceListModel(this, QByteArray(), "name")),
+        enabledServices(allServices) {
 
     connect(&streamingServices, &StreamingServicesController::added, this,
             &StreamingServicesControllerViewModel::onServiceAdded);
@@ -44,7 +45,7 @@ void StreamingServicesControllerViewModel::initialize() {
     auto currentServiceName = currentServiceSetting.getValue().toString();
     if (!commandLineParser.getService().isEmpty())
         currentServiceName = commandLineParser.getService();
-    for (auto service: model->toList()) {
+    for (auto service: allServices->toList()) {
         if (service->getName().toLower() == currentServiceName.toLower())
             setCurrentService(service);
     }
@@ -63,18 +64,28 @@ void StreamingServicesControllerViewModel::setCurrentService(QObject* value) {
         return;
 
     auto service = static_cast<StreamingServiceViewModel*>(value);
-    setCurrentIndex(model->toList().indexOf(service));
+
+    QModelIndex sourceIndex = allServices->index(allServices->toList().indexOf(service), 0, QModelIndex());
+
+    setCurrentIndex(enabledServices.mapFromSource(sourceIndex).row());
 }
 
 void StreamingServicesControllerViewModel::setCurrentIndex(int value) {
     if (currentIndex == value)
         return;
 
-    currentIndex = value;
-    currentService = model->at(currentIndex);
+    int sourceIndex = enabledServices.mapToSource(enabledServices.index(value, 0, QModelIndex())).row();
+    currentIndex = sourceIndex;
+    currentService = allServices->at(sourceIndex);
 
-    currentServiceSetting.setValue(currentService->getName());
-    streamingServices.setCurrent(currentService->getStreamingService());
+    if (currentService == nullptr) {
+        currentServiceSetting.setValue("");
+        streamingServices.setCurrent(nullptr);
+    }
+    else {
+        currentServiceSetting.setValue(currentService->getName());
+        streamingServices.setCurrent(currentService->getStreamingService());
+    }
     emit currentIndexChanged(currentIndex);
     emit currentServiceChanged(currentService);
 }
@@ -87,16 +98,18 @@ void StreamingServicesControllerViewModel::onServiceAdded(StreamingService* stre
     auto* sv = new StreamingServiceViewModel(*streamingService, settings.getSettingsProvider(), players, this);
     Player* player = sv->getPlayer();
     connect(player, &Player::isRunningChanged, this, &StreamingServicesControllerViewModel::onPlayerRunningChanged);
-    model->append(sv);
+    connect(sv, &StreamingServiceViewModel::isEnabledChanged,
+            this, &StreamingServicesControllerViewModel::onServiceEnabledChanged);
+    allServices->append(sv);
 }
 
 void StreamingServicesControllerViewModel::next() {
     int index = getNextIndex(currentIndex);
 
     while (index != currentIndex) {
-        auto* sv = model->at(index);
-        if (sv->isRunning()) {
-            setCurrentIndex(index);
+        auto* sv = allServices->at(index);
+        if (sv->isRunning() && sv->isEnabled()) {
+            setCurrentService(sv);
             break;
         }
         index = getNextIndex(index);
@@ -107,9 +120,9 @@ void StreamingServicesControllerViewModel::previous() {
     int index = getPreviousIndex(currentIndex);
 
     while (index != currentIndex) {
-        auto* sv = model->at(index);
-        if (sv->isRunning()) {
-            setCurrentIndex(index);
+        auto* sv = allServices->at(index);
+        if (sv->isRunning() && sv->isEnabled()) {
+            setCurrentService(sv);
             break;
         }
         index = getPreviousIndex(index);
@@ -127,7 +140,7 @@ void StreamingServicesControllerViewModel::createService(const QString& serviceN
 
 int StreamingServicesControllerViewModel::getNextIndex(int index) const {
     int nextIndex = index + 1;
-    if (nextIndex >= model->count())
+    if (nextIndex >= allServices->count())
         nextIndex = 0;
     return nextIndex;
 }
@@ -135,7 +148,7 @@ int StreamingServicesControllerViewModel::getNextIndex(int index) const {
 int StreamingServicesControllerViewModel::getPreviousIndex(int index) const {
     int previousIndex = index - 1;
     if (previousIndex < 0)
-        previousIndex = model->count() - 1;
+        previousIndex = allServices->count() - 1;
     return previousIndex;
 }
 
@@ -146,8 +159,8 @@ bool StreamingServicesControllerViewModel::getHasRunningServices() const {
 void StreamingServicesControllerViewModel::onPlayerRunningChanged() {
     bool hadRunningServices = hasRunningServices;
     hasRunningServices = false;
-    for (int i = 0; i < model->count(); ++i) {
-        if (model->at(i)->isRunning()) {
+    for (int i = 0; i < allServices->count(); ++i) {
+        if (allServices->at(i)->isRunning()) {
             hasRunningServices = true;
             break;
         }
@@ -155,5 +168,16 @@ void StreamingServicesControllerViewModel::onPlayerRunningChanged() {
 
     if (hadRunningServices != hasRunningServices) {
         emit hasRunningServicesChanged();
+    }
+}
+
+int StreamingServicesControllerViewModel::getWebViewIndex(const QString& serviceName) const {
+    return allServices->indexOf(serviceName);
+}
+
+void StreamingServicesControllerViewModel::onServiceEnabledChanged() {
+    if (sender() == currentService) {
+        setCurrentIndex(-1);
+        emit currentIndexChanged(-1);
     }
 }

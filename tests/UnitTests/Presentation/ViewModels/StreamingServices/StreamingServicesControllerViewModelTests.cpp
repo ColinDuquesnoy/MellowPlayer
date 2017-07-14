@@ -26,19 +26,19 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
     viewModel.initialize();
     viewModel.reload();
 
-    StreamingServiceViewModel* service1 = viewModel.getModel()->at(0);
-    StreamingServiceViewModel* service2 = viewModel.getModel()->at(1);
-    StreamingServiceViewModel* service3 = viewModel.getModel()->at(2);
+    StreamingServiceViewModel* service1 = viewModel.getAllServices()->at(0);
+    StreamingServiceViewModel* service2 = viewModel.getAllServices()->at(1);
+    StreamingServiceViewModel* service3 = viewModel.getAllServices()->at(2);
 
 
     SECTION("setCurrentService changes currentIndex") {
-        REQUIRE(viewModel.getModel()->count() == streamingServices.getAll().count());
+        REQUIRE(viewModel.getAllServices()->count() == streamingServices.getAll().count());
         REQUIRE(viewModel.getCurrentIndex() == -1);
         REQUIRE(viewModel.getCurrentService() == nullptr);
-        viewModel.setCurrentService(viewModel.getModel()->toList()[1]);
+        viewModel.setCurrentService(viewModel.getAllServices()->toList()[1]);
         REQUIRE(viewModel.getCurrentIndex() == 1);
-        REQUIRE(viewModel.getCurrentService() == viewModel.getModel()->toList()[1]);
-        viewModel.setCurrentService(viewModel.getModel()->toList()[1]);
+        REQUIRE(viewModel.getCurrentService() == viewModel.getAllServices()->toList()[1]);
+        viewModel.setCurrentService(viewModel.getAllServices()->toList()[1]);
         viewModel.setCurrentIndex(1);
     }
 
@@ -106,5 +106,20 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();
         REQUIRE(viewModelWithCmdLine.getCurrentIndex() != -1);
+    }
+
+    SECTION("currentIndex is -1 when current service is disabled") {
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentIndex() == 0);
+        service1->setEnabled(false);
+        REQUIRE(viewModel.getCurrentIndex() == -1);
+    }
+
+    SECTION("currentIndex does not change if other service is disabled") {
+        service1->setEnabled(true);
+        viewModel.setCurrentIndex(0);
+        REQUIRE(viewModel.getCurrentIndex() == 0);
+        service2->setEnabled(false);
+        REQUIRE(viewModel.getCurrentIndex() == 0);
     }
 }

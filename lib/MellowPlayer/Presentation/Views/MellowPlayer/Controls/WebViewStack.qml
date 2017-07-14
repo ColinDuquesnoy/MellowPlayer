@@ -34,9 +34,13 @@ StackLayout {
         return list;
     }
     function updatePreviewImage(callback) {
-        d.callback = callback
-        currentWebView().updateImageFinished.connect(d.onUpdatePreviewImageFinished);
-        currentWebView().updateImage();
+        if (currentWebView() != null) {
+            d.callback = callback
+            currentWebView().updateImageFinished.connect(d.onUpdatePreviewImageFinished);
+            currentWebView().updateImage();
+        }
+        else
+            callback()
     }
     function exitFullScreen() {
         currentWebView().exitFullScreen();
@@ -58,12 +62,12 @@ StackLayout {
     Repeater {
         id: repeater
 
-        model: _streamingServices.model
+        model: _streamingServices.allServices
         delegate: WebView {
             id: webView
 
             anchors.fill: parent
-            visible: visible && root.currentIndex == index;
+            visible: visible && root.currentIndex == _streamingServices.getWebViewIndex(model.name);
             enabled: visible
             player: model.player
             urlToLoad: model.url
