@@ -24,7 +24,8 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(presentation);
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    // commented on purpose, see github issue #71
+    // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     ApplicationViewModel qtApp(argc, argv);
 
