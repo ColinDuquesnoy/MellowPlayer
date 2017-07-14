@@ -10,17 +10,22 @@ import ".."
 
 Item {
     id: root
-    width: GridView.view.cellWidth
-    height: GridView.view.cellHeight
 
+    property int index
     property string backgroundColor: Material.background
     property Item transitionItem
     property var webView
+    property bool hovered: false
+
+    onIndexChanged: model.sortOrder = root.index
+
+    Component.onCompleted: model.sortOrder = root.index
 
     Pane {
         id: highlight
         anchors.fill: parent
         anchors.margins: parent.width / 50
+
         Material.elevation: state == "hover" ? 6 : 4
 
         Image {
@@ -93,7 +98,7 @@ Item {
             opacity: 0.3
         }
 
-        state: mouseArea.containsMouse || btOff.hovered ? "hover" : ""
+        state: root.hovered || btOff.hovered ? "hover" : ""
 
         states: State {
             name: "hover"
@@ -146,19 +151,20 @@ Item {
             }
         }
 
-        MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
-
-            onClicked: root.activate();
-        }
+//        MouseArea {
+//            id: mouseArea
+//            anchors.fill: parent
+//            hoverEnabled: true
+//            cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
+//
+//            onClicked: root.activate();
+//        }
 
     }
 
     function activate() {
         _streamingServices.currentService = model.qtObject;
+        webView.start();
         preview.state = "selected";
     }
 

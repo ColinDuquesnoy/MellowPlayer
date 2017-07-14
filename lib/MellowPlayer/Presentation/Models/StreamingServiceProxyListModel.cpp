@@ -4,8 +4,9 @@ using namespace MellowPlayer::Presentation;
 
 StreamingServiceProxyListModel::StreamingServiceProxyListModel(StreamingServiceListModel* sourceListModel):
         sourceListModel(sourceListModel) {
-    setDynamicSortFilter(true);
+    setDynamicSortFilter(false);
     setSourceModel(sourceListModel);
+    sort(0);
 }
 
 bool StreamingServiceProxyListModel::filterAcceptsRow(int sourceRow, const QModelIndex&) const {

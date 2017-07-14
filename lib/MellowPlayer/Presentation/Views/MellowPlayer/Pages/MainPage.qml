@@ -103,8 +103,8 @@ Page {
 
                 PropertyChanges {
                     target: webViewStack
-                    visible: true
-                    enabled: true
+                    x: -root.width
+                    enabled: false
                 }
             },
             State {
@@ -123,12 +123,8 @@ Page {
 
                 PropertyChanges {
                     target: webViewStack
-                    visible: true
                     enabled: true
-                }
-
-                PropertyChanges {
-                    target: _theme
+                    x: 0
                 }
             },
             State {
@@ -147,7 +143,7 @@ Page {
 
                 PropertyChanges {
                     target: webViewStack
-                    visible: true
+                    enabled: true
                 }
             }
         ]
@@ -170,10 +166,7 @@ Page {
                 notif.visible = true;
                 root.fullScreenRequested(request);
             }
-            onCurrentIndexChanged: if (currentIndex === -1) {
-                console.log("current index is -1");
-                body.showOverview()
-            }
+            onCurrentIndexChanged: if (currentIndex === -1) body.showOverview()
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }

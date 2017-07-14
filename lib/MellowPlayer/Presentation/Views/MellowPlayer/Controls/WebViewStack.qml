@@ -95,4 +95,8 @@ StackLayout {
         sequence: setting.value
         onActivated: _streamingServices.previous()
     }
+
+    Behavior on x {
+        NumberAnimation { duration: 100 }
+    }
 }

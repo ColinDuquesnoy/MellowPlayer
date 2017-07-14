@@ -19,7 +19,8 @@ WebEngineView {
     signal customUrlSet(var customUrl)
 
     function start() {
-        console.warn("start", model.name)
+        if (isRunning)
+            return;
         isRunning = true;
         url = urlToLoad
         checkForCustomUrlRequired()
@@ -27,7 +28,6 @@ WebEngineView {
     }
 
     function stop() {
-        console.warn("stop", model.name)
         isRunning = false;
         url = "";
         reload();
@@ -70,10 +70,7 @@ WebEngineView {
         target: player
         onRunJavascriptRequested: runJavaScript(script, function(result) { })
         onUpdateRequested: runJavaScript(script, function(results) { root.player.setUpdateResults(results); })
-        onIsRunningChanged: {
-            console.error("on is running changed", root.isRunning)
-            if (!player.isRunning && root.isRunning) root.stop()
-        }
+        onIsRunningChanged: if (!player.isRunning && root.isRunning) root.stop()
     }
 
     CustomUrlPane {

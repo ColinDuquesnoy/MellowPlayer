@@ -113,10 +113,11 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
         REQUIRE(viewModel.getCurrentIndex() == 0);
         service1->setEnabled(false);
         REQUIRE(viewModel.getCurrentIndex() == -1);
+        service1->setSortOrder(0);
+        service1->setEnabled(true);
     }
 
     SECTION("currentIndex does not change if other service is disabled") {
-        service1->setEnabled(true);
         viewModel.setCurrentIndex(0);
         REQUIRE(viewModel.getCurrentIndex() == 0);
         service2->setEnabled(false);
