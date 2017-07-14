@@ -345,19 +345,19 @@ ToolBar {
                 }
 
                 MenuIconItem {
-                    id: menuItemAbout
-
-                    icon: MaterialIcons.icon_info_outline
-                    text: "About"
-                    onClicked: root.openAboutDialogRequested()
-                }
-
-                MenuIconItem {
                     id: menuReportIssue
 
                     icon: MaterialIcons.icon_bug_report
                     text: "Report issue"
                     onClicked: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
+                }
+
+                MenuIconItem {
+                    id: menuItemAbout
+
+                    icon: MaterialIcons.icon_info_outline
+                    text: "About"
+                    onClicked: root.openAboutDialogRequested()
                 }
 
                 Rectangle {
