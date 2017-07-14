@@ -150,45 +150,11 @@ Item {
                 }
             }
         }
-
-//        MouseArea {
-//            id: mouseArea
-//            anchors.fill: parent
-//            hoverEnabled: true
-//            cursorShape: containsMouse ? "PointingHandCursor" : "ArrowCursor"
-//
-//            onClicked: root.activate();
-//        }
-
     }
 
     function activate() {
         _streamingServices.currentService = model.qtObject;
         webView.start();
         preview.state = "selected";
-    }
-
-    Rectangle {
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.margins: 10
-        width: 32
-        height: 32
-        radius: 32
-        color: Material.color(Material.Red)
-        visible: preview.source != "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png" && highlight.state == "hover"
-
-        ToolButton {
-            id: btOff
-            hoverEnabled: true
-            anchors.centerIn: parent
-            Material.foreground: "white"
-
-            text: MaterialIcons.icon_power_settings_new
-            font.family: MaterialIcons.family
-            font.pointSize: 22
-
-            onClicked: webView.stop()
-        }
     }
 }

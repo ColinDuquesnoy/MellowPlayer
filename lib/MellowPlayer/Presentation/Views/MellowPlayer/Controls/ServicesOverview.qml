@@ -114,6 +114,30 @@ Item {
 
                             onEntered: visualModel.items.move(drag.source.visualIndex, delegateRoot.visualIndex)
                         }
+
+                        Rectangle {
+                            anchors.top: parent.top
+                            anchors.right: parent.right
+                            anchors.margins: 10
+                            width: 32
+                            height: 32
+                            radius: 32
+                            color: Material.color(Material.Red)
+                            visible: model.qtObject.player.isRunning
+
+                            ToolButton {
+                                id: btOff
+                                hoverEnabled: true
+                                anchors.centerIn: parent
+                                Material.foreground: "white"
+
+                                text: MaterialIcons.icon_power_settings_new
+                                font.family: MaterialIcons.family
+                                font.pointSize: 22
+
+                                onClicked: item.webView.stop()
+                            }
+                        }
                     }
                 }
 
