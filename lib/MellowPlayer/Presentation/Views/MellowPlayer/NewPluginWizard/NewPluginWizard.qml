@@ -142,7 +142,7 @@ Dialog {
                 highlighted: true
                 flat: true
                 text: "Read API documentation"
-                visible: currentPage.showDocVisible
+                visible: !openPluginDirectory.visible
 
                 onClicked: Qt.openUrlExternally("http://mellowplayer.readthedocs.org/en/latest/developers/plugins.html#functions-to-implement")
             }

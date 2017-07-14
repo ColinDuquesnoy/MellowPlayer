@@ -71,10 +71,11 @@ void StreamingServicesControllerViewModel::setCurrentService(QObject* value) {
 }
 
 void StreamingServicesControllerViewModel::setCurrentIndex(int value) {
-    if (currentIndex == value)
+    int sourceIndex = enabledServices.mapToSource(enabledServices.index(value, 0, QModelIndex())).row();
+
+    if (currentIndex == sourceIndex)
         return;
 
-    int sourceIndex = enabledServices.mapToSource(enabledServices.index(value, 0, QModelIndex())).row();
     currentIndex = sourceIndex;
     currentService = allServices->at(sourceIndex);
 

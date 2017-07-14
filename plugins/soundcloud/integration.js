@@ -39,7 +39,7 @@ function update() {
     }
     return {
         "playbackStatus": playbackStatus,
-        "canSeek": true,
+        "canSeek": false,
         "canGoNext": true,
         "canGoPrevious": true,
         "canAddToFavorites": false,

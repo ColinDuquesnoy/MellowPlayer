@@ -21,6 +21,7 @@ ToolBar {
     signal openListeningHistoryRequested()
     signal openSettingsRequested()
     signal openAboutDialogRequested()
+    signal createPluginRequested()
 
     Material.primary: _theme.primary
     Material.foreground: _theme.primaryForeground
@@ -77,6 +78,7 @@ ToolBar {
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
+            visible: root.isWebViewMode
 
             Rectangle {
                 anchors.centerIn: parent
@@ -84,8 +86,6 @@ ToolBar {
                 height: parent.height * 0.33
                 color: Material.color(Material.Grey)
             }
-
-            visible: root.isWebViewMode
         }
 
         ToolButton {
@@ -157,7 +157,7 @@ ToolBar {
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
-            visible: btFavorite.visible
+            visible: root.isWebViewMode
 
             Rectangle {
                 anchors.centerIn: parent
@@ -345,6 +345,14 @@ ToolBar {
                 }
 
                 MenuIconItem {
+                    id: menuCreatePlugin
+
+                    icon: MaterialIcons.icon_extension
+                    text: "Create plugin"
+                    onClicked: root.createPluginRequested()
+                }
+
+                MenuIconItem {
                     id: menuReportIssue
 
                     icon: MaterialIcons.icon_bug_report
@@ -352,18 +360,14 @@ ToolBar {
                     onClicked: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
                 }
 
+                MenuSeparator { }
+
                 MenuIconItem {
                     id: menuItemAbout
 
                     icon: MaterialIcons.icon_info_outline
                     text: "About"
                     onClicked: root.openAboutDialogRequested()
-                }
-
-                Rectangle {
-                    color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-                    height: 1
-                    width: parent.width
                 }
 
                 MenuIconItem {
@@ -418,7 +422,7 @@ ToolBar {
                 Layout.fillWidth: true
                 Layout.preferredHeight: visible ? slider.implicitHeight : 0
                 Layout.margins: 0
-                visible: _player.canSeek
+                visible: _player.canSeek || _player.currentSong.duration != 0
 
                 RowLayout {
                     anchors.fill: parent
@@ -443,16 +447,26 @@ ToolBar {
                     Slider {
                         id: slider
 
-                        Layout.fillWidth: true
+                        function updateHandleVisibility() {
+                            slider.handle.visible = _player.canSeek
+                        }
+
                         hoverEnabled: true
-
-                        from: 0
+                        from: 0; to: _player.currentSong.duration
                         value: _player.position
-                        to: _player.currentSong.duration
 
-                        onValueChanged: {
+                        onMoved: {
                             if (_player.position !== value && _player.position < _player.currentSong.duration)
                                 _player.seekToPosition(value)
+                        }
+
+                        Component.onCompleted: slider.updateHandleVisibility()
+                        Layout.fillWidth: true
+
+                        Connections {
+                            target: _player
+
+                            onCanSeekChanged: slider.updateHandleVisibility()
                         }
 
                     }

@@ -108,6 +108,7 @@ Page {
 
                     highlight: Rectangle {
                         color: _theme.isDark(_theme.secondary) ? "#10ffffff" : "#10000000"
+
                         Rectangle {
                             anchors.top: parent.top
                             anchors.left: parent.left
@@ -120,6 +121,7 @@ Page {
                     highlightMoveDuration: 200
                     model: _settings.categories
                     delegate: settingsCategoryDelegate
+                    interactive: false
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true

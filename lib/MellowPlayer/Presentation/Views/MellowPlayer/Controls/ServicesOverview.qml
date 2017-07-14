@@ -48,8 +48,8 @@ Item {
                 height: parent.height
                 clip: true
 
-                cellWidth: width / 3
-                cellHeight: cellWidth / 16 * 9
+                cellWidth: 340
+                cellHeight: 192
 
                 model: DelegateModel {
                     id: visualModel
@@ -115,28 +115,23 @@ Item {
                             onEntered: visualModel.items.move(drag.source.visualIndex, delegateRoot.visualIndex)
                         }
 
-                        Rectangle {
-                            anchors.top: parent.top
-                            anchors.right: parent.right
-                            anchors.margins: 10
-                            width: 32
-                            height: 32
-                            radius: 32
-                            color: Material.color(Material.Red)
-                            visible: model.qtObject.player.isRunning
+                        RoundButton {
+                            id: btOff
 
-                            ToolButton {
-                                id: btOff
-                                hoverEnabled: true
-                                anchors.centerIn: parent
-                                Material.foreground: "white"
+                            anchors { top: parent.top; right: parent.right; margins: 2 }
+                            hoverEnabled: true
+                            visible: !item.Drag.active && model.qtObject.player.isRunning
+                            padding: 0
 
-                                text: MaterialIcons.icon_power_settings_new
-                                font.family: MaterialIcons.family
-                                font.pointSize: 22
+                            Material.background: Material.color(Material.Red)
+                            Material.foreground: "white"
 
-                                onClicked: item.webView.stop()
-                            }
+                            text: MaterialIcons.icon_close
+                            font.family: MaterialIcons.family
+                            font.bold: true
+                            font.pixelSize: 22
+
+                            onClicked: item.webView.stop()
                         }
                     }
                 }

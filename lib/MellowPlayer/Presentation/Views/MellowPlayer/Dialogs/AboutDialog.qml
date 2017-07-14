@@ -12,8 +12,8 @@ Popup {
 
     padding: 20
     modal: true
-    height: 480
-    width: Math.max(labelBuildInfo.implicitWidth + 48, height)
+    height: 490
+    width: Math.max(labelBuildInfo.implicitWidth + 64, height)
 
     onVisibleChanged: if (!visible) btCredits.checked = false
 
@@ -130,7 +130,8 @@ Popup {
 
                 readonly property int yPos: parent.height
 
-                height: 150; width: parent.width
+                x: 6
+                height: 148; width: parent.width - 12
 
                 Pane {
                     anchors.fill: parent
@@ -222,6 +223,7 @@ Popup {
                             target: creditsPane
 
                             y: creditsPane.yPos - creditsPane.height
+                            clip: false
                         }
                     },
                     State {
@@ -231,6 +233,7 @@ Popup {
                             target: creditsPane
 
                             y: creditsPane.yPos
+                            clip: true
                         }
                     }
                 ]

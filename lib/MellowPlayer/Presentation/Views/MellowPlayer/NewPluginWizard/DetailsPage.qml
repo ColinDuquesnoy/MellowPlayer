@@ -30,7 +30,9 @@ WizardPage {
 
             TextField {
                 id: fieldSvName
+
                 focus: true
+                selectByMouse: true
 
                 Layout.fillWidth: true
             }
@@ -42,6 +44,8 @@ WizardPage {
             TextField {
                 id: fieldSvUrl
 
+                selectByMouse: true
+
                 Layout.fillWidth: true
             }
 
@@ -52,6 +56,8 @@ WizardPage {
             TextField {
                 id: fieldAuthor
 
+                selectByMouse: true
+
                 Layout.fillWidth: true
             }
 
@@ -61,6 +67,8 @@ WizardPage {
 
             TextField {
                 id: fieldAuthorWebsite
+
+                selectByMouse: true
 
                 Layout.fillWidth: true
             }

@@ -211,6 +211,7 @@ ApplicationWindow {
         onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
         onOpenSettingsRequested: settingsDrawer.open()
         onOpenAboutDialogRequested: aboutDialog.open()
+        onCreatePluginRequested: wizardNewPlugin.open()
 
         NewPluginWizard {
             id: wizardNewPlugin

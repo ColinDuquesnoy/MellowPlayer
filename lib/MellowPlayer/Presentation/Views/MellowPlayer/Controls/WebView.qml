@@ -28,10 +28,11 @@ WebEngineView {
     }
 
     function stop() {
-        isRunning = false;
-        url = "";
-        reload();
+        root.triggerWebAction(WebEngineView.Stop);
         image = null;
+        isRunning = false;
+        url = "about:blank";
+        reload();
         player.stop();
     }
 
@@ -60,7 +61,6 @@ WebEngineView {
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank") {
             player.loadPlugin();
-            updateImage();
         }
         else
             checkForCustomUrlRequired();

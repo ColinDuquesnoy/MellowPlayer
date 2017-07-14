@@ -11,11 +11,13 @@ Page {
     id: root
 
     property int mainWindowWidth
+    property alias isWebViewModel: toolBar.isWebViewMode
     signal newViewRequested(var request, var profile)
     signal fullScreenRequested(var request)
     signal openListeningHistoryRequested()
     signal openSettingsRequested()
     signal openAboutDialogRequested()
+    signal createPluginRequested()
 
     function showWebView() {
         body.showWebView();
@@ -57,6 +59,7 @@ Page {
         onOpenListeningHistoryRequested: root.openListeningHistoryRequested()
         onOpenSettingsRequested: root.openSettingsRequested()
         onOpenAboutDialogRequested: root.openAboutDialogRequested()
+        onCreatePluginRequested: root.createPluginRequested()
     }
 
     Item {
@@ -67,22 +70,26 @@ Page {
         property var previewImage
 
         function showWebView() {
-            state = "between";
-            try {
-                previewImage.state = "selected";
-            }
-            catch (e) {
-                state = "webview";
+            if (state == "overview") {
+                state = "between";
+                try {
+                    previewImage.state = "selected";
+                }
+                catch (e) {
+                    state = "webview";
+                }
             }
         }
 
         function showOverview() {
-            try {
-                state = "between";
-                previewImage.state = "";
-            }
-            catch (e) {
-                state = "overview";
+            if (state == "webview") {
+                try {
+                    state = "between";
+                    previewImage.state = "";
+                }
+                catch (e) {
+                    state = "overview";
+                }
             }
         }
 

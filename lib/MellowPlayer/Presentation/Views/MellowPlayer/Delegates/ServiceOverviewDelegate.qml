@@ -23,10 +23,11 @@ Item {
 
     Pane {
         id: highlight
+
         anchors.fill: parent
         anchors.margins: parent.width / 50
 
-        Material.elevation: state == "hover" ? 6 : 4
+        Material.elevation: state == "hover" ? 8 : 4
 
         Image {
             id: preview
@@ -35,7 +36,7 @@ Item {
             width: parent.width
             height: parent.height
             source: {
-                return webView !== null && webView.image !== null ? webView.image.url : "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png"
+                return webView !== null && webView.image != null ? webView.image.url : "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png"
             }
             states: State {
                 name: "selected"
@@ -98,7 +99,7 @@ Item {
             opacity: 0.3
         }
 
-        state: root.hovered || btOff.hovered ? "hover" : ""
+        state: root.hovered ? "hover" : ""
 
         states: State {
             name: "hover"
