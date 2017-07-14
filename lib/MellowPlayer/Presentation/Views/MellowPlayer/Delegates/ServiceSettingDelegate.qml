@@ -16,7 +16,7 @@ ItemDelegate {
 
     hoverEnabled: true
     padding: 0
-    onClicked: enterEditMode()
+    onClicked: switchEnabled.toggle()
 
     Material.elevation: 2
 
@@ -92,6 +92,7 @@ ItemDelegate {
 
                             RowLayout {
                                 anchors.fill: parent
+                                anchors.margins: 8
 
                                 Label {
                                     font.italic: true
@@ -101,6 +102,13 @@ ItemDelegate {
                                 Item {
                                     Layout.fillWidth: true
                                     Layout.preferredHeight: textField.implicitHeight
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onClicked: root.enterEditMode()
+                                    cursorShape: containsMouse ? "IBeamCursor" : "ArrowCursor"
                                 }
                             }
 
@@ -140,6 +148,7 @@ ItemDelegate {
 
             ColumnLayout {
                 Switch {
+                    id: switchEnabled
                     checked: model.isEnabled
                     onCheckedChanged: {
                         model.isEnabled = checked;
