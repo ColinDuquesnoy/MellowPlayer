@@ -13,17 +13,22 @@ WebEngineView {
     property string urlToLoad
     property var service
     property var image: null
+    property bool isRunning: false
 
     signal updateImageFinished()
     signal customUrlSet(var customUrl)
 
     function start() {
+        console.warn("start", model.name)
+        isRunning = true;
         url = urlToLoad
         checkForCustomUrlRequired()
         player.start()
     }
 
     function stop() {
+        console.warn("stop", model.name)
+        isRunning = false;
         url = "";
         reload();
         image = null;
@@ -65,6 +70,10 @@ WebEngineView {
         target: player
         onRunJavascriptRequested: runJavaScript(script, function(result) { })
         onUpdateRequested: runJavaScript(script, function(results) { root.player.setUpdateResults(results); })
+        onIsRunningChanged: {
+            console.error("on is running changed", root.isRunning)
+            if (!player.isRunning && root.isRunning) root.stop()
+        }
     }
 
     CustomUrlPane {

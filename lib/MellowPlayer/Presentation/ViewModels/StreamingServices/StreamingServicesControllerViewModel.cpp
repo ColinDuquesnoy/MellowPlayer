@@ -108,7 +108,7 @@ void StreamingServicesControllerViewModel::next() {
 
     while (index != currentIndex) {
         auto* sv = allServices->at(index);
-        if (sv->isRunning() && sv->isEnabled()) {
+        if (sv->isRunning()) {
             setCurrentService(sv);
             break;
         }

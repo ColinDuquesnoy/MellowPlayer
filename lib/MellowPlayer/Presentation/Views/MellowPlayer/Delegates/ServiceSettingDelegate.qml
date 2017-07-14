@@ -141,7 +141,10 @@ ItemDelegate {
             ColumnLayout {
                 Switch {
                     checked: model.isEnabled
-                    onCheckedChanged: model.isEnabled = checked;
+                    onCheckedChanged: {
+                        model.isEnabled = checked;
+                        _streamingServices.enabledServices.update()
+                    }
 
                     Layout.alignment: Qt.AlignRight
                 }

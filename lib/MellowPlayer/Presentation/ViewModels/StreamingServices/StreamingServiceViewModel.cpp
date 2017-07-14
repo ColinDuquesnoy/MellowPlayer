@@ -8,13 +8,13 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService,
-                                                         ISettingsProvider& settings,
-                                                         Players& players,
-                                                         QObject* parent) :
+                                                     ISettingsProvider& settings,
+                                                     Players& players,
+                                                     QObject* parent) :
         QObject(parent),
         streamingService(streamingService),
         settingsProvider(settings),
-        players(players) {
+        player(players.get(streamingService.getName())) {
 }
 
 QString StreamingServiceViewModel::getLogo() const {
@@ -26,7 +26,7 @@ QString StreamingServiceViewModel::getName() const {
 }
 
 Player* StreamingServiceViewModel::getPlayer() {
-    return players.get(streamingService.getName()).get();
+    return player.get();
 }
 
 QString StreamingServiceViewModel::getUrl() const {
@@ -76,8 +76,9 @@ void StreamingServiceViewModel::setEnabled(bool enabled) {
         settingsProvider.setValue(getIsEnabledSettingsKey(), enabled);
         emit isEnabledChanged();
 
-//        if (!enabled)
-//            getPlayer()->stop();
+        if (!enabled) {
+            player->stop();
+        }
     }
 }
 
@@ -93,7 +94,7 @@ QString StreamingServiceViewModel::getCustomUrlSettingsKey() const {
 }
 
 bool StreamingServiceViewModel::isRunning() const {
-    return players.get(streamingService.getName()).get()->isRunning();
+    return player->isRunning();
 }
 
 QString StreamingServiceViewModel::getSortOrderSettingsKey() const {

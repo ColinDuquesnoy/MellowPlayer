@@ -10,7 +10,6 @@ StreamingServiceProxyListModel::StreamingServiceProxyListModel(StreamingServiceL
 
 bool StreamingServiceProxyListModel::filterAcceptsRow(int sourceRow, const QModelIndex&) const {
     StreamingServiceViewModel* viewModel = sourceListModel->at(sourceRow);
-    connect(viewModel, &StreamingServiceViewModel::isEnabledChanged, this, &StreamingServiceProxyListModel::invalidate, Qt::UniqueConnection);
 
     if (viewModel->getSortOrder() == -1)
         viewModel->setSortOrder(sourceRow);
@@ -24,4 +23,8 @@ bool MellowPlayer::Presentation::StreamingServiceProxyListModel::lessThan(const 
     StreamingServiceViewModel* right = sourceListModel->at(sourceRight.row());
 
     return left->getSortOrder() < right->getSortOrder();
+}
+
+void StreamingServiceProxyListModel::update() {
+    invalidate();
 }

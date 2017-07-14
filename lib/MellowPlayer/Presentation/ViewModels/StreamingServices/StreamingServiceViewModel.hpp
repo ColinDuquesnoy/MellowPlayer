@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace MellowPlayer::Application {
 
     class StreamingService;
@@ -22,6 +24,8 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString authorName READ getAuthorName CONSTANT)
         Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
         Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
+        Q_PROPERTY(int sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
+        Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
         StreamingServiceViewModel(Application::StreamingService& streamingService,
                               Application::ISettingsProvider& settings,
@@ -55,6 +59,7 @@ namespace MellowPlayer::Presentation {
         void urlChanged(const QString&);
         void sortOrderChanged();
         void isEnabledChanged();
+        void isRunningChanged();
 
     private:
         QString getCustomUrlSettingsKey() const;
@@ -63,8 +68,7 @@ namespace MellowPlayer::Presentation {
 
         Application::StreamingService& streamingService;
         Application::ISettingsProvider& settingsProvider;
-        Application::Players& players;
-        bool isCurrent_ = false;
+        std::shared_ptr<Application::Player> player;
     };
 
 }
