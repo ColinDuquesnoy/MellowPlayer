@@ -16,7 +16,7 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
         Q_PROPERTY(QAbstractItemModel* settings READ getSettingsModel CONSTANT)
     public:
-        SettingsCategoryViewModel(StyleViewModel& styleViewModel,
+        SettingsCategoryViewModel(ThemeViewModel& themeViewModel,
                                   Application::SettingsCategory* settingsCategory= nullptr,
                                   QObject* parent= nullptr);
 
@@ -38,7 +38,7 @@ namespace MellowPlayer::Presentation {
         Q_OBJECT
     public:
         CustomSettingsCategoryViewModel(const QString& name, const QString& icon, const QString& qmlComponent,
-                                        StyleViewModel& styleViewModel, QObject* parent=nullptr);
+                                        ThemeViewModel& themeViewModel, QObject* parent=nullptr);
 
         QString getName() const override;
         QString getIcon() const override;

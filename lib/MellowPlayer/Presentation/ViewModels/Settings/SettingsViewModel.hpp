@@ -11,7 +11,7 @@ namespace MellowPlayer::Presentation {
         Q_OBJECT
         Q_PROPERTY(QAbstractItemModel* categories READ getCategories CONSTANT)
     public:
-        SettingsViewModel(Application::Settings& settings, StyleViewModel& styleViewModel,
+        SettingsViewModel(Application::Settings& settings, ThemeViewModel& themeViewModel,
                           QObject* parent= nullptr);
 
         Q_INVOKABLE SettingViewModel* get(int key);

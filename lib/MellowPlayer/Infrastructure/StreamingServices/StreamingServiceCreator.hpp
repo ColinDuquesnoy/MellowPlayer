@@ -14,7 +14,7 @@ namespace MellowPlayer::Infrastructure {
     private:
         void createScript(const QString& pluginDir) const;
         void createLogo(const QString& pluginDir) const;
-        void createStyle(const QString& pluginDir) const;
+        void createTheme(const QString& pluginDir) const;
         void createMetadata(const QString& serviceName, const QString& serviceUrl,
                             const QString& authorName, const QString& authorWebsite,
                             const QString& pluginDir) const;
@@ -30,7 +30,7 @@ namespace MellowPlayer::Infrastructure {
         static const QString SCRIPT_FILE_NAME;
         static const QString LOGO_FILE_NAME;
         static const QString METADATA_FILE_NAME;
-        static const QString STYLE_FILE_NAME;
+        static const QString THEME_FILE_NAME;
     };
 
 }

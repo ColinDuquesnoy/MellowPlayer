@@ -11,7 +11,7 @@ MellowPlayer can be extended by writing a *streaming service integration plugin*
 - **integration.js**: the actual code that integrates the service into MellowPlayer
 - **logo.svg**: the logo of the service
 - **metadata.ini**: plugin's metadata
-- **style.json**: optional style definition. The colors defined in this file are used through the whole user interface if theme is set to **adaptive**.
+- **theme.json**: optional theme definition. The colors defined in this file are used through the whole user interface if theme is set to **adaptive**.
 
 The file **integration.js** contains a series of function that you must implement. Those functions will get called
 by the C++ application for updating the player state or when the user triggered an action (play, pause,...).

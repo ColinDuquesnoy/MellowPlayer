@@ -37,7 +37,7 @@
 				{
 					"name": "Theme",
                     "tooltip": "Application theme",
-					"type": "style",
+					"type": "theme",
 					"default": "Adaptive",
 					"key": "theme"
 				},

@@ -19,7 +19,7 @@ namespace MellowPlayer::Presentation {
     class ApplicationViewModel;
     class ListeningHistoryViewModel;
     class StreamingServicesControllerViewModel;
-    class StyleViewModel;
+    class ThemeViewModel;
 
     class MainWindowViewModel: public QObject, public Application::IMainWindow {
         Q_OBJECT
@@ -27,7 +27,7 @@ namespace MellowPlayer::Presentation {
     public:
         MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                             ListeningHistoryViewModel& listeningHistoryModel,
-                            StyleViewModel& styleViewModel,
+                            ThemeViewModel& themeViewModel,
                             Application::IQtApplication& qtApp,
                             Application::IPlayer& player,
                             Application::Settings& settings);

@@ -22,9 +22,9 @@ ToolBar {
     signal openSettingsRequested()
     signal openAboutDialogRequested()
 
-    Material.primary: _style.primary
-    Material.foreground: _style.primaryForeground
-    Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
+    Material.primary: _theme.primary
+    Material.foreground: _theme.primaryForeground
+    Material.theme: _theme.isDark(_theme.primary) ? Material.Dark : Material.Light
 
 
     QtObject {
@@ -255,7 +255,7 @@ ToolBar {
             text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
 
             Layout.fillHeight: true
-            Material.accent: _style.accent == _style.primary ? _style.primaryForeground : _style.accent
+            Material.accent: _theme.accent == _theme.primary ? _theme.primaryForeground : _theme.accent
 
             Tooltip {
                 y: root.implicitHeight
@@ -361,7 +361,7 @@ ToolBar {
                 }
 
                 Rectangle {
-                    color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+                    color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
                     height: 1
                     width: parent.width
                 }

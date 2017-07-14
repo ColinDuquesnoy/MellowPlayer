@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <QMap>
-#include <MellowPlayer/Application/Style/Style.hpp>
+#include <MellowPlayer/Application/Theme/Theme.hpp>
 
 namespace MellowPlayer::Application {
  
@@ -10,15 +10,15 @@ namespace MellowPlayer::Application {
     class StreamingServicesController;
     class Setting;
     class Settings;
-    class IStyleLoader;
+    class IThemeLoader;
     
 }
 
 namespace MellowPlayer::Presentation {
 
-    class StyleViewModel: public QObject {
+    class ThemeViewModel: public QObject {
         Q_OBJECT
-        Q_PROPERTY(QString theme READ getTheme NOTIFY themeChanged)
+        Q_PROPERTY(bool dark READ isDark NOTIFY isDarkChanged)
         Q_PROPERTY(QString accent READ getAccent NOTIFY accentChanged)
         Q_PROPERTY(QString background READ getBackground NOTIFY backgroundChanged)
         Q_PROPERTY(QString foreground READ getForeground NOTIFY foregroundChanged)
@@ -26,13 +26,12 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString primaryForeground READ getPrimaryForeground NOTIFY primaryForegroundChanged)
         Q_PROPERTY(QString secondary READ getSecondary NOTIFY secondaryChanged)
         Q_PROPERTY(QString secondaryForeground READ getSecondaryForeground NOTIFY secondaryForegroundChanged)
-        Q_PROPERTY(QStringList availableStyles READ getAvailableStyles NOTIFY availableStylesChanged)
     public:
-        StyleViewModel(Application::StreamingServicesController& streamingServices,
+        ThemeViewModel(Application::StreamingServicesController& streamingServices,
                        Application::Settings& settings,
-                       Application::IStyleLoader& styleLoader);
+                       Application::IThemeLoader& themeLoader);
 
-        QString getTheme() const;
+        bool isDark() const;
         QString getAccent() const;
         QString getBackground() const;
         QString getForeground() const;
@@ -40,15 +39,16 @@ namespace MellowPlayer::Presentation {
         QString getPrimaryForeground() const;
         QString getSecondary() const;
         QString getSecondaryForeground() const;
-        QStringList getAvailableStyles() const;
+        QStringList getAvailableThemes() const;
 
         Q_INVOKABLE double getColorScaleFactor(const QString& color) const;
         Q_INVOKABLE bool isDark(const QString& color) const;
 
-        Application::Style getCustomStyle();
+        Application::Theme getCustomTheme() const;
+        Application::Theme getTheme(const QString& themeName) const;
 
     signals:
-        void themeChanged();
+        void isDarkChanged();
         void accentChanged();
         void backgroundChanged();
         void foregroundChanged();
@@ -56,10 +56,9 @@ namespace MellowPlayer::Presentation {
         void primaryForegroundChanged();
         void secondaryChanged();
         void secondaryForegroundChanged();
-        void availableStylesChanged();
 
     private slots:
-        void updateStyle();
+        void update();
         void onCurrentServiceChanged(Application::StreamingService* streamingService);
         void onServiceAdded(Application::StreamingService* service);
 
@@ -71,12 +70,11 @@ namespace MellowPlayer::Presentation {
         void setPrimaryForeground(const QString& value);
         void setSecondary(const QString& value);
         void setSecondaryForeground(const QString& value);
-        void fromStyle(const Application::Style& newStyle);
-        void collectStyles();
+        void fromTheme(const Application::Theme& newTheme);
+        void collectThemes();
 
-        bool useServiceStyle;
         Application::StreamingServicesController& streamingServices;
-        Application::IStyleLoader& styleLoader;
+        Application::IThemeLoader& loader;
         Application::Setting& accentColorSetting;
         Application::Setting& themeSetting;
         Application::Setting& backgroundSetting;
@@ -85,8 +83,8 @@ namespace MellowPlayer::Presentation {
         Application::Setting& primaryForegroundSetting;
         Application::Setting& secondaryBackgroundSetting;
         Application::Setting& secondaryForegroundSetting;
-        Application::Style currentStyle;
-        QMap<QString, Application::Style> availableStyles;
+        Application::Theme currentTheme;
+        QMap<QString, Application::Theme> availableThemes;
 
         bool isAdaptiveTheme() const;
     };

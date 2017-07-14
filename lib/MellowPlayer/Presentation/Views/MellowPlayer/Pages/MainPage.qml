@@ -118,7 +118,7 @@ Page {
                 }
 
                 PropertyChanges {
-                    target: _style
+                    target: _theme
                 }
             },
             State {

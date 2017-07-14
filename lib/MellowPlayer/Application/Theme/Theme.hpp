@@ -4,7 +4,7 @@
 
 namespace MellowPlayer::Application {
 
-    struct Style {
+    struct Theme {
         QString accent;
         QString background;
         QString foreground;

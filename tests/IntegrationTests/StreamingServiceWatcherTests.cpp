@@ -26,10 +26,10 @@ TEST_CASE("StreamingServiceWatcherTests") {
     watcher.watch(service);
 
     QSignalSpy scriptChangedSpy(&service, &StreamingService::scriptChanged);
-    QSignalSpy styleChangedSpy(&service, &StreamingService::styleChanged);
+    QSignalSpy themeChangedSpy(&service, &StreamingService::themeChanged);
 
     REQUIRE(scriptChangedSpy.count() == 0);
-    REQUIRE(styleChangedSpy.count() == 0);
+    REQUIRE(themeChangedSpy.count() == 0);
 
     QTest::qWait(1000);
 
@@ -39,10 +39,10 @@ TEST_CASE("StreamingServiceWatcherTests") {
         REQUIRE(scriptChangedSpy.count() == 1);
     }
 
-    SECTION("change style file content") {
-        REQUIRE(writeFile(pluginDir + "/" + "style.json", "test"));
+    SECTION("change theme file content") {
+        REQUIRE(writeFile(pluginDir + "/" + "theme.json", "test"));
         QTest::qWait(1000);
-        REQUIRE(styleChangedSpy.count() == 1);
+        REQUIRE(themeChangedSpy.count() == 1);
     }
 
     QDir().rmpath(pluginDir);

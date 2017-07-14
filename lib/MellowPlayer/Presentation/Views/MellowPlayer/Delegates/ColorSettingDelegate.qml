@@ -27,7 +27,7 @@ ItemDelegate {
             onClicked: colorDialog.open()
 
             Material.background: model.qtObject.value
-            Material.foreground: _style.isDark(model.qtObject.value) ? "white" : "#303030"
+            Material.foreground: _theme.isDark(model.qtObject.value) ? "white" : "#303030"
 
             Tooltip {
                 text: model.toolTip

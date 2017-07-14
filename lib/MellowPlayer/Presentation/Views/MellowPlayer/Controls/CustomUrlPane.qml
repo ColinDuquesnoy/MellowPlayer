@@ -17,8 +17,8 @@ Pane {
         state = "visible";
     }
 
-    Material.background: _style.primary
-    Material.foreground: _style.primaryForeground
+    Material.background: _theme.primary
+    Material.foreground: _theme.primaryForeground
     Material.elevation: 4
 
     ColumnLayout {

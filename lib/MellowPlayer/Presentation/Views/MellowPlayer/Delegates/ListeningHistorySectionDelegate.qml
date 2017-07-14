@@ -16,8 +16,8 @@ Pane {
     padding: 0
 
     Material.elevation: 2
-    Material.background: _style.background
-    Material.theme: _style.isDark(_style.background) ? Material.Dark : Material.Light
+    Material.background: _theme.background
+    Material.theme: _theme.isDark(_theme.background) ? Material.Dark : Material.Light
 
     ItemDelegate {
        anchors.fill: parent
@@ -53,7 +53,7 @@ Pane {
                            verticalAlignment: "AlignVCenter"
 
                            Layout.fillHeight: true
-                           Material.foreground: _style.accent
+                           Material.foreground: _theme.accent
                        }
 
                        Item {
@@ -86,7 +86,7 @@ Pane {
            }
 
            Rectangle {
-               color: _style.accent
+               color: _theme.accent
                width: parent.width
                height: 3
 

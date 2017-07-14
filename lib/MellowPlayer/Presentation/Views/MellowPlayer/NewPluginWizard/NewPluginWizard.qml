@@ -99,7 +99,7 @@ Dialog {
         }
 
         Rectangle {
-            color: _style.foreground
+            color: _theme.foreground
             opacity: 0.5
 
             Layout.fillWidth: true

@@ -29,10 +29,10 @@ namespace MellowPlayer::Infrastructure {
         public:
             Application::StreamingService& service;
             QString scriptPath;
-            QString stylePath;
+            QString themePath;
 
-            PluginInfo(Application::StreamingService& service, QString scriptPath, QString stylePath, QObject* parent) :
-                QObject(parent), service(service), scriptPath(scriptPath), stylePath(stylePath) {
+            PluginInfo(Application::StreamingService& service, QString scriptPath, QString themePath, QObject* parent) :
+                QObject(parent), service(service), scriptPath(scriptPath), themePath(themePath) {
 
             }
         };

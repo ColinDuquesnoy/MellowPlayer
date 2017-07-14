@@ -10,10 +10,10 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
-#include <MellowPlayer/Application/Style/Style.hpp>
+#include <MellowPlayer/Application/Theme/Theme.hpp>
 #include "StreamingServiceLoader.hpp"
 #include <QDebug>
-#include <MellowPlayer/Infrastructure/Style/StyleLoader.hpp>
+#include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -86,24 +86,24 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     return serviceMetadata;
 }
 
-Style StreamingServiceLoader::readStyle(const QString& filePath) {
+Theme StreamingServiceLoader::readTheme(const QString& filePath) {
 
-    static StyleLoader loader;
+    static ThemeLoader loader;
     return loader.load(filePath);
 }
 
 unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& directory) const {
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
-    QString stylePath = findFileByExtension(directory, "json");
+    QString themePath = findFileByExtension(directory, "json");
     QString locale = QLocale::system().name().split("_")[0];
     StreamingServiceMetadata metadata = readMetadata(metadataPath);
     metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
-    Style style = readStyle(stylePath);
+    Theme theme = readTheme(themePath);
 
-    return make_unique<StreamingService>(metadata, style);
+    return make_unique<StreamingService>(metadata, theme);
 }
 
 bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) const {

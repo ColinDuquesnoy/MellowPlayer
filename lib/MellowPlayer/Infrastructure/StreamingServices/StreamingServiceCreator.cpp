@@ -13,7 +13,7 @@ const QString StreamingServiceCreator::RESOURCE_PATH = ":/MellowPlayer/Applicati
 const QString StreamingServiceCreator::SCRIPT_FILE_NAME = "integration.js";
 const QString StreamingServiceCreator::LOGO_FILE_NAME = "logo.svg";
 const QString StreamingServiceCreator::METADATA_FILE_NAME = "metadata.ini";
-const QString StreamingServiceCreator::STYLE_FILE_NAME = "style.json";
+const QString StreamingServiceCreator::THEME_FILE_NAME = "theme.json";
 
 QString StreamingServiceCreator::create(const QString& serviceName, const QString& serviceUrl,
                                         const QString& authorName, const QString& authorWebsite) const {
@@ -22,7 +22,7 @@ QString StreamingServiceCreator::create(const QString& serviceName, const QStrin
 
     createLogo(pluginDir);
     createScript(pluginDir);
-    createStyle(pluginDir);
+    createTheme(pluginDir);
     createMetadata(serviceName, serviceUrl, authorName, authorWebsite, pluginDir);
 
     return pluginDir;
@@ -36,8 +36,8 @@ void StreamingServiceCreator::createLogo(const QString& pluginDir) const {
     createPluginFile(pluginDir, LOGO_FILE_NAME);
 }
 
-void StreamingServiceCreator::createStyle(const QString& pluginDir) const {
-    createPluginFile(pluginDir, STYLE_FILE_NAME);
+void StreamingServiceCreator::createTheme(const QString& pluginDir) const {
+    createPluginFile(pluginDir, THEME_FILE_NAME);
 }
 
 void StreamingServiceCreator::createMetadata(const QString& serviceName, const QString& serviceUrl,

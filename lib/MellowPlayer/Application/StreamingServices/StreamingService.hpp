@@ -5,7 +5,7 @@
 #include <QtGui/QImage>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "StreamingServiceMetadata.hpp"
-#include "MellowPlayer/Application/Style/Style.hpp"
+#include "MellowPlayer/Application/Theme/Theme.hpp"
 
 namespace MellowPlayer::Application {
 
@@ -22,7 +22,7 @@ namespace MellowPlayer::Application {
         Q_PROPERTY(StreamingServiceScript* script READ getScript CONSTANT)
     public:
         StreamingService(const StreamingServiceMetadata& metadata,
-                         const Style& style = Style());
+                         const Theme& theme = Theme());
         ~StreamingService();
 
         bool isValid() const;
@@ -33,11 +33,11 @@ namespace MellowPlayer::Application {
         QString getUrl() const;
         const QString& getVersion() const;
         StreamingServiceScript* getScript() const;
-        const Style& getStyle() const;
+        const Theme& getTheme() const;
 
         QString getPluginDirectory() const;
 
-        void updateStyle(Style& style);
+        void updateTheme(Theme& newTheme);
         void updateScript(const QString& script);
 
         bool operator==(const StreamingService& rhs) const;
@@ -45,11 +45,11 @@ namespace MellowPlayer::Application {
 
     signals:
         void scriptChanged();
-        void styleChanged();
+        void themeChanged();
 
     private:
         StreamingServiceMetadata metadata;
-        Style style;
+        Theme theme;
         std::unique_ptr<StreamingServiceScript> script;
     };
 }

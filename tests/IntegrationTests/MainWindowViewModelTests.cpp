@@ -13,13 +13,13 @@ TEST_CASE("MainWindowViewModel") {
 
     StreamingServicesControllerViewModel& streamingServices = injector.create<StreamingServicesControllerViewModel&>();
     ListeningHistoryViewModel& listeningHistory = injector.create<ListeningHistoryViewModel&>();
-    StyleViewModel& style = injector.create<StyleViewModel&>();
+    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
     IPlayer& player = injector.create<CurrentPlayer&>();
     ILocalAlbumArt& albumArt = injector.create<ILocalAlbumArt&>();
     Settings& settings = injector.create<Settings&>();
     IQtApplication& qtApp = injector.create<IQtApplication&>();
 
-    MainWindowViewModel mainWindow(streamingServices, listeningHistory, style, qtApp, player, settings);
+    MainWindowViewModel mainWindow(streamingServices, listeningHistory, themeViewModel, qtApp, player, settings);
     QSignalSpy visibleChangedSpy(&mainWindow, SIGNAL(visibleChanged()));
 
     REQUIRE(mainWindow.load());

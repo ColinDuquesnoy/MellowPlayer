@@ -26,7 +26,7 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
@@ -43,7 +43,7 @@
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
-#include <MellowPlayer/Infrastructure/Style/StyleLoader.hpp>
+#include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 
 #ifdef USE_LIBNOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
@@ -115,7 +115,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
         di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
         di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
-        di::bind<IStyleLoader>().to<StyleLoader>().in(scope)
+        di::bind<IThemeLoader>().to<ThemeLoader>().in(scope)
     );
 };
 

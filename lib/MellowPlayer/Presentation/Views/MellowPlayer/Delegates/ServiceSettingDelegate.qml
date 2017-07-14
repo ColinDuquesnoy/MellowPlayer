@@ -55,7 +55,7 @@ ItemDelegate {
                         RowLayout {
                             spacing: 0
 
-                            Material.accent: _style.accent === "#ffc107" ? _style.primary : _style.accent
+                            Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
 
                             Label {
                                 font.bold: true
@@ -151,7 +151,7 @@ ItemDelegate {
         }
 
         Rectangle {
-            color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
             height: 1
             visible: model.index != (root.ListView.view.count - 1)
 

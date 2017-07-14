@@ -44,7 +44,7 @@ ColumnLayout {
                 }
 
                 Rectangle {
-                    color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+                    color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
                     visible: model.index != parent.ListView.view.count - 1
 
                     Layout.preferredHeight: 1
@@ -69,7 +69,7 @@ ColumnLayout {
             text: "Restore defaults"
             onClicked: messageBoxConfirmRestore.open()
 
-            Material.accent: _style.accent === "#ffc107" ? _style.primary : _style.accent
+            Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
 
             Tooltip {
                 text: 'Restore <b>' + model.name.toLowerCase() + '</b> _settings to their <b>default values</b>.'

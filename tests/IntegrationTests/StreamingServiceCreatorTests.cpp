@@ -15,7 +15,7 @@ TEST_CASE("StreamingServiceCreatorTests") {
     QList<QFileInfo> files;
     files.append(QFileInfo(pluginDir + "/" + "integration.js"));
     files.append(QFileInfo(pluginDir + "/" + "logo.svg"));
-    files.append(QFileInfo(pluginDir + "/" + "style.json"));
+    files.append(QFileInfo(pluginDir + "/" + "theme.json"));
     files.append(QFileInfo(pluginDir + "/" + "metadata.ini"));
 
     for(auto fileInfo: files) {

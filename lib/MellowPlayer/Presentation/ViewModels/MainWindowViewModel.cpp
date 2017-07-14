@@ -9,7 +9,7 @@
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include "MainWindowViewModel.hpp"
 
@@ -18,13 +18,13 @@ using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                                  ListeningHistoryViewModel& listeningHistoryModel,
-                                 StyleViewModel& styleViewModel,
+                                 ThemeViewModel& themeViewModel,
                                  IQtApplication& qtApp,
                                  IPlayer& player,
                                  Settings& settings) :
         logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
         settings(settings), streamingServices(streamingServicesModel),
-        listeningHistory(listeningHistoryModel), settingsViewModel(settings, styleViewModel) {
+        listeningHistory(listeningHistoryModel), settingsViewModel(settings, themeViewModel) {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey",
                                            "SettingKey cannot be instantiated from QML");
@@ -33,7 +33,7 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& s
     auto context = qmlApplicationEngine.rootContext();
     context->setContextProperty("_streamingServices", &streamingServicesModel);
     context->setContextProperty("_listeningHistory", &listeningHistoryModel);
-    context->setContextProperty("_style", &styleViewModel);
+    context->setContextProperty("_theme", &themeViewModel);
     context->setContextProperty("_player", &player);
     context->setContextProperty("_clipboard", &clipBoardModel);
     context->setContextProperty("_settings", &settingsViewModel);

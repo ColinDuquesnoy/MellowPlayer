@@ -14,9 +14,9 @@ Page {
     header: ToolBar {
         id: toolBar
 
-        Material.primary: _style.primary
-        Material.foreground: _style.primaryForeground
-        Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
+        Material.primary: _theme.primary
+        Material.foreground: _theme.primaryForeground
+        Material.theme: _theme.isDark(_theme.primary) ? Material.Dark : Material.Light
 
         RowLayout {
             anchors.fill: parent
@@ -62,10 +62,10 @@ Page {
             Layout.maximumWidth: 256
             Layout.minimumWidth: 256
 
-            Material.background: _style.secondary
-            Material.foreground: _style.secondaryForeground
+            Material.background: _theme.secondary
+            Material.foreground: _theme.secondaryForeground
             Material.elevation: 4
-            Material.theme: _style.isDark(_style.secondary) ? Material.Dark : Material.Light
+            Material.theme: _theme.isDark(_theme.secondary) ? Material.Dark : Material.Light
 
             ColumnLayout {
                 anchors.fill: parent
@@ -107,14 +107,14 @@ Page {
                     id: settingsPageList
 
                     highlight: Rectangle {
-                        color: _style.isDark(_style.secondary) ? "#10ffffff" : "#10000000"
+                        color: _theme.isDark(_theme.secondary) ? "#10ffffff" : "#10000000"
                         Rectangle {
                             anchors.top: parent.top
                             anchors.left: parent.left
                             anchors.bottom: parent.bottom
 
                             width: 3
-                            color: _style.accent
+                            color: _theme.accent
                         }
                     }
                     highlightMoveDuration: 200

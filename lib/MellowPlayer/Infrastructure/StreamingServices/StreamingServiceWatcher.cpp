@@ -13,12 +13,12 @@ StreamingServiceWatcher::StreamingServiceWatcher():
 
 void StreamingServiceWatcher::watch(StreamingService& serviceToWatch) {
     const QString pluginDirectory = serviceToWatch.getPluginDirectory();
-    const QString stylePath = QDir::cleanPath(pluginDirectory + "/" + "style.json");
+    const QString themePath = QDir::cleanPath(pluginDirectory + "/" + "theme.json");
     const QString scriptPath = QDir::cleanPath(pluginDirectory + "/" + "integration.js");
 
-    pluginInfos.insert(pluginDirectory, new PluginInfo(serviceToWatch, scriptPath, stylePath, this));
+    pluginInfos.insert(pluginDirectory, new PluginInfo(serviceToWatch, scriptPath, themePath, this));
 
-    watchPath(stylePath);
+    watchPath(themePath);
     watchPath(scriptPath);
 }
 
@@ -38,8 +38,8 @@ void StreamingServiceWatcher::onFileChanged(const QString& path) {
         service.updateScript(StreamingServiceLoader::readFileContent(path));
     }
     else {
-        Style style = StreamingServiceLoader::readStyle(path);
-        service.updateStyle(style);
+        Theme theme = StreamingServiceLoader::readTheme(path);
+        service.updateTheme(theme);
     }
 
     fileSystemWatcher.removePath(path);

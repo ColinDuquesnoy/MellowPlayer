@@ -7,20 +7,20 @@ using namespace MellowPlayer::Presentation;
 
 
 SettingsViewModel::SettingsViewModel(Settings& settings,
-                                     StyleViewModel& styleViewModel,
+                                     ThemeViewModel& themeViewModel,
                                      QObject* parent) :
         QObject(parent),
         settings(settings),
-        settingViewModelFactory(styleViewModel),
+        settingViewModelFactory(themeViewModel),
         categories(new SettingsCategoryListModel(this, "name")) {
     for(SettingsCategory* category: settings.getCategories()) {
         if (category->getKey() != "private")
-            categories->append(new SettingsCategoryViewModel(styleViewModel, category, this));
+            categories->append(new SettingsCategoryViewModel(themeViewModel, category, this));
     }
     categories->append(new CustomSettingsCategoryViewModel(
-            "Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", styleViewModel, this));
+            "Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", themeViewModel, this));
     categories->append(new CustomSettingsCategoryViewModel(
-            "Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", styleViewModel, this));
+            "Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", themeViewModel, this));
 }
 
 SettingViewModel* SettingsViewModel::get(int key) {

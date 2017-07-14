@@ -29,7 +29,7 @@ Item {
         }
 
         Rectangle {
-            color: _style.isDark(_style.background) ? Qt.lighter(_style.background) : Qt.darker(_style.background, 1.1)
+            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
             height: 1
             Layout.fillWidth: true
         }
@@ -61,10 +61,10 @@ Item {
         clip: true
         width: parent.width
 
-        Material.background: _style.primary
+        Material.background: _theme.primary
         Material.elevation: 8
-        Material.foreground: _style.primaryForeground
-        Material.theme: _style.isDark(_style.primary) ? Material.Dark : Material.Light
+        Material.foreground: _theme.primaryForeground
+        Material.theme: _theme.isDark(_theme.primary) ? Material.Dark : Material.Light
 
         RowLayout {
             id: rowLayout

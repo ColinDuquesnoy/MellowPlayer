@@ -23,7 +23,7 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StyleViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
@@ -63,7 +63,7 @@
 #include <Mocks/SystemTrayIconMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/CommnandLineParserMock.hpp>
-#include <Mocks/StyleLoaderMock.hpp>
+#include <Mocks/ThemeLoaderMock>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -119,7 +119,7 @@ static auto localAlbumArtMock = LocalAlbumArtMock::getMockWithUrlOk();
 static auto streamingServiceCreatorMock = StreamingServiceCreatorMock::get();
 static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
 static auto commandLineParserMock = CommandLineParserMock::get();
-static auto styleLoaderMock = StyleLoaderMock::get();
+static auto themeLoaderMock = ThemeLoaderMock::get();
 
 inline auto getTestInjector(ScopedScope& scope) {
     static auto settingsProviderMock = SettingsProviderMock::get();
@@ -143,7 +143,7 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get()),
         di::bind<IStreamingServiceWatcher>().to(streamingServiceWatcherMock.get()),
         di::bind<ICommandLineParser>().to(commandLineParserMock.get()),
-        di::bind<IStyleLoader>().to(styleLoaderMock.get())
+        di::bind<IThemeLoader>().to(themeLoaderMock.get())
     );
 };
 

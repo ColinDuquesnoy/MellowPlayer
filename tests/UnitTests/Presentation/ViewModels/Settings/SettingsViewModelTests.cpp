@@ -12,8 +12,8 @@ TEST_CASE("SettingsViewModelTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings& settings = injector.create<Settings&>();
-    StyleViewModel& styleViewModel = injector.create<StyleViewModel&>();
-    SettingsViewModel viewModel(settings, styleViewModel);
+    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
+    SettingsViewModel viewModel(settings, themeViewModel);
 
     SECTION("get") {
         SettingViewModel* settingModel = viewModel.get(SettingKey::NOTIFICATIONS_ENABLED);

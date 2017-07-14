@@ -35,11 +35,11 @@ ApplicationWindow {
         }
     }
 
-    Material.accent: _style.accent
-    Material.background: _style.background
-    Material.foreground: _style.foreground
-    Material.primary: _style.primary
-    Material.theme: _style.theme == "light" ? Material.Light : Material.Dark
+    Material.accent: _theme.accent
+    Material.background: _theme.background
+    Material.foreground: _theme.foreground
+    Material.primary: _theme.primary
+    Material.theme: _theme.dark ? Material.Dark : Material.Light
 
     Connections {
         target: _window

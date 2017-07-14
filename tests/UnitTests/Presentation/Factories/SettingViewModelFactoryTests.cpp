@@ -7,7 +7,7 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StyleSettingViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ThemeSettingViewModel.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -16,8 +16,8 @@ TEST_CASE("SettingModelFactoryTests") {
     ScopedScope scope;
     auto injector = getTestInjector(scope);
     Settings &settings = injector.create<Settings &>();
-    StyleViewModel &styleViewModel = injector.create<StyleViewModel &>();
-    SettingViewModelFactory factory(styleViewModel);
+    ThemeViewModel &themeViewModel = injector.create<ThemeViewModel &>();
+    SettingViewModelFactory factory(themeViewModel);
 
     SECTION("createBoolSettingModel") {
         Setting &setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
@@ -47,10 +47,10 @@ TEST_CASE("SettingModelFactoryTests") {
         REQUIRE(specificSettingModel != nullptr);
     }
 
-    SECTION("createStyleSettingViewModel") {
+    SECTION("createThemeSettingViewModel") {
         Setting &setting = settings.get(SettingKey::APPEARANCE_THEME);
         SettingViewModel *settingModel = factory.create(setting, &settings);
-        StyleSettingViewModel* specificSettingModel = qobject_cast<StyleSettingViewModel*>(settingModel);
+        ThemeSettingViewModel* specificSettingModel = qobject_cast<ThemeSettingViewModel*>(settingModel);
         REQUIRE(specificSettingModel != nullptr);
     }
 }

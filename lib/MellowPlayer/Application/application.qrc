@@ -4,7 +4,9 @@
         <file>PluginTemplate/integration.js</file>
         <file>PluginTemplate/logo.svg</file>
         <file>PluginTemplate/metadata.ini</file>
-        <file>PluginTemplate/style.json</file>
-        <file>Style/DefaultStyle.json</file>
+        <file>PluginTemplate/theme.json</file>
+        <file>Theme/Breeze.json</file>
+        <file>Theme/BreezeDark.json</file>
+        <file>Theme/Default.json</file>
     </qresource>
 </RCC>

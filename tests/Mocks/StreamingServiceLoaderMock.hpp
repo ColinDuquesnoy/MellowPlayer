@@ -25,13 +25,13 @@ public:
         return mock;
     }
 
-    static Style DEFAULT_STYLE;
+    static Theme DEFAULT_theme;
 
 private:
     static unique_ptr<StreamingService> createPlugin(const QString& name) {
         StreamingServiceMetadata metadata;
         metadata.name = name;
         metadata.url = "http://" + name.toLower() + ".com";
-        return make_unique<StreamingService>(metadata, DEFAULT_STYLE);
+        return make_unique<StreamingService>(metadata, DEFAULT_theme);
     }
 };
