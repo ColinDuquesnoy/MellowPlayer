@@ -78,6 +78,7 @@ void StreamingServiceViewModel::setEnabled(bool enabled) {
 
         if (!enabled) {
             player->stop();
+            player->suspend();
         }
     }
 }
