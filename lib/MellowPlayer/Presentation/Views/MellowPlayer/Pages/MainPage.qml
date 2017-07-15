@@ -48,7 +48,7 @@ Page {
         id: toolBar
 
         isWebViewMode: body.state === "webview"
-        hasRunningServices: _streamingServices.hasRunningServices
+        isCurrentServiceRunning_: _streamingServices.isCurrentServiceRunning
 
         onShowOverviewRequested: webViewStack.updatePreviewImage(body.showOverview)
         onShowWebViewRequested: root.showWebView()

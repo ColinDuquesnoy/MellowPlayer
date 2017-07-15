@@ -28,7 +28,7 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QAbstractItemModel* enabledServices READ getEnabledServices CONSTANT)
         Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
         Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
-        Q_PROPERTY(bool hasRunningServices READ getHasRunningServices NOTIFY hasRunningServicesChanged)
+        Q_PROPERTY(bool isCurrentServiceRunning READ isCurrentServiceRunning NOTIFY isCurrentServiceRunningChanged)
     public:
         StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices,
                                              Application::Players& players,
@@ -43,7 +43,7 @@ namespace MellowPlayer::Presentation {
         StreamingServiceProxyListModel* getEnabledServices() { return &enabledServices; }
         StreamingServiceViewModel* getCurrentService() const;
         int getCurrentIndex() const;
-        bool getHasRunningServices() const;
+        bool isCurrentServiceRunning() const;
 
         Q_INVOKABLE int getWebViewIndex(const QString& serviceName) const;
 
@@ -58,7 +58,7 @@ namespace MellowPlayer::Presentation {
     signals:
         void currentServiceChanged(QObject* currentService);
         void currentIndexChanged(int currentIndex);
-        void hasRunningServicesChanged();
+        void isCurrentServiceRunningChanged();
         void serviceCreated(const QString& directory);
 
     private slots:
@@ -81,7 +81,7 @@ namespace MellowPlayer::Presentation {
         StreamingServiceProxyListModel enabledServices;
         StreamingServiceViewModel* currentService = nullptr;
         int currentIndex = -1;
-        bool hasRunningServices = false;
+        bool isCurrentServiceRunning_ = false;
     };
 
 }

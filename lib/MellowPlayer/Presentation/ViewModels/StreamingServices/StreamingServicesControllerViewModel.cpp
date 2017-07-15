@@ -89,6 +89,7 @@ void StreamingServicesControllerViewModel::setCurrentIndex(int value) {
     }
     emit currentIndexChanged(currentIndex);
     emit currentServiceChanged(currentService);
+    onPlayerRunningChanged();
 }
 
 void StreamingServicesControllerViewModel::reload() {
@@ -153,22 +154,14 @@ int StreamingServicesControllerViewModel::getPreviousIndex(int index) const {
     return previousIndex;
 }
 
-bool StreamingServicesControllerViewModel::getHasRunningServices() const {
-    return hasRunningServices;
-}
-
 void StreamingServicesControllerViewModel::onPlayerRunningChanged() {
-    bool hadRunningServices = hasRunningServices;
-    hasRunningServices = false;
-    for (int i = 0; i < allServices->count(); ++i) {
-        if (allServices->at(i)->isRunning()) {
-            hasRunningServices = true;
-            break;
-        }
-    }
+    bool wasCurrentServiceRunning = isCurrentServiceRunning_;
+    isCurrentServiceRunning_ = false;
+    if (currentService != nullptr)
+        isCurrentServiceRunning_ = currentService->isRunning();
 
-    if (hadRunningServices != hasRunningServices) {
-        emit hasRunningServicesChanged();
+    if (wasCurrentServiceRunning != isCurrentServiceRunning_) {
+        emit isCurrentServiceRunningChanged();
     }
 }
 
@@ -181,4 +174,8 @@ void StreamingServicesControllerViewModel::onServiceEnabledChanged() {
         setCurrentIndex(-1);
         emit currentIndexChanged(-1);
     }
+}
+
+bool StreamingServicesControllerViewModel::isCurrentServiceRunning() const {
+    return isCurrentServiceRunning_;
 }

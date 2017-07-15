@@ -20,12 +20,14 @@ StackLayout {
         var webView = currentWebView();
         webView.url = webView.urlToLoad
         webView.reload();
+        weView.start();
     }
     function goForward() {
         currentWebView().goForward();
     }
     function reload() {
         currentWebView().reload();
+        currentWebView().start();
     }
     function toList() {
         var list = []
