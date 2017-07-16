@@ -16,9 +16,11 @@ namespace MellowPlayer::Application {
             APPEARANCE_SECONDARY_BACKGROUND,
             APPEARANCE_SECONDARY_FOREGROUND,
             APPEARANCE_THEME,
+            MAIN_CHECK_FOR_UPDATES,
             MAIN_CLOSE_TO_TRAY,
             MAIN_CONFIRM_EXIT,
             MAIN_SHOW_TRAY_ICON,
+            MAIN_UPDATE_CHANNEL,
             NOTIFICATIONS_ENABLED,
             NOTIFICATIONS_NEW_SONG,
             NOTIFICATIONS_NEW_VERSION,
@@ -57,9 +59,11 @@ namespace MellowPlayer::Application {
             enumToString << "appearance/secondary-background";
             enumToString << "appearance/secondary-foreground";
             enumToString << "appearance/theme";
+            enumToString << "main/check-for-updates";
             enumToString << "main/close-to-tray";
             enumToString << "main/confirm-exit";
             enumToString << "main/show-tray-icon";
+            enumToString << "main/update-channel";
             enumToString << "notifications/enabled";
             enumToString << "notifications/new-song";
             enumToString << "notifications/new-version";

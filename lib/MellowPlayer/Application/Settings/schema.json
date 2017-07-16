@@ -26,7 +26,22 @@
                     "default": true,
                     "key": "show-tray-icon",
                     "enabled": "main/close-to-tray"
-                }
+                },
+				{
+					"name": "Check for updates",
+					"tooltip": "Automatically check for updates",
+					"type": "bool",
+					"default": true,
+					"key": "check-for-updates"
+				},
+				{
+					"name": "Update channel",
+					"tooltip": "Choose which update channel to use",
+					"type": "enum[Stable, Beta, Continuous]",
+					"default": "Stable",
+					"key": "update-channel",
+					"enabled": "main/check-for-updates"
+				}
 			]
 		},
 		{
