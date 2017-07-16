@@ -16,7 +16,7 @@ Updater::Updater(IReleaseQuerier& releaseQuerier, /*IPlatformUpdater& platformUp
         updateChannelSetting_(settings.get(SettingKey::MAIN_UPDATE_CHANNEL)),
         latestRelease_(&currentRelease) {
     releaseQuerier.setChannel(getChannel());
-    connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReceived);
+    connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
 }
 
 void Updater::check() {
@@ -44,25 +44,16 @@ bool Updater::isUpdateAvailable() const {
     return isUpdateAvailable_;
 }
 
-bool Updater::isDownloading() const {
-    return isDownloading_;
-}
-
 bool Updater::canInstall() const {
 //    return platformUpdater_.canInstall();
     return false;
-}
-
-int Updater::getDownloadProgress() const {
-//    return platformUpdater_.getDownloadProgress();
-    return 0;
 }
 
 const Release* Updater::getLatestRelease() const {
     return latestRelease_;
 }
 
-void Updater::onLatestReceived(const Release* release) {
+void Updater::onLatestReleaseReceived(const Release* release) {
     LOG_DEBUG(logger_, "Latest release received");
 
     if (*release > *latestRelease_) {
@@ -70,7 +61,6 @@ void Updater::onLatestReceived(const Release* release) {
                 latestRelease_->getName()).arg(release->getName()));
         latestRelease_ = release;
         isUpdateAvailable_ = true;
-        emit latestReleaseChanged();
-        emit isUpdateAvailableChanged();
+        emit updateAvailable();
     }
 }

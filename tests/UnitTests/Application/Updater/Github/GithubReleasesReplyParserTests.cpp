@@ -14,8 +14,8 @@ SCENARIO("parse github reply") {
         WHEN("parsing a valid github releases reply data without stopping") {
             parser.parse(getValidReplyData());
 
-            THEN("ready signal has been called 26 times") {
-                REQUIRE(spy.count() == 26);
+            THEN("ready signal has been called 4 times") {
+                REQUIRE(spy.count() == 4);
             }
         }
 
