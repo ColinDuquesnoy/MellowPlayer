@@ -17,14 +17,19 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
-                                 ListeningHistoryViewModel& listeningHistoryModel,
-                                 ThemeViewModel& themeViewModel,
-                                 IQtApplication& qtApp,
-                                 IPlayer& player,
-                                 Settings& settings) :
+                                         ListeningHistoryViewModel& listeningHistoryModel,
+                                         ThemeViewModel& themeViewModel,
+                                         UpdaterViewModel& updaterViewModel,
+                                         IQtApplication& qtApp,
+                                         IPlayer& player,
+                                         Settings& settings) :
         logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
-        settings(settings), streamingServices(streamingServicesModel),
-        listeningHistory(listeningHistoryModel), settingsViewModel(settings, themeViewModel) {
+        settings(settings),
+        streamingServices(streamingServicesModel),
+        listeningHistory(listeningHistoryModel),
+        settingsViewModel(settings, themeViewModel),
+        updaterViewModel(updaterViewModel)
+{
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey",
                                            "SettingKey cannot be instantiated from QML");
@@ -39,6 +44,7 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& s
     context->setContextProperty("_settings", &settingsViewModel);
     context->setContextProperty("_window", this);
     context->setContextProperty("_app", &qtApp);
+    context->setContextProperty("_updater", &updaterViewModel);
 
 }
 
@@ -50,6 +56,7 @@ bool MainWindowViewModel::load() {
     listeningHistory.initialize();
     qmlApplicationEngine.addImportPath("qrc:/MellowPlayer/Presentation/Views");
     qmlApplicationEngine.load(QUrl("qrc:/MellowPlayer/Presentation/Views/main.qml"));
+    updaterViewModel.check();
     LOG_TRACE(logger, "loaded");
     return true;
 }

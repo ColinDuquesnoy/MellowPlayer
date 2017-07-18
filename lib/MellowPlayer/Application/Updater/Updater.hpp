@@ -15,8 +15,9 @@ namespace MellowPlayer::Application {
     class Updater: public QObject {
         Q_OBJECT
     public:
-        Updater(IReleaseQuerier& releaseQuerier, /*IPlatformUpdater& platformUpdater,*/ Settings& settings,
-                const Release& currentRelease=Release::current());
+        Updater(IReleaseQuerier& releaseQuerier, Settings& settings);
+
+        void setCurrentRelease(const Release* currentRelease);
 
         void check();
         void download();

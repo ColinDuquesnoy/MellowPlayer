@@ -178,7 +178,16 @@ double ThemeViewModel::getColorScaleFactor(const QString& color) const {
 }
 
 bool ThemeViewModel::isDark(const QString &color) const {
-    return QColor(color).lightness() < 164;
+    QColor c(color);
+    int lightness = c.lightness();
+    int ffCount = 0;
+    if (c.red() > 250)
+        ffCount++;
+    if (c.green() > 250)
+        ffCount++;
+    if (c.blue() > 250)
+        ffCount++;
+    return lightness < 164 && ffCount < 2;
 }
 
 Theme ThemeViewModel::getCustomTheme() const {

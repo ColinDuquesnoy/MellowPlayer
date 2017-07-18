@@ -12,6 +12,7 @@ Page {
 
     property int mainWindowWidth
     property alias isWebViewModel: toolBar.isWebViewMode
+
     signal newViewRequested(var request, var profile)
     signal fullScreenRequested(var request)
     signal openListeningHistoryRequested()
@@ -20,7 +21,7 @@ Page {
     signal createPluginRequested()
 
     function showWebView() {
-        body.showWebView();
+        d.showWebView();
     }
 
     function exitFullScreen() {
@@ -48,9 +49,9 @@ Page {
         id: toolBar
 
         isWebViewMode: body.state === "webview"
-        isCurrentServiceRunning_: _streamingServices.isCurrentServiceRunning
+        isCurrentServiceRunning: _streamingServices.isCurrentServiceRunning
 
-        onShowOverviewRequested: webViewStack.updatePreviewImage(body.showOverview)
+        onShowOverviewRequested: webViewStack.updatePreviewImage(d.showOverview)
         onShowWebViewRequested: root.showWebView()
         onGoBackRequested: root.goBack()
         onGoHomeRequested: root.goHome()
@@ -61,35 +62,47 @@ Page {
         onOpenAboutDialogRequested: root.openAboutDialogRequested()
         onCreatePluginRequested: root.createPluginRequested()
     }
+    footer: UpdateToolBar { width: parent.width }
 
     Item {
         id: body
-        anchors.fill: parent
-        anchors.margins: 0
 
         property var previewImage
 
-        function showWebView() {
-            if (state == "overview") {
-                state = "between";
-                try {
-                    previewImage.state = "selected";
-                }
-                catch (e) {
-                    state = "webview";
-                }
-            }
+        anchors { fill: parent; margins: 0 }
+
+        Component.onCompleted: d.startCurrentService()
+
+        WebViewStack {
+            id: webViewStack
+
+            anchors.fill: parent
+
+            onNewViewRequested: root.newViewRequested(request, profile)
+            onFullScreenRequested: d.handleFullScreenRequest()
+            onCurrentIndexChanged: if (currentIndex === -1) body.showOverview()
+
+            Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }
 
-        function showOverview() {
-            if (state == "webview") {
-                try {
-                    state = "between";
-                    previewImage.state = "";
-                }
-                catch (e) {
-                    state = "overview";
-                }
+        FullScreenNotification {
+            id: notif
+
+            x: parent.width / 2 - width / 2; y: 12
+        }
+
+        Pane { id: mask; anchors.fill: parent }
+
+        Loader { id: servicesOverview; anchors.fill: parent; visible: false }
+
+        Component {
+            id: overviewComponent
+
+            ServicesOverview {
+                height: parent.height; width: parent.width
+                mainWindowWidth: root.mainWindowWidth
+                transitionItem: body
+                webViews: webViewStack.toList();
             }
         }
 
@@ -142,7 +155,6 @@ Page {
                     visible: true
                 }
 
-
                 PropertyChanges {
                     target: servicesOverview
                     visible: false
@@ -155,48 +167,46 @@ Page {
             }
         ]
         state: "overview"
+    }
 
-        Component.onCompleted: {
+    QtObject {
+        id: d
+
+        function showWebView() {
+            if (body.state == "overview") {
+                body.state = "between";
+                try {
+                    body.previewImage.state = "selected";
+                }
+                catch (e) {
+                    body.state = "webview";
+                }
+            }
+        }
+
+        function showOverview() {
+            if (body.state == "webview") {
+                try {
+                    body.state = "between";
+                    body.previewImage.state = "";
+                }
+                catch (e) {
+                    body.state = "overview";
+                }
+            }
+        }
+
+        function startCurrentService() {
             if (_streamingServices.currentIndex != -1) {
-                state = "webview"
+                body.state = "webview"
                 webViewStack.currentWebView().start();
             }
         }
 
-        WebViewStack {
-            id: webViewStack
-
-            anchors.fill: parent
-            onNewViewRequested: root.newViewRequested(request, profile)
-            onFullScreenRequested: {
-                toolBar.visible = !request.toggleOn
-                notif.visible = true;
-                root.fullScreenRequested(request);
-            }
-            onCurrentIndexChanged: if (currentIndex === -1) body.showOverview()
-
-            Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
-        }
-
-        FullScreenNotification {
-            id: notif
-
-            x: parent.width / 2 - width / 2; y: 12
-        }
-
-        Pane { id: mask; anchors.fill: parent }
-
-        Loader { id: servicesOverview; anchors.fill: parent; visible: false }
-
-        Component {
-            id: overviewComponent
-
-            ServicesOverview {
-                height: parent.height; width: parent.width
-                mainWindowWidth: root.mainWindowWidth
-                transitionItem: body
-                webViews: webViewStack.toList();
-            }
+        function handleFullScreenRequest() {
+            toolBar.visible = !request.toggleOn
+            notif.visible = true;
+            root.fullScreenRequested(request);
         }
     }
 }

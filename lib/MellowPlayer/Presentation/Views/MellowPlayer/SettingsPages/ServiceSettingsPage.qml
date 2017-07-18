@@ -42,7 +42,7 @@ Item {
                 Layout.fillWidth: true
             }
 
-            Button {
+            ToolButton {
                 highlighted: true
                 hoverEnabled: true
                 text: "Create plugin"

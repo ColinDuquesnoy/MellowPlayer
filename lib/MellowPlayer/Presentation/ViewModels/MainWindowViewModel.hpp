@@ -4,6 +4,7 @@
 #include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
+#include "UpdaterViewModel.hpp"
 
 namespace MellowPlayer::Application {
 
@@ -28,6 +29,7 @@ namespace MellowPlayer::Presentation {
         MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                             ListeningHistoryViewModel& listeningHistoryModel,
                             ThemeViewModel& themeViewModel,
+                            UpdaterViewModel& updaterViewModel,
                             Application::IQtApplication& qtApp,
                             Application::IPlayer& player,
                             Application::Settings& settings);
@@ -51,6 +53,7 @@ namespace MellowPlayer::Presentation {
         QQmlApplicationEngine qmlApplicationEngine;
         ClipBoardViewModel clipBoardModel;
         SettingsViewModel settingsViewModel;
+        UpdaterViewModel& updaterViewModel;
     };
 
 }

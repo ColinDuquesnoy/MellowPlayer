@@ -4,7 +4,7 @@ import QtQuick.Controls 2.2
 import MellowPlayer 3.0
 import ".."
 
-CheckDelegate {
+SwitchDelegate {
     bottomPadding: 3; topPadding: 3
     anchors.fill: parent
     checked: model.qtObject.value

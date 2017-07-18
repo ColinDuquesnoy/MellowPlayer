@@ -12,6 +12,9 @@ Dialog {
     property int dialogResult: dialogRejected
     property string message: ""
 
+    x: parent.width / 2 - width / 2
+    y: parent.height / 2 - height / 2
+
     onAccepted: dialogResult = dialogAccepted
     onRejected: dialogResult = dialogRejected
 

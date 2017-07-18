@@ -61,15 +61,17 @@ ColumnLayout {
         Layout.rightMargin: 24
         Layout.bottomMargin: 8
 
+        Material.foreground: _theme.isDark(_theme.accent) ? "white" : "#303030"
+//        Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
+
         Item { Layout.fillWidth: true }
 
-        Button {
+        ToolButton {
             highlighted: true
             hoverEnabled: true
             text: "Restore defaults"
             onClicked: messageBoxConfirmRestore.open()
 
-            Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
 
             Tooltip {
                 text: 'Restore <b>' + model.name.toLowerCase() + '</b> _settings to their <b>default values</b>.'

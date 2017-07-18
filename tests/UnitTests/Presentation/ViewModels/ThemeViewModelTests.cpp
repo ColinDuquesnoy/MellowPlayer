@@ -46,9 +46,16 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]") {
         REQUIRE(themeViewModel.getColorScaleFactor("black") > themeViewModel.getColorScaleFactor("white"));
     }
 
+    SECTION("isDark") {
+        REQUIRE(!themeViewModel.isDark("white"));
+        REQUIRE(themeViewModel.isDark("black"));
+        REQUIRE(themeViewModel.isDark("#ffc107"));
+        REQUIRE(themeViewModel.isDark("#4fa6d3"));
+        REQUIRE(!themeViewModel.isDark("#00ffff"));
+
+    }
+
     SECTION("more than 3 available theme") {
         REQUIRE(themeViewModel.getAvailableThemes().count() > 3);
     }
-
-
 }

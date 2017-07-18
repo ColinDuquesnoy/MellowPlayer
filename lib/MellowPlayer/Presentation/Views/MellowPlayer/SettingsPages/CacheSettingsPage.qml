@@ -14,12 +14,10 @@ Item {
         clip: true
         spacing: 0
 
-        ItemDelegate {
+        ToolButton{
+            highlighted: true
             hoverEnabled: true
-            contentItem: Label {
-                text: "Clear cookies"
-                horizontalAlignment: Text.AlignHCenter
-            }
+            text: "Clear cookies"
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCookies();
@@ -34,13 +32,10 @@ Item {
             Layout.fillWidth: true
         }
 
-        ItemDelegate {
+        ToolButton {
+            highlighted: true
             hoverEnabled: true
-            contentItem: Label {
-                text: "Clear cache"
-                horizontalAlignment: Text.AlignHCenter
-            }
-
+            text: "Clear cache"
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCache()

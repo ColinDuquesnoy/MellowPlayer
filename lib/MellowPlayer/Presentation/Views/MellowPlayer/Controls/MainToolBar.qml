@@ -10,7 +10,7 @@ ToolBar {
     id: root
 
     property bool isWebViewMode: false
-    property bool isCurrentServiceRunning_: false
+    property bool isCurrentServiceRunning: false
 
     signal showOverviewRequested()
     signal showWebViewRequested()
@@ -49,7 +49,7 @@ ToolBar {
             font.family: MaterialIcons.family
             font.pixelSize: d.iconSize + 2
             hoverEnabled: true
-            visible: isCurrentServiceRunning_ || isWebViewMode
+            visible: isCurrentServiceRunning || isWebViewMode
 
             onClicked: switchView()
 

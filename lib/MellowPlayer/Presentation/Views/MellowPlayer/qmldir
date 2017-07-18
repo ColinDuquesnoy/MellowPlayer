@@ -20,8 +20,11 @@ ListeningHistoryToolBar 3.0 Controls/ListeningHistoryToolBar.qml
 ListeningHistorySearchPane 3.0 Controls/ListeningHistorySearchPane.qml
 MainToolBar 3.0 Controls/MainToolBar.qml
 MenuIconItem 3.0 Controls/MenuIconItem.qml
+NativeMenuBar 3.0 Controls/NativeMenuBar.qml
 ServicesOverview 3.0 Controls/ServicesOverview.qml
+SettingsDrawer 3.0 Controls/SettingsDrawer.qml
 Tooltip 3.0 Controls/Tooltip.qml
+UpdateToolBar 3.0 Controls/UpdateToolBar.qml
 WebView 3.0 Controls/WebView.qml
 WebViewStack 3.0 Controls/WebViewStack.qml
 

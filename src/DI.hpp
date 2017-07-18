@@ -24,6 +24,9 @@
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Application/Updater/IReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/IHttpClient.hpp>
+#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
@@ -44,6 +47,7 @@
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
+#include <MellowPlayer/Infrastructure/Updater/HttpClient.hpp>
 
 #ifdef USE_LIBNOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
@@ -61,6 +65,7 @@ using namespace MellowPlayer::Infrastructure;
 
 namespace di = boost::di;
 
+/*<<ScopedScope extension>>*/
 /**
  * http://boost-experimental.github.io/di/extensions/index.html#scoped-scope
  */
@@ -99,6 +104,20 @@ public:
     };
 };
 
+/*<<to constructor extension>>*/
+template <class... TCtor>
+struct constructor_impl {
+    template <class TInjector, class T,
+            std::enable_if_t<boost::di::concepts::creatable<boost::di::type_traits::direct, typename T::expected, TCtor...>::value, int> = 0>
+    auto operator()(const TInjector& injector, const T&) const {
+        return new typename T::expected{injector.template create<TCtor>()...};
+    }
+};
+
+template <class... TCtor>
+struct constructor : constructor_impl<TCtor...> {};
+//->
+
 auto defaultInjector = [](ScopedScope& scope) {
     return di::make_injector(
         di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope),
@@ -115,7 +134,9 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
         di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
         di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
-        di::bind<IThemeLoader>().to<ThemeLoader>().in(scope)
+        di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
+        di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
+        di::bind<IHttpClient>().to<HttpClient>().in(scope)
     );
 };
 

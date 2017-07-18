@@ -7,20 +7,21 @@
 
 using namespace MellowPlayer::Application;
 
-Updater::Updater(IReleaseQuerier& releaseQuerier, /*IPlatformUpdater& platformUpdater, */ Settings& settings,
-                 const Release& currentRelease) :
+Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings):
         logger_(LoggingManager::instance().getLogger("Updater")),
         releaseQuerier_(releaseQuerier),
-//        platformUpdater_(platformUpdater),
         autoCheckEnabledSetting_(settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES)),
         updateChannelSetting_(settings.get(SettingKey::MAIN_UPDATE_CHANNEL)),
-        latestRelease_(&currentRelease) {
+        latestRelease_(&Release::current()) {
     releaseQuerier.setChannel(getChannel());
     connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
+
+//    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
+//    setCurrentRelease(r);
 }
 
 void Updater::check() {
-    LOG_DEBUG(logger_, "Checking for updated");
+    LOG_DEBUG(logger_, "Checking for update");
     releaseQuerier_.setChannel(getChannel());
     releaseQuerier_.getLatest();
 }
@@ -54,7 +55,7 @@ const Release* Updater::getLatestRelease() const {
 }
 
 void Updater::onLatestReleaseReceived(const Release* release) {
-    LOG_DEBUG(logger_, "Latest release received");
+    LOG_DEBUG(logger_, "Latest release received: " + release->getName());
 
     if (*release > *latestRelease_) {
         LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(
@@ -63,4 +64,9 @@ void Updater::onLatestReleaseReceived(const Release* release) {
         isUpdateAvailable_ = true;
         emit updateAvailable();
     }
+}
+
+void Updater::setCurrentRelease(const Release* currentRelease) {
+    latestRelease_ = currentRelease;
+
 }

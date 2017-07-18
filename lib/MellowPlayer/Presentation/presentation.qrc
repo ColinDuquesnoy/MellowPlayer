@@ -69,5 +69,8 @@
         <file>Views/MellowPlayer/NewPluginWizard/StartPage.qml</file>
         <file>Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml</file>
         <file>Views/MellowPlayer/NewPluginWizard/WizardPage.qml</file>
+        <file>Views/MellowPlayer/Controls/UpdateToolBar.qml</file>
+        <file>Views/MellowPlayer/Controls/NativeMenuBar.qml</file>
+        <file>Views/MellowPlayer/Controls/SettingsDrawer.qml</file>
     </qresource>
 </RCC>

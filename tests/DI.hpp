@@ -64,6 +64,8 @@
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/CommnandLineParserMock.hpp>
 #include <Mocks/ThemeLoaderMock>
+#include <Mocks/FakeHttpClient.hpp>
+#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -125,6 +127,7 @@ inline auto getTestInjector(ScopedScope& scope) {
     static auto settingsProviderMock = SettingsProviderMock::get();
     static InMemoryListeningHistoryDataProvider dataProvider;
     static FakeWorkDispatcher workDispatcher;
+    static FakeHttpClient httpClient;
 
     return di::make_injector(
         di::bind<IStreamingServiceLoader>().to(streamingServiceLoaderMock.get()),
@@ -143,7 +146,9 @@ inline auto getTestInjector(ScopedScope& scope) {
         di::bind<IStreamingServiceCreator>().to(streamingServiceCreatorMock.get()),
         di::bind<IStreamingServiceWatcher>().to(streamingServiceWatcherMock.get()),
         di::bind<ICommandLineParser>().to(commandLineParserMock.get()),
-        di::bind<IThemeLoader>().to(themeLoaderMock.get())
+        di::bind<IThemeLoader>().to(themeLoaderMock.get()),
+        di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
+        di::bind<IHttpClient>().to(httpClient)
     );
 };
 

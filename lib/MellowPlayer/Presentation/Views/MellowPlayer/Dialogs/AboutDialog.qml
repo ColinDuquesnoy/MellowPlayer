@@ -14,6 +14,8 @@ Popup {
     modal: true
     height: 490
     width: Math.max(labelBuildInfo.implicitWidth + 64, height)
+    x: parent.width / 2 - width / 2
+    y: parent.height / 2 - height / 2
 
     onVisibleChanged: if (!visible) btCredits.checked = false
 
