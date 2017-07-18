@@ -11,11 +11,10 @@ set(CMAKE_AUTOMOC OFF)
 macro(add_mellowplayer_test TEST_TYPE)
     set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.${TEST_TYPE})
     file(GLOB_RECURSE SOURCE_FILES ${TEST_TYPE}/*.cpp)
-    file(GLOB_RECURSE HEADER_FILES *.hpp)
     file(GLOB_RECURSE MOCK_SOURCES Mocks/*.cpp)
-    file(GLOB_RECURSE MOCK_HEADERS Mocks/*.hpp)
-    file(GLOB_RECURSE UTILS_HEADERS Utils/*.hpp)
-    add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} ${MOCK_HEADERS} ${UTILS_HEADERS} main.cpp DI)
+    file(GLOB_RECURSE UTILS_SOURCES Utils/*.cpp)
+    file(GLOB_RECURSE HEADER_FILES *.hpp)
+    add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} ${MOCK_SOURCES} ${UTILS_SOURCES} main.cpp)
     target_link_libraries(${TEST_EXECUTABLE_NAME}
                           MellowPlayer.Application MellowPlayer.Presentation MellowPlayer.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2

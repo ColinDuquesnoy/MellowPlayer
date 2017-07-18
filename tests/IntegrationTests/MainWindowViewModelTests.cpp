@@ -2,26 +2,15 @@
 #include <QtTest/QSignalSpy>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
-#include <DI.hpp>
+#include "Utils/DependencyFactory.hpp";
 
+using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("MainWindowViewModel") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-
-    StreamingServicesControllerViewModel& streamingServices = injector.create<StreamingServicesControllerViewModel&>();
-    ListeningHistoryViewModel& listeningHistory = injector.create<ListeningHistoryViewModel&>();
-    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
-    UpdaterViewModel& updaterViewModel = injector.create<UpdaterViewModel&>();
-    IPlayer& player = injector.create<CurrentPlayer&>();
-    ILocalAlbumArt& albumArt = injector.create<ILocalAlbumArt&>();
-    Settings& settings = injector.create<Settings&>();
-    IQtApplication& qtApp = injector.create<IQtApplication&>();
-
-    MainWindowViewModel mainWindow(streamingServices, listeningHistory, themeViewModel, updaterViewModel,
-                                   qtApp, player, settings);
+    Tests::DependencyFactory dependencyFactory;
+    MainWindowViewModel& mainWindow = dependencyFactory.createMainWindowViewModel();
     QSignalSpy visibleChangedSpy(&mainWindow, SIGNAL(visibleChanged()));
 
     REQUIRE(mainWindow.load());
