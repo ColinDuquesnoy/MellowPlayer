@@ -19,7 +19,7 @@ macro(add_mellowplayer_test TEST_TYPE)
     target_link_libraries(${TEST_EXECUTABLE_NAME}
                           MellowPlayer.Application MellowPlayer.Presentation MellowPlayer.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
-                          Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
+                          Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets Qt5::Test)
     if (APPLE)
         add_framework(Carbon ${TEST_EXECUTABLE_NAME})
         add_framework(Cocoa ${TEST_EXECUTABLE_NAME})
