@@ -9,7 +9,8 @@ using namespace MellowPlayer::Application;
 void GithubReleasesReplyParser::parse(const QByteArray& replyData) {
     stopRequested_ = false;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(replyData);
-    assert(jsonDocument.isArray());
+    if (!jsonDocument.isArray())
+        return;
     QJsonArray array = jsonDocument.array();
     for(int releaseIndex=0; releaseIndex < array.count(); ++releaseIndex) {
         QJsonObject obj = array.at(releaseIndex).toObject();

@@ -19,6 +19,7 @@ namespace MellowPlayer::Application {
         Release(const QString& url, const QString& version, const QDate& date, const QString& description,
                 const AssetList& assets, bool preRelease=false, QObject* parent=nullptr);
 
+        QString getUrl() const;
         QString getName() const;
         QString getDate() const;
         const QString& getDescription() const;

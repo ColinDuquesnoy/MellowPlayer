@@ -18,55 +18,70 @@ ToolBar {
         yScale: 0
     }
 
-    Material.background: _theme.accent
-    Material.foreground: _theme.isDark(_theme.accent) ?  "white" : "#303030"
-    Material.theme: _theme.isDark(_theme.accent) ?  Material.Dark : Material.Light
+    Material.background: _theme.secondary
+    Material.foreground: _theme.secondaryForeground
+    Material.accent: _theme.accent
+    Material.theme: _theme.isDark(_theme.secondary) ?  Material.Dark : Material.Light
 
-    RowLayout {
+    ColumnLayout {
         anchors.fill: parent
-        spacing: 8
+        spacing: 0
 
-        Item {
-            width: 4
-        }
+        RowLayout {
+            spacing: 8
 
-        Label {
-            text: MaterialIcons.icon_update
-            font {
-                family: MaterialIcons.family
-                pixelSize: 24
+            Item {
+                width: 4
+            }
+
+            Label {
+                text: MaterialIcons.icon_update
+                font {
+                    family: MaterialIcons.family
+                    pixelSize: 26
+                }
+            }
+
+            Label {
+                text: _updater.message
+                font.pixelSize: 16
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            ToolButton {
+                highlighted: true
+                text: "See release notes"
+                onClicked: Qt.openUrlExternally(_updater.url)
+            }
+
+            ToolButton {
+                highlighted: true
+                text: "Install"
+                onClicked: _updater.install()
+//                visible: _updater.canInstall
+            }
+
+            ToolButton {
+                hoverEnabled: true
+                text: MaterialIcons.icon_close
+                font {
+                    family: MaterialIcons.family
+                    pixelSize: 24
+                }
+                onClicked: _updater.close()
             }
         }
 
-        Label {
-            text: "A <b>new version of MellowPlayer</b> is available..."
-            font.pixelSize: 16
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
-
-        ToolButton {
-            hoverEnabled: true
-            text: "See release notes"
-        }
-
-        ToolButton {
-            hoverEnabled: true
-            text: "Install"
-        }
-
-        ToolButton {
-            hoverEnabled: true
-            text: MaterialIcons.icon_close
-            font {
-                family: MaterialIcons.family
-                pixelSize: 24
-            }
-            onClicked: _updater.close()
+        ProgressBar {
+            anchors{ bottom: parent.bottom; left: parent.left; right: parent.right }
+            indeterminate: _updater.progress == -1
+            visible: _updater.progressVisible
         }
     }
+
     states: [
         State {
             when: _updater.visible

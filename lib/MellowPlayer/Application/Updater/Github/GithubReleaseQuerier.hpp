@@ -8,6 +8,8 @@
 
 namespace MellowPlayer::Application {
 
+    class ILogger;
+
     class GithubReleaseQuerier: public IReleaseQuerier {
     public:
         GithubReleaseQuerier(IHttpClient& httpClient);
@@ -21,8 +23,10 @@ namespace MellowPlayer::Application {
         bool accept(const Application::Release* release);
 
     private:
+        ILogger& logger_;
         GithubReleasesReplyParser replyParser_;
         IHttpClient& httpClient_;
         Application::UpdateChannel channel_ = Application::UpdateChannel::Stable;
+        bool found_ = false;
     };
 }

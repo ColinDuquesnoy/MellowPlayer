@@ -12,9 +12,10 @@ Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings):
         releaseQuerier_(releaseQuerier),
         autoCheckEnabledSetting_(settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES)),
         updateChannelSetting_(settings.get(SettingKey::MAIN_UPDATE_CHANNEL)),
-        latestRelease_(&Release::current()) {
+        currentRelease_(&Release::current()) {
     releaseQuerier.setChannel(getChannel());
     connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
+    connect(&updateChannelSetting_, &Setting::valueChanged, this, &Updater::check);
 
 //    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
 //    setCurrentRelease(r);
@@ -57,16 +58,22 @@ const Release* Updater::getLatestRelease() const {
 void Updater::onLatestReleaseReceived(const Release* release) {
     LOG_DEBUG(logger_, "Latest release received: " + release->getName());
 
-    if (*release > *latestRelease_) {
+    if (release != nullptr && *release > *currentRelease_) {
         LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(
-                latestRelease_->getName()).arg(release->getName()));
+                currentRelease_->getName()).arg(release->getName()));
         latestRelease_ = release;
         isUpdateAvailable_ = true;
         emit updateAvailable();
     }
+    else {
+        LOG_DEBUG(logger_, QString("No release found"));
+        latestRelease_ = nullptr;
+        isUpdateAvailable_ = false;
+        emit noUpdateAvailable();
+    }
 }
 
 void Updater::setCurrentRelease(const Release* currentRelease) {
-    latestRelease_ = currentRelease;
+    currentRelease_ = currentRelease;
 
 }

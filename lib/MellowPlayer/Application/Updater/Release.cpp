@@ -28,6 +28,10 @@ Release::Release(const QString& url, const QString& version, const QDate& date, 
         assets_(assets) {
 }
 
+QString Release::getUrl() const {
+    return url_;
+}
+
 QString Release::getName() const {
     return name_;
 }

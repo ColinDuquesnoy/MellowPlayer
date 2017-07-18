@@ -363,6 +363,19 @@ ToolBar {
                 MenuSeparator { }
 
                 MenuIconItem {
+                    icon: MaterialIcons.icon_update
+                    text: "Check for updates"
+                    onClicked: _updater.check()
+
+                    ProgressBar {
+                        anchors{ bottom: parent.bottom; horizontalCenter: parent.left; right: parent.right }
+                        indeterminate: _updater.progress == -1
+                        visible: _updater.progressVisible
+                    }
+                }
+
+
+                MenuIconItem {
                     id: menuItemAbout
 
                     icon: MaterialIcons.icon_info_outline

@@ -47,7 +47,7 @@ SCENARIO("check for stable updates") {
 
             THEN("no update is available") {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "2.2.5");
+                REQUIRE(updater.getLatestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -64,7 +64,7 @@ SCENARIO("check for stable updates") {
 
             THEN("no update is available") {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName() == "2.95.0");
+                REQUIRE(updater.getLatestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -107,7 +107,7 @@ SCENARIO("check for beta updates") {
 
             THEN("no update is available") {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "2.95.0");
+                REQUIRE(updater.getLatestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -166,7 +166,7 @@ SCENARIO("check for Continuous updates") {
 
             THEN("no update is available") {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "2.95.0");
+                REQUIRE(updater.getLatestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
