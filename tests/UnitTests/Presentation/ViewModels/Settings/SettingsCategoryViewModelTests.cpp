@@ -1,15 +1,18 @@
 #include "catch.hpp"
-#include "DI.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("SettingsCategoryViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     SettingsCategoryViewModel model(themeViewModel, &settings.getCategory("main"));
 
     REQUIRE(model.getName().toStdString() == "General");
@@ -19,10 +22,9 @@ TEST_CASE("SettingsCategoryViewModelTests") {
 }
 
 TEST_CASE("CustomSettingsCategoryViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", themeViewModel);
 
     REQUIRE(model.getName() == "CategoryName");

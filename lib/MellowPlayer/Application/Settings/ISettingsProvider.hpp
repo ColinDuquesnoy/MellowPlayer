@@ -2,7 +2,6 @@
 
 #include <QString>
 #include <QVariant>
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
 
 namespace MellowPlayer::Application {
 

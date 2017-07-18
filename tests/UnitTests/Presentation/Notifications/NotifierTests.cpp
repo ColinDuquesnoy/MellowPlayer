@@ -5,25 +5,20 @@
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/LocalAlbumArtMock.hpp>
-#include "DI.hpp"
+#include <Utils/DependencyPool.hpp>
 
-using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("NotifierTests", "[UnitTest]") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    LocalAlbumArt& service = injector.create<LocalAlbumArt&>();
-    Mock<LocalAlbumArt> localAlbumArtServiceSpy(service);
-    CurrentPlayer& player = injector.create<CurrentPlayer&>();
-    Mock<CurrentPlayer> playerSpy(player);
-    StreamingServicesController& streamingServices = injector.create<StreamingServicesController&>();
-    Settings& settings = injector.create<Settings&>();
-    Notifier notificationService(playerSpy.get(), localAlbumArtServiceSpy.get(),
-                                            notificationPresenterMock.get(), streamingServices, settings);
-    NotificationPresenterMock::Reset(notificationPresenterMock);
+    MellowPlayer::Tests::DependencyPool pool;
+
+    Settings& settings = pool.getSettings();
+    Notifier& notificationService = pool.getNotifier();
+    Mock<LocalAlbumArt> localAlbumArtServiceSpy(pool.getLocalAlbumArt());
+    Mock<IPlayer> playerSpy(pool.getCurrentPlayer());
+    Mock<INotificationPresenter>& notificationPresenterMock = pool.getNotificationPresenterMock();
 
     Setting& playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
     playNotifEnabled.setValue(true);

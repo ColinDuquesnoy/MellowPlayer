@@ -1,6 +1,6 @@
 #include "catch.hpp"
-#include "DI.hpp"
 #include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/Factories/SettingViewModelFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ColorSettingViewModel.hpp>
@@ -8,15 +8,15 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ThemeSettingViewModel.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("SettingModelFactoryTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings &settings = injector.create<Settings &>();
-    ThemeViewModel &themeViewModel = injector.create<ThemeViewModel &>();
+    MellowPlayer::Tests::DependencyPool pool;
+    Settings &settings = pool.getSettings();
+    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
     SettingViewModelFactory factory(themeViewModel);
 
     SECTION("createBoolSettingModel") {

@@ -1,28 +1,30 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
-#include "Mocks/StreamingServiceLoaderMock.hpp"
-#include "Mocks/CommnandLineParserMock.hpp"
-#include "DI.hpp"
+#include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
+#include <Mocks/StreamingServiceCreatorMock.hpp>
+#include <Mocks/CommnandLineParserMock.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Tests;
 using namespace fakeit;
 
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    auto loaderMock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
+    DependencyPool pool;
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    Players players(streamingServices);
-    Settings& settings = injector.create<Settings&>();
-    FakeWorkDispatcher fakeWorkDispatcher;
+    Players& players = pool.getPlayers();
+    Settings& settings = pool.getSettings();
+    IWorkDispatcher& workDispatcher = pool.getWorkDispatcher();
     auto creatorMock = StreamingServiceCreatorMock::get();
     auto commandLineParserMock = CommandLineParserMock::get();
-    StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get(), commandLineParserMock.get());
+    StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(), commandLineParserMock.get());
     viewModel.initialize();
     viewModel.reload();
 
@@ -94,14 +96,13 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]") {
         QSignalSpy spy(&viewModel, &StreamingServicesControllerViewModel::serviceCreated);
         viewModel.createService("svName", "svUrl", "authorName", "authorUrl");
         Verify(Method(creatorMock, create));
-        Verify(Method(loaderMock, load));
         REQUIRE(spy.count() == 1);
     }
 
     SECTION("Initialize with service set by command line") {
         settings.get(SettingKey::PRIVATE_CURRENT_SERVICE).setValue("");
         When(Method(commandLineParserMock, getService)).AlwaysReturn("Deezer");
-        StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, fakeWorkDispatcher, creatorMock.get(), commandLineParserMock.get());
+        StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher, creatorMock.get(), commandLineParserMock.get());
         REQUIRE(viewModelWithCmdLine.getCurrentIndex() == -1);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

@@ -3,7 +3,6 @@
 #include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 
-
 class InMemoryListeningHistoryDataProvider: public MellowPlayer::Application::IListeningHistoryDataProvider {
 public:
     bool initialized = false;

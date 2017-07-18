@@ -1,18 +1,18 @@
 #include "catch.hpp"
-#include "DI.hpp"
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("SettingsViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    ThemeViewModel& themeViewModel = injector.create<ThemeViewModel&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     SettingsViewModel viewModel(settings, themeViewModel);
 
     SECTION("get") {

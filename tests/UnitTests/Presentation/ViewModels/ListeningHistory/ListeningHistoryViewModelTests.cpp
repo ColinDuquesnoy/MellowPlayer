@@ -3,44 +3,43 @@
 #include <catch.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
+#include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
-#include "DI.hpp"
+
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("ListeningHistoryViewModelTests") {
-    auto loaderMock = StreamingServiceLoaderMock::get();
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
+    DependencyPool pool;
+
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    Players players(streamingServices);
-    CurrentPlayer player(players, streamingServices);
-    FakeWorkDispatcher workDispatcher;
-    InMemoryListeningHistoryDataProvider dataProvider;
-    Settings& settings = injector.create<Settings&>();
-    ListeningHistory listeningHistoryService(dataProvider, player, workDispatcher, settings);
-    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
-    ListeningHistoryViewModel listeningHistoryViewModel(listeningHistoryService);
+
+    Players& players = pool.getPlayers();
+    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
+
+    Settings& settings = pool.getSettings();
     Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);
+
+    ListeningHistoryViewModel& listeningHistoryViewModel = pool.getListeningHistoryViewModel();
     
     SECTION("Initialize") {
         REQUIRE(listeningHistoryViewModel.getModel()->rowCount() == 0);
         currentPlayer.setUpdateResults(getSongVariantMap("Song1", "Id1"));
-        REQUIRE(!dataProvider.initialized);
         listeningHistoryViewModel.initialize();
-        REQUIRE(dataProvider.initialized);
         REQUIRE(listeningHistoryViewModel.getModel()->rowCount() == 1);
     }
 

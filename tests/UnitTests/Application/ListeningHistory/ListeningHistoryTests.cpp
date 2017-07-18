@@ -1,42 +1,30 @@
 #include <QVariant>
 #include <catch.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <Mocks/PlayerMock.hpp>
-#include <Mocks/FakeWorkDispatcher.hpp>
-#include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <Utils/Helpers.hpp>
-#include <DI.hpp>
+#include <Utils/DependencyPool.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 
+using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
+
 
 TEST_CASE("ListeningHistoryTests") {
-    auto mock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(mock.get(), watcherMock.get());
+    Tests::DependencyPool pool;
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    Players players(streamingServices);
-    CurrentPlayer player(players, streamingServices);
-    FakeWorkDispatcher workDispatcher;
-    InMemoryListeningHistoryDataProvider dataProvider;
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    ListeningHistory listeningHistoryService(dataProvider, player, workDispatcher, settings);
+    Players& players = pool.getPlayers();
+    Settings& settings = pool.getSettings();
+    ListeningHistory& listeningHistoryService = pool.getListeningHistory();
     Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
     Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);
-
-    SECTION("Initialize") {
-        REQUIRE(!dataProvider.initialized);
-        listeningHistoryService.initialize();
-        REQUIRE(dataProvider.initialized);
-    }
 
     SECTION("New song will be added to history") {
         REQUIRE(listeningHistoryService.count() == 0);

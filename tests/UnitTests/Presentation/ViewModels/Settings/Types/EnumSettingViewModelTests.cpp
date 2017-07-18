@@ -1,18 +1,18 @@
 #include "catch.hpp"
-#include "DI.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("EnumSettingViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
     SettingsCategory& category = settings.getCategory("appearance");
     Setting::Data settingData;
     settingData.name = "Theme";

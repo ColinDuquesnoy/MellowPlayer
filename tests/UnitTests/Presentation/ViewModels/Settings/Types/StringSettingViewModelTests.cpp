@@ -1,16 +1,16 @@
 #include "catch.hpp"
-#include "DI.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("StringSettingViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
     Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     StringSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));

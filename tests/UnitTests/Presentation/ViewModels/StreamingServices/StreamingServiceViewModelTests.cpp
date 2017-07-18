@@ -1,18 +1,23 @@
 #include <catch.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
-#include "DI.hpp"
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("StreamingServiceModelTests", "[UnitTest]") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Players& players = injector.create<Players&>();
-    StreamingServicesController& streamingServices = injector.create<StreamingServicesController&>();
+    DependencyPool pool;
+    Players& players = pool.getPlayers();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    QSettingsProvider settingsProvider;
+
+    ISettingsProvider& settingsProvider = pool.getSettingsProvider();
+
     StreamingService& service1 = *streamingServices.getAll()[0];
     StreamingService& service2 = *streamingServices.getAll()[1];
 

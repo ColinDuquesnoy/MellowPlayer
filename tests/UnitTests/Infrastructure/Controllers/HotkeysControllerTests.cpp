@@ -3,8 +3,9 @@
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
-#include "DI.hpp"
+#include <Utils/DependencyPool.hpp>
 
+using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
@@ -12,10 +13,8 @@ using namespace fakeit;
 TEST_CASE("HotkeysServiceTests", "[UnitTest]") {
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-
+    Tests::DependencyPool pool;
+    Settings& settings = pool.getSettings();
     HotkeysController hotkeys(playerMock.get(), settings, mainWindowMock.get());
     hotkeys.start();
 

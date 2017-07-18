@@ -1,15 +1,16 @@
 #include "catch.hpp"
-#include "DI.hpp"
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 TEST_CASE("ShortcutSettingViewModelTests") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
     Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     ShortcutSettingViewModel model(setting, nullptr);
     model.setValue("Ctrl+Alt+P");

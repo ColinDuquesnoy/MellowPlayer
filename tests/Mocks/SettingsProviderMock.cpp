@@ -5,7 +5,7 @@ QMap<QString, QVariant> SettingsProviderMock::values;
 Mock<ISettingsProvider> SettingsProviderMock::get() {
     Mock<ISettingsProvider> mock;
 
-    When(Method(mock, clear)).AlwaysReturn();
+    When(Method(mock, clear)).AlwaysDo([](){ values.clear(); });
 
     When(Method(mock, getValue)).AlwaysDo([](const QString& key, const QVariant& defaultValue) -> QVariant {
         if (values.contains(key))
@@ -15,6 +15,8 @@ Mock<ISettingsProvider> SettingsProviderMock::get() {
     When(Method(mock, setValue)).AlwaysDo([](const QString& key, const QVariant& value){
         values[key] = value;
     });
+
+    values.clear();
 
     return mock;
 }

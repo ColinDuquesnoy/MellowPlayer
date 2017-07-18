@@ -1,9 +1,14 @@
 #include <catch.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
-#include "DI.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <Utils/DependencyPool.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Tests;
 
 void requireMatchTheme(ThemeViewModel& themeViewModel, const Theme& theme) {
     if (themeViewModel.isDark(themeViewModel.getBackground()))
@@ -20,14 +25,13 @@ void requireMatchTheme(ThemeViewModel& themeViewModel, const Theme& theme) {
 }
 
 TEST_CASE("ThemeViewModelTests", "[UnitTest]") {
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
-    StreamingServicesController& streamingServices = injector.create<StreamingServicesController&>();
-    IThemeLoader& themeLoader = injector.create<IThemeLoader&>();
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
+
     streamingServices.load();
     settings.get(SettingKey::APPEARANCE_THEME).setValue("Adaptive");
-    ThemeViewModel themeViewModel(streamingServices, settings, themeLoader);
     streamingServices.setCurrent(nullptr);
 
     SECTION("initially use default theme") {

@@ -19,9 +19,11 @@ namespace MellowPlayer::Presentation {
     class Notifier: public QObject, public Application::INotifier {
         Q_OBJECT
     public:
-        Notifier(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArtService,
-                            Application::INotificationPresenter& presenter, Application::StreamingServicesController& streamingServices,
-                            Application::Settings& settings);
+        Notifier(Application::IPlayer& player,
+                 Application::ILocalAlbumArt& localAlbumArtService,
+                 Application::INotificationPresenter& presenter,
+                 Application::StreamingServicesController& streamingServices,
+                 Application::Settings& settings);
 
         void initialize() override;
         bool display(const Application::Notification& notification) override;
@@ -48,5 +50,4 @@ namespace MellowPlayer::Presentation {
         NotificationFactory notificationFactory;
         QString previousSongId;
     };
-
 }

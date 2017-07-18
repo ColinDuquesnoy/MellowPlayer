@@ -1,18 +1,21 @@
 #include "catch.hpp"
-#include <MellowPlayer/Application/Updater/Updater.hpp>
-#include <Mocks/FakeHttpClient.hpp>
-#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
 #include <QtTest/QSignalSpy>
-#include "DI.hpp"
+#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingKey.hpp>
+#include <Mocks/FakeHttpClient.hpp>
+#include "Utils/DependencyPool.hpp"
 
+using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
 
 SCENARIO("check for stable updates") {
     FakeHttpClient fakeHttpClient;
     GithubReleaseQuerier querier(fakeHttpClient);
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    Tests::DependencyPool pool;
+    Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Stable));
 
     GIVEN("current version is 2.2.4 from April 2017") {
@@ -71,9 +74,8 @@ SCENARIO("check for stable updates") {
 SCENARIO("check for beta updates") {
     FakeHttpClient fakeHttpClient;
     GithubReleaseQuerier querier(fakeHttpClient);
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    Tests::DependencyPool pool;
+    Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Beta));
 
     GIVEN("current version is 2.2.4 from April 2017") {
@@ -115,9 +117,8 @@ SCENARIO("check for beta updates") {
 SCENARIO("check for Continuous updates") {
     FakeHttpClient fakeHttpClient;
     GithubReleaseQuerier querier(fakeHttpClient);
-    ScopedScope scope;
-    auto injector = getTestInjector(scope);
-    Settings& settings = injector.create<Settings&>();
+    Tests::DependencyPool pool;
+    Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Continuous));
 
     GIVEN("current version is 2.2.4 from April 2017") {
