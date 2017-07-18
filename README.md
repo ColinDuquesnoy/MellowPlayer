@@ -107,10 +107,16 @@ cmake --build . --config Release
 
 You can specify the following options when calling cmake:
 
-- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Debug**.
-- ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **ON**.
+- ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Release**.
+- ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **OFF**.
+- ``-DBUILD_INTEGRATION_TESTS=``: **ON** or **OFF** - Default is **OFF**.
 - ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .
 - ``-ENABLE_LCOV_REPORT``: **ON** or **OFF** (requires ``BUILD_TEST=ON``, ``CMAKE_BUILD_TYPE=Debug`` and ``ENABLE_COVERAGE``) - Default is **OFF** .
+
+Example build commands:
+
+- release build: ``cmake ..``
+- developer build command  ``cmake -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DENABLE_LCOV_REPORT=ON -DCMAKE_BUILD_TYPE=Debug ..``
 
 # Running the test suite
 

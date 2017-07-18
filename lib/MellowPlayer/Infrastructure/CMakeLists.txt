@@ -17,17 +17,16 @@ elseif(UNIX)
     set(SOURCE_FILES ${SOURCE_FILES} ${LINUX_SOURCE_FILES})
     set(HEADER_FILES ${HEADER_FILES} ${LINUX_HEADER_FILES})
 endif()
+
+add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.11.0/include/)
-
-add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 include_directories(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
+
 add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
-target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application)
-qt5_use_modules(${LIB_NAME} Concurrent Core Widgets Network Sql)
-
+target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application
+                      Qt5::Concurrent Qt5::Core Qt5::Widgets Qt5::Network Qt5::Sql)
 if(UNIX AND NOT APPLE)
-    qt5_use_modules(${LIB_NAME} DBus)
+    target_link_libraries(${LIB_NAME} Qt5::DBus)
 endif()
-

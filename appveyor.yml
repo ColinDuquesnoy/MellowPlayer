@@ -21,11 +21,11 @@ branches:
     - gh-pages
 
 build_script:
-  - cd C:\projects\MellowPlayer\scripts\build\windows
+  - cd C:\projects\MellowPlayer\scripts\appveyor
   - build.bat
 
 test_script:
-  - cd C:\projects\MellowPlayer\scripts\build\windows
+  - cd C:\projects\MellowPlayer\scripts\appveyor
   - runtests.bat
 
 deploy_script:
