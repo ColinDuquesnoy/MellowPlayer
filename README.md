@@ -4,8 +4,6 @@
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/f65ajgawyxnxjs2a?svg=true)](https://ci.appveyor.com/project/ColinDuquesnoy/mellowplayer)
 [![Coverage Status](https://coveralls.io/repos/github/ColinDuquesnoy/MellowPlayer/badge.svg?branch=develop)](https://coveralls.io/github/ColinDuquesnoy/MellowPlayer?branch=develop)
 [![Latest stable release](https://img.shields.io/github/release/ColinDuquesnoy/MellowPlayer.svg)](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
-[![Stories in progress](https://img.shields.io/waffle/label/ColinDuquesnoy/MellowPlayer/ready.svg)](http://waffle.io/ColinDuquesnoy/MellowPlayer)
-[![Stories in progress](https://img.shields.io/waffle/label/ColinDuquesnoy/MellowPlayer/in%20progress.svg)](http://waffle.io/ColinDuquesnoy/MellowPlayer)
 
 # About
 
@@ -43,7 +41,7 @@ MellowPlayer is licensed under the GPL license.
 
 - cmake
 - a c++17 compiler (gcc6, msvc 2015 or clang)
-- Qt5 (>= 5.9.0, WebEngine, QuickControls2 and QtConcurrent modules needed)
+- Qt5 (>= 5.9.0, QtWebEngine and QtQuickControls2 needed)
 - Libnotify (optional, GNU/Linux only)
 
 ## Browser plugins:
@@ -115,8 +113,15 @@ You can specify the following options when calling cmake:
 
 Example build commands:
 
-- release build: ``cmake ..``
-- developer build command  ``cmake -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DENABLE_LCOV_REPORT=ON -DCMAKE_BUILD_TYPE=Debug ..``
+- release build: 
+    ```bash
+    cmake ..
+    ```
+- developer build command  
+
+    ```bash
+    cmake -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DENABLE_LCOV_REPORT=ON -DCMAKE_BUILD_TYPE=Debug ..
+    ```
 
 # Running the test suite
 
