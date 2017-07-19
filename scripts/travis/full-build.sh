@@ -25,13 +25,15 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     src/MellowPlayer --auto-quit-delay 10000 --log-level 1 --service Deezer;
 
     # create AppImage
-    ../scripts/packaging/make_appimage.sh /opt/qt59;
+    popd;
+    ./scripts/packaging/make_appimage.sh /opt/qt59;
     pip install github3.py;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
     export CMAKE_PREFIX_PATH=$PWD/../qt;
+    export QT_PLUGIN_PATH=$PWD/../qt/plugins;
     cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
     make;
 
@@ -39,7 +41,8 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     ctest -V;
 
     # create DMG
-    ../scripts/packaging/osx/make_dmg.sh;
+    popd;
+    ./scripts/packaging/osx/make_dmg.sh;
 fi
 
 # upload build artifacts to github

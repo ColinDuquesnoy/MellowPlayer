@@ -26,7 +26,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
     export CMAKE_PREFIX_PATH=$PWD/../qt;
     export QT_PLUGIN_PATH=$PWD/../qt/plugins;
-    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
+    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..;
     make;
 
     # run tests

@@ -22,8 +22,8 @@ chmod a+x linuxdeployqt*.AppImage
 
 # build in release mode and install into appdir
 mkdir -p appdir
-mkdir -p cmake-build-release
-pushd cmake-build-release
+mkdir -p build
+pushd build
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=FALSE -DCMAKE_PREFIX_PATH=/home/colin/Qt/5.9/gcc_64/ -DSTATIC_LIBSTDCPP=TRUE ..
 make -j$(nproc)
 make DESTDIR=../appdir install
