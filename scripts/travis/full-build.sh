@@ -46,4 +46,4 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 fi
 
 # upload build artifacts to github
-python ../scripts/upload.py ${tagName} dist/*;
+python ./scripts/upload.py ${tagName} dist/*;
