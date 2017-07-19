@@ -1,5 +1,5 @@
-#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Application/IQtApplication.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>

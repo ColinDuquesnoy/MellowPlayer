@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtQml/QQmlApplicationEngine>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include "UpdaterViewModel.hpp"

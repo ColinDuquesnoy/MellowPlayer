@@ -1,6 +1,6 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
-#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
+#include <MellowPlayer/Application/IQtApplication.hpp>
 #include "Mpris2Root.hpp"
 
 using namespace MellowPlayer::Application;

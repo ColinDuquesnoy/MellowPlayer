@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Utils/AlbumArt/AlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
 #include <iostream>
 using namespace MellowPlayer::Infrastructure;

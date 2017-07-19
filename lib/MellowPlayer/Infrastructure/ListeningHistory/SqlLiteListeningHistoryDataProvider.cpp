@@ -4,7 +4,7 @@
 #include <QtSql/QSqlRecord>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "MellowPlayer/Infrastructure/Utils/FileHelper.hpp"
+#include "MellowPlayer/Infrastructure/Helpers/FileHelper.hpp"
 #include "SqlLiteListeningHistoryDataProvider.hpp"
 
 using namespace MellowPlayer::Application;

@@ -1,6 +1,6 @@
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
-#include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
 #include "LocalAlbumArt.hpp"
 
 using namespace MellowPlayer::Application;

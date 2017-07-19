@@ -1,6 +1,6 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
-#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
+#include <MellowPlayer/Application/IQtApplication.hpp>
 #include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>

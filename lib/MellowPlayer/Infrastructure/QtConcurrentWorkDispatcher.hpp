@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QMutex>
 #include <QTimer>
-#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/IWorkDispatcher.hpp>
 
 namespace MellowPlayer::Infrastructure {
 

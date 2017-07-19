@@ -1,7 +1,7 @@
 #include <QtWebEngine>
 #include <QMessageBox>
 #include <QQuickStyle>
-#include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>

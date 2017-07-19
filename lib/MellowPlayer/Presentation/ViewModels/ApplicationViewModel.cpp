@@ -5,7 +5,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "MellowPlayer/Presentation/Utils/IconProvider.hpp"
+#include "MellowPlayer/Presentation/IconProvider.hpp"
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include "ApplicationViewModel.hpp"
 

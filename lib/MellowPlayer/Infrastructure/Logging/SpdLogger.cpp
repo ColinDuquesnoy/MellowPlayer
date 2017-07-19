@@ -1,6 +1,6 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
-#include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
+#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include "SpdLogger.hpp"
 
 using namespace MellowPlayer::Application;

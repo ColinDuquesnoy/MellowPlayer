@@ -4,7 +4,7 @@
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
-#include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;

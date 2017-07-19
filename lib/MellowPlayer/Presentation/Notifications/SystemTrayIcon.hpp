@@ -3,7 +3,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 
 namespace MellowPlayer::Application {
 

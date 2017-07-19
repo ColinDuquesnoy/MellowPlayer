@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 
 namespace MellowPlayer::Application {
 

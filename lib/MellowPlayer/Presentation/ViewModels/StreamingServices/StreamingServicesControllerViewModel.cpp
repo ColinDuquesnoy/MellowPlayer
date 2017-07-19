@@ -2,7 +2,7 @@
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/IWorkDispatcher.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <fakeit.hpp>
-#include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;

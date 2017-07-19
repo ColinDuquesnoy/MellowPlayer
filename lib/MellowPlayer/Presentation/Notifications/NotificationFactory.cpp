@@ -1,5 +1,5 @@
 #include <MellowPlayer/Application/Player/Song.hpp>
-#include <MellowPlayer/Presentation/Utils/IconProvider.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 #include "NotificationFactory.hpp"
 
 using namespace MellowPlayer::Application;

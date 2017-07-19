@@ -4,7 +4,7 @@
 #include <QMutex>
 #include <QList>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Application/Utils/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/IWorkDispatcher.hpp>
 
 namespace MellowPlayer::Application {
 

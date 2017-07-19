@@ -4,7 +4,7 @@
 #endif
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
+#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include <MellowPlayer/Infrastructure/CommandLineParser.hpp>

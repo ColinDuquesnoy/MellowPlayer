@@ -2,7 +2,7 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Utils/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>

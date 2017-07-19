@@ -4,7 +4,7 @@
 #include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/Utils/TimeLimits.hpp>
+#include <MellowPlayer/Application/TimeLimits.hpp>
 #include <QtCore/QTimer>
 #include "ListeningHistory.hpp"
 

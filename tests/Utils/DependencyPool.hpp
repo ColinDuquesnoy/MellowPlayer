@@ -3,7 +3,7 @@
 #include "fakeit/fakeit.hpp"
 
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
+#include <MellowPlayer/Application/IQtApplication.hpp>
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>

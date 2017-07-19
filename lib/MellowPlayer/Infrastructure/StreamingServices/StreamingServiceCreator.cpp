@@ -1,6 +1,6 @@
 #include "StreamingServiceCreator.hpp"
 #include "StreamingServiceLoader.hpp"
-#include <MellowPlayer/Infrastructure/Utils/FileHelper.hpp>
+#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <QtCore/QDir>
 #include <QtCore/QTextStream>
 #include <QDebug>

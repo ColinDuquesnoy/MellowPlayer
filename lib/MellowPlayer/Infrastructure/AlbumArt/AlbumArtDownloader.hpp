@@ -3,8 +3,8 @@
 #include <QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <MellowPlayer/Application/Utils/AlbumArt/IAlbumArtDownloader.hpp>
-#include "MellowPlayer/Infrastructure/Utils/Base64Helper.hpp"
+#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
+#include "MellowPlayer/Infrastructure/Helpers/Base64Helper.hpp"
 
 namespace MellowPlayer::Application {
 

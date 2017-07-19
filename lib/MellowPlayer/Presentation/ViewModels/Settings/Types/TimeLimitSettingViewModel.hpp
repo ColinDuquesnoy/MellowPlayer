@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/Utils/TimeLimits.hpp>
+#include <MellowPlayer/Application/TimeLimits.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
 

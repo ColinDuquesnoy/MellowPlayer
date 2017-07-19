@@ -1,6 +1,6 @@
 #include <libnotify/notify.h>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include "LibnotifyPresenter.hpp"
 

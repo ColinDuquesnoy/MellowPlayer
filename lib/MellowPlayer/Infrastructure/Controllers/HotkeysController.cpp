@@ -3,7 +3,7 @@
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Application/IMainWindow.hpp>
 #include "HotkeysController.hpp"
 
 using namespace MellowPlayer::Application;

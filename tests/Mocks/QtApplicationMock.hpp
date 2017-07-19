@@ -1,7 +1,7 @@
 #pragma once
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Presentation/IQtApplication.hpp>
+#include <MellowPlayer/Application/IQtApplication.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
