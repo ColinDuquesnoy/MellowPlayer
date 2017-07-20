@@ -14,8 +14,8 @@ Setting::Setting(Settings& settings, SettingsCategory& category, const Setting::
 }
 
 void Setting::resolveDependency() {
-    if (data.enableCondition.startsWith("!"))
-        notOperator = true;
+//    if (data.enableCondition.startsWith("!"))
+//        notOperator = true;
 
     QString key = QString(data.enableCondition);
     key = key.replace("!", "");
@@ -28,9 +28,7 @@ void Setting::resolveDependency() {
         parentSetting = &settings.get(key);
         connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
     }
-    catch (const runtime_error&) {
-        return;
-    }
+    catch (const runtime_error&) { return; }
 }
 
 void Setting::restoreDefaults() {
@@ -78,8 +76,8 @@ bool Setting::isEnabled() const {
     else {
         bool parentValue = parentSetting->getValue().toBool();
 
-        if (notOperator)
-            return !parentValue;
+//        if (notOperator)
+//            return !parentValue;
 
         return parentValue;
     }

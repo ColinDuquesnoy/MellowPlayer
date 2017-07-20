@@ -13,12 +13,27 @@ TEST_CASE("SettingsCategoryViewModelTests") {
     DependencyPool pool;
     Settings& settings = pool.getSettings();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
-    SettingsCategoryViewModel model(themeViewModel, &settings.getCategory("main"));
+    SettingsCategoryViewModel categoryViewModel(themeViewModel, &settings.getCategory("main"));
 
-    REQUIRE(model.getName().toStdString() == "General");
-    REQUIRE(!model.getIcon().isEmpty());
-    REQUIRE(!model.getQmlComponent().isEmpty());
-    REQUIRE(model.getSettingsModel()->count() > 1);
+    REQUIRE(categoryViewModel.getName().toStdString() == "General");
+    REQUIRE(!categoryViewModel.getIcon().isEmpty());
+    REQUIRE(!categoryViewModel.getQmlComponent().isEmpty());
+    REQUIRE(categoryViewModel.getSettingsModel()->count() > 1);
+
+    SECTION("restoreDefaults") {
+        Setting& inCategorySetting = settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES);
+        inCategorySetting.setValue(false);
+        Setting& notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
+        notInCategorySetting.setValue("Breeze");
+
+        REQUIRE(inCategorySetting.getValue() != inCategorySetting.getDefaultValue());
+        REQUIRE(notInCategorySetting.getValue() != notInCategorySetting.getDefaultValue());
+
+        categoryViewModel.restoreDefaults();
+
+        REQUIRE(inCategorySetting.getValue() == inCategorySetting.getDefaultValue());
+        REQUIRE(notInCategorySetting.getValue() != notInCategorySetting.getDefaultValue());
+    }
 }
 
 TEST_CASE("CustomSettingsCategoryViewModelTests") {

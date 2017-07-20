@@ -11,19 +11,17 @@ Release::Release(const QString& name, const QDate& date, QObject* parent) :
         url_(""),
         name_(name),
         date_(date),
-        description_(""),
         preRelease_(false),
         assets_() {
 
 }
 
-Release::Release(const QString& url, const QString& version, const QDate& date, const QString& description,
+Release::Release(const QString& url, const QString& name, const QDate& date,
                  const AssetList& assets, bool preRelease, QObject* parent) :
         QObject(parent),
         url_(url),
-        name_(version),
+        name_(name),
         date_(date),
-        description_(description),
         preRelease_(preRelease),
         assets_(assets) {
 }
@@ -38,10 +36,6 @@ QString Release::getName() const {
 
 QString Release::getDate() const {
     return date_.toString("MMMM dd yyyy");
-}
-
-const QString& Release::getDescription() const {
-    return description_;
 }
 
 bool Release::isPreRelease() const {

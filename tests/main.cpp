@@ -32,12 +32,15 @@ int main(int argc, char* argv[])
     loggingManager.setDefaultLogLevel(LogLevel::Off);
 
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
-    qDebug() << "Starting tests";
+    qDebug() << "Starting tests" << webApplication.getBuildInfo();
 
     QSettings settings;
     settings.clear();
     auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
 
     settings.clear();
+    webApplication.clearCache();
+    webApplication.clearCookies();
+
     return retCode;
 }

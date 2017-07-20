@@ -14,34 +14,36 @@ namespace MellowPlayer::Application {
 
     class Updater: public QObject {
         Q_OBJECT
-//        Q_ENUMS()
+        Q_ENUMS(Status)
     public:
         Updater(IReleaseQuerier& releaseQuerier, Settings& settings);
 
-//        enum class Status {
-//            None,
-//            Checking,
-//            Downloading,
-//            Installing
-//        };
+        enum class Status {
+            None,
+            Checking,
+            Downloading,
+            Installing
+        };
 
         void setCurrentRelease(const Release* currentRelease);
 
         bool isUpdateAvailable() const;
         bool canInstall() const;
         const Release* getLatestRelease() const;
+        Status getStatus() const;
 
     public slots:
         void check();
-        void download();
         void install();
 
     signals:
         void updateAvailable();
         void noUpdateAvailable();
+        void statusChanged();
 
     private slots:
         void onLatestReleaseReceived(const Release* release);
+        void setStatus(Status status);
 
     private:
         ILogger& logger_;
@@ -55,7 +57,7 @@ namespace MellowPlayer::Application {
         const Release* latestRelease_ = nullptr;
 
         MellowPlayer::Application::UpdateChannel getChannel() const;
-//        Status status_ = Status::None;
+        Status status_ = Status::None;
 
     };
 }

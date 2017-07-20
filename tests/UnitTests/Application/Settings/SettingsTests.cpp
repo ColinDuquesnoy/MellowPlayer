@@ -2,19 +2,19 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
-#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <QtTest/QSignalSpy>
+#include <Utils/DependencyPool.hpp>
 
+using namespace std;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Tests;
 
 #define NB_CONFIGS 6
 
 TEST_CASE("SettingsTests") {
-    QSettingsProvider settingsProvider;
-    SettingsSchemaLoader loader;
-    Settings settings(loader, settingsProvider);
+    DependencyPool pool;
+    Settings& settings = pool.getSettings();
     SettingsCategory* mainCategory = &settings.getCategory("main");
 
     SECTION("ConfigSchemaTests") {
@@ -136,6 +136,10 @@ TEST_CASE("SettingsTests") {
                 REQUIRE(spy.count() == 1);
                 REQUIRE(accent.isEnabled());
             }
+        }
+
+        SECTION("get invalid setting key throws") {
+            REQUIRE_THROWS(settings.get("category/subcategory/key"));
         }
     }
 }

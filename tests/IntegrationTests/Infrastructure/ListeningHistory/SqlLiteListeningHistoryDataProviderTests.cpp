@@ -21,7 +21,7 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
     ListeningHistoryEntry entry2Deezer = ListeningHistoryEntry::fromData(&song2, "Deezer");
     ListeningHistoryEntry entry1Spotify = ListeningHistoryEntry::fromData(&song2, "Spotify");
 
-    dataProvider.add(entry1Deezer);
+    entry1Deezer.id = dataProvider.add(entry1Deezer);
 
     SECTION("Add entry") {
         REQUIRE(dataProvider.getAll().count() == 1);
@@ -41,6 +41,18 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
         dataProvider.add(entry1Spotify);
         REQUIRE(dataProvider.getAll().count() == 3);
         dataProvider.remove("serviceName", "Deezer");
+        REQUIRE(dataProvider.getAll().count() == 1);
+    }
+
+    SECTION("Remove many entries") {
+        dataProvider.add(entry2Deezer);
+        entry1Spotify.id = dataProvider.add(entry1Spotify);
+        REQUIRE(dataProvider.getAll().count() == 3);
+
+        QList<int> toRemove;
+        toRemove.append(entry1Deezer.id);
+        toRemove.append(entry1Spotify.id);
+        dataProvider.removeMany(toRemove);
         REQUIRE(dataProvider.getAll().count() == 1);
     }
 }

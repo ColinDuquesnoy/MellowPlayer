@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Compile in debug mode, run unit tests only, measure code coverage and upload results
+# Compile in debug mode, run unit and integration tests only, measure code coverage and upload results
 #
 echo "*************************** Performing a COMMIT build"
 set -e;
@@ -10,7 +10,7 @@ pushd build;
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # build
-    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
+    cmake -DCMAKE_BUILD_TYPE=Debug --DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
     make;
 
     # run tests
@@ -19,14 +19,14 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # upload code coverage results
     popd;
     sudo pip install cpp-coveralls;
-    coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*build.*' -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
+    coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*I.*hpp' -E '.*moc_.*'  -E '.*build.*' -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
     export CMAKE_PREFIX_PATH=$PWD/../qt;
     export QT_PLUGIN_PATH=$PWD/../qt/plugins;
-    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..;
+    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
     make;
 
     # run tests

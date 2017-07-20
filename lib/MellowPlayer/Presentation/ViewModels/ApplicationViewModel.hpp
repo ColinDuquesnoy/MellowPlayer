@@ -30,7 +30,7 @@ namespace MellowPlayer::Presentation {
 
         void setAutoQuitDelay(int delay);
 
-        bool restartRequested() const override { return restartRequested_; }
+        bool restartRequested() const override;
 
     private:
         void onAboutToQuit();

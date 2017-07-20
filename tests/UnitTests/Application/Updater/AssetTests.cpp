@@ -6,6 +6,10 @@ using namespace MellowPlayer::Application;
 SCENARIO("asset validity can be tested") {
     GIVEN("an asset with a valid asset name and an invalid url") {
         Asset asset("MellowPlayer-x86_64.AppImage", "");
+
+        REQUIRE(asset.getName() == "MellowPlayer-x86_64.AppImage");
+        REQUIRE(asset.getUrl() == "");
+
         WHEN("isValid is called") {
             bool isValid = asset.isValid();
             THEN("it returns False") {

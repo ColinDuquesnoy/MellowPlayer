@@ -6,6 +6,7 @@ using namespace MellowPlayer::Application;
 SCENARIO( "releases validity can be tested") {
     GIVEN("the current release") {
         const Release& currentRelease = Release::current();
+        REQUIRE(currentRelease.getUrl().isEmpty());
 
         WHEN("isValid is called") {
             bool isValid = currentRelease.isValid();
@@ -42,7 +43,7 @@ SCENARIO( "releases validity can be tested") {
 
     GIVEN("a release with a version, a valid date, a description but no assets") {
         Release release("https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0",
-                        "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate), "This release must have assets to be valid", AssetList());
+                        "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate), AssetList());
 
         WHEN("isValid is called") {
             bool isValid = release.isValid();
@@ -55,12 +56,12 @@ SCENARIO( "releases validity can be tested") {
 
     GIVEN("a release with a version, a valid date, a description but not enough assets") {
         AssetList assets;
-        assets << Asset("Linux", "MellowPlayer.AppImage");
-        assets << Asset("Mac OSX", "MellowPlayer.dmg");
+        assets << Asset("MellowPlayer.AppImage", "MellowPlayer.AppImage");
+        assets << Asset("MellowPlayer.dmg", "MellowPlayer.dmg");
         // windows installer is missing.
         Release release("https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0",
-                        "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate),
-                        "This release must have the following 3 assets: .AppImage, _Setup.exe and .dmg", assets);
+                        "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate), assets);
+        REQUIRE(release.getAssets().count() == 2);
 
         WHEN("isValid is called") {
             bool isValid = release.isValid();
@@ -73,18 +74,17 @@ SCENARIO( "releases validity can be tested") {
 
     GIVEN("a release with a version, a valid date, a description and all the required assets") {
         AssetList assets;
-        assets << Asset("Linux", "MellowPlayer.AppImage");
-        assets << Asset("Mac OSX", "MellowPlayer.dmg");
-        assets << Asset("Windows", "MellowPlayer_Setup.exe");
-        Release release("https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0",
-                        "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate),
-                        "This release should be valid", assets);
+        assets << Asset("MellowPlayer.AppImage", "https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0/MellowPlayer.AppImage");
+        assets << Asset("MellowPlayer.dmg", "https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0/MellowPlayer.dmg");
+        assets << Asset("MellowPlayer_Setup.exe", "https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0/MellowPlayer_Setup.exe");
+        Release release("https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0", "2.95.0",
+                        QDate::fromString("2017-07-15", Qt::ISODate), assets);
 
         WHEN("isValid is called") {
             bool isValid = release.isValid();
 
             THEN("it returns True") {
-                REQUIRE(!isValid);
+                REQUIRE(isValid);
             }
         }
     }

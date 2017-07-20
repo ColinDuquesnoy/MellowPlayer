@@ -11,6 +11,7 @@ using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SystemTrayIconTests") {
+
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();

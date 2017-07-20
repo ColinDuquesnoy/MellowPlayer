@@ -123,3 +123,7 @@ QString ApplicationViewModel::getBuildInfo() const {
                 QString::number(QSysInfo::WordSize),
                 QString(QT_VERSION_STR));
 }
+
+bool ApplicationViewModel::restartRequested() const {
+    return restartRequested_;
+}

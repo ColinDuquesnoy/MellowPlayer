@@ -24,11 +24,13 @@ SCENARIO("check for stable updates") {
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
+        REQUIRE(updater.getStatus() == Updater::Status::None);
 
         WHEN("check for updates") {
             updater.check();
 
             THEN("update to version version 2.2.5 is available") {
+                REQUIRE(updater.getStatus() == Updater::Status::None);
                 REQUIRE(updater.isUpdateAvailable());
                 REQUIRE(updater.getLatestRelease()->getName() == "2.2.5");
                 REQUIRE(updateAvailableSpy.count() == 1);

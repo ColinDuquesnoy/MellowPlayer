@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Compile in release mode, run all tests, create a package and upload it to github.
+# Compile in release mode, run unit, integration and functional tests, create a package and upload it to github.
 #
 echo "*************************** Performing a FULL build"
 
@@ -34,7 +34,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
     export CMAKE_PREFIX_PATH=$PWD/../qt;
     export QT_PLUGIN_PATH=$PWD/../qt/plugins;
-    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
+    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
     make;
 
     # run all tests

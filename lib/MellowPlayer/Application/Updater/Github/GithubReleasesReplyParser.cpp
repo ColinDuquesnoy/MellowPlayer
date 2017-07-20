@@ -27,7 +27,7 @@ void GithubReleasesReplyParser::parse(const QByteArray& replyData) {
             assets << asset;
         }
 
-        Release* release = new Release(url, version, date, description, assets, preRelease, this);
+        Release* release = new Release(url, version, date, assets, preRelease, this);
 
         emit ready(release);
 

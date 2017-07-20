@@ -13,16 +13,15 @@ namespace MellowPlayer::Application {
         Q_OBJECT
         Q_PROPERTY(QString name READ getName CONSTANT)
         Q_PROPERTY(QString date READ getDate CONSTANT)
-        Q_PROPERTY(QString description READ getDescription CONSTANT)
     public:
         Release(const QString& name, const QDate& date, QObject* parent= nullptr);
-        Release(const QString& url, const QString& version, const QDate& date, const QString& description,
+        Release(const QString& url, const QString& name, const QDate& date,
                 const AssetList& assets, bool preRelease=false, QObject* parent=nullptr);
 
         QString getUrl() const;
         QString getName() const;
         QString getDate() const;
-        const QString& getDescription() const;
+
         bool isPreRelease() const;
         const AssetList& getAssets() const;
 
@@ -41,7 +40,6 @@ namespace MellowPlayer::Application {
         QString url_;
         QString name_;
         QDate date_;
-        QString description_;
         bool preRelease_;
         AssetList assets_;
 
