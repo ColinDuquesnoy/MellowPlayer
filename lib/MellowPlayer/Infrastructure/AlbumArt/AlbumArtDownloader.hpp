@@ -4,6 +4,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Infrastructure/FileDownloader.hpp>
 #include "MellowPlayer/Infrastructure/Helpers/Base64Helper.hpp"
 
 namespace MellowPlayer::Application {
@@ -22,18 +23,17 @@ namespace MellowPlayer::Infrastructure {
         QFileInfo getLocalArtUrl(const QString &songId) override;
 
     private slots:
-        void onDownloadFinished(QNetworkReply* reply);
+        void onDownloadFinished(bool);
 
     private:
+        void downloadImage(const QString& url);
         bool isBase64Image(const QString& artUrl);
         bool createBase64Image(const QString base64String);
 
-        QNetworkAccessManager *networkAccessManager;
+        FileDownloader fileDownloader;
         QFileInfo localUrl;
         Application::ILogger& logger;
         Base64Helper base64;
-
-        void downloadImage(const QString& url) const;
     };
 
 }

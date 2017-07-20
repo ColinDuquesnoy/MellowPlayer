@@ -8,10 +8,9 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 AlbumArtDownloader::AlbumArtDownloader()
-    : networkAccessManager(new QNetworkAccessManager(this)),
-      logger(LoggingManager::instance().getLogger("AlbumArtDownloader")) {
+    : logger(LoggingManager::instance().getLogger("AlbumArtDownloader")) {
 
-    connect(networkAccessManager, &QNetworkAccessManager::finished, this, &AlbumArtDownloader::onDownloadFinished);
+    connect(&fileDownloader, &FileDownloader::finished, this, &AlbumArtDownloader::onDownloadFinished);
 }
 
 bool AlbumArtDownloader::download(const QString& url, const QString& songId) {
@@ -33,9 +32,9 @@ bool AlbumArtDownloader::download(const QString& url, const QString& songId) {
     return true;
 }
 
-void AlbumArtDownloader::downloadImage(const QString& url) const {
+void AlbumArtDownloader::downloadImage(const QString& url) {
     LOG_DEBUG(logger, "downloading " + url + " to " + localUrl.absoluteFilePath());
-    networkAccessManager->get(QNetworkRequest(url));
+    fileDownloader.download(url, localUrl.absoluteFilePath());
 }
 
 QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
@@ -47,15 +46,8 @@ QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId) {
     return localArtUrl;
 }
 
-void AlbumArtDownloader::onDownloadFinished(QNetworkReply* reply) {
+void AlbumArtDownloader::onDownloadFinished(bool) {
     LOG_DEBUG(logger, "download finished");
-    QFile file(localUrl.absoluteFilePath());
-    if (file.open(QIODevice::WriteOnly)) {
-        file.write(reply->readAll());
-        file.close();
-    } else {
-        LOG_DEBUG(logger, "could not open file in write only mode: " +localUrl.absoluteFilePath());
-    }
     emit downloadFinished(localUrl.absoluteFilePath());
 }
 
