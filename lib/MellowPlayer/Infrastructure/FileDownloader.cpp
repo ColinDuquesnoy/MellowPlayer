@@ -1,4 +1,3 @@
-#include <iostream>
 #include "FileDownloader.hpp"
 
 using namespace MellowPlayer::Application;
@@ -62,8 +61,6 @@ void FileDownloader::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
     if (bytesTotal > bytesReceived)
         ratio = static_cast<double>(bytesReceived) / bytesTotal;
     double progress = (ratio * 100);
-
-    std::cerr << bytesReceived << " / " << bytesTotal << " = " << progress << std::endl;
 
     if (progress_ != progress) {
         progress_ = progress;

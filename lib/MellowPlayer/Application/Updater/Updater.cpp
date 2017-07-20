@@ -17,8 +17,8 @@ Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings):
     connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
     connect(&updateChannelSetting_, &Setting::valueChanged, this, &Updater::check);
 
-//    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
-//    setCurrentRelease(r);
+    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
+    setCurrentRelease(r);
 }
 
 void Updater::check() {
