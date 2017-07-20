@@ -2,12 +2,12 @@
 #include "UpdaterStatusConverter.hpp"
 
 using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Presentation;
 
 const QString UpdaterStatusConverter::NONE = "";
-const QString UpdaterStatusConverter::CHECKING = QObject::tr("Checking for update");
-const QString UpdaterStatusConverter::DOWNLOADING = QObject::tr("Downloading update");
-const QString UpdaterStatusConverter::INSTALLING = QObject::tr("Installing update");
+const QString UpdaterStatusConverter::CHECKING = "Checking for update";
+const QString UpdaterStatusConverter::DOWNLOADING = "Downloading update";
+const QString UpdaterStatusConverter::INSTALLING = "Installing update";
 
 QString UpdaterStatusConverter::toString(Updater::Status status) {
     static QMap<Updater::Status, QString> map = {

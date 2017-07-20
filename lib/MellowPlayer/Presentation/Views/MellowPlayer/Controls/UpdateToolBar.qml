@@ -8,6 +8,7 @@ import MellowPlayer 3.0
 ToolBar {
     id: updateToolBar
 
+    enabled: !_updater.busy
     height: 0
     transform: Scale {
         id: scaleTransform
@@ -61,7 +62,7 @@ ToolBar {
                 highlighted: true
                 text: "Install"
                 onClicked: _updater.install()
-//                visible: _updater.canInstall
+                visible: _updater.installEnabled
             }
 
             ToolButton {

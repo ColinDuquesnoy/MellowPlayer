@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Application/Updater/Updater.hpp>
 
-namespace MellowPlayer::Infrastructure {
+namespace MellowPlayer::Presentation {
 
     class UpdaterStatusConverter {
     public:

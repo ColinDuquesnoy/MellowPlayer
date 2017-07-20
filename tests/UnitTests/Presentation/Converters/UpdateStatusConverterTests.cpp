@@ -2,7 +2,7 @@
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
 
 using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Presentation;
 
 SCENARIO("Updater status can be converted to a string") {
     GIVEN("UpdaterStatus::None") {
@@ -11,8 +11,8 @@ SCENARIO("Updater status can be converted to a string") {
         WHEN("converting to string") {
             QString statusString = UpdaterStatusConverter::toString(status);
 
-            THEN("the string is empty") {
-                REQUIRE(statusString.isEmpty());
+            THEN("the string is None") {
+                REQUIRE(statusString == UpdaterStatusConverter::NONE);
             }
         }
     }
@@ -57,6 +57,18 @@ SCENARIO("Updater status can be converted to a string") {
 SCENARIO("Updater status can be converted from a string") {
     GIVEN("an empty status string") {
         QString statusString = "";
+
+        WHEN("converting from string") {
+            Updater::Status status = UpdaterStatusConverter::fromString(statusString);
+
+            THEN("Status is None") {
+                REQUIRE(status == Updater::Status::None);
+            }
+        }
+    }
+
+    GIVEN("a None status string") {
+        QString statusString = UpdaterStatusConverter::NONE;
 
         WHEN("converting from string") {
             Updater::Status status = UpdaterStatusConverter::fromString(statusString);

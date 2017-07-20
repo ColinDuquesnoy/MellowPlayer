@@ -364,7 +364,8 @@ ToolBar {
 
                 MenuIconItem {
                     icon: MaterialIcons.icon_update
-                    text: "Check for updates"
+                    text: _updater.busy ? _updater.status : "Check for update"
+                    enabled: !_updater.busy
                     onClicked: _updater.check()
 
                     ProgressBar {

@@ -9,8 +9,10 @@ namespace MellowPlayer::Presentation {
         Q_OBJECT
         Q_PROPERTY(QString message READ getMessage NOTIFY messageChanged)
         Q_PROPERTY(QString url READ getUrl CONSTANT)
+        Q_PROPERTY(QString status READ getStatus NOTIFY statusChanged)
+        Q_PROPERTY(bool busy READ isBusy NOTIFY busyChanged)
         Q_PROPERTY(bool visible READ isVisible NOTIFY visibleChanged)
-        Q_PROPERTY(bool canInstall READ canInstall NOTIFY canInstallChanged)
+        Q_PROPERTY(bool installEnabled READ isInstallEnabled NOTIFY installEnabledChanged)
         Q_PROPERTY(int progress READ getProgress NOTIFY progressChanged)
         Q_PROPERTY(bool progressVisible READ isProgressVisible NOTIFY progressVisibleChanged)
     public:
@@ -18,8 +20,10 @@ namespace MellowPlayer::Presentation {
 
         QString getMessage() const;
         QString getUrl() const;
+        QString getStatus() const;
+        bool isBusy() const;
         bool isVisible() const;
-        bool canInstall() const;
+        bool isInstallEnabled() const;
         int getProgress() const;
         bool isProgressVisible() const;
 
@@ -30,14 +34,16 @@ namespace MellowPlayer::Presentation {
     signals:
         void messageChanged();
         void visibleChanged();
-        void canInstallChanged();
+        void installEnabledChanged();
         void progressChanged();
         void progressVisibleChanged();
+        void statusChanged();
+        void busyChanged();
 
     private slots:
         void setMessage(const QString& message);
         void setVisible(bool visible);
-        void setCanInstall(bool canInstall);
+        void setInstallEnabled(bool enabled);
         void setProgress(int progress);
         void setProgressVisible(bool progressVisible);
         void onUpdateAvailable();
@@ -47,8 +53,8 @@ namespace MellowPlayer::Presentation {
         Application::Updater& updater_;
         QString message_;
         bool visible_ = false;
-        bool canInstall_ = false;
+        bool installEnabled_ = false;
         int progress_ = -1;
-        bool progressVisible_ = true;
+        bool progressVisible_ = false;
     };
 }
