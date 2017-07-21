@@ -15,6 +15,7 @@ namespace MellowPlayer::Infrastructure
         bool isPlayPauseRequested() const override;
         bool isNextRequested() const override;
         bool isPreviousRequested() const override;
+        bool isToggleFavoriteRequested() const override;
         Application::LogLevel getLogLevel() const override;
 
     private:
@@ -24,6 +25,7 @@ namespace MellowPlayer::Infrastructure
         QCommandLineOption playPauseOption;
         QCommandLineOption nextOption;
         QCommandLineOption previousOption;
+        QCommandLineOption toggleFavoriteOption;
         QCommandLineOption autoQuitDelayOption;
 
         QString service;
@@ -31,6 +33,7 @@ namespace MellowPlayer::Infrastructure
         bool playRequested = false;
         bool nextRequested = false;
         bool previousRequested = false;
+        bool toggleFavoriteRequested = false;
         int autoQuitDelay = 0;
     };
 }

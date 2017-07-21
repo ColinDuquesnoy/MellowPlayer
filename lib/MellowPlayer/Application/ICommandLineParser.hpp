@@ -15,6 +15,7 @@ namespace MellowPlayer::Application
         virtual bool isPlayPauseRequested() const = 0;
         virtual bool isNextRequested() const = 0;
         virtual bool isPreviousRequested() const = 0;
+        virtual bool isToggleFavoriteRequested() const = 0;
         virtual LogLevel getLogLevel() const = 0;
     };
 }

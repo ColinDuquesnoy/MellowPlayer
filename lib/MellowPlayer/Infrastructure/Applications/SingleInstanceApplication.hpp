@@ -44,5 +44,6 @@ namespace MellowPlayer::Infrastructure
         static const QString nextAction;
         static const QString previousAction;
         static const QString restoreWindowAction;
+        static const QString toggleFavoriteAction;
     };
 }

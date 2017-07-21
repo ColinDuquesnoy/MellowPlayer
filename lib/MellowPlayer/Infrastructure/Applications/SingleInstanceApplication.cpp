@@ -17,6 +17,7 @@ const QString SingleInstanceApplication::playPauseAction = "play-pause";
 const QString SingleInstanceApplication::nextAction = "next";
 const QString SingleInstanceApplication::previousAction = "previous";
 const QString SingleInstanceApplication::restoreWindowAction = "restore-window";
+const QString SingleInstanceApplication::toggleFavoriteAction = "toggle-favorite";
 
 SingleInstanceApplication::SingleInstanceApplication(IApplication &application, ICommandLineParser &commandLineParser, IPlayer &currentPlayer)
         : logger(LoggingManager::instance().getLogger("SingleInstanceApplication")),
@@ -92,6 +93,8 @@ QString SingleInstanceApplication::getRequestedAcion() const
         return nextAction;
     else if (commandLineParser.isPreviousRequested())
         return previousAction;
+    else if (commandLineParser.isToggleFavoriteRequested())
+        return toggleFavoriteAction;
     return restoreWindowAction;
 }
 
@@ -106,6 +109,8 @@ void SingleInstanceApplication::onReadyRead()
             currentPlayer.next();
         else if (a == previousAction)
             currentPlayer.previous();
+        else if (a == toggleFavoriteAction)
+            currentPlayer.toggleFavoriteSong();
         else
             application.restoreWindow();
     }
