@@ -9,22 +9,25 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("SettingViewModelTests") {
+TEST_CASE("SettingViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    Setting& setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+    Settings &settings = pool.getSettings();
+    Setting &setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
     BoolSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
-    SECTION("Basic attributes") {
+    SECTION("Basic attributes")
+    {
         REQUIRE(model.getType() == "bool");
         REQUIRE(!model.getName().isEmpty());
         REQUIRE(model.getEnabled());
         REQUIRE(!model.getToolTip().isEmpty());
     }
 
-    SECTION("enabled should change when enableCondition is met") {
-        Setting& dependantSetting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
+    SECTION("enabled should change when enableCondition is met")
+    {
+        Setting &dependantSetting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
         BoolSettingViewModel dependantModel(dependantSetting, nullptr);
         QSignalSpy enabledSpy(&dependantModel, SIGNAL(enabledChanged()));
 
@@ -38,6 +41,4 @@ TEST_CASE("SettingViewModelTests") {
 
         model.setValue(true);
     }
-
 }
-

@@ -1,9 +1,10 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 
-TEST_CASE("ListeningHistoryEntryTests") {
+TEST_CASE("ListeningHistoryEntryTests")
+{
     Song song1("uniqueId1", "title1", "artist1", "album1", "artUrl1", 5, false);
     Song song2("uniqueId2", "title2", "artist2", "album2", "artUrl2", 5, false);
 
@@ -17,12 +18,14 @@ TEST_CASE("ListeningHistoryEntryTests") {
     ListeningHistoryEntry entry1Spotify = ListeningHistoryEntry::fromData(&song2, "Spotify");
     entry1Spotify.id = 3;
 
-    SECTION("default fields") {
+    SECTION("default fields")
+    {
         REQUIRE(defaultEntry.serviceName.isEmpty());
         REQUIRE(defaultEntry.time.isEmpty());
     }
 
-    SECTION("fromData has basic song properties") {
+    SECTION("fromData has basic song properties")
+    {
         REQUIRE(entry1Deezer.serviceName == "Deezer");
         REQUIRE(entry1Deezer.songUniqueId == song1.getUniqueId());
         REQUIRE(entry1Deezer.songTitle == song1.getTitle());
@@ -32,27 +35,32 @@ TEST_CASE("ListeningHistoryEntryTests") {
         REQUIRE(!entry1Deezer.time.isEmpty());
     }
 
-    SECTION("dateTime is valid") {
+    SECTION("dateTime is valid")
+    {
         REQUIRE(entry1Deezer.dateTime().isValid());
     }
 
-    SECTION("isValid") {
+    SECTION("isValid")
+    {
         REQUIRE(!defaultEntry.isValid());
         REQUIRE(entry1Deezer.isValid());
     }
 
-    SECTION("equals") {
+    SECTION("equals")
+    {
         REQUIRE(entry1Deezer.equals(entry1DeezerBis));
         REQUIRE(!entry1Deezer.equals(entry2Deezer));
         REQUIRE(!entry1Deezer.equals(entry1Spotify));
     }
 
-    SECTION("equality comparator uses id only") {
+    SECTION("equality comparator uses id only")
+    {
         REQUIRE(entry1Deezer == entry1DeezerBis);
         REQUIRE(entry1Deezer != entry2Deezer);
     }
 
-    SECTION("implicit cast to int return id") {
-        REQUIRE((int) entry1Deezer == entry1Deezer.id);
+    SECTION("implicit cast to int return id")
+    {
+        REQUIRE((int)entry1Deezer == entry1Deezer.id);
     }
 }

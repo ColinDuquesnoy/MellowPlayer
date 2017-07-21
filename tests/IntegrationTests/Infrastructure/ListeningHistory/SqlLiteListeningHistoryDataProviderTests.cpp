@@ -1,12 +1,13 @@
-#include <catch.hpp>
-#include <QDir>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
+#include <QDir>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
+TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
+{
     QString dbPath = SqlLiteListeningHistoryDataProvider::getDatabasePath();
     QDir().remove(dbPath);
     SqlLiteListeningHistoryDataProvider dataProvider;
@@ -23,20 +24,23 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
 
     entry1Deezer.id = dataProvider.add(entry1Deezer);
 
-    SECTION("Add entry") {
+    SECTION("Add entry")
+    {
         REQUIRE(dataProvider.getAll().count() == 1);
         int id = dataProvider.add(entry1Spotify);
         REQUIRE(id == 2);
         REQUIRE(dataProvider.getAll().count() == 2);
     }
 
-    SECTION("Remove by id") {
+    SECTION("Remove by id")
+    {
         REQUIRE(dataProvider.getAll().count() == 1);
         dataProvider.remove("id", "1");
         REQUIRE(dataProvider.getAll().count() == 0);
     }
 
-    SECTION("Remove all deezer entries") {
+    SECTION("Remove all deezer entries")
+    {
         dataProvider.add(entry2Deezer);
         dataProvider.add(entry1Spotify);
         REQUIRE(dataProvider.getAll().count() == 3);
@@ -44,7 +48,8 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
         REQUIRE(dataProvider.getAll().count() == 1);
     }
 
-    SECTION("Remove many entries") {
+    SECTION("Remove many entries")
+    {
         dataProvider.add(entry2Deezer);
         entry1Spotify.id = dataProvider.add(entry1Spotify);
         REQUIRE(dataProvider.getAll().count() == 3);
@@ -56,4 +61,3 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests") {
         REQUIRE(dataProvider.getAll().count() == 1);
     }
 }
-

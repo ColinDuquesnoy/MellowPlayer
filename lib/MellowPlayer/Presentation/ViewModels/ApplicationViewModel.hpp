@@ -1,23 +1,23 @@
 #pragma once
 
+#include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp"
+#include <MellowPlayer/Application/IQtApplication.hpp>
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include <MellowPlayer/Application/IQtApplication.hpp>
-#include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp"
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer"
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class ILogger;
-
 }
 
-namespace MellowPlayer::Presentation {
-
-    class ApplicationViewModel: public Application::IQtApplication {
+namespace MellowPlayer::Presentation
+{
+    class ApplicationViewModel : public Application::IQtApplication
+    {
     public:
-        ApplicationViewModel(int &argc, char **argv, const QString& appName=MELLOWPLAYER_APP_NAME);
+        ApplicationViewModel(int &argc, char **argv, const QString &appName = MELLOWPLAYER_APP_NAME);
 
         int run() override;
         Q_INVOKABLE void clearCache() const override;
@@ -38,5 +38,4 @@ namespace MellowPlayer::Presentation {
         QApplication qtApp;
         bool restartRequested_ = false;
     };
-
 }

@@ -1,10 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
 #include "QQmlObjectListModel.hpp"
+#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
 
-namespace MellowPlayer::Presentation {
-
+namespace MellowPlayer::Presentation
+{
     using ListeningHistoryListModel = QQmlObjectListModel<ListeningHistoryEntryViewModel>;
-
 }

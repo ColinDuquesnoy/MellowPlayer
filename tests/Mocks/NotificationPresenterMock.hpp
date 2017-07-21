@@ -1,23 +1,25 @@
 #pragma once
+#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class NotificationPresenterMock {
+class NotificationPresenterMock
+{
 public:
-    static Mock<INotificationPresenter> get() {
+    static Mock<INotificationPresenter> get()
+    {
         Mock<INotificationPresenter> mock;
         Reset(mock);
         return mock;
     }
 
-    static void Reset(Mock<INotificationPresenter>& mock) {
+    static void Reset(Mock<INotificationPresenter> &mock)
+    {
         mock.Reset();
         When(Method(mock, initialize)).AlwaysReturn();
         When(Method(mock, display)).AlwaysReturn(true);
     }
 };
-

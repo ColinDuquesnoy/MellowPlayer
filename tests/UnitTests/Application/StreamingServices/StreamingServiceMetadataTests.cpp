@@ -1,11 +1,13 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace std;
 
-TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {
-    SECTION("StreamingService.DefaultCtor") {
+TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]")
+{
+    SECTION("StreamingService.DefaultCtor")
+    {
         StreamingServiceMetadata metadata;
 
         REQUIRE(metadata.author == "");
@@ -17,7 +19,8 @@ TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {
         REQUIRE(metadata.version == "");
     }
 
-    SECTION("StreamingService.isValid") {
+    SECTION("StreamingService.isValid")
+    {
         StreamingServiceMetadata metadata;
 
         REQUIRE(!metadata.isValid());
@@ -29,7 +32,8 @@ TEST_CASE("StreamingServiceMetadataTests", "[UnitTest]") {
         REQUIRE(metadata.isValid());
     }
 
-    SECTION("StreamingService.operator==") {
+    SECTION("StreamingService.operator==")
+    {
         StreamingServiceMetadata metadata;
         StreamingServiceMetadata metadata1;
 

@@ -1,20 +1,22 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <QtTest/QSignalSpy>
 #include <Mocks/SettingsProviderMock.hpp>
+#include <QtTest/QSignalSpy>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 
-TEST_CASE("PlayerTests", "[UnitTest]") {
+TEST_CASE("PlayerTests", "[UnitTest]")
+{
     StreamingServiceMetadata metadata;
     auto settingsProviderMock = SettingsProviderMock::get();
     StreamingService service(metadata);
     Player player(service);
-    QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
+    QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString &)));
 
-    SECTION("start test") {
+    SECTION("start test")
+    {
         REQUIRE(!player.isRunning());
         player.start();
         REQUIRE(player.isRunning());
@@ -22,20 +24,23 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(!player.isRunning());
     }
 
-    SECTION("loadPlugin emit runJavascriptRequested") {
+    SECTION("loadPlugin emit runJavascriptRequested")
+    {
         player.loadPlugin();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(!runJavascriptRequestedSpy[0][0].toString().isEmpty());
     }
 
-    SECTION("refresh test") {
-        QSignalSpy updateRequestedSpy(&player, SIGNAL(updateRequested(const QString&)));
+    SECTION("refresh test")
+    {
+        QSignalSpy updateRequestedSpy(&player, SIGNAL(updateRequested(const QString &)));
         player.refresh();
         REQUIRE(updateRequestedSpy.count() == 1);
         REQUIRE(!updateRequestedSpy[0][0].toString().isEmpty());
     }
 
-    SECTION("setUpdateResults with empty QVariant") {
+    SECTION("setUpdateResults with empty QVariant")
+    {
         player.setUpdateResults(QVariant());
 
         REQUIRE(player.getPosition() == 0);
@@ -55,7 +60,8 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(!player.getCurrentSong()->getIsFavorite());
     }
 
-    SECTION("setUpdateResults with valid QVariant") {
+    SECTION("setUpdateResults with valid QVariant")
+    {
         QVariantMap map;
         map["position"] = 1.0;
         map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -91,7 +97,8 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(player.getCurrentSong()->getIsFavorite());
     }
 
-    SECTION("togglePlayPause") {
+    SECTION("togglePlayPause")
+    {
         player.togglePlayPause();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
@@ -101,50 +108,58 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(runJavascriptRequestedSpy[1][0].toString() == "pause();");
     }
 
-    SECTION("play") {
+    SECTION("play")
+    {
         player.play();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "play();");
     }
 
-    SECTION("pause") {
+    SECTION("pause")
+    {
         player.pause();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "pause();");
     }
 
-    SECTION("next") {
+    SECTION("next")
+    {
         player.next();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "goNext();");
     }
 
-    SECTION("previous") {
+    SECTION("previous")
+    {
         player.previous();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString() == "goPrevious();");
     }
 
-    SECTION("seekToPosition") {
+    SECTION("seekToPosition")
+    {
         player.seekToPosition(150.3);
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString().toStdString() == "seekToPosition(150.3);");
     }
 
-    SECTION("setVolume") {
+    SECTION("setVolume")
+    {
         player.setVolume(0.67);
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString().toStdString() == "setVolume(0.67);");
     }
 
-    SECTION("toggleFavoriteSong null song") {
+    SECTION("toggleFavoriteSong null song")
+    {
         player.toggleFavoriteSong();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
         player.toggleFavoriteSong();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
     }
 
-    SECTION("toggleFavoriteSong valid song") {
+    SECTION("toggleFavoriteSong valid song")
+    {
         QVariantMap map;
         map["position"] = 1.0;
         map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -172,20 +187,23 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(runJavascriptRequestedSpy[1][0].toString().toStdString() == "removeFromFavorites();");
     }
 
-    SECTION("suspend when not playing") {
+    SECTION("suspend when not playing")
+    {
         player.setPlaybackStatus(PlaybackStatus::Paused);
         player.suspend();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
     }
 
-    SECTION("suspend when playing") {
+    SECTION("suspend when playing")
+    {
         player.play();
         player.setPlaybackStatus(PlaybackStatus::Playing);
         player.suspend();
         REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
     }
 
-    SECTION("resume when not playing") {
+    SECTION("resume when not playing")
+    {
         player.setPlaybackStatus(PlaybackStatus::Paused);
         player.suspend();
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
@@ -193,7 +211,8 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(runJavascriptRequestedSpy.count() == 0);
     }
 
-    SECTION("resume when playing") {
+    SECTION("resume when playing")
+    {
         player.play();
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         player.setPlaybackStatus(PlaybackStatus::Playing);
@@ -202,10 +221,10 @@ TEST_CASE("PlayerTests", "[UnitTest]") {
         REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
         player.resume();
         REQUIRE(runJavascriptRequestedSpy.count() == 3);
-
     }
 
-    SECTION("reload plugin when streaming service script has changed") {
+    SECTION("reload plugin when streaming service script has changed")
+    {
         QSignalSpy spy(&player, &Player::runJavascriptRequested);
         REQUIRE(spy.count() == 0);
         emit service.scriptChanged();

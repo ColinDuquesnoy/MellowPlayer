@@ -1,19 +1,20 @@
 #include "catch.hpp"
-#include <QtTest/QSignalSpy>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/EnumSettingViewModel.hpp>
+#include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("EnumSettingViewModelTests") {
+TEST_CASE("EnumSettingViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    SettingsCategory& category = settings.getCategory("appearance");
+    Settings &settings = pool.getSettings();
+    SettingsCategory &category = settings.getCategory("appearance");
     Setting::Data settingData;
     settingData.name = "Theme";
     settingData.defaultValue = "Light";
@@ -24,7 +25,8 @@ TEST_CASE("EnumSettingViewModelTests") {
     EnumSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
-    SECTION("setValue") {
+    SECTION("setValue")
+    {
         REQUIRE(model.getValue() == "Light");
         REQUIRE(spy.count() == 0);
         model.setValue("Dark");
@@ -33,15 +35,16 @@ TEST_CASE("EnumSettingViewModelTests") {
         model.setValue("Light");
     }
 
-    SECTION("getValues") {
+    SECTION("getValues")
+    {
         QStringList expected;
         expected << "Light";
         expected << "Dark";
         REQUIRE(model.getValues() == expected);
     }
 
-    SECTION("QML Component looks valid") {
+    SECTION("QML Component looks valid")
+    {
         REQUIRE(model.getQmlComponent().toLower().contains("enum"));
     }
 }
-

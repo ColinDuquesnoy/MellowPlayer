@@ -2,7 +2,8 @@
 
 using namespace MellowPlayer::Presentation;
 
-QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const {
+QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const
+{
     QDate date = dateTime.date();
     QDate today = QDateTime::currentDateTime().date();
     QDate yesterday = today.addDays(-1);
@@ -24,10 +25,12 @@ QString DateTimeConverter::dateToCategory(const QDateTime &dateTime) const {
         return tr("Years ago");
 }
 
-QString DateTimeConverter::dateToString(const QDateTime &dateTime) const {
+QString DateTimeConverter::dateToString(const QDateTime &dateTime) const
+{
     return dateTime.date().toString(Qt::DateFormat::SystemLocaleShortDate);
 }
 
-QString DateTimeConverter::timeToString(const QDateTime &dateTime) const {
+QString DateTimeConverter::timeToString(const QDateTime &dateTime) const
+{
     return dateTime.time().toString(Qt::DateFormat::SystemLocaleShortDate);
 }

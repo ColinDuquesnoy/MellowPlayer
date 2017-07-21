@@ -1,38 +1,35 @@
 #pragma once
 
-#include <QtQml/QQmlApplicationEngine>
+#include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
-#include "UpdaterViewModel.hpp"
+#include <QtQml/QQmlApplicationEngine>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class Settings;
     class ILogger;
     class IPlayer;
     class IQtApplication;
-
 }
 
-namespace MellowPlayer::Presentation {
-
+namespace MellowPlayer::Presentation
+{
     class ApplicationViewModel;
     class ListeningHistoryViewModel;
     class StreamingServicesControllerViewModel;
     class ThemeViewModel;
 
-    class MainWindowViewModel: public QObject, public Application::IMainWindow {
+    class MainWindowViewModel : public QObject, public Application::IMainWindow
+    {
         Q_OBJECT
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     public:
-        MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
-                            ListeningHistoryViewModel& listeningHistoryModel,
-                            ThemeViewModel& themeViewModel,
-                            UpdaterViewModel& updaterViewModel,
-                            Application::IQtApplication& qtApp,
-                            Application::IPlayer& player,
-                            Application::Settings& settings);
+        MainWindowViewModel(StreamingServicesControllerViewModel &streamingServicesModel,
+                            ListeningHistoryViewModel &listeningHistoryModel, ThemeViewModel &themeViewModel,
+                            UpdaterViewModel &updaterViewModel, Application::IQtApplication &qtApp,
+                            Application::IPlayer &player, Application::Settings &settings);
         bool load() override;
         void show() override;
         void hide() override;
@@ -46,14 +43,13 @@ namespace MellowPlayer::Presentation {
 
     private:
         bool visible = false;
-        Application::ILogger& logger;
-        Application::Settings& settings;
-        StreamingServicesControllerViewModel& streamingServices;
-        ListeningHistoryViewModel& listeningHistory;
+        Application::ILogger &logger;
+        Application::Settings &settings;
+        StreamingServicesControllerViewModel &streamingServices;
+        ListeningHistoryViewModel &listeningHistory;
         QQmlApplicationEngine qmlApplicationEngine;
         ClipBoardViewModel clipBoardModel;
         SettingsViewModel settingsViewModel;
-        UpdaterViewModel& updaterViewModel;
+        UpdaterViewModel &updaterViewModel;
     };
-
 }

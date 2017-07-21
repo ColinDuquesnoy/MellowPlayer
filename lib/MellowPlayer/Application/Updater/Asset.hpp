@@ -2,11 +2,12 @@
 
 #include <QtCore/QString>
 
-namespace MellowPlayer::Application {
-
-    class Asset {
+namespace MellowPlayer::Application
+{
+    class Asset
+    {
     public:
-        Asset(const QString& name, const QString& url);
+        Asset(const QString &name, const QString &url);
 
         QString getName() const;
         QString getUrl();
@@ -21,5 +22,4 @@ namespace MellowPlayer::Application {
         QString name_;
         QString url_;
     };
-
 }

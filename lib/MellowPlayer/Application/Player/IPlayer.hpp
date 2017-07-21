@@ -2,21 +2,22 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class Song;
 
-    enum class PlaybackStatus {
+    enum class PlaybackStatus
+    {
         Stopped = 0,
         Playing = 1,
         Paused = 2,
-        Buffering = 3
+        Buffering = 3,
     };
 
-    class IPlayer: public QObject
+    class IPlayer : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(Application::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
+        Q_PROPERTY(Application::Song *currentSong READ getCurrentSong NOTIFY currentSongChanged)
         Q_PROPERTY(double position READ getPosition NOTIFY positionChanged)
         Q_PROPERTY(PlaybackStatus playbackStatus READ getPlaybackStatus NOTIFY playbackStatusChanged)
         Q_PROPERTY(bool canSeek READ getCanSeek NOTIFY canSeekChanged)
@@ -39,7 +40,7 @@ namespace MellowPlayer::Application {
         virtual void previous() = 0;
         virtual void seekToPosition(double position) = 0;
         virtual void setVolume(double volume) = 0;
-        virtual Application::Song* getCurrentSong() = 0;
+        virtual Application::Song *getCurrentSong() = 0;
         virtual void toggleFavoriteSong() = 0;
         virtual void addToFavorites() = 0;
         virtual void removeFromFavorites() = 0;
@@ -56,7 +57,7 @@ namespace MellowPlayer::Application {
         virtual bool isStopped() const = 0;
 
     signals:
-        void currentSongChanged(Application::Song* song);
+        void currentSongChanged(Application::Song *song);
         void positionChanged();
         void playbackStatusChanged();
         void canSeekChanged();
@@ -67,7 +68,6 @@ namespace MellowPlayer::Application {
         void isPlayingChanged();
         void isStoppedChanged();
     };
-
 }
 
 Q_DECLARE_METATYPE(MellowPlayer::Application::PlaybackStatus);

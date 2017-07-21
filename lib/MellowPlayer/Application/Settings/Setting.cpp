@@ -1,21 +1,26 @@
-#include <QtCore/QVariant>
 #include "Setting.hpp"
-#include "SettingsCategory.hpp"
-#include "Settings.hpp"
 #include "ISettingsProvider.hpp"
+#include "Settings.hpp"
+#include "SettingsCategory.hpp"
 #include <QDebug>
+#include <QtCore/QVariant>
 
 using namespace std;
 using namespace MellowPlayer::Application;
 
-Setting::Setting(Settings& settings, SettingsCategory& category, const Setting::Data& settingData) :
-        QObject(&category), settingsProvider(settings.getSettingsProvider()), settings(settings),
-        category(category), data(settingData) {
+Setting::Setting(Settings &settings, SettingsCategory &category, const Setting::Data &settingData)
+        : QObject(&category),
+          settingsProvider(settings.getSettingsProvider()),
+          settings(settings),
+          category(category),
+          data(settingData)
+{
 }
 
-void Setting::resolveDependency() {
-//    if (data.enableCondition.startsWith("!"))
-//        notOperator = true;
+void Setting::resolveDependency()
+{
+    //    if (data.enableCondition.startsWith("!"))
+    //        notOperator = true;
 
     QString key = QString(data.enableCondition);
     key = key.replace("!", "");
@@ -27,42 +32,51 @@ void Setting::resolveDependency() {
     try {
         parentSetting = &settings.get(key);
         connect(parentSetting, &Setting::valueChanged, this, &Setting::onParentValueChanged);
+    } catch (const runtime_error &) {
+        return;
     }
-    catch (const runtime_error&) { return; }
 }
 
-void Setting::restoreDefaults() {
+void Setting::restoreDefaults()
+{
     setValue(data.defaultValue);
 }
 
-const QString& Setting::getKey() const {
+const QString &Setting::getKey() const
+{
     return data.key;
 }
 
-const QString& Setting::getName() const {
+const QString &Setting::getName() const
+{
     return data.name;
 }
 
-const QString& Setting::getType() const {
+const QString &Setting::getType() const
+{
     return data.type;
 }
 
-QVariant Setting::getDefaultValue() const {
+QVariant Setting::getDefaultValue() const
+{
     return data.defaultValue;
 }
 
-QVariant Setting::getValue() const {
+QVariant Setting::getValue() const
+{
     return settingsProvider.getValue(getFullKey(), data.defaultValue);
 }
 
-void Setting::setValue(const QVariant& value) {
+void Setting::setValue(const QVariant &value)
+{
     if (value != getValue()) {
         settingsProvider.setValue(getFullKey(), value);
         emit valueChanged();
     }
 }
 
-bool Setting::isEnabled() const {
+bool Setting::isEnabled() const
+{
     QString cond = data.enableCondition;
 
     if (parentSetting == nullptr)
@@ -72,25 +86,27 @@ bool Setting::isEnabled() const {
         QString value = cond.split("==")[1].trimmed().toLower();
         QString parentValue = parentSetting->getValue().toString();
         return parentValue.trimmed().toLower() == value;
-    }
-    else {
+    } else {
         bool parentValue = parentSetting->getValue().toBool();
 
-//        if (notOperator)
-//            return !parentValue;
+        //        if (notOperator)
+        //            return !parentValue;
 
         return parentValue;
     }
 }
 
-QString Setting::getFullKey() const {
+QString Setting::getFullKey() const
+{
     return category.getKey() + "/" + data.key;
 }
 
-void Setting::onParentValueChanged() {
+void Setting::onParentValueChanged()
+{
     emit isEnabledChanged();
 }
 
-const QString& Setting::getToolTip() const {
+const QString &Setting::getToolTip() const
+{
     return data.toolTip;
 }

@@ -2,17 +2,20 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application {
-
-    class SettingKey: public QObject {
+namespace MellowPlayer::Application
+{
+    class SettingKey : public QObject
+    {
         Q_OBJECT
     public:
-        enum Keys {
+        enum Keys
+        {
 %(enum_values)s
         };
         Q_ENUM(Keys);
 
-        static QString toString(SettingKey::Keys key) {
+        static QString toString(SettingKey::Keys key)
+        {
             QStringList enumToString;
 
 %(enum_names)s
@@ -20,5 +23,4 @@ namespace MellowPlayer::Application {
             return enumToString[static_cast<int>(key)];
         }
     };
-
 }

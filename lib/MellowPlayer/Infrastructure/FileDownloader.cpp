@@ -3,13 +3,12 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-
 FileDownloader::FileDownloader()
 {
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &FileDownloader::onDownloadFinished);
 }
 
-void FileDownloader::download(const QString& urlToDownload, const QString& filePath)
+void FileDownloader::download(const QString &urlToDownload, const QString &filePath)
 {
     if (!isDownloading()) {
         progress_ = 0;
@@ -29,14 +28,13 @@ bool FileDownloader::isDownloading() const
     return currentReply != nullptr;
 }
 
-void FileDownloader::onDownloadFinished(QNetworkReply* reply)
+void FileDownloader::onDownloadFinished(QNetworkReply *reply)
 {
     bool success = false;
 
     currentReply = nullptr;
 
-    if (reply->error() == QNetworkReply::NoError)
-    {
+    if (reply->error() == QNetworkReply::NoError) {
         QString redirectUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
         if (!redirectUrl.isEmpty()) {
@@ -55,7 +53,8 @@ void FileDownloader::onDownloadFinished(QNetworkReply* reply)
     emit finished(success);
 }
 
-void FileDownloader::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
+void FileDownloader::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+{
 
     double ratio = 0;
     if (bytesTotal > bytesReceived)

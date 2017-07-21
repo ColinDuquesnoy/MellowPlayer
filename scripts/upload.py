@@ -156,7 +156,7 @@ def upload_binaries(release, glob_expr, github):
         else:
             print(" - uploading asset")
             print("     path: " + file)
-            print("     name: " + name)            
+            print("     name: " + name)
             release.upload_asset(content_type, name, data)
 
 

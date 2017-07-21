@@ -1,16 +1,17 @@
 #pragma once
 
-#include <QColor>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <QColor>
 
-namespace MellowPlayer::Presentation {
-
-    class ColorSettingViewModel: public SettingViewModel {
+namespace MellowPlayer::Presentation
+{
+    class ColorSettingViewModel : public SettingViewModel
+    {
         Q_OBJECT
         Q_PROPERTY(QColor value READ getValue WRITE setValue NOTIFY valueChanged)
     public:
-        ColorSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+        ColorSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
 
         QColor getValue() const;
         QString getQmlComponent() override;
@@ -23,7 +24,5 @@ namespace MellowPlayer::Presentation {
 
     protected slots:
         void onValueChanged() override;
-
     };
-
 }

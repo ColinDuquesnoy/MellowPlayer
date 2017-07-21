@@ -1,13 +1,14 @@
 #pragma once
+#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class SettingsProviderMock {
+class SettingsProviderMock
+{
 public:
     static Mock<ISettingsProvider> get();
 

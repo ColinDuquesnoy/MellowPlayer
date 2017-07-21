@@ -1,0 +1,61 @@
+# Copyright (C) 2016 Olivier Goffart <ogoffart@woboq.com>
+#
+# You may use this file under the terms of the 3-clause BSD license.
+# See the file LICENSE from this package for details.
+
+# This is the clang-format configuration style to be used by Qt,
+# based on the rules from https://wiki.qt.io/Qt_Coding_Style and
+# https://wiki.qt.io/Coding_Conventions and adapted for MellowPlayer.
+
+---
+# Webkit style was loosely based on the Qt style
+BasedOnStyle: WebKit
+
+Standard: Cpp11
+ColumnLimit: 120
+
+# Disable reflow of qdoc comments: indentation rules are different.
+# Translation comments are also excluded
+CommentPragmas: "^!|^:"
+
+# We don't want a space between the type and the star for pointer types
+PointerBindsToType: false
+
+# We want to break before the operators, but not before a '='
+BreakBeforeBinaryOperators: NonAssignment
+BreakConstructorInitializersBeforeComma: false
+
+# Braces are usually attached, but not after functions or classes declaration
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterClass: true
+    AfterControlStatement: false
+    AfterEnum: true
+    AfterFunction: true
+    AfterNamespace: true
+    AfterObjCDeclaration: false
+    AfterStruct: true
+    AfterUnion: false
+    BeforeCatch: false
+    BeforeElse: false
+    IndentBraces: false
+
+AlignAfterOpenBracket: true
+AlwaysBreakTemplateDeclarations: true
+
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+SortIncludes: true
+
+# macros for which the opening brace stays attached
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, forever, Q_FOREVER, QBENCHMARK, QBENCHMARK_ONCE ]
+
+
+ContinuationIndentWidth: 0
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 8
+IndentCaseLabels: true
+NamespaceIndentation: All
+Cpp11BracedListStyle: true

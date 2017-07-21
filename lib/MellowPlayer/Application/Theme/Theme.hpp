@@ -2,9 +2,10 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application {
-
-    struct Theme {
+namespace MellowPlayer::Application
+{
+    struct Theme
+    {
         QString accent;
         QString background;
         QString foreground;
@@ -13,10 +14,10 @@ namespace MellowPlayer::Application {
         QString secondary;
         QString secondaryForeground;
 
-        bool isEmpty() const {
-            return accent.isEmpty() || background.isEmpty() || foreground.isEmpty() || primary.isEmpty() ||
-                   primaryForeground.isEmpty() || secondary.isEmpty() || secondaryForeground.isEmpty();
+        bool isEmpty() const
+        {
+            return accent.isEmpty() || background.isEmpty() || foreground.isEmpty() || primary.isEmpty()
+            || primaryForeground.isEmpty() || secondary.isEmpty() || secondaryForeground.isEmpty();
         }
     };
-
 }

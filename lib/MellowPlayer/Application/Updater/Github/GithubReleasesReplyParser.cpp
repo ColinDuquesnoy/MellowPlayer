@@ -1,18 +1,19 @@
-#include <cassert>
+#include "GithubReleasesReplyParser.hpp"
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
-#include "GithubReleasesReplyParser.hpp"
+#include <cassert>
 
 using namespace MellowPlayer::Application;
 
-void GithubReleasesReplyParser::parse(const QByteArray& replyData) {
+void GithubReleasesReplyParser::parse(const QByteArray &replyData)
+{
     stopRequested_ = false;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(replyData);
     if (!jsonDocument.isArray())
         return;
     QJsonArray array = jsonDocument.array();
-    for(int releaseIndex=0; releaseIndex < array.count(); ++releaseIndex) {
+    for (int releaseIndex = 0; releaseIndex < array.count(); ++releaseIndex) {
         QJsonObject obj = array.at(releaseIndex).toObject();
         QString url = obj.value("html_url").toString();
         QString version = obj.value("name").toString();
@@ -27,7 +28,7 @@ void GithubReleasesReplyParser::parse(const QByteArray& replyData) {
             assets << asset;
         }
 
-        Release* release = new Release(url, version, date, assets, preRelease, this);
+        Release *release = new Release(url, version, date, assets, preRelease, this);
 
         emit ready(release);
 
@@ -36,6 +37,7 @@ void GithubReleasesReplyParser::parse(const QByteArray& replyData) {
     }
 }
 
-void GithubReleasesReplyParser::stop() {
+void GithubReleasesReplyParser::stop()
+{
     stopRequested_ = true;
 }

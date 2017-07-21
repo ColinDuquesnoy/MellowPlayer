@@ -66,8 +66,7 @@ function getPlaybackStatus() {
 function getArtist() {
     try {
         return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div.now-playing-bar > div.now-playing-bar__left > div > div > div.track-info__artists").children[0].children[0].children[0].text
-    }
-    catch (e) {
+    } catch (e) {
         return ""
     }
 }
@@ -75,8 +74,7 @@ function getArtist() {
 function getSongTitle() {
     try {
         return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].text;
-    }
-    catch (e) {
+    } catch (e) {
         return ""
     }
 }

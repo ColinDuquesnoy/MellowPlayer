@@ -1,11 +1,12 @@
 #pragma once
 
-#include <QDateTime>
 #include <MellowPlayer/Application/Player/Song.hpp>
+#include <QDateTime>
 
-namespace MellowPlayer::Application {
-
-    struct ListeningHistoryEntry {
+namespace MellowPlayer::Application
+{
+    struct ListeningHistoryEntry
+    {
         int id;
         QString songUniqueId;
         QString songTitle;
@@ -15,32 +16,34 @@ namespace MellowPlayer::Application {
         QString serviceName;
         QString time;
 
-        QDateTime dateTime() const {
+        QDateTime dateTime() const
+        {
             return QDateTime::fromString(time, Qt::ISODate);
         }
 
-        bool isValid() const {
+        bool isValid() const
+        {
             return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !serviceName.isEmpty();
         }
 
-        bool equals(const ListeningHistoryEntry& other) const {
-            return other.serviceName == serviceName &&
-                   other.songUniqueId == songUniqueId &&
-                   other.songTitle == songTitle &&
-                   other.artist == artist &&
-                   other.album == album &&
-                   other.artUrl == artUrl;
+        bool equals(const ListeningHistoryEntry &other) const
+        {
+            return other.serviceName == serviceName && other.songUniqueId == songUniqueId
+            && other.songTitle == songTitle && other.artist == artist && other.album == album && other.artUrl == artUrl;
         }
 
-        bool operator==(const ListeningHistoryEntry& other) const {
+        bool operator==(const ListeningHistoryEntry &other) const
+        {
             return other.id == id;
         }
 
-        bool operator!=(const ListeningHistoryEntry& other) const {
+        bool operator!=(const ListeningHistoryEntry &other) const
+        {
             return !operator==(other);
         }
 
-        static ListeningHistoryEntry fromData(const Song* song, const QString& serviceName) {
+        static ListeningHistoryEntry fromData(const Song *song, const QString &serviceName)
+        {
             ListeningHistoryEntry entry;
             entry.id = 0;
             QDateTime now = QDateTime::currentDateTime();
@@ -58,9 +61,9 @@ namespace MellowPlayer::Application {
             return entry;
         }
 
-        operator int() const {
+        operator int() const
+        {
             return id;
         }
     };
-
 }

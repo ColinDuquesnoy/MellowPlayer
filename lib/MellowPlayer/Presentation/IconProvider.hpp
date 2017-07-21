@@ -3,17 +3,17 @@
 #include <QFile>
 #include <QIcon>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class Settings;
-
 }
 
-namespace MellowPlayer::Presentation {
-
-    class IconProvider {
+namespace MellowPlayer::Presentation
+{
+    class IconProvider
+    {
     public:
-        IconProvider(Application::Settings& settings);
+        IconProvider(Application::Settings &settings);
 
         static QIcon trayIcon();
         static QIcon windowIcon();
@@ -24,5 +24,4 @@ namespace MellowPlayer::Presentation {
         static QIcon previous();
         static QIcon quit();
     };
-
 }

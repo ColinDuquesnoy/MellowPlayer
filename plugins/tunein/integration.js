@@ -34,8 +34,7 @@ function getPlaybackStatus() {
     var stateStr = TuneIn.app.getPlayState();
     if (stateStr === 'playing') {
         return mellowplayer.PlaybackStatus.PLAYING;
-    }
-    else {
+    } else {
         if (stateStr === 'stopped') {
             return mellowplayer.PlaybackStatus.PAUSED;
         }

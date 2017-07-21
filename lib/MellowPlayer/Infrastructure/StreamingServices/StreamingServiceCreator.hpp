@@ -1,30 +1,31 @@
 #pragma once
 
-#include <functional>
-#include <QtCore/QString>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
+#include <QtCore/QString>
+#include <functional>
 
-namespace MellowPlayer::Infrastructure {
-
-    class StreamingServiceCreator: public Application::IStreamingServiceCreator {
+namespace MellowPlayer::Infrastructure
+{
+    class StreamingServiceCreator : public Application::IStreamingServiceCreator
+    {
     public:
-        QString create(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
-                       const QString& authorWebsite) const override;
+        QString create(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
+                       const QString &authorWebsite) const override;
 
     private:
-        void createScript(const QString& pluginDir) const;
-        void createLogo(const QString& pluginDir) const;
-        void createTheme(const QString& pluginDir) const;
-        void createMetadata(const QString& serviceName, const QString& serviceUrl,
-                            const QString& authorName, const QString& authorWebsite,
-                            const QString& pluginDir) const;
-        QString getPluginDir(const QString& serviceName) const;
-        QString readTemplateFile(const QString& fileName) const;
-        void write(const QString& path, const QString& content) const;
-        QString getFilePath(const QString& pluginDir, const QString& fileName) const;
-        void createPluginFile(const QString& pluginDir, const QString& fileName,
-                              const std::function<QString(QString)> transformer=[](QString string) { return string; }) const;
-
+        void createScript(const QString &pluginDir) const;
+        void createLogo(const QString &pluginDir) const;
+        void createTheme(const QString &pluginDir) const;
+        void createMetadata(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
+                            const QString &authorWebsite, const QString &pluginDir) const;
+        QString getPluginDir(const QString &serviceName) const;
+        QString readTemplateFile(const QString &fileName) const;
+        void write(const QString &path, const QString &content) const;
+        QString getFilePath(const QString &pluginDir, const QString &fileName) const;
+        void createPluginFile(const QString &pluginDir, const QString &fileName,
+                              const std::function<QString(QString)> transformer = [](QString string) {
+                                  return string;
+                              }) const;
 
         static const QString RESOURCE_PATH;
         static const QString SCRIPT_FILE_NAME;
@@ -32,5 +33,4 @@ namespace MellowPlayer::Infrastructure {
         static const QString METADATA_FILE_NAME;
         static const QString THEME_FILE_NAME;
     };
-
 }

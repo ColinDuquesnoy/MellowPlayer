@@ -1,19 +1,22 @@
-#include <QVariantMap>
+#include "Player.hpp"
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Player/Song.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
-#include <MellowPlayer/Application/Player/Song.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "Player.hpp"
+#include <QVariantMap>
 #include <qdebug.h>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
-Player::Player(StreamingService& streamingService) :
-        logger(LoggingManager::instance().getLogger("Player-" + streamingService.getName().toStdString())),
-        currentSong(nullptr), streamingService(streamingService), streamingServiceScript(*streamingService.getScript()),
-        refreshTimer(new QTimer()){
+Player::Player(StreamingService &streamingService)
+        : logger(LoggingManager::instance().getLogger("Player-" + streamingService.getName().toStdString())),
+          currentSong(nullptr),
+          streamingService(streamingService),
+          streamingServiceScript(*streamingService.getScript()),
+          refreshTimer(new QTimer())
+{
     connect(refreshTimer, &QTimer::timeout, this, &Player::refresh);
     connect(&streamingService, &StreamingService::scriptChanged, this, &Player::loadPlugin);
     refreshTimer->setInterval(100);
@@ -21,7 +24,8 @@ Player::Player(StreamingService& streamingService) :
 
 Player::~Player() = default;
 
-void Player::togglePlayPause() {
+void Player::togglePlayPause()
+{
     LOG_TRACE(logger, "togglePlayePause");
     if (playbackStatus == PlaybackStatus::Playing)
         pause();
@@ -29,38 +33,45 @@ void Player::togglePlayPause() {
         play();
 }
 
-void Player::play() {
+void Player::play()
+{
     LOG_DEBUG(logger, "play()");
     emit runJavascriptRequested(streamingServiceScript.play());
 }
 
-void Player::pause() {
+void Player::pause()
+{
     LOG_DEBUG(logger, "pause()");
     emit runJavascriptRequested(streamingServiceScript.pause());
 }
 
-void Player::next() {
+void Player::next()
+{
     LOG_DEBUG(logger, "next()");
     emit runJavascriptRequested(streamingServiceScript.next());
 }
 
-void Player::previous() {
+void Player::previous()
+{
     LOG_DEBUG(logger, "previous()");
     emit runJavascriptRequested(streamingServiceScript.previous());
 }
 
-void Player::seekToPosition(double value) {
+void Player::seekToPosition(double value)
+{
     LOG_DEBUG(logger, "seekToPosition(" << value << ")");
     emit runJavascriptRequested(streamingServiceScript.seekToPosition(value));
     setPosition(value);
 }
 
-void Player::setVolume(double value) {
+void Player::setVolume(double value)
+{
     LOG_TRACE(logger, "setVolume(" << value << ")");
     emit runJavascriptRequested(streamingServiceScript.setVolume(value));
 }
 
-void Player::toggleFavoriteSong() {
+void Player::toggleFavoriteSong()
+{
     LOG_TRACE(logger, "toggleFavoriteSong()");
     if (currentSong == nullptr)
         return;
@@ -71,53 +82,65 @@ void Player::toggleFavoriteSong() {
         addToFavorites();
 }
 
-void Player::addToFavorites() {
+void Player::addToFavorites()
+{
     LOG_TRACE(logger, "addToFavorites()");
     emit runJavascriptRequested(streamingServiceScript.addToFavorites());
 }
 
-void Player::removeFromFavorites() {
+void Player::removeFromFavorites()
+{
     LOG_TRACE(logger, "removeFromFavorites()");
     emit runJavascriptRequested(streamingServiceScript.removeFromFavorites());
 }
 
-Song* Player::getCurrentSong() {
+Song *Player::getCurrentSong()
+{
     return currentSong.get();
 }
 
-double Player::getPosition() const {
+double Player::getPosition() const
+{
     return position;
 }
 
-PlaybackStatus Player::getPlaybackStatus() const {
+PlaybackStatus Player::getPlaybackStatus() const
+{
     return playbackStatus;
 }
 
-bool Player::getCanSeek() const {
+bool Player::getCanSeek() const
+{
     return canSeek;
 }
 
-bool Player::getCanGoNext() const {
+bool Player::getCanGoNext() const
+{
     return canGoNext;
 }
 
-bool Player::getCanGoPrevious() const {
+bool Player::getCanGoPrevious() const
+{
     return canGoPrevious;
 }
 
-bool Player::getCanAddToFavorites() const {
+bool Player::getCanAddToFavorites() const
+{
     return canAddToFavorites;
 }
 
-double Player::getVolume() const {
+double Player::getVolume() const
+{
     return volume;
 }
 
-QString Player::getServiceName() const {
+QString Player::getServiceName() const
+{
     return streamingService.getName();
 }
 
-void Player::start() {
+void Player::start()
+{
     LOG_DEBUG(logger, "start()");
     isRunning_ = true;
     emit isRunningChanged();
@@ -136,13 +159,15 @@ bool Player::isRunning() const
     return isRunning_;
 }
 
-void Player::refresh() {
+void Player::refresh()
+{
     LOG_TRACE(logger, "refresh()");
     emit updateRequested(streamingServiceScript.update());
     refreshTimer->start();
 }
 
-void Player::setUpdateResults(const QVariant& results) {
+void Player::setUpdateResults(const QVariant &results)
+{
     LOG_TRACE(logger, "setUpdateResults()");
     QVariantMap resultsMap = results.toMap();
 
@@ -168,7 +193,8 @@ void Player::setUpdateResults(const QVariant& results) {
     setCurrentVolume(resultsMap.value("volume").toDouble());
 }
 
-void Player::suspend() {
+void Player::suspend()
+{
     LOG_DEBUG(logger, "suspend()");
     suspendedState = playbackStatus;
     if (playbackStatus == PlaybackStatus::Playing) {
@@ -178,7 +204,8 @@ void Player::suspend() {
     refreshTimer->stop();
 }
 
-void Player::resume() {
+void Player::resume()
+{
     LOG_DEBUG(logger, "resume()");
     if (suspendedState == PlaybackStatus::Playing) {
         play();
@@ -186,7 +213,8 @@ void Player::resume() {
     refreshTimer->start();
 }
 
-void Player::setCurrentSong(unique_ptr<Song>& song) {
+void Player::setCurrentSong(unique_ptr<Song> &song)
+{
     LOG_TRACE(logger, "setCurrentSong()");
     if (currentSong != nullptr && *currentSong == *song) {
         currentSong->setDuration(song->getDuration());
@@ -199,7 +227,8 @@ void Player::setCurrentSong(unique_ptr<Song>& song) {
     emit currentSongChanged(currentSong.get());
 }
 
-void Player::setPosition(double value) {
+void Player::setPosition(double value)
+{
     if (value == position)
         return;
 
@@ -207,7 +236,8 @@ void Player::setPosition(double value) {
     emit positionChanged();
 }
 
-void Player::setPlaybackStatus(PlaybackStatus value) {
+void Player::setPlaybackStatus(PlaybackStatus value)
+{
     if (value == playbackStatus)
         return;
 
@@ -218,7 +248,8 @@ void Player::setPlaybackStatus(PlaybackStatus value) {
     emit isStoppedChanged();
 }
 
-void Player::setCanSeek(bool value) {
+void Player::setCanSeek(bool value)
+{
     if (value == canSeek)
         return;
 
@@ -226,7 +257,8 @@ void Player::setCanSeek(bool value) {
     emit canSeekChanged();
 }
 
-void Player::setCanGoNext(bool value) {
+void Player::setCanGoNext(bool value)
+{
     if (value == canGoNext)
         return;
 
@@ -234,7 +266,8 @@ void Player::setCanGoNext(bool value) {
     emit canGoNextChanged();
 }
 
-void Player::setCanGoPrevious(bool value) {
+void Player::setCanGoPrevious(bool value)
+{
     if (value == canGoPrevious)
         return;
 
@@ -242,7 +275,8 @@ void Player::setCanGoPrevious(bool value) {
     emit canGoPreviousChanged();
 }
 
-void Player::setCanAddToFavorites(bool value) {
+void Player::setCanAddToFavorites(bool value)
+{
     if (value == canAddToFavorites)
         return;
 
@@ -250,7 +284,8 @@ void Player::setCanAddToFavorites(bool value) {
     emit canAddToFavoritesChanged();
 }
 
-void Player::setCurrentVolume(double value) {
+void Player::setCurrentVolume(double value)
+{
     if (value == volume)
         return;
 
@@ -258,19 +293,28 @@ void Player::setCurrentVolume(double value) {
     emit volumeChanged();
 }
 
-bool Player::operator==(const Player &other) const { return streamingService == other.streamingService; }
+bool Player::operator==(const Player &other) const
+{
+    return streamingService == other.streamingService;
+}
 
-bool Player::operator!=(const Player &other) const { return !operator==(other); }
+bool Player::operator!=(const Player &other) const
+{
+    return !operator==(other);
+}
 
-bool Player::isPlaying() const {
+bool Player::isPlaying() const
+{
     return playbackStatus == PlaybackStatus::Playing;
 }
 
-bool Player::isStopped() const {
-    return playbackStatus == PlaybackStatus ::Stopped;
+bool Player::isStopped() const
+{
+    return playbackStatus == PlaybackStatus::Stopped;
 }
 
-void Player::loadPlugin() {
+void Player::loadPlugin()
+{
     emit runJavascriptRequested(streamingServiceScript.getConstants() + "\n" + streamingServiceScript.getCode());
     refreshTimer->start();
 }

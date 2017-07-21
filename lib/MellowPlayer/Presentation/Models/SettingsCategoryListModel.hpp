@@ -1,10 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
 #include "QQmlObjectListModel.hpp"
+#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
 
-namespace MellowPlayer::Presentation {
-
+namespace MellowPlayer::Presentation
+{
     using SettingsCategoryListModel = QQmlObjectListModel<SettingsCategoryViewModel>;
-
 }

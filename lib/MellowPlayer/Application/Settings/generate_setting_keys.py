@@ -7,8 +7,6 @@ Run this script every time you modify schema.json.
 """
 import json
 
-import os
-
 
 def get_template():
     with open('SettingKey.hpp.in') as f:
@@ -39,7 +37,7 @@ def get_enum_values(keys):
     for key in keys:
         cat_key, setting_key = key.split('/')
         names.append('            ' + cat_key.replace('-', '_').upper() + '_' +
-                      setting_key.replace('-', '_').upper())
+                     setting_key.replace('-', '_').upper())
 
     names.sort()
     return ',\n'.join(names)

@@ -1,7 +1,7 @@
 #pragma once
 
-namespace MellowPlayer::Infrastructure {
-
+namespace MellowPlayer::Infrastructure
+{
     class IApplication
     {
     public:
@@ -11,5 +11,4 @@ namespace MellowPlayer::Infrastructure {
         virtual int run() = 0;
         virtual void quit() = 0;
     };
-
 }

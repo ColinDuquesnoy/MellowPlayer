@@ -10,7 +10,8 @@
 
 class InMemoryListeningHistoryDataProvider;
 
-namespace MellowPlayer::Application {
+namespace MellowPlayer::Application
+{
     class CurrentPlayer;
     class IPlayer;
     class IWorkDispatcher;
@@ -23,11 +24,13 @@ namespace MellowPlayer::Application {
     class AbstractPlatformUpdater;
 }
 
-namespace MellowPlayer::Infrastructure {
+namespace MellowPlayer::Infrastructure
+{
     class LocalAlbumArt;
 }
 
-namespace MellowPlayer::Presentation {
+namespace MellowPlayer::Presentation
+{
     class ListeningHistoryViewModel;
     class StreamingServicesControllerViewModel;
     class ThemeViewModel;
@@ -36,41 +39,42 @@ namespace MellowPlayer::Presentation {
     class Notifier;
 }
 
-namespace MellowPlayer::Tests {
-
-    class DependencyPool {
+namespace MellowPlayer::Tests
+{
+    class DependencyPool
+    {
     public:
         DependencyPool();
         ~DependencyPool();
 
         // Mock Objects
-        fakeit::Mock<Application::INotificationPresenter>& getNotificationPresenterMock();
+        fakeit::Mock<Application::INotificationPresenter> &getNotificationPresenterMock();
 
         // Application Layer
-        Application::StreamingServicesController& getStreamingServicesController();
-        Application::IPlayer& getCurrentPlayer();
-        Application::Players& getPlayers();
-        Application::IStreamingServiceCreator& getStreamingServicesCreator();
-        Application::ISettingsProvider& getSettingsProvider();
-        Application::Settings& getSettings();
-        Application::ICommandLineParser& getCommandLineParser();
-        Application::IWorkDispatcher& getWorkDispatcher();
-        Application::ListeningHistory& getListeningHistory();
-        Application::Updater& getUpdater();
-        Application::IQtApplication& getQtApplication();
-        Application::INotificationPresenter& getNotificationPresenter();
-        Application::AbstractPlatformUpdater& getPlatformUpdater();
+        Application::StreamingServicesController &getStreamingServicesController();
+        Application::IPlayer &getCurrentPlayer();
+        Application::Players &getPlayers();
+        Application::IStreamingServiceCreator &getStreamingServicesCreator();
+        Application::ISettingsProvider &getSettingsProvider();
+        Application::Settings &getSettings();
+        Application::ICommandLineParser &getCommandLineParser();
+        Application::IWorkDispatcher &getWorkDispatcher();
+        Application::ListeningHistory &getListeningHistory();
+        Application::Updater &getUpdater();
+        Application::IQtApplication &getQtApplication();
+        Application::INotificationPresenter &getNotificationPresenter();
+        Application::AbstractPlatformUpdater &getPlatformUpdater();
 
         // Infrastructure layer
-        Infrastructure::LocalAlbumArt& getLocalAlbumArt();
+        Infrastructure::LocalAlbumArt &getLocalAlbumArt();
 
         // Presentation Layer
-        Presentation::Notifier& getNotifier();
-        Presentation::StreamingServicesControllerViewModel& getStreamingServicesControllerViewModel();
-        Presentation::ListeningHistoryViewModel& getListeningHistoryViewModel();
-        Presentation::ThemeViewModel& getThemeViewModel();
-        Presentation::UpdaterViewModel& getUpdaterViewModel();
-        Presentation::MainWindowViewModel& getMainWindowViewModel();
+        Presentation::Notifier &getNotifier();
+        Presentation::StreamingServicesControllerViewModel &getStreamingServicesControllerViewModel();
+        Presentation::ListeningHistoryViewModel &getListeningHistoryViewModel();
+        Presentation::ThemeViewModel &getThemeViewModel();
+        Presentation::UpdaterViewModel &getUpdaterViewModel();
+        Presentation::MainWindowViewModel &getMainWindowViewModel();
 
     private:
         // mocks

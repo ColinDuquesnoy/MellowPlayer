@@ -1,18 +1,18 @@
 #define CATCH_CONFIG_RUNNER
-#include <stdexcept>
 #include "catch.hpp"
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <QtCore/QDebug>
 #include <QtCore/QSettings>
-#include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <stdexcept>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 using namespace std;
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
@@ -26,9 +26,9 @@ int main(int argc, char* argv[])
     try {
         LoggingManager::instance();
         assert(false);
+    } catch (const logic_error &) {
     }
-    catch (const logic_error&) { }
-    LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
+    LoggingManager &loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
     loggingManager.setDefaultLogLevel(LogLevel::Off);
 
     LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 
     QSettings settings;
     settings.clear();
-    auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
+    auto retCode = Catch::Session().run(argc, const_cast<char const *const *const>(argv));
 
     settings.clear();
     webApplication.clearCache();

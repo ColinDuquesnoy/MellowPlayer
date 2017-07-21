@@ -1,13 +1,15 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
 #include <QtTest/QSignalSpy>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace std;
 
-TEST_CASE("SongTests", "[UnitTest]") {
+TEST_CASE("SongTests", "[UnitTest]")
+{
 
-    SECTION("Parametrized ctor") {
+    SECTION("Parametrized ctor")
+    {
         Song song("uniqueId", "title", "artist", "album", "artUrl", 1534, true);
 
         REQUIRE(song.getAlbum() == "album");
@@ -19,7 +21,8 @@ TEST_CASE("SongTests", "[UnitTest]") {
         REQUIRE(song.getUniqueId() == "uniqueId");
     }
 
-    SECTION("NullCtor") {
+    SECTION("NullCtor")
+    {
         Song song;
 
         REQUIRE(song.getAlbum() == "");
@@ -31,7 +34,8 @@ TEST_CASE("SongTests", "[UnitTest]") {
         REQUIRE(song.getUniqueId() == "");
     }
 
-    SECTION("setDuration") {
+    SECTION("setDuration")
+    {
         Song song;
         QSignalSpy spy(&song, SIGNAL(durationChanged()));
 
@@ -43,7 +47,8 @@ TEST_CASE("SongTests", "[UnitTest]") {
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("setIsFavorite") {
+    SECTION("setIsFavorite")
+    {
         Song song;
         QSignalSpy spy(&song, SIGNAL(isFavoriteChanged()));
 
@@ -55,7 +60,8 @@ TEST_CASE("SongTests", "[UnitTest]") {
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("equality operator") {
+    SECTION("equality operator")
+    {
         Song nullSong;
         Song song1("uniqueId1", "", "", "", "", 0, false);
         Song song1bis("uniqueId1", "", "", "", "", 0, false);
@@ -67,7 +73,8 @@ TEST_CASE("SongTests", "[UnitTest]") {
         REQUIRE(song1 != song2);
     }
 
-    SECTION("isValid") {
+    SECTION("isValid")
+    {
         Song nullSong;
         REQUIRE(!nullSong.isValid());
         Song song1("uniqueId1", "title", "", "", "", 0, false);

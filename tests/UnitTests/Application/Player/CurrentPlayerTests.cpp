@@ -1,15 +1,16 @@
-#include <catch.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include "Mocks/StreamingServiceLoaderMock.hpp"
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
-#include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
-#include "Mocks/StreamingServiceLoaderMock.hpp"
+#include <QtTest/QSignalSpy>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 
-TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
+TEST_CASE("CurrentPlayerTests", "[UnitTest]")
+{
     auto mock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(mock.get(), watcherMock.get());
@@ -17,7 +18,8 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
     Players players(streamingServices);
     CurrentPlayer currentPlayer(players, streamingServices);
 
-    SECTION("default properties (currentPlayer is null)") {
+    SECTION("default properties (currentPlayer is null)")
+    {
         REQUIRE(currentPlayer.getPosition() == 0);
         REQUIRE(currentPlayer.getPlaybackStatus() == PlaybackStatus::Stopped);
         REQUIRE(!currentPlayer.getCanSeek());
@@ -35,11 +37,11 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
         REQUIRE(!currentPlayer.getCurrentSong()->getIsFavorite());
     }
 
-    Player& player1 = *players.get(streamingServices.getAll()[0]->getName());
-    Player& player2 = *players.get(streamingServices.getAll()[1]->getName());
+    Player &player1 = *players.get(streamingServices.getAll()[0]->getName());
+    Player &player2 = *players.get(streamingServices.getAll()[1]->getName());
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
 
-    QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song*)));
+    QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song *)));
     QSignalSpy positionChanged(&currentPlayer, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&currentPlayer, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&currentPlayer, SIGNAL(canSeekChanged()));
@@ -48,53 +50,62 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
     QSignalSpy canAddToFavoritesChanged(&currentPlayer, SIGNAL(canAddToFavoritesChanged()));
     QSignalSpy volumeChanged(&currentPlayer, SIGNAL(volumeChanged()));
 
-    SECTION("control player1") {
-        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString&)));
+    SECTION("control player1")
+    {
+        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString &)));
 
-        SECTION("togglePlayPause") {
+        SECTION("togglePlayPause")
+        {
             currentPlayer.togglePlayPause();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "play();");
         }
 
-        SECTION("play") {
+        SECTION("play")
+        {
             currentPlayer.play();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "play();");
         }
 
-        SECTION("pause") {
+        SECTION("pause")
+        {
             currentPlayer.play();
             currentPlayer.pause();
             REQUIRE(jsSpy.count() == 2);
             REQUIRE(jsSpy[1][0] == "pause();");
         }
 
-        SECTION("next") {
+        SECTION("next")
+        {
             currentPlayer.next();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "goNext();");
         }
 
-        SECTION("previous") {
+        SECTION("previous")
+        {
             currentPlayer.previous();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "goPrevious();");
         }
 
-        SECTION("seekToPosition") {
+        SECTION("seekToPosition")
+        {
             currentPlayer.seekToPosition(153.5);
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "seekToPosition(153.5);");
         }
 
-        SECTION("setVolume") {
+        SECTION("setVolume")
+        {
             currentPlayer.setVolume(0.5);
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0].toString().toStdString() == "setVolume(0.5);");
         }
 
-        SECTION("toggleFavoriteSong") {
+        SECTION("toggleFavoriteSong")
+        {
             QVariantMap map;
             map["position"] = 1.0;
             map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -117,20 +128,23 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
             REQUIRE(jsSpy[0][0] == "addToFavorites();");
         }
 
-        SECTION("addToFavorites") {
+        SECTION("addToFavorites")
+        {
             currentPlayer.addToFavorites();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "addToFavorites();");
         }
 
-        SECTION("removeFromFavorites") {
+        SECTION("removeFromFavorites")
+        {
             currentPlayer.removeFromFavorites();
             REQUIRE(jsSpy.count() == 1);
             REQUIRE(jsSpy[0][0] == "removeFromFavorites();");
         }
     }
 
-    SECTION("setUpdateResults of active player") {
+    SECTION("setUpdateResults of active player")
+    {
         QVariantMap map;
         map["position"] = 1.0;
         map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -175,7 +189,8 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
         REQUIRE(volumeChanged.count() == 1);
     }
 
-    SECTION("setUpdateResults of inactive player") {
+    SECTION("setUpdateResults of inactive player")
+    {
         QVariantMap map;
         map["position"] = 1.0;
         map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -220,8 +235,8 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]") {
         REQUIRE(volumeChanged.count() == 0);
     }
 
-
-    SECTION("setUpdateResults of new active player") {
+    SECTION("setUpdateResults of new active player")
+    {
         QVariantMap map;
         map["position"] = 1.0;
         map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);

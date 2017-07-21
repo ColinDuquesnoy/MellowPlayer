@@ -1,15 +1,16 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
-namespace MellowPlayer::Presentation {
-
-    class ShortcutSettingViewModel: public SettingViewModel {
+namespace MellowPlayer::Presentation
+{
+    class ShortcutSettingViewModel : public SettingViewModel
+    {
         Q_OBJECT
         Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
     public:
-        ShortcutSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+        ShortcutSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
 
         QString getValue() const;
         QString getQmlComponent() override;
@@ -24,7 +25,5 @@ namespace MellowPlayer::Presentation {
 
     protected slots:
         void onValueChanged() override;
-
     };
-
 }

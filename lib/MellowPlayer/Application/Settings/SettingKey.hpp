@@ -2,12 +2,14 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application {
-
-    class SettingKey: public QObject {
+namespace MellowPlayer::Application
+{
+    class SettingKey : public QObject
+    {
         Q_OBJECT
     public:
-        enum Keys {
+        enum Keys
+        {
             APPEARANCE_ACCENT,
             APPEARANCE_BACKGROUND,
             APPEARANCE_FOREGROUND,
@@ -48,7 +50,8 @@ namespace MellowPlayer::Application {
         };
         Q_ENUM(Keys);
 
-        static QString toString(SettingKey::Keys key) {
+        static QString toString(SettingKey::Keys key)
+        {
             QStringList enumToString;
 
             enumToString << "appearance/accent";
@@ -92,5 +95,4 @@ namespace MellowPlayer::Application {
             return enumToString[static_cast<int>(key)];
         }
     };
-
 }

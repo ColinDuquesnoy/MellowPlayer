@@ -2,15 +2,17 @@
 
 using namespace MellowPlayer::Infrastructure;
 
-HttpClient::HttpClient() {
+HttpClient::HttpClient()
+{
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &HttpClient::onFinished);
-
 }
 
-void HttpClient::get(const QString& url) {
+void HttpClient::get(const QString &url)
+{
     networkAccessManager_.get(QNetworkRequest(QUrl(url)));
 }
 
-void HttpClient::onFinished(QNetworkReply* reply) {
+void HttpClient::onFinished(QNetworkReply *reply)
+{
     emit replyReceived(reply->readAll());
 }

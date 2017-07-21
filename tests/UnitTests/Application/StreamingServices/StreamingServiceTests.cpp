@@ -1,33 +1,38 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
-#include <QtTest/QSignalSpy>
 #include <Mocks/SettingsProviderMock.hpp>
+#include <QtTest/QSignalSpy>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 
-TEST_CASE("StreamingServiceTest", "[UnitTest]") {
+TEST_CASE("StreamingServiceTest", "[UnitTest]")
+{
     StreamingServiceMetadata serviceMetadata;
 
-    SECTION("StreamingService.getAuthor") {
+    SECTION("StreamingService.getAuthor")
+    {
         serviceMetadata.author = "Colin Duquesnoy";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getAuthor() == serviceMetadata.author);
     }
 
-    SECTION("StreamingService.getAuthorWebsite") {
+    SECTION("StreamingService.getAuthorWebsite")
+    {
         serviceMetadata.authorWebsite = "https://gitlab.com/ColinDuquesnoy";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getAuthorWebsite() == serviceMetadata.authorWebsite);
     }
 
-    SECTION("StreamingService.getName") {
+    SECTION("StreamingService.getName")
+    {
         serviceMetadata.name = "Deezer";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getName() == serviceMetadata.name);
     }
 
-    SECTION("StreamingService.getLogo_validImage") {
+    SECTION("StreamingService.getLogo_validImage")
+    {
         serviceMetadata.logoPath = QString(PLUGINS_DIR) + QString("/deezer/logo.svg");
         StreamingService service(serviceMetadata);
 #ifdef Q_OS_WIN
@@ -37,19 +42,22 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]") {
 #endif
     }
 
-    SECTION("StreamingService.getLogo_nullImage") {
+    SECTION("StreamingService.getLogo_nullImage")
+    {
         serviceMetadata.logoPath = "";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getLogo().isEmpty());
     }
 
-    SECTION("StreamingService.getUrl") {
+    SECTION("StreamingService.getUrl")
+    {
         serviceMetadata.url = "https://deezer.com";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getUrl() == serviceMetadata.url);
     }
 
-    SECTION("StreamingService.getScript") {
+    SECTION("StreamingService.getScript")
+    {
         serviceMetadata.script = "code";
         serviceMetadata.scriptPath = "path";
         StreamingService service(serviceMetadata);
@@ -58,13 +66,15 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]") {
         REQUIRE(script->getPath() == "path");
     }
 
-    SECTION("StreamingService.getVersion") {
+    SECTION("StreamingService.getVersion")
+    {
         serviceMetadata.version = "1.2";
         StreamingService service(serviceMetadata);
         REQUIRE(service.getVersion() == serviceMetadata.version);
     }
 
-    SECTION("StreamingService.equalityOperator") {
+    SECTION("StreamingService.equalityOperator")
+    {
         StreamingServiceMetadata serviceMetadata1;
         serviceMetadata1.name = "Deezer";
         serviceMetadata1.url = "https://deezer.com";
@@ -81,4 +91,3 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]") {
         REQUIRE(service0 == service2);
     }
 }
-

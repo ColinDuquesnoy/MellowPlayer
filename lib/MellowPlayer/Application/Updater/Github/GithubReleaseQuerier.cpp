@@ -1,15 +1,14 @@
-#include <QtCore/QJsonDocument>
+#include "GithubReleaseQuerier.hpp"
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Updater/Release.hpp>
-#include "GithubReleaseQuerier.hpp"
-
+#include <QtCore/QJsonDocument>
 
 #define CONTINUOUS_RELEASE_NAME "Continuous"
 
 using namespace MellowPlayer::Application;
 
-GithubReleaseQuerier::GithubReleaseQuerier(IHttpClient& httpClient):
-        logger_(LoggingManager::instance().getLogger("GithubReleaseQuerier")), httpClient_(httpClient)
+GithubReleaseQuerier::GithubReleaseQuerier(IHttpClient &httpClient)
+        : logger_(LoggingManager::instance().getLogger("GithubReleaseQuerier")), httpClient_(httpClient)
 {
     connect(&httpClient, &IHttpClient::replyReceived, this, &GithubReleaseQuerier::onReplyReceived);
     connect(&replyParser_, &GithubReleasesReplyParser::ready, this, &GithubReleaseQuerier::onReleaseReady);
@@ -27,7 +26,7 @@ void GithubReleaseQuerier::getLatest()
     httpClient_.get("https://api.github.com/repos/ColinDuquesnoy/MellowPlayer/releases");
 }
 
-void GithubReleaseQuerier::onReplyReceived(const QByteArray& replyData)
+void GithubReleaseQuerier::onReplyReceived(const QByteArray &replyData)
 {
     LOG_DEBUG(logger_, "Reply recevied");
     LOG_TRACE(logger_, "reply data: " << replyData.toStdString());
@@ -38,7 +37,7 @@ void GithubReleaseQuerier::onReplyReceived(const QByteArray& replyData)
     }
 }
 
-void GithubReleaseQuerier::onReleaseReady(const Release* release)
+void GithubReleaseQuerier::onReleaseReady(const Release *release)
 {
     if (release != nullptr && accept(release)) {
         LOG_DEBUG(logger_, "Latest release found: " << release->getName());
@@ -48,7 +47,7 @@ void GithubReleaseQuerier::onReleaseReady(const Release* release)
     }
 }
 
-bool GithubReleaseQuerier::accept(const Release* release)
+bool GithubReleaseQuerier::accept(const Release *release)
 {
     bool accepted = false;
 

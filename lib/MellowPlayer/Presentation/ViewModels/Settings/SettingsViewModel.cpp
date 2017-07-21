@@ -1,38 +1,44 @@
-#include <QtCore/QAbstractItemModel>
-#include "MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp"
 #include "SettingsViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp"
+#include <QtCore/QAbstractItemModel>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-
-SettingsViewModel::SettingsViewModel(Settings& settings,
-                                     ThemeViewModel& themeViewModel,
-                                     QObject* parent) :
-        QObject(parent),
-        settings(settings),
-        settingViewModelFactory(themeViewModel),
-        categories(new SettingsCategoryListModel(this, "name")) {
-    for(SettingsCategory* category: settings.getCategories()) {
+SettingsViewModel::SettingsViewModel(Settings &settings, ThemeViewModel &themeViewModel, QObject *parent)
+        : QObject(parent),
+          settings(settings),
+          settingViewModelFactory(themeViewModel),
+          categories(new SettingsCategoryListModel(this, "name"))
+{
+    for (SettingsCategory *category : settings.getCategories()) {
         if (category->getKey() != "private")
             categories->append(new SettingsCategoryViewModel(themeViewModel, category, this));
     }
-    categories->append(new CustomSettingsCategoryViewModel(
-            "Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", themeViewModel, this));
-    categories->append(new CustomSettingsCategoryViewModel(
-            "Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", themeViewModel, this));
+    categories->append(new CustomSettingsCategoryViewModel("Services", u8"\ue405",
+                                                           "qrc:/MellowPlayer/Presentation/Views/"
+                                                           "MellowPlayer/SettingsPages/"
+                                                           "ServiceSettingsPage.qml",
+                                                           themeViewModel, this));
+    categories->append(new CustomSettingsCategoryViewModel("Cache", u8"\ue872",
+                                                           "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/"
+                                                           "SettingsPages/CacheSettingsPage.qml",
+                                                           themeViewModel, this));
 }
 
-SettingViewModel* SettingsViewModel::get(int key) {
+SettingViewModel *SettingsViewModel::get(int key)
+{
     SettingKey::Keys settingKey = static_cast<SettingKey::Keys>(key);
-    Setting& setting = settings.get(settingKey);
+    Setting &setting = settings.get(settingKey);
     return settingViewModelFactory.create(setting, nullptr);
 }
 
-SettingsCategoryListModel* SettingsViewModel::getCategories() const {
+SettingsCategoryListModel *SettingsViewModel::getCategories() const
+{
     return categories;
 }
 
-void SettingsViewModel::restoreDefaults() {
+void SettingsViewModel::restoreDefaults()
+{
     settings.restoreDefaults();
 }

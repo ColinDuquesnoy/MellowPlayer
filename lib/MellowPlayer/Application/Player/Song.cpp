@@ -2,44 +2,59 @@
 
 using namespace MellowPlayer::Application;
 
-Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false) {
+Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false)
+{
 }
 
-Song::Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album,
-           const QString& artUrl, double duration, bool isFavorite) :
-        uniqueId(uniqueId), title(title), artist(artist), album(album), artUrl(artUrl), duration(duration),
-        isFavorite(isFavorite) {
+Song::Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album,
+           const QString &artUrl, double duration, bool isFavorite)
+        : uniqueId(uniqueId),
+          title(title),
+          artist(artist),
+          album(album),
+          artUrl(artUrl),
+          duration(duration),
+          isFavorite(isFavorite)
+{
 }
 
-QString Song::getUniqueId() const {
+QString Song::getUniqueId() const
+{
     return uniqueId;
 }
 
-QString Song::getTitle() const {
+QString Song::getTitle() const
+{
     return title;
 }
 
-QString Song::getArtist() const {
+QString Song::getArtist() const
+{
     return artist;
 }
 
-QString Song::getAlbum() const {
+QString Song::getAlbum() const
+{
     return album;
 }
 
-QString Song::getArtUrl() const {
+QString Song::getArtUrl() const
+{
     return artUrl;
 }
 
-double Song::getDuration() const {
+double Song::getDuration() const
+{
     return duration;
 }
 
-bool Song::getIsFavorite() const {
+bool Song::getIsFavorite() const
+{
     return isFavorite;
 }
 
-void Song::setDuration(double value) {
+void Song::setDuration(double value)
+{
     if (value == duration)
         return;
 
@@ -47,7 +62,8 @@ void Song::setDuration(double value) {
     emit durationChanged();
 }
 
-void Song::setIsFavorite(bool value) {
+void Song::setIsFavorite(bool value)
+{
     if (value == isFavorite)
         return;
 

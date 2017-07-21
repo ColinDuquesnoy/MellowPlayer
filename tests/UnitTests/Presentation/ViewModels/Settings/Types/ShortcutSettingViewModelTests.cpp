@@ -1,22 +1,24 @@
 #include "catch.hpp"
-#include <QtTest/QSignalSpy>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
+#include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("ShortcutSettingViewModelTests") {
+TEST_CASE("ShortcutSettingViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+    Settings &settings = pool.getSettings();
+    Setting &setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     ShortcutSettingViewModel model(setting, nullptr);
     model.setValue("Ctrl+Alt+P");
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
-    SECTION("setValue") {
+    SECTION("setValue")
+    {
         REQUIRE(model.getValue() == "Ctrl+Alt+P");
         REQUIRE(spy.count() == 0);
         model.setValue("Ctrl+P");
@@ -25,7 +27,8 @@ TEST_CASE("ShortcutSettingViewModelTests") {
         model.setValue("Ctrl+Alt+P");
     }
 
-    SECTION("keySequenceToString") {
+    SECTION("keySequenceToString")
+    {
         REQUIRE(model.keySequenceToString(Qt::Key_M, Qt::ControlModifier).toStdString() == "Ctrl+M");
         REQUIRE(model.keySequenceToString(Qt::Key_M, Qt::AltModifier).toStdString() == "Alt+M");
         REQUIRE(model.keySequenceToString(Qt::Key_M, Qt::ShiftModifier).toStdString() == "Shift+M");
@@ -33,7 +36,8 @@ TEST_CASE("ShortcutSettingViewModelTests") {
         REQUIRE(model.keySequenceToString(Qt::Key_unknown, Qt::ControlModifier).contains("Ctrl+"));
     }
 
-    SECTION("isValidKeySequence") {
+    SECTION("isValidKeySequence")
+    {
         REQUIRE(model.isValidKeySequence(Qt::Key_M, Qt::ControlModifier));
         REQUIRE(model.isValidKeySequence(Qt::Key_M, Qt::AltModifier));
         REQUIRE(model.isValidKeySequence(Qt::Key_M, Qt::ShiftModifier));
@@ -46,8 +50,8 @@ TEST_CASE("ShortcutSettingViewModelTests") {
         REQUIRE(!model.isValidKeySequence(Qt::Key_M, 0));
     }
 
-    SECTION("QML Component looks valid") {
+    SECTION("QML Component looks valid")
+    {
         REQUIRE(model.getQmlComponent().toLower().contains("shortcut"));
     }
 }
-

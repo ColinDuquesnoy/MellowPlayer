@@ -2,9 +2,10 @@
 
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 
-namespace MellowPlayer::Presentation {
-
-    class SettingViewModel: public QObject {
+namespace MellowPlayer::Presentation
+{
+    class SettingViewModel : public QObject
+    {
         Q_OBJECT
         Q_PROPERTY(QString name READ getName CONSTANT)
         Q_PROPERTY(QString toolTip READ getToolTip CONSTANT)
@@ -12,7 +13,7 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
         Q_PROPERTY(bool enabled READ getEnabled NOTIFY enabledChanged)
     public:
-        SettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+        SettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
 
         QString getName() const;
         QString getToolTip() const;
@@ -27,10 +28,9 @@ namespace MellowPlayer::Presentation {
         virtual void onValueChanged() = 0;
 
     protected:
-        Application::Setting& setting;
+        Application::Setting &setting;
 
     private slots:
         void onIsEnabledChanged();
     };
-
 }

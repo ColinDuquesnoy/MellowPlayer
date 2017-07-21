@@ -2,11 +2,12 @@
 
 #include <QtCore/QString>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     enum class LogLevel;
 
-    class ICommandLineParser {
+    class ICommandLineParser
+    {
     public:
         virtual ~ICommandLineParser() = default;
         virtual QString getService() const = 0;

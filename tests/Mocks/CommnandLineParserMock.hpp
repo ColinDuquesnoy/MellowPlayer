@@ -1,15 +1,17 @@
 #pragma once
-#include <fakeit.hpp>
-#include <memory>
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
+#include <fakeit.hpp>
+#include <memory>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class CommandLineParserMock {
+class CommandLineParserMock
+{
 public:
-    static Mock<ICommandLineParser> get() {
+    static Mock<ICommandLineParser> get()
+    {
         Mock<ICommandLineParser> mock;
         When(Method(mock, getService)).AlwaysReturn("");
         When(Method(mock, getAutoQuitDelay)).AlwaysReturn(0);
@@ -21,4 +23,3 @@ public:
         return mock;
     }
 };
-

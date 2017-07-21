@@ -2,17 +2,17 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Presentation {
-
-    class ClipBoardViewModel: public QObject {
+namespace MellowPlayer::Presentation
+{
+    class ClipBoardViewModel : public QObject
+    {
         Q_OBJECT
     public:
-        ClipBoardViewModel(QObject* parent= nullptr);
+        ClipBoardViewModel(QObject *parent = nullptr);
 
-        Q_INVOKABLE void setText(const QString& text);
+        Q_INVOKABLE void setText(const QString &text);
 
     signals:
-        void textCopied(const QString& text);
+        void textCopied(const QString &text);
     };
-
 }

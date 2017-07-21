@@ -1,13 +1,14 @@
 #pragma once
 
-#include <QtCore/QObject>
 #include "UpdateChannel.hpp"
+#include <QtCore/QObject>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class Release;
 
-    class IReleaseQuerier: public QObject {
+    class IReleaseQuerier : public QObject
+    {
         Q_OBJECT
     public:
         virtual ~IReleaseQuerier() = default;
@@ -16,7 +17,6 @@ namespace MellowPlayer::Application {
         virtual void getLatest() = 0;
 
     signals:
-        void latestReceived(const Release* release);
+        void latestReceived(const Release *release);
     };
-
 }

@@ -1,16 +1,19 @@
 #pragma once
 
-namespace MellowPlayer::Application {
-
-    enum class UpdateChannel {
+namespace MellowPlayer::Application
+{
+    enum class UpdateChannel
+    {
         Stable,
         Beta,
-        Continuous
+        Continuous,
     };
 
-    class UpdateChannelStringer {
+    class UpdateChannelStringer
+    {
     public:
-        static QString toString(UpdateChannel channelType) {
+        static QString toString(UpdateChannel channelType)
+        {
             QString string;
 
             switch (channelType) {
@@ -28,7 +31,8 @@ namespace MellowPlayer::Application {
             return string;
         }
 
-        static UpdateChannel fromString(const QString& channelName) {
+        static UpdateChannel fromString(const QString &channelName)
+        {
             UpdateChannel channel;
 
             if (channelName == "Continuous")
@@ -38,8 +42,7 @@ namespace MellowPlayer::Application {
             else
                 channel = UpdateChannel::Stable;
 
-            return  channel;
+            return channel;
         }
     };
-
 }

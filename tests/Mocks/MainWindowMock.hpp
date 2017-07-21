@@ -1,14 +1,16 @@
 #pragma once
+#include <MellowPlayer/Application/IMainWindow.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/IMainWindow.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class MainWindowMock {
+class MainWindowMock
+{
 public:
-    static Mock<IMainWindow> get() {
+    static Mock<IMainWindow> get()
+    {
         Mock<IMainWindow> mock;
         When(Method(mock, load)).AlwaysReturn();
         When(Method(mock, show)).AlwaysReturn();

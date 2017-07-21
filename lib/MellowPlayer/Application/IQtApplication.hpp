@@ -2,9 +2,10 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application {
-
-    class IQtApplication: public QObject {
+namespace MellowPlayer::Application
+{
+    class IQtApplication : public QObject
+    {
         Q_OBJECT
         Q_PROPERTY(QString buildInfo READ getBuildInfo CONSTANT)
     public:
@@ -23,5 +24,4 @@ namespace MellowPlayer::Application {
     signals:
         void quitRequested();
     };
-
 }

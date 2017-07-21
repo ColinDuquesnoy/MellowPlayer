@@ -2,5 +2,4 @@
 
 using namespace MellowPlayer::Application;
 
-
 IQtApplication::~IQtApplication() = default;

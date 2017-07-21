@@ -32,9 +32,9 @@ function getButtons() {
 }
 
 function isPlaying() {
-   var mix = document.getElementById("mix_youtube");
-   var index = mix.className.indexOf("playing");
-   return index !== -1;
+    var mix = document.getElementById("mix_youtube");
+    var index = mix.className.indexOf("playing");
+    return index !== -1;
 }
 
 function update() {

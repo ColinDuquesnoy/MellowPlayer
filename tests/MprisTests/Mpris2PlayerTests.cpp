@@ -1,21 +1,22 @@
 #include <QtCore>
 #ifdef Q_OS_LINUX
-#include <catch.hpp>
-#include <QtTest/QSignalSpy>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
+#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <QtTest/QSignalSpy>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
+TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
+{
     auto loaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
@@ -23,12 +24,12 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
-    Player& currentPlayer = *players.get(streamingServices.getCurrent()->getName());
+    Player &currentPlayer = *players.get(streamingServices.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 
-    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song * )));
+    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song *)));
     QSignalSpy positionChanged(&player, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&player, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&player, SIGNAL(canSeekChanged()));
@@ -36,27 +37,32 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
     QSignalSpy canGoPreviousChanged(&player, SIGNAL(canGoPreviousChanged()));
     QSignalSpy canAddToFavoritesChanged(&player, SIGNAL(canAddToFavoritesChanged()));
     QSignalSpy volumeChanged(&player, SIGNAL(volumeChanged()));
-    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString&)));
+    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString &)));
 
-    SECTION("PlaybackStatus") {
-        SECTION("Default") {
+    SECTION("PlaybackStatus")
+    {
+        SECTION("Default")
+        {
             REQUIRE(mpris2Player.playbackStatus() == "Stopped");
         }
 
-        SECTION("Playing") {
+        SECTION("Playing")
+        {
             mpris2Player.Play();
             currentPlayer.setPlaybackStatus(PlaybackStatus::Playing);
             REQUIRE(mpris2Player.playbackStatus() == "Playing");
         }
 
-        SECTION("Paused") {
+        SECTION("Paused")
+        {
             mpris2Player.Play();
             mpris2Player.Pause();
             currentPlayer.setPlaybackStatus(PlaybackStatus::Paused);
             REQUIRE(mpris2Player.playbackStatus() == "Paused");
         }
 
-        SECTION("Paused When buffering") {
+        SECTION("Paused When buffering")
+        {
             REQUIRE(mpris2Player.playbackStatus() != "Paused");
             QVariantMap results;
             results["playbackStatus"] = static_cast<int>(PlaybackStatus::Buffering);
@@ -65,19 +71,22 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         }
     }
 
-    SECTION("LoopStatus cannot be set") {
+    SECTION("LoopStatus cannot be set")
+    {
         REQUIRE(mpris2Player.loopStatus() == "None");
         mpris2Player.setLoopStatus("ANYTHING");
         REQUIRE(mpris2Player.loopStatus() == "None");
     }
 
-    SECTION("Shuffle cannot be set") {
+    SECTION("Shuffle cannot be set")
+    {
         REQUIRE(!mpris2Player.shuffle());
         mpris2Player.setShuffle(true);
         REQUIRE(!mpris2Player.shuffle());
     }
 
-    SECTION("Volume") {
+    SECTION("Volume")
+    {
         QVariantMap results;
         results["volume"] = 0.75;
         currentPlayer.setUpdateResults(results);
@@ -85,8 +94,10 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         mpris2Player.setVolume(1.0);
     }
 
-    SECTION("Metadata") {
-        SECTION("ValidSong") {
+    SECTION("Metadata")
+    {
+        SECTION("ValidSong")
+        {
             QVariantMap results;
             results["position"] = 1.0;
             results["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -112,7 +123,8 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
             REQUIRE(!map["mpris:trackid"].toString().isEmpty());
             REQUIRE(!map["mpris:artUrl"].toString().isEmpty());
         }
-        SECTION("InValidSong") {
+        SECTION("InValidSong")
+        {
             Song song;
             emit player.currentSongChanged(&song);
             auto map = mpris2Player.metadata();
@@ -126,23 +138,28 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         }
     }
 
-    SECTION("CanPlay") {
+    SECTION("CanPlay")
+    {
         REQUIRE(mpris2Player.canPlay());
     }
 
-    SECTION("CanPause") {
+    SECTION("CanPause")
+    {
         REQUIRE(mpris2Player.canPause());
     }
 
-    SECTION("CanControl") {
+    SECTION("CanControl")
+    {
         REQUIRE(mpris2Player.canControl());
     }
 
-    SECTION("CannotStop") {
+    SECTION("CannotStop")
+    {
         REQUIRE(!mpris2Player.canStop());
     }
 
-    SECTION("Rate cannot be set") {
+    SECTION("Rate cannot be set")
+    {
         REQUIRE(mpris2Player.rate() == 1.0);
         REQUIRE(mpris2Player.minimumRate() == 1.0);
         REQUIRE(mpris2Player.maximumRate() == 1.0);
@@ -150,51 +167,60 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         REQUIRE(mpris2Player.rate() == 1.0);
     }
 
-    SECTION("TogglePlayPause") {
+    SECTION("TogglePlayPause")
+    {
         mpris2Player.PlayPause();
         REQUIRE(jsSpy.count() == 1);
     }
 
-    SECTION("Play") {
+    SECTION("Play")
+    {
         mpris2Player.Play();
         REQUIRE(jsSpy.count() == 1);
     }
 
-    SECTION("Pause") {
+    SECTION("Pause")
+    {
         mpris2Player.Play();
         mpris2Player.Pause();
         REQUIRE(jsSpy.count() == 2);
     }
 
-    SECTION("Stop") {
+    SECTION("Stop")
+    {
         mpris2Player.Play();
         mpris2Player.Stop();
         REQUIRE(jsSpy.count() == 2);
     }
 
-    SECTION("Next") {
+    SECTION("Next")
+    {
         mpris2Player.Next();
         REQUIRE(jsSpy.count() == 1);
     }
 
-    SECTION("Previous") {
+    SECTION("Previous")
+    {
         mpris2Player.Previous();
         REQUIRE(jsSpy.count() == 1);
     }
 
-    SECTION("Seek") {
+    SECTION("Seek")
+    {
         mpris2Player.Seek(360000000);
         REQUIRE(jsSpy.count() == 1);
         REQUIRE(jsSpy[0][0].toString() == "seekToPosition(360);");
     }
 
-    SECTION("SetPosition") {
+    SECTION("SetPosition")
+    {
         mpris2Player.SetPosition(QDBusObjectPath(), 360000000);
         REQUIRE(jsSpy.count() == 1);
         REQUIRE(jsSpy[0][0].toString() == "seekToPosition(360);");
     }
 
-    SECTION("SongChanged") {
+    SECTION("SongChanged")
+    {
         Song song1;
         Song song2("uniqueId", "title", "artist", "album", "artUrl", 0, true);
         Song song3("uniqueId", "title", "artist", "album", "artUrl", 360, true);
@@ -204,13 +230,15 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         song3.setDuration(480);
     }
 
-    SECTION("ChangePosition Emits Seeked") {
+    SECTION("ChangePosition Emits Seeked")
+    {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         player.seekToPosition(480);
         REQUIRE(seekedSpy.count() == 1);
     }
 
-    SECTION("ChangeCanSeek") {
+    SECTION("ChangeCanSeek")
+    {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canSeek"] = true;
@@ -218,7 +246,8 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         REQUIRE(mpris2Player.canSeek());
     }
 
-    SECTION("ChangeCanGoPrevious") {
+    SECTION("ChangeCanGoPrevious")
+    {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canGoPrevious"] = true;
@@ -226,7 +255,8 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]") {
         REQUIRE(mpris2Player.canGoPrevious());
     }
 
-    SECTION("ChangeCanGoNext") {
+    SECTION("ChangeCanGoNext")
+    {
         QSignalSpy seekedSpy(&mpris2Player, SIGNAL(Seeked(qlonglong)));
         QVariantMap results;
         results["canGoNext"] = true;

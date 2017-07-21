@@ -2,19 +2,20 @@
 
 #include <string>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     /**
      * @brief Enumerates the possible log levels.
      */
-    enum class LogLevel {
+    enum class LogLevel
+    {
         Trace = 0,
         Debug = 1,
         Info = 2,
         Warning = 3,
         Error = 4,
         Critical = 5,
-        Off = 6
+        Off = 6,
     };
 
     /**
@@ -30,7 +31,8 @@ namespace MellowPlayer::Application {
         LogLevel logLevel;
 
         /**
-         * @brief Log format, see https://github.com/gabime/spdlog/wiki/3.-Custom-formatting.
+         * @brief Log format, see
+         * https://github.com/gabime/spdlog/wiki/3.-Custom-formatting.
          *
          * Default is "%l [%H:%M:%S] - %n: "%v"".
          */
@@ -47,7 +49,8 @@ namespace MellowPlayer::Application {
         bool createFileLogger;
 
         /**
-         * @brief True to show file and line where log record was emitted. Default is true.
+         * @brief True to show file and line where log record was emitted. Default is
+         * true.
          */
         bool showFileAndLine;
 
@@ -55,5 +58,4 @@ namespace MellowPlayer::Application {
 
         static std::string DEFAULT_LOG_FORMAT;
     };
-
 }

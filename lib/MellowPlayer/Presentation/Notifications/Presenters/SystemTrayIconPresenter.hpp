@@ -2,22 +2,21 @@
 
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class ISystemTrayIcon;
-
 }
 
-namespace MellowPlayer::Presentation {
-
-    class SystemTrayIconPresenter: public Application::INotificationPresenter {
+namespace MellowPlayer::Presentation
+{
+    class SystemTrayIconPresenter : public Application::INotificationPresenter
+    {
     public:
-        SystemTrayIconPresenter(Application::ISystemTrayIcon& systemTrayIcon);
+        SystemTrayIconPresenter(Application::ISystemTrayIcon &systemTrayIcon);
         void initialize() override;
-        bool display(const Application::Notification& notification) override;
+        bool display(const Application::Notification &notification) override;
 
     private:
-        Application::ISystemTrayIcon& systemTrayIcon;
+        Application::ISystemTrayIcon &systemTrayIcon;
     };
-
 }

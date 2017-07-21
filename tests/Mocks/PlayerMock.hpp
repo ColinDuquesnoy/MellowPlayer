@@ -1,14 +1,16 @@
 #pragma once
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class PlayerMock{
+class PlayerMock
+{
 public:
-    static Mock<IPlayer> get() {
+    static Mock<IPlayer> get()
+    {
         Mock<IPlayer> mock;
         When(Method(mock, togglePlayPause)).AlwaysReturn();
         When(Method(mock, next)).AlwaysReturn();

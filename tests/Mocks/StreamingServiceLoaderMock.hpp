@@ -1,18 +1,20 @@
 #pragma once
 
-#include <fakeit.hpp>
-#include <memory>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <fakeit.hpp>
+#include <memory>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 using namespace fakeit;
 
-class StreamingServiceLoaderMock {
+class StreamingServiceLoaderMock
+{
 public:
-    static Mock<IStreamingServiceLoader> get() {
+    static Mock<IStreamingServiceLoader> get()
+    {
         Mock<IStreamingServiceLoader> mock;
         When(Method(mock, load)).AlwaysDo([]() {
             QList<shared_ptr<StreamingService>> list;
@@ -28,7 +30,8 @@ public:
     static Theme DEFAULT_theme;
 
 private:
-    static unique_ptr<StreamingService> createPlugin(const QString& name) {
+    static unique_ptr<StreamingService> createPlugin(const QString &name)
+    {
         StreamingServiceMetadata metadata;
         metadata.name = name;
         metadata.url = "http://" + name.toLower() + ".com";

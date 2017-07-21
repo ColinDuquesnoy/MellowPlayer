@@ -1,18 +1,19 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
-#include <Mocks/MainWindowMock.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
-#include <Mocks/QtApplicationMock.hpp>
+#include <Mocks/MainWindowMock.hpp>
 #include <Mocks/NotifierMock.hpp>
+#include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/SystemTrayIconMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <Mocks/SystemTrayIconMock.hpp>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 
-TEST_CASE("CoreApplicationTests", "[UnitTest]") {
+TEST_CASE("CoreApplicationTests", "[UnitTest]")
+{
     auto mainWindowMock = MainWindowMock::get();
     auto hotkeysMock = HotkeysControllerMock::get();
     auto qtAppMock = QtApplicationMock::get();
@@ -21,30 +22,30 @@ TEST_CASE("CoreApplicationTests", "[UnitTest]") {
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
-    CoreApplication app(qtAppMock.get(),
-                    mainWindowMock.get(),
-                    streamingServices,
-                    hotkeysMock.get(),
-                    systemTrayIconMock.get(),
-                    notificationServiceMock.get());
+    CoreApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(),
+                        systemTrayIconMock.get(), notificationServiceMock.get());
 
-    SECTION("initialize") {
+    SECTION("initialize")
+    {
         app.initialize();
         Verify(Method(mainWindowMock, load)).Exactly(1);
         Verify(Method(systemTrayIconMock, show)).Exactly(1);
     }
 
-    SECTION("run") {
+    SECTION("run")
+    {
         app.run();
         Verify(Method(qtAppMock, run)).Exactly(1);
     }
 
-    SECTION("restoreWindow") {
+    SECTION("restoreWindow")
+    {
         app.restoreWindow();
         Verify(Method(mainWindowMock, show)).Exactly(1);
     }
 
-    SECTION("quit") {
+    SECTION("quit")
+    {
         app.quit();
         Verify(Method(qtAppMock, quit)).Exactly(1);
     }

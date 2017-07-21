@@ -1,11 +1,12 @@
 #pragma once
 
-#include <QtCore/QObject>
 #include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <QtCore/QObject>
 
-namespace MellowPlayer::Presentation {
-
-    class UpdaterViewModel: public QObject {
+namespace MellowPlayer::Presentation
+{
+    class UpdaterViewModel : public QObject
+    {
         Q_OBJECT
         Q_PROPERTY(QString message READ getMessage NOTIFY messageChanged)
         Q_PROPERTY(QString url READ getUrl CONSTANT)
@@ -15,7 +16,7 @@ namespace MellowPlayer::Presentation {
         Q_PROPERTY(bool installEnabled READ isInstallEnabled NOTIFY installEnabledChanged)
         Q_PROPERTY(int progress READ getProgress NOTIFY progressChanged)
     public:
-        UpdaterViewModel(Application::Updater& updater);
+        UpdaterViewModel(Application::Updater &updater);
 
         QString getMessage() const;
         QString getUrl() const;
@@ -38,7 +39,7 @@ namespace MellowPlayer::Presentation {
         void busyChanged();
 
     private slots:
-        void setMessage(const QString& message);
+        void setMessage(const QString &message);
         void setVisible(bool visible);
         void setInstallEnabled(bool enabled);
         void setProgress(int progress);
@@ -47,7 +48,7 @@ namespace MellowPlayer::Presentation {
         void updateMessage();
 
     private:
-        Application::Updater& updater_;
+        Application::Updater &updater_;
         QString message_;
         bool visible_ = false;
         bool installEnabled_ = false;

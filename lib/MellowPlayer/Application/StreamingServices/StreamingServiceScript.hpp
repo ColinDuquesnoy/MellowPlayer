@@ -2,24 +2,26 @@
 
 #include <QtCore/QObject>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class ILogger;
 
-    class StreamingServiceScript: public QObject {
+    class StreamingServiceScript : public QObject
+    {
         Q_OBJECT
         Q_PROPERTY(QString code READ getCode NOTIFY codeChanged);
         Q_PROPERTY(QString path READ getPath CONSTANT);
+
     public:
-        StreamingServiceScript(const QString& code, const QString& path);
+        StreamingServiceScript(const QString &code, const QString &path);
 
         bool isValid() const;
 
         QString getConstants() const;
         QString getCode() const;
-        void setCode(const QString& value);
+        void setCode(const QString &value);
 
-        const QString& getPath() const;
+        const QString &getPath() const;
 
         Q_INVOKABLE QString update() const;
         Q_INVOKABLE QString play() const;
@@ -38,5 +40,4 @@ namespace MellowPlayer::Application {
         QString code;
         QString path;
     };
-
 }

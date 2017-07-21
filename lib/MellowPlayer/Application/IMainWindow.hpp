@@ -1,8 +1,9 @@
 #pragma once
 
-namespace MellowPlayer::Application {
-
-    class IMainWindow {
+namespace MellowPlayer::Application
+{
+    class IMainWindow
+    {
     public:
         virtual ~IMainWindow() = default;
 

@@ -1,7 +1,7 @@
 #pragma once
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class IHotkeysController
     {
     public:
@@ -14,5 +14,4 @@ namespace MellowPlayer::Application {
         virtual void toggleFavoriteSong() = 0;
         virtual void restoreWindow() = 0;
     };
-
 }

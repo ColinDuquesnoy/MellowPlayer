@@ -1,18 +1,19 @@
 #include "catch.hpp"
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("SettingsCategoryViewModelTests") {
+TEST_CASE("SettingsCategoryViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
+    Settings &settings = pool.getSettings();
+    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
     SettingsCategoryViewModel categoryViewModel(themeViewModel, &settings.getCategory("main"));
 
     REQUIRE(categoryViewModel.getName().toStdString() == "General");
@@ -20,10 +21,11 @@ TEST_CASE("SettingsCategoryViewModelTests") {
     REQUIRE(!categoryViewModel.getQmlComponent().isEmpty());
     REQUIRE(categoryViewModel.getSettingsModel()->count() > 1);
 
-    SECTION("restoreDefaults") {
-        Setting& inCategorySetting = settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES);
+    SECTION("restoreDefaults")
+    {
+        Setting &inCategorySetting = settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES);
         inCategorySetting.setValue(false);
-        Setting& notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
+        Setting &notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
         notInCategorySetting.setValue("Breeze");
 
         REQUIRE(inCategorySetting.getValue() != inCategorySetting.getDefaultValue());
@@ -36,10 +38,11 @@ TEST_CASE("SettingsCategoryViewModelTests") {
     }
 }
 
-TEST_CASE("CustomSettingsCategoryViewModelTests") {
+TEST_CASE("CustomSettingsCategoryViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
+    Settings &settings = pool.getSettings();
+    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", themeViewModel);
 
     REQUIRE(model.getName() == "CategoryName");
@@ -47,4 +50,3 @@ TEST_CASE("CustomSettingsCategoryViewModelTests") {
     REQUIRE(model.getQmlComponent() == "CategoryQmlComponent");
     REQUIRE(model.getSettingsModel()->count() == 0);
 }
-

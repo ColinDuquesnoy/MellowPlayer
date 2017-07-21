@@ -1,11 +1,10 @@
-#include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
 #include "UpdaterViewModel.hpp"
+#include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-
-UpdaterViewModel::UpdaterViewModel(Updater& updater): updater_(updater)
+UpdaterViewModel::UpdaterViewModel(Updater &updater) : updater_(updater)
 {
     connect(&updater, &Updater::updateAvailable, this, &UpdaterViewModel::onUpdateAvailable);
     connect(&updater, &Updater::noUpdateAvailable, this, &UpdaterViewModel::onNoUpdateAvailable);
@@ -97,7 +96,7 @@ void UpdaterViewModel::onNoUpdateAvailable()
     updateMessage();
 }
 
-void UpdaterViewModel::setMessage(const QString& message)
+void UpdaterViewModel::setMessage(const QString &message)
 {
     if (message_ == message)
         return;
@@ -107,26 +106,27 @@ void UpdaterViewModel::setMessage(const QString& message)
 
 QString UpdaterViewModel::getUrl() const
 {
-    const Release* r = updater_.getLatestRelease();
+    const Release *r = updater_.getLatestRelease();
     if (r != nullptr)
         return r->getUrl();
     return "";
 }
 
-QString UpdaterViewModel::getStatusString() const {
+QString UpdaterViewModel::getStatusString() const
+{
     return UpdaterStatusConverter::toString(updater_.getStatus());
 }
 
-bool UpdaterViewModel::isBusy() const {
+bool UpdaterViewModel::isBusy() const
+{
     return updater_.getStatus() != Updater::Status::None;
 }
 
-void UpdaterViewModel::updateMessage() {
+void UpdaterViewModel::updateMessage()
+{
     if (updater_.getStatus() == Updater::Status::None && updater_.isUpdateAvailable()) {
-        setMessage(tr("A new version of <b>MellowPlayer</b> is available (%1)").arg(
-                updater_.getLatestRelease()->getName()));
-    }
-    else
+        setMessage(
+        tr("A new version of <b>MellowPlayer</b> is available (%1)").arg(updater_.getLatestRelease()->getName()));
+    } else
         setMessage(getStatusString());
-
 }

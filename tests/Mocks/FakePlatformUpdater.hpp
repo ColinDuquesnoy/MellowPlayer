@@ -4,14 +4,12 @@
 
 namespace MellowPlayer::Tests
 {
-
-    class FakePlatformUpdater: public Application::AbstractPlatformUpdater
+    class FakePlatformUpdater : public Application::AbstractPlatformUpdater
     {
     public:
-        FakePlatformUpdater(Application::IFileDownloader& fileDownloader):
-                Application::AbstractPlatformUpdater(fileDownloader)
+        FakePlatformUpdater(Application::IFileDownloader &fileDownloader)
+                : Application::AbstractPlatformUpdater(fileDownloader)
         {
-
         }
 
         bool canInstall() const override
@@ -35,9 +33,8 @@ namespace MellowPlayer::Tests
         }
 
     protected:
-        void doInstall(const QString&) override
+        void doInstall(const QString &) override
         {
-
         }
 
         QString getAssetUrl() const override
@@ -51,7 +48,6 @@ namespace MellowPlayer::Tests
         }
 
     private:
-        bool canInstall_=false;
-
+        bool canInstall_ = false;
     };
 }

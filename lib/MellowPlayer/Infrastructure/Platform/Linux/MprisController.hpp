@@ -5,27 +5,25 @@
 
 #ifdef Q_OS_LINUX
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class IPlayer;
     class ILocalAlbumArt;
     class IMainWindow;
     class IQtApplication;
     class ILogger;
-
 }
 
-namespace MellowPlayer::Infrastructure {
-
+namespace MellowPlayer::Infrastructure
+{
     class Mpris2Root;
     class Mpris2Player;
 
-    class MprisController: public Application::IMprisController {
+    class MprisController : public Application::IMprisController
+    {
     public:
-        MprisController(Application::IPlayer& player,
-                        Application::ILocalAlbumArt& localAlbumArt,
-                        Application::IMainWindow& window,
-                        Application::IQtApplication& application);
+        MprisController(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt,
+                        Application::IMainWindow &window, Application::IQtApplication &application);
         ~MprisController();
 
         bool start() override;
@@ -34,13 +32,12 @@ namespace MellowPlayer::Infrastructure {
         static QString SERVICE_NAME;
         static QString OBJECT_NAME;
 
-        Application::ILogger& logger;
+        Application::ILogger &logger;
         std::unique_ptr<QObject> parent;
-        QObject* mpris2Root;
-        QObject* mpris2Player;
+        QObject *mpris2Root;
+        QObject *mpris2Player;
         QString serviceName;
     };
-
 }
 
 #endif

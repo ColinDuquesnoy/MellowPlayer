@@ -1,30 +1,29 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
-namespace MellowPlayer::Presentation {
+namespace MellowPlayer::Presentation
+{
+    class EnumSettingViewModel : public SettingViewModel
+    {
+        Q_OBJECT
+        Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
+        Q_PROPERTY(QStringList values READ getValues CONSTANT)
+    public:
+        EnumSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
 
-class EnumSettingViewModel: public SettingViewModel {
-    Q_OBJECT
-    Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
-    Q_PROPERTY(QStringList values READ getValues CONSTANT)
-public:
-    EnumSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+        QString getValue() const;
+        virtual QStringList getValues() const;
+        QString getQmlComponent() override;
 
-    QString getValue() const;
-    virtual QStringList getValues() const;
-    QString getQmlComponent() override;
+    signals:
+        void valueChanged();
 
-signals:
-    void valueChanged();
+    public slots:
+        void setValue(QString value);
 
-public slots:
-    void setValue(QString value);
-
-protected slots:
-    void onValueChanged() override;
-
-};
-
+    protected slots:
+        void onValueChanged() override;
+    };
 }

@@ -1,15 +1,16 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include "SettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
-namespace MellowPlayer::Presentation {
-
-    class BoolSettingViewModel: public SettingViewModel {
+namespace MellowPlayer::Presentation
+{
+    class BoolSettingViewModel : public SettingViewModel
+    {
         Q_OBJECT
         Q_PROPERTY(bool value READ getValue WRITE setValue NOTIFY valueChanged)
     public:
-        BoolSettingViewModel(Application::Setting& setting, QObject* parent=nullptr);
+        BoolSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
 
         bool getValue() const;
         QString getQmlComponent() override;
@@ -22,7 +23,5 @@ namespace MellowPlayer::Presentation {
 
     protected slots:
         void onValueChanged() override;
-
     };
-
 }

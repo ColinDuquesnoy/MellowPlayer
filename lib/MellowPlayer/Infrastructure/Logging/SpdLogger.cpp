@@ -1,14 +1,15 @@
+#include "SpdLogger.hpp"
+#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <iostream>
 #include <spdlog/spdlog.h>
-#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
-#include "SpdLogger.hpp"
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 using namespace spdlog;
 
-shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) {
+shared_ptr<logger> createLogger(const string &name, const LoggerConfig &config)
+{
     try {
         // configure sinks
         vector<sink_ptr> sinks;
@@ -38,20 +39,22 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config) 
     // LCOV_EXCL_STOP
 }
 
-SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)
-    : logger(createLogger(name, config)), includeFileAndLine(config.showFileAndLine), name(name) {
-
+SpdLogger::SpdLogger(const string &name, const LoggerConfig &config)
+        : logger(createLogger(name, config)), includeFileAndLine(config.showFileAndLine), name(name)
+{
 }
 
 SpdLogger::~SpdLogger() = default;
 
-void SpdLogger::log(const string& message, LogLevel level, const char* file, int line) {
+void SpdLogger::log(const string &message, LogLevel level, const char *file, int line)
+{
     if (includeFileAndLine && file != NULL && level == LogLevel::Trace)
         logger->log(static_cast<level::level_enum>(level), "{} ( \"{}:{}\" )", message, file, line);
     else
         logger->log(static_cast<level::level_enum>(level), message.c_str());
 }
 
-const string& SpdLogger::getName() const {
+const string &SpdLogger::getName() const
+{
     return name;
 }

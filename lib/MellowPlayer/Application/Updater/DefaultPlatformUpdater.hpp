@@ -2,20 +2,18 @@
 
 #include "AbstractPlatformUpdater.hpp"
 
-namespace MellowPlayer::Application {
-
-    class DefaultPlatformUpdater: public AbstractPlatformUpdater
+namespace MellowPlayer::Application
+{
+    class DefaultPlatformUpdater : public AbstractPlatformUpdater
     {
     public:
-        DefaultPlatformUpdater(IFileDownloader& downloader);
+        DefaultPlatformUpdater(IFileDownloader &downloader);
 
         virtual bool canInstall() const override;
 
     protected:
-        virtual void doInstall(const QString& assetFilePath) override;
+        virtual void doInstall(const QString &assetFilePath) override;
         virtual QString getAssetUrl() const override;
         virtual QString getAssetFileName() const override;
-
     };
-
 }

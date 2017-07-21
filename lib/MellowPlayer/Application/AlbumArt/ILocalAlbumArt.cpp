@@ -2,7 +2,6 @@
 
 using namespace MellowPlayer::Application;
 
-ILocalAlbumArt::~ILocalAlbumArt() {
-
+ILocalAlbumArt::~ILocalAlbumArt()
+{
 }
-

@@ -9,26 +9,30 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("SettingsViewModelTests") {
+TEST_CASE("SettingsViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
+    Settings &settings = pool.getSettings();
+    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
     SettingsViewModel settingsViewModel(settings, themeViewModel);
 
-    SECTION("get") {
-        SettingViewModel* settingModel = settingsViewModel.get(SettingKey::NOTIFICATIONS_ENABLED);
+    SECTION("get")
+    {
+        SettingViewModel *settingModel = settingsViewModel.get(SettingKey::NOTIFICATIONS_ENABLED);
         REQUIRE(settingModel != nullptr);
     }
 
-    SECTION("getCategories") {
+    SECTION("getCategories")
+    {
         int extraCategories = 2;
         REQUIRE(settingsViewModel.getCategories()->count() - extraCategories == (settings.getCategories().count() - 1));
     }
 
-    SECTION("restoreDefaults") {
-        Setting& s1 = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+    SECTION("restoreDefaults")
+    {
+        Setting &s1 = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
         s1.setValue(false);
-        Setting& s2 = settings.get(SettingKey::APPEARANCE_THEME);
+        Setting &s2 = settings.get(SettingKey::APPEARANCE_THEME);
         s2.setValue("Breeze");
 
         REQUIRE(s1.getValue() != s1.getDefaultValue());

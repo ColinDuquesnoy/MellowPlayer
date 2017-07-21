@@ -4,13 +4,17 @@
 
 namespace MellowPlayer::Tests
 {
-
-    class FakeFileDownloader: public Application::IFileDownloader
+    class FakeFileDownloader : public Application::IFileDownloader
     {
     public:
-        void download(const QString&, const QString&)  { };
-        double getProgress() const { return 0; };
-        bool isDownloading() const { return false; };
-
+        void download(const QString &, const QString &){};
+        double getProgress() const
+        {
+            return 0;
+        };
+        bool isDownloading() const
+        {
+            return false;
+        };
     };
 }

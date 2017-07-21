@@ -1,21 +1,23 @@
 #include "catch.hpp"
-#include <QtTest/QSignalSpy>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
+#include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("StringSettingViewModelTests") {
+TEST_CASE("StringSettingViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+    Settings &settings = pool.getSettings();
+    Setting &setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     StringSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
-    SECTION("setValue") {
+    SECTION("setValue")
+    {
         REQUIRE(model.getValue() == "Ctrl+Alt+P");
         REQUIRE(spy.count() == 0);
         model.setValue("Ctrl+P");
@@ -23,8 +25,8 @@ TEST_CASE("StringSettingViewModelTests") {
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("QML Component looks valid") {
+    SECTION("QML Component looks valid")
+    {
         REQUIRE(model.getQmlComponent().toLower().contains("string"));
     }
 }
-

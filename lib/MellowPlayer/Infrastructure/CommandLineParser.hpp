@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QCommandLineParser>
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
+#include <QCommandLineParser>
 
-
-namespace MellowPlayer::Infrastructure {
-
-    class CommandLineParser : public Application::ICommandLineParser {
+namespace MellowPlayer::Infrastructure
+{
+    class CommandLineParser : public Application::ICommandLineParser
+    {
     public:
         CommandLineParser();
 

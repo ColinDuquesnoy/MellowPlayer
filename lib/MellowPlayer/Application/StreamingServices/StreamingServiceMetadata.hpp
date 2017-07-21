@@ -2,9 +2,10 @@
 
 #include <QtCore/QString>
 
-namespace MellowPlayer::Application {
-
-    struct StreamingServiceMetadata {
+namespace MellowPlayer::Application
+{
+    struct StreamingServiceMetadata
+    {
         /**
          * @brief Name of the plugin's author.
          */
@@ -48,28 +49,30 @@ namespace MellowPlayer::Application {
         QString version;
 
         StreamingServiceMetadata()
-            : author(""),
-              authorWebsite(""),
-              logoPath(""),
-              name(""),
-              url(""),
-              script(""),
-              scriptPath(""),
-              version("") {
-
+                : author(""),
+                  authorWebsite(""),
+                  logoPath(""),
+                  name(""),
+                  url(""),
+                  script(""),
+                  scriptPath(""),
+                  version("")
+        {
         }
 
-        bool isValid() const {
+        bool isValid() const
+        {
             return !name.isEmpty() && !url.isEmpty() && !script.isEmpty();
         }
 
-        bool operator==(const StreamingServiceMetadata& rhs) const {
+        bool operator==(const StreamingServiceMetadata &rhs) const
+        {
             return name == rhs.name && url == rhs.url;
         }
 
-        bool operator!=(const StreamingServiceMetadata& rhs) const {
+        bool operator!=(const StreamingServiceMetadata &rhs) const
+        {
             return !operator==(rhs);
         }
     };
-
 }

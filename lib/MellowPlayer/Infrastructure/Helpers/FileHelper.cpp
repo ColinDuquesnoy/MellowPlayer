@@ -1,19 +1,22 @@
-#include <QtCore/QStandardPaths>
-#include <QtCore/QDir>
 #include "FileHelper.hpp"
+#include <QtCore/QDir>
+#include <QtCore/QStandardPaths>
 
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-QString FileHelper::appDataDirectory() {
+QString FileHelper::appDataDirectory()
+{
     return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator();
 }
 
-QString FileHelper::logDirectory() {
+QString FileHelper::logDirectory()
+{
     return appDataDirectory() + "Logs" + QDir::separator();
 }
 
-QString FileHelper::createLogDirectory() {
+QString FileHelper::createLogDirectory()
+{
     auto directory = logDirectory();
     QDir qDir(directory);
     qDir.mkpath(qDir.path());

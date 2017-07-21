@@ -1,9 +1,10 @@
-#include <catch.hpp>
 #include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Presentation;
 
-TEST_CASE("DateConverterTests", "[UnitTest]") {
+TEST_CASE("DateConverterTests", "[UnitTest]")
+{
     DateTimeConverter converter;
 
     QDateTime today = QDateTime::currentDateTime();
@@ -13,36 +14,44 @@ TEST_CASE("DateConverterTests", "[UnitTest]") {
     QDateTime lastYear = today.addDays(-60);
     QDateTime beforeLastYear = today.addDays(-380);
 
-    SECTION("dateToCategory today") {
+    SECTION("dateToCategory today")
+    {
         REQUIRE(converter.dateToCategory(today) == "Today");
     }
 
-    SECTION("dateToCategory yesterday") {
+    SECTION("dateToCategory yesterday")
+    {
         REQUIRE(converter.dateToCategory(yesterday) == "Yesterday");
     }
 
-    SECTION("dateToCategory last week") {
+    SECTION("dateToCategory last week")
+    {
         REQUIRE(converter.dateToCategory(lastWeek) == "Last week");
     }
 
-    SECTION("dateToCategory last month") {
+    SECTION("dateToCategory last month")
+    {
         REQUIRE(converter.dateToCategory(lastMonth).toStdString() == "Last month");
     }
 
-    SECTION("dateToCategory last year") {
+    SECTION("dateToCategory last year")
+    {
         REQUIRE(converter.dateToCategory(lastYear).toStdString() == "Last year");
     }
 
-    SECTION("dateToCategory before last year") {
+    SECTION("dateToCategory before last year")
+    {
         REQUIRE(converter.dateToCategory(beforeLastYear) == "Years ago");
     }
 
-    SECTION("dateToString") {
+    SECTION("dateToString")
+    {
         REQUIRE(!converter.dateToString(today).isEmpty());
         REQUIRE(converter.dateToString(today) != converter.timeToString(today));
     }
 
-    SECTION("timeToString") {
+    SECTION("timeToString")
+    {
         REQUIRE(!converter.dateToString(today).isEmpty());
         REQUIRE(converter.dateToString(today) != converter.timeToString(today));
     }

@@ -2,9 +2,10 @@
 
 #include <QtCore/QObject>
 
-namespace MellowPlayer::Application {
-
-    class Song: public QObject {
+namespace MellowPlayer::Application
+{
+    class Song : public QObject
+    {
         Q_OBJECT
         Q_PROPERTY(QString uniqueId READ getUniqueId CONSTANT)
         Q_PROPERTY(QString title READ getTitle CONSTANT)
@@ -16,8 +17,8 @@ namespace MellowPlayer::Application {
 
     public:
         Song();
-        Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album,
-             const QString& artUrl, double duration, bool isFavorite);
+        Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album,
+             const QString &artUrl, double duration, bool isFavorite);
 
         QString getUniqueId() const;
         QString getTitle() const;
@@ -30,12 +31,24 @@ namespace MellowPlayer::Application {
         void setDuration(double value);
         void setIsFavorite(bool value);
 
-        bool operator==(const Song& other) const { return uniqueId == other.uniqueId; }
-        bool operator!=(const Song& other) const { return !this->operator==(other); }
+        bool operator==(const Song &other) const
+        {
+            return uniqueId == other.uniqueId;
+        }
+        bool operator!=(const Song &other) const
+        {
+            return !this->operator==(other);
+        }
 
-        Q_INVOKABLE bool isValid() const { return uniqueId != "" && title != ""; }
+        Q_INVOKABLE bool isValid() const
+        {
+            return uniqueId != "" && title != "";
+        }
 
-        QString toString() const { return title + " by " + artist; }
+        QString toString() const
+        {
+            return title + " by " + artist;
+        }
 
     signals:
         void durationChanged();
@@ -50,5 +63,4 @@ namespace MellowPlayer::Application {
         double duration; // in seconds
         bool isFavorite;
     };
-
 }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include <QtCore/QObject>
 #include "Release.hpp"
 #include "UpdateChannel.hpp"
+#include <QtCore/QObject>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class IReleaseQuerier;
     class IPlatformUpdater;
     class Settings;
@@ -13,24 +13,26 @@ namespace MellowPlayer::Application {
     class ILogger;
     class AbstractPlatformUpdater;
 
-    class Updater: public QObject {
+    class Updater : public QObject
+    {
         Q_OBJECT
         Q_ENUMS(Status)
     public:
-        Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater);
+        Updater(IReleaseQuerier &releaseQuerier, Settings &settings, AbstractPlatformUpdater &platformUpdater);
 
-        enum class Status {
+        enum class Status
+        {
             None,
             Checking,
             Downloading,
-            Installing
+            Installing,
         };
 
-        void setCurrentRelease(const Release* currentRelease);
+        void setCurrentRelease(const Release *currentRelease);
 
         bool isUpdateAvailable() const;
         bool canInstall() const;
-        const Release* getLatestRelease() const;
+        const Release *getLatestRelease() const;
         Status getStatus() const;
 
     public slots:
@@ -43,19 +45,19 @@ namespace MellowPlayer::Application {
         void statusChanged();
 
     private slots:
-        void onLatestReleaseReceived(const Release* release);
+        void onLatestReleaseReceived(const Release *release);
         void setStatus(Status status);
         void onDownloadFinished(bool succes);
 
     private:
-        ILogger& logger_;
-        IReleaseQuerier& releaseQuerier_;
-        AbstractPlatformUpdater& platformUpdater_;
-        Setting& autoCheckEnabledSetting_;
-        Setting& updateChannelSetting_;
+        ILogger &logger_;
+        IReleaseQuerier &releaseQuerier_;
+        AbstractPlatformUpdater &platformUpdater_;
+        Setting &autoCheckEnabledSetting_;
+        Setting &updateChannelSetting_;
         bool isUpdateAvailable_ = false;
-        const Release* currentRelease_;
-        const Release* latestRelease_ = nullptr;
+        const Release *currentRelease_;
+        const Release *latestRelease_ = nullptr;
 
         MellowPlayer::Application::UpdateChannel getChannel() const;
         Status status_ = Status::None;

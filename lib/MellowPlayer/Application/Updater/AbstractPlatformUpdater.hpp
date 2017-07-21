@@ -1,20 +1,20 @@
 #pragma once
 
-#include <QtCore/QString>
 #include "IHttpClient.hpp"
+#include <QtCore/QString>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class Release;
     class IFileDownloader;
 
-    class AbstractPlatformUpdater: public QObject
+    class AbstractPlatformUpdater : public QObject
     {
         Q_OBJECT
     public:
-        AbstractPlatformUpdater(IFileDownloader& fileDownloader);
+        AbstractPlatformUpdater(IFileDownloader &fileDownloader);
 
-        void setRelease(const Release* release);
+        void setRelease(const Release *release);
         void download();
         void install();
 
@@ -25,18 +25,16 @@ namespace MellowPlayer::Application {
         void installFinished(bool success);
 
     protected:
-        virtual void doInstall(const QString& assetFilePath) = 0;
+        virtual void doInstall(const QString &assetFilePath) = 0;
         virtual QString getAssetUrl() const = 0;
         virtual QString getAssetFileName() const = 0;
 
-        const Release* release_ = nullptr;
+        const Release *release_ = nullptr;
 
     private:
         QString makeDestinationPath();
 
         QString assetFilePath_;
-        IFileDownloader& fileDownloader_;
+        IFileDownloader &fileDownloader_;
     };
 }
-
-

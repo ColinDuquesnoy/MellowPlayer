@@ -1,43 +1,50 @@
-#include <libnotify/notify.h>
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include "LibnotifyPresenter.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "LibnotifyPresenter.hpp"
+#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <libnotify/notify.h>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-LibnotifyPresenter* LibnotifyPresenter::instance = nullptr;
+LibnotifyPresenter *LibnotifyPresenter::instance = nullptr;
 
-void notify_action_callback(NotifyNotification*, char*, gpointer) { LibnotifyPresenter::onActionCallback(); }
+void notify_action_callback(NotifyNotification *, char *, gpointer)
+{
+    LibnotifyPresenter::onActionCallback();
+}
 
-LibnotifyPresenter::LibnotifyPresenter(IMainWindow& mainWindow) :
-        logger(LoggingManager::instance().getLogger("LibnotifyPresenter")),
-        mainWindow(mainWindow),
-        previousNotification(nullptr) {
+LibnotifyPresenter::LibnotifyPresenter(IMainWindow &mainWindow)
+        : logger(LoggingManager::instance().getLogger("LibnotifyPresenter")),
+          mainWindow(mainWindow),
+          previousNotification(nullptr)
+{
     instance = this;
 }
 
-void LibnotifyPresenter::initialize() {
+void LibnotifyPresenter::initialize()
+{
     notify_init("MellowPlayer");
     LOG_DEBUG(logger, "service started")
 }
 
-bool LibnotifyPresenter::display(const Notification& notification) {
+bool LibnotifyPresenter::display(const Notification &notification)
+{
     if (previousNotification)
         notify_notification_close(previousNotification, 0);
     QString title = "MellowPlayer - " + notification.title;
-    NotifyNotification* n = notify_notification_new(title.toStdString().c_str(),
-                                                    notification.description.toStdString().c_str(),
-                                                    notification.icon.toStdString().c_str());
+    NotifyNotification *n =
+    notify_notification_new(title.toStdString().c_str(), notification.description.toStdString().c_str(),
+                            notification.icon.toStdString().c_str());
     notify_notification_set_timeout(n, 5000);
-    notify_notification_add_action(n, "open", "Open", (NotifyActionCallback) notify_action_callback, nullptr, nullptr);
+    notify_notification_add_action(n, "open", "Open", (NotifyActionCallback)notify_action_callback, nullptr, nullptr);
     bool success = static_cast<bool>(notify_notification_show(n, 0));
     previousNotification = n;
     return success;
 }
 
-void LibnotifyPresenter::onActionCallback() {
+void LibnotifyPresenter::onActionCallback()
+{
     instance->mainWindow.show();
 }

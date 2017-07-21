@@ -1,19 +1,20 @@
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include "Utils/Helpers.hpp"
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
 #include <QtTest/qtestsystem.h>
-#include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
-#include "Utils/Helpers.hpp"
+#include <catch.hpp>
+#include <fakeit.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-
-TEST_CASE("StreamingServiceWatcherTests") {
+TEST_CASE("StreamingServiceWatcherTests")
+{
     StreamingServiceCreator creator;
-    auto pluginDir = creator.create("TestService", "https://test-service.com", "MellowPlayer.Tests", "https://travis-ci.org/MellowPlayer");
+    auto pluginDir = creator.create("TestService", "https://test-service.com", "MellowPlayer.Tests",
+                                    "https://travis-ci.org/MellowPlayer");
     REQUIRE(QDir(pluginDir).exists());
 
     StreamingServiceMetadata metadata;
@@ -33,13 +34,15 @@ TEST_CASE("StreamingServiceWatcherTests") {
 
     QTest::qWait(1000);
 
-    SECTION("change script file content") {
+    SECTION("change script file content")
+    {
         REQUIRE(writeFile(pluginDir + "/" + "integration.js", "test"));
         QTest::qWait(1000);
         REQUIRE(scriptChangedSpy.count() == 1);
     }
 
-    SECTION("change theme file content") {
+    SECTION("change theme file content")
+    {
         REQUIRE(writeFile(pluginDir + "/" + "theme.json", "test"));
         QTest::qWait(1000);
         REQUIRE(themeChangedSpy.count() == 1);

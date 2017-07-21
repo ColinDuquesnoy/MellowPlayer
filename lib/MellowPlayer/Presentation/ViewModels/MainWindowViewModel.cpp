@@ -1,34 +1,31 @@
-#include <QtWebEngine>
-#include <QMessageBox>
-#include <QQuickStyle>
+#include "MainWindowViewModel.hpp"
 #include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
-#include "MainWindowViewModel.hpp"
+#include <QMessageBox>
+#include <QQuickStyle>
+#include <QtWebEngine>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
-                                         ListeningHistoryViewModel& listeningHistoryModel,
-                                         ThemeViewModel& themeViewModel,
-                                         UpdaterViewModel& updaterViewModel,
-                                         IQtApplication& qtApp,
-                                         IPlayer& player,
-                                         Settings& settings) :
-        logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
-        settings(settings),
-        streamingServices(streamingServicesModel),
-        listeningHistory(listeningHistoryModel),
-        settingsViewModel(settings, themeViewModel),
-        updaterViewModel(updaterViewModel)
+MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel &streamingServicesModel,
+                                         ListeningHistoryViewModel &listeningHistoryModel,
+                                         ThemeViewModel &themeViewModel, UpdaterViewModel &updaterViewModel,
+                                         IQtApplication &qtApp, IPlayer &player, Settings &settings)
+        : logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
+          settings(settings),
+          streamingServices(streamingServicesModel),
+          listeningHistory(listeningHistoryModel),
+          settingsViewModel(settings, themeViewModel),
+          updaterViewModel(updaterViewModel)
 {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
     qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey",
@@ -45,10 +42,10 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& s
     context->setContextProperty("_window", this);
     context->setContextProperty("_app", &qtApp);
     context->setContextProperty("_updater", &updaterViewModel);
-
 }
 
-bool MainWindowViewModel::load() {
+bool MainWindowViewModel::load()
+{
     LOG_TRACE(logger, "loading");
     QQuickStyle::setStyle("Material");
     QtWebEngine::initialize();
@@ -61,21 +58,25 @@ bool MainWindowViewModel::load() {
     return true;
 }
 
-void MainWindowViewModel::show() {
+void MainWindowViewModel::show()
+{
     setVisible(true);
 }
 
-void MainWindowViewModel::hide() {
+void MainWindowViewModel::hide()
+{
     setVisible(false);
 }
 
-void MainWindowViewModel::setVisible(bool value) {
+void MainWindowViewModel::setVisible(bool value)
+{
     if (value != visible) {
         visible = value;
         emit visibleChanged();
     }
 }
 
-bool MainWindowViewModel::isVisible() const {
+bool MainWindowViewModel::isVisible() const
+{
     return visible;
 }

@@ -3,29 +3,28 @@
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 
 struct _NotifyNotification;
-namespace MellowPlayer::Application {
 
+namespace MellowPlayer::Application
+{
     class ILogger;
     class IMainWindow;
-
 }
 
-namespace MellowPlayer::Presentation {
-
-    class LibnotifyPresenter: public Application::INotificationPresenter {
+namespace MellowPlayer::Presentation
+{
+    class LibnotifyPresenter : public Application::INotificationPresenter
+    {
     public:
-        LibnotifyPresenter(Application::IMainWindow& mainWindow);
+        LibnotifyPresenter(Application::IMainWindow &mainWindow);
         void initialize() override;
-        bool display(const Application::Notification& notification) override;
+        bool display(const Application::Notification &notification) override;
 
         static void onActionCallback();
 
     private:
-        Application::ILogger& logger;
-        Application::IMainWindow& mainWindow;
-        _NotifyNotification* previousNotification;
-        static LibnotifyPresenter* instance;
-
+        Application::ILogger &logger;
+        Application::IMainWindow &mainWindow;
+        _NotifyNotification *previousNotification;
+        static LibnotifyPresenter *instance;
     };
-
 }

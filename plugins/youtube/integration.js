@@ -41,7 +41,7 @@ function toMilliseconds(string) {
     } catch (e) {
         var duration = 0;
     }
-    
+
     return duration
 }
 
@@ -54,12 +54,10 @@ function update() {
         var artistName = document.getElementsByClassName("yt-user-info")[0].innerText;
         try {
             var artUrl = document.getElementsByClassName("branding-img-container")[0].children[0].src;
-        }
-        catch (e) {
+        } catch (e) {
             var artUrl = "";
         }
-    }
-    catch (e) {
+    } catch (e) {
         var rawPosition = "00:00";
         var rawDuration = "00:00";
         var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;

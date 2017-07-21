@@ -1,21 +1,23 @@
 #include "catch.hpp"
-#include <QtTest/QSignalSpy>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ColorSettingViewModel.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/ColorSettingViewModel.hpp>
+#include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-TEST_CASE("ColorSettingViewModelTests") {
+TEST_CASE("ColorSettingViewModelTests")
+{
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
-    Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
+    Settings &settings = pool.getSettings();
+    Setting &setting = settings.get(SettingKey::APPEARANCE_ACCENT);
     ColorSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 
-    SECTION("setValue") {
+    SECTION("setValue")
+    {
         REQUIRE(model.getValue() != "red");
         REQUIRE(spy.count() == 0);
         model.setValue("red");
@@ -23,8 +25,8 @@ TEST_CASE("ColorSettingViewModelTests") {
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("QML Component looks valid") {
+    SECTION("QML Component looks valid")
+    {
         REQUIRE(model.getQmlComponent().toLower().contains("color"));
     }
 }
-

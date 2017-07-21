@@ -2,13 +2,13 @@
 
 #include <QString>
 
-namespace MellowPlayer::Infrastructure {
-
-    class FileHelper {
+namespace MellowPlayer::Infrastructure
+{
+    class FileHelper
+    {
     public:
         static QString createLogDirectory();
         static QString appDataDirectory();
         static QString logDirectory();
     };
-
 }

@@ -3,17 +3,17 @@
 #include <QObject>
 #include <QtDBus>
 
-namespace MellowPlayer::Application {
- 
+namespace MellowPlayer::Application
+{
     class ILogger;
     class IMainWindow;
     class IQtApplication;
-    
 }
 
-namespace MellowPlayer::Infrastructure {
-
-    class Mpris2Root : public QDBusAbstractAdaptor {
+namespace MellowPlayer::Infrastructure
+{
+    class Mpris2Root : public QDBusAbstractAdaptor
+    {
         Q_OBJECT
         Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2")
     public:
@@ -27,7 +27,7 @@ namespace MellowPlayer::Infrastructure {
         Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
         Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-        Mpris2Root(Application::IMainWindow& window, Application::IQtApplication& qtApp, QObject *parent=nullptr);
+        Mpris2Root(Application::IMainWindow &window, Application::IQtApplication &qtApp, QObject *parent = nullptr);
 
         bool canRaise();
         bool canQuit();
@@ -40,15 +40,13 @@ namespace MellowPlayer::Infrastructure {
         QStringList supportedUriSchemes();
         QStringList supportedMimeTypes();
 
-
     public slots:
         void Raise();
         void Quit();
 
     private:
-        Application::ILogger& logger;
-        Application::IMainWindow& window;
-        Application::IQtApplication& qtApp;
+        Application::ILogger &logger;
+        Application::IMainWindow &window;
+        Application::IQtApplication &qtApp;
     };
-
 }

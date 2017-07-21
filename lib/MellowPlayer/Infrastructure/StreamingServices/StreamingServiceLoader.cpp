@@ -1,48 +1,51 @@
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtCore/QSettings>
-#include <QtCore/QStandardPaths>
-#include <QtCore/QTextStream>
-#include <QtGui/QIcon>
-#include <QtCore/QJsonDocument>
-#include <QtCore/QJsonObject>
+#include "StreamingServiceLoader.hpp"
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
 #include <MellowPlayer/Application/Theme/Theme.hpp>
-#include "StreamingServiceLoader.hpp"
-#include <QDebug>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
+#include <QDebug>
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
+#include <QtCore/QFileInfo>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
+#include <QtCore/QSettings>
+#include <QtCore/QStandardPaths>
+#include <QtCore/QTextStream>
+#include <QtGui/QIcon>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-StreamingServiceLoader::StreamingServiceLoader() :
-        logger(LoggingManager::instance().getLogger("StreamingServiceLoader")) {
-
+StreamingServiceLoader::StreamingServiceLoader()
+        : logger(LoggingManager::instance().getLogger("StreamingServiceLoader"))
+{
 }
 
-QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const {
+QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
+{
     QList<shared_ptr<StreamingService>> services;
-    for (const QString& path: getSearchPaths()) {
+    for (const QString &path : getSearchPaths()) {
         if (!QDir(path).exists()) {
             LOG_DEBUG(logger, "skipping plugin directory: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
         LOG_DEBUG(logger, "looking for services in " << path.toStdString().c_str());
-        for (const QFileInfo& directory: QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        for (const QFileInfo &directory : QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
                 if (service->isValid() && !containsService(services, service)) {
-                    LOG_DEBUG(logger, service->getName() + " streamingService successfully loaded (from \"" +
-                                      directory.absoluteFilePath() + "\")");
+                    LOG_DEBUG(logger,
+                              service->getName() + " streamingService successfully loaded (from \""
+                              + directory.absoluteFilePath() + "\")");
                     services.append(service);
                 } else {
-                    LOG_DEBUG(logger, "skipping streamingService " + service->getName() +
-                                      ", already loaded from another source or invalid");
+                    LOG_DEBUG(logger,
+                              "skipping streamingService " + service->getName()
+                              + ", already loaded from another source or invalid");
                 }
             }
         }
@@ -51,16 +54,17 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const {
     return services;
 }
 
-QString StreamingServiceLoader::findFileByExtension(const QString& directory, const QString& suffix) const {
-            foreach (const QFileInfo& fileInfo,
-                     QDir(directory).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
-            if (fileInfo.isFile() && fileInfo.suffix() == suffix)
-                return fileInfo.absoluteFilePath();
-        }
+QString StreamingServiceLoader::findFileByExtension(const QString &directory, const QString &suffix) const
+{
+    foreach (const QFileInfo &fileInfo, QDir(directory).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
+        if (fileInfo.isFile() && fileInfo.suffix() == suffix)
+            return fileInfo.absoluteFilePath();
+    }
     return QString();
 }
 
-QString StreamingServiceLoader::readFileContent(const QString& filePath) {
+QString StreamingServiceLoader::readFileContent(const QString &filePath)
+{
     QString retVal;
 
     QFile file(filePath);
@@ -72,7 +76,8 @@ QString StreamingServiceLoader::readFileContent(const QString& filePath) {
     return retVal;
 }
 
-StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& filePath) const {
+StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString &filePath) const
+{
     QSettings meta(filePath, QSettings::IniFormat);
 
     StreamingServiceMetadata serviceMetadata;
@@ -86,13 +91,15 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     return serviceMetadata;
 }
 
-Theme StreamingServiceLoader::readTheme(const QString& filePath) {
+Theme StreamingServiceLoader::readTheme(const QString &filePath)
+{
 
     static ThemeLoader loader;
     return loader.load(filePath);
 }
 
-unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& directory) const {
+unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString &directory) const
+{
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
     QString themePath = findFileByExtension(directory, "json");
@@ -106,19 +113,22 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
     return make_unique<StreamingService>(metadata, theme);
 }
 
-bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) const {
+bool StreamingServiceLoader::checkServiceDirectory(const QString &directory) const
+{
     QString metadataPath = findFileByExtension(directory, "ini");
     QString scriptPath = findFileByExtension(directory, "js");
 
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }
 
-QString StreamingServiceLoader::getUserDirectory() {
-    return QFileInfo(QStandardPaths::standardLocations(
-            QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
+QString StreamingServiceLoader::getUserDirectory()
+{
+    return QFileInfo(QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation)[0], "plugins")
+    .absoluteFilePath();
 }
 
-QStringList StreamingServiceLoader::getSearchPaths() const {
+QStringList StreamingServiceLoader::getSearchPaths() const
+{
     QStringList paths;
 
     paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
@@ -146,9 +156,10 @@ QStringList StreamingServiceLoader::getSearchPaths() const {
     return paths;
 }
 
-bool StreamingServiceLoader::containsService(const QList<shared_ptr<StreamingService>>& services,
-                                             shared_ptr<StreamingService>& toCheck) const {
-    for (auto service: services) {
+bool StreamingServiceLoader::containsService(const QList<shared_ptr<StreamingService>> &services,
+                                             shared_ptr<StreamingService> &toCheck) const
+{
+    for (auto service : services) {
         if (*toCheck == *service)
             return true;
     }

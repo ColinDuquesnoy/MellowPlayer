@@ -1,14 +1,16 @@
 #pragma once
+#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace fakeit;
 
-class SystemTrayIconMock {
+class SystemTrayIconMock
+{
 public:
-    static Mock<ISystemTrayIcon> get() {
+    static Mock<ISystemTrayIcon> get()
+    {
         Mock<ISystemTrayIcon> mock;
 
         When(Method(mock, show)).AlwaysReturn();

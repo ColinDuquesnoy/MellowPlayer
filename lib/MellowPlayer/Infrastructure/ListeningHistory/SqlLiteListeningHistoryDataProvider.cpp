@@ -1,26 +1,28 @@
+#include "SqlLiteListeningHistoryDataProvider.hpp"
+#include "MellowPlayer/Infrastructure/Helpers/FileHelper.hpp"
+#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <QtCore/QVariant>
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlRecord>
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include "MellowPlayer/Infrastructure/Helpers/FileHelper.hpp"
-#include "SqlLiteListeningHistoryDataProvider.hpp"
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider() :
-        logger(LoggingManager::instance().getLogger("SqlLiteListeningHistoryDataProvider")) {
-
+SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider()
+        : logger(LoggingManager::instance().getLogger("SqlLiteListeningHistoryDataProvider"))
+{
 }
 
-SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider() {
+SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider()
+{
     database.close();
 }
 
-bool SqlLiteListeningHistoryDataProvider::openDatabase() {
+bool SqlLiteListeningHistoryDataProvider::openDatabase()
+{
     std::stringstream stream;
     auto path = getDatabasePath();
     LOG_DEBUG(logger, "opening listening history db: " + path)
@@ -33,9 +35,12 @@ bool SqlLiteListeningHistoryDataProvider::openDatabase() {
     return true;
 }
 
-int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry& entry) {
+int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry &entry)
+{
     QSqlQuery query;
-    query.prepare("INSERT INTO song (songUniqueId, songTitle, artist, album, artUrl, serviceName, time) VALUES (:songUniqueId, :songTitle, :artist, :album, :artUrl, :serviceName, :time)");
+    query.prepare("INSERT INTO song (songUniqueId, songTitle, artist, album, "
+                  "artUrl, serviceName, time) VALUES (:songUniqueId, :songTitle, "
+                  ":artist, :album, :artUrl, :serviceName, :time)");
     query.bindValue(":songUniqueId", entry.songUniqueId);
     query.bindValue(":songTitle", entry.songTitle);
     query.bindValue(":artist", entry.artist);
@@ -50,7 +55,8 @@ int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry& entry)
     return query.lastInsertId().toInt();
 }
 
-void SqlLiteListeningHistoryDataProvider::clear() {
+void SqlLiteListeningHistoryDataProvider::clear()
+{
     QSqlQuery query;
     query.prepare("DELETE FROM song");
 
@@ -58,7 +64,8 @@ void SqlLiteListeningHistoryDataProvider::clear() {
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
-void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const QString& filterValue) {
+void SqlLiteListeningHistoryDataProvider::remove(const QString &filterKey, const QString &filterValue)
+{
     QSqlQuery query;
     query.prepare(QString("DELETE FROM song WHERE %1=(:%1)").arg(filterKey));
     query.bindValue(QString(":%1").arg(filterKey), filterValue);
@@ -67,9 +74,10 @@ void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
-void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifiers) {
+void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int> &identifiers)
+{
     QStringList idStrings;
-    foreach(int id, identifiers)
+    foreach (int id, identifiers)
         idStrings << QString::number(id);
     QString numberList = idStrings.join(",");
 
@@ -80,7 +88,8 @@ void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifie
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
-QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const {
+QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
+{
     QList<ListeningHistoryEntry> retVal;
 
     QSqlQuery query("SELECT * FROM song ORDER BY time");
@@ -93,8 +102,7 @@ QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
     int idServiceName = query.record().indexOf("serviceName");
     int idTime = query.record().indexOf("time");
 
-    while (query.next())
-    {
+    while (query.next()) {
         ListeningHistoryEntry entry;
         entry.songUniqueId = query.value(idUniqueId).toString();
         entry.songTitle = query.value(idTitle).toString();
@@ -110,23 +118,27 @@ QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
     return retVal;
 }
 
-void SqlLiteListeningHistoryDataProvider::initDatabase() {
+void SqlLiteListeningHistoryDataProvider::initDatabase()
+{
     if (database.tables().count() == 0) {
         LOG_DEBUG(logger, "creating database");
         QSqlQuery query;
-        query.prepare("CREATE TABLE song(id INTEGER PRIMARY KEY, songUniqueId TEXT, songTitle TEXT, artist TEXT, album TEXT, "
+        query.prepare("CREATE TABLE song(id INTEGER PRIMARY KEY, songUniqueId "
+                      "TEXT, songTitle TEXT, artist TEXT, album TEXT, "
                       "artUrl TEXT, serviceName TEXT, time TEXT);");
         if (!query.exec())
             LOG_WARN(logger, "failed to create song table: " + query.lastError().text());
     }
 }
 
-void SqlLiteListeningHistoryDataProvider::initialize() {
+void SqlLiteListeningHistoryDataProvider::initialize()
+{
     database = QSqlDatabase::addDatabase("QSQLITE");
     if (openDatabase())
         initDatabase();
 }
 
-QString SqlLiteListeningHistoryDataProvider::getDatabasePath() {
+QString SqlLiteListeningHistoryDataProvider::getDatabasePath()
+{
     return FileHelper::appDataDirectory() + "history.db";
 }

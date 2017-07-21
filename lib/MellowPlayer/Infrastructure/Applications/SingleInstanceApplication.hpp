@@ -1,25 +1,25 @@
 #pragma once
 
-#include <QObject>
-#include <QLocalSocket>
-#include <QLocalServer>
 #include "IApplication.hpp"
+#include <QLocalServer>
+#include <QLocalSocket>
+#include <QObject>
 
-namespace MellowPlayer::Application {
-
+namespace MellowPlayer::Application
+{
     class ILogger;
     class ICommandLineParser;
     class IPlayer;
-
 }
 
-namespace MellowPlayer::Infrastructure {
-
-    class SingleInstanceApplication : public QObject {
+namespace MellowPlayer::Infrastructure
+{
+    class SingleInstanceApplication : public QObject
+    {
         Q_OBJECT
     public:
-        SingleInstanceApplication(IApplication& application, Application::ICommandLineParser& commandLineParser,
-                                  Application::IPlayer& currentPlayer);
+        SingleInstanceApplication(IApplication &application, Application::ICommandLineParser &commandLineParser,
+                                  Application::IPlayer &currentPlayer);
 
         int run();
 
@@ -34,10 +34,10 @@ namespace MellowPlayer::Infrastructure {
     private:
         QString getRequestedAcion() const;
 
-        Application::ILogger& logger;
-        IApplication& application;
-        Application::ICommandLineParser& commandLineParser;
-        Application::IPlayer& currentPlayer;
+        Application::ILogger &logger;
+        IApplication &application;
+        Application::ICommandLineParser &commandLineParser;
+        Application::IPlayer &currentPlayer;
         QLocalSocket localSocket;
         QLocalServer localServer;
 
@@ -46,5 +46,4 @@ namespace MellowPlayer::Infrastructure {
         static const QString previousAction;
         static const QString restoreWindowAction;
     };
-
 }

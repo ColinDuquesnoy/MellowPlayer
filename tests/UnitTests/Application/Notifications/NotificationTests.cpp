@@ -1,18 +1,21 @@
-#include <catch.hpp>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 
-TEST_CASE("NotificationTests", "[UnitTest]") {
-    Notification notification1 { "title", "message", "", NotificationType::NewSong };
-    Notification sameAsnotification1 { "title", "message", "", NotificationType::NewSong };
-    Notification notification2 { "title2", "message2", "", NotificationType::Paused };
+TEST_CASE("NotificationTests", "[UnitTest]")
+{
+    Notification notification1{"title", "message", "", NotificationType::NewSong};
+    Notification sameAsnotification1{"title", "message", "", NotificationType::NewSong};
+    Notification notification2{"title2", "message2", "", NotificationType::Paused};
 
-    SECTION("toString") {
+    SECTION("toString")
+    {
         REQUIRE(notification1.toString() == "title - message");
     }
 
-    SECTION("equality operator") {
+    SECTION("equality operator")
+    {
         REQUIRE(notification1 != notification2);
         REQUIRE(notification1 == sameAsnotification1);
     }
