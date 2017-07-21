@@ -53,10 +53,14 @@
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #endif
 
-#ifdef Q_OS_LINUX
-#include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
+#if defined(Q_OS_LINUX)
+    #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
+    #include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
+    #include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
+#elif defined(Q_OS_WIN)
+    #include <MellowPlayer/Infrastructure/Platform/Windows/Updater/WindowsUpdater.hpp>
+#elif defined(Q_OS_OSX)
+    #include <MellowPlayer/Infrastructure/Platform/OSX/Updater/OSXUpdater.hpp>
 #endif
 
 using namespace MellowPlayer::Application;
