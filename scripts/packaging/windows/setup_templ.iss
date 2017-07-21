@@ -46,6 +46,8 @@ Name: vcredist; Description: "MSVC 2015 Redist";  Types: full; Flags: disablenou
 
 [Files]
 Source: "bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Components: app
+Source: "..\scripts\packaging\windows\libeay32.dll"; DestDir: "{app}"; Components: app
+Source: "..\scripts\packaging\windows\ssleay32.dll"; DestDir: "{app}"; Components: app
 Source: "..\scripts\packaging\windows\vc_redist.x64.exe"; DestDir: "{tmp}"; Components: vcredist
 Source: "..\scripts\packaging\windows\flashplayer26pp_fb_install.exe"; DestDir: "{tmp}"; Components: flash
 

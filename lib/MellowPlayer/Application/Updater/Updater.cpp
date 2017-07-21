@@ -22,9 +22,6 @@ Updater::Updater(IReleaseQuerier &releaseQuerier, Settings &settings, AbstractPl
     connect(&platformUpdater, &AbstractPlatformUpdater::progressUpdated, this, &Updater::progressUpdated);
     connect(&platformUpdater, &AbstractPlatformUpdater::downloadFinished, this, &Updater::onDownloadFinished);
     connect(&platformUpdater, &AbstractPlatformUpdater::installFinished, this, &Updater::onInstallFinished);
-
-//    Release *r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
-//    setCurrentRelease(r);
 }
 
 void Updater::check()
@@ -64,7 +61,6 @@ const Release *Updater::getLatestRelease() const
 
 void Updater::onLatestReleaseReceived(const Release *release)
 {
-    LOG_DEBUG(logger_, "Latest release received: " + release->getName());
     if (release != nullptr && *release > *currentRelease_) {
         LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->getName()).arg(release->getName()));
         setStatus(Status::UpdateAvailable);

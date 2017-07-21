@@ -1,4 +1,5 @@
 #include "HttpClient.hpp"
+#include <QDebug>
 
 using namespace MellowPlayer::Infrastructure;
 
@@ -14,5 +15,7 @@ void HttpClient::get(const QString &url)
 
 void HttpClient::onFinished(QNetworkReply *reply)
 {
+    if (reply->error() != QNetworkReply::NoError)
+        qWarning() << "http request failed: " << reply->errorString();
     emit replyReceived(reply->readAll());
 }
