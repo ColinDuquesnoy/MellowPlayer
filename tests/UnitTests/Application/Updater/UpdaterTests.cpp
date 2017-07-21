@@ -32,7 +32,7 @@ SCENARIO("check for stable updates")
 
             THEN("update to version version 2.2.5 is available")
             {
-                REQUIRE(updater.getStatus() == Updater::Status::None);
+                REQUIRE(updater.getStatus() == Updater::Status::UpdateAvailable);
                 REQUIRE(updater.isUpdateAvailable());
                 REQUIRE(updater.getLatestRelease()->getName() == "2.2.5");
                 REQUIRE(updateAvailableSpy.count() == 1);

@@ -18,8 +18,7 @@ const QString SingleInstanceApplication::nextAction = "next";
 const QString SingleInstanceApplication::previousAction = "previous";
 const QString SingleInstanceApplication::restoreWindowAction = "restore-window";
 
-SingleInstanceApplication::SingleInstanceApplication(IApplication &application, ICommandLineParser &commandLineParser,
-                                                     IPlayer &currentPlayer)
+SingleInstanceApplication::SingleInstanceApplication(IApplication &application, ICommandLineParser &commandLineParser, IPlayer &currentPlayer)
         : logger(LoggingManager::instance().getLogger("SingleInstanceApplication")),
           application(application),
           commandLineParser(commandLineParser),

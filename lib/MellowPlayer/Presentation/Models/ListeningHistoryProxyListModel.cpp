@@ -2,8 +2,7 @@
 
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryProxyListModel::ListeningHistoryProxyListModel(
-QQmlObjectListModel<ListeningHistoryEntryViewModel> *sourceModel)
+ListeningHistoryProxyListModel::ListeningHistoryProxyListModel(QQmlObjectListModel<ListeningHistoryEntryViewModel> *sourceModel)
         : sourceModel(sourceModel)
 {
     setSourceModel(sourceModel);

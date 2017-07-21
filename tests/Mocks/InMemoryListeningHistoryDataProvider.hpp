@@ -31,8 +31,7 @@ public:
         QList<MellowPlayer::Application::ListeningHistoryEntry> toRemove;
         for (int i = 0; i < entries.count(); ++i) {
             auto &entry = entries.at(i);
-            if ((filterKey == "id" && entry.id == filterValue.toInt())
-                || (filterKey == "serviceName" && entry.serviceName == filterValue))
+            if ((filterKey == "id" && entry.id == filterValue.toInt()) || (filterKey == "serviceName" && entry.serviceName == filterValue))
                 toRemove.append(entry);
         }
         for (auto &entry : toRemove)

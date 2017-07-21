@@ -41,8 +41,8 @@ QVariantList qListToVariant(const QList<T> &list)
 }
 
 // custom foreach for QList, which uses no copy and check pointer non-null
-#define FOREACH_PTR_IN_QLIST(_type_, _var_, _list_)                                                                    \
-    for (typename QList<_type_ *>::const_iterator it = _list_.begin(); it != _list_.end(); ++it)                       \
+#define FOREACH_PTR_IN_QLIST(_type_, _var_, _list_)                                                                                                  \
+    for (typename QList<_type_ *>::const_iterator it = _list_.begin(); it != _list_.end(); ++it)                                                     \
         for (_type_ *_var_ = static_cast<_type_ *>(*it); _var_ != Q_NULLPTR; _var_ = Q_NULLPTR)
 
 class QQmlObjectListModelBase : public QAbstractListModel
@@ -86,18 +86,13 @@ template <class ItemType>
 class QQmlObjectListModel : public QQmlObjectListModelBase
 {
 public:
-    explicit QQmlObjectListModel(QObject *parent = Q_NULLPTR, const QByteArray &displayRole = QByteArray(),
-                                 const QByteArray &uidRole = QByteArray())
-            : QQmlObjectListModelBase(parent),
-              m_count(0),
-              m_uidRoleName(uidRole),
-              m_dispRoleName(displayRole),
-              m_metaObj(ItemType::staticMetaObject)
+    explicit QQmlObjectListModel(QObject *parent = Q_NULLPTR, const QByteArray &displayRole = QByteArray(), const QByteArray &uidRole = QByteArray())
+            : QQmlObjectListModelBase(parent), m_count(0), m_uidRoleName(uidRole), m_dispRoleName(displayRole), m_metaObj(ItemType::staticMetaObject)
     {
         static QSet<QByteArray> roleNamesBlacklist;
         if (roleNamesBlacklist.isEmpty()) {
-            roleNamesBlacklist << QByteArrayLiteral("id") << QByteArrayLiteral("index") << QByteArrayLiteral("class")
-                               << QByteArrayLiteral("model") << QByteArrayLiteral("modelData");
+            roleNamesBlacklist << QByteArrayLiteral("id") << QByteArrayLiteral("index") << QByteArrayLiteral("class") << QByteArrayLiteral("model")
+                               << QByteArrayLiteral("modelData");
         }
         static const char *HANDLER = "onItemPropertyChanged()";
         m_handler = metaObject()->method(metaObject()->indexOfMethod(HANDLER));
@@ -115,8 +110,7 @@ public:
                     m_signalIdxToRole.insert(metaProp.notifySignalIndex(), role);
                 }
             } else {
-                static const QByteArray CLASS_NAME =
-                (QByteArrayLiteral("QQmlObjectListModel<") % m_metaObj.className() % '>');
+                static const QByteArray CLASS_NAME = (QByteArrayLiteral("QQmlObjectListModel<") % m_metaObj.className() % '>');
                 qWarning() << "Can't have" << propName << "as a role name in" << qPrintable(CLASS_NAME);
             }
         }
@@ -137,8 +131,7 @@ public:
         ItemType *item = at(index.row());
         const QByteArray rolename = (role != Qt::DisplayRole ? m_roles.value(role, emptyBA()) : m_dispRoleName);
         if (item != Q_NULLPTR && !rolename.isEmpty()) {
-            ret.setValue(role != baseRole() ? item->property(rolename)
-                                            : QVariant::fromValue(static_cast<QObject *>(item)));
+            ret.setValue(role != baseRole() ? item->property(rolename) : QVariant::fromValue(static_cast<QObject *>(item)));
         }
         return ret;
     }
@@ -501,18 +494,18 @@ private: // data members
     QHash<QString, ItemType *> m_indexByUid;
 };
 
-#define QML_OBJMODEL_PROPERTY(type, name)                                                                              \
-protected:                                                                                                             \
-    Q_PROPERTY(QQmlObjectListModelBase *name READ get_##name CONSTANT)                                                 \
-private:                                                                                                               \
-    QQmlObjectListModel<type> *m_##name;                                                                               \
-                                                                                                                       \
-public:                                                                                                                \
-    QQmlObjectListModel<type> *get_##name(void) const                                                                  \
-    {                                                                                                                  \
-        return m_##name;                                                                                               \
-    }                                                                                                                  \
-                                                                                                                       \
+#define QML_OBJMODEL_PROPERTY(type, name)                                                                                                            \
+protected:                                                                                                                                           \
+    Q_PROPERTY(QQmlObjectListModelBase *name READ get_##name CONSTANT)                                                                               \
+private:                                                                                                                                             \
+    QQmlObjectListModel<type> *m_##name;                                                                                                             \
+                                                                                                                                                     \
+public:                                                                                                                                              \
+    QQmlObjectListModel<type> *get_##name(void) const                                                                                                \
+    {                                                                                                                                                \
+        return m_##name;                                                                                                                             \
+    }                                                                                                                                                \
+                                                                                                                                                     \
 private:
 
 #endif // QQMLOBJECTLISTMODEL_H

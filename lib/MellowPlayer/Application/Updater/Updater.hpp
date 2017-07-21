@@ -24,8 +24,11 @@ namespace MellowPlayer::Application
         {
             None,
             Checking,
+            UpdateAvailable,
             Downloading,
             Installing,
+            Installed,
+            Failure
         };
 
         void setCurrentRelease(const Release *currentRelease);
@@ -38,16 +41,20 @@ namespace MellowPlayer::Application
     public slots:
         void check();
         void install();
+        void restart();
 
     signals:
         void updateAvailable();
         void noUpdateAvailable();
         void statusChanged();
+        void progressUpdated(double progress);
+        void installed();
 
     private slots:
         void onLatestReleaseReceived(const Release *release);
         void setStatus(Status status);
         void onDownloadFinished(bool succes);
+        void onInstallFinished(bool succes);
 
     private:
         ILogger &logger_;

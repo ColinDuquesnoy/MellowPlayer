@@ -8,12 +8,8 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
-StreamingServicesController::StreamingServicesController(IStreamingServiceLoader &loader,
-                                                         IStreamingServiceWatcher &watcher)
-        : logger(LoggingManager::instance().getLogger("StreamingServicesController")),
-          loader(loader),
-          watcher(watcher),
-          current(nullptr)
+StreamingServicesController::StreamingServicesController(IStreamingServiceLoader &loader, IStreamingServiceWatcher &watcher)
+        : logger(LoggingManager::instance().getLogger("StreamingServicesController")), loader(loader), watcher(watcher), current(nullptr)
 {
 }
 
@@ -32,8 +28,7 @@ void StreamingServicesController::load()
         if (!found) {
             LOG_DEBUG(logger, "service added: " + newService->getName());
             services.append(newService);
-            if (!newService->getPluginDirectory().startsWith("/usr/")
-                && !newService->getPluginDirectory().startsWith("/tmp/"))
+            if (!newService->getPluginDirectory().startsWith("/usr/") && !newService->getPluginDirectory().startsWith("/tmp/"))
                 watcher.watch(*newService);
             emit added(newService.get());
         }

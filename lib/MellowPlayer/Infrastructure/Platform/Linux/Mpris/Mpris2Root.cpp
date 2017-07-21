@@ -7,10 +7,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 Mpris2Root::Mpris2Root(IMainWindow &window, IQtApplication &qtApp, QObject *parent)
-        : QDBusAbstractAdaptor(parent),
-          logger(LoggingManager::instance().getLogger("Mpris2Root")),
-          window(window),
-          qtApp(qtApp)
+        : QDBusAbstractAdaptor(parent), logger(LoggingManager::instance().getLogger("Mpris2Root")), window(window), qtApp(qtApp)
 {
 }
 

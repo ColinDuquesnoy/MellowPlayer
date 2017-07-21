@@ -8,9 +8,7 @@ using namespace MellowPlayer::Application;
 using namespace std;
 
 StreamingService::StreamingService(const StreamingServiceMetadata &metadata, const Theme &theme)
-        : metadata(metadata),
-          theme(theme),
-          script(make_unique<StreamingServiceScript>(metadata.script, metadata.scriptPath))
+        : metadata(metadata), theme(theme), script(make_unique<StreamingServiceScript>(metadata.script, metadata.scriptPath))
 {
 }
 

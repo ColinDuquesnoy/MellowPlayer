@@ -22,8 +22,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        HotkeysController(Application::IPlayer &player, Application::Settings &settings,
-                          Application::IMainWindow &mainWindow);
+        HotkeysController(Application::IPlayer &player, Application::Settings &settings, Application::IMainWindow &mainWindow);
         ~HotkeysController();
 
         void start() override;

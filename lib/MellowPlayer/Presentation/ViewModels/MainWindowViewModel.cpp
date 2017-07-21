@@ -17,9 +17,8 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel &streamingServicesModel,
-                                         ListeningHistoryViewModel &listeningHistoryModel,
-                                         ThemeViewModel &themeViewModel, UpdaterViewModel &updaterViewModel,
-                                         IQtApplication &qtApp, IPlayer &player, Settings &settings)
+                                         ListeningHistoryViewModel &listeningHistoryModel, ThemeViewModel &themeViewModel,
+                                         UpdaterViewModel &updaterViewModel, IQtApplication &qtApp, IPlayer &player, Settings &settings)
         : logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
           settings(settings),
           streamingServices(streamingServicesModel),
@@ -28,10 +27,8 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel &s
           updaterViewModel(updaterViewModel)
 {
     qmlRegisterUncreatableType<Player>("MellowPlayer", 3, 0, "Player", "Player cannot be instantiated from QML");
-    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey",
-                                           "SettingKey cannot be instantiated from QML");
-    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "MainPageViewModel",
-                                           "MainPageViewModel cannot be instantiated from QML");
+    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey", "SettingKey cannot be instantiated from QML");
+    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "MainPageViewModel", "MainPageViewModel cannot be instantiated from QML");
     auto context = qmlApplicationEngine.rootContext();
     context->setContextProperty("_streamingServices", &streamingServicesModel);
     context->setContextProperty("_listeningHistory", &listeningHistoryModel);

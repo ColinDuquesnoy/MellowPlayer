@@ -10,14 +10,10 @@ UpdaterViewModel::UpdaterViewModel(Updater &updater) : updater_(updater)
     connect(&updater, &Updater::noUpdateAvailable, this, &UpdaterViewModel::onNoUpdateAvailable);
     connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::statusChanged);
     connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::busyChanged);
-    connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::updateMessage);
+    connect(&updater, &Updater::progressUpdated, this, &UpdaterViewModel::onProgressUpdated);
+    connect(&updater, &Updater::installed, this, &UpdaterViewModel::onInstalled);
     emit statusChanged();
     emit busyChanged();
-}
-
-QString UpdaterViewModel::getMessage() const
-{
-    return message_;
 }
 
 bool UpdaterViewModel::isVisible() const
@@ -30,7 +26,7 @@ bool UpdaterViewModel::isInstallEnabled() const
     return installEnabled_;
 }
 
-int UpdaterViewModel::getProgress() const
+double UpdaterViewModel::getProgress() const
 {
     return progress_;
 }
@@ -49,8 +45,18 @@ void UpdaterViewModel::check()
 void UpdaterViewModel::install()
 {
     setInstallEnabled(false);
+    setRestartEnabled(false);
     setProgress(-1);
     updater_.install();
+}
+
+void UpdaterViewModel::restart()
+{
+    setInstallEnabled(false);
+    setRestartEnabled(false);
+    setProgress(-1);
+    setVisible(false);
+    updater_.restart();
 }
 
 void UpdaterViewModel::setVisible(bool visible)
@@ -71,7 +77,7 @@ void UpdaterViewModel::setInstallEnabled(bool enabled)
     emit installEnabledChanged();
 }
 
-void UpdaterViewModel::setProgress(int progress)
+void UpdaterViewModel::setProgress(double progress)
 {
     if (progress_ == progress)
         return;
@@ -83,25 +89,18 @@ void UpdaterViewModel::setProgress(int progress)
 void UpdaterViewModel::onUpdateAvailable()
 {
     setInstallEnabled(updater_.canInstall());
+    setRestartEnabled(false);
     setProgress(-1);
     setVisible(true);
-    updateMessage();
+    ;
 }
 
 void UpdaterViewModel::onNoUpdateAvailable()
 {
     setInstallEnabled(false);
+    setRestartEnabled(false);
     setProgress(-1);
     setVisible(false);
-    updateMessage();
-}
-
-void UpdaterViewModel::setMessage(const QString &message)
-{
-    if (message_ == message)
-        return;
-    message_ = message;
-    emit messageChanged();
 }
 
 QString UpdaterViewModel::getUrl() const
@@ -119,14 +118,27 @@ QString UpdaterViewModel::getStatusString() const
 
 bool UpdaterViewModel::isBusy() const
 {
-    return updater_.getStatus() != Updater::Status::None;
+    return updater_.getStatus() == Updater::Status::Checking || updater_.getStatus() == Updater::Status::Downloading
+    || updater_.getStatus() == Updater::Status::Installing;
 }
 
-void UpdaterViewModel::updateMessage()
+void UpdaterViewModel::onProgressUpdated(double progress)
 {
-    if (updater_.getStatus() == Updater::Status::None && updater_.isUpdateAvailable()) {
-        setMessage(
-        tr("A new version of <b>MellowPlayer</b> is available (%1)").arg(updater_.getLatestRelease()->getName()));
-    } else
-        setMessage(getStatusString());
+    setProgress(progress);
+}
+bool UpdaterViewModel::isRestartEnabled() const
+{
+    return restartEnabled_;
+}
+void UpdaterViewModel::setRestartEnabled(bool enabled)
+{
+    if (restartEnabled_ != enabled) {
+        restartEnabled_ = enabled;
+        emit restartEnabledChanged();
+    }
+}
+void UpdaterViewModel::onInstalled()
+{
+    setInstallEnabled(false);
+    setRestartEnabled(true);
 }

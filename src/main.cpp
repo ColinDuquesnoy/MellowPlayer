@@ -38,9 +38,8 @@ int main(int argc, char **argv)
     LOG_INFO(LoggingManager::instance().getLogger("main"),
              QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.getBuildInfo()));
 
-    auto injector =
-    di::make_injector(di::bind<IQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
-                      defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
+    auto injector = di::make_injector(di::bind<IQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
+                                      defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
 #ifdef QT_DEBUG
     IApplication &app = injector.create<IApplication &>();

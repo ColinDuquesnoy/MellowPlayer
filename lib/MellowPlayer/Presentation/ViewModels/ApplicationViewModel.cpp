@@ -110,8 +110,7 @@ static QString compilerString()
 #if defined(__apple_build_version__) // Apple clang has other version numbers
     isAppleString = QLatin1String(" (Apple)");
 #endif
-    return QLatin1String("Clang ") + QString::number(__clang_major__) + QLatin1Char('.')
-    + QString::number(__clang_minor__) + isAppleString;
+    return QLatin1String("Clang ") + QString::number(__clang_major__) + QLatin1Char('.') + QString::number(__clang_minor__) + isAppleString;
 #elif defined(Q_CC_GNU)
     return QLatin1String("GCC ") + QLatin1String(__VERSION__);
 #elif defined(Q_CC_MSVC)
@@ -128,8 +127,7 @@ QString ApplicationViewModel::getBuildInfo() const
 {
 
     return QObject::tr("Built on %1 at %2 (%3, %4 bit) with Qt %5")
-    .arg(QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize),
-         QString(QT_VERSION_STR));
+    .arg(QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize), QString(QT_VERSION_STR));
 }
 
 bool ApplicationViewModel::restartRequested() const

@@ -12,7 +12,10 @@ namespace MellowPlayer::Presentation
 
         static const QString NONE;
         static const QString CHECKING;
+        static const QString UPDATE;
         static const QString DOWNLOADING;
         static const QString INSTALLING;
+        static const QString INSTALLED;
+        static const QString FAILURE;
     };
 }

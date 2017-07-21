@@ -7,12 +7,9 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServiceViewModel::StreamingServiceViewModel(StreamingService &streamingService, ISettingsProvider &settings,
-                                                     Players &players, QObject *parent)
-        : QObject(parent),
-          streamingService(streamingService),
-          settingsProvider(settings),
-          player(players.get(streamingService.getName()))
+StreamingServiceViewModel::StreamingServiceViewModel(StreamingService &streamingService, ISettingsProvider &settings, Players &players,
+                                                     QObject *parent)
+        : QObject(parent), streamingService(streamingService), settingsProvider(settings), player(players.get(streamingService.getName()))
 {
 }
 

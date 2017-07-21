@@ -17,8 +17,8 @@ namespace MellowPlayer::Application
 
     public:
         Song();
-        Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album,
-             const QString &artUrl, double duration, bool isFavorite);
+        Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album, const QString &artUrl, double duration,
+             bool isFavorite);
 
         QString getUniqueId() const;
         QString getTitle() const;

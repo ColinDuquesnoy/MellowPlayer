@@ -18,8 +18,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        SingleInstanceApplication(IApplication &application, Application::ICommandLineParser &commandLineParser,
-                                  Application::IPlayer &currentPlayer);
+        SingleInstanceApplication(IApplication &application, Application::ICommandLineParser &commandLineParser, Application::IPlayer &currentPlayer);
 
         int run();
 

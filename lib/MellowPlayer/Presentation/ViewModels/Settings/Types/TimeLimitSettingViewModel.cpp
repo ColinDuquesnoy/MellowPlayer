@@ -3,8 +3,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting &setting, QObject *parent)
-        : SettingViewModel(setting, parent)
+TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
 {
     registerEnumTranslation(TimeLimits::Today, tr("Today"));
     registerEnumTranslation(TimeLimits::Yesterday, tr("Yesterday"));

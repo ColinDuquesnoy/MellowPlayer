@@ -6,8 +6,7 @@ using namespace std;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-StreamingServiceWatcher::StreamingServiceWatcher()
-        : logger(LoggingManager::instance().getLogger("StreamingServiceWatcher"))
+StreamingServiceWatcher::StreamingServiceWatcher() : logger(LoggingManager::instance().getLogger("StreamingServiceWatcher"))
 {
     connect(&fileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &StreamingServiceWatcher::onFileChanged);
 }

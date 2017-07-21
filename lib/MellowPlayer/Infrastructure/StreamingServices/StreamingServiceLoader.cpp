@@ -20,8 +20,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-StreamingServiceLoader::StreamingServiceLoader()
-        : logger(LoggingManager::instance().getLogger("StreamingServiceLoader"))
+StreamingServiceLoader::StreamingServiceLoader() : logger(LoggingManager::instance().getLogger("StreamingServiceLoader"))
 {
 }
 
@@ -38,14 +37,10 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
                 if (service->isValid() && !containsService(services, service)) {
-                    LOG_DEBUG(logger,
-                              service->getName() + " streamingService successfully loaded (from \""
-                              + directory.absoluteFilePath() + "\")");
+                    LOG_DEBUG(logger, service->getName() + " streamingService successfully loaded (from \"" + directory.absoluteFilePath() + "\")");
                     services.append(service);
                 } else {
-                    LOG_DEBUG(logger,
-                              "skipping streamingService " + service->getName()
-                              + ", already loaded from another source or invalid");
+                    LOG_DEBUG(logger, "skipping streamingService " + service->getName() + ", already loaded from another source or invalid");
                 }
             }
         }
@@ -123,8 +118,7 @@ bool StreamingServiceLoader::checkServiceDirectory(const QString &directory) con
 
 QString StreamingServiceLoader::getUserDirectory()
 {
-    return QFileInfo(QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation)[0], "plugins")
-    .absoluteFilePath();
+    return QFileInfo(QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
 }
 
 QStringList StreamingServiceLoader::getSearchPaths() const
@@ -156,8 +150,7 @@ QStringList StreamingServiceLoader::getSearchPaths() const
     return paths;
 }
 
-bool StreamingServiceLoader::containsService(const QList<shared_ptr<StreamingService>> &services,
-                                             shared_ptr<StreamingService> &toCheck) const
+bool StreamingServiceLoader::containsService(const QList<shared_ptr<StreamingService>> &services, shared_ptr<StreamingService> &toCheck) const
 {
     for (auto service : services) {
         if (*toCheck == *service)

@@ -13,8 +13,7 @@ using namespace MellowPlayer::Infrastructure;
 TEST_CASE("StreamingServiceWatcherTests")
 {
     StreamingServiceCreator creator;
-    auto pluginDir = creator.create("TestService", "https://test-service.com", "MellowPlayer.Tests",
-                                    "https://travis-ci.org/MellowPlayer");
+    auto pluginDir = creator.create("TestService", "https://test-service.com", "MellowPlayer.Tests", "https://travis-ci.org/MellowPlayer");
     REQUIRE(QDir(pluginDir).exists());
 
     StreamingServiceMetadata metadata;

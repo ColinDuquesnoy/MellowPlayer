@@ -11,8 +11,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ThemeViewModel::ThemeViewModel(StreamingServicesController &streamingServices, Settings &settings,
-                               IThemeLoader &themeLoader)
+ThemeViewModel::ThemeViewModel(StreamingServicesController &streamingServices, Settings &settings, IThemeLoader &themeLoader)
         : streamingServices(streamingServices),
           loader(themeLoader),
           accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
@@ -25,8 +24,7 @@ ThemeViewModel::ThemeViewModel(StreamingServicesController &streamingServices, S
           secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
           currentTheme(getCustomTheme())
 {
-    connect(&streamingServices, &StreamingServicesController::currentChanged, this,
-            &ThemeViewModel::onCurrentServiceChanged);
+    connect(&streamingServices, &StreamingServicesController::currentChanged, this, &ThemeViewModel::onCurrentServiceChanged);
     connect(&accentColorSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&themeSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&backgroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);

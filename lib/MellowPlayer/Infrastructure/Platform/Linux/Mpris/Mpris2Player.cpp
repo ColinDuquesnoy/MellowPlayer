@@ -336,8 +336,7 @@ void Mpris2Player::signalUpdate(const QVariantMap &map, const QString &interface
 {
     LOG_TRACE(logger, "signalUpdate");
     if (!map.isEmpty()) {
-        QDBusMessage signal =
-        QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties", "PropertiesChanged");
+        QDBusMessage signal = QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties", "PropertiesChanged");
         QVariantList args = QVariantList() << interfaceName << map << QStringList();
         signal.setArguments(args);
 

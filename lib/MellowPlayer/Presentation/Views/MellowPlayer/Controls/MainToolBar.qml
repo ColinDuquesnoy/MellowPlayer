@@ -371,6 +371,8 @@ ToolBar {
                     ProgressBar {
                         anchors{ bottom: parent.bottom; horizontalCenter: parent.left; right: parent.right }
                         indeterminate: _updater.progress == -1
+                        from: 0; to: 100
+                        value: _updater.progress
                         visible: _updater.busy
                     }
                 }

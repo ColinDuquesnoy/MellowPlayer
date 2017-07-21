@@ -28,8 +28,8 @@ namespace MellowPlayer::Application
 
         bool equals(const ListeningHistoryEntry &other) const
         {
-            return other.serviceName == serviceName && other.songUniqueId == songUniqueId
-            && other.songTitle == songTitle && other.artist == artist && other.album == album && other.artUrl == artUrl;
+            return other.serviceName == serviceName && other.songUniqueId == songUniqueId && other.songTitle == songTitle && other.artist == artist
+            && other.album == album && other.artUrl == artUrl;
         }
 
         bool operator==(const ListeningHistoryEntry &other) const

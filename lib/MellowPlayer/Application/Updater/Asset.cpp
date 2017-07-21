@@ -3,6 +3,10 @@
 
 using namespace MellowPlayer::Application;
 
+Asset::Asset() : Asset("", "")
+{
+}
+
 Asset::Asset(const QString &name, const QString &url) : name_(name), url_(url)
 {
 }
@@ -12,7 +16,7 @@ QString Asset::getName() const
     return name_;
 }
 
-QString Asset::getUrl()
+QString Asset::getUrl() const
 {
     return url_;
 }

@@ -14,15 +14,17 @@ namespace MellowPlayer::Application
     public:
         AbstractPlatformUpdater(IFileDownloader &fileDownloader);
 
-        void setRelease(const Release *release);
+        virtual void setRelease(const Release *release);
         void download();
         void install();
+        virtual void restart(){};
 
         virtual bool canInstall() const = 0;
 
     signals:
         void downloadFinished(bool success);
         void installFinished(bool success);
+        void progressUpdated(double progress);
 
     protected:
         virtual void doInstall(const QString &assetFilePath) = 0;

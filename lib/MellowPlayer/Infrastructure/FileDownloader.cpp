@@ -1,9 +1,10 @@
 #include "FileDownloader.hpp"
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-FileDownloader::FileDownloader()
+FileDownloader::FileDownloader() : logger_(LoggingManager::instance().getLogger("FileDownloader"))
 {
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &FileDownloader::onDownloadFinished);
 }
@@ -11,6 +12,7 @@ FileDownloader::FileDownloader()
 void FileDownloader::download(const QString &urlToDownload, const QString &filePath)
 {
     if (!isDownloading()) {
+        LOG_DEBUG(logger_, "downloading " << urlToDownload << " to " << filePath);
         progress_ = 0;
         destinationPath_ = QFileInfo(filePath);
         currentReply = networkAccessManager_.get(QNetworkRequest(QUrl(urlToDownload)));
@@ -38,6 +40,7 @@ void FileDownloader::onDownloadFinished(QNetworkReply *reply)
         QString redirectUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
         if (!redirectUrl.isEmpty()) {
+            LOG_DEBUG(logger_, "redirected to: " << redirectUrl);
             download(redirectUrl, destinationPath_.absoluteFilePath());
             return;
         }
@@ -46,9 +49,13 @@ void FileDownloader::onDownloadFinished(QNetworkReply *reply)
         QFile file(destinationPath_.absoluteFilePath());
         if (file.open(QIODevice::WriteOnly)) {
             file.write(replyData);
+
+            LOG_DEBUG(logger_, "file downloaded with success: " << destinationPath_.absoluteFilePath());
             success = true;
-        }
-    }
+        } else
+            LOG_DEBUG(logger_, "failed to write file: " << destinationPath_.absoluteFilePath() << " - Error: " << file.errorString());
+    } else
+        LOG_DEBUG(logger_, "download failed: " << reply->errorString());
 
     emit finished(success);
 }
@@ -62,7 +69,8 @@ void FileDownloader::onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
     double progress = (ratio * 100);
 
     if (progress_ != progress) {
+        LOG_DEBUG(logger_, "download progress: " << progress);
         progress_ = progress;
-        emit progressChanged();
+        emit progressChanged(progress_);
     }
 }

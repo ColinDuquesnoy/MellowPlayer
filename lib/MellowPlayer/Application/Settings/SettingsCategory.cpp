@@ -6,8 +6,7 @@
 using namespace std;
 using namespace MellowPlayer::Application;
 
-SettingsCategory::SettingsCategory(const SettingsCategory::Data &categoryData, Settings *appSettings)
-        : QObject(appSettings), data(categoryData)
+SettingsCategory::SettingsCategory(const SettingsCategory::Data &categoryData, Settings *appSettings) : QObject(appSettings), data(categoryData)
 {
     for (int i = 0; i < data.parameters.count(); ++i) {
         QJsonObject parameterObj = data.parameters.at(i).toObject();

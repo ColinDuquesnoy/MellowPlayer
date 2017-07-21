@@ -31,8 +31,7 @@ void ListeningHistoryViewModel::onEntryRemoved(int entryId)
 void ListeningHistoryViewModel::initialize()
 {
     connect(&listeningHistoryService, &ListeningHistory::entryAdded, this, &ListeningHistoryViewModel::onEntryAdded);
-    connect(&listeningHistoryService, &ListeningHistory::entryRemoved, this,
-            &ListeningHistoryViewModel::onEntryRemoved);
+    connect(&listeningHistoryService, &ListeningHistory::entryRemoved, this, &ListeningHistoryViewModel::onEntryRemoved);
     listeningHistoryService.initialize();
     for (auto entry : listeningHistoryService.getEntries())
         onEntryAdded(entry);

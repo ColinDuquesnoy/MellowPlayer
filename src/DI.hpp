@@ -57,6 +57,7 @@
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
 #endif
 
 using namespace MellowPlayer::Application;
@@ -79,10 +80,8 @@ public:
         template <class T_>
         using is_referable = typename di::wrappers::shared<ScopedScope, T>::template is_referable<T_>;
 
-        template <class, class, class TProvider,
-                  class T_ = di::aux::decay_t<decltype(di::aux::declval<TProvider>().get())>>
-        static decltype(di::wrappers::shared<ScopedScope, T_>{
-        std::shared_ptr<T_>{std::shared_ptr<T_>{di::aux::declval<TProvider>().get()}}})
+        template <class, class, class TProvider, class T_ = di::aux::decay_t<decltype(di::aux::declval<TProvider>().get())>>
+        static decltype(di::wrappers::shared<ScopedScope, T_>{std::shared_ptr<T_>{std::shared_ptr<T_>{di::aux::declval<TProvider>().get()}}})
         try_create(const TProvider &);
 
         template <class T_, class, class TProvider>
@@ -120,9 +119,7 @@ template <class... TCtor>
 struct constructor_impl
 {
     template <class TInjector, class T,
-              std::enable_if_t<boost::di::concepts::creatable<boost::di::type_traits::direct, typename T::expected,
-                                                              TCtor...>::value,
-                               int> = 0>
+              std::enable_if_t<boost::di::concepts::creatable<boost::di::type_traits::direct, typename T::expected, TCtor...>::value, int> = 0>
     auto operator()(const TInjector &injector, const T &) const
     {
         return new typename T::expected{injector.template create<TCtor>()...};
@@ -137,29 +134,23 @@ struct constructor : constructor_impl<TCtor...>
 
 auto defaultInjector = [](ScopedScope &scope) {
     return di::make_injector(
-    di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope),
-    di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
+    di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope), di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
     di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
-    di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
-    di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
-    di::bind<IHotkeysController>().to<HotkeysController>().in(scope),
-    di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
-    di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
-    di::bind<INotifier>().to<Notifier>().in(scope), di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
-    di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
+    di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope), di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
+    di::bind<IHotkeysController>().to<HotkeysController>().in(scope), di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
+    di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope), di::bind<INotifier>().to<Notifier>().in(scope),
+    di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope), di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
     di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
     di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
-    di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
-    di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
-    di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
-    di::bind<IHttpClient>().to<HttpClient>().in(scope), di::bind<IFileDownloader>().to<FileDownloader>().in(scope),
-    di::bind<AbstractPlatformUpdater>().to<DefaultPlatformUpdater>().in(scope));
+    di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope), di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
+    di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope), di::bind<IHttpClient>().to<HttpClient>().in(scope),
+    di::bind<IFileDownloader>().to<FileDownloader>().in(scope));
 };
 
 auto platformInjector = [](ScopedScope &scope) {
 #ifdef Q_OS_LINUX
-    return di::make_injector(di::bind<IMprisController>().to<MprisController>().in(scope),
-                             di::bind<IApplication>().to<LinuxApplication>().in(scope));
+    return di::make_injector(di::bind<IMprisController>().to<MprisController>().in(scope), di::bind<IApplication>().to<LinuxApplication>().in(scope),
+                             di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope));
 #else
     return di::make_injector(di::bind<IApplication>().to<CoreApplication>().in(scope));
 #endif

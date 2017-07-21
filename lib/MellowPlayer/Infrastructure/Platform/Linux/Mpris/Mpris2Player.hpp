@@ -20,8 +20,7 @@ namespace MellowPlayer::Infrastructure
         Q_OBJECT
         Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
     public:
-        explicit Mpris2Player(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt,
-                              QObject *parent = nullptr);
+        explicit Mpris2Player(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt, QObject *parent = nullptr);
 
         Q_PROPERTY(QVariantMap Metadata READ metadata)
         Q_PROPERTY(bool CanControl READ canControl)

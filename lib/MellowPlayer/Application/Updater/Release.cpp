@@ -10,8 +10,7 @@ Release::Release(const QString &name, const QDate &date, QObject *parent)
 {
 }
 
-Release::Release(const QString &url, const QString &name, const QDate &date, const AssetList &assets, bool preRelease,
-                 QObject *parent)
+Release::Release(const QString &url, const QString &name, const QDate &date, const AssetList &assets, bool preRelease, QObject *parent)
         : QObject(parent), url_(url), name_(name), date_(date), preRelease_(preRelease), assets_(assets)
 {
 }

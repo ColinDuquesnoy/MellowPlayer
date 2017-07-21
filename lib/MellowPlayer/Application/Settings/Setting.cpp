@@ -9,11 +9,7 @@ using namespace std;
 using namespace MellowPlayer::Application;
 
 Setting::Setting(Settings &settings, SettingsCategory &category, const Setting::Data &settingData)
-        : QObject(&category),
-          settingsProvider(settings.getSettingsProvider()),
-          settings(settings),
-          category(category),
-          data(settingData)
+        : QObject(&category), settingsProvider(settings.getSettingsProvider()), settings(settings), category(category), data(settingData)
 {
 }
 

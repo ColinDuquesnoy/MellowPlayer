@@ -16,7 +16,7 @@ namespace MellowPlayer::Application
         virtual bool isDownloading() const = 0;
 
     signals:
-        void progressChanged();
+        void progressChanged(double progress);
         void finished(bool success);
     };
 }

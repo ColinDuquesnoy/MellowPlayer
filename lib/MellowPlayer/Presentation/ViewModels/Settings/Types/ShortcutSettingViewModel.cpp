@@ -5,8 +5,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-ShortcutSettingViewModel::ShortcutSettingViewModel(Setting &setting, QObject *parent)
-        : SettingViewModel(setting, parent)
+ShortcutSettingViewModel::ShortcutSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
 {
 }
 

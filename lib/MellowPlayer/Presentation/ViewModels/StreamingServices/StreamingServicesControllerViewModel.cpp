@@ -15,9 +15,10 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(
-StreamingServicesController &streamingServices, Players &players, Settings &settings, IWorkDispatcher &workDispatcher,
-IStreamingServiceCreator &streamingServiceCreator, ICommandLineParser &commandLineParser)
+StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController &streamingServices, Players &players,
+                                                                           Settings &settings, IWorkDispatcher &workDispatcher,
+                                                                           IStreamingServiceCreator &streamingServiceCreator,
+                                                                           ICommandLineParser &commandLineParser)
         : QObject(),
           streamingServices(streamingServices),
           players(players),
@@ -30,8 +31,7 @@ IStreamingServiceCreator &streamingServiceCreator, ICommandLineParser &commandLi
           enabledServices(allServices)
 {
 
-    connect(&streamingServices, &StreamingServicesController::added, this,
-            &StreamingServicesControllerViewModel::onServiceAdded);
+    connect(&streamingServices, &StreamingServicesController::added, this, &StreamingServicesControllerViewModel::onServiceAdded);
 
     for (auto &service : streamingServices.getAll()) {
         onServiceAdded(service.get());
@@ -103,8 +103,7 @@ void StreamingServicesControllerViewModel::onServiceAdded(StreamingService *stre
     auto *sv = new StreamingServiceViewModel(*streamingService, settings.getSettingsProvider(), players, this);
     Player *player = sv->getPlayer();
     connect(player, &Player::isRunningChanged, this, &StreamingServicesControllerViewModel::onPlayerRunningChanged);
-    connect(sv, &StreamingServiceViewModel::isEnabledChanged, this,
-            &StreamingServicesControllerViewModel::onServiceEnabledChanged);
+    connect(sv, &StreamingServiceViewModel::isEnabledChanged, this, &StreamingServicesControllerViewModel::onServiceEnabledChanged);
     allServices->append(sv);
 }
 
@@ -136,8 +135,8 @@ void StreamingServicesControllerViewModel::previous()
     }
 }
 
-void StreamingServicesControllerViewModel::createService(const QString &serviceName, const QString &serviceUrl,
-                                                         const QString &authorName, const QString &authorWebsite)
+void StreamingServicesControllerViewModel::createService(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
+                                                         const QString &authorWebsite)
 {
     workDispatcher.invoke([=]() {
         QString pluginDir = streamingServiceCreator.create(serviceName, serviceUrl, authorName, authorWebsite);

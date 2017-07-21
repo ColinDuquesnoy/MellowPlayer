@@ -15,8 +15,7 @@ namespace MellowPlayer::Application
         LoggingManager &operator=(const LoggingManager &) = delete;
         LoggingManager &operator=(LoggingManager &&) = default;
 
-        static LoggingManager &initialize(ILoggerFactory &loggerFactory,
-                                          const LoggerConfig &defaultConfig = LoggerConfig());
+        static LoggingManager &initialize(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig = LoggerConfig());
         static LoggingManager &initialize(ILoggerFactory &loggerFactory, LogLevel logLevel);
         static LoggingManager &instance();
 

@@ -3,8 +3,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SettingsCategoryViewModel::SettingsCategoryViewModel(ThemeViewModel &themeViewModel, SettingsCategory *settingsCategory,
-                                                     QObject *parent)
+SettingsCategoryViewModel::SettingsCategoryViewModel(ThemeViewModel &themeViewModel, SettingsCategory *settingsCategory, QObject *parent)
         : QObject(parent),
           settingsCategory(settingsCategory),
           settingsListModel(new SettingListModel(this, "name")),
@@ -41,8 +40,7 @@ void SettingsCategoryViewModel::restoreDefaults()
     settingsCategory->restoreDefaults();
 }
 
-CustomSettingsCategoryViewModel::CustomSettingsCategoryViewModel(const QString &name, const QString &icon,
-                                                                 const QString &qmlComponent,
+CustomSettingsCategoryViewModel::CustomSettingsCategoryViewModel(const QString &name, const QString &icon, const QString &qmlComponent,
                                                                  ThemeViewModel &themeViewModel, QObject *parent)
         : SettingsCategoryViewModel(themeViewModel, nullptr, parent), name(name), icon(icon), qmlComponent(qmlComponent)
 {

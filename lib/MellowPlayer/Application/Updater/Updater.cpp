@@ -19,9 +19,12 @@ Updater::Updater(IReleaseQuerier &releaseQuerier, Settings &settings, AbstractPl
     releaseQuerier.setChannel(getChannel());
     connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
     connect(&updateChannelSetting_, &Setting::valueChanged, this, &Updater::check);
+    connect(&platformUpdater, &AbstractPlatformUpdater::progressUpdated, this, &Updater::progressUpdated);
+    connect(&platformUpdater, &AbstractPlatformUpdater::downloadFinished, this, &Updater::onDownloadFinished);
+    connect(&platformUpdater, &AbstractPlatformUpdater::installFinished, this, &Updater::onInstallFinished);
 
-    Release *r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
-    setCurrentRelease(r);
+//    Release *r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
+//    setCurrentRelease(r);
 }
 
 void Updater::check()
@@ -62,17 +65,16 @@ const Release *Updater::getLatestRelease() const
 void Updater::onLatestReleaseReceived(const Release *release)
 {
     LOG_DEBUG(logger_, "Latest release received: " + release->getName());
-    setStatus(Status::None);
-
     if (release != nullptr && *release > *currentRelease_) {
-        LOG_DEBUG(
-        logger_,
-        QString("Latest release is an update (%1 < %2)").arg(currentRelease_->getName()).arg(release->getName()));
+        LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->getName()).arg(release->getName()));
+        setStatus(Status::UpdateAvailable);
         latestRelease_ = release;
+        platformUpdater_.setRelease(latestRelease_);
         isUpdateAvailable_ = true;
         emit updateAvailable();
     } else {
         LOG_DEBUG(logger_, QString("No release found"));
+        setStatus(Status::None);
         latestRelease_ = nullptr;
         isUpdateAvailable_ = false;
         emit noUpdateAvailable();
@@ -100,9 +102,26 @@ void Updater::setStatus(Updater::Status status)
 void Updater::onDownloadFinished(bool succes)
 {
     if (succes) {
+        LOG_DEBUG(logger_, "download finished, installing...")
         setStatus(Status::Installing);
         platformUpdater_.install();
     } else {
-        setStatus(Status::None);
+        LOG_DEBUG(logger_, "download failed")
+        setStatus(Status::Failure);
     }
+}
+void Updater::onInstallFinished(bool succes)
+{
+    if (succes) {
+        LOG_DEBUG(logger_, "install finished, you can now restart the application");
+        setStatus(Status::Installed);
+        emit installed();
+    } else {
+        LOG_DEBUG(logger_, "install failed");
+        setStatus(Status::Failure);
+    }
+}
+void Updater::restart()
+{
+    platformUpdater_.restart();
 }

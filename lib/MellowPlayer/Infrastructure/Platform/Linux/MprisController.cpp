@@ -16,8 +16,7 @@ QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";
 
 QString MprisController::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-MprisController::MprisController(IPlayer &player, ILocalAlbumArt &localAlbumArt, IMainWindow &window,
-                                 IQtApplication &application)
+MprisController::MprisController(IPlayer &player, ILocalAlbumArt &localAlbumArt, IMainWindow &window, IQtApplication &application)
         : logger(LoggingManager::instance().getLogger("Mpris")),
           parent(make_unique<QObject>()),
           mpris2Root(new Mpris2Root(window, application, parent.get())),
@@ -34,8 +33,7 @@ MprisController::~MprisController()
 
 bool MprisController::start()
 {
-    if (!QDBusConnection::sessionBus().registerService(serviceName)
-        || !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
+    if (!QDBusConnection::sessionBus().registerService(serviceName) || !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
         LOG_WARN(logger, "failed to register service on the session bus: " + serviceName);
         LOG_WARN(logger, "failed to register object on the session bus: " + OBJECT_NAME);
         return false;

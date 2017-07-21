@@ -27,9 +27,8 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
-        StreamingServiceViewModel(Application::StreamingService &streamingService,
-                                  Application::ISettingsProvider &settings, Application::Players &players,
-                                  QObject *parent = nullptr);
+        StreamingServiceViewModel(Application::StreamingService &streamingService, Application::ISettingsProvider &settings,
+                                  Application::Players &players, QObject *parent = nullptr);
 
         QString getLogo() const;
         QString getName() const;

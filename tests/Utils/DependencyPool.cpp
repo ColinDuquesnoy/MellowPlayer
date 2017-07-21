@@ -55,8 +55,7 @@ StreamingServicesController &DependencyPool::getStreamingServicesController()
     static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
     static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
     if (pStreamingServicesController == nullptr) {
-        pStreamingServicesController =
-        make_unique<StreamingServicesController>(streamingServiceLoaderMock.get(), streamingServiceWatcherMock.get());
+        pStreamingServicesController = make_unique<StreamingServicesController>(streamingServiceLoaderMock.get(), streamingServiceWatcherMock.get());
         pStreamingServicesController->load();
     }
     return *pStreamingServicesController;
@@ -66,8 +65,7 @@ StreamingServicesControllerViewModel &DependencyPool::getStreamingServicesContro
 {
     if (pStreamingServicesControllerViewModel == nullptr)
         pStreamingServicesControllerViewModel = make_unique<StreamingServicesControllerViewModel>(
-        getStreamingServicesController(), getPlayers(), getSettings(), getWorkDispatcher(),
-        getStreamingServicesCreator(), getCommandLineParser());
+        getStreamingServicesController(), getPlayers(), getSettings(), getWorkDispatcher(), getStreamingServicesCreator(), getCommandLineParser());
     return *pStreamingServicesControllerViewModel;
 }
 
@@ -117,8 +115,7 @@ ListeningHistoryViewModel &DependencyPool::getListeningHistoryViewModel()
 ListeningHistory &DependencyPool::getListeningHistory()
 {
     if (pListeningHistory == nullptr)
-        pListeningHistory =
-        make_unique<ListeningHistory>(*dataProvider, getCurrentPlayer(), getWorkDispatcher(), getSettings());
+        pListeningHistory = make_unique<ListeningHistory>(*dataProvider, getCurrentPlayer(), getWorkDispatcher(), getSettings());
     return *pListeningHistory;
 }
 
@@ -169,8 +166,7 @@ MainWindowViewModel &DependencyPool::getMainWindowViewModel()
         auto &currentPlayer = getCurrentPlayer();
         auto &settings = getSettings();
 
-        pMainWindowViewModel = make_unique<MainWindowViewModel>(streamingServices, listeningHistory, theme, updater,
-                                                                qtApp, currentPlayer, settings);
+        pMainWindowViewModel = make_unique<MainWindowViewModel>(streamingServices, listeningHistory, theme, updater, qtApp, currentPlayer, settings);
     }
 
     return *pMainWindowViewModel;
@@ -179,8 +175,8 @@ MainWindowViewModel &DependencyPool::getMainWindowViewModel()
 Notifier &DependencyPool::getNotifier()
 {
     if (pNotifier == nullptr)
-        pNotifier = make_unique<Notifier>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(),
-                                          getStreamingServicesController(), getSettings());
+        pNotifier =
+        make_unique<Notifier>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(), getStreamingServicesController(), getSettings());
     return *pNotifier;
 }
 

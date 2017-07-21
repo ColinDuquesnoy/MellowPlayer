@@ -7,8 +7,7 @@ namespace MellowPlayer::Tests
     class FakePlatformUpdater : public Application::AbstractPlatformUpdater
     {
     public:
-        FakePlatformUpdater(Application::IFileDownloader &fileDownloader)
-                : Application::AbstractPlatformUpdater(fileDownloader)
+        FakePlatformUpdater(Application::IFileDownloader &fileDownloader) : Application::AbstractPlatformUpdater(fileDownloader)
         {
         }
 

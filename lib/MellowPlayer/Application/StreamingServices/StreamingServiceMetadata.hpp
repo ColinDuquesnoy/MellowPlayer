@@ -48,15 +48,7 @@ namespace MellowPlayer::Application
          */
         QString version;
 
-        StreamingServiceMetadata()
-                : author(""),
-                  authorWebsite(""),
-                  logoPath(""),
-                  name(""),
-                  url(""),
-                  script(""),
-                  scriptPath(""),
-                  version("")
+        StreamingServiceMetadata() : author(""), authorWebsite(""), logoPath(""), name(""), url(""), script(""), scriptPath(""), version("")
         {
         }
 

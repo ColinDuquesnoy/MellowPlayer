@@ -16,8 +16,8 @@ namespace MellowPlayer::Application
 
         bool isEmpty() const
         {
-            return accent.isEmpty() || background.isEmpty() || foreground.isEmpty() || primary.isEmpty()
-            || primaryForeground.isEmpty() || secondary.isEmpty() || secondaryForeground.isEmpty();
+            return accent.isEmpty() || background.isEmpty() || foreground.isEmpty() || primary.isEmpty() || primaryForeground.isEmpty()
+            || secondary.isEmpty() || secondaryForeground.isEmpty();
         }
     };
 }

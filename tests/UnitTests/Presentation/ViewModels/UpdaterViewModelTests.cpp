@@ -19,7 +19,6 @@ SCENARIO("check for updates")
 
         REQUIRE(!viewModel.isBusy());
         REQUIRE(!viewModel.isVisible());
-        REQUIRE(viewModel.getMessage().isEmpty());
         REQUIRE(viewModel.getUrl().isEmpty());
         REQUIRE(viewModel.getStatusString().isEmpty());
         REQUIRE(!viewModel.isInstallEnabled());
@@ -33,7 +32,6 @@ SCENARIO("check for updates")
             THEN("an update is available")
             {
                 REQUIRE(viewModel.isVisible());
-                REQUIRE(!viewModel.getMessage().isEmpty());
                 REQUIRE(!viewModel.getUrl().isEmpty());
 
                 AND_WHEN("closing the pane")
@@ -44,7 +42,6 @@ SCENARIO("check for updates")
                     {
                         REQUIRE(!viewModel.isVisible());
 
-                        REQUIRE(!viewModel.getMessage().isEmpty());
                         REQUIRE(!viewModel.getUrl().isEmpty());
                     }
                 }
@@ -69,7 +66,6 @@ SCENARIO("check for updates")
 
         REQUIRE(!viewModel.isBusy());
         REQUIRE(!viewModel.isVisible());
-        REQUIRE(viewModel.getMessage().isEmpty());
         REQUIRE(viewModel.getUrl().isEmpty());
         REQUIRE(viewModel.getStatusString().isEmpty());
         REQUIRE(!viewModel.isInstallEnabled());
@@ -83,7 +79,6 @@ SCENARIO("check for updates")
             THEN("no update is available")
             {
                 REQUIRE(!viewModel.isVisible());
-                REQUIRE(viewModel.getMessage().isEmpty());
                 REQUIRE(viewModel.getUrl().isEmpty());
             }
         }

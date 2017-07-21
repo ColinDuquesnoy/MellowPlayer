@@ -6,23 +6,18 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 SettingsViewModel::SettingsViewModel(Settings &settings, ThemeViewModel &themeViewModel, QObject *parent)
-        : QObject(parent),
-          settings(settings),
-          settingViewModelFactory(themeViewModel),
-          categories(new SettingsCategoryListModel(this, "name"))
+        : QObject(parent), settings(settings), settingViewModelFactory(themeViewModel), categories(new SettingsCategoryListModel(this, "name"))
 {
     for (SettingsCategory *category : settings.getCategories()) {
         if (category->getKey() != "private")
             categories->append(new SettingsCategoryViewModel(themeViewModel, category, this));
     }
-    categories->append(new CustomSettingsCategoryViewModel("Services", u8"\ue405",
-                                                           "qrc:/MellowPlayer/Presentation/Views/"
-                                                           "MellowPlayer/SettingsPages/"
-                                                           "ServiceSettingsPage.qml",
+    categories->append(new CustomSettingsCategoryViewModel("Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/"
+                                                                                   "MellowPlayer/SettingsPages/"
+                                                                                   "ServiceSettingsPage.qml",
                                                            themeViewModel, this));
-    categories->append(new CustomSettingsCategoryViewModel("Cache", u8"\ue872",
-                                                           "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/"
-                                                           "SettingsPages/CacheSettingsPage.qml",
+    categories->append(new CustomSettingsCategoryViewModel("Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/"
+                                                                                "SettingsPages/CacheSettingsPage.qml",
                                                            themeViewModel, this));
 }
 

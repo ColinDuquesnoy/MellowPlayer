@@ -21,8 +21,8 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        SystemTrayIcon(Application::IPlayer &player, Application::IMainWindow &mainWindow,
-                       Application::IQtApplication &qtApplication, Application::Settings &settings);
+        SystemTrayIcon(Application::IPlayer &player, Application::IMainWindow &mainWindow, Application::IQtApplication &qtApplication,
+                       Application::Settings &settings);
         void show() override;
         void hide() override;
         void showMessage(const QString &title, const QString &message) override;

@@ -12,8 +12,7 @@
 
 using namespace MellowPlayer::Application;
 
-ListeningHistory::ListeningHistory(IListeningHistoryDataProvider &model, IPlayer &player,
-                                   IWorkDispatcher &workDispatcher, Settings &settings)
+ListeningHistory::ListeningHistory(IListeningHistoryDataProvider &model, IPlayer &player, IWorkDispatcher &workDispatcher, Settings &settings)
         : logger(LoggingManager::instance().getLogger("ListeningHistory")),
           dataProvider(model),
           player(player),

@@ -8,8 +8,7 @@
 using namespace std;
 using namespace MellowPlayer::Application;
 
-Settings::Settings(ISettingsSchemaLoader &configurationLoader, ISettingsProvider &settingsProvider)
-        : settingsProvider(settingsProvider)
+Settings::Settings(ISettingsSchemaLoader &configurationLoader, ISettingsProvider &settingsProvider) : settingsProvider(settingsProvider)
 {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();

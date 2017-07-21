@@ -15,8 +15,8 @@ const QString StreamingServiceCreator::LOGO_FILE_NAME = "logo.svg";
 const QString StreamingServiceCreator::METADATA_FILE_NAME = "metadata.ini";
 const QString StreamingServiceCreator::THEME_FILE_NAME = "theme.json";
 
-QString StreamingServiceCreator::create(const QString &serviceName, const QString &serviceUrl,
-                                        const QString &authorName, const QString &authorWebsite) const
+QString StreamingServiceCreator::create(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
+                                        const QString &authorWebsite) const
 {
     auto pluginDir = getPluginDir(serviceName);
     QDir().mkpath(pluginDir);
@@ -44,12 +44,10 @@ void StreamingServiceCreator::createTheme(const QString &pluginDir) const
     createPluginFile(pluginDir, THEME_FILE_NAME);
 }
 
-void StreamingServiceCreator::createMetadata(const QString &serviceName, const QString &serviceUrl,
-                                             const QString &authorName, const QString &authorWebsite,
-                                             const QString &pluginDir) const
+void StreamingServiceCreator::createMetadata(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
+                                             const QString &authorWebsite, const QString &pluginDir) const
 {
-    createPluginFile(pluginDir, METADATA_FILE_NAME,
-                     [&](QString string) { return string.arg(authorName, authorWebsite, serviceName, serviceUrl); });
+    createPluginFile(pluginDir, METADATA_FILE_NAME, [&](QString string) { return string.arg(authorName, authorWebsite, serviceName, serviceUrl); });
 }
 
 QString StreamingServiceCreator::getPluginDir(const QString &serviceName) const
@@ -83,8 +81,7 @@ QString StreamingServiceCreator::getFilePath(const QString &pluginDir, const QSt
     return QDir::cleanPath(pluginDir + QDir::separator() + fileName);
 }
 
-void StreamingServiceCreator::createPluginFile(const QString &pluginDir, const QString &fileName,
-                                               const function<QString(QString)> transformer) const
+void StreamingServiceCreator::createPluginFile(const QString &pluginDir, const QString &fileName, const function<QString(QString)> transformer) const
 {
     const QString filePath = getFilePath(pluginDir, fileName);
     const QString content = transformer(readTemplateFile(fileName));

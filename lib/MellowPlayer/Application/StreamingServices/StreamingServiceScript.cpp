@@ -2,8 +2,7 @@
 
 using namespace MellowPlayer::Application;
 
-StreamingServiceScript::StreamingServiceScript(const QString &code, const QString &path)
-        : QObject(), code(code), path(path)
+StreamingServiceScript::StreamingServiceScript(const QString &code, const QString &path) : QObject(), code(code), path(path)
 {
 }
 

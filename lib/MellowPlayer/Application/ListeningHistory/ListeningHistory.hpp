@@ -19,8 +19,7 @@ namespace MellowPlayer::Application
     {
         Q_OBJECT
     public:
-        ListeningHistory(IListeningHistoryDataProvider &model, IPlayer &player, IWorkDispatcher &workDispatcher,
-                         Settings &settings);
+        ListeningHistory(IListeningHistoryDataProvider &model, IPlayer &player, IWorkDispatcher &workDispatcher, Settings &settings);
 
         void initialize();
         const QList<Application::ListeningHistoryEntry> &getEntries() const;

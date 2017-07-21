@@ -8,7 +8,6 @@ import MellowPlayer 3.0
 ToolBar {
     id: updateToolBar
 
-    enabled: !_updater.busy
     height: 0
     transform: Scale {
         id: scaleTransform
@@ -44,7 +43,7 @@ ToolBar {
             }
 
             Label {
-                text: _updater.message
+                text: _updater.status
                 font.pixelSize: 16
             }
 
@@ -61,8 +60,16 @@ ToolBar {
             ToolButton {
                 highlighted: true
                 text: "Install"
+                enabled: !_updater.busy
                 onClicked: _updater.install()
                 visible: _updater.installEnabled
+            }
+
+            ToolButton {
+                highlighted: true
+                text: "Restart"
+                onClicked: _updater.restart()
+                visible: _updater.restartEnabled
             }
 
             ToolButton {
@@ -79,6 +86,8 @@ ToolBar {
         ProgressBar {
             anchors{ bottom: parent.bottom; left: parent.left; right: parent.right }
             indeterminate: _updater.progress == -1
+            from: 0; to: 100
+            value: _updater.progress
             visible: _updater.busy
         }
     }

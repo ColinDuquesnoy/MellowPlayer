@@ -24,8 +24,7 @@ HotkeysController::HotkeysController(IPlayer &player, Settings &settings, IMainW
     connect(&nextShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateNextShortcut);
     connect(&previousShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updatePreviousShorcut);
     connect(&favoriteShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateFavoriteShortcut);
-    connect(&restoreWindowShortcutSetting, &Setting::valueChanged, this,
-            &HotkeysController::updateRestoreWindowShortcut);
+    connect(&restoreWindowShortcutSetting, &Setting::valueChanged, this, &HotkeysController::updateRestoreWindowShortcut);
 }
 
 void HotkeysController::togglePlayPause()

@@ -12,8 +12,7 @@ CurrentPlayer::CurrentPlayer(Players &players, StreamingServicesController &stre
         : players(players), streamingServices(streamingServices), currentPlayer(nullptr)
 {
 
-    connect(&streamingServices, &StreamingServicesController::currentChanged, this,
-            &CurrentPlayer::onCurrentServiceChanged);
+    connect(&streamingServices, &StreamingServicesController::currentChanged, this, &CurrentPlayer::onCurrentServiceChanged);
 
     if (streamingServices.getCurrent() != nullptr)
         onCurrentServiceChanged(streamingServices.getCurrent());
@@ -144,13 +143,11 @@ void CurrentPlayer::onCurrentServiceChanged(StreamingService *streamingService)
         if (currentPlayer != nullptr) {
             disconnect(currentPlayer.get(), &Player::currentSongChanged, this, &CurrentPlayer::currentSongChanged);
             disconnect(currentPlayer.get(), &Player::positionChanged, this, &CurrentPlayer::positionChanged);
-            disconnect(currentPlayer.get(), &Player::playbackStatusChanged, this,
-                       &CurrentPlayer::playbackStatusChanged);
+            disconnect(currentPlayer.get(), &Player::playbackStatusChanged, this, &CurrentPlayer::playbackStatusChanged);
             disconnect(currentPlayer.get(), &Player::canSeekChanged, this, &CurrentPlayer::canSeekChanged);
             disconnect(currentPlayer.get(), &Player::canGoNextChanged, this, &CurrentPlayer::canGoNextChanged);
             disconnect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &CurrentPlayer::canGoPreviousChanged);
-            disconnect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this,
-                       &CurrentPlayer::canAddToFavoritesChanged);
+            disconnect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &CurrentPlayer::canAddToFavoritesChanged);
             disconnect(currentPlayer.get(), &Player::volumeChanged, this, &CurrentPlayer::volumeChanged);
             disconnect(currentPlayer.get(), &Player::isPlayingChanged, this, &CurrentPlayer::isPlayingChanged);
             disconnect(currentPlayer.get(), &Player::isStoppedChanged, this, &CurrentPlayer::isStoppedChanged);

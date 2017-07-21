@@ -10,8 +10,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SystemTrayIcon::SystemTrayIcon(IPlayer &player, IMainWindow &mainWindow, IQtApplication &qtApplication,
-                               Settings &settings)
+SystemTrayIcon::SystemTrayIcon(IPlayer &player, IMainWindow &mainWindow, IQtApplication &qtApplication, Settings &settings)
         : QObject(),
           logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
           player(player),

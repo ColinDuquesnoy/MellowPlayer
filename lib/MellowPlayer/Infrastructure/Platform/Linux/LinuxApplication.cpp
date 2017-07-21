@@ -12,9 +12,8 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-LinuxApplication::LinuxApplication(IQtApplication &qtApp, IMainWindow &mainWindow,
-                                   StreamingServicesController &streamingServices, IHotkeysController &kotkeys,
-                                   ISystemTrayIcon &systemTrayIcon, INotifier &notifier, IMprisController &mprisService)
+LinuxApplication::LinuxApplication(IQtApplication &qtApp, IMainWindow &mainWindow, StreamingServicesController &streamingServices,
+                                   IHotkeysController &kotkeys, ISystemTrayIcon &systemTrayIcon, INotifier &notifier, IMprisController &mprisService)
         : CoreApplication(qtApp, mainWindow, streamingServices, kotkeys, systemTrayIcon, notifier),
           logger(LoggingManager::instance().getLogger("LinuxApplication")),
           mprisService(mprisService)

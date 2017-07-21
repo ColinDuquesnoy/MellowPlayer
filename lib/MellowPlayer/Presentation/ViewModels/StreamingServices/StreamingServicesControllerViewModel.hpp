@@ -31,9 +31,8 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
         Q_PROPERTY(bool isCurrentServiceRunning READ isCurrentServiceRunning NOTIFY isCurrentServiceRunningChanged)
     public:
-        StreamingServicesControllerViewModel(Application::StreamingServicesController &streamingServices,
-                                             Application::Players &players, Application::Settings &settings,
-                                             Application::IWorkDispatcher &workDispatcher,
+        StreamingServicesControllerViewModel(Application::StreamingServicesController &streamingServices, Application::Players &players,
+                                             Application::Settings &settings, Application::IWorkDispatcher &workDispatcher,
                                              Application::IStreamingServiceCreator &streamingServiceCreator,
                                              Application::ICommandLineParser &commandLineParser);
         void initialize();

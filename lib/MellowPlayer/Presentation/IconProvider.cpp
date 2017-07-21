@@ -44,6 +44,5 @@ QIcon IconProvider::previous()
 
 QIcon IconProvider::quit()
 {
-    return QIcon::fromTheme("application-exit",
-                            QIcon("://MellowPlayer/Presentation/Resources/icons/application-exit.png"));
+    return QIcon::fromTheme("application-exit", QIcon("://MellowPlayer/Presentation/Resources/icons/application-exit.png"));
 }

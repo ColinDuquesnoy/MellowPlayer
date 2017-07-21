@@ -20,8 +20,7 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        Notifier(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArtService,
-                 Application::INotificationPresenter &presenter,
+        Notifier(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArtService, Application::INotificationPresenter &presenter,
                  Application::StreamingServicesController &streamingServices, Application::Settings &settings);
 
         void initialize() override;

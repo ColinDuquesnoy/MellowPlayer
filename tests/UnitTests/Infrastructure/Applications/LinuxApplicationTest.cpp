@@ -26,8 +26,8 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]")
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
     auto systemTrayIconMock = SystemTrayIconMock::get();
-    LinuxApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(),
-                         systemTrayIconMock.get(), notificationServiceMock.get(), mprisMock.get());
+    LinuxApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(), systemTrayIconMock.get(),
+                         notificationServiceMock.get(), mprisMock.get());
 
     SECTION("initialize")
     {

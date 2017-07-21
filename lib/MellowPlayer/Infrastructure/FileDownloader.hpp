@@ -5,6 +5,11 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
+namespace MellowPlayer::Application
+{
+    class ILogger;
+}
+
 namespace MellowPlayer::Infrastructure
 {
     class FileDownloader : public Application::IFileDownloader
@@ -22,6 +27,7 @@ namespace MellowPlayer::Infrastructure
         void onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
     private:
+        Application::ILogger &logger_;
         QNetworkAccessManager networkAccessManager_;
         QFileInfo destinationPath_;
         QNetworkReply *currentReply = nullptr;

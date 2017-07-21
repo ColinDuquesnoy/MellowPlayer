@@ -22,8 +22,8 @@ namespace MellowPlayer::Infrastructure
     class MprisController : public Application::IMprisController
     {
     public:
-        MprisController(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt,
-                        Application::IMainWindow &window, Application::IQtApplication &application);
+        MprisController(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt, Application::IMainWindow &window,
+                        Application::IQtApplication &application);
         ~MprisController();
 
         bool start() override;

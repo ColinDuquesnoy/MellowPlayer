@@ -10,11 +10,11 @@ inline std::ostream &operator<<(std::ostream &os, const QString &string)
     return os;
 }
 
-#define LOG(logger, logEvent, logLevel)                                                                                \
-    {                                                                                                                  \
-        std::stringstream ss;                                                                                          \
-        ss << logEvent;                                                                                                \
-        logger.log(ss.str(), logLevel, __FILE__, __LINE__);                                                            \
+#define LOG(logger, logEvent, logLevel)                                                                                                              \
+    {                                                                                                                                                \
+        std::stringstream ss;                                                                                                                        \
+        ss << logEvent;                                                                                                                              \
+        logger.log(ss.str(), logLevel, __FILE__, __LINE__);                                                                                          \
     }
 
 #define LOG_TRACE(logger, logEvent) LOG(logger, logEvent, LogLevel::Trace)
