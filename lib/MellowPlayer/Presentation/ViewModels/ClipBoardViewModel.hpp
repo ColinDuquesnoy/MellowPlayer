@@ -11,6 +11,7 @@ namespace MellowPlayer::Presentation
         ClipBoardViewModel(QObject *parent = nullptr);
 
         Q_INVOKABLE void setText(const QString &text);
+        Q_INVOKABLE bool canPaste() const;
 
     signals:
         void textCopied(const QString &text);

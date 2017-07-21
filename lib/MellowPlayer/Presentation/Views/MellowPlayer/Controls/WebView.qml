@@ -58,6 +58,18 @@ WebEngineView {
     settings.errorPageEnabled: true
     settings.autoLoadIconsForPage: true
 
+    onContextMenuRequested: {
+        request.accepted = true;
+        contextMenu.x = request.x;
+        contextMenu.y = request.y;
+        contextMenu.canCopy = request.selectedText !== "";
+        contextMenu.canPaste = request.isContentEditable && _clipboard.canPaste();
+        contextMenu.canUnselect = request.selectedText !== "";
+        contextMenu.canGoBack = root.canGoBack;
+        contextMenu.canGoForward = root.canGoForward;
+        contextMenu.hasLink = request.linkText !== "";
+        contextMenu.show();
+    }
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank") {
             player.loadPlugin();
@@ -83,5 +95,21 @@ WebEngineView {
         onReloadRequested: root.reload()
         customUrl: urlToLoad
         onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
+    }
+
+    WebViewContextMenu {
+        id: contextMenu
+
+        onCopyRequested: root.triggerWebAction(WebEngineView.Copy)
+        onPasteRequested: root.triggerWebAction(WebEngineView.Paste)
+        onUnselectRequested: root.triggerWebAction(WebEngineView.Unselect)
+
+        onCopyLinkRequested: root.triggerWebAction(WebEngineView.CopyLinkToClipboard)
+        onOpenLinkRequested: root.triggerWebAction(WebEngineView.OpenLinkInNewTab)
+
+        onGoBackRequested: root.goBack()
+        onGoForwardRequested: root.goForward()
+        onReloadRequested: root.reload()
+        onViewPageSourceRequested: root.triggerWebAction(WebEngineView.ViewSource)
     }
 }

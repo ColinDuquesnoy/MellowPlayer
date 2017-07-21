@@ -26,7 +26,7 @@ ApplicationWindow {
         anchors.fill: parent
         mainWindowWidth: root.width
 
-        onNewViewRequested: d.openWebPopup(request)
+        onNewViewRequested: d.openWebPopup(request, profile)
         onFullScreenRequested: d.toggleFullScreen(request)
         onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
         onOpenSettingsRequested: settingsDrawer.open()
@@ -117,7 +117,7 @@ ApplicationWindow {
             root.show();
         }
 
-        function openWebPopup(request) {
+        function openWebPopup(request, profile) {
             if (request.userInitiated) {
                 var dialog = d.applicationRoot.createDialog(profile);
                 request.openIn(dialog.currentWebView);

@@ -72,5 +72,6 @@
         <file>Views/MellowPlayer/Controls/UpdateToolBar.qml</file>
         <file>Views/MellowPlayer/Controls/NativeMenuBar.qml</file>
         <file>Views/MellowPlayer/Controls/SettingsDrawer.qml</file>
+        <file>Views/MellowPlayer/Controls/WebViewContextMenu.qml</file>
     </qresource>
 </RCC>

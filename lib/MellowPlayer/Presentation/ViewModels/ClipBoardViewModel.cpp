@@ -13,3 +13,8 @@ void ClipBoardViewModel::setText(const QString &text)
     qApp->clipboard()->setText(text);
     emit textCopied(text);
 }
+
+bool ClipBoardViewModel::canPaste() const
+{
+    return !qApp->clipboard()->text().isEmpty();
+}
