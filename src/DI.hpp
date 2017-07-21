@@ -19,7 +19,6 @@
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Application/Updater/DefaultPlatformUpdater.hpp>
 #include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
 #include <MellowPlayer/Application/Updater/IReleaseQuerier.hpp>
@@ -118,7 +117,8 @@ public:
 template <class... TCtor>
 struct constructor_impl
 {
-    template <class TInjector, class T,
+    template <class TInjector,
+              class T,
               std::enable_if_t<boost::di::concepts::creatable<boost::di::type_traits::direct, typename T::expected, TCtor...>::value, int> = 0>
     auto operator()(const TInjector &injector, const T &) const
     {
@@ -132,27 +132,47 @@ struct constructor : constructor_impl<TCtor...>
 };
 //->
 
+// clang-format off
 auto defaultInjector = [](ScopedScope &scope) {
     return di::make_injector(
-    di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope), di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
-    di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
-    di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope), di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
-    di::bind<IHotkeysController>().to<HotkeysController>().in(scope), di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
-    di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope), di::bind<INotifier>().to<Notifier>().in(scope),
-    di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope), di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
-    di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
-    di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
-    di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope), di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
-    di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope), di::bind<IHttpClient>().to<HttpClient>().in(scope),
-    di::bind<IFileDownloader>().to<FileDownloader>().in(scope));
+        di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope),
+        di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
+        di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
+        di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
+        di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
+        di::bind<IHotkeysController>().to<HotkeysController>().in(scope),
+        di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
+        di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
+        di::bind<INotifier>().to<Notifier>().in(scope),
+        di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
+        di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
+        di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
+        di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
+        di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
+        di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
+        di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
+        di::bind<IHttpClient>().to<HttpClient>().in(scope),
+        di::bind<IFileDownloader>().to<FileDownloader>().in(scope)
+    );
 };
 
 auto platformInjector = [](ScopedScope &scope) {
-#ifdef Q_OS_LINUX
-    return di::make_injector(di::bind<IMprisController>().to<MprisController>().in(scope), di::bind<IApplication>().to<LinuxApplication>().in(scope),
-                             di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope));
-#else
-    return di::make_injector(di::bind<IApplication>().to<CoreApplication>().in(scope));
+#if defined(Q_OS_LINUX)
+    return di::make_injector(
+        di::bind<IMprisController>().to<MprisController>().in(scope),
+        di::bind<IApplication>().to<LinuxApplication>().in(scope),
+        di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope)
+    );
+#elif defined(Q_OS_WIN)
+    return di::make_injector(
+        di::bind<IApplication>().to<CoreApplication>().in(scope),
+        di::bind<AbstractPlatformUpdater>().to<WindowsUpdater>().in(scope)
+    );
+#elif defined(Q_OS_OSX)
+    return di::make_injector(
+        di::bind<IApplication>().to<CoreApplication>().in(scope),
+        di::bind<AbstractPlatformUpdater>().to<OSXUpdater>().in(scope)
+    );
 #endif
 };
 
@@ -163,3 +183,5 @@ auto notificationPresenterInjector = [](ScopedScope &scope) {
     return di::make_injector(di::bind<INotificationPresenter>().to<SystemTrayIconPresenter>().in(scope));
 #endif
 };
+
+// clang-format on
