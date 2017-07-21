@@ -82,17 +82,17 @@ QString ThemeViewModel::getSecondaryForeground() const
 void ThemeViewModel::update()
 {
     StreamingService *currentService = streamingServices.getCurrent();
-    QString currentTheme = themeSetting.getValue().toString();
+    QString current = themeSetting.getValue().toString();
     if (currentService != nullptr && isAdaptiveTheme() && !currentService->getTheme().isEmpty()) {
         Theme theme = currentService->getTheme();
         availableThemes["Adaptive"] = theme;
         fromTheme(theme);
     } else if (isAdaptiveTheme())
         fromTheme(availableThemes["Default"]);
-    else if (currentTheme == "Custom")
+    else if (current == "Custom")
         fromTheme(getCustomTheme());
     else
-        fromTheme(availableThemes[currentTheme]);
+        fromTheme(availableThemes[current]);
 }
 
 bool ThemeViewModel::isAdaptiveTheme() const
@@ -186,8 +186,8 @@ void ThemeViewModel::fromTheme(const Theme &newTheme)
 double ThemeViewModel::getColorScaleFactor(const QString &color) const
 {
     const int lightnessMax = 164;
-    const float darkerFactor = 1.05;
-    const float lighterFactor = 1.2;
+    const float darkerFactor = 1.05f;
+    const float lighterFactor = 1.2f;
 
     if (QColor(color).lightness() > lightnessMax)
         return darkerFactor;
