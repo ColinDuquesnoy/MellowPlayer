@@ -12,15 +12,13 @@ using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
 
 SCENARIO("check for stable updates") {
-    FakeHttpClient fakeHttpClient;
-    GithubReleaseQuerier querier(fakeHttpClient);
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Stable));
 
     GIVEN("current version is 2.2.4 from April 2017") {
         Release currentRelease("2.2.4", QDate::fromString("2017-04-29", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -40,7 +38,7 @@ SCENARIO("check for stable updates") {
 
     GIVEN("current version is 2.2.5 from June 2017") {
         Release currentRelease("2.2.5", QDate::fromString("2017-06-17", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -57,7 +55,7 @@ SCENARIO("check for stable updates") {
 
     GIVEN("current version is 2.95.0 from July 2017") {
         Release currentRelease("2.95.0", QDate::fromString("2017-07-01", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -82,7 +80,7 @@ SCENARIO("check for beta updates") {
 
     GIVEN("current version is 2.2.4 from April 2017") {
         Release currentRelease("2.2.4", QDate::fromString("2017-04-29", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -100,7 +98,7 @@ SCENARIO("check for beta updates") {
 
     GIVEN("current version is 2.95.0 from July 2017") {
         Release currentRelease("2.95.0", QDate::fromString("2017-07-16", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -125,7 +123,7 @@ SCENARIO("check for Continuous updates") {
 
     GIVEN("current version is 2.2.4 from April 2017") {
         Release currentRelease("2.2.4", QDate::fromString("2017-04-29", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -142,7 +140,7 @@ SCENARIO("check for Continuous updates") {
 
     GIVEN("current version is 2.95.0 from day before latest continuous") {
         Release currentRelease("2.95.0", QDate::fromString("2017-07-14", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
@@ -159,7 +157,7 @@ SCENARIO("check for Continuous updates") {
 
     GIVEN("current version is 2.95.0 from day after latest continuous") {
         Release currentRelease("2.95.0", QDate::fromString("2017-07-16", Qt::ISODate));
-        Updater updater(querier, settings);
+        Updater& updater = pool.getUpdater();
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 

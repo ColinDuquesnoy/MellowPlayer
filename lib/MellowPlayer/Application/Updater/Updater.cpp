@@ -1,15 +1,17 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include "AbstractPlatformUpdater.hpp"
 #include "IReleaseQuerier.hpp"
 #include "Release.hpp"
 #include "Updater.hpp"
 
 using namespace MellowPlayer::Application;
 
-Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings):
+Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater):
         logger_(LoggingManager::instance().getLogger("Updater")),
         releaseQuerier_(releaseQuerier),
+        platformUpdater_(platformUpdater),
         autoCheckEnabledSetting_(settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES)),
         updateChannelSetting_(settings.get(SettingKey::MAIN_UPDATE_CHANNEL)),
         currentRelease_(&Release::current()) {
@@ -17,8 +19,8 @@ Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings):
     connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
     connect(&updateChannelSetting_, &Setting::valueChanged, this, &Updater::check);
 
-//    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
-//    setCurrentRelease(r);
+    Release* r = new Release("1.95.0", QDate::fromString("2017-06-15"), this);
+    setCurrentRelease(r);
 }
 
 void Updater::check() {
@@ -35,6 +37,7 @@ UpdateChannel Updater::getChannel() const {
 void Updater::install() {
     LOG_DEBUG(logger_, "Downloading update");
     setStatus(Status::Downloading);
+    platformUpdater_.download();
 }
 
 bool Updater::isUpdateAvailable() const {
@@ -42,8 +45,7 @@ bool Updater::isUpdateAvailable() const {
 }
 
 bool Updater::canInstall() const {
-//    return platformUpdater_.canInstall();
-    return false;
+    return platformUpdater_.canInstall();
 }
 
 const Release* Updater::getLatestRelease() const {
@@ -81,5 +83,15 @@ void Updater::setStatus(Updater::Status status) {
     if (status_ != status) {
         status_ = status;
         emit statusChanged();
+    }
+}
+
+void Updater::onDownloadFinished(bool succes) {
+    if (succes) {
+        setStatus(Status::Installing);
+        platformUpdater_.install();
+    }
+    else {
+        setStatus(Status::None);
     }
 }

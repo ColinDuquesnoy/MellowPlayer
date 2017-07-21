@@ -20,9 +20,8 @@ SCENARIO("check for updates") {
         REQUIRE(!viewModel.isVisible());
         REQUIRE(viewModel.getMessage().isEmpty());
         REQUIRE(viewModel.getUrl().isEmpty());
-        REQUIRE(viewModel.getStatus().isEmpty());
+        REQUIRE(viewModel.getStatusString().isEmpty());
         REQUIRE(!viewModel.isInstallEnabled());
-        REQUIRE(!viewModel.isProgressVisible());
         REQUIRE(viewModel.getProgress() == -1);
 
         WHEN("checking for updates") {
@@ -49,7 +48,6 @@ SCENARIO("check for updates") {
                     viewModel.install();
 
                     THEN("progress bar appear and updater starts downloading") {
-                        REQUIRE(viewModel.isProgressVisible());
                         REQUIRE(viewModel.isBusy());
                     }
                 }
@@ -65,9 +63,8 @@ SCENARIO("check for updates") {
         REQUIRE(!viewModel.isVisible());
         REQUIRE(viewModel.getMessage().isEmpty());
         REQUIRE(viewModel.getUrl().isEmpty());
-        REQUIRE(viewModel.getStatus().isEmpty());
+        REQUIRE(viewModel.getStatusString().isEmpty());
         REQUIRE(!viewModel.isInstallEnabled());
-        REQUIRE(!viewModel.isProgressVisible());
         REQUIRE(viewModel.getProgress() == -1);
 
         WHEN("checking for updates") {

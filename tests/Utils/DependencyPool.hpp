@@ -20,6 +20,7 @@ namespace MellowPlayer::Application {
     class Settings;
     class StreamingServicesController;
     class Updater;
+    class AbstractPlatformUpdater;
 }
 
 namespace MellowPlayer::Infrastructure {
@@ -58,6 +59,7 @@ namespace MellowPlayer::Tests {
         Application::Updater& getUpdater();
         Application::IQtApplication& getQtApplication();
         Application::INotificationPresenter& getNotificationPresenter();
+        Application::AbstractPlatformUpdater& getPlatformUpdater();
 
         // Infrastructure layer
         Infrastructure::LocalAlbumArt& getLocalAlbumArt();
@@ -85,6 +87,7 @@ namespace MellowPlayer::Tests {
         std::unique_ptr<Application::Settings> pSettings;
         std::unique_ptr<Application::StreamingServicesController> pStreamingServicesController;
         std::unique_ptr<Application::Updater> pUpdater;
+        std::unique_ptr<Application::AbstractPlatformUpdater> pPlatformUpdater;
 
         // infra
         std::unique_ptr<Infrastructure::LocalAlbumArt> pLocalAlbumArt;

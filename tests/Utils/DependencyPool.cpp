@@ -26,6 +26,8 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
+#include <Mocks/FakePlatformUpdater.hpp>
+#include <Mocks/FakeFileDownloader.hpp>
 
 #include "DependencyPool.hpp"
 
@@ -135,7 +137,7 @@ Updater& DependencyPool::getUpdater() {
     static FakeHttpClient httpClient;
     static GithubReleaseQuerier querier(httpClient);
     if (pUpdater == nullptr)
-        pUpdater = make_unique<Updater>(querier, getSettings());
+        pUpdater = make_unique<Updater>(querier, getSettings(), getPlatformUpdater());
     return *pUpdater;
 }
 
@@ -184,4 +186,11 @@ LocalAlbumArt& DependencyPool::getLocalAlbumArt() {
 
 Mock<INotificationPresenter>& DependencyPool::getNotificationPresenterMock() {
     return mINotificationPresenter;
+}
+
+AbstractPlatformUpdater& DependencyPool::getPlatformUpdater() {
+    static FakeFileDownloader fakeFileDownloader;
+    if (pPlatformUpdater == nullptr)
+        pPlatformUpdater = make_unique<FakePlatformUpdater>(fakeFileDownloader);
+    return *pPlatformUpdater;
 }

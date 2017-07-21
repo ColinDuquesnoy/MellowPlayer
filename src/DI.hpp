@@ -27,6 +27,7 @@
 #include <MellowPlayer/Application/Updater/IReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
 #include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/DefaultPlatformUpdater.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
@@ -48,6 +49,7 @@
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <MellowPlayer/Infrastructure/Updater/HttpClient.hpp>
+#include <MellowPlayer/Infrastructure/FileDownloader.hpp>
 
 #ifdef USE_LIBNOTIFY
     #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
@@ -136,7 +138,9 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
         di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
         di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
-        di::bind<IHttpClient>().to<HttpClient>().in(scope)
+        di::bind<IHttpClient>().to<HttpClient>().in(scope),
+        di::bind<IFileDownloader>().to<FileDownloader>().in(scope),
+        di::bind<AbstractPlatformUpdater>().to<DefaultPlatformUpdater>().in(scope)
     );
 };
 

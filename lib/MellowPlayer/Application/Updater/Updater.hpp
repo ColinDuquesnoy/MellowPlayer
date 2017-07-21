@@ -11,12 +11,13 @@ namespace MellowPlayer::Application {
     class Settings;
     class Setting;
     class ILogger;
+    class AbstractPlatformUpdater;
 
     class Updater: public QObject {
         Q_OBJECT
         Q_ENUMS(Status)
     public:
-        Updater(IReleaseQuerier& releaseQuerier, Settings& settings);
+        Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater);
 
         enum class Status {
             None,
@@ -44,20 +45,19 @@ namespace MellowPlayer::Application {
     private slots:
         void onLatestReleaseReceived(const Release* release);
         void setStatus(Status status);
+        void onDownloadFinished(bool succes);
 
     private:
         ILogger& logger_;
         IReleaseQuerier& releaseQuerier_;
-//        IPlatformUpdater& platformUpdater_;
+        AbstractPlatformUpdater& platformUpdater_;
         Setting& autoCheckEnabledSetting_;
         Setting& updateChannelSetting_;
         bool isUpdateAvailable_ = false;
-        bool isDownloading_ = false;
         const Release* currentRelease_;
         const Release* latestRelease_ = nullptr;
 
         MellowPlayer::Application::UpdateChannel getChannel() const;
         Status status_ = Status::None;
-
     };
 }

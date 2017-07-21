@@ -11,6 +11,7 @@ UpdaterViewModel::UpdaterViewModel(Updater& updater): updater_(updater)
     connect(&updater, &Updater::noUpdateAvailable, this, &UpdaterViewModel::onNoUpdateAvailable);
     connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::statusChanged);
     connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::busyChanged);
+    connect(&updater, &Updater::statusChanged, this, &UpdaterViewModel::updateMessage);
     emit statusChanged();
     emit busyChanged();
 }
@@ -35,11 +36,6 @@ int UpdaterViewModel::getProgress() const
     return progress_;
 }
 
-bool UpdaterViewModel::isProgressVisible() const
-{
-    return progressVisible_;
-}
-
 void UpdaterViewModel::close()
 {
     setVisible(false);
@@ -47,16 +43,13 @@ void UpdaterViewModel::close()
 
 void UpdaterViewModel::check()
 {
-    setProgressVisible(true);
     setProgress(-1);
     updater_.check();
 }
 
 void UpdaterViewModel::install()
 {
-    setMessage("Downloading update...");
     setInstallEnabled(false);
-    setProgressVisible(true);
     setProgress(-1);
     updater_.install();
 }
@@ -88,31 +81,20 @@ void UpdaterViewModel::setProgress(int progress)
     emit progressChanged();
 }
 
-void UpdaterViewModel::setProgressVisible(bool progressVisible)
-{
-    if (progressVisible_ == progressVisible)
-        return;
-
-    progressVisible_ = progressVisible;
-    emit progressVisibleChanged();
-}
-
 void UpdaterViewModel::onUpdateAvailable()
 {
     setInstallEnabled(updater_.canInstall());
-    setProgressVisible(false);
     setProgress(-1);
     setVisible(true);
-    setMessage(tr("A new version of <b>MellowPlayer</b> is available (%1)").arg(updater_.getLatestRelease()->getName()));
+    updateMessage();
 }
 
 void UpdaterViewModel::onNoUpdateAvailable()
 {
     setInstallEnabled(false);
-    setProgressVisible(false);
     setProgress(-1);
     setVisible(false);
-    setMessage("");
+    updateMessage();
 }
 
 void UpdaterViewModel::setMessage(const QString& message)
@@ -131,10 +113,20 @@ QString UpdaterViewModel::getUrl() const
     return "";
 }
 
-QString UpdaterViewModel::getStatus() const {
+QString UpdaterViewModel::getStatusString() const {
     return UpdaterStatusConverter::toString(updater_.getStatus());
 }
 
 bool UpdaterViewModel::isBusy() const {
     return updater_.getStatus() != Updater::Status::None;
+}
+
+void UpdaterViewModel::updateMessage() {
+    if (updater_.getStatus() == Updater::Status::None && updater_.isUpdateAvailable()) {
+        setMessage(tr("A new version of <b>MellowPlayer</b> is available (%1)").arg(
+                updater_.getLatestRelease()->getName()));
+    }
+    else
+        setMessage(getStatusString());
+
 }
