@@ -19,7 +19,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # upload code coverage results
     popd;
     sudo pip install cpp-coveralls;
-    coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*build.*' -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
+    coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
