@@ -29,7 +29,7 @@ namespace MellowPlayer::Application {
         virtual QString getAssetUrl() const = 0;
         virtual QString getAssetFileName() const = 0;
 
-        const Release* release_;
+        const Release* release_ = nullptr;
 
     private:
         QString makeDestinationPath();

@@ -8,7 +8,8 @@ namespace MellowPlayer::Application {
     {
     public:
         DefaultPlatformUpdater(IFileDownloader& downloader);
-        virtual bool canInstall() const;
+
+        virtual bool canInstall() const override;
 
     protected:
         virtual void doInstall(const QString& assetFilePath) override;
