@@ -1,12 +1,10 @@
 #include "GithubReleasesReplyParser.hpp"
 #include <QtCore/QJsonArray>
-#include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
-#include <cassert>
 
 using namespace MellowPlayer::Application;
 
-void GithubReleasesReplyParser::parse(const QByteArray &replyData)
+void GithubReleasesReplyParser::parse(const QByteArray& replyData)
 {
     stopRequested_ = false;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(replyData);
@@ -28,7 +26,7 @@ void GithubReleasesReplyParser::parse(const QByteArray &replyData)
             assets << asset;
         }
 
-        Release *release = new Release(url, version, date, assets, preRelease, this);
+        Release* release = new Release(url, version, date, assets, preRelease, this);
 
         emit ready(release);
 

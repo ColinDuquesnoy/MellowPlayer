@@ -10,7 +10,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
-void requireMatchTheme(ThemeViewModel &themeViewModel, const Theme &theme)
+void requireMatchTheme(ThemeViewModel& themeViewModel, const Theme& theme)
 {
     if (themeViewModel.isDark(themeViewModel.getBackground()))
         REQUIRE(themeViewModel.isDark());
@@ -28,9 +28,9 @@ void requireMatchTheme(ThemeViewModel &themeViewModel, const Theme &theme)
 TEST_CASE("ThemeViewModelTests", "[UnitTest]")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    StreamingServicesController &streamingServices = pool.getStreamingServicesController();
-    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
+    Settings& settings = pool.getSettings();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
 
     streamingServices.load();
     settings.get(SettingKey::APPEARANCE_THEME).setValue("Adaptive");

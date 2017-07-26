@@ -10,16 +10,16 @@ namespace MellowPlayer::Presentation
     class ListeningHistoryProxyListModel : public QSortFilterProxyModel
     {
     public:
-        ListeningHistoryProxyListModel(ListeningHistoryListModel *sourceModel);
+        explicit ListeningHistoryProxyListModel(ListeningHistoryListModel* sourceModel);
 
-        void disableService(const QString &serviceName, bool disable);
-        void setSearchFilter(const QString &newSearchFilter);
+        void disableService(const QString& serviceName, bool disable);
+        void setSearchFilter(const QString& newSearchFilter);
 
     protected:
-        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 
     private:
-        QQmlObjectListModel<ListeningHistoryEntryViewModel> *sourceModel;
+        QQmlObjectListModel<ListeningHistoryEntryViewModel>* sourceModel;
         QList<QString> disabledServices;
         QString searchFilter;
     };

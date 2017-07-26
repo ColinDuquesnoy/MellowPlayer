@@ -8,7 +8,7 @@ namespace MellowPlayer::Presentation
     {
     public:
         static QString toString(Application::Updater::Status status);
-        static Application::Updater::Status fromString(const QString &string);
+        static Application::Updater::Status fromString(const QString& string);
 
         static const QString NONE;
         static const QString CHECKING;

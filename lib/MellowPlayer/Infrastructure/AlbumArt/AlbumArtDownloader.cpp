@@ -1,7 +1,6 @@
 #include "AlbumArtDownloader.hpp"
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <QDir>
-#include <QImage>
 #include <QStandardPaths>
 
 using namespace MellowPlayer::Application;
@@ -13,7 +12,7 @@ AlbumArtDownloader::AlbumArtDownloader() : logger(LoggingManager::instance().get
     connect(&fileDownloader, &FileDownloader::finished, this, &AlbumArtDownloader::onDownloadFinished);
 }
 
-bool AlbumArtDownloader::download(const QString &url, const QString &songId)
+bool AlbumArtDownloader::download(const QString& url, const QString& songId)
 {
     if (url.isEmpty() || songId.isEmpty())
         return false;
@@ -33,13 +32,13 @@ bool AlbumArtDownloader::download(const QString &url, const QString &songId)
     return true;
 }
 
-void AlbumArtDownloader::downloadImage(const QString &url)
+void AlbumArtDownloader::downloadImage(const QString& url)
 {
     LOG_DEBUG(logger, "downloading " + url + " to " + localUrl.absoluteFilePath());
     fileDownloader.download(url, localUrl.absoluteFilePath());
 }
 
-QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString &songId)
+QFileInfo AlbumArtDownloader::getLocalArtUrl(const QString& songId)
 {
     auto cacheDir = QDir(QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0]);
     auto dir = QFileInfo(cacheDir, "Covers");
@@ -55,7 +54,7 @@ void AlbumArtDownloader::onDownloadFinished(bool)
     emit downloadFinished(localUrl.absoluteFilePath());
 }
 
-bool AlbumArtDownloader::isBase64Image(const QString &artUrl)
+bool AlbumArtDownloader::isBase64Image(const QString& artUrl)
 {
     return base64.isBase64(artUrl);
 }

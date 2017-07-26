@@ -57,12 +57,12 @@ namespace MellowPlayer::Application
             return !name.isEmpty() && !url.isEmpty() && !script.isEmpty();
         }
 
-        bool operator==(const StreamingServiceMetadata &rhs) const
+        bool operator==(const StreamingServiceMetadata& rhs) const
         {
             return name == rhs.name && url == rhs.url;
         }
 
-        bool operator!=(const StreamingServiceMetadata &rhs) const
+        bool operator!=(const StreamingServiceMetadata& rhs) const
         {
             return !operator==(rhs);
         }

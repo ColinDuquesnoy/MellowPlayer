@@ -13,7 +13,7 @@ SCENARIO("HttpClient get github API response")
         bool replyReceived = false;
         QByteArray replyData;
 
-        client.connect(&client, &HttpClient::replyReceived, [&](const QByteArray &data) {
+        client.connect(&client, &HttpClient::replyReceived, [&](const QByteArray& data) {
             replyReceived = true;
             replyData = data;
         });

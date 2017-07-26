@@ -6,7 +6,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-Theme ThemeLoader::load(const QString &path) const
+Theme ThemeLoader::load(const QString& path) const
 {
     Theme theme;
 

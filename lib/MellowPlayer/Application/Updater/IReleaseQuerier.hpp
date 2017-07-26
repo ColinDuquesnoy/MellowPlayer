@@ -17,6 +17,6 @@ namespace MellowPlayer::Application
         virtual void getLatest() = 0;
 
     signals:
-        void latestReceived(const Release *release);
+        void latestReceived(const Release* release);
     };
 }

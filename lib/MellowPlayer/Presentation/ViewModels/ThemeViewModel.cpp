@@ -11,7 +11,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ThemeViewModel::ThemeViewModel(StreamingServicesController &streamingServices, Settings &settings, IThemeLoader &themeLoader)
+ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, Settings& settings, IThemeLoader& themeLoader)
         : streamingServices(streamingServices),
           loader(themeLoader),
           accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
@@ -81,7 +81,7 @@ QString ThemeViewModel::getSecondaryForeground() const
 
 void ThemeViewModel::update()
 {
-    StreamingService *currentService = streamingServices.getCurrent();
+    StreamingService* currentService = streamingServices.getCurrent();
     QString current = themeSetting.getValue().toString();
     if (currentService != nullptr && isAdaptiveTheme() && !currentService->getTheme().isEmpty()) {
         Theme theme = currentService->getTheme();
@@ -100,7 +100,7 @@ bool ThemeViewModel::isAdaptiveTheme() const
     return themeSetting.getValue().toString() == "Adaptive";
 }
 
-void ThemeViewModel::onCurrentServiceChanged(StreamingService *streamingService)
+void ThemeViewModel::onCurrentServiceChanged(StreamingService* streamingService)
 {
     connect(streamingService, &StreamingService::themeChanged, this, &ThemeViewModel::update, Qt::UniqueConnection);
 
@@ -108,7 +108,7 @@ void ThemeViewModel::onCurrentServiceChanged(StreamingService *streamingService)
         update();
 }
 
-void ThemeViewModel::setAccent(const QString &value)
+void ThemeViewModel::setAccent(const QString& value)
 {
     if (value == currentTheme.accent)
         return;
@@ -117,7 +117,7 @@ void ThemeViewModel::setAccent(const QString &value)
     emit accentChanged();
 }
 
-void ThemeViewModel::setBackground(const QString &value)
+void ThemeViewModel::setBackground(const QString& value)
 {
     if (value == currentTheme.background)
         return;
@@ -127,7 +127,7 @@ void ThemeViewModel::setBackground(const QString &value)
     emit isDarkChanged();
 }
 
-void ThemeViewModel::setForeground(const QString &value)
+void ThemeViewModel::setForeground(const QString& value)
 {
     if (value == currentTheme.foreground)
         return;
@@ -136,7 +136,7 @@ void ThemeViewModel::setForeground(const QString &value)
     emit foregroundChanged();
 }
 
-void ThemeViewModel::setPrimary(const QString &value)
+void ThemeViewModel::setPrimary(const QString& value)
 {
     if (value == currentTheme.primary)
         return;
@@ -145,7 +145,7 @@ void ThemeViewModel::setPrimary(const QString &value)
     emit primaryChanged();
 }
 
-void ThemeViewModel::setPrimaryForeground(const QString &value)
+void ThemeViewModel::setPrimaryForeground(const QString& value)
 {
     if (value == currentTheme.primaryForeground)
         return;
@@ -154,7 +154,7 @@ void ThemeViewModel::setPrimaryForeground(const QString &value)
     emit primaryForegroundChanged();
 }
 
-void ThemeViewModel::setSecondary(const QString &value)
+void ThemeViewModel::setSecondary(const QString& value)
 {
     if (value == currentTheme.secondary)
         return;
@@ -163,7 +163,7 @@ void ThemeViewModel::setSecondary(const QString &value)
     emit secondaryChanged();
 }
 
-void ThemeViewModel::setSecondaryForeground(const QString &value)
+void ThemeViewModel::setSecondaryForeground(const QString& value)
 {
     if (value == currentTheme.secondaryForeground)
         return;
@@ -172,7 +172,7 @@ void ThemeViewModel::setSecondaryForeground(const QString &value)
     emit secondaryForegroundChanged();
 }
 
-void ThemeViewModel::fromTheme(const Theme &newTheme)
+void ThemeViewModel::fromTheme(const Theme& newTheme)
 {
     setAccent(newTheme.accent);
     setBackground(newTheme.background);
@@ -183,7 +183,7 @@ void ThemeViewModel::fromTheme(const Theme &newTheme)
     setSecondaryForeground(newTheme.secondaryForeground);
 }
 
-double ThemeViewModel::getColorScaleFactor(const QString &color) const
+double ThemeViewModel::getColorScaleFactor(const QString& color) const
 {
     const int lightnessMax = 164;
     const float darkerFactor = 1.05f;
@@ -194,7 +194,7 @@ double ThemeViewModel::getColorScaleFactor(const QString &color) const
     return lighterFactor;
 }
 
-bool ThemeViewModel::isDark(const QString &color) const
+bool ThemeViewModel::isDark(const QString& color) const
 {
     QColor c(color);
     int lightness = c.lightness();
@@ -229,7 +229,7 @@ void ThemeViewModel::collectThemes()
     }
 }
 
-void ThemeViewModel::onServiceAdded(StreamingService *service)
+void ThemeViewModel::onServiceAdded(StreamingService* service)
 {
     availableThemes[service->getName()] = service->getTheme();
 }
@@ -241,7 +241,7 @@ QStringList ThemeViewModel::getAvailableThemes() const
     return themes;
 }
 
-Theme ThemeViewModel::getTheme(const QString &themeName) const
+Theme ThemeViewModel::getTheme(const QString& themeName) const
 {
     return availableThemes[themeName];
 }

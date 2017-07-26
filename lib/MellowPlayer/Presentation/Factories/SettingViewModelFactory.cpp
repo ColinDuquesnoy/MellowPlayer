@@ -6,16 +6,15 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/ThemeSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-SettingViewModelFactory::SettingViewModelFactory(ThemeViewModel &themeViewModel) : themeViewModel(themeViewModel)
+SettingViewModelFactory::SettingViewModelFactory(ThemeViewModel& themeViewModel) : themeViewModel(themeViewModel)
 {
 }
 
-SettingViewModel *SettingViewModelFactory::create(Setting &setting, QObject *parent) const
+SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* parent) const
 {
     QString type = setting.getType().toLower();
     if (type == "bool")

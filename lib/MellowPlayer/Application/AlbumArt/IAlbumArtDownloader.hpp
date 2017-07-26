@@ -12,10 +12,10 @@ namespace MellowPlayer::Application
     public:
         virtual ~IAlbumArtDownloader() = default;
 
-        virtual bool download(const QString &artUrl, const QString &songId) = 0;
-        virtual QFileInfo getLocalArtUrl(const QString &songId) = 0;
+        virtual bool download(const QString& artUrl, const QString& songId) = 0;
+        virtual QFileInfo getLocalArtUrl(const QString& songId) = 0;
 
     signals:
-        void downloadFinished(const QString &localUrl);
+        void downloadFinished(const QString& localUrl);
     };
 }

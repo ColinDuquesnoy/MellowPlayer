@@ -3,7 +3,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryEntryViewModel::ListeningHistoryEntryViewModel(const ListeningHistoryEntry &entry, QObject *parent) : QObject(parent), entry(entry)
+ListeningHistoryEntryViewModel::ListeningHistoryEntryViewModel(const ListeningHistoryEntry& entry, QObject* parent) : QObject(parent), entry(entry)
 {
 }
 

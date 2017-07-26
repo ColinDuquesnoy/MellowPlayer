@@ -10,6 +10,6 @@ namespace MellowPlayer::Application
     {
     public:
         virtual ~ILoggerFactory() = default;
-        virtual std::unique_ptr<ILogger> create(const std::string &name, const LoggerConfig &loggerConfig) const = 0;
+        virtual std::unique_ptr<ILogger> create(const std::string& name, const LoggerConfig& loggerConfig) const = 0;
     };
 }

@@ -3,7 +3,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-BoolSettingViewModel::BoolSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
+BoolSettingViewModel::BoolSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
 }
 

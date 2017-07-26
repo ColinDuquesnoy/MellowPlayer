@@ -18,11 +18,11 @@ using namespace fakeit;
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 {
     DependencyPool pool;
-    StreamingServicesController &streamingServices = pool.getStreamingServicesController();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    Players &players = pool.getPlayers();
-    Settings &settings = pool.getSettings();
-    IWorkDispatcher &workDispatcher = pool.getWorkDispatcher();
+    Players& players = pool.getPlayers();
+    Settings& settings = pool.getSettings();
+    IWorkDispatcher& workDispatcher = pool.getWorkDispatcher();
     auto creatorMock = StreamingServiceCreatorMock::get();
     auto commandLineParserMock = CommandLineParserMock::get();
     StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
@@ -30,9 +30,9 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     viewModel.initialize();
     viewModel.reload();
 
-    StreamingServiceViewModel *service1 = viewModel.getAllServices()->at(0);
-    StreamingServiceViewModel *service2 = viewModel.getAllServices()->at(1);
-    StreamingServiceViewModel *service3 = viewModel.getAllServices()->at(2);
+    StreamingServiceViewModel* service1 = viewModel.getAllServices()->at(0);
+    StreamingServiceViewModel* service2 = viewModel.getAllServices()->at(1);
+    StreamingServiceViewModel* service3 = viewModel.getAllServices()->at(2);
 
     SECTION("setCurrentService changes currentIndex")
     {

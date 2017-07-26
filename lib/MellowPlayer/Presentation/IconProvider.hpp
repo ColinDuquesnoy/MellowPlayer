@@ -13,8 +13,6 @@ namespace MellowPlayer::Presentation
     class IconProvider
     {
     public:
-        IconProvider(Application::Settings &settings);
-
         static QIcon trayIcon();
         static QIcon windowIcon();
         static QIcon restoreWindow();

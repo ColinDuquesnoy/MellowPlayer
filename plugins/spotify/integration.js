@@ -84,34 +84,20 @@ function readTime(timeString) {
     var minutes = 0;
     var seconds = 0;
     var m = timeString.match("\\d+:\\d+:\\d+");
-    if (m != null) {
+    if (m !== null) {
         var data = timeString.split(':');
         hours = parseInt(data[0]);
         minutes = parseInt(data[1]);
         seconds = parseInt(data[2]);
     } else {
         var m = timeString.match("\\d+:\\d+");
-        if (m != null) {
+        if (m !== null) {
             var data = timeString.split(':');
             minutes = parseInt(data[0]);
             seconds = parseInt(data[1]);
         }
     }
-    var total = hours * 3600 + minutes * 60 + seconds;
-    return total;
-}
-
-function getSongUrl() {
-    var href = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div > a")
-    if (href)
-        return href.href;
-    return "";
-}
-
-function getSongId() {
-    var url = getSongUrl();
-    var tokens = url.split("/");
-    return tokens[tokens.length - 1];
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 function getPosition() {

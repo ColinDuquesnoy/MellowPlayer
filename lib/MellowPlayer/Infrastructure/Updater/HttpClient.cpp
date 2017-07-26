@@ -1,5 +1,4 @@
 #include "HttpClient.hpp"
-#include <QDebug>
 
 using namespace MellowPlayer::Infrastructure;
 
@@ -8,12 +7,12 @@ HttpClient::HttpClient()
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &HttpClient::onFinished);
 }
 
-void HttpClient::get(const QString &url)
+void HttpClient::get(const QString& url)
 {
     networkAccessManager_.get(QNetworkRequest(QUrl(url)));
 }
 
-void HttpClient::onFinished(QNetworkReply *reply)
+void HttpClient::onFinished(QNetworkReply* reply)
 {
     if (reply->error() != QNetworkReply::NoError)
         qWarning() << "http request failed: " << reply->errorString();

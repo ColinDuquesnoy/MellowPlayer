@@ -15,20 +15,20 @@ namespace MellowPlayer::Application
     {
         Q_OBJECT
     public:
-        Settings(ISettingsSchemaLoader &configurationLoader, ISettingsProvider &settingsProvider);
+        Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
 
-        const QList<SettingsCategory *> &getCategories() const;
+        const QList<SettingsCategory*>& getCategories() const;
 
-        SettingsCategory &getCategory(const QString &key) const;
-        Setting &get(const QString &key) const;
-        Setting &get(SettingKey::Keys key);
+        SettingsCategory& getCategory(const QString& key) const;
+        Setting& get(const QString& key) const;
+        Setting& get(SettingKey::Keys key);
 
-        ISettingsProvider &getSettingsProvider() const;
+        ISettingsProvider& getSettingsProvider() const;
 
         void restoreDefaults();
 
     private:
-        ISettingsProvider &settingsProvider;
-        QList<SettingsCategory *> categories;
+        ISettingsProvider& settingsProvider;
+        QList<SettingsCategory*> categories;
     };
 }

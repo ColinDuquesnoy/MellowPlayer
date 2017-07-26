@@ -12,8 +12,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("SettingsCategoryViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
+    Settings& settings = pool.getSettings();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     SettingsCategoryViewModel categoryViewModel(themeViewModel, &settings.getCategory("main"));
 
     REQUIRE(categoryViewModel.getName().toStdString() == "General");
@@ -23,9 +23,9 @@ TEST_CASE("SettingsCategoryViewModelTests")
 
     SECTION("restoreDefaults")
     {
-        Setting &inCategorySetting = settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES);
+        Setting& inCategorySetting = settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES);
         inCategorySetting.setValue(false);
-        Setting &notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
+        Setting& notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
         notInCategorySetting.setValue("Breeze");
 
         REQUIRE(inCategorySetting.getValue() != inCategorySetting.getDefaultValue());
@@ -41,8 +41,8 @@ TEST_CASE("SettingsCategoryViewModelTests")
 TEST_CASE("CustomSettingsCategoryViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    ThemeViewModel &themeViewModel = pool.getThemeViewModel();
+    Settings& settings = pool.getSettings();
+    ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", themeViewModel);
 
     REQUIRE(model.getName() == "CategoryName");

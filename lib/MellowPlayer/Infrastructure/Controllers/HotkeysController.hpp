@@ -22,7 +22,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        HotkeysController(Application::IPlayer &player, Application::Settings &settings, Application::IMainWindow &mainWindow);
+        HotkeysController(Application::IPlayer& player, Application::Settings& settings, Application::IMainWindow& mainWindow);
         ~HotkeysController();
 
         void start() override;
@@ -35,20 +35,20 @@ namespace MellowPlayer::Infrastructure
         void restoreWindow() override;
 
     private:
-        Application::ILogger &logger;
-        Application::IPlayer &player;
-        Application::IMainWindow &mainWindow;
-        QxtGlobalShortcut *playShortcut;
-        QxtGlobalShortcut *nextShortcut;
-        QxtGlobalShortcut *previousShortcut;
-        QxtGlobalShortcut *favoriteShortcut;
-        QxtGlobalShortcut *restoreWindowShortcut;
+        Application::ILogger& logger;
+        Application::IPlayer& player;
+        Application::IMainWindow& mainWindow;
+        QxtGlobalShortcut* playShortcut;
+        QxtGlobalShortcut* nextShortcut;
+        QxtGlobalShortcut* previousShortcut;
+        QxtGlobalShortcut* favoriteShortcut;
+        QxtGlobalShortcut* restoreWindowShortcut;
 
-        Application::Setting &playShortcutSetting;
-        Application::Setting &nextShortcutSetting;
-        Application::Setting &previousShortcutSetting;
-        Application::Setting &favoriteShortcutSetting;
-        Application::Setting &restoreWindowShortcutSetting;
+        Application::Setting& playShortcutSetting;
+        Application::Setting& nextShortcutSetting;
+        Application::Setting& previousShortcutSetting;
+        Application::Setting& favoriteShortcutSetting;
+        Application::Setting& restoreWindowShortcutSetting;
 
         void updateFavoriteShortcut() const;
         void updatePreviousShorcut() const;

@@ -3,13 +3,10 @@
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <QVariant>
 #include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
 #include <catch.hpp>
@@ -23,18 +20,18 @@ TEST_CASE("ListeningHistoryViewModelTests")
 {
     DependencyPool pool;
 
-    StreamingServicesController &streamingServices = pool.getStreamingServicesController();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
 
-    Players &players = pool.getPlayers();
-    Player &currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
+    Players& players = pool.getPlayers();
+    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
 
-    Settings &settings = pool.getSettings();
-    Setting &isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
+    Settings& settings = pool.getSettings();
+    Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);
 
-    ListeningHistoryViewModel &listeningHistoryViewModel = pool.getListeningHistoryViewModel();
+    ListeningHistoryViewModel& listeningHistoryViewModel = pool.getListeningHistoryViewModel();
 
     SECTION("Initialize")
     {

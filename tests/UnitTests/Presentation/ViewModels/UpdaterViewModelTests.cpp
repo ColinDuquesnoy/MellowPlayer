@@ -9,8 +9,8 @@ using namespace MellowPlayer::Tests;
 SCENARIO("check for updates")
 {
     DependencyPool pool;
-    Updater &updater = pool.getUpdater();
-    UpdaterViewModel &viewModel = pool.getUpdaterViewModel();
+    Updater& updater = pool.getUpdater();
+    UpdaterViewModel& viewModel = pool.getUpdaterViewModel();
 
     GIVEN("current version is 2.2.4 from April 2017")
     {

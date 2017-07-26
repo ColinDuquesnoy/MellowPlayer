@@ -11,6 +11,6 @@ namespace MellowPlayer::Application
 
         virtual void show() = 0;
         virtual void hide() = 0;
-        virtual void showMessage(const QString &title, const QString &message) = 0;
+        virtual void showMessage(const QString& title, const QString& message) = 0;
     };
 }

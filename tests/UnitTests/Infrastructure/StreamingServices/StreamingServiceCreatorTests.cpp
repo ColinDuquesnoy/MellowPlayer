@@ -1,8 +1,6 @@
 #include "Utils/Helpers.hpp"
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtCore/QTextStream>
 #include <catch.hpp>
 #include <iostream>
 

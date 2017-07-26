@@ -17,29 +17,29 @@ namespace MellowPlayer::Infrastructure
     public:
         StreamingServiceWatcher();
 
-        void watch(Application::StreamingService &serviceToWatch) override;
+        void watch(Application::StreamingService& serviceToWatch) override;
 
     private slots:
-        void onFileChanged(const QString &path);
+        void onFileChanged(const QString& path);
 
     private:
-        void watchPath(const QString &path);
+        void watchPath(const QString& path);
 
         class PluginInfo : public QObject
         {
         public:
-            Application::StreamingService &service;
+            Application::StreamingService& service;
             QString scriptPath;
             QString themePath;
 
-            PluginInfo(Application::StreamingService &service, QString scriptPath, QString themePath, QObject *parent)
+            PluginInfo(Application::StreamingService& service, QString scriptPath, QString themePath, QObject* parent)
                     : QObject(parent), service(service), scriptPath(scriptPath), themePath(themePath)
             {
             }
         };
 
-        Application::ILogger &logger;
-        QMap<QString, PluginInfo *> pluginInfos;
+        Application::ILogger& logger;
+        QMap<QString, PluginInfo*> pluginInfos;
         QFileSystemWatcher fileSystemWatcher;
     };
 }

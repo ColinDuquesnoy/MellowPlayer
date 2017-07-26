@@ -3,7 +3,6 @@
 #include <Windows.h>
 #endif
 #include "DI.hpp"
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
 #include <MellowPlayer/Infrastructure/CommandLineParser.hpp>
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
@@ -16,7 +15,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     // Init resources embedded in static libraries
     Q_INIT_RESOURCE(application);
@@ -42,10 +41,10 @@ int main(int argc, char **argv)
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
 #ifdef QT_DEBUG
-    IApplication &app = injector.create<IApplication &>();
+    IApplication& app = injector.create<IApplication&>();
     app.initialize();
 #else
-    SingleInstanceApplication &app = injector.create<SingleInstanceApplication &>();
+    SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
 #endif
     auto retCode = app.run();
 

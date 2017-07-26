@@ -3,13 +3,12 @@
 #include <QApplication>
 #include <QDebug>
 #include <QtCore/QDir>
-#include <QtCore/QFileInfo>
 #include <QtCore/QProcessEnvironment>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-LinuxUpdater::LinuxUpdater(IFileDownloader &fileDownloader) : AbstractPlatformUpdater(fileDownloader)
+LinuxUpdater::LinuxUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUpdater(fileDownloader)
 {
 }
 
@@ -27,7 +26,7 @@ QString LinuxUpdater::getDestinationDir() const
     return "";
 }
 
-void LinuxUpdater::doInstall(const QString &assetLocalPath)
+void LinuxUpdater::doInstall(const QString& assetLocalPath)
 {
     QString destinationPath = getDestinationPath();
     QString backupPath = destinationPath + ".backup";
@@ -57,12 +56,12 @@ QString LinuxUpdater::getAssetFileName() const
     return asset_.getName();
 }
 
-void LinuxUpdater::setRelease(const Release *release)
+void LinuxUpdater::setRelease(const Release* release)
 {
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto &asset : release_->getAssets()) {
+        for (auto& asset : release_->getAssets()) {
             if (asset.isAppImage()) {
                 asset_ = asset;
                 break;

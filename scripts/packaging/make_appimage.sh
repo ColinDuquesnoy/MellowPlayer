@@ -9,9 +9,9 @@
 
 # override path so that the correct qmake version is used
 QT_DIR=$1
-QMAKE_PATH=$QT_DIR/bin
-PATH=$QMAKE_PATH:$PATH
-export LD_LIBRARY_PATH=$QT_DIR/lib
+QMAKE_PATH=${QT_DIR}/bin
+PATH=${QMAKE_PATH}:$PATH
+export LD_LIBRARY_PATH=${QT_DIR}/lib
 echo "checking qmake"
 qmake -v
 
@@ -33,7 +33,7 @@ popd
 ldd appdir/usr/bin/MellowPlayer
 
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=../
-cp $QT_DIR/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
+cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
 
 chmod +x MellowPlayer-x86_64.AppImage

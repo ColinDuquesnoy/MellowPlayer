@@ -28,7 +28,7 @@ function getButtons() {
     return {
         playpause: document.querySelector("a.sm2-inline-button.play-pause"),
         skip: document.querySelector("a.sm2-inline-button.next"),
-        back: document.querySelector("a.sm2-inline-button.previous"),
+        back: document.querySelector("a.sm2-inline-button.previous")
     };
 }
 
@@ -110,16 +110,16 @@ function getPosition() {
         var position = document.getElementsByClassName("sm2-inline-time")[0].innerText;
         return parseTimeString(position);
     } catch (e) {
-        Position = null;
+        return 0;
     }
 }
 
 function getPlaybackStatus() {
     var controlClassName = document.getElementsByClassName("sm2-bar-ui")[0].className;
     var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-    if (controlClassName == "sm2-bar-ui full-width playing")
+    if (controlClassName === "sm2-bar-ui full-width playing")
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    else if (controlClassName == "sm2-bar-ui full-width paused")
+    else if (controlClassName === "sm2-bar-ui full-width paused")
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
     return playbackStatus;
 }

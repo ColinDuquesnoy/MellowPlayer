@@ -9,6 +9,6 @@ namespace MellowPlayer::Application
     public:
         virtual ~IThemeLoader() = default;
 
-        virtual Theme load(const QString &path) const = 0;
+        virtual Theme load(const QString& path) const = 0;
     };
 }

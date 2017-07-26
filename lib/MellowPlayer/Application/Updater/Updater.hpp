@@ -18,7 +18,7 @@ namespace MellowPlayer::Application
         Q_OBJECT
         Q_ENUMS(Status)
     public:
-        Updater(IReleaseQuerier &releaseQuerier, Settings &settings, AbstractPlatformUpdater &platformUpdater);
+        Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater);
 
         enum class Status
         {
@@ -31,11 +31,11 @@ namespace MellowPlayer::Application
             Failure
         };
 
-        void setCurrentRelease(const Release *currentRelease);
+        void setCurrentRelease(const Release* currentRelease);
 
         bool isUpdateAvailable() const;
         bool canInstall() const;
-        const Release *getLatestRelease() const;
+        const Release* getLatestRelease() const;
         Status getStatus() const;
 
     public slots:
@@ -51,20 +51,20 @@ namespace MellowPlayer::Application
         void installed();
 
     private slots:
-        void onLatestReleaseReceived(const Release *release);
+        void onLatestReleaseReceived(const Release* release);
         void setStatus(Status status);
         void onDownloadFinished(bool succes);
         void onInstallFinished(bool succes);
 
     private:
-        ILogger &logger_;
-        IReleaseQuerier &releaseQuerier_;
-        AbstractPlatformUpdater &platformUpdater_;
-        Setting &autoCheckEnabledSetting_;
-        Setting &updateChannelSetting_;
+        ILogger& logger_;
+        IReleaseQuerier& releaseQuerier_;
+        AbstractPlatformUpdater& platformUpdater_;
+        Setting& autoCheckEnabledSetting_;
+        Setting& updateChannelSetting_;
         bool isUpdateAvailable_ = false;
-        const Release *currentRelease_;
-        const Release *latestRelease_ = nullptr;
+        const Release* currentRelease_;
+        const Release* latestRelease_ = nullptr;
 
         MellowPlayer::Application::UpdateChannel getChannel() const;
         Status status_ = Status::None;

@@ -7,8 +7,8 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServiceViewModel::StreamingServiceViewModel(StreamingService &streamingService, ISettingsProvider &settings, Players &players,
-                                                     QObject *parent)
+StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, ISettingsProvider& settings, Players& players,
+                                                     QObject* parent)
         : QObject(parent), streamingService(streamingService), settingsProvider(settings), player(players.get(streamingService.getName()))
 {
 }
@@ -23,7 +23,7 @@ QString StreamingServiceViewModel::getName() const
     return streamingService.getName();
 }
 
-Player *StreamingServiceViewModel::getPlayer()
+Player* StreamingServiceViewModel::getPlayer()
 {
     return player.get();
 }
@@ -49,17 +49,17 @@ QString StreamingServiceViewModel::getAuthorWebsite() const
     return streamingService.getAuthorWebsite();
 }
 
-bool StreamingServiceViewModel::operator==(const StreamingServiceViewModel &rhs) const
+bool StreamingServiceViewModel::operator==(const StreamingServiceViewModel& rhs) const
 {
     return streamingService == rhs.streamingService;
 }
 
-bool StreamingServiceViewModel::operator!=(const StreamingServiceViewModel &rhs) const
+bool StreamingServiceViewModel::operator!=(const StreamingServiceViewModel& rhs) const
 {
     return !operator==(rhs);
 }
 
-StreamingService *StreamingServiceViewModel::getStreamingService() const
+StreamingService* StreamingServiceViewModel::getStreamingService() const
 {
     return &streamingService;
 }
@@ -94,7 +94,7 @@ void StreamingServiceViewModel::setEnabled(bool enabled)
     }
 }
 
-void StreamingServiceViewModel::setUrl(const QString &url)
+void StreamingServiceViewModel::setUrl(const QString& url)
 {
     if (url != getUrl()) {
         settingsProvider.setValue(getCustomUrlSettingsKey(), url);

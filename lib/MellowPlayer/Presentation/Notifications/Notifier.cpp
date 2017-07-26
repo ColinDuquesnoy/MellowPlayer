@@ -13,8 +13,8 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-Notifier::Notifier(IPlayer &player, ILocalAlbumArt &localAlbumArtService, INotificationPresenter &presenter,
-                   StreamingServicesController &streamingServices, Settings &settings)
+Notifier::Notifier(IPlayer& player, ILocalAlbumArt& localAlbumArtService, INotificationPresenter& presenter,
+                   StreamingServicesController& streamingServices, Settings& settings)
         : logger(LoggingManager::instance().getLogger("Notifier")),
           player(player),
           localAlbumArtService(localAlbumArtService),
@@ -33,7 +33,7 @@ void Notifier::initialize()
     presenter.initialize();
 }
 
-bool Notifier::display(const Notification &notification)
+bool Notifier::display(const Notification& notification)
 {
     LOG_TRACE(logger, "display");
     if (!isNotificationTypeEnabled(notification.type) || previousNotif == notification) {
@@ -45,7 +45,7 @@ bool Notifier::display(const Notification &notification)
     return true;
 }
 
-void Notifier::onCurrentSongChanged(Song *song)
+void Notifier::onCurrentSongChanged(Song* song)
 {
     LOG_TRACE(logger, "onCurrentSongChanged");
     showSongNotification(song, localAlbumArtService.getUrl());
@@ -72,7 +72,7 @@ void Notifier::onCurrentSongUrlChanged()
     showSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
 }
 
-void Notifier::showSongNotification(Song *song, const QString &localAlbumArtUrl)
+void Notifier::showSongNotification(Song* song, const QString& localAlbumArtUrl)
 {
     LOG_TRACE(logger, "showSongNotification");
     if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song)) {
@@ -101,26 +101,32 @@ const QString Notifier::getCurrentServiceLogo() const
 
 bool Notifier::isNotificationTypeEnabled(NotificationType type) const
 {
-    auto check = [](const Setting &setting) { return setting.isEnabled() && setting.getValue().toBool(); };
+    auto check = [](const Setting& setting) { return setting.isEnabled() && setting.getValue().toBool(); };
+
+    bool isEnabled;
 
     switch (type) {
         case NotificationType::NewVersionAvailable: {
-            const Setting &setting = settings.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
-            return check(setting);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
+            isEnabled = check(setting);
+            break;
         }
         case NotificationType::Paused: {
-            const Setting &setting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
-            return check(setting);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
+            isEnabled = check(setting);
+            break;
         }
         case NotificationType::NewSong: {
-            const Setting &setting = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
-            return check(setting);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+            isEnabled = check(setting);
+            break;
         }
         case NotificationType::Resumed: {
-            const Setting &setting = settings.get(SettingKey::NOTIFICATIONS_RESUMED);
-            return check(setting);
+            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_RESUMED);
+            isEnabled = check(setting);
+            break;
         }
     }
 
-    return false;
+    return isEnabled;
 }

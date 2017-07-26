@@ -9,7 +9,7 @@ namespace MellowPlayer::Application
     public:
         virtual ~IStreamingServiceCreator() = default;
 
-        virtual QString create(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
-                               const QString &authorWebsite) const = 0;
+        virtual QString create(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
+                               const QString& authorWebsite) const = 0;
     };
 }

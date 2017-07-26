@@ -18,9 +18,9 @@ namespace MellowPlayer::Infrastructure
     class CoreApplication : public IApplication
     {
     public:
-        CoreApplication(Application::IQtApplication &qtApp, Application::IMainWindow &mainWindow,
-                        Application::StreamingServicesController &streamingServices, Application::IHotkeysController &kotkeys,
-                        Application::ISystemTrayIcon &systemTrayIcon, Application::INotifier &notifier);
+        CoreApplication(Application::IQtApplication& qtApp, Application::IMainWindow& mainWindow,
+                        Application::StreamingServicesController& streamingServices, Application::IHotkeysController& kotkeys,
+                        Application::ISystemTrayIcon& systemTrayIcon, Application::INotifier& notifier);
 
         void initialize() override;
         void restoreWindow() override;
@@ -28,12 +28,12 @@ namespace MellowPlayer::Infrastructure
         void quit() override;
 
     private:
-        Application::ILogger &logger;
-        Application::IQtApplication &qtApp;
-        Application::IMainWindow &mainWindow;
-        Application::StreamingServicesController &streamingServices;
-        Application::IHotkeysController &kotkeys;
-        Application::ISystemTrayIcon &systemTrayIcon;
-        Application::INotifier &notifier;
+        Application::ILogger& logger;
+        Application::IQtApplication& qtApp;
+        Application::IMainWindow& mainWindow;
+        Application::StreamingServicesController& streamingServices;
+        Application::IHotkeysController& kotkeys;
+        Application::ISystemTrayIcon& systemTrayIcon;
+        Application::INotifier& notifier;
     };
 }

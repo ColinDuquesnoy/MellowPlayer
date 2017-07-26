@@ -5,7 +5,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-ShortcutSettingViewModel::ShortcutSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
+ShortcutSettingViewModel::ShortcutSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
 }
 
@@ -54,7 +54,5 @@ bool ShortcutSettingViewModel::isValidKeySequence(int key, int modifiers)
         return false;
     if (key == Qt::Key_unknown)
         return false;
-    if (key == Qt::Key_Control || key == Qt::Key_Shift || key == Qt::Key_Alt || key == Qt::Key_Meta)
-        return false;
-    return true;
+    return !(key == Qt::Key_Control || key == Qt::Key_Shift || key == Qt::Key_Alt || key == Qt::Key_Meta);
 }

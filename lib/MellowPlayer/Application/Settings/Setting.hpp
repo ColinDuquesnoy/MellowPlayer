@@ -23,19 +23,19 @@ namespace MellowPlayer::Application
             QString enableCondition;
         };
 
-        Setting(Settings &settings, SettingsCategory &category, const Data &settingData);
+        Setting(Settings& settings, SettingsCategory& category, const Data& settingData);
 
         void resolveDependency();
         void restoreDefaults();
 
-        const QString &getKey() const;
-        const QString &getName() const;
-        const QString &getToolTip() const;
-        const QString &getType() const;
+        const QString& getKey() const;
+        const QString& getName() const;
+        const QString& getToolTip() const;
+        const QString& getType() const;
         QVariant getDefaultValue() const;
 
         QVariant getValue() const;
-        void setValue(const QVariant &value);
+        void setValue(const QVariant& value);
 
         bool isEnabled() const;
 
@@ -49,11 +49,11 @@ namespace MellowPlayer::Application
     private:
         QString getFullKey() const;
 
-        ISettingsProvider &settingsProvider;
-        Settings &settings;
-        SettingsCategory &category;
+        ISettingsProvider& settingsProvider;
+        Settings& settings;
+        SettingsCategory& category;
         Data data;
         bool notOperator = false;
-        Setting *parentSetting = nullptr;
+        Setting* parentSetting = nullptr;
     };
 }

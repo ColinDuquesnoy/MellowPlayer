@@ -16,7 +16,7 @@ namespace MellowPlayer::Application
         Q_OBJECT
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
-        Player(Application::StreamingService &streamingService);
+        explicit Player(Application::StreamingService& streamingService);
         ~Player();
 
         // IPlayer
@@ -31,7 +31,7 @@ namespace MellowPlayer::Application
         Q_INVOKABLE void addToFavorites() override;
         Q_INVOKABLE void removeFromFavorites() override;
 
-        Application::Song *getCurrentSong() override;
+        Application::Song* getCurrentSong() override;
         double getPosition() const override;
         PlaybackStatus getPlaybackStatus() const override;
         bool getCanSeek() const override;
@@ -47,20 +47,20 @@ namespace MellowPlayer::Application
         Q_INVOKABLE void start();
         Q_INVOKABLE void stop();
         Q_INVOKABLE bool isRunning() const;
-        Q_INVOKABLE void setUpdateResults(const QVariant &results);
+        Q_INVOKABLE void setUpdateResults(const QVariant& results);
 
         // invoked by CurrentPlayer
         void suspend();
         void resume();
 
-        bool operator==(const Player &other) const;
-        bool operator!=(const Player &other) const;
+        bool operator==(const Player& other) const;
+        bool operator!=(const Player& other) const;
 
         void setPlaybackStatus(PlaybackStatus value);
 
     signals:
-        void runJavascriptRequested(const QString &script);
-        void updateRequested(const QString &script);
+        void runJavascriptRequested(const QString& script);
+        void updateRequested(const QString& script);
         void isRunningChanged();
 
     public slots:
@@ -68,7 +68,7 @@ namespace MellowPlayer::Application
         void loadPlugin();
 
     private:
-        void setCurrentSong(std::unique_ptr<Application::Song> &song);
+        void setCurrentSong(std::unique_ptr<Application::Song>& song);
         void setPosition(double value);
         void setCanSeek(bool value);
         void setCanGoNext(bool value);
@@ -76,7 +76,7 @@ namespace MellowPlayer::Application
         void setCanAddToFavorites(bool value);
         void setCurrentVolume(double value);
 
-        ILogger &logger;
+        ILogger& logger;
         double position = false;
         PlaybackStatus playbackStatus = PlaybackStatus::Stopped;
         bool canSeek = false;
@@ -85,10 +85,10 @@ namespace MellowPlayer::Application
         bool canAddToFavorites = false;
         double volume = 1;
         std::unique_ptr<Application::Song> currentSong;
-        Application::StreamingService &streamingService;
-        Application::StreamingServiceScript &streamingServiceScript;
+        Application::StreamingService& streamingService;
+        Application::StreamingServiceScript& streamingServiceScript;
         PlaybackStatus suspendedState = PlaybackStatus::Stopped;
         bool isRunning_ = false;
-        QTimer *refreshTimer;
+        QTimer* refreshTimer;
     };
 }

@@ -1,7 +1,6 @@
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <QtTest/qtestsystem.h>
 #include <catch.hpp>
-#include <chrono>
 #include <thread>
 
 using namespace std::this_thread;

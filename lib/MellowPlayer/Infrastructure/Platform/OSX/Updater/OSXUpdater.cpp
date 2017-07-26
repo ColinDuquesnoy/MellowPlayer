@@ -7,7 +7,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-OSXUpdater::OSXUpdater(IFileDownloader &fileDownloader) : AbstractPlatformUpdater(fileDownloader)
+OSXUpdater::OSXUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUpdater(fileDownloader)
 {
 }
 
@@ -16,7 +16,7 @@ bool OSXUpdater::canInstall() const
     return asset_.isValid() && asset_.isDmg();
 }
 
-void OSXUpdater::doInstall(const QString &assetLocalPath)
+void OSXUpdater::doInstall(const QString& assetLocalPath)
 {
     // no real install step here, when restart is called we will show the dmg file in Finder.
     dmgPath_ = assetLocalPath;
@@ -33,12 +33,12 @@ QString OSXUpdater::getAssetFileName() const
     return asset_.getName();
 }
 
-void OSXUpdater::setRelease(const Release *release)
+void OSXUpdater::setRelease(const Release* release)
 {
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto &asset : release_->getAssets()) {
+        for (auto& asset : release_->getAssets()) {
             if (asset.isDmg()) {
                 asset_ = asset;
                 break;

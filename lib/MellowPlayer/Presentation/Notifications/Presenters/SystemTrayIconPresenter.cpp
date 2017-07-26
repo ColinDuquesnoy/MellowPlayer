@@ -6,11 +6,11 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SystemTrayIconPresenter::SystemTrayIconPresenter(ISystemTrayIcon &systemTrayIcon) : systemTrayIcon(systemTrayIcon)
+SystemTrayIconPresenter::SystemTrayIconPresenter(ISystemTrayIcon& systemTrayIcon) : systemTrayIcon(systemTrayIcon)
 {
 }
 
-bool SystemTrayIconPresenter::display(const Notification &notification)
+bool SystemTrayIconPresenter::display(const Notification& notification)
 {
     systemTrayIcon.showMessage(notification.title, notification.description);
     return true;

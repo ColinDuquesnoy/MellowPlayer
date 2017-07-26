@@ -6,7 +6,6 @@
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp"
 #include "MprisController.hpp"
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <QtDBus/QDBusConnection>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
@@ -16,7 +15,7 @@ QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";
 
 QString MprisController::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-MprisController::MprisController(IPlayer &player, ILocalAlbumArt &localAlbumArt, IMainWindow &window, IQtApplication &application)
+MprisController::MprisController(IPlayer& player, ILocalAlbumArt& localAlbumArt, IMainWindow& window, IQtApplication& application)
         : logger(LoggingManager::instance().getLogger("Mpris")),
           parent(make_unique<QObject>()),
           mpris2Root(new Mpris2Root(window, application, parent.get())),

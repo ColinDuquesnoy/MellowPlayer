@@ -12,7 +12,7 @@
 
 using namespace MellowPlayer::Application;
 
-ListeningHistory::ListeningHistory(IListeningHistoryDataProvider &model, IPlayer &player, IWorkDispatcher &workDispatcher, Settings &settings)
+ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings)
         : logger(LoggingManager::instance().getLogger("ListeningHistory")),
           dataProvider(model),
           player(player),
@@ -31,7 +31,7 @@ void ListeningHistory::onPlaybackStatusChanged()
     onCurrentSongChanged(player.getCurrentSong());
 }
 
-void ListeningHistory::onCurrentSongChanged(Song *song)
+void ListeningHistory::onCurrentSongChanged(Song* song)
 {
     auto newEntry = ListeningHistoryEntry::fromData(song, player.getServiceName());
     workDispatcher.delayInvoke(DELAY, [=]() mutable { addSong(song, newEntry); });
@@ -44,7 +44,7 @@ void ListeningHistory::initialize()
     clearOutdatedEntries();
 }
 
-const QList<ListeningHistoryEntry> &ListeningHistory::getEntries() const
+const QList<ListeningHistoryEntry>& ListeningHistory::getEntries() const
 {
     return entries;
 }
@@ -70,7 +70,7 @@ void ListeningHistory::removeById(int entryId)
     });
 }
 
-void ListeningHistory::removeByService(const QString &serviceName)
+void ListeningHistory::removeByService(const QString& serviceName)
 {
     workDispatcher.invoke([=]() mutable {
         dataProvider.remove("serviceName", serviceName);
@@ -78,7 +78,7 @@ void ListeningHistory::removeByService(const QString &serviceName)
     });
 }
 
-void ListeningHistory::removeManyById(const QList<int> &ids)
+void ListeningHistory::removeManyById(const QList<int>& ids)
 {
     workDispatcher.invoke([=]() mutable {
         dataProvider.removeMany(ids);
@@ -86,7 +86,7 @@ void ListeningHistory::removeManyById(const QList<int> &ids)
     });
 }
 
-void ListeningHistory::addSong(const Song *song, ListeningHistoryEntry &newEntry)
+void ListeningHistory::addSong(const Song* song, ListeningHistoryEntry& newEntry)
 {
     if (!isEnabledSetting.getValue().toBool())
         return;
@@ -119,7 +119,7 @@ void ListeningHistory::onIsEnabledChanged()
         clear();
 }
 
-TimeLimits dateToTimeLimit(const QDateTime &dateTime)
+TimeLimits dateToTimeLimit(const QDateTime& dateTime)
 {
     QDate date = dateTime.date();
     QDate today = QDateTime::currentDateTime().date();

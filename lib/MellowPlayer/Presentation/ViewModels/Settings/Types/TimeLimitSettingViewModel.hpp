@@ -12,7 +12,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
         Q_PROPERTY(QStringList values READ getValues CONSTANT)
     public:
-        TimeLimitSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
+        TimeLimitSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const;
         QStringList getValues() const;
@@ -28,7 +28,7 @@ namespace MellowPlayer::Presentation
         void onValueChanged() override;
 
     private:
-        void registerEnumTranslation(Application::TimeLimits value, const QString &translation);
+        void registerEnumTranslation(Application::TimeLimits value, const QString& translation);
 
         QMap<QString, Application::TimeLimits> stringToEnum;
         QMap<Application::TimeLimits, QString> enumToString;

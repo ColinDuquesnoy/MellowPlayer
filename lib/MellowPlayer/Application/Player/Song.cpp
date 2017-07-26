@@ -6,7 +6,7 @@ Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), durat
 {
 }
 
-Song::Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album, const QString &artUrl, double duration,
+Song::Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album, const QString& artUrl, double duration,
            bool isFavorite)
         : uniqueId(uniqueId), title(title), artist(artist), album(album), artUrl(artUrl), duration(duration), isFavorite(isFavorite)
 {

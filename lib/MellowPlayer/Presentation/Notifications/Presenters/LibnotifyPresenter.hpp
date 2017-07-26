@@ -15,16 +15,16 @@ namespace MellowPlayer::Presentation
     class LibnotifyPresenter : public Application::INotificationPresenter
     {
     public:
-        LibnotifyPresenter(Application::IMainWindow &mainWindow);
+        explicit LibnotifyPresenter(Application::IMainWindow& mainWindow);
         void initialize() override;
-        bool display(const Application::Notification &notification) override;
+        bool display(const Application::Notification& notification) override;
 
         static void onActionCallback();
 
     private:
-        Application::ILogger &logger;
-        Application::IMainWindow &mainWindow;
-        _NotifyNotification *previousNotification;
-        static LibnotifyPresenter *instance;
+        Application::ILogger& logger;
+        Application::IMainWindow& mainWindow;
+        _NotifyNotification* previousNotification;
+        static LibnotifyPresenter* instance;
     };
 }

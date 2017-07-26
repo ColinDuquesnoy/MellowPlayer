@@ -15,17 +15,17 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        LocalAlbumArt(Application::IPlayer &player, Application::IAlbumArtDownloader &downloader);
+        LocalAlbumArt(Application::IPlayer& player, Application::IAlbumArtDownloader& downloader);
 
-        const QString &getUrl() const override;
-        bool isSongArtReady(const Application::Song &song) override;
+        const QString& getUrl() const override;
+        bool isSongArtReady(const Application::Song& song) override;
 
     private slots:
-        void onCurrentSongChanged(Application::Song *song);
-        void onDownloadFinished(const QString &newUrl);
+        void onCurrentSongChanged(Application::Song* song);
+        void onDownloadFinished(const QString& newUrl);
 
     private:
-        Application::IAlbumArtDownloader &downloader;
+        Application::IAlbumArtDownloader& downloader;
         QString url;
     };
 }

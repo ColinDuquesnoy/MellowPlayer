@@ -22,14 +22,14 @@ namespace MellowPlayer::Infrastructure
     class LinuxApplication : public CoreApplication
     {
     public:
-        LinuxApplication(Application::IQtApplication &qtApp, Application::IMainWindow &mainWindow,
-                         Application::StreamingServicesController &streamingServices, Application::IHotkeysController &kotkeys,
-                         Application::ISystemTrayIcon &systemTrayIcon, Application::INotifier &notifier, Application::IMprisController &mprisService);
+        LinuxApplication(Application::IQtApplication& qtApp, Application::IMainWindow& mainWindow,
+                         Application::StreamingServicesController& streamingServices, Application::IHotkeysController& kotkeys,
+                         Application::ISystemTrayIcon& systemTrayIcon, Application::INotifier& notifier, Application::IMprisController& mprisService);
         void initialize() override;
 
     private:
-        Application::ILogger &logger;
-        Application::IMprisController &mprisService;
+        Application::ILogger& logger;
+        Application::IMprisController& mprisService;
     };
 }
 

@@ -32,7 +32,7 @@ function getButtons() {
     return {
         playpause: document.getElementById("player-bar-play-pause"),
         skip: document.getElementById("player-bar-forward"),
-        back: document.getElementById("player-bar-rewind"),
+        back: document.getElementById("player-bar-rewind")
     };
 }
 
@@ -42,68 +42,61 @@ function getButtons() {
 function update() {
     var controlClassName = document.querySelector("#player div.material-player-middle").children[3].className;
     var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-    if (controlClassName == "x-scope paper-icon-button-0 playing")
+    if (controlClassName === "x-scope paper-icon-button-0 playing")
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    else if (controlClassName == "x-scope paper-icon-button-0")
+    else if (controlClassName === "x-scope paper-icon-button-0")
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
 
     var elm;
 
+    var artUrl = null;
     try {
         artUrl = document.querySelector("#playerSongInfo #playerBarArt").src.replace("=s90-", "=s500-");
-    } catch (e) {
-        artUrl = null;
-    }
+    } catch (e) {}
 
+    var songTitle = null;
     try {
         elm = document.querySelector("#playerSongInfo #currently-playing-title");
         songTitle = elm.innerText || elm.textContent;
-    } catch (e) {
-        songTitle = null;
-    }
+    } catch (e) {}
 
+    var songID = null;
     try {
         songID = getHashCode(songTitle);
-    } catch (e) {
-        songID = null;
-    }
+    } catch (e) {}
 
+    var artistName = null;
     try {
         elm = document.getElementById('player-artist').firstChild;
         artistName = elm.innerText || elm.textContent;
-    } catch (e) {
-        artistName = null;
-    }
+    } catch (e) {}
 
+    var albumTitle = null;
     try {
         elm = document.querySelector("#playerSongInfo .player-album");
         albumTitle = elm.innerText || elm.textContent;
-    } catch (e) {
-        albumTitle = null;
-    }
+    } catch (e) {}
 
     //-----------------------------------------------------------------------------
     // Credit for this code to http://stackoverflow.com/questions/13437796/convert-any-string-time-to-seconds
     //-----------------------------------------------------------------------------
+    var duration = 0;
     try {
-        duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText
+        duration = document.querySelector("#material-player-right-wrapper #time_container_duration").innerText;
         var dtimes = duration.split(":");
         var dminutes = dtimes[0];
         var dseconds = dtimes[1];
         duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
-    } catch (e) {
-        duration = null;
-    }
+    } catch (e) {}
 
+    var position = 0;
     try {
         position = document.querySelector("#material-player-right-wrapper #time_container_current").innerText;
         var ptimes = position.split(":");
         var pminutes = ptimes[0];
         var pseconds = ptimes[1];
         position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
-    } catch (e) {
-        position = null;
-    }
+    } catch (e) {}
 
     return {
         "playbackStatus": playbackStatus,

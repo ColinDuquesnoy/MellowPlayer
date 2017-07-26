@@ -3,7 +3,6 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Player/Song.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include <QWebEngineProfile>
@@ -13,7 +12,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ApplicationViewModel::ApplicationViewModel(int &argc, char **argv, const QString &appName) : qtApp(argc, argv)
+ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString& appName) : qtApp(argc, argv)
 {
     qtApp.setApplicationDisplayName("MellowPlayer");
     qtApp.setApplicationName(appName);
@@ -40,16 +39,16 @@ ApplicationViewModel::ApplicationViewModel(int &argc, char **argv, const QString
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/"
                                       "fonts/Roboto/Roboto-ThinItalic.ttf");
 
-    qRegisterMetaType<Song *>("Application::Song*");
-    qRegisterMetaType<Song *>("Song*");
-    qRegisterMetaType<StreamingService *>("Application::StreamingService*");
-    qRegisterMetaType<StreamingService *>("StreamingService*");
+    qRegisterMetaType<Song*>("Application::Song*");
+    qRegisterMetaType<Song*>("Song*");
+    qRegisterMetaType<StreamingService*>("Application::StreamingService*");
+    qRegisterMetaType<StreamingService*>("StreamingService*");
     qRegisterMetaType<ListeningHistoryEntry>("Application::ListeningHistoryEntry");
     qRegisterMetaType<ListeningHistoryEntry>("ListeningHistoryEntry");
-    qRegisterMetaType<Player *>("Application::Player*");
-    qRegisterMetaType<Player *>("Player*");
-    qRegisterMetaType<SettingViewModel *>("Presentation::SettingViewModel*");
-    qRegisterMetaType<SettingViewModel *>("SettingViewModel*");
+    qRegisterMetaType<Player*>("Application::Player*");
+    qRegisterMetaType<Player*>("Player*");
+    qRegisterMetaType<SettingViewModel*>("Presentation::SettingViewModel*");
+    qRegisterMetaType<SettingViewModel*>("SettingViewModel*");
 
     connect(&qtApp, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
 }

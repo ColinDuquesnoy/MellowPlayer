@@ -10,7 +10,7 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
     public:
-        StringSettingViewModel(Application::Setting &setting, QObject *parent = nullptr);
+        StringSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const;
         QString getQmlComponent() override;

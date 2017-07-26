@@ -19,7 +19,7 @@ ColumnLimit: 150
 CommentPragmas: "^!|^:"
 
 # We don't want a space between the type and the star for pointer types
-PointerBindsToType: false
+PointerBindsToType: true
 
 # We want to break before the operators, but not before a '='
 BreakBeforeBinaryOperators: NonAssignment

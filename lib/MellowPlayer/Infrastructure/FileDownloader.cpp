@@ -9,7 +9,7 @@ FileDownloader::FileDownloader() : logger_(LoggingManager::instance().getLogger(
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &FileDownloader::onDownloadFinished);
 }
 
-void FileDownloader::download(const QString &urlToDownload, const QString &filePath)
+void FileDownloader::download(const QString& urlToDownload, const QString& filePath)
 {
     if (!isDownloading()) {
         LOG_DEBUG(logger_, "downloading " << urlToDownload << " to " << filePath);
@@ -30,7 +30,7 @@ bool FileDownloader::isDownloading() const
     return currentReply != nullptr;
 }
 
-void FileDownloader::onDownloadFinished(QNetworkReply *reply)
+void FileDownloader::onDownloadFinished(QNetworkReply* reply)
 {
     bool success = false;
 

@@ -26,23 +26,23 @@ namespace MellowPlayer::Application
             return !songUniqueId.isEmpty() && !songTitle.isEmpty() && !serviceName.isEmpty();
         }
 
-        bool equals(const ListeningHistoryEntry &other) const
+        bool equals(const ListeningHistoryEntry& other) const
         {
             return other.serviceName == serviceName && other.songUniqueId == songUniqueId && other.songTitle == songTitle && other.artist == artist
             && other.album == album && other.artUrl == artUrl;
         }
 
-        bool operator==(const ListeningHistoryEntry &other) const
+        bool operator==(const ListeningHistoryEntry& other) const
         {
             return other.id == id;
         }
 
-        bool operator!=(const ListeningHistoryEntry &other) const
+        bool operator!=(const ListeningHistoryEntry& other) const
         {
             return !operator==(other);
         }
 
-        static ListeningHistoryEntry fromData(const Song *song, const QString &serviceName)
+        static ListeningHistoryEntry fromData(const Song* song, const QString& serviceName)
         {
             ListeningHistoryEntry entry;
             entry.id = 0;

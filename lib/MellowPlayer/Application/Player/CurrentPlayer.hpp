@@ -16,7 +16,7 @@ namespace MellowPlayer::Application
     {
         Q_OBJECT
     public:
-        CurrentPlayer(Players &players, StreamingServicesController &streamingServices);
+        CurrentPlayer(Players& players, StreamingServicesController& streamingServices);
 
         Q_INVOKABLE void togglePlayPause() override;
         Q_INVOKABLE void play() override;
@@ -29,7 +29,7 @@ namespace MellowPlayer::Application
         Q_INVOKABLE void addToFavorites() override;
         Q_INVOKABLE void removeFromFavorites() override;
 
-        Application::Song *getCurrentSong() override;
+        Application::Song* getCurrentSong() override;
         double getPosition() const override;
         PlaybackStatus getPlaybackStatus() const override;
         bool getCanSeek() const override;
@@ -42,11 +42,11 @@ namespace MellowPlayer::Application
         bool isStopped() const override;
 
     private slots:
-        void onCurrentServiceChanged(Application::StreamingService *streamingService);
+        void onCurrentServiceChanged(Application::StreamingService* streamingService);
 
     private:
-        Players &players;
-        StreamingServicesController &streamingServices;
+        Players& players;
+        StreamingServicesController& streamingServices;
         Application::Song nullSong;
 
         std::shared_ptr<Player> currentPlayer;

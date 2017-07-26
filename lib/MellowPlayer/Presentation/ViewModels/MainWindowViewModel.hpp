@@ -26,9 +26,9 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     public:
-        MainWindowViewModel(StreamingServicesControllerViewModel &streamingServicesModel, ListeningHistoryViewModel &listeningHistoryModel,
-                            ThemeViewModel &themeViewModel, UpdaterViewModel &updaterViewModel, Application::IQtApplication &qtApp,
-                            Application::IPlayer &player, Application::Settings &settings);
+        MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel, ListeningHistoryViewModel& listeningHistoryModel,
+                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Application::IQtApplication& qtApp,
+                            Application::IPlayer& player, Application::Settings& settings);
         bool load() override;
         void show() override;
         void hide() override;
@@ -42,13 +42,13 @@ namespace MellowPlayer::Presentation
 
     private:
         bool visible = false;
-        Application::ILogger &logger;
-        Application::Settings &settings;
-        StreamingServicesControllerViewModel &streamingServices;
-        ListeningHistoryViewModel &listeningHistory;
+        Application::ILogger& logger;
+        Application::Settings& settings;
+        StreamingServicesControllerViewModel& streamingServices;
+        ListeningHistoryViewModel& listeningHistory;
         QQmlApplicationEngine qmlApplicationEngine;
         ClipBoardViewModel clipBoardModel;
         SettingsViewModel settingsViewModel;
-        UpdaterViewModel &updaterViewModel;
+        UpdaterViewModel& updaterViewModel;
     };
 }

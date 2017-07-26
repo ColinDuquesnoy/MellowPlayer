@@ -4,7 +4,7 @@
 #include <QString>
 #include <sstream>
 
-inline std::ostream &operator<<(std::ostream &os, const QString &string)
+inline std::ostream& operator<<(std::ostream& os, const QString& string)
 {
     os << string.toStdString();
     return os;

@@ -8,7 +8,7 @@ using namespace MellowPlayer::Infrastructure;
 using namespace std;
 using namespace spdlog;
 
-shared_ptr<logger> createLogger(const string &name, const LoggerConfig &config)
+shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config)
 {
     try {
         // configure sinks
@@ -32,21 +32,21 @@ shared_ptr<logger> createLogger(const string &name, const LoggerConfig &config)
         return combined_logger;
     }
     // LCOV_EXCL_START
-    catch (const spdlog_ex &ex) {
+    catch (const spdlog_ex& ex) {
         cout << "SpdLogger (" << name << ") initialization failed: " << ex.what() << endl;
         return nullptr;
     }
     // LCOV_EXCL_STOP
 }
 
-SpdLogger::SpdLogger(const string &name, const LoggerConfig &config)
+SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)
         : logger(createLogger(name, config)), includeFileAndLine(config.showFileAndLine), name(name)
 {
 }
 
 SpdLogger::~SpdLogger() = default;
 
-void SpdLogger::log(const string &message, LogLevel level, const char *file, int line)
+void SpdLogger::log(const string& message, LogLevel level, const char* file, int line)
 {
     if (includeFileAndLine && file != NULL && level == LogLevel::Trace)
         logger->log(static_cast<level::level_enum>(level), "{} ( \"{}:{}\" )", message, file, line);
@@ -54,7 +54,7 @@ void SpdLogger::log(const string &message, LogLevel level, const char *file, int
         logger->log(static_cast<level::level_enum>(level), message.c_str());
 }
 
-const string &SpdLogger::getName() const
+const string& SpdLogger::getName() const
 {
     return name;
 }

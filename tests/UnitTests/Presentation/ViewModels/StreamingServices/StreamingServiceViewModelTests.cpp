@@ -1,6 +1,5 @@
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
@@ -13,14 +12,14 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 {
     DependencyPool pool;
-    Players &players = pool.getPlayers();
-    StreamingServicesController &streamingServices = pool.getStreamingServicesController();
+    Players& players = pool.getPlayers();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
 
-    ISettingsProvider &settingsProvider = pool.getSettingsProvider();
+    ISettingsProvider& settingsProvider = pool.getSettingsProvider();
 
-    StreamingService &service1 = *streamingServices.getAll()[0];
-    StreamingService &service2 = *streamingServices.getAll()[1];
+    StreamingService& service1 = *streamingServices.getAll()[0];
+    StreamingService& service2 = *streamingServices.getAll()[1];
 
     StreamingServiceViewModel viewModel(service1, settingsProvider, players);
     StreamingServiceViewModel sameModel(service1, settingsProvider, players);
@@ -42,7 +41,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 
     SECTION("set custom url")
     {
-        QSignalSpy spy(&viewModel, SIGNAL(urlChanged(const QString &)));
+        QSignalSpy spy(&viewModel, SIGNAL(urlChanged(const QString&)));
         viewModel.setUrl("https://deezer.com/news");
         REQUIRE(viewModel.getUrl() == "https://deezer.com/news");
         REQUIRE(spy.count() == 1);

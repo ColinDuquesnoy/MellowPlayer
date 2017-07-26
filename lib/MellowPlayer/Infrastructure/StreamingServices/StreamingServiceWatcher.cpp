@@ -11,7 +11,7 @@ StreamingServiceWatcher::StreamingServiceWatcher() : logger(LoggingManager::inst
     connect(&fileSystemWatcher, &QFileSystemWatcher::fileChanged, this, &StreamingServiceWatcher::onFileChanged);
 }
 
-void StreamingServiceWatcher::watch(StreamingService &serviceToWatch)
+void StreamingServiceWatcher::watch(StreamingService& serviceToWatch)
 {
     const QString pluginDirectory = serviceToWatch.getPluginDirectory();
     const QString themePath = QDir::cleanPath(pluginDirectory + "/" + "theme.json");
@@ -23,19 +23,19 @@ void StreamingServiceWatcher::watch(StreamingService &serviceToWatch)
     watchPath(scriptPath);
 }
 
-void StreamingServiceWatcher::watchPath(const QString &path)
+void StreamingServiceWatcher::watchPath(const QString& path)
 {
     LOG_DEBUG(logger, "Watching path: " + path);
     fileSystemWatcher.addPath(path);
 }
 
-void StreamingServiceWatcher::onFileChanged(const QString &path)
+void StreamingServiceWatcher::onFileChanged(const QString& path)
 {
     LOG_DEBUG(logger, "Plugin file changed: " + path);
     QFileInfo fileInfo(path);
     const QString pluginDir = fileInfo.dir().absolutePath();
     const QString name = fileInfo.baseName();
-    StreamingService &service = pluginInfos[pluginDir]->service;
+    StreamingService& service = pluginInfos[pluginDir]->service;
 
     if (name == "integration") {
         service.updateScript(StreamingServiceLoader::readFileContent(path));

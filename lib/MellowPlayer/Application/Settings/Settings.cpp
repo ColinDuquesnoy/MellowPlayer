@@ -2,13 +2,12 @@
 #include "ISettingsProvider.hpp"
 #include "ISettingsSchemaLoader.hpp"
 #include "SettingsCategory.hpp"
-#include <QtCore/QJsonArray>
 #include <QtCore/QJsonObject>
 
 using namespace std;
 using namespace MellowPlayer::Application;
 
-Settings::Settings(ISettingsSchemaLoader &configurationLoader, ISettingsProvider &settingsProvider) : settingsProvider(settingsProvider)
+Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider) : settingsProvider(settingsProvider)
 {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();
@@ -24,24 +23,24 @@ Settings::Settings(ISettingsSchemaLoader &configurationLoader, ISettingsProvider
         categories.append(new SettingsCategory(data, this));
     }
 
-    for (SettingsCategory *category : categories)
+    for (SettingsCategory* category : categories)
         category->resolveDependencies();
 }
 
-const QList<SettingsCategory *> &Settings::getCategories() const
+const QList<SettingsCategory*>& Settings::getCategories() const
 {
     return categories;
 }
 
-SettingsCategory &Settings::getCategory(const QString &key) const
+SettingsCategory& Settings::getCategory(const QString& key) const
 {
-    for (SettingsCategory *category : categories)
+    for (SettingsCategory* category : categories)
         if (category->getKey() == key)
             return *category;
     throw runtime_error("Unknown category: " + key.toStdString());
 }
 
-Setting &Settings::get(const QString &key) const
+Setting& Settings::get(const QString& key) const
 {
     QStringList tokens = key.split("/");
 
@@ -51,23 +50,23 @@ Setting &Settings::get(const QString &key) const
     QString categoryKey = tokens[0];
     QString parameterKey = tokens[1];
 
-    auto &category = getCategory(categoryKey);
+    auto& category = getCategory(categoryKey);
 
     return category.getSetting(parameterKey);
 }
 
-ISettingsProvider &Settings::getSettingsProvider() const
+ISettingsProvider& Settings::getSettingsProvider() const
 {
     return settingsProvider;
 }
 
-Setting &Settings::get(SettingKey::Keys key)
+Setting& Settings::get(SettingKey::Keys key)
 {
     return get(SettingKey::toString(key));
 }
 
 void Settings::restoreDefaults()
 {
-    for (SettingsCategory *category : categories)
+    for (SettingsCategory* category : categories)
         category->restoreDefaults();
 }

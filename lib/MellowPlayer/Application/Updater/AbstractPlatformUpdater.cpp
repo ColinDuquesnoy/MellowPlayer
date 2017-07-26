@@ -5,13 +5,13 @@
 
 using namespace MellowPlayer::Application;
 
-AbstractPlatformUpdater::AbstractPlatformUpdater(IFileDownloader &fileDownloader) : fileDownloader_(fileDownloader)
+AbstractPlatformUpdater::AbstractPlatformUpdater(IFileDownloader& fileDownloader) : fileDownloader_(fileDownloader)
 {
     connect(&fileDownloader, &IFileDownloader::progressChanged, this, &AbstractPlatformUpdater::progressUpdated);
     connect(&fileDownloader, &IFileDownloader::finished, this, &AbstractPlatformUpdater::downloadFinished);
 }
 
-void AbstractPlatformUpdater::setRelease(const Release *release)
+void AbstractPlatformUpdater::setRelease(const Release* release)
 {
     release_ = release;
 }

@@ -10,7 +10,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SystemTrayIcon::SystemTrayIcon(IPlayer &player, IMainWindow &mainWindow, IQtApplication &qtApplication, Settings &settings)
+SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtApplication& qtApplication, Settings& settings)
         : QObject(),
           logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
           player(player),
@@ -38,7 +38,7 @@ void SystemTrayIcon::hide()
     qSystemTrayIcon.hide();
 }
 
-void SystemTrayIcon::showMessage(const QString &title, const QString &message)
+void SystemTrayIcon::showMessage(const QString& title, const QString& message)
 {
     LOG_DEBUG(logger, "show message: " + title + " - " + message);
     qSystemTrayIcon.showMessage(title, message);

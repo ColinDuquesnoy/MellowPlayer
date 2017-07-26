@@ -3,7 +3,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-ColorSettingViewModel::ColorSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
+ColorSettingViewModel::ColorSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
 }
 

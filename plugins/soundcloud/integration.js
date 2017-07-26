@@ -19,9 +19,9 @@
 function update() {
     var controlClassName = document.getElementsByClassName('playControl')[0].className;
     var playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
-    if (controlClassName.indexOf("playing") != -1)
+    if (controlClassName.indexOf("playing") !== -1)
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    else if (controlClassName.indexOf("disabled") != -1)
+    else if (controlClassName.indexOf("disabled") !== -1)
         playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     try {
         var artUrl = document.getElementsByClassName('playbackSoundBadge')[
@@ -62,21 +62,20 @@ function readTime(elementClassName) {
     var minutes = 0;
     var seconds = 0;
     var m = html.match("<span .*>(\\d+:\\d+:\\d+)<\/span>");
-    if (m != null) {
+    if (m !== null) {
         var data = m[1].split(':');
         hours = parseInt(data[0]);
         minutes = parseInt(data[1]);
         seconds = parseInt(data[2]);
     } else {
         var m = html.match("<span .*>(\\d+:\\d+)<\/span>");
-        if (m != null) {
+        if (m !== null) {
             var data = m[1].split(':');
             minutes = parseInt(data[0]);
             seconds = parseInt(data[1]);
         }
     }
-    var total = hours * 3600 + minutes * 60 + seconds;
-    return total;
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 function clickButton(buttonName) {

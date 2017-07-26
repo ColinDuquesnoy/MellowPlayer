@@ -7,7 +7,7 @@ SCENARIO("releases validity can be tested")
 {
     GIVEN("the current release")
     {
-        const Release &currentRelease = Release::current();
+        const Release& currentRelease = Release::current();
         REQUIRE(currentRelease.getUrl().isEmpty());
 
         WHEN("isValid is called")
@@ -120,7 +120,7 @@ SCENARIO("releases can be compared")
     GIVEN("a valid current release, a valid fake newer release and a valid fake "
           "older release")
     {
-        const Release &currentRelease = Release::current();
+        const Release& currentRelease = Release::current();
         Release newerRelease("4.0.0", QDate::fromString("2117-07-15", Qt::ISODate));
         Release olderRelease("2.2.0", QDate::fromString("2017-05-15", Qt::ISODate));
         Release sameOlderRelease("2.2.0", QDate::fromString("2017-05-15", Qt::ISODate));

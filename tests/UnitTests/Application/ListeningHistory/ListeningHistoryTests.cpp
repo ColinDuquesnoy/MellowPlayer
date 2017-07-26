@@ -3,8 +3,6 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <QVariant>
 #include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
 #include <catch.hpp>
@@ -16,14 +14,14 @@ using namespace MellowPlayer::Application;
 TEST_CASE("ListeningHistoryTests")
 {
     Tests::DependencyPool pool;
-    StreamingServicesController &streamingServices = pool.getStreamingServicesController();
+    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
-    Players &players = pool.getPlayers();
-    Settings &settings = pool.getSettings();
-    ListeningHistory &listeningHistoryService = pool.getListeningHistory();
-    Player &currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
+    Players& players = pool.getPlayers();
+    Settings& settings = pool.getSettings();
+    ListeningHistory& listeningHistoryService = pool.getListeningHistory();
+    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
-    Setting &isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
+    Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);
 
     SECTION("New song will be added to history")
@@ -77,7 +75,7 @@ TEST_CASE("ListeningHistoryTests")
         REQUIRE(listeningHistoryService.count() == 0);
         currentPlayer.setUpdateResults(getSongVariantMap("Song1", "Id1"));
         currentPlayer.setUpdateResults(getSongVariantMap("Song2", "Id2"));
-        Player &player2 = *players.get(streamingServices.getAll()[1]->getName());
+        Player& player2 = *players.get(streamingServices.getAll()[1]->getName());
         streamingServices.setCurrent(streamingServices.getAll()[1].get());
         player2.setUpdateResults(getSongVariantMap("Song3", "Id3"));
         REQUIRE(listeningHistoryService.count() == 3);

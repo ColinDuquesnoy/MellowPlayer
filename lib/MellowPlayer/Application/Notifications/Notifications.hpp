@@ -25,12 +25,12 @@ namespace MellowPlayer::Application
             return title + " - " + description;
         }
 
-        inline bool operator==(const Notification &other) const
+        inline bool operator==(const Notification& other) const
         {
             return title == other.title && description == other.description;
         }
 
-        inline bool operator!=(const Notification &other) const
+        inline bool operator!=(const Notification& other) const
         {
             return !this->operator==(other);
         }

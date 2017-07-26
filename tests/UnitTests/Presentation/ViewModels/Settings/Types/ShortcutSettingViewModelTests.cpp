@@ -11,8 +11,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("ShortcutSettingViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    Setting &setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+    Settings& settings = pool.getSettings();
+    Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     ShortcutSettingViewModel model(setting, nullptr);
     model.setValue("Ctrl+Alt+P");
     QSignalSpy spy(&model, SIGNAL(valueChanged()));

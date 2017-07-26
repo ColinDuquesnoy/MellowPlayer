@@ -18,19 +18,19 @@ namespace MellowPlayer::Infrastructure
     public:
         FileDownloader();
 
-        void download(const QString &urlToDownload, const QString &filePath) override;
+        void download(const QString& urlToDownload, const QString& filePath) override;
         double getProgress() const override;
         bool isDownloading() const override;
 
     private slots:
-        void onDownloadFinished(QNetworkReply *reply);
+        void onDownloadFinished(QNetworkReply* reply);
         void onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
     private:
-        Application::ILogger &logger_;
+        Application::ILogger& logger_;
         QNetworkAccessManager networkAccessManager_;
         QFileInfo destinationPath_;
-        QNetworkReply *currentReply = nullptr;
+        QNetworkReply* currentReply = nullptr;
         double progress_ = 0;
     };
 }

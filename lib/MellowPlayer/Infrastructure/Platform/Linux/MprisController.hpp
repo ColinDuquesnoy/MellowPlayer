@@ -22,8 +22,8 @@ namespace MellowPlayer::Infrastructure
     class MprisController : public Application::IMprisController
     {
     public:
-        MprisController(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt, Application::IMainWindow &window,
-                        Application::IQtApplication &application);
+        MprisController(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArt, Application::IMainWindow& window,
+                        Application::IQtApplication& application);
         ~MprisController();
 
         bool start() override;
@@ -32,10 +32,10 @@ namespace MellowPlayer::Infrastructure
         static QString SERVICE_NAME;
         static QString OBJECT_NAME;
 
-        Application::ILogger &logger;
+        Application::ILogger& logger;
         std::unique_ptr<QObject> parent;
-        QObject *mpris2Root;
-        QObject *mpris2Player;
+        QObject* mpris2Root;
+        QObject* mpris2Player;
         QString serviceName;
     };
 }

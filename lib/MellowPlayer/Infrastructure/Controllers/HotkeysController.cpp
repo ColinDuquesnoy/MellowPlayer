@@ -9,7 +9,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-HotkeysController::HotkeysController(IPlayer &player, Settings &settings, IMainWindow &application)
+HotkeysController::HotkeysController(IPlayer& player, Settings& settings, IMainWindow& application)
         : QObject(nullptr),
           logger(LoggingManager::instance().getLogger("Hotkeys")),
           player(player),

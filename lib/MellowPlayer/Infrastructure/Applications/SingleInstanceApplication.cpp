@@ -7,7 +7,6 @@
 #include <QTimer>
 #ifdef Q_OS_UNIX
 #include <signal.h>
-#include <unistd.h>
 #endif
 
 using namespace MellowPlayer::Application;
@@ -19,7 +18,7 @@ const QString SingleInstanceApplication::previousAction = "previous";
 const QString SingleInstanceApplication::restoreWindowAction = "restore-window";
 const QString SingleInstanceApplication::toggleFavoriteAction = "toggle-favorite";
 
-SingleInstanceApplication::SingleInstanceApplication(IApplication &application, ICommandLineParser &commandLineParser, IPlayer &currentPlayer)
+SingleInstanceApplication::SingleInstanceApplication(IApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
         : logger(LoggingManager::instance().getLogger("SingleInstanceApplication")),
           application(application),
           commandLineParser(commandLineParser),
@@ -60,7 +59,7 @@ void SingleInstanceApplication::onSocketError()
 void SingleInstanceApplication::onNewConnection()
 {
     LOG_DEBUG(logger, "another instance was started, showing this instance instead");
-    QLocalSocket *socket = localServer.nextPendingConnection();
+    QLocalSocket* socket = localServer.nextPendingConnection();
     connect(socket, &QLocalSocket::readyRead, this, &SingleInstanceApplication::onReadyRead);
 }
 
@@ -100,9 +99,9 @@ QString SingleInstanceApplication::getRequestedAcion() const
 
 void SingleInstanceApplication::onReadyRead()
 {
-    QLocalSocket *socket = static_cast<QLocalSocket *>(sender());
+    QLocalSocket* socket = static_cast<QLocalSocket*>(sender());
     QStringList actions = QString(socket->readAll()).split("\n");
-    for (const auto &a : actions) {
+    for (const auto& a : actions) {
         if (a == playPauseAction)
             currentPlayer.togglePlayPause();
         else if (a == nextAction)

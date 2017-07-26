@@ -11,13 +11,13 @@ using namespace fakeit;
 class AlbumArtDownloaderMock : public IAlbumArtDownloader
 {
 public:
-    bool download(const QString &, const QString &) override
+    bool download(const QString&, const QString&) override
     {
         emit downloadFinished(LOCAL_URL);
         return true;
     }
 
-    QFileInfo getLocalArtUrl(const QString &) override
+    QFileInfo getLocalArtUrl(const QString&) override
     {
         return QFileInfo(LOCAL_URL);
     }

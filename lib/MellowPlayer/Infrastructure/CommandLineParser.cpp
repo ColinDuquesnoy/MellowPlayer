@@ -1,22 +1,33 @@
 #include "CommandLineParser.hpp"
-#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
 #include <QDebug>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 CommandLineParser::CommandLineParser()
-        : serviceOption(QStringList() << "s" << "service",
+        : serviceOption(QStringList() << "s"
+                                      << "service",
                         "Select startup service", "service"),
-          logLevelOption(QStringList() << "l" << "log-level",
+          logLevelOption(QStringList() << "l"
+                                       << "log-level",
                          "Log level (0=TRACE, 1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, "
-                         "5=CRITICAL, 6=OFF)", "logLevel", "2"),
-          playPauseOption(QStringList() << "p" << "play-pause",
+                         "5=CRITICAL, 6=OFF)",
+                         "logLevel", "2"),
+          playPauseOption(QStringList() << "p"
+                                        << "play-pause",
                           "Play or pause the current song"),
-          nextOption(QStringList() << "f" << "next", "Skip to the next song"),
-          previousOption(QStringList() << "b" << "previous", "Skip to the previous song"),
-          toggleFavoriteOption(QStringList() << "t" << "toggle-favorite-song", "Add or remove the current song to/from your favorites"),
-          autoQuitDelayOption(QStringList() << "d" << "auto-quit-delay", "Auto quit delay [ms]", "autoQuitDelay")
+          nextOption(QStringList() << "f"
+                                   << "next",
+                     "Skip to the next song"),
+          previousOption(QStringList() << "b"
+                                       << "previous",
+                         "Skip to the previous song"),
+          toggleFavoriteOption(QStringList() << "t"
+                                             << "toggle-favorite-song",
+                               "Add or remove the current song to/from your favorites"),
+          autoQuitDelayOption(QStringList() << "d"
+                                            << "auto-quit-delay",
+                              "Auto quit delay [ms]", "autoQuitDelay")
 {
     parser.setApplicationDescription("Cloud music player for your desktop!");
     parser.addVersionOption();

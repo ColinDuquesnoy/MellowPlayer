@@ -2,6 +2,7 @@
 
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <QList>
 #include <fakeit.hpp>
 #include <memory>
 
@@ -30,7 +31,7 @@ public:
     static Theme DEFAULT_theme;
 
 private:
-    static unique_ptr<StreamingService> createPlugin(const QString &name)
+    static unique_ptr<StreamingService> createPlugin(const QString& name)
     {
         StreamingServiceMetadata metadata;
         metadata.name = name;

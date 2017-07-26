@@ -18,7 +18,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        SingleInstanceApplication(IApplication &application, Application::ICommandLineParser &commandLineParser, Application::IPlayer &currentPlayer);
+        SingleInstanceApplication(IApplication& application, Application::ICommandLineParser& commandLineParser, Application::IPlayer& currentPlayer);
 
         int run();
 
@@ -33,10 +33,10 @@ namespace MellowPlayer::Infrastructure
     private:
         QString getRequestedAcion() const;
 
-        Application::ILogger &logger;
-        IApplication &application;
-        Application::ICommandLineParser &commandLineParser;
-        Application::IPlayer &currentPlayer;
+        Application::ILogger& logger;
+        IApplication& application;
+        Application::ICommandLineParser& commandLineParser;
+        Application::IPlayer& currentPlayer;
         QLocalSocket localSocket;
         QLocalServer localServer;
 

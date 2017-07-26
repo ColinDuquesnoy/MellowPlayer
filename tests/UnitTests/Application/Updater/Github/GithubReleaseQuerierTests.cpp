@@ -12,8 +12,8 @@ SCENARIO("get latest github release")
         GithubReleaseQuerier querier(fakeHttpClient);
         querier.setChannel(UpdateChannel::Stable);
 
-        const Release *latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release *release) { latestRelease = release; });
+        const Release* latestRelease = nullptr;
+        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
         WHEN("getLatest is called")
@@ -34,8 +34,8 @@ SCENARIO("get latest github release")
         GithubReleaseQuerier querier(networkAccessManagerMock);
         querier.setChannel(UpdateChannel::Beta);
 
-        const Release *latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release *release) { latestRelease = release; });
+        const Release* latestRelease = nullptr;
+        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
         WHEN("getLatest is called")
@@ -56,8 +56,8 @@ SCENARIO("get latest github release")
         GithubReleaseQuerier querier(networkAccessManagerMock);
         querier.setChannel(UpdateChannel::Continuous);
 
-        const Release *latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release *release) { latestRelease = release; });
+        const Release* latestRelease = nullptr;
+        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
         WHEN("getLatest is called")

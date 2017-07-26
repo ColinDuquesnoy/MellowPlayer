@@ -54,13 +54,13 @@
 #endif
 
 #if defined(Q_OS_LINUX)
-    #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
-    #include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
-    #include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
 #elif defined(Q_OS_WIN)
-    #include <MellowPlayer/Infrastructure/Platform/Windows/Updater/WindowsUpdater.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Windows/Updater/WindowsUpdater.hpp>
 #elif defined(Q_OS_OSX)
-    #include <MellowPlayer/Infrastructure/Platform/OSX/Updater/OSXUpdater.hpp>
+#include <MellowPlayer/Infrastructure/Platform/OSX/Updater/OSXUpdater.hpp>
 #endif
 
 using namespace MellowPlayer::Application;
@@ -85,16 +85,16 @@ public:
 
         template <class, class, class TProvider, class T_ = di::aux::decay_t<decltype(di::aux::declval<TProvider>().get())>>
         static decltype(di::wrappers::shared<ScopedScope, T_>{std::shared_ptr<T_>{std::shared_ptr<T_>{di::aux::declval<TProvider>().get()}}})
-        try_create(const TProvider &);
+        try_create(const TProvider&);
 
         template <class T_, class, class TProvider>
-        auto create(const TProvider &provider)
+        auto create(const TProvider& provider)
         {
             return create_impl<di::aux::decay_t<decltype(provider.get())>>(provider);
         }
 
         scope() = default;
-        scope(scope &&other) noexcept : object_(other.object_)
+        scope(scope&& other) noexcept : object_(other.object_)
         {
             other.object_ = nullptr;
         }
@@ -105,36 +105,17 @@ public:
 
     private:
         template <class, class TProvider>
-        auto create_impl(const TProvider &provider)
+        auto create_impl(const TProvider& provider)
         {
             if (!object_) {
                 object_ = new std::shared_ptr<T>{provider.get()};
             }
-            return di::wrappers::shared<ScopedScope, T, std::shared_ptr<T> &>{*object_};
+            return di::wrappers::shared<ScopedScope, T, std::shared_ptr<T>&>{*object_};
         }
 
-        std::shared_ptr<T> *object_ = nullptr;
+        std::shared_ptr<T>* object_ = nullptr;
     };
 };
-
-/*<<to constructor extension>>*/
-template <class... TCtor>
-struct constructor_impl
-{
-    template <class TInjector,
-              class T,
-              std::enable_if_t<boost::di::concepts::creatable<boost::di::type_traits::direct, typename T::expected, TCtor...>::value, int> = 0>
-    auto operator()(const TInjector &injector, const T &) const
-    {
-        return new typename T::expected{injector.template create<TCtor>()...};
-    }
-};
-
-template <class... TCtor>
-struct constructor : constructor_impl<TCtor...>
-{
-};
-//->
 
 // clang-format off
 auto defaultInjector = [](ScopedScope &scope) {

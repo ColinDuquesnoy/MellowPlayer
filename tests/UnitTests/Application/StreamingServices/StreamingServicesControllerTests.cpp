@@ -14,7 +14,7 @@ TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
     auto loaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
-    QSignalSpy addedSpy(&streamingServices, SIGNAL(added(StreamingService *)));
+    QSignalSpy addedSpy(&streamingServices, SIGNAL(added(StreamingService*)));
     streamingServices.load();
 
     SECTION("load called StreamingServiceLoader::load and watch every new service")
@@ -46,7 +46,7 @@ TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
 
     SECTION("set current service ")
     {
-        QSignalSpy spyCurrentChanged(&streamingServices, SIGNAL(currentChanged(StreamingService *)));
+        QSignalSpy spyCurrentChanged(&streamingServices, SIGNAL(currentChanged(StreamingService*)));
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
         REQUIRE(streamingServices.getCurrent() != nullptr);
         REQUIRE(spyCurrentChanged.count() == 1);

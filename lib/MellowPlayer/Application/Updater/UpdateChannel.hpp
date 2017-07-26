@@ -31,7 +31,7 @@ namespace MellowPlayer::Application
             return string;
         }
 
-        static UpdateChannel fromString(const QString &channelName)
+        static UpdateChannel fromString(const QString& channelName)
         {
             UpdateChannel channel;
 

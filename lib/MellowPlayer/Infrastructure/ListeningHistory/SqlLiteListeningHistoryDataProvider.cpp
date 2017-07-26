@@ -23,7 +23,6 @@ SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider()
 
 bool SqlLiteListeningHistoryDataProvider::openDatabase()
 {
-    std::stringstream stream;
     auto path = getDatabasePath();
     LOG_DEBUG(logger, "opening listening history db: " + path)
     database.setDatabaseName(path);
@@ -35,7 +34,7 @@ bool SqlLiteListeningHistoryDataProvider::openDatabase()
     return true;
 }
 
-int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry &entry)
+int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry& entry)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO song (songUniqueId, songTitle, artist, album, "
@@ -64,7 +63,7 @@ void SqlLiteListeningHistoryDataProvider::clear()
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
-void SqlLiteListeningHistoryDataProvider::remove(const QString &filterKey, const QString &filterValue)
+void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const QString& filterValue)
 {
     QSqlQuery query;
     query.prepare(QString("DELETE FROM song WHERE %1=(:%1)").arg(filterKey));
@@ -74,7 +73,7 @@ void SqlLiteListeningHistoryDataProvider::remove(const QString &filterKey, const
         LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
 }
 
-void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int> &identifiers)
+void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifiers)
 {
     QStringList idStrings;
     foreach (int id, identifiers)

@@ -10,7 +10,7 @@ using namespace MellowPlayer::Presentation;
 TEST_CASE("MainWindowViewModelTests")
 {
     Tests::DependencyPool pool;
-    MainWindowViewModel &mainWindow = pool.getMainWindowViewModel();
+    MainWindowViewModel& mainWindow = pool.getMainWindowViewModel();
     QSignalSpy visibleChangedSpy(&mainWindow, SIGNAL(visibleChanged()));
 
     SECTION("show emit visibleChanged")

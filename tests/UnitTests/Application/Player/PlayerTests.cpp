@@ -13,7 +13,7 @@ TEST_CASE("PlayerTests", "[UnitTest]")
     auto settingsProviderMock = SettingsProviderMock::get();
     StreamingService service(metadata);
     Player player(service);
-    QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString &)));
+    QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
 
     SECTION("start test")
     {
@@ -33,7 +33,7 @@ TEST_CASE("PlayerTests", "[UnitTest]")
 
     SECTION("refresh test")
     {
-        QSignalSpy updateRequestedSpy(&player, SIGNAL(updateRequested(const QString &)));
+        QSignalSpy updateRequestedSpy(&player, SIGNAL(updateRequested(const QString&)));
         player.refresh();
         REQUIRE(updateRequestedSpy.count() == 1);
         REQUIRE(!updateRequestedSpy[0][0].toString().isEmpty());

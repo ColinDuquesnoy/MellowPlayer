@@ -4,16 +4,16 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-Base64Helper::Base64Helper(QObject *parent) : QObject(parent), logger(LoggingManager::instance().getLogger())
+Base64Helper::Base64Helper(QObject* parent) : QObject(parent), logger(LoggingManager::instance().getLogger())
 {
 }
 
-bool Base64Helper::isBase64(const QString &uri)
+bool Base64Helper::isBase64(const QString& uri)
 {
     return uri.contains(";base64,");
 }
 
-QImage Base64Helper::getImage(const QString &uri)
+QImage Base64Helper::getImage(const QString& uri)
 {
     LOG_DEBUG(logger, "decoding image: " << uri);
 
@@ -39,7 +39,7 @@ QImage Base64Helper::getImage(const QString &uri)
     return image;
 }
 
-bool Base64Helper::saveToFile(const QString &uri, const QString &path)
+bool Base64Helper::saveToFile(const QString& uri, const QString& path)
 {
     QImage image = getImage(uri);
 
@@ -53,7 +53,7 @@ bool Base64Helper::saveToFile(const QString &uri, const QString &path)
     return true;
 }
 
-QString Base64Helper::getImageProviderUrl(const QString &url)
+QString Base64Helper::getImageProviderUrl(const QString& url)
 {
     if (isBase64(url))
         return "base64://" + url;

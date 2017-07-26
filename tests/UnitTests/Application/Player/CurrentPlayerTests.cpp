@@ -2,7 +2,6 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
@@ -37,11 +36,11 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
         REQUIRE(!currentPlayer.getCurrentSong()->getIsFavorite());
     }
 
-    Player &player1 = *players.get(streamingServices.getAll()[0]->getName());
-    Player &player2 = *players.get(streamingServices.getAll()[1]->getName());
+    Player& player1 = *players.get(streamingServices.getAll()[0]->getName());
+    Player& player2 = *players.get(streamingServices.getAll()[1]->getName());
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
 
-    QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song *)));
+    QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song*)));
     QSignalSpy positionChanged(&currentPlayer, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&currentPlayer, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&currentPlayer, SIGNAL(canSeekChanged()));
@@ -52,7 +51,7 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
 
     SECTION("control player1")
     {
-        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString &)));
+        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString&)));
 
         SECTION("togglePlayPause")
         {

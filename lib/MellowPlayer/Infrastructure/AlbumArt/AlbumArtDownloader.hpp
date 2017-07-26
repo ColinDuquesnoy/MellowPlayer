@@ -19,20 +19,20 @@ namespace MellowPlayer::Infrastructure
     public:
         AlbumArtDownloader();
 
-        bool download(const QString &artUrl, const QString &songId) override;
-        QFileInfo getLocalArtUrl(const QString &songId) override;
+        bool download(const QString& artUrl, const QString& songId) override;
+        QFileInfo getLocalArtUrl(const QString& songId) override;
 
     private slots:
         void onDownloadFinished(bool);
 
     private:
-        void downloadImage(const QString &url);
-        bool isBase64Image(const QString &artUrl);
+        void downloadImage(const QString& url);
+        bool isBase64Image(const QString& artUrl);
         bool createBase64Image(const QString base64String);
 
         FileDownloader fileDownloader;
         QFileInfo localUrl;
-        Application::ILogger &logger;
+        Application::ILogger& logger;
         Base64Helper base64;
     };
 }

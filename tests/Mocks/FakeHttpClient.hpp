@@ -7,5 +7,5 @@ using namespace MellowPlayer::Application;
 class FakeHttpClient : public IHttpClient
 {
 public:
-    void get(const QString &url) override;
+    void get(const QString& url) override;
 };

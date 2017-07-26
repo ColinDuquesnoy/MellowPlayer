@@ -14,10 +14,10 @@ namespace MellowPlayer::Presentation
     class SettingViewModelFactory
     {
     public:
-        SettingViewModelFactory(ThemeViewModel &themeViewModel);
-        SettingViewModel *create(Application::Setting &setting, QObject *parent = nullptr) const;
+        explicit SettingViewModelFactory(ThemeViewModel& themeViewModel);
+        SettingViewModel* create(Application::Setting& setting, QObject* parent = nullptr) const;
 
     private:
-        ThemeViewModel &themeViewModel;
+        ThemeViewModel& themeViewModel;
     };
 }

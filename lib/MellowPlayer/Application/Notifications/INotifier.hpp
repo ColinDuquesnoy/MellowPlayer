@@ -9,6 +9,6 @@ namespace MellowPlayer::Application
     public:
         virtual ~INotifier() = default;
         virtual void initialize() = 0;
-        virtual bool display(const Application::Notification &notification) = 0;
+        virtual bool display(const Application::Notification& notification) = 0;
     };
 }

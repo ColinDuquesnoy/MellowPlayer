@@ -8,19 +8,17 @@ namespace MellowPlayer::Infrastructure
     class WindowsUpdater : public Application::AbstractPlatformUpdater
     {
     public:
-        WindowsUpdater(Application::IFileDownloader &fileDownloader);
+        explicit WindowsUpdater(Application::IFileDownloader& fileDownloader);
 
-        void setRelease(const Application::Release *release) override;
+        void setRelease(const Application::Release* release) override;
         bool canInstall() const override;
         void restart() override;
 
     protected:
-        void doInstall(const QString &assetLocalPath) override;
+        void doInstall(const QString& assetLocalPath) override;
         QString getAssetUrl() const override;
         QString getAssetFileName() const override;
         Application::Asset asset_;
-        QString getDestinationDir() const;
-        QString getDestinationPath() const;
 
     private:
         QString installerPath_;

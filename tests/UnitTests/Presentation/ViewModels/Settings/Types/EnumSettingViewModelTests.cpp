@@ -13,8 +13,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("EnumSettingViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    SettingsCategory &category = settings.getCategory("appearance");
+    Settings& settings = pool.getSettings();
+    SettingsCategory& category = settings.getCategory("appearance");
     Setting::Data settingData;
     settingData.name = "Theme";
     settingData.defaultValue = "Light";

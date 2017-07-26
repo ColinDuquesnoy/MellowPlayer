@@ -2,7 +2,6 @@
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <QDebug>
 #include <QtCore/QFile>
-#include <QtCore/QTextStream>
 
 using namespace MellowPlayer::Application;
 
@@ -26,7 +25,7 @@ QMap<QString, QVariant> getSongVariantMap(QString title, QString uniqueId, bool 
     return map;
 }
 
-QString readFile(const QString &path)
+QString readFile(const QString& path)
 {
     QFile file(path);
 
@@ -37,7 +36,7 @@ QString readFile(const QString &path)
     return in.readAll();
 }
 
-bool writeFile(const QString &path, const QString &content)
+bool writeFile(const QString& path, const QString& content)
 {
     QFile file(path);
 

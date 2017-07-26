@@ -2,14 +2,14 @@
 
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryProxyListModel::ListeningHistoryProxyListModel(QQmlObjectListModel<ListeningHistoryEntryViewModel> *sourceModel)
+ListeningHistoryProxyListModel::ListeningHistoryProxyListModel(QQmlObjectListModel<ListeningHistoryEntryViewModel>* sourceModel)
         : sourceModel(sourceModel)
 {
     setSourceModel(sourceModel);
     setDynamicSortFilter(true);
 }
 
-void ListeningHistoryProxyListModel::disableService(const QString &serviceName, bool disable)
+void ListeningHistoryProxyListModel::disableService(const QString& serviceName, bool disable)
 {
     if (disable)
         disabledServices.append(serviceName);
@@ -18,15 +18,15 @@ void ListeningHistoryProxyListModel::disableService(const QString &serviceName, 
     invalidateFilter();
 }
 
-void ListeningHistoryProxyListModel::setSearchFilter(const QString &newSearchFilter)
+void ListeningHistoryProxyListModel::setSearchFilter(const QString& newSearchFilter)
 {
     searchFilter = newSearchFilter.toLower();
     invalidateFilter();
 }
 
-bool ListeningHistoryProxyListModel::filterAcceptsRow(int sourceRow, const QModelIndex &) const
+bool ListeningHistoryProxyListModel::filterAcceptsRow(int sourceRow, const QModelIndex&) const
 {
-    ListeningHistoryEntryViewModel *entry = sourceModel->at(sourceRow);
+    ListeningHistoryEntryViewModel* entry = sourceModel->at(sourceRow);
     if (disabledServices.contains(entry->getService()))
         return false;
     if (searchFilter.isEmpty())

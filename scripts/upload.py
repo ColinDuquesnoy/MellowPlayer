@@ -140,7 +140,7 @@ def create_continuous_release(repo, repo_slug, commit):
         CONTINUOUS_RELEASE_NAME, commit, CONTINUOUS_RELEASE_NAME, description, prerelease=True)
 
 
-def upload_binaries(release, glob_expr, github):
+def upload_binaries(release, glob_expr):
     print('uploading binaries: ' + glob_expr)
     for file in glob.glob(glob_expr):
         with open(file, 'rb') as f:
@@ -191,7 +191,7 @@ def main():
         release = get_tag_release(commit, repo, tag)
 
     # upload binaries
-    upload_binaries(release, glob_expression, github)
+    upload_binaries(release, glob_expression)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ function getButtons() {
     return {
         play: document.getElementById("youtube_play_button"),
         pause: document.getElementById("youtube_pause_button"),
-        skip: document.getElementById("youtube_skip_button"),
+        skip: document.getElementById("youtube_skip_button")
     };
 }
 

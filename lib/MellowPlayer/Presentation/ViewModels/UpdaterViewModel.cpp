@@ -4,7 +4,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-UpdaterViewModel::UpdaterViewModel(Updater &updater) : updater_(updater)
+UpdaterViewModel::UpdaterViewModel(Updater& updater) : updater_(updater)
 {
     connect(&updater, &Updater::updateAvailable, this, &UpdaterViewModel::onUpdateAvailable);
     connect(&updater, &Updater::noUpdateAvailable, this, &UpdaterViewModel::onNoUpdateAvailable);
@@ -105,7 +105,7 @@ void UpdaterViewModel::onNoUpdateAvailable()
 
 QString UpdaterViewModel::getUrl() const
 {
-    const Release *r = updater_.getLatestRelease();
+    const Release* r = updater_.getLatestRelease();
     if (r != nullptr)
         return r->getUrl();
     return "";

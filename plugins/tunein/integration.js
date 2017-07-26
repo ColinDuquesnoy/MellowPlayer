@@ -28,7 +28,7 @@ function hashCode(str) {
         hash |= 0; // Convert to 32bit integer
     }
     return Math.abs(hash);
-};
+}
 
 function getPlaybackStatus() {
     var stateStr = TuneIn.app.getPlayState();
@@ -64,10 +64,10 @@ function update() {
     var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
     if (broadcast === undefined) {
         if (!stopped && oldSongInfo !== null) {
-            retVal.songId = oldSongInfo.songId
-            retVal.songTitle = oldSongInfo.songTitle
-            retVal.artistName = oldSongInfo.artistName
-            retVal.artUrl = oldSongInfo.artUrl
+            retVal.songId = oldSongInfo.songId;
+            retVal.songTitle = oldSongInfo.songTitle;
+            retVal.artistName = oldSongInfo.artistName;
+            retVal.artUrl = oldSongInfo.artUrl;
             retVal.isFavorite = oldSongInfo.isFavorite;
         }
     } else {

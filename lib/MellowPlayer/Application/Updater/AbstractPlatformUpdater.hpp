@@ -12,9 +12,9 @@ namespace MellowPlayer::Application
     {
         Q_OBJECT
     public:
-        AbstractPlatformUpdater(IFileDownloader &fileDownloader);
+        explicit AbstractPlatformUpdater(IFileDownloader& fileDownloader);
 
-        virtual void setRelease(const Release *release);
+        virtual void setRelease(const Release* release);
         void download();
         void install();
         virtual void restart(){};
@@ -27,16 +27,16 @@ namespace MellowPlayer::Application
         void progressUpdated(double progress);
 
     protected:
-        virtual void doInstall(const QString &assetFilePath) = 0;
+        virtual void doInstall(const QString& assetFilePath) = 0;
         virtual QString getAssetUrl() const = 0;
         virtual QString getAssetFileName() const = 0;
 
-        const Release *release_ = nullptr;
+        const Release* release_ = nullptr;
 
     private:
         QString makeDestinationPath();
 
         QString assetFilePath_;
-        IFileDownloader &fileDownloader_;
+        IFileDownloader& fileDownloader_;
     };
 }

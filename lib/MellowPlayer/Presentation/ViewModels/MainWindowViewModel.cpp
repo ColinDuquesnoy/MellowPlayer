@@ -2,12 +2,8 @@
 #include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <QMessageBox>
 #include <QQuickStyle>
@@ -16,9 +12,9 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel &streamingServicesModel,
-                                         ListeningHistoryViewModel &listeningHistoryModel, ThemeViewModel &themeViewModel,
-                                         UpdaterViewModel &updaterViewModel, IQtApplication &qtApp, IPlayer &player, Settings &settings)
+MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
+                                         ListeningHistoryViewModel& listeningHistoryModel, ThemeViewModel& themeViewModel,
+                                         UpdaterViewModel& updaterViewModel, IQtApplication& qtApp, IPlayer& player, Settings& settings)
         : logger(LoggingManager::instance().getLogger("MainWindowViewModel")),
           settings(settings),
           streamingServices(streamingServicesModel),

@@ -21,11 +21,11 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        SystemTrayIcon(Application::IPlayer &player, Application::IMainWindow &mainWindow, Application::IQtApplication &qtApplication,
-                       Application::Settings &settings);
+        SystemTrayIcon(Application::IPlayer& player, Application::IMainWindow& mainWindow, Application::IQtApplication& qtApplication,
+                       Application::Settings& settings);
         void show() override;
         void hide() override;
-        void showMessage(const QString &title, const QString &message) override;
+        void showMessage(const QString& title, const QString& message) override;
 
     public slots:
         void onActivated(QSystemTrayIcon::ActivationReason reason);
@@ -41,19 +41,19 @@ namespace MellowPlayer::Presentation
     private:
         void setUpMenu();
 
-        Application::ILogger &logger;
-        Application::IPlayer &player;
-        Application::IMainWindow &mainWindow;
-        Application::IQtApplication &qtApplication;
-        Application::Settings &settings;
-        Application::Setting &showTrayIconSetting;
+        Application::ILogger& logger;
+        Application::IPlayer& player;
+        Application::IMainWindow& mainWindow;
+        Application::IQtApplication& qtApplication;
+        Application::Settings& settings;
+        Application::Setting& showTrayIconSetting;
 
         QSystemTrayIcon qSystemTrayIcon;
         QMenu menu;
-        QAction *playPauseAction;
-        QAction *previousSongAction;
-        QAction *nextSongAction;
-        QAction *restoreWindowAction;
-        QAction *quitApplicationAction;
+        QAction* playPauseAction;
+        QAction* previousSongAction;
+        QAction* nextSongAction;
+        QAction* restoreWindowAction;
+        QAction* quitApplicationAction;
     };
 }

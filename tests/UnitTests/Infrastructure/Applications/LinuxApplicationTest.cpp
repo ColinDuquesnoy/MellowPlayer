@@ -1,4 +1,5 @@
 #include <QtCore>
+#include <catch.hpp>
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
@@ -11,7 +12,6 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
-#include <catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

@@ -12,11 +12,11 @@ namespace MellowPlayer::Presentation
     class SystemTrayIconPresenter : public Application::INotificationPresenter
     {
     public:
-        SystemTrayIconPresenter(Application::ISystemTrayIcon &systemTrayIcon);
+        explicit SystemTrayIconPresenter(Application::ISystemTrayIcon& systemTrayIcon);
         void initialize() override;
-        bool display(const Application::Notification &notification) override;
+        bool display(const Application::Notification& notification) override;
 
     private:
-        Application::ISystemTrayIcon &systemTrayIcon;
+        Application::ISystemTrayIcon& systemTrayIcon;
     };
 }

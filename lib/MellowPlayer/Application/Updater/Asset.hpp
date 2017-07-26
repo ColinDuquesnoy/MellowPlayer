@@ -8,7 +8,7 @@ namespace MellowPlayer::Application
     {
     public:
         Asset();
-        Asset(const QString &name, const QString &url);
+        Asset(const QString& name, const QString& url);
 
         QString getName() const;
         QString getUrl() const;

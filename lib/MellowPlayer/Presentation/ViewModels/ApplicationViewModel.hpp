@@ -17,7 +17,7 @@ namespace MellowPlayer::Presentation
     class ApplicationViewModel : public Application::IQtApplication
     {
     public:
-        ApplicationViewModel(int &argc, char **argv, const QString &appName = MELLOWPLAYER_APP_NAME);
+        ApplicationViewModel(int& argc, char** argv, const QString& appName = MELLOWPLAYER_APP_NAME);
 
         int run() override;
         Q_INVOKABLE void clearCache() const override;

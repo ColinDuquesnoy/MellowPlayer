@@ -17,7 +17,7 @@ namespace MellowPlayer::Application
 
     public:
         Song();
-        Song(const QString &uniqueId, const QString &title, const QString &artist, const QString &album, const QString &artUrl, double duration,
+        Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album, const QString& artUrl, double duration,
              bool isFavorite);
 
         QString getUniqueId() const;
@@ -31,11 +31,11 @@ namespace MellowPlayer::Application
         void setDuration(double value);
         void setIsFavorite(bool value);
 
-        bool operator==(const Song &other) const
+        bool operator==(const Song& other) const
         {
             return uniqueId == other.uniqueId;
         }
-        bool operator!=(const Song &other) const
+        bool operator!=(const Song& other) const
         {
             return !this->operator==(other);
         }

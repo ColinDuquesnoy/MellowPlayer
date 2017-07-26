@@ -7,7 +7,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-WindowsUpdater::WindowsUpdater(IFileDownloader &fileDownloader) : AbstractPlatformUpdater(fileDownloader)
+WindowsUpdater::WindowsUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUpdater(fileDownloader)
 {
 }
 
@@ -16,7 +16,7 @@ bool WindowsUpdater::canInstall() const
     return asset_.isValid() && asset_.isWindowsInstaller();
 }
 
-void WindowsUpdater::doInstall(const QString &assetLocalPath)
+void WindowsUpdater::doInstall(const QString& assetLocalPath)
 {
     installerPath_ = assetLocalPath;
     // no installation here, we'll start the installer when user clicked on restart
@@ -33,12 +33,12 @@ QString WindowsUpdater::getAssetFileName() const
     return asset_.getName();
 }
 
-void WindowsUpdater::setRelease(const Release *release)
+void WindowsUpdater::setRelease(const Release* release)
 {
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto &asset : release_->getAssets()) {
+        for (auto& asset : release_->getAssets()) {
             if (asset.isWindowsInstaller()) {
                 asset_ = asset;
                 break;

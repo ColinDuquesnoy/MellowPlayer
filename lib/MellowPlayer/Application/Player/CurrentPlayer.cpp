@@ -2,13 +2,12 @@
 #include "Player.hpp"
 #include "Players.hpp"
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
-CurrentPlayer::CurrentPlayer(Players &players, StreamingServicesController &streamingServices)
+CurrentPlayer::CurrentPlayer(Players& players, StreamingServicesController& streamingServices)
         : players(players), streamingServices(streamingServices), currentPlayer(nullptr)
 {
 
@@ -78,7 +77,7 @@ void CurrentPlayer::removeFromFavorites()
         currentPlayer->removeFromFavorites();
 }
 
-Song *CurrentPlayer::getCurrentSong()
+Song* CurrentPlayer::getCurrentSong()
 {
     if (currentPlayer != nullptr && currentPlayer->getCurrentSong() != nullptr)
         return currentPlayer->getCurrentSong();
@@ -134,7 +133,7 @@ double CurrentPlayer::getVolume() const
     return 0;
 }
 
-void CurrentPlayer::onCurrentServiceChanged(StreamingService *streamingService)
+void CurrentPlayer::onCurrentServiceChanged(StreamingService* streamingService)
 {
     if (streamingService == nullptr)
         return;

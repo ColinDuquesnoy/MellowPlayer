@@ -28,7 +28,7 @@ function getButtons() {
     return {
         play: document.getElementsByClassName("ytp-play-button")[0],
         pause: document.getElementsByClassName("ytp-play-button")[0],
-        skip: document.getElementsByClassName("ytp-next-button")[0],
+        skip: document.getElementsByClassName("ytp-next-button")[0]
     };
 }
 
@@ -49,7 +49,7 @@ function update() {
     try {
         var rawPosition = document.getElementsByClassName("ytp-time-current")[0].innerText;
         var rawDuration = document.getElementsByClassName("ytp-time-duration")[0].innerText;
-        var playbackStatus = getButtons().play.attributes["aria-label"].value == "Pause" ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
+        var playbackStatus = getButtons().play.attributes["aria-label"].value === "Pause" ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
         var songTitle = document.getElementById("eow-title").innerText;
         var artistName = document.getElementsByClassName("yt-user-info")[0].innerText;
         try {

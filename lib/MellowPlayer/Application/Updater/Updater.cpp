@@ -1,14 +1,13 @@
 #include "Updater.hpp"
 #include "AbstractPlatformUpdater.hpp"
 #include "IReleaseQuerier.hpp"
-#include "Release.hpp"
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 
 using namespace MellowPlayer::Application;
 
-Updater::Updater(IReleaseQuerier &releaseQuerier, Settings &settings, AbstractPlatformUpdater &platformUpdater)
+Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater)
         : logger_(LoggingManager::instance().getLogger("Updater")),
           releaseQuerier_(releaseQuerier),
           platformUpdater_(platformUpdater),
@@ -54,12 +53,12 @@ bool Updater::canInstall() const
     return platformUpdater_.canInstall();
 }
 
-const Release *Updater::getLatestRelease() const
+const Release* Updater::getLatestRelease() const
 {
     return latestRelease_;
 }
 
-void Updater::onLatestReleaseReceived(const Release *release)
+void Updater::onLatestReleaseReceived(const Release* release)
 {
     if (release != nullptr && *release > *currentRelease_) {
         LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->getName()).arg(release->getName()));
@@ -77,7 +76,7 @@ void Updater::onLatestReleaseReceived(const Release *release)
     }
 }
 
-void Updater::setCurrentRelease(const Release *currentRelease)
+void Updater::setCurrentRelease(const Release* currentRelease)
 {
     currentRelease_ = currentRelease;
 }

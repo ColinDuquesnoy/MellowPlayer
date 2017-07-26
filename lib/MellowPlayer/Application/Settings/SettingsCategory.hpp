@@ -22,20 +22,20 @@ namespace MellowPlayer::Application
             QString key;
         };
 
-        SettingsCategory(const Data &data, Settings *appSettings);
+        SettingsCategory(const Data& data, Settings* appSettings);
         void resolveDependencies();
 
         void restoreDefaults();
 
-        const QString &getName() const;
-        const QString &getIcon() const;
-        const QString &getKey() const;
-        const QList<Setting *> &getSettings() const;
+        const QString& getName() const;
+        const QString& getIcon() const;
+        const QString& getKey() const;
+        const QList<Setting*>& getSettings() const;
 
-        Setting &getSetting(const QString &key) const;
+        Setting& getSetting(const QString& key) const;
 
     private:
         Data data;
-        QList<Setting *> settings;
+        QList<Setting*> settings;
     };
 }

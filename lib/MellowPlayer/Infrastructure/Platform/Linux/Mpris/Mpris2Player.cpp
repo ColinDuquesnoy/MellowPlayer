@@ -1,7 +1,6 @@
 #include "Mpris2Player.hpp"
 #include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
 
 using namespace MellowPlayer::Application;
@@ -11,7 +10,7 @@ using namespace MellowPlayer::Infrastructure;
 const qlonglong Mpris2Player::SEC_TO_MICROSEC = 1000000;
 const qlonglong Mpris2Player::SEEK_DELTA_LIMIT = Mpris2Player::SEC_TO_MICROSEC * 2;
 
-Mpris2Player::Mpris2Player(IPlayer &player, ILocalAlbumArt &localAlbumArt, QObject *parent)
+Mpris2Player::Mpris2Player(IPlayer& player, ILocalAlbumArt& localAlbumArt, QObject* parent)
         : QDBusAbstractAdaptor(parent),
           previousPosition(0),
           logger(LoggingManager::instance().getLogger("Mpris2Player")),
@@ -42,7 +41,7 @@ QString Mpris2Player::loopStatus()
     return "None";
 }
 
-void Mpris2Player::setLoopStatus(const QString &)
+void Mpris2Player::setLoopStatus(const QString&)
 {
     LOG_TRACE(logger, "setLoopStatus() not implemented");
 }
@@ -197,7 +196,7 @@ void Mpris2Player::Seek(qlonglong position)
     player.seekToPosition(newPosition / SEC_TO_MICROSEC);
 }
 
-void Mpris2Player::SetPosition(const QDBusObjectPath &, qlonglong position)
+void Mpris2Player::SetPosition(const QDBusObjectPath&, qlonglong position)
 {
     LOG_TRACE(logger, "SetPosition(" << position << ")");
     previousPosition = 0; // force emit seeked
@@ -212,7 +211,7 @@ void Mpris2Player::onPlaybackStatusChanged()
     signalPlayerUpdate(map);
 }
 
-void Mpris2Player::onSongChanged(Song *song)
+void Mpris2Player::onSongChanged(Song* song)
 {
     LOG_TRACE(logger, "onSongChanged()");
     if (song != nullptr) {
@@ -277,7 +276,7 @@ void Mpris2Player::onVolumeChanged()
     signalPlayerUpdate(map);
 }
 
-QMap<QString, QVariant> Mpris2Player::toXesam(const Song &song)
+QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song)
 {
     LOG_TRACE(logger, "toXesam('" + song.toString() + "')");
     QMap<QString, QVariant> map;
@@ -326,13 +325,13 @@ QString Mpris2Player::statusToString(PlaybackStatus status)
     }
 }
 
-void Mpris2Player::signalPlayerUpdate(const QVariantMap &map)
+void Mpris2Player::signalPlayerUpdate(const QVariantMap& map)
 {
     LOG_TRACE(logger, "signalPlayerUpdate");
     signalUpdate(map, "org.mpris.MediaPlayer2.Player");
 }
 
-void Mpris2Player::signalUpdate(const QVariantMap &map, const QString &interfaceName)
+void Mpris2Player::signalUpdate(const QVariantMap& map, const QString& interfaceName)
 {
     LOG_TRACE(logger, "signalUpdate");
     if (!map.isEmpty()) {
@@ -345,7 +344,7 @@ void Mpris2Player::signalUpdate(const QVariantMap &map, const QString &interface
     }
 }
 
-QString Mpris2Player::qMapToString(const QMap<QString, QVariant> &map)
+QString Mpris2Player::qMapToString(const QMap<QString, QVariant>& map)
 {
     QString output;
     for (auto it = map.begin(); it != map.end(); ++it) {

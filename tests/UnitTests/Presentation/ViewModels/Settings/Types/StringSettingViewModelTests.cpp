@@ -11,8 +11,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("StringSettingViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    Setting &setting = settings.get(SettingKey::SHORTCUTS_PLAY);
+    Settings& settings = pool.getSettings();
+    Setting& setting = settings.get(SettingKey::SHORTCUTS_PLAY);
     StringSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 

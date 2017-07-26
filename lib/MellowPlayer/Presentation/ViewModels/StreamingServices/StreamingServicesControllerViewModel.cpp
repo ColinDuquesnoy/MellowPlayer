@@ -1,5 +1,4 @@
 #include "StreamingServicesControllerViewModel.hpp"
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Application/IWorkDispatcher.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
@@ -15,10 +14,10 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController &streamingServices, Players &players,
-                                                                           Settings &settings, IWorkDispatcher &workDispatcher,
-                                                                           IStreamingServiceCreator &streamingServiceCreator,
-                                                                           ICommandLineParser &commandLineParser)
+StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices, Players& players,
+                                                                           Settings& settings, IWorkDispatcher& workDispatcher,
+                                                                           IStreamingServiceCreator& streamingServiceCreator,
+                                                                           ICommandLineParser& commandLineParser)
         : QObject(),
           streamingServices(streamingServices),
           players(players),
@@ -33,7 +32,7 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(Strea
 
     connect(&streamingServices, &StreamingServicesController::added, this, &StreamingServicesControllerViewModel::onServiceAdded);
 
-    for (auto &service : streamingServices.getAll()) {
+    for (auto& service : streamingServices.getAll()) {
         onServiceAdded(service.get());
     }
 }
@@ -49,7 +48,7 @@ void StreamingServicesControllerViewModel::initialize()
     }
 }
 
-StreamingServiceViewModel *StreamingServicesControllerViewModel::getCurrentService() const
+StreamingServiceViewModel* StreamingServicesControllerViewModel::getCurrentService() const
 {
     return currentService;
 }
@@ -59,12 +58,12 @@ int StreamingServicesControllerViewModel::getCurrentIndex() const
     return currentIndex;
 }
 
-void StreamingServicesControllerViewModel::setCurrentService(QObject *value)
+void StreamingServicesControllerViewModel::setCurrentService(QObject* value)
 {
     if (currentService == value)
         return;
 
-    auto service = static_cast<StreamingServiceViewModel *>(value);
+    auto service = static_cast<StreamingServiceViewModel*>(value);
 
     QModelIndex sourceIndex = allServices->index(allServices->toList().indexOf(service), 0, QModelIndex());
 
@@ -98,10 +97,10 @@ void StreamingServicesControllerViewModel::reload()
     streamingServices.load();
 }
 
-void StreamingServicesControllerViewModel::onServiceAdded(StreamingService *streamingService)
+void StreamingServicesControllerViewModel::onServiceAdded(StreamingService* streamingService)
 {
-    auto *sv = new StreamingServiceViewModel(*streamingService, settings.getSettingsProvider(), players, this);
-    Player *player = sv->getPlayer();
+    auto* sv = new StreamingServiceViewModel(*streamingService, settings.getSettingsProvider(), players, this);
+    Player* player = sv->getPlayer();
     connect(player, &Player::isRunningChanged, this, &StreamingServicesControllerViewModel::onPlayerRunningChanged);
     connect(sv, &StreamingServiceViewModel::isEnabledChanged, this, &StreamingServicesControllerViewModel::onServiceEnabledChanged);
     allServices->append(sv);
@@ -112,7 +111,7 @@ void StreamingServicesControllerViewModel::next()
     int index = getNextIndex(currentIndex);
 
     while (index != currentIndex) {
-        auto *sv = allServices->at(index);
+        auto* sv = allServices->at(index);
         if (sv->isRunning()) {
             setCurrentService(sv);
             break;
@@ -126,7 +125,7 @@ void StreamingServicesControllerViewModel::previous()
     int index = getPreviousIndex(currentIndex);
 
     while (index != currentIndex) {
-        auto *sv = allServices->at(index);
+        auto* sv = allServices->at(index);
         if (sv->isRunning() && sv->isEnabled()) {
             setCurrentService(sv);
             break;
@@ -135,8 +134,8 @@ void StreamingServicesControllerViewModel::previous()
     }
 }
 
-void StreamingServicesControllerViewModel::createService(const QString &serviceName, const QString &serviceUrl, const QString &authorName,
-                                                         const QString &authorWebsite)
+void StreamingServicesControllerViewModel::createService(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
+                                                         const QString& authorWebsite)
 {
     workDispatcher.invoke([=]() {
         QString pluginDir = streamingServiceCreator.create(serviceName, serviceUrl, authorName, authorWebsite);
@@ -173,7 +172,7 @@ void StreamingServicesControllerViewModel::onPlayerRunningChanged()
     }
 }
 
-int StreamingServicesControllerViewModel::getWebViewIndex(const QString &serviceName) const
+int StreamingServicesControllerViewModel::getWebViewIndex(const QString& serviceName) const
 {
     return allServices->indexOf(serviceName);
 }

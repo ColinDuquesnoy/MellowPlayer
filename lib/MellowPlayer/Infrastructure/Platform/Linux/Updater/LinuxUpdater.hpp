@@ -8,14 +8,14 @@ namespace MellowPlayer::Infrastructure
     class LinuxUpdater : public Application::AbstractPlatformUpdater
     {
     public:
-        LinuxUpdater(Application::IFileDownloader &fileDownloader);
+        explicit LinuxUpdater(Application::IFileDownloader& fileDownloader);
 
-        void setRelease(const Application::Release *release) override;
+        void setRelease(const Application::Release* release) override;
         bool canInstall() const override;
         void restart() override;
 
     protected:
-        void doInstall(const QString &assetLocalPath) override;
+        void doInstall(const QString& assetLocalPath) override;
         QString getAssetUrl() const override;
         QString getAssetFileName() const override;
         Application::Asset asset_;

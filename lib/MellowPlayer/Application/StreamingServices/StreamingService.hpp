@@ -20,28 +20,28 @@ namespace MellowPlayer::Application
         Q_PROPERTY(QString name READ getName CONSTANT)
         Q_PROPERTY(QString url READ getUrl CONSTANT)
         Q_PROPERTY(QString version READ getVersion CONSTANT)
-        Q_PROPERTY(StreamingServiceScript *script READ getScript CONSTANT)
+        Q_PROPERTY(StreamingServiceScript* script READ getScript CONSTANT)
     public:
-        StreamingService(const StreamingServiceMetadata &metadata, const Theme &theme = Theme());
+        StreamingService(const StreamingServiceMetadata& metadata, const Theme& theme = Theme());
         ~StreamingService();
 
         bool isValid() const;
-        const QString &getAuthor() const;
-        const QString &getAuthorWebsite() const;
+        const QString& getAuthor() const;
+        const QString& getAuthorWebsite() const;
         QString getLogo() const;
-        const QString &getName() const;
+        const QString& getName() const;
         QString getUrl() const;
-        const QString &getVersion() const;
-        StreamingServiceScript *getScript() const;
-        const Theme &getTheme() const;
+        const QString& getVersion() const;
+        StreamingServiceScript* getScript() const;
+        const Theme& getTheme() const;
 
         QString getPluginDirectory() const;
 
-        void updateTheme(Theme &newTheme);
-        void updateScript(const QString &script);
+        void updateTheme(Theme& newTheme);
+        void updateScript(const QString& script);
 
-        bool operator==(const StreamingService &rhs) const;
-        bool operator!=(const StreamingService &rhs) const;
+        bool operator==(const StreamingService& rhs) const;
+        bool operator!=(const StreamingService& rhs) const;
 
     signals:
         void scriptChanged();

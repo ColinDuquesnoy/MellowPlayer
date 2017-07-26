@@ -10,6 +10,6 @@ namespace MellowPlayer::Application
         Q_OBJECT
     public:
         virtual ~IStreamingServiceWatcher() = default;
-        virtual void watch(StreamingService &serviceToWatch) = 0;
+        virtual void watch(StreamingService& serviceToWatch) = 0;
     };
 }

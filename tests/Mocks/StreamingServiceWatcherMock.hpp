@@ -12,7 +12,7 @@ public:
     static Mock<IStreamingServiceWatcher> get()
     {
         Mock<IStreamingServiceWatcher> mock;
-        When(Method(mock, watch)).AlwaysDo([](StreamingService &) {});
+        When(Method(mock, watch)).AlwaysDo([](StreamingService&) {});
         return mock;
     }
 };

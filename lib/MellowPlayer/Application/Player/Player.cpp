@@ -10,7 +10,7 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
-Player::Player(StreamingService &streamingService)
+Player::Player(StreamingService& streamingService)
         : logger(LoggingManager::instance().getLogger("Player-" + streamingService.getName().toStdString())),
           currentSong(nullptr),
           streamingService(streamingService),
@@ -94,7 +94,7 @@ void Player::removeFromFavorites()
     emit runJavascriptRequested(streamingServiceScript.removeFromFavorites());
 }
 
-Song *Player::getCurrentSong()
+Song* Player::getCurrentSong()
 {
     return currentSong.get();
 }
@@ -166,7 +166,7 @@ void Player::refresh()
     refreshTimer->start();
 }
 
-void Player::setUpdateResults(const QVariant &results)
+void Player::setUpdateResults(const QVariant& results)
 {
     LOG_TRACE(logger, "setUpdateResults()");
     QVariantMap resultsMap = results.toMap();
@@ -213,7 +213,7 @@ void Player::resume()
     refreshTimer->start();
 }
 
-void Player::setCurrentSong(unique_ptr<Song> &song)
+void Player::setCurrentSong(unique_ptr<Song>& song)
 {
     LOG_TRACE(logger, "setCurrentSong()");
     if (currentSong != nullptr && *currentSong == *song) {
@@ -293,12 +293,12 @@ void Player::setCurrentVolume(double value)
     emit volumeChanged();
 }
 
-bool Player::operator==(const Player &other) const
+bool Player::operator==(const Player& other) const
 {
     return streamingService == other.streamingService;
 }
 
-bool Player::operator!=(const Player &other) const
+bool Player::operator!=(const Player& other) const
 {
     return !operator==(other);
 }

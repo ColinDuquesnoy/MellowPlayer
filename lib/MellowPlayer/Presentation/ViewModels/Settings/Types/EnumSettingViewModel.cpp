@@ -3,7 +3,7 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-EnumSettingViewModel::EnumSettingViewModel(Setting &setting, QObject *parent) : SettingViewModel(setting, parent)
+EnumSettingViewModel::EnumSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
 }
 

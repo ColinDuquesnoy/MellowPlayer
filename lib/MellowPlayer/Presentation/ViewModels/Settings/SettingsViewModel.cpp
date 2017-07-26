@@ -1,14 +1,12 @@
 #include "SettingsViewModel.hpp"
-#include "MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp"
-#include <QtCore/QAbstractItemModel>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SettingsViewModel::SettingsViewModel(Settings &settings, ThemeViewModel &themeViewModel, QObject *parent)
+SettingsViewModel::SettingsViewModel(Settings& settings, ThemeViewModel& themeViewModel, QObject* parent)
         : QObject(parent), settings(settings), settingViewModelFactory(themeViewModel), categories(new SettingsCategoryListModel(this, "name"))
 {
-    for (SettingsCategory *category : settings.getCategories()) {
+    for (SettingsCategory* category : settings.getCategories()) {
         if (category->getKey() != "private")
             categories->append(new SettingsCategoryViewModel(themeViewModel, category, this));
     }
@@ -21,14 +19,14 @@ SettingsViewModel::SettingsViewModel(Settings &settings, ThemeViewModel &themeVi
                                                            themeViewModel, this));
 }
 
-SettingViewModel *SettingsViewModel::get(int key)
+SettingViewModel* SettingsViewModel::get(int key)
 {
     SettingKey::Keys settingKey = static_cast<SettingKey::Keys>(key);
-    Setting &setting = settings.get(settingKey);
+    Setting& setting = settings.get(settingKey);
     return settingViewModelFactory.create(setting, nullptr);
 }
 
-SettingsCategoryListModel *SettingsViewModel::getCategories() const
+SettingsCategoryListModel* SettingsViewModel::getCategories() const
 {
     return categories;
 }

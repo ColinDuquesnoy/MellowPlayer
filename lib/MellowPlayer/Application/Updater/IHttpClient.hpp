@@ -9,9 +9,9 @@ namespace MellowPlayer::Application
         Q_OBJECT
     public:
         virtual ~IHttpClient() = default;
-        virtual void get(const QString &url) = 0;
+        virtual void get(const QString& url) = 0;
 
     signals:
-        void replyReceived(const QByteArray &replyData);
+        void replyReceived(const QByteArray& replyData);
     };
 }

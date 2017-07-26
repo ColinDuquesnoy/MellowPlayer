@@ -18,7 +18,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString dateCategory READ getDateCategory CONSTANT)
         Q_OBJECT
     public:
-        ListeningHistoryEntryViewModel(const Application::ListeningHistoryEntry &entry, QObject *parent = nullptr);
+        ListeningHistoryEntryViewModel(const Application::ListeningHistoryEntry& entry, QObject* parent = nullptr);
 
         int getEntryId() const
         {

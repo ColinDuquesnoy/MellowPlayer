@@ -12,8 +12,8 @@ namespace MellowPlayer::Infrastructure
         Q_OBJECT
     public:
         QtConcurrentWorkDispatcher();
-        void invoke(const std::function<void(void)> &workerFunction) override;
-        void delayInvoke(int delayMilliseconds, const std::function<void(void)> &workerFunction) override;
+        void invoke(const std::function<void(void)>& workerFunction) override;
+        void delayInvoke(int delayMilliseconds, const std::function<void(void)>& workerFunction) override;
 
     private slots:
         void onTimeout();

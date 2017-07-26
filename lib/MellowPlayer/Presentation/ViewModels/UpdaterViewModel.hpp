@@ -16,7 +16,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool restartEnabled READ isRestartEnabled NOTIFY restartEnabledChanged)
         Q_PROPERTY(double progress READ getProgress NOTIFY progressChanged)
     public:
-        UpdaterViewModel(Application::Updater &updater);
+        explicit UpdaterViewModel(Application::Updater& updater);
 
         QString getUrl() const;
         QString getStatusString() const;
@@ -50,7 +50,7 @@ namespace MellowPlayer::Presentation
         void onInstalled();
 
     private:
-        Application::Updater &updater_;
+        Application::Updater& updater_;
         bool visible_ = false;
         bool installEnabled_ = false;
         bool restartEnabled_ = false;

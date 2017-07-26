@@ -10,30 +10,29 @@ namespace MellowPlayer::Application
     class LoggingManager
     {
     public:
-        LoggingManager(const LoggingManager &other) = delete;
-        LoggingManager(LoggingManager &&) = default;
-        LoggingManager &operator=(const LoggingManager &) = delete;
-        LoggingManager &operator=(LoggingManager &&) = default;
+        LoggingManager(const LoggingManager& other) = delete;
+        LoggingManager(LoggingManager&&) = default;
+        LoggingManager& operator=(const LoggingManager&) = delete;
+        LoggingManager& operator=(LoggingManager&&) = default;
 
-        static LoggingManager &initialize(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig = LoggerConfig());
-        static LoggingManager &initialize(ILoggerFactory &loggerFactory, LogLevel logLevel);
-        static LoggingManager &instance();
+        static LoggingManager& initialize(ILoggerFactory& loggerFactory, const LoggerConfig& defaultConfig = LoggerConfig());
+        static LoggingManager& initialize(ILoggerFactory& loggerFactory, LogLevel logLevel);
+        static LoggingManager& instance();
 
-        ILogger &getLogger();
-        ILogger &getLogger(const std::string &name);
-        ILogger &getLogger(const std::string &name, const LoggerConfig &loggerConfig);
+        ILogger& getLogger();
+        ILogger& getLogger(const std::string& name);
+        ILogger& getLogger(const std::string& name, const LoggerConfig& loggerConfig);
 
         void setDefaultLogLevel(LogLevel logLevel);
 
     private:
-        LoggingManager(ILoggerFactory &loggerFactory, const LoggerConfig &defaultConfig);
+        LoggingManager(ILoggerFactory& loggerFactory, const LoggerConfig& defaultConfig);
 
-        bool loggerExists(const std::string &name);
-        ILogger &getExistingLogger(const std::string &name);
-        ILogger &createNewLogger(const std::string &name, const LoggerConfig &loggerConfig);
-        void installQtMessageHandler();
+        bool loggerExists(const std::string& name);
+        ILogger& getExistingLogger(const std::string& name);
+        ILogger& createNewLogger(const std::string& name, const LoggerConfig& loggerConfig);
 
-        ILoggerFactory &loggerFactory_;
+        ILoggerFactory& loggerFactory_;
         std::map<std::string, std::unique_ptr<ILogger>> loggersMap_;
         LoggerConfig defaultLoggerConfig_;
 

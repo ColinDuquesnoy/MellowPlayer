@@ -9,14 +9,14 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        StreamingServiceProxyListModel(StreamingServiceListModel *sourceListModel);
+        explicit StreamingServiceProxyListModel(StreamingServiceListModel* sourceListModel);
         Q_INVOKABLE void update();
 
     protected:
-        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
-        bool lessThan(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const override;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
+        bool lessThan(const QModelIndex& sourceLeft, const QModelIndex& sourceRight) const override;
 
     private:
-        StreamingServiceListModel *sourceListModel;
+        StreamingServiceListModel* sourceListModel;
     };
 }

@@ -12,8 +12,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("BoolSettingViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    Setting &setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+    Settings& settings = pool.getSettings();
+    Setting& setting = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
     BoolSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 

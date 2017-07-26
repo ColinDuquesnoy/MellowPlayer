@@ -7,7 +7,7 @@ using namespace MellowPlayer::Infrastructure;
 TEST_CASE("AlbumArtDownloaderTests")
 {
     AlbumArtDownloader albumArtDownloader;
-    QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString &)));
+    QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
 
     QFile::remove(albumArtDownloader.getLocalArtUrl("mellowplayer.svg").absoluteFilePath());
 

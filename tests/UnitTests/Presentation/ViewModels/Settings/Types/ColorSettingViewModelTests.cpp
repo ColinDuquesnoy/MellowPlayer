@@ -11,8 +11,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("ColorSettingViewModelTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    Setting &setting = settings.get(SettingKey::APPEARANCE_ACCENT);
+    Settings& settings = pool.getSettings();
+    Setting& setting = settings.get(SettingKey::APPEARANCE_ACCENT);
     ColorSettingViewModel model(setting, nullptr);
     QSignalSpy spy(&model, SIGNAL(valueChanged()));
 

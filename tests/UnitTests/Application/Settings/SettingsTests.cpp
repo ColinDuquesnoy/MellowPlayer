@@ -15,8 +15,8 @@ using namespace MellowPlayer::Tests;
 TEST_CASE("SettingsTests")
 {
     DependencyPool pool;
-    Settings &settings = pool.getSettings();
-    SettingsCategory *mainCategory = &settings.getCategory("main");
+    Settings& settings = pool.getSettings();
+    SettingsCategory* mainCategory = &settings.getCategory("main");
 
     SECTION("ConfigSchemaTests")
     {
@@ -38,9 +38,9 @@ TEST_CASE("SettingsTests")
 
         SECTION("restoreDefaults")
         {
-            Setting &setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
+            Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
             setting1.setValue(!setting1.getDefaultValue().toBool());
-            Setting &setting2 = settings.get(SettingKey::APPEARANCE_THEME);
+            Setting& setting2 = settings.get(SettingKey::APPEARANCE_THEME);
             setting2.setValue("Other");
             REQUIRE(setting1.getValue() != setting1.getDefaultValue());
             REQUIRE(setting2.getValue() != setting2.getDefaultValue());
@@ -69,11 +69,11 @@ TEST_CASE("SettingsTests")
 
         SECTION("restoreDefaults")
         {
-            Setting &setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
+            Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
             setting1.setValue(!setting1.getDefaultValue().toBool());
-            Setting &setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
+            Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
             setting2.setValue(!setting1.getDefaultValue().toBool());
-            Setting &fromOtherCategory = settings.get(SettingKey::APPEARANCE_THEME);
+            Setting& fromOtherCategory = settings.get(SettingKey::APPEARANCE_THEME);
             fromOtherCategory.setValue("Other");
             REQUIRE(setting1.getValue() != setting1.getDefaultValue());
             REQUIRE(setting2.getValue() != setting2.getDefaultValue());
@@ -91,29 +91,29 @@ TEST_CASE("SettingsTests")
     {
         SECTION("attributes")
         {
-            const Setting &setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
+            const Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
             REQUIRE(setting.getKey() == "confirm-exit");
             REQUIRE(setting.getName() == "Confirm application exit");
             REQUIRE(setting.getType() == "bool");
             REQUIRE(setting.getDefaultValue().toBool());
 
-            const Setting &setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
+            const Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
             REQUIRE(setting2.getKey() == "close-to-tray");
             REQUIRE(setting2.getDefaultValue().toBool());
         }
 
         SECTION("getValue returns default value initially")
         {
-            const Setting &setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
+            const Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
             REQUIRE(setting.getValue().toBool());
 
-            const Setting &setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
+            const Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
             REQUIRE(setting2.getValue().toBool());
         }
 
         SECTION("setValue")
         {
-            Setting &setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
+            Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
             REQUIRE(setting.getValue() == setting.getDefaultValue());
             setting.setValue(true);
             REQUIRE(setting.getValue().toBool());
@@ -123,7 +123,7 @@ TEST_CASE("SettingsTests")
 
         SECTION("isEnabled always enabled setting")
         {
-            const Setting &setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
+            const Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
             REQUIRE(setting.isEnabled());
         }
 
@@ -131,8 +131,8 @@ TEST_CASE("SettingsTests")
         {
             SECTION("bool condition")
             {
-                Setting &notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
-                Setting &playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+                Setting& notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
+                Setting& playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
                 QSignalSpy spy(&playNotificationEnabled, SIGNAL(isEnabledChanged()));
                 REQUIRE(notificationsEnabled.getValue().toBool());
                 REQUIRE(playNotificationEnabled.isEnabled());
@@ -144,8 +144,8 @@ TEST_CASE("SettingsTests")
 
             SECTION("string comparison condition")
             {
-                Setting &theme = settings.get(SettingKey::APPEARANCE_THEME);
-                Setting &accent = settings.get(SettingKey::APPEARANCE_ACCENT);
+                Setting& theme = settings.get(SettingKey::APPEARANCE_THEME);
+                Setting& accent = settings.get(SettingKey::APPEARANCE_ACCENT);
                 QSignalSpy spy(&accent, SIGNAL(isEnabledChanged()));
                 REQUIRE(theme.getValue().toString() == "Adaptive");
                 REQUIRE(!accent.isEnabled());

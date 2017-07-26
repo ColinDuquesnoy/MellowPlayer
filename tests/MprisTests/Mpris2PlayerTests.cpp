@@ -1,15 +1,14 @@
 #include <QtCore>
+#include <catch.hpp>
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -24,12 +23,12 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
     streamingServices.setCurrent(streamingServices.getAll()[0].get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
-    Player &currentPlayer = *players.get(streamingServices.getCurrent()->getName());
+    Player& currentPlayer = *players.get(streamingServices.getCurrent()->getName());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 
-    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song *)));
+    QSignalSpy currentSongChanged(&player, SIGNAL(currentSongChanged(Song*)));
     QSignalSpy positionChanged(&player, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&player, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&player, SIGNAL(canSeekChanged()));
@@ -37,7 +36,7 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
     QSignalSpy canGoPreviousChanged(&player, SIGNAL(canGoPreviousChanged()));
     QSignalSpy canAddToFavoritesChanged(&player, SIGNAL(canAddToFavoritesChanged()));
     QSignalSpy volumeChanged(&player, SIGNAL(volumeChanged()));
-    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString &)));
+    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString&)));
 
     SECTION("PlaybackStatus")
     {

@@ -15,7 +15,7 @@ TEST_CASE("HotkeysServiceTests", "[UnitTest]")
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     Tests::DependencyPool pool;
-    Settings &settings = pool.getSettings();
+    Settings& settings = pool.getSettings();
     HotkeysController hotkeys(playerMock.get(), settings, mainWindowMock.get());
     hotkeys.start();
 

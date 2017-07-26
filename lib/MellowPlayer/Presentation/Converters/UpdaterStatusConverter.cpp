@@ -25,7 +25,7 @@ QString UpdaterStatusConverter::toString(Updater::Status status)
     return map[status];
 }
 
-Updater::Status UpdaterStatusConverter::fromString(const QString &string)
+Updater::Status UpdaterStatusConverter::fromString(const QString& string)
 {
     static QMap<QString, Updater::Status> map = {{NONE, Updater::Status::None},
                                                  {CHECKING, Updater::Status::Checking},

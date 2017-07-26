@@ -1,6 +1,5 @@
 #include "QtConcurrentWorkDispatcher.hpp"
 #include <QtConcurrent>
-#include <QtCore/QThreadPool>
 
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
@@ -11,7 +10,7 @@ QtConcurrentWorkDispatcher::QtConcurrentWorkDispatcher()
     connect(&timer, &QTimer::timeout, this, &QtConcurrentWorkDispatcher::onTimeout);
 }
 
-void QtConcurrentWorkDispatcher::invoke(const function<void(void)> &workerFunction)
+void QtConcurrentWorkDispatcher::invoke(const function<void(void)>& workerFunction)
 {
     QtConcurrent::run(QThreadPool::globalInstance(), [=]() {
         QMutexLocker mutexLocker(&mutex);
@@ -19,7 +18,7 @@ void QtConcurrentWorkDispatcher::invoke(const function<void(void)> &workerFuncti
     });
 }
 
-void QtConcurrentWorkDispatcher::delayInvoke(int delayMilliseconds, const std::function<void(void)> &workerFunction)
+void QtConcurrentWorkDispatcher::delayInvoke(int delayMilliseconds, const std::function<void(void)>& workerFunction)
 {
     delayedWorkerFunction = workerFunction;
     timer.stop();

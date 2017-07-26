@@ -1,5 +1,6 @@
 #pragma once
 
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <QObject>
 #include <QtDBus>
 
@@ -20,7 +21,7 @@ namespace MellowPlayer::Infrastructure
         Q_OBJECT
         Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
     public:
-        explicit Mpris2Player(Application::IPlayer &player, Application::ILocalAlbumArt &localAlbumArt, QObject *parent = nullptr);
+        explicit Mpris2Player(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArt, QObject* parent = nullptr);
 
         Q_PROPERTY(QVariantMap Metadata READ metadata)
         Q_PROPERTY(bool CanControl READ canControl)
@@ -41,7 +42,7 @@ namespace MellowPlayer::Infrastructure
 
         QString playbackStatus();
         QString loopStatus();
-        void setLoopStatus(const QString &status);
+        void setLoopStatus(const QString& status);
         bool shuffle();
         void setShuffle(bool value);
         double volume();
@@ -68,14 +69,14 @@ namespace MellowPlayer::Infrastructure
         void Next();
         void Previous();
         void Seek(qlonglong position);
-        void SetPosition(const QDBusObjectPath &trackId, qlonglong position);
+        void SetPosition(const QDBusObjectPath& trackId, qlonglong position);
 
     signals:
         void Seeked(qlonglong);
 
     private slots:
         void onPlaybackStatusChanged();
-        void onSongChanged(Application::Song *song);
+        void onSongChanged(Application::Song* song);
         void onArtUrlChanged();
         void onPositionChanged();
         void onDurationChanged();
@@ -85,20 +86,20 @@ namespace MellowPlayer::Infrastructure
         void onVolumeChanged();
 
     private:
-        QMap<QString, QVariant> toXesam(const Application::Song &song);
+        QMap<QString, QVariant> toXesam(const Application::Song& song);
         QString statusToString(Application::PlaybackStatus status);
-        void signalPlayerUpdate(const QVariantMap &map);
-        void signalUpdate(const QVariantMap &map, const QString &interfaceName);
+        void signalPlayerUpdate(const QVariantMap& map);
+        void signalUpdate(const QVariantMap& map, const QString& interfaceName);
 
-        QString qMapToString(const QMap<QString, QVariant> &map);
+        QString qMapToString(const QMap<QString, QVariant>& map);
 
         static const qlonglong SEC_TO_MICROSEC;
         static const qlonglong SEEK_DELTA_LIMIT;
 
         qlonglong previousPosition;
-        Application::ILogger &logger;
-        Application::IPlayer &player;
-        Application::ILocalAlbumArt &localAlbumArt;
+        Application::ILogger& logger;
+        Application::IPlayer& player;
+        Application::ILocalAlbumArt& localAlbumArt;
         QMap<QString, QVariant> lastMetadata;
     };
 }

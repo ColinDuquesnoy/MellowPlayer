@@ -18,14 +18,12 @@
 //-----------------------------------------------------------------------------
 // Updates service information
 function getMixcloudPlayer() {
-    var M = $(document.querySelector(
-        '.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
-    return M;
+    return $(document.querySelector('.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
 }
 
 function update() {
     // hide header ad
-    $("body > div.cf > div:nth-child(1)").hide()
+    $("body > div.cf > div:nth-child(1)").hide();
 
     // Get a reference to the mixcloud's player queue controller
     var M = getMixcloudPlayer();
@@ -35,21 +33,21 @@ function update() {
     var previous = M.playerQueue.queue.cloudcastList.get(currentIndex - 1);
     var cloudcast = M.player.currentCloudcast;
 
+    var playback_status = mellowplayer.PlaybackStatus.STOPPED;
+
     if (M.player.buffering) {
         playback_status = mellowplayer.PlaybackStatus.BUFFERING;
     } else if (M.player.playing) {
         playback_status = mellowplayer.PlaybackStatus.PLAYING;
     } else if (cloudcast.title) {
         playback_status = mellowplayer.PlaybackStatus.PAUSED;
-    } else {
-        playback_status = mellowplayer.PlaybackStatus.STOPPED;
     }
 
     return {
         "playbackStatus": playback_status,
         "canSeek": true,
         "canGoNext": true,
-        "canGoPrevious": typeof previous != "undefined",
+        "canGoPrevious": typeof previous !== "undefined",
         "canAddToFavorites": false,
         "volume": M.player.volume,
         "duration": M.player.audioLength,
@@ -81,7 +79,7 @@ function goNext() {
     var M = getMixcloudPlayer();
     var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
     var next = M.playerQueue.queue.cloudcastList.get(currentIndex + 1);
-    if (typeof next != "undefined") {
+    if (typeof next !== "undefined") {
         M.playerQueue.playFromQueue(next);
     } else {
         M.playerQueue.playUpNext();
@@ -93,7 +91,7 @@ function goPrevious() {
     var M = getMixcloudPlayer();
     var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
     var previous = M.playerQueue.queue.cloudcastList.get(currentIndex + -1);
-    if (typeof previous != "undefined") {
+    if (typeof previous !== "undefined") {
         M.playerQueue.playFromQueue(previous);
     }
 }

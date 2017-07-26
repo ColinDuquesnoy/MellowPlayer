@@ -7,7 +7,7 @@ Asset::Asset() : Asset("", "")
 {
 }
 
-Asset::Asset(const QString &name, const QString &url) : name_(name), url_(url)
+Asset::Asset(const QString& name, const QString& url) : name_(name), url_(url)
 {
 }
 

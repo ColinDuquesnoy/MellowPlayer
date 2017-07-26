@@ -3,10 +3,11 @@
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
-#include <Mocks/LocalAlbumArtMock.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
+#include <fakeit.hpp>
 
+using namespace fakeit;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
@@ -15,15 +16,15 @@ TEST_CASE("NotifierTests", "[UnitTest]")
 {
     MellowPlayer::Tests::DependencyPool pool;
 
-    Settings &settings = pool.getSettings();
-    Notifier &notificationService = pool.getNotifier();
+    Settings& settings = pool.getSettings();
+    Notifier& notificationService = pool.getNotifier();
     Mock<LocalAlbumArt> localAlbumArtServiceSpy(pool.getLocalAlbumArt());
     Mock<IPlayer> playerSpy(pool.getCurrentPlayer());
-    Mock<INotificationPresenter> &notificationPresenterMock = pool.getNotificationPresenterMock();
+    Mock<INotificationPresenter>& notificationPresenterMock = pool.getNotificationPresenterMock();
 
-    Setting &playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+    Setting& playNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
     playNotifEnabled.setValue(true);
-    Setting &pausedNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
+    Setting& pausedNotifEnabled = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
     pausedNotifEnabled.setValue(true);
 
     Song validSong("uniqueId", "songTitle", "artistName", "album", "artUrl", 50, false);
