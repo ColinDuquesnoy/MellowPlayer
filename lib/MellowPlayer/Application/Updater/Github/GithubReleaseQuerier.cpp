@@ -47,7 +47,7 @@ void GithubReleaseQuerier::onReleaseReady(const Release* release)
 
 bool GithubReleaseQuerier::accept(const Release* release)
 {
-    bool accepted;
+    bool accepted = false;
 
     switch (channel_) {
         case UpdateChannel::Continuous:

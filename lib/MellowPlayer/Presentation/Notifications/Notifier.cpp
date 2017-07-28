@@ -103,7 +103,7 @@ bool Notifier::isNotificationTypeEnabled(NotificationType type) const
 {
     auto check = [](const Setting& setting) { return setting.isEnabled() && setting.getValue().toBool(); };
 
-    bool isEnabled;
+    bool isEnabled = false;
 
     switch (type) {
         case NotificationType::NewVersionAvailable: {
