@@ -404,7 +404,7 @@ ToolBar {
         id: centerItem
         anchors.centerIn: parent
         height: root.height
-        width: 300
+        width: 500
         visible: root.isWebViewMode
 
         ColumnLayout {
@@ -435,12 +435,17 @@ ToolBar {
 
             Item {
                 id: sliderGroup
-                Layout.fillWidth: true
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: layout.implicitWidth
                 Layout.preferredHeight: visible ? slider.implicitHeight : 0
                 Layout.margins: 0
+
                 visible: _player.canSeek || _player.currentSong.duration != 0
 
                 RowLayout {
+                    id: layout
+
                     anchors.fill: parent
 
                     Label {
