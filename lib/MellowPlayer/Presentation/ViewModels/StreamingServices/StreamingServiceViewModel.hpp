@@ -23,6 +23,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString version READ getVersion CONSTANT)
         Q_PROPERTY(QString authorName READ getAuthorName CONSTANT)
         Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
+        Q_PROPERTY(bool requireProprietaryCodecs READ getRequireProprietaryCodecs CONSTANT)
         Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
         Q_PROPERTY(int sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
@@ -37,6 +38,7 @@ namespace MellowPlayer::Presentation
         QString getVersion() const;
         QString getAuthorName() const;
         QString getAuthorWebsite() const;
+        bool getRequireProprietaryCodecs() const;
         bool isRunning() const;
 
         bool operator==(const StreamingServiceViewModel& rhs) const;

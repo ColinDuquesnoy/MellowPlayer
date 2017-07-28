@@ -75,6 +75,7 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     serviceMetadata.authorWebsite = meta.value("author_website").toString();
     serviceMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
     serviceMetadata.name = meta.value("name").toString();
+    serviceMetadata.requireProprietaryCodecs = meta.value("require_proprietary_codecs").toBool();
     serviceMetadata.url = meta.value("url").toString();
     serviceMetadata.version = meta.value("version").toString();
 

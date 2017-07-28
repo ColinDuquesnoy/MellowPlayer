@@ -90,3 +90,8 @@ QString StreamingService::getPluginDirectory() const
 {
     return metadata.pluginDirectory;
 }
+
+bool StreamingService::getRequireProprietaryCodecs() const
+{
+    return metadata.requireProprietaryCodecs;
+}

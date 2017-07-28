@@ -6,51 +6,18 @@ namespace MellowPlayer::Application
 {
     struct StreamingServiceMetadata
     {
-        /**
-         * @brief Name of the plugin's author.
-         */
         QString author;
-
-        /**
-         * @brief Url of the plugin's author's website.
-         */
         QString authorWebsite;
-
-        /**
-         * @brief Logo of the plugin/service.
-         */
         QString logoPath;
-
-        /**
-         * @brief The name of the plugin.
-         */
         QString name;
-
-        /**
-         * @brief The url of the streaming service
-         */
         QString url;
-
-        /**
-         * @brief The javascript code of the plugin.
-         */
         QString script;
-
-        /**
-         * @brief Path to the plugin script.
-         */
         QString scriptPath;
-
         QString pluginDirectory;
-
-        /**
-         * @brief The version of the plugin.
-         */
         QString version;
+        bool requireProprietaryCodecs = false;
 
-        StreamingServiceMetadata() : author(""), authorWebsite(""), logoPath(""), name(""), url(""), script(""), scriptPath(""), version("")
-        {
-        }
+        StreamingServiceMetadata() = default;
 
         bool isValid() const
         {

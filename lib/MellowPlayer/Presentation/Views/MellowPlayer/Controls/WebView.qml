@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 import QtWebEngine 1.5
 
 import MellowPlayer 3.0
+import ".."
 
 WebEngineView {
     id: root
@@ -14,6 +15,7 @@ WebEngineView {
     property var service
     property var image: null
     property bool isRunning: false
+    property bool hasProprietaryCodecs: true
 
     signal updateImageFinished()
     signal customUrlSet(var customUrl)
@@ -23,7 +25,7 @@ WebEngineView {
             return;
         isRunning = true;
         url = urlToLoad
-        checkForCustomUrlRequired()
+        d.checkForCustomUrlRequired()
         player.start()
     }
 
@@ -34,13 +36,6 @@ WebEngineView {
         url = "about:blank";
         reload();
         player.stop();
-    }
-
-    function checkForCustomUrlRequired() {
-        var match = urlToLoad.match("(@.*@)");
-        if (match !== null) {
-            customUrlPane.open()
-        }
     }
 
     function updateImage() {
@@ -73,9 +68,10 @@ WebEngineView {
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank") {
             player.loadPlugin();
+            d.checkForProprietaryCodecs();
         }
         else
-            checkForCustomUrlRequired();
+            d.checkForCustomUrlRequired();
     }
 
     Connections {
@@ -88,13 +84,39 @@ WebEngineView {
     CustomUrlPane {
         id: customUrlPane
 
-        y: -2
-        x: root.width / 2 - width / 2
-        width: 500
-        z: 1
-        onReloadRequested: root.reload()
         customUrl: urlToLoad
+        x: root.width / 2 - width / 2; y: -2; z: 1
+        width: 500
+
+        onReloadRequested: root.reload()        
         onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
+    }
+
+    Pane {
+        visible: !hasProprietaryCodecs && service.requireProprietaryCodecs
+
+        x: root.width / 2 - width / 2; y: -2; z: 1
+        width: parent.width
+
+        Material.background: Material.color(Material.Red)
+        Material.foreground: "white"
+
+        RowLayout {
+            anchors.fill: parent
+
+            Label {
+                font.pixelSize: 32
+                font.family: MaterialIcons.family
+                text: MaterialIcons.icon_error
+            }
+
+            Label {
+                text: "<b>" + service.name + qsTr(" requires proprietary audio codecs to work properly.</b><br>
+<i>You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...</i>")
+
+                Layout.fillWidth: true
+            }
+        }
     }
 
     WebViewContextMenu {
@@ -111,5 +133,22 @@ WebEngineView {
         onGoForwardRequested: root.goForward()
         onReloadRequested: root.reload()
         onViewPageSourceRequested: root.triggerWebAction(WebEngineView.ViewSource)
+    }
+
+    QtObject {
+        id: d
+
+        function checkForCustomUrlRequired() {
+            var match = urlToLoad.match("(@.*@)");
+            if (match !== null) {
+                customUrlPane.open()
+            }
+        }
+
+        function checkForProprietaryCodecs() {
+            runJavaScript("var a = document.createElement('audio'); !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));", function(result) {
+                hasProprietaryCodecs = result;
+            })
+        }
     }
 }

@@ -121,3 +121,7 @@ QString StreamingServiceViewModel::getIsEnabledSettingsKey() const
 {
     return streamingService.getName() + "/isEnabled";
 }
+bool StreamingServiceViewModel::getRequireProprietaryCodecs() const
+{
+    return streamingService.getRequireProprietaryCodecs();
+}
