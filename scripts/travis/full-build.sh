@@ -27,7 +27,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # create AppImage
     popd;
     ./scripts/packaging/make_appimage.sh /opt/qt59;
-    pip install github3.py;
+    pip3 install github3.py;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -46,4 +46,4 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 fi
 
 # upload build artifacts to github
-python ./scripts/upload.py ${tagName} dist/*;
+python3 ./scripts/upload.py ${tagName} dist/*;
