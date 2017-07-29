@@ -141,7 +141,7 @@ Page {
                     Layout.rightMargin: 4
 
                     Tooltip {
-                        text: qsTr('Restore all _settings to their <b>default value</b>.')
+                        text: qsTr('Restore all settings to their <b>default value</b>.')
                     }
                 }
             }
@@ -169,7 +169,7 @@ Page {
         id: messageBoxConfirmRestore
 
         standardButtons: Dialog.Yes | Dialog.No
-        message: qsTr("Are you sure you want to restore all _settings to their default values?")
+        message: qsTr("Are you sure you want to restore all settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: settingsPage.width / 2 - width / 2
         y: settingsPage.height / 2 - height / 2
