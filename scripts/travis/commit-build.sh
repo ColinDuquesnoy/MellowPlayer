@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #
-# Compile in debug mode, run unit and integration tests only, measure code coverage and upload results
+# - Compile in debug mode
+# - Run unit and integration tests only
+# - Measure code coverage
 #
 echo "*************************** Performing a COMMIT build"
 set -e;
@@ -18,8 +20,6 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
 
     # upload code coverage results
     popd;
-    sudo pip3 install cpp-coveralls;
-    coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then

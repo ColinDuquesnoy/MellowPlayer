@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #
-# Compile in release mode, run unit, integration and functional tests, create a package and upload it to github.
+# - Compile in release mode
+# - Run unit tests, integration tests and functional tests
+# - Create a packag (AppImage on Linux, Dmg on OSX)
 #
 echo "*************************** Performing a FULL build"
 
@@ -8,11 +10,6 @@ set -e;
 
 mkdir -p build;
 pushd build;
-
-tagName='Continuous';
-if [[ -n "$TRAVIS_TAG" ]]; then
-    tagName="$TRAVIS_TAG";
-fi
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # build
@@ -27,7 +24,6 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # create AppImage
     popd;
     ./scripts/packaging/make_appimage.sh /opt/qt59;
-    pip3 install github3.py;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -45,5 +41,3 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     ./scripts/packaging/osx/make_dmg.sh;
 fi
 
-# upload build artifacts to github
-python3 ./scripts/upload.py ${tagName} dist/*;
