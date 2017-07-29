@@ -133,7 +133,7 @@ Page {
                     flat: true
                     highlighted: true
                     hoverEnabled: true
-                    text: "Restore all to defaults"
+                    text: qsTr("Restore all to defaults")
                     onClicked: messageBoxConfirmRestore.open()
 
                     Layout.fillWidth: true
@@ -141,7 +141,7 @@ Page {
                     Layout.rightMargin: 4
 
                     Tooltip {
-                        text: 'Restore all _settings to their <b>default value</b>.'
+                        text: qsTr('Restore all _settings to their <b>default value</b>.')
                     }
                 }
             }

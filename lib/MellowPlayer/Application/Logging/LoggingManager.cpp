@@ -44,7 +44,6 @@ LoggingManager::LoggingManager(ILoggerFactory& loggerFactory, const LoggerConfig
         : loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig)
 {
     qInstallMessageHandler(messageHandler);
-    //    QLoggingCategory::setFilterRules("js.w crafted for KaOS.arning=false");
 }
 
 ILogger& LoggingManager::getLogger()

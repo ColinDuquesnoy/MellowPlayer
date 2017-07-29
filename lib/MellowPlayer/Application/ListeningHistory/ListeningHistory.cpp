@@ -100,7 +100,7 @@ void ListeningHistory::addSong(const Song* song, ListeningHistoryEntry& newEntry
     entries.append(newEntry);
     emit entryAdded(newEntry);
     previousEntryPerPlayer[player.getServiceName()] = newEntry;
-    LOG_DEBUG(logger, "new entry: " + song->toString() + ", id=" + QString("%1").arg(newEntry.id));
+    LOG_DEBUG(logger, tr("new entry: ") + song->toString() + ", id=" + QString("%1").arg(newEntry.id));
 }
 
 void ListeningHistory::updateRemovedEntries()

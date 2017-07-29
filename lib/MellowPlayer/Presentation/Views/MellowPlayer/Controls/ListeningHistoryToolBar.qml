@@ -67,6 +67,6 @@ ToolBar {
 
     Label {
         anchors.centerIn: parent
-        text: "Listening history"
+        text: qsTr("Listening history")
     }
 }

@@ -24,8 +24,7 @@ void EnumSettingViewModel::onValueChanged()
 
 QString EnumSettingViewModel::getQmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "EnumSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/EnumSettingDelegate.qml";
 }
 
 QStringList EnumSettingViewModel::getValues() const

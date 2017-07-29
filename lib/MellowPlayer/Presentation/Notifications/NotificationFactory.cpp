@@ -15,5 +15,5 @@ Notification NotificationFactory::createPausedNotification(const QString& servic
 {
     QString sanitizedServiceLogo = serviceLogo;
     sanitizedServiceLogo = sanitizedServiceLogo.replace("file://", "");
-    return Notification{serviceName, "Paused", sanitizedServiceLogo, NotificationType::Paused};
+    return Notification{serviceName, QObject::tr("Paused"), sanitizedServiceLogo, NotificationType::Paused};
 }

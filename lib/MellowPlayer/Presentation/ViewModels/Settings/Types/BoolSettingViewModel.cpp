@@ -24,6 +24,5 @@ void BoolSettingViewModel::onValueChanged()
 
 QString BoolSettingViewModel::getQmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "BoolSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/BoolSettingDelegate.qml";
 }

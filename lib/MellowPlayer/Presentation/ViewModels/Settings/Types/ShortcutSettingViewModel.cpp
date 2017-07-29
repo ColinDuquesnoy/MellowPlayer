@@ -26,8 +26,7 @@ void ShortcutSettingViewModel::onValueChanged()
 
 QString ShortcutSettingViewModel::getQmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "ShortcutSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ShortcutSettingDelegate.qml";
 }
 
 QString ShortcutSettingViewModel::keySequenceToString(int keyInt, int modifiers)

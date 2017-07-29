@@ -118,7 +118,7 @@ static QString compilerString()
     if (_MSC_VER >= 1500) // 1500: MSVC 2008, 1600: MSVC 2010, ... (2-year release cycle)
         return QLatin1String("MSVC ") + QString::number(2008 + 2 * ((_MSC_VER / 100) - 15));
 #else
-    return QLatin1String("<unknown compiler>");
+    return QObject::tr("<unknown compiler>");
 #endif
 }
 

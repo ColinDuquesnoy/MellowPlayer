@@ -69,12 +69,12 @@ ColumnLayout {
         ToolButton {
             highlighted: true
             hoverEnabled: true
-            text: "Restore defaults"
+            text: qsTr("Restore defaults")
             onClicked: messageBoxConfirmRestore.open()
 
 
             Tooltip {
-                text: 'Restore <b>' + model.name.toLowerCase() + '</b> _settings to their <b>default values</b>.'
+                text: qsTr('Restore <b>') + model.name.toLowerCase() + qsTr('</b> _settings to their <b>default values</b>.')
             }
         }
     }

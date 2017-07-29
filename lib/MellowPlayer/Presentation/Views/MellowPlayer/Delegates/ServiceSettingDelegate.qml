@@ -70,7 +70,7 @@ ItemDelegate {
                             Label {
                                 font.italic: true
                                 font.pixelSize: 12
-                                text: "Version " + model.version + " by "
+                                text: qsTr("Version ") + model.version + qsTr(" by ")
                             }
 
                             Link {

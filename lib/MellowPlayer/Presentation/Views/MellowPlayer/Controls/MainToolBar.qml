@@ -266,7 +266,7 @@ ToolBar {
 
                     icon: MaterialIcons.icon_settings
                     shortcut: shortcutSettings.sequence
-                    text: "Settings"
+                    text: qsTr("Settings")
 
                     onClicked: root.openSettingsRequested()
                 }
@@ -276,7 +276,7 @@ ToolBar {
 
                     icon: MaterialIcons.icon_extension
                     shortcut: shortcutCreatePlugin.sequence
-                    text: "Create plugin"
+                    text: qsTr("Create plugin")
 
                     onClicked: root.createPluginRequested()
                 }
@@ -286,7 +286,7 @@ ToolBar {
 
                     icon: MaterialIcons.icon_bug_report
                     shortcut: shortcutReportIssue.sequence
-                    text: "Report issue"
+                    text: qsTr("Report issue")
 
                     onClicked: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
                 }
@@ -295,7 +295,7 @@ ToolBar {
 
                 IconMenuItem {
                     icon: MaterialIcons.icon_update
-                    text: "Check for update"
+                    text: qsTr("Check for update")
                     enabled: !_updater.busy
                     shortcut: shortcutCheckForUpdates.sequence
 
@@ -315,7 +315,7 @@ ToolBar {
 
                     icon: MaterialIcons.icon_info_outline
                     shortcut: shortcutAbout.sequence
-                    text: "About"
+                    text: qsTr("About")
 
                     onClicked: root.openAboutDialogRequested()
                 }
@@ -323,7 +323,7 @@ ToolBar {
                 IconMenuItem {
                     icon: MaterialIcons.icon_power_settings_new
                     shortcut: shortcutQuit.sequence
-                    text: "Quit"
+                    text: qsTr("Quit")
 
                     onClicked: _app.requestQuit()
                 }
@@ -355,7 +355,7 @@ ToolBar {
                 function getText() {
                     var currentSong = _player.currentSong;
                     if (currentSong.title && currentSong.artist)
-                        return "<b>" + currentSong.title + "</b><i> by " + currentSong.artist;
+                        return "<b>" + currentSong.title + qsTr("</b><i> by ") + currentSong.artist;
                     else if (currentSong.title)
                         return "<b>" + currentSong.title + "</b>";
                     else if (_streamingServices.currentService !== null)

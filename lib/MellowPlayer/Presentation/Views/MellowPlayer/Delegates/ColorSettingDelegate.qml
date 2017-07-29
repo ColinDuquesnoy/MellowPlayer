@@ -36,7 +36,7 @@ ItemDelegate {
             ColorDialog {
                 id: colorDialog
 
-                title: "Please choose a color"
+                title: qsTr("Please choose a color")
                 color: model.qtObject.value
                 onColorChanged: model.qtObject.value = color
             }

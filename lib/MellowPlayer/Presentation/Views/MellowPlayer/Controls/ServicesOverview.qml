@@ -21,7 +21,7 @@ Item {
 
         Label {
             Layout.fillWidth: true
-            text: "Which service would you like to listen to ?"
+            text: qsTr("Which service would you like to listen to ?")
             font.pixelSize: 32
             horizontalAlignment: Text.AlignHCenter
         }

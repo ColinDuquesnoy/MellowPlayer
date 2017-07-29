@@ -34,20 +34,20 @@ Menu {
     MenuItem {
         height: visible ? implicitHeight : 0
         visible: canCopy
-        text: "Copy"
+        text: qsTr("Copy")
         onClicked: copyRequested()
     }
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Paste"
+        text: qsTr("Paste")
         visible: canPaste
         onClicked: pasteRequested()
     }
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Unselect"
+        text: qsTr("Unselect")
         visible: canUnselect
         onClicked: unselectRequested()
     }
@@ -59,14 +59,14 @@ Menu {
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Copy link"
+        text: qsTr("Copy link")
         visible: hasLink
         onClicked: copyLinkRequested()
     }
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Open link"
+        text: qsTr("Open link")
         visible: hasLink
         onClicked: openLinkRequested()
     }
@@ -78,26 +78,26 @@ Menu {
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Back"
+        text: qsTr("Back")
         visible: canGoBack
         onClicked: goBackRequested()
     }
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Forward"
+        text: qsTr("Forward")
         visible: canGoForward
         onClicked: goForwardRequested()
     }
 
     MenuItem {
         height: visible ? implicitHeight : 0
-        text: "Reload"
+        text: qsTr("Reload")
         onClicked: reloadRequested()
     }
 
     MenuItem {
-        text: "View Page Source"
+        text: qsTr("View Page Source")
         onClicked: viewPageSourceRequested()
     }
 }

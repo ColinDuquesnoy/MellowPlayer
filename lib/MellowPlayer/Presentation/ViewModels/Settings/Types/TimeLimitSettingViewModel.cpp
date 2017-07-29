@@ -38,8 +38,7 @@ void TimeLimitSettingViewModel::onValueChanged()
 
 QString TimeLimitSettingViewModel::getQmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "EnumSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/EnumSettingDelegate.qml";
 }
 
 QStringList TimeLimitSettingViewModel::getValues() const

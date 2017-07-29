@@ -14,8 +14,8 @@ WizardPage {
 
     signal goNextRequested()
 
-    title: "Creating plugin"
-    description: "Please wait..."
+    title: qsTr("Creating plugin")
+    description: qsTr("Please wait...")
     goBackVisible: false
     goNextVisible: true
     finishVisible: false

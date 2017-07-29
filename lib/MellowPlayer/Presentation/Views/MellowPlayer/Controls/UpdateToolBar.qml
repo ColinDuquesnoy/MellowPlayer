@@ -53,13 +53,13 @@ ToolBar {
 
             ToolButton {
                 highlighted: true
-                text: "See release notes"
+                text: qsTr("See release notes")
                 onClicked: Qt.openUrlExternally(_updater.url)
             }
 
             ToolButton {
                 highlighted: true
-                text: "Install"
+                text: qsTr("Install")
                 enabled: !_updater.busy
                 onClicked: _updater.install()
                 visible: _updater.installEnabled
@@ -67,7 +67,7 @@ ToolBar {
 
             ToolButton {
                 highlighted: true
-                text: "Restart"
+                text: qsTr("Restart")
                 onClicked: _updater.restart()
                 visible: _updater.restartEnabled
             }

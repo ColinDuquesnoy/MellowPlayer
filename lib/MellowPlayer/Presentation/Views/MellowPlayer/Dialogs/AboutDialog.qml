@@ -60,20 +60,20 @@ Popup {
 
                 Label {
                     font.pixelSize: 16
-                    text: "Cloud music integration for your desktop"
+                    text: qsTr("Cloud music integration for your desktop")
 
                     Layout.alignment: Qt.AlignCenter
                 }
 
                 Link {
-                    name: 'Website'
+                    name: qsTr('Website')
                     url: 'https://colinduquesnoy.github.io/MellowPlayer'
 
                     Layout.alignment: Qt.AlignCenter
                 }
 
                 Label {
-                    text: "Copyright 2014-2017 Colin Duquesnoy"
+                    text: qsTr("Copyright 2014-2017 Colin Duquesnoy")
 
                     Layout.alignment: Qt.AlignCenter
                 }
@@ -85,7 +85,7 @@ Popup {
 
                     Label {
                         font.pixelSize: 12
-                        text: 'This program comes with absolutely no warranty.'
+                        text: qsTr('This program comes with absolutely no warranty.')
 
                         Layout.alignment: Qt.AlignCenter
                     }
@@ -93,7 +93,7 @@ Popup {
                     Label {
                         font.pixelSize: 12
                         onLinkActivated: Qt.openUrlExternally(link)
-                        text: 'See the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1">GNU Lesser General Public License</a>,'
+                        text: qsTr('See the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1">GNU Lesser General Public License</a>,')
 
                         MouseArea {
                             anchors.fill: parent
@@ -106,7 +106,7 @@ Popup {
 
                     Label {
                         font.pixelSize: 12
-                        text: 'version 2.1 or later for details.'
+                        text: qsTr('version 2.1 or later for details.')
 
                         Layout.alignment: Qt.AlignCenter
                     }
@@ -156,7 +156,7 @@ Popup {
 
                             ColumnLayout {
                                 Label {
-                                    text: "Created by"
+                                    text: qsTr("Created by")
                                 }
 
                                 Item { Layout.fillHeight: true }
@@ -177,7 +177,7 @@ Popup {
 
                             ColumnLayout {
                                 Label {
-                                    text: "Artwork by"
+                                    text: qsTr("Artwork by")
                                 }
 
                                 Item { Layout.fillHeight: true }
@@ -198,7 +198,7 @@ Popup {
 
                             ColumnLayout {
                                 Label {
-                                    text: "Contributors"
+                                    text: qsTr("Contributors")
                                 }
 
                                 Item { Layout.fillHeight: true }
@@ -260,7 +260,7 @@ Popup {
                 checked: false
                 highlighted: checked
                 flat: true
-                text: "Credits"
+                text: qsTr("Credits")
             }
 
             Item {
@@ -271,7 +271,7 @@ Popup {
                 flat: true
                 highlighted: true
                 onClicked: popup.close()
-                text: "Close"
+                text: qsTr("Close")
             }
         }
     }

@@ -24,6 +24,5 @@ void StringSettingViewModel::onValueChanged()
 
 QString StringSettingViewModel::getQmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "StringSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/StringSettingDelegate.qml";
 }

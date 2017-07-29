@@ -5,12 +5,12 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 const QString UpdaterStatusConverter::NONE = "";
-const QString UpdaterStatusConverter::CHECKING = "Checking for update...";
-const QString UpdaterStatusConverter::UPDATE = "An update is available...";
-const QString UpdaterStatusConverter::DOWNLOADING = "Downloading update...";
-const QString UpdaterStatusConverter::INSTALLING = "Installing update...";
-const QString UpdaterStatusConverter::INSTALLED = "Update installed, you can now restart the application...";
-const QString UpdaterStatusConverter::FAILURE = "Failed to install update, check logs for warning and errors and try again...";
+const QString UpdaterStatusConverter::CHECKING = QObject::tr("Checking for update...");
+const QString UpdaterStatusConverter::UPDATE = QObject::tr("An update is available...");
+const QString UpdaterStatusConverter::DOWNLOADING = QObject::tr("Downloading update...");
+const QString UpdaterStatusConverter::INSTALLING = QObject::tr("Installing update...");
+const QString UpdaterStatusConverter::INSTALLED = QObject::tr("Update installed, you can now restart the application...");
+const QString UpdaterStatusConverter::FAILURE = QObject::tr("Failed to install update, check logs for warning and errors and try again...");
 
 QString UpdaterStatusConverter::toString(Updater::Status status)
 {

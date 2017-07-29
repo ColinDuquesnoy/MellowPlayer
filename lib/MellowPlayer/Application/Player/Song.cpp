@@ -2,7 +2,7 @@
 
 using namespace MellowPlayer::Application;
 
-Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false)
+Song::Song() : duration(0), isFavorite(false)
 {
 }
 

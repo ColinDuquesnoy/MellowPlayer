@@ -25,7 +25,7 @@ Pane {
         anchors.fill: parent
 
         Label {
-            text: "Custom url required"
+            text: qsTr("Custom url required")
             font.bold: true
             font.pixelSize: 16
 

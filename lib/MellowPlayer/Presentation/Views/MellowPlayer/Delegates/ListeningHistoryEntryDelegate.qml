@@ -81,14 +81,14 @@ Frame {
                 }
 
                 Label {
-                    text: "by " + model.artist
+                    text: qsTr("by ") + model.artist
                     font.italic: true
                     elide: "ElideMiddle"
                     width: 250
                 }
 
                 Label {
-                    text: "on " + model.service
+                    text: qsTr("on ") + model.service
                     font.italic: true
                     elide: "ElideMiddle"
                     width: 250
@@ -132,7 +132,7 @@ Frame {
                 text: MaterialIcons.MaterialIcons.icon_delete
                 font { family: MaterialIcons.family; pixelSize: 16 }
                 onClicked: {
-                    messageBoxConfirmDelete.message = qsTr('Are you sure you want to remote that song from the history?')
+                    messageBoxConfirmDelete.message = qsTr('Are you sure you want to remove that song from the history?')
                     messageBoxConfirmDelete.title = qsTr("Confirm remove")
                     messageBoxConfirmDelete.closed.connect(onActivated);
                     messageBoxConfirmDelete.open()
