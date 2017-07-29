@@ -79,7 +79,7 @@ Page {
             anchors.fill: parent
 
             onNewViewRequested: root.newViewRequested(request, profile)
-            onFullScreenRequested: d.handleFullScreenRequest()
+            onFullScreenRequested: d.handleFullScreenRequest(request)
             onCurrentIndexChanged: if (currentIndex === -1) body.showOverview()
 
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
@@ -203,7 +203,7 @@ Page {
             }
         }
 
-        function handleFullScreenRequest() {
+        function handleFullScreenRequest(request) {
             toolBar.visible = !request.toggleOn
             notif.visible = true;
             root.fullScreenRequested(request);
