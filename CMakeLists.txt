@@ -31,6 +31,7 @@ set_option(BUILD_INTEGRATION_TESTS OFF BOOL "TRUE to build the integration tests
 set_option(ENABLE_COVERAGE OFF BOOL "True to build code coverage targerts")
 set_option(ENABLE_LCOV_REPORT OFF BOOL "True to enable lcov coverage report. Default is False.")
 set_option(STATIC_LIBSTDCPP OFF BOOL "True to link statically with libstdc++ and libgcc")
+set_option(UPDATE_TRANSLATIONS OFF BOOL "True to update translations")
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)
@@ -39,7 +40,6 @@ endif()
 include(scripts/cmake/FindDependencies.cmake)
 
 include_directories(lib)
-
 # Sources
 if(ENABLE_COVERAGE)
     include(scripts/cmake/CodeCoverage.cmake)

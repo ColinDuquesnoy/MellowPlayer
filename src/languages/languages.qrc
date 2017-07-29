@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/MellowPlayer/Translations">
+        <file>MellowPlayer_en.qm</file>
+        <file>MellowPlayer_fr.qm</file>
+    </qresource>
+</RCC>

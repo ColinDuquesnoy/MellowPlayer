@@ -14,6 +14,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
              WebEngine
              WebEngineWidgets
              Widgets)
+find_package(Qt5LinguistTools REQUIRED)
 
 if (UNIX AND NOT APPLE)
     find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS DBus)

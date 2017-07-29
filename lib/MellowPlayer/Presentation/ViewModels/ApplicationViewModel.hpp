@@ -4,6 +4,7 @@
 #include <MellowPlayer/Application/IQtApplication.hpp>
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QTranslator>
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer"
 
@@ -19,6 +20,7 @@ namespace MellowPlayer::Presentation
     public:
         ApplicationViewModel(int& argc, char** argv, const QString& appName = MELLOWPLAYER_APP_NAME);
 
+        void initialize() override;
         int run() override;
         Q_INVOKABLE void clearCache() const override;
         Q_INVOKABLE void clearCookies() const override;
@@ -36,6 +38,7 @@ namespace MellowPlayer::Presentation
         void onAboutToQuit();
 
         QApplication qtApp;
+        QTranslator translator;
         bool restartRequested_ = false;
     };
 }

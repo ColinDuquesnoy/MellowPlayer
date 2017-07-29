@@ -40,6 +40,8 @@ int main(int argc, char** argv)
     auto injector = di::make_injector(di::bind<IQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
+    qtApp.initialize();
+
 #ifdef QT_DEBUG
     IApplication& app = injector.create<IApplication&>();
     app.initialize();

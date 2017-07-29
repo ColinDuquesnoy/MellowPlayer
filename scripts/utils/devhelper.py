@@ -30,7 +30,7 @@ def add_translation():
         code = read_input('Please indicate the language code of the new '
                           'translation (e.g. en, fr, es and so on...): ')
     print('')
-    translation_entry = 'app/translations/mellowplayer_%s.ts' % code
+    translation_entry = 'src/translations/mellowplayer_%s.ts' % code
     print('Adding new translation: %s' % translation_entry)
 
     # Add entry to mellow player

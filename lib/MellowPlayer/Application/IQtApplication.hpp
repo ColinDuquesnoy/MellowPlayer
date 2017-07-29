@@ -11,6 +11,7 @@ namespace MellowPlayer::Application
     public:
         virtual ~IQtApplication();
 
+        virtual void initialize() = 0;
         virtual int run() = 0;
         Q_INVOKABLE virtual void clearCache() const = 0;
         Q_INVOKABLE virtual void clearCookies() const = 0;
