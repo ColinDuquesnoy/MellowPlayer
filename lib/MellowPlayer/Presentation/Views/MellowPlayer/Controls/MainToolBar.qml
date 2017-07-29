@@ -172,10 +172,8 @@ ToolBar {
             tooltip: checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
             shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS).value
 
-            onTriggered: {
-                checked = !checked;
-                setting.value = checked;
-            }
+            onCheckedChanged: setting.value = checked;
+            onTriggered: checked = !checked;
 
             Material.accent: _theme.accent == _theme.primary ? _theme.primaryForeground : _theme.accent
         }
