@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[Mellowplayer]
+[mellowplayer.mellowplayer]
 file_filter = src/languages/MellowPlayer_<lang>.ts
 source_file = src/languages//MellowPlayer_en_US.ts
 source_lang = en_US

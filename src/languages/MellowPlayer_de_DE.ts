@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1514,7 +1514,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="24"/>
         <source>Which service would you like to listen to ?</source>
-        <translation>Quel service voulez-vous utiliser?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
