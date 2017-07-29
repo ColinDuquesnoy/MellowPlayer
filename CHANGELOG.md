@@ -1,4 +1,24 @@
-## 2.2
+## 3.0
+
+### 2.95.0 (Version 3.0 Beta)
+
+ - Ported to QML + Material Design theme
+ - Adaptive theme that follows the theme of the currently running streaming service
+ - Fast switching between running services (Ctrl+Tab/Ctrl+Shift+Tab)
+ - Optional listening history, disabled by default
+ - Added a button to quickly turn off/on notifications
+ - Added support for self hosted services
+
+### 2.2.5
+
+ - Fix broken soundcloud integration plugin
+
+### 2.2.4
+
+ - Fix broken spotify integration plugin (due to redirection to open.spotify.com).
+ 
+**Note**
+  that Widevine plugin is needed to use spotify.
 
 ### 2.2.3
 
@@ -14,25 +34,25 @@
 
 ### 2.2.1
 
-Fix segfault on application exit if lyrics pane is visible.
+ - Fix segfault on application exit if lyrics pane is visible.
 
 ### 2.2.0
 
-Add a lyrics panel that show the lyrics of the current song (using the chartlyrics web service).
+ - Add a lyrics panel that show the lyrics of the current song (using the chartlyrics web service).
 
 ## 2.1
 
 ### 2.1.2
 
-Small UI tweaks for Windows 10 (set toolbar background color to white)
+ - Small UI tweaks for Windows 10 (set toolbar background color to white)
 
 ### 2.1.1
 
-Fix version number not updated in previous release
+ - Fix version number not updated in previous release
 
 ### 2.1.0
 
-Add support for Google Play Music
+ - Add support for Google Play Music
 
 ## 2.0
 
@@ -40,38 +60,38 @@ Add support for Google Play Music
 
 **Fixed bugs**
 
-- [Mixcloud] fix missing album arts due to change in URL.
-- [All] fix album arts cache grows indefinitely. Now the cache will get cleaned on application startup.
-- [Windows] fix empty list of plugins if user pinned the app to the panel when the app was running.
+- [Mixcloud] Fix missing album arts due to change in URL.
+- [All] Fix album arts cache grows indefinitely. Now the cache will get cleaned on application startup.
+- [Windows] Fix empty list of plugins if user pinned the app to the panel when the app was running.
 
 ### 2.0.0
 
 **Fixed bugs**
 
-- [TuneIn] fix missing radio art if broadcast.Guide is the same as a previous broadcast
+- [TuneIn] Fix missing radio art if broadcast.Guide is the same as a previous broadcast
 
 ### 2.0.0 Release Candidate (v1.99)
 
-- add TuneIn integration plugin
-- fix missing vcredist for the windows installer.
+- Add TuneIn integration plugin
+- Fix missing vcredist for the windows installer.
 
 ### 2.0 beta (v1.95)
 
 **General:**
 
-- ported to **QtWebEngine**
+- Ported to **QtWebEngine**
 - 2 new services: **Spotify** and **8tracks**
-- web streaming services **plugins are now written in pure javascript** (a
+- Web streaming services **plugins are now written in pure javascript** (a
     wizard will guide you through the steps of creating a new plugin)
-- **new** design for the **home page**
-- **update notifier**
-- translations are now managed on **transifex**: https://www.transifex.com/colinduquesnoy/mellowplayer/
+- **New** design for the **home page**
+- **Update notifier**
+- Translations are now managed on **transifex**: https://www.transifex.com/colinduquesnoy/mellowplayer/
 
 
 **GNU/Linux:**
 
-    - build is now cross desktop (no more desktop specific release)
-    - add ability to turn a streaming service into a standalone app
+    - Build is now cross desktop (no more desktop specific release)
+    - Add ability to turn a streaming service into a standalone app
 
 ## 1.5
 
@@ -92,11 +112,11 @@ Add support for Google Play Music
 
 **UI Improvements:**
 
-- improvements to the toolbar on linux and windows
-- add web page navigation actions (back, forward, reload, home)
-- add ability to hide both the menu and the toolbar
-- add ability to run the application in fullscreen
-- use a svg icon for the desktop entry on GNU/Linux. Icon will be installed into
+- Improvements to the toolbar on linux and windows
+- Add web page navigation actions (back, forward, reload, home)
+- Add ability to hide both the menu and the toolbar
+- Add ability to run the application in fullscreen
+- Use a svg icon for the desktop entry on GNU/Linux. Icon will be installed into
   ``/usr/share/icons/hicolor/scalable/apps`` instead of ``/usr/share/pixmaps``
 
 ## 1.4
@@ -110,8 +130,8 @@ Add support for Google Play Music
 - UI improvements: remove the confusing stop action from the menus (all the supported services
   don't have a stop action, just pause).
 - OSX improvements:
-    - add a dock menu with play/pause, next, previous and add to favorites action
-    - use the same behaviour as on Ubuntu: no minimize to tray (tray is used just for messages), quit/close exits the
+    - Add a dock menu with play/pause, next, previous and add to favorites action
+    - Use the same behaviour as on Ubuntu: no minimize to tray (tray is used just for messages), quit/close exits the
       application
 - Make flash an optional runtime dependency: flash plugins won't get enabled (even if installed) except
   for the service that require it (Deezer, Mixcloud and Soundcloud)
@@ -134,9 +154,9 @@ Add support for Google Play Music
 **New features:**
 
 - Add support Ubuntu/Unity (available through ppa:colin-duquesnoy/stable)
-    - disable tray icon
-    - fix double global menu
-    - add support for unity quicklists
+    - Disable tray icon
+    - Fix double global menu
+    - Add support for unity quicklists
 - Add support for Gnome Settings Daemon (multimedia keys)
 - Project stucture cleanup (all code has been moved into the src folder)
 - Use Restore Window actiont to show the current service name and the song info
@@ -157,11 +177,11 @@ Add support for Google Play Music
 
 **New features:**
 
-- soundcloud song art can now be used for notifications and mpris2 interface on Linux.
+- Soundcloud song art can now be used for notifications and mpris2 interface on Linux.
 
 **Fixed bugs:**
 
-- fix broken soundcloud integration (due to a change to the soundcloud player interface).
+- Fix broken soundcloud integration (due to a change to the soundcloud player interface).
 
 ### 1.2.0
 
@@ -172,8 +192,8 @@ Add support for Google Play Music
 
 **Fixed bugs**
 
-- fix cookies management: use one cookie jar per service (#3)
-- fix grooveshark retro images not appearing in kmediaplayer
+- Fix cookies management: use one cookie jar per service (#3)
+- Fix grooveshark retro images not appearing in kmediaplayer
 
 ## 1.1
 
@@ -187,22 +207,22 @@ We will reintroduce the official grooveshark as soon as QtWebEngine starts suppo
 
 **New features**
 
-- new notification systems: use KNotification on KDE Sc/Plasma 5 and notify-send on other
+- New notification systems: use KNotification on KDE Sc/Plasma 5 and notify-send on other
   linux desktop environments. Now we are able to show the track art in the notification popup.
-- add a preference widget for the new notification system: you can fine tune the notification you
+- Add a preference widget for the new notification system: you can fine tune the notification you
   would like to see or hide.
-- show the name of the music streaming service in the window title bar
-- add some command line arguments (e.g. to start with a predefined service or to enable the web inspector).
-- add Travis CI integration (test compilation process + a few functional tests, still no test suite)
-- add a Wiki action to the main window: triggering this action will open a browser to our wiki.
+- Show the name of the music streaming service in the window title bar
+- Add some command line arguments (e.g. to start with a predefined service or to enable the web inspector).
+- Add Travis CI integration (test compilation process + a few functional tests, still no test suite)
+- Add a Wiki action to the main window: triggering this action will open a browser to our wiki.
 
 **Fixed bugs**
 
-- fix a bug which prevented the os from shutting down (logout/shutdown/restart) if the window was visible
-- fix a couple of bugs related to buffering state in various streaming service. Those bugs were not
+- Fix a bug which prevented the os from shutting down (logout/shutdown/restart) if the window was visible
+- Fix a couple of bugs related to buffering state in various streaming service. Those bugs were not
   visible with the old notification system
-- improve mpris interface on other desktops (mainly gnome shell)
-- improve french translation
+- Improve mpris interface on other desktops (mainly gnome shell)
+- Improve french translation
 
 ## 1.0
 
@@ -210,15 +230,15 @@ We will reintroduce the official grooveshark as soon as QtWebEngine starts suppo
 
 **New features**
 
-- add support for Grooveshark Mobile
-- add support for Mixcloud
-- implement "Add to favorite"
-- flash plugin detection + warning if you attempt to use a service that require flash but flash cannot be found
+- Add support for Grooveshark Mobile
+- Add support for Mixcloud
+- Implement "Add to favorite"
+- Flash plugin detection + warning if you attempt to use a service that require flash but flash cannot be found
 
 **Fixed bugs**
 
-- polish mpris interface (buttons are now disabled/enabled depending on the context)
+- Polish mpris interface (buttons are now disabled/enabled depending on the context)
 
 ### 1.0.0-beta
 
-First public release
+ - First public release
