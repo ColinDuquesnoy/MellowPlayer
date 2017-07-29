@@ -24,12 +24,15 @@ notifications and more).
 - [TuneIn](http://tunein.com/)
 - [8tracks](http://8tracks.com/)
 - [Google Play Music](https://play.google.com/music/listen)
+- [Youtube](https://youtube.com/)
+- [Tidal](https://listen.tidal.com/)
 
 
 # Resources
 
 - [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
 - [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
+- [Wiki on Github](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
 
 # License
 
