@@ -42,16 +42,14 @@ ToolBar {
         anchors.fill: parent
         spacing: 0
 
-        ToolButton {
-            id: btSelectService
+        IconToolButton {
+            icon: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
+            shortcut: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE).value
+            tooltip: root.isWebViewMode ? qsTr("Select another service") :
+                     _streamingServices.currentService != null ? qsTr("Go back to ") + _streamingServices.currentService.name : ""
+            visible: root.isCurrentServiceRunning || root.isWebViewMode
 
-            text: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize + 2
-            hoverEnabled: true
-            visible: isCurrentServiceRunning || isWebViewMode
-
-            onClicked: switchView()
+            onTriggered: switchView()
 
             function switchView() {
                 if (isWebViewMode)
@@ -60,19 +58,6 @@ ToolBar {
                     root.showWebViewRequested()
             }
 
-            Shortcut {
-                property var setting: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE)
-
-                sequence: setting.value
-                onActivated: btSelectService.switchView()
-            }
-
-            Tooltip {
-                y: root.implicitHeight
-                text: root.isWebViewMode ? qsTr("Select another service") :
-                      _streamingServices.currentService != null ?
-                      qsTr("Go back to ") + _streamingServices.currentService.name : ""
-            }
         }
 
         Item {
@@ -88,70 +73,37 @@ ToolBar {
             }
         }
 
-        ToolButton {
-            text: MaterialIcons.icon_chevron_left
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+        IconToolButton {
+            icon: MaterialIcons.icon_chevron_left
+            tooltip: qsTr("Go back")
             visible: root.isWebViewMode
 
-            onClicked: root.goBackRequested()
-
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Go back")
-            }
+            onTriggered: root.goBackRequested()
         }
 
-        ToolButton {
-            text: MaterialIcons.icon_chevron_right
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+        IconToolButton {
+            icon: MaterialIcons.icon_chevron_right
+            tooltip: qsTr("Go forward")
             visible: root.isWebViewMode
-            onClicked: root.goForwardRequested();
 
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Go forward")
-            }
+            onTriggered: root.goForwardRequested();
         }
 
-        ToolButton {
-            id: btReload
-
-            text: MaterialIcons.icon_refresh
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+        IconToolButton {
+            icon: MaterialIcons.icon_refresh
+            tooltip: qsTr("Reload page")
             visible: root.isWebViewMode
-            onClicked: root.reloadRequested()
+            shortcut: _settings.get(SettingKey.SHORTCUTS_RELOAD).value
 
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Reload this page")
-            }
-
-            Shortcut {
-                property var setting: _settings.get(SettingKey.SHORTCUTS_RELOAD)
-
-                sequence: setting.value
-                onActivated: root.reloadRequested()
-            }
+            onTriggered: root.reloadRequested();
         }
 
-        ToolButton {
-            text: MaterialIcons.icon_home
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+        IconToolButton {
+            icon: MaterialIcons.icon_home
+            tooltip: qsTr("Go to home page")
             visible: root.isWebViewMode
-            onClicked: root.goHomeRequested()
 
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Go to the homepage")
-            }
+            onTriggered: root.goHomeRequested();
         }
 
         Item {
@@ -167,107 +119,63 @@ ToolBar {
             }
         }
 
-        ToolButton {
-            id: btFavorite
-            text: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+        IconToolButton {
             enabled: root.isWebViewMode && _player.canAddToFavorites
+            icon: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
+            tooltip: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
             visible: root.isWebViewMode
+            shortcut: _settings.get(SettingKey.SHORTCUTS_FAVORITE).value
 
-            onClicked: _player.toggleFavoriteSong()
-
-            Tooltip {
-                y: root.implicitHeight
-                text: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
-            }
+            onTriggered: _player.toggleFavoriteSong()
         }
 
         Item {
             Layout.fillWidth: true
         }
 
-        ToolButton {
-            id: btPrevious
-
-            text: MaterialIcons.icon_fast_rewind
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
-            visible: root.isWebViewMode
+        IconToolButton {
             enabled: _player.canGoPrevious && d.isPlayerActive()
+            icon: MaterialIcons.icon_fast_rewind
+            tooltip: qsTr("Skip to previous song")
+            visible: root.isWebViewMode
+            shortcut: _settings.get(SettingKey.SHORTCUTS_PREVIOUS).value
 
-            onClicked: _player.previous()
-
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Skip to previous song")
-            }
+            onTriggered: _player.previous()
         }
 
-        ToolButton {
-            id: btPlay
-
-            text: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
-            visible: root.isWebViewMode
+        IconToolButton {
             enabled: !_player.isStopped || d.isPlayerActive()
-
-            onClicked: _player.togglePlayPause()
-
-            Tooltip {
-                y: root.implicitHeight
-                text:  _player.isPlaying ? qsTr("Pause") : qsTr("Play")
-            }
-        }
-
-        ToolButton {
-            id: btNext
-
-            text: MaterialIcons.icon_fast_forward
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
+            icon: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
+            tooltip: _player.isPlaying ? qsTr("Pause") : qsTr("Play")
             visible: root.isWebViewMode
-            enabled: _player.canGoNext && d.isPlayerActive()
+            shortcut: _settings.get(SettingKey.SHORTCUTS_PLAY).value
 
-            onClicked: _player.next()
-
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Skip to next song")
-            }
+            onTriggered: _player.togglePlayPause()
         }
 
-        ToolButton {
-            id: btEnableNotifications
+        IconToolButton {
+            enabled: _player.canGoNext && d.isPlayerActive()
+            icon: MaterialIcons.icon_fast_forward
+            tooltip: qsTr("Skip to next song")
+            visible: root.isWebViewMode
+            shortcut: _settings.get(SettingKey.SHORTCUTS_NEXT).value
 
+            onTriggered: _player.next()
+        }
+
+        IconToolButton {
             property var setting: _settings.get(SettingKey.NOTIFICATIONS_ENABLED)
 
             checkable: true
             checked: setting.value
-            font { family: MaterialIcons.family; pixelSize: d.iconSize }
-            hoverEnabled: true
-            onClicked: setting.value = checked
-            text: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+            icon: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+            tooltip: checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
+            shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS).value
 
-            Layout.fillHeight: true
+            onTriggered: checked = !checked
+            onCheckedChanged: setting.value = checked
+
             Material.accent: _theme.accent == _theme.primary ? _theme.primaryForeground : _theme.accent
-
-            Tooltip {
-                y: root.implicitHeight
-                text: btEnableNotifications.checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
-            }
-
-            Shortcut {
-                property var shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS)
-
-                sequence: shortcut.value
-                onActivated: btEnableNotifications.setting.value = !btEnableNotifications.setting.value
-            }
         }
 
         Item {
@@ -284,32 +192,19 @@ ToolBar {
             visible: root.isWebViewMode
         }
 
-        ToolButton {
-            text: MaterialIcons.icon_history
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize
-            hoverEnabled: true
-            onClicked: root.openListeningHistoryRequested()
+        IconToolButton {
+            icon: MaterialIcons.icon_history
+            tooltip: qsTr("Open listening history")
+            shortcut: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY).value
 
-            Tooltip {
-                y: parent.implicitHeight
-                text: qsTr("Listening history")
-            }
-
-            Shortcut {
-                property var shortcut: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY)
-
-                sequence: shortcut.value
-                onActivated: root.openListeningHistoryRequested()
-            }
+            onTriggered: root.openListeningHistoryRequested()
         }
 
-        ToolButton {
-            text: MaterialIcons.icon_more_vert
-            font.family: MaterialIcons.family
-            font.pixelSize: d.iconSize + 2
-            hoverEnabled: true
-            onClicked: menu.open()
+        IconToolButton {
+            icon: MaterialIcons.icon_more_vert
+            tooltip:  qsTr("Main menu")
+
+            onTriggered: menu.open()
 
             Shortcut {
                 property var shortcut: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
@@ -391,11 +286,6 @@ ToolBar {
                     text: "Quit"
                     onClicked: _app.requestQuit()
                 }
-            }
-
-            Tooltip {
-                y: root.implicitHeight
-                text: qsTr("Main menu")
             }
         }
     }
