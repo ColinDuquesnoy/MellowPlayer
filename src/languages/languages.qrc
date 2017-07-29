@@ -1,7 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/MellowPlayer/Translations">
-        <file>MellowPlayer_en.qm</file>
-        <file>MellowPlayer_fr.qm</file>
+        <file>MellowPlayer_en_US.qm</file>
+        <file>MellowPlayer_fr_FR.qm</file>
     </qresource>
 </RCC>

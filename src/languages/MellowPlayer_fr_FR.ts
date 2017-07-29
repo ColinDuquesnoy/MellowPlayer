@@ -1464,12 +1464,12 @@ listened to will appear here...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="121"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="134"/>
         <source>&lt;unknown compiler&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="128"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="141"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
         <translation type="unfinished"></translation>
     </message>

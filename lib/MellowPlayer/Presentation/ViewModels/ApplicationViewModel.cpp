@@ -55,12 +55,15 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
 
 void ApplicationViewModel::initialize()
 {
-    QString locale = QLocale::system().name().split("_")[0];
-    QString fileName = QString(":/MellowPlayer/Translations/MellowPlayer_%1.qm").arg(locale);
-    if (!translator.load(fileName))
-        qWarning() << "translation not found: " << fileName;
+    if (!translator.load(QLocale(), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
+        qWarning() << "failed to load translation: " << QLocale::system().name();
+        qInfo() << "available translations: ";
+        QDirIterator it(":/MellowPlayer/Translations", QStringList() << "*.qm", QDir::Files, QDirIterator::Subdirectories);
+        while (it.hasNext())
+            qInfo() << "  - " << it.next();
+    }
     else
-        qDebug() << "translation loaded successfully: " << fileName;
+        qInfo() << "translation successfully loaded: " << QLocale::system().name();
 
     qtApp.installTranslator(&translator);
 }

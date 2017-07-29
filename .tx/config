@@ -3,6 +3,6 @@ host = https://www.transifex.com
 
 [Mellowplayer]
 file_filter = src/languages/MellowPlayer_<lang>.ts
-source_file = src/languages//MellowPlayer_en.ts
-source_lang = en
+source_file = src/languages//MellowPlayer_en_US.ts
+source_lang = en_US
 type = QT
