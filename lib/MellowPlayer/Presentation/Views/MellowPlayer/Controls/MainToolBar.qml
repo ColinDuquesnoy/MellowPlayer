@@ -172,8 +172,10 @@ ToolBar {
             tooltip: checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
             shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS).value
 
-            onTriggered: checked = !checked
-            onCheckedChanged: setting.value = checked
+            onTriggered: {
+                checked = !checked;
+                setting.value = checked;
+            }
 
             Material.accent: _theme.accent == _theme.primary ? _theme.primaryForeground : _theme.accent
         }
@@ -259,7 +261,7 @@ ToolBar {
             Menu {
                 id: menu
                 y: parent.implicitHeight
-                width: 256
+                width: 300
 
                 IconMenuItem {
                     id: menuItemSettings
