@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../DateCategoryTranslator.js" as DateCategoryTranslator
 
 Frame {
     id: root
@@ -81,14 +82,14 @@ Frame {
                 }
 
                 Label {
-                    text: qsTr("by ") + model.artist
+                    text: qsTr("by") + " " + model.artist
                     font.italic: true
                     elide: "ElideMiddle"
                     width: 250
                 }
 
                 Label {
-                    text: qsTr("on ") + model.service
+                    text: qsTr("on") + " " + model.service
                     font.italic: true
                     elide: "ElideMiddle"
                     width: 250
@@ -101,8 +102,8 @@ Frame {
 
             Label {
                 text: {
-                    if (model.dateCategory === qsTr("Today") || model.dateCategory === qsTr("Yesterday"))
-                        return model.dateCategory + "\n" + model.time
+                    if (model.dateCategory === "Today" || model.dateCategory === "Yesterday")
+                        return DateCategoryTranslator.translate(model.dateCategory) + "\n" + model.time
                     else
                         return model.date + "\n" + model.time
                 }

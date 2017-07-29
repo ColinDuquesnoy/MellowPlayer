@@ -130,34 +130,34 @@
     </message>
 </context>
 <context>
-    <name>DateTimeConverter</name>
+    <name>DateCategoryTranslator</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="15"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="4"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="17"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="6"/>
         <source>Yesterday</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="19"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="8"/>
         <source>Last week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="21"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="10"/>
         <source>Last month</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="23"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="12"/>
         <source>Last year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="25"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="14"/>
         <source>Years ago</source>
         <translation type="unfinished"></translation>
     </message>
@@ -269,32 +269,22 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistoryEntryDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="84"/>
-        <source>by </source>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="85"/>
+        <source>by</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="91"/>
-        <source>on </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
-        <source>Today</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
-        <source>Yesterday</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="135"/>
-        <source>Are you sure you want to remove that song from the history?</source>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="92"/>
+        <source>on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
+        <source>Are you sure you want to remove that song from the history?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="137"/>
         <source>Confirm remove</source>
         <translation type="unfinished"></translation>
     </message>
@@ -325,7 +315,7 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistorySectionDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="73"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="74"/>
         <source>Confirm remove</source>
         <translation type="unfinished"></translation>
     </message>

@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../DateCategoryTranslator.js" as DateCategoryTranslator
 
 Pane {
     id: root
@@ -48,7 +49,7 @@ Pane {
                        }
 
                        Label {
-                           text: section
+                           text: DateCategoryTranslator.translate(section)
                            font.weight: Font.Bold
                            verticalAlignment: "AlignVCenter"
 

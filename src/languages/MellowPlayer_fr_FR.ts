@@ -269,12 +269,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="84"/>
         <source>by </source>
-        <translation>par</translation>
+        <translation>par </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="91"/>
         <source>on </source>
-        <translation>sur</translation>
+        <translation>sur </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
