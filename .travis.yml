@@ -25,4 +25,4 @@ branches:
 install: source ./scripts/travis/install.sh
 before_script: source ./scripts/travis/before_script.sh
 script: ./scripts/travis/script.sh
-after_success: ./script/travis/after_success.sh
+after_success: ./scripts/travis/after_success.sh
