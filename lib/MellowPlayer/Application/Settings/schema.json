@@ -250,6 +250,27 @@
 					"key": "settings"
 				},
 				{
+					"name": "Create Plugin",
+					"tooltip": "Show the plugin creation wizard",
+					"type": "shortcut",
+					"default": "F3",
+					"key": "create-plugin"
+				},
+                {
+                  "name": "Report Issue",
+                  "tooltip": "Create an issue on github",
+                  "type": "shortcut",
+                  "default": "F4",
+                  "key": "report-issue"
+                },
+                {
+                  "name": "Check for update",
+                  "tooltip": "Check for update",
+                  "type": "shortcut",
+                  "default": "Ctrl+U",
+                  "key": "check-for-update"
+                },
+				{
 					"name": "About",
 					"tooltip": "Show about page.",
 					"type": "shortcut",

@@ -34,6 +34,8 @@ namespace MellowPlayer::Application
             PRIVATE_CURRENT_SERVICE,
             PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
             SHORTCUTS_ABOUT,
+            SHORTCUTS_CHECK_FOR_UPDATE,
+            SHORTCUTS_CREATE_PLUGIN,
             SHORTCUTS_FAVORITE,
             SHORTCUTS_LISTENING_HISTORY,
             SHORTCUTS_NEXT,
@@ -42,6 +44,7 @@ namespace MellowPlayer::Application
             SHORTCUTS_PREVIOUS,
             SHORTCUTS_QUIT,
             SHORTCUTS_RELOAD,
+            SHORTCUTS_REPORT_ISSUE,
             SHORTCUTS_RESTORE_WINDOW,
             SHORTCUTS_SELECT_NEXT_SERVICE,
             SHORTCUTS_SELECT_PREVIOUS_SERVICE,
@@ -78,6 +81,8 @@ namespace MellowPlayer::Application
             enumToString << "private/current-service";
             enumToString << "private/show-close-to-tray-message";
             enumToString << "shortcuts/about";
+            enumToString << "shortcuts/check-for-update";
+            enumToString << "shortcuts/create-plugin";
             enumToString << "shortcuts/favorite";
             enumToString << "shortcuts/listening-history";
             enumToString << "shortcuts/next";
@@ -86,6 +91,7 @@ namespace MellowPlayer::Application
             enumToString << "shortcuts/previous";
             enumToString << "shortcuts/quit";
             enumToString << "shortcuts/reload";
+            enumToString << "shortcuts/report-issue";
             enumToString << "shortcuts/restore-window";
             enumToString << "shortcuts/select-next-service";
             enumToString << "shortcuts/select-previous-service";

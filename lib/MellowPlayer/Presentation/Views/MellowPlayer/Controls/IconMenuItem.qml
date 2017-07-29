@@ -9,6 +9,7 @@ MenuItem {
     id: root
 
     property string icon
+    property string shortcut
 
     hoverEnabled: true
     contentItem: RowLayout {
@@ -25,6 +26,15 @@ MenuItem {
 
         Item {
             Layout.fillWidth: true
+        }
+
+        Label {
+            horizontalAlignment: "AlignRight"
+            text: shortcut
+            font.italic: true
+
+            Layout.minimumWidth: 64
+            Layout.maximumWidth: 64
         }
     }
 }

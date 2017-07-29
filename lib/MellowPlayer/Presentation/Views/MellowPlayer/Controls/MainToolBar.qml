@@ -207,60 +207,98 @@ ToolBar {
             onTriggered: menu.open()
 
             Shortcut {
-                property var shortcut: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
+                id: shortcutSettings
 
-                sequence: shortcut.value
+                sequence: _settings.get(SettingKey.SHORTCUTS_SETTINGS).value
+
                 onActivated: root.openSettingsRequested()
             }
 
             Shortcut {
-                property var shortcut: _settings.get(SettingKey.SHORTCUTS_ABOUT)
+                id: shortcutCreatePlugin
 
-                sequence: shortcut.value
+                sequence: _settings.get(SettingKey.SHORTCUTS_CREATE_PLUGIN).value
+
+                onActivated: root.createPluginRequested()
+            }
+
+            Shortcut {
+                id: shortcutReportIssue
+
+                sequence: _settings.get(SettingKey.SHORTCUTS_REPORT_ISSUE).value
+
+                onActivated: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
+            }
+
+
+            Shortcut {
+                id: shortcutCheckForUpdates
+
+                enabled: !_updater.busy
+                sequence: _settings.get(SettingKey.SHORTCUTS_CHECK_FOR_UPDATE).value
+
+                onActivated: _updater.check()
+            }
+
+            Shortcut {
+                id: shortcutAbout
+
+                sequence: _settings.get(SettingKey.SHORTCUTS_ABOUT).value
+
                 onActivated: root.openAboutDialogRequested()
             }
 
             Shortcut {
-                property var shortcut: _settings.get(SettingKey.SHORTCUTS_QUIT)
+                id: shortcutQuit
 
-                sequence: shortcut.value
+                sequence: _settings.get(SettingKey.SHORTCUTS_QUIT).value
+
                 onActivated: _app.requestQuit();
             }
 
             Menu {
                 id: menu
                 y: parent.implicitHeight
+                width: 256
 
-                MenuIconItem {
+                IconMenuItem {
                     id: menuItemSettings
 
                     icon: MaterialIcons.icon_settings
-                    onClicked: root.openSettingsRequested()
+                    shortcut: shortcutSettings.sequence
                     text: "Settings"
+
+                    onClicked: root.openSettingsRequested()
                 }
 
-                MenuIconItem {
+                IconMenuItem {
                     id: menuCreatePlugin
 
                     icon: MaterialIcons.icon_extension
+                    shortcut: shortcutCreatePlugin.sequence
                     text: "Create plugin"
+
                     onClicked: root.createPluginRequested()
                 }
 
-                MenuIconItem {
+                IconMenuItem {
                     id: menuReportIssue
 
                     icon: MaterialIcons.icon_bug_report
+                    shortcut: shortcutReportIssue.sequence
                     text: "Report issue"
+
                     onClicked: Qt.openUrlExternally("https://github.com/ColinDuquesnoy/MellowPlayer/issues/new")
                 }
 
                 MenuSeparator { }
 
-                MenuIconItem {
+                IconMenuItem {
                     icon: MaterialIcons.icon_update
-                    text: _updater.busy ? _updater.status : "Check for update"
+                    text: "Check for update"
                     enabled: !_updater.busy
+                    shortcut: shortcutCheckForUpdates.sequence
+
                     onClicked: _updater.check()
 
                     ProgressBar {
@@ -272,18 +310,21 @@ ToolBar {
                     }
                 }
 
-
-                MenuIconItem {
+                IconMenuItem {
                     id: menuItemAbout
 
                     icon: MaterialIcons.icon_info_outline
+                    shortcut: shortcutAbout.sequence
                     text: "About"
+
                     onClicked: root.openAboutDialogRequested()
                 }
 
-                MenuIconItem {
+                IconMenuItem {
                     icon: MaterialIcons.icon_power_settings_new
+                    shortcut: shortcutQuit.sequence
                     text: "Quit"
+
                     onClicked: _app.requestQuit()
                 }
             }

@@ -53,7 +53,7 @@
         <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
         <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
-        <file>Views/MellowPlayer/Controls/MenuIconItem.qml</file>
+        <file>Views/MellowPlayer/Controls/IconMenuItem.qml</file>
         <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
         <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
         <file>Views/MellowPlayer/Controls/Link.qml</file>
