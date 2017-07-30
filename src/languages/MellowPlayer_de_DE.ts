@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -16,7 +14,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="76"/>
         <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="88"/>
@@ -130,36 +128,36 @@
     </message>
 </context>
 <context>
-    <name>DateTimeConverter</name>
+    <name>DateCategoryTranslator</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="15"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="4"/>
         <source>Today</source>
-        <translation>Heute</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="17"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="6"/>
         <source>Yesterday</source>
-        <translation>Gestern</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="19"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="8"/>
         <source>Last week</source>
-        <translation>Letzte Woche</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="21"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="10"/>
         <source>Last month</source>
-        <translation>Letzten Monat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="23"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="12"/>
         <source>Last year</source>
-        <translation>Letztes Jahr</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="25"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="14"/>
         <source>Years ago</source>
-        <translation>Jahre her</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -167,7 +165,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="11"/>
         <source>Details</source>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="12"/>
@@ -269,32 +267,22 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistoryEntryDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="84"/>
-        <source>by </source>
-        <translation>Von</translation>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="85"/>
+        <source>by</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="91"/>
-        <source>on </source>
-        <translation>An</translation>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="92"/>
+        <source>on</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
-        <source>Today</source>
-        <translation>Heute</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
-        <source>Yesterday</source>
-        <translation>Gestern</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="135"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
         <source>Are you sure you want to remove that song from the history?</source>
         <translation>Sind Sie sicher, dass Sie dieses Lied aus dem Hörverlauf entfernen möchten?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="137"/>
         <source>Confirm remove</source>
         <translation>Löschen bestetigen</translation>
     </message>
@@ -325,7 +313,7 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistorySectionDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="73"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="74"/>
         <source>Confirm remove</source>
         <translation>Löschen bestetigen</translation>
     </message>
@@ -758,7 +746,7 @@ listened to will appear here...</source>
                     &lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: the logo of your plugin.
                 &lt;/li&gt;
             &lt;/ul&gt;
-            &lt;p&gt;This wizard will create all those files for you, you&apos;re left with the implementation.&lt;/p&gt;
+            &lt;p&gt;This wizard will create all those files for you, you're left with the implementation.&lt;/p&gt;
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</source>
@@ -844,9 +832,7 @@ listened to will appear here...</source>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="114"/>
         <source> requires proprietary audio codecs to work properly.&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...&lt;/i&gt;</source>
-        <translatorcomment>Verlangt, dass proprietäre Audio-Codecs richtig funktionieren. &lt;/B&gt; &lt;br&gt;
-&lt;I&gt; Du musst MellowPlayer mit einer Version von QtWebEngine erstellen, die mit proprietären Codecs erstellt wurde, die für den Einsatz dieses Dienstes aktiviert sind. &lt;/I&gt;</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
