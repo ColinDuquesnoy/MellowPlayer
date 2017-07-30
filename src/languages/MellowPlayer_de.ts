@@ -62,7 +62,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="17"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
-        <translation>Erstelllt mit%1 bei%2 (%3,%4 bit) mit Qt%5</translation>
+        <translation>Erstelllt Am %1 Um %2 (%3,%4 bit) Mit Qt%5</translation>
     </message>
 </context>
 <context>
@@ -571,7 +571,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="134"/>
         <source>Open plugin directory</source>
-        <translation>Plug-In Ordner öffnen</translation>
+        <translation>Den Plug-In Ordner öffnen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="144"/>
@@ -622,7 +622,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="73"/>
         <source> by </source>
-        <translation>Von</translation>
+        <translation> Von </translation>
     </message>
 </context>
 <context>
