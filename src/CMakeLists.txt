@@ -14,7 +14,7 @@ file(GLOB_RECURSE TS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/languages/*.ts)
 set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/languages)
 if (UPDATE_TRANSLATIONS)
     # update source only, pushing to transifex will update all other languages
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/lib ${TS_FILES} OPTIONS -noobsolete)
+    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/lib languages/MellowPlayer_en.ts OPTIONS -noobsolete)
     file(GLOB_RECURSE QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/languages/*.qm)
 else()
     qt5_add_translation(QM_FILES ${TS_FILES})

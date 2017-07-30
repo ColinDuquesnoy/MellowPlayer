@@ -137,27 +137,27 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="6"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Hier</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="8"/>
         <source>Last week</source>
-        <translation type="unfinished"/>
+        <translation>La semaine passée</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="10"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Le mois passé</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="12"/>
         <source>Last year</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;an passé</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="14"/>
         <source>Years ago</source>
-        <translation type="unfinished"/>
+        <translation>Les années passées</translation>
     </message>
 </context>
 <context>
@@ -269,12 +269,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="85"/>
         <source>by</source>
-        <translation type="unfinished"/>
+        <translation>par</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="92"/>
         <source>on</source>
-        <translation type="unfinished"/>
+        <translation>sur</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
