@@ -24,12 +24,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="96"/>
         <source>See the &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt;GNU Lesser General Public License&lt;/a&gt;,</source>
-        <translation>See the &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt;GNU Lesser General Public License&lt;/a&gt;,</translation>
+        <translation>Consultez le texte de la license &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt;GPL&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="109"/>
         <source>version 2.1 or later for details.</source>
-        <translation>version 2.1 or later for details.</translation>
+        <translation>version 2.1 ou supérieure pour plus de détails.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="159"/>
@@ -302,7 +302,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="65"/>
         <source>Click to remove songs from</source>
-        <translation>Cliquez ici pour retirer cette chanson de l&apos;historique</translation>
+        <translation>Cliquez ici pour exclure ou inclure les morceaux écoutés sur </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="65"/>
@@ -762,18 +762,19 @@ listened to will appear here...</source>
                     &lt;span style=&quot; font-weight:600;&quot;&gt;integration.js&lt;/span&gt;: ce fichier contient le code javascript qui permet d&apos;interagir avec les service.
                 &lt;/li&gt;
                 &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
-                    theme.json&lt;/span&gt;: ce fichier contient une définition des couleurs du thème du service. Personnalisez-le si vous voulez que le thème adaptif fonctionne avec votre plugin.
+                     &lt;span style=&quot; font-weight:600;&quot;&gt;theme.json&lt;/span&gt;: ce fichier contient une définition des couleurs du thème du service.
                 &lt;/li&gt;
                 &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
-                    &lt;span style=&quot; font-weight:600;&quot;&gt;metadata.ini&lt;/span&gt;: ce fichier contient des méta-données à propos du service.&lt;/li&gt;
+                     &lt;span style=&quot; font-weight:600;&quot;&gt;metadata.ini&lt;/span&gt;: ce fichier contient des méta-données à propos du service.
+&lt;/li&gt;
                 &lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
                     &lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: le logo du service.
                 &lt;/li&gt;
             &lt;/ul&gt;
-            &lt;p&gt;Le wizard va créer tous ces fichiers pour vous, il ne vous restera plus qu&apos;à implémenter le code javascript et à personnaliser le fichier de theme et le logo.&lt;/p&gt;
+            &lt;p&gt;Le wizard va créer tous ces fichiers pour vous, il ne vous restera &quot;plus que&quot; l&apos;implémentation a écrire.&lt;/p&gt;
         &lt;/body&gt;
     &lt;/head&gt;
-&lt;/html&gt;</translation>
+&lt;/html&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;</translation>
     </message>
 </context>
 <context>

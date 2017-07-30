@@ -19,6 +19,8 @@ if (UPDATE_TRANSLATIONS)
 else()
     qt5_add_translation(QM_FILES ${TS_FILES})
 endif()
+qt5_add_resources(RSCS languages/languages.qrc)
+add_custom_target(gen_qrc DEPENDS ${RSCS} ${QM_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES})
 message(STATUS ${QM_FILES})
 
@@ -33,7 +35,7 @@ endforeach()
 file(APPEND languages/languages.qrc "    </qresource>\n")
 file(APPEND languages/languages.qrc "</RCC>\n")
 
-add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} languages/languages.qrc)
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS})
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
                       Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
