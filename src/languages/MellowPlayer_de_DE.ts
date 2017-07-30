@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -14,7 +16,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="76"/>
         <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation type="unfinished"/>
+        <translation>Copyright 2014-2017 Colin Duquesnoy</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="88"/>
@@ -24,12 +26,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="96"/>
         <source>See the &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt;GNU Lesser General Public License&lt;/a&gt;,</source>
-        <translation>Siehe die &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt; GNU Lesser General Public License&lt;/a&gt;</translation>
+        <translation>Siehe die &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt; GNU Lesser General Public License&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="109"/>
         <source>version 2.1 or later for details.</source>
-        <translation>Version 2.1 oder höher für Details.</translation>
+        <translation>Version 2.1 oder später für Details.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="159"/>
@@ -72,7 +74,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="77"/>
         <source>&lt;/b&gt; settings to their &lt;b&gt;default values&lt;/b&gt;.</source>
-        <translation>&lt;/b&gt; Einstellungen zu den &lt;b&gt; Standardwerten &lt;/b&gt;.</translation>
+        <translation>&lt;/b&gt; der Einstellungen zu den &lt;b&gt; Standardwerten &lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="87"/>
@@ -90,7 +92,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="78"/>
         <source>You need to restart MellowPlayer for the change to be applied.</source>
-        <translation>Sie müssen MellowPlayer neu starten, damit die Änderungen angewendet werden können.</translation>
+        <translation>Sie müssen MellowPlayer neu starten, damit die Änderungen wirksam werden.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="88"/>
@@ -132,32 +134,32 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="4"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Heute</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="6"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Gestern</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="8"/>
         <source>Last week</source>
-        <translation type="unfinished"/>
+        <translation>Letzte Woche</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="10"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Letzten Monat</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="12"/>
         <source>Last year</source>
-        <translation type="unfinished"/>
+        <translation>Letztes Jahr</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/DateCategoryTranslator.js" line="14"/>
         <source>Years ago</source>
-        <translation type="unfinished"/>
+        <translation>Jahre früher</translation>
     </message>
 </context>
 <context>
@@ -165,7 +167,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="11"/>
         <source>Details</source>
-        <translation type="unfinished"/>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="12"/>
@@ -203,7 +205,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="9"/>
         <source>Plugin succesfully created!</source>
-        <translation>Plug-In erfolgreich erstellt!</translation>
+        <translation>Das Plug-In wurde erfolgreich erstellt!</translation>
     </message>
 </context>
 <context>
@@ -211,7 +213,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/FullScreenNotification.qml" line="18"/>
         <source>&lt;p&gt;You are now in &lt;b&gt;fullscreen&lt;/b&gt; mode.&lt;/p&gt;Press &lt;b&gt;ESC&lt;/b&gt; to quit!</source>
-        <translation>&lt;P&gt; Sie sind jetzt im &lt;b&gt; Vollbild &lt;/b&gt; Modus. &lt;/P&gt; Drücken Sie &lt;b&gt; ESC &lt;/b&gt;, um zu beenden!</translation>
+        <translation>&lt;P&gt; Sie sind jetzt im &lt;b&gt; Vollbild &lt;/b&gt; Modus. &lt;/P&gt; Drücken Sie &lt;b&gt; ESC &lt;/b&gt;, um wieder in den normalnen Modus zu wechseln!</translation>
     </message>
 </context>
 <context>
@@ -269,12 +271,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="85"/>
         <source>by</source>
-        <translation type="unfinished"/>
+        <translation>Von</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="92"/>
         <source>on</source>
-        <translation type="unfinished"/>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
@@ -746,7 +748,7 @@ listened to will appear here...</source>
                     &lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: the logo of your plugin.
                 &lt;/li&gt;
             &lt;/ul&gt;
-            &lt;p&gt;This wizard will create all those files for you, you're left with the implementation.&lt;/p&gt;
+            &lt;p&gt;This wizard will create all those files for you, you&apos;re left with the implementation.&lt;/p&gt;
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</source>
@@ -832,7 +834,7 @@ listened to will appear here...</source>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="114"/>
         <source> requires proprietary audio codecs to work properly.&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...&lt;/i&gt;</source>
-        <translation type="unfinished"/>
+        <translation> Verlangt, dass proprietäre Audio-Codecs richtig funktionieren. &lt;/B&gt; &lt;br&gt;</translation>
     </message>
 </context>
 <context>
