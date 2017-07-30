@@ -28,7 +28,7 @@ QString StreamingService::logo() const
     if (metadata_.logoPath.isEmpty())
         return "";
 #ifdef Q_OS_WIN
-    return "file:" + metadata.logoPath;
+    return "file:" + metadata_.logoPath;
 #else
     return "file://" + metadata_.logoPath;
 #endif
