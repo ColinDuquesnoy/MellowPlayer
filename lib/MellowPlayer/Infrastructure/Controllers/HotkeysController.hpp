@@ -35,25 +35,26 @@ namespace MellowPlayer::Infrastructure
         void restoreWindow() override;
 
     private:
-        Application::ILogger& logger;
-        Application::IPlayer& player;
-        Application::IMainWindow& mainWindow;
-        QxtGlobalShortcut* playShortcut;
-        QxtGlobalShortcut* nextShortcut;
-        QxtGlobalShortcut* previousShortcut;
-        QxtGlobalShortcut* favoriteShortcut;
-        QxtGlobalShortcut* restoreWindowShortcut;
-
-        Application::Setting& playShortcutSetting;
-        Application::Setting& nextShortcutSetting;
-        Application::Setting& previousShortcutSetting;
-        Application::Setting& favoriteShortcutSetting;
-        Application::Setting& restoreWindowShortcutSetting;
-
         void updateFavoriteShortcut() const;
         void updatePreviousShorcut() const;
         void updateNextShortcut() const;
         void updatePlayShortcut() const;
         void updateRestoreWindowShortcut() const;
+
+        Application::ILogger& logger_;
+        Application::IPlayer& player_;
+        Application::IMainWindow& mainWindow_;
+
+        QxtGlobalShortcut* playShortcut_;
+        QxtGlobalShortcut* nextShortcut_;
+        QxtGlobalShortcut* previousShortcut_;
+        QxtGlobalShortcut* favoriteShortcut_;
+        QxtGlobalShortcut* restoreWindowShortcut_;
+
+        Application::Setting& playShortcutSetting_;
+        Application::Setting& nextShortcutSetting_;
+        Application::Setting& previousShortcutSetting_;
+        Application::Setting& favoriteShortcutSetting_;
+        Application::Setting& restoreWindowShortcutSetting_;
     };
 }

@@ -14,12 +14,12 @@ TEST_CASE("SettingsCategoryViewModelTests")
     DependencyPool pool;
     Settings& settings = pool.getSettings();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
-    SettingsCategoryViewModel categoryViewModel(themeViewModel, &settings.getCategory("main"));
+    SettingsCategoryViewModel categoryViewModel(themeViewModel, &settings.category("main"));
 
-    REQUIRE(categoryViewModel.getName().toStdString() == "General");
-    REQUIRE(!categoryViewModel.getIcon().isEmpty());
-    REQUIRE(!categoryViewModel.getQmlComponent().isEmpty());
-    REQUIRE(categoryViewModel.getSettingsModel()->count() > 1);
+    REQUIRE(categoryViewModel.name().toStdString() == "General");
+    REQUIRE(!categoryViewModel.icon().isEmpty());
+    REQUIRE(!categoryViewModel.qmlComponent().isEmpty());
+    REQUIRE(categoryViewModel.settingsModel()->count() > 1);
 
     SECTION("restoreDefaults")
     {
@@ -28,13 +28,13 @@ TEST_CASE("SettingsCategoryViewModelTests")
         Setting& notInCategorySetting = settings.get(SettingKey::APPEARANCE_THEME);
         notInCategorySetting.setValue("Breeze");
 
-        REQUIRE(inCategorySetting.getValue() != inCategorySetting.getDefaultValue());
-        REQUIRE(notInCategorySetting.getValue() != notInCategorySetting.getDefaultValue());
+        REQUIRE(inCategorySetting.value() != inCategorySetting.defaultValue());
+        REQUIRE(notInCategorySetting.value() != notInCategorySetting.defaultValue());
 
         categoryViewModel.restoreDefaults();
 
-        REQUIRE(inCategorySetting.getValue() == inCategorySetting.getDefaultValue());
-        REQUIRE(notInCategorySetting.getValue() != notInCategorySetting.getDefaultValue());
+        REQUIRE(inCategorySetting.value() == inCategorySetting.defaultValue());
+        REQUIRE(notInCategorySetting.value() != notInCategorySetting.defaultValue());
     }
 }
 
@@ -45,8 +45,8 @@ TEST_CASE("CustomSettingsCategoryViewModelTests")
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", themeViewModel);
 
-    REQUIRE(model.getName() == "CategoryName");
-    REQUIRE(model.getIcon() == "CategoryIcon");
-    REQUIRE(model.getQmlComponent() == "CategoryQmlComponent");
-    REQUIRE(model.getSettingsModel()->count() == 0);
+    REQUIRE(model.name() == "CategoryName");
+    REQUIRE(model.icon() == "CategoryIcon");
+    REQUIRE(model.qmlComponent() == "CategoryQmlComponent");
+    REQUIRE(model.settingsModel()->count() == 0);
 }

@@ -9,7 +9,7 @@ TEST_CASE("AlbumArtDownloaderTests")
     AlbumArtDownloader albumArtDownloader;
     QSignalSpy downloadFinishedSpy(&albumArtDownloader, SIGNAL(downloadFinished(const QString&)));
 
-    QFile::remove(albumArtDownloader.getLocalArtUrl("mellowplayer.svg").absoluteFilePath());
+    QFile::remove(albumArtDownloader.localArtUrl("mellowplayer.svg").absoluteFilePath());
 
     SECTION("download will take some time and a file will be created")
     {

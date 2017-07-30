@@ -7,33 +7,33 @@ namespace MellowPlayer::Application
     class Song : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString uniqueId READ getUniqueId CONSTANT)
-        Q_PROPERTY(QString title READ getTitle CONSTANT)
-        Q_PROPERTY(QString artist READ getArtist CONSTANT)
-        Q_PROPERTY(QString album READ getAlbum CONSTANT)
-        Q_PROPERTY(QString artUrl READ getArtUrl CONSTANT)
-        Q_PROPERTY(double duration READ getDuration NOTIFY durationChanged)
-        Q_PROPERTY(bool isFavorite READ getIsFavorite NOTIFY isFavoriteChanged)
+        Q_PROPERTY(QString uniqueId READ uniqueId CONSTANT)
+        Q_PROPERTY(QString title READ title CONSTANT)
+        Q_PROPERTY(QString artist READ artist CONSTANT)
+        Q_PROPERTY(QString album READ album CONSTANT)
+        Q_PROPERTY(QString artUrl READ artUrl CONSTANT)
+        Q_PROPERTY(double duration READ duration NOTIFY durationChanged)
+        Q_PROPERTY(bool isFavorite READ isFavorite NOTIFY isFavoriteChanged)
 
     public:
         Song();
         Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album, const QString& artUrl, double duration,
              bool isFavorite);
 
-        QString getUniqueId() const;
-        QString getTitle() const;
-        QString getArtist() const;
-        QString getAlbum() const;
-        QString getArtUrl() const;
-        double getDuration() const;
-        bool getIsFavorite() const;
+        QString uniqueId() const;
+        QString title() const;
+        QString artist() const;
+        QString album() const;
+        QString artUrl() const;
+        double duration() const;
+        bool isFavorite() const;
 
         void setDuration(double value);
-        void setIsFavorite(bool value);
+        void setFavorite(bool value);
 
         bool operator==(const Song& other) const
         {
-            return uniqueId == other.uniqueId;
+            return uniqueId_ == other.uniqueId_;
         }
         bool operator!=(const Song& other) const
         {
@@ -42,12 +42,12 @@ namespace MellowPlayer::Application
 
         Q_INVOKABLE bool isValid() const
         {
-            return uniqueId != "" && title != "";
+            return uniqueId_ != "" && title_ != "";
         }
 
         QString toString() const
         {
-            return title + " by " + artist;
+            return title_ + " by " + artist_;
         }
 
     signals:
@@ -55,12 +55,12 @@ namespace MellowPlayer::Application
         void isFavoriteChanged();
 
     private:
-        QString uniqueId;
-        QString title;
-        QString artist;
-        QString album;
-        QString artUrl;
-        double duration; // in seconds
-        bool isFavorite;
+        QString uniqueId_;
+        QString title_;
+        QString artist_;
+        QString album_;
+        QString artUrl_;
+        double duration_; // in seconds
+        bool isFavorite_;
     };
 }

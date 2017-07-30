@@ -8,128 +8,128 @@ using namespace MellowPlayer::Application;
 using namespace std;
 
 CurrentPlayer::CurrentPlayer(Players& players, StreamingServicesController& streamingServices)
-        : players(players), streamingServices(streamingServices), currentPlayer(nullptr)
+        : players_(players), streamingServices_(streamingServices), currentPlayer_(nullptr)
 {
 
     connect(&streamingServices, &StreamingServicesController::currentChanged, this, &CurrentPlayer::onCurrentServiceChanged);
 
-    if (streamingServices.getCurrent() != nullptr)
-        onCurrentServiceChanged(streamingServices.getCurrent());
+    if (streamingServices.current() != nullptr)
+        onCurrentServiceChanged(streamingServices.current());
 }
 
 void CurrentPlayer::togglePlayPause()
 {
-    if (currentPlayer)
-        currentPlayer->togglePlayPause();
+    if (currentPlayer_)
+        currentPlayer_->togglePlayPause();
 }
 
 void CurrentPlayer::play()
 {
-    if (currentPlayer)
-        currentPlayer->play();
+    if (currentPlayer_)
+        currentPlayer_->play();
 }
 
 void CurrentPlayer::pause()
 {
-    if (currentPlayer)
-        currentPlayer->pause();
+    if (currentPlayer_)
+        currentPlayer_->pause();
 }
 
 void CurrentPlayer::next()
 {
-    if (currentPlayer)
-        currentPlayer->next();
+    if (currentPlayer_)
+        currentPlayer_->next();
 }
 
 void CurrentPlayer::previous()
 {
-    if (currentPlayer)
-        currentPlayer->previous();
+    if (currentPlayer_)
+        currentPlayer_->previous();
 }
 
 void CurrentPlayer::seekToPosition(double position)
 {
-    if (currentPlayer)
-        currentPlayer->seekToPosition(position);
+    if (currentPlayer_)
+        currentPlayer_->seekToPosition(position);
 }
 
 void CurrentPlayer::setVolume(double volume)
 {
-    if (currentPlayer)
-        currentPlayer->setVolume(volume);
+    if (currentPlayer_)
+        currentPlayer_->setVolume(volume);
 }
 
 void CurrentPlayer::toggleFavoriteSong()
 {
-    if (currentPlayer)
-        currentPlayer->toggleFavoriteSong();
+    if (currentPlayer_)
+        currentPlayer_->toggleFavoriteSong();
 }
 
 void CurrentPlayer::addToFavorites()
 {
-    if (currentPlayer)
-        currentPlayer->addToFavorites();
+    if (currentPlayer_)
+        currentPlayer_->addToFavorites();
 }
 
 void CurrentPlayer::removeFromFavorites()
 {
-    if (currentPlayer)
-        currentPlayer->removeFromFavorites();
+    if (currentPlayer_)
+        currentPlayer_->removeFromFavorites();
 }
 
-Song* CurrentPlayer::getCurrentSong()
+Song* CurrentPlayer::currentSong()
 {
-    if (currentPlayer != nullptr && currentPlayer->getCurrentSong() != nullptr)
-        return currentPlayer->getCurrentSong();
-    return &nullSong;
+    if (currentPlayer_ != nullptr && currentPlayer_->currentSong() != nullptr)
+        return currentPlayer_->currentSong();
+    return &nullSong_;
 }
 
-double CurrentPlayer::getPosition() const
+double CurrentPlayer::position() const
 {
-    if (currentPlayer)
-        return currentPlayer->getPosition();
+    if (currentPlayer_)
+        return currentPlayer_->position();
     return 0;
 }
 
-PlaybackStatus CurrentPlayer::getPlaybackStatus() const
+PlaybackStatus CurrentPlayer::playbackStatus() const
 {
-    if (currentPlayer)
-        return currentPlayer->getPlaybackStatus();
+    if (currentPlayer_)
+        return currentPlayer_->playbackStatus();
     return PlaybackStatus::Stopped;
 }
 
-bool CurrentPlayer::getCanSeek() const
+bool CurrentPlayer::canSeek() const
 {
-    if (currentPlayer)
-        return currentPlayer->getCanSeek();
+    if (currentPlayer_)
+        return currentPlayer_->canSeek();
     return false;
 }
 
-bool CurrentPlayer::getCanGoNext() const
+bool CurrentPlayer::canGoNext() const
 {
-    if (currentPlayer)
-        return currentPlayer->getCanGoNext();
+    if (currentPlayer_)
+        return currentPlayer_->canGoNext();
     return false;
 }
 
-bool CurrentPlayer::getCanGoPrevious() const
+bool CurrentPlayer::canGoPrevious() const
 {
-    if (currentPlayer)
-        return currentPlayer->getCanGoPrevious();
+    if (currentPlayer_)
+        return currentPlayer_->canGoPrevious();
     return false;
 }
 
-bool CurrentPlayer::getCanAddToFavorites() const
+bool CurrentPlayer::canAddToFavorites() const
 {
-    if (currentPlayer)
-        return currentPlayer->getCanAddToFavorites();
+    if (currentPlayer_)
+        return currentPlayer_->canAddToFavorites();
     return false;
 }
 
-double CurrentPlayer::getVolume() const
+double CurrentPlayer::volume() const
 {
-    if (currentPlayer)
-        return currentPlayer->getVolume();
+    if (currentPlayer_)
+        return currentPlayer_->volume();
     return 0;
 }
 
@@ -137,37 +137,37 @@ void CurrentPlayer::onCurrentServiceChanged(StreamingService* streamingService)
 {
     if (streamingService == nullptr)
         return;
-    auto player = players.get(streamingService->getName());
-    if (player != currentPlayer) {
-        if (currentPlayer != nullptr) {
-            disconnect(currentPlayer.get(), &Player::currentSongChanged, this, &CurrentPlayer::currentSongChanged);
-            disconnect(currentPlayer.get(), &Player::positionChanged, this, &CurrentPlayer::positionChanged);
-            disconnect(currentPlayer.get(), &Player::playbackStatusChanged, this, &CurrentPlayer::playbackStatusChanged);
-            disconnect(currentPlayer.get(), &Player::canSeekChanged, this, &CurrentPlayer::canSeekChanged);
-            disconnect(currentPlayer.get(), &Player::canGoNextChanged, this, &CurrentPlayer::canGoNextChanged);
-            disconnect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &CurrentPlayer::canGoPreviousChanged);
-            disconnect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &CurrentPlayer::canAddToFavoritesChanged);
-            disconnect(currentPlayer.get(), &Player::volumeChanged, this, &CurrentPlayer::volumeChanged);
-            disconnect(currentPlayer.get(), &Player::isPlayingChanged, this, &CurrentPlayer::isPlayingChanged);
-            disconnect(currentPlayer.get(), &Player::isStoppedChanged, this, &CurrentPlayer::isStoppedChanged);
-            currentPlayer->suspend();
+    auto player = players_.get(streamingService->name());
+    if (player != currentPlayer_) {
+        if (currentPlayer_ != nullptr) {
+            disconnect(currentPlayer_.get(), &Player::currentSongChanged, this, &CurrentPlayer::currentSongChanged);
+            disconnect(currentPlayer_.get(), &Player::positionChanged, this, &CurrentPlayer::positionChanged);
+            disconnect(currentPlayer_.get(), &Player::playbackStatusChanged, this, &CurrentPlayer::playbackStatusChanged);
+            disconnect(currentPlayer_.get(), &Player::canSeekChanged, this, &CurrentPlayer::canSeekChanged);
+            disconnect(currentPlayer_.get(), &Player::canGoNextChanged, this, &CurrentPlayer::canGoNextChanged);
+            disconnect(currentPlayer_.get(), &Player::canGoPreviousChanged, this, &CurrentPlayer::canGoPreviousChanged);
+            disconnect(currentPlayer_.get(), &Player::canAddToFavoritesChanged, this, &CurrentPlayer::canAddToFavoritesChanged);
+            disconnect(currentPlayer_.get(), &Player::volumeChanged, this, &CurrentPlayer::volumeChanged);
+            disconnect(currentPlayer_.get(), &Player::isPlayingChanged, this, &CurrentPlayer::isPlayingChanged);
+            disconnect(currentPlayer_.get(), &Player::isStoppedChanged, this, &CurrentPlayer::isStoppedChanged);
+            currentPlayer_->suspend();
         }
 
-        currentPlayer = player;
+        currentPlayer_ = player;
 
-        connect(currentPlayer.get(), &Player::currentSongChanged, this, &CurrentPlayer::currentSongChanged);
-        connect(currentPlayer.get(), &Player::positionChanged, this, &CurrentPlayer::positionChanged);
-        connect(currentPlayer.get(), &Player::playbackStatusChanged, this, &CurrentPlayer::playbackStatusChanged);
-        connect(currentPlayer.get(), &Player::canSeekChanged, this, &CurrentPlayer::canSeekChanged);
-        connect(currentPlayer.get(), &Player::canGoNextChanged, this, &CurrentPlayer::canGoNextChanged);
-        connect(currentPlayer.get(), &Player::canGoPreviousChanged, this, &CurrentPlayer::canGoPreviousChanged);
-        connect(currentPlayer.get(), &Player::canAddToFavoritesChanged, this, &CurrentPlayer::canAddToFavoritesChanged);
-        connect(currentPlayer.get(), &Player::volumeChanged, this, &CurrentPlayer::volumeChanged);
-        connect(currentPlayer.get(), &Player::isPlayingChanged, this, &CurrentPlayer::isPlayingChanged);
-        connect(currentPlayer.get(), &Player::isStoppedChanged, this, &CurrentPlayer::isStoppedChanged);
-        currentPlayer->resume();
+        connect(currentPlayer_.get(), &Player::currentSongChanged, this, &CurrentPlayer::currentSongChanged);
+        connect(currentPlayer_.get(), &Player::positionChanged, this, &CurrentPlayer::positionChanged);
+        connect(currentPlayer_.get(), &Player::playbackStatusChanged, this, &CurrentPlayer::playbackStatusChanged);
+        connect(currentPlayer_.get(), &Player::canSeekChanged, this, &CurrentPlayer::canSeekChanged);
+        connect(currentPlayer_.get(), &Player::canGoNextChanged, this, &CurrentPlayer::canGoNextChanged);
+        connect(currentPlayer_.get(), &Player::canGoPreviousChanged, this, &CurrentPlayer::canGoPreviousChanged);
+        connect(currentPlayer_.get(), &Player::canAddToFavoritesChanged, this, &CurrentPlayer::canAddToFavoritesChanged);
+        connect(currentPlayer_.get(), &Player::volumeChanged, this, &CurrentPlayer::volumeChanged);
+        connect(currentPlayer_.get(), &Player::isPlayingChanged, this, &CurrentPlayer::isPlayingChanged);
+        connect(currentPlayer_.get(), &Player::isStoppedChanged, this, &CurrentPlayer::isStoppedChanged);
+        currentPlayer_->resume();
 
-        emit currentSongChanged(currentPlayer->getCurrentSong());
+        emit currentSongChanged(currentPlayer_->currentSong());
         emit positionChanged();
         emit playbackStatusChanged();
         emit canSeekChanged();
@@ -180,23 +180,23 @@ void CurrentPlayer::onCurrentServiceChanged(StreamingService* streamingService)
     }
 }
 
-QString CurrentPlayer::getServiceName() const
+QString CurrentPlayer::serviceName() const
 {
-    if (currentPlayer)
-        return currentPlayer->getServiceName();
+    if (currentPlayer_)
+        return currentPlayer_->serviceName();
     return "";
 }
 
 bool CurrentPlayer::isPlaying() const
 {
-    if (currentPlayer)
-        return currentPlayer->isPlaying();
+    if (currentPlayer_)
+        return currentPlayer_->isPlaying();
     return false;
 }
 
 bool CurrentPlayer::isStopped() const
 {
-    if (currentPlayer)
-        return currentPlayer->isStopped();
+    if (currentPlayer_)
+        return currentPlayer_->isStopped();
     return true;
 }

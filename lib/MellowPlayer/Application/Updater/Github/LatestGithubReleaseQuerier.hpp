@@ -2,7 +2,7 @@
 
 #include "GithubReleasesReplyParser.hpp"
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
-#include <MellowPlayer/Application/Updater/IReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
@@ -10,13 +10,13 @@ namespace MellowPlayer::Application
 {
     class ILogger;
 
-    class GithubReleaseQuerier : public IReleaseQuerier
+    class LatestGithubReleaseQuerier : public ILatestReleaseQuerier
     {
     public:
-        explicit GithubReleaseQuerier(IHttpClient& httpClient);
+        explicit LatestGithubReleaseQuerier(IHttpClient& httpClient);
 
         void setChannel(Application::UpdateChannel channel) override;
-        void getLatest() override;
+        void query() override;
 
     private slots:
         void onReplyReceived(const QByteArray& replyData);

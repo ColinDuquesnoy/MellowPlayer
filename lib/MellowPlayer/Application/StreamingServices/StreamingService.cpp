@@ -7,66 +7,66 @@ using namespace MellowPlayer::Application;
 using namespace std;
 
 StreamingService::StreamingService(const StreamingServiceMetadata& metadata, const Theme& theme)
-        : metadata(metadata), theme(theme), script(make_unique<StreamingServiceScript>(metadata.script, metadata.scriptPath))
+        : metadata_(metadata), theme_(theme), script_(make_unique<StreamingServiceScript>(metadata.script, metadata.scriptPath))
 {
 }
 
 StreamingService::~StreamingService() = default;
 
-const QString& StreamingService::getAuthor() const
+const QString& StreamingService::author() const
 {
-    return metadata.author;
+    return metadata_.author;
 }
 
-const QString& StreamingService::getAuthorWebsite() const
+const QString& StreamingService::authorWebsite() const
 {
-    return metadata.authorWebsite;
+    return metadata_.authorWebsite;
 }
 
-QString StreamingService::getLogo() const
+QString StreamingService::logo() const
 {
-    if (metadata.logoPath.isEmpty())
+    if (metadata_.logoPath.isEmpty())
         return "";
 #ifdef Q_OS_WIN
     return "file:" + metadata.logoPath;
 #else
-    return "file://" + metadata.logoPath;
+    return "file://" + metadata_.logoPath;
 #endif
 }
 
-const QString& StreamingService::getName() const
+const QString& StreamingService::name() const
 {
-    return metadata.name;
+    return metadata_.name;
 }
 
-QString StreamingService::getUrl() const
+QString StreamingService::url() const
 {
-    return metadata.url;
+    return metadata_.url;
 }
 
-const QString& StreamingService::getVersion() const
+const QString& StreamingService::version() const
 {
-    return metadata.version;
+    return metadata_.version;
 }
 
 bool StreamingService::isValid() const
 {
-    return metadata.isValid() && script->isValid();
+    return metadata_.isValid() && script_->isValid();
 }
 
-StreamingServiceScript* StreamingService::getScript() const
+StreamingServiceScript* StreamingService::script() const
 {
-    return script.get();
+    return script_.get();
 }
 
-const Theme& StreamingService::getTheme() const
+const Theme& StreamingService::theme() const
 {
-    return theme;
+    return theme_;
 }
 
 bool StreamingService::operator==(const StreamingService& rhs) const
 {
-    return getName() == rhs.getName();
+    return name() == rhs.name();
 }
 
 bool StreamingService::operator!=(const StreamingService& rhs) const
@@ -76,22 +76,22 @@ bool StreamingService::operator!=(const StreamingService& rhs) const
 
 void StreamingService::updateTheme(Theme& newTheme)
 {
-    theme = newTheme;
+    theme_ = newTheme;
     emit themeChanged();
 }
 
 void StreamingService::updateScript(const QString& scriptCode)
 {
-    script->setCode(scriptCode);
+    script_->setCode(scriptCode);
     emit scriptChanged();
 }
 
-QString StreamingService::getPluginDirectory() const
+QString StreamingService::pluginDirectory() const
 {
-    return metadata.pluginDirectory;
+    return metadata_.pluginDirectory;
 }
 
-bool StreamingService::getRequireProprietaryCodecs() const
+bool StreamingService::requireProprietaryCodecs() const
 {
-    return metadata.requireProprietaryCodecs;
+    return metadata_.requireProprietaryCodecs;
 }

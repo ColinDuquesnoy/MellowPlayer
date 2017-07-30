@@ -14,11 +14,11 @@ LinuxUpdater::LinuxUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUp
 
 bool LinuxUpdater::canInstall() const
 {
-    QString appImagePath = getDestinationDir();
+    QString appImagePath = destinationDir();
     return asset_.isValid() && asset_.isAppImage() && !appImagePath.isEmpty();
 }
 
-QString LinuxUpdater::getDestinationDir() const
+QString LinuxUpdater::destinationDir() const
 {
     QString appImagePath = qgetenv("APPIMAGE");
     if (!appImagePath.isEmpty())
@@ -28,32 +28,32 @@ QString LinuxUpdater::getDestinationDir() const
 
 void LinuxUpdater::doInstall(const QString& assetLocalPath)
 {
-    QString destinationPath = getDestinationPath();
-    QString backupPath = destinationPath + ".backup";
+    QString dest = destinationPath();
+    QString backupPath = dest + ".backup";
 
     QFile::remove(backupPath);
-    QFile::rename(destinationPath, backupPath);
-    QFile::copy(assetLocalPath, destinationPath);
+    QFile::rename(dest, backupPath);
+    QFile::copy(assetLocalPath, dest);
 
-    QProcess::startDetached("chmod +x " + destinationPath);
+    QProcess::startDetached("chmod +x " + dest);
 
-    emit installFinished(QFile::exists(destinationPath));
+    emit installFinished(QFile::exists(dest));
 }
-QString LinuxUpdater::getDestinationPath() const
+QString LinuxUpdater::destinationPath() const
 {
-    QString destinationDir = getDestinationDir();
-    QString destinationPath = destinationDir + "/" + getAssetFileName();
+    QString dest = destinationDir();
+    QString destinationPath = dest + "/" + assetFileName();
     return destinationPath;
 }
 
-QString LinuxUpdater::getAssetUrl() const
+QString LinuxUpdater::assetUrl() const
 {
-    return asset_.getUrl();
+    return asset_.url();
 }
 
-QString LinuxUpdater::getAssetFileName() const
+QString LinuxUpdater::assetFileName() const
 {
-    return asset_.getName();
+    return asset_.name();
 }
 
 void LinuxUpdater::setRelease(const Release* release)
@@ -61,7 +61,7 @@ void LinuxUpdater::setRelease(const Release* release)
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto& asset : release_->getAssets()) {
+        for (auto& asset : release_->assets()) {
             if (asset.isAppImage()) {
                 asset_ = asset;
                 break;
@@ -71,8 +71,8 @@ void LinuxUpdater::setRelease(const Release* release)
 }
 void LinuxUpdater::restart()
 {
-    //    QFile file(getDestinationPath());
-    //    QFile::setPermissions(getDestinationPath(), QFile::ExeUser | QFile::ExeOwner);
-    QProcess::startDetached(getDestinationPath());
+    //    QFile file(destinationPath());
+    //    QFile::setPermissions(destinationPath(), QFile::ExeUser | QFile::ExeOwner);
+    QProcess::startDetached(destinationPath());
     qApp->quit();
 }

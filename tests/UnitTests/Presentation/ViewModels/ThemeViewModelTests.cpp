@@ -12,17 +12,17 @@ using namespace MellowPlayer::Tests;
 
 void requireMatchTheme(ThemeViewModel& themeViewModel, const Theme& theme)
 {
-    if (themeViewModel.isDark(themeViewModel.getBackground()))
+    if (themeViewModel.isDark(themeViewModel.background()))
         REQUIRE(themeViewModel.isDark());
     else
         REQUIRE(!themeViewModel.isDark());
-    REQUIRE(themeViewModel.getAccent() == theme.accent);
-    REQUIRE(themeViewModel.getBackground().toStdString() == theme.background.toStdString());
-    REQUIRE(themeViewModel.getForeground() == theme.foreground);
-    REQUIRE(themeViewModel.getPrimary() == theme.primary);
-    REQUIRE(themeViewModel.getPrimaryForeground() == theme.primaryForeground);
-    REQUIRE(themeViewModel.getSecondary() == theme.secondary);
-    REQUIRE(themeViewModel.getSecondaryForeground() == theme.secondaryForeground);
+    REQUIRE(themeViewModel.accent() == theme.accent);
+    REQUIRE(themeViewModel.background().toStdString() == theme.background.toStdString());
+    REQUIRE(themeViewModel.foreground() == theme.foreground);
+    REQUIRE(themeViewModel.primary() == theme.primary);
+    REQUIRE(themeViewModel.primaryForeground() == theme.primaryForeground);
+    REQUIRE(themeViewModel.secondary() == theme.secondary);
+    REQUIRE(themeViewModel.secondaryForeground() == theme.secondaryForeground);
 }
 
 TEST_CASE("ThemeViewModelTests", "[UnitTest]")
@@ -38,7 +38,7 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
 
     SECTION("initially use default theme")
     {
-        requireMatchTheme(themeViewModel, themeViewModel.getTheme("Default"));
+        requireMatchTheme(themeViewModel, themeViewModel.theme("Default"));
     }
 
     SECTION("use service theme when current streamingService changed and theme "
@@ -51,9 +51,9 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
         requireMatchTheme(themeViewModel, StreamingServiceLoaderMock::DEFAULT_theme);
     }
 
-    SECTION("getColorScaleFactor")
+    SECTION("colorScaleFactor")
     {
-        REQUIRE(themeViewModel.getColorScaleFactor("black") > themeViewModel.getColorScaleFactor("white"));
+        REQUIRE(themeViewModel.colorScaleFactor("black") > themeViewModel.colorScaleFactor("white"));
     }
 
     SECTION("isDark")
@@ -67,6 +67,6 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
 
     SECTION("more than 3 available theme")
     {
-        REQUIRE(themeViewModel.getAvailableThemes().count() > 3);
+        REQUIRE(themeViewModel.availableThemes().count() > 3);
     }
 }

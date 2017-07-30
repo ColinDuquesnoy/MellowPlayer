@@ -28,14 +28,13 @@ int main(int argc, char** argv)
     ApplicationViewModel qtApp(argc, argv);
 
     CommandLineParser commandLineParser;
-    qtApp.setAutoQuitDelay(commandLineParser.getAutoQuitDelay());
+    qtApp.setAutoQuitDelay(commandLineParser.autoQuitDelay());
 
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, commandLineParser.getLogLevel());
+    LoggingManager::initialize(loggerFactory, commandLineParser.logLevel());
     ScopedScope scope{};
-    LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
-    LOG_INFO(LoggingManager::instance().getLogger("main"),
-             QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.getBuildInfo()));
+    LOG_INFO(LoggingManager::logger("main"), "Log directory: " + FileHelper::logDirectory());
+    LOG_INFO(LoggingManager::logger("main"), QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.buildInfo()));
 
     qtApp.initialize();
 

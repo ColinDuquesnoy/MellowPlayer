@@ -27,6 +27,6 @@ TEST_CASE("ColorSettingViewModelTests")
 
     SECTION("QML Component looks valid")
     {
-        REQUIRE(model.getQmlComponent().toLower().contains("color"));
+        REQUIRE(model.qmlComponent().toLower().contains("color"));
     }
 }

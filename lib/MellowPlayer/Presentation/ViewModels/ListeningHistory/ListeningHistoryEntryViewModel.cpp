@@ -3,46 +3,50 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryEntryViewModel::ListeningHistoryEntryViewModel(const ListeningHistoryEntry& entry, QObject* parent) : QObject(parent), entry(entry)
+ListeningHistoryEntryViewModel::ListeningHistoryEntryViewModel(const ListeningHistoryEntry& entry, QObject* parent) : QObject(parent), entry_(entry)
 {
 }
 
-QString ListeningHistoryEntryViewModel::getSongId() const
+QString ListeningHistoryEntryViewModel::songId() const
 {
-    return entry.songUniqueId;
+    return entry_.songUniqueId;
 }
 
-QString ListeningHistoryEntryViewModel::getTitle() const
+QString ListeningHistoryEntryViewModel::title() const
 {
-    return entry.songTitle;
+    return entry_.songTitle;
 }
 
-QString ListeningHistoryEntryViewModel::getArtist() const
+QString ListeningHistoryEntryViewModel::artist() const
 {
-    return entry.artist;
+    return entry_.artist;
 }
 
-QString ListeningHistoryEntryViewModel::getArtUrl() const
+QString ListeningHistoryEntryViewModel::artUrl() const
 {
-    return entry.artUrl;
+    return entry_.artUrl;
 }
 
-QString ListeningHistoryEntryViewModel::getService() const
+QString ListeningHistoryEntryViewModel::service() const
 {
-    return entry.serviceName;
+    return entry_.serviceName;
 }
 
-QString ListeningHistoryEntryViewModel::getDate() const
+QString ListeningHistoryEntryViewModel::date() const
 {
-    return dateTimeConverter.dateToString(entry.dateTime());
+    return dateTimeConverter_.dateToString(entry_.dateTime());
 }
 
-QString ListeningHistoryEntryViewModel::getTime() const
+QString ListeningHistoryEntryViewModel::time() const
 {
-    return dateTimeConverter.timeToString(entry.dateTime());
+    return dateTimeConverter_.timeToString(entry_.dateTime());
 }
 
-QString ListeningHistoryEntryViewModel::getDateCategory() const
+QString ListeningHistoryEntryViewModel::dateCategory() const
 {
-    return dateTimeConverter.dateToCategory(entry.dateTime());
+    return dateTimeConverter_.dateToCategory(entry_.dateTime());
+}
+int ListeningHistoryEntryViewModel::entryId() const
+{
+    return entry_.id;
 }

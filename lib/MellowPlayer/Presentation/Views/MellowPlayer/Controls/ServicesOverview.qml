@@ -71,7 +71,7 @@ Item {
                             hovered: mouseArea.containsMouse
                             index: delegateRoot.visualIndex
                             transitionItem: root.transitionItem
-                            webView: root.webViews[_streamingServices.getWebViewIndex(model.name)]
+                            webView: root.webViews[_streamingServices.webViewIndex(model.name)]
 
                             Drag.active: mouseArea.drag.active
                             Drag.source: delegateRoot

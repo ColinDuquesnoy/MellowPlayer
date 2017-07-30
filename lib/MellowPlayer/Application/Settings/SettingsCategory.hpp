@@ -27,15 +27,15 @@ namespace MellowPlayer::Application
 
         void restoreDefaults();
 
-        const QString& getName() const;
-        const QString& getIcon() const;
-        const QString& getKey() const;
-        const QList<Setting*>& getSettings() const;
+        const QString& name() const;
+        const QString& icon() const;
+        const QString& key() const;
+        const QList<Setting*>& toList() const;
 
-        Setting& getSetting(const QString& key) const;
+        Setting& get(const QString& key) const;
 
     private:
-        Data data;
-        QList<Setting*> settings;
+        Data data_;
+        QList<Setting*> settings_;
     };
 }

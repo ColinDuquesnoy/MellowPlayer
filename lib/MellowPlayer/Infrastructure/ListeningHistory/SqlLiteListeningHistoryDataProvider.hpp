@@ -22,7 +22,7 @@ namespace MellowPlayer::Infrastructure
         void clear() override;
         void remove(const QString& filterKey, const QString& filterValue) override;
         void removeMany(const QList<int>& identifiers) override;
-        QList<Application::ListeningHistoryEntry> getAll() const override;
+        QList<Application::ListeningHistoryEntry> toList() const override;
 
         static QString getDatabasePath();
 
@@ -30,7 +30,7 @@ namespace MellowPlayer::Infrastructure
         bool openDatabase();
         void initDatabase();
 
-        Application::ILogger& logger;
-        QSqlDatabase database;
+        Application::ILogger& logger_;
+        QSqlDatabase database_;
     };
 }

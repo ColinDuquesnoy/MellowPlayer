@@ -7,18 +7,18 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent)
-        : QDBusAbstractAdaptor(parent), logger(LoggingManager::instance().getLogger("Mpris2Root")), window(window), qtApp(qtApp)
+        : QDBusAbstractAdaptor(parent), logger_(LoggingManager::logger("Mpris2Root")), window_(window), qtApp_(qtApp)
 {
 }
 
 void Mpris2Root::Raise()
 {
-    window.show();
+    window_.show();
 }
 
 void Mpris2Root::Quit()
 {
-    qtApp.requestQuit();
+    qtApp_.requestQuit();
 }
 
 bool Mpris2Root::canRaise()

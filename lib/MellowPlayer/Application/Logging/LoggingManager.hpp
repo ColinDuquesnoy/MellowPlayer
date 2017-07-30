@@ -19,9 +19,9 @@ namespace MellowPlayer::Application
         static LoggingManager& initialize(ILoggerFactory& loggerFactory, LogLevel logLevel);
         static LoggingManager& instance();
 
-        ILogger& getLogger();
-        ILogger& getLogger(const std::string& name);
-        ILogger& getLogger(const std::string& name, const LoggerConfig& loggerConfig);
+        static ILogger& logger();
+        static ILogger& logger(const std::string& name);
+        static ILogger& logger(const std::string& name, const LoggerConfig& loggerConfig);
 
         void setDefaultLogLevel(LogLevel logLevel);
 

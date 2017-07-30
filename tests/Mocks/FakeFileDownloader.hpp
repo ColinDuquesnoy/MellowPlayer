@@ -8,7 +8,7 @@ namespace MellowPlayer::Tests
     {
     public:
         void download(const QString&, const QString&){};
-        double getProgress() const
+        double progress() const
         {
             return 0;
         };

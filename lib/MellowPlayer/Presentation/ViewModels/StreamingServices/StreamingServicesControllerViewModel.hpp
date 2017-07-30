@@ -25,10 +25,10 @@ namespace MellowPlayer::Presentation
     class StreamingServicesControllerViewModel : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QAbstractListModel* allServices READ getAllServices CONSTANT)
-        Q_PROPERTY(QAbstractItemModel* enabledServices READ getEnabledServices CONSTANT)
-        Q_PROPERTY(QObject* currentService READ getCurrentService WRITE setCurrentService NOTIFY currentServiceChanged)
-        Q_PROPERTY(int currentIndex READ getCurrentIndex NOTIFY currentIndexChanged)
+        Q_PROPERTY(QAbstractListModel* allServices READ allServices CONSTANT)
+        Q_PROPERTY(QAbstractItemModel* enabledServices READ enabledServices CONSTANT)
+        Q_PROPERTY(QObject* currentService READ currentService WRITE setCurrentService NOTIFY currentServiceChanged)
+        Q_PROPERTY(int currentIndex READ currentIndex NOTIFY currentIndexChanged)
         Q_PROPERTY(bool isCurrentServiceRunning READ isCurrentServiceRunning NOTIFY isCurrentServiceRunningChanged)
     public:
         StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices, Application::Players& players,
@@ -38,19 +38,14 @@ namespace MellowPlayer::Presentation
         void initialize();
 
         Q_INVOKABLE void reload();
-        StreamingServiceListModel* getAllServices()
-        {
-            return allServices;
-        }
-        StreamingServiceProxyListModel* getEnabledServices()
-        {
-            return &enabledServices;
-        }
-        StreamingServiceViewModel* getCurrentService() const;
-        int getCurrentIndex() const;
+
+        StreamingServiceListModel* allServices();
+        StreamingServiceProxyListModel* enabledServices();
+        StreamingServiceViewModel* currentService() const;
+        int currentIndex() const;
         bool isCurrentServiceRunning() const;
 
-        Q_INVOKABLE int getWebViewIndex(const QString& serviceName) const;
+        Q_INVOKABLE int webViewIndex(const QString& serviceName) const;
 
         Q_INVOKABLE void next();
         Q_INVOKABLE void previous();
@@ -73,20 +68,20 @@ namespace MellowPlayer::Presentation
         void onServiceEnabledChanged();
 
     private:
-        int getNextIndex(int index) const;
-        int getPreviousIndex(int index) const;
+        int nextIndex(int index) const;
+        int previousIndex(int index) const;
 
-        Application::StreamingServicesController& streamingServices;
-        Application::Players& players;
-        Application::Settings& settings;
-        Application::Setting& currentServiceSetting;
-        Application::IWorkDispatcher& workDispatcher;
-        Application::IStreamingServiceCreator& streamingServiceCreator;
-        Application::ICommandLineParser& commandLineParser;
-        StreamingServiceListModel* allServices;
-        StreamingServiceProxyListModel enabledServices;
-        StreamingServiceViewModel* currentService = nullptr;
-        int currentIndex = -1;
+        Application::StreamingServicesController& streamingServices_;
+        Application::Players& players_;
+        Application::Settings& settings_;
+        Application::Setting& currentServiceSetting_;
+        Application::IWorkDispatcher& workDispatcher_;
+        Application::IStreamingServiceCreator& streamingServiceCreator_;
+        Application::ICommandLineParser& commandLineParser_;
+        StreamingServiceListModel* allServices_;
+        StreamingServiceProxyListModel enabledServices_;
+        StreamingServiceViewModel* currentService_ = nullptr;
+        int currentIndex_ = -1;
         bool isCurrentServiceRunning_ = false;
     };
 }

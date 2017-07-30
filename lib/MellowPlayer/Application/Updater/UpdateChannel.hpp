@@ -12,7 +12,7 @@ namespace MellowPlayer::Application
     };
 }
 
-class UpdateChannelStringer: public QObject
+class UpdateChannelStringer : public QObject
 {
     Q_OBJECT
 public:

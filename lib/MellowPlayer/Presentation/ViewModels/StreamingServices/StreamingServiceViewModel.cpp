@@ -9,49 +9,49 @@ using namespace MellowPlayer::Presentation;
 
 StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, ISettingsProvider& settings, Players& players,
                                                      QObject* parent)
-        : QObject(parent), streamingService(streamingService), settingsProvider(settings), player(players.get(streamingService.getName()))
+        : QObject(parent), streamingService_(streamingService), settingsProvider_(settings), player_(players.get(streamingService.name()))
 {
 }
 
-QString StreamingServiceViewModel::getLogo() const
+QString StreamingServiceViewModel::logo() const
 {
-    return streamingService.getLogo();
+    return streamingService_.logo();
 }
 
-QString StreamingServiceViewModel::getName() const
+QString StreamingServiceViewModel::name() const
 {
-    return streamingService.getName();
+    return streamingService_.name();
 }
 
-Player* StreamingServiceViewModel::getPlayer()
+Player* StreamingServiceViewModel::player()
 {
-    return player.get();
+    return player_.get();
 }
 
-QString StreamingServiceViewModel::getUrl() const
+QString StreamingServiceViewModel::url() const
 {
-    QString customUrl = settingsProvider.getValue(getCustomUrlSettingsKey(), "").toString();
-    return customUrl.isEmpty() ? streamingService.getUrl() : customUrl;
+    QString customUrl = settingsProvider_.value(customUrlSettingsKey(), "").toString();
+    return customUrl.isEmpty() ? streamingService_.url() : customUrl;
 }
 
-QString StreamingServiceViewModel::getVersion() const
+QString StreamingServiceViewModel::version() const
 {
-    return streamingService.getVersion();
+    return streamingService_.version();
 }
 
-QString StreamingServiceViewModel::getAuthorName() const
+QString StreamingServiceViewModel::authorName() const
 {
-    return streamingService.getAuthor();
+    return streamingService_.author();
 }
 
-QString StreamingServiceViewModel::getAuthorWebsite() const
+QString StreamingServiceViewModel::authorWebsite() const
 {
-    return streamingService.getAuthorWebsite();
+    return streamingService_.authorWebsite();
 }
 
 bool StreamingServiceViewModel::operator==(const StreamingServiceViewModel& rhs) const
 {
-    return streamingService == rhs.streamingService;
+    return streamingService_ == rhs.streamingService_;
 }
 
 bool StreamingServiceViewModel::operator!=(const StreamingServiceViewModel& rhs) const
@@ -59,69 +59,69 @@ bool StreamingServiceViewModel::operator!=(const StreamingServiceViewModel& rhs)
     return !operator==(rhs);
 }
 
-StreamingService* StreamingServiceViewModel::getStreamingService() const
+StreamingService* StreamingServiceViewModel::streamingService() const
 {
-    return &streamingService;
+    return &streamingService_;
 }
 
-int StreamingServiceViewModel::getSortOrder() const
+int StreamingServiceViewModel::sortOrder() const
 {
-    return settingsProvider.getValue(getSortOrderSettingsKey(), "-1").toInt();
+    return settingsProvider_.value(sortOrderSettingsKey(), "-1").toInt();
 }
 
 void StreamingServiceViewModel::setSortOrder(int newOrder)
 {
-    settingsProvider.setValue(getSortOrderSettingsKey(), newOrder);
+    settingsProvider_.setValue(sortOrderSettingsKey(), newOrder);
     emit sortOrderChanged();
 }
 
 bool StreamingServiceViewModel::isEnabled() const
 {
-    return settingsProvider.getValue(getIsEnabledSettingsKey(), "true").toBool();
+    return settingsProvider_.value(isEnabledSettingsKey(), "true").toBool();
 }
 
 void StreamingServiceViewModel::setEnabled(bool enabled)
 {
     if (enabled != isEnabled()) {
-        settingsProvider.setValue(getIsEnabledSettingsKey(), enabled);
+        settingsProvider_.setValue(isEnabledSettingsKey(), enabled);
         emit isEnabledChanged();
 
         if (!enabled) {
-            player->stop();
-            player->suspend();
+            player_->stop();
+            player_->suspend();
             setSortOrder(255);
         }
     }
 }
 
-void StreamingServiceViewModel::setUrl(const QString& url)
+void StreamingServiceViewModel::setUrl(const QString& newUrl)
 {
-    if (url != getUrl()) {
-        settingsProvider.setValue(getCustomUrlSettingsKey(), url);
-        emit urlChanged(url);
+    if (newUrl != url()) {
+        settingsProvider_.setValue(customUrlSettingsKey(), newUrl);
+        emit urlChanged(newUrl);
     }
 }
 
-QString StreamingServiceViewModel::getCustomUrlSettingsKey() const
+QString StreamingServiceViewModel::customUrlSettingsKey() const
 {
-    return streamingService.getName() + "/url";
+    return streamingService_.name() + "/url";
 }
 
 bool StreamingServiceViewModel::isRunning() const
 {
-    return player->isRunning();
+    return player_->isRunning();
 }
 
-QString StreamingServiceViewModel::getSortOrderSettingsKey() const
+QString StreamingServiceViewModel::sortOrderSettingsKey() const
 {
-    return streamingService.getName() + "/sortOrder";
+    return streamingService_.name() + "/sortOrder";
 }
 
-QString StreamingServiceViewModel::getIsEnabledSettingsKey() const
+QString StreamingServiceViewModel::isEnabledSettingsKey() const
 {
-    return streamingService.getName() + "/isEnabled";
+    return streamingService_.name() + "/isEnabled";
 }
-bool StreamingServiceViewModel::getRequireProprietaryCodecs() const
+bool StreamingServiceViewModel::requireProprietaryCodecs() const
 {
-    return streamingService.getRequireProprietaryCodecs();
+    return streamingService_.requireProprietaryCodecs();
 }

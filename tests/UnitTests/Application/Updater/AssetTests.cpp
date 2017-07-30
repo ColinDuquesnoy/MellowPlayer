@@ -9,8 +9,8 @@ SCENARIO("asset validity can be tested")
     {
         Asset asset("MellowPlayer-x86_64.AppImage", "");
 
-        REQUIRE(asset.getName() == "MellowPlayer-x86_64.AppImage");
-        REQUIRE(asset.getUrl() == "");
+        REQUIRE(asset.name() == "MellowPlayer-x86_64.AppImage");
+        REQUIRE(asset.url() == "");
 
         WHEN("isValid is called")
         {

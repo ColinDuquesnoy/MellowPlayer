@@ -1,6 +1,6 @@
 #include "Mocks/FakeHttpClient.hpp"
 #include "catch.hpp"
-#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 
 using namespace MellowPlayer::Application;
 
@@ -9,21 +9,21 @@ SCENARIO("get latest github release")
     GIVEN("the stable update channel")
     {
         FakeHttpClient fakeHttpClient;
-        GithubReleaseQuerier querier(fakeHttpClient);
+        LatestGithubReleaseQuerier querier(fakeHttpClient);
         querier.setChannel(UpdateChannel::Stable);
 
         const Release* latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
+        QObject::connect(&querier, &LatestGithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
-        WHEN("getLatest is called")
+        WHEN("query is called")
         {
-            querier.getLatest();
+            querier.query();
 
             THEN("latest stable release is retrieved")
             {
                 REQUIRE(latestRelease != nullptr);
-                REQUIRE(latestRelease->getName().toStdString() == "2.2.5");
+                REQUIRE(latestRelease->name().toStdString() == "2.2.5");
             }
         }
     }
@@ -31,21 +31,21 @@ SCENARIO("get latest github release")
     GIVEN("the beta update channel")
     {
         FakeHttpClient networkAccessManagerMock;
-        GithubReleaseQuerier querier(networkAccessManagerMock);
+        LatestGithubReleaseQuerier querier(networkAccessManagerMock);
         querier.setChannel(UpdateChannel::Beta);
 
         const Release* latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
+        QObject::connect(&querier, &LatestGithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
-        WHEN("getLatest is called")
+        WHEN("query is called")
         {
-            querier.getLatest();
+            querier.query();
 
             THEN("latest beta release is retrieved")
             {
                 REQUIRE(latestRelease != nullptr);
-                REQUIRE(latestRelease->getName().toStdString() == "2.95.0");
+                REQUIRE(latestRelease->name().toStdString() == "2.95.0");
             }
         }
     }
@@ -53,21 +53,21 @@ SCENARIO("get latest github release")
     GIVEN("the continuous update channel")
     {
         FakeHttpClient networkAccessManagerMock;
-        GithubReleaseQuerier querier(networkAccessManagerMock);
+        LatestGithubReleaseQuerier querier(networkAccessManagerMock);
         querier.setChannel(UpdateChannel::Continuous);
 
         const Release* latestRelease = nullptr;
-        QObject::connect(&querier, &GithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
+        QObject::connect(&querier, &LatestGithubReleaseQuerier::latestReceived, [&](const Release* release) { latestRelease = release; });
         REQUIRE(latestRelease == nullptr);
 
-        WHEN("getLatest is called")
+        WHEN("query is called")
         {
-            querier.getLatest();
+            querier.query();
 
             THEN("latest stable release is retrieved")
             {
                 REQUIRE(latestRelease != nullptr);
-                REQUIRE(latestRelease->getName().toStdString() == "Continuous");
+                REQUIRE(latestRelease->name().toStdString() == "Continuous");
             }
         }
     }

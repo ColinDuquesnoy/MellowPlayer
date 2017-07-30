@@ -36,12 +36,12 @@ namespace MellowPlayer::Tests
         {
         }
 
-        QString getAssetUrl() const override
+        QString assetUrl() const override
         {
             return nullptr;
         }
 
-        QString getAssetFileName() const override
+        QString assetFileName() const override
         {
             return nullptr;
         }

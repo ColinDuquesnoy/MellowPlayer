@@ -27,11 +27,11 @@ TEST_CASE("ListeningHistoryEntryTests")
     SECTION("fromData has basic song properties")
     {
         REQUIRE(entry1Deezer.serviceName == "Deezer");
-        REQUIRE(entry1Deezer.songUniqueId == song1.getUniqueId());
-        REQUIRE(entry1Deezer.songTitle == song1.getTitle());
-        REQUIRE(entry1Deezer.artist == song1.getArtist());
-        REQUIRE(entry1Deezer.album == song1.getAlbum());
-        REQUIRE(entry1Deezer.artUrl == song1.getArtUrl());
+        REQUIRE(entry1Deezer.songUniqueId == song1.uniqueId());
+        REQUIRE(entry1Deezer.songTitle == song1.title());
+        REQUIRE(entry1Deezer.artist == song1.artist());
+        REQUIRE(entry1Deezer.album == song1.album());
+        REQUIRE(entry1Deezer.artUrl == song1.artUrl());
         REQUIRE(!entry1Deezer.time.isEmpty());
     }
 

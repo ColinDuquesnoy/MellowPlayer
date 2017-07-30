@@ -7,19 +7,19 @@ namespace MellowPlayer::Presentation
     class SettingViewModel : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString name READ getName CONSTANT)
-        Q_PROPERTY(QString toolTip READ getToolTip CONSTANT)
-        Q_PROPERTY(QString type READ getType CONSTANT)
-        Q_PROPERTY(QString qmlComponent READ getQmlComponent CONSTANT)
-        Q_PROPERTY(bool enabled READ getEnabled NOTIFY enabledChanged)
+        Q_PROPERTY(QString name READ name CONSTANT)
+        Q_PROPERTY(QString toolTip READ toolTip CONSTANT)
+        Q_PROPERTY(QString type READ type CONSTANT)
+        Q_PROPERTY(QString qmlComponent READ qmlComponent CONSTANT)
+        Q_PROPERTY(bool enabled READ enabled NOTIFY enabledChanged)
     public:
         SettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
-        QString getName() const;
-        QString getToolTip() const;
-        QString getType() const;
-        virtual QString getQmlComponent() = 0;
-        bool getEnabled() const;
+        QString name() const;
+        QString toolTip() const;
+        QString type() const;
+        virtual QString qmlComponent() = 0;
+        bool enabled() const;
 
     signals:
         void enabledChanged();
@@ -28,9 +28,9 @@ namespace MellowPlayer::Presentation
         virtual void onValueChanged() = 0;
 
     protected:
-        Application::Setting& setting;
+        Application::Setting& setting_;
 
     private slots:
-        void onIsEnabledChanged();
+        void onEnabledChanged();
     };
 }

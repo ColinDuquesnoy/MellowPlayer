@@ -5,57 +5,57 @@ using namespace MellowPlayer::Presentation;
 
 SettingsCategoryViewModel::SettingsCategoryViewModel(ThemeViewModel& themeViewModel, SettingsCategory* settingsCategory, QObject* parent)
         : QObject(parent),
-          settingsCategory(settingsCategory),
-          settingsListModel(new SettingListModel(this, "name")),
-          settingViewModelFactory(themeViewModel)
+          settingsCategory_(settingsCategory),
+          settingsListModel_(new SettingListModel(this, "name")),
+          settingViewModelFactory_(themeViewModel)
 {
     if (settingsCategory != nullptr)
-        for (Setting* setting : settingsCategory->getSettings())
-            settingsListModel->append(settingViewModelFactory.create(*setting, this));
+        for (Setting* setting : settingsCategory->toList())
+            settingsListModel_->append(settingViewModelFactory_.create(*setting, this));
 }
 
-QString SettingsCategoryViewModel::getName() const
+QString SettingsCategoryViewModel::name() const
 {
-    return settingsCategory != nullptr ? settingsCategory->getName() : "";
+    return settingsCategory_ != nullptr ? settingsCategory_->name() : "";
 }
 
-QString SettingsCategoryViewModel::getIcon() const
+QString SettingsCategoryViewModel::icon() const
 {
-    return settingsCategory != nullptr ? settingsCategory->getIcon() : "";
+    return settingsCategory_ != nullptr ? settingsCategory_->icon() : "";
 }
 
-QString SettingsCategoryViewModel::getQmlComponent() const
+QString SettingsCategoryViewModel::qmlComponent() const
 {
     return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml";
 }
 
-SettingListModel* SettingsCategoryViewModel::getSettingsModel()
+SettingListModel* SettingsCategoryViewModel::settingsModel()
 {
-    return settingsListModel;
+    return settingsListModel_;
 }
 
 void SettingsCategoryViewModel::restoreDefaults()
 {
-    settingsCategory->restoreDefaults();
+    settingsCategory_->restoreDefaults();
 }
 
 CustomSettingsCategoryViewModel::CustomSettingsCategoryViewModel(const QString& name, const QString& icon, const QString& qmlComponent,
                                                                  ThemeViewModel& themeViewModel, QObject* parent)
-        : SettingsCategoryViewModel(themeViewModel, nullptr, parent), name(name), icon(icon), qmlComponent(qmlComponent)
+        : SettingsCategoryViewModel(themeViewModel, nullptr, parent), name_(name), icon_(icon), qmlComponent_(qmlComponent)
 {
 }
 
-QString CustomSettingsCategoryViewModel::getName() const
+QString CustomSettingsCategoryViewModel::name() const
 {
-    return name;
+    return name_;
 }
 
-QString CustomSettingsCategoryViewModel::getIcon() const
+QString CustomSettingsCategoryViewModel::icon() const
 {
-    return icon;
+    return icon_;
 }
 
-QString CustomSettingsCategoryViewModel::getQmlComponent() const
+QString CustomSettingsCategoryViewModel::qmlComponent() const
 {
-    return qmlComponent;
+    return qmlComponent_;
 }

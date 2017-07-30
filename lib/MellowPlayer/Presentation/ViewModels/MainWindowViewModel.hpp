@@ -41,14 +41,14 @@ namespace MellowPlayer::Presentation
         void setVisible(bool value);
 
     private:
-        bool visible = false;
-        Application::ILogger& logger;
-        Application::Settings& settings;
-        StreamingServicesControllerViewModel& streamingServices;
-        ListeningHistoryViewModel& listeningHistory;
-        QQmlApplicationEngine qmlApplicationEngine;
-        ClipBoardViewModel clipBoardModel;
-        SettingsViewModel settingsViewModel;
-        UpdaterViewModel& updaterViewModel;
+        bool visible_ = false;
+        Application::ILogger& logger_;
+        Application::Settings& settings_;
+        StreamingServicesControllerViewModel& streamingServices_;
+        ListeningHistoryViewModel& listeningHistory_;
+        QQmlApplicationEngine qmlApplicationEngine_;
+        ClipBoardViewModel clipBoardModel_;
+        SettingsViewModel settingsViewModel_;
+        UpdaterViewModel& updaterViewModel_;
     };
 }

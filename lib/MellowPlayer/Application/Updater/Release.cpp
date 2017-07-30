@@ -15,17 +15,17 @@ Release::Release(const QString& url, const QString& name, const QDate& date, con
 {
 }
 
-QString Release::getUrl() const
+QString Release::url() const
 {
     return url_;
 }
 
-QString Release::getName() const
+QString Release::name() const
 {
     return name_;
 }
 
-QString Release::getDate() const
+QString Release::date() const
 {
     return date_.toString("MMMM dd yyyy");
 }
@@ -35,7 +35,7 @@ bool Release::isPreRelease() const
     return preRelease_;
 }
 
-const AssetList& Release::getAssets() const
+const AssetList& Release::assets() const
 {
     return assets_;
 }
@@ -77,7 +77,7 @@ const Release& Release::current()
 
 bool Release::isValid() const
 {
-    bool isValid = !getDate().isEmpty() && !getName().isEmpty();
+    bool isValid = !date().isEmpty() && !name().isEmpty();
 
     if (isValid && !url_.isEmpty()) {
         bool haveAppImage = false;

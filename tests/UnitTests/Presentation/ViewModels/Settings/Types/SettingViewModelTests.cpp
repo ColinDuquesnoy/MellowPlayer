@@ -19,10 +19,10 @@ TEST_CASE("SettingViewModelTests")
 
     SECTION("Basic attributes")
     {
-        REQUIRE(model.getType() == "bool");
-        REQUIRE(!model.getName().isEmpty());
-        REQUIRE(model.getEnabled());
-        REQUIRE(!model.getToolTip().isEmpty());
+        REQUIRE(model.type() == "bool");
+        REQUIRE(!model.name().isEmpty());
+        REQUIRE(model.enabled());
+        REQUIRE(!model.toolTip().isEmpty());
     }
 
     SECTION("enabled should change when enableCondition is met")
@@ -32,12 +32,12 @@ TEST_CASE("SettingViewModelTests")
         QSignalSpy enabledSpy(&dependantModel, SIGNAL(enabledChanged()));
 
         REQUIRE(enabledSpy.count() == 0);
-        REQUIRE(dependantModel.getEnabled());
+        REQUIRE(dependantModel.enabled());
 
         model.setValue(false);
 
         REQUIRE(enabledSpy.count() == 1);
-        REQUIRE(!dependantModel.getEnabled());
+        REQUIRE(!dependantModel.enabled());
 
         model.setValue(true);
     }

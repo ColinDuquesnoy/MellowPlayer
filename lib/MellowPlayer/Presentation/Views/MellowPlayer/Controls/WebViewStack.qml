@@ -69,7 +69,7 @@ StackLayout {
             id: webView
 
             anchors.fill: parent
-            visible: root.currentIndex === _streamingServices.getWebViewIndex(model.name);
+            visible: root.currentIndex === _streamingServices.webViewIndex(model.name);
             enabled: visible
             player: model.player
             urlToLoad: model.url

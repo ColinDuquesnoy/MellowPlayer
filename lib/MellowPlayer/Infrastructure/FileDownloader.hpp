@@ -19,7 +19,7 @@ namespace MellowPlayer::Infrastructure
         FileDownloader();
 
         void download(const QString& urlToDownload, const QString& filePath) override;
-        double getProgress() const override;
+        double progress() const override;
         bool isDownloading() const override;
 
     private slots:
@@ -30,7 +30,7 @@ namespace MellowPlayer::Infrastructure
         Application::ILogger& logger_;
         QNetworkAccessManager networkAccessManager_;
         QFileInfo destinationPath_;
-        QNetworkReply* currentReply = nullptr;
+        QNetworkReply* currentReply_ = nullptr;
         double progress_ = 0;
     };
 }

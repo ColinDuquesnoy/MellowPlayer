@@ -49,11 +49,11 @@ namespace MellowPlayer::Application
             QDateTime now = QDateTime::currentDateTime();
 
             if (song != nullptr && song->isValid()) {
-                entry.songUniqueId = song->getUniqueId();
-                entry.songTitle = song->getTitle();
-                entry.artist = song->getArtist();
-                entry.album = song->getAlbum();
-                entry.artUrl = song->getArtUrl();
+                entry.songUniqueId = song->uniqueId();
+                entry.songTitle = song->title();
+                entry.artist = song->artist();
+                entry.album = song->album();
+                entry.artUrl = song->artUrl();
                 entry.serviceName = serviceName;
                 entry.time = now.toString(Qt::ISODate);
             }

@@ -17,7 +17,7 @@ public:
         return true;
     }
 
-    QFileInfo getLocalArtUrl(const QString&) override
+    QFileInfo localArtUrl(const QString&) override
     {
         return QFileInfo(LOCAL_URL);
     }

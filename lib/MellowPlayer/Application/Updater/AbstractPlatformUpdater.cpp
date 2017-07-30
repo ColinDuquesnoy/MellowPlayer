@@ -20,7 +20,7 @@ void AbstractPlatformUpdater::download()
 {
     if (release_) {
         assetFilePath_ = makeDestinationPath();
-        fileDownloader_.download(getAssetUrl(), assetFilePath_);
+        fileDownloader_.download(assetUrl(), assetFilePath_);
     }
 }
 
@@ -28,7 +28,7 @@ QString AbstractPlatformUpdater::makeDestinationPath()
 {
     QString tempDir = QTemporaryDir().path();
     QDir().mkpath(tempDir);
-    return tempDir + "/" + getAssetFileName();
+    return tempDir + "/" + assetFileName();
 }
 
 void AbstractPlatformUpdater::install()

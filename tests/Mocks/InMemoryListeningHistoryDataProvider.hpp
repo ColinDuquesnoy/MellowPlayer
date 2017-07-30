@@ -45,7 +45,7 @@ public:
         }
     }
 
-    QList<MellowPlayer::Application::ListeningHistoryEntry> getAll() const
+    QList<MellowPlayer::Application::ListeningHistoryEntry> toList() const
     {
         return entries;
     };

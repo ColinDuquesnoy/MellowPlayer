@@ -2,16 +2,38 @@
 
 #include <MellowPlayer/Application/Updater/Updater.hpp>
 
-class UpdaterStatusStrings: public QObject {
+class UpdaterStatusStrings : public QObject
+{
     Q_OBJECT
 public:
-    QString none() const { return tr(""); };
-    QString checking() const { return tr("Checking for update..."); };
-    QString updateAvailable() const { return tr("An update is available..."); };
-    QString downloading() const { return tr("Downloading update..."); };
-    QString installing() const { return tr("Installing update..."); };
-    QString installed() const { return tr("Update installed, you can now restart the application..."); };
-    QString failure() const { return tr("Failed to install update, check logs for warning and errors and try again..."); };
+    QString none() const
+    {
+        return tr("");
+    };
+    QString checking() const
+    {
+        return tr("Checking for update...");
+    };
+    QString updateAvailable() const
+    {
+        return tr("An update is available...");
+    };
+    QString downloading() const
+    {
+        return tr("Downloading update...");
+    };
+    QString installing() const
+    {
+        return tr("Installing update...");
+    };
+    QString installed() const
+    {
+        return tr("Update installed, you can now restart the application...");
+    };
+    QString failure() const
+    {
+        return tr("Failed to install update, check logs for warning and errors and try again...");
+    };
 };
 
 namespace MellowPlayer::Presentation

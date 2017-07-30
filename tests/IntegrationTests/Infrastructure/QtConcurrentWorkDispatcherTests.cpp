@@ -16,7 +16,7 @@ TEST_CASE("QtConcurrentWorkDispatcherTests")
         bool finished = false;
         workDispatcher.invoke([&]() { finished = true; });
         REQUIRE(!finished);
-        sleep_for(milliseconds(100));
+        sleep_for(milliseconds(500));
         REQUIRE(finished);
     }
 

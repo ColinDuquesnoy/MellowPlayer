@@ -16,28 +16,28 @@ QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";
 QString MprisController::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
 MprisController::MprisController(IPlayer& player, ILocalAlbumArt& localAlbumArt, IMainWindow& window, IQtApplication& application)
-        : logger(LoggingManager::instance().getLogger("Mpris")),
-          parent(make_unique<QObject>()),
-          mpris2Root(new Mpris2Root(window, application, parent.get())),
-          mpris2Player(new Mpris2Player(player, localAlbumArt, parent.get())),
-          serviceName(SERVICE_NAME + qApp->applicationName())
+        : logger_(LoggingManager::logger("Mpris")),
+          parent_(make_unique<QObject>()),
+          mpris2Root_(new Mpris2Root(window, application, parent_.get())),
+          mpris2Player_(new Mpris2Player(player, localAlbumArt, parent_.get())),
+          serviceName_(SERVICE_NAME + qApp->applicationName())
 {
 }
 
 MprisController::~MprisController()
 {
     QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
-    QDBusConnection::sessionBus().unregisterObject(serviceName);
+    QDBusConnection::sessionBus().unregisterObject(serviceName_);
 }
 
 bool MprisController::start()
 {
-    if (!QDBusConnection::sessionBus().registerService(serviceName) || !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent.get())) {
-        LOG_WARN(logger, "failed to register service on the session bus: " + serviceName);
-        LOG_WARN(logger, "failed to register object on the session bus: " + OBJECT_NAME);
+    if (!QDBusConnection::sessionBus().registerService(serviceName_) || !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent_.get())) {
+        LOG_WARN(logger_, "failed to register service on the session bus: " + serviceName_);
+        LOG_WARN(logger_, "failed to register object on the session bus: " + OBJECT_NAME);
         return false;
     }
-    LOG_DEBUG(logger, "service started: " + serviceName);
+    LOG_DEBUG(logger_, "service started: " + serviceName_);
     return true;
 }
 

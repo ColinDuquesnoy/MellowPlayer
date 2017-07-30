@@ -11,12 +11,12 @@ ShortcutSettingViewModel::ShortcutSettingViewModel(Setting& setting, QObject* pa
 
 QString ShortcutSettingViewModel::getValue() const
 {
-    return setting.getValue().toString();
+    return setting_.value().toString();
 }
 
 void ShortcutSettingViewModel::setValue(QString value)
 {
-    setting.setValue(value);
+    setting_.setValue(value);
 }
 
 void ShortcutSettingViewModel::onValueChanged()
@@ -24,7 +24,7 @@ void ShortcutSettingViewModel::onValueChanged()
     emit valueChanged();
 }
 
-QString ShortcutSettingViewModel::getQmlComponent()
+QString ShortcutSettingViewModel::qmlComponent()
 {
     return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ShortcutSettingDelegate.qml";
 }

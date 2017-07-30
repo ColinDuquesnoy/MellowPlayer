@@ -14,29 +14,29 @@ namespace MellowPlayer::Application
     class StreamingService : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString author READ getAuthor CONSTANT)
-        Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
-        Q_PROPERTY(QString logo READ getLogo CONSTANT)
-        Q_PROPERTY(QString name READ getName CONSTANT)
-        Q_PROPERTY(QString url READ getUrl CONSTANT)
-        Q_PROPERTY(QString version READ getVersion CONSTANT)
-        Q_PROPERTY(StreamingServiceScript* script READ getScript CONSTANT)
+        Q_PROPERTY(QString author READ author CONSTANT)
+        Q_PROPERTY(QString authorWebsite READ authorWebsite CONSTANT)
+        Q_PROPERTY(QString logo READ logo CONSTANT)
+        Q_PROPERTY(QString name READ name CONSTANT)
+        Q_PROPERTY(QString url READ url CONSTANT)
+        Q_PROPERTY(QString version READ version CONSTANT)
+        Q_PROPERTY(StreamingServiceScript* script READ script CONSTANT)
     public:
         StreamingService(const StreamingServiceMetadata& metadata, const Theme& theme = Theme());
         ~StreamingService();
 
         bool isValid() const;
-        const QString& getAuthor() const;
-        const QString& getAuthorWebsite() const;
-        QString getLogo() const;
-        const QString& getName() const;
-        bool getRequireProprietaryCodecs() const;
-        QString getUrl() const;
-        const QString& getVersion() const;
-        StreamingServiceScript* getScript() const;
-        const Theme& getTheme() const;
+        const QString& author() const;
+        const QString& authorWebsite() const;
+        QString logo() const;
+        const QString& name() const;
+        bool requireProprietaryCodecs() const;
+        QString url() const;
+        const QString& version() const;
+        StreamingServiceScript* script() const;
+        const Theme& theme() const;
 
-        QString getPluginDirectory() const;
+        QString pluginDirectory() const;
 
         void updateTheme(Theme& newTheme);
         void updateScript(const QString& script);
@@ -49,8 +49,8 @@ namespace MellowPlayer::Application
         void themeChanged();
 
     private:
-        StreamingServiceMetadata metadata;
-        Theme theme;
-        std::unique_ptr<StreamingServiceScript> script;
+        StreamingServiceMetadata metadata_;
+        Theme theme_;
+        std::unique_ptr<StreamingServiceScript> script_;
     };
 }

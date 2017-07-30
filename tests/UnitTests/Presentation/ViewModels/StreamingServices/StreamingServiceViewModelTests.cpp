@@ -18,8 +18,8 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 
     ISettingsProvider& settingsProvider = pool.getSettingsProvider();
 
-    StreamingService& service1 = *streamingServices.getAll()[0];
-    StreamingService& service2 = *streamingServices.getAll()[1];
+    StreamingService& service1 = *streamingServices.toList()[0];
+    StreamingService& service2 = *streamingServices.toList()[1];
 
     StreamingServiceViewModel viewModel(service1, settingsProvider, players);
     StreamingServiceViewModel sameModel(service1, settingsProvider, players);
@@ -27,10 +27,10 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 
     SECTION("basic properties")
     {
-        REQUIRE(viewModel.getLogo() == service1.getLogo());
-        REQUIRE(viewModel.getName() == service1.getName());
-        REQUIRE(viewModel.getPlayer() == players.get(service1.getName()).get());
-        REQUIRE(viewModel.getUrl() == service1.getUrl());
+        REQUIRE(viewModel.logo() == service1.logo());
+        REQUIRE(viewModel.name() == service1.name());
+        REQUIRE(viewModel.player() == players.get(service1.name()).get());
+        REQUIRE(viewModel.url() == service1.url());
     }
 
     SECTION("equality operator")
@@ -43,20 +43,20 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
     {
         QSignalSpy spy(&viewModel, SIGNAL(urlChanged(const QString&)));
         viewModel.setUrl("https://deezer.com/news");
-        REQUIRE(viewModel.getUrl() == "https://deezer.com/news");
+        REQUIRE(viewModel.url() == "https://deezer.com/news");
         REQUIRE(spy.count() == 1);
     }
 
     SECTION("sort order is undefined initially")
     {
-        REQUIRE(viewModel.getSortOrder() == -1);
+        REQUIRE(viewModel.sortOrder() == -1);
     }
 
     SECTION("setSortOrder sortOrderChanged signal is emitted")
     {
         QSignalSpy spy(&viewModel, &StreamingServiceViewModel::sortOrderChanged);
         viewModel.setSortOrder(2);
-        REQUIRE(viewModel.getSortOrder() == 2);
+        REQUIRE(viewModel.sortOrder() == 2);
         REQUIRE(spy.count() == 1);
     }
 

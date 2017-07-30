@@ -11,13 +11,13 @@
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
-SettingViewModelFactory::SettingViewModelFactory(ThemeViewModel& themeViewModel) : themeViewModel(themeViewModel)
+SettingViewModelFactory::SettingViewModelFactory(ThemeViewModel& themeViewModel) : themeViewModel_(themeViewModel)
 {
 }
 
 SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* parent) const
 {
-    QString type = setting.getType().toLower();
+    QString type = setting.type().toLower();
     if (type == "bool")
         return new BoolSettingViewModel(setting, parent);
     else if (type == "color")
@@ -31,6 +31,6 @@ SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* par
     else if (type.startsWith("update-channel"))
         return new UpdateChannelSettingViewModel(setting, parent);
     else if (type.startsWith("theme"))
-        return new ThemeSettingViewModel(setting, parent, themeViewModel);
+        return new ThemeSettingViewModel(setting, parent, themeViewModel_);
     return new StringSettingViewModel(setting, parent);
 }

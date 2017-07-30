@@ -17,7 +17,7 @@ namespace MellowPlayer::Infrastructure
     public:
         LocalAlbumArt(Application::IPlayer& player, Application::IAlbumArtDownloader& downloader);
 
-        const QString& getUrl() const override;
+        const QString& url() const override;
         bool isSongArtReady(const Application::Song& song) override;
 
     private slots:
@@ -25,7 +25,7 @@ namespace MellowPlayer::Infrastructure
         void onDownloadFinished(const QString& newUrl);
 
     private:
-        Application::IAlbumArtDownloader& downloader;
-        QString url;
+        Application::IAlbumArtDownloader& downloader_;
+        QString url_;
     };
 }

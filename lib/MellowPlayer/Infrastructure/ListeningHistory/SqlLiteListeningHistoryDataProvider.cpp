@@ -11,26 +11,25 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider()
-        : logger(LoggingManager::instance().getLogger("SqlLiteListeningHistoryDataProvider"))
+SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider() : logger_(LoggingManager::logger("SqlLiteListeningHistoryDataProvider"))
 {
 }
 
 SqlLiteListeningHistoryDataProvider::~SqlLiteListeningHistoryDataProvider()
 {
-    database.close();
+    database_.close();
 }
 
 bool SqlLiteListeningHistoryDataProvider::openDatabase()
 {
     auto path = getDatabasePath();
-    LOG_DEBUG(logger, "opening listening history db: " + path)
-    database.setDatabaseName(path);
-    if (!database.open()) {
-        LOG_WARN(logger, "connection with database failed: " + path)
+    LOG_DEBUG(logger_, "opening listening history db: " + path)
+    database_.setDatabaseName(path);
+    if (!database_.open()) {
+        LOG_WARN(logger_, "connection with database failed: " + path)
         return false;
     }
-    LOG_DEBUG(logger, "connected to database: " + path)
+    LOG_DEBUG(logger_, "connected to database: " + path)
     return true;
 }
 
@@ -49,7 +48,7 @@ int SqlLiteListeningHistoryDataProvider::add(const ListeningHistoryEntry& entry)
     query.bindValue(":time", entry.time);
 
     if (!query.exec())
-        LOG_WARN(logger, "failed to add listening history entry to db: " + query.lastError().text());
+        LOG_WARN(logger_, "failed to add listening history entry to db: " + query.lastError().text());
 
     return query.lastInsertId().toInt();
 }
@@ -60,7 +59,7 @@ void SqlLiteListeningHistoryDataProvider::clear()
     query.prepare("DELETE FROM song");
 
     if (!query.exec())
-        LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
+        LOG_WARN(logger_, "failed to clear listening history: " + query.lastError().text());
 }
 
 void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const QString& filterValue)
@@ -70,7 +69,7 @@ void SqlLiteListeningHistoryDataProvider::remove(const QString& filterKey, const
     query.bindValue(QString(":%1").arg(filterKey), filterValue);
 
     if (!query.exec())
-        LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
+        LOG_WARN(logger_, "failed to clear listening history: " + query.lastError().text());
 }
 
 void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifiers)
@@ -84,10 +83,10 @@ void SqlLiteListeningHistoryDataProvider::removeMany(const QList<int>& identifie
     QString queryString = QString("DELETE FROM song WHERE id IN (%1)").arg(numberList);
 
     if (!query.exec(queryString))
-        LOG_WARN(logger, "failed to clear listening history: " + query.lastError().text());
+        LOG_WARN(logger_, "failed to clear listening history: " + query.lastError().text());
 }
 
-QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
+QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::toList() const
 {
     QList<ListeningHistoryEntry> retVal;
 
@@ -119,20 +118,20 @@ QList<ListeningHistoryEntry> SqlLiteListeningHistoryDataProvider::getAll() const
 
 void SqlLiteListeningHistoryDataProvider::initDatabase()
 {
-    if (database.tables().count() == 0) {
-        LOG_DEBUG(logger, "creating database");
+    if (database_.tables().count() == 0) {
+        LOG_DEBUG(logger_, "creating database");
         QSqlQuery query;
         query.prepare("CREATE TABLE song(id INTEGER PRIMARY KEY, songUniqueId "
                       "TEXT, songTitle TEXT, artist TEXT, album TEXT, "
                       "artUrl TEXT, serviceName TEXT, time TEXT);");
         if (!query.exec())
-            LOG_WARN(logger, "failed to create song table: " + query.lastError().text());
+            LOG_WARN(logger_, "failed to create song table: " + query.lastError().text());
     }
 }
 
 void SqlLiteListeningHistoryDataProvider::initialize()
 {
-    database = QSqlDatabase::addDatabase("QSQLITE");
+    database_ = QSqlDatabase::addDatabase("QSQLITE");
     if (openDatabase())
         initDatabase();
 }

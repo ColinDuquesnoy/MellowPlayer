@@ -13,7 +13,7 @@
 using namespace MellowPlayer::Application;
 
 ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings)
-        : logger(LoggingManager::instance().getLogger("ListeningHistory")),
+        : logger(LoggingManager::logger("ListeningHistory")),
           dataProvider(model),
           player(player),
           workDispatcher(workDispatcher),
@@ -28,30 +28,30 @@ ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer
 
 void ListeningHistory::onPlaybackStatusChanged()
 {
-    onCurrentSongChanged(player.getCurrentSong());
+    onCurrentSongChanged(player.currentSong());
 }
 
 void ListeningHistory::onCurrentSongChanged(Song* song)
 {
-    auto newEntry = ListeningHistoryEntry::fromData(song, player.getServiceName());
+    auto newEntry = ListeningHistoryEntry::fromData(song, player.serviceName());
     workDispatcher.delayInvoke(DELAY, [=]() mutable { addSong(song, newEntry); });
 }
 
 void ListeningHistory::initialize()
 {
     dataProvider.initialize();
-    entries = this->dataProvider.getAll();
+    entries = this->dataProvider.toList();
     clearOutdatedEntries();
 }
 
-const QList<ListeningHistoryEntry>& ListeningHistory::getEntries() const
+const QList<ListeningHistoryEntry>& ListeningHistory::toList() const
 {
     return entries;
 }
 
 int ListeningHistory::count() const
 {
-    return getEntries().count();
+    return toList().count();
 }
 
 void ListeningHistory::clear()
@@ -88,24 +88,24 @@ void ListeningHistory::removeManyById(const QList<int>& ids)
 
 void ListeningHistory::addSong(const Song* song, ListeningHistoryEntry& newEntry)
 {
-    if (!isEnabledSetting.getValue().toBool())
+    if (!isEnabledSetting.value().toBool())
         return;
 
-    auto previousEntry = previousEntryPerPlayer[player.getServiceName()];
+    auto previousEntry = previousEntryPerPlayer[player.serviceName()];
 
-    if (previousEntry.equals(newEntry) || !newEntry.isValid() || player.getPlaybackStatus() != PlaybackStatus::Playing)
+    if (previousEntry.equals(newEntry) || !newEntry.isValid() || player.playbackStatus() != PlaybackStatus::Playing)
         return;
 
     newEntry.id = dataProvider.add(newEntry);
     entries.append(newEntry);
     emit entryAdded(newEntry);
-    previousEntryPerPlayer[player.getServiceName()] = newEntry;
+    previousEntryPerPlayer[player.serviceName()] = newEntry;
     LOG_DEBUG(logger, "new entry: " + song->toString() + ", id=" + QString("%1").arg(newEntry.id));
 }
 
 void ListeningHistory::updateRemovedEntries()
 {
-    auto removedEntries = entries.toSet().subtract(dataProvider.getAll().toSet()).toList();
+    auto removedEntries = entries.toSet().subtract(dataProvider.toList().toSet()).toList();
     for (auto entry : removedEntries) {
         int index = entries.indexOf(entry);
         entries.removeAt(index);
@@ -115,7 +115,7 @@ void ListeningHistory::updateRemovedEntries()
 
 void ListeningHistory::onIsEnabledChanged()
 {
-    if (!isEnabledSetting.getValue().toBool())
+    if (!isEnabledSetting.value().toBool())
         clear();
 }
 
@@ -144,7 +144,7 @@ TimeLimits dateToTimeLimit(const QDateTime& dateTime)
 
 void ListeningHistory::clearOutdatedEntries()
 {
-    TimeLimits limit = static_cast<TimeLimits>(limitSetting.getValue().toInt());
+    TimeLimits limit = static_cast<TimeLimits>(limitSetting.value().toInt());
 
     if (limit == TimeLimits::Never)
         return;

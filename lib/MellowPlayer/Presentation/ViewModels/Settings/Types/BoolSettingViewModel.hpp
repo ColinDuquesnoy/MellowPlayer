@@ -13,7 +13,7 @@ namespace MellowPlayer::Presentation
         BoolSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         bool getValue() const;
-        QString getQmlComponent() override;
+        QString qmlComponent() override;
 
     signals:
         void valueChanged();

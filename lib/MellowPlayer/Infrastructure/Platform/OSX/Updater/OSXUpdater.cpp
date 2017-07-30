@@ -23,12 +23,12 @@ void OSXUpdater::doInstall(const QString& assetLocalPath)
     emit installFinished(QFile::exists(dmgPath_));
 }
 
-QString OSXUpdater::getAssetUrl() const
+QString OSXUpdater::assetUrl() const
 {
     return asset_.getUrl();
 }
 
-QString OSXUpdater::getAssetFileName() const
+QString OSXUpdater::assetFileName() const
 {
     return asset_.getName();
 }
@@ -38,7 +38,7 @@ void OSXUpdater::setRelease(const Release* release)
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto& asset : release_->getAssets()) {
+        for (auto& asset : release_->assets()) {
             if (asset.isDmg()) {
                 asset_ = asset;
                 break;

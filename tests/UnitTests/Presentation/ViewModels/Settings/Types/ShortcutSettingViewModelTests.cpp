@@ -52,6 +52,6 @@ TEST_CASE("ShortcutSettingViewModelTests")
 
     SECTION("QML Component looks valid")
     {
-        REQUIRE(model.getQmlComponent().toLower().contains("shortcut"));
+        REQUIRE(model.qmlComponent().toLower().contains("shortcut"));
     }
 }

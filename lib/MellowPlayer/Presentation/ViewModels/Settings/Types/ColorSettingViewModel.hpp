@@ -14,7 +14,7 @@ namespace MellowPlayer::Presentation
         ColorSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QColor getValue() const;
-        QString getQmlComponent() override;
+        QString qmlComponent() override;
 
     signals:
         void valueChanged();

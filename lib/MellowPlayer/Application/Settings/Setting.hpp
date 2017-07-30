@@ -28,14 +28,14 @@ namespace MellowPlayer::Application
         void resolveDependency();
         void restoreDefaults();
 
-        const QString& getKey() const;
-        const QString& getName() const;
-        const QString& getToolTip() const;
-        const QString& getType() const;
-        QVariant getDefaultValue() const;
+        const QString& key() const;
+        const QString& name() const;
+        const QString& toolTip() const;
+        const QString& type() const;
+        QVariant defaultValue() const;
 
-        QVariant getValue() const;
-        void setValue(const QVariant& value);
+        QVariant value() const;
+        void setValue(const QVariant& newValue);
 
         bool isEnabled() const;
 
@@ -49,11 +49,11 @@ namespace MellowPlayer::Application
     private:
         QString getFullKey() const;
 
-        ISettingsProvider& settingsProvider;
-        Settings& settings;
-        SettingsCategory& category;
-        Data data;
-        bool notOperator = false;
-        Setting* parentSetting = nullptr;
+        ISettingsProvider& settingsProvider_;
+        Settings& settings_;
+        SettingsCategory& category_;
+        Data data_;
+        //        bool notOperator_ = false;
+        Setting* parentSetting_ = nullptr;
     };
 }

@@ -2,7 +2,7 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
@@ -143,7 +143,7 @@ UpdaterViewModel& DependencyPool::getUpdaterViewModel()
 Updater& DependencyPool::getUpdater()
 {
     static FakeHttpClient httpClient;
-    static GithubReleaseQuerier querier(httpClient);
+    static LatestGithubReleaseQuerier querier(httpClient);
     if (pUpdater == nullptr)
         pUpdater = make_unique<Updater>(querier, getSettings(), getPlatformUpdater());
     return *pUpdater;

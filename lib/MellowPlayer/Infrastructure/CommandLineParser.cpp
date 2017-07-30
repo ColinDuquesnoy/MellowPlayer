@@ -5,40 +5,38 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
 CommandLineParser::CommandLineParser()
-        : serviceOption(QStringList() << "s"
-                                      << "service",
-                        "Select startup service", "service"),
-          logLevelOption(QStringList() << "l"
-                                       << "log-level",
-                         "Log level (0=TRACE, 1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, "
-                         "5=CRITICAL, 6=OFF)",
-                         "logLevel", "2"),
-          playPauseOption(QStringList() << "p"
-                                        << "play-pause",
-                          "Play or pause the current song"),
-          nextOption(QStringList() << "f"
-                                   << "next",
-                     "Skip to the next song"),
-          previousOption(QStringList() << "b"
-                                       << "previous",
-                         "Skip to the previous song"),
-          toggleFavoriteOption(QStringList() << "t"
-                                             << "toggle-favorite-song",
-                               "Add or remove the current song to/from your favorites"),
-          autoQuitDelayOption(QStringList() << "d"
-                                            << "auto-quit-delay",
-                              "Auto quit delay [ms]", "autoQuitDelay")
+        : serviceOption_(QStringList() << "s"
+                                       << "service",
+                         "Select startup service", "service"),
+          logLevelOption_(QStringList() << "l"
+                                        << "log-level",
+                          "Log level (0=TRACE, 1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, 5=CRITICAL, 6=OFF)", "logLevel", "2"),
+          playPauseOption_(QStringList() << "p"
+                                         << "play-pause",
+                           "Play or pause the current song"),
+          nextOption_(QStringList() << "f"
+                                    << "next",
+                      "Skip to the next song"),
+          previousOption_(QStringList() << "b"
+                                        << "previous",
+                          "Skip to the previous song"),
+          toggleFavoriteOption_(QStringList() << "t"
+                                              << "toggle-favorite-song",
+                                "Add or remove the current song to/from your favorites"),
+          autoQuitDelayOption_(QStringList() << "d"
+                                             << "auto-quit-delay",
+                               "Auto quit delay [ms]", "autoQuitDelay")
 {
-    parser.setApplicationDescription("Cloud music player for your desktop!");
-    parser.addVersionOption();
-    parser.addHelpOption();
-    parser.addOption(serviceOption);
-    parser.addOption(logLevelOption);
-    parser.addOption(playPauseOption);
-    parser.addOption(nextOption);
-    parser.addOption(previousOption);
-    parser.addOption(toggleFavoriteOption);
-    parser.addOption(autoQuitDelayOption);
+    parser_.setApplicationDescription("Cloud music player for your desktop!");
+    parser_.addVersionOption();
+    parser_.addHelpOption();
+    parser_.addOption(serviceOption_);
+    parser_.addOption(logLevelOption_);
+    parser_.addOption(playPauseOption_);
+    parser_.addOption(nextOption_);
+    parser_.addOption(previousOption_);
+    parser_.addOption(toggleFavoriteOption_);
+    parser_.addOption(autoQuitDelayOption_);
 
     QStringList webEngineOptions = QStringList() << "--remote-debugging-port";
     QStringList args;
@@ -53,51 +51,52 @@ CommandLineParser::CommandLineParser()
         if (addArg)
             args << arg;
     }
-    parser.process(args);
+    parser_.process(args);
 
-    service = parser.value(serviceOption);
-    int logLevelValue = parser.value(logLevelOption).toInt();
+    service_ = parser_.value(serviceOption_);
+    int logLevelValue = parser_.value(logLevelOption_).toInt();
     if (logLevelValue < 0 || logLevelValue > static_cast<int>(LogLevel::Off))
-        logLevel = LogLevel::Info;
-    logLevel = static_cast<LogLevel>(logLevelValue);
-    autoQuitDelay = parser.value(autoQuitDelayOption).toInt();
+        logLevel_ = LogLevel::Info;
+    else
+        logLevel_ = static_cast<LogLevel>(logLevelValue);
+    autoQuitDelay_ = parser_.value(autoQuitDelayOption_).toInt();
 
-    playRequested = parser.isSet(playPauseOption);
-    previousRequested = parser.isSet(previousOption);
-    nextRequested = parser.isSet(nextOption);
-    toggleFavoriteRequested = parser.isSet(toggleFavoriteOption);
+    playRequested_ = parser_.isSet(playPauseOption_);
+    previousRequested_ = parser_.isSet(previousOption_);
+    nextRequested_ = parser_.isSet(nextOption_);
+    toggleFavoriteRequested_ = parser_.isSet(toggleFavoriteOption_);
 }
 
-QString CommandLineParser::getService() const
+QString CommandLineParser::service() const
 {
-    return service;
+    return service_;
 }
 
-int CommandLineParser::getAutoQuitDelay() const
+int CommandLineParser::autoQuitDelay() const
 {
-    return autoQuitDelay;
+    return autoQuitDelay_;
 }
 
-bool CommandLineParser::isPlayPauseRequested() const
+bool CommandLineParser::playPauseRequested() const
 {
-    return playRequested;
+    return playRequested_;
 }
 
-bool CommandLineParser::isNextRequested() const
+bool CommandLineParser::nextRequested() const
 {
-    return nextRequested;
+    return nextRequested_;
 }
 
-bool CommandLineParser::isPreviousRequested() const
+bool CommandLineParser::previousRequested() const
 {
-    return previousRequested;
+    return previousRequested_;
 }
 
-LogLevel CommandLineParser::getLogLevel() const
+LogLevel CommandLineParser::logLevel() const
 {
-    return logLevel;
+    return logLevel_;
 }
-bool CommandLineParser::isToggleFavoriteRequested() const
+bool CommandLineParser::toggleFavoriteRequested() const
 {
-    return toggleFavoriteRequested;
+    return toggleFavoriteRequested_;
 }

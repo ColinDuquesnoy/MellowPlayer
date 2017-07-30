@@ -19,9 +19,9 @@ TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
 
     SECTION("load called StreamingServiceLoader::load and watch every new service")
     {
-        REQUIRE(streamingServices.getAll().count() > 1);
+        REQUIRE(streamingServices.toList().count() > 1);
         Verify(Method(loaderMock, load)).Exactly(1);
-        Verify(Method(watcherMock, watch)).Exactly(streamingServices.getAll().count());
+        Verify(Method(watcherMock, watch)).Exactly(streamingServices.toList().count());
     };
 
     SECTION("added signal is emitted for each service loaded")
@@ -31,7 +31,7 @@ TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
 
     SECTION("get with valid service name")
     {
-        REQUIRE(streamingServices.get("Deezer").getName() == "Deezer");
+        REQUIRE(streamingServices.get("Deezer").name() == "Deezer");
     };
 
     SECTION("get with unknown service name throws")
@@ -41,14 +41,14 @@ TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
 
     SECTION("current service is initially empty")
     {
-        REQUIRE(streamingServices.getCurrent() == nullptr);
+        REQUIRE(streamingServices.current() == nullptr);
     }
 
     SECTION("set current service ")
     {
         QSignalSpy spyCurrentChanged(&streamingServices, SIGNAL(currentChanged(StreamingService*)));
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
-        REQUIRE(streamingServices.getCurrent() != nullptr);
+        REQUIRE(streamingServices.current() != nullptr);
         REQUIRE(spyCurrentChanged.count() == 1);
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
         REQUIRE(spyCurrentChanged.count() == 1);

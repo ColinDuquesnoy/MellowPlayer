@@ -9,19 +9,20 @@ namespace MellowPlayer::Application
     class StreamingServiceScript : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString code READ getCode NOTIFY codeChanged);
-        Q_PROPERTY(QString path READ getPath CONSTANT);
+        Q_PROPERTY(QString code READ code NOTIFY codeChanged);
+        Q_PROPERTY(QString path READ path CONSTANT);
 
     public:
         StreamingServiceScript(const QString& code, const QString& path);
 
         bool isValid() const;
 
-        QString getConstants() const;
-        QString getCode() const;
+        QString constants() const;
+
+        QString code() const;
         void setCode(const QString& value);
 
-        const QString& getPath() const;
+        const QString& path() const;
 
         Q_INVOKABLE QString update() const;
         Q_INVOKABLE QString play() const;
@@ -37,7 +38,7 @@ namespace MellowPlayer::Application
         void codeChanged(QString);
 
     private:
-        QString code;
-        QString path;
+        QString code_;
+        QString path_;
     };
 }

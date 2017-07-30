@@ -7,32 +7,32 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-LocalAlbumArt::LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader) : downloader(downloader)
+LocalAlbumArt::LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader) : downloader_(downloader)
 {
     connect(&player, &IPlayer::currentSongChanged, this, &LocalAlbumArt::onCurrentSongChanged);
     connect(&downloader, &IAlbumArtDownloader::downloadFinished, this, &LocalAlbumArt::onDownloadFinished);
 }
 
-const QString& LocalAlbumArt::getUrl() const
+const QString& LocalAlbumArt::url() const
 {
-    return url;
+    return url_;
 }
 
 void LocalAlbumArt::onCurrentSongChanged(Song* song)
 {
-    if (song != nullptr && !song->getArtUrl().isEmpty() && !song->getUniqueId().isEmpty())
-        downloader.download(song->getArtUrl(), song->getUniqueId());
+    if (song != nullptr && !song->artUrl().isEmpty() && !song->uniqueId().isEmpty())
+        downloader_.download(song->artUrl(), song->uniqueId());
 }
 
 void LocalAlbumArt::onDownloadFinished(const QString& newUrl)
 {
-    if (newUrl != url) {
-        url = newUrl;
+    if (newUrl != url_) {
+        url_ = newUrl;
         emit urlChanged();
     }
 }
 
 bool LocalAlbumArt::isSongArtReady(const Song& song)
 {
-    return url.contains(song.getUniqueId()) && QFileInfo(url).exists();
+    return url_.contains(song.uniqueId()) && QFileInfo(url_).exists();
 }

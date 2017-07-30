@@ -4,7 +4,6 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-
 QString UpdaterStatusConverter::toString(Updater::Status status)
 {
     static QMap<Updater::Status, QString> map = {{Updater::Status::None, strings_.none()},

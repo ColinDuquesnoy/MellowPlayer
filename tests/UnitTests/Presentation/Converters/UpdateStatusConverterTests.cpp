@@ -60,7 +60,7 @@ SCENARIO("Updater status can be converted to a string")
 
         WHEN("converting to string")
         {
-            QString statusString =converter.toString(status);
+            QString statusString = converter.toString(status);
 
             THEN("the string is valid")
             {

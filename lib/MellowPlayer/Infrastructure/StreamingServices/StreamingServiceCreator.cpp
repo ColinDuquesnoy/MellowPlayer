@@ -17,15 +17,15 @@ const QString StreamingServiceCreator::THEME_FILE_NAME = "theme.json";
 QString StreamingServiceCreator::create(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
                                         const QString& authorWebsite) const
 {
-    auto pluginDir = getPluginDir(serviceName);
-    QDir().mkpath(pluginDir);
+    auto dir = pluginDir(serviceName);
+    QDir().mkpath(dir);
 
-    createLogo(pluginDir);
-    createScript(pluginDir);
-    createTheme(pluginDir);
-    createMetadata(serviceName, serviceUrl, authorName, authorWebsite, pluginDir);
+    createLogo(dir);
+    createScript(dir);
+    createTheme(dir);
+    createMetadata(serviceName, serviceUrl, authorName, authorWebsite, dir);
 
-    return pluginDir;
+    return dir;
 }
 
 void StreamingServiceCreator::createScript(const QString& pluginDir) const
@@ -49,9 +49,9 @@ void StreamingServiceCreator::createMetadata(const QString& serviceName, const Q
     createPluginFile(pluginDir, METADATA_FILE_NAME, [&](QString string) { return string.arg(authorName, authorWebsite, serviceName, serviceUrl); });
 }
 
-QString StreamingServiceCreator::getPluginDir(const QString& serviceName) const
+QString StreamingServiceCreator::pluginDir(const QString& serviceName) const
 {
-    return QDir::cleanPath(StreamingServiceLoader::getUserDirectory() + QDir::separator() + serviceName);
+    return QDir::cleanPath(StreamingServiceLoader::userDirectory() + QDir::separator() + serviceName);
 }
 
 QString StreamingServiceCreator::readTemplateFile(const QString& fileName) const
@@ -75,14 +75,14 @@ void StreamingServiceCreator::write(const QString& path, const QString& content)
     }
 }
 
-QString StreamingServiceCreator::getFilePath(const QString& pluginDir, const QString& fileName) const
+QString StreamingServiceCreator::filePath(const QString& pluginDir, const QString& fileName) const
 {
     return QDir::cleanPath(pluginDir + QDir::separator() + fileName);
 }
 
 void StreamingServiceCreator::createPluginFile(const QString& pluginDir, const QString& fileName, const function<QString(QString)>& transformer) const
 {
-    const QString filePath = getFilePath(pluginDir, fileName);
+    const QString path = filePath(pluginDir, fileName);
     const QString content = transformer(readTemplateFile(fileName));
-    write(filePath, content);
+    write(path, content);
 }

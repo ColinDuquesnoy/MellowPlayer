@@ -12,26 +12,26 @@ TEST_CASE("SongTests", "[UnitTest]")
     {
         Song song("uniqueId", "title", "artist", "album", "artUrl", 1534, true);
 
-        REQUIRE(song.getAlbum() == "album");
-        REQUIRE(song.getArtist() == "artist");
-        REQUIRE(song.getArtUrl() == "artUrl");
-        REQUIRE(song.getDuration() == 1534);
-        REQUIRE(song.getIsFavorite());
-        REQUIRE(song.getTitle() == "title");
-        REQUIRE(song.getUniqueId() == "uniqueId");
+        REQUIRE(song.album() == "album");
+        REQUIRE(song.artist() == "artist");
+        REQUIRE(song.artUrl() == "artUrl");
+        REQUIRE(song.duration() == 1534);
+        REQUIRE(song.isFavorite());
+        REQUIRE(song.title() == "title");
+        REQUIRE(song.uniqueId() == "uniqueId");
     }
 
     SECTION("NullCtor")
     {
         Song song;
 
-        REQUIRE(song.getAlbum() == "");
-        REQUIRE(song.getArtist() == "");
-        REQUIRE(song.getArtUrl() == "");
-        REQUIRE(song.getDuration() == 0);
-        REQUIRE(!song.getIsFavorite());
-        REQUIRE(song.getTitle() == "");
-        REQUIRE(song.getUniqueId() == "");
+        REQUIRE(song.album() == "");
+        REQUIRE(song.artist() == "");
+        REQUIRE(song.artUrl() == "");
+        REQUIRE(song.duration() == 0);
+        REQUIRE(!song.isFavorite());
+        REQUIRE(song.title() == "");
+        REQUIRE(song.uniqueId() == "");
     }
 
     SECTION("setDuration")
@@ -40,23 +40,23 @@ TEST_CASE("SongTests", "[UnitTest]")
         QSignalSpy spy(&song, SIGNAL(durationChanged()));
 
         song.setDuration(40);
-        REQUIRE(song.getDuration() == 40);
+        REQUIRE(song.duration() == 40);
         REQUIRE(spy.count() == 1);
 
         song.setDuration(40);
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("setIsFavorite")
+    SECTION("setFavorite")
     {
         Song song;
         QSignalSpy spy(&song, SIGNAL(isFavoriteChanged()));
 
-        song.setIsFavorite(true);
-        REQUIRE(song.getIsFavorite());
+        song.setFavorite(true);
+        REQUIRE(song.isFavorite());
         REQUIRE(spy.count() == 1);
 
-        song.setIsFavorite(true);
+        song.setFavorite(true);
         REQUIRE(spy.count() == 1);
     }
 

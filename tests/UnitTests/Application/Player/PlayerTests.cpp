@@ -43,21 +43,21 @@ TEST_CASE("PlayerTests", "[UnitTest]")
     {
         player.setUpdateResults(QVariant());
 
-        REQUIRE(player.getPosition() == 0);
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Stopped);
-        REQUIRE(!player.getCanSeek());
-        REQUIRE(!player.getCanGoNext());
-        REQUIRE(!player.getCanGoPrevious());
-        REQUIRE(!player.getCanAddToFavorites());
-        REQUIRE(player.getVolume() == 0);
+        REQUIRE(player.position() == 0);
+        REQUIRE(player.playbackStatus() == PlaybackStatus::Stopped);
+        REQUIRE(!player.canSeek());
+        REQUIRE(!player.canGoNext());
+        REQUIRE(!player.canGoPrevious());
+        REQUIRE(!player.canAddToFavorites());
+        REQUIRE(player.volume() == 0);
 
-        REQUIRE(player.getCurrentSong()->getTitle() == "");
-        REQUIRE(player.getCurrentSong()->getAlbum() == "");
-        REQUIRE(player.getCurrentSong()->getArtist() == "");
-        REQUIRE(player.getCurrentSong()->getUniqueId() == "");
-        REQUIRE(player.getCurrentSong()->getArtUrl() == "");
-        REQUIRE(player.getCurrentSong()->getDuration() == 0);
-        REQUIRE(!player.getCurrentSong()->getIsFavorite());
+        REQUIRE(player.currentSong()->title() == "");
+        REQUIRE(player.currentSong()->album() == "");
+        REQUIRE(player.currentSong()->artist() == "");
+        REQUIRE(player.currentSong()->uniqueId() == "");
+        REQUIRE(player.currentSong()->artUrl() == "");
+        REQUIRE(player.currentSong()->duration() == 0);
+        REQUIRE(!player.currentSong()->isFavorite());
     }
 
     SECTION("setUpdateResults with valid QVariant")
@@ -80,21 +80,21 @@ TEST_CASE("PlayerTests", "[UnitTest]")
         map["duration"] = 350.0;
         player.setUpdateResults(QVariant::fromValue(map));
 
-        REQUIRE(player.getPosition() == 1.0);
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Playing);
-        REQUIRE(player.getCanSeek());
-        REQUIRE(player.getCanGoNext());
-        REQUIRE(player.getCanGoPrevious());
-        REQUIRE(player.getCanAddToFavorites());
-        REQUIRE(player.getVolume() == 1.0);
+        REQUIRE(player.position() == 1.0);
+        REQUIRE(player.playbackStatus() == PlaybackStatus::Playing);
+        REQUIRE(player.canSeek());
+        REQUIRE(player.canGoNext());
+        REQUIRE(player.canGoPrevious());
+        REQUIRE(player.canAddToFavorites());
+        REQUIRE(player.volume() == 1.0);
 
-        REQUIRE(player.getCurrentSong()->getTitle() == "songTitle");
-        REQUIRE(player.getCurrentSong()->getAlbum() == "albumTitle");
-        REQUIRE(player.getCurrentSong()->getArtist() == "artistName");
-        REQUIRE(player.getCurrentSong()->getUniqueId() == "010203");
-        REQUIRE(player.getCurrentSong()->getArtUrl() == "artUrl");
-        REQUIRE(player.getCurrentSong()->getDuration() == 350.0);
-        REQUIRE(player.getCurrentSong()->getIsFavorite());
+        REQUIRE(player.currentSong()->title() == "songTitle");
+        REQUIRE(player.currentSong()->album() == "albumTitle");
+        REQUIRE(player.currentSong()->artist() == "artistName");
+        REQUIRE(player.currentSong()->uniqueId() == "010203");
+        REQUIRE(player.currentSong()->artUrl() == "artUrl");
+        REQUIRE(player.currentSong()->duration() == 350.0);
+        REQUIRE(player.currentSong()->isFavorite());
     }
 
     SECTION("togglePlayPause")
@@ -177,12 +177,12 @@ TEST_CASE("PlayerTests", "[UnitTest]")
         player.setUpdateResults(QVariant::fromValue(map));
 
         player.toggleFavoriteSong();
-        player.getCurrentSong()->setIsFavorite(true);
+        player.currentSong()->setFavorite(true);
         REQUIRE(runJavascriptRequestedSpy.count() == 1);
         REQUIRE(runJavascriptRequestedSpy[0][0].toString().toStdString() == "addToFavorites();");
 
         player.toggleFavoriteSong();
-        player.getCurrentSong()->setIsFavorite(false);
+        player.currentSong()->setFavorite(false);
         REQUIRE(runJavascriptRequestedSpy.count() == 2);
         REQUIRE(runJavascriptRequestedSpy[1][0].toString().toStdString() == "removeFromFavorites();");
     }
@@ -199,7 +199,7 @@ TEST_CASE("PlayerTests", "[UnitTest]")
         player.play();
         player.setPlaybackStatus(PlaybackStatus::Playing);
         player.suspend();
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
+        REQUIRE(player.playbackStatus() == PlaybackStatus::Paused);
     }
 
     SECTION("resume when not playing")
@@ -218,7 +218,7 @@ TEST_CASE("PlayerTests", "[UnitTest]")
         player.setPlaybackStatus(PlaybackStatus::Playing);
         player.suspend();
         REQUIRE(runJavascriptRequestedSpy.count() == 2);
-        REQUIRE(player.getPlaybackStatus() == PlaybackStatus::Paused);
+        REQUIRE(player.playbackStatus() == PlaybackStatus::Paused);
         player.resume();
         REQUIRE(runJavascriptRequestedSpy.count() == 3);
     }

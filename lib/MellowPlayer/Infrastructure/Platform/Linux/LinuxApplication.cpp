@@ -15,16 +15,16 @@ using namespace MellowPlayer::Infrastructure;
 LinuxApplication::LinuxApplication(IQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
                                    IHotkeysController& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier, IMprisController& mprisService)
         : CoreApplication(qtApp, mainWindow, streamingServices, kotkeys, systemTrayIcon, notifier),
-          logger(LoggingManager::instance().getLogger("LinuxApplication")),
-          mprisService(mprisService)
+          logger_(LoggingManager::logger("LinuxApplication")),
+          mprisService_(mprisService)
 {
 }
 
 void LinuxApplication::initialize()
 {
-    LOG_TRACE(logger, "initialize");
+    LOG_TRACE(logger_, "initialize");
     CoreApplication::initialize();
-    mprisService.start();
+    mprisService_.start();
 }
 
 #endif

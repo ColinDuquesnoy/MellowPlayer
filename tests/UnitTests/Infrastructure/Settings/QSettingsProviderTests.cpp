@@ -12,13 +12,13 @@ TEST_CASE("QSettingsProviderTests")
 
     SECTION("defaultValue")
     {
-        REQUIRE(settingsProvider.getValue("foo", "fooBar").toString() == "fooBar");
+        REQUIRE(settingsProvider.value("foo", "fooBar").toString() == "fooBar");
     }
 
     SECTION("setValue")
     {
         settingsProvider.setValue("foo", "bar");
-        REQUIRE(settingsProvider.getValue("foo").toString() == "bar");
+        REQUIRE(settingsProvider.value("foo").toString() == "bar");
     }
 
     settingsProvider.clear();

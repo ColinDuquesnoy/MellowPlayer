@@ -29,6 +29,6 @@ TEST_CASE("BoolSettingViewModelTests")
 
     SECTION("QML Component looks valid")
     {
-        REQUIRE(model.getQmlComponent().toLower().contains("bool"));
+        REQUIRE(model.qmlComponent().toLower().contains("bool"));
     }
 }

@@ -18,6 +18,6 @@ namespace MellowPlayer::Application
         void onServiceAdded(Application::StreamingService* service);
 
     private:
-        QMap<QString, std::shared_ptr<Player>> players;
+        QMap<QString, std::shared_ptr<Player>> players_;
     };
 }

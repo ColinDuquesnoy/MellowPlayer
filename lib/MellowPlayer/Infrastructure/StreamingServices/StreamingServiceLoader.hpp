@@ -17,7 +17,7 @@ namespace MellowPlayer::Infrastructure
         StreamingServiceLoader();
         QList<std::shared_ptr<Application::StreamingService>> load() const override;
 
-        static QString getUserDirectory();
+        static QString userDirectory();
 
         static Application::Theme readTheme(const QString& filePath);
         static QString readFileContent(const QString& filePath);
@@ -27,10 +27,10 @@ namespace MellowPlayer::Infrastructure
         QString findFileByExtension(const QString& directory, const QString& suffix) const;
         Application::StreamingServiceMetadata readMetadata(const QString& filePath) const;
         bool checkServiceDirectory(const QString& directory) const;
-        QStringList getSearchPaths() const;
+        QStringList searchPaths() const;
         bool containsService(const QList<std::shared_ptr<Application::StreamingService>>& services,
                              std::shared_ptr<Application::StreamingService>& toCheck) const;
 
-        Application::ILogger& logger;
+        Application::ILogger& logger_;
     };
 }

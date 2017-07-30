@@ -28,8 +28,8 @@ namespace MellowPlayer::Infrastructure
         void initialize() override;
 
     private:
-        Application::ILogger& logger;
-        Application::IMprisController& mprisService;
+        Application::ILogger& logger_;
+        Application::IMprisController& mprisService_;
     };
 }
 

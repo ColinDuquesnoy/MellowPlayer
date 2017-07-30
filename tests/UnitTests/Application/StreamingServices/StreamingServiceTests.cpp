@@ -10,25 +10,25 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]")
 {
     StreamingServiceMetadata serviceMetadata;
 
-    SECTION("StreamingService.getAuthor")
+    SECTION("StreamingService.author")
     {
         serviceMetadata.author = "Colin Duquesnoy";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getAuthor() == serviceMetadata.author);
+        REQUIRE(service.author() == serviceMetadata.author);
     }
 
-    SECTION("StreamingService.getAuthorWebsite")
+    SECTION("StreamingService.authorWebsite")
     {
         serviceMetadata.authorWebsite = "https://gitlab.com/ColinDuquesnoy";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getAuthorWebsite() == serviceMetadata.authorWebsite);
+        REQUIRE(service.authorWebsite() == serviceMetadata.authorWebsite);
     }
 
-    SECTION("StreamingService.getName")
+    SECTION("StreamingService.name")
     {
         serviceMetadata.name = "Deezer";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getName() == serviceMetadata.name);
+        REQUIRE(service.name() == serviceMetadata.name);
     }
 
     SECTION("StreamingService.getLogo_validImage")
@@ -38,7 +38,7 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]")
 #ifdef Q_OS_WIN
         REQUIRE(service.getLogo() == "file:" + serviceMetadata.logoPath);
 #else
-        REQUIRE(service.getLogo() == "file://" + serviceMetadata.logoPath);
+        REQUIRE(service.logo() == "file://" + serviceMetadata.logoPath);
 #endif
     }
 
@@ -46,31 +46,31 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]")
     {
         serviceMetadata.logoPath = "";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getLogo().isEmpty());
+        REQUIRE(service.logo().isEmpty());
     }
 
-    SECTION("StreamingService.getUrl")
+    SECTION("StreamingService.url")
     {
         serviceMetadata.url = "https://deezer.com";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getUrl() == serviceMetadata.url);
+        REQUIRE(service.url() == serviceMetadata.url);
     }
 
-    SECTION("StreamingService.getScript")
+    SECTION("StreamingService.script")
     {
         serviceMetadata.script = "code";
         serviceMetadata.scriptPath = "path";
         StreamingService service(serviceMetadata);
-        auto script = service.getScript();
-        REQUIRE(script->getCode() == "code");
-        REQUIRE(script->getPath() == "path");
+        auto script = service.script();
+        REQUIRE(script->code() == "code");
+        REQUIRE(script->path() == "path");
     }
 
-    SECTION("StreamingService.getVersion")
+    SECTION("StreamingService.version")
     {
         serviceMetadata.version = "1.2";
         StreamingService service(serviceMetadata);
-        REQUIRE(service.getVersion() == serviceMetadata.version);
+        REQUIRE(service.version() == serviceMetadata.version);
     }
 
     SECTION("StreamingService.equalityOperator")

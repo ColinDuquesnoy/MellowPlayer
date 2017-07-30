@@ -14,41 +14,41 @@ using namespace std;
 
 CoreApplication::CoreApplication(IQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
                                  IHotkeysController& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier)
-        : logger(LoggingManager::instance().getLogger("Application")),
-          qtApp(qtApp),
-          mainWindow(mainWindow),
-          streamingServices(streamingServices),
-          kotkeys(kotkeys),
-          systemTrayIcon(systemTrayIcon),
-          notifier(notifier)
+        : logger_(LoggingManager::logger("Application")),
+          qtApp_(qtApp),
+          mainWindow_(mainWindow),
+          streamingServices_(streamingServices),
+          kotkeys_(kotkeys),
+          systemTrayIcon_(systemTrayIcon),
+          notifier_(notifier)
 {
 }
 
 void CoreApplication::initialize()
 {
-    LOG_TRACE(logger, "initialize");
-    streamingServices.load();
-    mainWindow.load();
-    kotkeys.start();
-    notifier.initialize();
-    mainWindow.show();
-    systemTrayIcon.show();
+    LOG_TRACE(logger_, "initialize");
+    streamingServices_.load();
+    mainWindow_.load();
+    kotkeys_.start();
+    notifier_.initialize();
+    mainWindow_.show();
+    systemTrayIcon_.show();
 }
 
 void CoreApplication::restoreWindow()
 {
-    LOG_TRACE(logger, "restoreWindow");
-    mainWindow.show();
+    LOG_TRACE(logger_, "restoreWindow");
+    mainWindow_.show();
 }
 
 int CoreApplication::run()
 {
-    LOG_TRACE(logger, "run");
-    return qtApp.run();
+    LOG_TRACE(logger_, "run");
+    return qtApp_.run();
 }
 
 void CoreApplication::quit()
 {
-    LOG_TRACE(logger, "quit");
-    qtApp.quit();
+    LOG_TRACE(logger_, "quit");
+    qtApp_.quit();
 }

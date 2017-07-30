@@ -8,10 +8,14 @@
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer"
 
-class AppStrings: public QObject {
+class AppStrings : public QObject
+{
     Q_OBJECT
 public:
-    QString builtOnStr() const { return tr("Built on %1 at %2 (%3, %4 bit) with Qt %5"); }
+    QString builtOnStr() const
+    {
+        return tr("Built on %1 at %2 (%3, %4 bit) with Qt %5");
+    }
 };
 
 namespace MellowPlayer::Application
@@ -34,7 +38,7 @@ namespace MellowPlayer::Presentation
         Q_INVOKABLE void requestQuit() override;
         Q_INVOKABLE void quit() override;
 
-        QString getBuildInfo() const override;
+        QString buildInfo() const override;
 
         void setAutoQuitDelay(int delay);
 
@@ -43,8 +47,8 @@ namespace MellowPlayer::Presentation
     private:
         void onAboutToQuit();
 
-        QApplication qtApp;
-        QTranslator translator;
+        QApplication qtApp_;
+        QTranslator translator_;
         bool restartRequested_ = false;
     };
 }

@@ -32,11 +32,11 @@ namespace MellowPlayer::Infrastructure
         static QString SERVICE_NAME;
         static QString OBJECT_NAME;
 
-        Application::ILogger& logger;
-        std::unique_ptr<QObject> parent;
-        QObject* mpris2Root;
-        QObject* mpris2Player;
-        QString serviceName;
+        Application::ILogger& logger_;
+        std::unique_ptr<QObject> parent_;
+        QObject* mpris2Root_;
+        QObject* mpris2Player_;
+        QString serviceName_;
     };
 }
 

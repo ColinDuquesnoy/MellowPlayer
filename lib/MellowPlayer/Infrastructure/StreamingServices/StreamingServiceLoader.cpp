@@ -15,27 +15,27 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-StreamingServiceLoader::StreamingServiceLoader() : logger(LoggingManager::instance().getLogger("StreamingServiceLoader"))
+StreamingServiceLoader::StreamingServiceLoader() : logger_(LoggingManager::logger("StreamingServiceLoader"))
 {
 }
 
 QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
 {
     QList<shared_ptr<StreamingService>> services;
-    for (const QString& path : getSearchPaths()) {
+    for (const QString& path : searchPaths()) {
         if (!QDir(path).exists()) {
-            LOG_DEBUG(logger, "skipping plugin directory: " << path.toStdString().c_str() << " (directory not found)");
+            LOG_DEBUG(logger_, "skipping plugin directory: " << path.toStdString().c_str() << " (directory not found)");
             continue;
         }
-        LOG_DEBUG(logger, "looking for services in " << path.toStdString().c_str());
+        LOG_DEBUG(logger_, "looking for services in " << path.toStdString().c_str());
         for (const QFileInfo& directory : QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
                 if (service->isValid() && !containsService(services, service)) {
-                    LOG_DEBUG(logger, service->getName() + " streamingService successfully loaded (from \"" + directory.absoluteFilePath() + "\")");
+                    LOG_DEBUG(logger_, service->name() + " streamingService successfully loaded (from \"" + directory.absoluteFilePath() + "\")");
                     services.append(service);
                 } else {
-                    LOG_DEBUG(logger, "skipping streamingService " + service->getName() + ", already loaded from another source or invalid");
+                    LOG_DEBUG(logger_, "skipping streamingService " + service->name() + ", already loaded from another source or invalid");
                 }
             }
         }
@@ -112,12 +112,12 @@ bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) con
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }
 
-QString StreamingServiceLoader::getUserDirectory()
+QString StreamingServiceLoader::userDirectory()
 {
     return QFileInfo(QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation)[0], "plugins").absoluteFilePath();
 }
 
-QStringList StreamingServiceLoader::getSearchPaths() const
+QStringList StreamingServiceLoader::searchPaths() const
 {
     QStringList paths;
 
@@ -126,7 +126,7 @@ QStringList StreamingServiceLoader::getSearchPaths() const
     // appimage path is in /$mountpoint/usr/bin/../share/mellowplayer/plugins
     paths.append(QFileInfo(qApp->applicationDirPath(), "../share/mellowplayer/plugins").absoluteFilePath());
     paths.append(QFileInfo(qApp->applicationDirPath(), "plugins").absoluteFilePath());
-    paths.append(getUserDirectory());
+    paths.append(userDirectory());
 
 #ifdef Q_OS_MAC
     QDir pluginsDir(qApp->applicationDirPath());

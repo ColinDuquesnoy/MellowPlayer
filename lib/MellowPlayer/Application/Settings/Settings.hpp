@@ -17,18 +17,18 @@ namespace MellowPlayer::Application
     public:
         Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
 
-        const QList<SettingsCategory*>& getCategories() const;
+        const QList<SettingsCategory*>& categories() const;
 
-        SettingsCategory& getCategory(const QString& key) const;
+        SettingsCategory& category(const QString& key) const;
         Setting& get(const QString& key) const;
         Setting& get(SettingKey::Keys key);
 
-        ISettingsProvider& getSettingsProvider() const;
+        ISettingsProvider& settingsProvider() const;
 
         void restoreDefaults();
 
     private:
-        ISettingsProvider& settingsProvider;
-        QList<SettingsCategory*> categories;
+        ISettingsProvider& settingsProvider_;
+        QList<SettingsCategory*> categories_;
     };
 }

@@ -12,14 +12,14 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString& appName) : qtApp(argc, argv)
+ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString& appName) : qtApp_(argc, argv)
 {
-    qtApp.setApplicationDisplayName("MellowPlayer");
-    qtApp.setApplicationName(appName);
-    qtApp.setApplicationVersion(MELLOWPLAYER_VERSION);
-    qtApp.setOrganizationDomain("org.mellowplayer");
-    qtApp.setOrganizationName("MellowPlayer");
-    qtApp.setWindowIcon(IconProvider::windowIcon());
+    qtApp_.setApplicationDisplayName("MellowPlayer");
+    qtApp_.setApplicationName(appName);
+    qtApp_.setApplicationVersion(MELLOWPLAYER_VERSION);
+    qtApp_.setOrganizationDomain("org.mellowplayer");
+    qtApp_.setOrganizationName("MellowPlayer");
+    qtApp_.setWindowIcon(IconProvider::windowIcon());
 
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/fonts/Roboto/Roboto-Black.ttf");
     QFontDatabase::addApplicationFont(":/MellowPlayer/Presentation/Resources/"
@@ -50,28 +50,26 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
     qRegisterMetaType<SettingViewModel*>("Presentation::SettingViewModel*");
     qRegisterMetaType<SettingViewModel*>("SettingViewModel*");
 
-    connect(&qtApp, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
+    connect(&qtApp_, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
 }
 
 void ApplicationViewModel::initialize()
 {
-    if (!translator.load(QLocale(), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
+    if (!translator_.load(QLocale(), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
         qWarning() << "failed to load translation: " << QLocale::system().name();
         qInfo() << "available translations: ";
         QDirIterator it(":/MellowPlayer/Translations", QStringList() << "*.qm", QDir::Files, QDirIterator::Subdirectories);
         while (it.hasNext())
             qInfo() << "  - " << it.next();
-    }
-    else
+    } else
         qInfo() << "translation successfully loaded: " << QLocale::system().name();
 
-    qtApp.installTranslator(&translator);
+    qtApp_.installTranslator(&translator_);
 }
-
 
 int ApplicationViewModel::run()
 {
-    return qtApp.exec();
+    return qtApp_.exec();
 }
 
 void ApplicationViewModel::clearCache() const
@@ -104,13 +102,13 @@ void ApplicationViewModel::requestQuit()
 
 void ApplicationViewModel::quit()
 {
-    qtApp.exit(0);
+    qtApp_.exit(0);
 }
 
 void ApplicationViewModel::setAutoQuitDelay(int delay)
 {
     if (delay > 0)
-        QTimer::singleShot(delay, qtApp.quit);
+        QTimer::singleShot(delay, qtApp_.quit);
 }
 
 void ApplicationViewModel::onAboutToQuit()
@@ -138,10 +136,10 @@ static QString compilerString()
 #endif
 }
 
-QString ApplicationViewModel::getBuildInfo() const
+QString ApplicationViewModel::buildInfo() const
 {
-    return AppStrings().builtOnStr().arg(
-        QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize), QString(QT_VERSION_STR));
+    return AppStrings().builtOnStr().arg(QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize),
+                                         QString(QT_VERSION_STR));
 }
 
 bool ApplicationViewModel::restartRequested() const

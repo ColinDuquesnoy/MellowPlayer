@@ -11,12 +11,12 @@ TEST_CASE("ListeningHistoryEntryViewModelTests")
     ListeningHistoryEntry entry = ListeningHistoryEntry::fromData(&song, "Deezer");
     ListeningHistoryEntryViewModel model(entry);
 
-    REQUIRE(model.getSongId() == song.getUniqueId());
-    REQUIRE(model.getTitle() == song.getTitle());
-    REQUIRE(model.getArtist() == song.getArtist());
-    REQUIRE(model.getArtUrl() == song.getArtUrl());
-    REQUIRE(model.getService() == "Deezer");
-    REQUIRE(!model.getDate().isEmpty());
-    REQUIRE(!model.getTime().isEmpty());
-    REQUIRE(model.getDateCategory() == "Today");
+    REQUIRE(model.songId() == song.uniqueId());
+    REQUIRE(model.title() == song.title());
+    REQUIRE(model.artist() == song.artist());
+    REQUIRE(model.artUrl() == song.artUrl());
+    REQUIRE(model.service() == "Deezer");
+    REQUIRE(!model.date().isEmpty());
+    REQUIRE(!model.time().isEmpty());
+    REQUIRE(model.dateCategory() == "Today");
 }

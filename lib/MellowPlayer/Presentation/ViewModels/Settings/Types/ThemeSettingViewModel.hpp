@@ -11,9 +11,9 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
     public:
         ThemeSettingViewModel(Application::Setting& setting, QObject* parent, ThemeViewModel& themeViewModel);
-        QStringList getValues() const override;
+        QStringList values() const override;
 
     private:
-        ThemeViewModel& themeViewModel;
+        ThemeViewModel& themeViewModel_;
     };
 }

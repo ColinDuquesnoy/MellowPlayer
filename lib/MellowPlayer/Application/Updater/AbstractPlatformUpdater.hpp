@@ -28,8 +28,8 @@ namespace MellowPlayer::Application
 
     protected:
         virtual void doInstall(const QString& assetFilePath) = 0;
-        virtual QString getAssetUrl() const = 0;
-        virtual QString getAssetFileName() const = 0;
+        virtual QString assetUrl() const = 0;
+        virtual QString assetFileName() const = 0;
 
         const Release* release_ = nullptr;
 

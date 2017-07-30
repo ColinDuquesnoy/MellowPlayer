@@ -29,8 +29,8 @@ int main(int argc, char* argv[])
     LoggingManager& loggingManager = LoggingManager::initialize(loggerFactory, loggerConfig);
     loggingManager.setDefaultLogLevel(LogLevel::Off);
 
-    LOG_DEBUG(loggingManager.getLogger("tests"), "Starting tests");
-    qDebug() << "Starting tests" << webApplication.getBuildInfo();
+    LOG_DEBUG(loggingManager.logger("tests"), "Starting tests");
+    qDebug() << "Starting tests" << webApplication.buildInfo();
 
     QSettings settings;
     settings.clear();

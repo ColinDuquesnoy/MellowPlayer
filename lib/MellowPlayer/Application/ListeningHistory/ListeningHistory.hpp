@@ -22,7 +22,7 @@ namespace MellowPlayer::Application
         ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings);
 
         void initialize();
-        const QList<Application::ListeningHistoryEntry>& getEntries() const;
+        const QList<Application::ListeningHistoryEntry>& toList() const;
         int count() const;
         void clear();
         void removeById(int entryId);

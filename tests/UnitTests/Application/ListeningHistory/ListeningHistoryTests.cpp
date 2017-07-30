@@ -19,8 +19,8 @@ TEST_CASE("ListeningHistoryTests")
     Players& players = pool.getPlayers();
     Settings& settings = pool.getSettings();
     ListeningHistory& listeningHistoryService = pool.getListeningHistory();
-    Player& currentPlayer = *players.get(streamingServices.getAll()[0]->getName());
-    streamingServices.setCurrent(streamingServices.getAll()[0].get());
+    Player& currentPlayer = *players.get(streamingServices.toList()[0]->name());
+    streamingServices.setCurrent(streamingServices.toList()[0].get());
     Setting& isEnabledSetting = settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY);
     isEnabledSetting.setValue(true);
 
@@ -75,15 +75,15 @@ TEST_CASE("ListeningHistoryTests")
         REQUIRE(listeningHistoryService.count() == 0);
         currentPlayer.setUpdateResults(getSongVariantMap("Song1", "Id1"));
         currentPlayer.setUpdateResults(getSongVariantMap("Song2", "Id2"));
-        Player& player2 = *players.get(streamingServices.getAll()[1]->getName());
-        streamingServices.setCurrent(streamingServices.getAll()[1].get());
+        Player& player2 = *players.get(streamingServices.toList()[1]->name());
+        streamingServices.setCurrent(streamingServices.toList()[1].get());
         player2.setUpdateResults(getSongVariantMap("Song3", "Id3"));
         REQUIRE(listeningHistoryService.count() == 3);
-        listeningHistoryService.removeByService(currentPlayer.getServiceName());
+        listeningHistoryService.removeByService(currentPlayer.serviceName());
         REQUIRE(listeningHistoryService.count() == 1);
-        listeningHistoryService.removeByService(currentPlayer.getServiceName());
+        listeningHistoryService.removeByService(currentPlayer.serviceName());
         REQUIRE(listeningHistoryService.count() == 1);
-        listeningHistoryService.removeByService(player2.getServiceName());
+        listeningHistoryService.removeByService(player2.serviceName());
         REQUIRE(listeningHistoryService.count() == 0);
     }
 

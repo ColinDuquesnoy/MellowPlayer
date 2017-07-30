@@ -2,34 +2,34 @@
 
 using namespace MellowPlayer::Application;
 
-StreamingServiceScript::StreamingServiceScript(const QString& code, const QString& path) : QObject(), code(code), path(path)
+StreamingServiceScript::StreamingServiceScript(const QString& code, const QString& path) : QObject(), code_(code), path_(path)
 {
 }
 
 bool StreamingServiceScript::isValid() const
 {
-    return code.contains("function update") && code.contains("function play")
-    && (code.contains("function pause") && code.contains("function goNext") && code.contains("function goPrevious")
-        && code.contains("function setVolume") && code.contains("function addToFavorites"))
-    && code.contains("function removeFromFavorites") && code.contains("function seekToPosition");
+    return code_.contains("function update") && code_.contains("function play")
+    && (code_.contains("function pause") && code_.contains("function goNext") && code_.contains("function goPrevious")
+        && code_.contains("function setVolume") && code_.contains("function addToFavorites"))
+    && code_.contains("function removeFromFavorites") && code_.contains("function seekToPosition");
 }
 
-QString StreamingServiceScript::getCode() const
+QString StreamingServiceScript::code() const
 {
-    return code;
+    return code_;
 }
 
 void StreamingServiceScript::setCode(const QString& value)
 {
-    if (code == value)
+    if (code_ == value)
         return;
-    code = value;
+    code_ = value;
     emit codeChanged(value);
 }
 
-const QString& StreamingServiceScript::getPath() const
+const QString& StreamingServiceScript::path() const
 {
-    return path;
+    return path_;
 }
 
 QString StreamingServiceScript::update() const
@@ -77,7 +77,7 @@ QString StreamingServiceScript::seekToPosition(double position) const
     return QString("seekToPosition(%1);").arg(position);
 }
 
-QString StreamingServiceScript::getConstants() const
+QString StreamingServiceScript::constants() const
 {
     return "mellowplayer = {\n"
            "    PlaybackStatus: {\n"
