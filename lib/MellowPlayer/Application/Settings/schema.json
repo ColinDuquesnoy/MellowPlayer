@@ -37,8 +37,8 @@
 				{
 					"name": "Update channel",
 					"tooltip": "Choose which update channel to use",
-					"type": "enum[Stable, Beta, Continuous]",
-					"default": "Stable",
+					"type": "update-channel",
+					"default": 0,
 					"key": "update-channel",
 					"enabled": "main/check-for-updates"
 				}

@@ -6,6 +6,8 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
+static QString PAUSED = QObject::tr("Paused");
+
 Notification NotificationFactory::createSongNotification(const QString& serviceName, Song* song, const QString& albumArtUrl, bool resumed)
 {
     return Notification{serviceName, song->toString(), albumArtUrl, resumed ? NotificationType::Resumed : NotificationType::NewSong};
@@ -15,5 +17,5 @@ Notification NotificationFactory::createPausedNotification(const QString& servic
 {
     QString sanitizedServiceLogo = serviceLogo;
     sanitizedServiceLogo = sanitizedServiceLogo.replace("file://", "");
-    return Notification{serviceName, QObject::tr("Paused"), sanitizedServiceLogo, NotificationType::Paused};
+    return Notification{serviceName, PAUSED, sanitizedServiceLogo, NotificationType::Paused};
 }

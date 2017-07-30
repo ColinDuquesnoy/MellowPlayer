@@ -15,7 +15,7 @@ SCENARIO("check for stable updates")
 {
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Stable));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int) UpdateChannel::Stable);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -87,7 +87,7 @@ SCENARIO("check for beta updates")
     GithubReleaseQuerier querier(fakeHttpClient);
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Beta));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int) UpdateChannel::Beta);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -136,7 +136,7 @@ SCENARIO("check for Continuous updates")
     GithubReleaseQuerier querier(fakeHttpClient);
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Continuous));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int) UpdateChannel::Continuous);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -152,7 +152,7 @@ SCENARIO("check for Continuous updates")
             THEN("update to version version Continuous is available")
             {
                 REQUIRE(updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName() == "Continuous");
+                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "Continuous");
                 REQUIRE(updateAvailableSpy.count() == 1);
             }
         }

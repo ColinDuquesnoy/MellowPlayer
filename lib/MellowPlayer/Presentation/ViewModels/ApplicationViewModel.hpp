@@ -8,6 +8,12 @@
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer"
 
+class AppStrings: public QObject {
+    Q_OBJECT
+public:
+    QString builtOnStr() const { return tr("Built on %1 at %2 (%3, %4 bit) with Qt %5"); }
+};
+
 namespace MellowPlayer::Application
 {
     class ILogger;

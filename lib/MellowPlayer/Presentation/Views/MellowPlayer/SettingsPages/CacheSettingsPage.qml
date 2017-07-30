@@ -35,7 +35,7 @@ Item {
         ToolButton {
             highlighted: true
             hoverEnabled: true
-            text: "Clear cache"
+            text: qsTr("Clear cache")
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCache()

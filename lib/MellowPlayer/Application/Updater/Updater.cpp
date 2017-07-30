@@ -33,7 +33,7 @@ void Updater::check()
 
 UpdateChannel Updater::getChannel() const
 {
-    return UpdateChannelStringer::fromString(updateChannelSetting_.getValue().toString());
+    return static_cast<UpdateChannel>(updateChannelSetting_.getValue().toInt());
 }
 
 void Updater::install()

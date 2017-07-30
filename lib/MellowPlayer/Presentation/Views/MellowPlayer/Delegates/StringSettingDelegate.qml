@@ -4,6 +4,7 @@ import QtQuick.Controls 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 Pane {
     bottomPadding: 3; topPadding: 3
@@ -14,7 +15,7 @@ Pane {
         spacing: 16
 
         Label {
-            text: model.name
+            text: Translator.translateName(model.name)
             font.pixelSize: 16
         }
 
@@ -25,7 +26,7 @@ Pane {
             text: model.qtObject.value
 
             Tooltip {
-                text: model.toolTip
+                text: Translator.translateToolTip(model.toolTip)
             }
 
             Layout.fillWidth: true

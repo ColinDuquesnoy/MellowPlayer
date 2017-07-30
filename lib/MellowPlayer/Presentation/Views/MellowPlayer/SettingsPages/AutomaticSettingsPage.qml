@@ -62,7 +62,6 @@ ColumnLayout {
         Layout.bottomMargin: 8
 
         Material.foreground: _theme.isDark(_theme.accent) ? "white" : "#303030"
-//        Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
 
         Item { Layout.fillWidth: true }
 

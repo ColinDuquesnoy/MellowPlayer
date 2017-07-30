@@ -4,6 +4,7 @@ import QtQuick.Controls 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 ItemDelegate {
     bottomPadding: 3; topPadding: 3
@@ -14,7 +15,7 @@ ItemDelegate {
 
     contentItem: RowLayout {
         Label {
-            text: model.name
+            text: Translator.translateName(model.name)
             font.pixelSize: 16
 
             Layout.fillWidth: true
@@ -81,7 +82,7 @@ ItemDelegate {
             }
 
             Tooltip {
-                text: model.toolTip
+                text: Translator.translateToolTip(model.toolTip)
             }
 
 

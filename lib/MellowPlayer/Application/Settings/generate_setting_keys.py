@@ -8,8 +8,13 @@ Run this script every time you modify schema.json.
 import json
 
 
-def get_template():
+def get_setting_key_template():
     with open('SettingKey.hpp.in') as f:
+        return f.read()
+
+
+def get_translator_template():
+    with open("SettingTranslator.js.in") as f:
         return f.read()
 
 
@@ -32,7 +37,43 @@ def get_keys(schema):
     return keys
 
 
-def get_enum_values(keys):
+def get_names(schema):
+    names = []
+
+    for category in schema['categories']:
+        for setting in category['settings']:
+            name = setting['name']
+            if name:
+                names.append("        %r: qsTr(%r)" % (name, name))
+
+    return ',\n'.join(names)
+
+
+def get_tooltips(schema):
+    tooltips = []
+
+    for category in schema['categories']:
+        for setting in category['settings']:
+            try:
+                tooltips.append("        %r: qsTr(%r)" % (setting['tooltip'], setting['tooltip']))
+            except KeyError:
+                pass
+
+    return ',\n'.join(tooltips)
+
+
+def get_categories(schema):
+    categories = []
+
+    for category in schema['categories']:
+        name = category['name']
+        if name:
+            categories.append("        %r: qsTr(%r)" % (name, name))
+
+    return ',\n'.join(categories)
+
+
+def get_setting_key_values(keys):
     names = []
     for key in keys:
         cat_key, setting_key = key.split('/')
@@ -43,7 +84,7 @@ def get_enum_values(keys):
     return ',\n'.join(names)
 
 
-def get_enum_names(keys):
+def get_setting_key_names(keys):
     strings = []
     for key in keys:
         strings.append('            enumToString << "%s";' % key)
@@ -52,19 +93,30 @@ def get_enum_names(keys):
     return '\n'.join(strings)
 
 
-def create_file(enum_names, enum_values, template):
+def create_setting_key(enum_names, enum_values, template):
     content = template % {'enum_values': enum_values, 'enum_names': enum_names}
     with open('SettingKey.hpp', 'w') as f:
         f.write(content)
 
 
+def create_translator(names, tooltips, categories, template):
+    content = template % {'names': names, 'tooltips': tooltips, "categories": categories}
+    with open('../../Presentation/Views/MellowPlayer/SettingsTranslator.js', 'w') as f:
+        f.write(content)
+
+
 def main():
-    template = get_template()
     schema = load_schema()
+
+    setting_key_template = get_setting_key_template()
+
     keys = get_keys(schema)
-    enum_values = get_enum_values(keys)
-    enum_names = get_enum_names(keys)
-    create_file(enum_names, enum_values, template)
+    enum_values = get_setting_key_values(keys)
+    enum_names = get_setting_key_names(keys)
+    create_setting_key(enum_names, enum_values, setting_key_template)
+
+    translator_template = get_translator_template()
+    create_translator(get_names(schema), get_tooltips(schema), get_categories(schema), translator_template)
 
 
 if __name__ == '__main__':

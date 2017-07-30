@@ -1,16 +1,17 @@
-#include "TimeLimitSettingViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
 TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
-    registerEnumTranslation(TimeLimits::Today, tr("Today"));
-    registerEnumTranslation(TimeLimits::Yesterday, tr("Yesterday"));
-    registerEnumTranslation(TimeLimits::LastWeek, tr("Last week"));
-    registerEnumTranslation(TimeLimits::LastMonth, tr("Last month"));
-    registerEnumTranslation(TimeLimits::LastYear, tr("Last year"));
-    registerEnumTranslation(TimeLimits::Never, tr("Never"));
+    TimeLimitSettingStrings strings;
+    registerEnumTranslation(TimeLimits::Today, strings.today());
+    registerEnumTranslation(TimeLimits::Yesterday, strings.yesterday());
+    registerEnumTranslation(TimeLimits::LastWeek, strings.lastWeek());
+    registerEnumTranslation(TimeLimits::LastMonth, strings.lastMonth());
+    registerEnumTranslation(TimeLimits::LastYear, strings.lastYear());
+    registerEnumTranslation(TimeLimits::Never, strings.never());
 }
 
 void TimeLimitSettingViewModel::registerEnumTranslation(TimeLimits value, const QString& translation)

@@ -6,6 +6,7 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/ThemeSettingViewModel.hpp"
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/Settings/Types/UpdateChannelSettingViewModel.hpp"
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -27,6 +28,8 @@ SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* par
         return new EnumSettingViewModel(setting, parent);
     else if (type.startsWith("time-limit"))
         return new TimeLimitSettingViewModel(setting, parent);
+    else if (type.startsWith("update-channel"))
+        return new UpdateChannelSettingViewModel(setting, parent);
     else if (type.startsWith("theme"))
         return new ThemeSettingViewModel(setting, parent, themeViewModel);
     return new StringSettingViewModel(setting, parent);

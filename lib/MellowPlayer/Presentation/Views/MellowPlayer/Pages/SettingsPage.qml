@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 Page {
     id: settingsPage
@@ -59,8 +60,8 @@ Page {
             padding: 0
 
             Layout.fillHeight: true
-            Layout.maximumWidth: 256
-            Layout.minimumWidth: 256
+            Layout.maximumWidth: 324
+            Layout.minimumWidth: 324
 
             Material.background: _theme.secondary
             Material.foreground: _theme.secondaryForeground
@@ -74,7 +75,9 @@ Page {
                     id: settingsCategoryDelegate
 
                     ItemDelegate {
-                        property string category: model.name
+                        id: delegate
+
+                        property string category: Translator.translateCategory(model.name)
 
                         height: 60; width: parent.width
                         hoverEnabled: true
@@ -92,7 +95,7 @@ Page {
 
                             Label {
                                 verticalAlignment: "AlignVCenter"
-                                text: model.name
+                                text: delegate.category
                                 font.pixelSize: 20
                             }
 

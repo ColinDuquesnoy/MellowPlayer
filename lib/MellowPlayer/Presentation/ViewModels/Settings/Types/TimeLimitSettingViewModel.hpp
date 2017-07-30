@@ -4,6 +4,17 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/TimeLimits.hpp>
 
+class TimeLimitSettingStrings: public QObject {
+Q_OBJECT
+public:
+    QString today() const { return tr("Today"); };
+    QString yesterday() const { return tr("Yesterday"); };
+    QString lastWeek() const { return tr("Last week"); };
+    QString lastMonth() const { return tr("Last month"); };
+    QString lastYear() const { return tr("Last year"); };
+    QString never() const { return tr("Never"); };
+};
+
 namespace MellowPlayer::Presentation
 {
     class TimeLimitSettingViewModel : public SettingViewModel

@@ -140,9 +140,8 @@ static QString compilerString()
 
 QString ApplicationViewModel::getBuildInfo() const
 {
-
-    return QObject::tr("Built on %1 at %2 (%3, %4 bit) with Qt %5")
-    .arg(QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize), QString(QT_VERSION_STR));
+    return AppStrings().builtOnStr().arg(
+        QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize), QString(QT_VERSION_STR));
 }
 
 bool ApplicationViewModel::restartRequested() const

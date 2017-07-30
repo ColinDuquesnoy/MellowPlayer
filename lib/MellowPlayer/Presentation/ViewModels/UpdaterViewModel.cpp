@@ -113,7 +113,7 @@ QString UpdaterViewModel::getUrl() const
 
 QString UpdaterViewModel::getStatusString() const
 {
-    return UpdaterStatusConverter::toString(updater_.getStatus());
+    return UpdaterStatusConverter().toString(updater_.getStatus());
 }
 
 bool UpdaterViewModel::isBusy() const
