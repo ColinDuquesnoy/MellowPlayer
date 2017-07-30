@@ -1,60 +1,62 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="63"/>
         <source>Cloud music integration for your desktop</source>
-        <translation type="unfinished"/>
+        <translation>Cloud Musik Integration für Ihren Desktop</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="69"/>
         <source>Website</source>
-        <translation type="unfinished"/>
+        <translation>Webseite</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="76"/>
         <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation type="unfinished"/>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="88"/>
         <source>This program comes with absolutely no warranty.</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Programm kommt mit absolut keiner Garantie.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="96"/>
         <source>See the &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt;GNU Lesser General Public License&lt;/a&gt;,</source>
-        <translation type="unfinished"/>
+        <translation>Siehe die &lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/lgpl-2.1&quot;&gt; GNU Lesser General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="109"/>
         <source>version 2.1 or later for details.</source>
-        <translation type="unfinished"/>
+        <translation>Version 2.1 oder höher für Details.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="159"/>
         <source>Created by</source>
-        <translation type="unfinished"/>
+        <translation>Erstellt von</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="180"/>
         <source>Artwork by</source>
-        <translation type="unfinished"/>
+        <translation>Artwork von</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="201"/>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Mitwirkende</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="263"/>
         <source>Credits</source>
-        <translation type="unfinished"/>
+        <translation>Credits</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="274"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -62,22 +64,22 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="72"/>
         <source>Restore defaults</source>
-        <translation type="unfinished"/>
+        <translation>Standardeinstellungen wiederherstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="77"/>
         <source>Restore &lt;b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Wiederherstellen &lt;b&gt;</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="77"/>
         <source>&lt;/b&gt; settings to their &lt;b&gt;default values&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;/b&gt; Einstellungen zu den &lt;b&gt; Standardwerten &lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="87"/>
         <source>Confirm restore defaults</source>
-        <translation type="unfinished"/>
+        <translation>Bestätigen Sie Enstellungen Wiederherstellen</translation>
     </message>
 </context>
 <context>
@@ -85,17 +87,17 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="20"/>
         <source>Clear cookies</source>
-        <translation type="unfinished"/>
+        <translation>Cookies löschen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="78"/>
         <source>You need to restart MellowPlayer for the change to be applied.</source>
-        <translation type="unfinished"/>
+        <translation>Sie müssen MellowPlayer neu starten, damit die Änderungen angewendet werden können.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="88"/>
         <source>Restart now</source>
-        <translation type="unfinished"/>
+        <translation>Jetzt neustarten</translation>
     </message>
 </context>
 <context>
@@ -103,7 +105,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ColorSettingDelegate.qml" line="39"/>
         <source>Please choose a color</source>
-        <translation type="unfinished"/>
+        <translation>Bitte wählen Sie eine Farbe</translation>
     </message>
 </context>
 <context>
@@ -111,12 +113,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/CreatingPage.qml" line="17"/>
         <source>Creating plugin</source>
-        <translation type="unfinished"/>
+        <translation>Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/CreatingPage.qml" line="18"/>
         <source>Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Bitte warten...</translation>
     </message>
 </context>
 <context>
@@ -124,7 +126,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/CustomUrlPane.qml" line="28"/>
         <source>Custom url required</source>
-        <translation type="unfinished"/>
+        <translation>Eine benutzerdefinierte URL ist erforderlich</translation>
     </message>
 </context>
 <context>
@@ -132,32 +134,32 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="15"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Heute</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="17"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Gestern</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="19"/>
         <source>Last week</source>
-        <translation type="unfinished"/>
+        <translation>Letzte Woche</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="21"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Letzten Monat</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="23"/>
         <source>Last year</source>
-        <translation type="unfinished"/>
+        <translation>Letztes Jahr</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/DateTimeConverter.cpp" line="25"/>
         <source>Years ago</source>
-        <translation type="unfinished"/>
+        <translation>Jahre her</translation>
     </message>
 </context>
 <context>
@@ -165,32 +167,32 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="11"/>
         <source>Details</source>
-        <translation type="unfinished"/>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="12"/>
         <source>Please fill in the details about your plugin</source>
-        <translation type="unfinished"/>
+        <translation>Bitte füllen Sie die Details zu Ihrem Plugin aus</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="28"/>
         <source>Service name:</source>
-        <translation type="unfinished"/>
+        <translation>Service Name:</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="41"/>
         <source>Service URL:</source>
-        <translation type="unfinished"/>
+        <translation>Service URL:</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="53"/>
         <source>Author:</source>
-        <translation type="unfinished"/>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="65"/>
         <source>Author website:</source>
-        <translation type="unfinished"/>
+        <translation>Webseite des Autors:</translation>
     </message>
 </context>
 <context>
@@ -198,12 +200,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="8"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>Fertig</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="9"/>
         <source>Plugin succesfully created!</source>
-        <translation type="unfinished"/>
+        <translation>Plug-In erfolgreich erstellt!</translation>
     </message>
 </context>
 <context>
@@ -211,7 +213,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/FullScreenNotification.qml" line="18"/>
         <source>&lt;p&gt;You are now in &lt;b&gt;fullscreen&lt;/b&gt; mode.&lt;/p&gt;Press &lt;b&gt;ESC&lt;/b&gt; to quit!</source>
-        <translation type="unfinished"/>
+        <translation>&lt;P&gt; Sie sind jetzt im &lt;b&gt; Vollbild &lt;/b&gt; Modus. &lt;/P&gt; Drücken Sie &lt;b&gt; ESC &lt;/b&gt;, um zu beenden!</translation>
     </message>
 </context>
 <context>
@@ -219,7 +221,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Application/ListeningHistory/ListeningHistory.cpp" line="103"/>
         <source>new entry: </source>
-        <translation type="unfinished"/>
+        <translation>Neuer Eintrag:</translation>
     </message>
 </context>
 <context>
@@ -227,33 +229,33 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="55"/>
         <source>No match found</source>
-        <translation type="unfinished"/>
+        <translation>Keine Übereinstimmung gefunden</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="102"/>
         <source>The songs you listened to will appear here...</source>
-        <translation type="unfinished"/>
+        <translation>Die Songs, die du gehört hast, werden hier erscheinen ...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="136"/>
         <source>Nothing in history</source>
-        <translation type="unfinished"/>
+        <translation>Nichts in der  History</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="146"/>
         <source>Enable listening history and the songs you 
 listened to will appear here...</source>
-        <translation type="unfinished"/>
+        <translation>Schalten Sie den Hörverlauf ein um die Songs, die Sie gehört haben hier-an zu zeigen ...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="153"/>
         <source>Enable listening history</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf einschalten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="159"/>
         <source>Click to enable listening history</source>
-        <translation type="unfinished"/>
+        <translation>Klicken zum einschalren des Hörverlaufs</translation>
     </message>
 </context>
 <context>
@@ -261,7 +263,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryClipboardConfirmation.qml" line="57"/>
         <source>copied to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>In die Zwischenablage kopiert</translation>
     </message>
 </context>
 <context>
@@ -269,32 +271,32 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="84"/>
         <source>by </source>
-        <translation type="unfinished"/>
+        <translation>Von</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="91"/>
         <source>on </source>
-        <translation type="unfinished"/>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Heute</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="104"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Gestern</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="135"/>
         <source>Are you sure you want to remove that song from the history?</source>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie dieses Lied aus dem Hörverlauf entfernen möchten?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
         <source>Confirm remove</source>
-        <translation type="unfinished"/>
+        <translation>Löschen bestetigen</translation>
     </message>
 </context>
 <context>
@@ -302,22 +304,22 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="26"/>
         <source>Search by title or by artist</source>
-        <translation type="unfinished"/>
+        <translation>Suche nach Titel oder nach Künstler</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="37"/>
         <source>Filter song by title or by artist</source>
-        <translation type="unfinished"/>
+        <translation>Nach Titel oder nach Künstler filtern</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="65"/>
         <source>Click to remove songs from</source>
-        <translation type="unfinished"/>
+        <translation>Klicken Sie hier, um die Songs zu entfernen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml" line="65"/>
         <source>Click to add songs from </source>
-        <translation type="unfinished"/>
+        <translation>Klicken Sie hier, um Songs hinzuzufügen</translation>
     </message>
 </context>
 <context>
@@ -325,7 +327,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="73"/>
         <source>Confirm remove</source>
-        <translation type="unfinished"/>
+        <translation>Löschen bestetigen</translation>
     </message>
 </context>
 <context>
@@ -333,17 +335,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="39"/>
         <source>Search/filter</source>
-        <translation type="unfinished"/>
+        <translation>Suche / Filter</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="58"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="70"/>
         <source>Listening history</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf</translation>
     </message>
 </context>
 <context>
@@ -351,117 +353,117 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="48"/>
         <source>Select another service</source>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie einen anderen Service aus</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="49"/>
         <source>Go back to </source>
-        <translation type="unfinished"/>
+        <translation>Zurück zu</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="78"/>
         <source>Go back</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="86"/>
         <source>Go forward</source>
-        <translation type="unfinished"/>
+        <translation>Vorwärtz</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="94"/>
         <source>Reload page</source>
-        <translation type="unfinished"/>
+        <translation>Seite neuladen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="103"/>
         <source>Go to home page</source>
-        <translation type="unfinished"/>
+        <translation>Zur Startseite</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="125"/>
         <source>Remove current song from your favorites</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen Sie den aktuellen Song aus Ihren Favoriten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="125"/>
         <source>Add current song to your favorites</source>
-        <translation type="unfinished"/>
+        <translation>Füge den aktuellen Song zu deinen Favoriten hinzu</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="139"/>
         <source>Skip to previous song</source>
-        <translation type="unfinished"/>
+        <translation>Zum vorherigen Song springen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="149"/>
         <source>Pause</source>
-        <translation type="unfinished"/>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="149"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Play</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="159"/>
         <source>Skip to next song</source>
-        <translation type="unfinished"/>
+        <translation>Zum nächsten Lied springen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="172"/>
         <source>Disable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Benachrichtigungen ausschalten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="172"/>
         <source>Enable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Benachrichtigungen aktivieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="197"/>
         <source>Open listening history</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf öffenen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="205"/>
         <source>Main menu</source>
-        <translation type="unfinished"/>
+        <translation>Hauptmenü</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="269"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="279"/>
         <source>Create plugin</source>
-        <translation type="unfinished"/>
+        <translation>Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="289"/>
         <source>Report issue</source>
-        <translation type="unfinished"/>
+        <translation>Fehler melden</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="298"/>
         <source>Check for update</source>
-        <translation type="unfinished"/>
+        <translation>Auf Update prüfen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="318"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="326"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="358"/>
         <source>&lt;/b&gt;&lt;i&gt; by </source>
-        <translation type="unfinished"/>
+        <translation>&lt;/b&gt;&lt;i&gt; Von </translation>
     </message>
 </context>
 <context>
@@ -469,22 +471,22 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="57"/>
         <source>Are you sure you want to quit MellowPlayer?</source>
-        <translation type="unfinished"/>
+        <translation>Bist du sicher, dass du MellowPlayer beenden möchtest?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="58"/>
         <source>Confirm quit</source>
-        <translation type="unfinished"/>
+        <translation>Beenden bestätigen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="66"/>
         <source>Closing to system tray</source>
-        <translation type="unfinished"/>
+        <translation>Schließen in den Systemtray</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="67"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;MellowPlayer wird weiter im Hintergrund laufen.&lt;br&gt;Sie können die Anwendung beenden oder das Hauptfenster über das Symbol des Taskleistensymbols wiederherstellen.&lt;/P&gt;</translation>
     </message>
 </context>
 <context>
@@ -492,83 +494,83 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="20"/>
         <source>Application</source>
-        <translation type="unfinished"/>
+        <translation>Anwendung</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="23"/>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="111"/>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Präferenzen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="35"/>
         <source>Navigation</source>
-        <translation type="unfinished"/>
+        <translation>Navigation</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="38"/>
         <source>Go Home</source>
-        <translation type="unfinished"/>
+        <translation>Zur Startseite</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="44"/>
         <source>Go Back</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="50"/>
         <source>Go Forward</source>
-        <translation type="unfinished"/>
+        <translation>Vorwärts</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="58"/>
         <source>Reload page</source>
-        <translation type="unfinished"/>
+        <translation>Seite neuladen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="66"/>
         <source>Player</source>
-        <translation type="unfinished"/>
+        <translation>Playe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="69"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"/>
+        <translation>Play/Pause</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="75"/>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Nächster</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="81"/>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Vorheriger</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="89"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"/>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="97"/>
         <source>Developer</source>
-        <translation type="unfinished"/>
+        <translation>Entwickler</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="100"/>
         <source>Create new plugin</source>
-        <translation type="unfinished"/>
+        <translation>Neues Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="108"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Hilfe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="121"/>
         <source>Report issue</source>
-        <translation type="unfinished"/>
+        <translation>Fehler melden</translation>
     </message>
 </context>
 <context>
@@ -576,32 +578,32 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="134"/>
         <source>Open plugin directory</source>
-        <translation type="unfinished"/>
+        <translation>Plug-In Ordner öffnen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="144"/>
         <source>Read API documentation</source>
-        <translation type="unfinished"/>
+        <translation>Die API Documentation-lesen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="158"/>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="169"/>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Weiter</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="180"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="190"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Fertig</translation>
     </message>
 </context>
 <context>
@@ -609,47 +611,47 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="8"/>
         <source>Checking for update...</source>
-        <translation type="unfinished"/>
+        <translation>Prüfe auf Update...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="9"/>
         <source>An update is available...</source>
-        <translation type="unfinished"/>
+        <translation>Ein Update ist verfügbar...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="10"/>
         <source>Downloading update...</source>
-        <translation type="unfinished"/>
+        <translation>Update herunterladen...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="11"/>
         <source>Installing update...</source>
-        <translation type="unfinished"/>
+        <translation>Update wird installiert...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="12"/>
         <source>Update installed, you can now restart the application...</source>
-        <translation type="unfinished"/>
+        <translation>Update installiert, du kannst MellowPlayer neustarten...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.cpp" line="13"/>
         <source>Failed to install update, check logs for warning and errors and try again...</source>
-        <translation type="unfinished"/>
+        <translation>Fehler beim Installieren des Updates, Überprüfen sie die Protokolle auf Warnungen und Fehler und versuchen Sie es erneut ...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/NotificationFactory.cpp" line="18"/>
         <source>Paused</source>
-        <translation type="unfinished"/>
+        <translation>Pausiert</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="137"/>
         <source>&lt;unknown compiler&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Unbekannter Compiler&gt;</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="144"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
-        <translation type="unfinished"/>
+        <translation>Gebaut mit%1 bei%2 (%3,%4 bit) mit Qt%5</translation>
     </message>
 </context>
 <context>
@@ -657,12 +659,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="73"/>
         <source>Version </source>
-        <translation type="unfinished"/>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="73"/>
         <source> by </source>
-        <translation type="unfinished"/>
+        <translation>Von</translation>
     </message>
 </context>
 <context>
@@ -670,7 +672,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="48"/>
         <source>Create plugin</source>
-        <translation type="unfinished"/>
+        <translation>Plug-In erstellen</translation>
     </message>
 </context>
 <context>
@@ -678,7 +680,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="24"/>
         <source>Which service would you like to listen to ?</source>
-        <translation type="unfinished"/>
+        <translation>Mit welchen Service möchtest du gerne Musik hören?</translation>
     </message>
 </context>
 <context>
@@ -686,27 +688,27 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="37"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="136"/>
         <source>Restore all to defaults</source>
-        <translation type="unfinished"/>
+        <translation>Wiederherstellen aller Standartvorgaben</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="144"/>
         <source>Restore all settings to their &lt;b&gt;default value&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Setzen Sie alle Einstellungen auf ihren &lt;b&gt; Standardwert &lt;/b&gt; zurück.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="172"/>
         <source>Are you sure you want to restore all settings to their default values?</source>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie alle Einstellungen auf ihre Standardwerte zurücksetzen möchten?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="173"/>
         <source>Confirm restore defaults</source>
-        <translation type="unfinished"/>
+        <translation>Bestätigen Sie die Standardwerte zurücksetzen möchten</translation>
     </message>
 </context>
 <context>
@@ -714,12 +716,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.cpp" line="14"/>
         <source>Services</source>
-        <translation type="unfinished"/>
+        <translation>Services</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.cpp" line="17"/>
         <source>Cache</source>
-        <translation type="unfinished"/>
+        <translation>Cache</translation>
     </message>
 </context>
 <context>
@@ -727,12 +729,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/StartPage.qml" line="5"/>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Einführung</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/StartPage.qml" line="6"/>
         <source>Please, read this page carefully!</source>
-        <translation type="unfinished"/>
+        <translation>Bitte lesen Sie diese Seite sorgfältig!</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/StartPage.qml" line="15"/>
@@ -756,11 +758,33 @@ listened to will appear here...</source>
                     &lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: the logo of your plugin.
                 &lt;/li&gt;
             &lt;/ul&gt;
-            &lt;p&gt;This wizard will create all those files for you, you're left with the implementation.&lt;/p&gt;
+            &lt;p&gt;This wizard will create all those files for you, you&apos;re left with the implementation.&lt;/p&gt;
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;
+    &lt;head&gt;
+        &lt;body&gt;
+            &lt;p&gt;Dieser Assistent führt Sie durch die erforderlichen Schritte, um ein neues Streaming-Service-Plug-In zu erstellen.&lt;/p&gt;
+            &lt;/br&gt;
+            &lt;p&gt;Ein Plug-In ist ein Verzeichnis, das 4 Dateien enthält:&lt;/p&gt;
+            &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+                &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+                    &lt;span style=&quot; font-weight:600;&quot;&gt;integration.js&lt;/span&gt;: Diese Datei enthält den Code Ihres Plug-Ins. sie mussen nur ein paar Funktionen in Javascript implementieren.
+                &lt;/li&gt;
+                &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+                    &lt;span style=&quot; font-weight:600;&quot;&gt;style.json&lt;/span&gt;: Diese Datei enthält den Stil des Plug-Ins. Passen Sie es an, wenn Sie das adaptive Thema mit Ihrem Plugin verwenden möchten..
+                &lt;/li&gt;
+                &lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+                    &lt;span style=&quot; font-weight:600;&quot;&gt;metadata.ini&lt;/span&gt;: Diese Datei enthält einige Metadaten über Ihr Plug-In.&lt;/li&gt;
+                &lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+                    &lt;span style=&quot; font-weight:600;&quot;&gt;logo.svg&lt;/span&gt;: Das Logo Ihres Plug-Ins.
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Dieser Assistent erstellt alle diese Dateien für Sie, Sie müssen nur noch die Implementierung vornehmen&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/head&gt;
+&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -768,32 +792,32 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="8"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Heute</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="9"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Gestern</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="10"/>
         <source>Last week</source>
-        <translation type="unfinished"/>
+        <translation>Letzte Woche</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="11"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Letzten Monat</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="12"/>
         <source>Last year</source>
-        <translation type="unfinished"/>
+        <translation>Letztes Jahr</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.cpp" line="13"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Jahre vorher</translation>
     </message>
 </context>
 <context>
@@ -801,17 +825,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/UpdateToolBar.qml" line="56"/>
         <source>See release notes</source>
-        <translation type="unfinished"/>
+        <translation>Siehe die Versionshinweise</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/UpdateToolBar.qml" line="62"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/UpdateToolBar.qml" line="70"/>
         <source>Restart</source>
-        <translation type="unfinished"/>
+        <translation>Neustarten</translation>
     </message>
 </context>
 <context>
@@ -820,7 +844,9 @@ listened to will appear here...</source>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="114"/>
         <source> requires proprietary audio codecs to work properly.&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...&lt;/i&gt;</source>
-        <translation type="unfinished"/>
+        <translatorcomment>Verlangt, dass proprietäre Audio-Codecs richtig funktionieren. &lt;/B&gt; &lt;br&gt;
+&lt;I&gt; Du musst MellowPlayer mit einer Version von QtWebEngine erstellen, die mit proprietären Codecs erstellt wurde, die für den Einsatz dieses Dienstes aktiviert sind. &lt;/I&gt;</translatorcomment>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -828,47 +854,47 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="37"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="43"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="50"/>
         <source>Unselect</source>
-        <translation type="unfinished"/>
+        <translation>Unselektiertieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="62"/>
         <source>Copy link</source>
-        <translation type="unfinished"/>
+        <translation>Link Kopieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="69"/>
         <source>Open link</source>
-        <translation type="unfinished"/>
+        <translation>Link öffnen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="81"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="88"/>
         <source>Forward</source>
-        <translation type="unfinished"/>
+        <translation>Vorwärtz</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="95"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Neuladen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="100"/>
         <source>View Page Source</source>
-        <translation type="unfinished"/>
+        <translation>Seitenquelltext anzeigen . . .</translation>
     </message>
 </context>
 </TS>
