@@ -55,7 +55,7 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
 
 void ApplicationViewModel::initialize()
 {
-    if (!translator.load(QLocale("fr"), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
+    if (!translator.load(QLocale(), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
         qWarning() << "failed to load translation: " << QLocale::system().name();
         qInfo() << "available translations: ";
         QDirIterator it(":/MellowPlayer/Translations", QStringList() << "*.qm", QDir::Files, QDirIterator::Subdirectories);
