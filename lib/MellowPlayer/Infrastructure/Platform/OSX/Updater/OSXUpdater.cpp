@@ -25,12 +25,12 @@ void OSXUpdater::doInstall(const QString& assetLocalPath)
 
 QString OSXUpdater::assetUrl() const
 {
-    return asset_.getUrl();
+    return asset_.url();
 }
 
 QString OSXUpdater::assetFileName() const
 {
-    return asset_.getName();
+    return asset_.name();
 }
 
 void OSXUpdater::setRelease(const Release* release)

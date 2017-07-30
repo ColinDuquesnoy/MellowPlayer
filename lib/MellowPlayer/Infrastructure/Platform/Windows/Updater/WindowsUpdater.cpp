@@ -25,12 +25,12 @@ void WindowsUpdater::doInstall(const QString& assetLocalPath)
 
 QString WindowsUpdater::assetUrl() const
 {
-    return asset_.getUrl();
+    return asset_.url();
 }
 
 QString WindowsUpdater::assetFileName() const
 {
-    return asset_.getName();
+    return asset_.name();
 }
 
 void WindowsUpdater::setRelease(const Release* release)
