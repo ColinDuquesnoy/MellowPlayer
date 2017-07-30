@@ -60,7 +60,7 @@
 <context>
     <name>AppStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="17"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
         <translation>Erstelllt mit%1 bei%2 (%3,%4 bit) mit Qt%5</translation>
     </message>
@@ -80,7 +80,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="76"/>
         <source>&lt;/b&gt; settings to their &lt;b&gt;default values&lt;/b&gt;.</source>
-        <translation>&lt;/b&gt; Einstellungen zu den &lt;b&gt; Standardwerten &lt;/b&gt;.</translation>
+        <translation> &lt;/b&gt; der Einstellungen zu den &lt;b&gt; Standardwerten &lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="86"/>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="78"/>
         <source>You need to restart MellowPlayer for the change to be applied.</source>
-        <translation>Sie müssen MellowPlayer neu starten, damit die Änderungen angewendet werden können.</translation>
+        <translation>Sie müssen MellowPlayer neu starten, damit die Änderungen wirksam werden.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="88"/>
@@ -216,7 +216,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="9"/>
         <source>Plugin succesfully created!</source>
-        <translation>Plug-In erfolgreich erstellt!</translation>
+        <translation>Das Plug-In wurde erfolgreich erstellt!</translation>
     </message>
 </context>
 <context>
@@ -361,7 +361,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="86"/>
         <source>Go forward</source>
-        <translation>Vorwärtz</translation>
+        <translation>Vorwärts</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="94"/>
@@ -376,17 +376,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="125"/>
         <source>Remove current song from your favorites</source>
-        <translation>Entfernen Sie den aktuellen Song aus Ihren Favoriten</translation>
+        <translation>Löschen Sie das aktuelle Lied aus Ihren Favoriten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="125"/>
         <source>Add current song to your favorites</source>
-        <translation>Füge den aktuellen Song zu deinen Favoriten hinzu</translation>
+        <translation>Füge das aktuelle Lied zu deinen Favoriten hinzu</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="139"/>
         <source>Skip to previous song</source>
-        <translation>Zum vorherigen Song springen</translation>
+        <translation>Zum vorherigen Lied springen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="149"/>
@@ -406,12 +406,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="172"/>
         <source>Disable notifications</source>
-        <translation>Benachrichtigungen ausschalten</translation>
+        <translation>Die Benachrichtigungen ausschalten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="172"/>
         <source>Enable notifications</source>
-        <translation>Benachrichtigungen aktivieren</translation>
+        <translation>Die Benachrichtigungen aktivieren</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="197"/>
@@ -431,12 +431,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="279"/>
         <source>Create plugin</source>
-        <translation>Plug-In erstellen</translation>
+        <translation>Ein Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="289"/>
         <source>Report issue</source>
-        <translation>Fehler melden</translation>
+        <translation>Einen Fehler melden</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="298"/>
@@ -446,7 +446,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="318"/>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Über MellowPlayer</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/MainToolBar.qml" line="326"/>
@@ -479,7 +479,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="67"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;MellowPlayer wird weiter im Hintergrund laufen.&lt;br&gt;Sie können die Anwendung beenden oder das Hauptfenster über das Symbol des Taskleistensymbols wiederherstellen.&lt;/P&gt;</translation>
+        <translation>&lt;p&gt;MellowPlayer wird im Hintergrund weiter laufen.&lt;br&gt;Sie können MellowPlayer beenden oder das Hauptfenster über das Symbol des Taskleistensymbols wiederherstellen.&lt;/P&gt;</translation>
     </message>
 </context>
 <context>
@@ -523,7 +523,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="66"/>
         <source>Player</source>
-        <translation>Playe</translation>
+        <translation>Player</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="69"/>
@@ -553,7 +553,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="100"/>
         <source>Create new plugin</source>
-        <translation>Neues Plug-In erstellen</translation>
+        <translation>Ein Neues Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="108"/>
@@ -563,7 +563,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/NativeMenuBar.qml" line="121"/>
         <source>Report issue</source>
-        <translation>Fehler melden</translation>
+        <translation>Einen Fehler melden</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="144"/>
         <source>Read API documentation</source>
-        <translation>Die API Documentation-lesen</translation>
+        <translation>Die API Dokumentation lesen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="158"/>
@@ -602,7 +602,7 @@ listened to will appear here...</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="137"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="135"/>
         <source>&lt;unknown compiler&gt;</source>
         <translation>&lt;Unbekannter Compiler&gt;</translation>
     </message>
@@ -666,7 +666,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="176"/>
         <source>Confirm restore defaults</source>
-        <translation>Bestätigen Sie die Standardwerte zurücksetzen möchten</translation>
+        <translation>Bestätigen Sie das sie die Standardwerte zurücksetzen möchten</translation>
     </message>
 </context>
 <context>
@@ -674,409 +674,409 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="3"/>
         <source>Confirm application exit</source>
-        <translation type="unfinished"/>
+        <translation>Bestätigen Sie das sie Beenden möchten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="4"/>
         <source>Close application to system tray</source>
-        <translation type="unfinished"/>
+        <translation>Schließt MellowPlayer in den Systemtray</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="5"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Zeige Das Systemtray-Icon</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="6"/>
         <source>Check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Überprüfe auf Updates</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="7"/>
         <source>Update channel</source>
-        <translation type="unfinished"/>
+        <translation>Update-Kanal</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="8"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Thema</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="9"/>
         <source>Accent</source>
-        <translation type="unfinished"/>
+        <translation>Akzent</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="10"/>
         <source>Background</source>
-        <translation type="unfinished"/>
+        <translation>Hintergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="11"/>
         <source>Foreground</source>
-        <translation type="unfinished"/>
+        <translation>Vordergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="12"/>
         <source>Primary Background</source>
-        <translation type="unfinished"/>
+        <translation>Primärer Hintergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="13"/>
         <source>Primary Foreground</source>
-        <translation type="unfinished"/>
+        <translation>Primärer Vordergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="14"/>
         <source>Secondary Background</source>
-        <translation type="unfinished"/>
+        <translation>Sekundärer Hintergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="15"/>
         <source>Secondary Foreground</source>
-        <translation type="unfinished"/>
+        <translation>Sekundärer Vordergrund</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="16"/>
         <source>Enable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Die Benachrichtigungen einblenden</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="17"/>
         <source>Display a notification when a new song starts playing</source>
-        <translation type="unfinished"/>
+        <translation>Zeigt eine Benachrichtigung an, wenn ein neuer Song abgespielt wird</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="18"/>
         <source>Display a notification when player has paused</source>
-        <translation type="unfinished"/>
+        <translation>Zeigt eine Benachrichtigung an, wenn der Player pausiert</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="19"/>
         <source>Display a notification when player has resumed</source>
-        <translation type="unfinished"/>
+        <translation>Zeigt eine Benachrichtigung an, wenn der Player weiter läuft</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="20"/>
         <source>Display a notification at startup when a new version of MellowPlayer is available,</source>
-        <translation type="unfinished"/>
+        <translation>Zeigt eine Benachrichtigung beim Start an, wenn eine neue Version von MellowPlayer verfügbar ist,</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="21"/>
         <source>Play / Pause</source>
-        <translation type="unfinished"/>
+        <translation>Play / Pause</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="22"/>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Nächster</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="23"/>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Vorheriger</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="24"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"/>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="25"/>
         <source>Restore window</source>
-        <translation type="unfinished"/>
+        <translation>Fenster wiederherstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="26"/>
         <source>Reload page</source>
-        <translation type="unfinished"/>
+        <translation>Seite neuladen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="27"/>
         <source>Select service</source>
-        <translation type="unfinished"/>
+        <translation>Wähle einen Service</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="28"/>
         <source>Next service</source>
-        <translation type="unfinished"/>
+        <translation>Nächster service</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="29"/>
         <source>Previous service</source>
-        <translation type="unfinished"/>
+        <translation>Vorheriger Service</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="30"/>
         <source>Toggle notifications</source>
-        <translation type="unfinished"/>
+        <translation>Umschalten der Benachrichtigungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="31"/>
         <source>Listening history</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="33"/>
         <source>Create Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Ein Plug-In erstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="34"/>
         <source>Report Issue</source>
-        <translation type="unfinished"/>
+        <translation>Einen Fehler melden</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="35"/>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="80"/>
         <source>Check for update</source>
-        <translation type="unfinished"/>
+        <translation>Auf Updates prüfen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="36"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Über MellowPlayer</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="37"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="38"/>
         <source>Enable listening history</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf einschalten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="39"/>
         <source>Listening history limit</source>
-        <translation type="unfinished"/>
+        <translation>Hörverlauf Linit</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="40"/>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="51"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automatisch auf Updates prüfen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="48"/>
         <source>Enable this option to get a confirmation message when you leave MellowPlayer.</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren Sie diese Option, um eine Bestätigungsnachricht zu erhalten, wenn Sie MellowPlayer verlassen.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="49"/>
         <source>Enable this option to close the application in the system tray and continue listening to your musing in background.</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren Sie diese Option, um die Anwendung in der Taskleiste zu schließen und Ihre Musik im Hintergrund zu hören.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="50"/>
         <source>Disable this option to hide the system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Deaktivieren Sie diese Option, um das Symbol in der Taskleiste zu verbergen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="52"/>
         <source>Choose which update channel to use</source>
-        <translation type="unfinished"/>
+        <translation>Wählen sie welchen Update-Kanal sie verwenden möchten</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="53"/>
         <source>Application theme</source>
-        <translation type="unfinished"/>
+        <translation>Anwendungs Thema</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="54"/>
         <source>Change material accent color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material Akzentfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="55"/>
         <source>Change material background color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material Hintergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="56"/>
         <source>Change material foreground color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material Vordergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="57"/>
         <source>Change material primary background color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material primäre Hintergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="58"/>
         <source>Change material primary foreground color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material primäre Vordergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="59"/>
         <source>Change material secondary background color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material sekundäre Hintergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="60"/>
         <source>Change material secondary foreground color</source>
-        <translation type="unfinished"/>
+        <translation>Ändere Material sekundäre Vordergrundfarbe</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="61"/>
         <source>Enable or disable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren oder Deaktivieren von Benachrichtigungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="62"/>
         <source>Enabled/Disable displaying a notification when a new song starts playing</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren / Deaktivieren, um eine Benachrichtigung anzuzeigen, wenn ein neuer Song abgespielt wird</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="63"/>
         <source>Enabled/Disable displaying a notification when the player has paused</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren / Deaktivieren, um eine Benachrichtigung anzuzeigen, wenn der Player angehalten hat</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="64"/>
         <source>Enabled/Disable displaying a notification when the player has resumed</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren / Deaktivieren, um eine Benachrichtigung anzuzeigen, wenn der Player weiter spielt</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="65"/>
         <source>Enabled/Disable displaying a notification when a new version of MellowPlayer is available</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren / Deaktivieren der Anzeige einer Benachrichtigung, wenn eine neue Version von MellowPlayer verfügbar ist</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="66"/>
         <source>Global hotkey that plays or pauses the current player.</source>
-        <translation type="unfinished"/>
+        <translation>Globaler Hotkey, der den aktuellen ein Lied spielt oder unterbricht.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="67"/>
         <source>Global hotkey that skips to the next song.</source>
-        <translation type="unfinished"/>
+        <translation>Globaler Hotkey, um zum nächsten Song zu springen.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="68"/>
         <source>Global hotkey that skips to the previous song.</source>
-        <translation type="unfinished"/>
+        <translation>Globaler Hotkey, um zum vorherigen Song zu springen.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="69"/>
         <source>Global hotkey that adds or removes the current song to or from your favorites.</source>
-        <translation type="unfinished"/>
+        <translation>Globaler Hotkey, der den aktuellen Song zu oder von Ihren Favoriten hinzufügt oder entfernt.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="70"/>
         <source>Global hotkey that restore the main window.</source>
-        <translation type="unfinished"/>
+        <translation>Globaler Hotkey, der das Hauptfenster wiederherstellt.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="71"/>
         <source>Reload current web page.</source>
-        <translation type="unfinished"/>
+        <translation>Lade sie aktuelle Seite neu.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="72"/>
         <source>Show service selection page.</source>
-        <translation type="unfinished"/>
+        <translation>Die Service-Auswahlseite anzeigen.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="73"/>
         <source>Switch to the next open service.</source>
-        <translation type="unfinished"/>
+        <translation>Wechseln Sie zum nächsten offenen Service.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="74"/>
         <source>Switch to the previous open service.</source>
-        <translation type="unfinished"/>
+        <translation>Wechseln Sie zum vorherigen geöffneten Service.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="75"/>
         <source>Quickly enable or disable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Schnelles Aktivieren oder Deaktivieren von Benachrichtigungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="76"/>
         <source>Show or hide listening history</source>
-        <translation type="unfinished"/>
+        <translation>Zeige oder verstecke den Hörverlauf</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="77"/>
         <source>Show settings page</source>
-        <translation type="unfinished"/>
+        <translation>Zeige die Einstellungsseite an</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="78"/>
         <source>Show the plugin creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Zeigen Sie den Plug-In-Erstellungsassistenten an</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="79"/>
         <source>Create an issue on github</source>
-        <translation type="unfinished"/>
+        <translation>Erstellen Sie ein Problemreport auf Github</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="81"/>
         <source>Show about page.</source>
-        <translation type="unfinished"/>
+        <translation>Zeige die Seite über MellowPlayer</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="82"/>
         <source>Quit the application.</source>
-        <translation type="unfinished"/>
+        <translation>Beenden Sie die Anwendung.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
         <source>Enable listening history to keep track of the songs you listened to.</source>
-        <translation type="unfinished"/>
+        <translation>Aktivieren Sie den Hörverlauf, um die Songs nach zu verfolgen, die Sie gehört haben.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="84"/>
         <source>Specifies the limit of the listening history</source>
-        <translation type="unfinished"/>
+        <translation>Geben sie die Grenze des Hörverlaufs an</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="85"/>
         <source>Enable this option to be notified when a new version of MellowPlayer is available.</source>
-        <translation type="unfinished"/>
+        <translation>Aktiviere diese Option, um benachrichtigt zu werden, wenn eine neue Version von MellowPlayer verfügbar ist.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="93"/>
         <source>Services</source>
-        <translation type="unfinished"/>
+        <translation>Services</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="94"/>
         <source>Cache</source>
-        <translation type="unfinished"/>
+        <translation>Cache</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="95"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="96"/>
         <source>Appearance</source>
-        <translation type="unfinished"/>
+        <translation>Aussehen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="97"/>
         <source>Notifications</source>
-        <translation type="unfinished"/>
+        <translation>Benachrichtigungen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="98"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Tastatur Shortcuts</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="99"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Privatsphäre </translation>
     </message>
 </context>
 <context>
@@ -1145,34 +1145,34 @@ listened to will appear here...</source>
 <context>
     <name>TimeLimitSettingStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="10"/>
-        <source>Today</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="11"/>
-        <source>Yesterday</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="12"/>
-        <source>Last week</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="13"/>
+        <source>Today</source>
+        <translation>Heute</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="17"/>
+        <source>Yesterday</source>
+        <translation>Gestern</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="21"/>
+        <source>Last week</source>
+        <translation>Letzte Woche</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="25"/>
         <source>Last month</source>
-        <translation type="unfinished"/>
+        <translation>Letzten Monat</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="29"/>
         <source>Last year</source>
-        <translation type="unfinished"/>
+        <translation>Letztes Jahr</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="15"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="33"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Nie</translation>
     </message>
 </context>
 <context>
@@ -1180,17 +1180,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="21"/>
         <source>Stable</source>
-        <translation type="unfinished"/>
+        <translation>Stabile Version</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="25"/>
         <source>Beta</source>
-        <translation type="unfinished"/>
+        <translation>Beta Version</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="29"/>
         <source>Continuous</source>
-        <translation type="unfinished"/>
+        <translation>Entwicklerversion</translation>
     </message>
 </context>
 <context>
@@ -1214,34 +1214,34 @@ listened to will appear here...</source>
 <context>
     <name>UpdaterStatusStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="9"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="15"/>
         <source>Checking for update...</source>
-        <translation type="unfinished"/>
+        <translation>Überprüfe auf Update...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="10"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="19"/>
         <source>An update is available...</source>
-        <translation type="unfinished"/>
+        <translation>Ein Update ist verfügbar...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="11"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="23"/>
         <source>Downloading update...</source>
-        <translation type="unfinished"/>
+        <translation>Das Update wird heruntergeladen...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="12"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="27"/>
         <source>Installing update...</source>
-        <translation type="unfinished"/>
+        <translation>Das Update wird installiert...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="13"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="31"/>
         <source>Update installed, you can now restart the application...</source>
-        <translation type="unfinished"/>
+        <translation>Das Update wurde installiert sie können MellowPlayer neustarten...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="35"/>
         <source>Failed to install update, check logs for warning and errors and try again...</source>
-        <translation type="unfinished"/>
+        <translation>Beim installieren des Updates ist ein Fehler aufgetreten, Überprüfen sie Protokolle auf Warnungen und Fehler und versuchen Sie es erneut ...</translation>
     </message>
 </context>
 <context>
@@ -1250,7 +1250,7 @@ listened to will appear here...</source>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="114"/>
         <source> requires proprietary audio codecs to work properly.&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...&lt;/i&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Erfordert proprietäre Audio-Codecs, um richtig zu funktionieren.&lt;/b&gt;&lt;br&gt;&lt;i&gt;Sie müssen MellowPlayer mit einer Version von QtWebEngine bauen, die mit proprietären Codecs aktiviert ist, um diesen Service zu nutzen ...&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
