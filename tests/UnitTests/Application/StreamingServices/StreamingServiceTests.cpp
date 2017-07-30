@@ -36,7 +36,7 @@ TEST_CASE("StreamingServiceTest", "[UnitTest]")
         serviceMetadata.logoPath = QString(PLUGINS_DIR) + QString("/deezer/logo.svg");
         StreamingService service(serviceMetadata);
 #ifdef Q_OS_WIN
-        REQUIRE(service.getLogo() == "file:" + serviceMetadata.logoPath);
+        REQUIRE(service.logo() == "file:" + serviceMetadata.logoPath);
 #else
         REQUIRE(service.logo() == "file://" + serviceMetadata.logoPath);
 #endif
