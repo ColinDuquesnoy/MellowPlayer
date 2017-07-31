@@ -60,7 +60,7 @@
 <context>
     <name>AppStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="17"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
         <translation>Compilé le %1 à %2 (%3, %4 bit) avec Qt %5</translation>
     </message>
@@ -602,7 +602,7 @@ listened to will appear here...</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="137"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="135"/>
         <source>&lt;unknown compiler&gt;</source>
         <translation>&lt;compilateur inconnu&gt;</translation>
     </message>
@@ -1145,34 +1145,62 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
+    <name>SystemTrayIconStrings</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="118"/>
+        <source>Play/Pause</source>
+        <translation>Jouer / Mettre en pause</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="123"/>
+        <source>Next</source>
+        <translation>Piste suivante</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="128"/>
+        <source>Previous</source>
+        <translation>Piste précédente</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="133"/>
+        <source>Restore window</source>
+        <translation>Restaure la fenêtre</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="138"/>
+        <source>Quit</source>
+        <translation>Quitter</translation>
+    </message>
+</context>
+<context>
     <name>TimeLimitSettingStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="10"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="13"/>
         <source>Today</source>
         <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="11"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="17"/>
         <source>Yesterday</source>
         <translation>Hier</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="12"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="21"/>
         <source>Last week</source>
         <translation>La semaine passée</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="13"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="25"/>
         <source>Last month</source>
         <translation>Le mois passé</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="29"/>
         <source>Last year</source>
         <translation>L&apos;an passé</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="15"/>
+        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp" line="33"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
@@ -1216,32 +1244,32 @@ listened to will appear here...</source>
 <context>
     <name>UpdaterStatusStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="9"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="15"/>
         <source>Checking for update...</source>
         <translation>Vérification des mises à jour...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="10"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="19"/>
         <source>An update is available...</source>
         <translation>Une mise à jour est disponible...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="11"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="23"/>
         <source>Downloading update...</source>
         <translation>Téléchargement de la mise à jour...</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="12"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="27"/>
         <source>Installing update...</source>
         <translation>Installation de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="13"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="31"/>
         <source>Update installed, you can now restart the application...</source>
         <translation>Mise à jour installée - ou téléchargée, vous pouvez maintenant redémarrer l&apos;application</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="14"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="35"/>
         <source>Failed to install update, check logs for warning and errors and try again...</source>
         <translation>Échec de l&apos;installation de la mise à jour, vérifiez les fichiers de logs et/ou réessayez...</translation>
     </message>

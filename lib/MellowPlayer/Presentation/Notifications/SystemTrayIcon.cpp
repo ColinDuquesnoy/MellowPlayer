@@ -52,23 +52,24 @@ void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason)
 
 void SystemTrayIcon::setUpMenu()
 {
-    playPauseAction_ = menu_.addAction(IconProvider::play(), "Play/Pause");
+    SystemTrayIconStrings strings;
+    playPauseAction_ = menu_.addAction(IconProvider::play(), strings.playPause());
     connect(playPauseAction_, &QAction::triggered, this, &SystemTrayIcon::togglePlayPause);
 
-    nextSongAction_ = menu_.addAction(IconProvider::next(), "Next");
+    nextSongAction_ = menu_.addAction(IconProvider::next(), strings.next());
     connect(nextSongAction_, &QAction::triggered, this, &SystemTrayIcon::next);
 
-    previousSongAction_ = menu_.addAction(IconProvider::previous(), "Previous");
+    previousSongAction_ = menu_.addAction(IconProvider::previous(), strings.previous());
     connect(previousSongAction_, &QAction::triggered, this, &SystemTrayIcon::previous);
 
     menu_.addSeparator();
 
-    restoreWindowAction_ = menu_.addAction(IconProvider::restoreWindow(), "Restore window");
+    restoreWindowAction_ = menu_.addAction(IconProvider::restoreWindow(), strings.restoreWindow());
     connect(restoreWindowAction_, &QAction::triggered, this, &SystemTrayIcon::restoreWindow);
 
     menu_.addSeparator();
 
-    quitApplicationAction_ = menu_.addAction(IconProvider::quit(), "Quit");
+    quitApplicationAction_ = menu_.addAction(IconProvider::quit(), strings.quit());
     connect(quitApplicationAction_, &QAction::triggered, this, &SystemTrayIcon::quit);
 
     qSystemTrayIcon_.setContextMenu(&menu_);
@@ -111,3 +112,29 @@ void SystemTrayIcon::onShowTrayIconSettingValueChanged()
     else
         hide();
 }
+
+QString SystemTrayIconStrings::playPause() const
+{
+    return tr("Play/Pause");
+}
+
+QString SystemTrayIconStrings::next() const
+{
+    return tr("Next");
+}
+
+QString SystemTrayIconStrings::previous() const
+{
+    return tr("Previous");
+}
+
+QString SystemTrayIconStrings::restoreWindow() const
+{
+    return tr("Restore window");
+}
+
+QString SystemTrayIconStrings::quit() const
+{
+    return tr("Quit");
+}
+

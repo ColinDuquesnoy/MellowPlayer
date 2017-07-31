@@ -15,6 +15,17 @@ namespace MellowPlayer::Application
     class Settings;
 }
 
+class SystemTrayIconStrings : public QObject
+{
+    Q_OBJECT
+public:
+    QString playPause() const;
+    QString next() const;
+    QString previous() const;
+    QString restoreWindow() const;
+    QString quit() const;
+};
+
 namespace MellowPlayer::Presentation
 {
     class SystemTrayIcon : public QObject, public Application::ISystemTrayIcon
