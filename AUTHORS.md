@@ -8,4 +8,4 @@ Contributors
 ------------
 
 - [ConorIA](https://github.com/ConorIA)
-- [ZeroDot1](https://github.com/ZeroDot1)
+- [ZeroDot1](http://basic1.moy.su/)
