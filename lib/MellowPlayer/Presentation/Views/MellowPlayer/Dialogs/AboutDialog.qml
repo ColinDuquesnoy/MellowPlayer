@@ -210,6 +210,11 @@ Popup {
                                     url: "https://github.com/ConorIA"
                                 }
 
+                                Link {
+                                    name: '@ZeroDot1'
+                                    url: "https://github.com/ZeroDot1"
+                                }
+
                                 Item { Layout.fillHeight: true }
                             }
                         }
