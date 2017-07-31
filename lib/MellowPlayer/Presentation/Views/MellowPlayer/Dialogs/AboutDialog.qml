@@ -212,7 +212,7 @@ Popup {
 
                                 Link {
                                     name: '@ZeroDot1'
-                                    url: "https://github.com/ZeroDot1"
+                                    url: "http://basic1.moy.su/"
                                 }
 
                                 Item { Layout.fillHeight: true }
