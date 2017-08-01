@@ -274,12 +274,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="85"/>
         <source>by</source>
-        <translation>Von</translation>
+        <translation> Von </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="92"/>
         <source>on</source>
-        <translation>An</translation>
+        <translation> An </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
@@ -617,7 +617,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="73"/>
         <source>Version </source>
-        <translation>Version</translation>
+        <translation>Version </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="73"/>
@@ -638,7 +638,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="24"/>
         <source>Which service would you like to listen to ?</source>
-        <translation>Mit welchen Service möchtest du gerne Musik hören?</translation>
+        <translation>Mit welchem Service möchtest du gerne Musik hören?</translation>
     </message>
 </context>
 <context>
@@ -699,7 +699,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="8"/>
         <source>Theme</source>
-        <translation>Thema</translation>
+        <translation>Wählen sie ein Farbschema aus [Thema]</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="9"/>
@@ -1147,27 +1147,27 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="118"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"/>
+        <translation>Play/Pause</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="123"/>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Nächster Titel</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="128"/>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Vorheriger Titel</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="133"/>
         <source>Restore window</source>
-        <translation type="unfinished"/>
+        <translation>Programmfenster wiederherstellen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="138"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>MellowPlayer Schließen</translation>
     </message>
 </context>
 <context>
@@ -1226,7 +1226,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/UpdateToolBar.qml" line="56"/>
         <source>See release notes</source>
-        <translation>Lese die Versionshinweise</translation>
+        <translation>Lesen sie die Versionshinweise</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/UpdateToolBar.qml" line="62"/>
