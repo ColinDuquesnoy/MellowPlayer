@@ -2,7 +2,7 @@ import os
 import re
 import subprocess
 from enum import Enum
-
+from github3 import login
 
 class PromotionType(Enum):
     MAJOR = 0
@@ -51,9 +51,16 @@ class Git:
         subprocess.check_call(["git", "push", '--tags'])
 
 
+class Github:
+    @staticmethod
+    def create_release(name, description, prerelease):
+        gh = login('ColinDuquesnoy', 'MellowPlayer', os.environ['CHANGELOG_GITHUB_TOKEN'])
+        gh.create_release(name, name=name, body=description, prerelease=prerelease)
+
+
 class Promotion:
-    def __init__(self, promotion_type, required_branch, pre_release=False):
-        self.pre_release = pre_release
+    def __init__(self, promotion_type, required_branch, prerelease=False):
+        self.prerelease = prerelease
         self.required_branch = required_branch
         self.initial_version = self.read_cmake_version()
         self.new_version = None
@@ -72,18 +79,35 @@ class Promotion:
             self.pull_translations()
             Git.commit()
 
-            if self.required_branch == "develop" and not self.pre_release:
+            if self.required_branch == "develop" and not self.prerelease:
                 # merge develop into master
                 Git.checkout("master")
                 Git.merge("develop")
 
             Git.create_tag(str(self.new_version))
+            Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
             self.update_website()
 
             Git.checkout("develop")
             if self.required_branch == 'master':
                 # switch back to develop and merge master into develop
                 Git.merge("master")
+
+    def get_latest_changelog_entry(self):
+        with open('CHANGELOG.md') as f:
+            lines = f.read().splitlines()
+
+        record = False
+        recorded_lines = []
+        for l in lines:
+            if l.strip().startswith('##'):
+                record = not record
+                if record is False:
+                    break
+            else:
+                if record:
+                    recorded_lines.append(l)
+        return '\n'.join(recorded_lines)
 
     def update_change_log(self):
         print('Updating Changelog...')
@@ -173,7 +197,7 @@ class PublicPromotion(Promotion):
 
 class InternalPromotion(Promotion):
     def __init__(self, promotion_type):
-        super().__init__(promotion_type, "develop", pre_release=True)
+        super().__init__(promotion_type, "develop", prerelease=True)
         self.START_OF_DEVELOPMENT = 50
         self.ALPHA = 90
         self.BETA = 95
