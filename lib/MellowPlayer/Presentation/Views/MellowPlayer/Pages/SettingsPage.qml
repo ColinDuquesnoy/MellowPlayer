@@ -117,7 +117,7 @@ Page {
                             anchors.left: parent.left
                             anchors.bottom: parent.bottom
 
-                            width: 3
+                            width: 4
                             color: _theme.accent
                         }
                     }
