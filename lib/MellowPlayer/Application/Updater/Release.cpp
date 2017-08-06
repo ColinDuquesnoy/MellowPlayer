@@ -3,16 +3,18 @@
 
 using namespace MellowPlayer::Application;
 
-Release Release::current_(MELLOWPLAYER_VERSION, QDate::fromString(QString(__DATE__).simplified(), "MMM d yyyy"));
+Release Release::current_(MELLOWPLAYER_VERSION, QDate::fromString(BUILD_DATE, Qt::ISODate));
 
 Release::Release(const QString& name, const QDate& date, QObject* parent)
         : QObject(parent), url_(""), name_(name), date_(date), preRelease_(false), assets_()
 {
+
 }
 
 Release::Release(const QString& url, const QString& name, const QDate& date, const AssetList& assets, bool preRelease, QObject* parent)
         : QObject(parent), url_(url), name_(name), date_(date), preRelease_(preRelease), assets_(assets)
 {
+
 }
 
 QString Release::url() const

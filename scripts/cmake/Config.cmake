@@ -1,8 +1,3 @@
-# set a local Views import dir for developers (to avoid to have to install the plugins to test and develop them).
-set(QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/imports" CACHE STRING "" FORCE)
-add_definitions(-DQML_IMPORT_PATH=\"${QML_IMPORT_PATH}\")
-set(BUILDING_HACKEDIT_EDITOR TRUE)
-
 # detect compilers
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set(CLANG_COMPILER TRUE)
@@ -53,3 +48,9 @@ configure_file(
         IMMEDIATE @ONLY)
 add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
+
+string(TIMESTAMP BUILD_DATE_TIME_STR UTC)
+string(REPLACE "T" ";" BUILD_DATE_TIME_LIST ${BUILD_DATE_TIME_STR})
+list(GET BUILD_DATE_TIME_LIST 0 BUILD_DATE)
+message(STATUS ${BUILD_DATE})
+add_definitions(-DBUILD_DATE=\"${BUILD_DATE}\")

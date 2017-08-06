@@ -68,7 +68,7 @@ void Updater::onLatestReleaseReceived(const Release* release)
         isUpdateAvailable_ = true;
         emit updateAvailable();
     } else {
-        LOG_DEBUG(logger_, QString("No release found"));
+        LOG_DEBUG(logger_, QString("Current release is up to date (%1 >= %2)").arg(currentRelease_->name()).arg(release->name()));
         setStatus(Status::None);
         latestRelease_ = nullptr;
         isUpdateAvailable_ = false;
