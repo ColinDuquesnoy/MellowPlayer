@@ -22,7 +22,6 @@ endif()
 qt5_add_resources(RSCS languages/languages.qrc)
 add_custom_target(gen_qrc DEPENDS ${RSCS} ${QM_FILES} ${TS_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES} ${TS_FILES})
-message(STATUS ${QM_FILES})
 
 # generate languages.qrc
 file(WRITE languages/languages.qrc "<!DOCTYPE RCC>\n")

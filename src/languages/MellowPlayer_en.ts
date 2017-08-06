@@ -85,6 +85,16 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
+        <source>Are you sure you want to restore all </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
+        <source> settings to their default values?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="86"/>
         <source>Confirm restore defaults</source>
         <translation></translation>
@@ -614,7 +624,7 @@ listened to will appear here...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="5"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="7"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>

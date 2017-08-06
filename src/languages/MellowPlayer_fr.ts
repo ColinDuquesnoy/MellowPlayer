@@ -83,6 +83,16 @@
         <translation>&lt;/b&gt;.</translation>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
+        <source>Are you sure you want to restore all </source>
+        <translation>Êtes-vous sûr de vouloir restaurer tous les paramètre de la catégorie </translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
+        <source> settings to their default values?</source>
+        <translation>par défaut?</translation>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="86"/>
         <source>Confirm restore defaults</source>
         <translation>Veuillez confirmez que vous voulez restaurer les paramètres par défaut.</translation>
@@ -612,7 +622,7 @@ listened to will appear here...</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="5"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="7"/>
         <source>Open</source>
         <translation>Ouvrir</translation>
     </message>

@@ -82,7 +82,7 @@ ColumnLayout {
         id: messageBoxConfirmRestore
 
         standardButtons: Dialog.Yes | Dialog.No
-        message: qsTr("Are you sure you want to restore all " + model.name.toLowerCase() + " settings to their default values?")
+        message: qsTr("Are you sure you want to restore all ") + model.name.toLowerCase() + qsTr(" settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: page.width / 2 - width / 2
         y: page.height / 2 - height / 2
