@@ -147,7 +147,7 @@ TEST_CASE("SettingsTests")
                 Setting& theme = settings.get(SettingKey::APPEARANCE_THEME);
                 Setting& accent = settings.get(SettingKey::APPEARANCE_ACCENT);
                 QSignalSpy spy(&accent, SIGNAL(isEnabledChanged()));
-                REQUIRE(theme.value().toString() == "Adaptive");
+                REQUIRE(theme.value().toString() == theme.defaultValue());
                 REQUIRE(!accent.isEnabled());
 
                 theme.setValue("Custom");
