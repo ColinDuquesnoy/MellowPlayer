@@ -159,7 +159,7 @@ StackLayout {
                     text: qsTr("Click to enable listening history")
                 }
 
-                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
             }
 
             Item {
