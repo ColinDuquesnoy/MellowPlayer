@@ -29,9 +29,9 @@ class Git:
         return subprocess.check_output(['git', 'branch']).decode().replace('* ', '').splitlines()[0]
 
     @staticmethod
-    def commit():
+    def commit_and_push():
         subprocess.check_output(["git", "commit", "-a", "-m", "Prepare release"])
-        subprocess.check_output(["git", "push"])
+        Git.push()
 
     @staticmethod
     def create_tag(tag_name):
@@ -68,31 +68,32 @@ class Promotion:
         self.promotion_type = promotion_type
 
     def execute(self):
-        git_branch = Git.get_branch()
-        if git_branch != self.required_branch:
-            raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
-        self.new_version = self.bump_version(self.initial_version)
-        print('Promoting v%s to v%s' % (self.initial_version, self.new_version))
-        self.write_cmake_version(self.new_version)
-
-        if self.can_publish_release(self.new_version):
-            self.update_change_log()
-            self.pull_translations()
-            Git.commit()
-
-            if self.required_branch == "develop" and not self.prerelease:
-                # merge develop into master
-                Git.checkout("master")
-                Git.merge("develop")
-
-            Git.create_tag(str(self.new_version))
-            Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
-            self.update_website()
-
-            Git.checkout("develop")
-            if self.required_branch == 'master':
-                # switch back to develop and merge master into develop
-                Git.merge("master")
+        self.update_website()
+        # git_branch = Git.get_branch()
+        # if git_branch != self.required_branch:
+        #     raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
+        # self.new_version = self.bump_version(self.initial_version)
+        # print('Promoting v%s to v%s' % (self.initial_version, self.new_version))
+        # self.write_cmake_version(self.new_version)
+        #
+        # if self.can_publish_release(self.new_version):
+        #     self.update_change_log()
+        #     self.pull_translations()
+        #     Git.commit_and_push()
+        #
+        #     if self.required_branch == "develop" and not self.prerelease:
+        #         # merge develop into master
+        #         Git.checkout("master")
+        #         Git.merge("develop")
+        #
+        #     Git.create_tag(str(self.new_version))
+        #     Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
+        #     self.update_website()
+        #
+        #     Git.checkout("develop")
+        #     if self.required_branch == 'master':
+        #         # switch back to develop and merge master into develop
+        #         Git.merge("master")
 
     def get_latest_changelog_entry(self):
         with open('CHANGELOG.md') as f:
@@ -126,7 +127,31 @@ class Promotion:
         subprocess.check_call(['github_changelog_generator'])
 
     def update_website(self):
-        pass
+        branch = Git.get_branch()
+        Git.checkout('gh-pages')
+        with open('index.html') as f:
+            lines = f.read().splitlines()
+        app_image = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer-x86_64.AppImage"><img alt="" src="img/features-picto_linux.svg">'
+        dmg = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer.dmg"><img alt="" src="img/features-picto_mac.svg">'
+        windows_installer = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer_Setup.exe"><img alt="" src="img/features-picto_window.svg">'
+        updated_lines = []
+        for l in lines:
+            if l.strip().startswith('<a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download'):
+                print(l)
+                if '.AppImage' in l:
+                    updated_lines.append(app_image % self.new_version)
+                elif '_Setup.exe' in l:
+                    updated_lines.append(windows_installer % self.new_version)
+                elif '.dmg' in l:
+                    updated_lines.append(dmg % self.new_version)
+                print(updated_lines[-1])
+            else:
+                updated_lines.append(l)
+
+        # with open('index.html', 'w') as f:
+        #     f.write('\n'.join(updated_lines))
+        # Git.commit_and_push()
+        Git.checkout(branch)
 
     @staticmethod
     def pull_translations():
