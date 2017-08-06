@@ -54,8 +54,9 @@ class Git:
 class Github:
     @staticmethod
     def create_release(name, description, prerelease):
-        gh = login('ColinDuquesnoy', 'MellowPlayer', os.environ['CHANGELOG_GITHUB_TOKEN'])
-        gh.create_release(name, name=name, body=description, prerelease=prerelease)
+        gh = login(username='ColinDuquesnoy', token=os.environ['CHANGELOG_GITHUB_TOKEN'])
+        repo = gh.repository('ColinDuquesnoy', 'MellowPlayer')
+        repo.create_release(name, name=name, body=description, prerelease=prerelease)
 
 
 class Promotion:
