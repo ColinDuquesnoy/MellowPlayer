@@ -221,6 +221,8 @@ void ThemeViewModel::collectThemes()
     availableThemes_["Adaptive"] = currentTheme_;
     availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Application/Theme/Breeze.json");
     availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Application/Theme/BreezeDark.json");
+    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Application/Theme/Midna.json");
+    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Application/Theme/MidnaDark.json");
     availableThemes_["Custom"] = customTheme();
     availableThemes_["Default"] = loader_.load(":/MellowPlayer/Application/Theme/Default.json");
 
