@@ -144,7 +144,7 @@ Popup {
 
                     padding: 16
 
-                    Material.elevation: 8
+                    Material.elevation: 2
 
                     ColumnLayout {
                         anchors.horizontalCenter: parent.horizontalCenter
