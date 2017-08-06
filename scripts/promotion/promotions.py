@@ -4,7 +4,8 @@ import subprocess
 from enum import Enum
 from github3 import login
 
-class PromotionType(Enum):
+
+class Type(Enum):
     MAJOR = 0
     MINOR = 1
     BUG_FIX = 2
@@ -197,15 +198,15 @@ class Promotion:
 
 class PublicPromotion(Promotion):
     def __init__(self, promotion_type):
-        super().__init__(promotion_type, 'develop' if promotion_type != PromotionType.BUG_FIX else 'master')
+        super().__init__(promotion_type, 'develop' if promotion_type != Type.BUG_FIX else 'master')
 
     def bump_version(self, version):
         new_version = Version()
-        if self.promotion_type == PromotionType.MAJOR:
+        if self.promotion_type == Type.MAJOR:
             new_version.patch = 0
             new_version.minor = 0
             new_version.major = version.major + 1
-        elif self.promotion_type == PromotionType.MINOR:
+        elif self.promotion_type == Type.MINOR:
             new_version.patch = 0
             new_version.minor = version.minor + 1
             new_version.major = version.major
@@ -231,7 +232,7 @@ class InternalPromotion(Promotion):
 
     def bump_version(self, version):
         new_version = Version()
-        if self.promotion_type == PromotionType.MAJOR:
+        if self.promotion_type == Type.MAJOR:
             new_version.patch = 0
             new_version.minor = self.increment_version_number(version.minor)
             new_version.major = version.major
@@ -258,13 +259,82 @@ class InternalPromotion(Promotion):
         return version.patch != self.START_OF_DEVELOPMENT and version.minor != self.START_OF_DEVELOPMENT
 
 
-def main():
+def main(promotion_class, promotion_type):
     while 'scripts' in os.getcwd():
         os.chdir('..')
 
-    promotion = InternalPromotion(PromotionType.MAJOR)
-    promotion.execute()
+    answer = input('Press Y to confirm you want to perform a %s[%s]: ' % (promotion_class.__name__, promotion_type)).lower()
+    if answer == 'y':
+        promotion = promotion_class(promotion_type)
+        promotion.execute()
+    else:
+        print('nothing to do')
 
 
-if __name__ == "__main__":
-    main()
+def public_promotion(promotion_type):
+    main(PublicPromotion, promotion_type)
+
+
+def internal_promotion(promotion_type):
+    main(InternalPromotion, promotion_type)
+
+
+def test_internal_major_promotion_bump_version():
+    promotion = InternalPromotion(Type.MAJOR)
+    assert(promotion.bump_version(Version(1, 1, 0)) == Version(1, 50, 0))
+    assert(promotion.bump_version(Version(1, 1, 15)) == Version(1, 50, 0))
+    assert(promotion.bump_version(Version(1, 50, 0)) == Version(1, 90, 0))
+    assert(promotion.bump_version(Version(1, 90, 0)) == Version(1, 95, 0))
+    assert(promotion.bump_version(Version(1, 95, 0)) == Version(1, 99, 0))
+    try:
+        promotion.bump_version(Version(1, 99, 0))
+    except ValueError as e:
+        assert(e is not None)
+
+
+def test_internal_minor_promotion_bump_version():
+    promotion = InternalPromotion(Type.MINOR)
+    assert(promotion.bump_version(Version(1, 1, 0)) == Version(1, 1, 50))
+    assert(promotion.bump_version(Version(1, 1, 15)) == Version(1, 1, 50))
+    assert(promotion.bump_version(Version(1, 1, 50)) == Version(1, 1, 90))
+    assert(promotion.bump_version(Version(1, 1, 90)) == Version(1, 1, 95))
+    assert(promotion.bump_version(Version(1, 1, 95)) == Version(1, 1, 99))
+    try:
+        promotion.bump_version(Version(1, 1, 99))
+    except ValueError as e:
+        assert(e is not None)
+
+
+def test_internal_minor_promotion_can_publish():
+    promotion = InternalPromotion(Type.MINOR)
+    assert(promotion.can_publish_release(Version(1, 1, 95)))
+    assert(promotion.can_publish_release(Version(1, 1, 90)))
+    assert(promotion.can_publish_release(Version(1, 1, 99)))
+    assert(not promotion.can_publish_release(Version(1, 1, 50)))
+
+
+def test_public_major_promotion_bump_version():
+    promotion = PublicPromotion(Type.MAJOR)
+    assert(promotion.bump_version(Version(1, 1, 5)) == Version(2, 0, 0))
+
+
+def test_public_minor_promotion_bump_version():
+    promotion = PublicPromotion(Type.MINOR)
+    assert(promotion.bump_version(Version(1, 1, 1)) == Version(1, 2, 0))
+
+
+def test_public_patch_promotion_bump_version():
+    promotion = PublicPromotion(Type.BUG_FIX)
+    assert(promotion.bump_version(Version(1, 1, 1)) == Version(1, 1, 2))
+
+if __name__ == '__main__':
+    while 'scripts' in os.getcwd():
+        os.chdir('..')
+
+    test_internal_major_promotion_bump_version()
+    test_internal_minor_promotion_bump_version()
+    test_internal_minor_promotion_can_publish()
+    test_public_major_promotion_bump_version()
+    test_public_minor_promotion_bump_version()
+    test_public_patch_promotion_bump_version()
+    print('All tests passed...')
