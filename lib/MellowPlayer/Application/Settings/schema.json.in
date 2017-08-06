@@ -53,7 +53,7 @@
 					"name": "Theme",
                     "tooltip": "Application theme",
 					"type": "theme",
-					"default": "Midna",
+					"default": "@DEFAULT_THEME@",
 					"key": "theme"
 				},
 				{

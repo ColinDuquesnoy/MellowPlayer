@@ -109,6 +109,7 @@ cmake --build . --config Release
 You can specify the following options when calling cmake:
 
 - ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Release**.
+- ``-DDEFAULT_THEME=``: **Adaptive** by default. Can be set to any theme appearing in the theme combo box.
 - ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **OFF**.
 - ``-DBUILD_INTEGRATION_TESTS=``: **ON** or **OFF** - Default is **OFF**.
 - ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .
