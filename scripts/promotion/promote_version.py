@@ -36,7 +36,7 @@ class Git:
     @staticmethod
     def create_tag(tag_name):
         subprocess.check_output(["git", "tag", "-a", tag_name, '-m', tag_name])
-        Git.push()
+        subprocess.check_output(["git", "push", '--tags'])
 
     @staticmethod
     def checkout(branch):
@@ -48,7 +48,7 @@ class Git:
 
     @staticmethod
     def push():
-        subprocess.check_output(["git", "push", '--tags'])
+        subprocess.check_output(["git", "push"])
 
 
 class Github:
@@ -68,32 +68,33 @@ class Promotion:
         self.promotion_type = promotion_type
 
     def execute(self):
+        self.new_version = self.read_cmake_version()
         self.update_website()
-        # git_branch = Git.get_branch()
-        # if git_branch != self.required_branch:
-        #     raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
-        # self.new_version = self.bump_version(self.initial_version)
-        # print('Promoting v%s to v%s' % (self.initial_version, self.new_version))
-        # self.write_cmake_version(self.new_version)
-        #
-        # if self.can_publish_release(self.new_version):
-        #     self.update_change_log()
-        #     self.pull_translations()
-        #     Git.commit_and_push()
-        #
-        #     if self.required_branch == "develop" and not self.prerelease:
-        #         # merge develop into master
-        #         Git.checkout("master")
-        #         Git.merge("develop")
-        #
-        #     Git.create_tag(str(self.new_version))
-        #     Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
-        #     self.update_website()
-        #
-        #     Git.checkout("develop")
-        #     if self.required_branch == 'master':
-        #         # switch back to develop and merge master into develop
-        #         Git.merge("master")
+        git_branch = Git.get_branch()
+        if git_branch != self.required_branch:
+            raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
+        self.new_version = self.bump_version(self.initial_version)
+        print('Promoting v%s to v%s' % (self.initial_version, self.new_version))
+        self.write_cmake_version(self.new_version)
+
+        if self.can_publish_release(self.new_version):
+            self.update_change_log()
+            self.pull_translations()
+            Git.commit_and_push()
+
+            if self.required_branch == "develop" and not self.prerelease:
+                # merge develop into master
+                Git.checkout("master")
+                Git.merge("develop")
+
+            Git.create_tag(str(self.new_version))
+            Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
+            self.update_website()
+
+            Git.checkout("develop")
+            if self.required_branch == 'master':
+                # switch back to develop and merge master into develop
+                Git.merge("master")
 
     def get_latest_changelog_entry(self):
         with open('CHANGELOG.md') as f:
@@ -137,7 +138,6 @@ class Promotion:
         updated_lines = []
         for l in lines:
             if l.strip().startswith('<a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download'):
-                print(l)
                 if '.AppImage' in l:
                     updated_lines.append(app_image % self.new_version)
                 elif '_Setup.exe' in l:
@@ -148,9 +148,9 @@ class Promotion:
             else:
                 updated_lines.append(l)
 
-        # with open('index.html', 'w') as f:
-        #     f.write('\n'.join(updated_lines))
-        # Git.commit_and_push()
+        with open('index.html', 'w') as f:
+            f.write('\n'.join(updated_lines))
+        Git.commit_and_push()
         Git.checkout(branch)
 
     @staticmethod
