@@ -85,12 +85,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
         <source>Are you sure you want to restore all </source>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie alle</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="85"/>
         <source> settings to their default values?</source>
-        <translation type="unfinished"/>
+        <translation>Einstellungen auf ihre Standardwerte zurücksetzen möchten?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="86"/>

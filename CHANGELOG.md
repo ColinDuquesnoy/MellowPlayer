@@ -1,7 +1,7 @@
 # Change Log
 
-## [3.0.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.0.0) (2017-08-06)
-[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.95.0...3.0.0)
+## [2.99.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/2.99.0) (2017-08-06)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.95.0...2.99.0)
 
 **Implemented enhancements:**
 
