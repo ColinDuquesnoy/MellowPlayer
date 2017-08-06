@@ -30,25 +30,25 @@ class Git:
 
     @staticmethod
     def commit():
-        subprocess.check_call(["git", "commit", "-a", "-m", "Prepare release"])
-        subprocess.check_call(["git", "push"])
+        subprocess.check_output(["git", "commit", "-a", "-m", "Prepare release"])
+        subprocess.check_output(["git", "push"])
 
     @staticmethod
     def create_tag(tag_name):
-        subprocess.check_call(["git", "tag", "-a", tag_name, '-m', tag_name])
+        subprocess.check_output(["git", "tag", "-a", tag_name, '-m', tag_name])
         Git.push()
 
     @staticmethod
     def checkout(branch):
-        subprocess.check_call(['git', 'checkout', branch])
+        subprocess.check_output(['git', 'checkout', branch])
 
     @staticmethod
     def merge(branch):
-        subprocess.check_call(['git', 'merge', branch])
+        subprocess.check_output(['git', 'merge', branch])
 
     @staticmethod
     def push():
-        subprocess.check_call(["git", "push", '--tags'])
+        subprocess.check_output(["git", "push", '--tags'])
 
 
 class Github:
