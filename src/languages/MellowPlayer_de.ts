@@ -221,12 +221,13 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="8"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>Fertig
+</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="9"/>
         <source>Plugin succesfully created!</source>
-        <translation type="unfinished"/>
+        <translation>Plugin erfolgreich erstellt!</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="18"/>
@@ -235,7 +236,11 @@
     &lt;head&gt;
         &lt;body&gt;
             &lt;p&gt;Your plugin has been created to: &lt;b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>
+&lt;html&gt;
+ &lt;head&gt;
+ &lt;body&gt;
+ &lt;p&gt;Ihr Plugin wurde erstellt in: &lt;b&gt;</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="22"/>
@@ -245,7 +250,12 @@
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;/b&gt;&lt;/p&gt;
+ &lt;p&gt;Ihr Plugin sollte nun in der Liste der verfügbaren Dienste erscheinen, wählen Sie es einfach aus und beginnen Sie daran zu arbeiten!&lt;/p&gt;
+ &lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Dein Code wird automatisch neu geladen, sobald du ihn mit deinem bevorzugten Editor bearbeitet hast ...&lt;/span&gt;&lt;/p&gt;
+ &lt;/body&gt;
+ &lt;/head&gt;
+&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
