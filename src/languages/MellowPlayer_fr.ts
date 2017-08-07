@@ -221,12 +221,40 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="8"/>
         <source>Finished</source>
-        <translation>Finis</translation>
+        <translation>Terminé</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="9"/>
         <source>Plugin succesfully created!</source>
-        <translation>Le plugin a été créé avec succès!</translation>
+        <translation>Plugin créé avec succès!</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="18"/>
+        <source>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;body&gt;
+            &lt;p&gt;Your plugin has been created to: &lt;b&gt;</source>
+        <translation>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;body&gt;
+            &lt;p&gt;Le plugin a été créé: &lt;b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="22"/>
+        <source>&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;Your plugin should now appear in the list of available services, just select it and start working in it!&lt;/p&gt;
+            &lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Your code will be reloaded automatically whenever you save it using your preferred editor...&lt;/span&gt;&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/head&gt;
+&lt;/html&gt;</source>
+        <translation>&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;Le plugin devrait maintenant apparaître dans la liste des services. Vous pouvez le sélectionner et dès maintenant commencer à travailler dessus!&lt;/p&gt;
+            &lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Le code du plugin sera automatiquement rechargé par l&apos;application dès que vous sauvez les fichier avec votre éditeur de code préféré...&lt;/span&gt;&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/head&gt;
+&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

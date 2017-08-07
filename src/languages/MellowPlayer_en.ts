@@ -230,6 +230,25 @@
         <source>Plugin succesfully created!</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="18"/>
+        <source>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;body&gt;
+            &lt;p&gt;Your plugin has been created to: &lt;b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/FinishPage.qml" line="22"/>
+        <source>&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;Your plugin should now appear in the list of available services, just select it and start working in it!&lt;/p&gt;
+            &lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Your code will be reloaded automatically whenever you save it using your preferred editor...&lt;/span&gt;&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/head&gt;
+&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FullScreenNotification</name>
