@@ -70,7 +70,6 @@ class Promotion:
 
     def execute(self):
         self.new_version = self.read_cmake_version()
-        self.update_website()
         git_branch = Git.get_branch()
         if git_branch != self.required_branch:
             raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
