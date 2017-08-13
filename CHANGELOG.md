@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.0.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.0.0) (2017-08-13)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.99.0...3.0.0)
+
+**Fixed bugs:**
+
+- Last page of plugin wizard is not translatable [\#97](https://github.com/ColinDuquesnoy/MellowPlayer/issues/97)
+
 ## [2.99.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/2.99.0) (2017-08-06)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.95.0...2.99.0)
 
@@ -28,6 +35,7 @@
 
 - Youtube fullscreen does not work [\#87](https://github.com/ColinDuquesnoy/MellowPlayer/issues/87)
 - High DPI issue [\#71](https://github.com/ColinDuquesnoy/MellowPlayer/issues/71)
+- Soundcloud integration broken [\#60](https://github.com/ColinDuquesnoy/MellowPlayer/issues/60)
 
 **Merged pull requests:**
 
@@ -35,10 +43,6 @@
 
 ## [2.95.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/2.95.0) (2017-06-24)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.2.5...2.95.0)
-
-**Fixed bugs:**
-
-- Soundcloud integration broken [\#60](https://github.com/ColinDuquesnoy/MellowPlayer/issues/60)
 
 **Implemented enhancements:**
 
