@@ -138,8 +138,6 @@ ctest -V
 
 # Contributing
 
-**[Version 3.0](https://gitlab.com/ColinDuquesnoy/MellowPlayer/milestones/14) is in active development on the develop branch**
-
 MellowPlayer is an open-source application that needs your help to go on growing and improving!
 
 There are many ways for developer and non-developers to contribute to the project. You can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on...
