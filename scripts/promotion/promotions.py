@@ -81,6 +81,9 @@ class Promotion:
         if self.can_publish_release(self.new_version):
             self.update_change_log()
             self.pull_translations()
+
+            input("check cmake changes and updated changelog and press ENTER if everything is OK")
+
             Git.commit_and_push()
 
             if self.required_branch == "develop" and not self.prerelease:
