@@ -37,7 +37,7 @@ class Git:
     @staticmethod
     def create_tag(tag_name):
         subprocess.check_output(["git", "tag", "-a", tag_name, '-m', tag_name])
-        subprocess.check_output(["git", "push", '--tags'])
+        subprocess.check_output(["git", "push", 'origin', tag_name])
 
     @staticmethod
     def checkout(branch):
