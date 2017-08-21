@@ -119,7 +119,7 @@ Example build commands:
 
 - release build: 
     ```bash
-    cmake ..
+     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF 
     ```
 - developer build command  
 
