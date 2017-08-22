@@ -18,8 +18,11 @@
 	.burger-icon-container{
 		display: block;
 	}
-	header{
+	header.flex-container{
 		margin-top: 72.8px;
+	}
+	.slider{
+		width:180%;
 	}
 	.services h1, .features h1, .downloads h1, .contribution h1, .keep-in h1 {
 	    font-size: 3rem;
@@ -92,8 +95,8 @@
 	}
 	
 	// Adjust title size
-	.above-slider {		
-		min-height: 70vh;
+	.above-slider.flex-item {		
+		// min-height: 70vh;
 		h1 {
 	    font-size: 2rem;
 	    padding: 1rem;
@@ -104,15 +107,19 @@
 		}
 	}
 
-	div.slider{
-		min-height: 70vh;
+	.slider{
+		width:180%;
 	}
+
+	// div.slider{
+	// 	min-height: 70vh;
+	// }
 }
 
 @media (min-width: 480px) and (max-width: 980px){
 	// Adjust title size
 	.above-slider {		
-		min-height: 60vh;
+		// min-height: 60vh;
 		h1 {
 	    font-size: 4rem;
 	    padding: 1rem;
@@ -123,11 +130,7 @@
 		}
 	}
 
-
-
-	header div.slider{
-		min-height: 60vh;
-	}
+	
 
 	.gnu-linux.row.align-center {
 	    padding: 0 30px 0 30px;
@@ -147,29 +150,29 @@
 }
 
 @media (min-width: 1200px){
-	.slider img{
-		max-width: 600%;
-		height: unset;
-	}
+	// .slider img{
+	// 	max-width: 600%;
+	// 	height: unset;
+	// }
 
 }
 
-@media (min-width: 1900px){
+@media (max-width: 2561px){
 	.slider{
-		min-height: 800px;
+		width: 600%;
 	}
-	.above-slider{
-		min-height: 800px;
-		padding-right: 500px;
-		padding-left: 500px;		
-	}
+	// .above-slider{
+	// 	min-height: 800px;
+	// 	padding-right: 500px;
+	// 	padding-left: 500px;		
+	// }
 
 }
 
 @media (width: 980px) {
-	header{
-		margin-top: 72.8px;
-	}
+	// header{
+	// 	margin-top: 72.8px;
+	// }
 	footer div.go-up{
 		display: none;
 	}

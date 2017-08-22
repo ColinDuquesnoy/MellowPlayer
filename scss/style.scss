@@ -236,9 +236,16 @@ ul.menu{
 
 
 
-header{
+header.flex-container{
 	position: relative;
 	margin-top: 72.8px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	
+	
 }
 
 .controls{
@@ -259,43 +266,57 @@ header{
 	}
 }
 
-.above-slider{
-	position: absolute;
+.above-slider.flex-item{
+	z-index:1;
+	height: 100%;
+	width:100%;
+	/* position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	// height: 100%;
-	min-height: 600px;
+	min-height: 600px; */
 	background-color: rgba(75,130,216,0.9);
+	padding: 5%;
 	text-align: center;
 	// padding: 5vw 10vw 5vw 10vw;
 	color: white;
 	h1{
 		font-size: 5rem;
-		max-width: 62.5rem;
-		margin-bottom: 0;
+		
+		margin-bottom: 5%;
 	}
 	p{
 		font-size: 3rem;
-		max-width: 62.5rem;
+		
 		margin-top: 0;
 	}
+}
+
+.slider-container{
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .slider {
 width: 100%;
 overflow: hidden;
-/*height: 100vh;*/
-min-height: 600px;
+height: 100%;
+// min-height: 600px;
 position: relative;
 	img 
 	  { 
 	    position: absolute; // Les images vont se superposer
 	    left: 0px; // A gauche
 	    top: 0px; // et en haut de la feuille
-	    max-width: 300%;
-	    min-width:100%;
-	    height: 100%;
+	    // width:500%;
+	    // max-width: 300%;
+	    // min-width:100%;
+	   // height: 100%;
 	    // display: none; // Par défaut, elles ne seront pas affichées
 	  }
 }
