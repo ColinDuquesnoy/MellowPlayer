@@ -229,15 +229,6 @@ header {
       .services li a > p {
         color: black; }
 
-.services .flex-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-
-.services .flex-item {
-  padding: 20px; }
-
 .your-favorite-service {
   background-color: lightgrey;
   height: 128px;
