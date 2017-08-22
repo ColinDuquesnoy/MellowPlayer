@@ -1,0 +1,933 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"the",
+				"the_content\tWP Function"
+			],
+			[
+				"custom_he",
+				"get_custom_header\tWP Function"
+			],
+			[
+				"if",
+				"if?\t$… = ( … ) ? … : …"
+			],
+			[
+				"have_",
+				"have_posts\tWP Function"
+			],
+			[
+				"add_the",
+				"add_theme_support\tWP Function"
+			],
+			[
+				"bgc",
+				"background-color"
+			],
+			[
+				"lo",
+				"logo-celine"
+			],
+			[
+				"tr",
+				"transform\tCSS - transform: ;"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"colo",
+				"color-block-2"
+			],
+			[
+				"list",
+				"list-d\tlist-style-type: disc;"
+			],
+			[
+				"padding",
+				"padding"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"dar",
+				"dark-color"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"tran",
+				"transform\tCSS - transform: ;"
+			],
+			[
+				"resize",
+				"resizeContentForSmallScreens"
+			],
+			[
+				"res",
+				"resizeContentForWideScreens"
+			],
+			[
+				"fle",
+				"flex-start"
+			],
+			[
+				"flex",
+				"flex-end"
+			],
+			[
+				"figure",
+				"figureHeight"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"color",
+				"color-block-2"
+			],
+			[
+				"paddng",
+				"padding-bottom"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"ad",
+				"addPadding"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"box",
+				"box\tCSS - box-sizing: border-box;"
+			],
+			[
+				"margni",
+				"margin"
+			],
+			[
+				"down",
+				"downloads"
+			],
+			[
+				"hand",
+				"handleMenuItemClick"
+			],
+			[
+				"ena",
+				"enableDirectionWaypoints"
+			],
+			[
+				"dire",
+				"directionWaypoints"
+			],
+			[
+				"dir",
+				"directionWaypoints"
+			],
+			[
+				"direction",
+				"directionWaypoints"
+			],
+			[
+				"d",
+				"downloads"
+			],
+			[
+				"bo",
+				"bottom-in-view"
+			],
+			[
+				"conti",
+				"contains"
+			],
+			[
+				"p",
+				"p"
+			],
+			[
+				"fade",
+				"fadeInDown"
+			],
+			[
+				"add",
+				"addClassToListItem"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"hidden",
+				"hiddenSection"
+			],
+			[
+				"tes",
+				"text-transform"
+			],
+			[
+				"ea",
+				"ease-in"
+			],
+			[
+				"bor",
+				"border-right"
+			],
+			[
+				"non",
+				"non\tCSS - text-decoration: none;"
+			],
+			[
+				"pad",
+				"pad\tCSS - padding: 0;"
+			],
+			[
+				"get_",
+				"get_headers"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"to",
+				"toggleClass"
+			],
+			[
+				"tra",
+				"transition\tCSS - transition: ;"
+			],
+			[
+				"slide_",
+				"slide_index"
+			],
+			[
+				"new",
+				"new_slide_index"
+			],
+			[
+				"auto",
+				"autoSliding"
+			],
+			[
+				"au",
+				"autoSliding"
+			],
+			[
+				"aut",
+				"autoSliding"
+			],
+			[
+				"ani",
+				"anim-\tanimation: ${1:name} ${2:duration} ${3:timing-function} ${4:delay} ${5:iteration-count} ${6:direction} ${7:fill-mode};"
+			],
+			[
+				"med",
+				"@media\t@media ${1:screen} {\n\t${0}\n}"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"width",
+				"max-width"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"in",
+				"inherit"
+			],
+			[
+				"Margin",
+				"margin-bottom"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"li",
+				"lis-n\tlist-style: none;"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"b",
+				"bac\tCSS background: #fff url('') 0 0 repeat;"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"padding-",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"mari",
+				"margin-bottom"
+			],
+			[
+				"i",
+				"inherit"
+			],
+			[
+				"mr",
+				"margin-bottom"
+			],
+			[
+				"no",
+				"none"
+			],
+			[
+				"borderr",
+				"border-radius"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"ne",
+				"new_slide_index"
+			],
+			[
+				"fonts",
+				"font-size"
+			],
+			[
+				"rgb",
+				"rgb()"
+			],
+			[
+				"mragin",
+				"margin"
+			],
+			[
+				"sty",
+				"font-style"
+			],
+			[
+				"fons",
+				"font-style"
+			],
+			[
+				"lin",
+				"line-height"
+			],
+			[
+				"trans",
+				"transition\tCSS - transition: ;"
+			],
+			[
+				"wd",
+				"width"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"it",
+				"italic"
+			],
+			[
+				"bg",
+				"bg+\tbackground: ${1:#fff} url(${2}) ${3:0} ${4:0} ${5:no-repeat};"
+			],
+			[
+				"a",
+				"abs\tCSS - position: absolute;"
+			],
+			[
+				"lf",
+				"left"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"z-",
+				"z-index"
+			],
+			[
+				"bullet",
+				"bullets_html"
+			],
+			[
+				"slide_count_",
+				"slide_count_textbottom"
+			],
+			[
+				"slide_count_t",
+				"slide_count_texttop"
+			],
+			[
+				"ul_te",
+				"ul_textbottom"
+			],
+			[
+				"ul_text",
+				"ul_texttop"
+			],
+			[
+				"ulte",
+				"ul_textbottom"
+			],
+			[
+				"ul_",
+				"ul_texttop"
+			],
+			[
+				"first_slide_",
+				"first_slide_texttop"
+			],
+			[
+				"last_slide_",
+				"last_slide_texttop"
+			],
+			[
+				"slider",
+				"slider-text-bottom"
+			],
+			[
+				"pos",
+				"pos-a\tposition: absolute;"
+			],
+			[
+				"upp",
+				"uppercase"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"INLI",
+				"inline-block"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"maw",
+				"max-width"
+			],
+			[
+				"t",
+				"t\ttop"
+			],
+			[
+				"rel",
+				"relative"
+			],
+			[
+				"hi",
+				"hidden"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"bd",
+				"bd+\tborder: ${1:1px} ${2:solid} ${3:#000};"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"bot",
+				"bottom"
+			],
+			[
+				"abs",
+				"absolute"
+			],
+			[
+				"ab",
+				"absolute"
+			],
+			[
+				"ini",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 358.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 408.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Users/Celine/Dev/MellowPlayer"
+	],
+	"file_history":
+	[
+		"/D/Users/Celine/Dev/celinethiry.github.io/all-projects.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/about-me.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/projects/mellowplayer.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/projects/brizzy.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/projects/seconde-peau.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/projects/bordambule.html",
+		"/D/Users/Celine/Dev/celinethiry.github.io/index.html",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/css/colorfull.css",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/footer.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/twentyseventeen/index.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/page-tiles.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/page-timeline.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/index.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/functions.php",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/header.php",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2017/FR_MEGA-Power-One-SA_GraphicArtist&UXDesigner_Liège.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/EN_Creneau_Hasselt.html",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/twentyseventeen/functions.php",
+		"/D/Users/Celine/Dev/new-portfolio/css/style.css",
+		"/D/Users/Celine/Dev/new-portfolio/index.html",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/style.css",
+		"/D/Users/Celine/Dev/new-portfolio/sass/style.scss",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/js/colorfull.js",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-content/themes/colorfull/rtl.css",
+		"/C/MAMP/htdocs/celine-wp/wordpress/wp-config-sample.php",
+		"/D/Users/Celine/Dev/new-portfolio/about-me.html",
+		"/D/Users/Celine/Dev/new-portfolio/js/script.js",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/Freelance/FR_Freelance.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/07 Site portfolio/02 Nouvelle Version/AI/SVG/logo_celine-thiry-01-01.svg",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/FR_Tricobel_Thiminster.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/FR_AgencesDeCom.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_Eurogentec.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/07 Site portfolio/02 Nouvelle Version/AI/SVG/logo_celine-thiry-01.svg",
+		"/D/Users/Celine/Dev/new-portfolio/js/walkway.min.js",
+		"/D/Users/Celine/Dev/new-portfolio/img/logo_celine-thiry-01.svg",
+		"/D/Users/Celine/Dev/celinethiry.github.io/js/script.js",
+		"/D/Users/Celine/Dev/celinethiry.github.io/css/reset.css",
+		"/D/Users/Celine/Dev/celinethiry.github.io/css/normalize.css",
+		"/D/Users/Celine/Dev/celinethiry.github.io/css/style.css",
+		"/D/Users/Celine/Dev/new-portfolio/test-issu.html",
+		"/D/Users/Celine/Dev/new-portfolio/img/24H-mockup-960-2.jpg",
+		"/D/Users/Celine/Dev/new-portfolio/js/embed.js",
+		"/D/Users/Celine/Dev/new-portfolio/img/sp-lb.jpg",
+		"/D/Users/Celine/Dev/new-portfolio/img/sp-lb-cover.jpg",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/FR_Centres_Culturels.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_Produweb.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_GlobuleBleu.html",
+		"/D/Users/Celine/Dev/new-portfolio/img/linkedin-icon.svg",
+		"/D/Users/Celine/Dev/new-portfolio/img/behance-icon.svg",
+		"/D/Users/Celine/Dev/new-portfolio/img/twitter-icon.svg",
+		"/D/Users/Celine/Dev/new-portfolio/img/tumblr-icon.svg",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/08 Sources/signature_logo.svg",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_Copaiba.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_FMJ.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/EN_MT-C.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_CarmelDesign.html",
+		"/D/Users/Celine/Dev/MellowPlayer/scss/_mellowiconanimation.scss",
+		"/D/Users/Celine/Dev/MellowPlayer/js/mellowiconanimation.js",
+		"/D/Users/Celine/Documents/06 Colin/Mellow Player/svg/mellowplayer-icon-01.svg",
+		"/D/Users/Celine/Documents/06 Colin/Mellow Player/svg/mellow_icon.ai",
+		"/D/Users/Celine/Documents/06 Colin/Mellow Player/svg/mellow_icon-01.svg",
+		"/D/Users/Celine/Dev/MellowPlayer/css/animate.css",
+		"/D/Users/Celine/Dev/MellowPlayer/css/style.css",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/yokoso/page-contact.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/yokoso/footer.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/yokoso/header.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/yokoso/special-template.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/yokoso/header-a-propos.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen-child/index.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen-child/header.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen-child/content.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen-child/page-no-sidebar.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen-child/style.css",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Inbetween - Infographiste - Bruxelles/newsletter_fr.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/U-Sentric - Leuven/EN_Newsletter.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/newsletter_fr_MellowPlayer.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/newsletter_fr_MellowPlayer.html",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentysixteen-child/style.css",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/twentyfourteen/style.css",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-content/themes/index.php",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-config.php",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Forem - PME Agro-alimentaire - Graphiste - Verviers/newsletter_FR_Packaging.html",
+		"/C/MAMP/htdocs/wordpress-4.5.3/wordpress/wp-admin/install.php",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/js/slider.js",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/css/slider.css",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/sass/style.scss",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/index.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Meurens Natural - Verviers/newsletter_fr.html",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/css/style.css",
+		"/D/Users/Celine/Downloads/slider.js",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/cie-ahmonamour - Graphiste - Verviers/newsletter_fr.html",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/img/signature_logo.png",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Adobe - Helpdesk - Maastricht/index-inlined_ENs.html",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/css/style.css",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/js/jquery.waypoints.min.js",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/js/slider.js",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/css/slider.css",
+		"/D/Users/Celine/Dev/Portfolio/Portfolio.git/js/slider_old_2.js",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Cypres - Digital Designer - Leuven/index-inlined_cypres.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/03 Ex/activite_partie2.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/03 Ex/Correction/activite_partie2_corrige.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Computerland - Alleur/Newsletter_FR.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Demonstr8 - Junior Conceptual Designer - Bxl/newsletter_fr.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/02 Ex/index.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/02 Ex/selecteurs-css.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Adsomenoise - Leuven/index-inlined_adsomenoise.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/LucPetitCréation - Graphiste - Bruxelles/newsletter_fr.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Peps Communication - Liège/index-inlined_FR.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Alphamedia - Liege/index-inlined_FR_Alphamedia.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/MySocialBook - Graphic Designer - Bxl/newsletter_en.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Yools - Junior Web Designer - Bxl/newsletter_fr.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Web Avenir - Graphiste - Baelen/newsletter_fr.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/01 Ex/jq-hello-world.js",
+		"/D/Users/Celine/Dev/OpenClassRoom/JQuery/01 Ex/index.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Imag-in - Infographiste - Oreye/newsletter_fr.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/ThierMèreDieu - Graphiste Indé - Verviers/newsletter_fr.html",
+		"/D/Users/Celine/Dev/OpenClassRoom/activite_anniversaire/anniversaire/img/pattern.jpg",
+		"/D/Users/Celine/Dev/OpenClassRoom/activite_anniversaire/anniversaire/js/jquery-1.12.4.js",
+		"/D/Users/Celine/Dev/loreal/index.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/00 Spontanée/Visible - Herstal/index-inlined_FR.html",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/05 Lettres motivations/2016/Synchrone - dev front-end - Liège/newsletter_fr.html",
+		"/D/Users/Celine/Dev/loreal/img/1463772119_93.png",
+		"/D/Users/Celine/Dev/loreal/img/header_02.png",
+		"/D/Users/Celine/Dev/Newsletter/index.html",
+		"/D/Users/Celine/Dev/Newsletter/style.css",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/scss/style.scss",
+		"/D/Users/Celine/Documents/00 Recherches d'emploi/03 Email Signature/Email Signature/signature1.html",
+		"/D/Users/Celine/Dev/mellow/Mellow-site/js/script.js"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Pouet",
+			"the_content();",
+			"img/",
+			"add_theme_support",
+			"add_theme_support('menu');",
+			"logo-celine",
+			"header__logo",
+			"font-style-description",
+			"bio__content__by-year",
+			"behance",
+			";\n",
+			"path",
+			"logo",
+			"4",
+			"logo_celine-thiry-01",
+			"undefined",
+			"transform-kit",
+			"left",
+			"color code",
+			"mellow-iso-large.jpg",
+			"24h-zoom-large.jpg",
+			"../",
+			"24h-mockup-large.jpg",
+			"mellow-large.jpg",
+			"../",
+			"mellow-desktop-animated-large.gif",
+			"mellow-large.jpg",
+			"sp-poster-hydra-zoom-large.jpg",
+			"../",
+			"sp-catcover-large.jpg",
+			"sp-poster-ren-large.jpg",
+			"sp-site-large.jpg",
+			"sp-catcover-large.jpg",
+			"sp-lb-cover-large.jpg",
+			"sp-poster-hydra-zoom-large.jpg",
+			"sp-lookbook-large.jpg",
+			"bordambule-black-bg-large.jpg",
+			"bordambule-zoom-large.jpg",
+			"bordambule-large-2.jpg",
+			"general-trans",
+			"0",
+			"footer",
+			"color",
+			"main",
+			"mail",
+			"jpg",
+			"large-sp-lb.jpg",
+			"large-sp-bro.jpg",
+			"lb",
+			"alt=\"Bordambule\"",
+			"Bordambule",
+			"</a>",
+			"next",
+			"contact",
+			"#",
+			"auto",
+			"h1",
+			"<ul class=\"bio__content\">",
+			"bio__content",
+			"cv__exp__content",
+			"cv",
+			"links",
+			"all projects",
+			"<li class=\"header__navigation__list__item\"><a class=\"links\" href=\"<li class=\"header__navigation__list__item\"><a class=\"links\" href=\"\">About me</a></li>\">About me</a></li>",
+			"<li class=\"header__navigation__list__item\"><a class=\"links\" href=\"about-me.html\">About me</a></li>",
+			"main__intro-block",
+			"row",
+			"h2",
+			"p",
+			"creation",
+			"exp",
+			"main",
+			"large",
+			"p",
+			"div",
+			"main__excerpt-project",
+			"<a href=\"\" class=\"cta-plus\">+</a>",
+			"links",
+			"<a href=\"\" class=\"cta-plus\">+</a>",
+			".links",
+			".header__navigation__list__item",
+			"header_navi",
+			"img/",
+			"border-bottom",
+			"nav",
+			"25s",
+			"rotate(360deg)",
+			"fill",
+			"25",
+			"out",
+			"color-blo",
+			"space-needle.jpg",
+			"images",
+			"icon",
+			"1",
+			"5",
+			"2",
+			"out",
+			"in",
+			"1",
+			".25",
+			"in",
+			"hover",
+			"90",
+			"body",
+			"checkSize",
+			"icon",
+			"dark",
+			"$dark-color",
+			"color:",
+			"header",
+			"large",
+			"font",
+			"25",
+			"20px",
+			"90vw",
+			"20px",
+			"header",
+			"h1",
+			"box-sizing",
+			"auto",
+			"reset",
+			"figure",
+			"Regular",
+			"class=\"footer__right__list__item__links",
+			"class=\"footer__right__list__item__links__img\"",
+			".657",
+			"<p>Le bordambule</p>\n\t\t\t\t\t  <p class=\"tags\">Illustration, Character Design, Graphic Design</p>\n\t\t\t\t\t  <a href=\"\" class=\"cta-plus\">+</a>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"wp-content/uploads/2017/05/",
+			"../img/",
+			"D:/Users/Celine/Dev/Newsletter/img/",
+			"D:\\Users\\Celine\\Dev\\Newsletter\\img/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "MellowPlayer-project.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 127.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}
