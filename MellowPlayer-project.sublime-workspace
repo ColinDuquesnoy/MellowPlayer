@@ -499,6 +499,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 25313,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scss/_mediaquery.scss",
+			"settings":
+			{
+				"buffer_size": 2671,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scss/style.scss",
+			"settings":
+			{
+				"buffer_size": 14863,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -545,7 +572,8 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Users/Celine/Dev/MellowPlayer"
+		"/D/Users/Celine/Dev/MellowPlayer",
+		"/D/Users/Celine/Dev/MellowPlayer/scss"
 	],
 	"file_history":
 	[
@@ -680,7 +708,7 @@
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -694,6 +722,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"services",
+			"column large-3 medium-4 small-6 ",
+			"services",
+			"href",
 			"Pouet",
 			"the_content();",
 			"img/",
@@ -817,11 +849,7 @@
 			"auto",
 			"reset",
 			"figure",
-			"Regular",
-			"class=\"footer__right__list__item__links",
-			"class=\"footer__right__list__item__links__img\"",
-			".657",
-			"<p>Le bordambule</p>\n\t\t\t\t\t  <p class=\"tags\">Illustration, Character Design, Graphic Design</p>\n\t\t\t\t\t  <a href=\"\" class=\"cta-plus\">+</a>"
+			"Regular"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -843,8 +871,103 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 25313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7205,
+								7205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3182.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scss/_mediaquery.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2671,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2348,
+								2348
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3256.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "scss/style.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14863,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5519,
+								5519
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6198.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -865,6 +988,12 @@
 				0,
 				1,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
 			]
 		],
 		"cols":
@@ -875,6 +1004,7 @@
 		"rows":
 		[
 			0.0,
+			0.578602620087,
 			1.0
 		]
 	},
