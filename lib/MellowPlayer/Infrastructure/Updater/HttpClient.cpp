@@ -1,4 +1,5 @@
 #include "HttpClient.hpp"
+#include <QDebug>
 
 using namespace MellowPlayer::Infrastructure;
 
