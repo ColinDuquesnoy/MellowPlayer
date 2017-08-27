@@ -4,7 +4,7 @@ Contributing to MellowPlayer
 Reporting bugs or Wishes
 ------------------------
 
-Report any bugs you encountered or any wishes on our [issue tracker](https://gitlab.com/ColinDuquesnoy/MellowPlayer/issues).
+Report any bugs you encountered or any wishes on our [issue tracker](https://github.com/ColinDuquesnoy/MellowPlayer/issues).
 
 If you're reporting a bug, **make sure to provide the following information**:
 
@@ -18,9 +18,9 @@ If you're reporting a bug, **make sure to provide the following information**:
 Setting up a development environment
 ------------------------------------
 
-Read the how to setup page of the [wiki](https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/how-to-setup)
+Read the how to setup page of the [wiki](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
 
-We also recommend you read the [architecture](https://gitlab.com/ColinDuquesnoy/MellowPlayer/wikis/architecture) and the [coding guidelines](guidelines) pages before hacking on MellowPlayer.
+We also recommend you read the [architecture](https://github.com/ColinDuquesnoy/MellowPlayer/wiki/Architecture) and the [coding guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/wiki/Coding-guidelines) pages before hacking on MellowPlayer.
 
 Submitting a pull request
 -------------------------
@@ -51,7 +51,7 @@ Web streaming service integration plugins are now written in pure javascript.
 Adding/Updating a new translation
 ---------------------------------
 
-MellowPlayer translations are hosted on transifex: https://www.transifex.com/colinduquesnoy/mellowplayer/
+MellowPlayer translations are hosted on [transifex](https://www.transifex.com/colinduquesnoy/mellowplayer)
 
 - Create an account at transifex
 - Go to the project's homepage and click on the "Join the team" button
