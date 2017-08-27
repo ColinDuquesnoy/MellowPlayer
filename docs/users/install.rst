@@ -11,6 +11,10 @@ We provide an AppImage so that you can try MellowPlayer on any distribution.
 
 Download MellowPlayer-x86_64.AppImage from a `github release`_, make it executable (chmod +x MellowPlayer-x86_64.AppImage) and run it, that's all.
 
+Please note that there are some limitations with the AppImage, it does not include proprietary codecs for licensing reasons.
+
+We plan to provide more distribution specific packages in the future (https://github.com/ColinDuquesnoy/MellowPlayer/issues/107)
+
 KaOS
 ++++
 
