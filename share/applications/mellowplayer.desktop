@@ -1,20 +1,20 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Version=3.0
+Version=1.0
 Type=Application
 Name=MellowPlayer
 Exec=MellowPlayer
 TryExec=MellowPlayer
 Icon=mellowplayer
 Terminal=false
-Categories=AudioVideo;Network;
+Categories=AudioVideo;
 StartupNotify=true
 StartupWMClass=MellowPlayer
 GenericName=Cloud music player
 GenericName[fr]=Lecteur de services de musique en ligne
-Comment=Cloud music player
-Comment[fr]=Lecteur de services de musique en ligne
-Actions=PlayPause;Next;Previous;Restore
+Comment=Cloud music integration for your desktop
+Comment[fr]=Intégration des services de musique en ligne avec votre bureau
+Actions=PlayPause;Next;Previous;Restore;
 
 [Desktop Action PlayPause]
 Exec=MellowPlayer --play-pause

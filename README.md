@@ -25,7 +25,7 @@ notifications and more).
 - [8tracks](http://8tracks.com/)
 - [Google Play Music](https://play.google.com/music/listen)
 - [Youtube](https://youtube.com/)
-- [Tidal](https://listen.tidal.com/)
+- [Tidal](https://listen.tidal.com/) (no HiFi support)
 
 
 # Resources
@@ -47,15 +47,14 @@ MellowPlayer is licensed under the GPL license.
 - Qt5 (>= 5.9.0, QtWebEngine and QtQuickControls2 needed)
 - Libnotify (optional, GNU/Linux only)
 
-## Browser plugins:
+## Limitations:
 
-For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases. 
+- For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases. 
+  Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website. Spotify requires the   widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
 
-Note that Spotify and Mixcloud requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases. *You can always compile QtWebEngine yourself with proprietary codecs (or use a version from your linux distribution if available) and replace the webengine libraries in the application folder.*
+- Some services (Spotify, Soundcloud and Mixcloud) also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases.
 
-Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website.
-
-Spotify requires the widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
+- Tidal HiFi does not work because there is no MQA plugin available for chromium based browsers.
 
 ## Bundled 3rd-parties
 
@@ -142,5 +141,5 @@ MellowPlayer is an open-source application that needs your help to go on growing
 
 There are many ways for developer and non-developers to contribute to the project. You can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on...
 
-If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/CONTRIBUTING.rst)!
+If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/.github/CONTRIBUTING.md)!
 

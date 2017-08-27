@@ -20,7 +20,7 @@ if [[ -n "$TRAVIS_TAG" ]] || [[ "$TRAVIS_BRANCH" == release* ]] || [[ "$TRAVIS_E
 else
     # Commit Build
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo pip install "cpp-coveralls<0.4.0";
+        sudo pip install -U "cpp-coveralls";
         coveralls --exclude /opt --exclude /usr  --exclude tests/ --exclude 3rdparty -E '.*qrc_.*' -E '.*moc_.*'  -E '.*QQmlObjectListModel.*' -b 'build' -r '.';
     fi
 fi

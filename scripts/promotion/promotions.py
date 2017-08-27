@@ -154,7 +154,7 @@ class Promotion:
         with open('index.html', 'w') as f:
             f.write('\n'.join(updated_lines))
         Git.commit_and_push()
-        Git.checkout(branch)
+        Git.checkout(branch.strip())
 
     @staticmethod
     def pull_translations():
