@@ -31,8 +31,8 @@ for evaluation or integration into the main project:
 1. Fork the Repo on github.
 2. Create a feature or a bugfix branch before you start coding.
 3. Add your name to AUTHORS.md
-4. Format the code using ``scripts/beautify.sh`` (run it from the root source directory).  
-5. Push to your fork and submit a pull request to **the master branch**.
+4. Format the code using ``scripts/beautify.py`` (run it from the root source directory).  
+5. Push to your fork and submit a pull request to **the develop branch**.
 
 
 Adding support for a new service
@@ -45,7 +45,7 @@ Web streaming service integration plugins are now written in pure javascript.
 3. Edit ``description.html`` to describe the streaming service
 4. Customise logo.svg
 5. Implement the needed functions in ``integration.js``
-6. Once your plugin works, submit a pull request!
+6. Once your plugin works, submit a pull request to **the develop branch**.
 
 
 Adding/Updating a new translation
