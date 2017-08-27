@@ -65,7 +65,7 @@ To start the program, either start it from your applications menu or run the fol
 
     $ MellowPlayer
 
-Before compiling MellowPlayer 2, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
+Before compiling, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**. If you favorite service require proprietary codecs to work, we suggest you check if your distribution provide a version of QtWebEngine compiled with the flag ``use_proprietary_codecs`` or compile it yourself.
 
 
 OS X
