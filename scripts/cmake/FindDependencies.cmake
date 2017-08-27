@@ -26,7 +26,7 @@ message(STATUS "Found Qt ${Qt5_VERSION} in ${Qt5_DIR}")
 
 if(USE_LIBNOTIFY)
     find_package(PkgConfig)
-    pkg_search_module(LIBNOTIFY QUIET libnotify)
+    pkg_search_module(LIBNOTIFY REQUIRED libnotify)
     if (LIBNOTIFY_FOUND)
         message(STATUS "Found libnotify ${LIBNOTIFY_VERSION}")
         add_definitions(-DUSE_LIBNOTIFY)
