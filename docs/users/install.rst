@@ -73,10 +73,14 @@ OS X
 
 Just grab the dmg image from the `official website`_ (click on the **OS X folder**), drag and drop the MellowPlayer application in your **Applications** folder.
 
+Please note the dmg we provide is built with a version of QtWebEngine built without proprietary codecs support (for licensing reasons). If your favorite service require proprietary codecs to work, you'll need to build QtWebEngine with the flag ``use_proprietary_codecs`` and build MellowPlayer using that QtWebEngine version.
+
 Windows
 -------
 
 Just grab the windows installer from the `official website`_ (click on the **Windows folder**) and follow the instructions.
+
+Please note the Windows Installer we provide is built with a version of QtWebEngine built without proprietary codecs support (for licensing reasons). If your favorite service require proprietary codecs to work, you'll need to build QtWebEngine with the flag ``use_proprietary_codecs`` and build MellowPlayer using that QtWebEngine version.
 
 
 .. _README: https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/README.md
