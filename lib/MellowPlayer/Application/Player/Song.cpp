@@ -1,4 +1,5 @@
 #include "Song.hpp"
+#include <QDebug>
 
 using namespace MellowPlayer::Application;
 
@@ -49,7 +50,7 @@ bool Song::isFavorite() const
 
 void Song::setDuration(double value)
 {
-    if (value == duration_)
+    if (abs(duration_ - value) < 2)
         return;
 
     duration_ = value;
