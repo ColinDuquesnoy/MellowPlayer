@@ -52,7 +52,7 @@ MellowPlayer is licensed under the GPL license.
 - For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases. 
   Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website. Spotify requires the   widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
 
-- Some services also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases. This issue is being investigated (see #106).
+- Some services (Spotify, Soundcloud and Mixcloud) also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases.
 
 - Tidal HiFi does not work because there is no MQA plugin available for chromium based browsers.
 
