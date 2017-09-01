@@ -1,7 +1,7 @@
 cd ..\..\..
 
 set QTDIR=C:\Qt\5.9\msvc2015_64
-set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
+set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%;
 set BUILD_DIR=build
 
 mkdir %BUILD_DIR%\bin
@@ -11,7 +11,7 @@ xcopy /S /E /D /C /Y plugins %BUILD_DIR%\bin\plugins
 
 %QTDIR%\bin\windeployqt %BUILD_DIR%\bin\MellowPlayer.exe -qmldir=lib/MellowPlayer/Presentation
 
-iscc /Q %BUILD_DIR%/setup.iss
+"C:\Program Files (x86)\Inno Setup 5\iscc" /Q %BUILD_DIR%/setup.iss
 
 
 mkdir dist
