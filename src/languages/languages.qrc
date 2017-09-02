@@ -4,6 +4,7 @@
         <file>MellowPlayer_de.qm</file>
         <file>MellowPlayer_en.qm</file>
         <file>MellowPlayer_es.qm</file>
+        <file>MellowPlayer_fi.qm</file>
         <file>MellowPlayer_fr.qm</file>
     </qresource>
 </RCC>
