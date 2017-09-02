@@ -1,6 +1,7 @@
 #include "Song.hpp"
-#include <QDebug>
+#include <cmath>
 
+using namespace std;
 using namespace MellowPlayer::Application;
 
 Song::Song() : duration_(0), isFavorite_(false)
