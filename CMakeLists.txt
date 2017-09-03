@@ -10,17 +10,15 @@ if (NOT BUILD_NUMBER)
 endif()
 
 project(MellowPlayer VERSION 3.0.50.${BUILD_NUMBER})
+# cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
-add_definitions(-DMELLOWPLAYER_VERSION="${MellowPlayer_VERSION}")
-add_definitions(-DMELLOWPLAYER_VERSION_MAJOR="${MellowPlayer_VERSION_MAJOR}")
-add_definitions(-DMELLOWPLAYER_VERSION_MINOR="${MellowPlayer_VERSION_MINOR}")
-add_definitions(-DMELLOWPLAYER_VERSION_PATCH="${MellowPlayer_VERSION_PATCH}")
-add_definitions(-DMELLOWPLAYER_VERSION_TWEAK="${MellowPlayer_VERSION_TWEAK}")
-add_definitions(-DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
 include(scripts/cmake/InstallDirs.cmake)
+
+set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
+configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
 
 # Options
 if(NOT CMAKE_BUILD_TYPE)

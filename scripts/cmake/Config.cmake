@@ -52,4 +52,3 @@ add_custom_target(uninstall
 string(TIMESTAMP BUILD_DATE_TIME_STR UTC)
 string(REPLACE "T" ";" BUILD_DATE_TIME_LIST ${BUILD_DATE_TIME_STR})
 list(GET BUILD_DATE_TIME_LIST 0 BUILD_DATE)
-add_definitions(-DBUILD_DATE=\"${BUILD_DATE}\")

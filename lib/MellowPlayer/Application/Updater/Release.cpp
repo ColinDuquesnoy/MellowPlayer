@@ -1,9 +1,10 @@
 #include "Release.hpp"
+#include <MellowPlayer/Application/BuildConfig.hpp>
 #include <QDebug>
 
 using namespace MellowPlayer::Application;
 
-Release Release::current_(MELLOWPLAYER_VERSION, QDate::fromString(BUILD_DATE, Qt::ISODate));
+Release Release::current_(BuildConfig::getVersion(), QDate::fromString(BuildConfig::getBuildDate(), Qt::ISODate));
 
 Release::Release(const QString& name, const QDate& date, QObject* parent)
         : QObject(parent), url_(""), name_(name), date_(date), preRelease_(false), assets_()

@@ -7,6 +7,7 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include <QWebEngineProfile>
 #include <QtWebEngine>
+#include <MellowPlayer/Application/BuildConfig.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -16,7 +17,7 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
 {
     qtApp_.setApplicationDisplayName("MellowPlayer");
     qtApp_.setApplicationName(appName);
-    qtApp_.setApplicationVersion(MELLOWPLAYER_VERSION);
+    qtApp_.setApplicationVersion(BuildConfig::getVersion());
     qtApp_.setOrganizationDomain("org.mellowplayer");
     qtApp_.setOrganizationName("MellowPlayer");
     qtApp_.setWindowIcon(IconProvider::windowIcon());

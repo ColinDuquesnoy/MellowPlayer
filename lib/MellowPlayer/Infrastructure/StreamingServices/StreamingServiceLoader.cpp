@@ -9,6 +9,7 @@
 #include <QtCore/QSettings>
 #include <QtCore/QStandardPaths>
 #include <QtGui/QIcon>
+#include <MellowPlayer/Application/BuildConfig.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -121,7 +122,7 @@ QStringList StreamingServiceLoader::searchPaths() const
 {
     QStringList paths;
 
-    paths.append(CMAKE_SOURCE_DIR + QString(QDir::separator()) + "plugins");
+    paths.append(BuildConfig::getSourceDir() + QString(QDir::separator()) + "plugins");
     paths.append(QFileInfo(QDir::currentPath(), "plugins").absoluteFilePath());
     // appimage path is in /$mountpoint/usr/bin/../share/mellowplayer/plugins
     paths.append(QFileInfo(qApp->applicationDirPath(), "../share/mellowplayer/plugins").absoluteFilePath());

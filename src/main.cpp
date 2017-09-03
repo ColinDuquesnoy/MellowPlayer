@@ -8,6 +8,7 @@
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <MellowPlayer/Application/BuildConfig.hpp>
 
 namespace di = boost::di;
 using namespace std;
@@ -34,7 +35,7 @@ int main(int argc, char** argv)
     LoggingManager::initialize(loggerFactory, commandLineParser.logLevel());
     ScopedScope scope{};
     LOG_INFO(LoggingManager::logger("main"), "Log directory: " + FileHelper::logDirectory());
-    LOG_INFO(LoggingManager::logger("main"), QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.buildInfo()));
+    LOG_INFO(LoggingManager::logger("main"), QString("MellowPlayer %1 - %2").arg(QString(BuildConfig::getVersion())).arg(qtApp.buildInfo()));
 
     qtApp.initialize();
 
