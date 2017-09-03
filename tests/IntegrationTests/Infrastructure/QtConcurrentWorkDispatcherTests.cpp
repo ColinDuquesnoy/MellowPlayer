@@ -15,7 +15,6 @@ TEST_CASE("QtConcurrentWorkDispatcherTests")
     {
         bool finished = false;
         workDispatcher.invoke([&]() { finished = true; });
-        REQUIRE(!finished);
         sleep_for(milliseconds(500));
         REQUIRE(finished);
     }
@@ -24,7 +23,6 @@ TEST_CASE("QtConcurrentWorkDispatcherTests")
     {
         bool finished = false;
         workDispatcher.delayInvoke(100, [&]() { finished = true; });
-        REQUIRE(!finished);
         QTest::qWait(1000);
         REQUIRE(finished);
     }
