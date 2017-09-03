@@ -11,6 +11,8 @@ add_subdirectory(Lib)
 
 set(CMAKE_AUTOMOC OFF)
 
+set(ALL_TESTS)
+
 macro(add_mellowplayer_test TEST_TYPE TEST_ROOT_DIR)
     set(TEST_EXECUTABLE_NAME ${PROJECT_NAME}.${TEST_TYPE})
     file(GLOB_RECURSE SOURCE_FILES ${TEST_ROOT_DIR}/*.cpp)
@@ -35,6 +37,7 @@ macro(add_mellowplayer_test TEST_TYPE TEST_ROOT_DIR)
         target_link_libraries(${TEST_EXECUTABLE_NAME} Snore::Libsnore)
     endif()
     add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)
+    set(ALL_TESTS ${ALL_TESTS} ${TEST_EXECUTABLE_NAME})
 endmacro()
 
 add_mellowplayer_test("Application.UnitTests" UnitTests/Application)
@@ -51,3 +54,5 @@ endif()
 if(${ENABLE_COVERAGE} AND ${ENABLE_LCOV_REPORT})
     setup_target_for_coverage(coverage "ctest" coverage)
 endif()
+
+add_custom_target(AllTests COMMAND ctest --output-on-failure DEPENDS ${ALL_TESTS})
