@@ -24,7 +24,7 @@ if(MSVC_COMPILER)
     add_definitions("/wd4100")
     add_definitions("/wd4718")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions -Winvalid-pch ")
 endif()
 
 # Setup compiler settings
@@ -36,6 +36,7 @@ if(MSVC_COMPILER)
 else()
     add_compile_options("-std=c++1z")
 endif()
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # find common packages
 find_package(Threads)
@@ -48,7 +49,6 @@ configure_file(
         IMMEDIATE @ONLY)
 add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
-
 string(TIMESTAMP BUILD_DATE_TIME_STR UTC)
 string(REPLACE "T" ";" BUILD_DATE_TIME_LIST ${BUILD_DATE_TIME_STR})
 list(GET BUILD_DATE_TIME_LIST 0 BUILD_DATE)

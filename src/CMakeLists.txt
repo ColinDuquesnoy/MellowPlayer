@@ -54,6 +54,9 @@ elseif(UNIX)
         target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
     endif()
 endif()
+if (USE_PRECOMPILED_HEADER)
+    target_precompiled_header(${PROJECT_NAME} stdafx.h)
+endif()
 
 # add a console based executable for easier debugging
 if (WIN32)

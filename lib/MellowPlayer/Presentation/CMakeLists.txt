@@ -28,3 +28,6 @@ add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QM
 target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application
                       Qt5::Core Qt5::Qml Qt5::Quick Qt5::QuickControls2 Qt5::Svg
                       Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
+if (USE_PRECOMPILED_HEADER)
+    target_precompiled_header(${LIB_NAME} stdafx.h)
+endif()
