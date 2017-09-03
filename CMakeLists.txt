@@ -12,7 +12,7 @@ endif()
 # this line must appear before the project statement
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/scripts/cmake/CMakePCHCompiler)
 
-project(MellowPlayer LANGUAGES CXX CXXPCH VERSION 3.0.50.${BUILD_NUMBER})
+project(MellowPlayer LANGUAGES C CXX CXXPCH VERSION 3.0.50.${BUILD_NUMBER})
 # cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
 

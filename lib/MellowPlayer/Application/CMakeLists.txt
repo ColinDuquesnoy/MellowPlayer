@@ -7,4 +7,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Settings/schema.json.in ${CMAKE_CURRE
 
 add_library(${LIB_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES} application.qrc ${BUILD_CONFIG_SOURCE})
 target_link_libraries(${LIB_NAME} Qt5::Core Qt5::Gui)
-target_precompiled_header(${LIB_NAME} stdafx.h)
+if (NOT WIN32 OR NOT APPLE)
+    target_precompiled_header(${LIB_NAME} stdafx.h)
+endif()
