@@ -4,7 +4,7 @@
 
 namespace MellowPlayer::Application
 {
-    class Theme;
+    struct Theme;
 }
 
 namespace MellowPlayer::Infrastructure
