@@ -54,7 +54,7 @@ elseif(UNIX)
         target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
     endif()
 endif()
-if (NOT WIN32 AND NOT APPLE)
+if (USE_PRECOMPILED_HEADER)
     target_precompiled_header(${PROJECT_NAME} stdafx.h)
 endif()
 
