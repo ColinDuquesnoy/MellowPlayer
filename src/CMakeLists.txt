@@ -54,6 +54,7 @@ elseif(UNIX)
         target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
     endif()
 endif()
+target_precompiled_header(${PROJECT_NAME} stdafx.h)
 
 # add a console based executable for easier debugging
 if (WIN32)
@@ -62,6 +63,7 @@ if (WIN32)
                           ${PROJECT_NAME}.Application ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
                           Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
+    target_precompiled_header(${PROJECT_NAME}.Console stdafx.h)
 endif()
 
 install(TARGETS ${PROJECT_NAME}

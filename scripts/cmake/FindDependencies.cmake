@@ -15,9 +15,24 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
              WebEngineWidgets
              Widgets)
 find_package(Qt5LinguistTools REQUIRED)
+include_directories(${Qt5Core_INCLUDE_DIRS})
+include_directories(${Qt5Concurren_INCLUDE_DIRS})
+include_directories(${Qt5Gui_INCLUDE_DIRS})
+include_directories(${Qt5Network_INCLUDE_DIRS})
+include_directories(${Qt5Qml_INCLUDE_DIRS})
+include_directories(${Qt5Quick_INCLUDE_DIRS})
+include_directories(${Qt5QuickControls2_INCLUDE_DIRS})
+include_directories(${Qt5Sql_INCLUDE_DIRS})
+include_directories(${Qt5Svg_INCLUDE_DIRS})
+include_directories(${Qt5Test_INCLUDE_DIRS})
+include_directories(${Qt5WebEngine_INCLUDE_DIRS})
+include_directories(${Qt5WebEngineWidgets_INCLUDE_DIRS})
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+
 
 if (UNIX AND NOT APPLE)
     find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS DBus)
+    include_directories(${QtDBus_INCLUDE_DIRS})
 endif()
 
 set(CMAKE_AUTOMOC ON)

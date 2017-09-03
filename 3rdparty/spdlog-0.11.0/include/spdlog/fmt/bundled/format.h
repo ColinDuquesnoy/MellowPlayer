@@ -2233,29 +2233,29 @@ public:
         typedef typename BasicWriter<Char>::CharPtr CharPtr;
         Char fill = internal::CharTraits<Char>::cast(spec_.fill());
         CharPtr out = CharPtr();
-        const unsigned CHAR_WIDTH = 1;
-        if (spec_.width_ > CHAR_WIDTH)
+        const unsigned CHR_WIDTH = 1;
+        if (spec_.width_ > CHR_WIDTH)
         {
             out = writer_.grow_buffer(spec_.width_);
             if (spec_.align_ == ALIGN_RIGHT)
             {
-                std::uninitialized_fill_n(out, spec_.width_ - CHAR_WIDTH, fill);
-                out += spec_.width_ - CHAR_WIDTH;
+                std::uninitialized_fill_n(out, spec_.width_ - CHR_WIDTH, fill);
+                out += spec_.width_ - CHR_WIDTH;
             }
             else if (spec_.align_ == ALIGN_CENTER)
             {
                 out = writer_.fill_padding(out, spec_.width_,
-                                           internal::const_check(CHAR_WIDTH), fill);
+                                           internal::const_check(CHR_WIDTH), fill);
             }
             else
             {
-                std::uninitialized_fill_n(out + CHAR_WIDTH,
-                                          spec_.width_ - CHAR_WIDTH, fill);
+                std::uninitialized_fill_n(out + CHR_WIDTH,
+                                          spec_.width_ - CHR_WIDTH, fill);
             }
         }
         else
         {
-            out = writer_.grow_buffer(CHAR_WIDTH);
+            out = writer_.grow_buffer(CHR_WIDTH);
         }
         *out = internal::CharTraits<Char>::cast(value);
     }

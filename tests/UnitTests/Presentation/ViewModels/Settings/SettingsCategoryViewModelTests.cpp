@@ -41,7 +41,6 @@ TEST_CASE("SettingsCategoryViewModelTests")
 TEST_CASE("CustomSettingsCategoryViewModelTests")
 {
     DependencyPool pool;
-    Settings& settings = pool.getSettings();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
     CustomSettingsCategoryViewModel model("CategoryName", "CategoryIcon", "CategoryQmlComponent", themeViewModel);
 

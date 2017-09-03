@@ -5,6 +5,7 @@
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#undef Q_SIGNALS
 #include <libnotify/notify.h>
 
 using namespace std;

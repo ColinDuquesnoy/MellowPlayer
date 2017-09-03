@@ -38,6 +38,7 @@ macro(add_mellowplayer_test TEST_TYPE TEST_ROOT_DIR)
     endif()
     add_test (NAME ${TEST_EXECUTABLE_NAME} COMMAND $<TARGET_FILE:${TEST_EXECUTABLE_NAME}>)
     set(ALL_TESTS ${ALL_TESTS} ${TEST_EXECUTABLE_NAME})
+    target_precompiled_header(${TEST_EXECUTABLE_NAME} stdafx.h)
 endmacro()
 
 add_mellowplayer_test("Application.UnitTests" UnitTests/Application)

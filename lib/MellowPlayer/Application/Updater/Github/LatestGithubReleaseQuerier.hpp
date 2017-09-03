@@ -1,7 +1,5 @@
 #pragma once
 
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 #include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/UpdateChannel.hpp>
 #include <MellowPlayer/Application/Updater/Github/GithubReleasesReplyParser.hpp>
