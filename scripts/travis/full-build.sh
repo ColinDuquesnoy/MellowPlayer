@@ -14,7 +14,7 @@ pushd build;
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # build
     cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
-    make;
+    make -j2;
 
     # run all tests
     ctest --output-on-failure;
@@ -31,7 +31,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     export CMAKE_PREFIX_PATH=$PWD/../qt;
     export QT_PLUGIN_PATH=$PWD/../qt/plugins;
     cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
-    make;
+    make -j2;
 
     # run all tests
     ctest --output-on-failure;
