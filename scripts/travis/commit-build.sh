@@ -16,7 +16,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     make;
 
     # run tests
-    ctest -V;
+    ctest --output-on-failure;
 
     # upload code coverage results
     popd;
@@ -30,5 +30,5 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     make;
 
     # run tests
-    ctest -V;
+    ctest --output-on-failure;
 fi

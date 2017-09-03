@@ -17,7 +17,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     make;
 
     # run all tests
-    ctest -V;
+    ctest --output-on-failure;
     src/MellowPlayer --auto-quit-delay 10000 --log-level 1;
     src/MellowPlayer --auto-quit-delay 10000 --log-level 1 --service Deezer;
 
@@ -34,7 +34,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     make;
 
     # run all tests
-    ctest -V;
+    ctest --output-on-failure;
 
     # create DMG
     popd;
