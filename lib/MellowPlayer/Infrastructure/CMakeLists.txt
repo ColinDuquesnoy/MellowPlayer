@@ -38,6 +38,6 @@ target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application
 if(UNIX AND NOT APPLE)
     target_link_libraries(${LIB_NAME} Qt5::DBus)
 endif()
-if (NOT WIN32 OR NOT APPLE)
+if (NOT WIN32 AND NOT APPLE)
     target_precompiled_header(${LIB_NAME} stdafx.h)
 endif()
