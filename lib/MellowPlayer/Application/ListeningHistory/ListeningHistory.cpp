@@ -1,12 +1,19 @@
 #include "ListeningHistory.hpp"
+#include <QDateTime>
+#include <QSet>
+#include <QVariant>
+#include <algorithm>
 #include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/TimeLimits.hpp>
-#include <QSet>
-#include <QtCore/QTimer>
+#include <MellowPlayer/Application/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Application/Settings/SettingKey.hpp>
 
 #define DELAY 5000
 

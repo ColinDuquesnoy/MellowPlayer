@@ -1,6 +1,8 @@
 #include "HotkeysController.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>

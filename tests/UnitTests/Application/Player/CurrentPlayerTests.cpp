@@ -1,7 +1,8 @@
-#include "Mocks/StreamingServiceLoaderMock.hpp"
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>

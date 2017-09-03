@@ -1,8 +1,12 @@
 #pragma once
 
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
 #include <QCommandLineParser>
+
+namespace MellowPlayer::Application 
+{
+    enum class LogLevel;    
+}
 
 namespace MellowPlayer::Infrastructure
 {

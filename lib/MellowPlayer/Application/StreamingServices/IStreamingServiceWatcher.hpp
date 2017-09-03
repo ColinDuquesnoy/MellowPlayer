@@ -1,10 +1,11 @@
 #pragma once
 
-#include "StreamingService.hpp"
 #include <QtCore/QObject>
 
 namespace MellowPlayer::Application
 {
+    class StreamingService;
+
     class IStreamingServiceWatcher : public QObject
     {
         Q_OBJECT

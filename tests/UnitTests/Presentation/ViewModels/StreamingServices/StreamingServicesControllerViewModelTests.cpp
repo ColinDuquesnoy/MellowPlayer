@@ -1,7 +1,9 @@
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <Mocks/CommnandLineParserMock.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>

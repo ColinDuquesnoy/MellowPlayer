@@ -1,6 +1,5 @@
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 

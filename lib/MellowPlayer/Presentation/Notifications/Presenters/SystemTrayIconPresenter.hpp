@@ -5,6 +5,7 @@
 namespace MellowPlayer::Application
 {
     class ISystemTrayIcon;
+    struct Notification;
 }
 
 namespace MellowPlayer::Presentation

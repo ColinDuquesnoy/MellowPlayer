@@ -1,6 +1,8 @@
-#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
-#include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
+#include <Utils/DependencyPool.hpp>
+#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Application/Updater/Release.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;

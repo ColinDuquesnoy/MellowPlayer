@@ -1,17 +1,16 @@
 #pragma once
 
-#include "Release.hpp"
 #include "UpdateChannel.hpp"
 #include <QtCore/QObject>
 
 namespace MellowPlayer::Application
 {
+    class AbstractPlatformUpdater;
     class ILatestReleaseQuerier;
-    class IPlatformUpdater;
+    class ILogger;
+    class Release;
     class Settings;
     class Setting;
-    class ILogger;
-    class AbstractPlatformUpdater;
 
     class Updater : public QObject
     {

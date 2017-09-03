@@ -22,6 +22,7 @@
 #include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
 #include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
@@ -44,6 +45,7 @@
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>

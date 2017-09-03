@@ -1,6 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <QtCore/QObject>
+
+namespace MellowPlayer::Application
+{
+    class Setting;
+}
 
 namespace MellowPlayer::Presentation
 {

@@ -1,15 +1,17 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/Presentation/Factories/SettingViewModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/SettingListModel.hpp>
-#include <QtCore/QAbstractItemModel>
 
-template <class T>
-class QQmlObjectListModel;
+namespace MellowPlayer::Application
+{
+    class SettingsCategory;
+}
 
 namespace MellowPlayer::Presentation
 {
+    class ThemeViewModel;
+
     class SettingsCategoryViewModel : public QObject
     {
         Q_OBJECT

@@ -1,6 +1,10 @@
 #include "StreamingServiceWatcher.hpp"
 #include "StreamingServiceLoader.hpp"
 #include <QtCore/QDir>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 
 using namespace std;
 using namespace MellowPlayer::Application;
@@ -46,4 +50,10 @@ void StreamingServiceWatcher::onFileChanged(const QString& path)
 
     fileSystemWatcher_.removePath(path);
     fileSystemWatcher_.addPath(path);
+}
+
+StreamingServiceWatcher::PluginInfo::PluginInfo(StreamingService &service, QString scriptPath, QString themePath,
+                                                QObject *parent)
+        : QObject(parent), service_(service), scriptPath_(scriptPath), themePath_(themePath)
+{
 }

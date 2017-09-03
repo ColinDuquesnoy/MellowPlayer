@@ -1,10 +1,13 @@
 #include "TestsRunner.hpp"
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <QtCore/QSettings>
+#include <QDebug>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;

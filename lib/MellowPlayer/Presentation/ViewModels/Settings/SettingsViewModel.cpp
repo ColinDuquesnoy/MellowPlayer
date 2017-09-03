@@ -1,4 +1,7 @@
 #include "SettingsViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
+
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;

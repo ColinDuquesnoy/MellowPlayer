@@ -1,6 +1,5 @@
 #pragma once
 
-#include <MellowPlayer/Application/IWorkDispatcher.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <QList>
 #include <QMap>
@@ -14,6 +13,7 @@ namespace MellowPlayer::Application
     class IPlayer;
     class Setting;
     class Settings;
+    class IWorkDispatcher;
 
     class ListeningHistory : public QObject
     {

@@ -1,12 +1,15 @@
 #pragma once
 
-#include "ILoggerFactory.hpp"
-#include "LoggingMacros.hpp"
 #include <map>
 #include <memory>
+#include <string>
+#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
 
 namespace MellowPlayer::Application
 {
+    class ILogger;
+    class ILoggerFactory;
+
     class LoggingManager
     {
     public:

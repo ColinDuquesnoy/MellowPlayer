@@ -1,8 +1,7 @@
 #pragma once
 
-#include "MellowPlayer/Application/Theme/Theme.hpp"
 #include "StreamingServiceMetadata.hpp"
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Theme/Theme.hpp>
 #include <QtCore/QString>
 #include <QtGui/QImage>
 #include <memory>

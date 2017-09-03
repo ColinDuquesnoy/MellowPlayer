@@ -1,3 +1,4 @@
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
 #include <catch.hpp>
 

@@ -1,5 +1,7 @@
 #include "Base64Helper.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;

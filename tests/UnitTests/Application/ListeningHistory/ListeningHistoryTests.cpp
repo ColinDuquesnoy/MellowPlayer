@@ -1,11 +1,13 @@
+#include <catch.hpp>
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
-#include <catch.hpp>
 
 using namespace MellowPlayer;
 using namespace MellowPlayer::Application;

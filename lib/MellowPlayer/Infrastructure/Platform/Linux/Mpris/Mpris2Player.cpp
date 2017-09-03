@@ -1,6 +1,9 @@
 #include "Mpris2Player.hpp"
 #include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
 
 using namespace MellowPlayer::Application;

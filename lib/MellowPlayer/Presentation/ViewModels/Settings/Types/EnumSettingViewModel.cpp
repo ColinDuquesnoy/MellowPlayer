@@ -1,4 +1,5 @@
 #include "EnumSettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;

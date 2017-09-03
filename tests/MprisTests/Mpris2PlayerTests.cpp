@@ -2,6 +2,7 @@
 #include <catch.hpp>
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
@@ -9,6 +10,7 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;

@@ -1,5 +1,7 @@
 #include "StreamingServiceLoader.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <QDebug>

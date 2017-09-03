@@ -1,11 +1,14 @@
 #include "SystemTrayIcon.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/IQtApplication.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/SettingKey.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;

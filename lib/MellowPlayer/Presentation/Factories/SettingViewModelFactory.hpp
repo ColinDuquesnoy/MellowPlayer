@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp"
+class QObject;
 
 namespace MellowPlayer::Application
 {
@@ -10,6 +10,7 @@ namespace MellowPlayer::Application
 namespace MellowPlayer::Presentation
 {
     class ThemeViewModel;
+    class SettingViewModel;
 
     class SettingViewModelFactory
     {

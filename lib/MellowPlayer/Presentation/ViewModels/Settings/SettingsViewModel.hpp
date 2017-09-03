@@ -1,12 +1,19 @@
 #pragma once
 
 #include "SettingsCategoryViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/Factories/SettingViewModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/SettingsCategoryListModel.hpp>
 
+namespace MellowPlayer::Application
+{
+    class Settings;
+}
+
 namespace MellowPlayer::Presentation
 {
+    class SettingViewModel;
+    class ThemeViewModel;
+
     class SettingsViewModel : public QObject
     {
         Q_OBJECT

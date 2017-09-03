@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IHttpClient.hpp"
+#include <QtCore/QObject>
 #include <QtCore/QString>
 
 namespace MellowPlayer::Application

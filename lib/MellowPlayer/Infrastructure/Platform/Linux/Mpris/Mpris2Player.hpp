@@ -1,6 +1,5 @@
 #pragma once
 
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <QObject>
 #include <QtDBus>
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Presentation/IconProvider.hpp>
 #include <QMenu>
 #include <QSystemTrayIcon>
 

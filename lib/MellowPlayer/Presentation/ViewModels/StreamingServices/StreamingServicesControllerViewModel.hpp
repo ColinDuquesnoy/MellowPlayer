@@ -1,9 +1,7 @@
 #pragma once
 
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServiceListModel.hpp>
 #include <MellowPlayer/Presentation/Models/StreamingServiceProxyListModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServiceViewModel.hpp>
 #include <QObject>
 
 class QQmlApplicationEngine;

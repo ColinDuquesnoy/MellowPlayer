@@ -1,5 +1,6 @@
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>

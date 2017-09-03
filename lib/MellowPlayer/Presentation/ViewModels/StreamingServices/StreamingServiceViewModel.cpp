@@ -1,4 +1,5 @@
 #include "StreamingServiceViewModel.hpp"
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>

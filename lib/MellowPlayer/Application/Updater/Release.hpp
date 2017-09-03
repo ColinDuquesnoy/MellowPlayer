@@ -3,7 +3,6 @@
 #include "Asset.hpp"
 #include <QtCore/QDate>
 #include <QtCore/QObject>
-#include <QtCore/QVersionNumber>
 
 namespace MellowPlayer::Application
 {

@@ -9,6 +9,9 @@
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Application/BuildConfig.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 
 namespace di = boost::di;
 using namespace std;

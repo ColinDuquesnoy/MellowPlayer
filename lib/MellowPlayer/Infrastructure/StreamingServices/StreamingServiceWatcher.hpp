@@ -7,6 +7,7 @@
 namespace MellowPlayer::Application
 {
     class ILogger;
+    class StreamingService;
 }
 
 namespace MellowPlayer::Infrastructure
@@ -32,10 +33,7 @@ namespace MellowPlayer::Infrastructure
             QString scriptPath_;
             QString themePath_;
 
-            PluginInfo(Application::StreamingService& service, QString scriptPath, QString themePath, QObject* parent)
-                    : QObject(parent), service_(service), scriptPath_(scriptPath), themePath_(themePath)
-            {
-            }
+            PluginInfo(Application::StreamingService& service, QString scriptPath, QString themePath, QObject* parent);
         };
 
         Application::ILogger& logger_;

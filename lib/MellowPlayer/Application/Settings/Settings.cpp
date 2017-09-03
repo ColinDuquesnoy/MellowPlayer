@@ -2,7 +2,9 @@
 #include "ISettingsProvider.hpp"
 #include "ISettingsSchemaLoader.hpp"
 #include "SettingsCategory.hpp"
+#include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+
 
 using namespace std;
 using namespace MellowPlayer::Application;

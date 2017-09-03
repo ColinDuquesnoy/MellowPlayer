@@ -1,6 +1,5 @@
 #include "Release.hpp"
 #include <MellowPlayer/Application/BuildConfig.hpp>
-#include <QDebug>
 
 using namespace MellowPlayer::Application;
 

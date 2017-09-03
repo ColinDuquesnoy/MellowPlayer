@@ -2,9 +2,12 @@
 
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
 #include <QList>
 #include <fakeit.hpp>
 #include <memory>
+
+namespace MellowPlayer { namespace Application { struct Theme; } }
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;

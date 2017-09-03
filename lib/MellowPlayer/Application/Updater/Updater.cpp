@@ -1,9 +1,13 @@
 #include "Updater.hpp"
 #include "AbstractPlatformUpdater.hpp"
 #include "ILatestReleaseQuerier.hpp"
+#include "Release.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingKey.hpp>
 
 using namespace MellowPlayer::Application;
 

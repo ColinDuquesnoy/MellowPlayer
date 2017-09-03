@@ -1,5 +1,7 @@
 #include "AlbumArtDownloader.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <QDir>
 #include <QStandardPaths>
 

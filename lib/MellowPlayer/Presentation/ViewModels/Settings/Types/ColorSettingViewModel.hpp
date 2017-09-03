@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <QColor>
 
 namespace MellowPlayer::Presentation

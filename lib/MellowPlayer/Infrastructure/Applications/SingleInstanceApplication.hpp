@@ -1,6 +1,5 @@
 #pragma once
 
-#include "IApplication.hpp"
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QObject>
@@ -14,11 +13,15 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
+    class IApplication;
+
     class SingleInstanceApplication : public QObject
     {
         Q_OBJECT
     public:
-        SingleInstanceApplication(IApplication& application, Application::ICommandLineParser& commandLineParser, Application::IPlayer& currentPlayer);
+        SingleInstanceApplication(IApplication& application,
+                                  Application::ICommandLineParser& commandLineParser,
+                                  Application::IPlayer& currentPlayer);
 
         int run();
 

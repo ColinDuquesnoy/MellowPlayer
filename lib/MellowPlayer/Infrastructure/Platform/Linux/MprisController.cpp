@@ -5,7 +5,10 @@
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp"
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp"
 #include "MprisController.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;

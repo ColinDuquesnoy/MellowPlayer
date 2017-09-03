@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>

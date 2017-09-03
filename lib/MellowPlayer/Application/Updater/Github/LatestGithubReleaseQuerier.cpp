@@ -1,5 +1,10 @@
 #include "LatestGithubReleaseQuerier.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/Updater/IHttpClient.hpp>
+#include <MellowPlayer/Application/Updater/Release.hpp>
+
 
 #define CONTINUOUS_RELEASE_NAME "Continuous"
 

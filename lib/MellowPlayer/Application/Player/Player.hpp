@@ -1,8 +1,9 @@
 #pragma once
 
 #include "IPlayer.hpp"
-#include <QTimer>
 #include <memory>
+
+class QTimer;
 
 namespace MellowPlayer::Application
 {
@@ -17,7 +18,7 @@ namespace MellowPlayer::Application
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
         explicit Player(Application::StreamingService& streamingService);
-        ~Player();
+        ~Player() override;
 
         // IPlayer
         Q_INVOKABLE void togglePlayPause() override;

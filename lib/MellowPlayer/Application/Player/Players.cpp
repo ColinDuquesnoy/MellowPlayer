@@ -1,5 +1,7 @@
 #include "Players.hpp"
+#include "Player.hpp"
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;

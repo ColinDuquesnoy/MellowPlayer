@@ -1,5 +1,6 @@
 #include "StreamingServicesControllerViewModel.hpp"
 #include <MellowPlayer/Application/IWorkDispatcher.hpp>
+#include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>

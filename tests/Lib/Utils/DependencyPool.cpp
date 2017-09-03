@@ -1,8 +1,18 @@
+#include "DependencyPool.hpp"
+
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include "MellowPlayer/Application/ICommandLineParser.hpp"
+#include "MellowPlayer/Application/IQtApplication.hpp"
+#include "MellowPlayer/Application/Notifications/INotificationPresenter.hpp"
+#include "MellowPlayer/Application/Settings/ISettingsProvider.hpp"
+#include "MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp"
+#include "MellowPlayer/Application/Updater/AbstractPlatformUpdater.hpp"
 
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
@@ -12,6 +22,7 @@
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/CommnandLineParserMock.hpp>
@@ -26,9 +37,7 @@
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
-#include <Mocks/ThemeLoaderMock>
-
-#include "DependencyPool.hpp"
+#include <Mocks/ThemeLoaderMock.hpp>
 
 using namespace std;
 using namespace fakeit;

@@ -3,7 +3,8 @@
 #include <MellowPlayer/Application/IFileDownloader.hpp>
 #include <QtCore/QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
+
+class QNetworkReply;
 
 namespace MellowPlayer::Application
 {

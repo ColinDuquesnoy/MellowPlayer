@@ -2,7 +2,8 @@
 
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
 #include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
+
+class QNetworkReply;
 
 namespace MellowPlayer::Infrastructure
 {

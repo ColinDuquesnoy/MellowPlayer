@@ -8,6 +8,7 @@
 
 namespace MellowPlayer::Application
 {
+    class ILogger;
     class IQtApplication;
     class IMainWindow;
     class StreamingServicesController;

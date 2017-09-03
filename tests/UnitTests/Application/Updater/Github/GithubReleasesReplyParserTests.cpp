@@ -1,4 +1,5 @@
 #include "Utils/Helpers.hpp"
+#include <MellowPlayer/Application/Updater/Release.hpp>
 #include <MellowPlayer/Application/Updater/Github/GithubReleasesReplyParser.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>

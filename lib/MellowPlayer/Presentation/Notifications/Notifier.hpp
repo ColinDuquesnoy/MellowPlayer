@@ -12,6 +12,7 @@ namespace MellowPlayer::Application
     class IPlayer;
     class INotificationPresenter;
     class StreamingServicesController;
+    class Song;
 }
 
 namespace MellowPlayer::Presentation

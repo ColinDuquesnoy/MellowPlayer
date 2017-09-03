@@ -4,8 +4,6 @@
 #include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/FileDownloader.hpp>
 #include <QFileInfo>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
 
 namespace MellowPlayer::Application
 {

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Presentation/Models/ListeningHistoryProxyListModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
-#include <QAbstractListModel>
 
 namespace MellowPlayer::Application
 {

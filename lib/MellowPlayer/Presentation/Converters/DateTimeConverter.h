@@ -1,7 +1,8 @@
 #pragma once
 
 #include <QObject>
-#include <QDateTime>
+
+class QDateTime;
 
 namespace MellowPlayer::Presentation {
 

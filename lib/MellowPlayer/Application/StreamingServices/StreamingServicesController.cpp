@@ -1,6 +1,10 @@
 #include "StreamingServicesController.hpp"
 #include "IStreamingServiceLoader.hpp"
 #include "IStreamingServiceWatcher.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;

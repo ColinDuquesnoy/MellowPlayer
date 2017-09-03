@@ -1,6 +1,5 @@
 #include "AbstractPlatformUpdater.hpp"
 #include <MellowPlayer/Application/IFileDownloader.hpp>
-#include <MellowPlayer/Application/Updater/Release.hpp>
 #include <QtCore/QTemporaryDir>
 
 using namespace MellowPlayer::Application;

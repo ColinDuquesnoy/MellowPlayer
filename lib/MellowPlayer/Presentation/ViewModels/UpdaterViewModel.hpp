@@ -1,7 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <QtCore/QObject>
+
+namespace MellowPlayer::Application
+{
+    class Updater;
+}
 
 namespace MellowPlayer::Presentation
 {

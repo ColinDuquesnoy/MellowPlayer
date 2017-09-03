@@ -1,5 +1,7 @@
 #include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
+#include <MellowPlayer/Application/Updater/Release.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;

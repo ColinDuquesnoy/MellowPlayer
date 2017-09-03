@@ -1,9 +1,7 @@
 #pragma once
 
-#include "MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp"
 #include <MellowPlayer/Application/IQtApplication.hpp>
 #include <QApplication>
-#include <QQmlApplicationEngine>
 #include <QTranslator>
 
 #define MELLOWPLAYER_APP_NAME "MellowPlayer"

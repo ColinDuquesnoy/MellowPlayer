@@ -1,8 +1,10 @@
 #include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PlayerMock.hpp>

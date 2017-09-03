@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QObject>
+#include <QString>
 #include <MellowPlayer/Application/Updater/Updater.hpp>
 
 class UpdaterStatusStrings : public QObject

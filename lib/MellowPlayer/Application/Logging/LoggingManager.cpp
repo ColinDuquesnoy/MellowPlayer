@@ -1,4 +1,6 @@
 #include "LoggingManager.hpp"
+#include "ILogger.hpp"
+#include "ILoggerFactory.hpp"
 #include <QtCore/QLoggingCategory>
 
 using namespace MellowPlayer::Application;

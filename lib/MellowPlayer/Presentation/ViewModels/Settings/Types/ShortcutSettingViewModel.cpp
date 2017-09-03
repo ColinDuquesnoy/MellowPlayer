@@ -1,6 +1,6 @@
 #include "ShortcutSettingViewModel.hpp"
-#include <QDebug>
 #include <QtGui/QKeySequence>
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -41,7 +41,6 @@ QString ShortcutSettingViewModel::keySequenceToString(int keyInt, int modifiers)
     if (modifiers & Qt::MetaModifier)
         keyInt += Qt::META;
 
-    qDebug() << "New KeySequence:" << QKeySequence(keyInt).toString(QKeySequence::PortableText);
     return QKeySequence(keyInt).toString(QKeySequence::PortableText);
 }
 

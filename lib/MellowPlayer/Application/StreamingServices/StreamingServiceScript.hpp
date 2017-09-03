@@ -4,8 +4,6 @@
 
 namespace MellowPlayer::Application
 {
-    class ILogger;
-
     class StreamingServiceScript : public QObject
     {
         Q_OBJECT

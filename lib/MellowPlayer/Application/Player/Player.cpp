@@ -1,10 +1,12 @@
 #include "Player.hpp"
+#include "Song.hpp"
+#include <QVariantMap>
+#include <QTimer>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServiceScript.hpp>
-#include <QVariantMap>
-#include <qdebug.h>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;

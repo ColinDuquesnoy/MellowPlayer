@@ -1,6 +1,9 @@
 #include "GithubReleasesReplyParser.hpp"
+#include <QtCore/QDateTime>
+#include <QtCore/QJsonDocument>
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonObject>
+#include <MellowPlayer/Application/Updater/Release.hpp>
 
 using namespace MellowPlayer::Application;
 
@@ -26,7 +29,7 @@ void GithubReleasesReplyParser::parse(const QByteArray& replyData)
             assets << asset;
         }
 
-        Release* release = new Release(url, version, date, assets, preRelease, this);
+        auto* release = new Release(url, version, date, assets, preRelease, this);
 
         emit ready(release);
 

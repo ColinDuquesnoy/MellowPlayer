@@ -3,7 +3,9 @@
 #include <MellowPlayer/Application/Controllers/IMprisController.hpp>
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/IQtApplication.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 

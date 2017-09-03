@@ -2,7 +2,6 @@
 #include "ISettingsProvider.hpp"
 #include "Settings.hpp"
 #include "SettingsCategory.hpp"
-#include <QDebug>
 
 using namespace std;
 using namespace MellowPlayer::Application;
@@ -17,7 +16,7 @@ void Setting::resolveDependency()
     //    if (data.enableCondition.startsWith("!"))
     //        notOperator_ = true;
 
-    QString key = QString(data_.enableCondition);
+    QString key(data_.enableCondition);
     key = key.replace("!", "");
     key = key.split("==")[0].trimmed();
 

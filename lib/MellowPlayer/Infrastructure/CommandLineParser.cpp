@@ -1,5 +1,6 @@
 #include "CommandLineParser.hpp"
 #include <QDebug>
+#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;

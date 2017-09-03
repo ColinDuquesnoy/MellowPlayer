@@ -3,6 +3,11 @@
 #include <MellowPlayer/Application/Updater/AbstractPlatformUpdater.hpp>
 #include <MellowPlayer/Application/Updater/Asset.hpp>
 
+namespace MellowPlayer::Application {
+    class IFileDownloader;
+    class Release;
+}
+
 namespace MellowPlayer::Infrastructure
 {
     class LinuxUpdater : public Application::AbstractPlatformUpdater

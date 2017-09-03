@@ -7,6 +7,7 @@
 #include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <Mocks/FakeHttpClient.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/Updater/Release.hpp>
 
 using namespace MellowPlayer;
 using namespace MellowPlayer::Application;

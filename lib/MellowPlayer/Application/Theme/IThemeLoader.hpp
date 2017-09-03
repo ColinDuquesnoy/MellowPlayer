@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Theme.hpp"
+#include <QtCore/QString>
 
 namespace MellowPlayer::Application
 {
+    struct Theme;
+
     class IThemeLoader
     {
     public:

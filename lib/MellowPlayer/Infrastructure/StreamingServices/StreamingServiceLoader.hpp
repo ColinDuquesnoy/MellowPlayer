@@ -5,6 +5,7 @@
 namespace MellowPlayer::Application
 {
     class ILogger;
+    class StreamingService;
     struct StreamingServiceMetadata;
     struct Theme;
 }

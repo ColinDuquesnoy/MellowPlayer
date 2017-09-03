@@ -6,10 +6,10 @@
 
 namespace MellowPlayer::Application
 {
-    class StreamingService;
     class ILogger;
     class IStreamingServiceLoader;
     class IStreamingServiceWatcher;
+    class StreamingService;
 
     class StreamingServicesController : public QObject
     {

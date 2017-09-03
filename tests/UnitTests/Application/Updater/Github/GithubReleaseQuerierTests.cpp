@@ -1,5 +1,6 @@
 #include "Mocks/FakeHttpClient.hpp"
 #include "catch.hpp"
+#include <MellowPlayer/Application/Updater/Release.hpp>
 #include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 
 using namespace MellowPlayer::Application;

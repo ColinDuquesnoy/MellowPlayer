@@ -1,7 +1,11 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
+
+namespace MellowPlayer::Application
+{
+    class Setting;
+}
 
 namespace MellowPlayer::Presentation
 {

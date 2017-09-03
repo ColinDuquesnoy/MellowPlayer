@@ -8,6 +8,7 @@ namespace MellowPlayer::Application
 {
     class ILogger;
     class IMainWindow;
+    struct Notification;
 }
 
 namespace MellowPlayer::Presentation

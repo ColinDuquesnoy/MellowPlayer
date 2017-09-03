@@ -1,6 +1,7 @@
 #pragma once
 
-#include "fakeit/fakeit.hpp"
+#include <memory>
+#include "fakeit.hpp"
 
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Application/IQtApplication.hpp>

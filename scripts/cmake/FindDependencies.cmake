@@ -41,3 +41,9 @@ if(CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 endif(CCACHE_FOUND)
+
+
+find_program(iwyu_path NAMES include-what-you-use iwyu)
+if(NOT iwyu_path)
+    message(FATAL_ERROR "Could not find the program include-what-you-use")
+endif()
