@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QObject>
+
 namespace MellowPlayer::Application
 {
     enum class UpdateChannel
@@ -8,41 +10,55 @@ namespace MellowPlayer::Application
         Beta,
         Continuous,
     };
-
-    class UpdateChannelStringer
-    {
-    public:
-        static QString toString(UpdateChannel channelType)
-        {
-            QString string;
-
-            switch (channelType) {
-                case UpdateChannel::Stable:
-                    string = "Stable";
-                    break;
-                case UpdateChannel::Beta:
-                    string = "Beta";
-                    break;
-                case UpdateChannel::Continuous:
-                    string = "Continuous";
-                    break;
-            }
-
-            return string;
-        }
-
-        static UpdateChannel fromString(const QString& channelName)
-        {
-            UpdateChannel channel;
-
-            if (channelName == "Continuous")
-                channel = UpdateChannel::Continuous;
-            else if (channelName == "Beta")
-                channel = UpdateChannel::Beta;
-            else
-                channel = UpdateChannel::Stable;
-
-            return channel;
-        }
-    };
 }
+
+class UpdateChannelStringer : public QObject
+{
+    Q_OBJECT
+public:
+    QString stable() const
+    {
+        return tr("Stable");
+    }
+    QString beta() const
+    {
+        return tr("Beta");
+    }
+    QString continuous() const
+    {
+        return tr("Continuous");
+    }
+
+    QString toString(MellowPlayer::Application::UpdateChannel channelType) const
+    {
+        QString string;
+
+        switch (channelType) {
+            case MellowPlayer::Application::UpdateChannel::Stable:
+                string = stable();
+                break;
+            case MellowPlayer::Application::UpdateChannel::Beta:
+                string = beta();
+                break;
+            case MellowPlayer::Application::UpdateChannel::Continuous:
+                string = continuous();
+                break;
+        }
+
+        return string;
+    }
+
+    MellowPlayer::Application::UpdateChannel fromString(const QString& channelName) const
+    {
+        MellowPlayer::Application::UpdateChannel channel;
+
+        if (channelName == continuous())
+            channel = MellowPlayer::Application::UpdateChannel::Continuous;
+        else if (channelName == beta())
+            channel = MellowPlayer::Application::UpdateChannel::Beta;
+        else
+            channel = MellowPlayer::Application::UpdateChannel::Stable;
+
+        return channel;
+    }
+};

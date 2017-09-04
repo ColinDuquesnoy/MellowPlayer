@@ -28,12 +28,12 @@ namespace MellowPlayer::Infrastructure
         void quit() override;
 
     private:
-        Application::ILogger& logger;
-        Application::IQtApplication& qtApp;
-        Application::IMainWindow& mainWindow;
-        Application::StreamingServicesController& streamingServices;
-        Application::IHotkeysController& kotkeys;
-        Application::ISystemTrayIcon& systemTrayIcon;
-        Application::INotifier& notifier;
+        Application::ILogger& logger_;
+        Application::IQtApplication& qtApp_;
+        Application::IMainWindow& mainWindow_;
+        Application::StreamingServicesController& streamingServices_;
+        Application::IHotkeysController& kotkeys_;
+        Application::ISystemTrayIcon& systemTrayIcon_;
+        Application::INotifier& notifier_;
     };
 }

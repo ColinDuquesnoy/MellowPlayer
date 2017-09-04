@@ -1,35 +1,36 @@
 #include "SettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-SettingViewModel::SettingViewModel(Setting& setting, QObject* parent) : QObject(parent), setting(setting)
+SettingViewModel::SettingViewModel(Setting& setting, QObject* parent) : QObject(parent), setting_(setting)
 {
     connect(&setting, &Setting::valueChanged, this, &SettingViewModel::onValueChanged);
-    connect(&setting, &Setting::isEnabledChanged, this, &SettingViewModel::onIsEnabledChanged);
+    connect(&setting, &Setting::isEnabledChanged, this, &SettingViewModel::onEnabledChanged);
 }
 
-QString SettingViewModel::getName() const
+QString SettingViewModel::name() const
 {
-    return setting.getName();
+    return setting_.name();
 }
 
-QString SettingViewModel::getToolTip() const
+QString SettingViewModel::toolTip() const
 {
-    return setting.getToolTip();
+    return setting_.toolTip();
 }
 
-QString SettingViewModel::getType() const
+QString SettingViewModel::type() const
 {
-    return setting.getType();
+    return setting_.type();
 }
 
-bool SettingViewModel::getEnabled() const
+bool SettingViewModel::enabled() const
 {
-    return setting.isEnabled();
+    return setting_.isEnabled();
 }
 
-void SettingViewModel::onIsEnabledChanged()
+void SettingViewModel::onEnabledChanged()
 {
     emit enabledChanged();
 }

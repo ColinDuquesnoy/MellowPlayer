@@ -6,3 +6,6 @@ Main authors
 
 Contributors
 ------------
+
+- [ConorIA](https://github.com/ConorIA)
+- [ZeroDot1](http://basic1.moy.su/)

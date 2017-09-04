@@ -1,113 +1,143 @@
 #include "SystemTrayIcon.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Application/IQtApplication.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/SettingKey.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Presentation/IconProvider.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IQtApplication& qtApplication, Settings& settings)
         : QObject(),
-          logger(LoggingManager::instance().getLogger("SystemTrayIcon")),
-          player(player),
-          mainWindow(mainWindow),
-          qtApplication(qtApplication),
-          settings(settings),
-          showTrayIconSetting(settings.get(SettingKey::MAIN_SHOW_TRAY_ICON)),
-          qSystemTrayIcon(IconProvider::trayIcon())
+          logger_(LoggingManager::logger("SystemTrayIcon")),
+          player_(player),
+          mainWindow_(mainWindow),
+          qtApp_(qtApplication),
+          settings_(settings),
+          showTrayIconSetting_(settings.get(SettingKey::MAIN_SHOW_TRAY_ICON)),
+          qSystemTrayIcon_(IconProvider::trayIcon())
 {
-    connect(&qSystemTrayIcon, &QSystemTrayIcon::activated, this, &SystemTrayIcon::onActivated);
-    connect(&showTrayIconSetting, &Setting::valueChanged, this, &SystemTrayIcon::onShowTrayIconSettingValueChanged);
+    connect(&qSystemTrayIcon_, &QSystemTrayIcon::activated, this, &SystemTrayIcon::onActivated);
+    connect(&showTrayIconSetting_, &Setting::valueChanged, this, &SystemTrayIcon::onShowTrayIconSettingValueChanged);
     setUpMenu();
 }
 
 void SystemTrayIcon::show()
 {
-    LOG_DEBUG(logger, "show");
-    if (showTrayIconSetting.getValue().toBool())
-        qSystemTrayIcon.show();
+    LOG_DEBUG(logger_, "show");
+    if (showTrayIconSetting_.value().toBool())
+        qSystemTrayIcon_.show();
 }
 
 void SystemTrayIcon::hide()
 {
-    LOG_DEBUG(logger, "hide");
-    qSystemTrayIcon.hide();
+    LOG_DEBUG(logger_, "hide");
+    qSystemTrayIcon_.hide();
 }
 
 void SystemTrayIcon::showMessage(const QString& title, const QString& message)
 {
-    LOG_DEBUG(logger, "show message: " + title + " - " + message);
-    qSystemTrayIcon.showMessage(title, message);
+    LOG_DEBUG(logger_, "show message: " + title + " - " + message);
+    qSystemTrayIcon_.showMessage(title, message);
 }
 
 void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason)
 {
-    LOG_TRACE(logger, "activated");
-    mainWindow.show();
+    LOG_TRACE(logger_, "activated");
+    mainWindow_.show();
 }
 
 void SystemTrayIcon::setUpMenu()
 {
-    playPauseAction = menu.addAction(IconProvider::play(), "Play/Pause");
-    connect(playPauseAction, &QAction::triggered, this, &SystemTrayIcon::togglePlayPause);
+    SystemTrayIconStrings strings;
+    playPauseAction_ = menu_.addAction(IconProvider::play(), strings.playPause());
+    connect(playPauseAction_, &QAction::triggered, this, &SystemTrayIcon::togglePlayPause);
 
-    nextSongAction = menu.addAction(IconProvider::next(), "Next");
-    connect(nextSongAction, &QAction::triggered, this, &SystemTrayIcon::next);
+    nextSongAction_ = menu_.addAction(IconProvider::next(), strings.next());
+    connect(nextSongAction_, &QAction::triggered, this, &SystemTrayIcon::next);
 
-    previousSongAction = menu.addAction(IconProvider::previous(), "Previous");
-    connect(previousSongAction, &QAction::triggered, this, &SystemTrayIcon::previous);
+    previousSongAction_ = menu_.addAction(IconProvider::previous(), strings.previous());
+    connect(previousSongAction_, &QAction::triggered, this, &SystemTrayIcon::previous);
 
-    menu.addSeparator();
+    menu_.addSeparator();
 
-    restoreWindowAction = menu.addAction(IconProvider::restoreWindow(), "Restore window");
-    connect(restoreWindowAction, &QAction::triggered, this, &SystemTrayIcon::restoreWindow);
+    restoreWindowAction_ = menu_.addAction(IconProvider::restoreWindow(), strings.restoreWindow());
+    connect(restoreWindowAction_, &QAction::triggered, this, &SystemTrayIcon::restoreWindow);
 
-    menu.addSeparator();
+    menu_.addSeparator();
 
-    quitApplicationAction = menu.addAction(IconProvider::quit(), "Quit");
-    connect(quitApplicationAction, &QAction::triggered, this, &SystemTrayIcon::quit);
+    quitApplicationAction_ = menu_.addAction(IconProvider::quit(), strings.quit());
+    connect(quitApplicationAction_, &QAction::triggered, this, &SystemTrayIcon::quit);
 
-    qSystemTrayIcon.setContextMenu(&menu);
+    qSystemTrayIcon_.setContextMenu(&menu_);
 }
 
 void SystemTrayIcon::togglePlayPause()
 {
-    LOG_TRACE(logger, "togglePlayPause");
-    player.togglePlayPause();
+    LOG_TRACE(logger_, "togglePlayPause");
+    player_.togglePlayPause();
 }
 
 void SystemTrayIcon::next()
 {
-    LOG_TRACE(logger, "next");
-    player.next();
+    LOG_TRACE(logger_, "next");
+    player_.next();
 }
 
 void SystemTrayIcon::previous()
 {
-    LOG_TRACE(logger, "previous");
-    player.previous();
+    LOG_TRACE(logger_, "previous");
+    player_.previous();
 }
 
 void SystemTrayIcon::restoreWindow()
 {
-    LOG_TRACE(logger, "restore window");
-    mainWindow.show();
+    LOG_TRACE(logger_, "restore window");
+    mainWindow_.show();
 }
 
 void SystemTrayIcon::quit()
 {
-    LOG_TRACE(logger, "quit");
-    qtApplication.requestQuit();
+    LOG_TRACE(logger_, "quit");
+    qtApp_.requestQuit();
 }
 
 void SystemTrayIcon::onShowTrayIconSettingValueChanged()
 {
-    if (showTrayIconSetting.getValue().toBool())
+    if (showTrayIconSetting_.value().toBool())
         show();
     else
         hide();
 }
+
+QString SystemTrayIconStrings::playPause() const
+{
+    return tr("Play/Pause");
+}
+
+QString SystemTrayIconStrings::next() const
+{
+    return tr("Next");
+}
+
+QString SystemTrayIconStrings::previous() const
+{
+    return tr("Previous");
+}
+
+QString SystemTrayIconStrings::restoreWindow() const
+{
+    return tr("Restore window");
+}
+
+QString SystemTrayIconStrings::quit() const
+{
+    return tr("Quit");
+}
+

@@ -2,8 +2,8 @@ import QtQuick 2.7
 import QtQuick.Controls 2.2
 
 WizardPage {
-    title: "Introduction"
-    description: "Please, read this page carefully!"
+    title: qsTr("Introduction")
+    description: qsTr("Please, read this page carefully!")
     goBackVisible: false
     goNextVisible: true
     finishVisible: false
@@ -12,7 +12,7 @@ WizardPage {
     Label {
         anchors.fill: parent
         textFormat: "RichText"
-        text: '
+        text: qsTr('
 <html>
     <head>
         <body>
@@ -35,6 +35,6 @@ WizardPage {
             <p>This wizard will create all those files for you, you\'re left with the implementation.</p>
         </body>
     </head>
-</html>'
+</html>')
     }
 }

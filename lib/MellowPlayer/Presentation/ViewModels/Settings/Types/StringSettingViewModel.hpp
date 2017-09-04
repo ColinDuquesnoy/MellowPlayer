@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 namespace MellowPlayer::Presentation
 {
@@ -13,7 +12,7 @@ namespace MellowPlayer::Presentation
         StringSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const;
-        QString getQmlComponent() override;
+        QString qmlComponent() override;
 
     public slots:
         void setValue(QString value);

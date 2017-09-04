@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Presentation/IconProvider.hpp>
 #include <QMenu>
 #include <QSystemTrayIcon>
 
@@ -14,6 +13,17 @@ namespace MellowPlayer::Application
     class Setting;
     class Settings;
 }
+
+class SystemTrayIconStrings : public QObject
+{
+    Q_OBJECT
+public:
+    QString playPause() const;
+    QString next() const;
+    QString previous() const;
+    QString restoreWindow() const;
+    QString quit() const;
+};
 
 namespace MellowPlayer::Presentation
 {
@@ -41,19 +51,19 @@ namespace MellowPlayer::Presentation
     private:
         void setUpMenu();
 
-        Application::ILogger& logger;
-        Application::IPlayer& player;
-        Application::IMainWindow& mainWindow;
-        Application::IQtApplication& qtApplication;
-        Application::Settings& settings;
-        Application::Setting& showTrayIconSetting;
+        Application::ILogger& logger_;
+        Application::IPlayer& player_;
+        Application::IMainWindow& mainWindow_;
+        Application::IQtApplication& qtApp_;
+        Application::Settings& settings_;
+        Application::Setting& showTrayIconSetting_;
 
-        QSystemTrayIcon qSystemTrayIcon;
-        QMenu menu;
-        QAction* playPauseAction;
-        QAction* previousSongAction;
-        QAction* nextSongAction;
-        QAction* restoreWindowAction;
-        QAction* quitApplicationAction;
+        QSystemTrayIcon qSystemTrayIcon_;
+        QMenu menu_;
+        QAction* playPauseAction_;
+        QAction* previousSongAction_;
+        QAction* nextSongAction_;
+        QAction* restoreWindowAction_;
+        QAction* quitApplicationAction_;
     };
 }

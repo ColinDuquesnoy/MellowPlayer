@@ -2,6 +2,7 @@
 #include <catch.hpp>
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
@@ -9,6 +10,7 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -20,10 +22,10 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
     streamingServices.load();
-    streamingServices.setCurrent(streamingServices.getAll()[0].get());
+    streamingServices.setCurrent(streamingServices.toList()[0].get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
-    Player& currentPlayer = *players.get(streamingServices.getCurrent()->getName());
+    Player& currentPlayer = *players.get(streamingServices.current()->name());
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);

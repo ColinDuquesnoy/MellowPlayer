@@ -9,7 +9,33 @@ if(WIN32)
     configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
 endif()
 
-add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES})
+# Translation files
+file(GLOB_RECURSE TS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/languages/*.ts)
+set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/languages)
+if (UPDATE_TRANSLATIONS)
+    message(STATUS "Update translations")
+    # update source only, pushing to transifex will update all other languages
+    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/lib languages/MellowPlayer_en.ts OPTIONS -noobsolete)
+    file(GLOB_RECURSE QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/languages/*.qm)
+else()
+    qt5_add_translation(QM_FILES ${TS_FILES})
+endif()
+qt5_add_resources(RSCS languages/languages.qrc)
+add_custom_target(gen_qrc DEPENDS ${RSCS} ${QM_FILES} ${TS_FILES})
+add_custom_target(translations DEPENDS ${QM_FILES} ${TS_FILES})
+
+# generate languages.qrc
+file(WRITE languages/languages.qrc "<!DOCTYPE RCC>\n")
+file(APPEND languages/languages.qrc "<RCC version=\"1.0\">\n")
+file(APPEND languages/languages.qrc "    <qresource prefix=\"/MellowPlayer/Translations\">\n")
+foreach(FILE ${QM_FILES})
+    string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/languages/" "" RELATIVE_PATH ${FILE})
+    file(APPEND languages/languages.qrc "        <file>${RELATIVE_PATH}</file>\n")
+endforeach()
+file(APPEND languages/languages.qrc "    </qresource>\n")
+file(APPEND languages/languages.qrc "</RCC>\n")
+
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS})
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Application ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
                       Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
@@ -27,6 +53,9 @@ elseif(UNIX)
     if(USE_LIBNOTIFY)
         target_link_libraries(${PROJECT_NAME} ${LIBNOTIFY_LIBRARIES})
     endif()
+endif()
+if (USE_PRECOMPILED_HEADER)
+    target_precompiled_header(${PROJECT_NAME} stdafx.h)
 endif()
 
 # add a console based executable for easier debugging

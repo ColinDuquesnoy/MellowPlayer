@@ -8,7 +8,7 @@ SCENARIO("releases validity can be tested")
     GIVEN("the current release")
     {
         const Release& currentRelease = Release::current();
-        REQUIRE(currentRelease.getUrl().isEmpty());
+        REQUIRE(currentRelease.url().isEmpty());
 
         WHEN("isValid is called")
         {
@@ -76,7 +76,7 @@ SCENARIO("releases validity can be tested")
         // windows installer is missing.
         Release release("https://github.com/ColinDuquesnoy/MellowPlayer/releases/tag/2.95.0", "2.95.0", QDate::fromString("2117-07-15", Qt::ISODate),
                         assets);
-        REQUIRE(release.getAssets().count() == 2);
+        REQUIRE(release.assets().count() == 2);
 
         WHEN("isValid is called")
         {

@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Application/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
@@ -22,10 +23,10 @@ TEST_CASE("SettingsViewModelTests")
         REQUIRE(settingModel != nullptr);
     }
 
-    SECTION("getCategories")
+    SECTION("categories")
     {
         int extraCategories = 2;
-        REQUIRE(settingsViewModel.getCategories()->count() - extraCategories == (settings.getCategories().count() - 1));
+        REQUIRE(settingsViewModel.categories()->count() - extraCategories == (settings.categories().count() - 1));
     }
 
     SECTION("restoreDefaults")
@@ -35,12 +36,12 @@ TEST_CASE("SettingsViewModelTests")
         Setting& s2 = settings.get(SettingKey::APPEARANCE_THEME);
         s2.setValue("Breeze");
 
-        REQUIRE(s1.getValue() != s1.getDefaultValue());
-        REQUIRE(s2.getValue() != s2.getDefaultValue());
+        REQUIRE(s1.value() != s1.defaultValue());
+        REQUIRE(s2.value() != s2.defaultValue());
 
         settingsViewModel.restoreDefaults();
 
-        REQUIRE(s1.getValue() == s1.getDefaultValue());
-        REQUIRE(s2.getValue() == s2.getDefaultValue());
+        REQUIRE(s1.value() == s1.defaultValue());
+        REQUIRE(s2.value() == s2.defaultValue());
     }
 }

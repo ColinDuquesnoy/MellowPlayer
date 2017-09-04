@@ -6,37 +6,37 @@
 
 namespace MellowPlayer::Application
 {
-    class StreamingService;
     class ILogger;
     class IStreamingServiceLoader;
     class IStreamingServiceWatcher;
+    class StreamingService;
 
     class StreamingServicesController : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(Application::StreamingService* currentService READ getCurrent WRITE setCurrent NOTIFY currentChanged)
+        Q_PROPERTY(Application::StreamingService* currentService READ current WRITE setCurrent NOTIFY currentChanged)
     public:
         StreamingServicesController(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher);
 
         void load();
         Application::StreamingService& get(const QString& name) const;
-        const QList<std::shared_ptr<Application::StreamingService>>& getAll() const
+        const QList<std::shared_ptr<Application::StreamingService>>& toList() const
         {
-            return services;
+            return services_;
         }
 
         void setCurrent(Application::StreamingService* service);
-        Application::StreamingService* getCurrent() const;
+        Application::StreamingService* current() const;
 
     signals:
         void added(StreamingService* service);
         void currentChanged(StreamingService* service);
 
     private:
-        ILogger& logger;
-        IStreamingServiceLoader& loader;
-        IStreamingServiceWatcher& watcher;
-        QList<std::shared_ptr<MellowPlayer::Application::StreamingService>> services;
-        Application::StreamingService* current;
+        ILogger& logger_;
+        IStreamingServiceLoader& loader_;
+        IStreamingServiceWatcher& watcher_;
+        QList<std::shared_ptr<MellowPlayer::Application::StreamingService>> services_;
+        Application::StreamingService* current_;
     };
 }

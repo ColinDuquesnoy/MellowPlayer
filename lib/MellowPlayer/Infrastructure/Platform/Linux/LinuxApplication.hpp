@@ -8,6 +8,7 @@
 
 namespace MellowPlayer::Application
 {
+    class ILogger;
     class IQtApplication;
     class IMainWindow;
     class StreamingServicesController;
@@ -28,8 +29,8 @@ namespace MellowPlayer::Infrastructure
         void initialize() override;
 
     private:
-        Application::ILogger& logger;
-        Application::IMprisController& mprisService;
+        Application::ILogger& logger_;
+        Application::IMprisController& mprisService_;
     };
 }
 

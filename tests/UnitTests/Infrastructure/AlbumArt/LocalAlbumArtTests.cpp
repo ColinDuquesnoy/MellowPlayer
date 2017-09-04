@@ -1,5 +1,6 @@
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
@@ -31,7 +32,7 @@ TEST_CASE("LocalAlbumArtTests", "[UnitTest]")
         emit player.currentSongChanged(&song);
         REQUIRE(downloadFinishedSpy.count() == 1);
         REQUIRE(downloadFinishedSpy[0][0] == LOCAL_URL);
-        REQUIRE(localAlbumArt.getUrl() == LOCAL_URL);
+        REQUIRE(localAlbumArt.url() == LOCAL_URL);
         REQUIRE(!localAlbumArt.isSongArtReady(song)); // file does not exist because we use a downloader mock
     }
 }

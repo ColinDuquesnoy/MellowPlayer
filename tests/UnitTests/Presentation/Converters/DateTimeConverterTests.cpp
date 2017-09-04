@@ -1,4 +1,5 @@
 #include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
+#include <QDateTime>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Presentation;

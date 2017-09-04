@@ -17,7 +17,7 @@ ToolButton {
     font { family: MaterialIcons.family; pixelSize: iconSize }
     hoverEnabled: true
 
-    onClicked: triggered()
+    onClicked: if (!checkable) triggered()
 
     Tooltip {
         y: parent.implicitHeight

@@ -14,7 +14,7 @@ TEST_CASE("EnumSettingViewModelTests")
 {
     DependencyPool pool;
     Settings& settings = pool.getSettings();
-    SettingsCategory& category = settings.getCategory("appearance");
+    SettingsCategory& category = settings.category("appearance");
     Setting::Data settingData;
     settingData.name = "Theme";
     settingData.defaultValue = "Light";
@@ -35,16 +35,16 @@ TEST_CASE("EnumSettingViewModelTests")
         model.setValue("Light");
     }
 
-    SECTION("getValues")
+    SECTION("values")
     {
         QStringList expected;
         expected << "Light";
         expected << "Dark";
-        REQUIRE(model.getValues() == expected);
+        REQUIRE(model.values() == expected);
     }
 
     SECTION("QML Component looks valid")
     {
-        REQUIRE(model.getQmlComponent().toLower().contains("enum"));
+        REQUIRE(model.qmlComponent().toLower().contains("enum"));
     }
 }

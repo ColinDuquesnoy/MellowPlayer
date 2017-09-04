@@ -54,7 +54,7 @@ Pane {
             height: implicitHeight; width: parent.width
             font.pixelSize: 14
             horizontalAlignment: "AlignHCenter"
-            text: 'copied to _clipboard'
+            text: qsTr('copied to clipboard')
         }
     }
 

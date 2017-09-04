@@ -1,4 +1,5 @@
 #include "BoolSettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -9,12 +10,12 @@ BoolSettingViewModel::BoolSettingViewModel(Setting& setting, QObject* parent) : 
 
 bool BoolSettingViewModel::getValue() const
 {
-    return setting.getValue().toBool();
+    return setting_.value().toBool();
 }
 
 void BoolSettingViewModel::setValue(bool value)
 {
-    setting.setValue(value);
+    setting_.setValue(value);
 }
 
 void BoolSettingViewModel::onValueChanged()
@@ -22,8 +23,7 @@ void BoolSettingViewModel::onValueChanged()
     emit valueChanged();
 }
 
-QString BoolSettingViewModel::getQmlComponent()
+QString BoolSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "BoolSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/BoolSettingDelegate.qml";
 }

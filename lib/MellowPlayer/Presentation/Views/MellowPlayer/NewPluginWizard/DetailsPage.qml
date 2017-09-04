@@ -8,8 +8,8 @@ WizardPage {
     property alias authorName: fieldAuthor.text
     property alias authorUrl: fieldAuthorWebsite.text
 
-    title: "Details"
-    description: "Please fill in the details about your plugin"
+    title: qsTr("Details")
+    description: qsTr("Please fill in the details about your plugin")
     goBackVisible: true
     goNextVisible: true
     finishVisible: false
@@ -25,7 +25,7 @@ WizardPage {
             rows: 4
 
             Label {
-                text: "Service name:"
+                text: qsTr("Service name:")
             }
 
             TextField {
@@ -38,7 +38,7 @@ WizardPage {
             }
 
             Label {
-                text: "Service URL:"
+                text: qsTr("Service URL:")
             }
 
             TextField {
@@ -50,7 +50,7 @@ WizardPage {
             }
 
             Label {
-                text: "Author:"
+                text: qsTr("Author:")
             }
 
             TextField {
@@ -62,7 +62,7 @@ WizardPage {
             }
 
             Label {
-                text: "Author website:"
+                text: qsTr("Author website:")
             }
 
             TextField {

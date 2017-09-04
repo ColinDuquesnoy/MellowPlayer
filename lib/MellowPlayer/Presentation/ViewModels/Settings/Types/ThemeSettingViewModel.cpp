@@ -5,11 +5,11 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 ThemeSettingViewModel::ThemeSettingViewModel(Setting& setting, QObject* parent, ThemeViewModel& themeViewModel)
-        : EnumSettingViewModel(setting, parent), themeViewModel(themeViewModel)
+        : EnumSettingViewModel(setting, parent), themeViewModel_(themeViewModel)
 {
 }
 
-QStringList ThemeSettingViewModel::getValues() const
+QStringList ThemeSettingViewModel::values() const
 {
-    return themeViewModel.getAvailableThemes();
+    return themeViewModel_.availableThemes();
 }

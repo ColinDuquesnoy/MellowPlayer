@@ -6,17 +6,20 @@ using namespace MellowPlayer::Presentation;
 
 SCENARIO("Updater status can be converted to a string")
 {
+    UpdaterStatusConverter converter;
+    UpdaterStatusStrings strings;
+
     GIVEN("UpdaterStatus::None")
     {
         Updater::Status status = Updater::Status::None;
 
         WHEN("converting to string")
         {
-            QString statusString = UpdaterStatusConverter::toString(status);
+            QString statusString = converter.toString(status);
 
             THEN("the string is None")
             {
-                REQUIRE(statusString == UpdaterStatusConverter::NONE);
+                REQUIRE(statusString == strings.none());
             }
         }
     }
@@ -27,11 +30,11 @@ SCENARIO("Updater status can be converted to a string")
 
         WHEN("converting to string")
         {
-            QString statusString = UpdaterStatusConverter::toString(status);
+            QString statusString = converter.toString(status);
 
             THEN("the string is valid")
             {
-                REQUIRE(statusString == UpdaterStatusConverter::CHECKING);
+                REQUIRE(statusString == strings.checking());
             }
         }
     }
@@ -42,11 +45,11 @@ SCENARIO("Updater status can be converted to a string")
 
         WHEN("converting to string")
         {
-            QString statusString = UpdaterStatusConverter::toString(status);
+            QString statusString = converter.toString(status);
 
             THEN("the string is valid")
             {
-                REQUIRE(statusString == UpdaterStatusConverter::DOWNLOADING);
+                REQUIRE(statusString == strings.downloading());
             }
         }
     }
@@ -57,11 +60,11 @@ SCENARIO("Updater status can be converted to a string")
 
         WHEN("converting to string")
         {
-            QString statusString = UpdaterStatusConverter::toString(status);
+            QString statusString = converter.toString(status);
 
             THEN("the string is valid")
             {
-                REQUIRE(statusString == UpdaterStatusConverter::INSTALLING);
+                REQUIRE(statusString == strings.installing());
             }
         }
     }
@@ -69,13 +72,16 @@ SCENARIO("Updater status can be converted to a string")
 
 SCENARIO("Updater status can be converted from a string")
 {
+    UpdaterStatusConverter converter;
+    UpdaterStatusStrings strings;
+
     GIVEN("an empty status string")
     {
         QString statusString = "";
 
         WHEN("converting from string")
         {
-            Updater::Status status = UpdaterStatusConverter::fromString(statusString);
+            Updater::Status status = converter.fromString(statusString);
 
             THEN("Status is None")
             {
@@ -86,11 +92,11 @@ SCENARIO("Updater status can be converted from a string")
 
     GIVEN("a None status string")
     {
-        QString statusString = UpdaterStatusConverter::NONE;
+        QString statusString = strings.none();
 
         WHEN("converting from string")
         {
-            Updater::Status status = UpdaterStatusConverter::fromString(statusString);
+            Updater::Status status = converter.fromString(statusString);
 
             THEN("Status is None")
             {
@@ -101,11 +107,11 @@ SCENARIO("Updater status can be converted from a string")
 
     GIVEN("a valid status string")
     {
-        QString statusString = UpdaterStatusConverter::CHECKING;
+        QString statusString = strings.checking();
 
         WHEN("converting from string")
         {
-            Updater::Status status = UpdaterStatusConverter::fromString(statusString);
+            Updater::Status status = converter.fromString(statusString);
 
             THEN("Status is valid")
             {
@@ -120,7 +126,7 @@ SCENARIO("Updater status can be converted from a string")
 
         WHEN("converting from string")
         {
-            Updater::Status status = UpdaterStatusConverter::fromString(statusString);
+            Updater::Status status = converter.fromString(statusString);
 
             THEN("Status is None")
             {

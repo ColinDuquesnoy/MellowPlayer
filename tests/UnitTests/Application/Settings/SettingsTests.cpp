@@ -16,38 +16,38 @@ TEST_CASE("SettingsTests")
 {
     DependencyPool pool;
     Settings& settings = pool.getSettings();
-    SettingsCategory* mainCategory = &settings.getCategory("main");
+    SettingsCategory* mainCategory = &settings.category("main");
 
     SECTION("ConfigSchemaTests")
     {
-        SECTION("getCategories")
+        SECTION("categories")
         {
-            REQUIRE(settings.getCategories().count() >= NB_CONFIGS);
+            REQUIRE(settings.categories().count() >= NB_CONFIGS);
         }
-        SECTION("getCategory")
+        SECTION("category")
         {
-            REQUIRE(&settings.getCategory("main") == mainCategory);
-            REQUIRE_THROWS(settings.getCategory("foo"));
+            REQUIRE(&settings.category("main") == mainCategory);
+            REQUIRE_THROWS(settings.category("foo"));
         }
 
         SECTION("get")
         {
             REQUIRE_NOTHROW(settings.get(SettingKey::MAIN_CONFIRM_EXIT));
-            REQUIRE_THROWS(settings.getCategory("foo"));
+            REQUIRE_THROWS(settings.category("foo"));
         }
 
         SECTION("restoreDefaults")
         {
             Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
-            setting1.setValue(!setting1.getDefaultValue().toBool());
+            setting1.setValue(!setting1.defaultValue().toBool());
             Setting& setting2 = settings.get(SettingKey::APPEARANCE_THEME);
             setting2.setValue("Other");
-            REQUIRE(setting1.getValue() != setting1.getDefaultValue());
-            REQUIRE(setting2.getValue() != setting2.getDefaultValue());
+            REQUIRE(setting1.value() != setting1.defaultValue());
+            REQUIRE(setting2.value() != setting2.defaultValue());
 
             settings.restoreDefaults();
-            REQUIRE(setting1.getValue() == setting1.getDefaultValue());
-            REQUIRE(setting2.getValue() == setting2.getDefaultValue());
+            REQUIRE(setting1.value() == setting1.defaultValue());
+            REQUIRE(setting2.value() == setting2.defaultValue());
         }
     }
 
@@ -55,34 +55,34 @@ TEST_CASE("SettingsTests")
     {
         SECTION("attributes")
         {
-            REQUIRE(mainCategory->getName() == "General");
-            REQUIRE(mainCategory->getKey() == "main");
-            REQUIRE(!mainCategory->getIcon().isEmpty());
-            REQUIRE(mainCategory->getSettings().count() > 1);
+            REQUIRE(mainCategory->name() == "General");
+            REQUIRE(mainCategory->key() == "main");
+            REQUIRE(!mainCategory->icon().isEmpty());
+            REQUIRE(mainCategory->toList().count() > 1);
         }
 
         SECTION("get")
         {
-            REQUIRE_NOTHROW(mainCategory->getSetting("confirm-exit"));
-            REQUIRE_THROWS(mainCategory->getSetting("foo"));
+            REQUIRE_NOTHROW(mainCategory->get("confirm-exit"));
+            REQUIRE_THROWS(mainCategory->get("foo"));
         }
 
         SECTION("restoreDefaults")
         {
             Setting& setting1 = settings.get(SettingKey::MAIN_SHOW_TRAY_ICON);
-            setting1.setValue(!setting1.getDefaultValue().toBool());
+            setting1.setValue(!setting1.defaultValue().toBool());
             Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
-            setting2.setValue(!setting1.getDefaultValue().toBool());
+            setting2.setValue(!setting1.defaultValue().toBool());
             Setting& fromOtherCategory = settings.get(SettingKey::APPEARANCE_THEME);
             fromOtherCategory.setValue("Other");
-            REQUIRE(setting1.getValue() != setting1.getDefaultValue());
-            REQUIRE(setting2.getValue() != setting2.getDefaultValue());
-            REQUIRE(fromOtherCategory.getValue() != fromOtherCategory.getDefaultValue());
+            REQUIRE(setting1.value() != setting1.defaultValue());
+            REQUIRE(setting2.value() != setting2.defaultValue());
+            REQUIRE(fromOtherCategory.value() != fromOtherCategory.defaultValue());
 
             mainCategory->restoreDefaults();
-            REQUIRE(setting1.getValue() == setting1.getDefaultValue());
-            REQUIRE(setting2.getValue() == setting2.getDefaultValue());
-            REQUIRE(fromOtherCategory.getValue() != fromOtherCategory.getDefaultValue());
+            REQUIRE(setting1.value() == setting1.defaultValue());
+            REQUIRE(setting2.value() == setting2.defaultValue());
+            REQUIRE(fromOtherCategory.value() != fromOtherCategory.defaultValue());
             fromOtherCategory.restoreDefaults();
         }
     }
@@ -92,33 +92,33 @@ TEST_CASE("SettingsTests")
         SECTION("attributes")
         {
             const Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
-            REQUIRE(setting.getKey() == "confirm-exit");
-            REQUIRE(setting.getName() == "Confirm application exit");
-            REQUIRE(setting.getType() == "bool");
-            REQUIRE(setting.getDefaultValue().toBool());
+            REQUIRE(setting.key() == "confirm-exit");
+            REQUIRE(setting.name() == "Confirm application exit");
+            REQUIRE(setting.type() == "bool");
+            REQUIRE(setting.defaultValue().toBool());
 
             const Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
-            REQUIRE(setting2.getKey() == "close-to-tray");
-            REQUIRE(setting2.getDefaultValue().toBool());
+            REQUIRE(setting2.key() == "close-to-tray");
+            REQUIRE(setting2.defaultValue().toBool());
         }
 
-        SECTION("getValue returns default value initially")
+        SECTION("value returns default value initially")
         {
             const Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
-            REQUIRE(setting.getValue().toBool());
+            REQUIRE(setting.value().toBool());
 
             const Setting& setting2 = settings.get(SettingKey::MAIN_CLOSE_TO_TRAY);
-            REQUIRE(setting2.getValue().toBool());
+            REQUIRE(setting2.value().toBool());
         }
 
         SECTION("setValue")
         {
             Setting& setting = settings.get(SettingKey::MAIN_CONFIRM_EXIT);
-            REQUIRE(setting.getValue() == setting.getDefaultValue());
+            REQUIRE(setting.value() == setting.defaultValue());
             setting.setValue(true);
-            REQUIRE(setting.getValue().toBool());
+            REQUIRE(setting.value().toBool());
             setting.restoreDefaults();
-            REQUIRE(setting.getValue() == setting.getDefaultValue());
+            REQUIRE(setting.value() == setting.defaultValue());
         }
 
         SECTION("isEnabled always enabled setting")
@@ -134,7 +134,7 @@ TEST_CASE("SettingsTests")
                 Setting& notificationsEnabled = settings.get(SettingKey::NOTIFICATIONS_ENABLED);
                 Setting& playNotificationEnabled = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
                 QSignalSpy spy(&playNotificationEnabled, SIGNAL(isEnabledChanged()));
-                REQUIRE(notificationsEnabled.getValue().toBool());
+                REQUIRE(notificationsEnabled.value().toBool());
                 REQUIRE(playNotificationEnabled.isEnabled());
 
                 notificationsEnabled.setValue(false);
@@ -147,7 +147,7 @@ TEST_CASE("SettingsTests")
                 Setting& theme = settings.get(SettingKey::APPEARANCE_THEME);
                 Setting& accent = settings.get(SettingKey::APPEARANCE_ACCENT);
                 QSignalSpy spy(&accent, SIGNAL(isEnabledChanged()));
-                REQUIRE(theme.getValue().toString() == "Adaptive");
+                REQUIRE(theme.value().toString() == theme.defaultValue());
                 REQUIRE(!accent.isEnabled());
 
                 theme.setValue("Custom");

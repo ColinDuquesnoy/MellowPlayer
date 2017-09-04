@@ -1,4 +1,4 @@
-version: "3.0.0.{build}"
+version: "3.0.50.{build}"
 os: Visual Studio 2015
 platform:
   - x64
@@ -29,7 +29,6 @@ test_script:
   - runtests.bat
 
 deploy_script:
-  - if defined APPVEYOR_REPO_TAG_NAME choco install -y InnoSetup
   - if defined APPVEYOR_REPO_TAG_NAME pip install github3.py
   - cd C:\projects\MellowPlayer\scripts\packaging\windows
   - if defined APPVEYOR_REPO_TAG_NAME make_installer.bat

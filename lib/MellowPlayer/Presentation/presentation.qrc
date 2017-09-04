@@ -74,5 +74,7 @@
         <file>Views/MellowPlayer/Controls/SettingsDrawer.qml</file>
         <file>Views/MellowPlayer/Controls/WebViewContextMenu.qml</file>
         <file>Views/MellowPlayer/Controls/IconToolButton.qml</file>
+        <file>Views/MellowPlayer/DateCategoryTranslator.js</file>
+        <file>Views/MellowPlayer/SettingsTranslator.js</file>
     </qresource>
 </RCC>

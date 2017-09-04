@@ -8,6 +8,7 @@ namespace MellowPlayer::Application
 {
     class ILogger;
     class IMainWindow;
+    struct Notification;
 }
 
 namespace MellowPlayer::Presentation
@@ -22,9 +23,9 @@ namespace MellowPlayer::Presentation
         static void onActionCallback();
 
     private:
-        Application::ILogger& logger;
-        Application::IMainWindow& mainWindow;
-        _NotifyNotification* previousNotification;
-        static LibnotifyPresenter* instance;
+        Application::ILogger& logger_;
+        Application::IMainWindow& mainWindow_;
+        _NotifyNotification* previousNotification_;
+        static LibnotifyPresenter* instance_;
     };
 }

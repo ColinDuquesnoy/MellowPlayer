@@ -1,6 +1,8 @@
 #include "Notifier.hpp"
 #include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <MellowPlayer/Application/Player/Song.hpp>
@@ -15,51 +17,51 @@ using namespace MellowPlayer::Presentation;
 
 Notifier::Notifier(IPlayer& player, ILocalAlbumArt& localAlbumArtService, INotificationPresenter& presenter,
                    StreamingServicesController& streamingServices, Settings& settings)
-        : logger(LoggingManager::instance().getLogger("Notifier")),
-          player(player),
-          localAlbumArtService(localAlbumArtService),
-          presenter(presenter),
-          streamingServices(streamingServices),
-          settings(settings)
+        : logger_(LoggingManager::logger("Notifier")),
+          player_(player),
+          localAlbumArtService_(localAlbumArtService),
+          presenter_(presenter),
+          streamingServices_(streamingServices),
+          settings_(settings)
 {
 }
 
 void Notifier::initialize()
 {
-    LOG_TRACE(logger, "initialize");
-    connect(&player, &IPlayer::currentSongChanged, this, &Notifier::onCurrentSongChanged);
-    connect(&player, &IPlayer::playbackStatusChanged, this, &Notifier::onPlaybackStatusChanged);
-    connect(&localAlbumArtService, &ILocalAlbumArt::urlChanged, this, &Notifier::onCurrentSongUrlChanged);
-    presenter.initialize();
+    LOG_TRACE(logger_, "initialize");
+    connect(&player_, &IPlayer::currentSongChanged, this, &Notifier::onCurrentSongChanged);
+    connect(&player_, &IPlayer::playbackStatusChanged, this, &Notifier::onPlaybackStatusChanged);
+    connect(&localAlbumArtService_, &ILocalAlbumArt::urlChanged, this, &Notifier::onCurrentSongUrlChanged);
+    presenter_.initialize();
 }
 
 bool Notifier::display(const Notification& notification)
 {
-    LOG_TRACE(logger, "display");
-    if (!isNotificationTypeEnabled(notification.type) || previousNotif == notification) {
-        LOG_DEBUG(logger, "notification disabled: " + notification.toString());
+    LOG_TRACE(logger_, "display");
+    if (!isNotificationTypeEnabled(notification.type) || previousNotif_ == notification) {
+        LOG_DEBUG(logger_, "notification disabled: " + notification.toString());
         return false;
     }
-    LOG_DEBUG(logger, "display notification: " + notification.toString());
-    presenter.display(notification);
+    LOG_DEBUG(logger_, "display notification: " + notification.toString());
+    presenter_.display(notification);
     return true;
 }
 
 void Notifier::onCurrentSongChanged(Song* song)
 {
-    LOG_TRACE(logger, "onCurrentSongChanged");
-    showSongNotification(song, localAlbumArtService.getUrl());
+    LOG_TRACE(logger_, "onCurrentSongChanged");
+    showSongNotification(song, localAlbumArtService_.url());
 }
 
 void Notifier::onPlaybackStatusChanged()
 {
-    LOG_TRACE(logger, "onPlaybackStatusChanged");
-    switch (player.getPlaybackStatus()) {
+    LOG_TRACE(logger_, "onPlaybackStatusChanged");
+    switch (player_.playbackStatus()) {
         case PlaybackStatus::Paused:
-            display(notificationFactory.createPausedNotification(getCurrentServiceName(), getCurrentServiceLogo()));
+            display(notificationFactory_.createPausedNotification(currentServiceName(), currentServiceLogo()));
             break;
         case PlaybackStatus::Playing:
-            showSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
+            showSongNotification(player_.currentSong(), localAlbumArtService_.url());
             break;
         default:
             break;
@@ -68,61 +70,61 @@ void Notifier::onPlaybackStatusChanged()
 
 void Notifier::onCurrentSongUrlChanged()
 {
-    LOG_TRACE(logger, "onCurrentSongUrlChanged");
-    showSongNotification(player.getCurrentSong(), localAlbumArtService.getUrl());
+    LOG_TRACE(logger_, "onCurrentSongUrlChanged");
+    showSongNotification(player_.currentSong(), localAlbumArtService_.url());
 }
 
 void Notifier::showSongNotification(Song* song, const QString& localAlbumArtUrl)
 {
-    LOG_TRACE(logger, "showSongNotification");
-    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService.isSongArtReady(*song)) {
-        bool resume = song->getUniqueId() == previousSongId;
-        previousSongId = song->getUniqueId();
-        display(notificationFactory.createSongNotification(getCurrentServiceName(), song, localAlbumArtUrl, resume));
+    LOG_TRACE(logger_, "showSongNotification");
+    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService_.isSongArtReady(*song)) {
+        bool resume = song->uniqueId() == previousSongId_;
+        previousSongId_ = song->uniqueId();
+        display(notificationFactory_.createSongNotification(currentServiceName(), song, localAlbumArtUrl, resume));
     }
 }
 
 bool Notifier::isPlaying() const
 {
-    return player.getPlaybackStatus() == PlaybackStatus::Playing;
+    return player_.playbackStatus() == PlaybackStatus::Playing;
 }
 
-const QString Notifier::getCurrentServiceName() const
+const QString Notifier::currentServiceName() const
 {
-    auto currentService = streamingServices.getCurrent();
-    return currentService != nullptr ? currentService->getName() : "";
+    auto currentService = streamingServices_.current();
+    return currentService != nullptr ? currentService->name() : "";
 }
 
-const QString Notifier::getCurrentServiceLogo() const
+const QString Notifier::currentServiceLogo() const
 {
-    auto currentService = streamingServices.getCurrent();
-    return currentService != nullptr ? currentService->getLogo() : "";
+    auto currentService = streamingServices_.current();
+    return currentService != nullptr ? currentService->logo() : "";
 }
 
 bool Notifier::isNotificationTypeEnabled(NotificationType type) const
 {
-    auto check = [](const Setting& setting) { return setting.isEnabled() && setting.getValue().toBool(); };
+    auto check = [](const Setting& setting) { return setting.isEnabled() && setting.value().toBool(); };
 
     bool isEnabled = false;
 
     switch (type) {
         case NotificationType::NewVersionAvailable: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
+            const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
             isEnabled = check(setting);
             break;
         }
         case NotificationType::Paused: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_PAUSED);
+            const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_PAUSED);
             isEnabled = check(setting);
             break;
         }
         case NotificationType::NewSong: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_NEW_SONG);
+            const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_NEW_SONG);
             isEnabled = check(setting);
             break;
         }
         case NotificationType::Resumed: {
-            const Setting& setting = settings.get(SettingKey::NOTIFICATIONS_RESUMED);
+            const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_RESUMED);
             isEnabled = check(setting);
             break;
         }

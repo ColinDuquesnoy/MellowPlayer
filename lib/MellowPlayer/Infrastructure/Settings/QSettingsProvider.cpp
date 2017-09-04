@@ -5,21 +5,21 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-QSettingsProvider::QSettingsProvider() : qSettings()
+QSettingsProvider::QSettingsProvider() : qSettings_()
 {
 }
 
 void QSettingsProvider::clear()
 {
-    qSettings.clear();
+    qSettings_.clear();
 }
 
-QVariant QSettingsProvider::getValue(const QString& key, const QVariant& defaultValue) const
+QVariant QSettingsProvider::value(const QString& key, const QVariant& defaultValue) const
 {
-    return qSettings.value(key, defaultValue);
+    return qSettings_.value(key, defaultValue);
 }
 
 void QSettingsProvider::setValue(const QString& key, const QVariant& value)
 {
-    qSettings.setValue(key, value);
+    qSettings_.setValue(key, value);
 }

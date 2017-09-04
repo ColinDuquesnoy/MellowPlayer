@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 Page {
     id: settingsPage
@@ -59,8 +60,8 @@ Page {
             padding: 0
 
             Layout.fillHeight: true
-            Layout.maximumWidth: 256
-            Layout.minimumWidth: 256
+            Layout.maximumWidth: 324
+            Layout.minimumWidth: 324
 
             Material.background: _theme.secondary
             Material.foreground: _theme.secondaryForeground
@@ -74,7 +75,9 @@ Page {
                     id: settingsCategoryDelegate
 
                     ItemDelegate {
-                        property string category: model.name
+                        id: delegate
+
+                        property string category: Translator.translateCategory(model.name)
 
                         height: 60; width: parent.width
                         hoverEnabled: true
@@ -92,7 +95,7 @@ Page {
 
                             Label {
                                 verticalAlignment: "AlignVCenter"
-                                text: model.name
+                                text: delegate.category
                                 font.pixelSize: 20
                             }
 
@@ -114,7 +117,7 @@ Page {
                             anchors.left: parent.left
                             anchors.bottom: parent.bottom
 
-                            width: 3
+                            width: 4
                             color: _theme.accent
                         }
                     }
@@ -133,7 +136,7 @@ Page {
                     flat: true
                     highlighted: true
                     hoverEnabled: true
-                    text: "Restore all to defaults"
+                    text: qsTr("Restore all to defaults")
                     onClicked: messageBoxConfirmRestore.open()
 
                     Layout.fillWidth: true
@@ -141,7 +144,7 @@ Page {
                     Layout.rightMargin: 4
 
                     Tooltip {
-                        text: 'Restore all _settings to their <b>default value</b>.'
+                        text: qsTr('Restore all settings to their <b>default value</b>.')
                     }
                 }
             }
@@ -169,7 +172,7 @@ Page {
         id: messageBoxConfirmRestore
 
         standardButtons: Dialog.Yes | Dialog.No
-        message: qsTr("Are you sure you want to restore all _settings to their default values?")
+        message: qsTr("Are you sure you want to restore all settings to their default values?")
         title: qsTr("Confirm restore defaults")
         x: settingsPage.width / 2 - width / 2
         y: settingsPage.height / 2 - height / 2

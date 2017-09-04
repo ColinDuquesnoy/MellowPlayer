@@ -1,30 +1,34 @@
 #pragma once
 
-#include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <QtCore/QObject>
+
+namespace MellowPlayer::Application
+{
+    class Updater;
+}
 
 namespace MellowPlayer::Presentation
 {
     class UpdaterViewModel : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString url READ getUrl CONSTANT)
-        Q_PROPERTY(QString status READ getStatusString NOTIFY statusChanged)
-        Q_PROPERTY(bool busy READ isBusy NOTIFY busyChanged)
-        Q_PROPERTY(bool visible READ isVisible NOTIFY visibleChanged)
-        Q_PROPERTY(bool installEnabled READ isInstallEnabled NOTIFY installEnabledChanged)
-        Q_PROPERTY(bool restartEnabled READ isRestartEnabled NOTIFY restartEnabledChanged)
-        Q_PROPERTY(double progress READ getProgress NOTIFY progressChanged)
+        Q_PROPERTY(QString url READ url CONSTANT)
+        Q_PROPERTY(QString status READ status NOTIFY statusChanged)
+        Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
+        Q_PROPERTY(bool visible READ visible NOTIFY visibleChanged)
+        Q_PROPERTY(bool installEnabled READ installEnabled NOTIFY installEnabledChanged)
+        Q_PROPERTY(bool restartEnabled READ restartEnabled NOTIFY restartEnabledChanged)
+        Q_PROPERTY(double progress READ progress NOTIFY progressChanged)
     public:
         explicit UpdaterViewModel(Application::Updater& updater);
 
-        QString getUrl() const;
-        QString getStatusString() const;
-        bool isBusy() const;
-        bool isVisible() const;
-        bool isInstallEnabled() const;
-        bool isRestartEnabled() const;
-        double getProgress() const;
+        QString url() const;
+        QString status() const;
+        bool busy() const;
+        bool visible() const;
+        bool installEnabled() const;
+        bool restartEnabled() const;
+        double progress() const;
 
         Q_INVOKABLE void close();
         Q_INVOKABLE void check();

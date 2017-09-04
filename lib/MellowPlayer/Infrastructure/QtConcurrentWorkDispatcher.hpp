@@ -19,8 +19,8 @@ namespace MellowPlayer::Infrastructure
         void onTimeout();
 
     private:
-        QMutex mutex;
-        QTimer timer;
+        QMutex mutex_;
+        QTimer timer_;
         std::function<void(void)> delayedWorkerFunction;
     };
 }

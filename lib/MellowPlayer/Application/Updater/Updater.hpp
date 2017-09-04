@@ -1,24 +1,23 @@
 #pragma once
 
-#include "Release.hpp"
 #include "UpdateChannel.hpp"
 #include <QtCore/QObject>
 
 namespace MellowPlayer::Application
 {
-    class IReleaseQuerier;
-    class IPlatformUpdater;
+    class AbstractPlatformUpdater;
+    class ILatestReleaseQuerier;
+    class ILogger;
+    class Release;
     class Settings;
     class Setting;
-    class ILogger;
-    class AbstractPlatformUpdater;
 
     class Updater : public QObject
     {
         Q_OBJECT
         Q_ENUMS(Status)
     public:
-        Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater);
+        Updater(ILatestReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater);
 
         enum class Status
         {
@@ -35,8 +34,8 @@ namespace MellowPlayer::Application
 
         bool isUpdateAvailable() const;
         bool canInstall() const;
-        const Release* getLatestRelease() const;
-        Status getStatus() const;
+        const Release* latestRelease() const;
+        Status status() const;
 
     public slots:
         void check();
@@ -58,7 +57,7 @@ namespace MellowPlayer::Application
 
     private:
         ILogger& logger_;
-        IReleaseQuerier& releaseQuerier_;
+        ILatestReleaseQuerier& releaseQuerier_;
         AbstractPlatformUpdater& platformUpdater_;
         Setting& autoCheckEnabledSetting_;
         Setting& updateChannelSetting_;

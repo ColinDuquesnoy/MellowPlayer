@@ -21,9 +21,9 @@ SCENARIO("FileDownloader can download a release source archive")
             double latestProgress = -1;
             while (downloader.isDownloading()) {
                 QTest::qWait(100);
-                bool validProgressUpdate = downloader.getProgress() >= latestProgress || downloader.getProgress() == 0;
+                bool validProgressUpdate = downloader.progress() >= latestProgress || downloader.progress() == 0;
                 REQUIRE(validProgressUpdate);
-                latestProgress = downloader.getProgress();
+                latestProgress = downloader.progress();
             }
 
             AND_THEN("destination file exists")

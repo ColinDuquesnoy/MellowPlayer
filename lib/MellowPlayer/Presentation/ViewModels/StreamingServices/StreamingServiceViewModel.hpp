@@ -16,44 +16,44 @@ namespace MellowPlayer::Presentation
     class StreamingServiceViewModel : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString logo READ getLogo CONSTANT)
-        Q_PROPERTY(QString name READ getName CONSTANT)
-        Q_PROPERTY(Application::Player* player READ getPlayer CONSTANT)
-        Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
-        Q_PROPERTY(QString version READ getVersion CONSTANT)
-        Q_PROPERTY(QString authorName READ getAuthorName CONSTANT)
-        Q_PROPERTY(QString authorWebsite READ getAuthorWebsite CONSTANT)
-        Q_PROPERTY(bool requireProprietaryCodecs READ getRequireProprietaryCodecs CONSTANT)
+        Q_PROPERTY(QString logo READ logo CONSTANT)
+        Q_PROPERTY(QString name READ name CONSTANT)
+        Q_PROPERTY(Application::Player* player READ player CONSTANT)
+        Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
+        Q_PROPERTY(QString version READ version CONSTANT)
+        Q_PROPERTY(QString authorName READ authorName CONSTANT)
+        Q_PROPERTY(QString authorWebsite READ authorWebsite CONSTANT)
+        Q_PROPERTY(bool requireProprietaryCodecs READ requireProprietaryCodecs CONSTANT)
         Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
-        Q_PROPERTY(int sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
+        Q_PROPERTY(int sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
         StreamingServiceViewModel(Application::StreamingService& streamingService, Application::ISettingsProvider& settings,
                                   Application::Players& players, QObject* parent = nullptr);
 
-        QString getLogo() const;
-        QString getName() const;
-        Application::Player* getPlayer();
-        QString getUrl() const;
-        QString getVersion() const;
-        QString getAuthorName() const;
-        QString getAuthorWebsite() const;
-        bool getRequireProprietaryCodecs() const;
+        QString logo() const;
+        QString name() const;
+        Application::Player* player();
+        QString url() const;
+        QString version() const;
+        QString authorName() const;
+        QString authorWebsite() const;
+        bool requireProprietaryCodecs() const;
         bool isRunning() const;
 
         bool operator==(const StreamingServiceViewModel& rhs) const;
         bool operator!=(const StreamingServiceViewModel& rhs) const;
 
-        Application::StreamingService* getStreamingService() const;
+        Application::StreamingService* streamingService() const;
 
-        int getSortOrder() const;
+        int sortOrder() const;
         void setSortOrder(int newOrder);
 
         bool isEnabled() const;
         void setEnabled(bool enabled);
 
     public slots:
-        void setUrl(const QString& url);
+        void setUrl(const QString& newUrl);
 
     signals:
         void urlChanged(const QString&);
@@ -62,12 +62,12 @@ namespace MellowPlayer::Presentation
         void isRunningChanged();
 
     private:
-        QString getCustomUrlSettingsKey() const;
-        QString getSortOrderSettingsKey() const;
-        QString getIsEnabledSettingsKey() const;
+        QString customUrlSettingsKey() const;
+        QString sortOrderSettingsKey() const;
+        QString isEnabledSettingsKey() const;
 
-        Application::StreamingService& streamingService;
-        Application::ISettingsProvider& settingsProvider;
-        std::shared_ptr<Application::Player> player;
+        Application::StreamingService& streamingService_;
+        Application::ISettingsProvider& settingsProvider_;
+        std::shared_ptr<Application::Player> player_;
     };
 }

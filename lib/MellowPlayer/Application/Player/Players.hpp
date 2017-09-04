@@ -1,11 +1,16 @@
 #pragma once
 
-#include "MellowPlayer/Application/Player/Player.hpp"
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <memory>
+#include <QObject>
+#include <QString>
 #include <QMap>
 
 namespace MellowPlayer::Application
 {
+    class Player;
+    class StreamingService;
+    class StreamingServicesController;
+
     class Players : public QObject
     {
         Q_OBJECT
@@ -18,6 +23,6 @@ namespace MellowPlayer::Application
         void onServiceAdded(Application::StreamingService* service);
 
     private:
-        QMap<QString, std::shared_ptr<Player>> players;
+        QMap<QString, std::shared_ptr<Player>> players_;
     };
 }

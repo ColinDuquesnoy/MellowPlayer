@@ -1,5 +1,7 @@
 #include "Players.hpp"
+#include "Player.hpp"
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
@@ -8,18 +10,18 @@ using namespace std;
 Players::Players(StreamingServicesController& streamingServices)
 {
     connect(&streamingServices, &StreamingServicesController::added, this, &Players::onServiceAdded);
-    for (auto& service : streamingServices.getAll()) {
+    for (auto& service : streamingServices.toList()) {
         onServiceAdded(service.get());
     }
 }
 
 shared_ptr<Player> Players::get(const QString& serviceName) const
 {
-    return players[serviceName];
+    return players_[serviceName];
 }
 
 void Players::onServiceAdded(StreamingService* service)
 {
-    if (!players.contains(service->getName()))
-        players[service->getName()] = make_shared<Player>(*service);
+    if (!players_.contains(service->name()))
+        players_[service->name()] = make_shared<Player>(*service);
 }

@@ -17,15 +17,15 @@ namespace MellowPlayer::Application
     class IPlayer : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(Application::Song* currentSong READ getCurrentSong NOTIFY currentSongChanged)
-        Q_PROPERTY(double position READ getPosition NOTIFY positionChanged)
-        Q_PROPERTY(PlaybackStatus playbackStatus READ getPlaybackStatus NOTIFY playbackStatusChanged)
-        Q_PROPERTY(bool canSeek READ getCanSeek NOTIFY canSeekChanged)
-        Q_PROPERTY(bool canGoNext READ getCanGoNext NOTIFY canGoNextChanged)
-        Q_PROPERTY(bool canGoPrevious READ getCanGoPrevious NOTIFY canGoPreviousChanged)
-        Q_PROPERTY(bool canAddToFavorites READ getCanAddToFavorites NOTIFY canAddToFavoritesChanged)
-        Q_PROPERTY(int volume READ getVolume NOTIFY volumeChanged)
-        Q_PROPERTY(QString serviceName READ getServiceName CONSTANT)
+        Q_PROPERTY(Application::Song* currentSong READ currentSong NOTIFY currentSongChanged)
+        Q_PROPERTY(double position READ position NOTIFY positionChanged)
+        Q_PROPERTY(PlaybackStatus playbackStatus READ playbackStatus NOTIFY playbackStatusChanged)
+        Q_PROPERTY(bool canSeek READ canSeek NOTIFY canSeekChanged)
+        Q_PROPERTY(bool canGoNext READ canGoNext NOTIFY canGoNextChanged)
+        Q_PROPERTY(bool canGoPrevious READ canGoPrevious NOTIFY canGoPreviousChanged)
+        Q_PROPERTY(bool canAddToFavorites READ canAddToFavorites NOTIFY canAddToFavoritesChanged)
+        Q_PROPERTY(int volume READ volume NOTIFY volumeChanged)
+        Q_PROPERTY(QString serviceName READ serviceName CONSTANT)
         Q_PROPERTY(bool isPlaying READ isPlaying NOTIFY isPlayingChanged)
         Q_PROPERTY(bool isStopped READ isStopped NOTIFY isStoppedChanged)
     public:
@@ -40,19 +40,19 @@ namespace MellowPlayer::Application
         virtual void previous() = 0;
         virtual void seekToPosition(double position) = 0;
         virtual void setVolume(double volume) = 0;
-        virtual Application::Song* getCurrentSong() = 0;
+        virtual Application::Song* currentSong() = 0;
         virtual void toggleFavoriteSong() = 0;
         virtual void addToFavorites() = 0;
         virtual void removeFromFavorites() = 0;
 
-        virtual double getPosition() const = 0;
-        virtual PlaybackStatus getPlaybackStatus() const = 0;
-        virtual bool getCanSeek() const = 0;
-        virtual bool getCanGoNext() const = 0;
-        virtual bool getCanGoPrevious() const = 0;
-        virtual bool getCanAddToFavorites() const = 0;
-        virtual double getVolume() const = 0;
-        virtual QString getServiceName() const = 0;
+        virtual double position() const = 0;
+        virtual PlaybackStatus playbackStatus() const = 0;
+        virtual bool canSeek() const = 0;
+        virtual bool canGoNext() const = 0;
+        virtual bool canGoPrevious() const = 0;
+        virtual bool canAddToFavorites() const = 0;
+        virtual double volume() const = 0;
+        virtual QString serviceName() const = 0;
         virtual bool isPlaying() const = 0;
         virtual bool isStopped() const = 0;
 

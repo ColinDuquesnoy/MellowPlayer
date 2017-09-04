@@ -17,6 +17,6 @@ namespace MellowPlayer::Presentation
         bool lessThan(const QModelIndex& sourceLeft, const QModelIndex& sourceRight) const override;
 
     private:
-        StreamingServiceListModel* sourceListModel;
+        StreamingServiceListModel* sourceListModel_;
     };
 }

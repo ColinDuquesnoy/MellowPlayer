@@ -12,6 +12,7 @@ namespace MellowPlayer::Application
     class IPlayer;
     class INotificationPresenter;
     class StreamingServicesController;
+    class Song;
 }
 
 namespace MellowPlayer::Presentation
@@ -34,18 +35,18 @@ namespace MellowPlayer::Presentation
     private:
         void showSongNotification(Application::Song* song, const QString& localAlbumArtUrl);
         bool isPlaying() const;
-        const QString getCurrentServiceName() const;
-        const QString getCurrentServiceLogo() const;
+        const QString currentServiceName() const;
+        const QString currentServiceLogo() const;
         bool isNotificationTypeEnabled(Application::NotificationType type) const;
 
-        Application::ILogger& logger;
-        Application::IPlayer& player;
-        Application::ILocalAlbumArt& localAlbumArtService;
-        Application::INotificationPresenter& presenter;
-        Application::StreamingServicesController& streamingServices;
-        Application::Settings& settings;
-        Application::Notification previousNotif;
-        NotificationFactory notificationFactory;
-        QString previousSongId;
+        Application::ILogger& logger_;
+        Application::IPlayer& player_;
+        Application::ILocalAlbumArt& localAlbumArtService_;
+        Application::INotificationPresenter& presenter_;
+        Application::StreamingServicesController& streamingServices_;
+        Application::Settings& settings_;
+        Application::Notification previousNotif_;
+        NotificationFactory notificationFactory_;
+        QString previousSongId_;
     };
 }

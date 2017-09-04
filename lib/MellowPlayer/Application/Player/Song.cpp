@@ -1,66 +1,68 @@
 #include "Song.hpp"
+#include <cmath>
 
+using namespace std;
 using namespace MellowPlayer::Application;
 
-Song::Song() : uniqueId(""), title(""), artist(""), album(""), artUrl(""), duration(0), isFavorite(false)
+Song::Song() : duration_(0), isFavorite_(false)
 {
 }
 
 Song::Song(const QString& uniqueId, const QString& title, const QString& artist, const QString& album, const QString& artUrl, double duration,
            bool isFavorite)
-        : uniqueId(uniqueId), title(title), artist(artist), album(album), artUrl(artUrl), duration(duration), isFavorite(isFavorite)
+        : uniqueId_(uniqueId), title_(title), artist_(artist), album_(album), artUrl_(artUrl), duration_(duration), isFavorite_(isFavorite)
 {
 }
 
-QString Song::getUniqueId() const
+QString Song::uniqueId() const
 {
-    return uniqueId;
+    return uniqueId_;
 }
 
-QString Song::getTitle() const
+QString Song::title() const
 {
-    return title;
+    return title_;
 }
 
-QString Song::getArtist() const
+QString Song::artist() const
 {
-    return artist;
+    return artist_;
 }
 
-QString Song::getAlbum() const
+QString Song::album() const
 {
-    return album;
+    return album_;
 }
 
-QString Song::getArtUrl() const
+QString Song::artUrl() const
 {
-    return artUrl;
+    return artUrl_;
 }
 
-double Song::getDuration() const
+double Song::duration() const
 {
-    return duration;
+    return duration_;
 }
 
-bool Song::getIsFavorite() const
+bool Song::isFavorite() const
 {
-    return isFavorite;
+    return isFavorite_;
 }
 
 void Song::setDuration(double value)
 {
-    if (value == duration)
+    if (abs(duration_ - value) < 2)
         return;
 
-    duration = value;
+    duration_ = value;
     emit durationChanged();
 }
 
-void Song::setIsFavorite(bool value)
+void Song::setFavorite(bool value)
 {
-    if (value == isFavorite)
+    if (value == isFavorite_)
         return;
 
-    isFavorite = value;
+    isFavorite_ = value;
     emit isFavoriteChanged();
 }

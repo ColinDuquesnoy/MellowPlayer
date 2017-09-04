@@ -1,4 +1,5 @@
 #include "ColorSettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -9,12 +10,12 @@ ColorSettingViewModel::ColorSettingViewModel(Setting& setting, QObject* parent) 
 
 QColor ColorSettingViewModel::getValue() const
 {
-    return QColor(setting.getValue().toString());
+    return QColor(setting_.value().toString());
 }
 
 void ColorSettingViewModel::setValue(QColor value)
 {
-    setting.setValue(value.name());
+    setting_.setValue(value.name());
 }
 
 void ColorSettingViewModel::onValueChanged()
@@ -22,8 +23,7 @@ void ColorSettingViewModel::onValueChanged()
     emit valueChanged();
 }
 
-QString ColorSettingViewModel::getQmlComponent()
+QString ColorSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "ColorSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ColorSettingDelegate.qml";
 }

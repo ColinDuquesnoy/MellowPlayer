@@ -131,7 +131,7 @@ Dialog {
                 id: openPluginDirectory
 
                 highlighted: true
-                text: "Open plugin directory"
+                text: qsTr("Open plugin directory")
                 visible: currentPage.openPluginDirectoryVisible
                 flat: true
 
@@ -141,7 +141,7 @@ Dialog {
             Button {
                 highlighted: true
                 flat: true
-                text: "Read API documentation"
+                text: qsTr("Read API documentation")
                 visible: !openPluginDirectory.visible
 
                 onClicked: Qt.openUrlExternally("http://mellowplayer.readthedocs.org/en/latest/developers/plugins.html#functions-to-implement")
@@ -155,7 +155,7 @@ Dialog {
                 id: previousButton
 
                 highlighted: true
-                text: "Previous"
+                text: qsTr("Previous")
                 visible: currentPage.goBackVisible
                 flat: true
 
@@ -166,7 +166,7 @@ Dialog {
 
                 highlighted: true
                 flat: true
-                text: "Next"
+                text: qsTr("Next")
                 enabled: currentPage.goNextEnabled
                 visible: currentPage.goNextVisible
 
@@ -177,7 +177,7 @@ Dialog {
 
                 highlighted: true
                 flat: true
-                text: "Cancel"
+                text: qsTr("Cancel")
                 visible: !currentPage.finishVisible
 
                 onClicked: wizard.reject()
@@ -187,7 +187,7 @@ Dialog {
 
                 highlighted: true
                 flat: true
-                text: "Finish"
+                text: qsTr("Finish")
                 visible: currentPage.finishVisible
                 onClicked: wizard.accept()
             }

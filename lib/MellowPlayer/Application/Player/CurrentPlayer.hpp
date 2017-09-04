@@ -29,15 +29,15 @@ namespace MellowPlayer::Application
         Q_INVOKABLE void addToFavorites() override;
         Q_INVOKABLE void removeFromFavorites() override;
 
-        Application::Song* getCurrentSong() override;
-        double getPosition() const override;
-        PlaybackStatus getPlaybackStatus() const override;
-        bool getCanSeek() const override;
-        bool getCanGoNext() const override;
-        bool getCanGoPrevious() const override;
-        bool getCanAddToFavorites() const override;
-        double getVolume() const override;
-        QString getServiceName() const override;
+        Application::Song* currentSong() override;
+        double position() const override;
+        PlaybackStatus playbackStatus() const override;
+        bool canSeek() const override;
+        bool canGoNext() const override;
+        bool canGoPrevious() const override;
+        bool canAddToFavorites() const override;
+        double volume() const override;
+        QString serviceName() const override;
         bool isPlaying() const override;
         bool isStopped() const override;
 
@@ -45,10 +45,10 @@ namespace MellowPlayer::Application
         void onCurrentServiceChanged(Application::StreamingService* streamingService);
 
     private:
-        Players& players;
-        StreamingServicesController& streamingServices;
-        Application::Song nullSong;
+        Players& players_;
+        StreamingServicesController& streamingServices_;
+        Application::Song nullSong_;
 
-        std::shared_ptr<Player> currentPlayer;
+        std::shared_ptr<Player> currentPlayer_;
     };
 }

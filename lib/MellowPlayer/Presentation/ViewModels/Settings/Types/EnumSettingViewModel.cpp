@@ -1,4 +1,5 @@
 #include "EnumSettingViewModel.hpp"
+#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -9,12 +10,12 @@ EnumSettingViewModel::EnumSettingViewModel(Setting& setting, QObject* parent) : 
 
 QString EnumSettingViewModel::getValue() const
 {
-    return setting.getValue().toString();
+    return setting_.value().toString();
 }
 
 void EnumSettingViewModel::setValue(QString value)
 {
-    setting.setValue(value);
+    setting_.setValue(value);
 }
 
 void EnumSettingViewModel::onValueChanged()
@@ -22,15 +23,14 @@ void EnumSettingViewModel::onValueChanged()
     emit valueChanged();
 }
 
-QString EnumSettingViewModel::getQmlComponent()
+QString EnumSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "EnumSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/EnumSettingDelegate.qml";
 }
 
-QStringList EnumSettingViewModel::getValues() const
+QStringList EnumSettingViewModel::values() const
 {
-    QString list = setting.getType();
+    QString list = setting_.type();
     list = list.replace("enum[", "").replace("]", "").replace("'", "").replace("\"", "").replace(" ", "");
     return list.split(",");
 }

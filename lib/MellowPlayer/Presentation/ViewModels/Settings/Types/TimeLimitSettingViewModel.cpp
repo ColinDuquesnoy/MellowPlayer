@@ -1,34 +1,35 @@
-#include "TimeLimitSettingViewModel.hpp"
+#include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
 
 TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {
-    registerEnumTranslation(TimeLimits::Today, tr("Today"));
-    registerEnumTranslation(TimeLimits::Yesterday, tr("Yesterday"));
-    registerEnumTranslation(TimeLimits::LastWeek, tr("Last week"));
-    registerEnumTranslation(TimeLimits::LastMonth, tr("Last month"));
-    registerEnumTranslation(TimeLimits::LastYear, tr("Last year"));
-    registerEnumTranslation(TimeLimits::Never, tr("Never"));
+    TimeLimitSettingStrings strings;
+    registerEnumTranslation(TimeLimits::Today, strings.today());
+    registerEnumTranslation(TimeLimits::Yesterday, strings.yesterday());
+    registerEnumTranslation(TimeLimits::LastWeek, strings.lastWeek());
+    registerEnumTranslation(TimeLimits::LastMonth, strings.lastMonth());
+    registerEnumTranslation(TimeLimits::LastYear, strings.lastYear());
+    registerEnumTranslation(TimeLimits::Never, strings.never());
 }
 
 void TimeLimitSettingViewModel::registerEnumTranslation(TimeLimits value, const QString& translation)
 {
-    stringToEnum[translation] = value;
-    enumToString[value] = translation;
+    stringToEnum_[translation] = value;
+    enumToString_[value] = translation;
 }
 
-QString TimeLimitSettingViewModel::getValue() const
+QString TimeLimitSettingViewModel::value() const
 {
-    TimeLimits limit = static_cast<TimeLimits>(setting.getValue().toInt());
-    return enumToString[limit];
+    TimeLimits limit = static_cast<TimeLimits>(setting_.value().toInt());
+    return enumToString_[limit];
 }
 
 void TimeLimitSettingViewModel::setValue(QString value)
 {
-    TimeLimits limit = stringToEnum[value];
-    setting.setValue(static_cast<int>(limit));
+    TimeLimits limit = stringToEnum_[value];
+    setting_.setValue(static_cast<int>(limit));
 }
 
 void TimeLimitSettingViewModel::onValueChanged()
@@ -36,13 +37,12 @@ void TimeLimitSettingViewModel::onValueChanged()
     emit valueChanged();
 }
 
-QString TimeLimitSettingViewModel::getQmlComponent()
+QString TimeLimitSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/"
-           "EnumSettingDelegate.qml";
+    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/EnumSettingDelegate.qml";
 }
 
-QStringList TimeLimitSettingViewModel::getValues() const
+QStringList TimeLimitSettingViewModel::values() const
 {
-    return stringToEnum.keys();
+    return stringToEnum_.keys();
 }

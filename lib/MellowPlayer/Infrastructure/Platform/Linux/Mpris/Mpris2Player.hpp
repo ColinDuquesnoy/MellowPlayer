@@ -1,6 +1,5 @@
 #pragma once
 
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <QObject>
 #include <QtDBus>
 
@@ -96,10 +95,10 @@ namespace MellowPlayer::Infrastructure
         static const qlonglong SEC_TO_MICROSEC;
         static const qlonglong SEEK_DELTA_LIMIT;
 
-        qlonglong previousPosition;
-        Application::ILogger& logger;
-        Application::IPlayer& player;
-        Application::ILocalAlbumArt& localAlbumArt;
-        QMap<QString, QVariant> lastMetadata;
+        qlonglong previousPosition_;
+        Application::ILogger& logger_;
+        Application::IPlayer& player_;
+        Application::ILocalAlbumArt& localAlbumArt_;
+        QMap<QString, QVariant> lastMetadata_;
     };
 }

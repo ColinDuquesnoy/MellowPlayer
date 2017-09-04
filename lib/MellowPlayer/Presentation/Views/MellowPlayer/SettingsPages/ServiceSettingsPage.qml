@@ -45,7 +45,7 @@ Item {
             ToolButton {
                 highlighted: true
                 hoverEnabled: true
-                text: "Create plugin"
+                text: qsTr("Create plugin")
                 onClicked: wizardNewPlugin.open()
             }
         }

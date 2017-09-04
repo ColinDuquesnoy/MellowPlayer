@@ -17,7 +17,7 @@ Item {
         ToolButton{
             highlighted: true
             hoverEnabled: true
-            text: "Clear cookies"
+            text: qsTr("Clear cookies")
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCookies();
@@ -35,7 +35,7 @@ Item {
         ToolButton {
             highlighted: true
             hoverEnabled: true
-            text: "Clear cache"
+            text: qsTr("Clear cache")
             onClicked: {
                 paneRestart.state = "visible"
                 _app.clearCache()
@@ -75,7 +75,7 @@ Item {
             }
 
             Label {
-                text: "You need to restart MellowPlayer for the change to be applied."
+                text: qsTr("You need to restart MellowPlayer for the change to be applied.")
                 font.pixelSize: 16
             }
 
@@ -85,7 +85,7 @@ Item {
 
             ToolButton {
                 highlighted: true
-                text: "Restart now"
+                text: qsTr("Restart now")
                 onClicked: _app.restart()
             }
         }

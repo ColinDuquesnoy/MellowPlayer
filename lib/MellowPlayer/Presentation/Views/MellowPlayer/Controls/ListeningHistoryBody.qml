@@ -52,7 +52,7 @@ StackLayout {
             }
 
             Label {
-                text: "No match found"
+                text: qsTr("No match found")
                 font.bold: true
                 font.pixelSize: 20
 
@@ -99,7 +99,7 @@ StackLayout {
             }
 
             Label {
-                text: "The songs you listened to will appear here..."
+                text: qsTr("The songs you listened to will appear here...")
                 horizontalAlignment: "AlignHCenter"
 
                 Layout.fillWidth: true
@@ -133,7 +133,7 @@ StackLayout {
             }
 
             Label {
-                text: "Nothing in history"
+                text: qsTr("Nothing in history")
                 font.bold: true
                 font.pixelSize: 32
 
@@ -143,14 +143,14 @@ StackLayout {
             }
 
             Label {
-                text: "Enable listening history and the songs you \nlistened to will appear here..."
+                text: qsTr("Enable listening history and the songs you \nlistened to will appear here...")
                 horizontalAlignment: "AlignHCenter"
 
                 Layout.fillWidth: true
             }
 
             Button {
-                text: "Enable listening history"
+                text: qsTr("Enable listening history")
                 highlighted: true
                 hoverEnabled: true
                 onClicked: _settings.get(SettingKey.PRIVACY_ENABLE_LISTENING_HISTORY).value = true
@@ -159,7 +159,7 @@ StackLayout {
                     text: qsTr("Click to enable listening history")
                 }
 
-                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
             }
 
             Item {

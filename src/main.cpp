@@ -8,6 +8,10 @@
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <MellowPlayer/Application/BuildConfig.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 
 namespace di = boost::di;
 using namespace std;
@@ -28,14 +32,15 @@ int main(int argc, char** argv)
     ApplicationViewModel qtApp(argc, argv);
 
     CommandLineParser commandLineParser;
-    qtApp.setAutoQuitDelay(commandLineParser.getAutoQuitDelay());
+    qtApp.setAutoQuitDelay(commandLineParser.autoQuitDelay());
 
     SpdLoggerFactory loggerFactory;
-    LoggingManager::initialize(loggerFactory, commandLineParser.getLogLevel());
+    LoggingManager::initialize(loggerFactory, commandLineParser.logLevel());
     ScopedScope scope{};
-    LOG_INFO(LoggingManager::instance().getLogger("main"), "Log directory: " + FileHelper::logDirectory());
-    LOG_INFO(LoggingManager::instance().getLogger("main"),
-             QString("MellowPlayer %1 - %2").arg(QString(MELLOWPLAYER_VERSION)).arg(qtApp.getBuildInfo()));
+    LOG_INFO(LoggingManager::logger("main"), "Log directory: " + FileHelper::logDirectory());
+    LOG_INFO(LoggingManager::logger("main"), QString("MellowPlayer %1 - %2").arg(QString(BuildConfig::getVersion())).arg(qtApp.buildInfo()));
+
+    qtApp.initialize();
 
     auto injector = di::make_injector(di::bind<IQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));

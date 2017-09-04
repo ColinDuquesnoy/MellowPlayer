@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <QColor>
 
 namespace MellowPlayer::Presentation
@@ -14,7 +13,7 @@ namespace MellowPlayer::Presentation
         ColorSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QColor getValue() const;
-        QString getQmlComponent() override;
+        QString qmlComponent() override;
 
     signals:
         void valueChanged();

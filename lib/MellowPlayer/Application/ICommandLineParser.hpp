@@ -10,12 +10,12 @@ namespace MellowPlayer::Application
     {
     public:
         virtual ~ICommandLineParser() = default;
-        virtual QString getService() const = 0;
-        virtual int getAutoQuitDelay() const = 0;
-        virtual bool isPlayPauseRequested() const = 0;
-        virtual bool isNextRequested() const = 0;
-        virtual bool isPreviousRequested() const = 0;
-        virtual bool isToggleFavoriteRequested() const = 0;
-        virtual LogLevel getLogLevel() const = 0;
+        virtual QString service() const = 0;
+        virtual int autoQuitDelay() const = 0;
+        virtual bool playPauseRequested() const = 0;
+        virtual bool nextRequested() const = 0;
+        virtual bool previousRequested() const = 0;
+        virtual bool toggleFavoriteRequested() const = 0;
+        virtual LogLevel logLevel() const = 0;
     };
 }

@@ -32,9 +32,9 @@ TEST_CASE("NotifierTests", "[UnitTest]")
     Song invalidSong("", "", "", "", "", 50, false);
     REQUIRE(!invalidSong.isValid());
 
-    When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Playing);
+    When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Playing);
     When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(true);
-    When(Method(playerSpy, getCurrentSong)).AlwaysReturn(&validSong);
+    When(Method(playerSpy, currentSong)).AlwaysReturn(&validSong);
 
     SECTION("initialize")
     {
@@ -69,7 +69,7 @@ TEST_CASE("NotifierTests", "[UnitTest]")
     SECTION("don't display current song changed notification if player is not "
             "playing")
     {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Paused);
+        When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Paused);
         notificationService.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Never();
     }
@@ -104,7 +104,7 @@ TEST_CASE("NotifierTests", "[UnitTest]")
 
     SECTION("display paused notification when playback status changed to Paused")
     {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Paused);
+        When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Paused);
         notificationService.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Once();
     }
@@ -112,7 +112,7 @@ TEST_CASE("NotifierTests", "[UnitTest]")
     SECTION("don't display paused notification when playback status changed to "
             "Stopped")
     {
-        When(Method(playerSpy, getPlaybackStatus)).AlwaysReturn(PlaybackStatus::Stopped);
+        When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Stopped);
         notificationService.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Never();
     }

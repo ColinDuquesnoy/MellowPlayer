@@ -12,7 +12,7 @@ namespace MellowPlayer::Application
         virtual ~IFileDownloader();
 
         virtual void download(const QString& urlToDownload, const QString& filePath) = 0;
-        virtual double getProgress() const = 0;
+        virtual double progress() const = 0;
         virtual bool isDownloading() const = 0;
 
     signals:

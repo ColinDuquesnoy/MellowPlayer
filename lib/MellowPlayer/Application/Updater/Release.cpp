@@ -1,31 +1,33 @@
 #include "Release.hpp"
-#include <QDebug>
+#include <MellowPlayer/Application/BuildConfig.hpp>
 
 using namespace MellowPlayer::Application;
 
-Release Release::current_(MELLOWPLAYER_VERSION, QDate::fromString(QString(__DATE__).simplified(), "MMM d yyyy"));
+Release Release::current_(BuildConfig::getVersion(), QDate::fromString(BuildConfig::getBuildDate(), Qt::ISODate));
 
 Release::Release(const QString& name, const QDate& date, QObject* parent)
         : QObject(parent), url_(""), name_(name), date_(date), preRelease_(false), assets_()
 {
+
 }
 
 Release::Release(const QString& url, const QString& name, const QDate& date, const AssetList& assets, bool preRelease, QObject* parent)
         : QObject(parent), url_(url), name_(name), date_(date), preRelease_(preRelease), assets_(assets)
 {
+
 }
 
-QString Release::getUrl() const
+QString Release::url() const
 {
     return url_;
 }
 
-QString Release::getName() const
+QString Release::name() const
 {
     return name_;
 }
 
-QString Release::getDate() const
+QString Release::date() const
 {
     return date_.toString("MMMM dd yyyy");
 }
@@ -35,7 +37,7 @@ bool Release::isPreRelease() const
     return preRelease_;
 }
 
-const AssetList& Release::getAssets() const
+const AssetList& Release::assets() const
 {
     return assets_;
 }
@@ -77,7 +79,7 @@ const Release& Release::current()
 
 bool Release::isValid() const
 {
-    bool isValid = !getDate().isEmpty() && !getName().isEmpty();
+    bool isValid = !date().isEmpty() && !name().isEmpty();
 
     if (isValid && !url_.isEmpty()) {
         bool haveAppImage = false;

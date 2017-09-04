@@ -1,4 +1,5 @@
 #include "DateTimeConverter.h"
+#include <QtCore/QDateTime>
 
 using namespace MellowPlayer::Presentation;
 
@@ -12,17 +13,17 @@ QString DateTimeConverter::dateToCategory(const QDateTime& dateTime) const
     QDate lastYear = today.addYears(-1);
 
     if (date == today)
-        return tr("Today");
+        return "Today";
     else if (date == yesterday)
-        return tr("Yesterday");
+        return "Yesterday";
     else if (date >= lastWeek)
-        return tr("Last week");
+        return "Last week";
     else if (date >= lastMonth)
-        return tr("Last month");
+        return "Last month";
     else if (date >= lastYear)
-        return tr("Last year");
+        return "Last year";
     else
-        return tr("Years ago");
+        return "Years ago";
 }
 
 QString DateTimeConverter::dateToString(const QDateTime& dateTime) const

@@ -8,5 +8,7 @@
         <file>Theme/Breeze.json</file>
         <file>Theme/BreezeDark.json</file>
         <file>Theme/Default.json</file>
+        <file>Theme/Midna.json</file>
+        <file>Theme/MidnaDark.json</file>
     </qresource>
 </RCC>

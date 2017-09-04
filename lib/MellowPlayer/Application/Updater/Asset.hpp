@@ -10,8 +10,8 @@ namespace MellowPlayer::Application
         Asset();
         Asset(const QString& name, const QString& url);
 
-        QString getName() const;
-        QString getUrl() const;
+        QString name() const;
+        QString url() const;
 
         bool isAppImage() const;
         bool isWindowsInstaller() const;

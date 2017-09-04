@@ -23,14 +23,14 @@ void WindowsUpdater::doInstall(const QString& assetLocalPath)
     emit installFinished(QFile::exists(installerPath_));
 }
 
-QString WindowsUpdater::getAssetUrl() const
+QString WindowsUpdater::assetUrl() const
 {
-    return asset_.getUrl();
+    return asset_.url();
 }
 
-QString WindowsUpdater::getAssetFileName() const
+QString WindowsUpdater::assetFileName() const
 {
-    return asset_.getName();
+    return asset_.name();
 }
 
 void WindowsUpdater::setRelease(const Release* release)
@@ -38,7 +38,7 @@ void WindowsUpdater::setRelease(const Release* release)
     AbstractPlatformUpdater::setRelease(release);
 
     if (release_ != nullptr) {
-        for (auto& asset : release_->getAssets()) {
+        for (auto& asset : release_->assets()) {
             if (asset.isWindowsInstaller()) {
                 asset_ = asset;
                 break;

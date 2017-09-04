@@ -19,6 +19,8 @@ set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/SystemTrayIconPresente
 if(USE_LIBNOTIFY)
     set(SOURCE_FILES ${SOURCE_FILES} Notifications/Presenters/LibnotifyPresenter.cpp)
     set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/LibnotifyPresenter.hpp)
+    set(SOURCE_FILES ${SOURCE_FILES} Notifications/Presenters/LibnotifyStrings.cpp)
+    set(HEADER_FILES ${HEADER_FILES} Notifications/Presenters/LibnotifyStrings.hpp)
 endif()
 
 SET(CMAKE_DEBUG_POSTFIX "")
@@ -26,3 +28,6 @@ add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${QRC_FILES} ${QM
 target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application
                       Qt5::Core Qt5::Qml Qt5::Quick Qt5::QuickControls2 Qt5::Svg
                       Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
+if (USE_PRECOMPILED_HEADER)
+    target_precompiled_header(${LIB_NAME} stdafx.h)
+endif()

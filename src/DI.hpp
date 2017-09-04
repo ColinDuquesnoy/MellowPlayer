@@ -19,9 +19,10 @@
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
-#include <MellowPlayer/Application/Updater/IReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
@@ -44,6 +45,7 @@
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
@@ -135,7 +137,7 @@ auto defaultInjector = [](ScopedScope &scope) {
         di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),
         di::bind<IStreamingServiceWatcher>().to<StreamingServiceWatcher>().in(scope),
         di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
-        di::bind<IReleaseQuerier>().to<GithubReleaseQuerier>().in(scope),
+        di::bind<ILatestReleaseQuerier>().to<LatestGithubReleaseQuerier>().in(scope),
         di::bind<IHttpClient>().to<HttpClient>().in(scope),
         di::bind<IFileDownloader>().to<FileDownloader>().in(scope)
     );

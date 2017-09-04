@@ -27,6 +27,6 @@ TEST_CASE("StringSettingViewModelTests")
 
     SECTION("QML Component looks valid")
     {
-        REQUIRE(model.getQmlComponent().toLower().contains("string"));
+        REQUIRE(model.qmlComponent().toLower().contains("string"));
     }
 }

@@ -11,6 +11,10 @@ We provide an AppImage so that you can try MellowPlayer on any distribution.
 
 Download MellowPlayer-x86_64.AppImage from a `github release`_, make it executable (chmod +x MellowPlayer-x86_64.AppImage) and run it, that's all.
 
+Please note that there are some limitations with the AppImage, it does not include proprietary codecs for licensing reasons.
+
+We plan to provide more distribution specific packages in the future (https://github.com/ColinDuquesnoy/MellowPlayer/issues/107)
+
 KaOS
 ++++
 
@@ -61,7 +65,7 @@ To start the program, either start it from your applications menu or run the fol
 
     $ MellowPlayer
 
-Before compiling MellowPlayer 2, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
+Before compiling, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**. If you favorite service require proprietary codecs to work, we suggest you check if your distribution provide a version of QtWebEngine compiled with the flag ``use_proprietary_codecs`` or compile it yourself.
 
 
 OS X
@@ -69,10 +73,14 @@ OS X
 
 Just grab the dmg image from the `official website`_ (click on the **OS X folder**), drag and drop the MellowPlayer application in your **Applications** folder.
 
+Please note the dmg we provide is built with a version of QtWebEngine built without proprietary codecs support (for licensing reasons). If your favorite service require proprietary codecs to work, you'll need to build QtWebEngine with the flag ``use_proprietary_codecs`` and build MellowPlayer using that QtWebEngine version.
+
 Windows
 -------
 
 Just grab the windows installer from the `official website`_ (click on the **Windows folder**) and follow the instructions.
+
+Please note the Windows Installer we provide is built with a version of QtWebEngine built without proprietary codecs support (for licensing reasons). If your favorite service require proprietary codecs to work, you'll need to build QtWebEngine with the flag ``use_proprietary_codecs`` and build MellowPlayer using that QtWebEngine version.
 
 
 .. _README: https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/README.md

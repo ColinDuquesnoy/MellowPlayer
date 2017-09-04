@@ -1,6 +1,8 @@
-#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
-#include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
+#include <Utils/DependencyPool.hpp>
+#include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Application/Updater/Release.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -17,22 +19,22 @@ SCENARIO("check for updates")
         Release currentRelease("2.2.4", QDate::fromString("2017-04-29", Qt::ISODate));
         updater.setCurrentRelease(&currentRelease);
 
-        REQUIRE(!viewModel.isBusy());
-        REQUIRE(!viewModel.isVisible());
-        REQUIRE(viewModel.getUrl().isEmpty());
-        REQUIRE(viewModel.getStatusString().isEmpty());
-        REQUIRE(!viewModel.isInstallEnabled());
-        REQUIRE(viewModel.getProgress() == -1);
+        REQUIRE(!viewModel.busy());
+        REQUIRE(!viewModel.visible());
+        REQUIRE(viewModel.url().isEmpty());
+        REQUIRE(viewModel.status().isEmpty());
+        REQUIRE(!viewModel.installEnabled());
+        REQUIRE(viewModel.progress() == -1);
 
         WHEN("checking for updates")
         {
             viewModel.check();
-            REQUIRE(!viewModel.isBusy());
+            REQUIRE(!viewModel.busy());
 
             THEN("an update is available")
             {
-                REQUIRE(viewModel.isVisible());
-                REQUIRE(!viewModel.getUrl().isEmpty());
+                REQUIRE(viewModel.visible());
+                REQUIRE(!viewModel.url().isEmpty());
 
                 AND_WHEN("closing the pane")
                 {
@@ -40,9 +42,9 @@ SCENARIO("check for updates")
 
                     THEN("visible changed but all other properties remains")
                     {
-                        REQUIRE(!viewModel.isVisible());
+                        REQUIRE(!viewModel.visible());
 
-                        REQUIRE(!viewModel.getUrl().isEmpty());
+                        REQUIRE(!viewModel.url().isEmpty());
                     }
                 }
 
@@ -52,7 +54,7 @@ SCENARIO("check for updates")
 
                     THEN("progress bar appear and updater starts downloading")
                     {
-                        REQUIRE(viewModel.isBusy());
+                        REQUIRE(viewModel.busy());
                     }
                 }
             }
@@ -64,22 +66,22 @@ SCENARIO("check for updates")
         Release currentRelease("3.0", QDate::fromString("2017-08-12", Qt::ISODate));
         updater.setCurrentRelease(&currentRelease);
 
-        REQUIRE(!viewModel.isBusy());
-        REQUIRE(!viewModel.isVisible());
-        REQUIRE(viewModel.getUrl().isEmpty());
-        REQUIRE(viewModel.getStatusString().isEmpty());
-        REQUIRE(!viewModel.isInstallEnabled());
-        REQUIRE(viewModel.getProgress() == -1);
+        REQUIRE(!viewModel.busy());
+        REQUIRE(!viewModel.visible());
+        REQUIRE(viewModel.url().isEmpty());
+        REQUIRE(viewModel.status().isEmpty());
+        REQUIRE(!viewModel.installEnabled());
+        REQUIRE(viewModel.progress() == -1);
 
         WHEN("checking for updates")
         {
             viewModel.check();
-            REQUIRE(!viewModel.isBusy());
+            REQUIRE(!viewModel.busy());
 
             THEN("no update is available")
             {
-                REQUIRE(!viewModel.isVisible());
-                REQUIRE(viewModel.getUrl().isEmpty());
+                REQUIRE(!viewModel.visible());
+                REQUIRE(viewModel.url().isEmpty());
             }
         }
     }

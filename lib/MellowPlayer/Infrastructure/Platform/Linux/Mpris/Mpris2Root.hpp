@@ -45,8 +45,8 @@ namespace MellowPlayer::Infrastructure
         void Quit();
 
     private:
-        Application::ILogger& logger;
-        Application::IMainWindow& window;
-        Application::IQtApplication& qtApp;
+        Application::ILogger& logger_;
+        Application::IMainWindow& window_;
+        Application::IQtApplication& qtApp_;
     };
 }

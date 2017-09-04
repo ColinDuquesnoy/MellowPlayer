@@ -1,5 +1,6 @@
 #include "SettingsSchemaLoader.hpp"
 #include <QtCore/QFile>
+#include <QtCore/QJsonDocument>
 
 using namespace MellowPlayer::Infrastructure;
 

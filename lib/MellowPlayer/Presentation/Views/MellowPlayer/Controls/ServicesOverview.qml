@@ -21,7 +21,7 @@ Item {
 
         Label {
             Layout.fillWidth: true
-            text: "Which service would you like to listen to ?"
+            text: qsTr("Which service would you like to listen to ?")
             font.pixelSize: 32
             horizontalAlignment: Text.AlignHCenter
         }
@@ -71,7 +71,7 @@ Item {
                             hovered: mouseArea.containsMouse
                             index: delegateRoot.visualIndex
                             transitionItem: root.transitionItem
-                            webView: root.webViews[_streamingServices.getWebViewIndex(model.name)]
+                            webView: root.webViews[_streamingServices.webViewIndex(model.name)]
 
                             Drag.active: mouseArea.drag.active
                             Drag.source: delegateRoot

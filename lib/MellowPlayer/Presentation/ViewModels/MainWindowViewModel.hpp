@@ -1,6 +1,5 @@
 #pragma once
 
-#include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Application/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
@@ -16,10 +15,10 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Presentation
 {
-    class ApplicationViewModel;
     class ListeningHistoryViewModel;
     class StreamingServicesControllerViewModel;
     class ThemeViewModel;
+    class UpdaterViewModel;
 
     class MainWindowViewModel : public QObject, public Application::IMainWindow
     {
@@ -41,14 +40,14 @@ namespace MellowPlayer::Presentation
         void setVisible(bool value);
 
     private:
-        bool visible = false;
-        Application::ILogger& logger;
-        Application::Settings& settings;
-        StreamingServicesControllerViewModel& streamingServices;
-        ListeningHistoryViewModel& listeningHistory;
-        QQmlApplicationEngine qmlApplicationEngine;
-        ClipBoardViewModel clipBoardModel;
-        SettingsViewModel settingsViewModel;
-        UpdaterViewModel& updaterViewModel;
+        bool visible_ = false;
+        Application::ILogger& logger_;
+        Application::Settings& settings_;
+        StreamingServicesControllerViewModel& streamingServices_;
+        ListeningHistoryViewModel& listeningHistory_;
+        QQmlApplicationEngine qmlApplicationEngine_;
+        ClipBoardViewModel clipBoardModel_;
+        SettingsViewModel settingsViewModel_;
+        UpdaterViewModel& updaterViewModel_;
     };
 }

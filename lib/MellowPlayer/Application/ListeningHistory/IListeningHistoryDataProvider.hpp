@@ -17,6 +17,6 @@ namespace MellowPlayer::Application
         virtual void remove(const QString& filterKey, const QString& filterValue) = 0;
         virtual void removeMany(const QList<int>& items) = 0;
 
-        virtual QList<Application::ListeningHistoryEntry> getAll() const = 0;
+        virtual QList<Application::ListeningHistoryEntry> toList() const = 0;
     };
 }

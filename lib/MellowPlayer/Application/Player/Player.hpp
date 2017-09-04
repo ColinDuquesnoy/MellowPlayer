@@ -1,8 +1,9 @@
 #pragma once
 
 #include "IPlayer.hpp"
-#include <QTimer>
 #include <memory>
+
+class QTimer;
 
 namespace MellowPlayer::Application
 {
@@ -17,7 +18,7 @@ namespace MellowPlayer::Application
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
         explicit Player(Application::StreamingService& streamingService);
-        ~Player();
+        ~Player() override;
 
         // IPlayer
         Q_INVOKABLE void togglePlayPause() override;
@@ -31,15 +32,15 @@ namespace MellowPlayer::Application
         Q_INVOKABLE void addToFavorites() override;
         Q_INVOKABLE void removeFromFavorites() override;
 
-        Application::Song* getCurrentSong() override;
-        double getPosition() const override;
-        PlaybackStatus getPlaybackStatus() const override;
-        bool getCanSeek() const override;
-        bool getCanGoNext() const override;
-        bool getCanGoPrevious() const override;
-        bool getCanAddToFavorites() const override;
-        double getVolume() const override;
-        QString getServiceName() const override;
+        Application::Song* currentSong() override;
+        double position() const override;
+        PlaybackStatus playbackStatus() const override;
+        bool canSeek() const override;
+        bool canGoNext() const override;
+        bool canGoPrevious() const override;
+        bool canAddToFavorites() const override;
+        double volume() const override;
+        QString serviceName() const override;
         bool isPlaying() const override;
         bool isStopped() const override;
 
@@ -76,19 +77,19 @@ namespace MellowPlayer::Application
         void setCanAddToFavorites(bool value);
         void setCurrentVolume(double value);
 
-        ILogger& logger;
-        double position = false;
-        PlaybackStatus playbackStatus = PlaybackStatus::Stopped;
-        bool canSeek = false;
-        bool canGoNext = false;
-        bool canGoPrevious = false;
-        bool canAddToFavorites = false;
-        double volume = 1;
-        std::unique_ptr<Application::Song> currentSong;
-        Application::StreamingService& streamingService;
-        Application::StreamingServiceScript& streamingServiceScript;
-        PlaybackStatus suspendedState = PlaybackStatus::Stopped;
+        ILogger& logger_;
+        double position_ = false;
+        PlaybackStatus playbackStatus_ = PlaybackStatus::Stopped;
+        bool canSeek_ = false;
+        bool canGoNext_ = false;
+        bool canGoPrevious_ = false;
+        bool canAddToFavorites_ = false;
+        double volume_ = 1;
+        std::unique_ptr<Application::Song> currentSong_;
+        Application::StreamingService& streamingService_;
+        Application::StreamingServiceScript& streamingServiceScript_;
+        PlaybackStatus suspendedState_ = PlaybackStatus::Stopped;
         bool isRunning_ = false;
-        QTimer* refreshTimer;
+        QTimer* refreshTimer_;
     };
 }

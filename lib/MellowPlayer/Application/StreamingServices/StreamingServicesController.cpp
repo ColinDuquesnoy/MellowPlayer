@@ -1,33 +1,37 @@
 #include "StreamingServicesController.hpp"
 #include "IStreamingServiceLoader.hpp"
 #include "IStreamingServiceWatcher.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace std;
 
 StreamingServicesController::StreamingServicesController(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher)
-        : logger(LoggingManager::instance().getLogger("StreamingServicesController")), loader(loader), watcher(watcher), current(nullptr)
+        : logger_(LoggingManager::logger("StreamingServicesController")), loader_(loader), watcher_(watcher), current_(nullptr)
 {
 }
 
 void StreamingServicesController::load()
 {
-    auto newServices = loader.load();
+    auto newServices = loader_.load();
 
     for (auto newService : newServices) {
         bool found = false;
-        for (auto service : services) {
+        for (auto service : services_) {
             if (*service == *newService) {
                 found = true;
                 break;
             }
         }
         if (!found) {
-            LOG_DEBUG(logger, "service added: " + newService->getName());
-            services.append(newService);
-            if (!newService->getPluginDirectory().startsWith("/usr/") && !newService->getPluginDirectory().startsWith("/tmp/"))
-                watcher.watch(*newService);
+            LOG_DEBUG(logger_, "service added: " + newService->name());
+            services_.append(newService);
+            if (!newService->pluginDirectory().startsWith("/usr/") && !newService->pluginDirectory().startsWith("/tmp/"))
+                watcher_.watch(*newService);
             emit added(newService.get());
         }
     }
@@ -35,24 +39,24 @@ void StreamingServicesController::load()
 
 StreamingService& StreamingServicesController::get(const QString& name) const
 {
-    for (const auto& service : services)
-        if (service->getName() == name)
+    for (const auto& service : services_)
+        if (service->name() == name)
             return *service;
     throw invalid_argument("unknown service: " + name.toStdString());
 }
 
 void StreamingServicesController::setCurrent(StreamingService* service)
 {
-    if (service == current)
+    if (service == current_)
         return;
 
-    current = service;
-    emit currentChanged(current);
-    if (current)
-        LOG_DEBUG(logger, "current service changed: " + current->getName());
+    current_ = service;
+    emit currentChanged(current_);
+    if (current_)
+        LOG_DEBUG(logger_, "current service changed: " + current_->name());
 }
 
-StreamingService* StreamingServicesController::getCurrent() const
+StreamingService* StreamingServicesController::current() const
 {
-    return current;
+    return current_;
 }

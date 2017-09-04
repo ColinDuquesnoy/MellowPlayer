@@ -1,7 +1,8 @@
-#include "Mocks/StreamingServiceLoaderMock.hpp"
 #include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Application/Player/Player.hpp>
 #include <MellowPlayer/Application/Player/Players.hpp>
+#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
@@ -19,26 +20,26 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
 
     SECTION("default properties (currentPlayer is null)")
     {
-        REQUIRE(currentPlayer.getPosition() == 0);
-        REQUIRE(currentPlayer.getPlaybackStatus() == PlaybackStatus::Stopped);
-        REQUIRE(!currentPlayer.getCanSeek());
-        REQUIRE(!currentPlayer.getCanGoNext());
-        REQUIRE(!currentPlayer.getCanGoPrevious());
-        REQUIRE(!currentPlayer.getCanAddToFavorites());
-        REQUIRE(currentPlayer.getVolume() == 0.0);
+        REQUIRE(currentPlayer.position() == 0);
+        REQUIRE(currentPlayer.playbackStatus() == PlaybackStatus::Stopped);
+        REQUIRE(!currentPlayer.canSeek());
+        REQUIRE(!currentPlayer.canGoNext());
+        REQUIRE(!currentPlayer.canGoPrevious());
+        REQUIRE(!currentPlayer.canAddToFavorites());
+        REQUIRE(currentPlayer.volume() == 0.0);
 
-        REQUIRE(currentPlayer.getCurrentSong()->getTitle() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getAlbum() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtist() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getUniqueId() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtUrl() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getDuration() == 0);
-        REQUIRE(!currentPlayer.getCurrentSong()->getIsFavorite());
+        REQUIRE(currentPlayer.currentSong()->title() == "");
+        REQUIRE(currentPlayer.currentSong()->album() == "");
+        REQUIRE(currentPlayer.currentSong()->artist() == "");
+        REQUIRE(currentPlayer.currentSong()->uniqueId() == "");
+        REQUIRE(currentPlayer.currentSong()->artUrl() == "");
+        REQUIRE(currentPlayer.currentSong()->duration() == 0);
+        REQUIRE(!currentPlayer.currentSong()->isFavorite());
     }
 
-    Player& player1 = *players.get(streamingServices.getAll()[0]->getName());
-    Player& player2 = *players.get(streamingServices.getAll()[1]->getName());
-    streamingServices.setCurrent(streamingServices.getAll()[0].get());
+    Player& player1 = *players.get(streamingServices.toList()[0]->name());
+    Player& player2 = *players.get(streamingServices.toList()[1]->name());
+    streamingServices.setCurrent(streamingServices.toList()[0].get());
 
     QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song*)));
     QSignalSpy positionChanged(&currentPlayer, SIGNAL(positionChanged()));
@@ -161,21 +162,21 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
         map["duration"] = 350.0;
         player1.setUpdateResults(QVariant::fromValue(map));
 
-        REQUIRE(currentPlayer.getPosition() == 1.0);
-        REQUIRE(currentPlayer.getPlaybackStatus() == PlaybackStatus::Playing);
-        REQUIRE(currentPlayer.getCanSeek());
-        REQUIRE(currentPlayer.getCanGoNext());
-        REQUIRE(currentPlayer.getCanGoPrevious());
-        REQUIRE(currentPlayer.getCanAddToFavorites());
-        REQUIRE(currentPlayer.getVolume() == 0.5);
+        REQUIRE(currentPlayer.position() == 1.0);
+        REQUIRE(currentPlayer.playbackStatus() == PlaybackStatus::Playing);
+        REQUIRE(currentPlayer.canSeek());
+        REQUIRE(currentPlayer.canGoNext());
+        REQUIRE(currentPlayer.canGoPrevious());
+        REQUIRE(currentPlayer.canAddToFavorites());
+        REQUIRE(currentPlayer.volume() == 0.5);
 
-        REQUIRE(currentPlayer.getCurrentSong()->getTitle() == "songTitle");
-        REQUIRE(currentPlayer.getCurrentSong()->getAlbum() == "albumTitle");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtist() == "artistName");
-        REQUIRE(currentPlayer.getCurrentSong()->getUniqueId() == "010203");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtUrl() == "artUrl");
-        REQUIRE(currentPlayer.getCurrentSong()->getDuration() == 350.0);
-        REQUIRE(currentPlayer.getCurrentSong()->getIsFavorite());
+        REQUIRE(currentPlayer.currentSong()->title() == "songTitle");
+        REQUIRE(currentPlayer.currentSong()->album() == "albumTitle");
+        REQUIRE(currentPlayer.currentSong()->artist() == "artistName");
+        REQUIRE(currentPlayer.currentSong()->uniqueId() == "010203");
+        REQUIRE(currentPlayer.currentSong()->artUrl() == "artUrl");
+        REQUIRE(currentPlayer.currentSong()->duration() == 350.0);
+        REQUIRE(currentPlayer.currentSong()->isFavorite());
 
         REQUIRE(currentSongChanged.count() == 1);
         REQUIRE(positionChanged.count() == 1);
@@ -207,21 +208,21 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
         map["duration"] = 350.0;
         player2.setUpdateResults(QVariant::fromValue(map));
 
-        REQUIRE(currentPlayer.getPosition() == 0);
-        REQUIRE(currentPlayer.getPlaybackStatus() == PlaybackStatus::Stopped);
-        REQUIRE(!currentPlayer.getCanSeek());
-        REQUIRE(!currentPlayer.getCanGoNext());
-        REQUIRE(!currentPlayer.getCanGoPrevious());
-        REQUIRE(!currentPlayer.getCanAddToFavorites());
-        REQUIRE(currentPlayer.getVolume() == 1.0);
+        REQUIRE(currentPlayer.position() == 0);
+        REQUIRE(currentPlayer.playbackStatus() == PlaybackStatus::Stopped);
+        REQUIRE(!currentPlayer.canSeek());
+        REQUIRE(!currentPlayer.canGoNext());
+        REQUIRE(!currentPlayer.canGoPrevious());
+        REQUIRE(!currentPlayer.canAddToFavorites());
+        REQUIRE(currentPlayer.volume() == 1.0);
 
-        REQUIRE(currentPlayer.getCurrentSong()->getTitle() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getAlbum() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtist() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getUniqueId() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtUrl() == "");
-        REQUIRE(currentPlayer.getCurrentSong()->getDuration() == 0);
-        REQUIRE(!currentPlayer.getCurrentSong()->getIsFavorite());
+        REQUIRE(currentPlayer.currentSong()->title() == "");
+        REQUIRE(currentPlayer.currentSong()->album() == "");
+        REQUIRE(currentPlayer.currentSong()->artist() == "");
+        REQUIRE(currentPlayer.currentSong()->uniqueId() == "");
+        REQUIRE(currentPlayer.currentSong()->artUrl() == "");
+        REQUIRE(currentPlayer.currentSong()->duration() == 0);
+        REQUIRE(!currentPlayer.currentSong()->isFavorite());
 
         REQUIRE(currentSongChanged.count() == 0);
         REQUIRE(positionChanged.count() == 0);
@@ -252,23 +253,23 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
         map["volume"] = 0.5;
         map["duration"] = 350.0;
         player2.setUpdateResults(QVariant::fromValue(map));
-        streamingServices.setCurrent(streamingServices.getAll()[1].get());
+        streamingServices.setCurrent(streamingServices.toList()[1].get());
 
-        REQUIRE(currentPlayer.getPosition() == 1.0);
-        REQUIRE(currentPlayer.getPlaybackStatus() == PlaybackStatus::Playing);
-        REQUIRE(currentPlayer.getCanSeek());
-        REQUIRE(currentPlayer.getCanGoNext());
-        REQUIRE(currentPlayer.getCanGoPrevious());
-        REQUIRE(currentPlayer.getCanAddToFavorites());
-        REQUIRE(currentPlayer.getVolume() == 0.5);
+        REQUIRE(currentPlayer.position() == 1.0);
+        REQUIRE(currentPlayer.playbackStatus() == PlaybackStatus::Playing);
+        REQUIRE(currentPlayer.canSeek());
+        REQUIRE(currentPlayer.canGoNext());
+        REQUIRE(currentPlayer.canGoPrevious());
+        REQUIRE(currentPlayer.canAddToFavorites());
+        REQUIRE(currentPlayer.volume() == 0.5);
 
-        REQUIRE(currentPlayer.getCurrentSong()->getTitle() == "songTitle");
-        REQUIRE(currentPlayer.getCurrentSong()->getAlbum() == "albumTitle");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtist() == "artistName");
-        REQUIRE(currentPlayer.getCurrentSong()->getUniqueId() == "010203");
-        REQUIRE(currentPlayer.getCurrentSong()->getArtUrl() == "artUrl");
-        REQUIRE(currentPlayer.getCurrentSong()->getDuration() == 350.0);
-        REQUIRE(currentPlayer.getCurrentSong()->getIsFavorite());
+        REQUIRE(currentPlayer.currentSong()->title() == "songTitle");
+        REQUIRE(currentPlayer.currentSong()->album() == "albumTitle");
+        REQUIRE(currentPlayer.currentSong()->artist() == "artistName");
+        REQUIRE(currentPlayer.currentSong()->uniqueId() == "010203");
+        REQUIRE(currentPlayer.currentSong()->artUrl() == "artUrl");
+        REQUIRE(currentPlayer.currentSong()->duration() == 350.0);
+        REQUIRE(currentPlayer.currentSong()->isFavorite());
 
         REQUIRE(currentSongChanged.count() == 1);
         REQUIRE(positionChanged.count() == 1);

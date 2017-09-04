@@ -1,8 +1,12 @@
 #pragma once
 
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
 #include <QCommandLineParser>
+
+namespace MellowPlayer::Application 
+{
+    enum class LogLevel;    
+}
 
 namespace MellowPlayer::Infrastructure
 {
@@ -11,30 +15,30 @@ namespace MellowPlayer::Infrastructure
     public:
         CommandLineParser();
 
-        QString getService() const override;
-        int getAutoQuitDelay() const override;
-        bool isPlayPauseRequested() const override;
-        bool isNextRequested() const override;
-        bool isPreviousRequested() const override;
-        bool isToggleFavoriteRequested() const override;
-        Application::LogLevel getLogLevel() const override;
+        QString service() const override;
+        int autoQuitDelay() const override;
+        bool playPauseRequested() const override;
+        bool nextRequested() const override;
+        bool previousRequested() const override;
+        bool toggleFavoriteRequested() const override;
+        Application::LogLevel logLevel() const override;
 
     private:
-        QCommandLineParser parser;
-        QCommandLineOption serviceOption;
-        QCommandLineOption logLevelOption;
-        QCommandLineOption playPauseOption;
-        QCommandLineOption nextOption;
-        QCommandLineOption previousOption;
-        QCommandLineOption toggleFavoriteOption;
-        QCommandLineOption autoQuitDelayOption;
+        QCommandLineParser parser_;
+        QCommandLineOption serviceOption_;
+        QCommandLineOption logLevelOption_;
+        QCommandLineOption playPauseOption_;
+        QCommandLineOption nextOption_;
+        QCommandLineOption previousOption_;
+        QCommandLineOption toggleFavoriteOption_;
+        QCommandLineOption autoQuitDelayOption_;
 
-        QString service;
-        Application::LogLevel logLevel;
-        bool playRequested = false;
-        bool nextRequested = false;
-        bool previousRequested = false;
-        bool toggleFavoriteRequested = false;
-        int autoQuitDelay = 0;
+        QString service_;
+        Application::LogLevel logLevel_;
+        bool playRequested_ = false;
+        bool nextRequested_ = false;
+        bool previousRequested_ = false;
+        bool toggleFavoriteRequested_ = false;
+        int autoQuitDelay_ = 0;
     };
 }

@@ -2,12 +2,14 @@
 #include "ISettingsProvider.hpp"
 #include "ISettingsSchemaLoader.hpp"
 #include "SettingsCategory.hpp"
+#include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+
 
 using namespace std;
 using namespace MellowPlayer::Application;
 
-Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider) : settingsProvider(settingsProvider)
+Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider) : settingsProvider_(settingsProvider)
 {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();
@@ -20,22 +22,22 @@ Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider
         data.icon = categoryObject.value("icon").toString();
         data.key = categoryObject.value("key").toString();
         data.parameters = categoryObject.value("settings").toArray();
-        categories.append(new SettingsCategory(data, this));
+        categories_.append(new SettingsCategory(data, this));
     }
 
-    for (SettingsCategory* category : categories)
+    for (SettingsCategory* category : categories_)
         category->resolveDependencies();
 }
 
-const QList<SettingsCategory*>& Settings::getCategories() const
+const QList<SettingsCategory*>& Settings::categories() const
 {
-    return categories;
+    return categories_;
 }
 
-SettingsCategory& Settings::getCategory(const QString& key) const
+SettingsCategory& Settings::category(const QString& key) const
 {
-    for (SettingsCategory* category : categories)
-        if (category->getKey() == key)
+    for (SettingsCategory* category : categories_)
+        if (category->key() == key)
             return *category;
     throw runtime_error("Unknown category: " + key.toStdString());
 }
@@ -50,14 +52,13 @@ Setting& Settings::get(const QString& key) const
     QString categoryKey = tokens[0];
     QString parameterKey = tokens[1];
 
-    auto& category = getCategory(categoryKey);
-
-    return category.getSetting(parameterKey);
+    auto& c = category(categoryKey);
+    return c.get(parameterKey);
 }
 
-ISettingsProvider& Settings::getSettingsProvider() const
+ISettingsProvider& Settings::settingsProvider() const
 {
-    return settingsProvider;
+    return settingsProvider_;
 }
 
 Setting& Settings::get(SettingKey::Keys key)
@@ -67,6 +68,6 @@ Setting& Settings::get(SettingKey::Keys key)
 
 void Settings::restoreDefaults()
 {
-    for (SettingsCategory* category : categories)
+    for (SettingsCategory* category : categories_)
         category->restoreDefaults();
 }

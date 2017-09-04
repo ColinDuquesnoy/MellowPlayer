@@ -5,6 +5,7 @@
 namespace MellowPlayer::Application
 {
     class ISystemTrayIcon;
+    struct Notification;
 }
 
 namespace MellowPlayer::Presentation
@@ -17,6 +18,6 @@ namespace MellowPlayer::Presentation
         bool display(const Application::Notification& notification) override;
 
     private:
-        Application::ISystemTrayIcon& systemTrayIcon;
+        Application::ISystemTrayIcon& systemTrayIcon_;
     };
 }

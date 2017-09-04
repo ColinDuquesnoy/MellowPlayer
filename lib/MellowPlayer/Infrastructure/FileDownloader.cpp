@@ -1,10 +1,14 @@
 #include "FileDownloader.hpp"
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-FileDownloader::FileDownloader() : logger_(LoggingManager::instance().getLogger("FileDownloader"))
+FileDownloader::FileDownloader() : logger_(LoggingManager::logger("FileDownloader"))
 {
     connect(&networkAccessManager_, &QNetworkAccessManager::finished, this, &FileDownloader::onDownloadFinished);
 }
@@ -15,26 +19,26 @@ void FileDownloader::download(const QString& urlToDownload, const QString& fileP
         LOG_DEBUG(logger_, "downloading " << urlToDownload << " to " << filePath);
         progress_ = 0;
         destinationPath_ = QFileInfo(filePath);
-        currentReply = networkAccessManager_.get(QNetworkRequest(QUrl(urlToDownload)));
-        connect(currentReply, &QNetworkReply::downloadProgress, this, &FileDownloader::onDownloadProgress);
+        currentReply_ = networkAccessManager_.get(QNetworkRequest(QUrl(urlToDownload)));
+        connect(currentReply_, &QNetworkReply::downloadProgress, this, &FileDownloader::onDownloadProgress);
     }
 }
 
-double FileDownloader::getProgress() const
+double FileDownloader::progress() const
 {
     return progress_;
 }
 
 bool FileDownloader::isDownloading() const
 {
-    return currentReply != nullptr;
+    return currentReply_ != nullptr;
 }
 
 void FileDownloader::onDownloadFinished(QNetworkReply* reply)
 {
     bool success = false;
 
-    currentReply = nullptr;
+    currentReply_ = nullptr;
 
     if (reply->error() == QNetworkReply::NoError) {
         QString redirectUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();

@@ -1,4 +1,6 @@
 #include "LoggingManager.hpp"
+#include "ILogger.hpp"
+#include "ILoggerFactory.hpp"
 #include <QtCore/QLoggingCategory>
 
 using namespace MellowPlayer::Application;
@@ -7,7 +9,7 @@ using namespace std;
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
 {
     string category(context.category);
-    ILogger& logger = LoggingManager::instance().getLogger(category == "default" ? "qt" : category);
+    ILogger& logger = LoggingManager::logger(category == "default" ? "qt" : category);
 
     // QtCriticalMsg, QtFatalMsg, QtSystemMsg = QtCriticalMsg
     std::map<int, LogLevel> toLogLevel = {{QtDebugMsg, LogLevel::Debug},
@@ -44,25 +46,24 @@ LoggingManager::LoggingManager(ILoggerFactory& loggerFactory, const LoggerConfig
         : loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig)
 {
     qInstallMessageHandler(messageHandler);
-    //    QLoggingCategory::setFilterRules("js.w crafted for KaOS.arning=false");
 }
 
-ILogger& LoggingManager::getLogger()
+ILogger& LoggingManager::logger()
 {
-    return getLogger("root");
+    return logger("root");
 }
 
-ILogger& LoggingManager::getLogger(const std::string& name)
+ILogger& LoggingManager::logger(const std::string& name)
 {
-    return getLogger(name, defaultLoggerConfig_);
+    return logger(name, instance().defaultLoggerConfig_);
 }
 
-ILogger& LoggingManager::getLogger(const std::string& name, const LoggerConfig& loggerConfig)
+ILogger& LoggingManager::logger(const std::string& name, const LoggerConfig& loggerConfig)
 {
-    if (loggerExists(name))
-        return getExistingLogger(name);
+    if (instance().loggerExists(name))
+        return instance().getExistingLogger(name);
     else
-        return createNewLogger(name, loggerConfig);
+        return instance().createNewLogger(name, loggerConfig);
 }
 
 bool LoggingManager::loggerExists(const std::string& name)

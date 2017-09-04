@@ -1,6 +1,9 @@
 #include "SingleInstanceApplication.hpp"
+#include "IApplication.hpp"
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Player/IPlayer.hpp>
 #include <QCoreApplication>
 #include <QFile>
@@ -12,54 +15,54 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Infrastructure;
 
-const QString SingleInstanceApplication::playPauseAction = "play-pause";
-const QString SingleInstanceApplication::nextAction = "next";
-const QString SingleInstanceApplication::previousAction = "previous";
-const QString SingleInstanceApplication::restoreWindowAction = "restore-window";
-const QString SingleInstanceApplication::toggleFavoriteAction = "toggle-favorite";
+const QString SingleInstanceApplication::playPauseAction_ = "play-pause";
+const QString SingleInstanceApplication::nextAction_ = "next";
+const QString SingleInstanceApplication::previousAction_ = "previous";
+const QString SingleInstanceApplication::restoreWindowAction_ = "restore-window";
+const QString SingleInstanceApplication::toggleFavoriteAction_ = "toggle-favorite";
 
 SingleInstanceApplication::SingleInstanceApplication(IApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
-        : logger(LoggingManager::instance().getLogger("SingleInstanceApplication")),
-          application(application),
-          commandLineParser(commandLineParser),
-          currentPlayer(currentPlayer)
+        : logger_(LoggingManager::logger("SingleInstanceApplication")),
+          application_(application),
+          commandLineParser_(commandLineParser),
+          currentPlayer_(currentPlayer)
 {
-    connect(&localSocket, &QLocalSocket::connected, this, &SingleInstanceApplication::onSocketConnected);
-    connect(&localSocket, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(onSocketError()));
-    connect(&localServer, &QLocalServer::newConnection, this, &SingleInstanceApplication::onNewConnection);
+    connect(&localSocket_, &QLocalSocket::connected, this, &SingleInstanceApplication::onSocketConnected);
+    connect(&localSocket_, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(onSocketError()));
+    connect(&localServer_, &QLocalServer::newConnection, this, &SingleInstanceApplication::onNewConnection);
 }
 
 int SingleInstanceApplication::run()
 {
-    LOG_TRACE(logger, "run");
-    LOG_DEBUG(logger, "starting, connecting to local server");
-    localSocket.connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
-    auto retCode = application.run();
-    localSocket.disconnectFromServer();
-    localServer.close();
+    LOG_TRACE(logger_, "run");
+    LOG_DEBUG(logger_, "starting, connecting to local server");
+    localSocket_.connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
+    auto retCode = application_.run();
+    localSocket_.disconnectFromServer();
+    localServer_.close();
     return retCode;
 }
 
 void SingleInstanceApplication::onSocketConnected()
 {
-    LOG_INFO(logger, "another instance is already running, quitting");
-    QString action = getRequestedAcion();
-    localSocket.write(QString(action + "\n").toLocal8Bit());
+    LOG_INFO(logger_, "another instance is already running, quitting");
+    QString action = requestedAcion();
+    localSocket_.write(QString(action + "\n").toLocal8Bit());
     QTimer::singleShot(100, this, &SingleInstanceApplication::quit);
 }
 
 void SingleInstanceApplication::onSocketError()
 {
-    LOG_DEBUG(logger, "initializaing");
-    localServer.listen(qApp->applicationName());
+    LOG_DEBUG(logger_, "initializaing");
+    localServer_.listen(qApp->applicationName());
     connectSignalHandlers();
-    application.initialize();
+    application_.initialize();
 }
 
 void SingleInstanceApplication::onNewConnection()
 {
-    LOG_DEBUG(logger, "another instance was started, showing this instance instead");
-    QLocalSocket* socket = localServer.nextPendingConnection();
+    LOG_DEBUG(logger_, "another instance was started, showing this instance instead");
+    QLocalSocket* socket = localServer_.nextPendingConnection();
     connect(socket, &QLocalSocket::readyRead, this, &SingleInstanceApplication::onReadyRead);
 }
 
@@ -80,21 +83,21 @@ void SingleInstanceApplication::connectSignalHandlers()
 
 void SingleInstanceApplication::quit()
 {
-    LOG_TRACE(logger, "quit");
-    application.quit();
+    LOG_TRACE(logger_, "quit");
+    application_.quit();
 }
 
-QString SingleInstanceApplication::getRequestedAcion() const
+QString SingleInstanceApplication::requestedAcion() const
 {
-    if (commandLineParser.isPlayPauseRequested())
-        return playPauseAction;
-    else if (commandLineParser.isNextRequested())
-        return nextAction;
-    else if (commandLineParser.isPreviousRequested())
-        return previousAction;
-    else if (commandLineParser.isToggleFavoriteRequested())
-        return toggleFavoriteAction;
-    return restoreWindowAction;
+    if (commandLineParser_.playPauseRequested())
+        return playPauseAction_;
+    else if (commandLineParser_.nextRequested())
+        return nextAction_;
+    else if (commandLineParser_.previousRequested())
+        return previousAction_;
+    else if (commandLineParser_.toggleFavoriteRequested())
+        return toggleFavoriteAction_;
+    return restoreWindowAction_;
 }
 
 void SingleInstanceApplication::onReadyRead()
@@ -102,15 +105,15 @@ void SingleInstanceApplication::onReadyRead()
     QLocalSocket* socket = static_cast<QLocalSocket*>(sender());
     QStringList actions = QString(socket->readAll()).split("\n");
     for (const auto& a : actions) {
-        if (a == playPauseAction)
-            currentPlayer.togglePlayPause();
-        else if (a == nextAction)
-            currentPlayer.next();
-        else if (a == previousAction)
-            currentPlayer.previous();
-        else if (a == toggleFavoriteAction)
-            currentPlayer.toggleFavoriteSong();
+        if (a == playPauseAction_)
+            currentPlayer_.togglePlayPause();
+        else if (a == nextAction_)
+            currentPlayer_.next();
+        else if (a == previousAction_)
+            currentPlayer_.previous();
+        else if (a == toggleFavoriteAction_)
+            currentPlayer_.toggleFavoriteSong();
         else
-            application.restoreWindow();
+            application_.restoreWindow();
     }
 }

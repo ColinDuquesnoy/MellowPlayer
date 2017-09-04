@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QJsonDocument>
+class QJsonDocument;
 
 namespace MellowPlayer::Application
 {

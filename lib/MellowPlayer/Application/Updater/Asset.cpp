@@ -11,12 +11,12 @@ Asset::Asset(const QString& name, const QString& url) : name_(name), url_(url)
 {
 }
 
-QString Asset::getName() const
+QString Asset::name() const
 {
     return name_;
 }
 
-QString Asset::getUrl() const
+QString Asset::url() const
 {
     return url_;
 }

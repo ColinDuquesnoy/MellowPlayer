@@ -26,38 +26,38 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
 
     SECTION("Add entry")
     {
-        REQUIRE(dataProvider.getAll().count() == 1);
+        REQUIRE(dataProvider.toList().count() == 1);
         int id = dataProvider.add(entry1Spotify);
         REQUIRE(id == 2);
-        REQUIRE(dataProvider.getAll().count() == 2);
+        REQUIRE(dataProvider.toList().count() == 2);
     }
 
     SECTION("Remove by id")
     {
-        REQUIRE(dataProvider.getAll().count() == 1);
+        REQUIRE(dataProvider.toList().count() == 1);
         dataProvider.remove("id", "1");
-        REQUIRE(dataProvider.getAll().count() == 0);
+        REQUIRE(dataProvider.toList().count() == 0);
     }
 
     SECTION("Remove all deezer entries")
     {
         dataProvider.add(entry2Deezer);
         dataProvider.add(entry1Spotify);
-        REQUIRE(dataProvider.getAll().count() == 3);
+        REQUIRE(dataProvider.toList().count() == 3);
         dataProvider.remove("serviceName", "Deezer");
-        REQUIRE(dataProvider.getAll().count() == 1);
+        REQUIRE(dataProvider.toList().count() == 1);
     }
 
     SECTION("Remove many entries")
     {
         dataProvider.add(entry2Deezer);
         entry1Spotify.id = dataProvider.add(entry1Spotify);
-        REQUIRE(dataProvider.getAll().count() == 3);
+        REQUIRE(dataProvider.toList().count() == 3);
 
         QList<int> toRemove;
         toRemove.append(entry1Deezer.id);
         toRemove.append(entry1Spotify.id);
         dataProvider.removeMany(toRemove);
-        REQUIRE(dataProvider.getAll().count() == 1);
+        REQUIRE(dataProvider.toList().count() == 1);
     }
 }

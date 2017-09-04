@@ -3,6 +3,11 @@
 #include <MellowPlayer/Application/Updater/AbstractPlatformUpdater.hpp>
 #include <MellowPlayer/Application/Updater/Asset.hpp>
 
+namespace MellowPlayer::Application {
+    class IFileDownloader;
+    class Release;
+}
+
 namespace MellowPlayer::Infrastructure
 {
     class LinuxUpdater : public Application::AbstractPlatformUpdater
@@ -16,10 +21,10 @@ namespace MellowPlayer::Infrastructure
 
     protected:
         void doInstall(const QString& assetLocalPath) override;
-        QString getAssetUrl() const override;
-        QString getAssetFileName() const override;
+        QString assetUrl() const override;
+        QString assetFileName() const override;
         Application::Asset asset_;
-        QString getDestinationDir() const;
-        QString getDestinationPath() const;
+        QString destinationDir() const;
+        QString destinationPath() const;
     };
 }

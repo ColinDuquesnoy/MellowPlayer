@@ -12,27 +12,27 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
 ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, Settings& settings, IThemeLoader& themeLoader)
-        : streamingServices(streamingServices),
-          loader(themeLoader),
-          accentColorSetting(settings.get(SettingKey::APPEARANCE_ACCENT)),
-          themeSetting(settings.get(SettingKey::APPEARANCE_THEME)),
-          backgroundSetting(settings.get(SettingKey::APPEARANCE_BACKGROUND)),
-          foregroundSetting(settings.get(SettingKey::APPEARANCE_FOREGROUND)),
-          primaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_BACKGROUND)),
-          primaryForegroundSetting(settings.get(SettingKey::APPEARANCE_PRIMARY_FOREGROUND)),
-          secondaryBackgroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
-          secondaryForegroundSetting(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
-          currentTheme(getCustomTheme())
+        : streamingServices_(streamingServices),
+          loader_(themeLoader),
+          accentColorSetting_(settings.get(SettingKey::APPEARANCE_ACCENT)),
+          themeSetting_(settings.get(SettingKey::APPEARANCE_THEME)),
+          backgroundSetting_(settings.get(SettingKey::APPEARANCE_BACKGROUND)),
+          foregroundSetting_(settings.get(SettingKey::APPEARANCE_FOREGROUND)),
+          primaryBackgroundSetting_(settings.get(SettingKey::APPEARANCE_PRIMARY_BACKGROUND)),
+          primaryForegroundSetting_(settings.get(SettingKey::APPEARANCE_PRIMARY_FOREGROUND)),
+          secondaryBackgroundSetting_(settings.get(SettingKey::APPEARANCE_SECONDARY_BACKGROUND)),
+          secondaryForegroundSetting_(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
+          currentTheme_(customTheme())
 {
     connect(&streamingServices, &StreamingServicesController::currentChanged, this, &ThemeViewModel::onCurrentServiceChanged);
-    connect(&accentColorSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&themeSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&backgroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&foregroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&primaryBackgroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&primaryForegroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&secondaryBackgroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&secondaryForegroundSetting, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&accentColorSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&themeSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&backgroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&foregroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&primaryBackgroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&primaryForegroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&secondaryBackgroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
+    connect(&secondaryForegroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&streamingServices, &StreamingServicesController::added, this, &ThemeViewModel::onServiceAdded);
 
     collectThemes();
@@ -41,63 +41,63 @@ ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, S
 
 bool ThemeViewModel::isDark() const
 {
-    return isDark(currentTheme.background);
+    return isDark(currentTheme_.background);
 }
 
-QString ThemeViewModel::getAccent() const
+QString ThemeViewModel::accent() const
 {
-    return currentTheme.accent;
+    return currentTheme_.accent;
 }
 
-QString ThemeViewModel::getBackground() const
+QString ThemeViewModel::background() const
 {
-    return currentTheme.background;
+    return currentTheme_.background;
 }
 
-QString ThemeViewModel::getForeground() const
+QString ThemeViewModel::foreground() const
 {
-    return currentTheme.foreground;
+    return currentTheme_.foreground;
 }
 
-QString ThemeViewModel::getPrimary() const
+QString ThemeViewModel::primary() const
 {
-    return currentTheme.primary;
+    return currentTheme_.primary;
 }
 
-QString ThemeViewModel::getPrimaryForeground() const
+QString ThemeViewModel::primaryForeground() const
 {
-    return currentTheme.primaryForeground;
+    return currentTheme_.primaryForeground;
 }
 
-QString ThemeViewModel::getSecondary() const
+QString ThemeViewModel::secondary() const
 {
-    return currentTheme.secondary;
+    return currentTheme_.secondary;
 }
 
-QString ThemeViewModel::getSecondaryForeground() const
+QString ThemeViewModel::secondaryForeground() const
 {
-    return currentTheme.secondaryForeground;
+    return currentTheme_.secondaryForeground;
 }
 
 void ThemeViewModel::update()
 {
-    StreamingService* currentService = streamingServices.getCurrent();
-    QString current = themeSetting.getValue().toString();
-    if (currentService != nullptr && isAdaptiveTheme() && !currentService->getTheme().isEmpty()) {
-        Theme theme = currentService->getTheme();
-        availableThemes["Adaptive"] = theme;
+    StreamingService* currentService = streamingServices_.current();
+    QString current = themeSetting_.value().toString();
+    if (currentService != nullptr && isAdaptiveTheme() && !currentService->theme().isEmpty()) {
+        Theme theme = currentService->theme();
+        availableThemes_["Adaptive"] = theme;
         fromTheme(theme);
     } else if (isAdaptiveTheme())
-        fromTheme(availableThemes["Default"]);
+        fromTheme(availableThemes_["Default"]);
     else if (current == "Custom")
-        fromTheme(getCustomTheme());
+        fromTheme(customTheme());
     else
-        fromTheme(availableThemes[current]);
+        fromTheme(availableThemes_[current]);
 }
 
 bool ThemeViewModel::isAdaptiveTheme() const
 {
-    return themeSetting.getValue().toString() == "Adaptive";
+    return themeSetting_.value().toString() == "Adaptive";
 }
 
 void ThemeViewModel::onCurrentServiceChanged(StreamingService* streamingService)
@@ -110,65 +110,65 @@ void ThemeViewModel::onCurrentServiceChanged(StreamingService* streamingService)
 
 void ThemeViewModel::setAccent(const QString& value)
 {
-    if (value == currentTheme.accent)
+    if (value == currentTheme_.accent)
         return;
 
-    currentTheme.accent = value;
+    currentTheme_.accent = value;
     emit accentChanged();
 }
 
 void ThemeViewModel::setBackground(const QString& value)
 {
-    if (value == currentTheme.background)
+    if (value == currentTheme_.background)
         return;
 
-    currentTheme.background = value;
+    currentTheme_.background = value;
     emit backgroundChanged();
     emit isDarkChanged();
 }
 
 void ThemeViewModel::setForeground(const QString& value)
 {
-    if (value == currentTheme.foreground)
+    if (value == currentTheme_.foreground)
         return;
 
-    currentTheme.foreground = value;
+    currentTheme_.foreground = value;
     emit foregroundChanged();
 }
 
 void ThemeViewModel::setPrimary(const QString& value)
 {
-    if (value == currentTheme.primary)
+    if (value == currentTheme_.primary)
         return;
 
-    currentTheme.primary = value;
+    currentTheme_.primary = value;
     emit primaryChanged();
 }
 
 void ThemeViewModel::setPrimaryForeground(const QString& value)
 {
-    if (value == currentTheme.primaryForeground)
+    if (value == currentTheme_.primaryForeground)
         return;
 
-    currentTheme.primaryForeground = value;
+    currentTheme_.primaryForeground = value;
     emit primaryForegroundChanged();
 }
 
 void ThemeViewModel::setSecondary(const QString& value)
 {
-    if (value == currentTheme.secondary)
+    if (value == currentTheme_.secondary)
         return;
 
-    currentTheme.secondary = value;
+    currentTheme_.secondary = value;
     emit secondaryChanged();
 }
 
 void ThemeViewModel::setSecondaryForeground(const QString& value)
 {
-    if (value == currentTheme.secondaryForeground)
+    if (value == currentTheme_.secondaryForeground)
         return;
 
-    currentTheme.secondaryForeground = value;
+    currentTheme_.secondaryForeground = value;
     emit secondaryForegroundChanged();
 }
 
@@ -183,7 +183,7 @@ void ThemeViewModel::fromTheme(const Theme& newTheme)
     setSecondaryForeground(newTheme.secondaryForeground);
 }
 
-double ThemeViewModel::getColorScaleFactor(const QString& color) const
+double ThemeViewModel::colorScaleFactor(const QString& color) const
 {
     const int lightnessMax = 164;
     const float darkerFactor = 1.05f;
@@ -208,40 +208,42 @@ bool ThemeViewModel::isDark(const QString& color) const
     return lightness < 164 && ffCount < 2;
 }
 
-Theme ThemeViewModel::getCustomTheme() const
+Theme ThemeViewModel::customTheme() const
 {
-    return Theme{accentColorSetting.getValue().toString(),        backgroundSetting.getValue().toString(),
-                 foregroundSetting.getValue().toString(),         primaryBackgroundSetting.getValue().toString(),
-                 primaryForegroundSetting.getValue().toString(),  secondaryBackgroundSetting.getValue().toString(),
-                 secondaryForegroundSetting.getValue().toString()};
+    return Theme{accentColorSetting_.value().toString(),        backgroundSetting_.value().toString(),
+                 foregroundSetting_.value().toString(),         primaryBackgroundSetting_.value().toString(),
+                 primaryForegroundSetting_.value().toString(),  secondaryBackgroundSetting_.value().toString(),
+                 secondaryForegroundSetting_.value().toString()};
 }
 
 void ThemeViewModel::collectThemes()
 {
-    availableThemes["Adaptive"] = currentTheme;
-    availableThemes["Breeze"] = loader.load(":/MellowPlayer/Application/Theme/Breeze.json");
-    availableThemes["BreezeDark"] = loader.load(":/MellowPlayer/Application/Theme/BreezeDark.json");
-    availableThemes["Custom"] = getCustomTheme();
-    availableThemes["Default"] = loader.load(":/MellowPlayer/Application/Theme/Default.json");
+    availableThemes_["Adaptive"] = currentTheme_;
+    availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Application/Theme/Breeze.json");
+    availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Application/Theme/BreezeDark.json");
+    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Application/Theme/Midna.json");
+    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Application/Theme/MidnaDark.json");
+    availableThemes_["Custom"] = customTheme();
+    availableThemes_["Default"] = loader_.load(":/MellowPlayer/Application/Theme/Default.json");
 
-    for (auto service : streamingServices.getAll()) {
-        availableThemes[service->getName()] = service->getTheme();
+    for (auto service : streamingServices_.toList()) {
+        availableThemes_[service->name()] = service->theme();
     }
 }
 
 void ThemeViewModel::onServiceAdded(StreamingService* service)
 {
-    availableThemes[service->getName()] = service->getTheme();
+    availableThemes_[service->name()] = service->theme();
 }
 
-QStringList ThemeViewModel::getAvailableThemes() const
+QStringList ThemeViewModel::availableThemes() const
 {
-    QStringList themes = availableThemes.keys();
+    QStringList themes = availableThemes_.keys();
     themes.sort();
     return themes;
 }
 
-Theme ThemeViewModel::getTheme(const QString& themeName) const
+Theme ThemeViewModel::theme(const QString& themeName) const
 {
-    return availableThemes[themeName];
+    return availableThemes_[themeName];
 }

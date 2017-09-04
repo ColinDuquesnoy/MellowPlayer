@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.3
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 ItemDelegate {
     bottomPadding: 3; topPadding: 3
@@ -15,7 +16,7 @@ ItemDelegate {
 
     contentItem: RowLayout {
         Label {
-            text: model.name
+            text: Translator.translateName(model.name)
             font.pixelSize: 16
             Layout.fillWidth: true
         }
@@ -30,13 +31,13 @@ ItemDelegate {
             Material.foreground: _theme.isDark(model.qtObject.value) ? "white" : "#303030"
 
             Tooltip {
-                text: model.toolTip
+                text: Translator.translateToolTip(model.toolTip)
             }
 
             ColorDialog {
                 id: colorDialog
 
-                title: "Please choose a color"
+                title: qsTr("Please choose a color")
                 color: model.qtObject.value
                 onColorChanged: model.qtObject.value = color
             }

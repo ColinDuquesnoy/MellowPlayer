@@ -21,6 +21,6 @@ namespace MellowPlayer::Infrastructure
         Q_INVOKABLE QString getImageProviderUrl(const QString& url);
 
     private:
-        Application::ILogger& logger;
+        Application::ILogger& logger_;
     };
 }

@@ -1,14 +1,18 @@
 #include "Updater.hpp"
 #include "AbstractPlatformUpdater.hpp"
-#include "IReleaseQuerier.hpp"
+#include "ILatestReleaseQuerier.hpp"
+#include "Release.hpp"
+#include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Application/Settings/SettingKey.hpp>
 
 using namespace MellowPlayer::Application;
 
-Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater)
-        : logger_(LoggingManager::instance().getLogger("Updater")),
+Updater::Updater(ILatestReleaseQuerier& releaseQuerier, Settings& settings, AbstractPlatformUpdater& platformUpdater)
+        : logger_(LoggingManager::logger("Updater")),
           releaseQuerier_(releaseQuerier),
           platformUpdater_(platformUpdater),
           autoCheckEnabledSetting_(settings.get(SettingKey::MAIN_CHECK_FOR_UPDATES)),
@@ -16,7 +20,7 @@ Updater::Updater(IReleaseQuerier& releaseQuerier, Settings& settings, AbstractPl
           currentRelease_(&Release::current())
 {
     releaseQuerier.setChannel(getChannel());
-    connect(&releaseQuerier, &IReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
+    connect(&releaseQuerier, &ILatestReleaseQuerier::latestReceived, this, &Updater::onLatestReleaseReceived);
     connect(&updateChannelSetting_, &Setting::valueChanged, this, &Updater::check);
     connect(&platformUpdater, &AbstractPlatformUpdater::progressUpdated, this, &Updater::progressUpdated);
     connect(&platformUpdater, &AbstractPlatformUpdater::downloadFinished, this, &Updater::onDownloadFinished);
@@ -28,12 +32,12 @@ void Updater::check()
     LOG_DEBUG(logger_, "Checking for update");
     setStatus(Status::Checking);
     releaseQuerier_.setChannel(getChannel());
-    releaseQuerier_.getLatest();
+    releaseQuerier_.query();
 }
 
 UpdateChannel Updater::getChannel() const
 {
-    return UpdateChannelStringer::fromString(updateChannelSetting_.getValue().toString());
+    return static_cast<UpdateChannel>(updateChannelSetting_.value().toInt());
 }
 
 void Updater::install()
@@ -53,7 +57,7 @@ bool Updater::canInstall() const
     return platformUpdater_.canInstall();
 }
 
-const Release* Updater::getLatestRelease() const
+const Release* Updater::latestRelease() const
 {
     return latestRelease_;
 }
@@ -61,14 +65,14 @@ const Release* Updater::getLatestRelease() const
 void Updater::onLatestReleaseReceived(const Release* release)
 {
     if (release != nullptr && *release > *currentRelease_) {
-        LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->getName()).arg(release->getName()));
+        LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->name()).arg(release->name()));
         setStatus(Status::UpdateAvailable);
         latestRelease_ = release;
         platformUpdater_.setRelease(latestRelease_);
         isUpdateAvailable_ = true;
         emit updateAvailable();
     } else {
-        LOG_DEBUG(logger_, QString("No release found"));
+        LOG_DEBUG(logger_, QString("Current release is up to date..."));
         setStatus(Status::None);
         latestRelease_ = nullptr;
         isUpdateAvailable_ = false;
@@ -81,7 +85,7 @@ void Updater::setCurrentRelease(const Release* currentRelease)
     currentRelease_ = currentRelease;
 }
 
-Updater::Status Updater::getStatus() const
+Updater::Status Updater::status() const
 {
     return status_;
 }

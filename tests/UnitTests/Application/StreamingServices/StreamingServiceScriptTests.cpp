@@ -7,16 +7,16 @@ using namespace std;
 
 TEST_CASE("StreamingServiceScriptTests", "[UnitTest]")
 {
-    SECTION("StreamingServiceScript.getCode")
+    SECTION("StreamingServiceScript.code")
     {
         StreamingServiceScript script("code", "path");
-        REQUIRE(script.getCode().toStdString() == "code");
+        REQUIRE(script.code().toStdString() == "code");
     }
 
-    SECTION("StreamingServiceScript.getPath")
+    SECTION("StreamingServiceScript.path")
     {
         StreamingServiceScript script("code", "path");
-        REQUIRE(script.getPath() == "path");
+        REQUIRE(script.path() == "path");
     }
 
     SECTION("StreamingServiceScript.setCode")
@@ -224,9 +224,9 @@ TEST_CASE("StreamingServiceScriptTests", "[UnitTest]")
         REQUIRE(!script.isValid());
     }
 
-    SECTION("StreamingServiceScript.getConstants")
+    SECTION("StreamingServiceScript.constants")
     {
         StreamingServiceScript script("", "");
-        REQUIRE(!script.getConstants().isEmpty());
+        REQUIRE(!script.constants().isEmpty());
     }
 }

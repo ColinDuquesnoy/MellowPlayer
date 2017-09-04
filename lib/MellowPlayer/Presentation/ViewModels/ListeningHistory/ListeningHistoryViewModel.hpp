@@ -1,8 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Presentation/Models/ListeningHistoryProxyListModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
-#include <QAbstractListModel>
 
 namespace MellowPlayer::Application
 {
@@ -14,12 +12,12 @@ namespace MellowPlayer::Presentation
     class ListeningHistoryViewModel : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QAbstractItemModel* model READ getModel CONSTANT)
+        Q_PROPERTY(QAbstractItemModel* model READ model CONSTANT)
     public:
         explicit ListeningHistoryViewModel(Application::ListeningHistory& listeningHistory);
 
         void initialize();
-        ListeningHistoryProxyListModel* getModel();
+        ListeningHistoryProxyListModel* model();
         Q_INVOKABLE void disableService(const QString& serviceName, bool disable);
         Q_INVOKABLE void setSearchFilter(const QString& searchFilter);
         Q_INVOKABLE void removeById(int entryId);
@@ -30,8 +28,8 @@ namespace MellowPlayer::Presentation
         void onEntryRemoved(int entryId);
 
     private:
-        Application::ListeningHistory& listeningHistoryService;
-        ListeningHistoryListModel* sourceModel;
-        ListeningHistoryProxyListModel proxyModel;
+        Application::ListeningHistory& listeningHistoryService_;
+        ListeningHistoryListModel* sourceModel_;
+        ListeningHistoryProxyListModel proxyModel_;
     };
 }

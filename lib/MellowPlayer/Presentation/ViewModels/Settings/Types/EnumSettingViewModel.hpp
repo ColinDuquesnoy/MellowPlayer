@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
 
 namespace MellowPlayer::Presentation
 {
@@ -9,13 +8,13 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
         Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
-        Q_PROPERTY(QStringList values READ getValues CONSTANT)
+        Q_PROPERTY(QStringList values READ values CONSTANT)
     public:
         EnumSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const;
-        virtual QStringList getValues() const;
-        QString getQmlComponent() override;
+        virtual QStringList values() const;
+        QString qmlComponent() override;
 
     signals:
         void valueChanged();

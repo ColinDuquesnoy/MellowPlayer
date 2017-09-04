@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../SettingsTranslator.js" as Translator
 
 SwitchDelegate {
     bottomPadding: 3; topPadding: 3
@@ -11,9 +12,9 @@ SwitchDelegate {
     enabled: model.enabled
     hoverEnabled: true
     onCheckedChanged: model.qtObject.value = checked
-    text: model.name
+    text: Translator.translateName(model.name)
 
     Tooltip {
-        text: model.toolTip
+        text: Translator.translateToolTip(model.toolTip)
     }
 }

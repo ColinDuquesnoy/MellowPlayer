@@ -3,10 +3,11 @@
 #include <MellowPlayer/Application/Settings/Setting.hpp>
 #include <MellowPlayer/Application/Settings/SettingKey.hpp>
 #include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/Updater/Github/GithubReleaseQuerier.hpp>
+#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/Updater.hpp>
 #include <Mocks/FakeHttpClient.hpp>
 #include <QtTest/QSignalSpy>
+#include <MellowPlayer/Application/Updater/Release.hpp>
 
 using namespace MellowPlayer;
 using namespace MellowPlayer::Application;
@@ -15,7 +16,7 @@ SCENARIO("check for stable updates")
 {
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Stable));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Stable);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -24,7 +25,7 @@ SCENARIO("check for stable updates")
         updater.setCurrentRelease(&currentRelease);
         QSignalSpy updateAvailableSpy(&updater, &Updater::updateAvailable);
 
-        REQUIRE(updater.getStatus() == Updater::Status::None);
+        REQUIRE(updater.status() == Updater::Status::None);
 
         WHEN("check for updates")
         {
@@ -32,9 +33,9 @@ SCENARIO("check for stable updates")
 
             THEN("update to version version 2.2.5 is available")
             {
-                REQUIRE(updater.getStatus() == Updater::Status::UpdateAvailable);
+                REQUIRE(updater.status() == Updater::Status::UpdateAvailable);
                 REQUIRE(updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName() == "2.2.5");
+                REQUIRE(updater.latestRelease()->name() == "2.2.5");
                 REQUIRE(updateAvailableSpy.count() == 1);
             }
         }
@@ -54,7 +55,7 @@ SCENARIO("check for stable updates")
             THEN("no update is available")
             {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease() == nullptr);
+                REQUIRE(updater.latestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -74,7 +75,7 @@ SCENARIO("check for stable updates")
             THEN("no update is available")
             {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease() == nullptr);
+                REQUIRE(updater.latestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -84,10 +85,10 @@ SCENARIO("check for stable updates")
 SCENARIO("check for beta updates")
 {
     FakeHttpClient fakeHttpClient;
-    GithubReleaseQuerier querier(fakeHttpClient);
+    LatestGithubReleaseQuerier querier(fakeHttpClient);
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Beta));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Beta);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -103,7 +104,7 @@ SCENARIO("check for beta updates")
             THEN("update to version version 2.95.0 is available")
             {
                 REQUIRE(updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "2.95.0");
+                REQUIRE(updater.latestRelease()->name().toStdString() == "2.95.0");
                 REQUIRE(updateAvailableSpy.count() == 1);
             }
         }
@@ -123,7 +124,7 @@ SCENARIO("check for beta updates")
             THEN("no update is available")
             {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease() == nullptr);
+                REQUIRE(updater.latestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }
@@ -133,10 +134,10 @@ SCENARIO("check for beta updates")
 SCENARIO("check for Continuous updates")
 {
     FakeHttpClient fakeHttpClient;
-    GithubReleaseQuerier querier(fakeHttpClient);
+    LatestGithubReleaseQuerier querier(fakeHttpClient);
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue(UpdateChannelStringer::toString(UpdateChannel::Continuous));
+    settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Continuous);
 
     GIVEN("current version is 2.2.4 from April 2017")
     {
@@ -152,7 +153,7 @@ SCENARIO("check for Continuous updates")
             THEN("update to version version Continuous is available")
             {
                 REQUIRE(updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName() == "Continuous");
+                REQUIRE(updater.latestRelease()->name().toStdString() == "Continuous");
                 REQUIRE(updateAvailableSpy.count() == 1);
             }
         }
@@ -172,7 +173,7 @@ SCENARIO("check for Continuous updates")
             THEN("update to Continuous is available")
             {
                 REQUIRE(updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease()->getName().toStdString() == "Continuous");
+                REQUIRE(updater.latestRelease()->name().toStdString() == "Continuous");
                 REQUIRE(updateAvailableSpy.count() == 1);
             }
         }
@@ -192,7 +193,7 @@ SCENARIO("check for Continuous updates")
             THEN("no update is available")
             {
                 REQUIRE(!updater.isUpdateAvailable());
-                REQUIRE(updater.getLatestRelease() == nullptr);
+                REQUIRE(updater.latestRelease() == nullptr);
                 REQUIRE(updateAvailableSpy.count() == 0);
             }
         }

@@ -1,5 +1,7 @@
 #include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
+#include <MellowPlayer/Application/Updater/Release.hpp>
+#include <MellowPlayer/Application/Updater/Updater.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
@@ -16,17 +18,17 @@ UpdaterViewModel::UpdaterViewModel(Updater& updater) : updater_(updater)
     emit busyChanged();
 }
 
-bool UpdaterViewModel::isVisible() const
+bool UpdaterViewModel::visible() const
 {
     return visible_;
 }
 
-bool UpdaterViewModel::isInstallEnabled() const
+bool UpdaterViewModel::installEnabled() const
 {
     return installEnabled_;
 }
 
-double UpdaterViewModel::getProgress() const
+double UpdaterViewModel::progress() const
 {
     return progress_;
 }
@@ -103,30 +105,30 @@ void UpdaterViewModel::onNoUpdateAvailable()
     setVisible(false);
 }
 
-QString UpdaterViewModel::getUrl() const
+QString UpdaterViewModel::url() const
 {
-    const Release* r = updater_.getLatestRelease();
+    const Release* r = updater_.latestRelease();
     if (r != nullptr)
-        return r->getUrl();
+        return r->url();
     return "";
 }
 
-QString UpdaterViewModel::getStatusString() const
+QString UpdaterViewModel::status() const
 {
-    return UpdaterStatusConverter::toString(updater_.getStatus());
+    return UpdaterStatusConverter().toString(updater_.status());
 }
 
-bool UpdaterViewModel::isBusy() const
+bool UpdaterViewModel::busy() const
 {
-    return updater_.getStatus() == Updater::Status::Checking || updater_.getStatus() == Updater::Status::Downloading
-    || updater_.getStatus() == Updater::Status::Installing;
+    return updater_.status() == Updater::Status::Checking || updater_.status() == Updater::Status::Downloading
+    || updater_.status() == Updater::Status::Installing;
 }
 
 void UpdaterViewModel::onProgressUpdated(double progress)
 {
     setProgress(progress);
 }
-bool UpdaterViewModel::isRestartEnabled() const
+bool UpdaterViewModel::restartEnabled() const
 {
     return restartEnabled_;
 }

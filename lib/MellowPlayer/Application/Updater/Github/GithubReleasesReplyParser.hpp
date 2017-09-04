@@ -1,11 +1,13 @@
 #pragma once
 
-#include <MellowPlayer/Application/Updater/Release.hpp>
-#include <QtCore/QByteArray>
-#include <QtCore/QJsonDocument>
+#include <QtCore/QObject>
+
+class QByteArray;
 
 namespace MellowPlayer::Application
 {
+    class Release;
+
     class GithubReleasesReplyParser : public QObject
     {
         Q_OBJECT
