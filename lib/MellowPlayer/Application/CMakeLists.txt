@@ -8,5 +8,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Settings/schema.json.in ${CMAKE_CURRE
 add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} application.qrc ${BUILD_CONFIG_SOURCE})
 target_link_libraries(${LIB_NAME} Qt5::Core Qt5::Gui)
 if (USE_PRECOMPILED_HEADER)
-    target_precompiled_header(${LIB_NAME} stdafx.h)
+    set_target_properties(${LIB_NAME} PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "stdafx.hpp")
+    set_target_properties(${LIB_NAME} PROPERTIES COTIRE_ADD_UNITY_BUILD FALSE)
+    cotire(${LIB_NAME})
 endif()

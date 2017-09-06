@@ -9,10 +9,8 @@ if (NOT BUILD_NUMBER)
     endif()
 endif()
 
-# this line must appear before the project statement
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/scripts/cmake/CMakePCHCompiler)
 
-project(MellowPlayer LANGUAGES C CXX CXXPCH VERSION 3.0.50.${BUILD_NUMBER})
+project(MellowPlayer VERSION 3.0.50.${BUILD_NUMBER})
 set(CMAKE_VERBOSE_MAKEFILE FALSE)
 # cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
@@ -20,6 +18,7 @@ set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
 include(scripts/cmake/InstallDirs.cmake)
+include(scripts/cmake/Cotire.cmake)
 
 set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
 configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
