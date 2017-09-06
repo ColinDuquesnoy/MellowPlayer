@@ -34,15 +34,7 @@ set_option(ENABLE_LCOV_REPORT OFF BOOL "True to enable lcov coverage report. Def
 set_option(STATIC_LIBSTDCPP OFF BOOL "True to link statically with libstdc++ and libgcc")
 set_option(UPDATE_TRANSLATIONS OFF BOOL "True to update translations")
 set_option(DEFAULT_THEME "Adaptive" STRING "The default theme (available: Default, Midna, MidnaDark, Breeze, BreezeDark, Deezer, Spotify,...)")
-if (PCH_SUPPORTED)
-    set_option(USE_PRECOMPILED_HEADER ON BOOL "(GNU/Linux Only) ON to enable usage of pre-compiled headers. Default is ON")
-else()
-    set(USE_PRECOMPILED_HEADER FALSE)
-endif()
-
-IF ( USE_PRECOMPILED_HEADER AND CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_definitions(-DQT_NO_DEBUG)
-ENDIF()
+set_option(USE_PRECOMPILED_HEADER ON BOOL "(GNU/Linux Only) ON to enable usage of pre-compiled headers. Default is ON")
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)
