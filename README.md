@@ -72,9 +72,9 @@ MellowPlayer is licensed under the GPL license.
 
 # Compilation
 
-Building MellowPlayer requires a **C++14** compiler:
+Building MellowPlayer requires a **C++17** compiler:
 
-- GCC >= 5.x
+- GCC >= 6.x
 - Clang >= 3.5
 - MSVC 2015 Update 2 
 
