@@ -9,10 +9,8 @@ if (NOT BUILD_NUMBER)
     endif()
 endif()
 
-# this line must appear before the project statement
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/scripts/cmake/CMakePCHCompiler)
 
-project(MellowPlayer LANGUAGES C CXX CXXPCH VERSION 3.0.50.${BUILD_NUMBER})
+project(MellowPlayer VERSION 3.0.50.${BUILD_NUMBER})
 set(CMAKE_VERBOSE_MAKEFILE FALSE)
 # cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
@@ -20,6 +18,7 @@ set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
 include(scripts/cmake/Macros.cmake)
 include(scripts/cmake/Config.cmake)
 include(scripts/cmake/InstallDirs.cmake)
+include(scripts/cmake/Cotire.cmake)
 
 set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
 configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
@@ -28,11 +27,6 @@ configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
-if (NOT WIN32 AND NOT APPLE)
-    set(PCH_SUPPORTED TRUE)
-else()
-    set(PCH_SUPPORTED FALSE)
-endif()
 set_option(BUILD_TESTS OFF BOOL "TRUE to build the tests, FALSE to ignore them.")
 set_option(BUILD_INTEGRATION_TESTS OFF BOOL "TRUE to build the integration tests, FALSE to ignore them.")
 set_option(ENABLE_COVERAGE OFF BOOL "True to build code coverage targerts")
@@ -40,15 +34,7 @@ set_option(ENABLE_LCOV_REPORT OFF BOOL "True to enable lcov coverage report. Def
 set_option(STATIC_LIBSTDCPP OFF BOOL "True to link statically with libstdc++ and libgcc")
 set_option(UPDATE_TRANSLATIONS OFF BOOL "True to update translations")
 set_option(DEFAULT_THEME "Adaptive" STRING "The default theme (available: Default, Midna, MidnaDark, Breeze, BreezeDark, Deezer, Spotify,...)")
-if (PCH_SUPPORTED)
-    set_option(USE_PRECOMPILED_HEADER ON BOOL "(GNU/Linux Only) ON to enable usage of pre-compiled headers. Default is ON")
-else()
-    set(USE_PRECOMPILED_HEADER FALSE)
-endif()
-
-IF ( USE_PRECOMPILED_HEADER AND CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_definitions(-DQT_NO_DEBUG)
-ENDIF()
+set_option(USE_PRECOMPILED_HEADER ON BOOL "(GNU/Linux Only) ON to enable usage of pre-compiled headers. Default is ON")
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)

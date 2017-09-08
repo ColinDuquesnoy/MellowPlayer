@@ -55,7 +55,9 @@ elseif(UNIX)
     endif()
 endif()
 if (USE_PRECOMPILED_HEADER)
-    target_precompiled_header(${PROJECT_NAME} stdafx.h)
+    set_target_properties(${PROJECT_NAME} PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "stdafx.hpp")
+    set_target_properties(${PROJECT_NAME} PROPERTIES COTIRE_ADD_UNITY_BUILD FALSE)
+    cotire(${LIB_NAME})
 endif()
 
 # add a console based executable for easier debugging
