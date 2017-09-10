@@ -47,6 +47,16 @@ To start the program, either start it from your applications menu or run the fol
 
 .. _AUR: https://aur.archlinux.org/packages/mellowplayer
 
+openSuse Tumbleweed
++++++++++++++++++++
+
+A rpm package is available for openSUSE TumbleWeed: https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer
+
+Fedora
+++++++
+
+Only fedora rawhide is supported at the moment: https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer
+
 
 Other distributions
 +++++++++++++++++++
