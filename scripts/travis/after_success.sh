@@ -13,7 +13,7 @@ fi
 if [[ -n "$TRAVIS_TAG" ]] || [[ "$TRAVIS_BRANCH" == release* ]] || [[ "$TRAVIS_EVENT_TYPE" == "cron" ]] || [[ "$TRAVIS_EVENT_TYPE" == "api" ]]; then
     # Full Build
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        pip install github3.py;
+        sudo pip install -U github3.py;
     fi
     # upload build artifacts to github
     python ./scripts/upload.py ${tagName} dist/*;
