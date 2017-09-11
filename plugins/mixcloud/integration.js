@@ -23,7 +23,7 @@ function getHashCode(s) {
     }, 0);
 }
 
-function toMilliseconds(string) {
+function toSeconds(string) {
     try {
         var dtimes = string.split(":");
 
@@ -253,7 +253,7 @@ class ReactController {
 
     getPosition() {
         try {
-            return toMilliseconds(document.querySelector("div.player-time").innerText);
+            return toSeconds(document.querySelector("div.player-time").innerText);
         }
         catch(e) {
             return 0;
@@ -264,7 +264,7 @@ class ReactController {
         var remaining = 0;
         try {
             var remainString = document.querySelector("div.end-time").innerText.replace("-", "");
-            remaining = toMilliseconds(remainString);
+            remaining = toSeconds(remainString);
         }
         catch(e) {
         }

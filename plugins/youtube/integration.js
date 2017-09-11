@@ -32,7 +32,7 @@ function getButtons() {
     };
 }
 
-function toMilliseconds(string) {
+function toSeconds(string) {
     try {
         var dtimes = string.split(":");
         var dminutes = dtimes[0];
@@ -73,8 +73,8 @@ function update() {
         "canGoPrevious": false,
         "canAddToFavorites": false,
         "volume": 1,
-        "duration": toMilliseconds(rawDuration),
-        "position": toMilliseconds(rawPosition),
+        "duration": toSeconds(rawDuration),
+        "position": toSeconds(rawPosition),
         "songId": getHashCode(songTitle),
         "songTitle": songTitle,
         "artistName": artistName,
