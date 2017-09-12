@@ -5,7 +5,7 @@ function getHashCode(s) {
     }, 0);
 }
 
-class PlayList {
+class PlaylistInfo {
     constructor() {
         this.tracks = playlist.info;
     }
@@ -14,12 +14,12 @@ class PlayList {
         return $("#play_queue").find("li.active").index();
     }
 
-    itemAt(index) {
+    trackInfoAt(index) {
         return this.tracks[index];
     }
 
     currentTrack() {
-        return this.itemAt(this.currentIndex());
+        return this.trackInfoAt(this.currentIndex());
     }
 
     count() {
@@ -29,14 +29,14 @@ class PlayList {
     previousTrack() {
         var previousIndex = this.currentIndex() - 1;
         if (previousIndex >= 0 )
-            return this.itemAt(previousIndex);
+            return this.trackInfoAt(previousIndex);
         return null;
     }
 
     nextTrack() {
         var nextIndex = this.currentIndex() + 1;
         if (nextIndex < this.count() )
-            return this.itemAt(nextIndex);
+            return this.trackInfoAt(nextIndex);
         return null;
     }
 }
@@ -47,7 +47,7 @@ function isCurrentTrackInPlaylist() {
 
 function getCurrentTrackInfo() {
     if (isCurrentTrackInPlaylist())
-        return new PlayList().currentTrack();
+        return new PlaylistInfo().currentTrack();
     return null;
 }
 
@@ -69,7 +69,8 @@ function getDuration() {
 }
 
 function getCurrentTrack() {
-    return findTrack(intCurrentTrack);
+    var track = findTrack(intCurrentTrack);
+    return track ? track : null;
 }
 
 function getPosition() {
@@ -103,14 +104,14 @@ function getAlbumArtUrl() {
 }
 
 function getPlaybackStatus() {
-    var track = findTrack(intCurrentTrack);
+    var track = getCurrentTrack();
 
-    if (track === false)
+    if (!track)
         return mellowplayer.PlaybackStatus.STOPPED;
 
     if (!isCurrentTrackInPlaylist() || track.isBuffering === true)
         return mellowplayer.PlaybackStatus.BUFFERING;
-    if (track.paused === true)
+    if (track.paused)
         return mellowplayer.PlaybackStatus.PAUSED;
     else
         return mellowplayer.PlaybackStatus.PLAYING;
@@ -203,13 +204,13 @@ function pause() {
 }
 
 function goNext() {
-    var pl = new PlayList();
-    play(pl.nextTrack().id);
+    var playlistInfo = new PlaylistInfo();
+    play(playlistInfo.nextTrack().id);
 }
 
 function goPrevious() {
-    var pl = new PlayList();
-    play(pl.previousTrack().id);
+    var playlistInfo = new PlaylistInfo();
+    play(playlistInfo.previousTrack().id);
 }
 
 function setVolume(volume) {
