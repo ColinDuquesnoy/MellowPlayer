@@ -45,7 +45,7 @@ function isCurrentTrackInPlaylist() {
     return $("#play_queue").find("li.active").index() !== -1;
 }
 
-function getCurrentTrack() {
+function getCurrentTrackInfo() {
     if (isCurrentTrackInPlaylist())
         return new PlayList().currentTrack();
     return null;
@@ -68,35 +68,37 @@ function getDuration() {
     }, 0);
 }
 
+function getCurrentTrack() {
+    return findTrack(intCurrentTrack);
+}
+
 function getPosition() {
     return safeGetter(function () {
-        var track = findTrack(intCurrentTrack);
-        return track.position / 1000
+        return getCurrentTrack().position / 1000
     }, 0);
 }
 
 function getVolume() {
     return safeGetter(function () {
-        var track = findTrack(intCurrentTrack);
-        return track.volume / 100.0
+        return getCurrentTrack().volume / 100.0
     }, 1);
 }
 
 function getTitle() {
     return safeGetter(function () {
-        return getCurrentTrack().title;
+        return getCurrentTrackInfo().title;
     }, "");
 }
 
 function getArtist() {
     return safeGetter(function () {
-        return getCurrentTrack().artist;
+        return getCurrentTrackInfo().artist;
     }, "");
 }
 
 function getAlbumArtUrl() {
     return safeGetter(function () {
-        return getCurrentTrack().img.replace("w50_h50_", "w512_h512_");
+        return getCurrentTrackInfo().img.replace("w50_h50_", "w512_h512_");
     }, "")
 }
 
