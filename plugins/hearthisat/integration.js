@@ -135,7 +135,7 @@ function update() {
         "artistName": getArtist(),
         "albumTitle": '',
         "artUrl": getAlbumArtUrl(),
-        "isFavorite": false
+        "isFavorite": isFavorite(intCurrentTrack)
     };
     return data;
 }
@@ -185,6 +185,17 @@ function play(id) {
     }
 }
 
+function isFavorite(_intTrackId) {
+    var isFavorite = false;
+    jQuery(".track_" + _intTrackId).each(function () {
+        objElement = jQuery(this);
+        if (objElement.find(".like_fct").hasClass("active")) {
+            isFavorite = true;
+        }
+    });
+    return isFavorite;
+}
+
 function pause() {
     soundManager.pauseAll();
 }
@@ -204,11 +215,11 @@ function setVolume(volume) {
 }
 
 function addToFavorites() {
-    // not supported
+    countLike(intCurrentTrack);
 }
 
 function removeFromFavorites() {
-    // not supported
+    countLike(intCurrentTrack);
 }
 
 function seekToPosition(position) {
