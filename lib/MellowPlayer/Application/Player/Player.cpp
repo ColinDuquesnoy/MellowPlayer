@@ -226,6 +226,8 @@ void Player::setCurrentSong(unique_ptr<Song>& song)
 
     currentSong_ = std::move(song);
     LOG_DEBUG(logger_, "song changed: " + (currentSong_->isValid() ? currentSong_->toString() : "NullSong"));
+    LOG_TRACE(logger_, "song id:" + currentSong_->uniqueId());
+    LOG_TRACE(logger_, "artUrl:" + currentSong_->artUrl());
     emit currentSongChanged(currentSong_.get());
 }
 
