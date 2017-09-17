@@ -5,19 +5,17 @@
 
 using namespace MellowPlayer::Infrastructure;
 
-PlatformFilters::PlatformFilters(IPlatformFilterFactory& filterFactory): filtersFactory_(filterFactory)
-{
-
-}
-
 bool PlatformFilters::match(const QString& filtersString) const
 {
-    for(auto filter: TokenizedFilters(filtersString)) {
-        auto platformFilter = filtersFactory_.create(filter);
+    PlatformFilterFactory filtersFactory;
+    TokenizedFilters filters(filtersString);
+    
+    for(auto filter: filters) {
+        auto platformFilter = filtersFactory.create(filter);
         if (platformFilter->match())
             return true;
     }
-
+    
     return false;
 }
 

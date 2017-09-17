@@ -4,22 +4,9 @@
 
 namespace MellowPlayer::Infrastructure
 {
-    class IPlatformFilterFactory;
-
-    class IPlatformFilters
+    class PlatformFilters
     {
     public:
-        virtual ~IPlatformFilters() = default;
-        virtual bool match(const QString& filters) const = 0;
-    };
-
-    class PlatformFilters: public IPlatformFilters
-    {
-    public:
-        explicit PlatformFilters(IPlatformFilterFactory& filterFactory);
-        bool match(const QString& filters) const override;
-
-    private:
-        IPlatformFilterFactory& filtersFactory_;
+        bool match(const QString& filters) const;
     };
 }

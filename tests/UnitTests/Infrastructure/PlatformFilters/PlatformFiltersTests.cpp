@@ -9,8 +9,7 @@ using namespace MellowPlayer::Infrastructure;
 SCENARIO("PlatformFiltersTests")
 {
     GIVEN("a PlatformFilters instance") {
-        PlatformFilterFactory factory;
-        PlatformFilters filters(factory);
+        PlatformFilters filters;
 
         WHEN("filter is 'All'") {
             QString filter = "All";

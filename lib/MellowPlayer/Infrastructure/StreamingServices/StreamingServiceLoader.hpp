@@ -1,6 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilters.hpp>
 
 namespace MellowPlayer::Application
 {
@@ -33,5 +34,6 @@ namespace MellowPlayer::Infrastructure
                              std::shared_ptr<Application::StreamingService>& toCheck) const;
 
         Application::ILogger& logger_;
+        PlatformFilters platformFilters_;
     };
 }

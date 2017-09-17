@@ -3,13 +3,9 @@
 package MellowPlayer::Infrastructure {
     class StreamingServiceLoader {
         + load()
-        - filters_: IPlatformFilters
+        - filters_: PlatformFilters
     }
-    StreamingServiceLoader -right-> IPlatformFilters: filters_
-
-    interface IPlatformFilters {
-        match(QString) bool
-    }
+    StreamingServiceLoader -right-> PlatformFilters: filters_
 
     enum Filters {
         All,
@@ -20,8 +16,13 @@ package MellowPlayer::Infrastructure {
     }
 
     class FilterConverter {
-        QString toString(Filter);
-        Filter fromString(filter);
+        + QString toString(Filter);
+        + Filter fromString(filter);
+        - linux_ : QString
+        - appImage_ : QString
+        - windows_ : QString
+        - osx_ : QString
+        - all_ : QString
     }
 
     class TokenizedFilters {
@@ -32,24 +33,20 @@ package MellowPlayer::Infrastructure {
     }
     TokenizedFilters ..> FilterConverter: <<use>>
 
-    interface IPlatformFilterFactory
-
     class PlatformFilterFactory {
         + Create(Filter filter): unique_ptr<IPlatformFilter>
     }
-    IPlatformFilterFactory <|-- PlatformFilterFactory
-    PlatformFilterFactory ..> IPlatformFilter: <<create>>
+    PlatformFilterFactory .left.> IPlatformFilter: <<create>>
 
     class PlatformFilters {
         + match(QString): bool
         --
-        - filterFactory_: IPlatformFilterFactory
+        - filterFactory_: PlatformFilterFactory
     }
-    IPlatformFilters <|-- PlatformFilters
-    PlatformFilters .left.> TokenizedFilters : <<use>>
-    PlatformFilters -right-> IPlatformFilterFactory
+    PlatformFilters ..> TokenizedFilters : <<use>>
+    PlatformFilters ..> PlatformFilterFactory : <<use>>
 
-    PlatformFilters .left.> IPlatformFilter: <<match>>
+    PlatformFilters ..> IPlatformFilter: <<match>>
 
     interface IPlatformFilter {
          match(): bool
@@ -60,35 +57,31 @@ package MellowPlayer::Infrastructure {
     }
     IPlatformFilter <|-- AllFilter
     note top
-    Always return true
+    Always returns true
     end note
 
     class LinuxFilterBase {
         # isAppImage_
         + {abstract} match(): bool
     }
-    IPlatformFilter <|-right- LinuxFilterBase
+    IPlatformFilter <|-- LinuxFilterBase
 
     class LinuxFilter {
-        # isAppImage_
         + match(): bool
     }
     LinuxFilterBase <|-- LinuxFilter
 
     class AppImageFilter {
-        # isAppImage_
         + match(): bool
     }
     LinuxFilterBase <|-- AppImageFilter
 
     class OsxFilter {
-        - isOsx_: bool
         + match(): bool
     }
     IPlatformFilter <|-- OsxFilter
 
     class WindowsFilter  {
-        - isWindows_: bool
         + match(): bool
     }
     IPlatformFilter <|-- WindowsFilter

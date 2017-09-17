@@ -6,15 +6,9 @@ namespace MellowPlayer::Infrastructure
 {
     class IPlatformFilter;
 
-    class IPlatformFilterFactory
+    class PlatformFilterFactory
     {
     public:
-        virtual std::unique_ptr<IPlatformFilter> create(Filter filter) const = 0;
-    };
-
-    class PlatformFilterFactory: public IPlatformFilterFactory
-    {
-    public:
-        std::unique_ptr<IPlatformFilter> create(Filter filter) const override;
+        std::unique_ptr<IPlatformFilter> create(Filter filter) const;
     };
 }
