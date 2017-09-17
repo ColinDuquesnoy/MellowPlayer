@@ -115,7 +115,7 @@ WizardPage {
                 CheckBox {
                     id: cbAllPlatforms
 
-                    text: "All"
+                    text: qsTr("All")
                 }
 
                 CheckBox {
