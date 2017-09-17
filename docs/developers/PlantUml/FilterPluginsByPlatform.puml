@@ -3,9 +3,9 @@
 package MellowPlayer::Infrastructure {
     class StreamingServiceLoader {
         + load()
-        - _filters: IPlatformFilters
+        - filters_: IPlatformFilters
     }
-    StreamingServiceLoader -right-> IPlatformFilters: _filters
+    StreamingServiceLoader -right-> IPlatformFilters: filters_
 
     interface IPlatformFilters {
         match(QString) bool
@@ -19,11 +19,18 @@ package MellowPlayer::Infrastructure {
         Windows
     }
 
+    class FilterConverter {
+        QString toString(Filter);
+        Filter fromString(filter);
+    }
+
     class TokenizedFilters {
-        - _filters: QList<Filter>
+        - filters_: QList<Filter>
+        + toString(): QString
         + begin(): QList<Filter>::const_iterator
         + end() : QList<Filter>::const_iterator
     }
+    TokenizedFilters ..> FilterConverter: <<use>>
 
     interface IPlatformFilterFactory
 
