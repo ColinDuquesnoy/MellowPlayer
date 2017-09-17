@@ -27,7 +27,7 @@ package MellowPlayer::Infrastructure {
 
     class TokenizedFilters {
         - filters_: QList<Filter>
-        + toString(): QString
+        + join(): QString
         + begin(): QList<Filter>::const_iterator
         + end() : QList<Filter>::const_iterator
     }

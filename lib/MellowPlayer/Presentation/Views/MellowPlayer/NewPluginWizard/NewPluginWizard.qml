@@ -16,6 +16,11 @@ Dialog {
     property string authorName
     property string authorUrl
     property string directory
+    property bool allPlatforms
+    property bool linuxPatform
+    property bool appImagePlatform
+    property bool osxPlatform
+    property bool windowsPlatform
 
     title: currentPage.title
     onAccepted: restart()
@@ -54,6 +59,11 @@ Dialog {
             onSvUrlChanged: wizard.svUrl = svUrl
             onAuthorNameChanged: wizard.authorName = authorName
             onAuthorUrlChanged: wizard.authorUrl = authorUrl
+            onAllPlatformsChanged: wizard.allPlatforms = allPlatforms
+            onLinuxPlatformChanged: wizard.linuxPatform = linuxPatform
+            onAppImagePlatformChanged: wizard.appImagePlatform = appImagePlatform
+            onOsxPlatformChanged: wizard.osxPlatform = osxPlatform
+            onWindowsPlatformChanged: wizard.windowsPlatform = windowsPlatform
         }
     }
 
@@ -67,6 +77,11 @@ Dialog {
             svUrl: wizard.svUrl
             authorName: wizard.authorName
             authorUrl: wizard.authorUrl
+            allPlatforms: wizard.allPlatforms
+            linuxPatform: wizard.linuxPatform
+            appImagePlatform: wizard.appImagePlatform
+            osxPlatform: wizard.osxPlatform
+            windowsPlatform: wizard.windowsPlatform
 
             onGoNextRequested: wizard.next()
             onDirectoryChanged: wizard.directory = directory

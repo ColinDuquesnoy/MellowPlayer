@@ -48,7 +48,8 @@ namespace MellowPlayer::Presentation
         Q_INVOKABLE void next();
         Q_INVOKABLE void previous();
         Q_INVOKABLE void createService(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
-                                       const QString& authorWebsite);
+                                       const QString& authorWebsite, bool allPlatforms, bool linuxPlatform, bool appImagePlatform,
+                                       bool osxPlatform, bool windowsPlatform);
 
     public slots:
         void setCurrentService(QObject* value);

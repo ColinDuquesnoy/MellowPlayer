@@ -15,7 +15,7 @@ const QString StreamingServiceCreator::METADATA_FILE_NAME = "metadata.ini";
 const QString StreamingServiceCreator::THEME_FILE_NAME = "theme.json";
 
 QString StreamingServiceCreator::create(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
-                                        const QString& authorWebsite) const
+                                        const QString& authorWebsite, const QString& supportedPlatforms) const
 {
     auto dir = pluginDir(serviceName);
     QDir().mkpath(dir);
@@ -23,7 +23,7 @@ QString StreamingServiceCreator::create(const QString& serviceName, const QStrin
     createLogo(dir);
     createScript(dir);
     createTheme(dir);
-    createMetadata(serviceName, serviceUrl, authorName, authorWebsite, dir);
+    createMetadata(serviceName, serviceUrl, authorName, authorWebsite, supportedPlatforms, dir);
 
     return dir;
 }
@@ -44,9 +44,10 @@ void StreamingServiceCreator::createTheme(const QString& pluginDir) const
 }
 
 void StreamingServiceCreator::createMetadata(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
-                                             const QString& authorWebsite, const QString& pluginDir) const
+                                             const QString& authorWebsite, const QString& supportedPlatforms, const QString& pluginDir) const
 {
-    createPluginFile(pluginDir, METADATA_FILE_NAME, [&](QString string) { return string.arg(authorName, authorWebsite, serviceName, serviceUrl); });
+    createPluginFile(pluginDir, METADATA_FILE_NAME, [&](QString string) {
+        return string.arg(authorName, authorWebsite, serviceName, supportedPlatforms, serviceUrl); });
 }
 
 QString StreamingServiceCreator::pluginDir(const QString& serviceName) const

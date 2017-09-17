@@ -17,7 +17,7 @@ TokenizedFilters::TokenizedFilters(const QList<Filter>& filters): filters_(filte
 
 }
 
-QString TokenizedFilters::toString() const
+QString TokenizedFilters::join() const
 {
     QStringList strings;
     FilterConverter converter;

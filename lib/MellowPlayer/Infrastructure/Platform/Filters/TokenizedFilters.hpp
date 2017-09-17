@@ -12,7 +12,7 @@ namespace MellowPlayer::Infrastructure
         TokenizedFilters(const QString& filters);
         TokenizedFilters(const QList<Filter>& filters);
 
-        QString toString() const;
+        QString join() const;
 
         typedef typename QList<Filter>::const_iterator const_iterator;
         const_iterator begin(void) const;

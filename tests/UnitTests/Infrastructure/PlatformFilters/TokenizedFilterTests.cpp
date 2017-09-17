@@ -38,7 +38,7 @@ SCENARIO("TokenizedFilterTests")
         {
             THEN("we get the original string back")
             {
-                REQUIRE(tokenizedFilters.toString().toStdString() == filtersString.toStdString());
+                REQUIRE(tokenizedFilters.join().toStdString() == filtersString.toStdString());
             }
         }
     }
