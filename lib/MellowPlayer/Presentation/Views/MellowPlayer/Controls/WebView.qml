@@ -46,6 +46,7 @@ WebEngineView {
         root.triggerWebAction(WebEngineView.ExitFullScreen);
     }
 
+    url: "about:blank"
     settings.pluginsEnabled : true
     settings.fullScreenSupportEnabled: true
     settings.autoLoadImages: true

@@ -4,6 +4,7 @@
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <QtQml/QQmlApplicationEngine>
+#include "DevToolsWindowViewModel.hpp"
 
 namespace MellowPlayer::Application
 {
@@ -49,5 +50,6 @@ namespace MellowPlayer::Presentation
         ClipBoardViewModel clipBoardModel_;
         SettingsViewModel settingsViewModel_;
         UpdaterViewModel& updaterViewModel_;
+        DevToolsWindowViewModel devToolsWindowViewModel;
     };
 }

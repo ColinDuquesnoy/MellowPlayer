@@ -4,6 +4,7 @@ singleton MaterialIcons 3.0 MaterialIcons.qml
 
 ApplicationRoot 3.0 ApplicationRoot.qml
 MainWindow 3.0 MainWindow.qml
+DevToolsWindow 3.0 DevToolsWindow.qml
 
 MainPage 3.0 Pages/MainPage.qml
 SettingsPage 3.0 Pages/SettingsPage.qml

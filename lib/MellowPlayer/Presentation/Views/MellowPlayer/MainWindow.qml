@@ -164,8 +164,9 @@ ApplicationWindow {
                 d.restoreWindow();
                 confirmQuitMsgBox.open();
             }
-            else
+            else {
                 _app.quit();
+            }
         }
     }
 }

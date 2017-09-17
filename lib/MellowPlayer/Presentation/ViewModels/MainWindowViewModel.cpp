@@ -37,6 +37,7 @@ MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& s
     context->setContextProperty("_player", &player);
     context->setContextProperty("_clipboard", &clipBoardModel_);
     context->setContextProperty("_settings", &settingsViewModel_);
+    context->setContextProperty("_devTools", &devToolsWindowViewModel);
     context->setContextProperty("_window", this);
     context->setContextProperty("_app", &qtApp);
     context->setContextProperty("_updater", &updaterViewModel);

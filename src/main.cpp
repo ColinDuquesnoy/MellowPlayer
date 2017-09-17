@@ -25,6 +25,7 @@ int main(int argc, char** argv)
     Q_INIT_RESOURCE(application);
     Q_INIT_RESOURCE(presentation);
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
+    qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "4242");
 
     // commented on purpose, see github issue #71
     // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

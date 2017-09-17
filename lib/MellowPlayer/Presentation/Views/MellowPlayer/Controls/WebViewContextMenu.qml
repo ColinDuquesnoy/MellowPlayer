@@ -20,6 +20,9 @@ Menu {
     signal goForwardRequested()
     signal reloadRequested()
     signal viewPageSourceRequested()
+    signal openWebDeveloperTools()
+
+    width: 250
 
     function show() {
         openTimer.running = true;
@@ -99,5 +102,10 @@ Menu {
     MenuItem {
         text: qsTr("View Page Source")
         onClicked: viewPageSourceRequested()
+    }
+
+    MenuItem {
+        text: qsTr("Open web developer tools")
+        onClicked: _devTools.showDevTools()
     }
 }

@@ -30,6 +30,7 @@
         <file>Views/MellowPlayer/qmldir</file>
         <file>Views/MellowPlayer/ApplicationRoot.qml</file>
         <file>Views/MellowPlayer/MainWindow.qml</file>
+        <file>Views/MellowPlayer/DevToolsWindow.qml</file>
         <file>Views/MellowPlayer/MaterialIcons.qml</file>
         <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
         <file>Views/MellowPlayer/Controls/MainToolBar.qml</file>

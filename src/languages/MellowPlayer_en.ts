@@ -503,22 +503,22 @@ listened to will appear here...</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="57"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="59"/>
         <source>Are you sure you want to quit MellowPlayer?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="58"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="60"/>
         <source>Confirm quit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="66"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="68"/>
         <source>Closing to system tray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="67"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="69"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
         <translation></translation>
     </message>
@@ -1293,49 +1293,54 @@ listened to will appear here...</source>
 <context>
     <name>WebViewContextMenu</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="37"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="40"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="43"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="46"/>
         <source>Paste</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="50"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="53"/>
         <source>Unselect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="62"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="65"/>
         <source>Copy link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="69"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="72"/>
         <source>Open link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="81"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="84"/>
         <source>Back</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="88"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="91"/>
         <source>Forward</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="95"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="98"/>
         <source>Reload</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="100"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="103"/>
         <source>View Page Source</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="108"/>
+        <source>Open web developer tools</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
