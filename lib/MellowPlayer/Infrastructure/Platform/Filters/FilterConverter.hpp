@@ -15,8 +15,6 @@ namespace MellowPlayer::Infrastructure
         Filter fromString(const QString& filterString) const;
 
     private:
-        QString capitalize(const QString& string) const;
-
         QString linux_;
         QString appImage_;
         QString windows_;
