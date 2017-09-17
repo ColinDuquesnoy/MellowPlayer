@@ -1,33 +1,23 @@
 #include "PlatformFilters.hpp"
+#include "TokenizedFilters.hpp"
+#include "IPlatformFilter.hpp"
+#include "PlatformFilterFactory.hpp"
 
 using namespace MellowPlayer::Infrastructure;
 
-
-//QString Platform::name() const
-//{
-//    QString plaformName = Unsupported;
-//
-//#ifdef Q_OS_LINUX
-//    QString appImagePath = qgetenv("APPIMAGE");
-//    if (appImagePath.isEmpty())
-//        plaformName = Linux;
-//    else
-//        plaformName = AppImage;
-//#endif
-//
-//#ifdef Q_OS_OSX
-//    plaformName = OSX;
-//#endif
-//
-//#ifdef Q_OS_WIN
-//    plaformName = Windows;
-//#endif
-//
-//    return plaformName;
-//}
-
-
-bool PlatformFilters::match(QString) const
+PlatformFilters::PlatformFilters(IPlatformFilterFactory& filterFactory): filtersFactory_(filterFactory)
 {
+
+}
+
+bool PlatformFilters::match(const QString& filtersString) const
+{
+    for(auto filter: TokenizedFilters(filtersString)) {
+        auto platformFilter = filtersFactory_.create(filter);
+        if (platformFilter->match())
+            return true;
+    }
+
     return false;
 }
+

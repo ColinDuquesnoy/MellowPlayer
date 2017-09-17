@@ -43,11 +43,10 @@ package MellowPlayer::Infrastructure {
     class PlatformFilters {
         + match(QString): bool
         --
-        - tokenizedFilter_: TokenizedFilters
         - filterFactory_: IPlatformFilterFactory
     }
     IPlatformFilters <|-- PlatformFilters
-    PlatformFilters -left-> TokenizedFilters
+    PlatformFilters .left.> TokenizedFilters : <<use>>
     PlatformFilters -right-> IPlatformFilterFactory
 
     PlatformFilters .left.> IPlatformFilter: <<match>>
