@@ -1,70 +1,90 @@
 @startuml
 
-package MellowPlayer::Application {
-    interface IStreamingServiceLoader {
-        + load()
-    }
-}
-
 package MellowPlayer::Infrastructure {
     class StreamingServiceLoader {
         + load()
-        - _filtersFactory: IPlatformFiltersFactory
-        - _platform: IPlatform
+        - _filters: IPlatformFilters
+    }
+    StreamingServiceLoader -right-> IPlatformFilters: _filters
+
+    interface IPlatformFilters {
+        match(QString) bool
     }
 
-    IStreamingServiceLoader <|-- StreamingServiceLoader
+    enum Filters {
+        All,
+        Linux,
+        AppImage,
+        OSX,
+        Windows
+    }
 
-    StreamingServiceLoader -left-> IPlatformFiltersFactory: _filtersFactory
-    StreamingServiceLoader -right-> IPlatform: _platform
+    class TokenizedFilters {
+        - _filters: QList<Filter>
+        + begin(): QList<Filter>::const_iterator
+        + end() : QList<Filter>::const_iterator
+    }
 
-    interface IPlatform {
-        + name(): QString
+    interface IPlatformFilterFactory
+
+    class PlatformFilterFactory {
+        + Create(Filter filter): unique_ptr<IPlatformFilter>
+    }
+    IPlatformFilterFactory <|-- PlatformFilterFactory
+    PlatformFilterFactory ..> IPlatformFilter: <<create>>
+
+    class PlatformFilters {
+        + match(QString): bool
         --
-        + isLinux() : bool
-        + isAppImage() : bool
-        + isWindows() : bool
-        + isOsx() : bool
-        --
-        + match(QList<IPlatformFilter>): bool
+        - tokenizedFilter_: TokenizedFilters
+        - filterFactory_: IPlatformFilterFactory
     }
+    IPlatformFilters <|-- PlatformFilters
+    PlatformFilters -left-> TokenizedFilters
+    PlatformFilters -right-> IPlatformFilterFactory
 
-    class Platform
-    IPlatform <|-- Platform
-
-    Platform .left.> IPlatformFilter: <<match>>
-
-    interface IPlatformFiltersFactory {
-        + create(QString) : QList<IPlatformFilter>
-    }
-
-    class PlatformFiltersFactory {
-        + create(QString) : QList<IPlatformFilter>
-    }
-
-    IPlatformFiltersFactory <|-- PlatformFiltersFactory
+    PlatformFilters .left.> IPlatformFilter: <<match>>
 
     interface IPlatformFilter {
-         match(IPlatform): bool
+         match(): bool
     }
-    IPlatform <.. IPlatformFilter: <<use>>
 
-    class AllFilter
+    class AllFilter {
+        + match(): bool
+    }
     IPlatformFilter <|-- AllFilter
-    note left
+    note top
     Always return true
     end note
 
-    class LinuxFilter
-    IPlatformFilter <|-- LinuxFilter
+    class LinuxFilterBase {
+        # isAppImage_
+        + {abstract} match(): bool
+    }
+    IPlatformFilter <|-right- LinuxFilterBase
 
-    class AppImageFilter
-    IPlatformFilter <|-- AppImageFilter
+    class LinuxFilter {
+        # isAppImage_
+        + match(): bool
+    }
+    LinuxFilterBase <|-- LinuxFilter
 
-    class OsxFilter
+    class AppImageFilter {
+        # isAppImage_
+        + match(): bool
+    }
+    LinuxFilterBase <|-- AppImageFilter
+
+    class OsxFilter {
+        - isOsx_: bool
+        + match(): bool
+    }
     IPlatformFilter <|-- OsxFilter
 
-    class WindowsFilter
+    class WindowsFilter  {
+        - isWindows_: bool
+        + match(): bool
+    }
     IPlatformFilter <|-- WindowsFilter
 }
 

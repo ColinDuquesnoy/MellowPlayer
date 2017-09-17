@@ -6,14 +6,11 @@ glob_recurse_excl(SOURCE_FILES *.cpp "Platform")
 glob_recurse_excl(HEADER_FILES *.hpp "Platform")
 
 file(GLOB_RECURSE PLATFORM_FILTERS_SOURCES Platform/Filters/*.cpp)
-file(GLOB_RECURSE PLATFORM_FILTERS_HEADERS Platform/Filters/*.cpp)
+file(GLOB_RECURSE PLATFORM_FILTERS_HEADERS Platform/Filters/*.hpp)
 set(SOURCE_FILES ${SOURCE_FILES} ${PLATFORM_FILTERS_SOURCES})
 set(HEADER_FILES ${HEADER_FILES} ${PLATFORM_FILTERS_HEADERS})
 
 set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/qxtglobalshortcut.cpp)
-set(SOURCE_FILES ${SOURCE_FILES} Platform/Platform.cpp)
-set(HEADER_FILES ${HEADER_FILES} Platform/Platform.hpp)
-
 if (WIN32)
     set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/win/qxtglobalshortcut_win.cpp)
     file(GLOB_RECURSE PLATFORM_SOURCE_FILES Platform/Windows/*.cpp)
