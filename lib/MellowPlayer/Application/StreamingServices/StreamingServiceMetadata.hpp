@@ -15,7 +15,6 @@ namespace MellowPlayer::Application
         QString scriptPath;
         QString pluginDirectory;
         QString version;
-        bool requireProprietaryCodecs = false;
 
         StreamingServiceMetadata() = default;
 

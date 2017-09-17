@@ -29,7 +29,6 @@ namespace MellowPlayer::Application
         const QString& authorWebsite() const;
         QString logo() const;
         const QString& name() const;
-        bool requireProprietaryCodecs() const;
         QString url() const;
         const QString& version() const;
         StreamingServiceScript* script() const;
