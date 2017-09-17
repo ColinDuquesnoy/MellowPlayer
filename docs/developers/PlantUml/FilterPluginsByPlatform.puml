@@ -1,0 +1,71 @@
+@startuml
+
+package MellowPlayer::Application {
+    interface IStreamingServiceLoader {
+        + load()
+    }
+}
+
+package MellowPlayer::Infrastructure {
+    class StreamingServiceLoader {
+        + load()
+        - _filtersFactory: IPlatformFiltersFactory
+        - _platform: IPlatform
+    }
+
+    IStreamingServiceLoader <|-- StreamingServiceLoader
+
+    StreamingServiceLoader -left-> IPlatformFiltersFactory: _filtersFactory
+    StreamingServiceLoader -right-> IPlatform: _platform
+
+    interface IPlatform {
+        + name(): QString
+        --
+        + isLinux() : bool
+        + isAppImage() : bool
+        + isWindows() : bool
+        + isOsx() : bool
+        --
+        + match(QList<IPlatformFilter>): bool
+    }
+
+    class Platform
+    IPlatform <|-- Platform
+
+    Platform .left.> IPlatformFilter: <<match>>
+
+    interface IPlatformFiltersFactory {
+        + create(QString) : QList<IPlatformFilter>
+    }
+
+    class PlatformFiltersFactory {
+        + create(QString) : QList<IPlatformFilter>
+    }
+
+    IPlatformFiltersFactory <|-- PlatformFiltersFactory
+
+    interface IPlatformFilter {
+         match(IPlatform): bool
+    }
+    IPlatform <.. IPlatformFilter: <<use>>
+
+    class AllFilter
+    IPlatformFilter <|-- AllFilter
+    note left
+    Always return true
+    end note
+
+    class LinuxFilter
+    IPlatformFilter <|-- LinuxFilter
+
+    class AppImageFilter
+    IPlatformFilter <|-- AppImageFilter
+
+    class OsxFilter
+    IPlatformFilter <|-- OsxFilter
+
+    class WindowsFilter
+    IPlatformFilter <|-- WindowsFilter
+}
+
+@enduml
