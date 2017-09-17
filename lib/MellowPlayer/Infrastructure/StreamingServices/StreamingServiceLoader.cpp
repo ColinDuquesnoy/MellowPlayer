@@ -34,6 +34,8 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
         for (const QFileInfo& directory : QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
+                if (service == nullptr)
+                    continue;
                 if (service->isValid() && !containsService(services, service)) {
                     LOG_DEBUG(logger_, service->name() + " streamingService successfully loaded (from \"" + directory.absoluteFilePath() + "\")");
                     services.append(service);
@@ -74,7 +76,7 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
     QSettings meta(filePath, QSettings::IniFormat);
 
     QString supportedPlatforms = meta.value("supported_platforms").toString();
-    
+
     if (platformFilters_.match(supportedPlatforms)) {
         StreamingServiceMetadata serviceMetadata;
         serviceMetadata.author = meta.value("author").toString();
@@ -83,10 +85,10 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
         serviceMetadata.name = meta.value("name").toString();
         serviceMetadata.url = meta.value("url").toString();
         serviceMetadata.version = meta.value("version").toString();
-        
-        return serviceMetadata;        
-    } 
-    else 
+
+        return serviceMetadata;
+    }
+    else
         throw runtime_error("plugin not supported");
 }
 
@@ -111,7 +113,7 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
         LOG_INFO(logger_, "plugin is not supported on this platform");
         return nullptr;
     }
-    
+
     metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
