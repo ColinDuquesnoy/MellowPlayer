@@ -28,7 +28,6 @@ namespace MellowPlayer::Application
             NOTIFICATIONS_NEW_VERSION,
             NOTIFICATIONS_PAUSED,
             NOTIFICATIONS_RESUMED,
-            PRIVACY_CHECK_FOR_UPDATES,
             PRIVACY_ENABLE_LISTENING_HISTORY,
             PRIVACY_LISTENING_HISTORY_LIMIT,
             PRIVATE_CURRENT_SERVICE,
@@ -75,7 +74,6 @@ namespace MellowPlayer::Application
             enumToString << "notifications/new-version";
             enumToString << "notifications/paused";
             enumToString << "notifications/resumed";
-            enumToString << "privacy/check-for-updates";
             enumToString << "privacy/enable-listening-history";
             enumToString << "privacy/listening-history-limit";
             enumToString << "private/current-service";

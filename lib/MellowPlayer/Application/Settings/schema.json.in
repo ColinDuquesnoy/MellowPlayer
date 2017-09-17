@@ -149,14 +149,6 @@
 					"default": false,
 					"key": "resumed",
 					"enabled": "notifications/enabled"
-				},
-				{
-					"name": "Display a notification at startup when a new version of MellowPlayer is available,",
-                    "tooltip": "Enabled/Disable displaying a notification when a new version of MellowPlayer is available",
-					"type": "bool",
-					"default": true,
-					"key": "new-version",
-					"enabled": "notifications/enabled"
 				}
 			]
 		},
@@ -305,14 +297,7 @@
 					"default": 3,
 					"key": "listening-history-limit",
                     "enabled": "privacy/enable-listening-history"
-				},
-                {
-                    "name": "Automatically check for updates",
-                    "tooltip": "Enable this option to be notified when a new version of MellowPlayer is available.",
-                    "type": "bool",
-                    "default": true,
-                    "key": "check-for-updates"
-                }
+				}
             ]
         },
 		{
