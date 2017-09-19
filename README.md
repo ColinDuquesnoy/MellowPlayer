@@ -7,6 +7,8 @@
 
 # About
 
+[![Join the chat at https://gitter.im/ColinDuquesnoy-MellowPlayer/Lobby](https://badges.gitter.im/ColinDuquesnoy-MellowPlayer/Lobby.svg)](https://gitter.im/ColinDuquesnoy-MellowPlayer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 *MellowPlayer* is a **free**, **open source** and **cross-platform** desktop application
 that runs **web-based music streaming services** in its own window and
 provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
