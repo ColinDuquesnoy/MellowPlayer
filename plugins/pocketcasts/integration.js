@@ -1,3 +1,10 @@
+function getHashCode(s) {
+    return s.split("").reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
+}
+
 function getPlayerScope() {
     return angular.element("#players").scope();
 }
@@ -23,7 +30,7 @@ function update() {
         "volume": scope.mediaPlayer.player.getVolume(),
         "duration": scope.mediaPlayer.episode.duration,
         "position": Math.floor(scope.mediaPlayer.player.getCurrentTimeInSeconds()),
-        "songId": 0,
+        "songId": getHashCode(scope.mediaPlayer.episode.title),
         "songTitle": scope.mediaPlayer.episode.title,
         "artistName": scope.mediaPlayer.podcast.author,
         "albumTitle": "",
