@@ -9,14 +9,15 @@ namespace MellowPlayer::Infrastructure
     class StreamingServiceCreator : public Application::IStreamingServiceCreator
     {
     public:
-        QString create(const QString& serviceName, const QString& serviceUrl, const QString& authorName, const QString& authorWebsite) const override;
+        QString create(const QString& serviceName, const QString& serviceUrl, const QString& authorName, const QString& authorWebsite,
+                       const QString& supportedPlatforms) const override;
 
     private:
         void createScript(const QString& pluginDir) const;
         void createLogo(const QString& pluginDir) const;
         void createTheme(const QString& pluginDir) const;
         void createMetadata(const QString& serviceName, const QString& serviceUrl, const QString& authorName, const QString& authorWebsite,
-                            const QString& pluginDir) const;
+                            const QString& supportedPlatforms, const QString& pluginDir) const;
         QString pluginDir(const QString& serviceName) const;
         QString readTemplateFile(const QString& fileName) const;
         void write(const QString& path, const QString& content) const;

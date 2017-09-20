@@ -34,6 +34,8 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
         for (const QFileInfo& directory : QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot)) {
             if (checkServiceDirectory(directory.absoluteFilePath())) {
                 shared_ptr<StreamingService> service = loadService(directory.absoluteFilePath());
+                if (service == nullptr)
+                    continue;
                 if (service->isValid() && !containsService(services, service)) {
                     LOG_DEBUG(logger_, service->name() + " streamingService successfully loaded (from \"" + directory.absoluteFilePath() + "\")");
                     services.append(service);
@@ -73,16 +75,21 @@ StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& fil
 {
     QSettings meta(filePath, QSettings::IniFormat);
 
-    StreamingServiceMetadata serviceMetadata;
-    serviceMetadata.author = meta.value("author").toString();
-    serviceMetadata.authorWebsite = meta.value("author_website").toString();
-    serviceMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
-    serviceMetadata.name = meta.value("name").toString();
-    serviceMetadata.requireProprietaryCodecs = meta.value("require_proprietary_codecs").toBool();
-    serviceMetadata.url = meta.value("url").toString();
-    serviceMetadata.version = meta.value("version").toString();
+    QString supportedPlatforms = meta.value("supported_platforms").toString();
 
-    return serviceMetadata;
+    if (platformFilters_.match(supportedPlatforms)) {
+        StreamingServiceMetadata serviceMetadata;
+        serviceMetadata.author = meta.value("author").toString();
+        serviceMetadata.authorWebsite = meta.value("author_website").toString();
+        serviceMetadata.logoPath = QFileInfo(QFileInfo(filePath).dir(), meta.value("icon").toString()).absoluteFilePath();
+        serviceMetadata.name = meta.value("name").toString();
+        serviceMetadata.url = meta.value("url").toString();
+        serviceMetadata.version = meta.value("version").toString();
+
+        return serviceMetadata;
+    }
+    else
+        throw runtime_error("plugin not supported");
 }
 
 Theme StreamingServiceLoader::readTheme(const QString& filePath)
@@ -98,12 +105,19 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
     QString scriptPath = findFileByExtension(directory, "js");
     QString themePath = findFileByExtension(directory, "json");
     QString locale = QLocale::system().name().split("_")[0];
-    StreamingServiceMetadata metadata = readMetadata(metadataPath);
+    StreamingServiceMetadata metadata;
+    try {
+         metadata = readMetadata(metadataPath);
+    }
+    catch (std::runtime_error& error) {
+        LOG_INFO(logger_, "plugin is not supported on this platform");
+        return nullptr;
+    }
+
     metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
     Theme theme = readTheme(themePath);
-
     return make_unique<StreamingService>(metadata, theme);
 }
 

@@ -62,20 +62,20 @@ This function is called regularly to update the player information.
 
 You must return a dictionnary with the following keys:
 
-- **playbackStatus** *(int, use mellowplayer.PlaybackStatus)*
-- **canSeek** *(bool)*
-- **canGoNext** *(bool)*
-- **canGoPrevious** *(bool)*
-- **canAddToFavorites** *(bool)*
-- **volume** *(float [0-1])*
-- **songId** *(str)*
-- **songTitle** *(str)*
-- **artistName** *(str)*
-- **albumTitle** *(str)*
-- **artUrl** *(str)*
-- **isFavorite** *(bool)*
-- **duration** *(int [seconds])*
-- **position** *(int [seconds])*
+- **playbackStatus** *(int)*: Use mellowplayer.PlaybackStatus)*. **Mandatory**
+- **canSeek** *(bool)*: True if the player can seek into the current song.
+- **canGoNext** *(bool)*: True if the player can skip to the next song.
+- **canGoPrevious** *(bool)*: True if the playe can skip to the previous song.
+- **canAddToFavorites** *(bool)*: True if the user can add or remove the current song from a list of favorites
+- **volume** *(float [0-1])*: Player volume. Optional, leave it 1 if your plugin cannot control the volume.
+- **songId** *(str)*: The unique id of the current song. **Mandatory**. Either use a GUID or hash the song title if no id is available.
+- **songTitle** *(str)*: The title of the current song. **Mandatory**
+- **artistName** *(str)*: The name of the artist of the current. Optional.
+- **albumTitle** *(str)*: The name of the album of the current song. Optional.
+- **artUrl** *(str)*: The current song art url.
+- **isFavorite** *(bool)*: True if the song is in the list of the user's favorite songs. Optional.
+- **duration** *(int [seconds])*: The duration of the song, in seconds. Optional (but nice).
+- **position** *(int [seconds])*: The position (or elapsed time) of the song, in seconds. Optional (but nice).
 
 play()
 ++++++

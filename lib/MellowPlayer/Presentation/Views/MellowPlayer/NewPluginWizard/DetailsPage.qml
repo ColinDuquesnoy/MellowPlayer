@@ -7,13 +7,37 @@ WizardPage {
     property alias svUrl: fieldSvUrl.text
     property alias authorName: fieldAuthor.text
     property alias authorUrl: fieldAuthorWebsite.text
+    property alias allPlatforms: cbAllPlatforms.checked
+    property alias linuxPlatform: cbLinuxPlatform.checked
+    property alias appImagePlatform: cbAppImagePlatform.checked
+    property alias osxPlatform: cbOsxPlatform.checked
+    property alias windowsPlatform: cbWindowsPlatform.checked
 
     title: qsTr("Details")
     description: qsTr("Please fill in the details about your plugin")
     goBackVisible: true
     goNextVisible: true
     finishVisible: false
-    goNextEnabled: fieldSvName.text != "" && fieldSvUrl.text != "" && fieldAuthor.text != "" && fieldAuthorWebsite.text != ""
+    goNextEnabled: fieldSvName.text != "" && fieldSvUrl.text != "" && fieldAuthor.text != "" && fieldAuthorWebsite.text != "" && hasAtLeastOnePlaformSelected();
+
+    function hasAtLeastOnePlaformSelected() {
+        if (allPlatforms)
+            return true;
+
+        if (linuxPlatform)
+            return true;
+
+        if (appImagePlatform)
+            return true;
+
+        if (osxPlatform)
+            return true;
+
+        if (windowsPlatform)
+            return true;
+
+        return false;
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -73,6 +97,56 @@ WizardPage {
                 Layout.fillWidth: true
             }
 
+            ColumnLayout {
+                Item {
+                    height: 12
+                }
+
+                Label {
+                    text: qsTr("Supported platforms:")
+                }
+
+                Item {
+                    Layout.fillHeight: true
+                }
+            }
+
+            ColumnLayout {
+                CheckBox {
+                    id: cbAllPlatforms
+
+                    text: qsTr("All")
+                }
+
+                CheckBox {
+                    id: cbLinuxPlatform
+
+                    text: "GNU/Linux"
+                    enabled: !cbAllPlatforms.checked
+                }
+
+                CheckBox {
+                    id: cbAppImagePlatform
+
+                    text: "AppImage"
+                    enabled: !cbAllPlatforms.checked
+                }
+
+                CheckBox {
+                    id: cbOsxPlatform
+
+                    text: "Mac OSX"
+                    enabled: !cbAllPlatforms.checked
+                }
+
+                CheckBox {
+                    id: cbWindowsPlatform
+
+                    text: "Windows"
+                    enabled: !cbAllPlatforms.checked
+                }
+            }
+
         }
 
         Item {
@@ -80,5 +154,8 @@ WizardPage {
         }
     }
 
-    Component.onCompleted: fieldSvName.forceActiveFocus()
+    Component.onCompleted: {
+        fieldSvName.forceActiveFocus()
+        cbAllPlatforms.checked = true;
+    }
 }

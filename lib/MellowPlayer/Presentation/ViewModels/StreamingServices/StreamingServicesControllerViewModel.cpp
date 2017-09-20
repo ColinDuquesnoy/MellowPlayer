@@ -7,6 +7,7 @@
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Filters/TokenizedFilters.hpp>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
@@ -14,6 +15,7 @@
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Infrastructure;
 
 StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices, Players& players,
                                                                            Settings& settings, IWorkDispatcher& workDispatcher,
@@ -136,10 +138,29 @@ void StreamingServicesControllerViewModel::previous()
 }
 
 void StreamingServicesControllerViewModel::createService(const QString& serviceName, const QString& serviceUrl, const QString& authorName,
-                                                         const QString& authorWebsite)
+                                                         const QString& authorWebsite,
+                                                         bool allPlatforms, bool linuxPlatform, bool appImagePlatform,
+                                                         bool osxPlatform, bool windowsPlatform)
 {
+    QList<Filter> filters;
+    if (allPlatforms)
+        filters.append(Filter::All);
+    else {
+        if (linuxPlatform)
+            filters.append(Filter::Linux);
+
+        if (appImagePlatform)
+            filters.append(Filter::AppImage);
+
+        if (osxPlatform)
+            filters.append(Filter::OSX);
+
+        if (windowsPlatform)
+            filters.append(Filter::Windows);
+    }
+    TokenizedFilters tokenizedFilters(filters);
     workDispatcher_.invoke([=]() {
-        QString pluginDir = streamingServiceCreator_.create(serviceName, serviceUrl, authorName, authorWebsite);
+        QString pluginDir = streamingServiceCreator_.create(serviceName, serviceUrl, authorName, authorWebsite, tokenizedFilters.join());
         emit serviceCreated(pluginDir);
         streamingServices_.load();
     });

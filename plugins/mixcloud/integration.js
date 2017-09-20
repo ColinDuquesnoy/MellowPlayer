@@ -16,104 +16,375 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-// Updates service information
-function getMixcloudPlayer() {
-    return $(document.querySelector('.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
+function getHashCode(s) {
+    return s.split("").reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
+}
+
+function toSeconds(string) {
+    try {
+        var dtimes = string.split(":");
+
+        if (dtimes.length === 3) {
+            var dhours = dtimes[0];
+            var dminutes = dtimes[1];
+            var dseconds = dtimes[2];
+            var duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60) + (parseInt(dhours, 10) * 60 * 60);
+        }
+        else {
+            var dminutes = dtimes[0];
+            var dseconds = dtimes[1];
+            var duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
+        }
+
+    } catch (e) {
+        var duration = 0;
+    }
+
+    return duration
+}
+
+/**
+ * Controller for the old mixloud frontend (which might still be used)
+ */
+class AngularController {
+    getMixcloudPlayer() {
+        return $(document.querySelector('.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
+    }
+
+    update() {
+        // hide header ad
+        $("body > div.cf > div:nth-child(1)").hide();
+
+        // Get a reference to the mixcloud's player queue controller
+        var M = this.getMixcloudPlayer();
+
+        // Get next/previous cloudcasts
+        var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
+        var previous = M.playerQueue.queue.cloudcastList.get(currentIndex - 1);
+        var cloudcast = M.player.currentCloudcast;
+
+        var playback_status = mellowplayer.PlaybackStatus.STOPPED;
+
+        if (M.player.buffering) {
+            playback_status = mellowplayer.PlaybackStatus.BUFFERING;
+        } else if (M.player.playing) {
+            playback_status = mellowplayer.PlaybackStatus.PLAYING;
+        } else if (cloudcast.title) {
+            playback_status = mellowplayer.PlaybackStatus.PAUSED;
+        }
+
+        return {
+            "playbackStatus": playback_status,
+            "canSeek": true,
+            "canGoNext": true,
+            "canGoPrevious": typeof previous !== "undefined",
+            "canAddToFavorites": true,
+            "volume": M.player.volume,
+            "duration": M.player.audioLength,
+            "position": M.player.audioPosition,
+            "songId": cloudcast.id,
+            "songTitle": cloudcast.title,
+            "artistName": cloudcast.owner,
+            "albumTitle": '',
+            "artUrl": M.player.currentCloudcast.widgetImage,
+            "isFavorite": false
+        }
+    }
+
+    play() {
+        // Get a reference to the mixcloud's player queue controller
+        var M = this.getMixcloudPlayer();
+        M.player.togglePlayClick();
+    }
+
+    pause() {
+        // Get a reference to the mixcloud's player queue controller
+        var M = $(document.querySelector(
+            '.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
+        M.player.togglePlayClick();
+    }
+
+    goNext() {
+        // Get a reference to the mixcloud's player queue controller
+        var M = this.getMixcloudPlayer();
+        var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
+        var next = M.playerQueue.queue.cloudcastList.get(currentIndex + 1);
+        if (typeof next !== "undefined") {
+            M.playerQueue.playFromQueue(next);
+        } else {
+            M.playerQueue.playUpNext();
+        }
+    }
+
+    goPrevious() {
+        // Get a reference to the mixcloud's player queue controller
+        var M = this.getMixcloudPlayer();
+        var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
+        var previous = M.playerQueue.queue.cloudcastList.get(currentIndex + -1);
+        if (typeof previous !== "undefined") {
+            M.playerQueue.playFromQueue(previous);
+        }
+    }
+
+    setVolume(volume) {
+        // Get a reference to the mixcloud's player queue controller
+        var M = this.getMixcloudPlayer();
+        M.player.volume = volume;
+    }
+
+    addToFavorites() {
+        document.querySelector("span.player-icons.favorite").click();
+    }
+
+    removeFromFavorites() {
+        document.querySelector("span.player-icons.favorite").click();
+    }
+
+    seekToPosition(position) {
+        // Get a reference to the mixcloud's player queue controller
+        var M = getMixcloudPlayer();
+        M.$emit("slider:stop", position)
+    }
+}
+
+/**
+ * Controller for the new mixloud frontend (it seems like only a few users have this frontend)
+ *
+ * -> seeking not supported
+ */
+class ReactController {
+    getButtons() {
+        return {
+            'play': document.querySelector('div.player-control > span.playing'),
+            'pause': document.querySelector('div.player-control > span.pause'),
+            'loading': document.querySelector('div.player-control > span.loading')
+        };
+    }
+
+    isElementVisible(element) {
+        try {
+            return element.offsetWidth > 0 && element.offsetHeight > 0;
+        }
+        catch (e) {
+            return false;
+        }
+    }
+
+    getCloudcastQueue() {
+        try {
+            var queue = [].slice.call(document.querySelector("div.up-next-area").children);
+            // first item is not a cloudcast
+            queue.shift();
+
+            return queue;
+        }
+        catch (e) {
+            return [];
+        }
+    }
+
+    getCurrentCloudcastIndex() {
+        var cloudcastQueue = this.getCloudcastQueue();
+
+        for (var index = 0; index < cloudcastQueue.length; index++) {
+            if (cloudcastQueue[index].className.endsWith("now-playing"))
+                return index;
+        }
+
+        return -1;
+    }
+
+    getNextCloudcast() {
+        var cloudcastQueue = this.getCloudcastQueue();
+        var currentIndex = this.getCurrentCloudcastIndex();
+        var nextIndex =  currentIndex + 1;
+
+        if (nextIndex < cloudcastQueue.length)
+            return cloudcastQueue[nextIndex];
+        return null;
+    }
+
+     getPrecedingCloudcast() {
+        var cloudcastQueue = this.getCloudcastQueue();
+        var precedingIndex = this.getCurrentCloudcastIndex() - 1;
+
+        if (precedingIndex >= 0)
+            return cloudcastQueue[precedingIndex];
+        return null;
+    }
+
+    getPlaybackStatus() {
+        var buffering = this.isElementVisible(this.getButtons().loading);
+        var paused = this.isElementVisible(this.getButtons().play);
+        var playing = this.isElementVisible(this.getButtons().pause);
+        var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
+        if (buffering) {
+            playbackStatus = mellowplayer.PlaybackStatus.BUFFERING;
+        }
+        else if (playing) {
+            playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
+        }
+        else if (paused) {
+            playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
+        }
+        return playbackStatus;
+    }
+
+    getCurrentCloudcastTitle() {
+        try {
+            return document.querySelector("a.player-cloudcast-title").innerText
+        }
+        catch(e) {
+            return ""
+        }
+    }
+
+    getArtistName() {
+        try {
+            return document.querySelector("a.player-cloudcast-author-link").innerText;
+        }
+        catch (e) {
+            return "";
+        }
+    }
+
+    getPosition() {
+        try {
+            return toSeconds(document.querySelector("div.player-time").innerText);
+        }
+        catch(e) {
+            return 0;
+        }
+    }
+
+    getDuration() {
+        var remaining = 0;
+        try {
+            var remainString = document.querySelector("div.end-time").innerText.replace("-", "");
+            remaining = toSeconds(remainString);
+        }
+        catch(e) {
+        }
+
+        return this.getPosition() + remaining;
+    }
+
+    getAlbumArt() {
+        try {
+            return document.querySelector("div.player-cloudcast-image").children[0].src;
+        }
+        catch (e) {
+            return "";
+        }
+    }
+
+    isFavorite() {
+        try {
+            var favoriteToolTip = document.querySelector("span.player-icons.favorite").children[0];
+            var tooltipValue = favoriteToolTip.attributes["data-tooltip"].value;
+            return tooltipValue !== "Favorite";
+        }
+        catch (e) {
+            return false;
+        }
+    }
+
+    update() {
+        return {
+            "playbackStatus": this.getPlaybackStatus(),
+            "canSeek": false,
+            "canGoNext": this.getNextCloudcast() !== null,
+            "canGoPrevious": this.getPrecedingCloudcast() !== null,
+            "canAddToFavorites": true,
+            "volume": 1,
+            "duration": this.getDuration(),
+            "position": this.getPosition(),
+            "songId": getHashCode(this.getCurrentCloudcastTitle()),
+            "songTitle": this.getCurrentCloudcastTitle(),
+            "artistName": this.getArtistName(),
+            "albumTitle": '',
+            "artUrl": this.getAlbumArt(),
+            "isFavorite": this.isFavorite()
+        }
+    }
+
+    play() {
+        this.getButtons().play.click();
+    }
+
+    pause() {
+        this.getButtons().pause.click();
+    }
+
+    goNext() {
+        this.getNextCloudcast().children[0].click();
+    }
+
+    goPrevious() {
+        this.getPrecedingCloudcast().children[0].click();
+    }
+
+    setVolume(volume) { }
+
+    addToFavorites() {
+        document.querySelector("span.player-icons.favorite").click();
+    }
+
+    removeFromFavorites() {
+        document.querySelector("span.player-icons.favorite").click();
+    }
+
+    seekToPosition(position) {
+        // not supported
+    }
+}
+
+function getController() {
+    try {
+        var controller = new AngularController();
+        controller.getMixcloudPlayer();
+        return controller;
+    }
+    catch (e) {
+        return new ReactController();
+    }
 }
 
 function update() {
-    // hide header ad
-    $("body > div.cf > div:nth-child(1)").hide();
-
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-
-    // Get next/previous cloudcasts
-    var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
-    var previous = M.playerQueue.queue.cloudcastList.get(currentIndex - 1);
-    var cloudcast = M.player.currentCloudcast;
-
-    var playback_status = mellowplayer.PlaybackStatus.STOPPED;
-
-    if (M.player.buffering) {
-        playback_status = mellowplayer.PlaybackStatus.BUFFERING;
-    } else if (M.player.playing) {
-        playback_status = mellowplayer.PlaybackStatus.PLAYING;
-    } else if (cloudcast.title) {
-        playback_status = mellowplayer.PlaybackStatus.PAUSED;
-    }
-
-    return {
-        "playbackStatus": playback_status,
-        "canSeek": true,
-        "canGoNext": true,
-        "canGoPrevious": typeof previous !== "undefined",
-        "canAddToFavorites": false,
-        "volume": M.player.volume,
-        "duration": M.player.audioLength,
-        "position": M.player.audioPosition,
-        "songId": cloudcast.id,
-        "songTitle": cloudcast.title,
-        "artistName": cloudcast.owner,
-        "albumTitle": '',
-        "artUrl": M.player.currentCloudcast.widgetImage,
-        "isFavorite": false
-    }
+    return getController().update();
 }
 
 function play() {
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-    M.player.togglePlayClick();
+    getController().play();
 }
 
 function pause() {
-    // Get a reference to the mixcloud's player queue controller
-    var M = $(document.querySelector(
-        '.ng-scope[ng-controller="PlayerQueueCtrl"]')).scope();
-    M.player.togglePlayClick();
+    getController().pause();
 }
 
 function goNext() {
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-    var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
-    var next = M.playerQueue.queue.cloudcastList.get(currentIndex + 1);
-    if (typeof next !== "undefined") {
-        M.playerQueue.playFromQueue(next);
-    } else {
-        M.playerQueue.playUpNext();
-    }
+    getController().goNext();
 }
 
 function goPrevious() {
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-    var currentIndex = M.playerQueue.queue.getNowPlayingIndex();
-    var previous = M.playerQueue.queue.cloudcastList.get(currentIndex + -1);
-    if (typeof previous !== "undefined") {
-        M.playerQueue.playFromQueue(previous);
-    }
+    getController().goPrevious();
 }
 
 function setVolume(volume) {
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-    M.player.volume = volume;
+    getController().setVolume(volume);
 }
 
 function addToFavorites() {
-    // simulate a click on favorite button
-    $('.icon-favorite-inner').get(0).click()
+    getController().addToFavorites();
 }
 
 function removeFromFavorites() {
-    // simulate a click on favorite button
-    $('.icon-favorite-inner').get(0).click()
+    getController().removeFromFavorites();
 }
 
 function seekToPosition(position) {
-    // Get a reference to the mixcloud's player queue controller
-    var M = getMixcloudPlayer();
-    M.$emit("slider:stop", position)
+    getController().seekToPosition(position);
 }

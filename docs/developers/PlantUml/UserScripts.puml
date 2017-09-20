@@ -1,0 +1,74 @@
+@startuml
+
+namespace MellowPlayer.Application {
+
+interface IUserScript {
+    path(): QString
+    name(): QString
+    setName(QString)
+    code() : QString
+    import(QString path)
+    load(QString path)
+}
+
+class UserScriptBase {
+    - path_: QString
+    - name_: QString
+    # code_: QString
+    + path(): QString
+    + name(): QString
+    + setName(QString):
+    + code(): QString
+}
+
+IUserScript <|-- UserScriptBase
+
+class StreamingService {
+    - _userScripts: QList<IUserScript*>
+    + addUserScript(IUserScript* script)
+    + userScripts(): QList<IUserScript>
+}
+
+StreamingService "*" -> IUserScript
+
+}
+
+namespace MellowPlayer.Infrastructure {
+
+class UserScript {
+    + import(QString path)
+    + load(QString path)
+}
+
+MellowPlayer.Application.UserScriptBase <|-- UserScript
+
+class StreamingServiceLoader {
+    + load()
+}
+
+StreamingServiceLoader .left..> UserScript: <<load>>
+StreamingServiceLoader .> MellowPlayer.Application.StreamingService: <<load>>
+
+}
+
+namespace MellowPlayer.Presentation {
+    class UserScriptViewModel {
+        - _userScript: IUserScript&
+        + code(): QString
+        + name(): QString
+        + setName(QString)
+        + path(): QString
+    }
+
+    class StreamingServiceViewModel {
+        - _userScripts: ListModel<UserScriptViewModel>
+        + userScripts(): ListModel<UserScriptViewModel>
+        + addScript(QString path)
+        + removeScript(QString name)
+    }
+
+    UserScriptViewModel --> MellowPlayer.Application.IUserScript
+    StreamingServiceViewModel "*" -> UserScriptViewModel
+}
+
+@enduml

@@ -46,6 +46,7 @@ WebEngineView {
         root.triggerWebAction(WebEngineView.ExitFullScreen);
     }
 
+    url: "about:blank"
     settings.pluginsEnabled : true
     settings.fullScreenSupportEnabled: true
     settings.autoLoadImages: true
@@ -90,33 +91,6 @@ WebEngineView {
 
         onReloadRequested: root.reload()        
         onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
-    }
-
-    Pane {
-        visible: !hasProprietaryCodecs && service.requireProprietaryCodecs
-
-        x: root.width / 2 - width / 2; y: -2; z: 1
-        width: parent.width
-
-        Material.background: Material.color(Material.Red)
-        Material.foreground: "white"
-
-        RowLayout {
-            anchors.fill: parent
-
-            Label {
-                font.pixelSize: 32
-                font.family: MaterialIcons.family
-                text: MaterialIcons.icon_error
-            }
-
-            Label {
-                text: "<b>" + service.name + qsTr(" requires proprietary audio codecs to work properly.</b><br>
-<i>You must build MellowPlayer with a version of QtWebEngine built with proprietary codecs enabled to use this service...</i>")
-
-                Layout.fillWidth: true
-            }
-        }
     }
 
     WebViewContextMenu {

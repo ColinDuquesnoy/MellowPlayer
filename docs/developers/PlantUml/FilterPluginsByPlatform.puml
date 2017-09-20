@@ -1,0 +1,90 @@
+@startuml
+
+package MellowPlayer::Infrastructure {
+    class StreamingServiceLoader {
+        + load()
+        - filters_: PlatformFilters
+    }
+    StreamingServiceLoader -right-> PlatformFilters: filters_
+
+    enum Filters {
+        All,
+        Linux,
+        AppImage,
+        OSX,
+        Windows
+    }
+
+    class FilterConverter {
+        + QString toString(Filter);
+        + Filter fromString(filter);
+        - linux_ : QString
+        - appImage_ : QString
+        - windows_ : QString
+        - osx_ : QString
+        - all_ : QString
+    }
+
+    class TokenizedFilters {
+        - filters_: QList<Filter>
+        + join(): QString
+        + begin(): QList<Filter>::const_iterator
+        + end() : QList<Filter>::const_iterator
+    }
+    TokenizedFilters ..> FilterConverter: <<use>>
+
+    class PlatformFilterFactory {
+        + Create(Filter filter): unique_ptr<IPlatformFilter>
+    }
+    PlatformFilterFactory .left.> IPlatformFilter: <<create>>
+
+    class PlatformFilters {
+        + match(QString): bool
+        --
+        - filterFactory_: PlatformFilterFactory
+    }
+    PlatformFilters ..> TokenizedFilters : <<use>>
+    PlatformFilters ..> PlatformFilterFactory : <<use>>
+
+    PlatformFilters ..> IPlatformFilter: <<match>>
+
+    interface IPlatformFilter {
+         match(): bool
+    }
+
+    class AllFilter {
+        + match(): bool
+    }
+    IPlatformFilter <|-- AllFilter
+    note top
+    Always returns true
+    end note
+
+    class LinuxFilterBase {
+        # isAppImage_
+        + {abstract} match(): bool
+    }
+    IPlatformFilter <|-- LinuxFilterBase
+
+    class LinuxFilter {
+        + match(): bool
+    }
+    LinuxFilterBase <|-- LinuxFilter
+
+    class AppImageFilter {
+        + match(): bool
+    }
+    LinuxFilterBase <|-- AppImageFilter
+
+    class OsxFilter {
+        + match(): bool
+    }
+    IPlatformFilter <|-- OsxFilter
+
+    class WindowsFilter  {
+        + match(): bool
+    }
+    IPlatformFilter <|-- WindowsFilter
+}
+
+@enduml

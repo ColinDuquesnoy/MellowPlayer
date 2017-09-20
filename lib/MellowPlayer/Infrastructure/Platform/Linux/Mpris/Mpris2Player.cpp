@@ -223,7 +223,7 @@ void Mpris2Player::onSongChanged(Song* song)
         if (map != lastMetadata_)
             signalPlayerUpdate(map);
         lastMetadata_ = map;
-        connect(song, &Song::durationChanged, this, &Mpris2Player::onDurationChanged);
+        connect(song, &Song::durationChanged, this, &Mpris2Player::onDurationChanged, Qt::UniqueConnection);
     }
 }
 

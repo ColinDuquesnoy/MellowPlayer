@@ -5,7 +5,7 @@ function getHashCode(s) {
     }, 0);
 }
 
-function toMilliseconds(string) {
+function toSeconds(string) {
     try {
         var dtimes = string.split(":");
         var dminutes = dtimes[0];
@@ -63,8 +63,8 @@ function update() {
         results.songTitle = document.getElementsByClassName("player__text")[0].children[0].innerText;
         results.artistName = document.getElementsByClassName("player__text")[0].children[1].innerText;
         results.songId = getHashCode(results.songTitle);
-        results.position = toMilliseconds(document.getElementsByClassName("player__elapsed-time__progress")[0].innerText);
-        results.duration = toMilliseconds(document.getElementsByClassName("player__elapsed-time__duration")[0].innerText);
+        results.position = toSeconds(document.getElementsByClassName("player__elapsed-time__progress")[0].innerText);
+        results.duration = toSeconds(document.getElementsByClassName("player__elapsed-time__duration")[0].innerText);
         results.artUrl = document.getElementsByClassName("player__image-container")[0].children[0].src;
     }
 

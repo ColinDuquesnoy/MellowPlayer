@@ -414,6 +414,7 @@ ToolBar {
 
                         Component.onCompleted: slider.updateHandleVisibility()
                         Layout.fillWidth: true
+                        Material.accent: _theme.accent == _theme.primary ? _theme.primaryForeground : _theme.accent
 
                         Connections {
                             target: _player

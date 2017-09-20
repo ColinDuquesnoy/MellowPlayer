@@ -74,7 +74,9 @@ ApplicationWindow {
     NewPluginWizard {
         id: newPluginWizard
 
-        height: 540; width: 960
+        property real scaleFactor: 0.9
+
+        width: 1152; height: 648
         x: root.width / 2 - width / 2; y: root.height / 2 - height / 2
     }
 
@@ -162,8 +164,9 @@ ApplicationWindow {
                 d.restoreWindow();
                 confirmQuitMsgBox.open();
             }
-            else
+            else {
                 _app.quit();
+            }
         }
     }
 }
