@@ -27,6 +27,9 @@ notifications and more).
 - [Google Play Music](https://play.google.com/music/listen)
 - [Youtube](https://youtube.com/)
 - [Tidal](https://listen.tidal.com/) (no HiFi support)
+- [Anghami](https://www.anghami.com/)
+- [Pocket Casts](https://play.pocketcasts.com/)
+- [HearThisAt](https://hearthis.at/)
 
 
 # Resources
@@ -50,8 +53,8 @@ MellowPlayer is licensed under the GPL license.
 
 ## Limitations:
 
-- For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases. 
-  Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website. Spotify requires the   widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/ 
+- For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases.
+  Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website. Spotify requires the   widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/
 
 - Some services (Spotify, Soundcloud and Mixcloud) also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases.
 
@@ -77,7 +80,7 @@ Building MellowPlayer requires a **C++17** compiler:
 
 - GCC >= 6.x
 - Clang >= 3.5
-- MSVC 2015 Update 2 
+- MSVC 2015 Update 2
 
 ## GNU/Linux
 
@@ -100,7 +103,7 @@ make
 
 ```bash
 mkdir build && cd build
-cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release .. 
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --config Release
 ```
 
@@ -117,7 +120,7 @@ You can specify the following options when calling cmake:
 
 Example build commands:
 
-- release build: 
+- release build:
     ```bash
     cmake ..
     ```
@@ -143,4 +146,3 @@ MellowPlayer is an open-source application that needs your help to go on growing
 There are many ways for developer and non-developers to contribute to the project. You can report (and fix) bugs, add new translations, add support for new streaming services (the core team won't support all services, especially those which are not free), and so on...
 
 If you feel like you want to contribute to the project, make sure to checkout the [contributing guidelines](https://github.com/ColinDuquesnoy/MellowPlayer/blob/master/.github/CONTRIBUTING.md)!
-
