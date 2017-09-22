@@ -39,30 +39,52 @@ function getHashCode(s) {
 }
 
 function getDuration() {
-    var remaining = $('#player .duration').innerText.substr(2);
-    var position = $('#player .position').innerText;
-    return toSeconds(remaining) + toSeconds(position)
+    var remaining = $('#player .duration')[0];
+    var position = $('#player .position')[0];
+    if (remaining === undefined || position === undefined) {
+        return 0
+    }
+    return toSeconds(remaining.innerText.substr(2)) + toSeconds(position.innerText)
 }
 
 function getPosition() {
-    var position = $('#player .position').innerText;
-    return toSeconds(duration)
+    var position = $('#player .position')[0];
+    if (position === undefined) {
+        return 0
+    }
+    return toSeconds(position.innerText)
 }
 
-function getSongId(argument) {
-   return getHashCode(getTitle());
+function getSongId() {
+   var title = getTitle();
+   if (title === undefined) {
+       return 0
+   }
+   return getHashCode(title);
 }
 
 function getAlbumArt() {
-    return $('.cover-art img').attr('src')
+    var albumArt = $('.cover-art img')[0];
+    if (albumArt === undefined) {
+        return ''
+    }
+    return albumArt.attributes.src.value
 }
 
 function getTitle() {
-    return $('#player .track-title a')
+    var title = $('#player .track-title a')[0];
+    if (title === undefined) {
+        return ''
+    }
+    return title.innerText
 }
 
 function getArtist() {
-    return $('#player .track-artist')
+    var artist = $('#player .track-artist')[0];
+    if (artist === undefined) {
+        return ''
+    }
+    return artist.innerText
 }
 
 function play() {
