@@ -10,7 +10,7 @@ WizardPage {
     property string authorName
     property string authorUrl
     property bool allPlatforms
-    property bool linuxPatform
+    property bool linuxPlatform
     property bool appImagePlatform
     property bool osxPlatform
     property bool windowsPlatform
@@ -33,7 +33,7 @@ WizardPage {
     }
 
     Component.onCompleted: {
-        _streamingServices.createService(svName, svUrl, authorName, authorUrl, allPlatforms, linuxPatform, appImagePlatform, osxPlatform, windowsPlatform)
+        _streamingServices.createService(svName, svUrl, authorName, authorUrl, allPlatforms, linuxPlatform, appImagePlatform, osxPlatform, windowsPlatform)
     }
 
     Connections {
