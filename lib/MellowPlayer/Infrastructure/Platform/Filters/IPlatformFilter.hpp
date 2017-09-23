@@ -9,7 +9,7 @@ namespace MellowPlayer::Infrastructure
     class IPlatformFilter
     {
     public:
-        ~IPlatformFilter() = default;
+        virtual ~IPlatformFilter() = default;
 
         virtual bool match() const = 0;
     };
