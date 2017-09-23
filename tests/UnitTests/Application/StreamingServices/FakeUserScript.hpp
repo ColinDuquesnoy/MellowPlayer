@@ -10,8 +10,7 @@ namespace MellowPlayer::Application::Tests
     class FakeUserScript: public UserScriptBase
     {
     public:
-        void import(const QString& path) override;
-
-        void load(const QString& path) override;
+        bool import(const QString& path) override;
+        bool load(const QString& path) override;
     };
 }

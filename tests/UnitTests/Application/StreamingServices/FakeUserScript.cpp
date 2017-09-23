@@ -4,13 +4,14 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application::Tests;
 
 
-void FakeUserScript::import(const QString& path)
+bool FakeUserScript::import(const QString& path)
 {
-    load(path);
+    return load(path);
 }
 
-void FakeUserScript::load(const QString& path)
+bool FakeUserScript::load(const QString& path)
 {
     UserScriptBase::path_ = path;
     Application::UserScriptBase::code_ = FAKE_USER_SCRIPT_CODE;
+    return true;
 }
