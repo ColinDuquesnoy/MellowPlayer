@@ -12,8 +12,8 @@ interface IUserScript {
 }
 
 class UserScriptBase {
-    - path_: QString
     - name_: QString
+    # path_: QString
     # code_: QString
     + path(): QString
     + name(): QString
