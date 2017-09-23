@@ -2,6 +2,20 @@
 
 namespace MellowPlayer.Application {
 
+class ISettingsProvider
+
+class UserScripts {
+    - _items: QList<IUserScript*>
+    + UserScripts(QString serviceName);
+    + count() : int
+    + at(int) : IUserScript*
+    + toList() : QList<IUserScript*>
+    + remove(QString)
+    + add(IUserScript* userScript)
+}
+UserScripts "*" -> IUserScript
+UserScripts "*" --> ISettingsProvider
+
 interface IUserScript {
     path(): QString
     name(): QString
@@ -24,12 +38,11 @@ class UserScriptBase {
 IUserScript <|-- UserScriptBase
 
 class StreamingService {
-    - _userScripts: QList<IUserScript*>
-    + addUserScript(IUserScript* script)
-    + userScripts(): QList<IUserScript>
+    - _userScripts: UserScripts*
+    + userScripts(): UserScripts*
 }
 
-StreamingService "*" -> IUserScript
+StreamingService -right-> UserScripts
 
 }
 
@@ -42,16 +55,15 @@ class UserScript {
 
 MellowPlayer.Application.UserScriptBase <|-- UserScript
 
-class StreamingServiceLoader {
-    + load()
-}
-
-StreamingServiceLoader .left..> UserScript: <<load>>
-StreamingServiceLoader .> MellowPlayer.Application.StreamingService: <<load>>
-
 }
 
 namespace MellowPlayer.Presentation {
+    class UserScriptsViewModel {
+        - _userScripts: ListModel<UserScriptViewModel>
+        + model(): ListModel<UserScriptViewModel>
+        + addScript(QString path)
+        + removeScript(QString name)
+    }
     class UserScriptViewModel {
         - _userScript: IUserScript&
         + code(): QString
@@ -61,14 +73,14 @@ namespace MellowPlayer.Presentation {
     }
 
     class StreamingServiceViewModel {
-        - _userScripts: ListModel<UserScriptViewModel>
-        + userScripts(): ListModel<UserScriptViewModel>
-        + addScript(QString path)
-        + removeScript(QString name)
+        + userScripts(): UserScriptViewModel*
     }
 
+    StreamingServiceViewModel -> UserScriptsViewModel
+    StreamingServiceViewModel --> MellowPlayer.Application.StreamingService
+    UserScriptsViewModel --> MellowPlayer.Application.UserScripts
     UserScriptViewModel --> MellowPlayer.Application.IUserScript
-    StreamingServiceViewModel "*" -> UserScriptViewModel
+    UserScriptsViewModel "*" -> UserScriptViewModel
 }
 
 @enduml
