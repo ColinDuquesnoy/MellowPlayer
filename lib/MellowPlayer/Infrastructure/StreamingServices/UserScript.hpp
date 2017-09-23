@@ -4,10 +4,19 @@
 
 namespace MellowPlayer::Infrastructure
 {
+
+    class UserScriptDirectory
+    {
+    public:
+        QString path() const;
+        bool create() const;
+        QString generateFileName() const;
+    };
+
     class UserScript : public Application::UserScriptBase
     {
     public:
-        void import(const QString& path) override;
-        void load(const QString& path) override;
+        bool import(const QString& sourcePath) override;
+        bool load(const QString& path) override;
     };
 }
