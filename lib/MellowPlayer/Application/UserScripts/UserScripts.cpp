@@ -35,7 +35,7 @@ int UserScripts::count() const
     return _scripts.count();
 }
 
-void UserScripts::add(const QString& userScriptName, const QString& sourceScriptPath)
+IUserScript& UserScripts::add(const QString& userScriptName, const QString& sourceScriptPath)
 {
     auto* userScript = userScriptFactory_.create();
     userScript->setName(userScriptName);
@@ -44,6 +44,8 @@ void UserScripts::add(const QString& userScriptName, const QString& sourceScript
     _scripts.append(userScript);
 
     save(userScriptName, userScript);
+
+    return *userScript;
 
 }
 
@@ -62,6 +64,13 @@ void UserScripts::remove(const QString& scriptName)
     int index = 0;
     for (index = 0; index < _scripts.count(); ++index) {
         if (_scripts.at(index)->name() == scriptName) {
+            auto scriptPaths = settingsProvider_.value(pathsKey(), QStringList()).toStringList();
+            auto scriptNames = settingsProvider_.value(namesKey(), QStringList()).toStringList();
+            scriptNames.removeOne(_scripts.at(index)->name());
+            scriptPaths.removeOne(_scripts.at(index)->path());
+            settingsProvider_.setValue(pathsKey(), scriptPaths);
+            settingsProvider_.setValue(namesKey(), scriptNames);
+
             _scripts.removeAt(index);
             break;
         }

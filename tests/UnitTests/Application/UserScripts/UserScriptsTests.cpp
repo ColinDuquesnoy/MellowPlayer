@@ -79,6 +79,14 @@ SCENARIO("UserScriptsTests")
                 THEN("count is zero")
                 {
                     REQUIRE(userScripts.count() == 0);
+
+                    AND_THEN("settings paths count is 0") {
+                        REQUIRE(settingsProvider.value("fakeService/userScriptPaths").toStringList().count() == 0);
+                    }
+
+                    AND_THEN("settings names count is 0") {
+                        REQUIRE(settingsProvider.value("fakeService/userScriptNames").toStringList().count() == 0);
+                    }
                 }
             }
         }
