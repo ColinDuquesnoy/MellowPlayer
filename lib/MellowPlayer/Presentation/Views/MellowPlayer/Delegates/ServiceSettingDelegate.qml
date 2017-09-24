@@ -21,132 +21,82 @@ ItemDelegate {
     Material.elevation: 2
 
     contentItem: ColumnLayout {
+        anchors.fill: parent
+
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.margins: 16
+            Layout.margins: 8
+            Layout.leftMargin: 16
+            Layout.rightMargin: 16
+            spacing: 16
 
-            Item {
+            Image {
+                antialiasing: true
+                mipmap: true
+                smooth: true
+                source: model.logo
+
+                Layout.preferredHeight: 64
+                Layout.preferredWidth: 64
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Material.background: "transparent"
+                Layout.alignment: Qt.AlignVCenter
 
-                implicitWidth: layout.implicitWidth
-                implicitHeight: layout.implicitHeight
+                Label {
+                    font.bold: true
+                    font.pixelSize: 20
+                    text: model.name
+
+                    Layout.alignment: Qt.AlignVCenter
+                }
 
                 RowLayout {
-                    id: layout
-                    spacing: 16
-                    anchors.fill: parent
+                    spacing: 0
 
-                    Image {
-                        antialiasing: true
-                        mipmap: true
-                        smooth: true
-                        source: model.logo
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
 
-                        Layout.preferredHeight: 64
-                        Layout.preferredWidth: 64
+                    Label {
+                        font.italic: true
+                        font.pixelSize: 12
+                        text: qsTr("Version ") + model.version + qsTr(" by ")
                     }
 
-                    ColumnLayout {
+                    Link {
+                        font.italic: true
+                        font.pixelSize: 12
+                        name: model.authorName
+                        url: model.authorWebsite
+                    }
+
+                    Item {
                         Layout.fillWidth: true
-
-                        RowLayout {
-                            spacing: 0
-
-                            Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
-
-                            Label {
-                                font.bold: true
-                                font.pixelSize: 20
-                                text: model.name
-                            }
-
-                            Item {
-                                Layout.preferredWidth: 16
-                            }
-
-                            Label {
-                                font.italic: true
-                                font.pixelSize: 12
-                                text: qsTr("Version ") + model.version + qsTr(" by ")
-                            }
-
-                            Link {
-                                font.italic: true
-                                font.pixelSize: 12
-                                name: model.authorName
-                                url: model.authorWebsite
-                            }
-                        }
-
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
-                        StackLayout {
-                            id: stack
-
-                            Layout.fillWidth: true
-
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.margins: 8
-
-                                Label {
-                                    font.italic: true
-                                    text: model.url
-                                }
-
-                                Item {
-                                    Layout.fillWidth: true
-                                    Layout.preferredHeight: textField.implicitHeight
-                                }
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onClicked: root.enterEditMode()
-                                    cursorShape: containsMouse ? "IBeamCursor" : "ArrowCursor"
-                                }
-                            }
-
-                            RowLayout {
-                                anchors.fill: parent
-
-                                TextField {
-                                    id: textField
-
-                                    selectByMouse: true
-                                    text: model.url
-
-                                    onEditingFinished: save()
-
-                                    function save() {
-                                        model.url = text;
-                                        stack.currentIndex = 0;
-                                    }
-
-                                    Layout.fillWidth: true
-                                }
-
-                                ToolButton {
-                                    flat: true
-                                    font.family: MaterialIcons.family
-                                    font.pixelSize: 24
-                                    text: MaterialIcons.icon_done
-
-                                    onClicked: textField.save()
-                                }
-
-                            }
-                        }
                     }
+                }
+
+                TextField {
+                    id: textField
+
+                    selectByMouse: true
+                    text: model.url
+                    padding: 0
+
+                    onEditingFinished: model.url = text
+
+                    Layout.preferredWidth: 512
                 }
             }
 
             ColumnLayout {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
                 Switch {
                     id: switchEnabled
                     checked: model.isEnabled
@@ -158,8 +108,12 @@ ItemDelegate {
                     Layout.alignment: Qt.AlignRight
                 }
 
-                Item {
-                    Layout.fillHeight: true
+                Button {
+                    id: userScriptsButton
+
+                    flat: true
+                    highlighted: true
+                    text: qsTr("User scripts")
                 }
             }
         }
