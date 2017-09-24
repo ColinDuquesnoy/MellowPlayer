@@ -16,6 +16,7 @@ namespace MellowPlayer::Application
     class IWorkDispatcher;
     class IStreamingServiceCreator;
     class ICommandLineParser;
+    class IUserScriptFactory;
 }
 
 namespace MellowPlayer::Presentation
@@ -29,10 +30,13 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int currentIndex READ currentIndex NOTIFY currentIndexChanged)
         Q_PROPERTY(bool isCurrentServiceRunning READ isCurrentServiceRunning NOTIFY isCurrentServiceRunningChanged)
     public:
-        StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices, Application::Players& players,
-                                             Application::Settings& settings, Application::IWorkDispatcher& workDispatcher,
+        StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices,
+                                             Application::Players& players,
+                                             Application::Settings& settings,
+                                             Application::IWorkDispatcher& workDispatcher,
                                              Application::IStreamingServiceCreator& streamingServiceCreator,
-                                             Application::ICommandLineParser& commandLineParser);
+                                             Application::ICommandLineParser& commandLineParser,
+                                             Application::IUserScriptFactory& userScriptFactory);
         void initialize();
 
         Q_INVOKABLE void reload();
@@ -77,6 +81,7 @@ namespace MellowPlayer::Presentation
         Application::IWorkDispatcher& workDispatcher_;
         Application::IStreamingServiceCreator& streamingServiceCreator_;
         Application::ICommandLineParser& commandLineParser_;
+        Application::IUserScriptFactory& userScriptFactory_;
         StreamingServiceListModel* allServices_;
         StreamingServiceProxyListModel enabledServices_;
         StreamingServiceViewModel* currentService_ = nullptr;

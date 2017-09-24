@@ -8,10 +8,18 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 
-StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, ISettingsProvider& settings, Players& players,
-                                                     QObject* parent)
-        : QObject(parent), streamingService_(streamingService), settingsProvider_(settings), player_(players.get(streamingService.name()))
+StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, 
+                                                     ISettingsProvider& settings,
+                                                     IUserScriptFactory& factory,
+                                                     Players& players,
+                                                     QObject* parent) : 
+        QObject(parent), 
+        streamingService_(streamingService), 
+        settingsProvider_(settings), 
+        player_(players.get(streamingService.name())),
+        userScriptsViewModel_(streamingService.name(), factory, settings, this)
 {
+    
 }
 
 QString StreamingServiceViewModel::logo() const

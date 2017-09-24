@@ -2,11 +2,14 @@
 
 #include <QtCore/QObject>
 #include <memory>
+#include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
+
 
 namespace MellowPlayer::Application
 {
-    class StreamingService;
     class ISettingsProvider;
+    class IUserScriptFactory;
+    class StreamingService;
     class Player;
     class Players;
 }
@@ -27,7 +30,9 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
     public:
-        StreamingServiceViewModel(Application::StreamingService& streamingService, Application::ISettingsProvider& settings,
+        StreamingServiceViewModel(Application::StreamingService& streamingService, 
+                                  Application::ISettingsProvider& settings,
+                                  Application::IUserScriptFactory& userScriptFactory,
                                   Application::Players& players, QObject* parent = nullptr);
 
         QString logo() const;
@@ -67,5 +72,6 @@ namespace MellowPlayer::Presentation
         Application::StreamingService& streamingService_;
         Application::ISettingsProvider& settingsProvider_;
         std::shared_ptr<Application::Player> player_;
+        UserScriptsViewModel userScriptsViewModel_;
     };
 }
