@@ -70,7 +70,7 @@ SCENARIO("UserScriptTests")
         {
             QByteArray fileContent("alert('custom user script')");
             QString sourceFilePath = "file://" + FileHelper::appDataDirectory() + "fakeUserScript.js";
-            QFile file(sourceFilePath);
+            QFile file(FileHelper::appDataDirectory() + "fakeUserScript.js");
             file.open(QFile::WriteOnly);
             file.write(fileContent);
             file.close();
