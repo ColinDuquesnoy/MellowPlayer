@@ -31,6 +31,12 @@ notifications and more).
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [HearThisAt](https://hearthis.at/)
 
+# User Scripts:
+With MellowPlayer you have the possibility to use user scripts.
+This means that you can customize the look and feel of a streaming service as you like it, or simply to add features you miss.
+- [Download and use different themes](https://userstyles.org/)
+- [Download and use different user scripts](https://greasyfork.org/en/)
+
 
 # Resources
 
