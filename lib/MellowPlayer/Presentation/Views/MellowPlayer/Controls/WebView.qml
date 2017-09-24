@@ -46,6 +46,25 @@ WebEngineView {
         root.triggerWebAction(WebEngineView.ExitFullScreen);
     }
 
+    userScripts: getUserScripts()
+
+    function getUserScripts() {
+        var scripts = [];
+
+        for (var i = 0; i < service.userScripts.model.count; i++) {
+            var userScript = service.userScripts.model.get(i);
+            var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
+            webEngineScript.name = userScript.name;
+            webEngineScript.sourceCode = userScript.code;
+            webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
+            scripts.push(webEngineScript);
+        }
+
+        reload();
+
+        return scripts;
+    }
+
     url: "about:blank"
     settings.pluginsEnabled : true
     settings.fullScreenSupportEnabled: true
