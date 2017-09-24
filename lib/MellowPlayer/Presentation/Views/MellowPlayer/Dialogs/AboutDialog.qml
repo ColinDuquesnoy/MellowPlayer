@@ -136,86 +136,133 @@ Popup {
                 height: 148; width: parent.width - 12
 
                 Pane {
-                    anchors.fill: parent
-                    anchors.topMargin: 2
-                    anchors.leftMargin: 2
-                    anchors.rightMargin: 2
-                    anchors.bottomMargin: 0  // hide bottom elevation
+                    id: creditsPaneContent
 
+                    anchors {
+                        fill: parent
+                        topMargin: 2
+                        leftMargin: 2
+                        rightMargin: 2
+                        bottomMargin: 0  // hide bottom elevation
+                    }
                     padding: 16
 
                     Material.elevation: 2
 
-                    ColumnLayout {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.top
-                        spacing: 9
+                    ScrollView {
+                        anchors.fill: parent
+                        clip: true
 
                         RowLayout {
-                            spacing: 9
+                            anchors.fill: parent
 
-                            ColumnLayout {
-                                Label {
-                                    text: qsTr("Created by")
-                                }
-
-                                Item { Layout.fillHeight: true }
+                            Item {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: creditsPane.width / 2 - columnLayout.implicitWidth / 2 - creditsPaneContent.padding / 2 - creditsPaneContent.anchors.leftMargin / 2
                             }
 
                             ColumnLayout {
-                                Link {
-                                    name: '@ColinDuquesnoy'
-                                    url: "https://github.com/ColinDuquesnoy"
+                                id: columnLayout
+
+                                spacing: 9
+
+                                RowLayout {
+                                    spacing: 9
+
+                                    Layout.fillWidth: true
+
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+
+                                        Label {
+                                            text: qsTr("Created by")
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
+
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+
+                                        Link {
+                                            name: '@ColinDuquesnoy'
+                                            url: "https://github.com/ColinDuquesnoy"
+
+                                            Layout.alignment: Qt.AlignHCenter
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
                                 }
 
-                                Item { Layout.fillHeight: true }
+                                RowLayout {
+                                    spacing: 9
+
+                                    Layout.fillWidth: true
+
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+
+                                        Label {
+                                            text: qsTr("Artwork by")
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
+
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+
+                                        Link {
+                                            name: '@CelineThiry'
+                                            url: "https://github.com/CelineThiry"
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
+                                }
+
+                                RowLayout {
+                                    spacing: 9
+
+                                    Layout.fillWidth: true
+
+                                    ColumnLayout {
+                                        Label {
+                                            text: qsTr("Contributors")
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
+
+                                    ColumnLayout {
+                                        Link {
+                                            name: '@ConorIA'
+                                            url: "https://github.com/ConorIA"
+                                        }
+
+                                        Link {
+                                            name: '@ZeroDot1'
+                                            url: "http://basic1.moy.su/"
+                                        }
+
+                                        Link {
+                                            name: '@mahmoudhossam'
+                                            url: "https://github.com/mahmoudhossam"
+                                        }
+
+                                        Link {
+                                            name: '@kolletzki'
+                                            url: "https://github.com/kolletzki"
+                                        }
+
+                                        Item { Layout.fillHeight: true }
+                                    }
+                                }
                             }
-                        }
 
-                        RowLayout {
-                            spacing: 9
-
-                            ColumnLayout {
-                                Label {
-                                    text: qsTr("Artwork by")
-                                }
-
-                                Item { Layout.fillHeight: true }
-                            }
-
-                            ColumnLayout {
-                                Link {
-                                    name: '@CelineThiry'
-                                    url: "https://github.com/CelineThiry"
-                                }
-
-                                Item { Layout.fillHeight: true }
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 9
-
-                            ColumnLayout {
-                                Label {
-                                    text: qsTr("Contributors")
-                                }
-
-                                Item { Layout.fillHeight: true }
-                            }
-
-                            ColumnLayout {
-                                Link {
-                                    name: '@ConorIA'
-                                    url: "https://github.com/ConorIA"
-                                }
-
-                                Link {
-                                    name: '@ZeroDot1'
-                                    url: "http://basic1.moy.su/"
-                                }
-
-                                Item { Layout.fillHeight: true }
+                            Item {
+                                Layout.fillWidth: true
                             }
                         }
                     }
@@ -263,7 +310,6 @@ Popup {
                 id: btCredits
                 checkable: true
                 checked: false
-                highlighted: checked
                 flat: true
                 text: qsTr("Credits")
             }
