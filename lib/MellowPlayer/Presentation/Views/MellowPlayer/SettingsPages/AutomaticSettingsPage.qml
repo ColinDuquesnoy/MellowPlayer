@@ -56,24 +56,27 @@ ColumnLayout {
         }
     }
 
-    RowLayout {
+    Pane {
         Layout.fillWidth: true
-        Layout.rightMargin: 24
-        Layout.bottomMargin: 8
+        Material.elevation: 2
 
-        Material.foreground: _theme.isDark(_theme.accent) ? "white" : "#303030"
+        RowLayout {
+            anchors.fill: parent
 
-        Item { Layout.fillWidth: true }
+            Material.foreground: _theme.isDark(_theme.accent) ? "white" : "#303030"
 
-        ToolButton {
-            highlighted: true
-            hoverEnabled: true
-            text: qsTr("Restore defaults")
-            onClicked: messageBoxConfirmRestore.open()
+            Item { Layout.fillWidth: true }
+
+            ToolButton {
+                highlighted: true
+                hoverEnabled: true
+                text: qsTr("Restore defaults")
+                onClicked: messageBoxConfirmRestore.open()
 
 
-            Tooltip {
-                text: qsTr('Restore <b>') + model.name.toLowerCase() + qsTr('</b> settings to their <b>default values</b>.')
+                Tooltip {
+                    text: qsTr('Restore <b>') + model.name.toLowerCase() + qsTr('</b> settings to their <b>default values</b>.')
+                }
             }
         }
     }
