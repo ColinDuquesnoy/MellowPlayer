@@ -11,7 +11,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
-#include <sys/user.h>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
