@@ -1370,7 +1370,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="108"/>
         <source>Open web developer tools</source>
-        <translation type="unfinished"/>
+        <translation>Offene Web-Entwicklertools</translation>
     </message>
 </context>
 </TS>

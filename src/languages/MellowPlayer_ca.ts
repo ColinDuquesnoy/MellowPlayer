@@ -218,12 +218,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="106"/>
         <source>Supported platforms:</source>
-        <translation type="unfinished"/>
+        <translation>Plataformes compatibles:</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="118"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Tot</translation>
     </message>
 </context>
 <context>
@@ -1371,7 +1371,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="108"/>
         <source>Open web developer tools</source>
-        <translation type="unfinished"/>
+        <translation>Eines lliures per a desenvolupadors web</translation>
     </message>
 </context>
 </TS>
