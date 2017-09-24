@@ -66,7 +66,7 @@ namespace MellowPlayer.Presentation {
         + removeScript(QString name)
     }
     class UserScriptViewModel {
-        - _userScript: IUserScript&
+        - model_: IUserScript&
         + code(): QString
         + name(): QString
         + setName(QString)
