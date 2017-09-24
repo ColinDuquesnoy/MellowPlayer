@@ -4,7 +4,6 @@
 
 namespace MellowPlayer::Infrastructure
 {
-
     class UserScriptDirectory
     {
     public:
@@ -18,5 +17,6 @@ namespace MellowPlayer::Infrastructure
     public:
         bool import(const QString& sourcePath) override;
         bool load(const QString& path) override;
+        void removeFile() const override;
     };
 }

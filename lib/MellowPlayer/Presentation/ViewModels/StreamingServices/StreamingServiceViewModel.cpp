@@ -130,3 +130,8 @@ QString StreamingServiceViewModel::isEnabledSettingsKey() const
 {
     return streamingService_.name() + "/isEnabled";
 }
+
+QObject* StreamingServiceViewModel::userScripts()
+{
+    return &userScriptsViewModel_;
+}

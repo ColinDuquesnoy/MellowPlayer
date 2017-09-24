@@ -16,6 +16,7 @@ SCENARIO("UserScriptsTests")
     When(Method(userScriptMock, code)).AlwaysReturn("code");
     When(Method(userScriptMock, name)).AlwaysReturn("name");
     Fake(Method(userScriptMock, setName));
+    Fake(Method(userScriptMock, removeFile));
     When(Method(userScriptMock, load)).AlwaysReturn(true);
     When(Method(userScriptMock, import)).AlwaysReturn(true);
     Fake(Dtor(userScriptMock));
@@ -75,6 +76,11 @@ SCENARIO("UserScriptsTests")
             AND_WHEN("remove is called")
             {
                 userScripts.remove("name");
+
+                THEN("file is removed")
+                {
+                    Verify(Method(userScriptMock, removeFile)).Exactly(1);
+                }
 
                 THEN("count is zero")
                 {

@@ -17,7 +17,7 @@ namespace MellowPlayer::Application
         ~UserScripts();
 
         int count() const;
-        IUserScript& add(const QString& userScriptName, const QString& sourceScriptPath);
+        IUserScript* add(const QString& userScriptName, const QString& sourceScriptPath);
         void remove(const QString& scriptName);
 
         typedef typename QList<IUserScript*>::const_iterator const_iterator;

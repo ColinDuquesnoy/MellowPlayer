@@ -21,5 +21,9 @@ namespace MellowPlayer::Application::Tests
             Application::UserScriptBase::code_ = FAKE_USER_SCRIPT_CODE;
             return true;
         }
+
+        void removeFile() const override {
+
+        }
     };
 }

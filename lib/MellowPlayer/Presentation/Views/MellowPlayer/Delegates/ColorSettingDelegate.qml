@@ -14,7 +14,13 @@ ItemDelegate {
     hoverEnabled: true
     onClicked: colorDialog.open()
 
-    contentItem: RowLayout {
+    RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: parent.leftPadding
+        anchors.rightMargin: parent.rightPadding
+        anchors.topMargin: parent.topPadding
+        anchors.bottomMargin: parent.bottomPadding
+
         Label {
             text: Translator.translateName(model.name)
             font.pixelSize: 16

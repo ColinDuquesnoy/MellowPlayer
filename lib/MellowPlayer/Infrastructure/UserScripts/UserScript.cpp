@@ -25,13 +25,16 @@ QString UserScriptDirectory::path() const {
 
 bool UserScript::import(const QString& sourcePath)
 {
+    QString sourceUrl = sourcePath;
+    sourceUrl = sourceUrl.replace("file://", "");
     UserScriptDirectory directory;
-    if (directory.create() && QFile::exists(sourcePath))
+    bool exists = QFile::exists(sourceUrl);
+    if (directory.create() && exists)
     {
         QString destinationPath = directory.generateFileName();
         path_ = destinationPath;
-        qDebug() << "importing" << sourcePath << " to " << destinationPath;
-        if (QFile::copy(sourcePath, destinationPath))
+        qDebug() << "importing" << sourceUrl << " to " << destinationPath;
+        if (QFile::copy(sourceUrl, destinationPath))
             return load(destinationPath);
         return true;
     }
@@ -50,4 +53,9 @@ bool UserScript::load(const QString& path)
         return true;
     }
     return false;
+}
+
+void UserScript::removeFile() const
+{
+    QFile::remove(path_);
 }

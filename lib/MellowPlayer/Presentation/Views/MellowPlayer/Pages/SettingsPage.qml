@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../Dialogs"
 import "../SettingsTranslator.js" as Translator
 
 Page {
@@ -82,10 +83,12 @@ Page {
                         height: 60; width: parent.width
                         hoverEnabled: true
 
-                        contentItem: RowLayout {
+                        RowLayout {
                             anchors.fill: parent
-                            anchors.margins: 20
-                            spacing: 10
+                            anchors.leftMargin: parent.leftPadding
+                            anchors.rightMargin: parent.rightPadding
+                            anchors.topMargin: parent.topPadding
+                            anchors.bottomMargin: parent.bottomPadding
 
                             Label {
                                 text: model.icon
@@ -166,6 +169,13 @@ Page {
                 }
             }
         }
+    }
+
+    UserScriptsDialog {
+        id: userScriptsDialog
+
+        height: 540; width: 960
+        x: parent.width / 2 - width / 2; y: parent.height / 2 - height / 2
     }
 
     MessageBoxDialog {

@@ -60,8 +60,8 @@ SCENARIO("UserScriptsViewModelTests")
         settingsProvider.setValue("fakeService/userScriptPaths", paths);
 
         QStringList names;
-        names << "name1";
-        names << "name2";
+        names << "DarkTheme";
+        names << "AdBlocker";
         settingsProvider.setValue("fakeService/userScriptNames", names);
 
         UserScriptsViewModel viewModel(serviceName, factoryMock.get(), settingsProvider);
@@ -76,25 +76,45 @@ SCENARIO("UserScriptsViewModelTests")
 
         WHEN("checking for valid names")
         {
-            THEN("name1 is not valid")
+            THEN("DarkTheme is not valid")
             {
-                REQUIRE(!viewModel.isValidName("name1"));
+                REQUIRE(!viewModel.isValidName("DarkTheme"));
             }
 
-            THEN("name2 is not valid")
+            THEN("AdBlocker is not valid")
             {
-                REQUIRE(!viewModel.isValidName("name2"));
+                REQUIRE(!viewModel.isValidName("AdBlocker"));
             }
 
-            THEN("name3 is valid")
+            THEN("Statistics is valid")
             {
-                REQUIRE(viewModel.isValidName("name3"));
+                REQUIRE(viewModel.isValidName("Statistics"));
+            }
+        }
+        
+        WHEN("generating a unique name with DarkTheme")
+        {
+            auto name = viewModel.generateUniqueName("DarkTheme");
+
+            THEN("name is DarkTheme2")
+            {
+                REQUIRE(name == "DarkTheme2");
+            }
+        }
+
+        WHEN("generating a unique name with Foo")
+        {
+            auto name = viewModel.generateUniqueName("Foo");
+
+            THEN("name is Foo")
+            {
+                REQUIRE(name == "Foo");
             }
         }
 
         AND_WHEN("remove a script")
         {
-            viewModel.remove("name2");
+            viewModel.remove("AdBlocker");
 
             THEN("list model count is 1")
             {
@@ -108,9 +128,9 @@ SCENARIO("UserScriptsViewModelTests")
                     REQUIRE(settingsProvider.value("fakeService/userScriptNames").toStringList().count() == 1);
                 }
 
-                AND_THEN("name2 is valid")
+                AND_THEN("AdBlocker is valid")
                 {
-                    REQUIRE(viewModel.isValidName("name2"));
+                    REQUIRE(viewModel.isValidName("AdBlocker"));
                 }
             }
         }

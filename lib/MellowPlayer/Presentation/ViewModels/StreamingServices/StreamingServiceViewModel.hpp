@@ -29,6 +29,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
         Q_PROPERTY(int sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
+        Q_PROPERTY(QObject* userScripts READ userScripts CONSTANT)
     public:
         StreamingServiceViewModel(Application::StreamingService& streamingService, 
                                   Application::ISettingsProvider& settings,
@@ -54,6 +55,8 @@ namespace MellowPlayer::Presentation
 
         bool isEnabled() const;
         void setEnabled(bool enabled);
+
+        QObject* userScripts();
 
     public slots:
         void setUrl(const QString& newUrl);

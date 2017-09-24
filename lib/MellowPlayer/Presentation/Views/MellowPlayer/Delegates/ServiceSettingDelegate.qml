@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../Dialogs"
 
 ItemDelegate {
     id: root
@@ -14,14 +15,23 @@ ItemDelegate {
         textField.forceActiveFocus()
     }
 
-    hoverEnabled: true
     padding: 0
+    hoverEnabled: true
     onClicked: switchEnabled.toggle()
 
     Material.elevation: 2
 
-    contentItem: ColumnLayout {
+    width: layout.implicitWidth
+    height: layout.implicitHeight
+
+    ColumnLayout {
+        id: layout
+
         anchors.fill: parent
+        anchors.leftMargin: parent.leftPadding
+        anchors.rightMargin: parent.rightPadding
+        anchors.topMargin: parent.topPadding
+        anchors.bottomMargin: parent.bottomPadding
 
         RowLayout {
             Layout.fillWidth: true
@@ -114,6 +124,12 @@ ItemDelegate {
                     flat: true
                     highlighted: true
                     text: qsTr("User scripts")
+
+                    onClicked: {
+                        userScriptsDialog.serviceName = model.name;
+                        userScriptsDialog.viewModel = model.userScripts;
+                        userScriptsDialog.open();
+                    }
                 }
             }
         }

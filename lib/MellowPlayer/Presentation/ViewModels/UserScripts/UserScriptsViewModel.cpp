@@ -12,7 +12,7 @@ UserScriptsViewModel::UserScriptsViewModel(const QString& serviceName,
     userScripts_(serviceName, userScriptFactory, settingsProvider)
 {
     for(auto* userScriptModel: userScripts_) {
-        create(*userScriptModel);
+        create(userScriptModel);
     }
 }
 
@@ -31,26 +31,58 @@ bool UserScriptsViewModel::isValidName(const QString& name) const
     return !names.contains(name);
 }
 
-void UserScriptsViewModel::add(const QString& name, const QString& sourcePath)
+bool UserScriptsViewModel::add(const QString& name, const QString& sourcePath)
 {
-    IUserScript& userScriptModel = userScripts_.add(name, sourcePath);
+    bool hadUserScripts = hasScripts();
+    IUserScript* userScriptModel = userScripts_.add(name, sourcePath);
+    if (userScriptModel != nullptr) {
+        create(userScriptModel);
+        if (hadUserScripts != hasScripts())
+            emit hasScriptsChanged();
 
-    create(userScriptModel);
+        return true;
+    }
+
+    return false;
 }
 
 void UserScriptsViewModel::remove(const QString& name)
 {
+    bool hadUserScripts = hasScripts();
     for (int i = 0; i < model_.count(); ++i) {
         if (model_.at(i)->name() == name) {
             model_.remove(i);
         }
     }
     userScripts_.remove(name);
+
+    if (hadUserScripts != hasScripts())
+        emit hasScriptsChanged();
 }
 
 
-void UserScriptsViewModel::create(IUserScript& userScriptModel)
+void UserScriptsViewModel::create(IUserScript* userScriptModel)
 {
-    auto* userScriptViewModel = new UserScriptViewModel(userScriptModel, this);
+    auto* userScriptViewModel = new UserScriptViewModel(*userScriptModel, this);
     model_.append(userScriptViewModel);
+}
+
+bool UserScriptsViewModel::hasScripts() const
+{
+    return userScripts_.count() != 0;
+}
+
+QString UserScriptsViewModel::generateUniqueName(const QString& path) const
+{
+    QFileInfo fileInfo(path);
+    QString baseName = fileInfo.baseName();
+    QString name = baseName;
+
+    int i = 1;
+    while(!isValidName(name)) {
+        ++i;
+        name = baseName + QString::number(i);
+    }
+
+    return name;
 }

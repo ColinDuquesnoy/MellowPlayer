@@ -69,7 +69,7 @@ SCENARIO("UserScriptTests")
         WHEN("importing a file that exists")
         {
             QByteArray fileContent("alert('custom user script')");
-            QString sourceFilePath = FileHelper::appDataDirectory() + "fakeUserScript.js";
+            QString sourceFilePath = "file://" + FileHelper::appDataDirectory() + "fakeUserScript.js";
             QFile file(sourceFilePath);
             file.open(QFile::WriteOnly);
             file.write(fileContent);
