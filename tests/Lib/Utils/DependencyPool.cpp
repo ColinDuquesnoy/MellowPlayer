@@ -13,6 +13,7 @@
 #include "MellowPlayer/Application/Settings/ISettingsProvider.hpp"
 #include "MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp"
 #include "MellowPlayer/Application/Updater/AbstractPlatformUpdater.hpp"
+#include "MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp"
 
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
@@ -38,10 +39,12 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/ThemeLoaderMock.hpp>
+#include <UnitTests/Application/UserScripts/FakeUserScript.hpp>
 
 using namespace std;
 using namespace fakeit;
 using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Application::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Tests;
@@ -54,6 +57,9 @@ DependencyPool::DependencyPool()
           mINotificationPresenter(NotificationPresenterMock::get()),
           dataProvider(make_unique<InMemoryListeningHistoryDataProvider>())
 {
+    When(Method(mUserScriptsFactoryMock, create)).AlwaysDo([]() -> IUserScript* {
+        return new FakeUserScript;
+    });
 }
 
 DependencyPool::~DependencyPool() = default;
@@ -73,7 +79,13 @@ StreamingServicesControllerViewModel& DependencyPool::getStreamingServicesContro
 {
     if (pStreamingServicesControllerViewModel == nullptr)
         pStreamingServicesControllerViewModel = make_unique<StreamingServicesControllerViewModel>(
-        getStreamingServicesController(), getPlayers(), getSettings(), getWorkDispatcher(), getStreamingServicesCreator(), getCommandLineParser());
+        getStreamingServicesController(),
+        getPlayers(),
+        getSettings(),
+        getWorkDispatcher(),
+        getStreamingServicesCreator(),
+        getCommandLineParser(),
+        getUserScriptFactory());
     return *pStreamingServicesControllerViewModel;
 }
 
@@ -213,4 +225,9 @@ AbstractPlatformUpdater& DependencyPool::getPlatformUpdater()
     if (pPlatformUpdater == nullptr)
         pPlatformUpdater = make_unique<FakePlatformUpdater>(fakeFileDownloader);
     return *pPlatformUpdater;
+}
+
+IUserScriptFactory& DependencyPool::getUserScriptFactory()
+{
+    return mUserScriptsFactoryMock.get();
 }

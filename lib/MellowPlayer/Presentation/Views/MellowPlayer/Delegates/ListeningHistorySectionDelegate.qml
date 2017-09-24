@@ -24,8 +24,12 @@ Pane {
        anchors.fill: parent
        hoverEnabled: true
 
-       contentItem: ColumnLayout {
+       ColumnLayout {
            anchors.fill: parent
+           anchors.leftMargin: parent.leftPadding
+           anchors.rightMargin: parent.rightPadding
+           anchors.topMargin: parent.topPadding
+           anchors.bottomMargin: parent.bottomPadding
 
            RowLayout {
                Layout.fillWidth: true

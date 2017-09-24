@@ -16,12 +16,6 @@ set(CMAKE_VERBOSE_MAKEFILE FALSE)
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
 
 include(scripts/cmake/Macros.cmake)
-include(scripts/cmake/Config.cmake)
-include(scripts/cmake/InstallDirs.cmake)
-include(scripts/cmake/Cotire.cmake)
-
-set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
-configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
 
 # Options
 if(NOT CMAKE_BUILD_TYPE)
@@ -47,6 +41,13 @@ include_directories(lib)
 if(ENABLE_COVERAGE)
     include(scripts/cmake/CodeCoverage.cmake)
 endif()
+include(scripts/cmake/Config.cmake)
+include(scripts/cmake/InstallDirs.cmake)
+include(scripts/cmake/Cotire.cmake)
+
+set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
+configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
+
 add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)
 if(BUILD_TESTS)

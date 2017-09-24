@@ -8,6 +8,7 @@
 #include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
 
 class InMemoryListeningHistoryDataProvider;
 
@@ -65,6 +66,7 @@ namespace MellowPlayer::Tests
         Application::IQtApplication& getQtApplication();
         Application::INotificationPresenter& getNotificationPresenter();
         Application::AbstractPlatformUpdater& getPlatformUpdater();
+        Application::IUserScriptFactory& getUserScriptFactory();
 
         // Infrastructure layer
         Infrastructure::LocalAlbumArt& getLocalAlbumArt();
@@ -84,6 +86,7 @@ namespace MellowPlayer::Tests
         fakeit::Mock<Application::ISettingsProvider> mISettingsProvider;
         fakeit::Mock<Application::IStreamingServiceCreator> mIStreamingServiceCreator;
         fakeit::Mock<Application::INotificationPresenter> mINotificationPresenter;
+        fakeit::Mock<Application::IUserScriptFactory> mUserScriptsFactoryMock;
 
         // app
         std::unique_ptr<Application::CurrentPlayer> pCurrentPlayer;

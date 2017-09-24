@@ -33,20 +33,23 @@ Item {
             }
         }
 
-        RowLayout {
+        Pane {
             Layout.fillWidth: true
-            Layout.rightMargin: 24
-            Layout.bottomMargin: 8
+            Material.elevation: 2
 
-            Item {
-                Layout.fillWidth: true
-            }
+            RowLayout {
+                anchors.fill: parent
 
-            ToolButton {
-                highlighted: true
-                hoverEnabled: true
-                text: qsTr("Create plugin")
-                onClicked: wizardNewPlugin.open()
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                ToolButton {
+                    highlighted: true
+                    hoverEnabled: true
+                    text: qsTr("Create plugin")
+                    onClicked: wizardNewPlugin.open()
+                }
             }
         }
     }

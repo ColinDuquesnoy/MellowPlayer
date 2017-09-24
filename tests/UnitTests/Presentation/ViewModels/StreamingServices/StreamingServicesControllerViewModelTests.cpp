@@ -28,7 +28,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     auto creatorMock = StreamingServiceCreatorMock::get();
     auto commandLineParserMock = CommandLineParserMock::get();
     StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                   commandLineParserMock.get());
+                                                   commandLineParserMock.get(), pool.getUserScriptFactory());
     viewModel.initialize();
     viewModel.reload();
 
@@ -113,7 +113,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
         settings.get(SettingKey::PRIVATE_CURRENT_SERVICE).setValue("");
         When(Method(commandLineParserMock, service)).AlwaysReturn("Deezer");
         StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                                  commandLineParserMock.get());
+                                                                  commandLineParserMock.get(), pool.getUserScriptFactory());
         REQUIRE(viewModelWithCmdLine.currentIndex() == -1);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

@@ -22,9 +22,9 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
     StreamingService& service1 = *streamingServices.toList()[0];
     StreamingService& service2 = *streamingServices.toList()[1];
 
-    StreamingServiceViewModel viewModel(service1, settingsProvider, players);
-    StreamingServiceViewModel sameModel(service1, settingsProvider, players);
-    StreamingServiceViewModel model2(service2, settingsProvider, players);
+    StreamingServiceViewModel viewModel(service1, settingsProvider, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel sameModel(service1, settingsProvider, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel model2(service2, settingsProvider, pool.getUserScriptFactory(), players);
 
     SECTION("basic properties")
     {

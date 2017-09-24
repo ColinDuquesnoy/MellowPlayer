@@ -17,20 +17,24 @@ using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
-StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices, Players& players,
-                                                                           Settings& settings, IWorkDispatcher& workDispatcher,
+StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(StreamingServicesController& streamingServices,
+                                                                           Players& players,
+                                                                           Settings& settings,
+                                                                           IWorkDispatcher& workDispatcher,
                                                                            IStreamingServiceCreator& streamingServiceCreator,
-                                                                           ICommandLineParser& commandLineParser)
-        : QObject(),
-          streamingServices_(streamingServices),
-          players_(players),
-          settings_(settings),
-          currentServiceSetting_(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
-          workDispatcher_(workDispatcher),
-          streamingServiceCreator_(streamingServiceCreator),
-          commandLineParser_(commandLineParser),
-          allServices_(new StreamingServiceListModel(this, QByteArray(), "name")),
-          enabledServices_(allServices_)
+                                                                           ICommandLineParser& commandLineParser,
+                                                                           IUserScriptFactory& userScriptFactory) :
+        QObject(),
+        streamingServices_(streamingServices),
+        players_(players),
+        settings_(settings),
+        currentServiceSetting_(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
+        workDispatcher_(workDispatcher),
+        streamingServiceCreator_(streamingServiceCreator),
+        commandLineParser_(commandLineParser),
+        userScriptFactory_(userScriptFactory),
+        allServices_(new StreamingServiceListModel(this, QByteArray(), "name")),
+        enabledServices_(allServices_)
 {
 
     connect(&streamingServices, &StreamingServicesController::added, this, &StreamingServicesControllerViewModel::onServiceAdded);
@@ -102,7 +106,11 @@ void StreamingServicesControllerViewModel::reload()
 
 void StreamingServicesControllerViewModel::onServiceAdded(StreamingService* streamingService)
 {
-    auto* sv = new StreamingServiceViewModel(*streamingService, settings_.settingsProvider(), players_, this);
+    auto* sv = new StreamingServiceViewModel(*streamingService,
+                                             settings_.settingsProvider(),
+                                             userScriptFactory_,
+                                             players_,
+                                             this);
     Player* player = sv->player();
     connect(player, &Player::isRunningChanged, this, &StreamingServicesControllerViewModel::onPlayerRunningChanged);
     connect(sv, &StreamingServiceViewModel::isEnabledChanged, this, &StreamingServicesControllerViewModel::onServiceEnabledChanged);

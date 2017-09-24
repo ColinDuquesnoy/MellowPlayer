@@ -14,7 +14,8 @@ namespace MellowPlayer::Application
 
         virtual void setName(const QString& name) = 0;
 
-        virtual void import(const QString& path) = 0;
-        virtual void load(const QString& path) = 0;
+        virtual bool import(const QString& path) = 0;
+        virtual bool load(const QString& path) = 0;
+        virtual void removeFile() const = 0;
     };
 }

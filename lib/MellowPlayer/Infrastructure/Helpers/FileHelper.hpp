@@ -9,6 +9,7 @@ namespace MellowPlayer::Infrastructure
     public:
         static QString createLogDirectory();
         static QString appDataDirectory();
+        static QString userScriptsDirectory();
         static QString logDirectory();
     };
 }

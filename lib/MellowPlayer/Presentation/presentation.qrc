@@ -57,6 +57,7 @@
         <file>Views/MellowPlayer/Controls/IconMenuItem.qml</file>
         <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
         <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
+        <file>Views/MellowPlayer/Dialogs/UserScriptsDialog.qml</file>
         <file>Views/MellowPlayer/Controls/Link.qml</file>
         <file>Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
         <file>Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml</file>

@@ -23,6 +23,8 @@
 #include <MellowPlayer/Application/Updater/IHttpClient.hpp>
 #include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
 #include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
+#include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
@@ -38,6 +40,7 @@
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <MellowPlayer/Infrastructure/Updater/HttpClient.hpp>
+#include <MellowPlayer/Infrastructure/UserScripts/UserScriptFactory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
@@ -139,7 +142,8 @@ auto defaultInjector = [](ScopedScope &scope) {
         di::bind<IThemeLoader>().to<ThemeLoader>().in(scope),
         di::bind<ILatestReleaseQuerier>().to<LatestGithubReleaseQuerier>().in(scope),
         di::bind<IHttpClient>().to<HttpClient>().in(scope),
-        di::bind<IFileDownloader>().to<FileDownloader>().in(scope)
+        di::bind<IFileDownloader>().to<FileDownloader>().in(scope),
+        di::bind<IUserScriptFactory>().to<UserScriptFactory>().in(scope)
     );
 };
 

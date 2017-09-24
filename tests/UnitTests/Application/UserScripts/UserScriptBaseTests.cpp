@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Application/StreamingServices/UserScriptBase.hpp>
+#include <MellowPlayer/Application/UserScripts/UserScriptBase.hpp>
 #include "FakeUserScript.hpp"
 
 using namespace MellowPlayer::Application;
