@@ -9,6 +9,7 @@
 using namespace fakeit;
 using namespace MellowPlayer::Application;
 
+#ifdef QT_DEBUG
 SCENARIO("UserScriptsTests")
 {
     Mock<IUserScript> userScriptMock;
@@ -137,3 +138,4 @@ SCENARIO("UserScriptsTests")
 
     }
 }
+#endif
