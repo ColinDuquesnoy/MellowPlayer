@@ -1361,12 +1361,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="189"/>
         <source>Are you sure you want to remove user script </source>
-        <translation type="unfinished"/>
+        <translation>Möchten sie das User Skript wirklich löschen </translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="219"/>
         <source>Confirm remove user script</source>
-        <translation type="unfinished"/>
+        <translation>User Skript entfernen bestätigen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="229"/>
