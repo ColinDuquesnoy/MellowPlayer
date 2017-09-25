@@ -1329,6 +1329,16 @@ listened to will appear here...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="189"/>
+        <source>Are you sure you want to remove user script </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="219"/>
+        <source>Confirm remove user script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="229"/>
         <source>Javascript files</source>
         <translation type="unfinished"></translation>

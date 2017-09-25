@@ -186,7 +186,7 @@ Dialog {
                             tooltip: qsTr("Remove script")
 
                             onClicked: {
-                                messageBoxConfirmDelete.message = qsTr('Are you sure you want to remove user script "' + model.name + '"?"')
+                                messageBoxConfirmDelete.message = qsTr('Are you sure you want to remove user script ') + model.name + '?'
                                 messageBoxConfirmDelete.closed.connect(onActivated);
                                 messageBoxConfirmDelete.open()
                             }
@@ -216,7 +216,7 @@ Dialog {
     MessageBoxDialog {
         id: messageBoxConfirmDelete
 
-        title: "Confirm remove user script"
+        title: qsTr("Confirm remove user script")
 
         standardButtons: Dialog.Yes | Dialog.No
         x: parent.width / 2 - width / 2
