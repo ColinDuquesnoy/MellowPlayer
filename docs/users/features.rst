@@ -17,6 +17,7 @@ Features
 - Hotkeys and media player keys support
 - Plugin based application (you can add support for a new web-based music
   streaming service by writing a **javascript plugin**)
+- User scripts support
 
 .. _Spotify: http://spotify.com
 .. _Mixcloud: http://www.mixcloud.com

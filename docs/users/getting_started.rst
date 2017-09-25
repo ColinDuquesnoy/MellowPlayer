@@ -40,7 +40,7 @@ There are a series of settings category:
 - Notifications: let you change some notification settings
 - Shortcuts: let you change all the application shortcuts
 - Privacy: enable or disable privacy related options
-- Services: list the available services and let you change their default url.
+- Services: list the available services and let configure them (url, user scripts)
 - Cache: a few buttons that let you clear the application cache (album art covers,...) and clear the web cookies.
 
 
