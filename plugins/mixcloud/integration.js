@@ -16,36 +16,6 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function getHashCode(s) {
-    return s.split("").reduce(function(a, b) {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a
-    }, 0);
-}
-
-function toSeconds(string) {
-    try {
-        var dtimes = string.split(":");
-
-        if (dtimes.length === 3) {
-            var dhours = dtimes[0];
-            var dminutes = dtimes[1];
-            var dseconds = dtimes[2];
-            var duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60) + (parseInt(dhours, 10) * 60 * 60);
-        }
-        else {
-            var dminutes = dtimes[0];
-            var dseconds = dtimes[1];
-            var duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
-        }
-
-    } catch (e) {
-        var duration = 0;
-    }
-
-    return duration
-}
-
 /**
  * Controller for the old mixloud frontend (which might still be used)
  */

@@ -17,32 +17,12 @@
 //
 //-----------------------------------------------------------------------------
 
-function getHashCode(s) {
-    return s.split("").reduce(function(a, b) {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a
-    }, 0);
-}
-
 function getButtons() {
     return {
         play: document.getElementsByClassName("ytp-play-button")[0],
         pause: document.getElementsByClassName("ytp-play-button")[0],
         skip: document.getElementsByClassName("ytp-next-button")[0]
     };
-}
-
-function toSeconds(string) {
-    try {
-        var dtimes = string.split(":");
-        var dminutes = dtimes[0];
-        var dseconds = dtimes[1];
-        var duration = parseInt(dseconds, 10) + (parseInt(dminutes, 10) * 60);
-    } catch (e) {
-        var duration = 0;
-    }
-
-    return duration
 }
 
 function update() {

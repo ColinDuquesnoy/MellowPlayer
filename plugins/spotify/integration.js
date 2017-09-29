@@ -16,13 +16,6 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function getHashCode(s) {
-    return s.split("").reduce(function(a, b) {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a
-    }, 0);
-}
-
 function getButtons() {
     function getPlayPauseButton() {
         var playButton = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-play-16.control-button--circled");
