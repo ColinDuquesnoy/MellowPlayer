@@ -16,6 +16,8 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+var previousSongTitle = "";
+var previousArtUrl = "";
 
 function getButtons() {
     return {
@@ -26,24 +28,35 @@ function getButtons() {
 }
 
 function update() {
-    try {
-        var rawPosition = document.getElementsByClassName("ytp-time-current")[0].innerText;
-        var rawDuration = document.getElementsByClassName("ytp-time-duration")[0].innerText;
-        var playbackStatus = getButtons().play.attributes["aria-label"].value === "Pause" ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
-        var songTitle = document.getElementById("eow-title").innerText;
-        var artistName = document.getElementsByClassName("yt-user-info")[0].innerText;
+    var rawPosition = "00:00";
+    var rawDuration = "00:00";
+    var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
+    var songTitle = "";
+    var artistName = "";
+    var artUrl = "";
+
+    if (document.URL.indexOf("watch") !== -1) {
         try {
-            var artUrl = document.getElementsByClassName("branding-img-container")[0].children[0].src;
-        } catch (e) {
-            var artUrl = "";
+            var rawPosition = document.getElementsByClassName("ytp-time-current")[0].innerText;
+            var rawDuration = document.getElementsByClassName("ytp-time-duration")[0].innerText;
+            var playbackStatus = getButtons().play.attributes["aria-label"].value === "Pause" ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
+            var songTitle = document.querySelector("#container > h1").innerText;
+            var artistName = document.getElementById('owner-name').children[0].innerText
+            try {
+                var artUrl = document.querySelector("#meta-contents #avatar #img").src
+            } catch (e) {
+                var artUrl = "";
+            }
+        } catch (e) { }
+
+        // prevent duplicate notifications while while loading new art url (previous art url remains)
+        if (songTitle !== previousSongTitle && artUrl === previousArtUrl) {
+            artUrl = "";
         }
-    } catch (e) {
-        var rawPosition = "00:00";
-        var rawDuration = "00:00";
-        var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-        var songTitle = "";
-        var artistName = "";
-        var artUrl = "";
+        else {
+            previousArtUrl = artUrl;
+            previousSongTitle = songTitle;
+        }
     }
 
     return {
