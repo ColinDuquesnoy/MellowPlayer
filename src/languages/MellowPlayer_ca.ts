@@ -681,7 +681,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="126"/>
         <source>User scripts</source>
-        <translation type="unfinished"/>
+        <translation>Scripts d&apos;usuari</translation>
     </message>
 </context>
 <context>
@@ -1331,53 +1331,53 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="20"/>
         <source> - User Scripts</source>
-        <translation type="unfinished"/>
+        <translation> - Scripts d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="40"/>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="102"/>
         <source>Add user script</source>
-        <translation type="unfinished"/>
+        <translation>Afegeix un script d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="52"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Fet</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="92"/>
         <source>No user script found</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;ha trobat cap script d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="108"/>
         <source>Click to add a user script</source>
-        <translation type="unfinished"/>
+        <translation>Feu clic per afegir un script d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="186"/>
         <source>Remove script</source>
-        <translation type="unfinished"/>
+        <translation>Elimina l&apos;script</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="189"/>
         <source>Are you sure you want to remove user script </source>
-        <translation type="unfinished"/>
+        <translation>Esteu segurs que voleu eliminar l&apos;script d&apos;usuari?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="219"/>
         <source>Confirm remove user script</source>
-        <translation type="unfinished"/>
+        <translation>Confirmació de la eliminació de l&apos;script d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="229"/>
         <source>Javascript files</source>
-        <translation type="unfinished"/>
+        <translation>Fitxers Javascript</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="230"/>
         <source>Choose a user script</source>
-        <translation type="unfinished"/>
+        <translation>Trieu un script d&apos;usuari</translation>
     </message>
 </context>
 <context>
