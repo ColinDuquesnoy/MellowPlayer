@@ -221,6 +221,7 @@ void Player::setCurrentSong(unique_ptr<Song>& song)
     if (currentSong_ != nullptr && *currentSong_ == *song) {
         currentSong_->setDuration(song->duration());
         currentSong_->setFavorite(song->isFavorite());
+        currentSong_->setArtUrl(song->artUrl());
         return;
     }
 

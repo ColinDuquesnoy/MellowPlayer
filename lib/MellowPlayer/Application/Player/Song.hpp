@@ -30,6 +30,7 @@ namespace MellowPlayer::Application
 
         void setDuration(double value);
         void setFavorite(bool value);
+        void setArtUrl(const QString& artUrl);
 
         bool operator==(const Song& other) const
         {
@@ -53,6 +54,7 @@ namespace MellowPlayer::Application
     signals:
         void durationChanged();
         void isFavoriteChanged();
+        void artUrlChanged();
 
     private:
         QString uniqueId_;

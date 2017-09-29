@@ -23,8 +23,10 @@ namespace MellowPlayer::Infrastructure
     private slots:
         void onCurrentSongChanged(Application::Song* song);
         void onDownloadFinished(const QString& newUrl);
+        void onArtUrlChanged();
 
     private:
+        Application::IPlayer& player_;
         Application::IAlbumArtDownloader& downloader_;
         QString url_;
     };

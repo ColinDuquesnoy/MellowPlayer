@@ -40,8 +40,10 @@ void ListeningHistory::onPlaybackStatusChanged()
 
 void ListeningHistory::onCurrentSongChanged(Song* song)
 {
-    auto newEntry = ListeningHistoryEntry::fromData(song, player.serviceName());
-    workDispatcher.delayInvoke(DELAY, [=]() mutable { addSong(song, newEntry); });
+    workDispatcher.delayInvoke(DELAY, [=]() mutable {
+        auto newEntry = ListeningHistoryEntry::fromData(song, player.serviceName());
+        addSong(song, newEntry);
+    });
 }
 
 void ListeningHistory::initialize()

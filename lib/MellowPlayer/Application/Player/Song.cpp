@@ -66,3 +66,11 @@ void Song::setFavorite(bool value)
     isFavorite_ = value;
     emit isFavoriteChanged();
 }
+
+void Song::setArtUrl(const QString& artUrl)
+{
+    if (artUrl != artUrl_) {
+        artUrl_ = artUrl;
+        emit artUrlChanged();
+    }
+}
