@@ -1,3 +1,3 @@
 #include "UserAgentSettingViewModel.hpp"
 
-using namespace MellowPlayer::
+using namespace MellowPlayer::Presentation;
