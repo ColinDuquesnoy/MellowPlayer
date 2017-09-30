@@ -85,6 +85,27 @@ Page {
             Component.onCompleted: servicesOverview.sourceComponent = overviewComponent;
         }
 
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.NoButton
+            preventStealing: true
+
+            cursorShape: webViewStack.linkHovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+
+            onWheel: {
+                if (wheel.modifiers & Qt.ControlModifier) {
+                    if (wheel.angleDelta.y / 120 > 0)
+                        webViewStack.zoomIn();
+                    else
+                        webViewStack.zoomOut();
+                    wheel.accepted = true;
+                }
+                else
+                    wheel.accepted = false;
+            }
+
+        }
+
         FullScreenNotification {
             id: notif
 

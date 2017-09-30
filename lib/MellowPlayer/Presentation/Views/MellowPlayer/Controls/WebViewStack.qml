@@ -9,6 +9,7 @@ StackLayout {
 
     signal newViewRequested(var request, var profile)
     signal fullScreenRequested(var request)
+    property bool linkHovered: false
 
     function currentWebView() {
         return root.itemAt(root.currentIndex);
@@ -48,7 +49,30 @@ StackLayout {
         currentWebView().exitFullScreen();
     }
 
+    function zoomIn() {
+        currentWebView().zoomIn()
+    }
+
+    function zoomOut() {
+         currentWebView().zoomOut()
+    }
+
     currentIndex: _streamingServices.currentIndex
+
+    Shortcut {
+        sequence: "Ctrl++"
+        onActivated: root.zoomIn()
+    }
+
+    Shortcut {
+        sequence: "Ctrl+-"
+        onActivated: root.zoomOut()
+    }
+
+    Shortcut {
+        sequence: "Ctrl+0"
+        onActivated: currentWebView().resetZoom()
+    }
 
     QtObject {
         id: d
@@ -81,6 +105,8 @@ StackLayout {
             }
             onFullScreenRequested: root.fullScreenRequested(request);
             onNewViewRequested: root.newViewRequested(request, webView.profile)
+
+            onLinkHovered: root.linkHovered = hoveredUrl != ""
         }
     }
 

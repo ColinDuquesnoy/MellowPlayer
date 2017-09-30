@@ -46,25 +46,29 @@ WebEngineView {
         root.triggerWebAction(WebEngineView.ExitFullScreen);
     }
 
-    userScripts: getUserScripts()
-
-    function getUserScripts() {
-        var scripts = [];
-
-        for (var i = 0; i < service.userScripts.model.count; i++) {
-            var userScript = service.userScripts.model.get(i);
-            var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
-            webEngineScript.name = userScript.name;
-            webEngineScript.sourceCode = userScript.code;
-            webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
-            scripts.push(webEngineScript);
-        }
-
-        reload();
-
-        return scripts;
+    function zoomIn() {
+        var nextZoomFactor = d.zoomFactorIndex + 1
+        if (nextZoomFactor >= d.zoomFactors.length)
+            nextZoomFactor = d.zoomFactorIndex;
+        d.zoomFactorIndex = nextZoomFactor;
+        zoomPane.show()
     }
 
+    function zoomOut() {
+        var previousZoomFactor = d.zoomFactorIndex - 1
+        if (previousZoomFactor < 0)
+            previousZoomFactor = 0
+        d.zoomFactorIndex = previousZoomFactor;
+        zoomPane.show()
+    }
+
+    function resetZoom() {
+        d.zoomFactorIndex = d.resetZoomFactorIndex;
+        zoomPane.show()
+    }
+
+    zoomFactor: d.zoomFactors[d.zoomFactorIndex];
+    userScripts: d.getUserScripts()
     url: "about:blank"
     settings.pluginsEnabled : true
     settings.fullScreenSupportEnabled: true
@@ -112,6 +116,67 @@ WebEngineView {
         onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
     }
 
+    Pane {
+        id: zoomPane
+
+        anchors { top: parent.top; right: parent.right; margins: 2 }
+        leftPadding: 6
+        rightPadding: 6
+        bottomPadding: 3
+        topPadding: 3
+        z: 1
+        visible: false
+
+        function show() {
+            visible = true;
+            hideTimer.running = true;
+            hideTimer.restart();
+        }
+
+        Material.background: _theme.primary
+        Material.foreground: _theme.primaryForeground
+        Material.elevation: 2
+        Material.theme: _theme.isDark(_theme.primary) ? Material.Dark : Material.Light
+
+        RowLayout {
+            spacing: 8
+
+            IconToolButton {
+                icon: MaterialIcons.icon_remove
+                iconSize: 16
+                tooltip: qsTr("Zoom out")
+
+                onTriggered: root.zoomOut()
+            }
+
+            Label {
+                text: Math.round(root.zoomFactor * 100) + "%"
+                opacity: 0.8
+            }
+
+            IconToolButton {
+                icon: MaterialIcons.icon_add
+                iconSize: 16
+                tooltip: qsTr("Zoom in")
+
+                onTriggered: root.zoomIn()
+            }
+
+            ToolButton {
+                text: qsTr("Reset")
+
+                onClicked: root.resetZoom()
+            }
+        }
+
+        Timer {
+            id: hideTimer
+
+            interval: 2000
+            onTriggered: zoomPane.visible = false
+        }
+    }
+
     WebViewContextMenu {
         id: contextMenu
 
@@ -131,6 +196,10 @@ WebEngineView {
     QtObject {
         id: d
 
+        property var zoomFactors: [0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5]
+        property int resetZoomFactorIndex: 7
+        property int zoomFactorIndex: resetZoomFactorIndex
+
         function checkForCustomUrlRequired() {
             var match = urlToLoad.match("(@.*@)");
             if (match !== null) {
@@ -142,6 +211,23 @@ WebEngineView {
             runJavaScript("var a = document.createElement('audio'); !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));", function(result) {
                 hasProprietaryCodecs = result;
             })
+        }
+
+        function getUserScripts() {
+            var scripts = [];
+
+            for (var i = 0; i < service.userScripts.model.count; i++) {
+                var userScript = service.userScripts.model.get(i);
+                var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
+                webEngineScript.name = userScript.name;
+                webEngineScript.sourceCode = userScript.code;
+                webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
+                scripts.push(webEngineScript);
+            }
+
+            reload();
+
+            return scripts;
         }
     }
 }
