@@ -34,7 +34,7 @@ function update() {
         "volume": dzPlayer.volume,
         "position": dzPlayer.getPosition(),
         "duration": dzPlayer.getDuration(),
-        "isFavorite": $(".icon-love.active").length > 0,
+        "isFavorite": $("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button")[0].className.indexOf("is-favorite") !== -1,
         "songId": dzPlayer.getSongId(),
         "songTitle": dzPlayer.getSongTitle(),
         "artistName": dzPlayer.getArtistName(),
