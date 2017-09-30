@@ -34,12 +34,21 @@ function update() {
         "volume": dzPlayer.volume,
         "position": dzPlayer.getPosition(),
         "duration": dzPlayer.getDuration(),
-        "isFavorite": $("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button")[0].className.indexOf("is-favorite") !== -1,
+        "isFavorite": isFavorite(),
         "songId": dzPlayer.getSongId(),
         "songTitle": dzPlayer.getSongTitle(),
         "artistName": dzPlayer.getArtistName(),
         "albumTitle": dzPlayer.getAlbumTitle(),
         "artUrl": 'http://e-cdn-images.deezer.com/images/cover/' + dzPlayer.getCover() + '/250x250.jpg'
+    }
+}
+
+function isFavorite() {
+    try {
+        return $("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button")[0].className.indexOf("is-favorite") !== -1;
+    }
+    catch (e) {
+        return false;
     }
 }
 
