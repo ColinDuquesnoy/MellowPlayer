@@ -175,7 +175,7 @@ Item {
             anchors.centerIn: parent
 
             Label {
-                text: removedLabel.service !== null ? removedLabel.service.name + (" removed from overview...") : ""
+                text: removedLabel.service !== null ? removedLabel.service.name + qsTr(" has been removed from overview.") : ""
                 font.bold: true
                 font.pixelSize: 16
             }
