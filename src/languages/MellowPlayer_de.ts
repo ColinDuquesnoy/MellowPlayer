@@ -702,12 +702,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
         <source> has been removed from overview.</source>
-        <translation type="unfinished"/>
+        <translation>aus der Übersicht entfernt.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
         <source>UNDO</source>
-        <translation type="unfinished"/>
+        <translation>RÜCKGÄNGIG</translation>
     </message>
 </context>
 <context>
@@ -1387,6 +1387,24 @@ listened to will appear here...</source>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="232"/>
         <source>Choose a user script</source>
         <translation>Wählen sie ein User Skript</translation>
+    </message>
+</context>
+<context>
+    <name>WebView</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="147"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="160"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="166"/>
+        <source>Reset</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
