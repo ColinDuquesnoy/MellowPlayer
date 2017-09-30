@@ -18,6 +18,8 @@ Dialog {
     onAccepted: dialogResult = dialogAccepted
     onRejected: dialogResult = dialogRejected
 
+    Material.accent: _theme.accent === _theme.background ? _theme.foreground : _theme.accent
+
     Label {
         text: root.message
     }

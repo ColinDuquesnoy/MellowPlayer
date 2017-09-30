@@ -13,6 +13,8 @@ Page {
 
     signal closeRequested()
 
+    Material.accent: _theme.accent === _theme.background ? _theme.foreground : _theme.accent
+
     header: ToolBar {
         id: toolBar
 
@@ -67,6 +69,7 @@ Page {
             Material.background: _theme.secondary
             Material.foreground: _theme.secondaryForeground
             Material.elevation: 4
+            Material.accent: _theme.accent
             Material.theme: _theme.isDark(_theme.secondary) ? Material.Dark : Material.Light
 
             ColumnLayout {

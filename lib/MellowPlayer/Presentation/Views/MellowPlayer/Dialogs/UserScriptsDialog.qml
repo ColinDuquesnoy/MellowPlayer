@@ -21,6 +21,8 @@ Dialog {
     padding: 0
     spacing: 0
 
+    Material.accent: _theme.accent === _theme.background ? _theme.foreground : _theme.accent
+
     header: ToolBar {
         padding: 0
 

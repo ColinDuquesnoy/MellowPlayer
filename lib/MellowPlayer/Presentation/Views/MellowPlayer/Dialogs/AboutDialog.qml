@@ -19,7 +19,7 @@ Popup {
 
     onVisibleChanged: if (!visible) btCredits.checked = false
 
-    Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
+    Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent === _theme.background ? _theme.foreground : _theme.accent
 
     ColumnLayout {
         anchors.fill: parent
