@@ -692,6 +692,11 @@ listened to will appear here...</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
+        <source> has been removed from overview.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
         <source>UNDO</source>
         <translation type="unfinished"></translation>
