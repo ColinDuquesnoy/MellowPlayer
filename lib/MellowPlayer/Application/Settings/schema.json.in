@@ -297,6 +297,13 @@
 					"default": 3,
 					"key": "listening-history-limit",
                     "enabled": "privacy/enable-listening-history"
+				},
+				{
+				    "name": "User agent",
+				    "tooltip": "Specifies the user agent string used by web views",
+				    "type": "user-agent",
+				    "default": "",
+				    "key": "user-agent"
 				}
             ]
         },
