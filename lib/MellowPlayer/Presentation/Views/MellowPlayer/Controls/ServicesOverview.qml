@@ -35,6 +35,9 @@ Item {
 
             GridView {
                 id: gridView
+
+                property bool dragActive: false
+
                 anchors.centerIn: parent
                 focus: true
                 width: {
@@ -60,6 +63,7 @@ Item {
                         id: delegateRoot
 
                         property int visualIndex: DelegateModel.itemsIndex
+                        property var service: model.qtObject
 
                         width: gridView.cellWidth; height: gridView.cellHeight
 
@@ -77,6 +81,7 @@ Item {
                             Drag.source: delegateRoot
                             Drag.hotSpot.x: gridView.cellWidth / 2
                             Drag.hotSpot.y: gridView.cellHeight / 2
+                            Drag.onActiveChanged: gridView.dragActive = Drag.active
 
                             states: State {
                                 when: item.Drag.active
@@ -107,6 +112,7 @@ Item {
                             hoverEnabled: true
 
                             onClicked: item.activate()
+                            onReleased: item.Drag.drop()
                         }
 
                         DropArea {
@@ -139,6 +145,99 @@ Item {
                 displaced: Transition {
                     NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
                 }
+            }
+        }
+    }
+
+    Pane {
+        id: removedLabel
+
+        property var service: null
+
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: 16
+        visible: false
+
+        onServiceChanged: {
+            if (service != null) {
+                visible = true
+                timer.running = true;
+                timer.restart();
+            }
+        }
+
+        Material.background: _theme.primary
+        Material.foreground: _theme.primaryForeground
+        Material.elevation: 4
+
+        RowLayout {
+            anchors.centerIn: parent
+
+            Label {
+                text: removedLabel.service !== null ? removedLabel.service.name + (" removed from overview...") : ""
+                font.bold: true
+                font.pixelSize: 16
+            }
+
+            Label {
+                text: '<a href="https://action/undo">' + qsTr("UNDO") + '</a>'
+                font.bold: true
+                font.pixelSize: 16
+
+                onLinkActivated: {
+                    removedLabel.service.isEnabled = true
+                    removedLabel.service = null;
+                    removedLabel.visible = false;
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+        }
+
+        Timer {
+            id: timer
+            interval: 3000
+            repeat: false
+            running: false
+
+            onTriggered: removedLabel.visible = false
+        }
+    }
+
+    Label {
+        id: trashLabel
+
+        anchors { bottom: parent.bottom; right: parent.right; rightMargin: 16; bottomMargin: 16}
+        text: MaterialIcons.icon_delete
+        font.family: MaterialIcons.family
+        font.pixelSize: 64
+        opacity: trashDropArea.containsDrag ? 1 : gridView.dragActive ? 0.5 : 0
+        color: trashDropArea.containsDrag ? Material.color(Material.Red) : Material.foreground
+        z: 50
+
+        DropArea {
+            id: trashDropArea
+
+            x: parent.width / 2 - width / 2
+            y: parent.height / 2 - height/ 2
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+
+            onDropped: {
+                gridView.dragActive = false;
+                drag.source.service.isEnabled = false;
+                removedLabel.service = drag.source.service;
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 100
             }
         }
     }
