@@ -290,6 +290,7 @@ QMap<QString, QVariant> Mpris2Player::toXesam(const Song& song)
         map["xesam:artist"] = artist;
         map["xesam:album"] = song.album();
         map["xesam:title"] = song.title();
+        map["xesam:userRating"] = song.isFavorite() ? 1 : 0;
         if (song.duration())
             map["mpris:length"] = (qlonglong)song.duration() * SEC_TO_MICROSEC;
         else
