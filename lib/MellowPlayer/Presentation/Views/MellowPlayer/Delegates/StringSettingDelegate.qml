@@ -6,12 +6,23 @@ import MellowPlayer 3.0
 import ".."
 import "../SettingsTranslator.js" as Translator
 
-Pane {
+ItemDelegate {
     bottomPadding: 3; topPadding: 3
     enabled: model.enabled
-    width: parent.width
+    hoverEnabled: true
+
+    onClicked: textField.forceActiveFocus()
 
     RowLayout {
+        id: layout
+
+        anchors {
+            fill: parent
+            leftMargin: parent.leftPadding
+            rightMargin: parent.rightPadding
+            topMargin: parent.topPadding
+            bottomMargin: parent.bottomPadding
+        }
         spacing: 16
 
         Label {
@@ -20,16 +31,20 @@ Pane {
         }
 
         TextField {
+            id: textField
+
             hoverEnabled: true
-            onTextChanged: model.qtObject.value = text
             placeholderText: model.name
             text: model.qtObject.value
+            selectByMouse: true
+
+            Layout.fillWidth: true
+
+            onEditingFinished: model.qtObject.value = text
 
             Tooltip {
                 text: Translator.translateToolTip(model.toolTip)
             }
-
-            Layout.fillWidth: true
         }
     }
 }

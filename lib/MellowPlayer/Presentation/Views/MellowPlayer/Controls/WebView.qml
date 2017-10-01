@@ -16,6 +16,7 @@ WebEngineView {
     property var image: null
     property bool isRunning: false
     property bool hasProprietaryCodecs: true
+    property var userAgentSetting: _settings.get(SettingKey.PRIVACY_USER_AGENT)
 
     signal updateImageFinished()
     signal customUrlSet(var customUrl)
@@ -67,15 +68,24 @@ WebEngineView {
         zoomPane.show()
     }
 
-    zoomFactor: d.zoomFactors[d.zoomFactorIndex];
+    settings {
+        pluginsEnabled : true
+        fullScreenSupportEnabled: true
+        autoLoadImages: true
+        javascriptEnabled: true
+        errorPageEnabled: true
+        autoLoadIconsForPage: true
+    }
     userScripts: d.getUserScripts()
     url: "about:blank"
-    settings.pluginsEnabled : true
-    settings.fullScreenSupportEnabled: true
-    settings.autoLoadImages: true
-    settings.javascriptEnabled: true
-    settings.errorPageEnabled: true
-    settings.autoLoadIconsForPage: true
+    zoomFactor: d.zoomFactors[d.zoomFactorIndex]
+
+    profile.httpUserAgent: userAgentSetting.value
+
+    Connections {
+        target: userAgentSetting
+        onValueChanged: { console.warn("new user agent: " + userAgentSetting.value); reload(); }
+    }
 
     onContextMenuRequested: {
         request.accepted = true;

@@ -108,11 +108,6 @@ bool Notifier::isNotificationTypeEnabled(NotificationType type) const
     bool isEnabled = false;
 
     switch (type) {
-        case NotificationType::NewVersionAvailable: {
-            const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_NEW_VERSION);
-            isEnabled = check(setting);
-            break;
-        }
         case NotificationType::Paused: {
             const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_PAUSED);
             isEnabled = check(setting);

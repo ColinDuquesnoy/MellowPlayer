@@ -11,7 +11,7 @@ namespace MellowPlayer::Presentation
     public:
         StringSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
 
-        QString getValue() const;
+        virtual QString getValue() const;
         QString qmlComponent() override;
 
     public slots:

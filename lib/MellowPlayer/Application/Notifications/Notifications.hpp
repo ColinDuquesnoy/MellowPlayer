@@ -9,8 +9,7 @@ namespace MellowPlayer::Application
     {
         NewSong,
         Resumed,
-        Paused,
-        NewVersionAvailable,
+        Paused
     };
 
     struct Notification

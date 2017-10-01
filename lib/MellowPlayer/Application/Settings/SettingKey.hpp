@@ -25,11 +25,11 @@ namespace MellowPlayer::Application
             MAIN_UPDATE_CHANNEL,
             NOTIFICATIONS_ENABLED,
             NOTIFICATIONS_NEW_SONG,
-            NOTIFICATIONS_NEW_VERSION,
             NOTIFICATIONS_PAUSED,
             NOTIFICATIONS_RESUMED,
             PRIVACY_ENABLE_LISTENING_HISTORY,
             PRIVACY_LISTENING_HISTORY_LIMIT,
+            PRIVACY_USER_AGENT,
             PRIVATE_CURRENT_SERVICE,
             PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
             SHORTCUTS_ABOUT,
@@ -71,11 +71,11 @@ namespace MellowPlayer::Application
             enumToString << "main/update-channel";
             enumToString << "notifications/enabled";
             enumToString << "notifications/new-song";
-            enumToString << "notifications/new-version";
             enumToString << "notifications/paused";
             enumToString << "notifications/resumed";
             enumToString << "privacy/enable-listening-history";
             enumToString << "privacy/listening-history-limit";
+            enumToString << "privacy/user-agent";
             enumToString << "private/current-service";
             enumToString << "private/show-close-to-tray-message";
             enumToString << "shortcuts/about";

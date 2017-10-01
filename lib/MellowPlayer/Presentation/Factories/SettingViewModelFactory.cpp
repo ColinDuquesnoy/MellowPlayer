@@ -8,6 +8,7 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ThemeSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/UpdateChannelSettingViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/Types/UserAgentStringSettingViewModel.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Application;
@@ -33,5 +34,7 @@ SettingViewModel* SettingViewModelFactory::create(Setting& setting, QObject* par
         return new UpdateChannelSettingViewModel(setting, parent);
     else if (type.startsWith("theme"))
         return new ThemeSettingViewModel(setting, parent, themeViewModel_);
+    else if (type.startsWith("user-agent"))
+        return new UserAgentStringSettingViewModel(setting, parent);
     return new StringSettingViewModel(setting, parent);
 }
