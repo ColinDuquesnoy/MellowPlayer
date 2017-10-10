@@ -11,3 +11,4 @@ Contributors
 - [ZeroDot1](http://basic1.moy.su/)
 - [Lukas Kolletzki](https://github.com/kolletzki)
 - [Mahmoud Hossam](https://github.com/mahmoudhossam)
+- [Terin Stock](https://github.com/terinjokes)
