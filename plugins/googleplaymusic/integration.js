@@ -32,11 +32,14 @@ function getButtons() {
 // Much of this was adapted from: https://github.com/tiliado/nuvola-app-google-play-music
 //-----------------------------------------------------------------------------
 function update() {
-    var controlClassName = document.querySelector("#player div.material-player-middle").children[3].className;
-    var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-    if (controlClassName === "x-scope paper-icon-button-0 playing")
+    var pp = getButtons().playpause;
+    var playbackStatus;
+
+    if (pp.disabled)
+        playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
+    else if (pp.className.indexOf("playing") != -1)
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    else if (controlClassName === "x-scope paper-icon-button-0")
+    else
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
 
     var elm;
