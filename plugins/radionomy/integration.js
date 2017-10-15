@@ -35,12 +35,17 @@ function getSongTitle() {
         return getArtistAndTitle().split("-")[1].trim();
     }
     catch (e) {
-        return "";
+        return getRadioName();
     }
 }
 
 function getRadioName() {
-    return document.querySelector("#jp_container_1 > div > div.jp-details > ul > li > a").innerText;
+    try {
+        return document.querySelector("#jp_container_1 > div > div.jp-details > ul > li > a").innerText;
+    }
+    catch(e) {
+        return "";
+    }
 }
 
 function getArtUrl() {
