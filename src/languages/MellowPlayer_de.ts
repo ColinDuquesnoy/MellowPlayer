@@ -924,7 +924,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="39"/>
         <source>User agent</source>
-        <translation type="unfinished"/>
+        <translation>User Agent</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="50"/>
@@ -1104,7 +1104,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
         <source>Specifies the user agent string used for http requests</source>
-        <translation type="unfinished"/>
+        <translation>Gibt den User-Agent-String an, der für http-Anfragen verwendet wird</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>

@@ -702,12 +702,12 @@ escuchado aparecerán aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
         <source> has been removed from overview.</source>
-        <translation type="unfinished"/>
+        <translation>se ha eliminado de la vista general.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
         <source>UNDO</source>
-        <translation type="unfinished"/>
+        <translation>DESHACER</translation>
     </message>
 </context>
 <context>
@@ -924,7 +924,7 @@ escuchado aparecerán aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="39"/>
         <source>User agent</source>
-        <translation type="unfinished"/>
+        <translation>Agente de usuario</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="50"/>
@@ -1104,7 +1104,7 @@ escuchado aparecerán aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
         <source>Specifies the user agent string used for http requests</source>
-        <translation type="unfinished"/>
+        <translation>Especifica la cadena de agente de usuario utilizada para las solicitudes http</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
@@ -1395,17 +1395,17 @@ escuchado aparecerán aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="157"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Alejar</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="170"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Acercar</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="176"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Reiniciar</translation>
     </message>
 </context>
 <context>

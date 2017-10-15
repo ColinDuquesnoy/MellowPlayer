@@ -702,12 +702,12 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
         <source> has been removed from overview.</source>
-        <translation type="unfinished"/>
+        <translation>s&apos;ha eliminat de la vista general.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
         <source>UNDO</source>
-        <translation type="unfinished"/>
+        <translation>DESFÉS</translation>
     </message>
 </context>
 <context>
@@ -924,7 +924,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="39"/>
         <source>User agent</source>
-        <translation type="unfinished"/>
+        <translation>Agent d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="50"/>
@@ -1104,7 +1104,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
         <source>Specifies the user agent string used for http requests</source>
-        <translation type="unfinished"/>
+        <translation>Especifica la cadena d&apos;agent d&apos;usuari utilitzada per a les sol·licituds http</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
@@ -1395,17 +1395,17 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="157"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Allunya</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="170"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Amplia</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="176"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Reinicia</translation>
     </message>
 </context>
 <context>
