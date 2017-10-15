@@ -23,6 +23,7 @@ Pane {
     ItemDelegate {
        anchors.fill: parent
        hoverEnabled: true
+       padding: 0
 
        ColumnLayout {
            anchors.fill: parent
