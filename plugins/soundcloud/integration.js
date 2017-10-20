@@ -42,7 +42,7 @@ function update() {
         "canSeek": false,
         "canGoNext": true,
         "canGoPrevious": true,
-        "canAddToFavorites": false,
+        "canAddToFavorites": true,
         "volume": 1,
         "duration": readTime('playbackTimeline__duration'),
         "position": readTime('playbackTimeline__timePassed'),
@@ -98,11 +98,11 @@ function goPrevious() {
     clickButton('skipControl__previous');
 }
 
-function setVolume(volume) {
-    // not supported
+function addToFavorites() {
+    clickButton('playbackSoundBadge__like');
 }
 
-function addToFavorites() {
+function setVolume(volume) {
     // not supported
 }
 
