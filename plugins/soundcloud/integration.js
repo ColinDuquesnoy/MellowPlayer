@@ -51,7 +51,7 @@ function update() {
         "artistName": '',
         "albumTitle": '',
         "artUrl": artUrl,
-        "isFavorite": false
+        "isFavorite": isFavorite()
     }
 }
 
@@ -78,6 +78,13 @@ function readTime(elementClassName) {
     return hours * 3600 + minutes * 60 + seconds;
 }
 
+function isFavorite() {
+    if (document.getElementsByClassName('playbackSoundBadge__like')[0].title === "Unlike")
+        return true;
+    else
+        return false;
+}
+
 function clickButton(buttonName) {
     document.getElementsByClassName(buttonName)[0].click()
 }
@@ -102,11 +109,11 @@ function addToFavorites() {
     clickButton('playbackSoundBadge__like');
 }
 
-function setVolume(volume) {
-    // not supported
+function removeFromFavorites() {
+    addToFavorites();
 }
 
-function removeFromFavorites() {
+function setVolume(volume) {
     // not supported
 }
 
