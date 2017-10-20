@@ -9,8 +9,9 @@ function update() {
     else if (document.querySelector('[aria-label=Play]') !== null)
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
     try {
-        var artUrl = document.getElementsByClassName('AudioVideoFullMusic-card-3HHZD MetadataPosterCard-card-3bztR')[
-            0].children[0].children[0].children[0].style["background-image"];
+        var artUrl = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
+        0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0]
+        .style["background-image"];
         artUrl = artUrl.replace('url("', "").replace('")', "");
     } catch (e) {
         var artUrl = '';
