@@ -30,6 +30,10 @@ notifications and more).
 - [Anghami](https://www.anghami.com/)
 - [Pocket Casts](https://play.pocketcasts.com/)
 - [HearThisAt](https://hearthis.at/)
+- [Jamendo](https://www.jamendo.com/start)
+- [Radionomy](https://www.radionomy.com/)
+- [Wynk](https://www.wynk.in/music)
+- [ympd](https://github.com/notandy/ympd)
 
 # User Scripts:
 With MellowPlayer 3.1 you have the possibility to use user scripts.

@@ -2,7 +2,6 @@ import os
 import re
 import subprocess
 from enum import Enum
-from github3 import login
 
 
 class Type(Enum):
@@ -24,42 +23,6 @@ class Version:
         return self.major == other.major and self.minor == other.minor and self.patch == other.patch
 
 
-class Git:
-    @staticmethod
-    def get_branch():
-        return subprocess.check_output(['git', 'branch']).decode().replace('* ', '').splitlines()[0]
-
-    @staticmethod
-    def commit_and_push():
-        subprocess.check_output(["git", "commit", "-a", "-m", "Prepare release"])
-        Git.push()
-
-    @staticmethod
-    def create_tag(tag_name):
-        subprocess.check_output(["git", "tag", "-a", tag_name, '-m', tag_name])
-        subprocess.check_output(["git", "push", 'origin', tag_name])
-
-    @staticmethod
-    def checkout(branch):
-        subprocess.check_output(['git', 'checkout', branch])
-
-    @staticmethod
-    def merge(branch):
-        subprocess.check_output(['git', 'merge', branch])
-
-    @staticmethod
-    def push():
-        subprocess.check_output(["git", "push"])
-
-
-class Github:
-    @staticmethod
-    def create_release(name, description, prerelease):
-        gh = login(username='ColinDuquesnoy', token=os.environ['CHANGELOG_GITHUB_TOKEN'])
-        repo = gh.repository('ColinDuquesnoy', 'MellowPlayer')
-        repo.create_release(name, name=name, body=description, prerelease=prerelease)
-
-
 class Promotion:
     def __init__(self, promotion_type, required_branch, prerelease=False):
         self.prerelease = prerelease
@@ -70,9 +33,6 @@ class Promotion:
 
     def execute(self):
         self.new_version = self.read_cmake_version()
-        git_branch = Git.get_branch()
-        if git_branch != self.required_branch:
-            raise RuntimeError("Cannot perform promotion on %s branch" % git_branch)
         self.new_version = self.bump_version(self.initial_version)
         print('Promoting v%s to v%s' % (self.initial_version, self.new_version))
         self.write_cmake_version(self.new_version)
@@ -82,38 +42,6 @@ class Promotion:
             self.pull_translations()
 
             input("check cmake changes and updated changelog and press ENTER if everything is OK")
-
-            Git.commit_and_push()
-
-            if self.required_branch == "develop" and not self.prerelease:
-                # merge develop into master
-                Git.checkout("master")
-                Git.merge("develop")
-
-            Git.create_tag(str(self.new_version))
-            Github.create_release(str(self.new_version), self.get_latest_changelog_entry(), prerelease=self.prerelease)
-            self.update_website()
-
-            Git.checkout("develop")
-            if self.required_branch == 'master':
-                # switch back to develop and merge master into develop
-                Git.merge("master")
-
-    def get_latest_changelog_entry(self):
-        with open('CHANGELOG.md') as f:
-            lines = f.read().splitlines()
-
-        record = False
-        recorded_lines = []
-        for l in lines:
-            if l.strip().startswith('##'):
-                record = not record
-                if record is False:
-                    break
-            else:
-                if record:
-                    recorded_lines.append(l)
-        return '\n'.join(recorded_lines)
 
     def update_change_log(self):
         print('Updating Changelog...')
@@ -129,32 +57,6 @@ class Promotion:
         with open(changelog_generator_cfg, 'w') as f:
             f.write('\n'.join(updated_lines))
         subprocess.check_call(['github_changelog_generator'])
-
-    def update_website(self):
-        branch = Git.get_branch()
-        Git.checkout('gh-pages')
-        with open('index.html') as f:
-            lines = f.read().splitlines()
-        app_image = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer-x86_64.AppImage"><img alt="" src="img/features-picto_linux.svg">'
-        dmg = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer.dmg"><img alt="" src="img/features-picto_mac.svg">'
-        windows_installer = '                         <a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download/%s/MellowPlayer_Setup.exe"><img alt="" src="img/features-picto_window.svg">'
-        updated_lines = []
-        for l in lines:
-            if l.strip().startswith('<a href="https://github.com/ColinDuquesnoy/MellowPlayer/releases/download'):
-                if '.AppImage' in l:
-                    updated_lines.append(app_image % self.new_version)
-                elif '_Setup.exe' in l:
-                    updated_lines.append(windows_installer % self.new_version)
-                elif '.dmg' in l:
-                    updated_lines.append(dmg % self.new_version)
-                print(updated_lines[-1])
-            else:
-                updated_lines.append(l)
-
-        with open('index.html', 'w') as f:
-            f.write('\n'.join(updated_lines))
-        Git.commit_and_push()
-        Git.checkout(branch.strip())
 
     @staticmethod
     def pull_translations():
@@ -265,12 +167,8 @@ def main(promotion_class, promotion_type):
     while 'scripts' in os.getcwd():
         os.chdir('..')
 
-    answer = input('Press Y to confirm you want to perform a %s[%s]: ' % (promotion_class.__name__, promotion_type)).lower()
-    if answer == 'y':
-        promotion = promotion_class(promotion_type)
-        promotion.execute()
-    else:
-        print('nothing to do')
+    promotion = promotion_class(promotion_type)
+    promotion.execute()
 
 
 def public_promotion(promotion_type):

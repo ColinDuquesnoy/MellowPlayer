@@ -1,5 +1,49 @@
 # Change Log
 
+## [3.1.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.1.0) (2017-10-21)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.0.0...3.1.0)
+
+**Implemented enhancements:**
+
+- Add ambiance theme for ubuntu [\#138](https://github.com/ColinDuquesnoy/MellowPlayer/issues/138)
+- Add support for ympd [\#118](https://github.com/ColinDuquesnoy/MellowPlayer/issues/118)
+- Add a dustbin icon where users can drag a service icon to disable the service [\#116](https://github.com/ColinDuquesnoy/MellowPlayer/issues/116)
+- Add ability to specify list of supported platforms for a plugin [\#115](https://github.com/ColinDuquesnoy/MellowPlayer/issues/115)
+- \[Feature request\] Zoom [\#114](https://github.com/ColinDuquesnoy/MellowPlayer/issues/114)
+- Integrate Catalan translation [\#111](https://github.com/ColinDuquesnoy/MellowPlayer/issues/111)
+- Integrate Spanish translation [\#110](https://github.com/ColinDuquesnoy/MellowPlayer/issues/110)
+- Add a function to change the user agent in the settings [\#102](https://github.com/ColinDuquesnoy/MellowPlayer/issues/102)
+- Add Radionomy [\#100](https://github.com/ColinDuquesnoy/MellowPlayer/issues/100)
+- Add JAMENDO MUSIC [\#83](https://github.com/ColinDuquesnoy/MellowPlayer/issues/83)
+- Add shortcut to open web developer tools [\#80](https://github.com/ColinDuquesnoy/MellowPlayer/issues/80)
+- MPRIS: Use favorite song info [\#79](https://github.com/ColinDuquesnoy/MellowPlayer/issues/79)
+- Add hearthis.at [\#75](https://github.com/ColinDuquesnoy/MellowPlayer/issues/75)
+- Add support for user scripts [\#69](https://github.com/ColinDuquesnoy/MellowPlayer/issues/69)
+
+**Fixed bugs:**
+
+- Drag & Drop to trash icon does not always work [\#136](https://github.com/ColinDuquesnoy/MellowPlayer/issues/136)
+- TuneIn integration broken [\#133](https://github.com/ColinDuquesnoy/MellowPlayer/issues/133)
+- Mixcloud integration plugin broken [\#108](https://github.com/ColinDuquesnoy/MellowPlayer/issues/108)
+
+**Closed issues:**
+
+- Deezer - playback switches to random songs [\#127](https://github.com/ColinDuquesnoy/MellowPlayer/issues/127)
+- mellowplayer.desktop does not pass desktop-file-validate [\#104](https://github.com/ColinDuquesnoy/MellowPlayer/issues/104)
+- Buttons not translatable [\#101](https://github.com/ColinDuquesnoy/MellowPlayer/issues/101)
+
+**Merged pull requests:**
+
+- Add favorites support to soundcloud plugin [\#134](https://github.com/ColinDuquesnoy/MellowPlayer/pull/134) ([Cogitri](https://github.com/Cogitri))
+- GPM: improve playback status detection [\#129](https://github.com/ColinDuquesnoy/MellowPlayer/pull/129) ([terinjokes](https://github.com/terinjokes))
+- Add Wynk Music plugin [\#125](https://github.com/ColinDuquesnoy/MellowPlayer/pull/125) ([shreyanshk](https://github.com/shreyanshk))
+- Update Readme.md [\#123](https://github.com/ColinDuquesnoy/MellowPlayer/pull/123) ([ZeroDot1](https://github.com/ZeroDot1))
+- README.md updated [\#122](https://github.com/ColinDuquesnoy/MellowPlayer/pull/122) ([ZeroDot1](https://github.com/ZeroDot1))
+- Anghami [\#120](https://github.com/ColinDuquesnoy/MellowPlayer/pull/120) ([mahmoudhossam](https://github.com/mahmoudhossam))
+- Add a Gitter chat badge to README.md [\#119](https://github.com/ColinDuquesnoy/MellowPlayer/pull/119) ([gitter-badger](https://github.com/gitter-badger))
+- Feature pocketcasts plugin [\#117](https://github.com/ColinDuquesnoy/MellowPlayer/pull/117) ([kolletzki](https://github.com/kolletzki))
+- Fix Buttons not translatable / archlinux-env-setup.sh [\#103](https://github.com/ColinDuquesnoy/MellowPlayer/pull/103) ([ZeroDot1](https://github.com/ZeroDot1))
+
 ## [3.0.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.0.0) (2017-08-13)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.99.0...3.0.0)
 

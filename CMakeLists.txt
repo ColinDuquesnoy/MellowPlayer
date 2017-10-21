@@ -10,7 +10,7 @@ if (NOT BUILD_NUMBER)
 endif()
 
 
-project(MellowPlayer VERSION 3.0.50.${BUILD_NUMBER})
+project(MellowPlayer VERSION 3.1.0.${BUILD_NUMBER})
 set(CMAKE_VERBOSE_MAKEFILE FALSE)
 # cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
