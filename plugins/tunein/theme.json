@@ -3,8 +3,8 @@
   "accent": "#36b4a7",
   "background": "#ffffff",
   "foreground": "#505050",
-  "primary": "#36b4a7",
-  "primaryForeground": "#ffffff",
-  "secondary": "#eeeeee",
+  "primary": "black",
+  "primaryForeground": "white",
+  "secondary": "white",
   "secondaryForeground": "#505050"
 }

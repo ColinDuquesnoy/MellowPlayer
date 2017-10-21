@@ -16,73 +16,71 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-var oldSongInfo = null;
+function playButton() {
+    return document.getElementById("playerActionButton");
+}
 
-function hashCode(str) {
-    var hash = 0,
-        i, chr, len;
-    if (str.length === 0) return hash;
-    for (i = 0, len = str.length; i < len; i++) {
-        chr = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return Math.abs(hash);
+function getHashCode(s) {
+    return s.split("").reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
 }
 
 function getPlaybackStatus() {
-    var stateStr = TuneIn.app.getPlayState();
-    if (stateStr === 'playing') {
+    btn = playButton();
+
+    if (btn === null)
+        return mellowplayer.PlaybackStatus.BUFFERING;
+    else if (btn.className === "playing")
         return mellowplayer.PlaybackStatus.PLAYING;
-    } else {
-        if (stateStr === 'stopped') {
-            return mellowplayer.PlaybackStatus.PAUSED;
-        }
-    }
-    return mellowplayer.PlaybackStatus.STOPPED;
+    else if (btn.className === "playing")
+        return mellowplayer.PlaybackStatus.PAUSED;
+}
+
+function getSongInfos() {
+    return document.getElementById("playerTitle").innerText;
+}
+
+function getArtist() {
+    var tokens = getSongInfos().split("-");
+    if (tokens.length > 2)
+        return [0].trim();
+    return "";
+}
+
+function getTitle() {
+    var tokens = getSongInfos().split("-");
+    if (tokens.length > 2)
+        return getSongInfos().split("-")[1].trim();
+    return getSongInfos();
+}
+
+function getArtUrl() {
+    return document.getElementById("playerArtwork").src;
 }
 
 function update() {
-    var retVal = {
+    return {
         "playbackStatus": getPlaybackStatus(),
         "canSeek": false,
         "canGoNext": false,
         "canGoPrevious": false,
-        "canAddToFavorites": true,
+        "canAddToFavorites": false,
         "volume": 1,
-        "songId": 0,
-        "songTitle": '',
-        "artistName": 'TuneIn',
+        "songId": getHashCode(getTitle()),
+        "songTitle": getTitle(),
+        "artistName": getArtist(),
         "albumTitle": '',
-        "artUrl": '',
+        "artUrl": getArtUrl(),
         "isFavorite": false,
         "duration": 0,
         "position": 0
     };
-
-    var broadcast = TuneIn.app.getNowPlaying();
-    var stopped = getPlaybackStatus() === mellowplayer.PlaybackStatus.STOPPED;
-    if (broadcast === undefined) {
-        if (!stopped && oldSongInfo !== null) {
-            retVal.songId = oldSongInfo.songId;
-            retVal.songTitle = oldSongInfo.songTitle;
-            retVal.artistName = oldSongInfo.artistName;
-            retVal.artUrl = oldSongInfo.artUrl;
-            retVal.isFavorite = oldSongInfo.isFavorite;
-        }
-    } else {
-        retVal.songId = hashCode(broadcast.Title + broadcast.Subtitle);
-        retVal.songTitle = broadcast.Title;
-        retVal.artistName = broadcast.Subtitle;
-        retVal.artUrl = broadcast.Image;
-        retVal.isFavorite = $(".in").length > 0;
-        oldSongInfo = retVal;
-    }
-    return retVal;
 }
 
 function play() {
-    $(".playbutton-cont").click();
+    playButton().click();
 }
 
 function pause() {
@@ -102,11 +100,11 @@ function setVolume(volume) {
 }
 
 function addToFavorites() {
-    $(".follow")[0].click()
+    // not supported
 }
 
 function removeFromFavorites() {
-    $(".follow")[0].click()
+    // not supported
 }
 
 function seekToPosition(position) {
