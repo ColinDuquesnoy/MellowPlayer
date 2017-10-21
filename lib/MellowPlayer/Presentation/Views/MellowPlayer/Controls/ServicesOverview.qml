@@ -27,6 +27,7 @@ Item {
         }
 
         ScrollView {
+            id: scrollView
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.margins: 50
@@ -38,7 +39,7 @@ Item {
 
                 property bool dragActive: false
 
-                anchors.centerIn: parent
+                anchors.fill: parent
                 focus: true
                 width: {
                     if (mainWindowWidth <= 1680 )
@@ -230,10 +231,12 @@ Item {
             height: gridView.cellHeight
 
             onDropped: {
+                var position = scrollView.ScrollBar.vertical.position;
                 gridView.dragActive = false;
                 drag.source.service.isEnabled = false;
                 _streamingServices.enabledServices.update()
                 removedLabel.service = drag.source.service;
+                scrollView.ScrollBar.vertical.position = position;
             }
         }
 
