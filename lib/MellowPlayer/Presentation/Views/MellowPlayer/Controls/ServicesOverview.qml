@@ -189,6 +189,7 @@ Item {
                     removedLabel.service.isEnabled = true
                     removedLabel.service = null;
                     removedLabel.visible = false;
+                    _streamingServices.enabledServices.update()
                 }
 
                 MouseArea {
@@ -231,6 +232,7 @@ Item {
             onDropped: {
                 gridView.dragActive = false;
                 drag.source.service.isEnabled = false;
+                _streamingServices.enabledServices.update()
                 removedLabel.service = drag.source.service;
             }
         }
