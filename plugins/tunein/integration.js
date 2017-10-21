@@ -39,7 +39,11 @@ function getPlaybackStatus() {
 }
 
 function getSongInfos() {
-    return document.getElementById("playerTitle").innerText;
+    try {
+        return document.getElementById("playerTitle").innerText;
+    } catch(e) {
+        return "";
+    }
 }
 
 function getArtist() {
@@ -57,7 +61,11 @@ function getTitle() {
 }
 
 function getArtUrl() {
-    return document.getElementById("playerArtwork").src;
+    try {
+        return document.getElementById("playerArtwork").src;
+    } catch(e) {
+        return "";
+    }
 }
 
 function update() {
