@@ -61,6 +61,7 @@ install(DIRECTORY share/icons DESTINATION ${CMAKE_INSTALL_DATADIR})
 
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")
+message(STATUS "Build date: ${BUILD_DATE}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Use pre-compiled headers: ${USE_PRECOMPILED_HEADER}")
 message(STATUS "Default theme: ${DEFAULT_THEME}")
