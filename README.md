@@ -13,8 +13,8 @@ that runs **web-based music streaming services** in its own window and
 provides **integration with your desktop** (hotkeys, multimedia keys, system tray,
 notifications and more).
 
-*MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/),
-*specifically crafted for* [KaOS](http://kaosx.us/).
+*MellowPlayer is a Qt based alternative to* [NuvolaPlayer](https://tiliado.eu/nuvolaplayer/)
+*initially crafted for* [KaOS](http://kaosx.us/). *MellowPlayer is written in C++ and QML.*
 
 # Supported services:
 
@@ -35,6 +35,12 @@ notifications and more).
 - [Wynk](https://www.wynk.in/music)
 - [ympd](https://github.com/notandy/ympd)
 
+# Limitations:
+
+- For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases.
+- Some services (e.g. Spotify, Soundcloud and Mixcloud) also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases.
+- Tidal HiFi does not work because there is no MQA plugin available for chromium based browsers.
+
 # Resources
 
 - [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
@@ -45,6 +51,11 @@ notifications and more).
 
 MellowPlayer is licensed under the GPL license.
 
+# Download
+
+- [Github release page](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
+- [Packages for various GNU/Linux distribution](https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer)
+
 # Requirements
 
 ## Build dependencies
@@ -53,15 +64,6 @@ MellowPlayer is licensed under the GPL license.
 - a c++17 compiler (gcc6, msvc 2015 or clang)
 - Qt5 (>= 5.9.0, QtWebEngine and QtQuickControls2 needed)
 - Libnotify (optional, GNU/Linux only)
-
-## Limitations:
-
-- For licensing reason, we do not ship the flash player plugin and the widevine DRM plugins in our official releases.
-  Most services requires the flash **ppapi** plugin to work, you can download it on adobe's website. Spotify requires the   widevine plugin which can be taken from a google chrome installation. See http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/
-
-- Some services (Spotify, Soundcloud and Mixcloud) also requires QtWebEngine to be compiled with proprietary codecs, which is not the case in our official releases.
-
-- Tidal HiFi does not work because there is no MQA plugin available for chromium based browsers.
 
 ## Bundled 3rd-parties
 
