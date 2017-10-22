@@ -35,14 +35,6 @@ notifications and more).
 - [Wynk](https://www.wynk.in/music)
 - [ympd](https://github.com/notandy/ympd)
 
-# User Scripts:
-With MellowPlayer 3.1 you have the possibility to use user scripts.
-
-This means that you can customize the look and feel of a streaming service as you like it, or simply to add features you miss.
-- [Download and use different themes](https://userstyles.org/)
-- [Download and use different user scripts](https://greasyfork.org/en/)
-
-
 # Resources
 
 - [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
