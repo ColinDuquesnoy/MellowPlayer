@@ -9,10 +9,22 @@ function update() {
     else if (document.querySelector('[aria-label=Play]') !== null)
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
     try {
-        var artUrl = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
+        var artBlobUrl = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
         0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0]
         .style["background-image"];
-        artUrl = artUrl.replace('url("', "").replace('")', "");
+        artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
+        // Get the data URL of the blob
+        var request = new XMLHttpRequest();
+        request.open('GET', artBlobUrl, true);
+        request.responseType = 'blob';
+        request.onload = function() {
+            var reader = new FileReader();
+            reader.readAsDataURL(request.response);
+            reader.onload =  function(e){
+                return artUrl = e.target.result;
+            };
+        };
+        request.send();
     } catch (e) {
         var artUrl = '';
     }
