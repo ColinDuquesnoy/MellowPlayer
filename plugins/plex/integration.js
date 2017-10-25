@@ -45,30 +45,30 @@ function update() {
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
     else if (document.querySelector('[aria-label=Play]') !== null)
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
+
+    // We'll use this multiple times later on as it packs all the media info
+    var mediaInfoElement = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
+        0].children[0].children[0];
+
     try {
-        var artBlobUrl = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
-            0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0]
-            .style["background-image"];
+        var artBlobUrl = mediaInfoElement.children[0].children[0].children[0].children[0].children[0].children[
+            0].style["background-image"];
         artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
-        // Get the data URL of the blob
-        var request = new XMLHttpRequest();
-        request.open('GET', artBlobUrl, true);
-        request.responseType = 'blob';
-        request.onload = function() {
-            var reader = new FileReader();
-            reader.readAsDataURL(request.response);
-            reader.onload = function(e) {
-                return artUrl = e.target.result;
-            };
-        };
-        request.send();
     } catch (e) {
         var artUrl = '';
     }
     try {
-        var songTitle = document.getElementsByTagName('title')[0].innerHTML;
+        var songTitle = mediaInfoElement.children[1].children[0].title
     } catch (e) {
         var songTitle = '';
+    }
+    try {
+        var artistInfoElement = mediaInfoElement.children[1].children[1];
+        var artistName = artistInfoElement.children[0].title;
+        var albumTitle = artistInfoElement.children[2].title;
+    } catch (e) {
+        var artistName = '';
+        var albumTitle = '';
     }
     return {
         "playbackStatus": playbackStatus,
@@ -77,15 +77,49 @@ function update() {
         "canGoPrevious": true,
         "canAddToFavorites": false,
         "volume": 1,
-        "duration": 0,
-        "position": 0,
+        "duration": mediaTime("duration"),
+        "position": mediaTime("position"),
         "songId": 0,
         "songTitle": songTitle,
-        "artistName": '',
-        "albumTitle": '',
-        "artUrl": artUrl,
+        "artistName": artistName,
+        "albumTitle": albumTitle,
+        "artUrl": artBlobUrl,
         "isFavorite": false
     }
+}
+
+function mediaTime(type) {
+    var timeElement = document.getElementsByClassName("DurationRemaining-container-1F4w8")[0]
+
+    // if timeElement doesn't exist yet the site didn't finish loading yet
+    if (!timeElement)
+        return;
+    else
+        timeElement = timeElement.innerHTML;
+
+    if (type === "position")
+        // songPosition
+        var time = timeElement.split("-->")[1].split("<!--")[0];
+    else
+        // songDuration
+        var time = timeElement.split("-->")[5].split("<!--")[0];
+
+    timeSplit = time.split(":")
+
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+
+    if (timeSplit.length === 3) {
+        hours = parseInt(timeSplit[0]);
+        minutes = parseInt(timeSplit[1]);
+        seconds = parseInt(timeSplit[2]);
+    } else if (timeSplit.length === 2) {
+        minutes = parseInt(timeSplit[0]);
+        seconds = parseInt(timeSplit[1]);
+    }
+
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 function clickButton(buttonName) {
