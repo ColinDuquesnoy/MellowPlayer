@@ -145,5 +145,5 @@ MellowPlayer will inject a few constants that you can use for representing the c
 Utility functions
 -----------------
 
-- ``function getHashCode(string)``: return the hash code of the specified string. You can use this to generate the song id if none is available via the web streaming service API.
-- ``toSeconds(string)`` convert a time string (``HH:mm:ss``) to a number of seconds.
+- ``function getHashCode(string)``: returns the hash code of the specified string. You can use this to generate the song id if none is available via the web streaming service API.
+- ``toSeconds(string)`` converts a time string (``HH:mm:ss``) to a number of seconds.
