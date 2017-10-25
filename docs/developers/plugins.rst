@@ -141,3 +141,9 @@ MellowPlayer will inject a few constants that you can use for representing the c
 - **mellowplayer.PlaybackStatus.PAUSED**: indicates that the playback has paused.
 - **mellowplayer.PlaybackStatus.BUFFERING**: indicates that the a song is buffering.
 - **mellowplayer.PlaybackStatus.PLAYING**: indicates that the a song is currently playing.
+
+Utility functions
+-----------------
+
+- ``function getHashCode(s)``: return the hash code of the specified string. You can use this to generate the song id if none is available via the web streaming service API.
+- ``toSeconds`` convert a time string (``HH:mm:ss``) to a number of seconds.
