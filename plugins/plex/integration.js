@@ -79,7 +79,7 @@ function update() {
         "volume": 1,
         "duration": mediaTime("duration"),
         "position": mediaTime("position"),
-        "songId": 0,
+        "songId": getHashCode(songTitle),
         "songTitle": songTitle,
         "artistName": artistName,
         "albumTitle": albumTitle,
@@ -104,22 +104,7 @@ function mediaTime(type) {
         // songDuration
         var time = timeElement.split("-->")[5].split("<!--")[0];
 
-    timeSplit = time.split(":")
-
-    var hours = 0;
-    var minutes = 0;
-    var seconds = 0;
-
-    if (timeSplit.length === 3) {
-        hours = parseInt(timeSplit[0]);
-        minutes = parseInt(timeSplit[1]);
-        seconds = parseInt(timeSplit[2]);
-    } else if (timeSplit.length === 2) {
-        minutes = parseInt(timeSplit[0]);
-        seconds = parseInt(timeSplit[1]);
-    }
-
-    return hours * 3600 + minutes * 60 + seconds;
+    return toSeconds(time);
 }
 
 function clickButton(buttonName) {
