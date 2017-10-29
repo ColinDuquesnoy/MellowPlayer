@@ -16,6 +16,10 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+function getLoveButton() {
+    return document.querySelector("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button");
+}
+
 function update() {
     var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     if (dzPlayer.isPlaying())
@@ -45,7 +49,7 @@ function update() {
 
 function isFavorite() {
     try {
-        return $("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button")[0].className.indexOf("is-favorite") !== -1;
+        return getLoveButton().className.indexOf("is-active") !== -1
     }
     catch (e) {
         return false;
@@ -73,11 +77,11 @@ function setVolume(volume) {
 }
 
 function addToFavorites() {
-    $(".icon-love").click()
+    getLoveButton().click();
 }
 
 function removeFromFavorites() {
-    $(".icon-love").click()
+    getLoveButton().click();
 }
 
 function seekToPosition(position) {
