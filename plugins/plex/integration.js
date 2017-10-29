@@ -53,7 +53,7 @@ function convertArtUrlToBase64() {
         request.onload = function() {
             var reader = new FileReader();
             reader.readAsDataURL(request.response);
-            reader.onload =  function(e){
+            reader.onload = function(e) {
                 artUrl = e.target.result;
             };
         };
