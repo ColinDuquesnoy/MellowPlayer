@@ -3,10 +3,13 @@
 #include <MellowPlayer/Application/Player/Players.hpp>
 #include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Application/Settings/SettingKey.hpp>
 
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Application;
 using namespace MellowPlayer::Presentation;
+
+#define DEFAULT_ZOOM_FACTOR 7
 
 StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, 
                                                      ISettingsProvider& settings,
@@ -17,7 +20,8 @@ StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streaming
         streamingService_(streamingService), 
         settingsProvider_(settings), 
         player_(players.get(streamingService.name())),
-        userScriptsViewModel_(streamingService.name(), factory, settings, this)
+        userScriptsViewModel_(streamingService.name(), factory, settings, this),
+        zoomFactor_(settingsProvider_.value(zoomFactorSettingsKey(), 7).toInt())
 {
     
 }
@@ -134,4 +138,21 @@ QString StreamingServiceViewModel::isEnabledSettingsKey() const
 QObject* StreamingServiceViewModel::userScripts()
 {
     return &userScriptsViewModel_;
+}
+
+int StreamingServiceViewModel::zoomFactor() const {
+    return zoomFactor_;
+}
+
+void StreamingServiceViewModel::setZoomFactor(int zoomFactor) {
+    if (zoomFactor_ != zoomFactor) {
+        zoomFactor_ = zoomFactor;
+        settingsProvider_.setValue(zoomFactorSettingsKey(), zoomFactor);
+        emit zoomFactorChanged();
+    }
+
+}
+
+QString StreamingServiceViewModel::zoomFactorSettingsKey() const {
+    return streamingService_.name() + "/zoomFactor";
 }

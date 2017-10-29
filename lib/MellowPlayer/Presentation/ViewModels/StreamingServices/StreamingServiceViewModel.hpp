@@ -30,6 +30,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
         Q_PROPERTY(QObject* userScripts READ userScripts CONSTANT)
+        Q_PROPERTY(int zoomFactor READ zoomFactor WRITE setZoomFactor NOTIFY zoomFactorChanged)
     public:
         StreamingServiceViewModel(Application::StreamingService& streamingService, 
                                   Application::ISettingsProvider& settings,
@@ -58,6 +59,9 @@ namespace MellowPlayer::Presentation
 
         QObject* userScripts();
 
+        int zoomFactor() const;
+        void setZoomFactor(int zoomFactor);
+
     public slots:
         void setUrl(const QString& newUrl);
 
@@ -66,15 +70,18 @@ namespace MellowPlayer::Presentation
         void sortOrderChanged();
         void isEnabledChanged();
         void isRunningChanged();
+        void zoomFactorChanged();
 
     private:
         QString customUrlSettingsKey() const;
         QString sortOrderSettingsKey() const;
         QString isEnabledSettingsKey() const;
+        QString zoomFactorSettingsKey() const;
 
         Application::StreamingService& streamingService_;
         Application::ISettingsProvider& settingsProvider_;
         std::shared_ptr<Application::Player> player_;
         UserScriptsViewModel userScriptsViewModel_;
+        int zoomFactor_;
     };
 }
