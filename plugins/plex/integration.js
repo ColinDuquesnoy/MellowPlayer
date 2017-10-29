@@ -76,6 +76,11 @@ function update() {
     else if (document.querySelector('[aria-label=Play]') !== null)
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
 
+    // We'll use this multiple times later on as it packs all the media info
+    var mediaInfoElement = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
+        0].children[0].children[0];
+
+
     try {
         var songTitle = mediaInfoElement.children[1].children[0].title
     } catch (e) {
