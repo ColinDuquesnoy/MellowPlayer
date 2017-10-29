@@ -39,7 +39,7 @@ Item {
 
                 property bool dragActive: false
 
-                anchors.fill: parent
+                anchors.centerIn: parent
                 focus: true
                 width: {
                     if (mainWindowWidth <= 1680 )
