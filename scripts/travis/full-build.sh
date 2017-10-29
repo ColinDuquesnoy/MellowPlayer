@@ -28,8 +28,6 @@ fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
-    export CMAKE_PREFIX_PATH=$PWD/../qt;
-    export QT_PLUGIN_PATH=$PWD/../qt/plugins;
     cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
     make -j2;
 
