@@ -32,6 +32,8 @@ namespace MellowPlayer::Application
             PRIVACY_USER_AGENT,
             PRIVATE_CURRENT_SERVICE,
             PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE,
+            PRIVATE_WINDOW_HEIGHT,
+            PRIVATE_WINDOW_WIDTH,
             SHORTCUTS_ABOUT,
             SHORTCUTS_CHECK_FOR_UPDATE,
             SHORTCUTS_CREATE_PLUGIN,
@@ -78,6 +80,8 @@ namespace MellowPlayer::Application
             enumToString << "privacy/user-agent";
             enumToString << "private/current-service";
             enumToString << "private/show-close-to-tray-message";
+            enumToString << "private/window-height";
+            enumToString << "private/window-width";
             enumToString << "shortcuts/about";
             enumToString << "shortcuts/check-for-update";
             enumToString << "shortcuts/create-plugin";

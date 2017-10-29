@@ -10,6 +10,8 @@ ApplicationWindow {
     id: root
 
     minimumWidth: 1280; minimumHeight: 720
+    width: _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value;
+    height: _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value;
     title: _streamingServices.currentService !== null ? _streamingServices.currentService.name : ""
 
     onClosing: d.handleCloseEvent(close);
@@ -145,8 +147,14 @@ ApplicationWindow {
                 mainPage.showWebView();
         }
 
+        function saveGeometry() {
+            _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value = root.width;
+            _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value = root.height;
+        }
+
         function handleCloseEvent(close) {
             console.warn("handleCloseEvent", forceQuit)
+            saveGeometry();
             var closeToTray = _settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
             if (closeToTray && !forceQuit) {
                 var showMessageSetting = _settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
@@ -163,6 +171,7 @@ ApplicationWindow {
         }
 
         function quit() {
+            saveGeometry();
             var confirmExit = _settings.get(SettingKey.MAIN_CONFIRM_EXIT).value;
             if (confirmExit) {
                 d.restoreWindow();

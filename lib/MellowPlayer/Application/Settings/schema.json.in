@@ -324,7 +324,19 @@
 					"type": "string",
 					"default": "",
 					"key": "current-service"
-				}
+				},
+				{
+                    "name": "",
+                    "type": "int",
+                    "default": 1280,
+                    "key": "window-width"
+                },
+                {
+                    "name": "",
+                    "type": "int",
+                    "default": 720,
+                    "key": "window-height"
+                }
 			]
 		}
 	]
