@@ -47,7 +47,6 @@ function convertArtUrlToBase64() {
         artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
 
         // Get the data URL of the blob
-        console.warn("converting artUrl to base64 string: " + artBlobUrl);
         var request = new XMLHttpRequest();
         request.open('GET', artBlobUrl, true);
         request.responseType = 'blob';
@@ -56,7 +55,6 @@ function convertArtUrlToBase64() {
             reader.readAsDataURL(request.response);
             reader.onload =  function(e){
                 artUrl = e.target.result;
-                console.warn("art url is ready: " + artUrl)
             };
         };
         request.send();
@@ -96,12 +94,10 @@ function update() {
     }
 
     if (songTitle !== previousSongTitle) {
-        console.warn("song title changed '" + previousSongTitle + "' -> '" + songTitle + "'");
         previousSongTitle = songTitle;
         artUrl = "";
         convertArtUrlToBase64();
     }
-    console.warn("artUrl = " + artUrl);
 
     var updateInfo = {
         "playbackStatus": playbackStatus,
@@ -119,8 +115,6 @@ function update() {
         "artUrl": artUrl,
         "isFavorite": false
     };
-
-    console.info(JSON.stringify(updateInfo));
 
     return updateInfo;
 }
