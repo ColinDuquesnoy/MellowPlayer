@@ -20,7 +20,7 @@ QImage Base64Helper::getImage(const QString& uri)
     LOG_DEBUG(logger_, "decoding image: " << uri);
 
     QImage image;
-    QRegExp re("data:image\\/(\\w*);base64,(.*)");
+    QRegExp re("data:(image\\/.*);base64,(.*)");
 
     int pos = re.indexIn(uri);
     if (pos == -1) {
@@ -29,9 +29,9 @@ QImage Base64Helper::getImage(const QString& uri)
     }
 
     QStringList captures = re.capturedTexts();
-    QString format = captures.at(1).toUpper();
+    QString format = captures.at(1).toLower();
     QString data = captures.at(2);
-    LOG_DEBUG(logger_, "image format: " << data);
+    LOG_DEBUG(logger_, "image format: " << format);
     LOG_DEBUG(logger_, "image data: " << data);
 
     QByteArray decoded = QByteArray::fromBase64(data.toUtf8());

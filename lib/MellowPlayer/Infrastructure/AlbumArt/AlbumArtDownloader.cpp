@@ -64,5 +64,9 @@ bool AlbumArtDownloader::isBase64Image(const QString& artUrl)
 bool AlbumArtDownloader::createBase64Image(const QString base64String)
 {
     LOG_DEBUG(logger_, "creating base64 image from " + base64String + " to " + localUrl_.absoluteFilePath());
-    return base64Helper_.saveToFile(base64String, localUrl_.absoluteFilePath());
+    bool retVal = base64Helper_.saveToFile(base64String, localUrl_.absoluteFilePath());
+
+    emit downloadFinished(localUrl_.absoluteFilePath());
+
+    return retVal;
 }
