@@ -54,6 +54,18 @@ function update() {
         var artBlobUrl = mediaInfoElement.children[0].children[0].children[0].children[0].children[0].children[
             0].style["background-image"];
         artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
+        // Get the data URL of the blob
+        var request = new XMLHttpRequest();
+        request.open('GET', artBlobUrl, true);
+        request.responseType = 'blob';
+        request.onload = function() {
+            var reader = new FileReader();
+            reader.readAsDataURL(request.response);
+            reader.onload =  function(e){
+                return artUrl = e.target.result;
+            };
+        };
+        request.send();
     } catch (e) {
         var artUrl = '';
     }
@@ -83,7 +95,7 @@ function update() {
         "songTitle": songTitle,
         "artistName": artistName,
         "albumTitle": albumTitle,
-        "artUrl": artBlobUrl,
+        "artUrl": artUrl,
         "isFavorite": false
     }
 }
