@@ -36,7 +36,7 @@
 //     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 //     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-var previousSongTitle = "";
+var previousSongHash = "";
 var artUrl = "";
 
 function convertArtUrlToBase64() {
@@ -93,8 +93,10 @@ function update() {
         var albumTitle = '';
     }
 
-    if (songTitle !== previousSongTitle) {
-        previousSongTitle = songTitle;
+    var songHash = getHashCode(songTitle)
+
+    if (songHash !== previousSongHash) {
+        previousSongHash = songHash
         artUrl = "";
         convertArtUrlToBase64();
     }
@@ -108,7 +110,7 @@ function update() {
         "volume": 1,
         "duration": mediaTime("duration"),
         "position": mediaTime("position"),
-        "songId": getHashCode(songTitle),
+        "songId": songHash,
         "songTitle": songTitle,
         "artistName": artistName,
         "albumTitle": albumTitle,
