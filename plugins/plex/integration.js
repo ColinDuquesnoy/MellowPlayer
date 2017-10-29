@@ -35,6 +35,36 @@
 //     LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 //     OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 //     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+var previousSongTitle = "";
+var artUrl = "";
+
+function convertArtUrlToBase64() {
+    try {
+        var artBlobUrl = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
+            0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0]
+            .style["background-image"];
+        artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
+
+        // Get the data URL of the blob
+        console.warn("converting artUrl to base64 string: " + artBlobUrl);
+        var request = new XMLHttpRequest();
+        request.open('GET', artBlobUrl, true);
+        request.responseType = 'blob';
+        request.onload = function() {
+            var reader = new FileReader();
+            reader.readAsDataURL(request.response);
+            reader.onload =  function(e){
+                artUrl = e.target.result;
+                console.warn("art url is ready: " + artUrl)
+            };
+        };
+        request.send();
+    } catch (e) {
+        console.warn("failed to convertArtUrl: ", e);
+    }
+}
+
 function update() {
     var controlClassName = document.getElementsByClassName('AudioVideoPlayerControls-controls-OwK1f')[0];
     // if controlClassName is undefined the audioplayer isn't opened yet
@@ -46,29 +76,6 @@ function update() {
     else if (document.querySelector('[aria-label=Play]') !== null)
         playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
 
-    // We'll use this multiple times later on as it packs all the media info
-    var mediaInfoElement = document.getElementsByClassName('AudioVideoPlayerControls-buttonGroupLeft-3kwFX')[
-        0].children[0].children[0];
-
-    try {
-        var artBlobUrl = mediaInfoElement.children[0].children[0].children[0].children[0].children[0].children[
-            0].style["background-image"];
-        artBlobUrl = artBlobUrl.replace('url("', "").replace('")', "");
-        // Get the data URL of the blob
-        var request = new XMLHttpRequest();
-        request.open('GET', artBlobUrl, true);
-        request.responseType = 'blob';
-        request.onload = function() {
-            var reader = new FileReader();
-            reader.readAsDataURL(request.response);
-            reader.onload =  function(e){
-                return artUrl = e.target.result;
-            };
-        };
-        request.send();
-    } catch (e) {
-        var artUrl = '';
-    }
     try {
         var songTitle = mediaInfoElement.children[1].children[0].title
     } catch (e) {
@@ -82,7 +89,16 @@ function update() {
         var artistName = '';
         var albumTitle = '';
     }
-    return {
+
+    if (songTitle !== previousSongTitle) {
+        console.warn("song title changed '" + previousSongTitle + "' -> '" + songTitle + "'");
+        previousSongTitle = songTitle;
+        artUrl = "";
+        convertArtUrlToBase64();
+    }
+    console.warn("artUrl = " + artUrl);
+
+    var updateInfo = {
         "playbackStatus": playbackStatus,
         "canSeek": false,
         "canGoNext": true,
@@ -97,7 +113,11 @@ function update() {
         "albumTitle": albumTitle,
         "artUrl": artUrl,
         "isFavorite": false
-    }
+    };
+
+    console.info(JSON.stringify(updateInfo));
+
+    return updateInfo;
 }
 
 function mediaTime(type) {
