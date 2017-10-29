@@ -25,6 +25,7 @@ namespace MellowPlayer::Presentation
 {
     class ApplicationViewModel : public Application::IQtApplication
     {
+        Q_OBJECT
     public:
         ApplicationViewModel(int& argc, char** argv, const QString& appName = MELLOWPLAYER_APP_NAME);
 
@@ -41,6 +42,9 @@ namespace MellowPlayer::Presentation
         void setAutoQuitDelay(int delay);
 
         bool restartRequested() const override;
+
+    signals:
+        void forceQuitRequested();
 
     private:
         void onAboutToQuit();

@@ -100,6 +100,7 @@ ApplicationWindow {
         target: _app;
 
         onQuitRequested: d.quit()
+        onForceQuitRequested: { d.forceQuit = true; _app.quit() }
     }
 
     Shortcut {
@@ -113,6 +114,7 @@ ApplicationWindow {
 
         property int previousVisibility: ApplicationWindow.Windowed
         property QtObject applicationRoot: ApplicationRoot { }
+        property bool forceQuit: false;
 
         function restoreWindow() {
             root.raise();
@@ -144,8 +146,9 @@ ApplicationWindow {
         }
 
         function handleCloseEvent(close) {
+            console.warn("handleCloseEvent", forceQuit)
             var closeToTray = _settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
-            if (closeToTray) {
+            if (closeToTray && !forceQuit) {
                 var showMessageSetting = _settings.get(SettingKey.PRIVATE_SHOW_CLOSE_TO_TRAY_MESSAGE)
                 if (showMessageSetting.value) {
                     showMessageSetting.value = false;
@@ -154,6 +157,7 @@ ApplicationWindow {
                 else {
                     _window.visible = false;
                 }
+                console.warn("closing to system tray", close)
                 close.accepted = false;
             }
         }

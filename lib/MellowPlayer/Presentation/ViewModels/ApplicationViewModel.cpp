@@ -52,6 +52,7 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
     qRegisterMetaType<SettingViewModel*>("SettingViewModel*");
 
     connect(&qtApp_, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
+    connect(&qtApp_, &QApplication::commitDataRequest, this, &ApplicationViewModel::forceQuitRequested);
 }
 
 void ApplicationViewModel::initialize()
