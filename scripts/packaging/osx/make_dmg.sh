@@ -2,14 +2,22 @@
 
 echo "Copying plugins to .app"
 
-mkdir -p build/src/MellowPlayer.app/Contents/PlugIns/services
-mkdir -p build/src/MellowPlayer.app/Contents/Resources
+build_dir=build
 
-cp -R plugins/ build/src/MellowPlayer.app/Contents/PlugIns/services
-cp scripts/packaging/osx/mellowplayer.icns build/src/MellowPlayer.app/Contents/Resources
-cp scripts/packaging/osx/Info.plist build/src/MellowPlayer.app/Contents
+mkdir -p ${build_dir}/src/MellowPlayer.app/Contents/PlugIns/services
+mkdir -p ${build_dir}/src/MellowPlayer.app/Contents/Resources
 
-$PWD/qt/bin/macdeployqt build/src/MellowPlayer.app -dmg -qmldir=$PWD/lib/MellowPlayer/Presentation/Views
+cp -R plugins/ ${build_dir}/src/MellowPlayer.app/Contents/PlugIns/services
+cp scripts/packaging/osx/mellowplayer.icns ${build_dir}/src/MellowPlayer.app/Contents/Resources
+cp scripts/packaging/osx/Info.plist ${build_dir}/src/MellowPlayer.app/Contents
+
+mkdir -p  ${build_dir}/src/MellowPlayer.app/Contents/Resources/qml/QtQuick/
+cp -R /usr/local/opt/qt/qml/QtQuick/Controls ${build_dir}/src/MellowPlayer.app/Contents/Resources/qml/QtQuick/
+
+qml_dir=$PWD/lib/MellowPlayer/Presentation/Views
+echo "QML Scanned Dir: ${qml_dir}"
+
+/usr/local/opt/qt/bin/macdeployqt ${build_dir}/src/MellowPlayer.app -dmg -qmldir=$PWD/lib/MellowPlayer/Presentation/Views -verbose=3
 
 mkdir -p dist
-cp build/src/MellowPlayer.dmg dist/
+cp ${build_dir}/src/MellowPlayer.dmg dist/
