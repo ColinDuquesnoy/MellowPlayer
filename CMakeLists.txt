@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
 
+if(APPLE)
+    set(CMAKE_PREFIX_PATH /usr/local/opt/qt)
+endif()
+
 set(BUILD_NUMBER $ENV{TRAVIS_BUILD_NUMBER})
 if (NOT BUILD_NUMBER)
     set(BUILD_NUMBER $ENV{APPVEYOR_BUILD_NUMBER})
