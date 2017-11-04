@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <QObject>
 
 class QxtGlobalShortcut;
@@ -18,12 +18,12 @@ namespace MellowPlayer::Infrastructure
 {
     class IApplication;
 
-    class HotkeysController : public QObject, public Domain::IHotkeysController
+    class Hotkeys : public QObject, public IHotkeys
     {
         Q_OBJECT
     public:
-        HotkeysController(Domain::IPlayer& player, Domain::Settings& settings, Domain::IMainWindow& mainWindow);
-        ~HotkeysController();
+        Hotkeys(Domain::IPlayer& player, Domain::Settings& settings, Domain::IMainWindow& mainWindow);
+        ~Hotkeys();
 
         void start() override;
 

@@ -2,7 +2,6 @@
 
 #include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
-#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
 #include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
 #include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
@@ -28,7 +27,8 @@
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
-#include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/Hotkeys.hpp>
 #include <MellowPlayer/Infrastructure/FileDownloader.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
@@ -130,7 +130,7 @@ auto defaultInjector = [](ScopedScope &scope) {
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
         di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
         di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
-        di::bind<IHotkeysController>().to<HotkeysController>().in(scope),
+        di::bind<MellowPlayer::Infrastructure::IHotkeys>().to<Hotkeys>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotifier>().to<Notifier>().in(scope),

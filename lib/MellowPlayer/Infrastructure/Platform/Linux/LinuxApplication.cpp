@@ -1,5 +1,5 @@
 #include "LinuxApplication.hpp"
-#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
 #include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <MellowPlayer/Domain/IQtApplication.hpp>
@@ -15,7 +15,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 LinuxApplication::LinuxApplication(IQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
-                                   IHotkeysController& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier, IMprisController& mprisService)
+                                   IHotkeys& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier, IMprisController& mprisService)
         : CoreApplication(qtApp, mainWindow, streamingServices, kotkeys, systemTrayIcon, notifier),
           logger_(LoggingManager::logger("LinuxApplication")),
           mprisService_(mprisService)

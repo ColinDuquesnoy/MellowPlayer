@@ -1,4 +1,4 @@
-#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <MellowPlayer/Domain/IQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
@@ -15,7 +15,7 @@ using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
 CoreApplication::CoreApplication(IQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
-                                 IHotkeysController& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier)
+                                 IHotkeys& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier)
         : logger_(LoggingManager::logger("Application")),
           qtApp_(qtApp),
           mainWindow_(mainWindow),

@@ -1,11 +1,11 @@
 #pragma once
 
-namespace MellowPlayer::Domain
+namespace MellowPlayer::Infrastructure
 {
-    class IHotkeysController
+    class IHotkeys
     {
     public:
-        virtual ~IHotkeysController() = default;
+        virtual ~IHotkeys() = default;
 
         virtual void start() = 0;
         virtual void togglePlayPause() = 0;

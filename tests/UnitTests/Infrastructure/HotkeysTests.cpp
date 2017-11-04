@@ -1,4 +1,4 @@
-#include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/Hotkeys.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Utils/DependencyPool.hpp>
@@ -16,7 +16,7 @@ TEST_CASE("HotkeysServiceTests", "[UnitTest]")
     auto mainWindowMock = MainWindowMock::get();
     Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
-    HotkeysController hotkeys(playerMock.get(), settings, mainWindowMock.get());
+    Hotkeys hotkeys(playerMock.get(), settings, mainWindowMock.get());
     hotkeys.start();
 
     SECTION("togglePlayPause")

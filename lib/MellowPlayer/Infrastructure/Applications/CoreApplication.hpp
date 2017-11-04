@@ -7,7 +7,6 @@ namespace MellowPlayer::Domain
     class IQtApplication;
     class IMainWindow;
     class StreamingServicesController;
-    class IHotkeysController;
     class ISystemTrayIcon;
     class INotifier;
     class ILogger;
@@ -15,11 +14,13 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Infrastructure
 {
+    class IHotkeys;
+
     class CoreApplication : public IApplication
     {
     public:
         CoreApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
-                        Domain::StreamingServicesController& streamingServices, Domain::IHotkeysController& kotkeys,
+                        Domain::StreamingServicesController& streamingServices, IHotkeys& kotkeys,
                         Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier);
 
         void initialize() override;
@@ -32,7 +33,7 @@ namespace MellowPlayer::Infrastructure
         Domain::IQtApplication& qtApp_;
         Domain::IMainWindow& mainWindow_;
         Domain::StreamingServicesController& streamingServices_;
-        Domain::IHotkeysController& kotkeys_;
+        IHotkeys& kotkeys_;
         Domain::ISystemTrayIcon& systemTrayIcon_;
         Domain::INotifier& notifier_;
     };

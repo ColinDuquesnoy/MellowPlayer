@@ -1,18 +1,17 @@
 #pragma once
-#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 
 class HotkeysControllerMock
 {
 public:
-    static Mock<IHotkeysController> get()
+    static Mock<IHotkeys> get()
     {
-        Mock<IHotkeysController> mock;
+        Mock<IHotkeys> mock;
         When(Method(mock, start)).AlwaysReturn();
         When(Method(mock, togglePlayPause)).AlwaysReturn();
         When(Method(mock, next)).AlwaysReturn();
