@@ -93,13 +93,19 @@ function update() {
         var albumTitle = '';
     }
 
+    var mediaArtElement = mediaInfoElement.children[
+        0].children[0].children[0].children[0].children[0].children[0]
     var songHash = getHashCode(songTitle)
 
-    if (songHash !== previousSongHash) {
-        previousSongHash = songHash
-        artUrl = "";
-        convertArtUrlToBase64();
-    }
+    if (mediaArtElement)
+        if (songHash !== previousSongHash) {
+            artUrl = "";
+            convertArtUrlToBase64();
+            if (artUrl === "" )
+                previousSongHash = ""
+            else
+                previousSongHash = songHash
+        }
 
     var updateInfo = {
         "playbackStatus": playbackStatus,
