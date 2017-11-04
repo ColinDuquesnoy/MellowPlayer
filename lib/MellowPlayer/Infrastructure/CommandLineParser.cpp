@@ -39,7 +39,12 @@ CommandLineParser::CommandLineParser()
     parser_.addOption(toggleFavoriteOption_);
     parser_.addOption(autoQuitDelayOption_);
 
-    QStringList webEngineOptions = QStringList() << "--remote-debugging-port";
+    QStringList webEngineOptions = QStringList() << "--remote-debugging-port"
+                                                 << "--ppapi-flash-path"
+                                                 << "--ppapi-flash-version"
+                                                 << "--ppapi-widevine-path"
+                                                 << "--register-pepper-plugins"
+                                                 << "--touch-events";
     QStringList args;
     for (auto arg : qApp->arguments()) {
         bool addArg = true;
