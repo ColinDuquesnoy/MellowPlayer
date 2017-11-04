@@ -60,4 +60,4 @@ qt/
 
 qt\.zip
 schema.json
-.vscode/
+.vscode/.cmaketools.json
