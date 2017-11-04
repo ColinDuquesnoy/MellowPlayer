@@ -1,0 +1,84 @@
+@startuml
+
+namespace MellowPlayer.Domain {
+    interface IPlayerPlugins {
+        load(): void
+        toList(): QList<IPlayerPlugins>
+    }
+
+    class PlayerPlugins {
+        # _list: QList<IPlayerPlugins>
+        + {abstract} load()
+        + toList(): QList<IPlayerPlugins>
+    }
+    IPlayerPlugins <|-- PlayerPlugins
+    PlayerPlugins -> IPlayerPlugin
+
+    class PluginMetadata {
+        + author: QString
+        + authorUrl: QString
+        + logo: QString
+        + name: QString
+        + version: QString
+    }
+
+    interface IPlugin {
+        isEnabled: bool
+        metadata: PluginMetadata
+        load(): void
+    }
+    IPlugin -up-> PluginMetadata
+
+    interface IPlayerPlugin {
+        player: IPlayer
+    }
+    IPlugin <|.. IPlayerPlugin
+
+    class WebPlayerPlugin {
+        + {abstract} load(): void
+        + script: WebPlayerScript
+        + url: QString
+
+    }
+    IPlayerPlugin <|.. WebPlayerPlugin
+
+    class WebPlayerScript {
+        + code: QString
+        + constants: QString
+        + isValid(): bool
+        + update(): QString
+        + play(): QString
+        + pause(): QString
+        + next(): QString
+        + previous(): QString
+        + setVolume(double volume): QString
+        + addToFavorites(): QString
+        + removeFromFavorites(): QString
+        + seekToPosition(double position): QString
+    }
+    WebPlayerPlugin -right-> WebPlayerScript
+
+    class NativePlayerPlugin {
+        + {abstract} load(): void
+    }
+    IPlayerPlugin <|.. NativePlayerPlugin
+}
+
+namespace MellowPlayer::Infrastructure {
+    class PlayerPlugins {
+        + load(): void
+    }
+    MellowPlayer.Domain.PlayerPlugins <|-- PlayerPlugins
+
+    class WebPlayerPlugin {
+        + load(): void
+    }
+    MellowPlayer.Domain.WebPlayerPlugin <|-- WebPlayerPlugin
+
+    class NativePlayerPlugin {
+        + load(): void
+    }
+    MellowPlayer.Domain.NativePlayerPlugin <|-- NativePlayerPlugin
+}
+
+@enduml
