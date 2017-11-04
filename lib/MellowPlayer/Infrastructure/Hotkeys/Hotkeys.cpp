@@ -79,15 +79,15 @@ void Hotkeys::start()
 #ifdef Q_OS_WIN
     auto mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPlay));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::togglePlayPause);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::togglePlayPause);
 
     mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaNext));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::next);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::next);
 
     mediaShortcut = new QxtGlobalShortcut(this);
     mediaShortcut->setShortcut(QKeySequence(Qt::Key_MediaPrevious));
-    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &HotkeysController::previous);
+    connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::previous);
 #endif
 
     LOG_DEBUG(logger_, "service started");
