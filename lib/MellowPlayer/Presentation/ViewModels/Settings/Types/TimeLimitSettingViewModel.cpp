@@ -1,7 +1,7 @@
 #include "MellowPlayer/Presentation/ViewModels/Settings/Types/TimeLimitSettingViewModel.hpp"
 
 using namespace MellowPlayer::Presentation;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 TimeLimitSettingViewModel::TimeLimitSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {

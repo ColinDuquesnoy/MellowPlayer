@@ -1,8 +1,8 @@
 #include "ListeningHistoryViewModel.hpp"
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistory& listeningHistory)

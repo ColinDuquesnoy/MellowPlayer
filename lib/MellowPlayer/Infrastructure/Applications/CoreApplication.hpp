@@ -2,7 +2,7 @@
 
 #include "IApplication.hpp"
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class IQtApplication;
     class IMainWindow;
@@ -18,9 +18,9 @@ namespace MellowPlayer::Infrastructure
     class CoreApplication : public IApplication
     {
     public:
-        CoreApplication(Application::IQtApplication& qtApp, Application::IMainWindow& mainWindow,
-                        Application::StreamingServicesController& streamingServices, Application::IHotkeysController& kotkeys,
-                        Application::ISystemTrayIcon& systemTrayIcon, Application::INotifier& notifier);
+        CoreApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
+                        Domain::StreamingServicesController& streamingServices, Domain::IHotkeysController& kotkeys,
+                        Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier);
 
         void initialize() override;
         void restoreWindow() override;
@@ -28,12 +28,12 @@ namespace MellowPlayer::Infrastructure
         void quit() override;
 
     private:
-        Application::ILogger& logger_;
-        Application::IQtApplication& qtApp_;
-        Application::IMainWindow& mainWindow_;
-        Application::StreamingServicesController& streamingServices_;
-        Application::IHotkeysController& kotkeys_;
-        Application::ISystemTrayIcon& systemTrayIcon_;
-        Application::INotifier& notifier_;
+        Domain::ILogger& logger_;
+        Domain::IQtApplication& qtApp_;
+        Domain::IMainWindow& mainWindow_;
+        Domain::StreamingServicesController& streamingServices_;
+        Domain::IHotkeysController& kotkeys_;
+        Domain::ISystemTrayIcon& systemTrayIcon_;
+        Domain::INotifier& notifier_;
     };
 }

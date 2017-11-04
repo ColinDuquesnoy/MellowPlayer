@@ -2,7 +2,7 @@
 
 #include "SettingViewModel.hpp"
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Setting;
 }
@@ -14,7 +14,7 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(bool value READ getValue WRITE setValue NOTIFY valueChanged)
     public:
-        BoolSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        BoolSettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         bool getValue() const;
         QString qmlComponent() override;

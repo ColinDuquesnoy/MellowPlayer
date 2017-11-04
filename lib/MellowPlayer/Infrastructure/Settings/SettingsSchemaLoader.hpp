@@ -1,12 +1,12 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsSchemaLoader.hpp>
 
 class QJsonDocument;
 
 namespace MellowPlayer::Infrastructure
 {
-    class SettingsSchemaLoader : public Application::ISettingsSchemaLoader
+    class SettingsSchemaLoader : public Domain::ISettingsSchemaLoader
     {
     public:
         QJsonDocument load() const override;

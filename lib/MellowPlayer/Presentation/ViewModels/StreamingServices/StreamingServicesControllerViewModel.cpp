@@ -1,19 +1,19 @@
 #include "StreamingServicesControllerViewModel.hpp"
-#include <MellowPlayer/Application/IWorkDispatcher.hpp>
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/IWorkDispatcher.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/Player/Player.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Filters/TokenizedFilters.hpp>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 

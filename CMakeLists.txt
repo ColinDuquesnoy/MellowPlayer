@@ -50,7 +50,7 @@ include(scripts/cmake/InstallDirs.cmake)
 include(scripts/cmake/Cotire.cmake)
 
 set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
-configure_file(lib/MellowPlayer/Application/BuildConfig.in ${BUILD_CONFIG_SOURCE})
+configure_file(lib/MellowPlayer/Domain/BuildConfig.in ${BUILD_CONFIG_SOURCE})
 
 add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)

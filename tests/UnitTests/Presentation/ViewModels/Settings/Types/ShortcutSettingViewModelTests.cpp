@@ -1,10 +1,10 @@
 #include "catch.hpp"
-#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ShortcutSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 

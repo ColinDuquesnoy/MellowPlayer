@@ -1,17 +1,17 @@
 #pragma once
 
-#include <MellowPlayer/Application/Theme/IThemeLoader.hpp>
+#include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     struct Theme;
 }
 
 namespace MellowPlayer::Infrastructure
 {
-    class ThemeLoader : public Application::IThemeLoader
+    class ThemeLoader : public Domain::IThemeLoader
     {
     public:
-        Application::Theme load(const QString& path) const override;
+        Domain::Theme load(const QString& path) const override;
     };
 }

@@ -6,7 +6,7 @@
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 

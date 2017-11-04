@@ -2,7 +2,7 @@
 
 #include <QtCore/QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Setting;
 }
@@ -18,7 +18,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString qmlComponent READ qmlComponent CONSTANT)
         Q_PROPERTY(bool enabled READ enabled NOTIFY enabledChanged)
     public:
-        SettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        SettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         QString name() const;
         QString toolTip() const;
@@ -33,7 +33,7 @@ namespace MellowPlayer::Presentation
         virtual void onValueChanged() = 0;
 
     protected:
-        Application::Setting& setting_;
+        Domain::Setting& setting_;
 
     private slots:
         void onEnabledChanged();

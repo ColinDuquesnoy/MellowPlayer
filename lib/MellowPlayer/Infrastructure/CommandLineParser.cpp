@@ -1,8 +1,8 @@
 #include "CommandLineParser.hpp"
 #include <QDebug>
-#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
+#include <MellowPlayer/Domain/Logging/LoggerConfig.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 CommandLineParser::CommandLineParser()

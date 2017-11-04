@@ -1,16 +1,16 @@
-#include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
-#include <MellowPlayer/Application/IMainWindow.hpp>
-#include <MellowPlayer/Application/IQtApplication.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/Notifications/INotifier.hpp>
-#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Notifications/INotifier.hpp>
+#include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 
 #include "CoreApplication.hpp"
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 

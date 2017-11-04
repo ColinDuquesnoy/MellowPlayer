@@ -1,5 +1,5 @@
 #include "SettingsProviderMock.hpp"
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
 #include <QMap>
 #include <QString>
 #include <QVariant>

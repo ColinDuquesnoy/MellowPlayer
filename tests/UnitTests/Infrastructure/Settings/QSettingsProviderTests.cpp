@@ -1,9 +1,9 @@
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("QSettingsProviderTests")

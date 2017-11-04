@@ -1,5 +1,5 @@
 #include "Utils/Helpers.hpp"
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
@@ -7,7 +7,7 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("StreamingServiceWatcherTests")

@@ -2,7 +2,7 @@
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
 
 using namespace MellowPlayer;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("LoadQmlTests")

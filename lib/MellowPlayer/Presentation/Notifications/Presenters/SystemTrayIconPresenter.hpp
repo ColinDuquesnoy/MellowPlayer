@@ -1,8 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ISystemTrayIcon;
     struct Notification;
@@ -10,14 +10,14 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Presentation
 {
-    class SystemTrayIconPresenter : public Application::INotificationPresenter
+    class SystemTrayIconPresenter : public Domain::INotificationPresenter
     {
     public:
-        explicit SystemTrayIconPresenter(Application::ISystemTrayIcon& systemTrayIcon);
+        explicit SystemTrayIconPresenter(Domain::ISystemTrayIcon& systemTrayIcon);
         void initialize() override;
-        bool display(const Application::Notification& notification) override;
+        bool display(const Domain::Notification& notification) override;
 
     private:
-        Application::ISystemTrayIcon& systemTrayIcon_;
+        Domain::ISystemTrayIcon& systemTrayIcon_;
     };
 }

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/Application/IFileDownloader.hpp>
+#include <MellowPlayer/Domain/IFileDownloader.hpp>
 
 namespace MellowPlayer::Tests
 {
-    class FakeFileDownloader : public Application::IFileDownloader
+    class FakeFileDownloader : public Domain::IFileDownloader
     {
     public:
         void download(const QString&, const QString&){};

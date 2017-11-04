@@ -1,9 +1,9 @@
 #include "ShortcutSettingViewModel.hpp"
 #include <QtGui/QKeySequence>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 ShortcutSettingViewModel::ShortcutSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {

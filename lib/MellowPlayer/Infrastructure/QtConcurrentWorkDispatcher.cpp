@@ -3,7 +3,7 @@
 
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 QtConcurrentWorkDispatcher::QtConcurrentWorkDispatcher()
 {

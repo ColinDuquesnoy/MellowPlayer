@@ -38,7 +38,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.11.0/include/)
 include_directories(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
 
 add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
-target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Application
+target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Domain
                       Qt5::Concurrent Qt5::Core Qt5::Widgets Qt5::Network Qt5::Sql)
 if(UNIX AND NOT APPLE)
     target_link_libraries(${LIB_NAME} Qt5::DBus)

@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class StreamingServiceWatcherMock

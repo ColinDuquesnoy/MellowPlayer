@@ -2,7 +2,7 @@
 
 class QObject;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Setting;
 }
@@ -16,7 +16,7 @@ namespace MellowPlayer::Presentation
     {
     public:
         explicit SettingViewModelFactory(ThemeViewModel& themeViewModel);
-        SettingViewModel* create(Application::Setting& setting, QObject* parent = nullptr) const;
+        SettingViewModel* create(Domain::Setting& setting, QObject* parent = nullptr) const;
 
     private:
         ThemeViewModel& themeViewModel_;

@@ -8,21 +8,21 @@
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
-#include <MellowPlayer/Application/BuildConfig.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/BuildConfig.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 
 namespace di = boost::di;
 using namespace std;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
 int main(int argc, char** argv)
 {
     // Init resources embedded in static libraries
-    Q_INIT_RESOURCE(application);
+    Q_INIT_RESOURCE(domain);
     Q_INIT_RESOURCE(presentation);
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
     qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "4242");

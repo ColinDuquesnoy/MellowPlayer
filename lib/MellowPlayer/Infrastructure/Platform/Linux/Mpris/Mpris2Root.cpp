@@ -1,9 +1,9 @@
 #include "Mpris2Root.hpp"
-#include <MellowPlayer/Application/IMainWindow.hpp>
-#include <MellowPlayer/Application/IQtApplication.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent)

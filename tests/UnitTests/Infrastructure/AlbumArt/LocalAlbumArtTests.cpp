@@ -1,6 +1,6 @@
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Players.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
@@ -8,8 +8,8 @@
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("LocalAlbumArtTests", "[UnitTest]")

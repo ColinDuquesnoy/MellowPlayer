@@ -1,12 +1,12 @@
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 

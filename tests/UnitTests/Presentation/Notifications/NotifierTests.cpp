@@ -1,6 +1,6 @@
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <Utils/DependencyPool.hpp>
@@ -8,7 +8,7 @@
 #include <fakeit.hpp>
 
 using namespace fakeit;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 

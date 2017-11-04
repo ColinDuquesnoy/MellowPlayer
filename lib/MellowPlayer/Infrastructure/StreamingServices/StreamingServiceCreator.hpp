@@ -1,12 +1,12 @@
 #pragma once
 
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <QtCore/QString>
 #include <functional>
 
 namespace MellowPlayer::Infrastructure
 {
-    class StreamingServiceCreator : public Application::IStreamingServiceCreator
+    class StreamingServiceCreator : public Domain::IStreamingServiceCreator
     {
     public:
         QString create(const QString& serviceName, const QString& serviceUrl, const QString& authorName, const QString& authorWebsite,

@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class PlayerMock

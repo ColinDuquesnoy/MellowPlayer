@@ -1,16 +1,16 @@
 #pragma once
 
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
 #include <QCommandLineParser>
 
-namespace MellowPlayer::Application 
+namespace MellowPlayer::Domain
 {
     enum class LogLevel;    
 }
 
 namespace MellowPlayer::Infrastructure
 {
-    class CommandLineParser : public Application::ICommandLineParser
+    class CommandLineParser : public Domain::ICommandLineParser
     {
     public:
         CommandLineParser();
@@ -21,7 +21,7 @@ namespace MellowPlayer::Infrastructure
         bool nextRequested() const override;
         bool previousRequested() const override;
         bool toggleFavoriteRequested() const override;
-        Application::LogLevel logLevel() const override;
+        Domain::LogLevel logLevel() const override;
 
     private:
         QCommandLineParser parser_;
@@ -34,7 +34,7 @@ namespace MellowPlayer::Infrastructure
         QCommandLineOption autoQuitDelayOption_;
 
         QString service_;
-        Application::LogLevel logLevel_;
+        Domain::LogLevel logLevel_;
         bool playRequested_ = false;
         bool nextRequested_ = false;
         bool previousRequested_ = false;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <QtSql/QSqlDatabase>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     struct ListeningHistoryEntry;
@@ -11,18 +11,18 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class SqlLiteListeningHistoryDataProvider : public Application::IListeningHistoryDataProvider
+    class SqlLiteListeningHistoryDataProvider : public Domain::IListeningHistoryDataProvider
     {
     public:
         SqlLiteListeningHistoryDataProvider();
         ~SqlLiteListeningHistoryDataProvider();
 
         void initialize() override;
-        int add(const Application::ListeningHistoryEntry& entry) override;
+        int add(const Domain::ListeningHistoryEntry& entry) override;
         void clear() override;
         void remove(const QString& filterKey, const QString& filterValue) override;
         void removeMany(const QList<int>& identifiers) override;
-        QList<Application::ListeningHistoryEntry> toList() const override;
+        QList<Domain::ListeningHistoryEntry> toList() const override;
 
         static QString getDatabasePath();
 
@@ -30,7 +30,7 @@ namespace MellowPlayer::Infrastructure
         bool openDatabase();
         void initDatabase();
 
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         QSqlDatabase database_;
     };
 }

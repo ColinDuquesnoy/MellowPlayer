@@ -19,7 +19,7 @@ macro(add_mellowplayer_test TEST_TYPE TEST_ROOT_DIR)
     file(GLOB_RECURSE SOURCE_FILES ${TEST_ROOT_DIR}/*.cpp)
     add_executable(${TEST_EXECUTABLE_NAME} ${SOURCE_FILES} main.cpp)
     target_link_libraries(${TEST_EXECUTABLE_NAME} MellowPlayer.TestsLib
-                          MellowPlayer.Application MellowPlayer.Presentation MellowPlayer.Infrastructure
+                          MellowPlayer.Domain MellowPlayer.Presentation MellowPlayer.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
                           Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets Qt5::Test)
     if (APPLE)
@@ -46,7 +46,7 @@ macro(add_mellowplayer_test TEST_TYPE TEST_ROOT_DIR)
     endif()
 endmacro()
 
-add_mellowplayer_test("Application.UnitTests" UnitTests/Application)
+add_mellowplayer_test("Domain.UnitTests" UnitTests/Domain)
 add_mellowplayer_test("Infrastructure.UnitTests" UnitTests/Infrastructure)
 add_mellowplayer_test("Presentation.UnitTests" UnitTests/Presentation)
 if (BUILD_INTEGRATION_TESTS)

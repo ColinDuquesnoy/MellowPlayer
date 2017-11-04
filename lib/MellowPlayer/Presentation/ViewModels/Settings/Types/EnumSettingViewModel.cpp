@@ -1,8 +1,8 @@
 #include "EnumSettingViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Presentation;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 EnumSettingViewModel::EnumSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)
 {

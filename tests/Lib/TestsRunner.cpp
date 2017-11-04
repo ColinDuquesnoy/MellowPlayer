@@ -1,25 +1,25 @@
 #include "TestsRunner.hpp"
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <QtCore/QSettings>
 #include <QDebug>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 using namespace std;
 
 int TestsRunner::runTests(int argc, char* argv[])
 {
-    Q_INIT_RESOURCE(application);
+    Q_INIT_RESOURCE(domain);
     Q_INIT_RESOURCE(presentation);
 
-    ApplicationViewModel webApplication(argc, argv, "MellowPlayer3.Tests");
+    ApplicationViewModel webApplication(argc, argv, "MellowPlayer.Tests");
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;

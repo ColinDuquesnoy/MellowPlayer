@@ -4,7 +4,7 @@
 
 #ifdef Q_OS_LINUX
 
-#include <MellowPlayer/Application/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
 #include <fakeit.hpp>
 #include <memory>
 

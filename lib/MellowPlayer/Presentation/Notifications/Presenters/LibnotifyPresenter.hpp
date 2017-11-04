@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 
 struct _NotifyNotification;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class IMainWindow;
@@ -13,18 +13,18 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Presentation
 {
-    class LibnotifyPresenter : public Application::INotificationPresenter
+    class LibnotifyPresenter : public Domain::INotificationPresenter
     {
     public:
-        explicit LibnotifyPresenter(Application::IMainWindow& mainWindow);
+        explicit LibnotifyPresenter(Domain::IMainWindow& mainWindow);
         void initialize() override;
-        bool display(const Application::Notification& notification) override;
+        bool display(const Domain::Notification& notification) override;
 
         static void onActionCallback();
 
     private:
-        Application::ILogger& logger_;
-        Application::IMainWindow& mainWindow_;
+        Domain::ILogger& logger_;
+        Domain::IMainWindow& mainWindow_;
         _NotifyNotification* previousNotification_;
         static LibnotifyPresenter* instance_;
     };

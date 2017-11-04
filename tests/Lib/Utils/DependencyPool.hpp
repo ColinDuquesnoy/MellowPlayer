@@ -3,16 +3,16 @@
 #include <memory>
 #include "fakeit.hpp"
 
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/IQtApplication.hpp>
-#include <MellowPlayer/Application/Notifications/INotificationPresenter.hpp>
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
-#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 
 class InMemoryListeningHistoryDataProvider;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class CurrentPlayer;
     class IPlayer;
@@ -50,23 +50,23 @@ namespace MellowPlayer::Tests
         ~DependencyPool();
 
         // Mock Objects
-        fakeit::Mock<Application::INotificationPresenter>& getNotificationPresenterMock();
+        fakeit::Mock<Domain::INotificationPresenter>& getNotificationPresenterMock();
 
-        // Application Layer
-        Application::StreamingServicesController& getStreamingServicesController();
-        Application::IPlayer& getCurrentPlayer();
-        Application::Players& getPlayers();
-        Application::IStreamingServiceCreator& getStreamingServicesCreator();
-        Application::ISettingsProvider& getSettingsProvider();
-        Application::Settings& getSettings();
-        Application::ICommandLineParser& getCommandLineParser();
-        Application::IWorkDispatcher& getWorkDispatcher();
-        Application::ListeningHistory& getListeningHistory();
-        Application::Updater& getUpdater();
-        Application::IQtApplication& getQtApplication();
-        Application::INotificationPresenter& getNotificationPresenter();
-        Application::AbstractPlatformUpdater& getPlatformUpdater();
-        Application::IUserScriptFactory& getUserScriptFactory();
+        // Domain Layer
+        Domain::StreamingServicesController& getStreamingServicesController();
+        Domain::IPlayer& getCurrentPlayer();
+        Domain::Players& getPlayers();
+        Domain::IStreamingServiceCreator& getStreamingServicesCreator();
+        Domain::ISettingsProvider& getSettingsProvider();
+        Domain::Settings& getSettings();
+        Domain::ICommandLineParser& getCommandLineParser();
+        Domain::IWorkDispatcher& getWorkDispatcher();
+        Domain::ListeningHistory& getListeningHistory();
+        Domain::Updater& getUpdater();
+        Domain::IQtApplication& getQtApplication();
+        Domain::INotificationPresenter& getNotificationPresenter();
+        Domain::AbstractPlatformUpdater& getPlatformUpdater();
+        Domain::IUserScriptFactory& getUserScriptFactory();
 
         // Infrastructure layer
         Infrastructure::LocalAlbumArt& getLocalAlbumArt();
@@ -81,21 +81,21 @@ namespace MellowPlayer::Tests
 
     private:
         // mocks
-        fakeit::Mock<Application::ICommandLineParser> mICommandLineParser;
-        fakeit::Mock<Application::IQtApplication> mIQtApplication;
-        fakeit::Mock<Application::ISettingsProvider> mISettingsProvider;
-        fakeit::Mock<Application::IStreamingServiceCreator> mIStreamingServiceCreator;
-        fakeit::Mock<Application::INotificationPresenter> mINotificationPresenter;
-        fakeit::Mock<Application::IUserScriptFactory> mUserScriptsFactoryMock;
+        fakeit::Mock<Domain::ICommandLineParser> mICommandLineParser;
+        fakeit::Mock<Domain::IQtApplication> mIQtApplication;
+        fakeit::Mock<Domain::ISettingsProvider> mISettingsProvider;
+        fakeit::Mock<Domain::IStreamingServiceCreator> mIStreamingServiceCreator;
+        fakeit::Mock<Domain::INotificationPresenter> mINotificationPresenter;
+        fakeit::Mock<Domain::IUserScriptFactory> mUserScriptsFactoryMock;
 
         // app
-        std::unique_ptr<Application::CurrentPlayer> pCurrentPlayer;
-        std::unique_ptr<Application::ListeningHistory> pListeningHistory;
-        std::unique_ptr<Application::Players> pPlayers;
-        std::unique_ptr<Application::Settings> pSettings;
-        std::unique_ptr<Application::StreamingServicesController> pStreamingServicesController;
-        std::unique_ptr<Application::Updater> pUpdater;
-        std::unique_ptr<Application::AbstractPlatformUpdater> pPlatformUpdater;
+        std::unique_ptr<Domain::CurrentPlayer> pCurrentPlayer;
+        std::unique_ptr<Domain::ListeningHistory> pListeningHistory;
+        std::unique_ptr<Domain::Players> pPlayers;
+        std::unique_ptr<Domain::Settings> pSettings;
+        std::unique_ptr<Domain::StreamingServicesController> pStreamingServicesController;
+        std::unique_ptr<Domain::Updater> pUpdater;
+        std::unique_ptr<Domain::AbstractPlatformUpdater> pPlatformUpdater;
 
         // infra
         std::unique_ptr<Infrastructure::LocalAlbumArt> pLocalAlbumArt;

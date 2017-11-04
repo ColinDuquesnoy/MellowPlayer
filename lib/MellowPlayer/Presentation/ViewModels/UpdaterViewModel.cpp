@@ -1,9 +1,9 @@
 #include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
-#include <MellowPlayer/Application/Updater/Release.hpp>
-#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Domain/Updater/Release.hpp>
+#include <MellowPlayer/Domain/Updater/Updater.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 UpdaterViewModel::UpdaterViewModel(Updater& updater) : updater_(updater)

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Application/IWorkDispatcher.hpp>
+#include <MellowPlayer/Domain/IWorkDispatcher.hpp>
 
-class FakeWorkDispatcher : public MellowPlayer::Application::IWorkDispatcher
+class FakeWorkDispatcher : public MellowPlayer::Domain::IWorkDispatcher
 {
 public:
     void invoke(const std::function<void(void)>& workerFunction) override

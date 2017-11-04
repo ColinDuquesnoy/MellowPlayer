@@ -1,0 +1,36 @@
+#include <MellowPlayer/Domain/BuildConfig.hpp>
+
+QString MellowPlayer::Domain::BuildConfig::getVersion()
+{
+    return "@MellowPlayer_VERSION@";
+}
+
+int MellowPlayer::Domain::BuildConfig::getVersionMajor()
+{
+    return @MellowPlayer_VERSION_MAJOR@;
+}
+
+int MellowPlayer::Domain::BuildConfig::getVersionMinor()
+{
+    return @MellowPlayer_VERSION_MINOR@;
+}
+
+int MellowPlayer::Domain::BuildConfig::getVersionPatch()
+{
+    return @MellowPlayer_VERSION_PATCH@;
+}
+
+int MellowPlayer::Domain::BuildConfig::getVersionBuildNumber()
+{
+    return @MellowPlayer_VERSION_TWEAK@;
+}
+
+QString MellowPlayer::Domain::BuildConfig::getBuildDate()
+{
+    return "@BUILD_DATE@";
+}
+
+QString MellowPlayer::Domain::BuildConfig::getSourceDir()
+{
+    return "@CMAKE_SOURCE_DIR@";
+}

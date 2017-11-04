@@ -1,8 +1,8 @@
 #include "StreamingServiceLoader.hpp"
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <QDebug>
 #include <QtCore/QCoreApplication>
@@ -11,10 +11,10 @@
 #include <QtCore/QSettings>
 #include <QtCore/QStandardPaths>
 #include <QtGui/QIcon>
-#include <MellowPlayer/Application/BuildConfig.hpp>
+#include <MellowPlayer/Domain/BuildConfig.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 

@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QtDBus>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class IMainWindow;
@@ -27,7 +27,7 @@ namespace MellowPlayer::Infrastructure
         Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
         Q_PROPERTY(QStringList SupportedMimeTypes READ supportedMimeTypes)
 
-        explicit Mpris2Root(Application::IMainWindow& window, Application::IQtApplication& qtApp, QObject* parent = nullptr);
+        explicit Mpris2Root(Domain::IMainWindow& window, Domain::IQtApplication& qtApp, QObject* parent = nullptr);
 
         bool canRaise();
         bool canQuit();
@@ -45,8 +45,8 @@ namespace MellowPlayer::Infrastructure
         void Quit();
 
     private:
-        Application::ILogger& logger_;
-        Application::IMainWindow& window_;
-        Application::IQtApplication& qtApp_;
+        Domain::ILogger& logger_;
+        Domain::IMainWindow& window_;
+        Domain::IQtApplication& qtApp_;
     };
 }

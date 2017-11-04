@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Application/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class MainWindowMock

@@ -1,9 +1,9 @@
 #include "NotificationFactory.hpp"
-#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Domain/Player/Song.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 static QString PAUSED = QObject::tr("Paused");

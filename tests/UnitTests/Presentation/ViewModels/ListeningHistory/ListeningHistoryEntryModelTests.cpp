@@ -1,7 +1,7 @@
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryEntryViewModel.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("ListeningHistoryEntryViewModelTests")

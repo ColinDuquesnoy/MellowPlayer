@@ -1,11 +1,11 @@
 #include "LinuxUpdater.hpp"
-#include <MellowPlayer/Application/Updater/Release.hpp>
+#include <MellowPlayer/Domain/Updater/Release.hpp>
 #include <QApplication>
 #include <QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QProcessEnvironment>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 LinuxUpdater::LinuxUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUpdater(fileDownloader)

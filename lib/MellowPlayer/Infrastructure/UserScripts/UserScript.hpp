@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/UserScripts/UserScriptBase.hpp>
+#include <MellowPlayer/Domain/UserScripts/UserScriptBase.hpp>
 
 namespace MellowPlayer::Infrastructure
 {
@@ -12,7 +12,7 @@ namespace MellowPlayer::Infrastructure
         QString generateFileName() const;
     };
 
-    class UserScript : public Application::UserScriptBase
+    class UserScript : public Domain::UserScriptBase
     {
     public:
         bool import(const QString& sourcePath) override;

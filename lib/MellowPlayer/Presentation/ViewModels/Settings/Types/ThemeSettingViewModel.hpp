@@ -10,7 +10,7 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        ThemeSettingViewModel(Application::Setting& setting, QObject* parent, ThemeViewModel& themeViewModel);
+        ThemeSettingViewModel(Domain::Setting& setting, QObject* parent, ThemeViewModel& themeViewModel);
         QStringList values() const override;
 
     private:

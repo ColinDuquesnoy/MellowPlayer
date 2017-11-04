@@ -1,19 +1,19 @@
 #include "DependencyPool.hpp"
 
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
-#include <MellowPlayer/Application/Updater/Updater.hpp>
-#include "MellowPlayer/Application/ICommandLineParser.hpp"
-#include "MellowPlayer/Application/IQtApplication.hpp"
-#include "MellowPlayer/Application/Notifications/INotificationPresenter.hpp"
-#include "MellowPlayer/Application/Settings/ISettingsProvider.hpp"
-#include "MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp"
-#include "MellowPlayer/Application/Updater/AbstractPlatformUpdater.hpp"
-#include "MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp"
+#include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Players.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Updater/Github/LatestGithubReleaseQuerier.hpp>
+#include <MellowPlayer/Domain/Updater/Updater.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Domain/Updater/AbstractPlatformUpdater.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
@@ -39,12 +39,12 @@
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/ThemeLoaderMock.hpp>
-#include <UnitTests/Application/UserScripts/FakeUserScript.hpp>
+#include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
 
 using namespace std;
 using namespace fakeit;
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application::Tests;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Tests;

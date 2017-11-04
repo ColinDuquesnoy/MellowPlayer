@@ -2,7 +2,7 @@
 
 #include <QtCore/QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Updater;
 }
@@ -20,7 +20,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool restartEnabled READ restartEnabled NOTIFY restartEnabledChanged)
         Q_PROPERTY(double progress READ progress NOTIFY progressChanged)
     public:
-        explicit UpdaterViewModel(Application::Updater& updater);
+        explicit UpdaterViewModel(Domain::Updater& updater);
 
         QString url() const;
         QString status() const;
@@ -54,7 +54,7 @@ namespace MellowPlayer::Presentation
         void onInstalled();
 
     private:
-        Application::Updater& updater_;
+        Domain::Updater& updater_;
         bool visible_ = false;
         bool installEnabled_ = false;
         bool restartEnabled_ = false;

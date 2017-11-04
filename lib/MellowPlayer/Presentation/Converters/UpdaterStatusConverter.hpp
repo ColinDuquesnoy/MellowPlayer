@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <QString>
-#include <MellowPlayer/Application/Updater/Updater.hpp>
+#include <MellowPlayer/Domain/Updater/Updater.hpp>
 
 class UpdaterStatusStrings : public QObject
 {
@@ -43,8 +43,8 @@ namespace MellowPlayer::Presentation
     class UpdaterStatusConverter
     {
     public:
-        QString toString(Application::Updater::Status status);
-        Application::Updater::Status fromString(const QString& string);
+        QString toString(Domain::Updater::Status status);
+        Domain::Updater::Status fromString(const QString& string);
 
     private:
         UpdaterStatusStrings strings_;

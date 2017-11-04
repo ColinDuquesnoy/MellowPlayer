@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/Application/Theme/Theme.hpp>
+#include <MellowPlayer/Domain/Theme/Theme.hpp>
 #include <QMap>
 #include <QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class StreamingService;
     class StreamingServicesController;
@@ -27,8 +27,8 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString secondary READ secondary NOTIFY secondaryChanged)
         Q_PROPERTY(QString secondaryForeground READ secondaryForeground NOTIFY secondaryForegroundChanged)
     public:
-        ThemeViewModel(Application::StreamingServicesController& streamingServices, Application::Settings& settings,
-                       Application::IThemeLoader& themeLoader);
+        ThemeViewModel(Domain::StreamingServicesController& streamingServices, Domain::Settings& settings,
+                       Domain::IThemeLoader& themeLoader);
 
         bool isDark() const;
         QString accent() const;
@@ -43,8 +43,8 @@ namespace MellowPlayer::Presentation
         Q_INVOKABLE double colorScaleFactor(const QString& color) const;
         Q_INVOKABLE bool isDark(const QString& color) const;
 
-        Application::Theme customTheme() const;
-        Application::Theme theme(const QString& themeName) const;
+        Domain::Theme customTheme() const;
+        Domain::Theme theme(const QString& themeName) const;
 
     signals:
         void isDarkChanged();
@@ -58,8 +58,8 @@ namespace MellowPlayer::Presentation
 
     private slots:
         void update();
-        void onCurrentServiceChanged(Application::StreamingService* streamingService);
-        void onServiceAdded(Application::StreamingService* service);
+        void onCurrentServiceChanged(Domain::StreamingService* streamingService);
+        void onServiceAdded(Domain::StreamingService* service);
 
     private:
         void setAccent(const QString& value);
@@ -69,21 +69,21 @@ namespace MellowPlayer::Presentation
         void setPrimaryForeground(const QString& value);
         void setSecondary(const QString& value);
         void setSecondaryForeground(const QString& value);
-        void fromTheme(const Application::Theme& newTheme);
+        void fromTheme(const Domain::Theme& newTheme);
         void collectThemes();
 
-        Application::StreamingServicesController& streamingServices_;
-        Application::IThemeLoader& loader_;
-        Application::Setting& accentColorSetting_;
-        Application::Setting& themeSetting_;
-        Application::Setting& backgroundSetting_;
-        Application::Setting& foregroundSetting_;
-        Application::Setting& primaryBackgroundSetting_;
-        Application::Setting& primaryForegroundSetting_;
-        Application::Setting& secondaryBackgroundSetting_;
-        Application::Setting& secondaryForegroundSetting_;
-        Application::Theme currentTheme_;
-        QMap<QString, Application::Theme> availableThemes_;
+        Domain::StreamingServicesController& streamingServices_;
+        Domain::IThemeLoader& loader_;
+        Domain::Setting& accentColorSetting_;
+        Domain::Setting& themeSetting_;
+        Domain::Setting& backgroundSetting_;
+        Domain::Setting& foregroundSetting_;
+        Domain::Setting& primaryBackgroundSetting_;
+        Domain::Setting& primaryForegroundSetting_;
+        Domain::Setting& secondaryBackgroundSetting_;
+        Domain::Setting& secondaryForegroundSetting_;
+        Domain::Theme currentTheme_;
+        QMap<QString, Domain::Theme> availableThemes_;
 
         bool isAdaptiveTheme() const;
     };

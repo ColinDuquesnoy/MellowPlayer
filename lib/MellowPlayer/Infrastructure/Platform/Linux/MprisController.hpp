@@ -1,11 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/Application/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
 #include <memory>
 
 #ifdef Q_OS_LINUX
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class IPlayer;
     class ILocalAlbumArt;
@@ -19,11 +19,11 @@ namespace MellowPlayer::Infrastructure
     class Mpris2Root;
     class Mpris2Player;
 
-    class MprisController : public Application::IMprisController
+    class MprisController : public Domain::IMprisController
     {
     public:
-        MprisController(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArt, Application::IMainWindow& window,
-                        Application::IQtApplication& application);
+        MprisController(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, Domain::IMainWindow& window,
+                        Domain::IQtApplication& application);
         ~MprisController();
 
         bool start() override;
@@ -32,7 +32,7 @@ namespace MellowPlayer::Infrastructure
         static QString SERVICE_NAME;
         static QString OBJECT_NAME;
 
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         std::unique_ptr<QObject> parent_;
         QObject* mpris2Root_;
         QObject* mpris2Player_;

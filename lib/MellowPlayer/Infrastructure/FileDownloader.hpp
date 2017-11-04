@@ -1,19 +1,19 @@
 #pragma once
 
-#include <MellowPlayer/Application/IFileDownloader.hpp>
+#include <MellowPlayer/Domain/IFileDownloader.hpp>
 #include <QtCore/QFileInfo>
 #include <QtNetwork/QNetworkAccessManager>
 
 class QNetworkReply;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
 }
 
 namespace MellowPlayer::Infrastructure
 {
-    class FileDownloader : public Application::IFileDownloader
+    class FileDownloader : public Domain::IFileDownloader
     {
         Q_OBJECT
     public:
@@ -28,7 +28,7 @@ namespace MellowPlayer::Infrastructure
         void onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
     private:
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         QNetworkAccessManager networkAccessManager_;
         QFileInfo destinationPath_;
         QNetworkReply* currentReply_ = nullptr;

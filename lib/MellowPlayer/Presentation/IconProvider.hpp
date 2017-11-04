@@ -3,7 +3,7 @@
 #include <QFile>
 #include <QIcon>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Settings;
 }

@@ -1,16 +1,16 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
-#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
-#include <MellowPlayer/Application/UserScripts/UserScripts.hpp>
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
+#include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
-#include <UnitTests/Application/UserScripts/FakeUserScript.hpp>
+#include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
 #include <Mocks/SettingsProviderMock.hpp>
 
 using namespace fakeit;
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application::Tests;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 
 SCENARIO("UserScriptsViewModelTests")

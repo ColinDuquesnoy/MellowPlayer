@@ -6,7 +6,7 @@ using namespace MellowPlayer::Infrastructure;
 
 QJsonDocument SettingsSchemaLoader::load() const
 {
-    QFile jsonFile(":/MellowPlayer/Application/Settings/schema.json");
+    QFile jsonFile(":/MellowPlayer/Domain/Settings/schema.json");
     jsonFile.open(QFile::ReadOnly);
     return QJsonDocument().fromJson(jsonFile.readAll());
 }

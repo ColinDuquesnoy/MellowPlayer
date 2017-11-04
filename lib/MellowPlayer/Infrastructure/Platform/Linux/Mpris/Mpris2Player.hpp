@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QtDBus>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Song;
     class IPlayer;
@@ -20,7 +20,7 @@ namespace MellowPlayer::Infrastructure
         Q_OBJECT
         Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
     public:
-        explicit Mpris2Player(Application::IPlayer& player, Application::ILocalAlbumArt& localAlbumArt, QObject* parent = nullptr);
+        explicit Mpris2Player(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, QObject* parent = nullptr);
 
         Q_PROPERTY(QVariantMap Metadata READ metadata)
         Q_PROPERTY(bool CanControl READ canControl)
@@ -75,7 +75,7 @@ namespace MellowPlayer::Infrastructure
 
     private slots:
         void onPlaybackStatusChanged();
-        void onSongChanged(Application::Song* song);
+        void onSongChanged(Domain::Song* song);
         void onArtUrlChanged();
         void onPositionChanged();
         void onDurationChanged();
@@ -85,8 +85,8 @@ namespace MellowPlayer::Infrastructure
         void onVolumeChanged();
 
     private:
-        QMap<QString, QVariant> toXesam(const Application::Song& song);
-        QString statusToString(Application::PlaybackStatus status);
+        QMap<QString, QVariant> toXesam(const Domain::Song& song);
+        QString statusToString(Domain::PlaybackStatus status);
         void signalPlayerUpdate(const QVariantMap& map);
         void signalUpdate(const QVariantMap& map, const QString& interfaceName);
 
@@ -96,9 +96,9 @@ namespace MellowPlayer::Infrastructure
         static const qlonglong SEEK_DELTA_LIMIT;
 
         qlonglong previousPosition_;
-        Application::ILogger& logger_;
-        Application::IPlayer& player_;
-        Application::ILocalAlbumArt& localAlbumArt_;
+        Domain::ILogger& logger_;
+        Domain::IPlayer& player_;
+        Domain::ILocalAlbumArt& localAlbumArt_;
         QMap<QString, QVariant> lastMetadata_;
     };
 }

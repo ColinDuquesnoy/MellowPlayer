@@ -1,16 +1,16 @@
 #pragma once
 
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServiceMetadata.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceLoader.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServiceMetadata.hpp>
 #include <QList>
 #include <fakeit.hpp>
 #include <memory>
 
-namespace MellowPlayer { namespace Application { struct Theme; } }
+namespace MellowPlayer { namespace Domain { struct Theme; } }
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace std;
 using namespace fakeit;
 

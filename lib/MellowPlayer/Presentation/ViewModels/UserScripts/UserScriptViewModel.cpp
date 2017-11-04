@@ -1,7 +1,7 @@
 #include "UserScriptViewModel.hpp"
-#include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 UserScriptViewModel::UserScriptViewModel(IUserScript& model, QObject* parent):

@@ -1,10 +1,10 @@
 #pragma once
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Logging/LoggerConfig.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/Logging/LoggerConfig.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class CommandLineParserMock

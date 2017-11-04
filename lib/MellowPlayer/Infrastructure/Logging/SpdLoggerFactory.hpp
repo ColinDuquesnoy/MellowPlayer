@@ -1,8 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Application/Logging/ILoggerFactory.hpp>
+#include <MellowPlayer/Domain/Logging/ILoggerFactory.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     struct LoggerConfig;
@@ -10,9 +10,9 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class SpdLoggerFactory : public Application::ILoggerFactory
+    class SpdLoggerFactory : public Domain::ILoggerFactory
     {
     public:
-        std::unique_ptr<Application::ILogger> create(const std::string& name, const Application::LoggerConfig& loggerConfig) const override;
+        std::unique_ptr<Domain::ILogger> create(const std::string& name, const Domain::LoggerConfig& loggerConfig) const override;
     };
 }

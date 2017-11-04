@@ -1,10 +1,10 @@
 #include <catch.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
-#include <MellowPlayer/Application/Updater/Updater.hpp>
-#include <MellowPlayer/Application/Updater/Release.hpp>
+#include <MellowPlayer/Domain/Updater/Updater.hpp>
+#include <MellowPlayer/Domain/Updater/Release.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 

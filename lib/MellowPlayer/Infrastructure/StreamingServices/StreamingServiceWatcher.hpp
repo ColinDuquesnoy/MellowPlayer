@@ -1,10 +1,10 @@
 #pragma once
 
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceWatcher.hpp>
 #include <QtCore/QFileSystemWatcher>
 #include <QtCore/QMap>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class StreamingService;
@@ -12,13 +12,13 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class StreamingServiceWatcher : public Application::IStreamingServiceWatcher
+    class StreamingServiceWatcher : public Domain::IStreamingServiceWatcher
     {
         Q_OBJECT
     public:
         StreamingServiceWatcher();
 
-        void watch(Application::StreamingService& serviceToWatch) override;
+        void watch(Domain::StreamingService& serviceToWatch) override;
 
     private slots:
         void onFileChanged(const QString& path);
@@ -29,14 +29,14 @@ namespace MellowPlayer::Infrastructure
         class PluginInfo : public QObject
         {
         public:
-            Application::StreamingService& service_;
+            Domain::StreamingService& service_;
             QString scriptPath_;
             QString themePath_;
 
-            PluginInfo(Application::StreamingService& service, QString scriptPath, QString themePath, QObject* parent);
+            PluginInfo(Domain::StreamingService& service, QString scriptPath, QString themePath, QObject* parent);
         };
 
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         QMap<QString, PluginInfo*> pluginInfo_;
         QFileSystemWatcher fileSystemWatcher_;
     };

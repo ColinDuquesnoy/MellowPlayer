@@ -37,7 +37,7 @@ file(APPEND languages/languages.qrc "</RCC>\n")
 
 add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS})
 target_link_libraries(${PROJECT_NAME}
-                      ${PROJECT_NAME}.Application ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
+                      ${PROJECT_NAME}.Domain ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
                       Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
                       Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
 if (APPLE)
@@ -64,7 +64,7 @@ endif()
 if (WIN32)
     add_executable(${PROJECT_NAME}.Console MACOSX_BUNDLE ${SOURCE_FILES})
     target_link_libraries(${PROJECT_NAME}.Console
-                          ${PROJECT_NAME}.Application ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
+                          ${PROJECT_NAME}.Domain ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
                           Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
 endif()

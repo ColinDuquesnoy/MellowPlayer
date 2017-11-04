@@ -1,8 +1,8 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/TimeLimits.hpp>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/TimeLimits.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
 
 class TimeLimitSettingStrings : public QObject
 {
@@ -42,7 +42,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString value READ value WRITE setValue NOTIFY valueChanged)
         Q_PROPERTY(QStringList values READ values CONSTANT)
     public:
-        TimeLimitSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        TimeLimitSettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         QString value() const;
         QStringList values() const;
@@ -58,9 +58,9 @@ namespace MellowPlayer::Presentation
         void onValueChanged() override;
 
     private:
-        void registerEnumTranslation(Application::TimeLimits value, const QString& translation);
+        void registerEnumTranslation(Domain::TimeLimits value, const QString& translation);
 
-        QMap<QString, Application::TimeLimits> stringToEnum_;
-        QMap<Application::TimeLimits, QString> enumToString_;
+        QMap<QString, Domain::TimeLimits> stringToEnum_;
+        QMap<Domain::TimeLimits, QString> enumToString_;
     };
 }

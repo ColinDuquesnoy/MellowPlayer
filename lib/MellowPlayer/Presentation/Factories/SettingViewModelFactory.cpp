@@ -11,7 +11,7 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/UserAgentStringSettingViewModel.hpp>
 
 using namespace MellowPlayer::Presentation;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 SettingViewModelFactory::SettingViewModelFactory(ThemeViewModel& themeViewModel) : themeViewModel_(themeViewModel)
 {

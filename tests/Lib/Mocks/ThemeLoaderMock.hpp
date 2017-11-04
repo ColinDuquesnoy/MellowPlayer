@@ -2,10 +2,10 @@
 #include <fakeit.hpp>
 #include <memory>
 #include <QColor>
-#include <MellowPlayer/Application/Theme/IThemeLoader.hpp>
-#include <MellowPlayer/Application/Theme/Theme.hpp>
+#include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>
+#include <MellowPlayer/Domain/Theme/Theme.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class ThemeLoaderMock {

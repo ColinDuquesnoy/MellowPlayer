@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Presentation/Models/ListeningHistoryProxyListModel.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ListeningHistory;
 }
@@ -14,7 +14,7 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(QAbstractItemModel* model READ model CONSTANT)
     public:
-        explicit ListeningHistoryViewModel(Application::ListeningHistory& listeningHistory);
+        explicit ListeningHistoryViewModel(Domain::ListeningHistory& listeningHistory);
 
         void initialize();
         ListeningHistoryProxyListModel* model();
@@ -24,11 +24,11 @@ namespace MellowPlayer::Presentation
         Q_INVOKABLE void removeByDateCategory(const QString& dateCategory);
 
     private slots:
-        void onEntryAdded(const Application::ListeningHistoryEntry& entry);
+        void onEntryAdded(const Domain::ListeningHistoryEntry& entry);
         void onEntryRemoved(int entryId);
 
     private:
-        Application::ListeningHistory& listeningHistoryService_;
+        Domain::ListeningHistory& listeningHistoryService_;
         ListeningHistoryListModel* sourceModel_;
         ListeningHistoryProxyListModel proxyModel_;
     };

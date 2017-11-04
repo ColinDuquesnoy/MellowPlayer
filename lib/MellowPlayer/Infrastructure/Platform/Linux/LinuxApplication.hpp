@@ -6,7 +6,7 @@
 
 #include "MellowPlayer/Infrastructure/Applications/CoreApplication.hpp"
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class IQtApplication;
@@ -23,14 +23,14 @@ namespace MellowPlayer::Infrastructure
     class LinuxApplication : public CoreApplication
     {
     public:
-        LinuxApplication(Application::IQtApplication& qtApp, Application::IMainWindow& mainWindow,
-                         Application::StreamingServicesController& streamingServices, Application::IHotkeysController& kotkeys,
-                         Application::ISystemTrayIcon& systemTrayIcon, Application::INotifier& notifier, Application::IMprisController& mprisService);
+        LinuxApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
+                         Domain::StreamingServicesController& streamingServices, Domain::IHotkeysController& kotkeys,
+                         Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier, Domain::IMprisController& mprisService);
         void initialize() override;
 
     private:
-        Application::ILogger& logger_;
-        Application::IMprisController& mprisService_;
+        Domain::ILogger& logger_;
+        Domain::IMprisController& mprisService_;
     };
 }
 

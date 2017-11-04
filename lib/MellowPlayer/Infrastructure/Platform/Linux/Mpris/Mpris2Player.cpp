@@ -1,13 +1,13 @@
 #include "Mpris2Player.hpp"
-#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
-#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Song.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 const qlonglong Mpris2Player::SEC_TO_MICROSEC = 1000000;

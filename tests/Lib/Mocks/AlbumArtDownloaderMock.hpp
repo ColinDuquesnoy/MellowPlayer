@@ -1,9 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
 #include <fakeit.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 #define LOCAL_URL "/path/to/art/songId"

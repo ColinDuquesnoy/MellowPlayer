@@ -1,7 +1,7 @@
 #include "SpdLoggerFactory.hpp"
 #include "SpdLogger.hpp"
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 

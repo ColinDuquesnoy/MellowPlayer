@@ -1,5 +1,5 @@
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>

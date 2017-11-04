@@ -2,7 +2,7 @@
 
 #include <QtGui/QImage>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
 }
@@ -21,6 +21,6 @@ namespace MellowPlayer::Infrastructure
         Q_INVOKABLE QString getImageProviderUrl(const QString& url);
 
     private:
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
     };
 }

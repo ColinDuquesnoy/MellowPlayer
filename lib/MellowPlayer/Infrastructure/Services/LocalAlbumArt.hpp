@@ -1,8 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Song;
     class IPlayer;
@@ -11,23 +11,23 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class LocalAlbumArt : public Application::ILocalAlbumArt
+    class LocalAlbumArt : public Domain::ILocalAlbumArt
     {
         Q_OBJECT
     public:
-        LocalAlbumArt(Application::IPlayer& player, Application::IAlbumArtDownloader& downloader);
+        LocalAlbumArt(Domain::IPlayer& player, Domain::IAlbumArtDownloader& downloader);
 
         const QString& url() const override;
-        bool isSongArtReady(const Application::Song& song) override;
+        bool isSongArtReady(const Domain::Song& song) override;
 
     private slots:
-        void onCurrentSongChanged(Application::Song* song);
+        void onCurrentSongChanged(Domain::Song* song);
         void onDownloadFinished(const QString& newUrl);
         void onArtUrlChanged();
 
     private:
-        Application::IPlayer& player_;
-        Application::IAlbumArtDownloader& downloader_;
+        Domain::IPlayer& player_;
+        Domain::IAlbumArtDownloader& downloader_;
         QString url_;
     };
 }

@@ -1,13 +1,13 @@
 #pragma once
 
-#include <MellowPlayer/Application/IWorkDispatcher.hpp>
+#include <MellowPlayer/Domain/IWorkDispatcher.hpp>
 #include <QMutex>
 #include <QObject>
 #include <QTimer>
 
 namespace MellowPlayer::Infrastructure
 {
-    class QtConcurrentWorkDispatcher : public QObject, public Application::IWorkDispatcher
+    class QtConcurrentWorkDispatcher : public QObject, public Domain::IWorkDispatcher
     {
         Q_OBJECT
     public:

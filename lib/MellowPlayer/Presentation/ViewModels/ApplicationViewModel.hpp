@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IQtApplication.hpp>
 #include <QApplication>
 #include <QTranslator>
 
@@ -16,14 +16,14 @@ public:
     }
 };
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
 }
 
 namespace MellowPlayer::Presentation
 {
-    class ApplicationViewModel : public Application::IQtApplication
+    class ApplicationViewModel : public Domain::IQtApplication
     {
         Q_OBJECT
     public:

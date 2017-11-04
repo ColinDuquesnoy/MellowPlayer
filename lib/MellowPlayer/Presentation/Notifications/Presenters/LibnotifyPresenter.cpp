@@ -1,16 +1,16 @@
 #include "LibnotifyPresenter.hpp"
 #include "LibnotifyStrings.hpp"
-#include <MellowPlayer/Application/IMainWindow.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
 #undef Q_SIGNALS
 #include <libnotify/notify.h>
 
 using namespace std;
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 LibnotifyPresenter* LibnotifyPresenter::instance_ = nullptr;

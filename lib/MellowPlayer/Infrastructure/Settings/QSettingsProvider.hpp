@@ -1,11 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
 #include <QSettings>
 
 namespace MellowPlayer::Infrastructure
 {
-    class QSettingsProvider : public Application::ISettingsProvider
+    class QSettingsProvider : public Domain::ISettingsProvider
     {
     public:
         QSettingsProvider();

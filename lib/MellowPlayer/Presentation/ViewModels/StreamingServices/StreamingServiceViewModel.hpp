@@ -5,7 +5,7 @@
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
 
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ISettingsProvider;
     class IUserScriptFactory;
@@ -21,7 +21,7 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(QString logo READ logo CONSTANT)
         Q_PROPERTY(QString name READ name CONSTANT)
-        Q_PROPERTY(Application::Player* player READ player CONSTANT)
+        Q_PROPERTY(Domain::Player* player READ player CONSTANT)
         Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
         Q_PROPERTY(QString version READ version CONSTANT)
         Q_PROPERTY(QString authorName READ authorName CONSTANT)
@@ -32,14 +32,14 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QObject* userScripts READ userScripts CONSTANT)
         Q_PROPERTY(int zoomFactor READ zoomFactor WRITE setZoomFactor NOTIFY zoomFactorChanged)
     public:
-        StreamingServiceViewModel(Application::StreamingService& streamingService, 
-                                  Application::ISettingsProvider& settings,
-                                  Application::IUserScriptFactory& userScriptFactory,
-                                  Application::Players& players, QObject* parent = nullptr);
+        StreamingServiceViewModel(Domain::StreamingService& streamingService,
+                                  Domain::ISettingsProvider& settings,
+                                  Domain::IUserScriptFactory& userScriptFactory,
+                                  Domain::Players& players, QObject* parent = nullptr);
 
         QString logo() const;
         QString name() const;
-        Application::Player* player();
+        Domain::Player* player();
         QString url() const;
         QString version() const;
         QString authorName() const;
@@ -49,7 +49,7 @@ namespace MellowPlayer::Presentation
         bool operator==(const StreamingServiceViewModel& rhs) const;
         bool operator!=(const StreamingServiceViewModel& rhs) const;
 
-        Application::StreamingService* streamingService() const;
+        Domain::StreamingService* streamingService() const;
 
         int sortOrder() const;
         void setSortOrder(int newOrder);
@@ -78,9 +78,9 @@ namespace MellowPlayer::Presentation
         QString isEnabledSettingsKey() const;
         QString zoomFactorSettingsKey() const;
 
-        Application::StreamingService& streamingService_;
-        Application::ISettingsProvider& settingsProvider_;
-        std::shared_ptr<Application::Player> player_;
+        Domain::StreamingService& streamingService_;
+        Domain::ISettingsProvider& settingsProvider_;
+        std::shared_ptr<Domain::Player> player_;
         UserScriptsViewModel userScriptsViewModel_;
         int zoomFactor_;
     };

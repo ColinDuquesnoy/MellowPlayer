@@ -1,14 +1,14 @@
 #include "ThemeViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Application/Theme/IThemeLoader.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>
 
 #include <QDebug>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, Settings& settings, IThemeLoader& themeLoader)
@@ -219,13 +219,13 @@ Theme ThemeViewModel::customTheme() const
 void ThemeViewModel::collectThemes()
 {
     availableThemes_["Adaptive"] = currentTheme_;
-    availableThemes_["Ambiance"] = loader_.load(":/MellowPlayer/Application/Theme/Ambiance.json");
-    availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Application/Theme/Breeze.json");
-    availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Application/Theme/BreezeDark.json");
-    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Application/Theme/Midna.json");
-    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Application/Theme/MidnaDark.json");
+    availableThemes_["Ambiance"] = loader_.load(":/MellowPlayer/Domain/Theme/Ambiance.json");
+    availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Domain/Theme/Breeze.json");
+    availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Domain/Theme/BreezeDark.json");
+    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Domain/Theme/Midna.json");
+    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Domain/Theme/MidnaDark.json");
     availableThemes_["Custom"] = customTheme();
-    availableThemes_["Default"] = loader_.load(":/MellowPlayer/Application/Theme/Default.json");
+    availableThemes_["Default"] = loader_.load(":/MellowPlayer/Domain/Theme/Default.json");
 
     for (auto service : streamingServices_.toList()) {
         availableThemes_[service->name()] = service->theme();

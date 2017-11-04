@@ -4,7 +4,7 @@
 #include <QLocalSocket>
 #include <QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class ICommandLineParser;
@@ -20,8 +20,8 @@ namespace MellowPlayer::Infrastructure
         Q_OBJECT
     public:
         SingleInstanceApplication(IApplication& application,
-                                  Application::ICommandLineParser& commandLineParser,
-                                  Application::IPlayer& currentPlayer);
+                                  Domain::ICommandLineParser& commandLineParser,
+                                  Domain::IPlayer& currentPlayer);
 
         int run();
 
@@ -36,10 +36,10 @@ namespace MellowPlayer::Infrastructure
     private:
         QString requestedAcion() const;
 
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         IApplication& application_;
-        Application::ICommandLineParser& commandLineParser_;
-        Application::IPlayer& currentPlayer_;
+        Domain::ICommandLineParser& commandLineParser_;
+        Domain::IPlayer& currentPlayer_;
         QLocalSocket localSocket_;
         QLocalServer localServer_;
 

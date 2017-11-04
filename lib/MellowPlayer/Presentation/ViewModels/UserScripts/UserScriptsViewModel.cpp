@@ -1,6 +1,6 @@
 #include "UserScriptsViewModel.hpp"
-#include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
-using namespace MellowPlayer::Application;
+#include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 

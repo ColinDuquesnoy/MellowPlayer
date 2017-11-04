@@ -7,7 +7,7 @@ namespace MellowPlayer::Presentation
     class UserAgentStringSettingViewModel : public StringSettingViewModel
     {
     public:
-        UserAgentStringSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        UserAgentStringSettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const override;
     };

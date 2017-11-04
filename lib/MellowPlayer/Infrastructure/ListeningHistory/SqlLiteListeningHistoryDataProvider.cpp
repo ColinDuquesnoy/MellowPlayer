@@ -1,16 +1,16 @@
 #include "SqlLiteListeningHistoryDataProvider.hpp"
 #include "MellowPlayer/Infrastructure/Helpers/FileHelper.hpp"
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <QtCore/QVariant>
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlRecord>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 SqlLiteListeningHistoryDataProvider::SqlLiteListeningHistoryDataProvider() : logger_(LoggingManager::logger("SqlLiteListeningHistoryDataProvider"))

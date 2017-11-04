@@ -1,10 +1,10 @@
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/Settings/Setting.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Player.hpp>
+#include <MellowPlayer/Domain/Player/Players.hpp>
+#include <MellowPlayer/Domain/Settings/Setting.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PlayerMock.hpp>
@@ -13,8 +13,8 @@
 #include <Utils/Helpers.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 

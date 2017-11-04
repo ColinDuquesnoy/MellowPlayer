@@ -1,10 +1,10 @@
 #include "MainWindowViewModel.hpp"
-#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Settings/SettingKey.hpp>
+#include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Player/Player.hpp>
+#include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
@@ -14,7 +14,7 @@
 #include <QtQuickControls2/QQuickStyle>
 #include <QtWebEngine/QtWebEngine>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,

@@ -1,12 +1,12 @@
 #include "StreamingServiceViewModel.hpp"
-#include <MellowPlayer/Application/Player/Player.hpp>
-#include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Application/Settings/SettingKey.hpp>
+#include <MellowPlayer/Domain/Player/Player.hpp>
+#include <MellowPlayer/Domain/Player/Players.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 #define DEFAULT_ZOOM_FACTOR 7

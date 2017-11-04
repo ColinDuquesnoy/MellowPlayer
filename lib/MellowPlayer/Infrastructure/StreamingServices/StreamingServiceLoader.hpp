@@ -1,9 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilters.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class ILogger;
     class StreamingService;
@@ -13,27 +13,27 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class StreamingServiceLoader : public Application::IStreamingServiceLoader
+    class StreamingServiceLoader : public Domain::IStreamingServiceLoader
     {
     public:
         StreamingServiceLoader();
-        QList<std::shared_ptr<Application::StreamingService>> load() const override;
+        QList<std::shared_ptr<Domain::StreamingService>> load() const override;
 
         static QString userDirectory();
 
-        static Application::Theme readTheme(const QString& filePath);
+        static Domain::Theme readTheme(const QString& filePath);
         static QString readFileContent(const QString& filePath);
 
     private:
-        std::unique_ptr<Application::StreamingService> loadService(const QString& directory) const;
+        std::unique_ptr<Domain::StreamingService> loadService(const QString& directory) const;
         QString findFileByExtension(const QString& directory, const QString& suffix) const;
-        Application::StreamingServiceMetadata readMetadata(const QString& filePath) const;
+        Domain::StreamingServiceMetadata readMetadata(const QString& filePath) const;
         bool checkServiceDirectory(const QString& directory) const;
         QStringList searchPaths() const;
-        bool containsService(const QList<std::shared_ptr<Application::StreamingService>>& services,
-                             std::shared_ptr<Application::StreamingService>& toCheck) const;
+        bool containsService(const QList<std::shared_ptr<Domain::StreamingService>>& services,
+                             std::shared_ptr<Domain::StreamingService>& toCheck) const;
 
-        Application::ILogger& logger_;
+        Domain::ILogger& logger_;
         PlatformFilters platformFilters_;
     };
 }

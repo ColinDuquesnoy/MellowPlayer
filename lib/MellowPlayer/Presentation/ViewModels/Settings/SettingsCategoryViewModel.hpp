@@ -3,7 +3,7 @@
 #include <MellowPlayer/Presentation/Factories/SettingViewModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/SettingListModel.hpp>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class SettingsCategory;
 }
@@ -20,7 +20,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString qmlComponent READ qmlComponent CONSTANT)
         Q_PROPERTY(QAbstractItemModel* settings READ settingsModel CONSTANT)
     public:
-        SettingsCategoryViewModel(ThemeViewModel& themeViewModel, Application::SettingsCategory* settingsCategory = nullptr,
+        SettingsCategoryViewModel(ThemeViewModel& themeViewModel, Domain::SettingsCategory* settingsCategory = nullptr,
                                   QObject* parent = nullptr);
 
         virtual QString name() const;
@@ -32,7 +32,7 @@ namespace MellowPlayer::Presentation
         Q_INVOKABLE void restoreDefaults();
 
     private:
-        Application::SettingsCategory* settingsCategory_;
+        Domain::SettingsCategory* settingsCategory_;
         SettingListModel* settingsListModel_;
         SettingViewModelFactory settingViewModelFactory_;
     };

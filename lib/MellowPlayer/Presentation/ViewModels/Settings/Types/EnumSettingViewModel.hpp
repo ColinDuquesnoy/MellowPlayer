@@ -10,7 +10,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString value READ getValue WRITE setValue NOTIFY valueChanged)
         Q_PROPERTY(QStringList values READ values CONSTANT)
     public:
-        EnumSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        EnumSettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         QString getValue() const;
         virtual QStringList values() const;

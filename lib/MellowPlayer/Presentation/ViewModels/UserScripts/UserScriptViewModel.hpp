@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class IUserScript;
 }
@@ -16,7 +16,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString code READ code CONSTANT)
         Q_PROPERTY(QString path READ path CONSTANT)
     public:
-        UserScriptViewModel(Application::IUserScript& model, QObject* parent= nullptr);
+        UserScriptViewModel(Domain::IUserScript& model, QObject* parent= nullptr);
 
         QString name() const;
         void setName(const QString& name);
@@ -24,13 +24,13 @@ namespace MellowPlayer::Presentation
         QString code() const;
         QString path() const;
 
-        Application::IUserScript& model();
+        Domain::IUserScript& model();
 
     signals:
         void nameChanged();
 
     private:
-        Application::IUserScript& model_;
+        Domain::IUserScript& model_;
 
     };
 }

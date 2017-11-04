@@ -1,11 +1,11 @@
 #pragma once
 
-#include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
 #include <QObject>
 
 class QxtGlobalShortcut;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class IPlayer;
     class ILogger;
@@ -18,11 +18,11 @@ namespace MellowPlayer::Infrastructure
 {
     class IApplication;
 
-    class HotkeysController : public QObject, public Application::IHotkeysController
+    class HotkeysController : public QObject, public Domain::IHotkeysController
     {
         Q_OBJECT
     public:
-        HotkeysController(Application::IPlayer& player, Application::Settings& settings, Application::IMainWindow& mainWindow);
+        HotkeysController(Domain::IPlayer& player, Domain::Settings& settings, Domain::IMainWindow& mainWindow);
         ~HotkeysController();
 
         void start() override;
@@ -41,9 +41,9 @@ namespace MellowPlayer::Infrastructure
         void updatePlayShortcut() const;
         void updateRestoreWindowShortcut() const;
 
-        Application::ILogger& logger_;
-        Application::IPlayer& player_;
-        Application::IMainWindow& mainWindow_;
+        Domain::ILogger& logger_;
+        Domain::IPlayer& player_;
+        Domain::IMainWindow& mainWindow_;
 
         QxtGlobalShortcut* playShortcut_;
         QxtGlobalShortcut* nextShortcut_;
@@ -51,10 +51,10 @@ namespace MellowPlayer::Infrastructure
         QxtGlobalShortcut* favoriteShortcut_;
         QxtGlobalShortcut* restoreWindowShortcut_;
 
-        Application::Setting& playShortcutSetting_;
-        Application::Setting& nextShortcutSetting_;
-        Application::Setting& previousShortcutSetting_;
-        Application::Setting& favoriteShortcutSetting_;
-        Application::Setting& restoreWindowShortcutSetting_;
+        Domain::Setting& playShortcutSetting_;
+        Domain::Setting& nextShortcutSetting_;
+        Domain::Setting& previousShortcutSetting_;
+        Domain::Setting& favoriteShortcutSetting_;
+        Domain::Setting& restoreWindowShortcutSetting_;
     };
 }

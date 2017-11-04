@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 

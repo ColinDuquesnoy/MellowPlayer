@@ -1,30 +1,30 @@
 #pragma once
 
-#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/Application/AlbumArt/ILocalAlbumArt.hpp>
-#include <MellowPlayer/Application/Controllers/IHotkeysController.hpp>
-#include <MellowPlayer/Application/Controllers/IMprisController.hpp>
-#include <MellowPlayer/Application/IMainWindow.hpp>
-#include <MellowPlayer/Application/ListeningHistory/IListeningHistoryDataProvider.hpp>
-#include <MellowPlayer/Application/ListeningHistory/ListeningHistory.hpp>
-#include <MellowPlayer/Application/Notifications/INotifier.hpp>
-#include <MellowPlayer/Application/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Application/Player/CurrentPlayer.hpp>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
-#include <MellowPlayer/Application/Player/Players.hpp>
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/Application/Settings/ISettingsSchemaLoader.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceCreator.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceLoader.hpp>
-#include <MellowPlayer/Application/StreamingServices/IStreamingServiceWatcher.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Application/Updater/Github/LatestGithubReleaseQuerier.hpp>
-#include <MellowPlayer/Application/Updater/IHttpClient.hpp>
-#include <MellowPlayer/Application/Updater/ILatestReleaseQuerier.hpp>
-#include <MellowPlayer/Application/Updater/Updater.hpp>
-#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
-#include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
+#include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
+#include <MellowPlayer/Domain/Controllers/IHotkeysController.hpp>
+#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
+#include <MellowPlayer/Domain/Notifications/INotifier.hpp>
+#include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Players.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsSchemaLoader.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceLoader.hpp>
+#include <MellowPlayer/Domain/StreamingServices/IStreamingServiceWatcher.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Updater/Github/LatestGithubReleaseQuerier.hpp>
+#include <MellowPlayer/Domain/Updater/IHttpClient.hpp>
+#include <MellowPlayer/Domain/Updater/ILatestReleaseQuerier.hpp>
+#include <MellowPlayer/Domain/Updater/Updater.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
 #include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
@@ -68,7 +68,7 @@
 #include <MellowPlayer/Infrastructure/Platform/OSX/Updater/OSXUpdater.hpp>
 #endif
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 

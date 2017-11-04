@@ -1,6 +1,6 @@
 #include "IconProvider.hpp"
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 QIcon IconProvider::trayIcon()

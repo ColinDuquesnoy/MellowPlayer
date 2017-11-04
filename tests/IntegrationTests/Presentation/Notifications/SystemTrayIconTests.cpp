@@ -1,4 +1,4 @@
-#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <Mocks/MainWindowMock.hpp>

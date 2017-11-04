@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Application/Notifications/INotifier.hpp>
+#include <MellowPlayer/Domain/Notifications/INotifier.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
 class NotifierMock

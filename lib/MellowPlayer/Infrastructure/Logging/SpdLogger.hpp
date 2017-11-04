@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <memory>
 
 namespace spdlog
@@ -10,12 +10,12 @@ namespace spdlog
 
 namespace MellowPlayer::Infrastructure
 {
-    class SpdLogger : public Application::ILogger
+    class SpdLogger : public Domain::ILogger
     {
     public:
-        SpdLogger(const std::string& name, const Application::LoggerConfig& config);
+        SpdLogger(const std::string& name, const Domain::LoggerConfig& config);
         ~SpdLogger();
-        void log(const std::string& message, Application::LogLevel level, const char* file, int line) override;
+        void log(const std::string& message, Domain::LogLevel level, const char* file, int line) override;
         const std::string& name() const override;
 
     private:

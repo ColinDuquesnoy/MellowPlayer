@@ -6,7 +6,7 @@
 
 class QQmlApplicationEngine;
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Settings;
     class Setting;
@@ -30,13 +30,13 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int currentIndex READ currentIndex NOTIFY currentIndexChanged)
         Q_PROPERTY(bool isCurrentServiceRunning READ isCurrentServiceRunning NOTIFY isCurrentServiceRunningChanged)
     public:
-        StreamingServicesControllerViewModel(Application::StreamingServicesController& streamingServices,
-                                             Application::Players& players,
-                                             Application::Settings& settings,
-                                             Application::IWorkDispatcher& workDispatcher,
-                                             Application::IStreamingServiceCreator& streamingServiceCreator,
-                                             Application::ICommandLineParser& commandLineParser,
-                                             Application::IUserScriptFactory& userScriptFactory);
+        StreamingServicesControllerViewModel(Domain::StreamingServicesController& streamingServices,
+                                             Domain::Players& players,
+                                             Domain::Settings& settings,
+                                             Domain::IWorkDispatcher& workDispatcher,
+                                             Domain::IStreamingServiceCreator& streamingServiceCreator,
+                                             Domain::ICommandLineParser& commandLineParser,
+                                             Domain::IUserScriptFactory& userScriptFactory);
         void initialize();
 
         Q_INVOKABLE void reload();
@@ -66,7 +66,7 @@ namespace MellowPlayer::Presentation
         void serviceCreated(const QString& directory);
 
     private slots:
-        void onServiceAdded(Application::StreamingService* streamingService);
+        void onServiceAdded(Domain::StreamingService* streamingService);
         void onPlayerRunningChanged();
         void onServiceEnabledChanged();
 
@@ -74,14 +74,14 @@ namespace MellowPlayer::Presentation
         int nextIndex(int index) const;
         int previousIndex(int index) const;
 
-        Application::StreamingServicesController& streamingServices_;
-        Application::Players& players_;
-        Application::Settings& settings_;
-        Application::Setting& currentServiceSetting_;
-        Application::IWorkDispatcher& workDispatcher_;
-        Application::IStreamingServiceCreator& streamingServiceCreator_;
-        Application::ICommandLineParser& commandLineParser_;
-        Application::IUserScriptFactory& userScriptFactory_;
+        Domain::StreamingServicesController& streamingServices_;
+        Domain::Players& players_;
+        Domain::Settings& settings_;
+        Domain::Setting& currentServiceSetting_;
+        Domain::IWorkDispatcher& workDispatcher_;
+        Domain::IStreamingServiceCreator& streamingServiceCreator_;
+        Domain::ICommandLineParser& commandLineParser_;
+        Domain::IUserScriptFactory& userScriptFactory_;
         StreamingServiceListModel* allServices_;
         StreamingServiceProxyListModel enabledServices_;
         StreamingServiceViewModel* currentService_ = nullptr;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Application/Updater/IHttpClient.hpp>
+#include <MellowPlayer/Domain/Updater/IHttpClient.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 class FakeHttpClient : public IHttpClient
 {

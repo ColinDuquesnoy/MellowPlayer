@@ -1,13 +1,13 @@
 #pragma once
 
-#include <MellowPlayer/Application/UserScripts/IUserScriptFactory.hpp>
+#include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 
 namespace MellowPlayer::Infrastructure
 {
-    class UserScriptFactory: public Application::IUserScriptFactory
+    class UserScriptFactory: public Domain::IUserScriptFactory
     {
     public:
-        Application::IUserScript* create() const override;
+        Domain::IUserScript* create() const override;
 
     };
 }

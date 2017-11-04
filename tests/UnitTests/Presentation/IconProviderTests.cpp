@@ -1,12 +1,12 @@
-#include <MellowPlayer/Application/Settings/ISettingsProvider.hpp>
-#include <MellowPlayer/Application/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
 #include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;

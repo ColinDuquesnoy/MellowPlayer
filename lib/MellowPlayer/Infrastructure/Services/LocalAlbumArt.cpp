@@ -1,10 +1,10 @@
 #include "LocalAlbumArt.hpp"
-#include <MellowPlayer/Application/AlbumArt/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
-#include <MellowPlayer/Application/Player/Song.hpp>
+#include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/Player/Song.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 LocalAlbumArt::LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader) :

@@ -1,7 +1,7 @@
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 SCENARIO("Updater status can be converted to a string")

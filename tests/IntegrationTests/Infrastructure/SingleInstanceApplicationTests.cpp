@@ -5,7 +5,7 @@
 #include <QtTest/QtTest>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SingleInstanceApplication")

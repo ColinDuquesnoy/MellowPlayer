@@ -3,7 +3,7 @@
 #include <QtCore/QUuid>
 #include "UserScript.hpp"
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 bool UserScriptDirectory::create() const

@@ -1,13 +1,13 @@
 #include "StreamingServiceWatcher.hpp"
 #include "StreamingServiceLoader.hpp"
 #include <QtCore/QDir>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 
 using namespace std;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 StreamingServiceWatcher::StreamingServiceWatcher() : logger_(LoggingManager::logger("StreamingServiceWatcher"))

@@ -1,12 +1,12 @@
 #ifdef USE_LIBNOTIFY
 
 #include "Mocks/MainWindowMock.hpp"
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
+#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("LibnotifyPresenterTests")

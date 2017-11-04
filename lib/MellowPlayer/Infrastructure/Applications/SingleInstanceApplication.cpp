@@ -1,10 +1,10 @@
 #include "SingleInstanceApplication.hpp"
 #include "IApplication.hpp"
-#include <MellowPlayer/Application/ICommandLineParser.hpp>
-#include <MellowPlayer/Application/Logging/ILogger.hpp>
-#include <MellowPlayer/Application/Logging/LoggingManager.hpp>
-#include <MellowPlayer/Application/Logging/LoggingMacros.hpp>
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <QCoreApplication>
 #include <QFile>
 #include <QTimer>
@@ -12,7 +12,7 @@
 #include <signal.h>
 #endif
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 const QString SingleInstanceApplication::playPauseAction_ = "play-pause";

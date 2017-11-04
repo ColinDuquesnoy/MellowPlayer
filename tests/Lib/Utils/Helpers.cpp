@@ -1,9 +1,9 @@
 #include "Helpers.hpp"
-#include <MellowPlayer/Application/Player/IPlayer.hpp>
+#include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <QDebug>
 #include <QtCore/QFile>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 
 QMap<QString, QVariant> getSongVariantMap(QString title, QString uniqueId, bool playing, QString artist)
 {

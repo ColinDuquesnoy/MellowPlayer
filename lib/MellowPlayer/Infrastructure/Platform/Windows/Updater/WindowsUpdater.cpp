@@ -1,10 +1,10 @@
 #include "WindowsUpdater.hpp"
-#include <MellowPlayer/Application/Updater/Release.hpp>
+#include <MellowPlayer/Domain/Updater/Release.hpp>
 #include <QApplication>
 #include <QtCore/QDir>
 #include <QtCore/QProcessEnvironment>
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 WindowsUpdater::WindowsUpdater(IFileDownloader& fileDownloader) : AbstractPlatformUpdater(fileDownloader)

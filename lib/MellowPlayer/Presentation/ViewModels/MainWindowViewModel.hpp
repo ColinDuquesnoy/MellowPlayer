@@ -1,12 +1,12 @@
 #pragma once
 
-#include <MellowPlayer/Application/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <QtQml/QQmlApplicationEngine>
 #include "DevToolsWindowViewModel.hpp"
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class Settings;
     class ILogger;
@@ -21,14 +21,14 @@ namespace MellowPlayer::Presentation
     class ThemeViewModel;
     class UpdaterViewModel;
 
-    class MainWindowViewModel : public QObject, public Application::IMainWindow
+    class MainWindowViewModel : public QObject, public Domain::IMainWindow
     {
         Q_OBJECT
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     public:
         MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel, ListeningHistoryViewModel& listeningHistoryModel,
-                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Application::IQtApplication& qtApp,
-                            Application::IPlayer& player, Application::Settings& settings);
+                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Domain::IQtApplication& qtApp,
+                            Domain::IPlayer& player, Domain::Settings& settings);
         bool load() override;
         void show() override;
         void hide() override;
@@ -42,8 +42,8 @@ namespace MellowPlayer::Presentation
 
     private:
         bool visible_ = false;
-        Application::ILogger& logger_;
-        Application::Settings& settings_;
+        Domain::ILogger& logger_;
+        Domain::Settings& settings_;
         StreamingServicesControllerViewModel& streamingServices_;
         ListeningHistoryViewModel& listeningHistory_;
         QQmlApplicationEngine qmlApplicationEngine_;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Application/Updater/UpdateChannel.hpp>
+#include <MellowPlayer/Domain/Updater/UpdateChannel.hpp>
 
 namespace MellowPlayer::Presentation
 {
@@ -11,7 +11,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString value READ value WRITE setValue NOTIFY valueChanged)
         Q_PROPERTY(QStringList values READ values CONSTANT)
     public:
-        UpdateChannelSettingViewModel(Application::Setting& setting, QObject* parent = nullptr);
+        UpdateChannelSettingViewModel(Domain::Setting& setting, QObject* parent = nullptr);
 
         QString value() const;
         QStringList values() const;

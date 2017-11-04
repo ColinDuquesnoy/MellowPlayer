@@ -1,8 +1,8 @@
 #include <QtCore>
 #include <catch.hpp>
 #ifdef Q_OS_LINUX
-#include <MellowPlayer/Application/Notifications/Notifications.hpp>
-#include <MellowPlayer/Application/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>

@@ -6,7 +6,7 @@
 #include <fakeit.hpp>
 
 using namespace MellowPlayer;
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace fakeit;
 

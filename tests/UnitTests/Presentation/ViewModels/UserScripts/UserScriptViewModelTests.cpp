@@ -1,10 +1,10 @@
 #include <catch.hpp>
-#include <UnitTests/Application/UserScripts/FakeUserScript.hpp>
+#include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptViewModel.hpp>
 #include <QtTest/QSignalSpy>
 
-using namespace MellowPlayer::Application;
-using namespace MellowPlayer::Application::Tests;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 
 SCENARIO("UserScritViewModelTests")

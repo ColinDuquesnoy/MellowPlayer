@@ -1,9 +1,9 @@
 #include "SettingsViewModel.hpp"
-#include <MellowPlayer/Application/Settings/Settings.hpp>
-#include <MellowPlayer/Application/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
 
 
-using namespace MellowPlayer::Application;
+using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 SettingsViewModel::SettingsViewModel(Settings& settings, ThemeViewModel& themeViewModel, QObject* parent)
