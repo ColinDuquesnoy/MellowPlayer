@@ -49,3 +49,8 @@ if(USE_LIBNOTIFY)
         message(STATUS "libnotify not found, system tray icon based notifications will be enabled")
     endif()
 endif()
+
+find_package(qxtglobalshortcut QUIET)
+if (qxtglobalshortcut_FOUND)
+    message(STATUS "Found qxtglobalshortcut")
+endif()
