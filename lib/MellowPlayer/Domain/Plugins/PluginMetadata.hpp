@@ -8,12 +8,14 @@ namespace MellowPlayer::Domain
     class PluginMetadata: public QObject
     {
         Q_OBJECT
-        READONLY_PROPERTY(QString, author, updateAuthor)
-        READONLY_PROPERTY(QString, authorUrl, updateAuthorUrl)
-        READONLY_PROPERTY(QString, logo, updateLogo)
-        READONLY_PROPERTY(QString, name, updateName)
-        READONLY_PROPERTY(QString, version, updateVersion)
+        CONSTANT_PROPERTY(QString, author)
+        CONSTANT_PROPERTY(QString, authorUrl)
+        CONSTANT_PROPERTY(QString, logo)
+        CONSTANT_PROPERTY(QString, name)
+        CONSTANT_PROPERTY(QString, version)
     public:
         PluginMetadata();
+        
+        virtual void load() = 0;
     };
 }

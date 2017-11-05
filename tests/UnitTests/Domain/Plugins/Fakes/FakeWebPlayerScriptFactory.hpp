@@ -30,17 +30,38 @@ namespace MellowPlayer::Domain::Tests
         }
     };
 
+    class InvalidFakeWebPlayerScript: public MockWebPlayerScript
+    {
+    public:
+        InvalidFakeWebPlayerScript(const QString& path)
+        {
+            path_ = path;
+
+            ON_CALL(*this, load()).WillByDefault(testing::Invoke([&]()
+            {
+                code_ = "invalid";
+                if (!isValid())
+                    throw std::runtime_error("invalid script");
+            }));
+        }
+    };
+
     class FakeWebPlayerScriptFactory: public IFactory<WebPlayerScript, QString>
     {
     public:
         std::unique_ptr<WebPlayerScript> create(QString&& path) override
         {
-            auto script = std::make_unique<ValidFakeWebPlayerScript>(path);
+            std::unique_ptr<WebPlayerScript> script;
+            if (createValidScripts)
+                 script = std::make_unique<ValidFakeWebPlayerScript>(path);
+            else
+                 script = std::make_unique<InvalidFakeWebPlayerScript>(path);
             callCount++;
             callsParam.append(path);
             return script;
         }
 
+        bool createValidScripts = true;
         QMap<QString, QString> fileContents;
         QList<QString> callsParam;
         int callCount = 0;

@@ -25,6 +25,7 @@ namespace MellowPlayer.Domain {
         + logo: QString
         + name: QString
         + version: QString
+        + {abstract} load(): void
     }
 
     interface IPlugin {
@@ -95,6 +96,11 @@ namespace MellowPlayer::Infrastructure {
         + load(): void
     }
     MellowPlayer.Domain.WebPlayerScript <|-- WebPlayerScript
+
+    class PluginMetadata {
+        + load(): void
+    }
+    MellowPlayer.Domain.PluginMetadata <|-- PluginMetadata
 }
 
 @enduml

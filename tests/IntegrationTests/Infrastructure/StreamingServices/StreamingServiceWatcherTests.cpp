@@ -31,19 +31,19 @@ TEST_CASE("StreamingServiceWatcherTests")
     REQUIRE(scriptChangedSpy.count() == 0);
     REQUIRE(themeChangedSpy.count() == 0);
 
-    QTest::qWait(1000);
+    QTest::qWait(100);
 
     SECTION("change script file content")
     {
         REQUIRE(writeFile(pluginDir + "/" + "integration.js", "test"));
-        QTest::qWait(1000);
+        QTest::qWait(100);
         REQUIRE(scriptChangedSpy.count() == 1);
     }
 
     SECTION("change theme file content")
     {
         REQUIRE(writeFile(pluginDir + "/" + "theme.json", "test"));
-        QTest::qWait(1000);
+        QTest::qWait(100);
         REQUIRE(themeChangedSpy.count() == 1);
     }
 

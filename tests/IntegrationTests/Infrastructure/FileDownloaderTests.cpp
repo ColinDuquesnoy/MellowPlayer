@@ -20,7 +20,7 @@ SCENARIO("FileDownloader can download a release source archive")
         {
             double latestProgress = -1;
             while (downloader.isDownloading()) {
-                QTest::qWait(100);
+                QTest::qWait(1);
                 bool validProgressUpdate = downloader.progress() >= latestProgress || downloader.progress() == 0;
                 REQUIRE(validProgressUpdate);
                 latestProgress = downloader.progress();

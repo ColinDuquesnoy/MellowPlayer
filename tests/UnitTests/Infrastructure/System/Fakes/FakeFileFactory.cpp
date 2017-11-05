@@ -11,7 +11,7 @@ unique_ptr<IFile> FakeFileFactory::create(QString&& path)
 {
     auto stdPath = path.toStdString();
     auto stdContent = fileContents.value(path).toStdString();
-    auto file = make_unique<MockFile>();
+    auto file = make_unique<testing::NiceMock<MockFile>>();
 
     ON_CALL(*file, exists()).WillByDefault(Return(true));
     ON_CALL(*file, openReadOnly()).WillByDefault(Return(true));

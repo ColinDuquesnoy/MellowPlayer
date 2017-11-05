@@ -40,5 +40,18 @@ SCENARIO("WebPlayerScriptTests")
                 }
             }
         }
+
+        WHEN("load an invalid plugin script")
+        {
+            WebPlayerScript script(fakeFileFactory, ":/MellowPlayer/Domain/PluginTemplate/integration.js" );
+            QString integrationJsPath =  script.path();
+            QString integrationJsContent =  "invalid";
+            fakeFileFactory.fileContents[integrationJsPath] = integrationJsContent;
+
+            THEN("throws runtime_error")
+            {
+                REQUIRE_THROWS(script.load());
+            }
+        }
     }
 }
