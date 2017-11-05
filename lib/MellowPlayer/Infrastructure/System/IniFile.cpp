@@ -1,6 +1,4 @@
 #include "IniFile.hpp"
-#include "../../../../../../../../usr/include/qt5/QtCore/QVariant"
-#include "../../../../../../../../usr/include/qt5/QtCore/QString"
 
 using namespace MellowPlayer::Infrastructure;
 
