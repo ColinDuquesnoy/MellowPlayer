@@ -83,29 +83,29 @@ SCENARIO("Loading a valid WebPlayerScrip")
     }
 }
 
-SCENARIO("Loading an invalid plugin script")
-{
-    GIVEN("A WebPlayerPlugin instance")
-    {
-        auto settingsStoreMock = SettingsStoreMock::get();
-        auto& settingsStore = settingsStoreMock.get();
-
-        QString pluginDir = "/path/to/plugin";
-        QString metadataPath = pluginDir + QDir::separator() + "metadata.ini";
-        QString integrationJsPath = pluginDir + QDir::separator() +  "integration.js";
-
-        WHEN("load an invalid plugin script") {
-            FakeFileFactory fileFactory;
-            FakeIniFileFactory iniFileFactory;
-            fileFactory.fileContents[integrationJsPath] = "invalid";
-            WebPlayerPlugin plugin("plugin",
-                                   fileFactory,
-                                   iniFileFactory,
-                                   settingsStore);
-
-            THEN("throws runtime_error") {
-                REQUIRE_THROWS(plugin.load());
-            }
-        }
-    }
-}
+//SCENARIO("Loading an invalid plugin script")
+//{
+//    GIVEN("A WebPlayerPlugin instance")
+//    {
+//        auto settingsStoreMock = SettingsStoreMock::get();
+//        auto& settingsStore = settingsStoreMock.get();
+//
+//        QString pluginDir = "/path/to/plugin";
+//        QString metadataPath = pluginDir + QDir::separator() + "metadata.ini";
+//        QString integrationJsPath = pluginDir + QDir::separator() +  "integration.js";
+//
+//        WHEN("load an invalid plugin script") {
+//            FakeFileFactory fileFactory;
+//            FakeIniFileFactory iniFileFactory;
+//            fileFactory.fileContents[integrationJsPath] = "invalid";
+//            WebPlayerPlugin plugin("plugin",
+//                                   fileFactory,
+//                                   iniFileFactory,
+//                                   settingsStore);
+//
+//            THEN("throws runtime_error") {
+//                REQUIRE_THROWS(plugin.load());
+//            }
+//        }
+//    }
+//}
