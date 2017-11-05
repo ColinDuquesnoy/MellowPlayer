@@ -14,6 +14,8 @@ unique_ptr<IIniFile> FakeIniFileFactory::create(QString&& path)
         return iniFileContents.value(path).value(key, defaultValue);
     }));
 
+    ON_CALL(*file, path()).WillByDefault(Return(path));
+
     callCount++;
     callsParam.append(path);
 

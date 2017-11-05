@@ -1,8 +1,8 @@
 #include "FakeWebPlayerPlugin.hpp"
-#include "FakeWebPlayerScriptFactory.hpp"
 #include <MellowPlayer/Domain/Plugins/PluginMetadata.hpp>
 #include <MellowPlayer/Domain/Plugins/WebPlayerScript.hpp>
 #include <UnitTests/Domain/Plugins/Mocks/MockPluginMetadata.hpp>
+#include <UnitTests/Domain/Plugins/Mocks/MockWebPlayerScript.hpp>
 
 using namespace std;
 using namespace testing;
@@ -18,7 +18,7 @@ FakeWebPlayerPlugin::FakeWebPlayerPlugin()
             url_ = "https://webplayerservice.com";
             isEnabled_ = true;
 
-            script_ = make_shared<ValidFakeWebPlayerScript>(path() + "/integration.js");
+            script_ = make_shared<MockWebPlayerScript>("code");
         }));
 }
 

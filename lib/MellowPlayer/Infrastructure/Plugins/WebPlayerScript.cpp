@@ -5,17 +5,15 @@
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-WebPlayerScript::WebPlayerScript(IFactory<IFile, QString>& fileFactory, const QString& path)
-        : fileFactory_(fileFactory)
+WebPlayerScript::WebPlayerScript(const std::shared_ptr<IFile>& file)
+        : file_(file)
 {
-    path_ = path;
 }
 
 void WebPlayerScript::load()
 {
-    auto file = fileFactory_.create(move(path_));
-    if (file->openReadOnly()) {
-        code_ = file->readAll();
+    if (file_->openReadOnly()) {
+        code_ = file_->readAll();
         if (!isValid())
             throw std::runtime_error("Invalid web player script");
     }

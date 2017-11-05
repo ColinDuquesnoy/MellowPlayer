@@ -16,8 +16,7 @@ SCENARIO("WebPlayerScriptTests")
 
         WHEN("load a valid plugin")
         {
-            WebPlayerScript script(fakeFileFactory, ":/MellowPlayer/Domain/PluginTemplate/integration.js" );
-            QString integrationJsPath =  script.path();
+            QString integrationJsPath =  ":/MellowPlayer/Domain/PluginTemplate/integration.js";
             QString integrationJsContent =  "function update\n"
                                             "function play\n"
                                             "function pause\n"
@@ -28,6 +27,8 @@ SCENARIO("WebPlayerScriptTests")
                                             "function removeFromFavorites\n"
                                             "function seekToPosition\n";
             fakeFileFactory.fileContents[integrationJsPath] = integrationJsContent;
+
+            WebPlayerScript script(fakeFileFactory.create(":/MellowPlayer/Domain/PluginTemplate/integration.js"));
             script.load();
 
             THEN("create a file to load integration.js")
@@ -43,10 +44,11 @@ SCENARIO("WebPlayerScriptTests")
 
         WHEN("load an invalid plugin script")
         {
-            WebPlayerScript script(fakeFileFactory, ":/MellowPlayer/Domain/PluginTemplate/integration.js" );
-            QString integrationJsPath =  script.path();
+            QString integrationJsPath = ":/MellowPlayer/Domain/PluginTemplate/integration.js";
             QString integrationJsContent =  "invalid";
             fakeFileFactory.fileContents[integrationJsPath] = integrationJsContent;
+
+            WebPlayerScript script(fakeFileFactory.create(":/MellowPlayer/Domain/PluginTemplate/integration.js"));
 
             THEN("throws runtime_error")
             {

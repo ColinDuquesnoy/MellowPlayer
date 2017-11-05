@@ -11,6 +11,7 @@ namespace MellowPlayer::Infrastructure::Tests
     public:
         MOCK_CONST_METHOD1(value, QVariant(const QString&));
         MOCK_CONST_METHOD2(value, QVariant(const QString&, const QVariant&));
+        MOCK_CONST_METHOD0(path, QString());
     };
 }
 

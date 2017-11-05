@@ -10,10 +10,12 @@ namespace MellowPlayer::Infrastructure
     {
     public:
         IniFile(const QString& path);
-        virtual QVariant value(const QString& key, const QVariant& defaultValue) const;
 
+        QString path() const override;
+        virtual QVariant value(const QString& key, const QVariant& defaultValue) const;
     private:
         QSettings iniFile_;
+        QString path_;
 
     };
 }

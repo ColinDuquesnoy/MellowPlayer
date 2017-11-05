@@ -9,11 +9,10 @@ namespace MellowPlayer::Infrastructure
     class PluginMetadata: public Domain::PluginMetadata
     {
     public:
-        PluginMetadata(IFactory<IIniFile, QString>& iniFileFactory, const QString& path);
+        PluginMetadata(const std::shared_ptr<IIniFile>& iniFile);
 
         void load() override;
     private:
-        IFactory<IIniFile, QString>& iniFileFactory_;
-        QString path_;
+        std::shared_ptr<IIniFile> iniFile_;
     };
 }

@@ -15,8 +15,7 @@ namespace MellowPlayer::Infrastructure
     {
     public:
         WebPlayerPlugin(const QString& path,
-                        IFactory<Domain::WebPlayerScript, QString>& webPlayerScriptFactory,
-                        IFactory<Domain::PluginMetadata, QString>& pluginMetadataFactory,
+                        IFactory<IFile, QString>& fileFactory,
                         IFactory<IIniFile, QString>& iniFileFactory,
                         Domain::ISettingsStore& settingsStore);
         void load() override;
@@ -29,8 +28,7 @@ namespace MellowPlayer::Infrastructure
         QString isEnabledSettingsKey() const;
         QString filePath(const QString& fileName) const;
 
-        IFactory<Domain::WebPlayerScript, QString>& webPlayerScriptFactory_;
-        IFactory<Domain::PluginMetadata, QString>& pluginMetadataFactory_;
+        IFactory<IFile, QString>& fileFactory_;
         IFactory<IIniFile, QString>& iniFileFactory_;
         Domain::ISettingsStore& settingsStore_;
     };

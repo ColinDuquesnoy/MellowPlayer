@@ -4,6 +4,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 
@@ -13,7 +14,6 @@ SCENARIO("PluginMetadataTests")
     {
         FakeIniFileFactory iniFileFactory;
         QString iniFilePath = "/path/to/plugin/metadata.ini";
-        PluginMetadata pluginMetadata(iniFileFactory, iniFilePath);
 
         WHEN("loading metadata using fake data")
         {
@@ -25,20 +25,18 @@ SCENARIO("PluginMetadataTests")
             iniData["version"] = "pluginVersion";
             iniFileFactory.iniFileContents[iniFilePath] = iniData;
 
+            std::shared_ptr<IIniFile> iniFile = iniFileFactory.create(move(iniFilePath));
+            PluginMetadata pluginMetadata(iniFile);
+
             pluginMetadata.load();
 
-            THEN("iniFileFactory is called with the right path")
+            AND_THEN("values are correctly set")
             {
-                REQUIRE(iniFileFactory.callsParam.at(0) == iniFilePath);
-
-                AND_THEN("values are correctly set")
-                {
-                    REQUIRE(pluginMetadata.author() == "authorName");
-                    REQUIRE(pluginMetadata.authorUrl() == "authorUrl");
-                    REQUIRE(pluginMetadata.name() == "pluginName");
-                    REQUIRE(pluginMetadata.version() == "pluginVersion");
-                    REQUIRE(pluginMetadata.logo() == QFileInfo(QFileInfo(iniFilePath).dir(), "logo.svg").absoluteFilePath());
-                }
+                REQUIRE(pluginMetadata.author() == "authorName");
+                REQUIRE(pluginMetadata.authorUrl() == "authorUrl");
+                REQUIRE(pluginMetadata.name() == "pluginName");
+                REQUIRE(pluginMetadata.version() == "pluginVersion");
+                REQUIRE(pluginMetadata.logo() == QFileInfo(QFileInfo(iniFilePath).dir(), "logo.svg").absoluteFilePath());
             }
         }
     }

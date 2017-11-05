@@ -10,10 +10,10 @@ namespace MellowPlayer::Infrastructure
     class WebPlayerScript: public Domain::WebPlayerScript
     {
     public:
-        WebPlayerScript(IFactory<IFile, QString>& fileFactory, const QString& path);
+        WebPlayerScript(const std::shared_ptr<IFile>& file);
         void load() override;
 
     private:
-        IFactory<IFile, QString>& fileFactory_;
+        std::shared_ptr<IFile> file_;
     };
 }

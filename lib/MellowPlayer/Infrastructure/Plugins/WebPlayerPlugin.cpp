@@ -1,5 +1,6 @@
 #include "WebPlayerPlugin.hpp"
 #include "WebPlayerScript.hpp"
+#include "PluginMetadata.hpp"
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 
 using namespace std;
@@ -7,12 +8,10 @@ using namespace MellowPlayer;
 using namespace MellowPlayer::Infrastructure;
 
 WebPlayerPlugin::WebPlayerPlugin(const QString& path,
-                                 IFactory<Domain::WebPlayerScript, QString>& webPlayerScriptFactory,
-                                 IFactory<Domain::PluginMetadata, QString>& pluginMetadataFactory,
+                                 IFactory<IFile, QString>& fileFactory,
                                  IFactory<IIniFile, QString>& iniFileFactory,
                                  Domain::ISettingsStore& settingsStore):
-    webPlayerScriptFactory_(webPlayerScriptFactory),
-    pluginMetadataFactory_(pluginMetadataFactory),
+    fileFactory_(fileFactory),
     iniFileFactory_(iniFileFactory),
     settingsStore_(settingsStore)
 {
@@ -30,15 +29,13 @@ void WebPlayerPlugin::load()
 
 void WebPlayerPlugin::loadIntegrationScript()
 {
-    auto scriptPath = filePath("integration.js");
-    script_ = webPlayerScriptFactory_.create(move(scriptPath));
+    script_ = make_shared<WebPlayerScript>(fileFactory_.create(filePath("integration.js")));
     script_->load();
 }
 
 void WebPlayerPlugin::loadMetadata()
 {
-    auto metadataPath = filePath("metadata.ini");
-    metadata_ = pluginMetadataFactory_.create(move(metadataPath));
+    metadata_ = make_shared<PluginMetadata>(iniFileFactory_.create(filePath("metadata.ini")));
     metadata_->load();
 }
 

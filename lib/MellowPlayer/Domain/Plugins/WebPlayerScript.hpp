@@ -9,7 +9,6 @@ namespace MellowPlayer::Domain
     {
         Q_OBJECT
         READONLY_PROPERTY(QString, code, updateCode)
-        CONSTANT_PROPERTY(QString, path)
         CONSTANT_PROPERTY(QString, constants)
     public:
         WebPlayerScript();

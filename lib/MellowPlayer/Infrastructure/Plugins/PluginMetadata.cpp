@@ -4,20 +4,17 @@
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-PluginMetadata::PluginMetadata(IFactory<IIniFile, QString>& iniFileFactory, const QString& path)
-        : iniFileFactory_(iniFileFactory), path_(path)
+PluginMetadata::PluginMetadata(const std::shared_ptr<IIniFile>& iniFile)
+        : iniFile_(iniFile)
 {
 
 }
 
 void PluginMetadata::load()
 {
-    auto iniFilePtr = iniFileFactory_.create(move(path_));
-    auto& iniFile = *iniFilePtr; 
-
-    author_ = iniFile.value("author").toString();
-    authorUrl_ = iniFile.value("author_website").toString();
-    logo_ = QFileInfo(QFileInfo(path_).dir(), iniFile.value("icon").toString()).absoluteFilePath();
-    name_ = iniFile.value("name").toString();
-    version_ = iniFile.value("version").toString();
+    author_ = iniFile_->value("author").toString();
+    authorUrl_ = iniFile_->value("author_website").toString();
+    logo_ = QFileInfo(QFileInfo(iniFile_->path()).dir(), iniFile_->value("icon").toString()).absoluteFilePath();
+    name_ = iniFile_->value("name").toString();
+    version_ = iniFile_->value("version").toString();
 }

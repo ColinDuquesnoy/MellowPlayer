@@ -7,7 +7,6 @@ namespace MellowPlayer::Domain::Tests
     class MockPluginMetadata: public PluginMetadata
     {
     public:
-        MockPluginMetadata() = default;
         MockPluginMetadata(const QString& name,
                            const QString& version,
                            const QString& author,
