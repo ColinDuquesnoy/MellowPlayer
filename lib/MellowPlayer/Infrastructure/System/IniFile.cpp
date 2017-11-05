@@ -7,6 +7,11 @@ IniFile::IniFile(const QString& path): iniFile_(path, QSettings::IniFormat), pat
 
 }
 
+QVariant IniFile::value(const QString& key) const
+{
+    return iniFile_.value(key, QVariant());
+}
+
 QVariant IniFile::value(const QString& key, const QVariant& defaultValue) const
 {
     return iniFile_.value(key, defaultValue);

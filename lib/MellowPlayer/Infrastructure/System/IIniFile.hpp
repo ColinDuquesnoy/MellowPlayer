@@ -10,6 +10,7 @@ namespace MellowPlayer::Infrastructure
         virtual ~IIniFile() = default;
 
         virtual QString path() const = 0;
-        virtual QVariant value(const QString& key, const QVariant& defaultValue=QVariant()) const = 0;
+        virtual QVariant value(const QString& key) const = 0;
+        virtual QVariant value(const QString& key, const QVariant& defaultValue) const = 0;
     };
 }

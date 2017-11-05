@@ -14,6 +14,11 @@ unique_ptr<IIniFile> FakeIniFileFactory::create(QString&& path)
         return iniFileContents.value(path).value(key, defaultValue);
     }));
 
+    ON_CALL(*file, value(_)).WillByDefault(Invoke([&](const QString& key)
+    {
+        return iniFileContents.value(path).value(key);
+    }));
+
     ON_CALL(*file, path()).WillByDefault(Return(path));
 
     callCount++;
