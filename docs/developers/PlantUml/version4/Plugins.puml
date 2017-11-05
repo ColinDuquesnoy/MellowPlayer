@@ -1,6 +1,11 @@
 @startuml
 
 namespace MellowPlayer.Domain {
+    interface IPluginVisitor {
+        visit(WebPlayerPlugin&)
+        visit(NativePlayerPlugin&)
+    }
+
     interface IPlayerPlugins {
         load(): void
         toList(): QList<IPlayerPlugins>
@@ -25,9 +30,12 @@ namespace MellowPlayer.Domain {
     interface IPlugin {
         isEnabled: bool
         metadata: PluginMetadata
+        path: QString
         load(): void
+        accept(IPluginVisitor& visitor)
     }
     IPlugin -up-> PluginMetadata
+    IPlugin .up.> IPluginVisitor: <<use>>
 
     interface IPlayerPlugin {
         player: IPlayer
@@ -38,6 +46,7 @@ namespace MellowPlayer.Domain {
         + {abstract} load(): void
         + script: WebPlayerScript
         + url: QString
+        + accept(IPluginVisitor& visitor)
 
     }
     IPlayerPlugin <|.. WebPlayerPlugin
@@ -60,6 +69,7 @@ namespace MellowPlayer.Domain {
 
     class NativePlayerPlugin {
         + {abstract} load(): void
+        + accept(IPluginVisitor& visitor)
     }
     IPlayerPlugin <|.. NativePlayerPlugin
 }
