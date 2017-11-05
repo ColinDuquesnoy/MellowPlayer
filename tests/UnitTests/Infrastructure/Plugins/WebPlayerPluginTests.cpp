@@ -4,12 +4,14 @@
 #include <Mocks/SettingsStoreMock.hpp>
 #include <UnitTests/Infrastructure/System/Fakes/FakeIniFileFactory.hpp>
 #include <UnitTests/Infrastructure/System/Fakes/FakeFileFactory.hpp>
+#include <iostream>
 
+using namespace std;
 using namespace MellowPlayer;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 
-SCENARIO("Loading a valid WebPlayerScrip")
+SCENARIO("WebPlayerPluginTests")
 {
     GIVEN("A WebPlayerPlugin instance")
     {
@@ -44,7 +46,15 @@ SCENARIO("Loading a valid WebPlayerScrip")
             iniFileFactory.iniFileContents[metadataPath] = iniFileData;
 
             WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
-            plugin.load();
+
+            try {
+                plugin.load();
+            }
+            catch (std::runtime_error& e)
+            {
+                cout << "exception was: " << e.what() << endl;
+                throw e;
+            }
 
             THEN("fileFactory is called with integration.js path")
             {
@@ -56,7 +66,7 @@ SCENARIO("Loading a valid WebPlayerScrip")
                 }
             }
 
-            AND_THEN("iniFileFactory is called with metadata file")
+            AND_THEN("iniFileFactory is called with metads")
             {
                 REQUIRE(iniFileFactory.callsParam.at(0) == metadataPath);
 
@@ -80,32 +90,21 @@ SCENARIO("Loading a valid WebPlayerScrip")
                 }
             }
         }
+
+        WHEN("load an invalid plugin script")
+        {
+            FakeFileFactory fileFactory;
+            FakeIniFileFactory iniFileFactory;
+            fileFactory.fileContents[integrationJsPath] = "invalid";
+            WebPlayerPlugin plugin("plugin",
+                                   fileFactory,
+                                   iniFileFactory,
+                                   settingsStore);
+
+            THEN("throws runtime_error")
+            {
+                REQUIRE_THROWS(plugin.load());
+            }
+        }
     }
 }
-
-//SCENARIO("Loading an invalid plugin script")
-//{
-//    GIVEN("A WebPlayerPlugin instance")
-//    {
-//        auto settingsStoreMock = SettingsStoreMock::get();
-//        auto& settingsStore = settingsStoreMock.get();
-//
-//        QString pluginDir = "/path/to/plugin";
-//        QString metadataPath = pluginDir + QDir::separator() + "metadata.ini";
-//        QString integrationJsPath = pluginDir + QDir::separator() +  "integration.js";
-//
-//        WHEN("load an invalid plugin script") {
-//            FakeFileFactory fileFactory;
-//            FakeIniFileFactory iniFileFactory;
-//            fileFactory.fileContents[integrationJsPath] = "invalid";
-//            WebPlayerPlugin plugin("plugin",
-//                                   fileFactory,
-//                                   iniFileFactory,
-//                                   settingsStore);
-//
-//            THEN("throws runtime_error") {
-//                REQUIRE_THROWS(plugin.load());
-//            }
-//        }
-//    }
-//}
