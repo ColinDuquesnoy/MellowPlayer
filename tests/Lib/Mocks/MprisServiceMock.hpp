@@ -4,7 +4,7 @@
 
 #ifdef Q_OS_LINUX
 
-#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
@@ -14,9 +14,9 @@ using namespace fakeit;
 class MprisServiceMock
 {
 public:
-    static Mock<IMprisController> get()
+    static Mock<IMpris> get()
     {
-        Mock<IMprisController> mock;
+        Mock<IMpris> mock;
         When(Method(mock, start)).AlwaysReturn();
         return mock;
     }

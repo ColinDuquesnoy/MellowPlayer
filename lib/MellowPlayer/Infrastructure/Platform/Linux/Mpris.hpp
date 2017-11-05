@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
 #include <memory>
 
 #ifdef Q_OS_LINUX
@@ -19,12 +19,12 @@ namespace MellowPlayer::Infrastructure
     class Mpris2Root;
     class Mpris2Player;
 
-    class MprisController : public Domain::IMprisController
+    class Mpris : public IMpris
     {
     public:
-        MprisController(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, Domain::IMainWindow& window,
+        Mpris(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, Domain::IMainWindow& window,
                         Domain::IQtApplication& application);
-        ~MprisController();
+        ~Mpris();
 
         bool start() override;
 

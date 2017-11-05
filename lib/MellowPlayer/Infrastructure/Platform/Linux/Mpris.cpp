@@ -4,7 +4,7 @@
 
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp"
 #include "MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp"
-#include "MprisController.hpp"
+#include "Mpris.hpp"
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -14,11 +14,11 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-QString MprisController::SERVICE_NAME = "org.mpris.MediaPlayer2.";
+QString Mpris::SERVICE_NAME = "org.mpris.MediaPlayer2.";
 
-QString MprisController::OBJECT_NAME = "/org/mpris/MediaPlayer2";
+QString Mpris::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-MprisController::MprisController(IPlayer& player, ILocalAlbumArt& localAlbumArt, IMainWindow& window, IQtApplication& application)
+Mpris::Mpris(IPlayer& player, ILocalAlbumArt& localAlbumArt, IMainWindow& window, IQtApplication& application)
         : logger_(LoggingManager::logger("Mpris")),
           parent_(make_unique<QObject>()),
           mpris2Root_(new Mpris2Root(window, application, parent_.get())),
@@ -27,13 +27,13 @@ MprisController::MprisController(IPlayer& player, ILocalAlbumArt& localAlbumArt,
 {
 }
 
-MprisController::~MprisController()
+Mpris::~Mpris()
 {
     QDBusConnection::sessionBus().unregisterObject(OBJECT_NAME);
     QDBusConnection::sessionBus().unregisterObject(serviceName_);
 }
 
-bool MprisController::start()
+bool Mpris::start()
 {
     if (!QDBusConnection::sessionBus().registerService(serviceName_) || !QDBusConnection::sessionBus().registerObject(OBJECT_NAME, parent_.get())) {
         LOG_WARN(logger_, "failed to register service on the session bus: " + serviceName_);

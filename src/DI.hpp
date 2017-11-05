@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
-#include <MellowPlayer/Domain/Controllers/IMprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
 #include <MellowPlayer/Domain/IMainWindow.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
@@ -60,7 +60,7 @@
 
 #if defined(Q_OS_LINUX)
 #include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
 #elif defined(Q_OS_WIN)
 #include <MellowPlayer/Infrastructure/Platform/Windows/Updater/WindowsUpdater.hpp>
@@ -150,7 +150,7 @@ auto defaultInjector = [](ScopedScope &scope) {
 auto platformInjector = [](ScopedScope &scope) {
 #if defined(Q_OS_LINUX)
     return di::make_injector(
-        di::bind<IMprisController>().to<MprisController>().in(scope),
+        di::bind<IMpris>().to<Mpris>().in(scope),
         di::bind<IApplication>().to<LinuxApplication>().in(scope),
         di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope)
     );

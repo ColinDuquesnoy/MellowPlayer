@@ -3,7 +3,7 @@
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/MprisController.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
@@ -28,7 +28,7 @@ TEST_CASE("MprisServiceTests", "[IntegrationTest]")
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
 
-    MprisController mprisService(player, localAlbumArt, mainWindowMock.get(), qtAppMock.get());
+    Mpris mprisService(player, localAlbumArt, mainWindowMock.get(), qtAppMock.get());
     SECTION("start should succeed the first time")
     {
         if (QDBusConnection::sessionBus().isConnected()) {

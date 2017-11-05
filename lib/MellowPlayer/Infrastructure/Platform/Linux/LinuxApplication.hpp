@@ -15,22 +15,23 @@ namespace MellowPlayer::Domain
     class IHotkeys;
     class ISystemTrayIcon;
     class INotifier;
-    class IMprisController;
 }
 
 namespace MellowPlayer::Infrastructure
 {
+    class IMpris;
+
     class LinuxApplication : public CoreApplication
     {
     public:
         LinuxApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
                          Domain::StreamingServicesController& streamingServices, Infrastructure::IHotkeys& kotkeys,
-                         Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier, Domain::IMprisController& mprisService);
+                         Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier, IMpris& mprisService);
         void initialize() override;
 
     private:
         Domain::ILogger& logger_;
-        Domain::IMprisController& mprisService_;
+        IMpris& mpris_;
     };
 }
 
