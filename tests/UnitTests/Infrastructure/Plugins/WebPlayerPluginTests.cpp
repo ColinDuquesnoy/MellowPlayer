@@ -4,6 +4,7 @@
 #include <Mocks/SettingsStoreMock.hpp>
 #include <UnitTests/Domain/Plugins/Fakes/FakePluginMetadataFactory.hpp>
 #include <UnitTests/Infrastructure/System/Fakes/FakeIniFileFactory.hpp>
+#include <QtCore/QDir>
 
 using namespace MellowPlayer;
 using namespace MellowPlayer::Domain::Tests;
@@ -28,7 +29,7 @@ SCENARIO("WebPlayerPluginTests")
 
         WHEN("load a valid plugin")
         {
-            QString metadataPath = plugin.path() + "/metadata.ini";
+            QString metadataPath = plugin.path() + QDir::separator() + "metadata.ini";
             QString pluginUrl = "https://fakeplayerplugin.org";;
             fakeScriptFactory.createValidScripts = true;
             QMap<QString, QVariant> iniFileData;
@@ -39,7 +40,7 @@ SCENARIO("WebPlayerPluginTests")
 
             THEN("webPlayerFactory is called with correct path")
             {
-                QString integrationJsPath = plugin.path() + "/integration.js";
+                QString integrationJsPath = plugin.path() + QDir::separator() +  "integration.js";
                 REQUIRE(fakeScriptFactory.callsParam.at(0) == integrationJsPath);
 
                 AND_THEN("a valid script is created")

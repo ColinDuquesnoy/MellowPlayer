@@ -53,9 +53,9 @@ namespace MellowPlayer::Domain::Tests
         {
             std::unique_ptr<WebPlayerScript> script;
             if (createValidScripts)
-                 script = std::make_unique<ValidFakeWebPlayerScript>(path);
+                 script = std::make_unique<testing::NiceMock<ValidFakeWebPlayerScript>>(path);
             else
-                 script = std::make_unique<InvalidFakeWebPlayerScript>(path);
+                 script = std::make_unique<testing::NiceMock<InvalidFakeWebPlayerScript>>(path);
             callCount++;
             callsParam.append(path);
             return script;
