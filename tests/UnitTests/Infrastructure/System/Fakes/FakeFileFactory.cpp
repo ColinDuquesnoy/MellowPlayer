@@ -21,5 +21,5 @@ unique_ptr<IFile> FakeFileFactory::create(QString&& path)
     callCount++;
     callsParam.append(path);
 
-    return file;
+    return move(file);
 }

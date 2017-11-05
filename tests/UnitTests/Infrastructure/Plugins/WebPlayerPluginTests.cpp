@@ -46,7 +46,7 @@ SCENARIO("WebPlayerPluginTests")
             WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
             plugin.load();
 
-            THEN("fileFactory is called with correct path")
+            THEN("fileFactory is called with integration.js path")
             {
                 REQUIRE(fileFactory.callsParam.at(0) == integrationJsPath);
 
@@ -56,7 +56,7 @@ SCENARIO("WebPlayerPluginTests")
                 }
             }
 
-            AND_THEN("pluginMetadataFactory is called")
+            AND_THEN("iniFileFactory is called with metadata file")
             {
                 REQUIRE(iniFileFactory.callsParam.at(0) == metadataPath);
 

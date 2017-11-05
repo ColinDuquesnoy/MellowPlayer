@@ -24,5 +24,5 @@ unique_ptr<IIniFile> FakeIniFileFactory::create(QString&& path)
     callCount++;
     callsParam.append(path);
 
-    return file;
+    return move(file);
 }
