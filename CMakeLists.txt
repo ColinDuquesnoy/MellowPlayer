@@ -39,7 +39,7 @@ if (UNIX AND NOT APPLE)
 endif()
 
 include(scripts/cmake/FindDependencies.cmake)
-
+include_directories(3rdparty)
 include_directories(lib)
 # Sources
 if(ENABLE_COVERAGE)

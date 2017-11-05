@@ -1,12 +1,12 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Plugins/WebPlayerPlugin.hpp>
+#include <UnitTests/Domain/Plugins/Mocks/MockWebPlayerPlugin.hpp>
 
 namespace MellowPlayer::Domain::Tests
 {
-    class FakeWebPlayerPlugin: public WebPlayerPlugin
+    class FakeWebPlayerPlugin: public MockWebPlayerPlugin
     {
     public:
-        void load() override;
+        FakeWebPlayerPlugin();
     };
 }

@@ -1,5 +1,5 @@
 #include "Settings.hpp"
-#include "ISettingsProvider.hpp"
+#include "ISettingsStore.hpp"
 #include "ISettingsSchemaLoader.hpp"
 #include "SettingsCategory.hpp"
 #include <QtCore/QJsonDocument>
@@ -9,7 +9,7 @@
 using namespace std;
 using namespace MellowPlayer::Domain;
 
-Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider) : settingsProvider_(settingsProvider)
+Settings::Settings(ISettingsSchemaLoader& configurationLoader, ISettingsStore& settingsStore) : settingsStore_(settingsStore)
 {
     QJsonDocument jsonDocument = configurationLoader.load();
     QJsonObject rootObject = jsonDocument.object();
@@ -56,9 +56,9 @@ Setting& Settings::get(const QString& key) const
     return c.get(parameterKey);
 }
 
-ISettingsProvider& Settings::settingsProvider() const
+ISettingsStore& Settings::store() const
 {
-    return settingsProvider_;
+    return settingsStore_;
 }
 
 Setting& Settings::get(SettingKey::Keys key)

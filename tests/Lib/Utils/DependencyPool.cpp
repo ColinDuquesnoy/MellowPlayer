@@ -10,7 +10,7 @@
 #include <MellowPlayer/Domain/ICommandLineParser.hpp>
 #include <MellowPlayer/Domain/IQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Domain/Updater/AbstractPlatformUpdater.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
@@ -34,7 +34,7 @@
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/NotificationPresenterMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
+#include <Mocks/SettingsStoreMock.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
@@ -52,7 +52,7 @@ using namespace MellowPlayer::Tests;
 DependencyPool::DependencyPool()
         : mICommandLineParser(CommandLineParserMock::get()),
           mIQtApplication(QtApplicationMock::get()),
-          mISettingsProvider(SettingsProviderMock::get()),
+          mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
           mINotificationPresenter(NotificationPresenterMock::get()),
           dataProvider(make_unique<InMemoryListeningHistoryDataProvider>())
@@ -101,16 +101,16 @@ IStreamingServiceCreator& DependencyPool::getStreamingServicesCreator()
     return mIStreamingServiceCreator.get();
 }
 
-ISettingsProvider& DependencyPool::getSettingsProvider()
+ISettingsStore& DependencyPool::getSettingsStore()
 {
-    return mISettingsProvider.get();
+    return mISettingsStore.get();
 }
 
 Settings& DependencyPool::getSettings()
 {
     static SettingsSchemaLoader loader;
     if (pSettings == nullptr)
-        pSettings = make_unique<Settings>(loader, getSettingsProvider());
+        pSettings = make_unique<Settings>(loader, getSettingsStore());
     return *pSettings;
 }
 

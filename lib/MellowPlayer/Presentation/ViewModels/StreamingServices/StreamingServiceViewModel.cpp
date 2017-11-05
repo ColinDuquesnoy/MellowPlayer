@@ -1,7 +1,7 @@
 #include "StreamingServiceViewModel.hpp"
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 
@@ -12,16 +12,16 @@ using namespace MellowPlayer::Presentation;
 #define DEFAULT_ZOOM_FACTOR 7
 
 StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, 
-                                                     ISettingsProvider& settings,
+                                                     ISettingsStore& settingsStore,
                                                      IUserScriptFactory& factory,
                                                      Players& players,
                                                      QObject* parent) : 
         QObject(parent), 
         streamingService_(streamingService), 
-        settingsProvider_(settings), 
+        settingsStore_(settingsStore),
         player_(players.get(streamingService.name())),
-        userScriptsViewModel_(streamingService.name(), factory, settings, this),
-        zoomFactor_(settingsProvider_.value(zoomFactorSettingsKey(), 7).toInt())
+        userScriptsViewModel_(streamingService.name(), factory, settingsStore, this),
+        zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt())
 {
     
 }
@@ -43,7 +43,7 @@ Player* StreamingServiceViewModel::player()
 
 QString StreamingServiceViewModel::url() const
 {
-    QString customUrl = settingsProvider_.value(customUrlSettingsKey(), "").toString();
+    QString customUrl = settingsStore_.value(customUrlSettingsKey(), "").toString();
     return customUrl.isEmpty() ? streamingService_.url() : customUrl;
 }
 
@@ -79,24 +79,24 @@ StreamingService* StreamingServiceViewModel::streamingService() const
 
 int StreamingServiceViewModel::sortOrder() const
 {
-    return settingsProvider_.value(sortOrderSettingsKey(), "-1").toInt();
+    return settingsStore_.value(sortOrderSettingsKey(), "-1").toInt();
 }
 
 void StreamingServiceViewModel::setSortOrder(int newOrder)
 {
-    settingsProvider_.setValue(sortOrderSettingsKey(), newOrder);
+    settingsStore_.setValue(sortOrderSettingsKey(), newOrder);
     emit sortOrderChanged();
 }
 
 bool StreamingServiceViewModel::isEnabled() const
 {
-    return settingsProvider_.value(isEnabledSettingsKey(), "true").toBool();
+    return settingsStore_.value(isEnabledSettingsKey(), "true").toBool();
 }
 
 void StreamingServiceViewModel::setEnabled(bool enabled)
 {
     if (enabled != isEnabled()) {
-        settingsProvider_.setValue(isEnabledSettingsKey(), enabled);
+        settingsStore_.setValue(isEnabledSettingsKey(), enabled);
         emit isEnabledChanged();
 
         if (!enabled) {
@@ -110,7 +110,7 @@ void StreamingServiceViewModel::setEnabled(bool enabled)
 void StreamingServiceViewModel::setUrl(const QString& newUrl)
 {
     if (newUrl != url()) {
-        settingsProvider_.setValue(customUrlSettingsKey(), newUrl);
+        settingsStore_.setValue(customUrlSettingsKey(), newUrl);
         emit urlChanged(newUrl);
     }
 }
@@ -147,7 +147,7 @@ int StreamingServiceViewModel::zoomFactor() const {
 void StreamingServiceViewModel::setZoomFactor(int zoomFactor) {
     if (zoomFactor_ != zoomFactor) {
         zoomFactor_ = zoomFactor;
-        settingsProvider_.setValue(zoomFactorSettingsKey(), zoomFactor);
+        settingsStore_.setValue(zoomFactorSettingsKey(), zoomFactor);
         emit zoomFactorChanged();
     }
 

@@ -11,7 +11,7 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsSchemaLoader.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
@@ -33,7 +33,7 @@
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
-#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsStore.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
@@ -134,7 +134,7 @@ auto defaultInjector = [](ScopedScope &scope) {
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<IListeningHistoryDataProvider>().to<SqlLiteListeningHistoryDataProvider>().in(scope),
         di::bind<INotifier>().to<Notifier>().in(scope),
-        di::bind<ISettingsProvider>().to<QSettingsProvider>().in(scope),
+        di::bind<ISettingsStore>().to<QSettingsStore>().in(scope),
         di::bind<IWorkDispatcher>().to<QtConcurrentWorkDispatcher>().in(scope),
         di::bind<ISettingsSchemaLoader>().to<SettingsSchemaLoader>().in(scope),
         di::bind<IStreamingServiceCreator>().to<StreamingServiceCreator>().in(scope),

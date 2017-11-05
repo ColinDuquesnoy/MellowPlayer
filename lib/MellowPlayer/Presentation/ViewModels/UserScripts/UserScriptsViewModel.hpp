@@ -14,7 +14,7 @@ namespace MellowPlayer::Presentation
     public:
         UserScriptsViewModel(const QString& serviceName,
                              Domain::IUserScriptFactory& userScriptFactory,
-                             Domain::ISettingsProvider& settingsProvider,
+                             Domain::ISettingsStore& settingsStore,
                              QObject* parent= nullptr);
 
         QAbstractListModel* model();

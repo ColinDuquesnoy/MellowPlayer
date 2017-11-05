@@ -8,7 +8,7 @@ namespace MellowPlayer::Domain
 {
     class Settings;
     class Setting;
-    class ISettingsProvider;
+    class ISettingsStore;
 
     class SettingsCategory : public QObject
     {

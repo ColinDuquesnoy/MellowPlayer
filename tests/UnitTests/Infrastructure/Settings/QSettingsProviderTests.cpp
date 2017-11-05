@@ -1,25 +1,25 @@
 #include <MellowPlayer/Domain/Notifications/Notifications.hpp>
-#include <MellowPlayer/Infrastructure/Settings/QSettingsProvider.hpp>
+#include <MellowPlayer/Infrastructure/Settings/QSettingsStore.hpp>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-TEST_CASE("QSettingsProviderTests")
+TEST_CASE("QSettingsStoreTests")
 {
-    QSettingsProvider settingsProvider;
+    QSettingsStore qSettingsStore;
 
     SECTION("defaultValue")
     {
-        REQUIRE(settingsProvider.value("foo", "fooBar").toString() == "fooBar");
+        REQUIRE(qSettingsStore.value("foo", "fooBar").toString() == "fooBar");
     }
 
     SECTION("setValue")
     {
-        settingsProvider.setValue("foo", "bar");
-        REQUIRE(settingsProvider.value("foo").toString() == "bar");
+        qSettingsStore.setValue("foo", "bar");
+        REQUIRE(qSettingsStore.value("foo").toString() == "bar");
     }
 
-    settingsProvider.clear();
+    qSettingsStore.clear();
 }

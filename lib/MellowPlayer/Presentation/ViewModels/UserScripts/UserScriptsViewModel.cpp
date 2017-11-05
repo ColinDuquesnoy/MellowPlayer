@@ -6,10 +6,10 @@ using namespace MellowPlayer::Presentation;
 
 UserScriptsViewModel::UserScriptsViewModel(const QString& serviceName,
                                            IUserScriptFactory& userScriptFactory,
-                                           ISettingsProvider& settingsProvider,
+                                           ISettingsStore& settingsStore,
                                            QObject* parent):
     QObject(parent),
-    userScripts_(serviceName, userScriptFactory, settingsProvider)
+    userScripts_(serviceName, userScriptFactory, settingsStore)
 {
     for(auto* userScriptModel: userScripts_) {
         create(userScriptModel);

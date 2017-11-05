@@ -1,5 +1,5 @@
 #include "Setting.hpp"
-#include "ISettingsProvider.hpp"
+#include "ISettingsStore.hpp"
 #include "Settings.hpp"
 #include "SettingsCategory.hpp"
 
@@ -7,7 +7,7 @@ using namespace std;
 using namespace MellowPlayer::Domain;
 
 Setting::Setting(Settings& settings, SettingsCategory& category, const Setting::Data& settingData)
-        : QObject(&category), settingsProvider_(settings.settingsProvider()), settings_(settings), category_(category), data_(settingData)
+        : QObject(&category), settingsStore_(settings.store()), settings_(settings), category_(category), data_(settingData)
 {
 }
 
@@ -58,13 +58,13 @@ QVariant Setting::defaultValue() const
 
 QVariant Setting::value() const
 {
-    return settingsProvider_.value(getFullKey(), data_.defaultValue);
+    return settingsStore_.value(getFullKey(), data_.defaultValue);
 }
 
 void Setting::setValue(const QVariant& newValue)
 {
     if (newValue != value()) {
-        settingsProvider_.setValue(getFullKey(), newValue);
+        settingsStore_.setValue(getFullKey(), newValue);
         emit valueChanged();
     }
 }

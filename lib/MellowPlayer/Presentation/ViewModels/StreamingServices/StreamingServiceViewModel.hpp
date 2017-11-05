@@ -7,7 +7,7 @@
 
 namespace MellowPlayer::Domain
 {
-    class ISettingsProvider;
+    class ISettingsStore;
     class IUserScriptFactory;
     class StreamingService;
     class Player;
@@ -33,7 +33,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(int zoomFactor READ zoomFactor WRITE setZoomFactor NOTIFY zoomFactorChanged)
     public:
         StreamingServiceViewModel(Domain::StreamingService& streamingService,
-                                  Domain::ISettingsProvider& settings,
+                                  Domain::ISettingsStore& settingsStore,
                                   Domain::IUserScriptFactory& userScriptFactory,
                                   Domain::Players& players, QObject* parent = nullptr);
 
@@ -79,7 +79,7 @@ namespace MellowPlayer::Presentation
         QString zoomFactorSettingsKey() const;
 
         Domain::StreamingService& streamingService_;
-        Domain::ISettingsProvider& settingsProvider_;
+        Domain::ISettingsStore& settingsStore_;
         std::shared_ptr<Domain::Player> player_;
         UserScriptsViewModel userScriptsViewModel_;
         int zoomFactor_;

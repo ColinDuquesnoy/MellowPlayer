@@ -1,7 +1,7 @@
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Song.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
+#include <Mocks/SettingsStoreMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
@@ -10,7 +10,7 @@ using namespace MellowPlayer::Domain;
 TEST_CASE("PlayerTests", "[UnitTest]")
 {
     StreamingServiceMetadata metadata;
-    auto settingsProviderMock = SettingsProviderMock::get();
+    auto settingsStoreMock = SettingsStoreMock::get();
     StreamingService service(metadata);
     Player player(service);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));

@@ -107,7 +107,7 @@ void StreamingServicesControllerViewModel::reload()
 void StreamingServicesControllerViewModel::onServiceAdded(StreamingService* streamingService)
 {
     auto* sv = new StreamingServiceViewModel(*streamingService,
-                                             settings_.settingsProvider(),
+                                             settings_.store(),
                                              userScriptFactory_,
                                              players_,
                                              this);

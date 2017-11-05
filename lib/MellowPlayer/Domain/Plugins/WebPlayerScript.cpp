@@ -2,10 +2,9 @@
 
 using namespace MellowPlayer::Domain;
 
-WebPlayerScript::WebPlayerScript(const QString& code, const QString& path)
+WebPlayerScript::WebPlayerScript()
         : QObject(),
-          code_(code),
-          path_(path), constants_(
+          constants_(
                 "mellowplayer = {\n"
                 "    PlaybackStatus: {\n"
                 "        STOPPED: 0,\n"

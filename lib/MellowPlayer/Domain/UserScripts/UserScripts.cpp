@@ -1,19 +1,19 @@
 #include "IUserScript.hpp"
 #include "IUserScriptFactory.hpp"
 #include "UserScripts.hpp"
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 
 using namespace MellowPlayer::Domain;
 
 UserScripts::UserScripts(const QString& serviceName,
                          IUserScriptFactory& userScriptFactory,
-                         ISettingsProvider& settingsProvider):
+                         ISettingsStore& settingsStore):
     serviceName_(serviceName),
     userScriptFactory_(userScriptFactory),
-    settingsProvider_(settingsProvider)
+    settingsStore_(settingsStore)
 {
-    auto scriptPaths = settingsProvider.value(pathsKey(), QStringList()).toStringList();
-    auto scriptNames = settingsProvider.value(namesKey(), QStringList()).toStringList();
+    auto scriptPaths = settingsStore.value(pathsKey(), QStringList()).toStringList();
+    auto scriptNames = settingsStore.value(namesKey(), QStringList()).toStringList();
 
     for (int i = 0; i < scriptPaths.count(); ++i) {
         auto path = scriptPaths.at(i);
@@ -53,12 +53,12 @@ IUserScript* UserScripts::add(const QString& userScriptName, const QString& sour
 
 void UserScripts::save(const QString& userScriptName, const IUserScript* userScript) const
 {
-    auto scriptPaths = settingsProvider_.value(pathsKey(), QStringList()).toStringList();
+    auto scriptPaths = settingsStore_.value(pathsKey(), QStringList()).toStringList();
     scriptPaths.append(userScript->path());
-    auto scriptNames = settingsProvider_.value(namesKey(), QStringList()).toStringList();
+    auto scriptNames = settingsStore_.value(namesKey(), QStringList()).toStringList();
     scriptNames.append(userScriptName);
-    settingsProvider_.setValue(pathsKey(), scriptPaths);
-    settingsProvider_.setValue(namesKey(), scriptNames);
+    settingsStore_.setValue(pathsKey(), scriptPaths);
+    settingsStore_.setValue(namesKey(), scriptNames);
 }
 
 void UserScripts::remove(const QString& scriptName)
@@ -67,12 +67,12 @@ void UserScripts::remove(const QString& scriptName)
     for (index = 0; index < _scripts.count(); ++index) {
         IUserScript* script = _scripts.at(index);
         if (script->name() == scriptName) {
-            auto scriptPaths = settingsProvider_.value(pathsKey(), QStringList()).toStringList();
-            auto scriptNames = settingsProvider_.value(namesKey(), QStringList()).toStringList();
+            auto scriptPaths = settingsStore_.value(pathsKey(), QStringList()).toStringList();
+            auto scriptNames = settingsStore_.value(namesKey(), QStringList()).toStringList();
             scriptNames.removeOne(_scripts.at(index)->name());
             scriptPaths.removeOne(_scripts.at(index)->path());
-            settingsProvider_.setValue(pathsKey(), scriptPaths);
-            settingsProvider_.setValue(namesKey(), scriptNames);
+            settingsStore_.setValue(pathsKey(), scriptPaths);
+            settingsStore_.setValue(namesKey(), scriptNames);
             script->removeFile();
             _scripts.removeAt(index);
             delete script;

@@ -5,7 +5,7 @@
 
 namespace MellowPlayer::Domain
 {
-    class ISettingsProvider;
+    class ISettingsStore;
     class Settings;
     class SettingsCategory;
 
@@ -49,7 +49,7 @@ namespace MellowPlayer::Domain
     private:
         QString getFullKey() const;
 
-        ISettingsProvider& settingsProvider_;
+        ISettingsStore& settingsStore_;
         Settings& settings_;
         SettingsCategory& category_;
         Data data_;

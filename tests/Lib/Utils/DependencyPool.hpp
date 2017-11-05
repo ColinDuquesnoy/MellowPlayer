@@ -6,7 +6,7 @@
 #include <MellowPlayer/Domain/ICommandLineParser.hpp>
 #include <MellowPlayer/Domain/IQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 
@@ -57,7 +57,7 @@ namespace MellowPlayer::Tests
         Domain::IPlayer& getCurrentPlayer();
         Domain::Players& getPlayers();
         Domain::IStreamingServiceCreator& getStreamingServicesCreator();
-        Domain::ISettingsProvider& getSettingsProvider();
+        Domain::ISettingsStore& getSettingsStore();
         Domain::Settings& getSettings();
         Domain::ICommandLineParser& getCommandLineParser();
         Domain::IWorkDispatcher& getWorkDispatcher();
@@ -83,7 +83,7 @@ namespace MellowPlayer::Tests
         // mocks
         fakeit::Mock<Domain::ICommandLineParser> mICommandLineParser;
         fakeit::Mock<Domain::IQtApplication> mIQtApplication;
-        fakeit::Mock<Domain::ISettingsProvider> mISettingsProvider;
+        fakeit::Mock<Domain::ISettingsStore> mISettingsStore;
         fakeit::Mock<Domain::IStreamingServiceCreator> mIStreamingServiceCreator;
         fakeit::Mock<Domain::INotificationPresenter> mINotificationPresenter;
         fakeit::Mock<Domain::IUserScriptFactory> mUserScriptsFactoryMock;

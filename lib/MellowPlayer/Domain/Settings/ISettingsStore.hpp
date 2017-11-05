@@ -5,10 +5,10 @@
 
 namespace MellowPlayer::Domain
 {
-    class ISettingsProvider
+    class ISettingsStore
     {
     public:
-        virtual ~ISettingsProvider() = default;
+        virtual ~ISettingsStore() = default;
 
         virtual void clear() = 0;
 

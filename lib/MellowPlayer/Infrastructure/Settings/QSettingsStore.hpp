@@ -1,14 +1,14 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <QSettings>
 
 namespace MellowPlayer::Infrastructure
 {
-    class QSettingsProvider : public Domain::ISettingsProvider
+    class QSettingsStore : public Domain::ISettingsStore
     {
     public:
-        QSettingsProvider();
+        QSettingsStore();
 
         void clear() override;
 

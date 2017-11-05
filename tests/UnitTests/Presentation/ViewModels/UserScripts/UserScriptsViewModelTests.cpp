@@ -3,10 +3,10 @@
 #include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
+#include <Mocks/SettingsStoreMock.hpp>
 
 using namespace fakeit;
 using namespace MellowPlayer::Domain;
@@ -20,13 +20,13 @@ SCENARIO("UserScriptsViewModelTests")
        return new FakeUserScript;
     });
     QString serviceName = "fakeService";
-    auto settingsProviderMock = SettingsProviderMock::get();
-    ISettingsProvider& settingsProvider = settingsProviderMock.get();
+    auto settingsStoreMock = SettingsStoreMock::get();
+    ISettingsStore& settingsStore = settingsStoreMock.get();
 
     GIVEN("settings are empty")
     {
-        settingsProvider.clear();
-        UserScriptsViewModel viewModel(serviceName, factoryMock.get(), settingsProvider);
+        settingsStore.clear();
+        UserScriptsViewModel viewModel(serviceName, factoryMock.get(), settingsStore);
 
         WHEN("creating a new UserScriptsViewModel")
         {
@@ -57,14 +57,14 @@ SCENARIO("UserScriptsViewModelTests")
         QStringList paths;
         paths << "/path2";
         paths << "/path2";
-        settingsProvider.setValue("fakeService/userScriptPaths", paths);
+        settingsStore.setValue("fakeService/userScriptPaths", paths);
 
         QStringList names;
         names << "DarkTheme";
         names << "AdBlocker";
-        settingsProvider.setValue("fakeService/userScriptNames", names);
+        settingsStore.setValue("fakeService/userScriptNames", names);
 
-        UserScriptsViewModel viewModel(serviceName, factoryMock.get(), settingsProvider);
+        UserScriptsViewModel viewModel(serviceName, factoryMock.get(), settingsStore);
 
         WHEN("creating a new UserScriptsViewModel")
         {
@@ -121,11 +121,11 @@ SCENARIO("UserScriptsViewModelTests")
                 REQUIRE(viewModel.model()->rowCount() == 1);
 
                 AND_THEN("settings paths count is 1") {
-                    REQUIRE(settingsProvider.value("fakeService/userScriptPaths").toStringList().count() == 1);
+                    REQUIRE(settingsStore.value("fakeService/userScriptPaths").toStringList().count() == 1);
                 }
 
                 AND_THEN("settings names count is 1") {
-                    REQUIRE(settingsProvider.value("fakeService/userScriptNames").toStringList().count() == 1);
+                    REQUIRE(settingsStore.value("fakeService/userScriptNames").toStringList().count() == 1);
                 }
 
                 AND_THEN("AdBlocker is valid")

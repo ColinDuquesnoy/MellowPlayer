@@ -1,15 +1,19 @@
-#include "SettingsProviderMock.hpp"
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
+#include "SettingsStoreMock.hpp"
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <QMap>
 #include <QString>
 #include <QVariant>
 
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain;
+using namespace fakeit;
 
-QMap<QString, QVariant> SettingsProviderMock::values;
 
-Mock<ISettingsProvider> SettingsProviderMock::get()
+QMap<QString, QVariant> SettingsStoreMock::values;
+
+Mock<ISettingsStore> SettingsStoreMock::get()
 {
-    Mock<ISettingsProvider> mock;
+    Mock<ISettingsStore> mock;
 
     When(Method(mock, clear)).AlwaysDo([]() { values.clear(); });
 

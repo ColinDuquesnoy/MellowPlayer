@@ -29,3 +29,5 @@
 #include <QTemporaryDir>
 #include <QUrl>
 #include <QDate>
+
+#include <gmock/gmock.h>

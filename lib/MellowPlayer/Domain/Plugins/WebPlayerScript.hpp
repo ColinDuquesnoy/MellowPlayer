@@ -12,8 +12,7 @@ namespace MellowPlayer::Domain
         CONSTANT_PROPERTY(QString, path)
         CONSTANT_PROPERTY(QString, constants)
     public:
-        WebPlayerScript(const QString& code, const QString& path);
-
+        WebPlayerScript();
         bool isValid() const;
 
         Q_INVOKABLE QString update() const;
@@ -25,5 +24,7 @@ namespace MellowPlayer::Domain
         Q_INVOKABLE QString addToFavorites() const;
         Q_INVOKABLE QString removeFromFavorites() const;
         Q_INVOKABLE QString seekToPosition(double position) const;
+
+        virtual void load() = 0;
     };
 }

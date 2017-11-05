@@ -3,8 +3,8 @@
 #include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>
-#include <MellowPlayer/Domain/Settings/ISettingsProvider.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
+#include <Mocks/SettingsStoreMock.hpp>
 
 using namespace fakeit;
 using namespace MellowPlayer::Domain;
@@ -27,14 +27,14 @@ SCENARIO("UserScriptsTests")
     When(Method(factoryMock, create)).AlwaysReturn(&userScript);
 
     QString serviceName = "fakeService";
-    auto settingsProviderMock = SettingsProviderMock::get();
-    ISettingsProvider& settingsProvider = settingsProviderMock.get();
-    settingsProvider.clear();
+    auto settingsStoreMock = SettingsStoreMock::get();
+    ISettingsStore& settingsStore = settingsStoreMock.get();
+    settingsStore.clear();
 
 
     GIVEN("empty settings")
     {
-        UserScripts userScripts(serviceName, factoryMock.get(), settingsProvider);
+        UserScripts userScripts(serviceName, factoryMock.get(), settingsStore);
 
         WHEN("get count")
         {
@@ -66,8 +66,8 @@ SCENARIO("UserScriptsTests")
 
                             AND_THEN("settings are saved")
                             {
-                                REQUIRE(settingsProvider.value("fakeService/userScriptPaths", QStringList()).toStringList().count() == 1);
-                                REQUIRE(settingsProvider.value("fakeService/userScriptNames", QStringList()).toStringList().count() == 1);
+                                REQUIRE(settingsStore.value("fakeService/userScriptPaths", QStringList()).toStringList().count() == 1);
+                                REQUIRE(settingsStore.value("fakeService/userScriptNames", QStringList()).toStringList().count() == 1);
                             }
                         }
                     }
@@ -88,11 +88,11 @@ SCENARIO("UserScriptsTests")
                     REQUIRE(userScripts.count() == 0);
 
                     AND_THEN("settings paths count is 0") {
-                        REQUIRE(settingsProvider.value("fakeService/userScriptPaths").toStringList().count() == 0);
+                        REQUIRE(settingsStore.value("fakeService/userScriptPaths").toStringList().count() == 0);
                     }
 
                     AND_THEN("settings names count is 0") {
-                        REQUIRE(settingsProvider.value("fakeService/userScriptNames").toStringList().count() == 0);
+                        REQUIRE(settingsStore.value("fakeService/userScriptNames").toStringList().count() == 0);
                     }
                 }
             }
@@ -104,16 +104,16 @@ SCENARIO("UserScriptsTests")
         QStringList paths;
         paths << "/path2";
         paths << "/path2";
-        settingsProvider.setValue("fakeService/userScriptPaths", paths);
+        settingsStore.setValue("fakeService/userScriptPaths", paths);
 
         QStringList names;
         names << "name1";
         names << "name2";
-        settingsProvider.setValue("fakeService/userScriptNames", names);
+        settingsStore.setValue("fakeService/userScriptNames", names);
 
         WHEN("creating a UserScripts instance")
         {
-            UserScripts userScripts(serviceName, factoryMock.get(), settingsProvider);
+            UserScripts userScripts(serviceName, factoryMock.get(), settingsStore);
 
             THEN("factory called once")
             {

@@ -64,6 +64,7 @@ namespace MellowPlayer.Domain {
         + addToFavorites(): QString
         + removeFromFavorites(): QString
         + seekToPosition(double position): QString
+        + {abstract} load(): void
     }
     WebPlayerPlugin -right-> WebPlayerScript
 
@@ -89,6 +90,11 @@ namespace MellowPlayer::Infrastructure {
         + load(): void
     }
     MellowPlayer.Domain.NativePlayerPlugin <|-- NativePlayerPlugin
+
+    class WebPlayerScript {
+        + load(): void
+    }
+    MellowPlayer.Domain.WebPlayerScript <|-- WebPlayerScript
 }
 
 @enduml

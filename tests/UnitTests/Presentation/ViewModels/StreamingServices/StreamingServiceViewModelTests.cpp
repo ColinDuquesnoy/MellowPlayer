@@ -17,14 +17,14 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
     StreamingServicesController& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
 
-    ISettingsProvider& settingsProvider = pool.getSettingsProvider();
+    ISettingsStore& settingsStore = pool.getSettingsStore();
 
     StreamingService& service1 = *streamingServices.toList()[0];
     StreamingService& service2 = *streamingServices.toList()[1];
 
-    StreamingServiceViewModel viewModel(service1, settingsProvider, pool.getUserScriptFactory(), players);
-    StreamingServiceViewModel sameModel(service1, settingsProvider, pool.getUserScriptFactory(), players);
-    StreamingServiceViewModel model2(service2, settingsProvider, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel viewModel(service1, settingsStore, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel sameModel(service1, settingsStore, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel model2(service2, settingsStore, pool.getUserScriptFactory(), players);
 
     SECTION("basic properties")
     {

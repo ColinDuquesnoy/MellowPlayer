@@ -4,7 +4,7 @@
 
 namespace MellowPlayer::Domain
 {
-    class ISettingsProvider;
+    class ISettingsStore;
     class IUserScript;
     class IUserScriptFactory;
 
@@ -13,7 +13,7 @@ namespace MellowPlayer::Domain
     public:
         UserScripts(const QString& serviceName,
                     IUserScriptFactory& userScriptFactory,
-                    ISettingsProvider& settingsProvider);
+                    ISettingsStore& settingsStore);
         ~UserScripts();
 
         int count() const;
@@ -30,7 +30,7 @@ namespace MellowPlayer::Domain
 
         QString serviceName_;
         IUserScriptFactory& userScriptFactory_;
-        ISettingsProvider& settingsProvider_;
+        ISettingsStore& settingsStore_;
         QList<IUserScript*> _scripts;
 
         void save(const QString& userScriptName, const IUserScript* userScript) const;

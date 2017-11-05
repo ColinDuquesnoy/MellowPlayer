@@ -4,7 +4,7 @@
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>
-#include <Mocks/SettingsProviderMock.hpp>
+#include <Mocks/SettingsStoreMock.hpp>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Presentation;
@@ -16,9 +16,9 @@ TEST_CASE("SystemTrayIconTests")
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
     auto qtAppMock = QtApplicationMock::get();
-    auto settingsProviderMock = SettingsProviderMock::get();
+    auto settingsStoreMock = SettingsStoreMock::get();
     SettingsSchemaLoader loader;
-    Settings settings(loader, settingsProviderMock.get());
+    Settings settings(loader, settingsStoreMock.get());
     SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), settings);
 
     SECTION("show window onActivated")

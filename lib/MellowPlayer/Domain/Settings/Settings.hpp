@@ -6,7 +6,7 @@
 
 namespace MellowPlayer::Domain
 {
-    class ISettingsProvider;
+    class ISettingsStore;
     class ISettingsSchemaLoader;
     class SettingsCategory;
     class Setting;
@@ -15,7 +15,7 @@ namespace MellowPlayer::Domain
     {
         Q_OBJECT
     public:
-        Settings(ISettingsSchemaLoader& configurationLoader, ISettingsProvider& settingsProvider);
+        Settings(ISettingsSchemaLoader& configurationLoader, ISettingsStore& settingsStore);
 
         const QList<SettingsCategory*>& categories() const;
 
@@ -23,12 +23,12 @@ namespace MellowPlayer::Domain
         Setting& get(const QString& key) const;
         Setting& get(SettingKey::Keys key);
 
-        ISettingsProvider& settingsProvider() const;
+        ISettingsStore& store() const;
 
         void restoreDefaults();
 
     private:
-        ISettingsProvider& settingsProvider_;
+        ISettingsStore& settingsStore_;
         QList<SettingsCategory*> categories_;
     };
 }
