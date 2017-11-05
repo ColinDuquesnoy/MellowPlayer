@@ -9,7 +9,7 @@ using namespace MellowPlayer;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 
-SCENARIO("WebPlayerPluginTests")
+SCENARIO("Loading a valid WebPlayerScrip")
 {
     GIVEN("A WebPlayerPlugin instance")
     {
@@ -80,9 +80,21 @@ SCENARIO("WebPlayerPluginTests")
                 }
             }
         }
+    }
+}
 
-        WHEN("load an invalid plugin script")
-        {
+SCENARIO("Loading an invalid plugin script")
+{
+    GIVEN("A WebPlayerPlugin instance")
+    {
+        auto settingsStoreMock = SettingsStoreMock::get();
+        auto& settingsStore = settingsStoreMock.get();
+
+        QString pluginDir = "/path/to/plugin";
+        QString metadataPath = pluginDir + QDir::separator() + "metadata.ini";
+        QString integrationJsPath = pluginDir + QDir::separator() +  "integration.js";
+
+        WHEN("load an invalid plugin script") {
             FakeFileFactory fileFactory;
             FakeIniFileFactory iniFileFactory;
             fileFactory.fileContents[integrationJsPath] = "invalid";
@@ -91,8 +103,7 @@ SCENARIO("WebPlayerPluginTests")
                                    iniFileFactory,
                                    settingsStore);
 
-            THEN("throws runtime_error")
-            {
+            THEN("throws runtime_error") {
                 REQUIRE_THROWS(plugin.load());
             }
         }
