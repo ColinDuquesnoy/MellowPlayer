@@ -13,22 +13,18 @@ SCENARIO("WebPlayerPluginTests")
 {
     GIVEN("A WebPlayerPlugin instance")
     {
-        FakeFileFactory fakeFileFactory;
-        FakeIniFileFactory fakeIniFileFactory;
         auto settingsStoreMock = SettingsStoreMock::get();
         auto& settingsStore = settingsStoreMock.get();
 
-        WebPlayerPlugin plugin(":/MellowPlayer/Domain/PluginTemplate",
-                               fakeFileFactory,
-                               fakeIniFileFactory,
-                               settingsStore);
-
-        QString metadataPath = plugin.path() + QDir::separator() + "metadata.ini";
-        QString integrationJsPath = plugin.path() + QDir::separator() +  "integration.js";
+        QString pluginDir = "/path/to/plugin";
+        QString metadataPath = pluginDir + QDir::separator() + "metadata.ini";
+        QString integrationJsPath = pluginDir + QDir::separator() +  "integration.js";
 
         WHEN("load a valid plugin")
         {
-            fakeFileFactory.fileContents[integrationJsPath] = "function update\n"
+            FakeFileFactory fileFactory;
+            FakeIniFileFactory iniFileFactory;
+            fileFactory.fileContents[integrationJsPath] = "function update\n"
                                                               "function play\n"
                                                               "function pause\n"
                                                               "function goNext\n"
@@ -45,13 +41,14 @@ SCENARIO("WebPlayerPluginTests")
             iniFileData["icon"] = "logo.svg";
             iniFileData["name"] = "pluginName";
             iniFileData["version"] = "pluginVersion";
-            fakeIniFileFactory.iniFileContents[metadataPath] = iniFileData;
+            iniFileFactory.iniFileContents[metadataPath] = iniFileData;
 
+            WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
             plugin.load();
 
             THEN("fileFactory is called with correct path")
             {
-                REQUIRE(fakeFileFactory.callsParam.at(0) == integrationJsPath);
+                REQUIRE(fileFactory.callsParam.at(0) == integrationJsPath);
 
                 AND_THEN("a valid script is created")
                 {
@@ -61,7 +58,7 @@ SCENARIO("WebPlayerPluginTests")
 
             AND_THEN("pluginMetadataFactory is called")
             {
-                REQUIRE(fakeIniFileFactory.callsParam.at(0) == metadataPath);
+                REQUIRE(iniFileFactory.callsParam.at(0) == metadataPath);
 
                 AND_THEN("metadata are not empty")
                 {
@@ -75,7 +72,7 @@ SCENARIO("WebPlayerPluginTests")
 
             AND_THEN("iniFileFactory is called with correct path to read url")
             {
-                REQUIRE(fakeIniFileFactory.callsParam.at(1).toStdString() == metadataPath.toStdString());
+                REQUIRE(iniFileFactory.callsParam.at(1).toStdString() == metadataPath.toStdString());
 
                 AND_THEN("url is correctly set")
                 {
@@ -86,7 +83,13 @@ SCENARIO("WebPlayerPluginTests")
 
         WHEN("load an invalid plugin script")
         {
-            fakeFileFactory.fileContents[integrationJsPath] = "invalid";
+            FakeFileFactory fileFactory;
+            FakeIniFileFactory iniFileFactory;
+            fileFactory.fileContents[integrationJsPath] = "invalid";
+            WebPlayerPlugin plugin("plugin",
+                                   fileFactory,
+                                   iniFileFactory,
+                                   settingsStore);
 
             THEN("throws runtime_error")
             {
