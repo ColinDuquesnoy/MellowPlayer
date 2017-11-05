@@ -7,6 +7,11 @@ File::File(const QString& path): path_(path), file_(path_)
 
 }
 
+QString File::path() const
+{
+    return path_;
+}
+
 bool File::openReadOnly()
 {
     return file_.open(QFile::ReadOnly);

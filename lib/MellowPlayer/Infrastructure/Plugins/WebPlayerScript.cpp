@@ -1,6 +1,7 @@
 #include <MellowPlayer/Domain/BoostDIFactory.hpp>
 #include <MellowPlayer/Infrastructure/System/IFile.hpp>
 #include "WebPlayerScript.hpp"
+#include <iostream>
 
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
@@ -14,9 +15,13 @@ void WebPlayerScript::load()
 {
     if (file_->openReadOnly()) {
         code_ = file_->readAll();
-        if (!isValid())
+        if (!isValid()) {
+            cout << "invalid script <" << file_->path().toStdString() << ">: " << code_.toStdString() << endl;
             throw std::runtime_error("Invalid web player script");
+        }
     }
-    else
-        throw std::runtime_error("failed to open integration.js");
+    else {
+        cout << "script does not exist: " << file_->path().toStdString() << endl;
+        throw std::runtime_error("failed to open " + file_->path().toStdString());
+    }
 }

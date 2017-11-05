@@ -10,9 +10,11 @@ namespace MellowPlayer::Infrastructure
     {
     public:
         File(const QString& path);
+
+        QString path() const override;
         bool openReadOnly() override;
-        bool exists() const override ;
-        QString readAll() override ;
+        bool exists() const override;
+        QString readAll() override;
 
     private:
         QString path_;

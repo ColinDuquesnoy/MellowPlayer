@@ -8,6 +8,7 @@ namespace MellowPlayer::Infrastructure::Tests
     class MockFile: public IFile
     {
     public:
+        MOCK_CONST_METHOD0(path, QString());
         MOCK_METHOD0(openReadOnly, bool());
         MOCK_METHOD0(readAll, QString());
         MOCK_CONST_METHOD0(exists, bool());
