@@ -15,13 +15,9 @@ void WebPlayerScript::load()
 {
     if (file_->openReadOnly()) {
         code_ = file_->readAll();
-        if (!isValid()) {
-            cout << "invalid script <" << file_->path().toStdString() << ">: " << code_.toStdString() << endl;
+        if (!isValid())
             throw std::runtime_error("Invalid web player script");
-        }
     }
-    else {
-        cout << "script does not exist: " << file_->path().toStdString() << endl;
+    else
         throw std::runtime_error("failed to open " + file_->path().toStdString());
-    }
 }
