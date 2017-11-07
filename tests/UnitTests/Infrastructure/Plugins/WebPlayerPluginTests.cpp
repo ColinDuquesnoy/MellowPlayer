@@ -24,70 +24,64 @@ SCENARIO("WebPlayerPluginTests")
 
         WHEN("load a valid plugin")
         {
-            try {
-                FakeFileFactory fileFactory;
-                FakeIniFileFactory iniFileFactory;
-                fileFactory.fileContents[integrationJsPath] = "function update\n"
-                        "function play\n"
-                        "function pause\n"
-                        "function goNext\n"
-                        "function goPrevious\n"
-                        "function setVolume\n"
-                        "function addToFavorites\n"
-                        "function removeFromFavorites\n"
-                        "function seekToPosition\n";
-                QString pluginUrl = "https://fakeplayerplugin.org";;
-                QMap<QString, QVariant> iniFileData;
-                iniFileData["url"] = pluginUrl;
-                iniFileData["author"] = "authorName";
-                iniFileData["author_website"] = "authorUrl";
-                iniFileData["icon"] = "logo.svg";
-                iniFileData["name"] = "pluginName";
-                iniFileData["version"] = "pluginVersion";
-                iniFileFactory.iniFileContents[metadataPath] = iniFileData;
+            FakeFileFactory fileFactory;
+            FakeIniFileFactory iniFileFactory;
+            fileFactory.fileContents[integrationJsPath] = "function update\n"
+                    "function play\n"
+                    "function pause\n"
+                    "function goNext\n"
+                    "function goPrevious\n"
+                    "function setVolume\n"
+                    "function addToFavorites\n"
+                    "function removeFromFavorites\n"
+                    "function seekToPosition\n";
+            QString pluginUrl = "https://fakeplayerplugin.org";;
+            QMap<QString, QVariant> iniFileData;
+            iniFileData["url"] = pluginUrl;
+            iniFileData["author"] = "authorName";
+            iniFileData["author_website"] = "authorUrl";
+            iniFileData["icon"] = "logo.svg";
+            iniFileData["name"] = "pluginName";
+            iniFileData["version"] = "pluginVersion";
+            iniFileFactory.iniFileContents[metadataPath] = iniFileData;
 
-                WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
+            WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
 
-                plugin.load();
-            }
-            catch (std::exception& e)
+            plugin.load();
+
+            THEN("fileFactory is called with integration.js path")
             {
-                cout << "Exception : " << e.what() << std::endl;
+                REQUIRE(fileFactory.callsParam.at(0) == integrationJsPath);
+
+                AND_THEN("a valid script is created")
+                {
+                    REQUIRE(plugin.script()->isValid());
+                }
             }
 
-//            THEN("fileFactory is called with integration.js path")
-//            {
-//                REQUIRE(fileFactory.callsParam.at(0) == integrationJsPath);
-//
-//                AND_THEN("a valid script is created")
-//                {
-//                    REQUIRE(plugin.script()->isValid());
-//                }
-//            }
-//
-//            AND_THEN("iniFileFactory is called with metads")
-//            {
-//                REQUIRE(iniFileFactory.callsParam.at(0) == metadataPath);
-//
-//                AND_THEN("metadata are not empty")
-//                {
-//                    REQUIRE(!plugin.metadata()->name().isEmpty());
-//                    REQUIRE(!plugin.metadata()->author().isEmpty());
-//                    REQUIRE(!plugin.metadata()->authorUrl().isEmpty());
-//                    REQUIRE(!plugin.metadata()->version().isEmpty());
-//                    REQUIRE(!plugin.metadata()->logo().isEmpty());
-//                }
-//            }
-//
-//            AND_THEN("iniFileFactory is called with correct path to read url")
-//            {
-//                REQUIRE(iniFileFactory.callsParam.at(1).toStdString() == metadataPath.toStdString());
-//
-//                AND_THEN("url is correctly set")
-//                {
-//                    REQUIRE(plugin.url() == pluginUrl);
-//                }
-//            }
+            AND_THEN("iniFileFactory is called with metads")
+            {
+                REQUIRE(iniFileFactory.callsParam.at(0) == metadataPath);
+
+                AND_THEN("metadata are not empty")
+                {
+                    REQUIRE(!plugin.metadata()->name().isEmpty());
+                    REQUIRE(!plugin.metadata()->author().isEmpty());
+                    REQUIRE(!plugin.metadata()->authorUrl().isEmpty());
+                    REQUIRE(!plugin.metadata()->version().isEmpty());
+                    REQUIRE(!plugin.metadata()->logo().isEmpty());
+                }
+            }
+
+            AND_THEN("iniFileFactory is called with correct path to read url")
+            {
+                REQUIRE(iniFileFactory.callsParam.at(1).toStdString() == metadataPath.toStdString());
+
+                AND_THEN("url is correctly set")
+                {
+                    REQUIRE(plugin.url() == pluginUrl);
+                }
+            }
         }
 
         WHEN("load an invalid plugin script")

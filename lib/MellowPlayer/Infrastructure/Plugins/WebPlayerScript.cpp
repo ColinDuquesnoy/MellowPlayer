@@ -13,10 +13,13 @@ WebPlayerScript::WebPlayerScript(const std::shared_ptr<IFile>& file)
 
 void WebPlayerScript::load()
 {
+    cout << "WebPlayerScript::load" << endl;
     if (file_->openReadOnly()) {
+        cout << "Reading file" << endl;
         code_ = file_->readAll();
         if (!isValid())
             throw std::runtime_error("Invalid web player script");
+        cout << "script is valid" << endl;
     }
     else
         throw std::runtime_error("failed to open " + file_->path().toStdString());

@@ -2,6 +2,7 @@
 #include "WebPlayerScript.hpp"
 #include "PluginMetadata.hpp"
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
+#include <iostream>
 
 using namespace std;
 using namespace MellowPlayer;
@@ -29,19 +30,25 @@ void WebPlayerPlugin::load()
 
 void WebPlayerPlugin::loadIntegrationScript()
 {
+    cout << "Creating integration script" << endl;
     script_ = make_shared<WebPlayerScript>(fileFactory_.create(filePath("integration.js")));
+    cout << "Loading integration script" << endl;
     script_->load();
 }
 
 void WebPlayerPlugin::loadMetadata()
 {
+    cout << "Creating metadata" << endl;
     metadata_ = make_shared<PluginMetadata>(iniFileFactory_.create(filePath("metadata.ini")));
+    cout << "Loading metadata" << endl;
     metadata_->load();
 }
 
 void WebPlayerPlugin::loadUrl()
 {
+    cout << "Create metadata file to read url" << endl;
     auto iniFile = iniFileFactory_.create(filePath("metadata.ini"));
+    cout << "Reading url" << endl;
     url_ = iniFile->value("url").toString();
 }
 
