@@ -24,30 +24,36 @@ SCENARIO("WebPlayerPluginTests")
 
         WHEN("load a valid plugin")
         {
-            FakeFileFactory fileFactory;
-            FakeIniFileFactory iniFileFactory;
-            fileFactory.fileContents[integrationJsPath] = "function update\n"
-                                                              "function play\n"
-                                                              "function pause\n"
-                                                              "function goNext\n"
-                                                              "function goPrevious\n"
-                                                              "function setVolume\n"
-                                                              "function addToFavorites\n"
-                                                              "function removeFromFavorites\n"
-                                                              "function seekToPosition\n";
-            QString pluginUrl = "https://fakeplayerplugin.org";;
-            QMap<QString, QVariant> iniFileData;
-            iniFileData["url"] = pluginUrl;
-            iniFileData["author"] = "authorName";
-            iniFileData["author_website"] = "authorUrl";
-            iniFileData["icon"] = "logo.svg";
-            iniFileData["name"] = "pluginName";
-            iniFileData["version"] = "pluginVersion";
-            iniFileFactory.iniFileContents[metadataPath] = iniFileData;
+            try {
+                FakeFileFactory fileFactory;
+                FakeIniFileFactory iniFileFactory;
+                fileFactory.fileContents[integrationJsPath] = "function update\n"
+                        "function play\n"
+                        "function pause\n"
+                        "function goNext\n"
+                        "function goPrevious\n"
+                        "function setVolume\n"
+                        "function addToFavorites\n"
+                        "function removeFromFavorites\n"
+                        "function seekToPosition\n";
+                QString pluginUrl = "https://fakeplayerplugin.org";;
+                QMap<QString, QVariant> iniFileData;
+                iniFileData["url"] = pluginUrl;
+                iniFileData["author"] = "authorName";
+                iniFileData["author_website"] = "authorUrl";
+                iniFileData["icon"] = "logo.svg";
+                iniFileData["name"] = "pluginName";
+                iniFileData["version"] = "pluginVersion";
+                iniFileFactory.iniFileContents[metadataPath] = iniFileData;
 
-            WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
+                WebPlayerPlugin plugin(pluginDir, fileFactory, iniFileFactory, settingsStore);
 
-            plugin.load();
+                plugin.load();
+            }
+            catch (std::exception& e)
+            {
+                cout << "Exception : " << e.what() << std::endl;
+            }
 
 //            THEN("fileFactory is called with integration.js path")
 //            {
