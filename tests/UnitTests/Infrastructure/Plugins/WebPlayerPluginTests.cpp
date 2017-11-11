@@ -103,7 +103,8 @@ SCENARIO("WebPlayerPluginTests")
         }
 
         WHEN("load an invalid plugin script") {
-            When(Method(integrationJsFileMock, content)).Return("invalid code");
+            QString invalidCode = "invalid code";
+            When(Method(integrationJsFileMock, content)).Return(invalidCode);
 
             THEN("throws runtime_error") {
                 REQUIRE_THROWS(plugin.load());
