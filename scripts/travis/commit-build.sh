@@ -16,7 +16,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     make -j2;
 
     # run tests
-    ctest --output-on-failure;
+    catchsegv ctest --output-on-failure;
 
     # upload code coverage results
     popd;

@@ -25,7 +25,6 @@ void WebPlayerPlugin::load()
 {
     loadIntegrationScript();
     loadMetadata();
-
 //    setEnabled(settingsStore_.value(isEnabledSettingsKey(), true).toBool());
 }
 

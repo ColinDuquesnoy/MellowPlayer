@@ -8,3 +8,5 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     source ./scripts/env-setup/osx/env-setup.sh;
     pip install github3.py
 fi
+
+export CXX="g++-7" CC="gcc-7";
