@@ -1,33 +1,23 @@
 #include <MellowPlayer/Domain/Plugins/WebPlayerScript.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
+#include "Fakes/FakeWebPlayerScript.hpp"
 
-using namespace MellowPlayer::Domain;
 using namespace std;
-
-class FakeScript: public WebPlayerScript
-{
-public:
-    FakeScript(QString code);
-    void load() override { };
-};
-
-FakeScript::FakeScript(QString code)
-{
-    code_ = move(code);
-}
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
 TEST_CASE("WebPlayerScript")
 {
     SECTION("WebPlayerScript.code")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.code() == "code");
     }
 
     SECTION("WebPlayerScript.updateCode")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         QSignalSpy spy(&script, SIGNAL(codeChanged(QString)));
         script.updateCode("code");
         REQUIRE(spy.count() == 0);
@@ -37,55 +27,55 @@ TEST_CASE("WebPlayerScript")
 
     SECTION("WebPlayerScript.update")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.update() == "if (typeof update !== 'undefined') update();");
     }
 
     SECTION("WebPlayerScript.play")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.play() == "play();");
     }
 
     SECTION("WebPlayerScript.pause")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.pause() == "pause();");
     }
 
     SECTION("WebPlayerScript.next")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.next() == "goNext();");
     }
 
     SECTION("WebPlayerScript.previous")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.previous() == "goPrevious();");
     }
 
     SECTION("WebPlayerScript.setVolume")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.setVolume(95).toStdString() == "setVolume(95);");
     }
 
     SECTION("WebPlayerScript.addToFavorites")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.addToFavorites() == "addToFavorites();");
     }
 
     SECTION("WebPlayerScript.removeFromFavorites")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.removeFromFavorites() == "removeFromFavorites();");
     }
 
     SECTION("WebPlayerScript.seekToPosition")
     {
-        FakeScript script("code");
+        FakeWebPlayerScript script("code");
         REQUIRE(script.seekToPosition(95).toStdString() == "seekToPosition(95);");
     }
 
@@ -100,7 +90,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(script.isValid());
     }
 
@@ -114,7 +104,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -128,7 +118,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -142,7 +132,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -156,7 +146,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -170,7 +160,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -184,7 +174,7 @@ TEST_CASE("WebPlayerScript")
                        "function addToFavorites\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -198,7 +188,7 @@ TEST_CASE("WebPlayerScript")
                        "function setVolume\n"
                        "function removeFromFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -212,7 +202,7 @@ TEST_CASE("WebPlayerScript")
                        "function setVolume\n"
                        "function addToFavorites\n"
                        "function seekToPosition\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
@@ -226,13 +216,13 @@ TEST_CASE("WebPlayerScript")
                        "function setVolume\n"
                        "function addToFavorites\n"
                        "function removeFromFavorites\n";
-        FakeScript script(code);
+        FakeWebPlayerScript script(code);
         REQUIRE(!script.isValid());
     }
 
     SECTION("WebPlayerScript.constants")
     {
-        FakeScript script("");
+        FakeWebPlayerScript script("");
         REQUIRE(!script.constants().isEmpty());
     }
 }

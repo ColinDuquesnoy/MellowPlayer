@@ -4,6 +4,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServiceMetadata.hpp>
 #include <QList>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <memory>
 

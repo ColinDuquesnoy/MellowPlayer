@@ -9,7 +9,7 @@ file(GLOB_RECURSE CONF_FILES *.conf)
 set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/Views ${CMAKE_SOURCE_DIR}/Views/MellowPlayer CACHE string "" FORCE)
 
 if(USE_LIBNOTIFY)
-    include_directories(${LIBNOTIFY_INCLUDE_DIRS})
+    include_directories(SYSTEM ${LIBNOTIFY_INCLUDE_DIRS})
 endif()
 
 set(QML_FILES ${QML_FILES} Views/MellowPlayer/qmldir)

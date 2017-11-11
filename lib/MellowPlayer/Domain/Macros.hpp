@@ -7,12 +7,12 @@
         Q_PROPERTY(type name READ name WRITE setter NOTIFY name##Changed) \
         type name##_; \
     public: \
-        const type& name() const \
+        virtual const type& name() const \
         { \
             return name##_; \
         } \
     public Q_SLOTS: \
-        bool setter(const type& name) \
+        virtual bool setter(const type& name) \
         { \
             bool ret = false; \
             if ((ret = name##_ != name)) { \
@@ -30,10 +30,10 @@
         Q_PROPERTY (type name READ name NOTIFY name##Changed) \
         type name##_; \
     public: \
-        const type& name() const { \
+        virtual const type& name() const { \
             return name##_ ; \
         } \
-        bool updater(const type& name) { \
+        virtual bool updater(const type& name) { \
             bool ret = false; \
             if ((ret = name##_ != name)) { \
                 name##_ = name; \
@@ -50,7 +50,7 @@
         Q_PROPERTY (type name READ name CONSTANT) \
         type name##_; \
     public: \
-        const type& name() const { \
+        virtual const type& name() const { \
             return name##_ ; \
         } \
     private:
@@ -60,10 +60,10 @@
         Q_PROPERTY (type* name READ name NOTIFY name##Changed) \
         std::shared_ptr<type> name##_=nullptr; \
     public: \
-        type* name() const { \
+        virtual type* name() const { \
             return name##_ .get(); \
         } \
-        bool updater(const std::shared_ptr<type>& name) { \
+        virtual bool updater(const std::shared_ptr<type>& name) { \
             bool ret = false; \
             if ((ret = name##_ != name)) { \
                 name##_ = name; \
@@ -80,7 +80,7 @@
         Q_PROPERTY (type name READ name CONSTANT) \
         std::shared_ptr<type> name##_; \
     public: \
-        type* name() const { \
+        virtual type* name() const { \
             return name##_ .get(); \
         } \
     private:

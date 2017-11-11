@@ -6,18 +6,18 @@
 
 namespace MellowPlayer::Infrastructure
 {
+    class IFile;
+
     class IniFile: public IIniFile
     {
     public:
-        IniFile(const QString& path);
+        IniFile(const std::shared_ptr<IFile>& file);
 
         QString path() const override;
         virtual QVariant value(const QString& key) const override;
-        virtual QVariant value(const QString& key, const QVariant& defaultValue) const override;
     private:
-        QSettings iniFile_;
-        QString path_;
-
+        std::shared_ptr<IFile> file_;
+        QSettings settings_;
     };
 }
 

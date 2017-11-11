@@ -4,7 +4,7 @@
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-PluginMetadata::PluginMetadata(const std::shared_ptr<IIniFile>& iniFile)
+PluginMetadata::PluginMetadata(const shared_ptr<IIniFile>& iniFile)
         : iniFile_(iniFile)
 {
 

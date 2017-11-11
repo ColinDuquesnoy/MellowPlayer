@@ -11,6 +11,5 @@ namespace MellowPlayer::Infrastructure
 
         virtual QString path() const = 0;
         virtual QVariant value(const QString& key) const = 0;
-        virtual QVariant value(const QString& key, const QVariant& defaultValue) const = 0;
     };
 }

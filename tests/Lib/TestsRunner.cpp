@@ -38,7 +38,7 @@ int TestsRunner::runTests(int argc, char* argv[])
 
     QSettings settings;
     settings.clear();
-    auto retCode = Catch::Session().run(argc, const_cast<char const* const* const>(argv));
+    auto retCode = Catch::Session().run(argc, argv);
 
     settings.clear();
     webApplication.clearCache();

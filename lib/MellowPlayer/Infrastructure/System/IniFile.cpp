@@ -1,23 +1,20 @@
 #include "IniFile.hpp"
+#include "IFile.hpp"
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-IniFile::IniFile(const QString& path): iniFile_(path, QSettings::IniFormat), path_(path)
+IniFile::IniFile(const shared_ptr<IFile>& file): file_(file), settings_(file_->path(), QSettings::IniFormat)
 {
 
 }
 
 QVariant IniFile::value(const QString& key) const
 {
-    return iniFile_.value(key, QVariant());
-}
-
-QVariant IniFile::value(const QString& key, const QVariant& defaultValue) const
-{
-    return iniFile_.value(key, defaultValue);
+    return settings_.value(key, QVariant());
 }
 
 QString IniFile::path() const
 {
-    return path_;
+    return file_->path();
 }

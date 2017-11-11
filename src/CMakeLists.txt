@@ -1,6 +1,6 @@
 set(CMAKE_AUTOMOC OFF)
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
-include_directories(../3rdparty)
+include_directories(SYSTEM ../3rdparty)
 
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
 set(SOURCE_FILES main.cpp DI.hpp)

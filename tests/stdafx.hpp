@@ -30,4 +30,5 @@
 #include <QUrl>
 #include <QDate>
 
-#include <gmock/gmock.h>
+#include <catch.hpp>
+#include <fakeit.hpp>

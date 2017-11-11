@@ -7,22 +7,17 @@ File::File(const QString& path): path_(path), file_(path_)
 
 }
 
-QString File::path() const
+bool File::open()
 {
-    return path_;
-}
-
-bool File::openReadOnly()
-{
-    return file_.open(QFile::ReadOnly);
+    if (file_.open(QFile::ReadOnly)) {
+        QTextStream stream(&file_);
+        update(stream.readAll());
+        return true;
+    }
+    return false;
 }
 
 bool File::exists() const
 {
     return file_.exists();
-}
-
-QString File::readAll()
-{
-    return QString::fromUtf8(file_.readAll());
 }

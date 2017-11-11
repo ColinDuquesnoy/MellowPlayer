@@ -11,25 +11,27 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Infrastructure
 {
+    class IFileFactory;
+    class IIniFileFactory;
+
     class WebPlayerPlugin: public Domain::WebPlayerPlugin
     {
     public:
         WebPlayerPlugin(const QString& path,
-                        IFactory<IFile, QString>& fileFactory,
-                        IFactory<IIniFile, QString>& iniFileFactory,
+                        IFileFactory& fileFactory,
+                        IIniFileFactory& iniFileFactory,
                         Domain::ISettingsStore& settingsStore);
         void load() override;
 
     private:
         void loadIntegrationScript();
         void loadMetadata();
-        void loadUrl();
         QString customUrlSettingsKey() const;
         QString isEnabledSettingsKey() const;
         QString filePath(const QString& fileName) const;
 
-        IFactory<IFile, QString>& fileFactory_;
-        IFactory<IIniFile, QString>& iniFileFactory_;
+        IFileFactory& fileFactory_;
+        IIniFileFactory& iniFileFactory_;
         Domain::ISettingsStore& settingsStore_;
     };
 }

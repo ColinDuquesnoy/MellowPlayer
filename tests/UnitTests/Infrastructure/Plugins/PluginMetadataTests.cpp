@@ -1,18 +1,17 @@
 #include <catch.hpp>
 #include <MellowPlayer/Infrastructure/Plugins/PluginMetadata.hpp>
-#include <UnitTests/Infrastructure/System/Fakes/FakeIniFileFactory.hpp>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
+#include <fakeit/fakeit.hpp>
 
+using namespace fakeit;
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
-using namespace MellowPlayer::Infrastructure::Tests;
 
 SCENARIO("PluginMetadataTests")
 {
     GIVEN("a PluginMetadata")
     {
-        FakeIniFileFactory iniFileFactory;
         QString iniFilePath = "/path/to/plugin/metadata.ini";
 
         WHEN("loading metadata using fake data")
@@ -23,10 +22,17 @@ SCENARIO("PluginMetadataTests")
             iniData["icon"] = "logo.svg";
             iniData["name"] = "pluginName";
             iniData["version"] = "pluginVersion";
-            iniFileFactory.iniFileContents[iniFilePath] = iniData;
 
-            std::shared_ptr<IIniFile> iniFile = iniFileFactory.create(move(iniFilePath));
-            PluginMetadata pluginMetadata(iniFile);
+            Mock<IIniFile> iniFileMock;
+            Fake(Dtor(iniFileMock));
+            When(Method(iniFileMock, path)).Return(iniFilePath);
+            When(Method(iniFileMock, value)).AlwaysDo([&](const QString& key) -> QVariant {
+                return iniData[key];
+            });
+            IIniFile& iniFile = iniFileMock.get();
+            shared_ptr<IIniFile> iniFilePtr;
+            iniFilePtr.reset(&iniFile);
+            PluginMetadata pluginMetadata(iniFilePtr);
 
             pluginMetadata.load();
 

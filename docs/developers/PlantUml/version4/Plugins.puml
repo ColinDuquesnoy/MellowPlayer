@@ -101,6 +101,45 @@ namespace MellowPlayer::Infrastructure {
         + load(): void
     }
     MellowPlayer.Domain.PluginMetadata <|-- PluginMetadata
+
+    interface IFile {
+        path(): QString
+        exists(): bool
+        content(): QString
+        setContent(QString)
+        contentChanged()
+    }
+    class TextFile
+    IFile <|.. TextFile
+
+    interface IIniFile {
+         value(const QString& key): QVariant
+    }
+
+    class IniFile
+    IIniFile <|.. IniFile
+    IniFile -> IFile
+
+    class FileDecorator
+    IFile <|.. FileDecorator
+
+    class Watched
+    FileDecorator <|-- Watched
+
+    interface IFileFactory {
+        create(QString path): IFile
+    }
+    IFileFactory ..> IFile: <<create>>
+
+    interface IIniFileFactory {
+        create(QString path): IFile
+    }
+    IIniFileFactory ..> IIniFile: <<create>>
+
+    WebPlayerScript ..> IFile: <<use>>
+    PluginMetadata ..> IIniFile: <<use>>
+    WebPlayerPlugin ..> IFileFactory: <<use>>
+    WebPlayerPlugin ..> IIniFileFactory: <<use>>
 }
 
 @enduml

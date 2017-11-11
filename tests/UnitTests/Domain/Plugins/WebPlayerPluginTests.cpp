@@ -1,9 +1,27 @@
 #include <MellowPlayer/Domain/Plugins/WebPlayerPlugin.hpp>
 #include <catch.hpp>
-#include "Fakes/FakeWebPlayerPlugin.hpp"
+#include <fakeit/fakeit.hpp>
+#include "Fakes/FakePluginMetadata.hpp"
+#include "Fakes/FakeWebPlayerScript.hpp"
 
+using namespace fakeit;
+using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain::Tests;
+
+class FakeWebPlayerPlugin: public WebPlayerPlugin
+{
+public:
+    void load() override
+    {
+        metadata_ = make_shared<FakePluginMetadata>("FooBar", "1.0.0", "Foo", "https://foo.org", "logo.svg");
+        metadata_->load();
+        path_ = "/path/to/plugin";
+        url_ = "https://webplayerservice.com";
+        isEnabled_ = true;
+        script_ = make_shared<FakeWebPlayerScript>("code");
+    }
+};
 
 SCENARIO("WebPlayerPluginTests")
 {

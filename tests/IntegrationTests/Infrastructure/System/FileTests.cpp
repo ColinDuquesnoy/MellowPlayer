@@ -12,7 +12,7 @@ SCENARIO("FileTests")
 
         WHEN("opening file")
         {
-            bool isOpen = file.openReadOnly();
+            bool isOpen = file.open();
 
             THEN("file is open")
             {
@@ -21,7 +21,7 @@ SCENARIO("FileTests")
 
             AND_THEN("file content is not empty")
             {
-                REQUIRE(!file.readAll().isEmpty());
+                REQUIRE(!file.content().isEmpty());
             }
         }
     }

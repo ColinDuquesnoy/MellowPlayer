@@ -4,6 +4,7 @@
 #include <QColor>
 #include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>
 #include <MellowPlayer/Domain/Theme/Theme.hpp>
+#include <cmath>
 
 using namespace MellowPlayer::Domain;
 using namespace fakeit;
