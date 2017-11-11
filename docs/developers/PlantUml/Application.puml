@@ -1,0 +1,70 @@
+@startuml
+
+namespace Qt {
+    class QApplication
+}
+
+namespace MellowPlayer.Infrastructure {
+    interface IApplication {
+        initialize()
+        restoreWindow()
+        run()
+        quit()
+        restart()
+        buildInfo(): QString
+    }
+
+    class Application
+    IApplication <|.. Application
+    Application -right-> Qt.QApplication
+
+    class ApplicationDecorator {
+        # _application: IApplication
+    }
+
+    ApplicationDecorator -[hidden]right-> Application
+
+    IApplication <|.. ApplicationDecorator
+
+    class SingleInstance
+    ApplicationDecorator <|-- SingleInstance
+
+    class WithCommandLineArguments
+    ApplicationDecorator <|-- WithCommandLineArguments
+
+    class WithMprisIntegration
+    ApplicationDecorator <|-- WithMprisIntegration
+
+    class Restartable
+    ApplicationDecorator <|-- Restartable
+
+    interface IApplicationFactory {
+        Create(): IApplication
+    }
+
+    class ApplicationFactory
+    IApplicationFactory <|.. ApplicationFactory
+    ApplicationFactory .> IApplication: <<use>>
+}
+
+namespace MellowPlayer.Presentation {
+    class ApplicationViewModel
+
+    ApplicationViewModel -> MellowPlayer.Infrastructure.IApplication
+}
+
+
+note bottom
+
+int main(argc, argv) {
+    QApplication qtApp(argc, argv); // bound by instance in injector
+    // dependency injector setup
+    ...
+    auto applicationFactory = injector.create<IApplicationFactory>();
+    auto app = applicationFactory.create();
+    return app->run();
+}
+
+end note
+
+@enduml

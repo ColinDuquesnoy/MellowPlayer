@@ -27,7 +27,7 @@
 #include <MellowPlayer/Application/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
-#include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/IDeprecatedApplication.hpp>
 #include <MellowPlayer/Infrastructure/Controllers/HotkeysController.hpp>
 #include <MellowPlayer/Infrastructure/FileDownloader.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
@@ -151,7 +151,7 @@ auto platformInjector = [](ScopedScope &scope) {
 #if defined(Q_OS_LINUX)
     return di::make_injector(
         di::bind<IMprisController>().to<MprisController>().in(scope),
-        di::bind<IApplication>().to<LinuxApplication>().in(scope),
+        di::bind<IDeprecatedApplication>().to<LinuxApplication>().in(scope),
         di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope)
     );
 #elif defined(Q_OS_WIN)

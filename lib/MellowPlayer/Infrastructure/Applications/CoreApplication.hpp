@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IApplication.hpp"
+#include "IDeprecatedApplication.hpp"
 
 namespace MellowPlayer::Application
 {
@@ -15,7 +15,7 @@ namespace MellowPlayer::Application
 
 namespace MellowPlayer::Infrastructure
 {
-    class CoreApplication : public IApplication
+    class CoreApplication : public IDeprecatedApplication
     {
     public:
         CoreApplication(Application::IQtApplication& qtApp, Application::IMainWindow& mainWindow,

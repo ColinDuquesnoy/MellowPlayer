@@ -47,7 +47,7 @@ int main(int argc, char** argv)
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
 #ifdef QT_DEBUG
-    IApplication& app = injector.create<IApplication&>();
+    IDeprecatedApplication& app = injector.create<IDeprecatedApplication&>();
     app.initialize();
 #else
     SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();

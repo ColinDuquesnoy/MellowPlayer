@@ -1,5 +1,5 @@
 #include "SingleInstanceApplication.hpp"
-#include "IApplication.hpp"
+#include "IDeprecatedApplication.hpp"
 #include <MellowPlayer/Application/ICommandLineParser.hpp>
 #include <MellowPlayer/Application/Logging/ILogger.hpp>
 #include <MellowPlayer/Application/Logging/LoggingManager.hpp>
@@ -21,7 +21,7 @@ const QString SingleInstanceApplication::previousAction_ = "previous";
 const QString SingleInstanceApplication::restoreWindowAction_ = "restore-window";
 const QString SingleInstanceApplication::toggleFavoriteAction_ = "toggle-favorite";
 
-SingleInstanceApplication::SingleInstanceApplication(IApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
+SingleInstanceApplication::SingleInstanceApplication(IDeprecatedApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
         : logger_(LoggingManager::logger("SingleInstanceApplication")),
           application_(application),
           commandLineParser_(commandLineParser),
