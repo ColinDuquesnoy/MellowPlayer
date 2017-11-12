@@ -34,3 +34,7 @@ deploy_script:
   - if defined APPVEYOR_REPO_TAG_NAME make_installer.bat
   - cd C:\projects\MellowPlayer
   - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+
+# display remote desktop information and block build
+on_failure:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
