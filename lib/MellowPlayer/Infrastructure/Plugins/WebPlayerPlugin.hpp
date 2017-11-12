@@ -1,6 +1,5 @@
 #include <MellowPlayer/Domain/Plugins/PluginMetadata.hpp>
 #include <MellowPlayer/Domain/Plugins/WebPlayerPlugin.hpp>
-#include <MellowPlayer/Domain/BoostDIFactory.hpp>
 #include <MellowPlayer/Infrastructure/System/IFile.hpp>
 #include <MellowPlayer/Infrastructure/System/IIniFile.hpp>
 

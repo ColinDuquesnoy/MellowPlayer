@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Macros.hpp>
+#include <MellowPlayer/Domain/Properties.hpp>
 #include <QtCore/QObject>
 
 namespace MellowPlayer::Domain

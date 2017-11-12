@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <QtCore/QString>
-#include <MellowPlayer/Domain/Macros.hpp>
+#include <MellowPlayer/Domain/Properties.hpp>
 
 namespace MellowPlayer::Infrastructure
 {

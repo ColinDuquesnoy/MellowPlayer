@@ -1,6 +1,5 @@
 #pragma once
 
-#include <MellowPlayer/Domain/BoostDIFactory.hpp>
 #include <MellowPlayer/Domain/Plugins/PluginMetadata.hpp>
 #include <MellowPlayer/Infrastructure/System/IIniFile.hpp>
 

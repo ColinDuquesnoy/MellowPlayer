@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Domain/Plugins/WebPlayerScript.hpp>
-#include <MellowPlayer/Domain/BoostDIFactory.hpp>
 
 namespace MellowPlayer::Infrastructure
 {

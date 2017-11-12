@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-#include <MellowPlayer/Domain/Macros.hpp>
+#include <MellowPlayer/Domain/Properties.hpp>
 
 namespace MellowPlayer::Domain
 {
