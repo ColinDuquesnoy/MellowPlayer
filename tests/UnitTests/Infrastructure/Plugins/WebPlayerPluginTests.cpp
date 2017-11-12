@@ -26,7 +26,6 @@ SCENARIO("WebPlayerPluginTests")
         When(Method(integrationJsFileMock, exists)).Return(true);
         When(Method(integrationJsFileMock, open)).Return(true);
         When(Method(integrationJsFileMock, path)).Return(integrationJsPath);
-        Fake(Dtor(integrationJsFileMock));
 
         IFile& file = integrationJsFileMock.get();
         QString usedIntegrationJsPath;
@@ -46,7 +45,6 @@ SCENARIO("WebPlayerPluginTests")
         iniData["url"] = pluginUrl;
 
         Mock<IIniFile> metatadaIniFileMock;
-        Fake(Dtor(metatadaIniFileMock));
         When(Method(metatadaIniFileMock, path)).Return(metadataPath);
         When(Method(metatadaIniFileMock, value)).AlwaysDo([&](const QString& key) -> QVariant
                                                           {

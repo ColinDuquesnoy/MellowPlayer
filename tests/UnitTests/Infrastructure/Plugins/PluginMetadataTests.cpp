@@ -10,11 +10,11 @@ using namespace MellowPlayer::Infrastructure;
 
 SCENARIO("PluginMetadataTests")
 {
-    GIVEN("a PluginMetadata")
+    GIVEN("some fake data")
     {
         QString iniFilePath = "/path/to/plugin/metadata.ini";
 
-        WHEN("loading metadata using fake data")
+        WHEN("loading metadata")
         {
             QMap<QString, QVariant> iniData;
             iniData["author"] = "authorName";
@@ -24,14 +24,12 @@ SCENARIO("PluginMetadataTests")
             iniData["version"] = "pluginVersion";
 
             Mock<IIniFile> iniFileMock;
-            Fake(Dtor(iniFileMock));
             When(Method(iniFileMock, path)).Return(iniFilePath);
             When(Method(iniFileMock, value)).AlwaysDo([&](const QString& key) -> QVariant {
                 return iniData[key];
             });
             IIniFile& iniFile = iniFileMock.get();
-            shared_ptr<IIniFile> iniFilePtr;
-            iniFilePtr.reset(&iniFile);
+            shared_ptr<IIniFile> iniFilePtr(&iniFile, [](IIniFile*) {});
             PluginMetadata pluginMetadata(iniFilePtr);
 
             pluginMetadata.load();
