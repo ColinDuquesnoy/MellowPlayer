@@ -1,6 +1,6 @@
 #include <MellowPlayer/Domain/Notifications/Notifications.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/DeprecatedCoreApplication.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/NotifierMock.hpp>
@@ -22,7 +22,7 @@ TEST_CASE("CoreApplicationTests", "[UnitTest]")
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
-    CoreApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(), systemTrayIconMock.get(),
+    DeprecatedCoreApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(), systemTrayIconMock.get(),
                         notificationServiceMock.get());
 
     SECTION("initialize")

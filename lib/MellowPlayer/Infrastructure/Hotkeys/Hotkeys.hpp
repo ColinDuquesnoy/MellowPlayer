@@ -16,7 +16,7 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Infrastructure
 {
-    class IApplication;
+    class IDeprecatedApplication;
 
     class Hotkeys : public QObject, public IHotkeys
     {

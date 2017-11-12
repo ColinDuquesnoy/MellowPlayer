@@ -1,5 +1,5 @@
 #pragma once
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
@@ -9,9 +9,9 @@ using namespace fakeit;
 class QtApplicationMock
 {
 public:
-    static Mock<IQtApplication> get()
+    static Mock<IDeprecatedQtApplication> get()
     {
-        Mock<IQtApplication> mock;
+        Mock<IDeprecatedQtApplication> mock;
         When(Method(mock, run)).AlwaysReturn();
         When(Method(mock, quit)).AlwaysReturn();
         When(Method(mock, requestQuit)).AlwaysReturn();

@@ -11,7 +11,7 @@ namespace MellowPlayer::Domain
     class Settings;
     class ILogger;
     class IPlayer;
-    class IQtApplication;
+    class IDeprecatedQtApplication;
 }
 
 namespace MellowPlayer::Presentation
@@ -27,7 +27,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     public:
         MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel, ListeningHistoryViewModel& listeningHistoryModel,
-                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Domain::IQtApplication& qtApp,
+                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Domain::IDeprecatedQtApplication& qtApp,
                             Domain::IPlayer& player, Domain::Settings& settings);
         bool load() override;
         void show() override;

@@ -1,70 +1,171 @@
 @startuml
 
-namespace Qt {
-    class QApplication
+namespace MellowPlayer.Main {
+    class ApplicationRoot {
+        + run(): int
+        + onInitialized()
+        + onStarted()
+
+    }
+    ApplicationRoot --> MellowPlayer.Infrastructure.IApplication
+    ApplicationRoot --> MellowPlayer.Presentation.IViewModels
+    ApplicationRoot --> MellowPlayer.Presentation.IMainWindow
+    ApplicationRoot --> MellowPlayer.Presentation.IMprisPlayer
+    ApplicationRoot --> MellowPlayer.Presentation.ApplicationViewModel
+    ApplicationRoot -up-> MellowPlayer.Domain.IPlayers
+    ApplicationRoot --> MellowPlayer.Infrastructure.IUpdater
+}
+
+namespace MellowPlayer.Domain {
+    interface IPlayers
 }
 
 namespace MellowPlayer.Infrastructure {
+    interface IUpdater
+
     interface IApplication {
+        initialized: signal<void>
+        started: signal<bool>
         initialize()
-        restoreWindow()
         run()
         quit()
         restart()
-        buildInfo(): QString
+        buildInfo: QString
+        clearCache()
+        clearCookies()
     }
 
-    class Application
+    class Application {
+        + initialized: signal<void>
+        + started: signal<bool>
+        - _qApplication: QApplication
+        + initialize()
+        + run()
+        + quit()
+        + restart()
+        + buildInfo(): QString
+        + clearCache()
+        + clearCookies()
+    }
     IApplication <|.. Application
-    Application -right-> Qt.QApplication
 
     class ApplicationDecorator {
+        + initialized: signal<void>
+        + started: signal<bool>
         # _application: IApplication
+        + initialize()
+        + run()
+        + quit()
+        + restart()
+        + buildInfo(): QString
+        + clearCache()
+        + clearCookies()
     }
-
-    ApplicationDecorator -[hidden]right-> Application
 
     IApplication <|.. ApplicationDecorator
 
-    class SingleInstance
+    class SingleInstance {
+        + initialize()
+        + run()
+    }
     ApplicationDecorator <|-- SingleInstance
 
-    class WithCommandLineArguments
-    ApplicationDecorator <|-- WithCommandLineArguments
-
-    class WithMprisIntegration
-    ApplicationDecorator <|-- WithMprisIntegration
-
-    class Restartable
-    ApplicationDecorator <|-- Restartable
-
-    interface IApplicationFactory {
-        Create(): IApplication
+    class WithCommandLineArguments {
+        + run()
     }
-
-    class ApplicationFactory
-    IApplicationFactory <|.. ApplicationFactory
-    ApplicationFactory .> IApplication: <<use>>
+    ApplicationDecorator <|-- WithCommandLineArguments
 }
 
 namespace MellowPlayer.Presentation {
-    class ApplicationViewModel
+    interface IQmlApplicationEngine {
+        setContextProperty(QString, QObject*)
+    }
+    class QmlApplicationEngine {
+        - _qQmlApplicationEngine: QQmlApplicationEngine
+        +setContextProperty(QString, QObject*)
+    }
+    IQmlApplicationEngine <|.. QmlApplicationEngine
 
-    ApplicationViewModel -> MellowPlayer.Infrastructure.IApplication
+    interface IViewModel {
+        id: QString
+        initialize()
+    }
+
+    class ViewModel {
+        + {abstract} id: QString
+        + {abstract} initialize()
+    }
+    IViewModel <|.. ViewModel
+    ViewModel -up-> IViewModels
+
+    interface IViewModels {
+        add(ViewModel)
+        initialize()
+    }
+
+    class ViewModels {
+        - viewModels_: QList<IViewModel*>
+        + add(ViewModel)
+        + initialize()
+    }
+    IViewModels <|.. ViewModels
+    ViewModels --> IQmlApplicationEngine
+
+    class ApplicationViewModel {
+        + id: QString
+        + buildInfo: QString
+        + quitRequested: signal<void>
+        + quit()
+        + requestQuit()
+        + restart()
+        + initialize()
+        - _application: IApplication
+    }
+    ViewModel <|--- ApplicationViewModel
+
+    interface IMainWindow {
+        show()
+        hide()
+        close()
+    }
+
+    class MainWindowViewModel {
+        + id: QString
+        + show()
+        + hide()
+        + close()
+        + initialize()
+    }
+    IMainWindow <|.. MainWindowViewModel
+    ViewModel <|-- MainWindowViewModel
+
+    interface IMprisPlayer {
+        start()
+    }
+    class MprisPlayer {
+        + start()
+    }
+    IMprisPlayer <|-- MprisPlayer
+
+    class NullMprisPlayer {
+        + start()
+    }
+    IMprisPlayer <|-- NullMprisPlayer
+
 }
 
 
-note bottom
-
-int main(argc, argv) {
-    QApplication qtApp(argc, argv); // bound by instance in injector
-    // dependency injector setup
-    ...
-    auto applicationFactory = injector.create<IApplicationFactory>();
-    auto app = applicationFactory.create();
-    return app->run();
-}
-
-end note
+'note bottom
+'
+'int main(argc, argv) {
+'    QApplication qtApp(argc, argv); // bound by instance in injector
+'    // dependency injector setup
+'    ...
+'    auto applicationFactory = injector.create<IApplicationFactory>();
+'    auto app = applicationFactory.create();
+'    return app->run();
+'}
+'
+'end note
 
 @enduml

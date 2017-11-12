@@ -5,7 +5,7 @@
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
@@ -19,7 +19,7 @@ using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel,
                                          ListeningHistoryViewModel& listeningHistoryModel, ThemeViewModel& themeViewModel,
-                                         UpdaterViewModel& updaterViewModel, IQtApplication& qtApp, IPlayer& player, Settings& settings)
+                                         UpdaterViewModel& updaterViewModel, IDeprecatedQtApplication& qtApp, IPlayer& player, Settings& settings)
         : logger_(LoggingManager::logger("MainWindowViewModel")),
           settings_(settings),
           streamingServices_(streamingServicesModel),

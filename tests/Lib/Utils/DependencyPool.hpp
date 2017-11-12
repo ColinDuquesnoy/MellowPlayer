@@ -4,7 +4,7 @@
 #include "fakeit.hpp"
 
 #include <MellowPlayer/Domain/ICommandLineParser.hpp>
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
@@ -63,7 +63,7 @@ namespace MellowPlayer::Tests
         Domain::IWorkDispatcher& getWorkDispatcher();
         Domain::ListeningHistory& getListeningHistory();
         Domain::Updater& getUpdater();
-        Domain::IQtApplication& getQtApplication();
+        Domain::IDeprecatedQtApplication& getQtApplication();
         Domain::INotificationPresenter& getNotificationPresenter();
         Domain::AbstractPlatformUpdater& getPlatformUpdater();
         Domain::IUserScriptFactory& getUserScriptFactory();
@@ -82,7 +82,7 @@ namespace MellowPlayer::Tests
     private:
         // mocks
         fakeit::Mock<Domain::ICommandLineParser> mICommandLineParser;
-        fakeit::Mock<Domain::IQtApplication> mIQtApplication;
+        fakeit::Mock<Domain::IDeprecatedQtApplication> mIQtApplication;
         fakeit::Mock<Domain::ISettingsStore> mISettingsStore;
         fakeit::Mock<Domain::IStreamingServiceCreator> mIStreamingServiceCreator;
         fakeit::Mock<Domain::INotificationPresenter> mINotificationPresenter;

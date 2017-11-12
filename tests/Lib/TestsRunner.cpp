@@ -5,7 +5,7 @@
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
 #include <QtCore/QSettings>
 #include <QDebug>
 
@@ -19,7 +19,7 @@ int TestsRunner::runTests(int argc, char* argv[])
     Q_INIT_RESOURCE(domain);
     Q_INIT_RESOURCE(presentation);
 
-    ApplicationViewModel webApplication(argc, argv, "MellowPlayer.Tests");
+    DeprecatedApplicationViewModel webApplication(argc, argv, "MellowPlayer.Tests");
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;

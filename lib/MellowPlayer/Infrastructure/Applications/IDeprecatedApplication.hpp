@@ -2,10 +2,10 @@
 
 namespace MellowPlayer::Infrastructure
 {
-    class IApplication
+    class IDeprecatedApplication
     {
     public:
-        virtual ~IApplication() = default;
+        virtual ~IDeprecatedApplication() = default;
         virtual void initialize() = 0;
         virtual void restoreWindow() = 0;
         virtual int run() = 0;

@@ -13,13 +13,13 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Infrastructure
 {
-    class IApplication;
+    class IDeprecatedApplication;
 
-    class SingleInstanceApplication : public QObject
+    class DeprecatedSingleInstanceApplication : public QObject
     {
         Q_OBJECT
     public:
-        SingleInstanceApplication(IApplication& application,
+        DeprecatedSingleInstanceApplication(IDeprecatedApplication& application,
                                   Domain::ICommandLineParser& commandLineParser,
                                   Domain::IPlayer& currentPlayer);
 
@@ -37,7 +37,7 @@ namespace MellowPlayer::Infrastructure
         QString requestedAcion() const;
 
         Domain::ILogger& logger_;
-        IApplication& application_;
+        IDeprecatedApplication& application_;
         Domain::ICommandLineParser& commandLineParser_;
         Domain::IPlayer& currentPlayer_;
         QLocalSocket localSocket_;

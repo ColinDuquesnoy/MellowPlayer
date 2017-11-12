@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <QApplication>
 #include <QTranslator>
 
@@ -23,11 +23,11 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Presentation
 {
-    class ApplicationViewModel : public Domain::IQtApplication
+    class DeprecatedApplicationViewModel : public Domain::IDeprecatedQtApplication
     {
         Q_OBJECT
     public:
-        ApplicationViewModel(int& argc, char** argv, const QString& appName = MELLOWPLAYER_APP_NAME);
+        DeprecatedApplicationViewModel(int& argc, char** argv, const QString& appName = MELLOWPLAYER_APP_NAME);
 
         void initialize() override;
         int run() override;

@@ -25,8 +25,8 @@
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/Applications/CoreApplication.hpp>
-#include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/DeprecatedCoreApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/IDeprecatedApplication.hpp>
 #include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <MellowPlayer/Infrastructure/Hotkeys/Hotkeys.hpp>
 #include <MellowPlayer/Infrastructure/FileDownloader.hpp>
@@ -59,7 +59,7 @@
 #endif
 
 #if defined(Q_OS_LINUX)
-#include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/DeprecatedLinuxApplication.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
 #elif defined(Q_OS_WIN)
@@ -151,17 +151,17 @@ auto platformInjector = [](ScopedScope &scope) {
 #if defined(Q_OS_LINUX)
     return di::make_injector(
         di::bind<IMpris>().to<Mpris>().in(scope),
-        di::bind<IApplication>().to<LinuxApplication>().in(scope),
+        di::bind<IDeprecatedApplication>().to<DeprecatedLinuxApplication>().in(scope),
         di::bind<AbstractPlatformUpdater>().to<LinuxUpdater>().in(scope)
     );
 #elif defined(Q_OS_WIN)
     return di::make_injector(
-        di::bind<IApplication>().to<CoreApplication>().in(scope),
+        di::bind<IDeprecatedApplication>().to<DeprecatedCoreApplication>().in(scope),
         di::bind<AbstractPlatformUpdater>().to<WindowsUpdater>().in(scope)
     );
 #elif defined(Q_OS_OSX)
     return di::make_injector(
-        di::bind<IApplication>().to<CoreApplication>().in(scope),
+        di::bind<IDeprecatedApplication>().to<DeprecatedCoreApplication>().in(scope),
         di::bind<AbstractPlatformUpdater>().to<OSXUpdater>().in(scope)
     );
 #endif

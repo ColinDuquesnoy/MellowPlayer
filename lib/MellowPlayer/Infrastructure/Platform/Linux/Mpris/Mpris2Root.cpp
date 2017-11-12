@@ -1,12 +1,12 @@
 #include "Mpris2Root.hpp"
 #include <MellowPlayer/Domain/IMainWindow.hpp>
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-Mpris2Root::Mpris2Root(IMainWindow& window, IQtApplication& qtApp, QObject* parent)
+Mpris2Root::Mpris2Root(IMainWindow& window, IDeprecatedQtApplication& qtApp, QObject* parent)
         : QDBusAbstractAdaptor(parent), logger_(LoggingManager::logger("Mpris2Root")), window_(window), qtApp_(qtApp)
 {
 }

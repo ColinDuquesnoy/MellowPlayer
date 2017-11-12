@@ -1,10 +1,10 @@
 #pragma once
 
-#include "IApplication.hpp"
+#include "IDeprecatedApplication.hpp"
 
 namespace MellowPlayer::Domain
 {
-    class IQtApplication;
+    class IDeprecatedQtApplication;
     class IMainWindow;
     class StreamingServicesController;
     class ISystemTrayIcon;
@@ -16,10 +16,10 @@ namespace MellowPlayer::Infrastructure
 {
     class IHotkeys;
 
-    class CoreApplication : public IApplication
+    class DeprecatedCoreApplication : public IDeprecatedApplication
     {
     public:
-        CoreApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
+        DeprecatedCoreApplication(Domain::IDeprecatedQtApplication& qtApp, Domain::IMainWindow& mainWindow,
                         Domain::StreamingServicesController& streamingServices, IHotkeys& kotkeys,
                         Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier);
 
@@ -30,7 +30,7 @@ namespace MellowPlayer::Infrastructure
 
     private:
         Domain::ILogger& logger_;
-        Domain::IQtApplication& qtApp_;
+        Domain::IDeprecatedQtApplication& qtApp_;
         Domain::IMainWindow& mainWindow_;
         Domain::StreamingServicesController& streamingServices_;
         IHotkeys& kotkeys_;

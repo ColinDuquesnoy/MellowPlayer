@@ -8,7 +8,7 @@
 #include <MellowPlayer/Domain/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Domain/Updater/Updater.hpp>
 #include <MellowPlayer/Domain/ICommandLineParser.hpp>
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
@@ -170,7 +170,7 @@ Updater& DependencyPool::getUpdater()
     return *pUpdater;
 }
 
-IQtApplication& DependencyPool::getQtApplication()
+IDeprecatedQtApplication& DependencyPool::getQtApplication()
 {
     return mIQtApplication.get();
 }

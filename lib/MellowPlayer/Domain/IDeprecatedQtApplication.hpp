@@ -4,12 +4,12 @@
 
 namespace MellowPlayer::Domain
 {
-    class IQtApplication : public QObject
+    class IDeprecatedQtApplication : public QObject
     {
         Q_OBJECT
         Q_PROPERTY(QString buildInfo READ buildInfo CONSTANT)
     public:
-        virtual ~IQtApplication();
+        virtual ~IDeprecatedQtApplication();
 
         virtual void initialize() = 0;
         virtual int run() = 0;

@@ -9,7 +9,7 @@ namespace MellowPlayer::Domain
     class ILogger;
     class IPlayer;
     class IMainWindow;
-    class IQtApplication;
+    class IDeprecatedQtApplication;
     class Setting;
     class Settings;
 }
@@ -31,7 +31,7 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        SystemTrayIcon(Domain::IPlayer& player, Domain::IMainWindow& mainWindow, Domain::IQtApplication& qtApplication,
+        SystemTrayIcon(Domain::IPlayer& player, Domain::IMainWindow& mainWindow, Domain::IDeprecatedQtApplication& qtApplication,
                        Domain::Settings& settings);
         void show() override;
         void hide() override;
@@ -54,7 +54,7 @@ namespace MellowPlayer::Presentation
         Domain::ILogger& logger_;
         Domain::IPlayer& player_;
         Domain::IMainWindow& mainWindow_;
-        Domain::IQtApplication& qtApp_;
+        Domain::IDeprecatedQtApplication& qtApp_;
         Domain::Settings& settings_;
         Domain::Setting& showTrayIconSetting_;
 

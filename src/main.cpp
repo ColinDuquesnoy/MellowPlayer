@@ -3,11 +3,11 @@
 #include <Windows.h>
 #endif
 #include "DI.hpp"
-#include <MellowPlayer/Infrastructure/Applications/SingleInstanceApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/DeprecatedSingleInstanceApplication.hpp>
 #include <MellowPlayer/Infrastructure/CommandLineParser.hpp>
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
 #include <MellowPlayer/Domain/BuildConfig.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     // commented on purpose, see github issue #71
     // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    ApplicationViewModel qtApp(argc, argv);
+    DeprecatedApplicationViewModel qtApp(argc, argv);
 
     CommandLineParser commandLineParser;
     qtApp.setAutoQuitDelay(commandLineParser.autoQuitDelay());
@@ -43,11 +43,11 @@ int main(int argc, char** argv)
 
     qtApp.initialize();
 
-    auto injector = di::make_injector(di::bind<IQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
+    auto injector = di::make_injector(di::bind<IDeprecatedQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
 #ifdef QT_DEBUG
-    IApplication& app = injector.create<IApplication&>();
+    IDeprecatedApplication& app = injector.create<IDeprecatedApplication&>();
     app.initialize();
 #else
     SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();

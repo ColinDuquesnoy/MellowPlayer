@@ -1,5 +1,5 @@
-#include "SingleInstanceApplication.hpp"
-#include "IApplication.hpp"
+#include "DeprecatedSingleInstanceApplication.hpp"
+#include "IDeprecatedApplication.hpp"
 #include <MellowPlayer/Domain/ICommandLineParser.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -15,24 +15,24 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-const QString SingleInstanceApplication::playPauseAction_ = "play-pause";
-const QString SingleInstanceApplication::nextAction_ = "next";
-const QString SingleInstanceApplication::previousAction_ = "previous";
-const QString SingleInstanceApplication::restoreWindowAction_ = "restore-window";
-const QString SingleInstanceApplication::toggleFavoriteAction_ = "toggle-favorite";
+const QString DeprecatedSingleInstanceApplication::playPauseAction_ = "play-pause";
+const QString DeprecatedSingleInstanceApplication::nextAction_ = "next";
+const QString DeprecatedSingleInstanceApplication::previousAction_ = "previous";
+const QString DeprecatedSingleInstanceApplication::restoreWindowAction_ = "restore-window";
+const QString DeprecatedSingleInstanceApplication::toggleFavoriteAction_ = "toggle-favorite";
 
-SingleInstanceApplication::SingleInstanceApplication(IApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
+DeprecatedSingleInstanceApplication::DeprecatedSingleInstanceApplication(IDeprecatedApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
         : logger_(LoggingManager::logger("SingleInstanceApplication")),
           application_(application),
           commandLineParser_(commandLineParser),
           currentPlayer_(currentPlayer)
 {
-    connect(&localSocket_, &QLocalSocket::connected, this, &SingleInstanceApplication::onSocketConnected);
+    connect(&localSocket_, &QLocalSocket::connected, this, &DeprecatedSingleInstanceApplication::onSocketConnected);
     connect(&localSocket_, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(onSocketError()));
-    connect(&localServer_, &QLocalServer::newConnection, this, &SingleInstanceApplication::onNewConnection);
+    connect(&localServer_, &QLocalServer::newConnection, this, &DeprecatedSingleInstanceApplication::onNewConnection);
 }
 
-int SingleInstanceApplication::run()
+int DeprecatedSingleInstanceApplication::run()
 {
     LOG_TRACE(logger_, "run");
     LOG_DEBUG(logger_, "starting, connecting to local server");
@@ -43,15 +43,15 @@ int SingleInstanceApplication::run()
     return retCode;
 }
 
-void SingleInstanceApplication::onSocketConnected()
+void DeprecatedSingleInstanceApplication::onSocketConnected()
 {
     LOG_INFO(logger_, "another instance is already running, quitting");
     QString action = requestedAcion();
     localSocket_.write(QString(action + "\n").toLocal8Bit());
-    QTimer::singleShot(100, this, &SingleInstanceApplication::quit);
+    QTimer::singleShot(100, this, &DeprecatedSingleInstanceApplication::quit);
 }
 
-void SingleInstanceApplication::onSocketError()
+void DeprecatedSingleInstanceApplication::onSocketError()
 {
     LOG_DEBUG(logger_, "initializaing");
     localServer_.listen(qApp->applicationName());
@@ -59,14 +59,14 @@ void SingleInstanceApplication::onSocketError()
     application_.initialize();
 }
 
-void SingleInstanceApplication::onNewConnection()
+void DeprecatedSingleInstanceApplication::onNewConnection()
 {
     LOG_DEBUG(logger_, "another instance was started, showing this instance instead");
     QLocalSocket* socket = localServer_.nextPendingConnection();
-    connect(socket, &QLocalSocket::readyRead, this, &SingleInstanceApplication::onReadyRead);
+    connect(socket, &QLocalSocket::readyRead, this, &DeprecatedSingleInstanceApplication::onReadyRead);
 }
 
-void SingleInstanceApplication::connectSignalHandlers()
+void DeprecatedSingleInstanceApplication::connectSignalHandlers()
 {
 #ifdef Q_OS_UNIX
     auto handler = [](int sig) -> void {
@@ -81,13 +81,13 @@ void SingleInstanceApplication::connectSignalHandlers()
 #endif
 }
 
-void SingleInstanceApplication::quit()
+void DeprecatedSingleInstanceApplication::quit()
 {
     LOG_TRACE(logger_, "quit");
     application_.quit();
 }
 
-QString SingleInstanceApplication::requestedAcion() const
+QString DeprecatedSingleInstanceApplication::requestedAcion() const
 {
     if (commandLineParser_.playPauseRequested())
         return playPauseAction_;
@@ -100,7 +100,7 @@ QString SingleInstanceApplication::requestedAcion() const
     return restoreWindowAction_;
 }
 
-void SingleInstanceApplication::onReadyRead()
+void DeprecatedSingleInstanceApplication::onReadyRead()
 {
     QLocalSocket* socket = static_cast<QLocalSocket*>(sender());
     QStringList actions = QString(socket->readAll()).split("\n");

@@ -4,12 +4,12 @@
 
 #ifdef Q_OS_LINUX
 
-#include "MellowPlayer/Infrastructure/Applications/CoreApplication.hpp"
+#include "MellowPlayer/Infrastructure/Applications/DeprecatedCoreApplication.hpp"
 
 namespace MellowPlayer::Domain
 {
     class ILogger;
-    class IQtApplication;
+    class IDeprecatedQtApplication;
     class IMainWindow;
     class StreamingServicesController;
     class IHotkeys;
@@ -21,10 +21,10 @@ namespace MellowPlayer::Infrastructure
 {
     class IMpris;
 
-    class LinuxApplication : public CoreApplication
+    class DeprecatedLinuxApplication : public DeprecatedCoreApplication
     {
     public:
-        LinuxApplication(Domain::IQtApplication& qtApp, Domain::IMainWindow& mainWindow,
+        DeprecatedLinuxApplication(Domain::IDeprecatedQtApplication& qtApp, Domain::IMainWindow& mainWindow,
                          Domain::StreamingServicesController& streamingServices, Infrastructure::IHotkeys& kotkeys,
                          Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier, IMpris& mprisService);
         void initialize() override;

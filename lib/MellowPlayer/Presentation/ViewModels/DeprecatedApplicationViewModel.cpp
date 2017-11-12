@@ -1,4 +1,4 @@
-#include "ApplicationViewModel.hpp"
+#include "DeprecatedApplicationViewModel.hpp"
 #include "MellowPlayer/Presentation/IconProvider.hpp"
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -13,7 +13,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString& appName) : qtApp_(argc, argv)
+DeprecatedApplicationViewModel::DeprecatedApplicationViewModel(int& argc, char** argv, const QString& appName) : qtApp_(argc, argv)
 {
     qtApp_.setApplicationDisplayName("MellowPlayer");
     qtApp_.setApplicationName(appName);
@@ -51,11 +51,11 @@ ApplicationViewModel::ApplicationViewModel(int& argc, char** argv, const QString
     qRegisterMetaType<SettingViewModel*>("Presentation::SettingViewModel*");
     qRegisterMetaType<SettingViewModel*>("SettingViewModel*");
 
-    connect(&qtApp_, &QApplication::aboutToQuit, this, &ApplicationViewModel::onAboutToQuit);
-    connect(&qtApp_, &QApplication::commitDataRequest, this, &ApplicationViewModel::forceQuitRequested);
+    connect(&qtApp_, &QApplication::aboutToQuit, this, &DeprecatedApplicationViewModel::onAboutToQuit);
+    connect(&qtApp_, &QApplication::commitDataRequest, this, &DeprecatedApplicationViewModel::forceQuitRequested);
 }
 
-void ApplicationViewModel::initialize()
+void DeprecatedApplicationViewModel::initialize()
 {
     if (!translator_.load(QLocale(), "MellowPlayer", "_", ":/MellowPlayer/Translations")) {
         qWarning() << "failed to load translation: " << QLocale::system().name();
@@ -69,12 +69,12 @@ void ApplicationViewModel::initialize()
     qtApp_.installTranslator(&translator_);
 }
 
-int ApplicationViewModel::run()
+int DeprecatedApplicationViewModel::run()
 {
     return qtApp_.exec();
 }
 
-void ApplicationViewModel::clearCache() const
+void DeprecatedApplicationViewModel::clearCache() const
 {
     QWebEngineProfile profile("Default");
     profile.clearHttpCache();
@@ -83,7 +83,7 @@ void ApplicationViewModel::clearCache() const
     cacheDir.removeRecursively();
 }
 
-void ApplicationViewModel::clearCookies() const
+void DeprecatedApplicationViewModel::clearCookies() const
 {
     QWebEngineProfile profile("Default");
     QDir storageDir(profile.persistentStoragePath());
@@ -91,29 +91,29 @@ void ApplicationViewModel::clearCookies() const
     storageDir.removeRecursively();
 }
 
-void ApplicationViewModel::restart()
+void DeprecatedApplicationViewModel::restart()
 {
     restartRequested_ = true;
     qApp->quit();
 }
 
-void ApplicationViewModel::requestQuit()
+void DeprecatedApplicationViewModel::requestQuit()
 {
     emit quitRequested();
 }
 
-void ApplicationViewModel::quit()
+void DeprecatedApplicationViewModel::quit()
 {
     qtApp_.exit(0);
 }
 
-void ApplicationViewModel::setAutoQuitDelay(int delay)
+void DeprecatedApplicationViewModel::setAutoQuitDelay(int delay)
 {
     if (delay > 0)
         QTimer::singleShot(delay, qtApp_.quit);
 }
 
-void ApplicationViewModel::onAboutToQuit()
+void DeprecatedApplicationViewModel::onAboutToQuit()
 {
     clearCache();
 }
@@ -138,13 +138,13 @@ static QString compilerString()
 #endif
 }
 
-QString ApplicationViewModel::buildInfo() const
+QString DeprecatedApplicationViewModel::buildInfo() const
 {
     return AppStrings().builtOnStr().arg(QString(__DATE__), QString(__TIME__), compilerString(), QString::number(QSysInfo::WordSize),
                                          QString(QT_VERSION_STR));
 }
 
-bool ApplicationViewModel::restartRequested() const
+bool DeprecatedApplicationViewModel::restartRequested() const
 {
     return restartRequested_;
 }

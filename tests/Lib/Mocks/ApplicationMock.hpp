@@ -1,5 +1,5 @@
 #pragma once
-#include <MellowPlayer/Infrastructure/Applications/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Applications/IDeprecatedApplication.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
@@ -9,9 +9,9 @@ using namespace fakeit;
 class ApplicationMock
 {
 public:
-    static Mock<IApplication> get()
+    static Mock<IDeprecatedApplication> get()
     {
-        Mock<IApplication> mock;
+        Mock<IDeprecatedApplication> mock;
         When(Method(mock, initialize)).AlwaysReturn();
         When(Method(mock, restoreWindow)).AlwaysReturn();
         When(Method(mock, run)).AlwaysReturn();

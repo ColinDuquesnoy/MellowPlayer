@@ -1,6 +1,6 @@
 #include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <MellowPlayer/Domain/IMainWindow.hpp>
-#include <MellowPlayer/Domain/IQtApplication.hpp>
+#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -8,13 +8,13 @@
 #include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 
-#include "CoreApplication.hpp"
+#include "DeprecatedCoreApplication.hpp"
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-CoreApplication::CoreApplication(IQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
+DeprecatedCoreApplication::DeprecatedCoreApplication(IDeprecatedQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
                                  IHotkeys& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier)
         : logger_(LoggingManager::logger("Application")),
           qtApp_(qtApp),
@@ -26,7 +26,7 @@ CoreApplication::CoreApplication(IQtApplication& qtApp, IMainWindow& mainWindow,
 {
 }
 
-void CoreApplication::initialize()
+void DeprecatedCoreApplication::initialize()
 {
     LOG_TRACE(logger_, "initialize");
     streamingServices_.load();
@@ -37,19 +37,19 @@ void CoreApplication::initialize()
     systemTrayIcon_.show();
 }
 
-void CoreApplication::restoreWindow()
+void DeprecatedCoreApplication::restoreWindow()
 {
     LOG_TRACE(logger_, "restoreWindow");
     mainWindow_.show();
 }
 
-int CoreApplication::run()
+int DeprecatedCoreApplication::run()
 {
     LOG_TRACE(logger_, "run");
     return qtApp_.run();
 }
 
-void CoreApplication::quit()
+void DeprecatedCoreApplication::quit()
 {
     LOG_TRACE(logger_, "quit");
     qtApp_.quit();

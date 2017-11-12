@@ -3,7 +3,7 @@
 #ifdef Q_OS_LINUX
 #include <MellowPlayer/Domain/Notifications/Notifications.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/LinuxApplication.hpp>
+#include <MellowPlayer/Infrastructure/Platform/Linux/DeprecatedLinuxApplication.hpp>
 #include <Mocks/HotkeysServiceMock.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/MprisServiceMock.hpp>
@@ -26,7 +26,7 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]")
     auto watcherMock = StreamingServiceWatcherMock::get();
     StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
     auto systemTrayIconMock = SystemTrayIconMock::get();
-    LinuxApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(), systemTrayIconMock.get(),
+    DeprecatedLinuxApplication app(qtAppMock.get(), mainWindowMock.get(), streamingServices, hotkeysMock.get(), systemTrayIconMock.get(),
                          notificationServiceMock.get(), mprisMock.get());
 
     SECTION("initialize")
