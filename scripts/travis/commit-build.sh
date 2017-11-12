@@ -17,9 +17,6 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
 
     # run tests
     catchsegv ctest --output-on-failure;
-
-    # upload code coverage results
-    popd;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then

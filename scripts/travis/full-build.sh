@@ -2,7 +2,7 @@
 #
 # - Compile in release mode
 # - Run unit tests, integration tests and functional tests
-# - Create a packag (AppImage on Linux, Dmg on OSX)
+# - Create a package (AppImage on Linux, Dmg on OSX)
 #
 echo "*************************** Performing a FULL build"
 
