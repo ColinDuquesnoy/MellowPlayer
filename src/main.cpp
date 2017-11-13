@@ -50,7 +50,7 @@ int main(int argc, char** argv)
     IDeprecatedApplication& app = injector.create<IDeprecatedApplication&>();
     app.initialize();
 #else
-    SingleInstanceApplication& app = injector.create<SingleInstanceApplication&>();
+    DeprecatedSingleInstanceApplication& app = injector.create<DeprecatedSingleInstanceApplication&>();
 #endif
     auto retCode = app.run();
 
