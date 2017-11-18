@@ -57,11 +57,11 @@ Spotify requires the widevine ppapi plugin to work, you can install it by runnin
     tar -xvf chromium-61.0.3163.100-1-x86_64.pkg.tar.xz
     unzip 1.4.8.1008-linux-x64.zip
 
-    sudo mkdir /usr/lib64/qt5/plugins/ppapi/
-    sudo cp libwidevinecdm.so /usr/lib64/qt5/plugins/ppapi/
-    sudo cp ./usr/lib/chromium/libwidevinecdmadapter.so /usr/lib64/qt5/plugins/ppapi/
-    sudo chmod 644 /usr/lib64/qt5/plugins/ppapi/libwidevinecdm.so
-    sudo chmod 644 /usr/lib64/qt5/plugins/ppapi/libwidevinecdmadapter.so
+    sudo mkdir /usr/lib/chromium
+    sudo cp libwidevinecdm.so /usr/lib/chromium
+    sudo cp ./usr/lib/chromium/libwidevinecdmadapter.so /usr/lib/chromium
+    sudo chmod 644 /usr/lib/chromium/libwidevinecdm.so
+    sudo chmod 644 /usr/lib/chromium/libwidevinecdmadapter.so
 
 
 Ubuntu 17.10
