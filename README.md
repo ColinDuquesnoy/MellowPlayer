@@ -34,6 +34,7 @@ notifications and more).
 - [Radionomy](https://www.radionomy.com/)
 - [Wynk](https://www.wynk.in/music)
 - [ympd](https://github.com/notandy/ympd)
+- [Plex](https://www.plex.tv/)
 
 # Limitations:
 
@@ -44,7 +45,7 @@ notifications and more).
 # Resources
 
 - [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
-- [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
+- [Documentation](http://mellowplayer.readthedocs.org/en/latest/)
 - [Wiki on Github](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
 
 # License
@@ -54,7 +55,14 @@ MellowPlayer is licensed under the GPL license.
 # Download
 
 - [Github release page](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
-- [Packages for various GNU/Linux distribution](https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer)
+
+## GNU/Linux Packages
+
+- [Fedora](http://mellowplayer.readthedocs.io/en/latest/users/install.html#fedora)
+- [Ubuntu](http://mellowplayer.readthedocs.io/en/latest/users/install.html#ubuntu-17-10)
+- [openSUSE](http://mellowplayer.readthedocs.io/en/latest/users/install.html#opensuse-tumbleweed)
+- [ArchLinux](http://mellowplayer.readthedocs.io/en/latest/users/install.html#archlinux)
+- [KaOS](http://mellowplayer.readthedocs.io/en/latest/users/install.html#kaos)
 
 # Requirements
 
