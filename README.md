@@ -34,6 +34,7 @@ notifications and more).
 - [Radionomy](https://www.radionomy.com/)
 - [Wynk](https://www.wynk.in/music)
 - [ympd](https://github.com/notandy/ympd)
+- [Plex](https://www.plex.tv/)
 
 # Limitations:
 
@@ -44,7 +45,7 @@ notifications and more).
 # Resources
 
 - [Official website](https://colinduquesnoy.github.io/MellowPlayer/)
-- [Documentation](http://mellowplayer.readthedocs.org/en/webengine/)
+- [Documentation](http://mellowplayer.readthedocs.org/en/latest/)
 - [Wiki on Github](https://github.com/ColinDuquesnoy/MellowPlayer/wiki)
 
 # License
