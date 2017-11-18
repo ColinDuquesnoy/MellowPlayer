@@ -54,7 +54,14 @@ MellowPlayer is licensed under the GPL license.
 # Download
 
 - [Github release page](https://github.com/ColinDuquesnoy/MellowPlayer/releases)
-- [Packages for various GNU/Linux distribution](https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer)
+
+## GNU/Linux Packages
+
+- [Fedora](http://mellowplayer.readthedocs.io/en/latest/users/install.html#fedora)
+- [Ubuntu](http://mellowplayer.readthedocs.io/en/latest/users/install.html#ubuntu-17-10)
+- [openSUSE](http://mellowplayer.readthedocs.io/en/latest/users/install.html#opensuse-tumbleweed)
+- [ArchLinux](http://mellowplayer.readthedocs.io/en/latest/users/install.html#archlinux)
+- [KaOS](http://mellowplayer.readthedocs.io/en/latest/users/install.html#kaos)
 
 # Requirements
 
