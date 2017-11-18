@@ -15,6 +15,55 @@ Please note that there are some limitations with the AppImage, it does not inclu
 
 Distribution specific packages can be download from `openSUSE build service`_ (Ubuntu and openSUSE Tumbleweed are currently supported)
 
+Fedora
+++++++
+
+Starting from Fedora 27, MellowPlayer is available from the official stable repositories:
+
+.. code-block:: bash
+    
+    sudo dnf install mellowplayer
+    
+Proprietary codecs
+******************
+
+Most services require proprietary audio codecs to work. You can install them from the RPMFusion repositories:
+
+.. code-block:: bash
+
+    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf install qt5-qtwebengine-freeworld
+
+Flash 
+****** 
+
+Services such as Deezer and Tidal require flash to work. You can install it from the adobe repositories:
+
+.. code-block:: bash
+    
+    sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+    sudo dnf install flash-player-ppapi
+
+Widevine
+*********
+
+Spotify requires the widevine ppapi plugin to work, you can install it by running the below commands:
+
+.. code-block:: bash
+
+    wget https://archive.archlinux.org/packages/c/chromium/chromium-61.0.3163.100-1-x86_64.pkg.tar.xz
+    wget https://dl.google.com/widevine-cdm/1.4.8.1008-linux-x64.zip
+    tar -xvf chromium-61.0.3163.100-1-x86_64.pkg.tar.xz
+    unzip 1.4.8.1008-linux-x64.zip
+
+    sudo mkdir /usr/lib64/qt5/plugins/ppapi/
+    sudo cp libwidevinecdm.so /usr/lib64/qt5/plugins/ppapi/
+    sudo cp ./usr/lib/chromium/libwidevinecdmadapter.so /usr/lib64/qt5/plugins/ppapi/
+    sudo chmod 644 /usr/lib64/qt5/plugins/ppapi/libwidevinecdm.so
+    sudo chmod 644 /usr/lib64/qt5/plugins/ppapi/libwidevinecdmadapter.so
+
+
 Ubuntu 17.10
 ++++++++++++
 
@@ -71,19 +120,6 @@ MellowPlayer is available from `KaOSx/apps`_ repository, just run:
 
 
 .. _KaOSx/apps: http://kaosx.tk/packages/index.php?subdir=apps&sortby=name
-
-
-Fedora
-++++++
-
-Only fedora rawhide is supported at the moment.
-
-Use the `openSUSE build service`_ web interface or install manually:
-
-.. code-block:: bash
-
-    dnf config-manager --add-repo https://download.opensuse.org/repositories/home:ColinDuquesnoy/Fedora_Rawhide/home:ColinDuquesnoy.repo
-    dnf install MellowPlayer
 
 
 Other distributions
