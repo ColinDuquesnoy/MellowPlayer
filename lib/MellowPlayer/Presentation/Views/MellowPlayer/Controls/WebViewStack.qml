@@ -21,7 +21,7 @@ StackLayout {
         var webView = currentWebView();
         webView.url = webView.urlToLoad
         webView.reload();
-        weView.start();
+        webView.start();
     }
     function goForward() {
         currentWebView().goForward();
