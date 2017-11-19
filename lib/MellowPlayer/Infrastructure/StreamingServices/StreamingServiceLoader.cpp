@@ -109,7 +109,7 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
     try {
          metadata = readMetadata(metadataPath);
     }
-    catch (std::runtime_error& error) {
+    catch (std::runtime_error&) {
         LOG_INFO(logger_, "plugin is not supported on this platform");
         return nullptr;
     }
