@@ -67,6 +67,7 @@ void DeprecatedApplicationViewModel::initialize()
         qInfo() << "translation successfully loaded: " << QLocale::system().name();
 
     qtApp_.installTranslator(&translator_);
+    clearCache();
 }
 
 int DeprecatedApplicationViewModel::run()
@@ -78,9 +79,12 @@ void DeprecatedApplicationViewModel::clearCache() const
 {
     QWebEngineProfile profile("Default");
     profile.clearHttpCache();
-    QDir cacheDir(QStandardPaths::standardLocations(QStandardPaths::CacheLocation)[0]);
-    qDebug() << "removing cache directory: " << cacheDir;
-    cacheDir.removeRecursively();
+    for (auto dir: QStandardPaths::standardLocations(QStandardPaths::CacheLocation))
+    {
+        QDir cacheDir(dir);
+        qWarning() << "removing cache directory: " << dir;
+        cacheDir.removeRecursively();
+    }
 }
 
 void DeprecatedApplicationViewModel::clearCookies() const
