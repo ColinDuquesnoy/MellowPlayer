@@ -49,7 +49,7 @@ Source: "bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Compo
 Source: "..\scripts\packaging\windows\libeay32.dll"; DestDir: "{app}"; Components: app
 Source: "..\scripts\packaging\windows\ssleay32.dll"; DestDir: "{app}"; Components: app
 Source: "..\scripts\packaging\windows\vc_redist.x64.exe"; DestDir: "{tmp}"; Components: vcredist
-Source: "..\scripts\packaging\windows\flashplayer26pp_fb_install.exe"; DestDir: "{tmp}"; Components: flash
+Source: "..\scripts\packaging\windows\flashplayer27pp_xa_install.exe"; DestDir: "{tmp}"; Components: flash
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app;
@@ -63,5 +63,5 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{tmp}\vc_redist.x64.exe"; Components: vcredist;
-Filename: "{tmp}\flashplayer26pp_fb_install.exe"; Components: flash;
+Filename: "{tmp}\flashplayer27pp_xa_install.exe"; Components: flash;
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Components: app;
