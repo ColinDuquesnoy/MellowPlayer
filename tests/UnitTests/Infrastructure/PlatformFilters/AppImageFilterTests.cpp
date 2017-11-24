@@ -5,7 +5,7 @@ using namespace MellowPlayer::Infrastructure;
 
 SCENARIO("AppImageFilterTests")
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     GIVEN("the test runs on GNU/Linux")
     {
         WHEN("in an AppImage")

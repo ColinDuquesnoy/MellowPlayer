@@ -19,8 +19,8 @@ SCENARIO("PlatformFiltersTests")
             }
         }
 
-#ifdef Q_OS_LINUX
-        WHEN("filter is 'Linux'") {
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
+    WHEN("filter is 'Linux'") {
             QString filter = "Linux";
 
             AND_WHEN("not in an AppImage") {

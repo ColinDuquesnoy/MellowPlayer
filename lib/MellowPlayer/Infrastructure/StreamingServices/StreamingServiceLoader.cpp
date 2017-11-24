@@ -153,7 +153,7 @@ QStringList StreamingServiceLoader::searchPaths() const
     paths.append(pluginsDir.path());
 #endif
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     paths.append("/usr/share/mellowplayer/plugins");
     paths.append("/usr/local/share/mellowplayer/plugins");
 #endif

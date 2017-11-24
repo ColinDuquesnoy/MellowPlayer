@@ -1,6 +1,6 @@
 #include <QtCore>
 #include <catch.hpp>
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris.hpp>

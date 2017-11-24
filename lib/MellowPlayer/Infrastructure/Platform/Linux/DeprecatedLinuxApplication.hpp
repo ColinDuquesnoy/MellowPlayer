@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 
 #include "MellowPlayer/Infrastructure/Applications/DeprecatedCoreApplication.hpp"
 

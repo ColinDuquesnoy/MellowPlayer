@@ -1,7 +1,7 @@
 #include <QtCore>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp>
 #include <Mocks/MainWindowMock.hpp>
 #include <Mocks/QtApplicationMock.hpp>

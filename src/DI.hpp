@@ -58,7 +58,7 @@
 #include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
 #endif
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 #include <MellowPlayer/Infrastructure/Platform/Linux/DeprecatedLinuxApplication.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Mpris.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/Updater/LinuxUpdater.hpp>
@@ -148,7 +148,7 @@ auto defaultInjector = [](ScopedScope &scope) {
 };
 
 auto platformInjector = [](ScopedScope &scope) {
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     return di::make_injector(
         di::bind<IMpris>().to<Mpris>().in(scope),
         di::bind<IDeprecatedApplication>().to<DeprecatedLinuxApplication>().in(scope),

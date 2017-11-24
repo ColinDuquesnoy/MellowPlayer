@@ -4,7 +4,7 @@ using namespace MellowPlayer::Infrastructure;
 
 bool AppImageFilter::match() const
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     return isAppImage_;
 #else
     return false;

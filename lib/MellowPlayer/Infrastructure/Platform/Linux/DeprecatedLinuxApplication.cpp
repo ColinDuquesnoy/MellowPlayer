@@ -9,7 +9,7 @@
 #include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
