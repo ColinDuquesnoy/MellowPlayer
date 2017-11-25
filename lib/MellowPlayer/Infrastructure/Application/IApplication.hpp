@@ -8,8 +8,6 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        virtual ~IApplication() = default;
-
         virtual void initialize() = 0;
         virtual int run() = 0;
         virtual void quit() = 0;
