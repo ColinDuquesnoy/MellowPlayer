@@ -8,7 +8,10 @@
 #include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
 #include <QtCore/QSettings>
 #include <QDebug>
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
+using namespace testing;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
@@ -18,6 +21,11 @@ int TestsRunner::runTests(int argc, char* argv[])
 {
     Q_INIT_RESOURCE(domain);
     Q_INIT_RESOURCE(presentation);
+
+    // The following line causes Google Mock to throw an exception on failure,
+    // which will be interpreted by your testing framework as a test failure.
+    GTEST_FLAG(throw_on_failure) = true;
+    InitGoogleMock(&argc, argv);
 
     DeprecatedApplicationViewModel webApplication(argc, argv, "MellowPlayer.Tests");
 
