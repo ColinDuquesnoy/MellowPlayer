@@ -205,7 +205,7 @@ Page {
 
         function handleFullScreenRequest(request) {
             toolBar.visible = !request.toggleOn
-            notif.visible = true;
+            notif.visible = request.toggleOn;
             root.fullScreenRequested(request);
         }
     }
