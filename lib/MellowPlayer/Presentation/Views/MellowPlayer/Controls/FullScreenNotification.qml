@@ -7,7 +7,7 @@ Pane {
 
     x: parent.width / 2 - width / 2; y: 12
     visible: false
-    onVisibleChanged: disappearTimer.running = visible
+    onVisibleChanged: if (visible) disappearTimer.running = true
 
     Material.elevation: 4
     Material.background: "#303030"
