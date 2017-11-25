@@ -1,4 +1,4 @@
-version: "3.0.50.{build}"
+version: "3.1.50.{build}"
 os: Visual Studio 2015
 platform:
   - x64
