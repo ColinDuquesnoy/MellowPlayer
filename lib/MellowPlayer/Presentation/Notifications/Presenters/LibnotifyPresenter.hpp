@@ -23,9 +23,12 @@ namespace MellowPlayer::Presentation
         static void onActionCallback();
 
     private:
+        void checkSupportForActions();
+
         Domain::ILogger& logger_;
         Domain::IMainWindow& mainWindow_;
         _NotifyNotification* previousNotification_;
+        bool actionsSupported_ = true;
         static LibnotifyPresenter* instance_;
     };
 }
