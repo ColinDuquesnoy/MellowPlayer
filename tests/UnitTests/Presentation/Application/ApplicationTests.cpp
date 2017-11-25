@@ -2,7 +2,6 @@
 #include <MellowPlayer/Domain/BuildConfig.hpp>
 #include <MellowPlayer/Presentation/Application/Application.hpp>
 #include <QtTest/QSignalSpy>
-#include <QtGui/QSessionManager>
 #include "Mocks/QtApplicationMock.hpp"
 
 using namespace testing;
@@ -94,6 +93,37 @@ SCENARIO("Application tests")
             application.run();
 
             THEN("started signal is emitted")
+            {
+                REQUIRE(spy.count() == 1);
+            }
+        }
+
+        WHEN("quit the application")
+        {
+            THEN("call exit on qtApplication with exit code 0")
+            {
+                EXPECT_CALL(qtApplication, exit(0)).Times(1);
+            }
+
+            application.quit();
+        }
+
+        WHEN("restart the application")
+        {
+            THEN("call exit on qtApplication with exit code 0")
+            {
+                EXPECT_CALL(qtApplication, exit(0)).Times(1);
+            }
+
+            application.restart();
+        }
+
+        WHEN("restoreWindow is called")
+        {
+            QSignalSpy spy(&application, &IApplication::restoreWindowRequest);
+            application.restoreWindow();
+
+            THEN("restoreWindowRequest is emitted")
             {
                 REQUIRE(spy.count() == 1);
             }

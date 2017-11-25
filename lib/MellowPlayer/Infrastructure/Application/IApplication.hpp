@@ -2,8 +2,6 @@
 
 #include <QtCore/QObject>
 
-class QSessionManager;
-
 namespace MellowPlayer::Infrastructure
 {
     class IApplication: public QObject

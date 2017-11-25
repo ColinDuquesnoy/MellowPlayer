@@ -1,19 +1,19 @@
 @startuml
 
 namespace MellowPlayer.Main {
-    class ApplicationRoot {
+    class Program {
         + run(): int
         + onInitialized()
         + onStarted()
 
     }
-    ApplicationRoot --> MellowPlayer.Infrastructure.IApplication
-    ApplicationRoot --> MellowPlayer.Presentation.IViewModels
-    ApplicationRoot --> MellowPlayer.Presentation.IMainWindow
-    ApplicationRoot --> MellowPlayer.Presentation.IMprisPlayer
-    ApplicationRoot --> MellowPlayer.Presentation.ApplicationViewModel
-    ApplicationRoot -up-> MellowPlayer.Domain.IPlayers
-    ApplicationRoot --> MellowPlayer.Infrastructure.IUpdater
+    Program --> MellowPlayer.Infrastructure.IApplication
+    Program --> MellowPlayer.Presentation.IGlobalViewModels
+    Program --> MellowPlayer.Presentation.IMainWindow
+    Program --> MellowPlayer.Presentation.IMprisPlayer
+    Program --> MellowPlayer.Presentation.ApplicationViewModel
+    Program -up-> MellowPlayer.Domain.IPlayers
+    Program --> MellowPlayer.Infrastructure.IUpdater
 }
 
 namespace MellowPlayer.Domain {
@@ -30,24 +30,7 @@ namespace MellowPlayer.Infrastructure {
         run()
         quit()
         restart()
-        buildInfo: QString
-        clearCache()
-        clearCookies()
     }
-
-    class Application {
-        + initialized: signal<void>
-        + started: signal<bool>
-        - _qApplication: QApplication
-        + initialize()
-        + run()
-        + quit()
-        + restart()
-        + buildInfo(): QString
-        + clearCache()
-        + clearCookies()
-    }
-    IApplication <|.. Application
 
     class ApplicationDecorator {
         + initialized: signal<void>
@@ -57,9 +40,6 @@ namespace MellowPlayer.Infrastructure {
         + run()
         + quit()
         + restart()
-        + buildInfo(): QString
-        + clearCache()
-        + clearCookies()
     }
 
     IApplication <|.. ApplicationDecorator
@@ -77,6 +57,23 @@ namespace MellowPlayer.Infrastructure {
 }
 
 namespace MellowPlayer.Presentation {
+    interface IQtApplication {
+    }
+    class QtApplication {
+
+    }
+    IQtApplication <|-- QtApplication
+    class Application {
+        + initialized: signal<void>
+        + started: signal<bool>
+        + initialize()
+        + run()
+        + quit()
+        + restart()
+    }
+    MellowPlayer.Infrastructure.IApplication <|.. Application
+    Application -down-> IQtApplication
+
     interface IQmlApplicationEngine {
         setContextProperty(QString, QObject*)
     }
@@ -86,30 +83,34 @@ namespace MellowPlayer.Presentation {
     }
     IQmlApplicationEngine <|.. QmlApplicationEngine
 
-    interface IViewModel {
+    interface IGlobalGlobalViewModels {
         id: QString
         initialize()
+        register(IQmlApplicationEngine)
     }
 
     class ViewModel {
+        + ViewModel()
+        + ViewModel(IGlobalGlobalViewModels)
         + {abstract} id: QString
         + {abstract} initialize()
+        + {abstract} register(IQmlApplicationEngine)
     }
-    IViewModel <|.. ViewModel
-    ViewModel -up-> IViewModels
+    IGlobalGlobalViewModels <|.. ViewModel
+    ViewModel .up.> IGlobalViewModels
 
-    interface IViewModels {
+    interface IGlobalViewModels {
         add(ViewModel)
         initialize()
     }
 
-    class ViewModels {
-        - viewModels_: QList<IViewModel*>
+    class GlobalViewModels {
+        - items_: QList<IViewModel*>
         + add(ViewModel)
         + initialize()
     }
-    IViewModels <|.. ViewModels
-    ViewModels --> IQmlApplicationEngine
+    IGlobalViewModels <|.. GlobalViewModels
+    GlobalViewModels --> IQmlApplicationEngine
 
     class ApplicationViewModel {
         + id: QString
@@ -119,7 +120,7 @@ namespace MellowPlayer.Presentation {
         + requestQuit()
         + restart()
         + initialize()
-        - _application: IApplication
+        - model_: IApplication
     }
     ViewModel <|--- ApplicationViewModel
 
