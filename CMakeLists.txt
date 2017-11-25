@@ -19,7 +19,7 @@ set(CMAKE_VERBOSE_MAKEFILE FALSE)
 # cache version in CMakeCache.txt, so that script can easily query current version
 set(MELLOWPLAYER_VERSION "${MellowPlayer_VERSION}" CACHE STRING "")
 
-include(scripts/cmake/Macros.cmake)
+include(cmake/Macros.cmake)
 
 # Options
 if(NOT CMAKE_BUILD_TYPE)
@@ -38,31 +38,27 @@ if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)
 endif()
 
-include(scripts/cmake/FindDependencies.cmake)
+include(cmake/FindDependencies.cmake)
 include_directories(SYSTEM 3rdparty)
 include_directories(lib)
 # Sources
 if(ENABLE_COVERAGE)
-    include(scripts/cmake/CodeCoverage.cmake)
+    include(cmake/CodeCoverage.cmake)
 endif()
-include(scripts/cmake/Config.cmake)
-include(scripts/cmake/InstallDirs.cmake)
-include(scripts/cmake/Cotire.cmake)
+include(cmake/Config.cmake)
+include(cmake/InstallDirs.cmake)
+include(cmake/Cotire.cmake)
 
 set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
 configure_file(lib/MellowPlayer/Domain/BuildConfig.in ${BUILD_CONFIG_SOURCE})
 
 add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)
+add_subdirectory(plugins)
 if(BUILD_TESTS)
     enable_testing(true)
     add_subdirectory(tests)
 endif()
-
-install(DIRECTORY plugins DESTINATION ${CMAKE_INSTALL_DATADIR}/mellowplayer)
-install(DIRECTORY share/applications DESTINATION ${CMAKE_INSTALL_DATADIR})
-install(DIRECTORY share/icons DESTINATION ${CMAKE_INSTALL_DATADIR})
-install(DIRECTORY share/metainfo DESTINATION ${CMAKE_INSTALL_DATADIR})
 
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")

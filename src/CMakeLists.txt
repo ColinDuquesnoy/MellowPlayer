@@ -2,13 +2,6 @@ set(CMAKE_AUTOMOC OFF)
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 include_directories(SYSTEM ../3rdparty)
 
-file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
-set(SOURCE_FILES main.cpp DI.hpp)
-if(WIN32)
-    set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
-    configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
-endif()
-
 # Translation files
 file(GLOB_RECURSE TS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/languages/*.ts)
 set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/languages)
@@ -35,6 +28,13 @@ endforeach()
 file(APPEND languages/languages.qrc "    </qresource>\n")
 file(APPEND languages/languages.qrc "</RCC>\n")
 
+# Create main executable
+file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
+set(SOURCE_FILES main.cpp DI.hpp)
+if(WIN32)
+    set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
+    configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
+endif()
 add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS})
 target_link_libraries(${PROJECT_NAME}
                       ${PROJECT_NAME}.Domain ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
@@ -77,3 +77,6 @@ install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/static)
+install(DIRECTORY share/applications DESTINATION ${CMAKE_INSTALL_DATADIR})
+install(DIRECTORY share/icons DESTINATION ${CMAKE_INSTALL_DATADIR})
+install(DIRECTORY share/metainfo DESTINATION ${CMAKE_INSTALL_DATADIR})

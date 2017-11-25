@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/scripts/cmake/Macros.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Macros.cmake)
 
 set(LIB_NAME "${PROJECT_NAME}.Infrastructure")
 
