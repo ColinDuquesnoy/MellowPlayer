@@ -1,6 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Infrastructure/Application/IApplication.hpp>
+#include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 #include <QApplication>
 #include <QTranslator>
 #include "QtApplication.hpp"
@@ -17,16 +18,27 @@ public:
 
 namespace MellowPlayer::Presentation
 {
-    class Application : public Infrastructure::IApplication
+    class Application : public Infrastructure::IApplication, public ContextProperty
     {
+        Q_OBJECT
     public:
-        Application(IQtApplication& qtApplication);
+        Application(IQtApplication& qtApplication, IContextProperties& contextProperties);
 
+        // ContextProperty
+        QString name() const override;
+        QObject* asQObject() override;
+
+        // IApplication
         void initialize() override;
         int run() override;
         void quit() override;
         void restart() override;
         void restoreWindow() override;
+
+        Q_INVOKABLE void requestQuit();
+
+    signals:
+        void quitRequest();
 
     private:
         void setupTranslations();

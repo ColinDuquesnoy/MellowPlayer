@@ -22,7 +22,7 @@ namespace MellowPlayer.Domain {
 namespace MellowPlayer.Infrastructure {
     interface IUpdater
 
-    interface IApplication {
+    interface IApplication #PaleGreen {
         initialized: signal<void>
         started: signal<bool>
         initialize()
@@ -31,7 +31,7 @@ namespace MellowPlayer.Infrastructure {
         restart()
     }
 
-    class ApplicationDecorator {
+    class ApplicationDecorator #PaleGreen {
         + initialized: signal<void>
         + started: signal<bool>
         # _application: IApplication
@@ -49,29 +49,30 @@ namespace MellowPlayer.Infrastructure {
     }
     ApplicationDecorator <|-- SingleInstance
 
-    class WithCommandLineArguments {
+    class WithCommandLineArguments #PaleGreen {
         + run()
     }
     ApplicationDecorator <|-- WithCommandLineArguments
 
-    class WithLogging {
+    class WithLogging #PaleGreen {
 
     }
     ApplicationDecorator <|-- WithLogging
 }
 
 namespace MellowPlayer.Presentation {
-    interface IQtApplication {
+    interface IQtApplication #PaleGreen {
     }
-    class QtApplication {
+    class QtApplication #PaleGreen {
 
     }
     IQtApplication <|-- QtApplication
-    class Application {
+    class Application #PaleGreen {
         + quitRequested: signal<void>
         + requestQuit()
         --
-        + register(IQmlApplicationEngine)
+        + name: QString
+        + asQObject(): QObject*
         --
         + initialize()
         + run()
@@ -79,40 +80,38 @@ namespace MellowPlayer.Presentation {
         + restart()
     }
     MellowPlayer.Infrastructure.IApplication <|.. Application
-    IContextProperty <|.. Application
+    ContextProperty <|.. Application
     Application -down-> IQtApplication
 
-    interface IQmlApplicationEngine {
+    interface IQmlApplicationEngine #PaleGreen {
         setContextProperty(QString, QObject*)
+        addImportPath(QString)
+        load(QUrl)
     }
-    class QmlApplicationEngine {
+    class QmlApplicationEngine #PaleGreen {
         - _qQmlApplicationEngine: QQmlApplicationEngine
-        +setContextProperty(QString, QObject*)
+        + setContextProperty(QString, QObject*)
+        + addImportPath(QString)
+        + load(QUrl)
     }
     IQmlApplicationEngine <|.. QmlApplicationEngine
 
-    interface IContextProperty {
-        id: QString
-        register(IQmlApplicationEngine)
+    interface IContextProperty #PaleGreen {
+        name: QString
+        asQObject(): QObject*
     }
 
-    class ContextProperty {
-        + ContextProperty()
+    class ContextProperty #PaleGreen {
         + ContextProperty(IContextProperties)
-        + {abstract} id: QString
-        + {abstract} register(IQmlApplicationEngine)
     }
     IContextProperty <|.. ContextProperty
     ContextProperty .up.> IContextProperties
 
-    interface IContextProperties {
+    interface IContextProperties #PaleGreen {
         add(IContextProperty)
-        initialize()
     }
 
-    class ContextProperties {
-        - items_: QList<IContextProperty*>
-        + initialize()
+    class ContextProperties #PaleGreen {
         + add(IContextProperty)
     }
     IContextProperties <|.. ContextProperties
@@ -125,7 +124,9 @@ namespace MellowPlayer.Presentation {
     }
 
     class MainWindow {
-        + id: QString
+        + name: QString
+        + asQObject(): QObject*
+        --
         + show()
         + hide()
         + close()
@@ -145,7 +146,6 @@ namespace MellowPlayer.Presentation {
         + start()
     }
     IMprisPlayer <|-- NullMprisPlayer
-
 }
 
 

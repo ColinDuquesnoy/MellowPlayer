@@ -26,7 +26,7 @@ TEST_CASE("MprisServiceTests", "[IntegrationTest]")
     AlbumArtDownloaderMock albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = QtApplicationMock::get();
+    auto qtAppMock = DeprecatedQtApplicationMock::get();
 
     Mpris mprisService(player, localAlbumArt, mainWindowMock.get(), qtAppMock.get());
     SECTION("start should succeed the first time")

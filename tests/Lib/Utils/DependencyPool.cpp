@@ -53,7 +53,7 @@ using namespace MellowPlayer::Tests;
 
 DependencyPool::DependencyPool()
         : mICommandLineArgs(make_unique<CommandLineArgumentsMock>()),
-          mIQtApplication(QtApplicationMock::get()),
+          mIQtApplication(DeprecatedQtApplicationMock::get()),
           mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
           mINotificationPresenter(NotificationPresenterMock::get()),

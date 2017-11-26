@@ -15,7 +15,7 @@ TEST_CASE("SystemTrayIconTests")
 
     auto playerMock = PlayerMock::get();
     auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = QtApplicationMock::get();
+    auto qtAppMock = DeprecatedQtApplicationMock::get();
     auto settingsStoreMock = SettingsStoreMock::get();
     SettingsSchemaLoader loader;
     Settings settings(loader, settingsStoreMock.get());

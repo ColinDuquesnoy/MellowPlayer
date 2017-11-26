@@ -2,7 +2,8 @@
 #include <MellowPlayer/Domain/BuildConfig.hpp>
 #include <MellowPlayer/Presentation/Application/Application.hpp>
 #include <QtTest/QSignalSpy>
-#include "Mocks/QtApplicationMock.hpp"
+#include "QtApplicationMock.hpp"
+#include <UnitTests/Presentation/Qml/ContextPropertiesMock.hpp>
 
 using namespace testing;
 using namespace MellowPlayer::Domain;
@@ -17,6 +18,7 @@ SCENARIO("Application tests")
         WHEN("Application is created")
         {
             NiceMock<QtApplicationMock> qtApplication;
+            NiceMock<ContextPropertiesMock> contextProperties;
 
             THEN("applicationName is set")
             {
@@ -48,11 +50,17 @@ SCENARIO("Application tests")
                 EXPECT_CALL(qtApplication, setWindowIcon(_)).Times(1);
             }
 
-            Application application(qtApplication);
+            AND_THEN("context properties is added")
+            {
+                EXPECT_CALL(contextProperties, add(_)).Times(1);
+            }
+
+            Application application(qtApplication, contextProperties);
         }
 
         NiceMock<QtApplicationMock> qtApplication;
-        Application application(qtApplication);
+        NiceMock<ContextPropertiesMock> contextProperties;
+        Application application(qtApplication, contextProperties);
 
         WHEN("qtApplication.commitDataRequest is emitted, application.commitDataRequest is emitted too")
         {
@@ -126,6 +134,33 @@ SCENARIO("Application tests")
             THEN("restoreWindowRequest is emitted")
             {
                 REQUIRE(spy.count() == 1);
+            }
+        }
+
+        WHEN("requestQuit")
+        {
+            QSignalSpy spy(&application, &Application::quitRequest);
+            application.requestQuit();
+
+            THEN("quitRequest signal is emitted")
+            {
+                REQUIRE(spy.count() == 1);
+            }
+        }
+
+        WHEN("name is called")
+        {
+            THEN("return value is _application")
+            {
+                REQUIRE(application.name() == "_application");
+            }
+        }
+
+        WHEN("asQObject is called")
+        {
+            THEN("return value equals address of application")
+            {
+                REQUIRE(application.asQObject() == &application);
             }
         }
     }

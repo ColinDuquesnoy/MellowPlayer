@@ -13,7 +13,7 @@ using namespace fakeit;
 TEST_CASE("Mpris2RootTests", "[IntegrationTest]")
 {
     auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = QtApplicationMock::get();
+    auto qtAppMock = DeprecatedQtApplicationMock::get();
     Mpris2Root root(mainWindowMock.get(), qtAppMock.get());
 
     SECTION("canRaise")

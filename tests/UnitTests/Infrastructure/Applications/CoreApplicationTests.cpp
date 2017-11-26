@@ -16,7 +16,7 @@ TEST_CASE("CoreApplicationTests", "[UnitTest]")
 {
     auto mainWindowMock = MainWindowMock::get();
     auto hotkeysMock = HotkeysControllerMock::get();
-    auto qtAppMock = QtApplicationMock::get();
+    auto qtAppMock = DeprecatedQtApplicationMock::get();
     auto systemTrayIconMock = SystemTrayIconMock::get();
     auto notificationServiceMock = NotifierMock::get();
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();

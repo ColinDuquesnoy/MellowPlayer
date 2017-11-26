@@ -19,7 +19,7 @@ TEST_CASE("LinuxApplicationTests", "[UnitTest]")
 {
     auto mainWindowMock = MainWindowMock::get();
     auto hotkeysMock = HotkeysControllerMock::get();
-    auto qtAppMock = QtApplicationMock::get();
+    auto qtAppMock = DeprecatedQtApplicationMock::get();
     auto mprisMock = MprisServiceMock::get();
     auto notificationServiceMock = NotifierMock::get();
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();

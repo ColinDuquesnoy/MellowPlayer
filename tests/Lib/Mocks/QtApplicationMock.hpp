@@ -6,7 +6,7 @@
 using namespace MellowPlayer::Domain;
 using namespace fakeit;
 
-class QtApplicationMock
+class DeprecatedQtApplicationMock
 {
 public:
     static Mock<IDeprecatedQtApplication> get()

@@ -16,8 +16,8 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
-Application::Application(IQtApplication& qtApplication)
-        : qtApp_(qtApplication)
+Application::Application(IQtApplication& qtApplication, IContextProperties& contextProperties)
+        : ContextProperty(contextProperties), qtApp_(qtApplication)
 {
     qtApp_.setApplicationName("MellowPlayer");
     qtApp_.setApplicationDisplayName("MellowPlayer");
@@ -27,6 +27,16 @@ Application::Application(IQtApplication& qtApplication)
     qtApp_.setWindowIcon(IconProvider::windowIcon());
 
     connect(&qtApp_, &IQtApplication::commitDataRequest, this, &Application::commitDataRequest);
+}
+
+QString Application::name() const
+{
+    return "_application";
+}
+
+QObject* Application::asQObject()
+{
+    return this;
 }
 
 void Application::initialize()
@@ -106,4 +116,9 @@ void Application::setupTranslations()
         qInfo() << "translation successfully loaded: " << QLocale::system().name();
 
     qtApp_.installTranslator(&translator_);
+}
+
+void Application::requestQuit()
+{
+    emit quitRequest();
 }
