@@ -1,6 +1,17 @@
 #pragma once
 
 #include <QString>
+#include <QObject>
+
+class BuildConfigStrings: public QObject
+{
+    Q_OBJECT
+public:
+    QString builtOnStr() const
+    {
+        return tr("Built on %1 at %2 (%3, %4 bit) with Qt %5");
+    }
+};
 
 namespace MellowPlayer::Domain
 {
@@ -14,6 +25,7 @@ namespace MellowPlayer::Domain
         static int getVersionBuildNumber();
         static QString getBuildDate();
         static QString getSourceDir();
+        static QString buildInfo();
 
     };
 }

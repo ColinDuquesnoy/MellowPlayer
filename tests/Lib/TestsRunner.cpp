@@ -29,7 +29,7 @@ int TestsRunner::runTests(int argc, char* argv[])
 
     DeprecatedApplicationViewModel webApplication(argc, argv, "MellowPlayer.Tests");
 
-    SpdLoggerFactory loggerFactory;
+    unique_ptr<ILoggerFactory> loggerFactory = make_unique<SpdLoggerFactory>();
     LoggerConfig loggerConfig;
     loggerConfig.createFileLogger = false;
 

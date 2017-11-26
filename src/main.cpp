@@ -36,7 +36,7 @@ int main(int argc, char** argv)
     commandLineParser.parse();
     qtApp.setAutoQuitDelay(commandLineParser.autoQuitDelay());
 
-    SpdLoggerFactory loggerFactory;
+    unique_ptr<ILoggerFactory> loggerFactory = make_unique<SpdLoggerFactory>();
     LoggingManager::initialize(loggerFactory, commandLineParser.logLevel());
     ScopedScope scope{};
     LOG_INFO(LoggingManager::logger("main"), "Log directory: " + FileHelper::logDirectory());

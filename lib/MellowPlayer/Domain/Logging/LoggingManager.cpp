@@ -22,13 +22,13 @@ void messageHandler(QtMsgType type, const QMessageLogContext& context, const QSt
 
 unique_ptr<LoggingManager> LoggingManager::instance_ = nullptr;
 
-LoggingManager& LoggingManager::initialize(ILoggerFactory& loggerFactory, const LoggerConfig& defaultConfig)
+LoggingManager& LoggingManager::initialize(std::unique_ptr<ILoggerFactory>& loggerFactory, const LoggerConfig& defaultConfig)
 {
     instance_.reset(new LoggingManager(loggerFactory, defaultConfig));
     return *instance_;
 }
 
-LoggingManager& LoggingManager::initialize(ILoggerFactory& loggerFactory, LogLevel logLevel)
+LoggingManager& LoggingManager::initialize(std::unique_ptr<ILoggerFactory>& loggerFactory, LogLevel logLevel)
 {
     auto& loggingManager = initialize(loggerFactory);
     loggingManager.setDefaultLogLevel(logLevel);
@@ -42,8 +42,8 @@ LoggingManager& LoggingManager::instance()
     return *instance_;
 }
 
-LoggingManager::LoggingManager(ILoggerFactory& loggerFactory, const LoggerConfig& defaultConfig)
-        : loggerFactory_(loggerFactory), defaultLoggerConfig_(defaultConfig)
+LoggingManager::LoggingManager(std::unique_ptr<ILoggerFactory>& loggerFactory, const LoggerConfig& defaultConfig)
+        : loggerFactory_(move(loggerFactory)), defaultLoggerConfig_(defaultConfig)
 {
     qInstallMessageHandler(messageHandler);
 }
@@ -78,7 +78,7 @@ ILogger& LoggingManager::getExistingLogger(const std::string& name)
 
 ILogger& LoggingManager::createNewLogger(const std::string& name, const LoggerConfig& loggerConfig)
 {
-    loggersMap_[name] = loggerFactory_.create(name, loggerConfig);
+    loggersMap_[name] = loggerFactory_->create(name, loggerConfig);
     return getExistingLogger(name);
 }
 
