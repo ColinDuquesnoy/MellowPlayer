@@ -4,7 +4,7 @@
 #endif
 #include "DI.hpp"
 #include <MellowPlayer/Infrastructure/Applications/DeprecatedSingleInstanceApplication.hpp>
-#include <MellowPlayer/Infrastructure/Application/CommandLineArguments.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/CommandLineArguments.hpp>
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
