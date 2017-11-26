@@ -1,6 +1,6 @@
 #include "DeprecatedSingleInstanceApplication.hpp"
 #include "IDeprecatedApplication.hpp"
-#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -21,10 +21,12 @@ const QString DeprecatedSingleInstanceApplication::previousAction_ = "previous";
 const QString DeprecatedSingleInstanceApplication::restoreWindowAction_ = "restore-window";
 const QString DeprecatedSingleInstanceApplication::toggleFavoriteAction_ = "toggle-favorite";
 
-DeprecatedSingleInstanceApplication::DeprecatedSingleInstanceApplication(IDeprecatedApplication& application, ICommandLineParser& commandLineParser, IPlayer& currentPlayer)
+DeprecatedSingleInstanceApplication::DeprecatedSingleInstanceApplication(IDeprecatedApplication& application,
+                                                                         ICommandLineArguments& commandLineArguments,
+                                                                         IPlayer& currentPlayer)
         : logger_(LoggingManager::logger("SingleInstanceApplication")),
           application_(application),
-          commandLineParser_(commandLineParser),
+          commandLineArguments_(commandLineArguments),
           currentPlayer_(currentPlayer)
 {
     connect(&localSocket_, &QLocalSocket::connected, this, &DeprecatedSingleInstanceApplication::onSocketConnected);
@@ -89,13 +91,13 @@ void DeprecatedSingleInstanceApplication::quit()
 
 QString DeprecatedSingleInstanceApplication::requestedAcion() const
 {
-    if (commandLineParser_.playPauseRequested())
+    if (commandLineArguments_.playPauseRequested())
         return playPauseAction_;
-    else if (commandLineParser_.nextRequested())
+    else if (commandLineArguments_.nextRequested())
         return nextAction_;
-    else if (commandLineParser_.previousRequested())
+    else if (commandLineArguments_.previousRequested())
         return previousAction_;
-    else if (commandLineParser_.toggleFavoriteRequested())
+    else if (commandLineArguments_.toggleFavoriteRequested())
         return toggleFavoriteAction_;
     return restoreWindowAction_;
 }

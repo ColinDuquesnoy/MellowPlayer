@@ -1,6 +1,7 @@
 #pragma once
 
-#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Domain/Logging/LoggerConfig.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <QCommandLineParser>
 
 namespace MellowPlayer::Domain
@@ -10,10 +11,12 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Infrastructure
 {
-    class CommandLineParser : public Domain::ICommandLineParser
+    class CommandLineArguments : public ICommandLineArguments
     {
     public:
-        CommandLineParser();
+        CommandLineArguments();
+
+        void parse() override;
 
         QString service() const override;
         int autoQuitDelay() const override;

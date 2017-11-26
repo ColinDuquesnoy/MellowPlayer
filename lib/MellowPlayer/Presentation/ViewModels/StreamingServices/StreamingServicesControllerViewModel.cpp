@@ -1,6 +1,6 @@
 #include "StreamingServicesControllerViewModel.hpp"
 #include <MellowPlayer/Domain/IWorkDispatcher.hpp>
-#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
@@ -22,7 +22,7 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(Strea
                                                                            Settings& settings,
                                                                            IWorkDispatcher& workDispatcher,
                                                                            IStreamingServiceCreator& streamingServiceCreator,
-                                                                           ICommandLineParser& commandLineParser,
+                                                                           ICommandLineArguments& commandLineArguments,
                                                                            IUserScriptFactory& userScriptFactory) :
         QObject(),
         streamingServices_(streamingServices),
@@ -31,7 +31,7 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(Strea
         currentServiceSetting_(settings.get(SettingKey::PRIVATE_CURRENT_SERVICE)),
         workDispatcher_(workDispatcher),
         streamingServiceCreator_(streamingServiceCreator),
-        commandLineParser_(commandLineParser),
+        commandLineArguments_(commandLineArguments),
         userScriptFactory_(userScriptFactory),
         allServices_(new StreamingServiceListModel(this, QByteArray(), "name")),
         enabledServices_(allServices_)
@@ -47,8 +47,8 @@ StreamingServicesControllerViewModel::StreamingServicesControllerViewModel(Strea
 void StreamingServicesControllerViewModel::initialize()
 {
     auto currentServiceName = currentServiceSetting_.value().toString();
-    if (!commandLineParser_.service().isEmpty())
-        currentServiceName = commandLineParser_.service();
+    if (!commandLineArguments_.service().isEmpty())
+        currentServiceName = commandLineArguments_.service();
     for (auto service : allServices_->toList()) {
         if (service->name().toLower() == currentServiceName.toLower())
             setCurrentService(service);

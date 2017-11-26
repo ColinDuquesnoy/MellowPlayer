@@ -2,16 +2,15 @@
 
 namespace MellowPlayer.Main {
     class Program {
-        + run(): int
+        + main(): int
         + onInitialized()
         + onStarted()
 
     }
     Program --> MellowPlayer.Infrastructure.IApplication
-    Program --> MellowPlayer.Presentation.IGlobalViewModels
+    Program --> MellowPlayer.Presentation.IContextProperties
     Program --> MellowPlayer.Presentation.IMainWindow
     Program --> MellowPlayer.Presentation.IMprisPlayer
-    Program --> MellowPlayer.Presentation.ApplicationViewModel
     Program -up-> MellowPlayer.Domain.IPlayers
     Program --> MellowPlayer.Infrastructure.IUpdater
 }
@@ -54,6 +53,11 @@ namespace MellowPlayer.Infrastructure {
         + run()
     }
     ApplicationDecorator <|-- WithCommandLineArguments
+
+    class WithLogging {
+
+    }
+    ApplicationDecorator <|-- WithLogging
 }
 
 namespace MellowPlayer.Presentation {
@@ -64,14 +68,18 @@ namespace MellowPlayer.Presentation {
     }
     IQtApplication <|-- QtApplication
     class Application {
-        + initialized: signal<void>
-        + started: signal<bool>
+        + quitRequested: signal<void>
+        + requestQuit()
+        --
+        + register(IQmlApplicationEngine)
+        --
         + initialize()
         + run()
         + quit()
         + restart()
     }
     MellowPlayer.Infrastructure.IApplication <|.. Application
+    IContextProperty <|.. Application
     Application -down-> IQtApplication
 
     interface IQmlApplicationEngine {
@@ -83,46 +91,32 @@ namespace MellowPlayer.Presentation {
     }
     IQmlApplicationEngine <|.. QmlApplicationEngine
 
-    interface IGlobalGlobalViewModels {
+    interface IContextProperty {
         id: QString
-        initialize()
         register(IQmlApplicationEngine)
     }
 
-    class ViewModel {
-        + ViewModel()
-        + ViewModel(IGlobalGlobalViewModels)
+    class ContextProperty {
+        + ContextProperty()
+        + ContextProperty(IContextProperties)
         + {abstract} id: QString
-        + {abstract} initialize()
         + {abstract} register(IQmlApplicationEngine)
     }
-    IGlobalGlobalViewModels <|.. ViewModel
-    ViewModel .up.> IGlobalViewModels
+    IContextProperty <|.. ContextProperty
+    ContextProperty .up.> IContextProperties
 
-    interface IGlobalViewModels {
-        add(ViewModel)
+    interface IContextProperties {
+        add(IContextProperty)
         initialize()
     }
 
-    class GlobalViewModels {
-        - items_: QList<IViewModel*>
-        + add(ViewModel)
+    class ContextProperties {
+        - items_: QList<IContextProperty*>
         + initialize()
+        + add(IContextProperty)
     }
-    IGlobalViewModels <|.. GlobalViewModels
-    GlobalViewModels --> IQmlApplicationEngine
-
-    class ApplicationViewModel {
-        + id: QString
-        + buildInfo: QString
-        + quitRequested: signal<void>
-        + quit()
-        + requestQuit()
-        + restart()
-        + initialize()
-        - model_: IApplication
-    }
-    ViewModel <|--- ApplicationViewModel
+    IContextProperties <|.. ContextProperties
+    ContextProperties --> IQmlApplicationEngine
 
     interface IMainWindow {
         show()
@@ -130,15 +124,14 @@ namespace MellowPlayer.Presentation {
         close()
     }
 
-    class MainWindowViewModel {
+    class MainWindow {
         + id: QString
         + show()
         + hide()
         + close()
-        + initialize()
     }
-    IMainWindow <|.. MainWindowViewModel
-    ViewModel <|-- MainWindowViewModel
+    IMainWindow <|... MainWindow
+    ContextProperty <|-- MainWindow
 
     interface IMprisPlayer {
         start()

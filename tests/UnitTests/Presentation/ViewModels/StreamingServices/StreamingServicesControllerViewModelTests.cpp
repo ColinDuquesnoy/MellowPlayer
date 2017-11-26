@@ -5,7 +5,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
-#include <Mocks/CommnandLineParserMock.hpp>
+#include <Mocks/CommnandLineArgumentsMock.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
@@ -14,8 +14,10 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Infrastructure::Tests;
 using namespace MellowPlayer::Tests;
 using namespace fakeit;
+using namespace testing;
 
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 {
@@ -26,9 +28,9 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     Settings& settings = pool.getSettings();
     IWorkDispatcher& workDispatcher = pool.getWorkDispatcher();
     auto creatorMock = StreamingServiceCreatorMock::get();
-    auto commandLineParserMock = CommandLineParserMock::get();
+    CommandLineArgumentsMock commandLineParserMock;
     StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                   commandLineParserMock.get(), pool.getUserScriptFactory());
+                                                   commandLineParserMock, pool.getUserScriptFactory());
     viewModel.initialize();
     viewModel.reload();
 
@@ -110,10 +112,11 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
     SECTION("Initialize with service set by command line")
     {
+        ON_CALL(commandLineParserMock, service()).WillByDefault(Return("Deezer"));
         settings.get(SettingKey::PRIVATE_CURRENT_SERVICE).setValue("");
-        When(Method(commandLineParserMock, service)).AlwaysReturn("Deezer");
+
         StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                                  commandLineParserMock.get(), pool.getUserScriptFactory());
+                                                                  commandLineParserMock, pool.getUserScriptFactory());
         REQUIRE(viewModelWithCmdLine.currentIndex() == -1);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

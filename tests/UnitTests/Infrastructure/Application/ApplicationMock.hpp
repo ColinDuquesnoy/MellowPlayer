@@ -7,7 +7,6 @@ namespace MellowPlayer::Infrastructure::Tests
 {
     class ApplicationMock: public IApplication
     {
-        Q_OBJECT
     public:
         MOCK_METHOD0(initialize, void());
         MOCK_METHOD0(run, int());

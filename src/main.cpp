@@ -4,7 +4,7 @@
 #endif
 #include "DI.hpp"
 #include <MellowPlayer/Infrastructure/Applications/DeprecatedSingleInstanceApplication.hpp>
-#include <MellowPlayer/Infrastructure/CommandLineParser.hpp>
+#include <MellowPlayer/Infrastructure/Application/CommandLineArguments.hpp>
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Presentation/ViewModels/DeprecatedApplicationViewModel.hpp>
@@ -32,7 +32,8 @@ int main(int argc, char** argv)
 
     DeprecatedApplicationViewModel qtApp(argc, argv);
 
-    CommandLineParser commandLineParser;
+    CommandLineArguments commandLineParser;
+    commandLineParser.parse();
     qtApp.setAutoQuitDelay(commandLineParser.autoQuitDelay());
 
     SpdLoggerFactory loggerFactory;
@@ -43,7 +44,7 @@ int main(int argc, char** argv)
 
     qtApp.initialize();
 
-    auto injector = di::make_injector(di::bind<IDeprecatedQtApplication>().to(qtApp), di::bind<ICommandLineParser>().to(commandLineParser),
+    auto injector = di::make_injector(di::bind<IDeprecatedQtApplication>().to(qtApp), di::bind<ICommandLineArguments>().to(commandLineParser),
                                       defaultInjector(scope), platformInjector(scope), notificationPresenterInjector(scope));
 
 #ifdef QT_DEBUG

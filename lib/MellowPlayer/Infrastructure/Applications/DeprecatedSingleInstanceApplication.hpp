@@ -7,21 +7,21 @@
 namespace MellowPlayer::Domain
 {
     class ILogger;
-    class ICommandLineParser;
     class IPlayer;
 }
 
 namespace MellowPlayer::Infrastructure
 {
     class IDeprecatedApplication;
+    class ICommandLineArguments;
 
     class DeprecatedSingleInstanceApplication : public QObject
     {
         Q_OBJECT
     public:
         DeprecatedSingleInstanceApplication(IDeprecatedApplication& application,
-                                  Domain::ICommandLineParser& commandLineParser,
-                                  Domain::IPlayer& currentPlayer);
+                                            ICommandLineArguments& commandLineParser,
+                                            Domain::IPlayer& currentPlayer);
 
         int run();
 
@@ -38,7 +38,7 @@ namespace MellowPlayer::Infrastructure
 
         Domain::ILogger& logger_;
         IDeprecatedApplication& application_;
-        Domain::ICommandLineParser& commandLineParser_;
+        ICommandLineArguments& commandLineArguments_;
         Domain::IPlayer& currentPlayer_;
         QLocalSocket localSocket_;
         QLocalServer localServer_;

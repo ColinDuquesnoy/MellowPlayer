@@ -7,7 +7,6 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Domain/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Domain/Updater/Updater.hpp>
-#include <MellowPlayer/Domain/ICommandLineParser.hpp>
 #include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
@@ -17,6 +16,7 @@
 
 #include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 
 #include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
@@ -26,7 +26,7 @@
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/CommnandLineParserMock.hpp>
+#include <Mocks/CommnandLineArgumentsMock.hpp>
 #include <Mocks/FakeFileDownloader.hpp>
 #include <Mocks/FakeHttpClient.hpp>
 #include <Mocks/FakePlatformUpdater.hpp>
@@ -40,6 +40,7 @@
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/ThemeLoaderMock.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
+#include <Mocks/CommnandLineArgumentsMock.hpp>
 
 using namespace std;
 using namespace fakeit;
@@ -47,10 +48,11 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Infrastructure::Tests;
 using namespace MellowPlayer::Tests;
 
 DependencyPool::DependencyPool()
-        : mICommandLineParser(CommandLineParserMock::get()),
+        : mICommandLineArgs(make_unique<CommandLineArgumentsMock>()),
           mIQtApplication(QtApplicationMock::get()),
           mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
@@ -84,7 +86,7 @@ StreamingServicesControllerViewModel& DependencyPool::getStreamingServicesContro
         getSettings(),
         getWorkDispatcher(),
         getStreamingServicesCreator(),
-        getCommandLineParser(),
+        getCommandLineArguments(),
         getUserScriptFactory());
     return *pStreamingServicesControllerViewModel;
 }
@@ -114,9 +116,9 @@ Settings& DependencyPool::getSettings()
     return *pSettings;
 }
 
-ICommandLineParser& DependencyPool::getCommandLineParser()
+ICommandLineArguments& DependencyPool::getCommandLineArguments()
 {
-    return mICommandLineParser.get();
+    return *mICommandLineArgs;
 }
 
 IWorkDispatcher& DependencyPool::getWorkDispatcher()

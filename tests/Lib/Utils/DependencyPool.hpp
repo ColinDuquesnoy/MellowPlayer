@@ -3,7 +3,7 @@
 #include <memory>
 #include "fakeit.hpp"
 
-#include <MellowPlayer/Domain/ICommandLineParser.hpp>
+#include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
@@ -29,6 +29,7 @@ namespace MellowPlayer::Domain
 namespace MellowPlayer::Infrastructure
 {
     class LocalAlbumArt;
+    class ICommandLineArguments;
 }
 
 namespace MellowPlayer::Presentation
@@ -59,7 +60,6 @@ namespace MellowPlayer::Tests
         Domain::IStreamingServiceCreator& getStreamingServicesCreator();
         Domain::ISettingsStore& getSettingsStore();
         Domain::Settings& getSettings();
-        Domain::ICommandLineParser& getCommandLineParser();
         Domain::IWorkDispatcher& getWorkDispatcher();
         Domain::ListeningHistory& getListeningHistory();
         Domain::Updater& getUpdater();
@@ -70,6 +70,7 @@ namespace MellowPlayer::Tests
 
         // Infrastructure layer
         Infrastructure::LocalAlbumArt& getLocalAlbumArt();
+        Infrastructure::ICommandLineArguments& getCommandLineArguments();
 
         // Presentation Layer
         Presentation::Notifier& getNotifier();
@@ -81,7 +82,7 @@ namespace MellowPlayer::Tests
 
     private:
         // mocks
-        fakeit::Mock<Domain::ICommandLineParser> mICommandLineParser;
+        std::unique_ptr<Infrastructure::ICommandLineArguments> mICommandLineArgs;
         fakeit::Mock<Domain::IDeprecatedQtApplication> mIQtApplication;
         fakeit::Mock<Domain::ISettingsStore> mISettingsStore;
         fakeit::Mock<Domain::IStreamingServiceCreator> mIStreamingServiceCreator;

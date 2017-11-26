@@ -15,8 +15,12 @@ namespace MellowPlayer::Domain
     class StreamingService;
     class IWorkDispatcher;
     class IStreamingServiceCreator;
-    class ICommandLineParser;
     class IUserScriptFactory;
+}
+
+namespace MellowPlayer::Infrastructure
+{
+    class ICommandLineArguments;
 }
 
 namespace MellowPlayer::Presentation
@@ -35,7 +39,7 @@ namespace MellowPlayer::Presentation
                                              Domain::Settings& settings,
                                              Domain::IWorkDispatcher& workDispatcher,
                                              Domain::IStreamingServiceCreator& streamingServiceCreator,
-                                             Domain::ICommandLineParser& commandLineParser,
+                                             Infrastructure::ICommandLineArguments& commandLineArguments,
                                              Domain::IUserScriptFactory& userScriptFactory);
         void initialize();
 
@@ -80,7 +84,7 @@ namespace MellowPlayer::Presentation
         Domain::Setting& currentServiceSetting_;
         Domain::IWorkDispatcher& workDispatcher_;
         Domain::IStreamingServiceCreator& streamingServiceCreator_;
-        Domain::ICommandLineParser& commandLineParser_;
+        Infrastructure::ICommandLineArguments& commandLineArguments_;
         Domain::IUserScriptFactory& userScriptFactory_;
         StreamingServiceListModel* allServices_;
         StreamingServiceProxyListModel enabledServices_;
