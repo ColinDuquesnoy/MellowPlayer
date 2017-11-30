@@ -90,6 +90,6 @@ namespace MellowPlayer::Domain
         Domain::StreamingServiceScript& streamingServiceScript_;
         PlaybackStatus suspendedState_ = PlaybackStatus::Stopped;
         bool isRunning_ = false;
-        QTimer* refreshTimer_;
+        std::unique_ptr<QTimer> refreshTimer_;
     };
 }

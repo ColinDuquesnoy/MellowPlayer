@@ -23,7 +23,7 @@ SettingViewModel* SettingsViewModel::get(int key)
 {
     SettingKey::Keys settingKey = static_cast<SettingKey::Keys>(key);
     Setting& setting = settings_.get(settingKey);
-    return factory_.create(setting, nullptr);
+    return factory_.create(setting, this);
 }
 
 SettingsCategoryListModel* SettingsViewModel::categories() const
