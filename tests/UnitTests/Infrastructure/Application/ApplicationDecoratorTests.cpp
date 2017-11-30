@@ -1,7 +1,7 @@
 #include <MellowPlayer/Infrastructure/Application/ApplicationDecorator.hpp>
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
-#include "ApplicationMock.hpp"
+#include "FakeApplication.hpp"
 
 using namespace testing;
 using namespace MellowPlayer::Infrastructure;
@@ -11,7 +11,7 @@ SCENARIO("ApplicationDecoratorTests")
 {
     GIVEN("An application mock")
     {
-        ApplicationMock decorated;
+        FakeApplication decorated;
         ApplicationDecorator decorator(decorated);
 
         WHEN("decorated started signal is emitted")
@@ -64,24 +64,23 @@ SCENARIO("ApplicationDecoratorTests")
 
         WHEN("decorator initialize is called")
         {
-            THEN("decorated initialize is called too")
-            {
-                EXPECT_CALL(decorated, initialize()).Times(1);
-            }
-
             decorator.initialize();
+
+            THEN("decorated is initialized")
+            {
+                REQUIRE(decorated.isInitialized);
+            }
         }
 
         WHEN("decorator run is called")
         {
-            ON_CALL(decorated, run()).WillByDefault(Return(42));
-
-            THEN("decorated run is called too")
-            {
-                EXPECT_CALL(decorated, run()).Times(1);
-            }
-
+            decorated.returnCode = 42;
             auto retCode = decorator.run();
+
+            THEN("decorated is running")
+            {
+                REQUIRE(decorated.isRunning);
+            }
 
             AND_THEN("return value of decorated is returned")
             {
@@ -91,32 +90,32 @@ SCENARIO("ApplicationDecoratorTests")
 
         WHEN("decorator quit is called")
         {
-            THEN("decorated quit is called too")
-            {
-                EXPECT_CALL(decorated, quit()).Times(1);
-            }
-
             decorator.quit();
+
+            THEN("quit was requested on the decorated")
+            {
+                REQUIRE(decorated.quitRequested);
+            }
         }
 
         WHEN("decorator restart is called")
         {
-            THEN("decorated restart is called too")
-            {
-                EXPECT_CALL(decorated, restart()).Times(1);
-            }
-
             decorator.restart();
+
+            THEN("restart was requested on the decorated")
+            {
+                REQUIRE(decorated.restartRequested);
+            }
         }
 
         WHEN("decorator restoreWindow is called")
         {
-            THEN("decorated restoreWindow is called too")
-            {
-                EXPECT_CALL(decorated, restoreWindow()).Times(1);
-            }
-
             decorator.restoreWindow();
+
+            THEN("restoreWindow was requested on the decorated")
+            {
+                REQUIRE(decorated.restoreWindowRequested);
+            }
         }
     }
 }

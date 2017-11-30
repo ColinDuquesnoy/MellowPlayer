@@ -2,6 +2,8 @@
 
 #include <QString>
 
+class QObject;
+
 namespace MellowPlayer::Presentation
 {
     class IQmlApplicationEngine;

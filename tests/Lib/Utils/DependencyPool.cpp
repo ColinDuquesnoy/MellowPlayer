@@ -26,7 +26,7 @@
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Mocks/FakeFileDownloader.hpp>
 #include <Mocks/FakeHttpClient.hpp>
 #include <Mocks/FakePlatformUpdater.hpp>
@@ -40,7 +40,7 @@
 #include <Mocks/StreamingServiceWatcherMock.hpp>
 #include <Mocks/ThemeLoaderMock.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 
 using namespace std;
 using namespace fakeit;
@@ -52,7 +52,7 @@ using namespace MellowPlayer::Infrastructure::Tests;
 using namespace MellowPlayer::Tests;
 
 DependencyPool::DependencyPool()
-        : mICommandLineArgs(make_unique<CommandLineArgumentsMock>()),
+        : mICommandLineArgs(make_unique<FakeCommandLineArguments>()),
           mIQtApplication(DeprecatedQtApplicationMock::get()),
           mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),

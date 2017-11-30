@@ -2,8 +2,8 @@
 #include <MellowPlayer/Domain/BuildConfig.hpp>
 #include <MellowPlayer/Presentation/Application/Application.hpp>
 #include <QtTest/QSignalSpy>
-#include "QtApplicationMock.hpp"
-#include <UnitTests/Presentation/Qml/ContextPropertiesMock.hpp>
+#include "FakeQtApplication.hpp"
+#include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
 using namespace testing;
 using namespace MellowPlayer::Domain;
@@ -17,49 +17,49 @@ SCENARIO("Application tests")
     {
         WHEN("Application is created")
         {
-            NiceMock<QtApplicationMock> qtApplication;
-            NiceMock<ContextPropertiesMock> contextProperties;
+            FakeQtApplication qtApplication;
+            FakeContextProperties contextProperties;
+
+            Application application(qtApplication, contextProperties);
 
             THEN("applicationName is set")
             {
-                EXPECT_CALL(qtApplication, setApplicationName(QString("MellowPlayer"))).Times(1);
+                REQUIRE(qtApplication.appName == "MellowPlayer");
             }
 
             AND_THEN("applicationDisplayName is set")
             {
-                EXPECT_CALL(qtApplication, setApplicationDisplayName(QString("MellowPlayer"))).Times(1);
+                REQUIRE(qtApplication.appDisplayName == "MellowPlayer");
             }
 
             AND_THEN("applicationVersion is set")
             {
-                EXPECT_CALL(qtApplication, setApplicationVersion(BuildConfig::getVersion())).Times(1);
+                REQUIRE(qtApplication.appVersion == BuildConfig::getVersion());
             }
 
             AND_THEN("organizationDomain is set")
             {
-                EXPECT_CALL(qtApplication, setOrganizationDomain(QString("org.mellowplayer"))).Times(1);
+                REQUIRE(qtApplication.orgDomain == "org.mellowplayer");
             }
 
             AND_THEN("organizationName is set")
             {
-                EXPECT_CALL(qtApplication, setOrganizationName(QString("MellowPlayer"))).Times(1);
+                REQUIRE(qtApplication.orgName == "MellowPlayer");
             }
 
             AND_THEN("windowIcon is set")
             {
-                EXPECT_CALL(qtApplication, setWindowIcon(_)).Times(1);
+                REQUIRE(qtApplication.isIconSet);
             }
 
-            AND_THEN("context properties is added")
+            AND_THEN("context property has been added")
             {
-                EXPECT_CALL(contextProperties, add(_)).Times(1);
+                contextProperties.contains(application);
             }
-
-            Application application(qtApplication, contextProperties);
         }
 
-        NiceMock<QtApplicationMock> qtApplication;
-        NiceMock<ContextPropertiesMock> contextProperties;
+        NiceMock<FakeQtApplication> qtApplication;
+        NiceMock<FakeContextProperties> contextProperties;
         Application application(qtApplication, contextProperties);
 
         WHEN("qtApplication.commitDataRequest is emitted, application.commitDataRequest is emitted too")
@@ -71,18 +71,18 @@ SCENARIO("Application tests")
 
         WHEN("initializing the application")
         {
+            QSignalSpy spy(&application, &IApplication::initialized);
+            application.initialize();
+
             THEN("font is set")
             {
-                EXPECT_CALL(qtApplication, setFont(_)).Times(1);
+                REQUIRE(qtApplication.isFontSet);
             }
 
             AND_THEN("translator is set")
             {
-                EXPECT_CALL(qtApplication, installTranslator(_)).Times(1);
+                REQUIRE(qtApplication.translator != nullptr);
             }
-
-            QSignalSpy spy(&application, &IApplication::initialized);
-            application.initialize();
 
             AND_THEN("initialized signal is emitted")
             {
@@ -92,13 +92,13 @@ SCENARIO("Application tests")
 
         WHEN("running the application")
         {
-            THEN("Qt Application exec method is called")
-            {
-                EXPECT_CALL(qtApplication, exec()).Times(1);
-            }
-
             QSignalSpy spy(&application, &IApplication::started);
             application.run();
+
+            THEN("Qt Application is running")
+            {
+                REQUIRE(qtApplication.isRunning);
+            }
 
             THEN("started signal is emitted")
             {
@@ -108,22 +108,22 @@ SCENARIO("Application tests")
 
         WHEN("quit the application")
         {
-            THEN("call exit on qtApplication with exit code 0")
-            {
-                EXPECT_CALL(qtApplication, exit(0)).Times(1);
-            }
-
             application.quit();
+
+            THEN("call exit on qtApplication with valid exit code 0")
+            {
+                REQUIRE(qtApplication.requestedExitCode == 0);
+            }
         }
 
         WHEN("restart the application")
         {
-            THEN("call exit on qtApplication with exit code 0")
-            {
-                EXPECT_CALL(qtApplication, exit(0)).Times(1);
-            }
-
             application.restart();
+
+            THEN("call exit on qtApplication with valid exit code 0")
+            {
+                REQUIRE(qtApplication.requestedExitCode == 0);
+            }
         }
 
         WHEN("restoreWindow is called")

@@ -5,7 +5,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
@@ -28,9 +28,9 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     Settings& settings = pool.getSettings();
     IWorkDispatcher& workDispatcher = pool.getWorkDispatcher();
     auto creatorMock = StreamingServiceCreatorMock::get();
-    CommandLineArgumentsMock commandLineParserMock;
+    FakeCommandLineArguments commandLineArguments;
     StreamingServicesControllerViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                   commandLineParserMock, pool.getUserScriptFactory());
+                                                   commandLineArguments, pool.getUserScriptFactory());
     viewModel.initialize();
     viewModel.reload();
 
@@ -112,11 +112,11 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
     SECTION("Initialize with service set by command line")
     {
-        ON_CALL(commandLineParserMock, service()).WillByDefault(Return("Deezer"));
+        commandLineArguments.setService("Deezer");
         settings.get(SettingKey::PRIVATE_CURRENT_SERVICE).setValue("");
 
         StreamingServicesControllerViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher, creatorMock.get(),
-                                                                  commandLineParserMock, pool.getUserScriptFactory());
+                                                                  commandLineArguments, pool.getUserScriptFactory());
         REQUIRE(viewModelWithCmdLine.currentIndex() == -1);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

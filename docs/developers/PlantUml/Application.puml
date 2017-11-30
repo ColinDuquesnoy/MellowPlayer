@@ -118,18 +118,18 @@ namespace MellowPlayer.Presentation {
     ContextProperties --> IQmlApplicationEngine
 
     interface IMainWindow {
+        load()
         show()
         hide()
-        close()
     }
 
     class MainWindow {
         + name: QString
         + asQObject(): QObject*
         --
+        + load()
         + show()
         + hide()
-        + close()
     }
     IMainWindow <|... MainWindow
     ContextProperty <|-- MainWindow

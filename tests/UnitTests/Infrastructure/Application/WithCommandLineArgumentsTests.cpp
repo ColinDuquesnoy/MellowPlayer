@@ -1,8 +1,8 @@
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Infrastructure/Application/WithCommandLineArguments.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Lib/TestMacros.hpp>
-#include "ApplicationMock.hpp"
+#include "FakeApplication.hpp"
 
 using namespace testing;
 using namespace MellowPlayer::Infrastructure;
@@ -12,24 +12,24 @@ SCENARIO("WithCommandLineArgumentsTests")
 {
     GIVEN("A CommandLineArguments application")
     {
-        NiceMock<ApplicationMock> application;
-        NiceMock<CommandLineArgumentsMock> commandLineArguments;
+        FakeApplication decorated;
+        FakeCommandLineArguments commandLineArguments;
 
-        WithCommandLineArguments commandLineArgumentsApp(application, commandLineArguments);
+        WithCommandLineArguments commandLineArgumentsApp(decorated, commandLineArguments);
 
         WHEN("initialize is called")
         {
+            commandLineArgumentsApp.initialize();
+
             THEN("command line arguments are parsed")
             {
-                EXPECT_CALL(commandLineArguments, parse()).Times(1);
+                REQUIRE(commandLineArguments.parsed);
             }
 
             AND_THEN("decorated application is initialized too")
             {
-                EXPECT_CALL(application, initialize()).Times(1);
+                REQUIRE(decorated.isInitialized);
             }
-
-            commandLineArgumentsApp.initialize();
         }
     }
 }

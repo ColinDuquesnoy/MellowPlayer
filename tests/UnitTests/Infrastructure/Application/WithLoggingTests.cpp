@@ -1,8 +1,8 @@
 #include <MellowPlayer/Infrastructure/Application/WithLogging.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Lib/TestMacros.hpp>
-#include "ApplicationMock.hpp"
-#include <UnitTests/Domain/Logging/LoggerFactoryMock.hpp>
+#include "FakeApplication.hpp"
+#include <UnitTests/Domain/Logging/FakeLoggerFactory.hpp>
 #include <memory>
 
 using namespace std;
@@ -16,20 +16,20 @@ SCENARIO("WithLoggingTests")
 {
     GIVEN("An application with logging")
     {
-        NiceMock<ApplicationMock> application;
-        NiceMock<CommandLineArgumentsMock> commandLineArguments;
-        unique_ptr<ILoggerFactory> loggerFactory = make_unique<NiceMock<LoggerFactoryMock>>();
+        NiceMock<FakeApplication> decorated;
+        NiceMock<FakeCommandLineArguments> commandLineArguments;
+        unique_ptr<ILoggerFactory> loggerFactory = make_unique<NiceMock<FakeLoggerFactory>>();
 
-        WithLogging appWithLogging(application, loggerFactory, commandLineArguments);
+        WithLogging appWithLogging(decorated, loggerFactory, commandLineArguments);
 
         WHEN("initialize is called")
         {
-            THEN("decorated application is initialized too")
-            {
-                EXPECT_CALL(application, initialize()).Times(1);
-            }
-
             appWithLogging.initialize();
+
+            THEN("decorated is initialized too")
+            {
+                REQUIRE(decorated.isInitialized);
+            }
         }
     }
 }

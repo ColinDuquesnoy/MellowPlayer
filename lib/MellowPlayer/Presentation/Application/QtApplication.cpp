@@ -1,5 +1,6 @@
 #include "QtApplication.hpp"
 #include <QtWebEngine>
+#include <QtQuickControls2/QQuickStyle>
 
 using namespace std;
 using namespace MellowPlayer::Presentation;
@@ -10,6 +11,7 @@ QtApplication::QtApplication(int argc, char** argv)
     connect(&qApplication_, &QApplication::aboutToQuit, this, &QtApplication::aboutToQuit);
     connect(&qApplication_, &QApplication::commitDataRequest, this, &QtApplication::commitDataRequest);
 
+    QQuickStyle::setStyle("Material");
     QtWebEngine::initialize();
 }
 

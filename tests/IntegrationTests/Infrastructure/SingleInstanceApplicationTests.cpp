@@ -1,6 +1,6 @@
 #include <MellowPlayer/Infrastructure/Applications/DeprecatedSingleInstanceApplication.hpp>
 #include <Mocks/ApplicationMock.hpp>
-#include <Mocks/CommnandLineArgumentsMock.hpp>
+#include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <QtTest/QtTest>
 #include <catch.hpp>
@@ -12,7 +12,7 @@ using namespace MellowPlayer::Infrastructure::Tests;
 TEST_CASE("SingleInstanceApplication")
 {
     auto appMock1 = ApplicationMock::get();
-    CommandLineArgumentsMock commandLineParserMock;
+    FakeCommandLineArguments commandLineParserMock;
     auto playerMock = PlayerMock::get();
     DeprecatedSingleInstanceApplication instance1(appMock1.get(), commandLineParserMock, playerMock.get());
 

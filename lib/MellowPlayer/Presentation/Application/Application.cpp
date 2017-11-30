@@ -17,7 +17,7 @@ using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Infrastructure;
 
 Application::Application(IQtApplication& qtApplication, IContextProperties& contextProperties)
-        : ContextProperty(contextProperties), qtApp_(qtApplication)
+        : ContextProperty(contextProperties), qtApp_(qtApplication), restartRequested_(false)
 {
     qtApp_.setApplicationName("MellowPlayer");
     qtApp_.setApplicationDisplayName("MellowPlayer");
