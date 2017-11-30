@@ -3,7 +3,7 @@
 #include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
 #include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Domain/Notifications/INotifier.hpp>
@@ -128,7 +128,7 @@ auto defaultInjector = [](ScopedScope &scope) {
         di::bind<IStreamingServiceLoader>().to<StreamingServiceLoader>().in(scope),
         di::bind<IPlayer>().in(di::singleton).to<CurrentPlayer>(),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
-        di::bind<IMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
+        di::bind<IDeprecatedMainWindow>().to<MellowPlayer::Presentation::MainWindowViewModel>().in(scope),
         di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
         di::bind<MellowPlayer::Infrastructure::IHotkeys>().to<Hotkeys>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),

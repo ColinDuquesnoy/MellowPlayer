@@ -1,5 +1,5 @@
 #include "Hotkeys.hpp"
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -11,7 +11,7 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-Hotkeys::Hotkeys(IPlayer& player, Settings& settings, IMainWindow& application)
+Hotkeys::Hotkeys(IPlayer& player, Settings& settings, IDeprecatedMainWindow& application)
         : QObject(nullptr),
           logger_(LoggingManager::logger("Hotkeys")),
           player_(player),

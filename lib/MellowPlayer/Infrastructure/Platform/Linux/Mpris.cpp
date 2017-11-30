@@ -17,7 +17,7 @@ QString Mpris::SERVICE_NAME = "org.mpris.MediaPlayer2.";
 
 QString Mpris::OBJECT_NAME = "/org/mpris/MediaPlayer2";
 
-Mpris::Mpris(IPlayer& player, ILocalAlbumArt& localAlbumArt, IMainWindow& window, IDeprecatedQtApplication& application)
+Mpris::Mpris(IPlayer& player, ILocalAlbumArt& localAlbumArt, IDeprecatedMainWindow& window, IDeprecatedQtApplication& application)
         : logger_(LoggingManager::logger("Mpris")),
           parent_(make_unique<QObject>()),
           mpris2Root_(new Mpris2Root(window, application, parent_.get())),

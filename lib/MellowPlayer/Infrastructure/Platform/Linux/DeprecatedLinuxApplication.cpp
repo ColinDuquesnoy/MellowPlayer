@@ -1,7 +1,7 @@
 #include "DeprecatedLinuxApplication.hpp"
 #include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
 #include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -14,7 +14,7 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-DeprecatedLinuxApplication::DeprecatedLinuxApplication(IDeprecatedQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
+DeprecatedLinuxApplication::DeprecatedLinuxApplication(IDeprecatedQtApplication& qtApp, IDeprecatedMainWindow& mainWindow, StreamingServicesController& streamingServices,
                                    IHotkeys& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier, IMpris& mprisService)
         : DeprecatedCoreApplication(qtApp, mainWindow, streamingServices, kotkeys, systemTrayIcon, notifier),
           logger_(LoggingManager::logger("LinuxApplication")),

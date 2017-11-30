@@ -1,5 +1,5 @@
 #pragma once
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
@@ -9,9 +9,9 @@ using namespace fakeit;
 class MainWindowMock
 {
 public:
-    static Mock<IMainWindow> get()
+    static Mock<IDeprecatedMainWindow> get()
     {
-        Mock<IMainWindow> mock;
+        Mock<IDeprecatedMainWindow> mock;
         When(Method(mock, load)).AlwaysReturn();
         When(Method(mock, show)).AlwaysReturn();
         When(Method(mock, hide)).AlwaysReturn();

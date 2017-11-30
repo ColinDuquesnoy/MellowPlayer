@@ -9,7 +9,7 @@ namespace MellowPlayer::Domain
 {
     class IPlayer;
     class ILocalAlbumArt;
-    class IMainWindow;
+    class IDeprecatedMainWindow;
     class IDeprecatedQtApplication;
     class ILogger;
 }
@@ -22,7 +22,7 @@ namespace MellowPlayer::Infrastructure
     class Mpris : public IMpris
     {
     public:
-        Mpris(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, Domain::IMainWindow& window,
+        Mpris(Domain::IPlayer& player, Domain::ILocalAlbumArt& localAlbumArt, Domain::IDeprecatedMainWindow& window,
                         Domain::IDeprecatedQtApplication& application);
         ~Mpris();
 

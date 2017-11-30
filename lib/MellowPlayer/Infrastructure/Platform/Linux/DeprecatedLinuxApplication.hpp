@@ -10,7 +10,7 @@ namespace MellowPlayer::Domain
 {
     class ILogger;
     class IDeprecatedQtApplication;
-    class IMainWindow;
+    class IDeprecatedMainWindow;
     class StreamingServicesController;
     class IHotkeys;
     class ISystemTrayIcon;
@@ -24,7 +24,7 @@ namespace MellowPlayer::Infrastructure
     class DeprecatedLinuxApplication : public DeprecatedCoreApplication
     {
     public:
-        DeprecatedLinuxApplication(Domain::IDeprecatedQtApplication& qtApp, Domain::IMainWindow& mainWindow,
+        DeprecatedLinuxApplication(Domain::IDeprecatedQtApplication& qtApp, Domain::IDeprecatedMainWindow& mainWindow,
                          Domain::StreamingServicesController& streamingServices, Infrastructure::IHotkeys& kotkeys,
                          Domain::ISystemTrayIcon& systemTrayIcon, Domain::INotifier& notifier, IMpris& mprisService);
         void initialize() override;

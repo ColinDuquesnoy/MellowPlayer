@@ -1,5 +1,5 @@
 #include "SystemTrayIcon.hpp"
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -13,7 +13,7 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-SystemTrayIcon::SystemTrayIcon(IPlayer& player, IMainWindow& mainWindow, IDeprecatedQtApplication& qtApplication, Settings& settings)
+SystemTrayIcon::SystemTrayIcon(IPlayer& player, IDeprecatedMainWindow& mainWindow, IDeprecatedQtApplication& qtApplication, Settings& settings)
         : QObject(),
           logger_(LoggingManager::logger("SystemTrayIcon")),
           player_(player),

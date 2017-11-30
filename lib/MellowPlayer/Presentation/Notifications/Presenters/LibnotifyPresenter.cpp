@@ -1,6 +1,6 @@
 #include "LibnotifyPresenter.hpp"
 #include "LibnotifyStrings.hpp"
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -20,7 +20,7 @@ void notify_action_callback(NotifyNotification*, char*, gpointer)
     LibnotifyPresenter::onActionCallback();
 }
 
-LibnotifyPresenter::LibnotifyPresenter(IMainWindow& mainWindow)
+LibnotifyPresenter::LibnotifyPresenter(IDeprecatedMainWindow& mainWindow)
         : logger_(LoggingManager::logger("LibnotifyPresenter")),
           mainWindow_(mainWindow),
           previousNotification_(nullptr)

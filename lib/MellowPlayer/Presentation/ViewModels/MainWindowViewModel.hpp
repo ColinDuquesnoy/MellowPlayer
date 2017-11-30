@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
 #include <QtQml/QQmlApplicationEngine>
@@ -21,7 +21,7 @@ namespace MellowPlayer::Presentation
     class ThemeViewModel;
     class UpdaterViewModel;
 
-    class MainWindowViewModel : public QObject, public Domain::IMainWindow
+    class MainWindowViewModel : public QObject, public Domain::IDeprecatedMainWindow
     {
         Q_OBJECT
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)

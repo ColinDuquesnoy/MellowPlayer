@@ -11,7 +11,7 @@ namespace MellowPlayer::Domain
     class ILogger;
     class Setting;
     class Settings;
-    class IMainWindow;
+    class IDeprecatedMainWindow;
 }
 
 namespace MellowPlayer::Infrastructure
@@ -22,7 +22,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        Hotkeys(Domain::IPlayer& player, Domain::Settings& settings, Domain::IMainWindow& mainWindow);
+        Hotkeys(Domain::IPlayer& player, Domain::Settings& settings, Domain::IDeprecatedMainWindow& mainWindow);
         ~Hotkeys();
 
         void start() override;
@@ -43,7 +43,7 @@ namespace MellowPlayer::Infrastructure
 
         Domain::ILogger& logger_;
         Domain::IPlayer& player_;
-        Domain::IMainWindow& mainWindow_;
+        Domain::IDeprecatedMainWindow& mainWindow_;
 
         QxtGlobalShortcut* playShortcut_;
         QxtGlobalShortcut* nextShortcut_;

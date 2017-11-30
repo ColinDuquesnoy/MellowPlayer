@@ -1,5 +1,5 @@
 #include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
-#include <MellowPlayer/Domain/IMainWindow.hpp>
+#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
 #include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
@@ -14,7 +14,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-DeprecatedCoreApplication::DeprecatedCoreApplication(IDeprecatedQtApplication& qtApp, IMainWindow& mainWindow, StreamingServicesController& streamingServices,
+DeprecatedCoreApplication::DeprecatedCoreApplication(IDeprecatedQtApplication& qtApp, IDeprecatedMainWindow& mainWindow, StreamingServicesController& streamingServices,
                                  IHotkeys& kotkeys, ISystemTrayIcon& systemTrayIcon, INotifier& notifier)
         : logger_(LoggingManager::logger("Application")),
           qtApp_(qtApp),

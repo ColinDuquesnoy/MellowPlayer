@@ -7,7 +7,7 @@ struct _NotifyNotification;
 namespace MellowPlayer::Domain
 {
     class ILogger;
-    class IMainWindow;
+    class IDeprecatedMainWindow;
     struct Notification;
 }
 
@@ -16,7 +16,7 @@ namespace MellowPlayer::Presentation
     class LibnotifyPresenter : public Domain::INotificationPresenter
     {
     public:
-        explicit LibnotifyPresenter(Domain::IMainWindow& mainWindow);
+        explicit LibnotifyPresenter(Domain::IDeprecatedMainWindow& mainWindow);
         void initialize() override;
         bool display(const Domain::Notification& notification) override;
 
@@ -26,7 +26,7 @@ namespace MellowPlayer::Presentation
         void checkSupportForActions();
 
         Domain::ILogger& logger_;
-        Domain::IMainWindow& mainWindow_;
+        Domain::IDeprecatedMainWindow& mainWindow_;
         _NotifyNotification* previousNotification_;
         bool actionsSupported_ = true;
         static LibnotifyPresenter* instance_;
