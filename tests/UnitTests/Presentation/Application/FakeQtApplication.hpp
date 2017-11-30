@@ -1,6 +1,5 @@
 #pragma once
 
-#include <gmock/gmock.h>
 #include <QtGui/QFont>
 #include <QtGui/QIcon>
 

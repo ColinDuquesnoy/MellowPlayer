@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Infrastructure/Application/IApplication.hpp>
-#include <gmock/gmock.h>
 
 namespace MellowPlayer::Infrastructure::Tests
 {

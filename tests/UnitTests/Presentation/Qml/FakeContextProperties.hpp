@@ -1,7 +1,6 @@
 #pragma once
 
 #include <MellowPlayer/Presentation/Qml/IContextProperties.hpp>
-#include <gmock/gmock.h>
 
 namespace MellowPlayer::Presentation::Tests
 {

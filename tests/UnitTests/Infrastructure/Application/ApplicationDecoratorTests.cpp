@@ -3,7 +3,6 @@
 #include <QtTest/QSignalSpy>
 #include "FakeApplication.hpp"
 
-using namespace testing;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 

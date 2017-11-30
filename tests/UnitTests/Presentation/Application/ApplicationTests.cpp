@@ -5,7 +5,6 @@
 #include "FakeQtApplication.hpp"
 #include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
-using namespace testing;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
@@ -58,8 +57,8 @@ SCENARIO("Application tests")
             }
         }
 
-        NiceMock<FakeQtApplication> qtApplication;
-        NiceMock<FakeContextProperties> contextProperties;
+        FakeQtApplication qtApplication;
+        FakeContextProperties contextProperties;
         Application application(qtApplication, contextProperties);
 
         WHEN("qtApplication.commitDataRequest is emitted, application.commitDataRequest is emitted too")

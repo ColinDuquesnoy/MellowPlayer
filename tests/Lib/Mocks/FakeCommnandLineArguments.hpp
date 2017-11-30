@@ -4,7 +4,6 @@
 #include <MellowPlayer/Domain/Logging/LoggerConfig.hpp>
 #include <fakeit.hpp>
 #include <memory>
-#include <gmock/gmock.h>
 
 namespace MellowPlayer::Infrastructure::Tests
 {

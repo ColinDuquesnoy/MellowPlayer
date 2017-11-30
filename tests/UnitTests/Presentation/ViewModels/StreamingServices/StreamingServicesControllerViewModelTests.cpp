@@ -17,7 +17,6 @@ using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 using namespace MellowPlayer::Tests;
 using namespace fakeit;
-using namespace testing;
 
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 {
