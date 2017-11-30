@@ -8,20 +8,16 @@ namespace MellowPlayer.Main {
 
     }
     Program --> MellowPlayer.Infrastructure.IApplication
-    Program --> MellowPlayer.Presentation.IContextProperties
     Program --> MellowPlayer.Presentation.IMainWindow
     Program --> MellowPlayer.Presentation.IMprisPlayer
     Program -up-> MellowPlayer.Domain.IPlayers
-    Program --> MellowPlayer.Infrastructure.IUpdater
 }
 
 namespace MellowPlayer.Domain {
-    interface IPlayers
+    interface IPlayers #PaleGreen
 }
 
 namespace MellowPlayer.Infrastructure {
-    interface IUpdater
-
     interface IApplication #PaleGreen {
         initialized: signal<void>
         started: signal<bool>
@@ -62,8 +58,34 @@ namespace MellowPlayer.Infrastructure {
 
 namespace MellowPlayer.Presentation {
     interface IQtApplication #PaleGreen {
+        setApplicationName(QString value)
+        setApplicationDisplayName(QString value)
+        setApplicationVersion(QString value)
+        setOrganizationDomain(QString value)
+        setOrganizationName(QString value)
+        setWindowIcon(const QIcon& icon)
+        exec()
+        exit(int returnCode)
+        installTranslator(QTranslator* translator)
+        setFont(const QFont& font)
+        --signals--
+        aboutToQuit
+        commitDataRequest
     }
     class QtApplication #PaleGreen {
+        + setApplicationName(QString value)
+        + setApplicationDisplayName(QString value)
+        + setApplicationVersion(QString value)
+        + setOrganizationDomain(QString value)
+        + setOrganizationName(QString value)
+        + setWindowIcon(const QIcon& icon)
+        + exec()
+        + exit(int returnCode)
+        + installTranslator(QTranslator* translator)
+        + setFont(const QFont& font)
+        --signals--
+        + aboutToQuit
+        + commitDataRequest
 
     }
     IQtApplication <|-- QtApplication
@@ -80,7 +102,7 @@ namespace MellowPlayer.Presentation {
         + restart()
     }
     MellowPlayer.Infrastructure.IApplication <|.. Application
-    ContextProperty <|.. Application
+    ContextProperty <|- Application
     Application -down-> IQtApplication
 
     interface IQmlApplicationEngine #PaleGreen {
@@ -117,13 +139,13 @@ namespace MellowPlayer.Presentation {
     IContextProperties <|.. ContextProperties
     ContextProperties --> IQmlApplicationEngine
 
-    interface IMainWindow {
+    interface IMainWindow #PaleGreen {
         load()
         show()
         hide()
     }
 
-    class MainWindow {
+    class MainWindow #PaleGreen {
         + name: QString
         + asQObject(): QObject*
         --
@@ -131,7 +153,7 @@ namespace MellowPlayer.Presentation {
         + show()
         + hide()
     }
-    IMainWindow <|... MainWindow
+    IMainWindow <|.up.. MainWindow
     ContextProperty <|-- MainWindow
 
     interface IMprisPlayer {
@@ -150,15 +172,36 @@ namespace MellowPlayer.Presentation {
 
 
 'note bottom
+'Refactoring steps:
 '
-'int main(argc, argv) {
-'    QApplication qtApp(argc, argv); // bound by instance in injector
-'    // dependency injector setup
-'    ...
-'    auto applicationFactory = injector.create<IApplicationFactory>();
-'    auto app = applicationFactory.create();
-'    return app->run();
-'}
+'- [ ] implement new classes
+'    - [x] IApplication
+'    - [x] ApplicationDecorator
+'    - [x] WithLogging
+'    - [x] WithCommandLineArguments
+'    - [x] Application
+'    - [x] IContextProperties
+'    - [x] ContextProperties
+'    - [x] IContextProperty
+'    - [x] ContextProperty
+'    - [x] IQtApplication
+'    - [x] QtApplication
+'    - [x] IMainWindow
+'    - [x] MainWindow
+'    - [x] IQmlApplicationEngine
+'    - [x] QmlApplicationEngine
+'    - [ ] SingleInstance
+'
+'- [ ] Copy some classes from infrastructure to presentation (and rename old one with a Deprecated prefix) and make them use IMainWindow instead of IDeprecatedMainWindow
+'    - [ ] Hotkeys
+'    - [ ] Mpris
+'
+'- [ ] bind IContextProperties and use them in all existing context properties, remove registration in MainWindowViewModel
+'- [ ] bind IApplication to a fully decorated instance
+'- [ ] Create Program class and use it in main
+'- [ ] Delete all deprecated classes, the application should now work as before but with a brand new internal design :-)
+'- [ ] Improve SingleInstance to fix some issues appearing sometime on linux (initial issue that motivated this refactoring)
+'
 '
 'end note
 

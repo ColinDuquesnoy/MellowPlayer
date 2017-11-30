@@ -31,9 +31,9 @@ namespace MellowPlayer::Presentation::Tests
             importPaths_.append(path);
         }
 
-        bool containsImportPath(const QString& path)
+        int importPathsCount()
         {
-            return importPaths_.contains(path);
+            return importPaths_.count();
         }
 
         void load(const QUrl& url) override
