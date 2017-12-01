@@ -48,8 +48,6 @@ function update() {
         results.duration = toSeconds(document.getElementsByClassName("js-duration")[0].lastChild.nodeValue);
         results.position = toSeconds(document.getElementsByClassName("js-progress")[0].lastChild.nodeValue);
         results.artUrl = playerInfoDiv.children[0].children[1].children[0].src;
-
-        console.warn(results.position + "/" + results.duration);
     }
 
     return results;
