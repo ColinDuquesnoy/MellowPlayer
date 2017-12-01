@@ -37,15 +37,19 @@ function update() {
     };
 
     if (isPlayerVisible()) {
+        var playerInfoDiv = document.getElementsByClassName("player")[0].children[1].children[0];
+
         results.playbackStatus = isPaused() ? mellowplayer.PlaybackStatus.PAUSED : mellowplayer.PlaybackStatus.PLAYING;
         results.canGoNext = !getButtons().next.disabled;
         results.canGoPrevious = !getButtons().previous.disabled;
-        results.songTitle = document.getElementsByClassName("player__text")[0].children[0].innerText;
-        results.artistName = document.getElementsByClassName("player__text")[0].children[1].innerText;
+        results.songTitle = playerInfoDiv.children[1].children[0].text;
+        results.artistName = playerInfoDiv.children[1].children[1].textContent;
         results.songId = getHashCode(results.songTitle);
-        results.position = toSeconds(document.getElementsByClassName("player__elapsed-time__progress")[0].innerText);
-        results.duration = toSeconds(document.getElementsByClassName("player__elapsed-time__duration")[0].innerText);
-        results.artUrl = document.getElementsByClassName("player__image-container")[0].children[0].src;
+        results.duration = toSeconds(document.getElementsByClassName("js-duration")[0].lastChild.nodeValue);
+        results.position = toSeconds(document.getElementsByClassName("js-progress")[0].lastChild.nodeValue);
+        results.artUrl = playerInfoDiv.children[0].children[1].children[0].src;
+
+        console.warn(results.position + "/" + results.duration);
     }
 
     return results;
