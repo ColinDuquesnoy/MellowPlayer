@@ -4,7 +4,7 @@
 #include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 #include <QApplication>
 #include <QTranslator>
-#include "QtApplication.hpp"
+#include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 
 class ApplicationStrings : public QObject
 {
@@ -22,7 +22,7 @@ namespace MellowPlayer::Presentation
     {
         Q_OBJECT
     public:
-        Application(IQtApplication& qtApplication, IContextProperties& contextProperties);
+        Application(Infrastructure::IQtApplication& qtApplication, IContextProperties& contextProperties);
 
         // ContextProperty
         QString name() const override;
@@ -45,7 +45,7 @@ namespace MellowPlayer::Presentation
         void registerMetaTypes();
         void setupFont();
 
-        IQtApplication& qtApp_;
+        Infrastructure::IQtApplication& qtApp_;
         QTranslator translator_;
         bool restartRequested_;
     };

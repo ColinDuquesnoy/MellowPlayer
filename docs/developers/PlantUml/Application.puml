@@ -54,41 +54,28 @@ namespace MellowPlayer.Infrastructure {
 
     }
     ApplicationDecorator <|-- WithLogging
+
+        interface IQtApplication #PaleGreen {
+            setApplicationName(QString value)
+            setApplicationDisplayName(QString value)
+            setApplicationVersion(QString value)
+            setOrganizationDomain(QString value)
+            setOrganizationName(QString value)
+            setWindowIcon(const QIcon& icon)
+            exec()
+            exit(int returnCode)
+            installTranslator(QTranslator* translator)
+            setFont(const QFont& font)
+            --signals--
+            aboutToQuit
+            commitDataRequest
+        }
+        class QtApplication #PaleGreen {
+        }
+        IQtApplication <|- QtApplication
 }
 
 namespace MellowPlayer.Presentation {
-    interface IQtApplication #PaleGreen {
-        setApplicationName(QString value)
-        setApplicationDisplayName(QString value)
-        setApplicationVersion(QString value)
-        setOrganizationDomain(QString value)
-        setOrganizationName(QString value)
-        setWindowIcon(const QIcon& icon)
-        exec()
-        exit(int returnCode)
-        installTranslator(QTranslator* translator)
-        setFont(const QFont& font)
-        --signals--
-        aboutToQuit
-        commitDataRequest
-    }
-    class QtApplication #PaleGreen {
-        + setApplicationName(QString value)
-        + setApplicationDisplayName(QString value)
-        + setApplicationVersion(QString value)
-        + setOrganizationDomain(QString value)
-        + setOrganizationName(QString value)
-        + setWindowIcon(const QIcon& icon)
-        + exec()
-        + exit(int returnCode)
-        + installTranslator(QTranslator* translator)
-        + setFont(const QFont& font)
-        --signals--
-        + aboutToQuit
-        + commitDataRequest
-
-    }
-    IQtApplication <|-- QtApplication
     class Application #PaleGreen {
         + quitRequested: signal<void>
         + requestQuit()
@@ -103,7 +90,7 @@ namespace MellowPlayer.Presentation {
     }
     MellowPlayer.Infrastructure.IApplication <|.. Application
     ContextProperty <|- Application
-    Application -down-> IQtApplication
+    Application -> MellowPlayer.Infrastructure.IQtApplication
 
     interface IQmlApplicationEngine #PaleGreen {
         setContextProperty(QString, QObject*)

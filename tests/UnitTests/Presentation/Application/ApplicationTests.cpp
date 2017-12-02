@@ -1,12 +1,13 @@
 #include <catch.hpp>
 #include <MellowPlayer/Domain/BuildConfig.hpp>
-#include <MellowPlayer/Presentation/Application/Application.hpp>
+#include <MellowPlayer/Presentation/Application.hpp>
 #include <QtTest/QSignalSpy>
-#include "FakeQtApplication.hpp"
+#include "UnitTests/Infrastructure/Application/FakeQtApplication.hpp"
 #include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Infrastructure::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Presentation::Tests;
 

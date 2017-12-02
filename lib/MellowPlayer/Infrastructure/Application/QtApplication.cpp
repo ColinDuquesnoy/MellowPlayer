@@ -3,7 +3,7 @@
 #include <QtQuickControls2/QQuickStyle>
 
 using namespace std;
-using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Infrastructure;
 
 QtApplication::QtApplication(int argc, char** argv)
         : qApplication_(argc, argv)

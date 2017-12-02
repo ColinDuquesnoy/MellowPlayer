@@ -2,8 +2,9 @@
 
 #include <QtGui/QFont>
 #include <QtGui/QIcon>
+#include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 
-namespace MellowPlayer::Presentation::Tests
+namespace MellowPlayer::Infrastructure::Tests
 {
     class FakeQtApplication: public IQtApplication
     {

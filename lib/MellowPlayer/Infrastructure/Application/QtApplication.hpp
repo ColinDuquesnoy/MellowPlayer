@@ -5,7 +5,7 @@
 class QTranslator;
 class QIcon;
 
-namespace MellowPlayer::Presentation
+namespace MellowPlayer::Infrastructure
 {
     class IQtApplication : public QObject
     {

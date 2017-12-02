@@ -7,11 +7,32 @@ namespace MellowPlayer::Infrastructure::Tests
     class FakeApplication: public IApplication
     {
     public:
-        void initialize() override;
-        int run() override;
-        void quit() override;
-        void restart() override;
-        void restoreWindow() override;
+        void initialize() override
+        {
+            isInitialized = true;
+            emit initialized();
+        }
+
+        int run() override
+        {
+            isRunning = true;
+            return returnCode;
+        }
+
+        void quit() override
+        {
+            quitRequested = true;
+        }
+
+        void restart() override
+        {
+            restartRequested = true;
+        }
+
+        void restoreWindow() override
+        {
+            restoreWindowRequested = true;
+        }
 
         int returnCode = 0;
         bool isInitialized = false;
