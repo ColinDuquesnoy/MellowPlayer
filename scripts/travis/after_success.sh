@@ -14,9 +14,13 @@ if [[ -n "$TRAVIS_TAG" ]] || [[ "$TRAVIS_BRANCH" == release* ]] || [[ "$TRAVIS_E
     # Full Build
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         sudo pip install -U github3.py;
+        # upload build artifacts to github
+        python ./scripts/upload.py ${tagName} dist/*;
+    else
+        # upload build artifacts to github
+        python2 ./scripts/upload.py ${tagName} dist/*;
     fi
-    # upload build artifacts to github
-    python ./scripts/upload.py ${tagName} dist/*;
+
 else
     # Commit Build
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
