@@ -1,4 +1,3 @@
-set(CMAKE_AUTOMOC OFF)
 add_definitions(-DBUILD_QXT_CORE -DBUILD_QXT_GUI -DQXT_STATIC)
 include_directories(SYSTEM ../3rdparty)
 
@@ -30,19 +29,18 @@ file(APPEND languages/languages.qrc "</RCC>\n")
 
 # Create main executable
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
-set(SOURCE_FILES main.cpp DI.hpp)
+set(SOURCE_FILES main.cpp Program.cpp Program.hpp DI.hpp)
 if(WIN32)
     set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
     configure_file(../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
 endif()
 add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS})
 target_link_libraries(${PROJECT_NAME}
-                      ${PROJECT_NAME}.Domain ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
+                      MellowPlayer.Domain
+                      MellowPlayer.Presentation
+                      MellowPlayer.Infrastructure
                       Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
-                      Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
-if (qxtglobalshortcut_FOUND)
-    target_link_libraries(${PROJECT_NAME} qxtglobalshortcut)
-endif()
+                      Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets qxtglobalshortcut)
 if (APPLE)
     add_framework(Carbon ${PROJECT_NAME})
     add_framework(Cocoa ${PROJECT_NAME})
@@ -65,11 +63,13 @@ endif()
 
 # add a console based executable for easier debugging
 if (WIN32)
-    add_executable(${PROJECT_NAME}.Console MACOSX_BUNDLE ${SOURCE_FILES})
-    target_link_libraries(${PROJECT_NAME}.Console
-                          ${PROJECT_NAME}.Domain ${PROJECT_NAME}.Presentation ${PROJECT_NAME}.Infrastructure
+    add_executable(MellowPlayer.Console MACOSX_BUNDLE ${SOURCE_FILES})
+    target_link_libraries(MellowPlayer.Console
+                          MellowPlayer.Domain
+                          MellowPlayer.Presentation
+                          MellowPlayer.Infrastructure
                           Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::QuickControls2
-                          Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets)
+                          Qt5::Sql Qt5::Svg Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Widgets qxtglobalshortcut)
 endif()
 
 install(TARGETS ${PROJECT_NAME}

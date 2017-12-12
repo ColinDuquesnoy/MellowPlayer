@@ -13,7 +13,7 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
 {
     auto mock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(mock.get(), watcherMock.get());
+    StreamingServices streamingServices(mock.get(), watcherMock.get());
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer currentPlayer(players, streamingServices);
@@ -41,7 +41,7 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
     Player& player2 = *players.get(streamingServices.toList()[1]->name());
     streamingServices.setCurrent(streamingServices.toList()[0].get());
 
-    QSignalSpy currentSongChanged(&currentPlayer, SIGNAL(currentSongChanged(Song*)));
+    QSignalSpy currentSongChanged(&currentPlayer, &CurrentPlayer::currentSongChanged);
     QSignalSpy positionChanged(&currentPlayer, SIGNAL(positionChanged()));
     QSignalSpy playbackStatusChanged(&currentPlayer, SIGNAL(playbackStatusChanged()));
     QSignalSpy canSeekChanged(&currentPlayer, SIGNAL(canSeekChanged()));

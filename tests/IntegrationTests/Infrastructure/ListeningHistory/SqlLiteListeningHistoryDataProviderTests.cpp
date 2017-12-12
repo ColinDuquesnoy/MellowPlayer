@@ -1,5 +1,5 @@
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDatabase.hpp>
 #include <QDir>
 #include <catch.hpp>
 
@@ -8,9 +8,9 @@ using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
 {
-    QString dbPath = SqlLiteListeningHistoryDataProvider::getDatabasePath();
+    QString dbPath = SqlLiteListeningHistoryDatabase::getDatabasePath();
     QDir().remove(dbPath);
-    SqlLiteListeningHistoryDataProvider dataProvider;
+    SqlLiteListeningHistoryDatabase dataProvider;
     dataProvider.initialize();
     dataProvider.clear();
 

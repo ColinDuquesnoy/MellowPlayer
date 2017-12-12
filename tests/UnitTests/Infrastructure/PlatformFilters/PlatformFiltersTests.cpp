@@ -1,8 +1,8 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <QObject>
-#include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilters.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilterFactory.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilters.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilterFactory.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/AppImageFilter.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/AppImageFilter.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

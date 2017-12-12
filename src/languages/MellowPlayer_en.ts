@@ -1239,17 +1239,17 @@ listened to will appear here...</source>
 <context>
     <name>UpdateChannelStringer</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Domain/Updater/UpdateChannel.hpp" line="21"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="21"/>
         <source>Stable</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Domain/Updater/UpdateChannel.hpp" line="25"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="25"/>
         <source>Beta</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Domain/Updater/UpdateChannel.hpp" line="29"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="29"/>
         <source>Continuous</source>
         <translation></translation>
     </message>

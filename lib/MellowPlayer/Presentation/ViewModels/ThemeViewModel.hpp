@@ -3,11 +3,12 @@
 #include <MellowPlayer/Domain/Theme/Theme.hpp>
 #include <QMap>
 #include <QObject>
+#include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 
 namespace MellowPlayer::Domain
 {
     class StreamingService;
-    class StreamingServicesController;
+    class StreamingServices;
     class Setting;
     class Settings;
     class IThemeLoader;
@@ -15,7 +16,7 @@ namespace MellowPlayer::Domain
 
 namespace MellowPlayer::Presentation
 {
-    class ThemeViewModel : public QObject
+    class ThemeViewModel : public QObject, public ContextProperty
     {
         Q_OBJECT
         Q_PROPERTY(bool dark READ isDark NOTIFY isDarkChanged)
@@ -27,8 +28,10 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString secondary READ secondary NOTIFY secondaryChanged)
         Q_PROPERTY(QString secondaryForeground READ secondaryForeground NOTIFY secondaryForegroundChanged)
     public:
-        ThemeViewModel(Domain::StreamingServicesController& streamingServices, Domain::Settings& settings,
-                       Domain::IThemeLoader& themeLoader);
+        ThemeViewModel(Domain::StreamingServices& streamingServices,
+                       Domain::Settings& settings,
+                       Domain::IThemeLoader& themeLoader,
+                       IContextProperties& contextProperties);
 
         bool isDark() const;
         QString accent() const;
@@ -72,7 +75,7 @@ namespace MellowPlayer::Presentation
         void fromTheme(const Domain::Theme& newTheme);
         void collectThemes();
 
-        Domain::StreamingServicesController& streamingServices_;
+        Domain::StreamingServices& streamingServices_;
         Domain::IThemeLoader& loader_;
         Domain::Setting& accentColorSetting_;
         Domain::Setting& themeSetting_;

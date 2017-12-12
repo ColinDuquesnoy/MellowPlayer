@@ -39,7 +39,7 @@ namespace MellowPlayer.Infrastructure {
 
     IApplication <|.. ApplicationDecorator
 
-    class SingleInstance {
+    class SingleInstance #PaleGreen {
         + initialize()
         + run()
     }
@@ -80,9 +80,6 @@ namespace MellowPlayer.Presentation {
         + quitRequested: signal<void>
         + requestQuit()
         --
-        + name: QString
-        + asQObject(): QObject*
-        --
         + initialize()
         + run()
         + quit()
@@ -106,12 +103,13 @@ namespace MellowPlayer.Presentation {
     IQmlApplicationEngine <|.. QmlApplicationEngine
 
     interface IContextProperty #PaleGreen {
-        name: QString
-        asQObject(): QObject*
+        void initialize(IQmlApplicationEngine&)
     }
 
     class ContextProperty #PaleGreen {
-        + ContextProperty(IContextProperties)
+        - name: QString
+        - propertyObject: QObject*
+        void initialize(IQmlApplicationEngine&)
     }
     IContextProperty <|.. ContextProperty
     ContextProperty .up.> IContextProperties
@@ -133,9 +131,6 @@ namespace MellowPlayer.Presentation {
     }
 
     class MainWindow #PaleGreen {
-        + name: QString
-        + asQObject(): QObject*
-        --
         + load()
         + show()
         + hide()
@@ -177,13 +172,13 @@ namespace MellowPlayer.Presentation {
 '    - [x] MainWindow
 '    - [x] IQmlApplicationEngine
 '    - [x] QmlApplicationEngine
-'    - [ ] SingleInstance
+'    - [x] SingleInstance
+'
+'- [ ] bind IContextProperties and use them in all existing context properties, remove registration in MainWindowViewModel
 '
 '- [ ] Copy some classes from infrastructure to presentation (and rename old one with a Deprecated prefix) and make them use IMainWindow instead of IDeprecatedMainWindow
 '    - [ ] Hotkeys
 '    - [ ] Mpris
-'
-'- [ ] bind IContextProperties and use them in all existing context properties, remove registration in MainWindowViewModel
 '- [ ] bind IApplication to a fully decorated instance
 '- [ ] Create Program class and use it in main
 '- [ ] Delete all deprecated classes, the application should now work as before but with a brand new internal design :-)

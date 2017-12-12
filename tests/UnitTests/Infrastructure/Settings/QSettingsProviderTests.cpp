@@ -1,4 +1,4 @@
-#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 #include <MellowPlayer/Infrastructure/Settings/QSettingsStore.hpp>
 #include <catch.hpp>
 

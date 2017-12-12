@@ -3,8 +3,8 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Player.hpp>
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Presentation/Mpris/Linux/Mpris2Player.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
@@ -12,14 +12,14 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 
 using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Presentation;
 
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
 {
     auto loaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(loaderMock.get(), watcherMock.get());
+    StreamingServices streamingServices(loaderMock.get(), watcherMock.get());
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.toList()[0].get());
     Players players(streamingServices);

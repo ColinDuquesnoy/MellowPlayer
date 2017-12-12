@@ -19,6 +19,11 @@ namespace MellowPlayer::Domain::Tests
             return name_;
         }
 
+        void setLogLevel(LogLevel) override
+        {
+
+        }
+
     private:
         std::string name_;
     };

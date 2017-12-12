@@ -2,12 +2,15 @@
 #include <QApplication>
 #include <QClipboard>
 #include <catch.hpp>
+#include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 
 TEST_CASE("ClipBoardViewModelTests")
 {
-    ClipBoardViewModel clipBoardViewModel;
+    FakeContextProperties contextProperties;
+    ClipBoardViewModel clipBoardViewModel(contextProperties);
     QClipboard* clipboard = qApp->clipboard();
     clipboard->clear();
     REQUIRE(clipboard->text() == "");

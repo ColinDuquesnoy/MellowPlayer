@@ -1,55 +1,41 @@
 #pragma once
 
-#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
-#include <MellowPlayer/Presentation/ViewModels/ClipBoardViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsViewModel.hpp>
-#include <QtQml/QQmlApplicationEngine>
-#include "DevToolsWindowViewModel.hpp"
-
-namespace MellowPlayer::Domain
-{
-    class Settings;
-    class ILogger;
-    class IPlayer;
-    class IDeprecatedQtApplication;
-}
+#include <MellowPlayer/Presentation/IMainWindow.hpp>
+#include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
+#include <QObject>
 
 namespace MellowPlayer::Presentation
 {
-    class ListeningHistoryViewModel;
-    class StreamingServicesControllerViewModel;
-    class ThemeViewModel;
-    class UpdaterViewModel;
+    class IQmlApplicationEngine;
 
-    class MainWindowViewModel : public QObject, public Domain::IDeprecatedMainWindow
+    class MainWindowViewModel: public IMainWindow, public ContextProperty
     {
         Q_OBJECT
         Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     public:
-        MainWindowViewModel(StreamingServicesControllerViewModel& streamingServicesModel, ListeningHistoryViewModel& listeningHistoryModel,
-                            ThemeViewModel& themeViewModel, UpdaterViewModel& updaterViewModel, Domain::IDeprecatedQtApplication& qtApp,
-                            Domain::IPlayer& player, Domain::Settings& settings);
-        bool load() override;
+        MainWindowViewModel(IContextProperties& contextProperties, IQmlApplicationEngine& qmlApplicationEngine);
+
+        // IMainWindow implementation
+        void load() override;
         void show() override;
         void hide() override;
+
+        // Properties for QML
         bool isVisible() const;
+
+        Q_INVOKABLE void requestQuit() override;
+
+    signals:
+        void quitRequest();
+
+    public slots:
+        void setVisible(bool visible);
 
     signals:
         void visibleChanged();
 
-    private slots:
-        void setVisible(bool value);
-
     private:
-        bool visible_ = false;
-        Domain::ILogger& logger_;
-        Domain::Settings& settings_;
-        StreamingServicesControllerViewModel& streamingServices_;
-        ListeningHistoryViewModel& listeningHistory_;
-        QQmlApplicationEngine qmlApplicationEngine_;
-        ClipBoardViewModel clipBoardModel_;
-        SettingsViewModel settingsViewModel_;
-        UpdaterViewModel& updaterViewModel_;
-        DevToolsWindowViewModel devToolsWindowViewModel;
+        IQmlApplicationEngine& qmlApplicationEngine_;
+        bool visible_;
     };
 }

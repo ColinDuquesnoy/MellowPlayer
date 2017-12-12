@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -15,17 +15,20 @@
 #define __BOOST_DI_UNUSED __attribute__((unused))
 #define __BOOST_DI_DEPRECATED(...) [[deprecated(__VA_ARGS__)]]
 #define __BOOST_DI_TYPE_WKND(T)
+#define __BOOST_DI_ACCESS_WKND private
 #elif defined(__GNUC__)  // gcc
 #define __GCC__
 #define __BOOST_DI_UNUSED __attribute__((unused))
 #define __BOOST_DI_DEPRECATED(...) [[deprecated(__VA_ARGS__)]]
 #define __BOOST_DI_TYPE_WKND(T)
+#define __BOOST_DI_ACCESS_WKND private
 #elif defined(_MSC_VER)  // msvc
 #define __MSVC__
 #define __has_include(...) 0
 #define __BOOST_DI_UNUSED
 #define __BOOST_DI_DEPRECATED(...) __declspec(deprecated(__VA_ARGS__))  // error C2059: syntax error: '<L_ATTRIBUTE_SPECIFIER>'
 #define __BOOST_DI_TYPE_WKND(T) (T &&)
+#define __BOOST_DI_ACCESS_WKND public
 #endif
 
 #if !defined(__has_builtin)

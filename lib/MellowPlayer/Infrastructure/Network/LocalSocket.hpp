@@ -18,16 +18,16 @@ namespace MellowPlayer::Infrastructure
 
     signals:
         void connected();
+        void disconnected();
         void error();
         void readyRead();
     };
 
     class LocalSocket: public ILocalSocket
     {
+        Q_OBJECT;
     public:
         LocalSocket();
-
-        virtual ~LocalSocket();
 
         void connectToServer(const QString& name, QIODevice::OpenMode openMode) override;
         void disconnectFromServer() override;
@@ -36,6 +36,8 @@ namespace MellowPlayer::Infrastructure
         void setQLocalSocket(QLocalSocket* localSocket) override;
 
     private:
+        void initSignals();
+
         QLocalSocket* qLocalSocket_;
     };
 }

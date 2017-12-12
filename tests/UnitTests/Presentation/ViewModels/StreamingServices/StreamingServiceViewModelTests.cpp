@@ -1,7 +1,7 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
@@ -14,7 +14,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 {
     DependencyPool pool;
     Players& players = pool.getPlayers();
-    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
 
     ISettingsStore& settingsStore = pool.getSettingsStore();

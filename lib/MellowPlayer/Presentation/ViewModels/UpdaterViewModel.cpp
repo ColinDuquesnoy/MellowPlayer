@@ -1,12 +1,15 @@
 #include "UpdaterViewModel.hpp"
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
-#include <MellowPlayer/Domain/Updater/Release.hpp>
-#include <MellowPlayer/Domain/Updater/Updater.hpp>
+#include <MellowPlayer/Infrastructure/Updater/Release.hpp>
+#include <MellowPlayer/Infrastructure/Updater/Updater.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
-UpdaterViewModel::UpdaterViewModel(Updater& updater) : updater_(updater)
+UpdaterViewModel::UpdaterViewModel(Updater& updater, IContextProperties& contextProperties)
+        : ContextProperty("_updater", this, contextProperties),
+          updater_(updater)
 {
     connect(&updater, &Updater::updateAvailable, this, &UpdaterViewModel::onUpdateAvailable);
     connect(&updater, &Updater::noUpdateAvailable, this, &UpdaterViewModel::onNoUpdateAvailable);

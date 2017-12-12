@@ -20,8 +20,18 @@ namespace MellowPlayer::Infrastructure::Tests
 
         bool listen() override
         {
-            isListening = true;
+            isListening_ = true;
             return true;
+        }
+
+        bool isListening() const override
+        {
+            return isListening_;
+        }
+
+        QString serverSocketFilePath() const override
+        {
+            return "";
         }
 
         std::unique_ptr<ILocalSocket> nextPendingConnection() override
@@ -32,17 +42,22 @@ namespace MellowPlayer::Infrastructure::Tests
         }
 
         bool closed = false;
-        bool isListening = false;
         FakeLocalSocket* newConnectionSocket;
+
+    private:
+        bool isListening_ = false;
     };
 
     class FakeLocalServerFactory: public IFactory<ILocalServer, QString>
     {
     public:
-        std::unique_ptr<ILocalServer> create(QString&&) override
+        std::unique_ptr<ILocalServer> create(QString&&) const override
         {
             auto localServer = std::make_unique<FakeLocalServer>();
-            lastServerCreated = localServer.get();
+
+            auto nonConstThis = const_cast<FakeLocalServerFactory*>(this);
+            nonConstThis->lastServerCreated = localServer.get();
+
             return std::move(localServer);
         }
 

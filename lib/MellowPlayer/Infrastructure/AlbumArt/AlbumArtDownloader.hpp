@@ -2,7 +2,7 @@
 
 #include "MellowPlayer/Infrastructure/Helpers/Base64Helper.hpp"
 #include <MellowPlayer/Domain/AlbumArt/IAlbumArtDownloader.hpp>
-#include <MellowPlayer/Infrastructure/FileDownloader.hpp>
+#include <MellowPlayer/Infrastructure/Network/FileDownloader.hpp>
 #include <QFileInfo>
 
 namespace MellowPlayer::Domain

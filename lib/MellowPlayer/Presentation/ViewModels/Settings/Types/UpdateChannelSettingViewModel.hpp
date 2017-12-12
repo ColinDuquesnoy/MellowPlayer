@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Domain/Updater/UpdateChannel.hpp>
+#include <MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp>
 
 namespace MellowPlayer::Presentation
 {

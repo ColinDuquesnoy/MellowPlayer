@@ -1,7 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceLoader.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilters.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilters.hpp>
 
 namespace MellowPlayer::Domain
 {

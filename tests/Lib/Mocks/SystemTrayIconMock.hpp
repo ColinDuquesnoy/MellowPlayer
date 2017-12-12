@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Notifications/ISystemTrayIcon.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Presentation;
 using namespace fakeit;
 
 class SystemTrayIconMock

@@ -2,7 +2,7 @@
 #include "Song.hpp"
 #include <QVariantMap>
 #include <QTimer>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
@@ -13,7 +13,7 @@ using namespace MellowPlayer::Domain;
 using namespace std;
 
 Player::Player(StreamingService& streamingService)
-        : logger_(LoggingManager::logger("Player-" + streamingService.name().toStdString())),
+        : logger_(Loggers::logger("Player-" + streamingService.name().toStdString())),
           currentSong_(nullptr),
           streamingService_(streamingService),
           streamingServiceScript_(*streamingService.script()),

@@ -1,12 +1,14 @@
 #include "SingleInstance.hpp"
 #include "QtApplication.hpp"
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalServer.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalSocket.hpp>
+#include <QtCore/QDir>
+#include <QtCore/QTimer>
 
 using namespace std;
 using namespace MellowPlayer::Domain;
@@ -18,20 +20,21 @@ const QString SingleInstance::previousAction_ = "previous";
 const QString SingleInstance::restoreWindowAction_ = "restore-window";
 const QString SingleInstance::toggleFavoriteAction_ = "toggle-favorite";
 
-SingleInstance::SingleInstance(IApplication& application,
+SingleInstance::SingleInstance(const std::shared_ptr<IApplication>& application,
                                IQtApplication& qtApplication,
                                IPlayer& currentPlayer,
                                ICommandLineArguments& commandLineArguments,
                                IFactory<ILocalServer, QString>& localServerFactory,
                                IFactory<ILocalSocket>& localSocketFactory)
         : ApplicationDecorator(application),
-          logger_(LoggingManager::logger("SingleInstance")),
+          logger_(Loggers::logger("SingleInstance")),
           qtApplication_(qtApplication),
           currentPlayer_(currentPlayer),
           commandLineArguments_(commandLineArguments),
           localServerFactory_(localServerFactory),
           localSocketFactory_(localSocketFactory),
-          lockFile_(QDir::tempPath() + QDir::separator() + qApp->applicationName() + ".lock"),
+          lockFilePath_(QDir::tempPath() + QDir::separator() + qApp->applicationName() + ".lock"),
+          lockFile_(lockFilePath_),
           isPrimary_(false)
 {
     lockFile_.setStaleLockTime(0);
@@ -39,10 +42,11 @@ SingleInstance::SingleInstance(IApplication& application,
 
 void SingleInstance::initialize()
 {
+    LOG_DEBUG(logger_, "lock file: " << lockFilePath_)
     if (lockFile_.tryLock(100)) {
         LOG_DEBUG(logger_, "Initializing primary application");
         isPrimary_ = true;
-        application_.initialize();
+        ApplicationDecorator::initialize();
     }
 }
 
@@ -59,15 +63,23 @@ bool SingleInstance::isPrimary() const
 int SingleInstance::runPrimaryApplication()
 {
     LOG_DEBUG(logger_, "Running primary application");
-    
+
+
     localServer_ = localServerFactory_.create(qApp->applicationName());
-    connect(localServer_.get(), &ILocalServer::newConnection, this, &SingleInstance::onSecondaryApplicationConnection);
+    connect(localServer_.get(), &ILocalServer::newConnection, this, &SingleInstance::onSecondaryApplicationConnected);
     localServer_->listen();
 
-    return application_.run();
+    connect(&pollStateTimer_, &QTimer::timeout, this, &SingleInstance::pollState);
+    pollStateTimer_.setInterval(1000);
+    pollStateTimer_.start();
+
+    auto retCode = ApplicationDecorator::run();
+    localServer_->close();
+    lockFile_.unlock();
+    return retCode;
 }
 
-void SingleInstance::onSecondaryApplicationConnection()
+void SingleInstance::onSecondaryApplicationConnected()
 {
     LOG_DEBUG(logger_, "Another application was started, showing this one instead");
     localSocket_ = localServer_->nextPendingConnection();    
@@ -88,7 +100,7 @@ void SingleInstance::onSecondaryApplicationActionRequest()
     else if (action == toggleFavoriteAction_)
         currentPlayer_.toggleFavoriteSong();
     else
-        application_.restoreWindow();
+        application_->restoreWindow();
 }
 
 int SingleInstance::runSecondaryApplication()
@@ -96,26 +108,30 @@ int SingleInstance::runSecondaryApplication()
     LOG_DEBUG(logger_, "Running secondary application");
     
     localSocket_ = localSocketFactory_.create();
-    localSocket_->connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
     connect(localSocket_.get(), &ILocalSocket::connected, this, &SingleInstance::onConnectedToPrimaryApplication);
     connect(localSocket_.get(), &ILocalSocket::error, this, &SingleInstance::onConnectionErrorWithPrimaryApplication);
+    localSocket_->connectToServer(qApp->applicationName(), QIODevice::WriteOnly);
 
-    return qtApplication_.exec();
+    auto retCode = qtApplication_.run();
+
+    localSocket_->disconnectFromServer();
+
+    return retCode;
 }
 
 void SingleInstance::onConnectedToPrimaryApplication()
 {
-    LOG_INFO(logger_, "connection with the primary application succeeded, transmitting command line arguments "
-            "and quitting...");
+    LOG_DEBUG(logger_, "connection with the primary application succeeded");
     QString action = requestedAcion();
+    LOG_DEBUG(logger_, "sending action: " << action);
     localSocket_->write(action + "\n");
-    qtApplication_.exit(1);
+    QTimer::singleShot(1, [&](){ qtApplication_.exit(1); } );
 }
 
 void SingleInstance::onConnectionErrorWithPrimaryApplication()
 {
-    LOG_INFO(logger_, "could not connect to the primary application, quitting...");
-    qtApplication_.exit(2);
+    LOG_DEBUG(logger_, "could not connect to the primary application, quitting...");
+    QTimer::singleShot(1, [&](){ qtApplication_.exit(2); } );
 }
 
 QString SingleInstance::requestedAcion() const
@@ -129,4 +145,23 @@ QString SingleInstance::requestedAcion() const
     else if (commandLineArguments_.toggleFavoriteRequested())
         return toggleFavoriteAction_;
     return restoreWindowAction_;
+}
+
+void SingleInstance::pollState()
+{
+    QFileInfo lockFile(lockFilePath_);
+    if (!lockFile.exists()) {
+        LOG_WARN(logger_, "lock file disappeared, trying to restore lock");
+        if (lockFile_.tryLock(100))
+            LOG_INFO(logger_, "lock restored");
+    }
+
+    QFileInfo serverFile(localServer_->serverSocketFilePath());
+    if (!serverFile.exists()) {
+        LOG_WARN(logger_, "server file diseappeared, trying to restore local server");
+        localServer_->close();
+        if (localServer_->listen())
+        LOG_INFO(logger_, "local server restored");;
+    }
+
 }

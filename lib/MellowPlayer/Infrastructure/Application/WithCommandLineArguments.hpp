@@ -9,7 +9,7 @@ namespace MellowPlayer::Infrastructure
     class WithCommandLineArguments: public ApplicationDecorator
     {
     public:
-        WithCommandLineArguments(IApplication& application, ICommandLineArguments& commandLineArguments);
+        WithCommandLineArguments(const std::shared_ptr<IApplication>& application, ICommandLineArguments& commandLineArguments);
 
         void initialize() override;
 

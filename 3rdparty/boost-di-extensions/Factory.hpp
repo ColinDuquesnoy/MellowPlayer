@@ -18,7 +18,7 @@ namespace di = boost::di;
 template <class T, class... TArgs>
 struct IFactory {
     virtual ~IFactory() noexcept = default;
-    virtual std::unique_ptr<T> create(TArgs&&...) = 0;
+    virtual std::unique_ptr<T> create(TArgs&&...) const = 0;
 };
 
 template <class, class, class>
@@ -28,7 +28,7 @@ template <class TInjector, class T, class I, class... TArgs>
 struct factory_impl<TInjector, T, IFactory<I, TArgs...>> : IFactory<I, TArgs...> {
     explicit factory_impl(const TInjector& injector) : injector_((TInjector&)injector) {}
 
-    std::unique_ptr<I> create(TArgs&&... args) override {
+    std::unique_ptr<I> create(TArgs&&... args) const override {
         // clang-format off
         auto injector = di::make_injector(
                 std::move(injector_)

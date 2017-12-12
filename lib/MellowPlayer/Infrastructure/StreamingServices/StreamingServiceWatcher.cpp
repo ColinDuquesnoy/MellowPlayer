@@ -2,7 +2,7 @@
 #include "StreamingServiceLoader.hpp"
 #include <QtCore/QDir>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 
@@ -10,7 +10,7 @@ using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-StreamingServiceWatcher::StreamingServiceWatcher() : logger_(LoggingManager::logger("StreamingServiceWatcher"))
+StreamingServiceWatcher::StreamingServiceWatcher() : logger_(Loggers::logger("StreamingServiceWatcher"))
 {
     connect(&fileSystemWatcher_, &QFileSystemWatcher::fileChanged, this, &StreamingServiceWatcher::onFileChanged);
 }

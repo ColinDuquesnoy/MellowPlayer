@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -41,8 +41,9 @@ using wrapper_traits_t = typename wrapper_traits<T>::type;
 __BOOST_DI_HAS_TYPE(has_result_type, result_type);
 
 template <class TGiven, class TProvider, class... Ts>
-struct is_expr : aux::integral_constant<bool, aux::is_callable_with<TGiven, typename TProvider::injector_t, Ts...>::value &&
-                                                  !has_result_type<TGiven>::value> {};
+struct is_expr : aux::integral_constant<bool,
+                                        aux::is_callable_with<TGiven, typename TProvider::injector_t, Ts...>::value &&
+                                            !has_result_type<TGiven>::value> {};
 
 }  // detail
 
@@ -171,20 +172,20 @@ class instance {
     template <class T, class, class TProvider,
               __BOOST_DI_REQUIRES(!detail::is_expr<TGiven, TProvider>::value && aux::is_callable_with<TGiven>::value &&
                                   !aux::is_callable<TExpected>::value) = 0>
-    auto create(const TProvider&) const noexcept {
+    auto create(const TProvider&) const {
       using wrapper = detail::wrapper_traits_t<decltype(aux::declval<TGiven>()())>;
       return wrapper{object_()};
     }
 
     template <class, class, class TProvider, __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider>::value) = 0>
-    auto create(const TProvider& provider) noexcept {
+    auto create(const TProvider& provider) {
       using wrapper = detail::wrapper_traits_t<decltype((object_)(*provider.injector_))>;
       return wrapper{(object_)(*provider.injector_)};
     }
 
     template <class T, class, class TProvider,
               __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider, const detail::arg<T, TExpected, TGiven>&>::value) = 0>
-    auto create(const TProvider& provider) noexcept {
+    auto create(const TProvider& provider) {
       using wrapper = detail::wrapper_traits_t<decltype((object_)(*provider.injector_, detail::arg<T, TExpected, TGiven>{}))>;
       return wrapper{(object_)(*provider.injector_, detail::arg<T, TExpected, TGiven>{})};
     }
@@ -200,7 +201,7 @@ class instance {
     template <class TName, class T>
     struct injector__<named<TName, T>> {
       T (*f)(const injector__*) = nullptr;
-      explicit injector__(const decltype(f)& ptr) : f(ptr) {}
+      explicit injector__(const decltype(f) & ptr) : f(ptr) {}
     };
 
     struct injector : injector__<Ts>... {

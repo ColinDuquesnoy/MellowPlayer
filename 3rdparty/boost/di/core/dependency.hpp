@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -7,6 +7,7 @@
 #ifndef BOOST_DI_CORE_DEPENDENCY_HPP
 #define BOOST_DI_CORE_DEPENDENCY_HPP
 
+#include "boost/di/aux_/compiler.hpp"
 #include "boost/di/aux_/type_traits.hpp"
 #include "boost/di/aux_/utility.hpp"
 #include "boost/di/concepts/boundable.hpp"
@@ -17,16 +18,6 @@
 #include "boost/di/scopes/instance.hpp"
 
 namespace core {
-
-template<class> struct resolve_me;
-
-template <class, class, class>
-struct resolve__;
-
-template <class TBinder, class TDeps, template <class...> class T, class... Ts>
-struct resolve__<TBinder, TDeps, T<Ts...>> {
-  using type = T<typename TBinder::template resolve_t<TDeps, Ts, no_name>::template given_t<TBinder, TDeps>...>;
-};
 
 template <class, class>
 struct dependency_concept {};
@@ -57,15 +48,15 @@ struct override {};
 template <class TScope, class TExpected, class TGiven, class TName, class TPriority>
 class dependency
     : dependency_base,
-      TScope::template scope<TExpected, TGiven>,
+      __BOOST_DI_ACCESS_WKND TScope::template scope<TExpected, TGiven>,
       public dependency_impl<dependency_concept<TExpected, TName>, dependency<TScope, TExpected, TGiven, TName, TPriority>> {
   template <class, class, class, class, class>
   friend class dependency;
   using scope_t = typename TScope::template scope<TExpected, TGiven>;
 
   template <class T>
-  using externable = aux::integral_constant<bool, aux::always<T>::value && aux::is_same<TScope, scopes::deduce>::value &&
-                                                      aux::is_same<TExpected, TGiven>::value>;
+  using externable = aux::integral_constant<
+      bool, aux::always<T>::value && aux::is_same<TScope, scopes::deduce>::value && aux::is_same<TExpected, TGiven>::value>;
 
   template <class T>
   struct ref_traits {
@@ -104,27 +95,13 @@ class dependency
   using scope = TScope;
   using expected = TExpected;
   using given = TGiven;
-
-  template<class, class, class T>
-  struct resolve_impl {
-    using type = T;
-  };
-
-  template<class TBinder, class TDeps, class T>
-  struct resolve_impl<TBinder, TDeps, resolve_me<T>> {
-    using type = typename resolve__<TBinder, TDeps, T>::type;
-  };
-
-  template<class TBinder, class TDeps>
-  using given_t = typename resolve_impl<TBinder, TDeps, given>::type;
-
   using name = TName;
   using priority = TPriority;
 
   dependency() noexcept {}
 
   template <class T>
-  explicit dependency(T&& object) noexcept : scope_t(static_cast<T&&>(object)) { }
+  explicit dependency(T&& object) noexcept : scope_t(static_cast<T&&>(object)) {}
 
   template <class T, __BOOST_DI_REQUIRES(aux::is_same<TName, no_name>::value && !aux::is_same<T, no_name>::value) = 0>
   auto named() noexcept {
@@ -168,9 +145,17 @@ class dependency
     return dependency{static_cast<T&&>(object)};
   }
 
+  template <class TConcept, class T, __BOOST_DI_REQUIRES(externable<T>::value) = 0,
+            __BOOST_DI_REQUIRES_MSG(concepts::boundable<deduce_traits_t<TExpected, T>, aux::decay_t<T>, aux::valid<>>) = 0>
+  auto to(T&& object) noexcept {
+    using dependency = dependency<scopes::instance, deduce_traits_t<concepts::any_of<TExpected, TConcept>, T>,
+                                  typename ref_traits<T>::type, TName, TPriority>;
+    return dependency{static_cast<T&&>(object)};
+  }
+
   template <template <class...> class T>
   auto to() noexcept {
-    return dependency<TScope, TExpected, resolve_me<T<>>, TName, TPriority>{};
+    return dependency<TScope, TExpected, aux::identity<T<>>, TName, TPriority>{};
   }
 
   template <class...>
@@ -184,7 +169,11 @@ class dependency
   dependency& operator()() noexcept { return *this; }
 #endif  // __pph__
 
+#if defined(__MSVC__)  // __pph__
+ public:
+#else   // __pph__
  protected:
+#endif  // __pph__
   using scope_t::is_referable;
   using scope_t::create;
   using scope_t::try_create;

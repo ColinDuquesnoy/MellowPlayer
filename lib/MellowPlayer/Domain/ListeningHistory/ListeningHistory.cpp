@@ -3,14 +3,14 @@
 #include <QSet>
 #include <QVariant>
 #include <algorithm>
-#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDatabase.hpp>
 #include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
-#include <MellowPlayer/Domain/TimeLimits.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/TimeLimits.hpp>
 #include <MellowPlayer/Domain/IWorkDispatcher.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/Player/Song.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
@@ -19,8 +19,8 @@
 
 using namespace MellowPlayer::Domain;
 
-ListeningHistory::ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings)
-        : logger(LoggingManager::logger("ListeningHistory")),
+ListeningHistory::ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings)
+        : logger(Loggers::logger("ListeningHistory")),
           dataProvider(model),
           player(player),
           workDispatcher(workDispatcher),

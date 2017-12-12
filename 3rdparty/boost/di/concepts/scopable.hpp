@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -36,7 +36,7 @@ struct provider__ {
 template <class T>
 typename scope<T>::template requires_<typename scope<_, _>::is_referable, typename scope<_, _>::try_create,
                                       typename scope<_, _>::create>
-    scopable_impl(...);
+scopable_impl(...);
 
 template <class T>
 auto scopable_impl(T &&)

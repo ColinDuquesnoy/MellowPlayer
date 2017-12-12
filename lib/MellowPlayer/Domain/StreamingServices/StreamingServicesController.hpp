@@ -11,12 +11,12 @@ namespace MellowPlayer::Domain
     class IStreamingServiceWatcher;
     class StreamingService;
 
-    class StreamingServicesController : public QObject
+    class StreamingServices : public QObject
     {
         Q_OBJECT
         Q_PROPERTY(Domain::StreamingService* currentService READ current WRITE setCurrent NOTIFY currentChanged)
     public:
-        StreamingServicesController(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher);
+        StreamingServices(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher);
 
         void load();
         Domain::StreamingService& get(const QString& name) const;

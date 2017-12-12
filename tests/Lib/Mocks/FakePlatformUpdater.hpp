@@ -1,13 +1,13 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Updater/AbstractPlatformUpdater.hpp>
+#include <MellowPlayer/Infrastructure/Updater/AbstractPlatformUpdater.hpp>
 
 namespace MellowPlayer::Tests
 {
-    class FakePlatformUpdater : public Domain::AbstractPlatformUpdater
+    class FakePlatformUpdater : public Infrastructure::AbstractPlatformUpdater
     {
     public:
-        FakePlatformUpdater(Domain::IFileDownloader& fileDownloader) : Domain::AbstractPlatformUpdater(fileDownloader)
+        FakePlatformUpdater(IFileDownloader& fileDownloader) : Infrastructure::AbstractPlatformUpdater(fileDownloader)
         {
         }
 

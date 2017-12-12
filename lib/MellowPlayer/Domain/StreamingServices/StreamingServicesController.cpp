@@ -2,7 +2,7 @@
 #include "IStreamingServiceLoader.hpp"
 #include "IStreamingServiceWatcher.hpp"
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 
@@ -10,12 +10,12 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace std;
 
-StreamingServicesController::StreamingServicesController(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher)
-        : logger_(LoggingManager::logger("StreamingServicesController")), loader_(loader), watcher_(watcher), current_(nullptr)
+StreamingServices::StreamingServices(IStreamingServiceLoader& loader, IStreamingServiceWatcher& watcher)
+        : logger_(Loggers::logger("StreamingServicesController")), loader_(loader), watcher_(watcher), current_(nullptr)
 {
 }
 
-void StreamingServicesController::load()
+void StreamingServices::load()
 {
     auto newServices = loader_.load();
 
@@ -37,7 +37,7 @@ void StreamingServicesController::load()
     }
 }
 
-StreamingService& StreamingServicesController::get(const QString& name) const
+StreamingService& StreamingServices::get(const QString& name) const
 {
     for (const auto& service : services_)
         if (service->name() == name)
@@ -45,7 +45,7 @@ StreamingService& StreamingServicesController::get(const QString& name) const
     throw invalid_argument("unknown service: " + name.toStdString());
 }
 
-void StreamingServicesController::setCurrent(StreamingService* service)
+void StreamingServices::setCurrent(StreamingService* service)
 {
     if (service == current_)
         return;
@@ -56,7 +56,7 @@ void StreamingServicesController::setCurrent(StreamingService* service)
         LOG_DEBUG(logger_, "current service changed: " + current_->name());
 }
 
-StreamingService* StreamingServicesController::current() const
+StreamingService* StreamingServices::current() const
 {
     return current_;
 }

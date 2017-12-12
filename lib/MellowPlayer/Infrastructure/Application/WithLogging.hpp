@@ -15,14 +15,12 @@ namespace MellowPlayer::Infrastructure
     class WithLogging: public ApplicationDecorator
     {
     public:
-        WithLogging(IApplication& application,
-                    std::unique_ptr<Domain::ILoggerFactory>& loggerFactory,
+        WithLogging(const std::shared_ptr<IApplication>& application,
                     ICommandLineArguments& commandLineArguments);
 
         void initialize() override;
 
-    private:
-        std::unique_ptr<Domain::ILoggerFactory>& loggerFactory_;
+    private:;
         ICommandLineArguments& commandLineArguments_;
     };
 }

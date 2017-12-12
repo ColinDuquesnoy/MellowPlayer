@@ -58,3 +58,8 @@ const string& SpdLogger::name() const
 {
     return name_;
 }
+
+void SpdLogger::setLogLevel(LogLevel level)
+{
+    logger_->set_level(static_cast<level::level_enum>(level));
+}

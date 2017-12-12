@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/LinuxFilter.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/LinuxFilter.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

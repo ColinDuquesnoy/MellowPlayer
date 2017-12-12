@@ -32,6 +32,7 @@ namespace MellowPlayer::Infrastructure::Tests
         void restoreWindow() override
         {
             restoreWindowRequested = true;
+            emit restoreWindowRequest();
         }
 
         int returnCode = 0;

@@ -18,6 +18,12 @@ namespace MellowPlayer::Presentation
          *
          * @param contextProperties
          */
-        ContextProperty(IContextProperties& contextProperties);
+        ContextProperty(const QString& name, QObject* propertyObject, IContextProperties& contextProperties);
+
+        virtual void initialize(IQmlApplicationEngine& qmlApplicationEngine) override;
+
+    private:
+        QString name_;
+        QObject* propertyObject_;
     };
 }

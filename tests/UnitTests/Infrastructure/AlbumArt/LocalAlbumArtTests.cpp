@@ -1,7 +1,7 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
 #include <Mocks/StreamingServiceWatcherMock.hpp>
@@ -16,7 +16,7 @@ TEST_CASE("LocalAlbumArtTests", "[UnitTest]")
 {
     auto serviceLoaderMock = StreamingServiceLoaderMock::get();
     auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServicesController streamingServices(serviceLoaderMock.get(), watcherMock.get());
+    StreamingServices streamingServices(serviceLoaderMock.get(), watcherMock.get());
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

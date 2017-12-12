@@ -70,7 +70,10 @@ ApplicationWindow {
                       "You can quit the application or restore the main window via the system tray icon menu.</p>")
         standardButtons: Dialog.Ok
 
-        onAccepted: _window.visible = false
+        onAccepted: {
+            _window.visible = false;
+            root.visible = false;
+        }
     }
 
     NewPluginWizard {
@@ -96,13 +99,8 @@ ApplicationWindow {
         target: _window;
 
         onVisibleChanged: _window.visible ? d.restoreWindow() : root.hide()
-    }
-
-    Connections {
-        target: _app;
-
-        onQuitRequested: d.quit()
-        onForceQuitRequested: { d.forceQuit = true; _app.quit() }
+        onQuitRequest: d.quit()
+        onForceQuitRequest: { d.forceQuit = true; _app.quit() }
     }
 
     Shortcut {
@@ -153,7 +151,6 @@ ApplicationWindow {
         }
 
         function handleCloseEvent(close) {
-            console.warn("handleCloseEvent", forceQuit)
             saveGeometry();
             var closeToTray = _settings.get(SettingKey.MAIN_CLOSE_TO_TRAY).value
             if (closeToTray && !forceQuit) {
@@ -164,8 +161,9 @@ ApplicationWindow {
                 }
                 else {
                     _window.visible = false;
+                    root.visible = false;
                 }
-                console.warn("closing to system tray", close)
+                console.info("closing to system tray")
                 close.accepted = false;
             }
         }

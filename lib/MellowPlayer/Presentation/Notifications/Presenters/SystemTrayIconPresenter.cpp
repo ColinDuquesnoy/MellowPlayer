@@ -1,9 +1,7 @@
 #include "SystemTrayIconPresenter.hpp"
-#include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
-#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 
-using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 SystemTrayIconPresenter::SystemTrayIconPresenter(ISystemTrayIcon& systemTrayIcon) : systemTrayIcon_(systemTrayIcon)

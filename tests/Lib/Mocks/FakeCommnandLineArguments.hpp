@@ -32,22 +32,42 @@ namespace MellowPlayer::Infrastructure::Tests
 
         bool playPauseRequested() const override
         {
-            return false;
+            return playPauseRequested_;
+        }
+
+        void setPlayPauseRequested(bool value)
+        {
+            playPauseRequested_ = value;
         }
 
         bool nextRequested() const override
         {
-            return false;
+            return nextRequested_;
+        }
+
+        void setNextRequested(bool value)
+        {
+            nextRequested_ = value;
         }
 
         bool previousRequested() const override
         {
-            return false;
+            return previousRequested_;
+        }
+
+        void setPreviousRequested(bool value)
+        {
+            previousRequested_ = value;
         }
 
         bool toggleFavoriteRequested() const override
         {
-            return false;
+            return toggleFavoriteRequested_;
+        }
+
+        void setToggleFavoriteRequested(bool value)
+        {
+            toggleFavoriteRequested_ = value;
         }
 
         Domain::LogLevel logLevel() const override
@@ -59,5 +79,9 @@ namespace MellowPlayer::Infrastructure::Tests
 
     private:
         QString service_;
+        bool playPauseRequested_ = false;
+        bool nextRequested_ = false;
+        bool previousRequested_ = false;
+        bool toggleFavoriteRequested_ = false;
     };
 }

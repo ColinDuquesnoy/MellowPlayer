@@ -4,14 +4,7 @@ using namespace MellowPlayer::Infrastructure;
 
 LocalSocket::LocalSocket(): qLocalSocket_(new QLocalSocket(this))
 {
-    connect(qLocalSocket_, &QLocalSocket::connected, this, &ILocalSocket::connected);
-    connect(qLocalSocket_, &QLocalSocket::readyRead, this, &ILocalSocket::readyRead);
-    connect(qLocalSocket_, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(error()));
-}
-
-LocalSocket::~LocalSocket()
-{
-    disconnectFromServer();
+    initSignals();
 }
 
 void LocalSocket::connectToServer(const QString& name, QIODevice::OpenMode openMode)
@@ -39,12 +32,18 @@ void LocalSocket::setQLocalSocket(QLocalSocket* localSocket)
 {
     delete qLocalSocket_;
     qLocalSocket_ = localSocket;
-    connect(qLocalSocket_, &QLocalSocket::connected, this, &ILocalSocket::connected);
-    connect(qLocalSocket_, &QLocalSocket::readyRead, this, &ILocalSocket::readyRead);
-    connect(qLocalSocket_, SIGNAL(error(QLocalSocket::LocalSocketError)), this, SLOT(error()));
+    initSignals();
 }
 
 QString LocalSocket::readAll()
 {
     return qLocalSocket_->readAll();
+}
+
+void LocalSocket::initSignals() {
+    connect(qLocalSocket_, &QLocalSocket::connected, this, &LocalSocket::connected);
+    connect(qLocalSocket_, &QLocalSocket::disconnected, this, &LocalSocket::disconnected);
+    connect(qLocalSocket_, &QLocalSocket::readyRead, this, &LocalSocket::readyRead);
+    connect(qLocalSocket_, QNonConstOverload<QLocalSocket::LocalSocketError>::of(&QLocalSocket::error),
+            [=](QLocalSocket::LocalSocketError) { emit error(); });
 }

@@ -4,6 +4,7 @@
 #include <Lib/TestMacros.hpp>
 #include "FakeApplication.hpp"
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 
@@ -11,7 +12,7 @@ SCENARIO("WithCommandLineArgumentsTests")
 {
     GIVEN("A CommandLineArguments application")
     {
-        FakeApplication decorated;
+        auto decorated = make_shared<FakeApplication>();
         FakeCommandLineArguments commandLineArguments;
 
         WithCommandLineArguments commandLineArgumentsApp(decorated, commandLineArguments);
@@ -27,7 +28,7 @@ SCENARIO("WithCommandLineArgumentsTests")
 
             AND_THEN("decorated application is initialized too")
             {
-                REQUIRE(decorated.isInitialized);
+                REQUIRE(decorated->isInitialized);
             }
         }
     }

@@ -8,7 +8,7 @@ using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-const QString StreamingServiceCreator::RESOURCE_PATH = ":/MellowPlayer/Domain/PluginTemplate/%1";
+const QString StreamingServiceCreator::RESOURCE_PATH = ":/MellowPlayer/Infrastructure/StreamingServices/PluginTemplate/%1";
 const QString StreamingServiceCreator::SCRIPT_FILE_NAME = "integration.js";
 const QString StreamingServiceCreator::LOGO_FILE_NAME = "logo.svg";
 const QString StreamingServiceCreator::METADATA_FILE_NAME = "metadata.ini";

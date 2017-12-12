@@ -4,11 +4,11 @@
 #include "fakeit.hpp"
 
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
-#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
-#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
+#include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
 class InMemoryListeningHistoryDataProvider;
 
@@ -17,29 +17,28 @@ namespace MellowPlayer::Domain
     class CurrentPlayer;
     class IPlayer;
     class IWorkDispatcher;
-    class INotificationPresenter;
     class ListeningHistory;
     class Players;
     class Settings;
-    class StreamingServicesController;
-    class Updater;
-    class AbstractPlatformUpdater;
+    class StreamingServices;
 }
 
 namespace MellowPlayer::Infrastructure
 {
     class LocalAlbumArt;
     class ICommandLineArguments;
+    class Updater;
+    class AbstractPlatformUpdater;
 }
 
 namespace MellowPlayer::Presentation
 {
     class ListeningHistoryViewModel;
-    class StreamingServicesControllerViewModel;
+    class StreamingServicesViewModel;
     class ThemeViewModel;
     class UpdaterViewModel;
-    class MainWindowViewModel;
-    class Notifier;
+    class Notifications;
+    class INotificationPresenter;
 }
 
 namespace MellowPlayer::Tests
@@ -50,11 +49,13 @@ namespace MellowPlayer::Tests
         DependencyPool();
         ~DependencyPool();
 
+        MellowPlayer::Presentation::Tests::FakeContextProperties contextProperties_;
+
         // Mock Objects
-        fakeit::Mock<Domain::INotificationPresenter>& getNotificationPresenterMock();
+        fakeit::Mock<Presentation::INotificationPresenter>& getNotificationPresenterMock();
 
         // Domain Layer
-        Domain::StreamingServicesController& getStreamingServicesController();
+        Domain::StreamingServices& getStreamingServicesController();
         Domain::IPlayer& getCurrentPlayer();
         Domain::Players& getPlayers();
         Domain::IStreamingServiceCreator& getStreamingServicesCreator();
@@ -62,31 +63,29 @@ namespace MellowPlayer::Tests
         Domain::Settings& getSettings();
         Domain::IWorkDispatcher& getWorkDispatcher();
         Domain::ListeningHistory& getListeningHistory();
-        Domain::Updater& getUpdater();
-        Domain::IDeprecatedQtApplication& getQtApplication();
-        Domain::INotificationPresenter& getNotificationPresenter();
-        Domain::AbstractPlatformUpdater& getPlatformUpdater();
         Domain::IUserScriptFactory& getUserScriptFactory();
 
         // Infrastructure layer
+        Infrastructure::Updater& getUpdater();
+        Infrastructure::AbstractPlatformUpdater& getPlatformUpdater();
         Infrastructure::LocalAlbumArt& getLocalAlbumArt();
         Infrastructure::ICommandLineArguments& getCommandLineArguments();
 
         // Presentation Layer
-        Presentation::Notifier& getNotifier();
-        Presentation::StreamingServicesControllerViewModel& getStreamingServicesControllerViewModel();
+        Presentation::Notifications& getNotifier();
+        Presentation::StreamingServicesViewModel& getStreamingServicesControllerViewModel();
         Presentation::ListeningHistoryViewModel& getListeningHistoryViewModel();
         Presentation::ThemeViewModel& getThemeViewModel();
         Presentation::UpdaterViewModel& getUpdaterViewModel();
-        Presentation::MainWindowViewModel& getMainWindowViewModel();
+        Presentation::INotificationPresenter& getNotificationPresenter();
+        Presentation::IContextProperties& getContextProperties();
 
     private:
         // mocks
         std::unique_ptr<Infrastructure::ICommandLineArguments> mICommandLineArgs;
-        fakeit::Mock<Domain::IDeprecatedQtApplication> mIQtApplication;
         fakeit::Mock<Domain::ISettingsStore> mISettingsStore;
         fakeit::Mock<Domain::IStreamingServiceCreator> mIStreamingServiceCreator;
-        fakeit::Mock<Domain::INotificationPresenter> mINotificationPresenter;
+        fakeit::Mock<Presentation::INotificationPresenter> mINotificationPresenter;
         fakeit::Mock<Domain::IUserScriptFactory> mUserScriptsFactoryMock;
 
         // app
@@ -94,20 +93,19 @@ namespace MellowPlayer::Tests
         std::unique_ptr<Domain::ListeningHistory> pListeningHistory;
         std::unique_ptr<Domain::Players> pPlayers;
         std::unique_ptr<Domain::Settings> pSettings;
-        std::unique_ptr<Domain::StreamingServicesController> pStreamingServicesController;
-        std::unique_ptr<Domain::Updater> pUpdater;
-        std::unique_ptr<Domain::AbstractPlatformUpdater> pPlatformUpdater;
+        std::unique_ptr<Domain::StreamingServices> pStreamingServicesController;
 
         // infra
         std::unique_ptr<Infrastructure::LocalAlbumArt> pLocalAlbumArt;
+        std::unique_ptr<Infrastructure::Updater> pUpdater;
+        std::unique_ptr<Infrastructure::AbstractPlatformUpdater> pPlatformUpdater;
 
         // presentation
         std::unique_ptr<Presentation::ListeningHistoryViewModel> pListeningHistoryViewModel;
-        std::unique_ptr<Presentation::StreamingServicesControllerViewModel> pStreamingServicesControllerViewModel;
+        std::unique_ptr<Presentation::StreamingServicesViewModel> pStreamingServicesControllerViewModel;
         std::unique_ptr<Presentation::ThemeViewModel> pThemeViewModel;
         std::unique_ptr<Presentation::UpdaterViewModel> pUpdaterViewModel;
-        std::unique_ptr<Presentation::MainWindowViewModel> pMainWindowViewModel;
-        std::unique_ptr<Presentation::Notifier> pNotifier;
+        std::unique_ptr<Presentation::Notifications> pNotifier;
 
         std::unique_ptr<InMemoryListeningHistoryDataProvider> dataProvider;
     };

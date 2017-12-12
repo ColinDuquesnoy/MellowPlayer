@@ -3,6 +3,7 @@
 #include <QtTest/QSignalSpy>
 #include "FakeApplication.hpp"
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Infrastructure::Tests;
 
@@ -10,14 +11,14 @@ SCENARIO("ApplicationDecoratorTests")
 {
     GIVEN("An application mock")
     {
-        FakeApplication decorated;
+        auto decorated = make_shared<FakeApplication>();
         ApplicationDecorator decorator(decorated);
 
         WHEN("decorated started signal is emitted")
         {
             QSignalSpy spy(&decorator, &IApplication::started);
 
-            emit decorated.started();
+            emit decorated->started();
 
             THEN("decorator started signal is emitted too")
             {
@@ -29,7 +30,7 @@ SCENARIO("ApplicationDecoratorTests")
         {
             QSignalSpy spy(&decorator, &IApplication::initialized);
 
-            emit decorated.initialized();
+            emit decorated->initialized();
 
             THEN("decorator initialized signal is emitted too")
             {
@@ -41,7 +42,7 @@ SCENARIO("ApplicationDecoratorTests")
         {
             QSignalSpy spy(&decorator, &IApplication::restoreWindowRequest);
 
-            emit decorated.restoreWindowRequest();
+            emit decorated->restoreWindowRequest();
 
             THEN("decorator restoreWindowRequest signal is emitted too")
             {
@@ -53,7 +54,7 @@ SCENARIO("ApplicationDecoratorTests")
         {
             QSignalSpy spy(&decorator, &IApplication::commitDataRequest);
 
-            emit decorated.commitDataRequest();
+            emit decorated->commitDataRequest();
 
             THEN("decorator commitDataRequest signal is emitted too")
             {
@@ -67,18 +68,18 @@ SCENARIO("ApplicationDecoratorTests")
 
             THEN("decorated is initialized")
             {
-                REQUIRE(decorated.isInitialized);
+                REQUIRE(decorated->isInitialized);
             }
         }
 
         WHEN("decorator run is called")
         {
-            decorated.returnCode = 42;
+            decorated->returnCode = 42;
             auto retCode = decorator.run();
 
             THEN("decorated is running")
             {
-                REQUIRE(decorated.isRunning);
+                REQUIRE(decorated->isRunning);
             }
 
             AND_THEN("return value of decorated is returned")
@@ -93,7 +94,7 @@ SCENARIO("ApplicationDecoratorTests")
 
             THEN("quit was requested on the decorated")
             {
-                REQUIRE(decorated.quitRequested);
+                REQUIRE(decorated->quitRequested);
             }
         }
 
@@ -103,7 +104,7 @@ SCENARIO("ApplicationDecoratorTests")
 
             THEN("restart was requested on the decorated")
             {
-                REQUIRE(decorated.restartRequested);
+                REQUIRE(decorated->restartRequested);
             }
         }
 
@@ -113,7 +114,7 @@ SCENARIO("ApplicationDecoratorTests")
 
             THEN("restoreWindow was requested on the decorated")
             {
-                REQUIRE(decorated.restoreWindowRequested);
+                REQUIRE(decorated->restoreWindowRequested);
             }
         }
     }

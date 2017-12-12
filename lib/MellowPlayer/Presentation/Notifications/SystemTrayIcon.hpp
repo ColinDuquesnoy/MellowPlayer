@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Notifications/ISystemTrayIcon.hpp>
+#include <MellowPlayer/Presentation/Notifications/ISystemTrayIcon.hpp>
 #include <QMenu>
 #include <QSystemTrayIcon>
 
@@ -8,8 +8,6 @@ namespace MellowPlayer::Domain
 {
     class ILogger;
     class IPlayer;
-    class IDeprecatedMainWindow;
-    class IDeprecatedQtApplication;
     class Setting;
     class Settings;
 }
@@ -25,14 +23,21 @@ public:
     QString quit() const;
 };
 
+namespace MellowPlayer::Infrastructure
+{
+    class IApplication;
+}
+
 namespace MellowPlayer::Presentation
 {
-    class SystemTrayIcon : public QObject, public Domain::ISystemTrayIcon
+    class IMainWindow;
+
+    class SystemTrayIcon : public QObject, public ISystemTrayIcon
     {
         Q_OBJECT
     public:
-        SystemTrayIcon(Domain::IPlayer& player, Domain::IDeprecatedMainWindow& mainWindow, Domain::IDeprecatedQtApplication& qtApplication,
-                       Domain::Settings& settings);
+        SystemTrayIcon(Domain::IPlayer& player, IMainWindow& mainWindow, Domain::Settings& settings);
+
         void show() override;
         void hide() override;
         void showMessage(const QString& title, const QString& message) override;
@@ -53,8 +58,7 @@ namespace MellowPlayer::Presentation
 
         Domain::ILogger& logger_;
         Domain::IPlayer& player_;
-        Domain::IDeprecatedMainWindow& mainWindow_;
-        Domain::IDeprecatedQtApplication& qtApp_;
+        IMainWindow& mainWindow_;
         Domain::Settings& settings_;
         Domain::Setting& showTrayIconSetting_;
 

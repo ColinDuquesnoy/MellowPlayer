@@ -3,6 +3,7 @@
 #include "SettingsCategoryViewModel.hpp"
 #include <MellowPlayer/Presentation/Factories/SettingViewModelFactory.hpp>
 #include <MellowPlayer/Presentation/Models/SettingsCategoryListModel.hpp>
+#include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 
 namespace MellowPlayer::Domain
 {
@@ -14,16 +15,21 @@ namespace MellowPlayer::Presentation
     class SettingViewModel;
     class ThemeViewModel;
 
-    class SettingsViewModel : public QObject
+    class SettingsViewModel : public QObject, public ContextProperty
     {
         Q_OBJECT
         Q_PROPERTY(QAbstractItemModel* categories READ categories CONSTANT)
     public:
-        SettingsViewModel(Domain::Settings& settings, ThemeViewModel& themeViewModel, QObject* parent = nullptr);
+        SettingsViewModel(Domain::Settings& settings,
+                          ThemeViewModel& themeViewModel,
+                          IContextProperties& contextProperties);
+
+        SettingsCategoryListModel* categories() const;
 
         Q_INVOKABLE SettingViewModel* get(int key);
-        SettingsCategoryListModel* categories() const;
         Q_INVOKABLE void restoreDefaults();
+
+        void initialize(IQmlApplicationEngine& qmlApplicationEngine) override;
 
     private:
         Domain::Settings& settings_;

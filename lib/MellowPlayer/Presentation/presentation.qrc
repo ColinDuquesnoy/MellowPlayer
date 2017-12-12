@@ -26,6 +26,12 @@
         <file>Resources/icons/media-seek-backward.png</file>
         <file>Resources/icons/media-seek-forward.png</file>
         <file>Resources/icons/view-restore.png</file>
+        <file>Themes/Breeze.json</file>
+        <file>Themes/BreezeDark.json</file>
+        <file>Themes/Default.json</file>
+        <file>Themes/Midna.json</file>
+        <file>Themes/MidnaDark.json</file>
+        <file>Themes/Ambiance.json</file>
         <file>Views/main.qml</file>
         <file>Views/MellowPlayer/qmldir</file>
         <file>Views/MellowPlayer/ApplicationRoot.qml</file>

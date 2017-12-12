@@ -29,7 +29,7 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
 {
     DependencyPool pool;
     Settings& settings = pool.getSettings();
-    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServicesController();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
 
     streamingServices.load();

@@ -22,7 +22,7 @@ TEST_CASE("ListeningHistoryViewModelTests")
 {
     DependencyPool pool;
 
-    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.toList()[0].get());
 

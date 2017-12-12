@@ -18,5 +18,10 @@ namespace MellowPlayer::Presentation
          * @param contextProperty
          */
         virtual void add(IContextProperty& contextProperty) = 0;
+
+        /**
+         * Registers all added context properties
+         */
+        virtual void initialize() = 0;
     };
 }

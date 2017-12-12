@@ -5,23 +5,21 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Domain/Updater/Github/LatestGithubReleaseQuerier.hpp>
-#include <MellowPlayer/Domain/Updater/Updater.hpp>
-#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
-#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Infrastructure/Updater/Github/LatestGithubReleaseQuerier.hpp>
+#include <MellowPlayer/Infrastructure/Updater/Updater.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
-#include <MellowPlayer/Domain/Updater/AbstractPlatformUpdater.hpp>
+#include <MellowPlayer/Infrastructure/Updater/AbstractPlatformUpdater.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 
-#include <MellowPlayer/Infrastructure/Services/LocalAlbumArt.hpp>
+#include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 
-#include <MellowPlayer/Presentation/Notifications/Notifier.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notifications.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
-#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesControllerViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 
@@ -33,7 +31,6 @@
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/NotificationPresenterMock.hpp>
-#include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/SettingsStoreMock.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <Mocks/StreamingServiceLoaderMock.hpp>
@@ -53,7 +50,6 @@ using namespace MellowPlayer::Tests;
 
 DependencyPool::DependencyPool()
         : mICommandLineArgs(make_unique<FakeCommandLineArguments>()),
-          mIQtApplication(DeprecatedQtApplicationMock::get()),
           mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
           mINotificationPresenter(NotificationPresenterMock::get()),
@@ -66,28 +62,29 @@ DependencyPool::DependencyPool()
 
 DependencyPool::~DependencyPool() = default;
 
-StreamingServicesController& DependencyPool::getStreamingServicesController()
+StreamingServices& DependencyPool::getStreamingServicesController()
 {
     static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
     static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
     if (pStreamingServicesController == nullptr) {
-        pStreamingServicesController = make_unique<StreamingServicesController>(streamingServiceLoaderMock.get(), streamingServiceWatcherMock.get());
+        pStreamingServicesController = make_unique<StreamingServices>(streamingServiceLoaderMock.get(), streamingServiceWatcherMock.get());
         pStreamingServicesController->load();
     }
     return *pStreamingServicesController;
 }
 
-StreamingServicesControllerViewModel& DependencyPool::getStreamingServicesControllerViewModel()
+StreamingServicesViewModel& DependencyPool::getStreamingServicesControllerViewModel()
 {
     if (pStreamingServicesControllerViewModel == nullptr)
-        pStreamingServicesControllerViewModel = make_unique<StreamingServicesControllerViewModel>(
+        pStreamingServicesControllerViewModel = make_unique<StreamingServicesViewModel>(
         getStreamingServicesController(),
         getPlayers(),
         getSettings(),
         getWorkDispatcher(),
         getStreamingServicesCreator(),
         getCommandLineArguments(),
-        getUserScriptFactory());
+        getUserScriptFactory(),
+        contextProperties_);
     return *pStreamingServicesControllerViewModel;
 }
 
@@ -130,7 +127,7 @@ IWorkDispatcher& DependencyPool::getWorkDispatcher()
 ListeningHistoryViewModel& DependencyPool::getListeningHistoryViewModel()
 {
     if (pListeningHistoryViewModel == nullptr)
-        pListeningHistoryViewModel = make_unique<ListeningHistoryViewModel>(getListeningHistory());
+        pListeningHistoryViewModel = make_unique<ListeningHistoryViewModel>(getListeningHistory(), contextProperties_);
     return *pListeningHistoryViewModel;
 }
 
@@ -152,14 +149,15 @@ ThemeViewModel& DependencyPool::getThemeViewModel()
 {
     static auto mock = ThemeLoaderMock::get();
     if (pThemeViewModel == nullptr)
-        pThemeViewModel = make_unique<ThemeViewModel>(getStreamingServicesController(), getSettings(), mock.get());
+        pThemeViewModel = make_unique<ThemeViewModel>(getStreamingServicesController(), getSettings(), mock.get(),
+                                                      contextProperties_);
     return *pThemeViewModel;
 }
 
 UpdaterViewModel& DependencyPool::getUpdaterViewModel()
 {
     if (pUpdaterViewModel == nullptr)
-        pUpdaterViewModel = make_unique<UpdaterViewModel>(getUpdater());
+        pUpdaterViewModel = make_unique<UpdaterViewModel>(getUpdater(), contextProperties_);
     return *pUpdaterViewModel;
 }
 
@@ -172,33 +170,11 @@ Updater& DependencyPool::getUpdater()
     return *pUpdater;
 }
 
-IDeprecatedQtApplication& DependencyPool::getQtApplication()
-{
-    return mIQtApplication.get();
-}
-
-MainWindowViewModel& DependencyPool::getMainWindowViewModel()
-{
-    if (pMainWindowViewModel == nullptr) {
-        auto& streamingServices = getStreamingServicesControllerViewModel();
-        auto& listeningHistory = getListeningHistoryViewModel();
-        auto& theme = getThemeViewModel();
-        auto& updater = getUpdaterViewModel();
-        auto& qtApp = getQtApplication();
-        auto& currentPlayer = getCurrentPlayer();
-        auto& settings = getSettings();
-
-        pMainWindowViewModel = make_unique<MainWindowViewModel>(streamingServices, listeningHistory, theme, updater, qtApp, currentPlayer, settings);
-    }
-
-    return *pMainWindowViewModel;
-}
-
-Notifier& DependencyPool::getNotifier()
+Notifications& DependencyPool::getNotifier()
 {
     if (pNotifier == nullptr)
         pNotifier =
-        make_unique<Notifier>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(), getStreamingServicesController(), getSettings());
+        make_unique<Notifications>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(), getStreamingServicesController(), getSettings());
     return *pNotifier;
 }
 
@@ -232,4 +208,9 @@ AbstractPlatformUpdater& DependencyPool::getPlatformUpdater()
 IUserScriptFactory& DependencyPool::getUserScriptFactory()
 {
     return mUserScriptsFactoryMock.get();
+}
+
+IContextProperties& DependencyPool::getContextProperties()
+{
+    return contextProperties_;
 }

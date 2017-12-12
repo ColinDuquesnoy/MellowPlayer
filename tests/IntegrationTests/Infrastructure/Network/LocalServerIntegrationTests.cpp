@@ -9,7 +9,7 @@ using namespace MellowPlayer::Infrastructure;
 class LocalSocketFactory: public IFactory<ILocalSocket>
 {
 public:
-    std::unique_ptr<ILocalSocket> create() override
+    std::unique_ptr<ILocalSocket> create() const override
     {
         return make_unique<LocalSocket>();
     }
@@ -23,6 +23,9 @@ SCENARIO("LocalServer and LocalSocket integration tests")
         LocalSocketFactory factory;
         LocalServer server(factory, serverName);
         server.listen();
+
+        REQUIRE(server.isListening());
+        REQUIRE(!server.serverSocketFilePath().isEmpty());
 
         LocalSocket socket;
         unique_ptr<ILocalSocket> newConnection = nullptr;
@@ -56,6 +59,23 @@ SCENARIO("LocalServer and LocalSocket integration tests")
                 {
                    REQUIRE(receivedData == "foo\n");
                 }
+
+                AND_WHEN("I disconnect the socket from server")
+                {
+                    socket.disconnectFromServer();
+                    
+                    THEN("I cannot write to the socket")
+                    {
+                        REQUIRE_THROWS(socket.write("data"));
+                    }
+                }
+            }
+
+            AND_WHEN("I close the server")
+            {
+                server.close();
+
+                REQUIRE(!server.isListening());
             }
         }
     }

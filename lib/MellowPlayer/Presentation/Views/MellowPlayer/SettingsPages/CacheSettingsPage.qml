@@ -20,7 +20,7 @@ Item {
             text: qsTr("Clear cookies")
             onClicked: {
                 paneRestart.state = "visible"
-                _app.clearCookies();
+                _cookies.clear();
             }
 
             Layout.fillWidth: true
@@ -38,7 +38,7 @@ Item {
             text: qsTr("Clear cache")
             onClicked: {
                 paneRestart.state = "visible"
-                _app.clearCache()
+                _cache.clear();
             }
 
             Layout.fillWidth: true

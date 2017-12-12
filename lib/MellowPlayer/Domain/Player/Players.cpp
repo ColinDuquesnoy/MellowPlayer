@@ -7,9 +7,9 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace std;
 
-Players::Players(StreamingServicesController& streamingServices)
+Players::Players(StreamingServices& streamingServices)
 {
-    connect(&streamingServices, &StreamingServicesController::added, this, &Players::onServiceAdded);
+    connect(&streamingServices, &StreamingServices::added, this, &Players::onServiceAdded);
     for (auto& service : streamingServices.toList()) {
         onServiceAdded(service.get());
     }

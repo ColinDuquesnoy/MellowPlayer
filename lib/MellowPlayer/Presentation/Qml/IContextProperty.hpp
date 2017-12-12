@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include "IQmlApplicationEngine.hpp"
 
 class QObject;
 
@@ -18,13 +19,10 @@ namespace MellowPlayer::Presentation
         virtual ~IContextProperty() = default;
 
         /**
-         * Name of the context property.
+         * Initialize the context property
+         *
+         * @param qmlApplicationEngine
          */
-        virtual QString name() const = 0;
-
-        /**
-         * Gets the QObject context property.
-         */
-        virtual QObject* asQObject() = 0;
+        virtual void initialize(IQmlApplicationEngine& qmlApplicationEngine) = 0;
     };
 }

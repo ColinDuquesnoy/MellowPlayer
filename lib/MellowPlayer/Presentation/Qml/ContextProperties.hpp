@@ -1,6 +1,12 @@
 #pragma once
 
 #include "IContextProperties.hpp"
+#include <QList>
+
+namespace MellowPlayer::Domain
+{
+    class IPlayer;
+}
 
 namespace MellowPlayer::Presentation
 {
@@ -16,11 +22,15 @@ namespace MellowPlayer::Presentation
          * Ctor
          * @param qmlApplicationEngine Qml application engine used to set context properties.
          */
-        ContextProperties(IQmlApplicationEngine& qmlApplicationEngine);
+        ContextProperties(IQmlApplicationEngine& qmlApplicationEngine, Domain::IPlayer& player);
 
         void add(IContextProperty& contextProperty) override;
 
+        void initialize() override;
+
     private:
         IQmlApplicationEngine& qmlApplicationEngine_;
+        QList<IContextProperty*> contextProperties_;
+        Domain::IPlayer& player_;
     };
 }

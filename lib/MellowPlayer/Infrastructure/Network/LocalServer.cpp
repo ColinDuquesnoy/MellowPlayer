@@ -11,11 +11,6 @@ LocalServer::LocalServer(IFactory<ILocalSocket>& localSocketFactory, const QStri
     connect(&qLocalServer_, &QLocalServer::newConnection, this, &ILocalServer::newConnection);
 }
 
-LocalServer::~LocalServer()
-{
-    close();
-}
-
 void LocalServer::close()
 {
     qLocalServer_.close();
@@ -26,10 +21,20 @@ bool LocalServer::listen()
    return qLocalServer_.listen(serverName_);
 }
 
+bool LocalServer::isListening() const
+{
+    return qLocalServer_.isListening();
+}
+
 unique_ptr<ILocalSocket> LocalServer::nextPendingConnection()
 {
     QLocalSocket* qLocalSocket = qLocalServer_.nextPendingConnection();
     unique_ptr<ILocalSocket> localSocket = localSocketFactory_.create();
     localSocket->setQLocalSocket(qLocalSocket);
     return localSocket;
+}
+
+QString LocalServer::serverSocketFilePath() const
+{
+    return qLocalServer_.fullServerName();
 }

@@ -51,10 +51,13 @@ namespace MellowPlayer::Infrastructure::Tests
     class FakeLocalSocketFactory: public IFactory<ILocalSocket>
     {
     public:
-        std::unique_ptr<ILocalSocket> create() override
+        std::unique_ptr<ILocalSocket> create() const override
         {
             auto socket = std::make_unique<FakeLocalSocket>();
-            lastSocketCreated = socket.get();
+
+            auto nonConstThis = const_cast<FakeLocalSocketFactory*>(this);
+            nonConstThis->lastSocketCreated = socket.get();
+
             return std::move(socket);
         }
 

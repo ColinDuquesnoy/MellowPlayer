@@ -9,13 +9,13 @@ namespace MellowPlayer::Domain
 {
     class Player;
     class StreamingService;
-    class StreamingServicesController;
+    class StreamingServices;
 
     class Players : public QObject
     {
         Q_OBJECT
     public:
-        explicit Players(StreamingServicesController& streamingServices);
+        explicit Players(StreamingServices& streamingServices);
 
         std::shared_ptr<Player> get(const QString& serviceName) const;
 

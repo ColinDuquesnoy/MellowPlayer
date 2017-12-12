@@ -1,0 +1,27 @@
+#include "CacheViewModel.hpp"
+#include <QtWebEngineWidgets/QWebEngineProfile>
+#include <QtCore/QStandardPaths>
+#include <QtCore/QDir>
+
+using namespace MellowPlayer::Presentation;
+
+CacheViewModel::CacheViewModel(IContextProperties& contextProperties)
+        : ContextProperty("_cache", this, contextProperties)
+{
+
+}
+
+void CacheViewModel::clear()
+{
+    // clear http cache
+    QWebEngineProfile profile("Default");
+    profile.clearHttpCache();
+
+    // clear mellowplayer cache (covers,...)
+    for (auto dir: QStandardPaths::standardLocations(QStandardPaths::CacheLocation))
+    {
+        QDir cacheDir(dir);
+        qWarning() << "removing cache directory: " << dir;
+        cacheDir.removeRecursively();
+    }
+}

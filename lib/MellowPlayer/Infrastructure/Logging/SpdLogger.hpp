@@ -18,6 +18,8 @@ namespace MellowPlayer::Infrastructure
         void log(const std::string& message, Domain::LogLevel level, const char* file, int line) override;
         const std::string& name() const override;
 
+        void setLogLevel(Domain::LogLevel level) override;
+
     private:
         std::shared_ptr<spdlog::logger> logger_;
         bool includeFileAndLine_;

@@ -11,8 +11,12 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, Settings& settings, IThemeLoader& themeLoader)
-        : streamingServices_(streamingServices),
+ThemeViewModel::ThemeViewModel(StreamingServices& streamingServices,
+                               Settings& settings,
+                               IThemeLoader& themeLoader,
+                               IContextProperties& contextProperties)
+        : ContextProperty("_theme", this, contextProperties),
+          streamingServices_(streamingServices),
           loader_(themeLoader),
           accentColorSetting_(settings.get(SettingKey::APPEARANCE_ACCENT)),
           themeSetting_(settings.get(SettingKey::APPEARANCE_THEME)),
@@ -24,7 +28,7 @@ ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, S
           secondaryForegroundSetting_(settings.get(SettingKey::APPEARANCE_SECONDARY_FOREGROUND)),
           currentTheme_(customTheme())
 {
-    connect(&streamingServices, &StreamingServicesController::currentChanged, this, &ThemeViewModel::onCurrentServiceChanged);
+    connect(&streamingServices, &StreamingServices::currentChanged, this, &ThemeViewModel::onCurrentServiceChanged);
     connect(&accentColorSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&themeSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&backgroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
@@ -33,7 +37,7 @@ ThemeViewModel::ThemeViewModel(StreamingServicesController& streamingServices, S
     connect(&primaryForegroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&secondaryBackgroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
     connect(&secondaryForegroundSetting_, &Setting::valueChanged, this, &ThemeViewModel::update);
-    connect(&streamingServices, &StreamingServicesController::added, this, &ThemeViewModel::onServiceAdded);
+    connect(&streamingServices, &StreamingServices::added, this, &ThemeViewModel::onServiceAdded);
 
     collectThemes();
     update();
@@ -219,13 +223,13 @@ Theme ThemeViewModel::customTheme() const
 void ThemeViewModel::collectThemes()
 {
     availableThemes_["Adaptive"] = currentTheme_;
-    availableThemes_["Ambiance"] = loader_.load(":/MellowPlayer/Domain/Theme/Ambiance.json");
-    availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Domain/Theme/Breeze.json");
-    availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Domain/Theme/BreezeDark.json");
-    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Domain/Theme/Midna.json");
-    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Domain/Theme/MidnaDark.json");
+    availableThemes_["Ambiance"] = loader_.load(":/MellowPlayer/Presentation/Themes/Ambiance.json");
+    availableThemes_["Breeze"] = loader_.load(":/MellowPlayer/Presentation/Themes/Breeze.json");
+    availableThemes_["BreezeDark"] = loader_.load(":/MellowPlayer/Presentation/Themes/BreezeDark.json");
+    availableThemes_["Midna"] = loader_.load(":/MellowPlayer/Presentation/Themes/Midna.json");
+    availableThemes_["MidnaDark"] = loader_.load(":/MellowPlayer/Presentation/Themes/MidnaDark.json");
     availableThemes_["Custom"] = customTheme();
-    availableThemes_["Default"] = loader_.load(":/MellowPlayer/Domain/Theme/Default.json");
+    availableThemes_["Default"] = loader_.load(":/MellowPlayer/Presentation/Themes/Default.json");
 
     for (auto service : streamingServices_.toList()) {
         availableThemes_[service->name()] = service->theme();

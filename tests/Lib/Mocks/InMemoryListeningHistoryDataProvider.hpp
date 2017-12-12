@@ -1,9 +1,9 @@
 #pragma once
 
-#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDataProvider.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDatabase.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
 
-class InMemoryListeningHistoryDataProvider : public MellowPlayer::Domain::IListeningHistoryDataProvider
+class InMemoryListeningHistoryDataProvider : public MellowPlayer::Domain::IListeningHistoryDatabase
 {
 public:
     bool initialized = false;

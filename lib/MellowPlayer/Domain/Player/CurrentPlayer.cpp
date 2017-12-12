@@ -9,11 +9,11 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace std;
 
-CurrentPlayer::CurrentPlayer(Players& players, StreamingServicesController& streamingServices)
+CurrentPlayer::CurrentPlayer(Players& players, StreamingServices& streamingServices)
         : players_(players), streamingServices_(streamingServices), currentPlayer_(nullptr)
 {
 
-    connect(&streamingServices, &StreamingServicesController::currentChanged, this, &CurrentPlayer::onCurrentServiceChanged);
+    connect(&streamingServices, &StreamingServices::currentChanged, this, &CurrentPlayer::onCurrentServiceChanged);
 
     if (streamingServices.current() != nullptr)
         onCurrentServiceChanged(streamingServices.current());

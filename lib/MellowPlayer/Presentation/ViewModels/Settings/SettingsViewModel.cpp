@@ -1,13 +1,19 @@
 #include "SettingsViewModel.hpp"
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
+#include <QtQml/QtQml>
 
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-SettingsViewModel::SettingsViewModel(Settings& settings, ThemeViewModel& themeViewModel, QObject* parent)
-        : QObject(parent), settings_(settings), factory_(themeViewModel), categories_(new SettingsCategoryListModel(this, "name"))
+SettingsViewModel::SettingsViewModel(Settings& settings,
+                                     ThemeViewModel& themeViewModel,
+                                     IContextProperties& contextProperties)
+        : ContextProperty("_settings", this, contextProperties),
+          settings_(settings),
+          factory_(themeViewModel),
+          categories_(new SettingsCategoryListModel(this, "name"))
 {
     for (SettingsCategory* category : settings.categories()) {
         if (category->key() != "private")
@@ -34,4 +40,10 @@ SettingsCategoryListModel* SettingsViewModel::categories() const
 void SettingsViewModel::restoreDefaults()
 {
     settings_.restoreDefaults();
+}
+
+void SettingsViewModel::initialize(IQmlApplicationEngine& qmlApplicationEngine)
+{
+    qmlRegisterUncreatableType<SettingKey>("MellowPlayer", 3, 0, "SettingKey", "SettingKey cannot be instantiated from QML");
+    ContextProperty::initialize(qmlApplicationEngine);
 }

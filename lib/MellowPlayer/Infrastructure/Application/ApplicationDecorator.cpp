@@ -1,37 +1,38 @@
 #include "ApplicationDecorator.hpp"
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-ApplicationDecorator::ApplicationDecorator(IApplication& application)
-        : application_(application)
+ApplicationDecorator::ApplicationDecorator(const shared_ptr<IApplication>& application): application_(application)
 {
-    connect(&application, &IApplication::started, this, &IApplication::started);
-    connect(&application, &IApplication::initialized, this, &IApplication::initialized);
-    connect(&application, &IApplication::restoreWindowRequest, this, &IApplication::restoreWindowRequest);
-    connect(&application, &IApplication::commitDataRequest, this, &IApplication::commitDataRequest);
+    connect(application_.get(), &IApplication::started, this, &IApplication::started);
+    connect(application_.get(), &IApplication::initialized, this, &IApplication::initialized);
+    connect(application_.get(), &IApplication::finished, this, &IApplication::finished);
+    connect(application_.get(), &IApplication::restoreWindowRequest, this, &IApplication::restoreWindowRequest);
+    connect(application_.get(), &IApplication::commitDataRequest, this, &IApplication::commitDataRequest);
 }
 
 void ApplicationDecorator::initialize()
 {
-    application_.initialize();
+    application_->initialize();
 }
 
 int ApplicationDecorator::run()
 {
-    return application_.run();
+    return application_->run();
 }
 
 void ApplicationDecorator::quit()
 {
-    application_.quit();
+    application_->quit();
 }
 
 void ApplicationDecorator::restart()
 {
-    application_.restart();
+    application_->restart();
 }
 
 void ApplicationDecorator::restoreWindow()
 {
-    application_.restoreWindow();
+    application_->restoreWindow();
 }

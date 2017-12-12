@@ -7,16 +7,12 @@ namespace MellowPlayer::Presentation::Tests
     class FakeContextProperty: public QObject, public IContextProperty
     {
     public:
-        using QObject::QObject;
-
-        QString name() const override
+        void initialize(IQmlApplicationEngine& qmlApplicationEngine) override
         {
-            return "FakeContextProperty";
+            qmlApplicationEngine.setContextProperty(name, propertyObject);
         }
 
-        QObject* asQObject() override
-        {
-            return this;
-        }
+        QString name;
+        QObject* propertyObject = nullptr;
     };
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -14,7 +14,7 @@
 
 namespace core {
 
-class binder {
+struct binder {
   template <class TDefault, class>
   static TDefault resolve_impl(...) noexcept {
     return {};
@@ -59,7 +59,18 @@ class binder {
   }
 #endif  // __pph__
 
- public:
+  template <class, class T>
+  struct resolve_template_impl {
+    using type = T;
+  };
+
+  template <class TDeps, template <class...> class T, class... Ts>
+  struct resolve_template_impl<TDeps, aux::identity<T<Ts...>>> {
+    using type = T<typename resolve_template_impl<
+        TDeps, aux::remove_qualifiers_t<typename resolve__<
+                   TDeps, Ts, no_name, dependency<scopes::deduce, aux::decay_t<Ts>>>::type::given>>::type...>;
+  };
+
   template <class T, class TName = no_name, class TDefault = dependency<scopes::deduce, aux::decay_t<T>>, class TDeps>
   static decltype(auto) resolve(TDeps* deps) noexcept {
     using dependency = dependency_concept<aux::decay_t<T>, TName>;
@@ -74,6 +85,9 @@ class binder {
 
   template <class TDeps, class T, class TName = no_name, class TDefault = dependency<scopes::deduce, aux::decay_t<T>>>
   using resolve_t = typename resolve__<TDeps, T, TName, TDefault>::type;
+
+  template <class TDeps, class T>
+  using resolve_template_t = typename resolve_template_impl<TDeps, aux::remove_qualifiers_t<T>>::type;
 };
 
 }  // core

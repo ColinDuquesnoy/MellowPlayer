@@ -1,9 +1,9 @@
 #pragma once
-#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
 #include <fakeit.hpp>
 #include <memory>
 
-using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Presentation;
 using namespace fakeit;
 
 class NotificationPresenterMock

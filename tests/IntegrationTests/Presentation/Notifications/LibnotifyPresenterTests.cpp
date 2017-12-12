@@ -1,18 +1,19 @@
 #ifdef USE_LIBNOTIFY
 
-#include "Mocks/MainWindowMock.hpp"
-#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
-#include <MellowPlayer/Presentation/Notifications/Presenters/LibnotifyPresenter.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notification.hpp>
+#include <MellowPlayer/Presentation/Notifications/Presenters/Linux/LibnotifyPresenter.hpp>
 #include <catch.hpp>
+    #include <UnitTests/Presentation/FakeMainWindow.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 
 TEST_CASE("LibnotifyPresenterTests")
 {
-    auto mainWindowMock = MainWindowMock::get();
-    LibnotifyPresenter presenter(mainWindowMock.get());
+    FakeMainWindow mainWindow;
+    LibnotifyPresenter presenter(mainWindow);
     presenter.initialize();
 
     SECTION("display test")
@@ -25,7 +26,7 @@ TEST_CASE("LibnotifyPresenterTests")
     SECTION("action callback show main window")
     {
         presenter.onActionCallback();
-        Verify(Method(mainWindowMock, show)).Once();
+        REQUIRE(mainWindow.isShown);
     }
 }
 

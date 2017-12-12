@@ -15,7 +15,9 @@ namespace MellowPlayer::Infrastructure
     public:
         virtual void close() = 0;
         virtual bool listen() = 0;
+        virtual bool isListening() const = 0;
         virtual std::unique_ptr<ILocalSocket> nextPendingConnection() = 0;
+        virtual QString serverSocketFilePath() const = 0;
 
     signals:
         void newConnection();
@@ -25,11 +27,12 @@ namespace MellowPlayer::Infrastructure
     {
     public:
         LocalServer(IFactory<ILocalSocket>& localSocketFactory, const QString& serverName);
-        ~LocalServer();
 
         void close() override;
         bool listen() override;
+        bool isListening() const override;
         std::unique_ptr<ILocalSocket> nextPendingConnection() override;
+        QString serverSocketFilePath() const override;
 
     private:
         IFactory<ILocalSocket>& localSocketFactory_;

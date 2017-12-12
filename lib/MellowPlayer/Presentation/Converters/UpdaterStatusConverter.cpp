@@ -1,7 +1,7 @@
 #include "UpdaterStatusConverter.hpp"
 #include <QtCore/QMap>
 
-using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
 QString UpdaterStatusConverter::toString(Updater::Status status)

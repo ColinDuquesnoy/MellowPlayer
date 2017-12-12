@@ -17,6 +17,7 @@ namespace MellowPlayer::Infrastructure
     signals:
         void initialized();
         void started();
+        void finished();
         void restoreWindowRequest();
         void commitDataRequest();
     };

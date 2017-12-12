@@ -1,15 +1,16 @@
 #pragma once
 
 #include <QtCore/QObject>
+#include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 
-namespace MellowPlayer::Domain
+namespace MellowPlayer::Infrastructure
 {
     class Updater;
 }
 
 namespace MellowPlayer::Presentation
 {
-    class UpdaterViewModel : public QObject
+    class UpdaterViewModel : public QObject, public ContextProperty
     {
         Q_OBJECT
         Q_PROPERTY(QString url READ url CONSTANT)
@@ -20,7 +21,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool restartEnabled READ restartEnabled NOTIFY restartEnabledChanged)
         Q_PROPERTY(double progress READ progress NOTIFY progressChanged)
     public:
-        explicit UpdaterViewModel(Domain::Updater& updater);
+        UpdaterViewModel(Infrastructure::Updater& updater, IContextProperties& contextProperties);
 
         QString url() const;
         QString status() const;
@@ -54,7 +55,7 @@ namespace MellowPlayer::Presentation
         void onInstalled();
 
     private:
-        Domain::Updater& updater_;
+        Infrastructure::Updater& updater_;
         bool visible_ = false;
         bool installEnabled_ = false;
         bool restartEnabled_ = false;

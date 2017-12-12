@@ -44,7 +44,7 @@ namespace MellowPlayer::Infrastructure::Tests
             isIconSet = true;
         }
 
-        int exec() override
+        int run() override
         {
             isRunning = true;
             return returnCodeToUseInExec;

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2016 Krzysztof Jusiak (krzysztof at jusiak dot net)
+// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -15,8 +15,10 @@ namespace scopes {
 
 aux::false_type has_shared_ptr__(...);
 
+#if !defined(BOOST_DI_DISABLE_SHARED_PTR_DEDUCTION)  // __pph__
 template <class T>
 auto has_shared_ptr__(T &&) -> aux::is_valid_expr<decltype(std::shared_ptr<T>{})>;
+#endif  // __pph__
 
 class singleton {
  public:

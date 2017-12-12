@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/OsxFilter.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/OsxFilter.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

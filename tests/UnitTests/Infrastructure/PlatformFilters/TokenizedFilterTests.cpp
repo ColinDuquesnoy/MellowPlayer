@@ -1,5 +1,5 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/TokenizedFilters.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/TokenizedFilters.hpp>
 #include <QtCore/QList>
 
 using namespace MellowPlayer::Infrastructure;

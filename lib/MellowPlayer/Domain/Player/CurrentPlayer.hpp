@@ -9,14 +9,14 @@ namespace MellowPlayer::Domain
 {
     class Player;
     class Players;
-    class StreamingServicesController;
+    class StreamingServices;
     class StreamingService;
 
     class CurrentPlayer : public IPlayer
     {
         Q_OBJECT
     public:
-        CurrentPlayer(Players& players, StreamingServicesController& streamingServices);
+        CurrentPlayer(Players& players, StreamingServices& streamingServices);
 
         Q_INVOKABLE void togglePlayPause() override;
         Q_INVOKABLE void play() override;
@@ -46,7 +46,7 @@ namespace MellowPlayer::Domain
 
     private:
         Players& players_;
-        StreamingServicesController& streamingServices_;
+        StreamingServices& streamingServices_;
         Domain::Song nullSong_;
 
         std::shared_ptr<Player> currentPlayer_;

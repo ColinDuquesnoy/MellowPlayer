@@ -15,11 +15,9 @@ SCENARIO("WithLoggingTests")
 {
     GIVEN("An application with logging")
     {
-        FakeApplication decorated;
+        auto decorated = make_shared<FakeApplication>();
         FakeCommandLineArguments commandLineArguments;
-        unique_ptr<ILoggerFactory> loggerFactory = make_unique<FakeLoggerFactory>();
-
-        WithLogging appWithLogging(decorated, loggerFactory, commandLineArguments);
+        WithLogging appWithLogging(decorated, commandLineArguments);
 
         WHEN("initialize is called")
         {
@@ -27,7 +25,7 @@ SCENARIO("WithLoggingTests")
 
             THEN("decorated is initialized too")
             {
-                REQUIRE(decorated.isInitialized);
+                REQUIRE(decorated->isInitialized);
             }
         }
     }

@@ -1,6 +1,6 @@
 #include "AlbumArtDownloader.hpp"
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <QDir>
 #include <QStandardPaths>
@@ -8,7 +8,7 @@
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-AlbumArtDownloader::AlbumArtDownloader() : logger_(LoggingManager::logger("AlbumArtDownloader"))
+AlbumArtDownloader::AlbumArtDownloader() : logger_(Loggers::logger("AlbumArtDownloader"))
 {
 
     connect(&fileDownloader_, &FileDownloader::finished, this, &AlbumArtDownloader::onDownloadFinished);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SettingViewModel.hpp"
-#include <MellowPlayer/Domain/TimeLimits.hpp>
+#include <MellowPlayer/Domain/ListeningHistory/TimeLimits.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 
 class TimeLimitSettingStrings : public QObject

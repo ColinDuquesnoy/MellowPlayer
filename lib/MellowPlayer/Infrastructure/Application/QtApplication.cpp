@@ -5,14 +5,10 @@
 using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
-QtApplication::QtApplication(int argc, char** argv)
-        : qApplication_(argc, argv)
+QtApplication::QtApplication(QApplication& application): qApplication_(application)
 {
     connect(&qApplication_, &QApplication::aboutToQuit, this, &QtApplication::aboutToQuit);
     connect(&qApplication_, &QApplication::commitDataRequest, this, &QtApplication::commitDataRequest);
-
-    QQuickStyle::setStyle("Material");
-    QtWebEngine::initialize();
 }
 
 void QtApplication::setApplicationName(QString name)
@@ -45,7 +41,7 @@ void QtApplication::setWindowIcon(const QIcon& icon)
     qApplication_.setWindowIcon(icon);
 }
 
-int QtApplication::exec()
+int QtApplication::run()
 {
     return qApplication_.exec();
 }

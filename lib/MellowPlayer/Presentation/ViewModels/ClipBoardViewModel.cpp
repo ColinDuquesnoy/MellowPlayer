@@ -4,7 +4,8 @@
 
 using namespace MellowPlayer::Presentation;
 
-ClipBoardViewModel::ClipBoardViewModel(QObject* parent) : QObject(parent)
+ClipBoardViewModel::ClipBoardViewModel(IContextProperties& contextProperties)
+        : ContextProperty("_clipboard", this, contextProperties)
 {
 }
 

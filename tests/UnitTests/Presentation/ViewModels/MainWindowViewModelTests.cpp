@@ -1,31 +1,90 @@
-#include "Utils/DependencyPool.hpp"
 #include <MellowPlayer/Presentation/ViewModels/MainWindowViewModel.hpp>
+#include <catch/catch.hpp>
+#include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
+#include <UnitTests/Presentation/Qml/FakeQmlApplicationEngine.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
 
-using namespace MellowPlayer;
-using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 
-TEST_CASE("MainWindowViewModelTests")
+SCENARIO("MainWindowViewModelTests")
 {
-    Tests::DependencyPool pool;
-    MainWindowViewModel& mainWindow = pool.getMainWindowViewModel();
-    QSignalSpy visibleChangedSpy(&mainWindow, SIGNAL(visibleChanged()));
-
-    SECTION("show emit visibleChanged")
+    GIVEN("A main window instance")
     {
-        REQUIRE(!mainWindow.isVisible());
-        REQUIRE(visibleChangedSpy.count() == 0);
-        mainWindow.show();
-        REQUIRE(mainWindow.isVisible());
-        REQUIRE(visibleChangedSpy.count() == 1);
+        FakeContextProperties contextProperties;
+        FakeQmlApplicationEngine qmlApplicationEngine;
+        MainWindowViewModel mainWindow(contextProperties, qmlApplicationEngine);
 
-        SECTION("hide")
+        WHEN("Creating main window")
         {
-            mainWindow.hide();
-            REQUIRE(!mainWindow.isVisible());
-            REQUIRE(visibleChangedSpy.count() == 2);
+            THEN("it is added to the context properties")
+            {
+                contextProperties.contains(mainWindow);
+            }
+
+            AND_THEN("window is not yet visible")
+            {
+                REQUIRE(!mainWindow.isVisible());
+            }
+        }
+
+        WHEN("loading window")
+        {
+            mainWindow.load();
+
+            THEN("import path is defined")
+            {
+                REQUIRE(qmlApplicationEngine.importPathsCount() != 0);
+            }
+
+            AND_THEN("qmlApplicationEngine is loaded")
+            {
+                REQUIRE(qmlApplicationEngine.isLoaded());
+            }
+        }
+
+        WHEN("showing the window")
+        {
+            QSignalSpy spy(&mainWindow, &MainWindowViewModel::visibleChanged);
+
+            mainWindow.show();
+
+            THEN("window is visible")
+            {
+                REQUIRE(mainWindow.isVisible());
+            }
+
+            AND_THEN("visibleChanged has been emitted")
+            {
+                REQUIRE(spy.count() == 1);
+            }
+
+            AND_WHEN("hiding the window")
+            {
+                mainWindow.hide();
+
+                THEN("window is not visible anymore")
+                {
+                    REQUIRE(!mainWindow.isVisible());
+                }
+
+                AND_THEN("visibleChanged has been emitted once again")
+                {
+                    REQUIRE(spy.count() == 2);
+                }
+            }
+        }
+
+        WHEN("I call requestQuit")
+        {
+            QSignalSpy spy(&mainWindow, &MainWindowViewModel::quitRequest);
+            mainWindow.requestQuit();
+
+            THEN("quitRequest signal is emitted")
+            {
+                REQUIRE(spy.count() == 1);
+            }
         }
     }
 }
+

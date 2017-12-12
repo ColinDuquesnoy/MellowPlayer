@@ -5,8 +5,10 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistory& listeningHistory)
-        : listeningHistoryService_(listeningHistory),
+ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistory& listeningHistory,
+                                                     IContextProperties& contextProperties)
+        : ContextProperty("_listeningHistory", this, contextProperties),
+          listeningHistoryService_(listeningHistory),
           sourceModel_(new QQmlObjectListModel<ListeningHistoryEntryViewModel>(this, "title", "entryId")),
           proxyModel_(sourceModel_)
 {

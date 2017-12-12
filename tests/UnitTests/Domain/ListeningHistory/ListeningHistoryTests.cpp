@@ -16,7 +16,7 @@ using namespace MellowPlayer::Domain;
 TEST_CASE("ListeningHistoryTests")
 {
     Tests::DependencyPool pool;
-    StreamingServicesController& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServicesController();
     streamingServices.load();
     Players& players = pool.getPlayers();
     Settings& settings = pool.getSettings();

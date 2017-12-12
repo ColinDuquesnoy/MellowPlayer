@@ -1,10 +1,8 @@
-#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
 TEST_CASE("SystemTrayIconPresenterTests")

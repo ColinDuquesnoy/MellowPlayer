@@ -325,7 +325,7 @@ ToolBar {
                     shortcut: shortcutQuit.sequence
                     text: qsTr("Quit")
 
-                    onClicked: _app.requestQuit()
+                    onClicked: _window.requestQuit()
                 }
             }
         }

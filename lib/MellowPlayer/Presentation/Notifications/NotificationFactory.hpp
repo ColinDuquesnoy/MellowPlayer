@@ -1,6 +1,6 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Notifications/Notifications.hpp>
+#include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 
 namespace MellowPlayer::Domain
 {
@@ -12,8 +12,8 @@ namespace MellowPlayer::Presentation
     class NotificationFactory
     {
     public:
-        Domain::Notification createSongNotification(const QString& serviceName, Domain::Song* song, const QString& albumArtUrl,
-                                                         bool resumed = false);
-        Domain::Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
+        Notification createSongNotification(const QString& serviceName, Domain::Song* song, const QString& albumArtUrl,
+                                            bool resumed = false);
+        Notification createPausedNotification(const QString& serviceName, const QString& serviceLogo);
     };
 }

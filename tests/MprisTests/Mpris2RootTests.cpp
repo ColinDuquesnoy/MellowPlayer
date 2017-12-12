@@ -2,19 +2,18 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
-#include <MellowPlayer/Infrastructure/Platform/Linux/Mpris/Mpris2Root.hpp>
-#include <Mocks/MainWindowMock.hpp>
-#include <Mocks/QtApplicationMock.hpp>
+#include <MellowPlayer/Presentation/Mpris/Linux/Mpris2Root.hpp>
+#include <UnitTests/Presentation/FakeMainWindow.hpp>
 
 using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Infrastructure;
+using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 using namespace fakeit;
 
 TEST_CASE("Mpris2RootTests", "[IntegrationTest]")
 {
-    auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = DeprecatedQtApplicationMock::get();
-    Mpris2Root root(mainWindowMock.get(), qtAppMock.get());
+    FakeMainWindow mainWindow;
+    Mpris2Root root(mainWindow);
 
     SECTION("canRaise")
     {
@@ -24,13 +23,12 @@ TEST_CASE("Mpris2RootTests", "[IntegrationTest]")
     SECTION("raise")
     {
         root.Raise();
-        Verify(Method(mainWindowMock, show)).Exactly(1);
+        REQUIRE(mainWindow.isShown);
     }
 
     SECTION("quit")
     {
         root.Quit();
-        Verify(Method(qtAppMock, requestQuit)).Exactly(1);
     }
 
     SECTION("canQuit")

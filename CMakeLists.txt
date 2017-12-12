@@ -39,7 +39,7 @@ if (UNIX AND NOT APPLE)
 endif()
 
 include(cmake/FindDependencies.cmake)
-include_directories(SYSTEM 3rdparty)
+include_directories(3rdparty)
 include_directories(lib)
 # Sources
 if(ENABLE_COVERAGE)
@@ -50,7 +50,7 @@ include(cmake/InstallDirs.cmake)
 include(cmake/Cotire.cmake)
 
 set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
-configure_file(lib/MellowPlayer/Domain/BuildConfig.in ${BUILD_CONFIG_SOURCE})
+configure_file(lib/MellowPlayer/Infrastructure/BuildConfig.in ${BUILD_CONFIG_SOURCE})
 
 add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)

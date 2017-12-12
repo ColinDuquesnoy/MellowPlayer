@@ -8,7 +8,7 @@
 namespace MellowPlayer::Domain
 {
     class Song;
-    class IListeningHistoryDataProvider;
+    class IListeningHistoryDatabase;
     class ILogger;
     class IPlayer;
     class Setting;
@@ -19,7 +19,7 @@ namespace MellowPlayer::Domain
     {
         Q_OBJECT
     public:
-        ListeningHistory(IListeningHistoryDataProvider& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings);
+        ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings);
 
         void initialize();
         const QList<Domain::ListeningHistoryEntry>& toList() const;
@@ -45,7 +45,7 @@ namespace MellowPlayer::Domain
         void updateRemovedEntries();
 
         ILogger& logger;
-        IListeningHistoryDataProvider& dataProvider;
+        IListeningHistoryDatabase& dataProvider;
         IPlayer& player;
         IWorkDispatcher& workDispatcher;
         QMap<QString, Domain::ListeningHistoryEntry> previousEntryPerPlayer;

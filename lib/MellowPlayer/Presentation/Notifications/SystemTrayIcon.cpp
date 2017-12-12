@@ -1,24 +1,25 @@
 #include "SystemTrayIcon.hpp"
-#include <MellowPlayer/Domain/IDeprecatedMainWindow.hpp>
-#include <MellowPlayer/Domain/IDeprecatedQtApplication.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/Player/IPlayer.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/IconProvider.hpp>
+#include <MellowPlayer/Presentation/IMainWindow.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
-SystemTrayIcon::SystemTrayIcon(IPlayer& player, IDeprecatedMainWindow& mainWindow, IDeprecatedQtApplication& qtApplication, Settings& settings)
+SystemTrayIcon::SystemTrayIcon(IPlayer& player,
+                               IMainWindow& mainWindow,
+                               Settings& settings)
         : QObject(),
-          logger_(LoggingManager::logger("SystemTrayIcon")),
+          logger_(Loggers::logger("SystemTrayIcon")),
           player_(player),
           mainWindow_(mainWindow),
-          qtApp_(qtApplication),
           settings_(settings),
           showTrayIconSetting_(settings.get(SettingKey::MAIN_SHOW_TRAY_ICON)),
           qSystemTrayIcon_(IconProvider::trayIcon())
@@ -105,7 +106,7 @@ void SystemTrayIcon::restoreWindow()
 void SystemTrayIcon::quit()
 {
     LOG_TRACE(logger_, "quit");
-    qtApp_.requestQuit();
+    mainWindow_.requestQuit();
 }
 
 void SystemTrayIcon::onShowTrayIconSettingValueChanged()

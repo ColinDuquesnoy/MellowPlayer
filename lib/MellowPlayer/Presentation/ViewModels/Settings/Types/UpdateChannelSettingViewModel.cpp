@@ -2,6 +2,7 @@
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
 UpdateChannelSettingViewModel::UpdateChannelSettingViewModel(Setting& setting, QObject* parent) : SettingViewModel(setting, parent)

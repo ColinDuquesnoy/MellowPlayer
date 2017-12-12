@@ -1,23 +1,20 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Notifications/INotificationPresenter.hpp>
-
-namespace MellowPlayer::Domain
-{
-    class ISystemTrayIcon;
-    struct Notification;
-}
+#include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
 
 namespace MellowPlayer::Presentation
 {
-    class SystemTrayIconPresenter : public Domain::INotificationPresenter
+    class ISystemTrayIcon;
+    struct Notification;
+
+    class SystemTrayIconPresenter : public INotificationPresenter
     {
     public:
-        explicit SystemTrayIconPresenter(Domain::ISystemTrayIcon& systemTrayIcon);
+        explicit SystemTrayIconPresenter(ISystemTrayIcon& systemTrayIcon);
         void initialize() override;
-        bool display(const Domain::Notification& notification) override;
+        bool display(const Notification& notification) override;
 
     private:
-        Domain::ISystemTrayIcon& systemTrayIcon_;
+        ISystemTrayIcon& systemTrayIcon_;
     };
 }

@@ -1,12 +1,12 @@
 #include "Base64Helper.hpp"
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
-#include <MellowPlayer/Domain/Logging/LoggingManager.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-Base64Helper::Base64Helper(QObject* parent) : QObject(parent), logger_(LoggingManager::logger())
+Base64Helper::Base64Helper(QObject* parent) : QObject(parent), logger_(Loggers::logger())
 {
 }
 

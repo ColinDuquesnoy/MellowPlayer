@@ -5,9 +5,12 @@
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/BoolSettingViewModel.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/StringSettingViewModel.hpp>
 #include <Utils/DependencyPool.hpp>
+#include <UnitTests/Presentation/FakeMainWindow.hpp>
+#include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 using namespace MellowPlayer::Tests;
 
 TEST_CASE("SettingsViewModelTests")
@@ -15,7 +18,8 @@ TEST_CASE("SettingsViewModelTests")
     DependencyPool pool;
     Settings& settings = pool.getSettings();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
-    SettingsViewModel settingsViewModel(settings, themeViewModel);
+    FakeContextProperties contextProperties;
+    SettingsViewModel settingsViewModel(settings, themeViewModel, contextProperties);
 
     SECTION("get")
     {

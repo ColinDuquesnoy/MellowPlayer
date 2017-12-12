@@ -1,30 +1,29 @@
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
-#include <Mocks/MainWindowMock.hpp>
 #include <Mocks/PlayerMock.hpp>
-#include <Mocks/QtApplicationMock.hpp>
 #include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Presentation/FakeMainWindow.hpp>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Presentation;
+using namespace MellowPlayer::Presentation::Tests;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("SystemTrayIconTests")
 {
 
     auto playerMock = PlayerMock::get();
-    auto mainWindowMock = MainWindowMock::get();
-    auto qtAppMock = DeprecatedQtApplicationMock::get();
     auto settingsStoreMock = SettingsStoreMock::get();
     SettingsSchemaLoader loader;
     Settings settings(loader, settingsStoreMock.get());
-    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindowMock.get(), qtAppMock.get(), settings);
+    FakeMainWindow mainWindow;
+    SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindow, settings);
 
     SECTION("show window onActivated")
     {
         systemTrayIcon.onActivated(QSystemTrayIcon::Context);
-        Verify(Method(mainWindowMock, show)).Exactly(1);
+        REQUIRE(mainWindow.isShown);
     }
 
     SECTION("togglePlayPause call player")
@@ -48,13 +47,13 @@ TEST_CASE("SystemTrayIconTests")
     SECTION("restoreWindow show window")
     {
         systemTrayIcon.restoreWindow();
-        Verify(Method(mainWindowMock, show)).Exactly(1);
+        REQUIRE(mainWindow.isShown);
     }
 
     SECTION("quit quits the application")
     {
         systemTrayIcon.quit();
-        Verify(Method(qtAppMock, requestQuit)).Exactly(1);
+        REQUIRE(mainWindow.quitRequested);
     }
 
     SECTION("show icon")

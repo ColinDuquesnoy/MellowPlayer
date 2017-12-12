@@ -1,6 +1,6 @@
 #include <catch.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/PlatformFilterFactory.hpp>
-#include <MellowPlayer/Infrastructure/Platform/Filters/IPlatformFilter.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilterFactory.hpp>
+#include <MellowPlayer/Infrastructure/PlatformFilters/IPlatformFilter.hpp>
 #include <QtCore/QList>
 
 using namespace MellowPlayer::Infrastructure;

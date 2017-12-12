@@ -11,8 +11,6 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        virtual ~IQtApplication() = default;
-
         virtual void setApplicationName(QString value) = 0;
         virtual void setApplicationDisplayName(QString value) = 0;
         virtual void setApplicationVersion(QString value) = 0;
@@ -20,7 +18,7 @@ namespace MellowPlayer::Infrastructure
         virtual void setOrganizationName(QString value) = 0;
         virtual void setWindowIcon(const QIcon& icon) = 0;
 
-        virtual int exec() = 0;
+        virtual int run() = 0;
         virtual void exit(int returnCode) = 0;
 
         virtual void installTranslator(QTranslator* translator) = 0;
@@ -34,7 +32,7 @@ namespace MellowPlayer::Infrastructure
     class QtApplication: public IQtApplication
     {
     public:
-        QtApplication(int argc, char** argv);
+        QtApplication(QApplication& qApplication);
 
         void setApplicationName(QString name) override;
         void setApplicationDisplayName(QString displayName) override;
@@ -43,14 +41,14 @@ namespace MellowPlayer::Infrastructure
         void setOrganizationName(QString name) override;
         void setWindowIcon(const QIcon& icon) override;
 
-        int exec() override;
+        int run() override;
         void exit(int returnCode) override;
 
         void installTranslator(QTranslator* translator) override;
         void setFont(const QFont& font) override;
 
     private:
-        QApplication qApplication_;
+        QApplication& qApplication_;
 
     };
 }
