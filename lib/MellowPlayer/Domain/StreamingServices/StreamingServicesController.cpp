@@ -53,7 +53,7 @@ void StreamingServices::setCurrent(StreamingService* service)
     current_ = service;
     emit currentChanged(current_);
     if (current_)
-        LOG_DEBUG(logger_, "current service changed: " + current_->name());
+        LOG_INFO(logger_, "current service changed: " + current_->name());
 }
 
 StreamingService* StreamingServices::current() const

@@ -159,7 +159,7 @@ void ListeningHistory::clearOutdatedEntries()
         return;
 
     workDispatcher.invoke([=]() mutable {
-        LOG_DEBUG(logger, "Cleaning history ");
+        LOG_INFO(logger, "Cleaning history ");
         QList<int> items;
         for (auto entry : entries) {
             TimeLimits entryLimit = dateToTimeLimit(entry.dateTime());

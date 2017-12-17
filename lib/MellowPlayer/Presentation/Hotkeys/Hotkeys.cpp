@@ -89,7 +89,7 @@ void Hotkeys::initialize()
     connect(mediaShortcut, &QxtGlobalShortcut::activated, this, &Hotkeys::previous);
 #endif
 
-    LOG_DEBUG(logger_, "service started");
+    LOG_INFO(logger_, "service started");
 }
 
 void Hotkeys::updatePlayShortcut() const

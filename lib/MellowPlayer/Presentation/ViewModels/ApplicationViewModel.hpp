@@ -22,6 +22,7 @@ namespace MellowPlayer::Presentation
 
         Q_INVOKABLE void quit();
         Q_INVOKABLE void restart();
+        Q_INVOKABLE void showLogs();
 
         QString buildInfo() const;
 

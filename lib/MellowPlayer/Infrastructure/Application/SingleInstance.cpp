@@ -42,9 +42,9 @@ SingleInstance::SingleInstance(const std::shared_ptr<IApplication>& application,
 
 void SingleInstance::initialize()
 {
-    LOG_DEBUG(logger_, "lock file: " << lockFilePath_)
+    LOG_INFO(logger_, "lock file: " << lockFilePath_)
     if (lockFile_.tryLock(100)) {
-        LOG_DEBUG(logger_, "Initializing primary application");
+        LOG_INFO(logger_, "Initializing primary application");
         isPrimary_ = true;
         ApplicationDecorator::initialize();
     }
@@ -62,7 +62,7 @@ bool SingleInstance::isPrimary() const
 
 int SingleInstance::runPrimaryApplication()
 {
-    LOG_DEBUG(logger_, "Running primary application");
+    LOG_INFO(logger_, "Running primary application");
 
 
     localServer_ = localServerFactory_.create(qApp->applicationName());
@@ -81,7 +81,7 @@ int SingleInstance::runPrimaryApplication()
 
 void SingleInstance::onSecondaryApplicationConnected()
 {
-    LOG_DEBUG(logger_, "Another application was started, showing this one instead");
+    LOG_INFO(logger_, "Another application was started, showing this one instead");
     localSocket_ = localServer_->nextPendingConnection();    
     connect(localSocket_.get(), &ILocalSocket::readyRead, this, &SingleInstance::onSecondaryApplicationActionRequest);
 }
@@ -89,7 +89,7 @@ void SingleInstance::onSecondaryApplicationConnected()
 void SingleInstance::onSecondaryApplicationActionRequest()
 {
     QString action = QString(localSocket_->readAll()).split("\n")[0];
-    LOG_DEBUG(logger_, "Secondary application request: " << action);
+    LOG_INFO(logger_, "Secondary application request: " << action);
 
     if (action == playPauseAction_)
         currentPlayer_.togglePlayPause();
@@ -105,7 +105,7 @@ void SingleInstance::onSecondaryApplicationActionRequest()
 
 int SingleInstance::runSecondaryApplication()
 {
-    LOG_DEBUG(logger_, "Running secondary application");
+    LOG_INFO(logger_, "Running secondary application");
     
     localSocket_ = localSocketFactory_.create();
     connect(localSocket_.get(), &ILocalSocket::connected, this, &SingleInstance::onConnectedToPrimaryApplication);
@@ -121,7 +121,7 @@ int SingleInstance::runSecondaryApplication()
 
 void SingleInstance::onConnectedToPrimaryApplication()
 {
-    LOG_DEBUG(logger_, "connection with the primary application succeeded");
+    LOG_INFO(logger_, "connection with the primary application succeeded");
     QString action = requestedAcion();
     LOG_DEBUG(logger_, "sending action: " << action);
     localSocket_->write(action + "\n");
@@ -130,7 +130,7 @@ void SingleInstance::onConnectedToPrimaryApplication()
 
 void SingleInstance::onConnectionErrorWithPrimaryApplication()
 {
-    LOG_DEBUG(logger_, "could not connect to the primary application, quitting...");
+    LOG_WARN(logger_, "could not connect to the primary application, quitting...");
     QTimer::singleShot(1, [&](){ qtApplication_.exit(2); } );
 }
 

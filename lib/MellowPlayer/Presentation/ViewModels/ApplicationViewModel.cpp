@@ -5,11 +5,13 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
+#include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <MellowPlayer/Presentation/IMainWindow.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
 #include <QtCore/QDirIterator>
 #include <QtGui/QFontDatabase>
 #include <QtWebEngineWidgets/QWebEngineProfile>
+#include <QDesktopServices>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
@@ -45,6 +47,12 @@ void ApplicationViewModel::quit()
 void ApplicationViewModel::restart()
 {
     application_.restart();
+}
+
+void ApplicationViewModel::showLogs()
+{
+    auto logDirectory = FileHelper::logDirectory();
+    QDesktopServices::openUrl(logDirectory + "All.log");
 }
 
 void ApplicationViewModel::setupFont()

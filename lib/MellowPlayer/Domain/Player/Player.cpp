@@ -37,31 +37,31 @@ void Player::togglePlayPause()
 
 void Player::play()
 {
-    LOG_DEBUG(logger_, "play()");
+    LOG_TRACE(logger_, "play()");
     emit runJavascriptRequested(streamingServiceScript_.play());
 }
 
 void Player::pause()
 {
-    LOG_DEBUG(logger_, "pause()");
+    LOG_INFO(logger_, "pause()");
     emit runJavascriptRequested(streamingServiceScript_.pause());
 }
 
 void Player::next()
 {
-    LOG_DEBUG(logger_, "next()");
+    LOG_TRACE(logger_, "next()");
     emit runJavascriptRequested(streamingServiceScript_.next());
 }
 
 void Player::previous()
 {
-    LOG_DEBUG(logger_, "previous()");
+    LOG_TRACE(logger_, "previous()");
     emit runJavascriptRequested(streamingServiceScript_.previous());
 }
 
 void Player::seekToPosition(double value)
 {
-    LOG_DEBUG(logger_, "seekToPosition(" << value << ")");
+    LOG_TRACE(logger_, "seekToPosition(" << value << ")");
     emit runJavascriptRequested(streamingServiceScript_.seekToPosition(value));
     setPosition(value);
 }

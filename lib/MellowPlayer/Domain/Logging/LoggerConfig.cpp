@@ -7,7 +7,7 @@ string LoggerConfig::DEFAULT_LOG_FORMAT = "[%L] [%Y-%m-%d %H-%M-%S:%f] [%n] %v";
 
 LoggerConfig::LoggerConfig()
 {
-    logLevel = LogLevel::Info;
+    logLevel = LogLevel::Debug;
     logFormat = DEFAULT_LOG_FORMAT;
     createConsoleLogger = true;
     createFileLogger = true;

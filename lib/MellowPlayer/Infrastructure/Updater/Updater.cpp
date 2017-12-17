@@ -30,7 +30,7 @@ Updater::Updater(ILatestReleaseQuerier& releaseQuerier, Settings& settings, Abst
 
 void Updater::check()
 {
-    LOG_DEBUG(logger_, "Checking for update");
+    LOG_INFO(logger_, "Checking for update");
     setStatus(Status::Checking);
     releaseQuerier_.setChannel(getChannel());
     releaseQuerier_.query();
@@ -43,7 +43,7 @@ UpdateChannel Updater::getChannel() const
 
 void Updater::install()
 {
-    LOG_DEBUG(logger_, "Downloading update");
+    LOG_INFO(logger_, "Downloading update");
     setStatus(Status::Downloading);
     platformUpdater_.download();
 }
@@ -66,14 +66,14 @@ const Release* Updater::latestRelease() const
 void Updater::onLatestReleaseReceived(const Release* release)
 {
     if (release != nullptr && *release > *currentRelease_) {
-        LOG_DEBUG(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->name()).arg(release->name()));
+        LOG_INFO(logger_, QString("Latest release is an update (%1 < %2)").arg(currentRelease_->name()).arg(release->name()));
         setStatus(Status::UpdateAvailable);
         latestRelease_ = release;
         platformUpdater_.setRelease(latestRelease_);
         isUpdateAvailable_ = true;
         emit updateAvailable();
     } else {
-        LOG_DEBUG(logger_, QString("Current release is up to date..."));
+        LOG_INFO(logger_, QString("Current release is up to date..."));
         setStatus(Status::None);
         latestRelease_ = nullptr;
         isUpdateAvailable_ = false;
@@ -102,22 +102,22 @@ void Updater::setStatus(Updater::Status status)
 void Updater::onDownloadFinished(bool succes)
 {
     if (succes) {
-        LOG_DEBUG(logger_, "download finished, installing...")
+        LOG_INFO(logger_, "download finished, installing...")
         setStatus(Status::Installing);
         platformUpdater_.install();
     } else {
-        LOG_DEBUG(logger_, "download failed")
+        LOG_ERROR(logger_, "download failed")
         setStatus(Status::Failure);
     }
 }
 void Updater::onInstallFinished(bool succes)
 {
     if (succes) {
-        LOG_DEBUG(logger_, "install finished, you can now restart the application");
+        LOG_INFO(logger_, "install finished, you can now restart the application");
         setStatus(Status::Installed);
         emit installed();
     } else {
-        LOG_DEBUG(logger_, "install failed");
+        LOG_ERROR(logger_, "install failed");
         setStatus(Status::Failure);
     }
 }
