@@ -314,6 +314,13 @@ Popup {
                 text: qsTr("Credits")
             }
 
+            Button {
+                flat: true
+                highlighted: true
+                onClicked: _app.showLogs()
+                text: qsTr("Show logs")
+            }
+
             Item {
                 Layout.fillWidth: true
             }
