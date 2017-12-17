@@ -1,14 +1,16 @@
 #include "SpdLogger.hpp"
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>
 #include <iostream>
-#include <spdlog/spdlog.h>
 
-using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Infrastructure;
 using namespace std;
 using namespace spdlog;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 
-shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config)
+shared_ptr<spdlog::sinks::simple_file_sink_mt> SpdLogger::allSink_ = nullptr;
+shared_ptr<spdlog::sinks::rotating_file_sink_mt> SpdLogger::allRotatingSink_ = nullptr;
+
+shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfig& config)
 {
     try {
         // configure sinks
@@ -20,8 +22,25 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config)
             sinks.push_back(make_shared<sinks::ansicolor_sink>(make_shared<sinks::stdout_sink_mt>()));
 #endif
         }
-        auto logFileName = FileHelper::createLogDirectory().toStdString() + name;
-        sinks.push_back(make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5));
+        auto logDir = FileHelper::createLogDirectory().toStdString();
+        auto logFileName = logDir + name;
+
+        if (SpdLogger::allSink_ == nullptr) {
+            SpdLogger::allSink_ = make_shared<sinks::simple_file_sink_mt>(logDir + "All.log");
+            make_shared<logger>("All", SpdLogger::allSink_)->log(level::info, "*******************************************************************************");
+        }
+
+        if (SpdLogger::allRotatingSink_ == nullptr) {
+            SpdLogger::allRotatingSink_ = make_shared<sinks::rotating_file_sink_mt>(logDir + "AllRotating", "log", 1024 * 1024 * 20, 5);
+            make_shared<logger>("AllRotating", SpdLogger::allRotatingSink_)->log(level::info, "*******************************************************************************");
+        }
+
+        sinks.push_back(SpdLogger::allSink_);
+        sinks.push_back(SpdLogger::allRotatingSink_);
+        auto loggerSpecificSink = make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5);
+        make_shared<logger>(name, loggerSpecificSink)->log(level::info, "*******************************************************************************");
+
+        sinks.push_back(loggerSpecificSink);
 
         // create and register logger
         auto combined_logger = make_shared<logger>(name, begin(sinks), end(sinks));
@@ -40,11 +59,11 @@ shared_ptr<logger> createLogger(const string& name, const LoggerConfig& config)
 }
 
 SpdLogger::SpdLogger(const string& name, const LoggerConfig& config)
-        : logger_(createLogger(name, config)), includeFileAndLine_(config.showFileAndLine), name_(name)
+        : logger_(SpdLogger::createLogger(name, config)),
+          includeFileAndLine_(config.showFileAndLine),
+          name_(name)
 {
 }
-
-SpdLogger::~SpdLogger() = default;
 
 void SpdLogger::log(const string& message, LogLevel level, const char* file, int line)
 {
@@ -61,5 +80,7 @@ const string& SpdLogger::name() const
 
 void SpdLogger::setLogLevel(LogLevel level)
 {
-    logger_->set_level(static_cast<level::level_enum>(level));
+    auto spdLogLevel = static_cast<level::level_enum>(level);
+    SpdLogger::allRotatingSink_->set_level(spdLogLevel);
+    logger_->set_level(spdLogLevel);
 }

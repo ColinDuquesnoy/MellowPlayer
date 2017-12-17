@@ -15,12 +15,6 @@ using namespace MellowPlayer::Infrastructure;
 Application::Application(IQtApplication& qtApplication)
         : qtApp_(qtApplication), restartRequested_(false)
 {
-    qtApp_.setApplicationName("MellowPlayer");
-    qtApp_.setApplicationDisplayName("MellowPlayer");
-    qtApp_.setApplicationVersion(BuildConfig::getVersion());
-    qtApp_.setOrganizationDomain("org.mellowplayer");
-    qtApp_.setOrganizationName("MellowPlayer");
-
     connect(&qtApp_, &IQtApplication::commitDataRequest, this, &Application::commitDataRequest);
 }
 

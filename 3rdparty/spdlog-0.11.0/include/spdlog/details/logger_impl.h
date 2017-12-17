@@ -197,9 +197,6 @@ inline void spdlog::logger::critical(const T& msg)
     log(level::critical, msg);
 }
 
-
-
-
 //
 // name and level
 //
@@ -211,6 +208,8 @@ inline const std::string& spdlog::logger::name() const
 inline void spdlog::logger::set_level(spdlog::level::level_enum log_level)
 {
     _level.store(log_level);
+    for (auto& sink: _sinks)
+        sink->set_level(log_level);
 }
 
 inline void spdlog::logger::set_error_handler(spdlog::log_err_handler err_handler)

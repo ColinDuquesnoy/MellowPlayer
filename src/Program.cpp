@@ -5,6 +5,7 @@
     #include <Windows.h>
 #endif
 #include <MellowPlayer/Domain/Logging/Loggers.hpp>
+#include <MellowPlayer/Infrastructure/BuildConfig.hpp>
 #include <QtQuickControls2/QQuickStyle>
 #include <QtWebEngine>
 
@@ -61,6 +62,9 @@ int Program::main(int argc, char** argv)
     qputenv("QTWEBENGINE_REMOTE_DEBUGGING", "4242");
 
     QApplication qApplication(argc, argv);
+    qApplication.setApplicationName("MellowPlayer");
+    qApplication.setApplicationDisplayName("MellowPlayer");
+    qApplication.setApplicationVersion(BuildConfig::getVersion());
 
     QQuickStyle::setStyle("Material");
     QtWebEngine::initialize();
