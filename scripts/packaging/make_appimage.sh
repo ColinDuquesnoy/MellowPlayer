@@ -34,6 +34,7 @@ ldd appdir/usr/bin/MellowPlayer
 
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=../
 cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
+cp -R ${QT_DIR}/qml/QtQuick/Controls ./appdir/usr/qml/QtQuick/
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
 
 chmod +x MellowPlayer-x86_64.AppImage
