@@ -8,12 +8,12 @@ ToolButton {
 
     property string shortcut: ""
     property string tooltip: ""
-    property string icon: ""
+    property string iconChar: ""
     property int iconSize: 22
 
     signal triggered()
 
-    text: icon
+    text: iconChar
     font { family: MaterialIcons.family; pixelSize: iconSize }
     hoverEnabled: true
 

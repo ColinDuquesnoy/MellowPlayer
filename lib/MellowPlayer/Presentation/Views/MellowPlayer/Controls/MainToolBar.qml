@@ -43,7 +43,7 @@ ToolBar {
         spacing: 0
 
         IconToolButton {
-            icon: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
+            iconChar: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
             shortcut: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE).value
             tooltip: root.isWebViewMode ? qsTr("Select another service") :
                      _streamingServices.currentService != null ? qsTr("Go back to ") + _streamingServices.currentService.name : ""
@@ -74,7 +74,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_chevron_left
+            iconChar: MaterialIcons.icon_chevron_left
             tooltip: qsTr("Go back")
             visible: root.isWebViewMode
 
@@ -82,7 +82,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_chevron_right
+            iconChar: MaterialIcons.icon_chevron_right
             tooltip: qsTr("Go forward")
             visible: root.isWebViewMode
 
@@ -90,7 +90,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_refresh
+            iconChar: MaterialIcons.icon_refresh
             tooltip: qsTr("Reload page")
             visible: root.isWebViewMode
             shortcut: _settings.get(SettingKey.SHORTCUTS_RELOAD).value
@@ -99,7 +99,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_home
+            iconChar: MaterialIcons.icon_home
             tooltip: qsTr("Go to home page")
             visible: root.isWebViewMode
 
@@ -121,7 +121,7 @@ ToolBar {
 
         IconToolButton {
             enabled: root.isWebViewMode && _player.canAddToFavorites
-            icon: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
+            iconChar: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             tooltip: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
             visible: root.isWebViewMode
             shortcut: _settings.get(SettingKey.SHORTCUTS_FAVORITE).value
@@ -135,7 +135,7 @@ ToolBar {
 
         IconToolButton {
             enabled: _player.canGoPrevious && d.isPlayerActive()
-            icon: MaterialIcons.icon_fast_rewind
+            iconChar: MaterialIcons.icon_fast_rewind
             tooltip: qsTr("Skip to previous song")
             visible: root.isWebViewMode
             shortcut: _settings.get(SettingKey.SHORTCUTS_PREVIOUS).value
@@ -145,7 +145,7 @@ ToolBar {
 
         IconToolButton {
             enabled: !_player.isStopped || d.isPlayerActive()
-            icon: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
+            iconChar: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             tooltip: _player.isPlaying ? qsTr("Pause") : qsTr("Play")
             visible: root.isWebViewMode
             shortcut: _settings.get(SettingKey.SHORTCUTS_PLAY).value
@@ -155,7 +155,7 @@ ToolBar {
 
         IconToolButton {
             enabled: _player.canGoNext && d.isPlayerActive()
-            icon: MaterialIcons.icon_fast_forward
+            iconChar: MaterialIcons.icon_fast_forward
             tooltip: qsTr("Skip to next song")
             visible: root.isWebViewMode
             shortcut: _settings.get(SettingKey.SHORTCUTS_NEXT).value
@@ -168,7 +168,7 @@ ToolBar {
 
             checkable: true
             checked: setting.value
-            icon: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+            iconChar: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
             tooltip: checked ? qsTr("Disable notifications") : qsTr("Enable notifications")
             shortcut: _settings.get(SettingKey.SHORTCUTS_NOTIFICATIONS).value
 
@@ -193,7 +193,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_history
+            iconChar: MaterialIcons.icon_history
             tooltip: qsTr("Open listening history")
             shortcut: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY).value
 
@@ -201,7 +201,7 @@ ToolBar {
         }
 
         IconToolButton {
-            icon: MaterialIcons.icon_more_vert
+            iconChar: MaterialIcons.icon_more_vert
             tooltip:  qsTr("Main menu")
 
             onTriggered: menu.open()
@@ -264,7 +264,7 @@ ToolBar {
                 IconMenuItem {
                     id: menuItemSettings
 
-                    icon: MaterialIcons.icon_settings
+                    iconChar: MaterialIcons.icon_settings
                     shortcut: shortcutSettings.sequence
                     text: qsTr("Settings")
 
@@ -274,7 +274,7 @@ ToolBar {
                 IconMenuItem {
                     id: menuCreatePlugin
 
-                    icon: MaterialIcons.icon_extension
+                    iconChar: MaterialIcons.icon_extension
                     shortcut: shortcutCreatePlugin.sequence
                     text: qsTr("Create plugin")
 
@@ -284,7 +284,7 @@ ToolBar {
                 IconMenuItem {
                     id: menuReportIssue
 
-                    icon: MaterialIcons.icon_bug_report
+                    iconChar: MaterialIcons.icon_bug_report
                     shortcut: shortcutReportIssue.sequence
                     text: qsTr("Report issue")
 
@@ -294,7 +294,7 @@ ToolBar {
                 MenuSeparator { }
 
                 IconMenuItem {
-                    icon: MaterialIcons.icon_update
+                    iconChar: MaterialIcons.icon_update
                     text: qsTr("Check for update")
                     enabled: !_updater.busy
                     shortcut: shortcutCheckForUpdates.sequence
@@ -313,7 +313,7 @@ ToolBar {
                 IconMenuItem {
                     id: menuItemAbout
 
-                    icon: MaterialIcons.icon_info_outline
+                    iconChar: MaterialIcons.icon_info_outline
                     shortcut: shortcutAbout.sequence
                     text: qsTr("About")
 
@@ -321,7 +321,7 @@ ToolBar {
                 }
 
                 IconMenuItem {
-                    icon: MaterialIcons.icon_power_settings_new
+                    iconChar: MaterialIcons.icon_power_settings_new
                     shortcut: shortcutQuit.sequence
                     text: qsTr("Quit")
 

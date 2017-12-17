@@ -37,7 +37,7 @@ Dialog {
             spacing: 0
 
             IconToolButton {
-                icon: MaterialIcons.icon_add
+                iconChar: MaterialIcons.icon_add
                 iconSize: 24
                 tooltip: qsTr("Add user script")
 
@@ -49,7 +49,7 @@ Dialog {
             }
 
             IconToolButton {
-                icon: MaterialIcons.icon_done
+                iconChar: MaterialIcons.icon_done
                 iconSize: 24
                 tooltip: qsTr("Done")
 
@@ -183,7 +183,7 @@ Dialog {
                         }
 
                         IconToolButton {
-                            icon: MaterialIcons.icon_delete
+                            iconChar: MaterialIcons.icon_delete
                             iconSize: 22
                             tooltip: qsTr("Remove script")
 

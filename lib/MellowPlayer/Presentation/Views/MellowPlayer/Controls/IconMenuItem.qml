@@ -8,7 +8,7 @@ import ".."
 MenuItem {
     id: root
 
-    property string icon
+    property string iconChar
     property string shortcut
 
     hoverEnabled: true
@@ -16,7 +16,7 @@ MenuItem {
         spacing: 8
 
         Label {
-            text: root.icon
+            text: root.iconChar
             font { family: MaterialIcons.family; pixelSize: 22 }
         }
 

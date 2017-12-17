@@ -152,7 +152,7 @@ WebEngineView {
             spacing: 8
 
             IconToolButton {
-                icon: MaterialIcons.icon_remove
+                iconChar: MaterialIcons.icon_remove
                 iconSize: 16
                 tooltip: qsTr("Zoom out")
 
@@ -165,7 +165,7 @@ WebEngineView {
             }
 
             IconToolButton {
-                icon: MaterialIcons.icon_add
+                iconChar: MaterialIcons.icon_add
                 iconSize: 16
                 tooltip: qsTr("Zoom in")
 
