@@ -8,11 +8,12 @@ Report any bugs you encountered or any wishes on our [issue tracker](https://git
 
 If you're reporting a bug, **make sure to provide the following information**:
 
-- **Operating system** (e.g. Windows 8.1, Mac OSX Yosemite,...). If you're on Linux, you'll need to specify the
-  name of the distribution and the desktop environment you're using.
-- The **music streaming service** that you were using when you encountered the bug.
+- Information about your **Operating system** (e.g. Windows 8.1, Mac OSX Yosemite,...). If you're on Linux, you'll need to specify the
+  name of the distribution and the desktop environment you're using and whether you're using a native package or the AppImage.
+- The **music streaming service** that you were using when you encountered the bug if related to a specific streaming service.
 - A **clear description** of the bug with **steps to reproduce**.
 - You should use **English** to describe your issue. French is also accepted.
+- Paste the application log between triple backquotes ```(About > Show Logs)```.
 
 
 Setting up a development environment

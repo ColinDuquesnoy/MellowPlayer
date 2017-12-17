@@ -10,10 +10,16 @@
 
 ### Log Files
 
-- Use a service like http://paste2.org/ to provide links to the logs.
+Paste the application logs `(About > Show logs)` 
+
+```
+here
+```
 
 
-### Additional Informations:
+### Additional Information:
 
-- Operating System:
-- Affected streaming services (if any): 
+- Version: 
+- Affected streaming services (if any):
+- Operating System: *(if using GNU/Linux: specify distribution, desktop environment and whether you used the AppImage or a native package)*
+ 
