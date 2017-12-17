@@ -17,7 +17,8 @@
 //
 //-----------------------------------------------------------------------------
 function getLoveButton() {
-    return document.querySelector("#player-cover > div.player-actions.clearfix > span:nth-child(2) > button");
+    var result = document.querySelectorAll("#player.player div#player-cover.player-cover div.player-actions.clearfix span.action button.icon-stack.icon-stack-circle.icon-32");
+    return result[result.length-1]
 }
 
 function update() {
@@ -49,7 +50,7 @@ function update() {
 
 function isFavorite() {
     try {
-        return getLoveButton().className.indexOf("is-active") !== -1
+        return getLoveButton().children[0].className.baseVal.indexOf("is-active") !== -1
     }
     catch (e) {
         return false;
