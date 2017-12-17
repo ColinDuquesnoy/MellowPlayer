@@ -14,37 +14,6 @@ SCENARIO("Application tests")
 {
     GIVEN("An IQtApplication mock")
     {
-        WHEN("Application is created")
-        {
-            FakeQtApplication qtApplication;
-            Application application(qtApplication);
-
-            THEN("applicationName is set")
-            {
-                REQUIRE(qtApplication.appName == "MellowPlayer");
-            }
-
-            AND_THEN("applicationDisplayName is set")
-            {
-                REQUIRE(qtApplication.appDisplayName == "MellowPlayer");
-            }
-
-            AND_THEN("applicationVersion is set")
-            {
-                REQUIRE(qtApplication.appVersion == BuildConfig::getVersion());
-            }
-
-            AND_THEN("organizationDomain is set")
-            {
-                REQUIRE(qtApplication.orgDomain == "org.mellowplayer");
-            }
-
-            AND_THEN("organizationName is set")
-            {
-                REQUIRE(qtApplication.orgName == "MellowPlayer");
-            }
-        }
-
         FakeQtApplication qtApplication;
         Application application(qtApplication);
 
