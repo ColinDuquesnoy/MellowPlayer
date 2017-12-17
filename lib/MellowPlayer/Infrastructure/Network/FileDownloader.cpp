@@ -16,7 +16,7 @@ FileDownloader::FileDownloader() : logger_(Loggers::logger("FileDownloader"))
 void FileDownloader::download(const QString& urlToDownload, const QString& filePath)
 {
     if (!isDownloading()) {
-        LOG_INFO(logger_, "downloading " << urlToDownload << " to " << filePath);
+        LOG_DEBUG(logger_, "downloading " << urlToDownload << " to " << filePath);
         progress_ = 0;
         destinationPath_ = QFileInfo(filePath);
         currentReply_ = networkAccessManager_.get(QNetworkRequest(QUrl(urlToDownload)));
@@ -54,7 +54,7 @@ void FileDownloader::onDownloadFinished(QNetworkReply* reply)
         if (file.open(QIODevice::WriteOnly)) {
             file.write(replyData);
 
-            LOG_INFO(logger_, "file downloaded with success: " << destinationPath_.absoluteFilePath());
+            LOG_DEBUG(logger_, "file downloaded with success: " << destinationPath_.absoluteFilePath());
             success = true;
         } else
             LOG_DEBUG(logger_, "failed to write file: " << destinationPath_.absoluteFilePath() << " - Error: " << file.errorString());

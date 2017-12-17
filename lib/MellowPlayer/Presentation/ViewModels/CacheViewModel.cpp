@@ -21,7 +21,7 @@ void CacheViewModel::clear()
     for (auto dir: QStandardPaths::standardLocations(QStandardPaths::CacheLocation))
     {
         QDir cacheDir(dir);
-        qWarning() << "removing cache directory: " << dir;
+        qInfo() << "removing cache directory: " << dir;
         cacheDir.removeRecursively();
     }
 }

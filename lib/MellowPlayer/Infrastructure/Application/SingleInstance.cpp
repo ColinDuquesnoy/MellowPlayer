@@ -44,7 +44,7 @@ void SingleInstance::initialize()
 {
     LOG_INFO(logger_, "lock file: " << lockFilePath_)
     if (lockFile_.tryLock(100)) {
-        LOG_INFO(logger_, "Initializing primary application");
+        LOG_DEBUG(logger_, "Initializing primary application");
         isPrimary_ = true;
         ApplicationDecorator::initialize();
     }
@@ -62,7 +62,7 @@ bool SingleInstance::isPrimary() const
 
 int SingleInstance::runPrimaryApplication()
 {
-    LOG_INFO(logger_, "Running primary application");
+    LOG_DEBUG(logger_, "Running primary application");
 
 
     localServer_ = localServerFactory_.create(qApp->applicationName());
@@ -105,7 +105,7 @@ void SingleInstance::onSecondaryApplicationActionRequest()
 
 int SingleInstance::runSecondaryApplication()
 {
-    LOG_INFO(logger_, "Running secondary application");
+    LOG_DEBUG(logger_, "Running secondary application");
     
     localSocket_ = localSocketFactory_.create();
     connect(localSocket_.get(), &ILocalSocket::connected, this, &SingleInstance::onConnectedToPrimaryApplication);
