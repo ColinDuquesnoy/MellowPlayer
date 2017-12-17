@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.0" language="en_US">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -54,16 +54,13 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="325"/>
-        <source>Close</source>
-        <translation></translation>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="321"/>
+        <source>Show logs</source>
+        <translation>Show logs</translation>
     </message>
-</context>
-<context>
-    <name>AppStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="15"/>
-        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="332"/>
+        <source>Close</source>
         <translation></translation>
     </message>
 </context>
@@ -98,6 +95,14 @@
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="89"/>
         <source>Confirm restore defaults</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>BuildConfigStrings</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Infrastructure/BuildConfig.hpp" line="12"/>
+        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -643,17 +648,12 @@ listened to will appear here...</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="137"/>
-        <source>&lt;unknown compiler&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/NotificationFactory.cpp" line="9"/>
         <source>Paused</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="7"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/Linux/LibnotifyStrings.cpp" line="7"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1178,27 +1178,27 @@ listened to will appear here...</source>
 <context>
     <name>SystemTrayIconStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="121"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="122"/>
         <source>Play/Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="126"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="127"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="131"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="132"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="136"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="137"/>
         <source>Restore window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="141"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="142"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
