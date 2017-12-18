@@ -73,4 +73,12 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
         REQUIRE(!viewModel.isEnabled());
         REQUIRE(spy.count() == 1);
     }
+
+    SECTION("setNotificationsEnabled to false")
+    {
+        QSignalSpy spy(&viewModel, &StreamingServiceViewModel::notificationsEnabledChanged);
+        viewModel.setNotificationsEnabled(false);
+        REQUIRE(!viewModel.notificationsEnabled());
+        REQUIRE(spy.count() == 1);
+    }
 }

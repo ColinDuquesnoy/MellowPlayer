@@ -17,7 +17,7 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
     MellowPlayer::Tests::DependencyPool pool;
 
     Settings& settings = pool.getSettings();
-    Notifications& notificationService = pool.getNotifier();
+    Notifications& notifications = pool.getNotifier();
     Mock<LocalAlbumArt> localAlbumArtServiceSpy(pool.getLocalAlbumArt());
     Mock<IPlayer> playerSpy(pool.getCurrentPlayer());
     Mock<INotificationPresenter>& notificationPresenterMock = pool.getNotificationPresenterMock();
@@ -38,14 +38,14 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
 
     SECTION("initialize")
     {
-        notificationService.initialize();
+        notifications.initialize();
         Verify(Method(notificationPresenterMock, initialize)).Once();
     }
 
     SECTION("display allowed notification")
     {
         Notification notif{"title", "message", "", NotificationType::NewSong};
-        REQUIRE(notificationService.display(notif));
+        REQUIRE(notifications.display(notif));
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
@@ -53,7 +53,7 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
     {
         playNotifEnabled.setValue(false);
         Notification notif{"title", "message", "", NotificationType::NewSong};
-        REQUIRE(!notificationService.display(notif));
+        REQUIRE(!notifications.display(notif));
         Verify(Method(notificationPresenterMock, display)).Never();
     }
 
@@ -62,28 +62,37 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
             "player is playing and "
             "art is ready")
     {
-        notificationService.onCurrentSongChanged(&validSong);
+        notifications.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Once();
+    }
+
+    SECTION("don't display current song changed notification if service notifications are disabled")
+    {
+        auto& currentPlayer = pool.getCurrentPlayer();
+        pool.getSettingsStore().setValue(currentPlayer.serviceName() + "/notificationsEnabled", false);
+        notifications.onCurrentSongChanged(&validSong);
+        Verify(Method(notificationPresenterMock, display)).Never();
+        pool.getSettingsStore().setValue(currentPlayer.serviceName() + "/notificationsEnabled", true);
     }
 
     SECTION("don't display current song changed notification if player is not "
             "playing")
     {
         When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Paused);
-        notificationService.onCurrentSongChanged(&validSong);
+        notifications.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Never();
     }
 
     SECTION("don't display current song changed notification if art is not ready")
     {
         When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(false);
-        notificationService.onCurrentSongChanged(&validSong);
+        notifications.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Never();
 
         SECTION("display current song changed notification when album art is ready")
         {
             When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(true);
-            notificationService.onCurrentSongUrlChanged();
+            notifications.onCurrentSongUrlChanged();
             Verify(Method(notificationPresenterMock, display)).Once();
         }
     }
@@ -91,21 +100,21 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
     SECTION("don't display current song changed notification if current song is "
             "invalid")
     {
-        notificationService.onCurrentSongChanged(&invalidSong);
+        notifications.onCurrentSongChanged(&invalidSong);
         Verify(Method(notificationPresenterMock, display)).Never();
     }
 
     SECTION("display current song changed notification when playback status "
             "changed to Playing")
     {
-        notificationService.onPlaybackStatusChanged();
+        notifications.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
     SECTION("display paused notification when playback status changed to Paused")
     {
         When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Paused);
-        notificationService.onPlaybackStatusChanged();
+        notifications.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Once();
     }
 
@@ -113,7 +122,7 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
             "Stopped")
     {
         When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Stopped);
-        notificationService.onPlaybackStatusChanged();
+        notifications.onPlaybackStatusChanged();
         Verify(Method(notificationPresenterMock, display)).Never();
     }
 }

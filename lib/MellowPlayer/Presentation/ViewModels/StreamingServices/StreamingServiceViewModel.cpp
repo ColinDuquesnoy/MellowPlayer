@@ -156,3 +156,22 @@ void StreamingServiceViewModel::setZoomFactor(int zoomFactor) {
 QString StreamingServiceViewModel::zoomFactorSettingsKey() const {
     return streamingService_.name() + "/zoomFactor";
 }
+
+bool StreamingServiceViewModel::notificationsEnabled() const
+{
+    return settingsStore_.value(notificationsEnabledSettingsKey(), true).toBool();
+}
+
+void StreamingServiceViewModel::setNotificationsEnabled(bool value)
+{
+    if (value != notificationsEnabled())
+    {
+        settingsStore_.setValue(notificationsEnabledSettingsKey(), value);
+        emit notificationsEnabledChanged();
+    }
+}
+
+QString StreamingServiceViewModel::notificationsEnabledSettingsKey() const
+{
+    return streamingService_.name() + "/notificationsEnabled";
+}

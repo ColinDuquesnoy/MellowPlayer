@@ -10,6 +10,7 @@
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
@@ -109,20 +110,23 @@ bool Notifications::isNotificationTypeEnabled(NotificationType type) const
 
     bool isEnabled = false;
 
+    auto settingKey = player_.serviceName() + "/notificationsEnabled";
+    auto serviceNotificationsEnabled = settings_.store().value(settingKey, true).toBool();
+
     switch (type) {
         case NotificationType::Paused: {
             const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_PAUSED);
-            isEnabled = check(setting);
+            isEnabled = check(setting) && serviceNotificationsEnabled;
             break;
         }
         case NotificationType::NewSong: {
             const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_NEW_SONG);
-            isEnabled = check(setting);
+            isEnabled = check(setting)  && serviceNotificationsEnabled;
             break;
         }
         case NotificationType::Resumed: {
             const Setting& setting = settings_.get(SettingKey::NOTIFICATIONS_RESUMED);
-            isEnabled = check(setting);
+            isEnabled = check(setting)  && serviceNotificationsEnabled;
             break;
         }
     }

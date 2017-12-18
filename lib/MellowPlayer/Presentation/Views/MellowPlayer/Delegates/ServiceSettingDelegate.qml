@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../Controls"
 import "../Dialogs"
 
 ItemDelegate {
@@ -107,12 +108,25 @@ ItemDelegate {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
 
-                Switch {
-                    id: switchEnabled
-                    checked: model.isEnabled
-                    onCheckedChanged: {
-                        model.isEnabled = checked;
-                        _streamingServices.enabledServices.update()
+                RowLayout {
+                    IconToolButton {
+                        checked: model.notificationsEnabled
+                        checkable: true
+                        iconChar: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
+                        tooltip: checked ? qsTr("%1 notifications are enabled").arg(model.name) :
+                                           qsTr("%1 notifications are disabled").arg(model.name)
+
+                        onCheckedChanged: model.notificationsEnabled = checked;
+                    }
+
+                    Switch {
+                        id: switchEnabled
+                        checked: model.isEnabled
+
+                        onCheckedChanged: {
+                            model.isEnabled = checked;
+                            _streamingServices.enabledServices.update()
+                        }
                     }
 
                     Layout.alignment: Qt.AlignRight
