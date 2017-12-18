@@ -5,7 +5,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-QSettingsStore::QSettingsStore() : qSettings_()
+QSettingsStore::QSettingsStore() : qSettings_("MellowPlayer", "3")
 {
 }
 
@@ -22,4 +22,6 @@ QVariant QSettingsStore::value(const QString& key, const QVariant& defaultValue)
 void QSettingsStore::setValue(const QString& key, const QVariant& value)
 {
     qSettings_.setValue(key, value);
+	auto newValue = qSettings_.value(key).toBool();
+	qDebug() << newValue;
 }
