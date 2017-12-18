@@ -30,16 +30,11 @@ else()
 endif()
 
 # Setup compiler settings
-# C++11 Required
+# C++17 Required
 set(CMAKE_CXX_STANDARD_REQUIRED on)
+set(CMAKE_CXX_STANDARD 17)
 if(MSVC_COMPILER)
-	# Require MSVC 2017
-	set(CMAKE_CXX_STANDARD 17)
-    add_compile_options("/std:c++17")
-else()
-	# only way to get c++17 support on GCC/Clang?
-	set(CMAKE_CXX_STANDARD 14)
-    add_compile_options("-std=c++1z")
+    add_compile_options("/std:latest")
 endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
