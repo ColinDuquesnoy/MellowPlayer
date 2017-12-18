@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -34,17 +34,17 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="178"/>
         <source>Created by</source>
-        <translation type="unfinished"/>
+        <translation>Luonut</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="207"/>
         <source>Artwork by</source>
-        <translation type="unfinished"/>
+        <translation>Kuvituksen toteutti</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="232"/>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Avustajat</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="314"/>
@@ -52,17 +52,14 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="325"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="321"/>
+        <source>Show logs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="332"/>
         <source>Close</source>
         <translation>Sulje</translation>
-    </message>
-</context>
-<context>
-    <name>AppStrings</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="15"/>
-        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -95,6 +92,14 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="89"/>
         <source>Confirm restore defaults</source>
+        <translation>Vahvista oletusten palauttaminen</translation>
+    </message>
+</context>
+<context>
+    <name>BuildConfigStrings</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Infrastructure/BuildConfig.hpp" line="12"/>
+        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -113,7 +118,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="78"/>
         <source>You need to restart MellowPlayer for the change to be applied.</source>
-        <translation type="unfinished"/>
+        <translation>Käynnistä MellowPlayer uudelleen, jotta muutokset tulevat voimaan.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml" line="88"/>
@@ -218,12 +223,12 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="106"/>
         <source>Supported platforms:</source>
-        <translation type="unfinished"/>
+        <translation>Tuetut alustat:</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/NewPluginWizard/DetailsPage.qml" line="118"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
 </context>
 <context>
@@ -263,7 +268,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/FullScreenNotification.qml" line="18"/>
         <source>&lt;p&gt;You are now in &lt;b&gt;fullscreen&lt;/b&gt; mode.&lt;/p&gt;Press &lt;b&gt;ESC&lt;/b&gt; to quit!</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;Olet nyt &lt;b&gt;koko näytön&lt;/b&gt; tilassa.&lt;/p&gt;Paina &lt;b&gt;ESC&lt;/b&gt; lopettaaksesi!</translation>
     </message>
 </context>
 <context>
@@ -271,7 +276,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="55"/>
         <source>No match found</source>
-        <translation type="unfinished"/>
+        <translation>Ei tulosta</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryBody.qml" line="102"/>
@@ -323,12 +328,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="136"/>
         <source>Are you sure you want to remove that song from the history?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa kyseisen kappaleen historiasta?</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml" line="137"/>
         <source>Confirm remove</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista poistaminen</translation>
     </message>
 </context>
 <context>
@@ -357,9 +362,9 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistorySectionDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="78"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="79"/>
         <source>Confirm remove</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista poistaminen</translation>
     </message>
 </context>
 <context>
@@ -367,12 +372,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="39"/>
         <source>Search/filter</source>
-        <translation type="unfinished"/>
+        <translation>Haku/suodatin</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="58"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Takaisin</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml" line="70"/>
@@ -501,22 +506,22 @@ listened to will appear here...</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="57"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="59"/>
         <source>Are you sure you want to quit MellowPlayer?</source>
         <translation>Haluatko varmasti lopettaa MellowPlayerin?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="58"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="60"/>
         <source>Confirm quit</source>
         <translation>Vahvista lopetus</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="66"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="68"/>
         <source>Closing to system tray</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="67"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="69"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
         <translation type="unfinished"/>
     </message>
@@ -641,17 +646,12 @@ listened to will appear here...</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="136"/>
-        <source>&lt;unknown compiler&gt;</source>
-        <translation>&lt;unknown compiler&gt;</translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/NotificationFactory.cpp" line="9"/>
         <source>Paused</source>
         <translation>Keskeytetty</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="7"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/Linux/LibnotifyStrings.cpp" line="7"/>
         <source>Open</source>
         <translation type="unfinished"/>
     </message>
@@ -671,7 +671,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="126"/>
         <source>User scripts</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjäskriptit</translation>
     </message>
 </context>
 <context>
@@ -690,12 +690,12 @@ listened to will appear here...</source>
         <translation>Mistä palvelusta haluat kuunnella musiikkia?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="179"/>
         <source> has been removed from overview.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="185"/>
         <source>UNDO</source>
         <translation type="unfinished"/>
     </message>
@@ -733,17 +733,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="3"/>
         <source>Confirm application exit</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista sovelluksesta poistuminen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="4"/>
         <source>Close application to system tray</source>
-        <translation type="unfinished"/>
+        <translation>Sulje sovellus ilmoitusalueelle</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="5"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Näytä ilmoitusalueen kuvake</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="6"/>
@@ -798,22 +798,22 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="16"/>
         <source>Enable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Käytä ilmoituksia</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="17"/>
         <source>Display a notification when a new song starts playing</source>
-        <translation type="unfinished"/>
+        <translation>Näytä ilmoitus kun uusi kappale alkaa</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="18"/>
         <source>Display a notification when player has paused</source>
-        <translation type="unfinished"/>
+        <translation>Näytä ilmoitus kun soitin on keskeytetty</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="19"/>
         <source>Display a notification when player has resumed</source>
-        <translation type="unfinished"/>
+        <translation>Näytä ilmoitus kun soitin on palautettu</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="20"/>
@@ -914,12 +914,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="39"/>
         <source>User agent</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunniste (user agent)</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="50"/>
         <source>Automatically check for updates</source>
         <translation>Tarkista päivitykset automaattisesti</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
+        <source>Specifies the user agent string used by web views</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="47"/>
@@ -1074,7 +1079,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="79"/>
         <source>Show about page.</source>
-        <translation type="unfinished"/>
+        <translation>Näytä tietosivu.</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="80"/>
@@ -1089,11 +1094,6 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="82"/>
         <source>Specifies the limit of the listening history</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
-        <source>Specifies the user agent string used for http requests</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1176,27 +1176,27 @@ listened to will appear here...</source>
 <context>
     <name>SystemTrayIconStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="121"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="122"/>
         <source>Play/Pause</source>
         <translation>Toista/keskeytä</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="126"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="127"/>
         <source>Next</source>
         <translation>Seuraava</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="131"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="132"/>
         <source>Previous</source>
         <translation>Edellinen</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="136"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="137"/>
         <source>Restore window</source>
         <translation>Palauta ikkuna</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="141"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="142"/>
         <source>Quit</source>
         <translation>Lopeta</translation>
     </message>
@@ -1237,19 +1237,19 @@ listened to will appear here...</source>
 <context>
     <name>UpdateChannelStringer</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="21"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="21"/>
         <source>Stable</source>
         <translation>Vakaa</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="25"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="25"/>
         <source>Beta</source>
         <translation>Beta</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="29"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="29"/>
         <source>Continuous</source>
-        <translation type="unfinished"/>
+        <translation>Jatkuva</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp" line="37"/>
         <source>Failed to install update, check logs for warning and errors and try again...</source>
-        <translation type="unfinished"/>
+        <translation>Päivityksen asentaminen epäonnistui, tarkista lokit varoitusten ja virheiden varalta ja yritä uudelleen...</translation>
     </message>
 </context>
 <context>
@@ -1308,53 +1308,53 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="20"/>
         <source> - User Scripts</source>
-        <translation type="unfinished"/>
+        <translation> - Käyttäjäskriptit</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="42"/>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="104"/>
         <source>Add user script</source>
-        <translation type="unfinished"/>
+        <translation>Lisää käyttäjäskripti</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="54"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="94"/>
         <source>No user script found</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjäskriptiä ei löytynyt</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="110"/>
         <source>Click to add a user script</source>
-        <translation type="unfinished"/>
+        <translation>Napsauta lisätäksesi käyttäjäskriptin</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="188"/>
         <source>Remove script</source>
-        <translation type="unfinished"/>
+        <translation>Poista skripti</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="191"/>
         <source>Are you sure you want to remove user script </source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa käyttäjäskriptin</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="221"/>
         <source>Confirm remove user script</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista käyttäjäskriptin poistaminen</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="231"/>
         <source>Javascript files</source>
-        <translation type="unfinished"/>
+        <translation>JavaScript-tiedostot</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="232"/>
         <source>Choose a user script</source>
-        <translation type="unfinished"/>
+        <translation>Valitse käyttäjäskripti</translation>
     </message>
 </context>
 <context>
@@ -1362,17 +1362,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="157"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Loitonna</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="170"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Lähennä</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="176"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Nollaa</translation>
     </message>
 </context>
 <context>
@@ -1425,7 +1425,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebViewContextMenu.qml" line="108"/>
         <source>Open web developer tools</source>
-        <translation type="unfinished"/>
+        <translation>Avaa web-kehittäjän työkalut</translation>
     </message>
 </context>
 </TS>

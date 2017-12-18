@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -52,17 +52,14 @@
         <translation>Credits</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="325"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="321"/>
+        <source>Show logs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="332"/>
         <source>Close</source>
         <translation>Schließen</translation>
-    </message>
-</context>
-<context>
-    <name>AppStrings</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.hpp" line="15"/>
-        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
-        <translation>Erstelllt Am %1 Um %2 (%3,%4 bit) Mit Qt%5</translation>
     </message>
 </context>
 <context>
@@ -96,6 +93,14 @@
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml" line="89"/>
         <source>Confirm restore defaults</source>
         <translation>Bestätigen Sie Enstellungen Wiederherstellen</translation>
+    </message>
+</context>
+<context>
+    <name>BuildConfigStrings</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Infrastructure/BuildConfig.hpp" line="12"/>
+        <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -367,7 +372,7 @@ listened to will appear here...</source>
 <context>
     <name>ListeningHistorySectionDelegate</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="78"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml" line="79"/>
         <source>Confirm remove</source>
         <translation>Löschen bestetigen</translation>
     </message>
@@ -511,22 +516,22 @@ listened to will appear here...</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="57"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="59"/>
         <source>Are you sure you want to quit MellowPlayer?</source>
         <translation>Bist du sicher, dass du MellowPlayer beenden möchtest?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="58"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="60"/>
         <source>Confirm quit</source>
         <translation>Beenden bestätigen</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="66"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="68"/>
         <source>Closing to system tray</source>
         <translation>Schließen in den Systemtray</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="67"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/MainWindow.qml" line="69"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
         <translation>&lt;p&gt;MellowPlayer wird im Hintergrund weiter laufen.&lt;br&gt;Sie können MellowPlayer beenden oder das Hauptfenster über das Symbol in der Taskleiste wiederherstellen.&lt;/P&gt;</translation>
     </message>
@@ -651,17 +656,12 @@ listened to will appear here...</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/ViewModels/ApplicationViewModel.cpp" line="136"/>
-        <source>&lt;unknown compiler&gt;</source>
-        <translation>&lt;Unbekannter Compiler&gt;</translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Notifications/NotificationFactory.cpp" line="9"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/LibnotifyStrings.cpp" line="7"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/Presenters/Linux/LibnotifyStrings.cpp" line="7"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
@@ -700,12 +700,12 @@ listened to will appear here...</source>
         <translation>Mit welchem Service möchtest du gerne Musik hören?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="179"/>
         <source> has been removed from overview.</source>
         <translation>aus der Übersicht entfernt.</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/ServicesOverview.qml" line="185"/>
         <source>UNDO</source>
         <translation>RÜCKGÄNGIG</translation>
     </message>
@@ -932,6 +932,11 @@ listened to will appear here...</source>
         <translation>Automatisch auf Updates prüfen</translation>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
+        <source>Specifies the user agent string used by web views</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="47"/>
         <source>Enable this option to get a confirmation message when you leave MellowPlayer.</source>
         <translation>Aktivieren Sie diese Option, um eine Bestätigungsnachricht zu erhalten, wenn Sie MellowPlayer verlassen.</translation>
@@ -1102,11 +1107,6 @@ listened to will appear here...</source>
         <translation>Geben sie die Grenze des Hörverlaufs an</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
-        <source>Specifies the user agent string used for http requests</source>
-        <translation>Gibt den User-Agent-String an, der für http-Anfragen verwendet wird</translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
         <source>Services</source>
         <translation>Services</translation>
@@ -1208,27 +1208,27 @@ listened to will appear here...</source>
 <context>
     <name>SystemTrayIconStrings</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="121"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="122"/>
         <source>Play/Pause</source>
         <translation>Play/Pause</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="126"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="127"/>
         <source>Next</source>
         <translation>Nächster Titel</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="131"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="132"/>
         <source>Previous</source>
         <translation>Vorheriger Titel</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="136"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="137"/>
         <source>Restore window</source>
         <translation>Programmfenster wiederherstellen</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="141"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Notifications/SystemTrayIcon.cpp" line="142"/>
         <source>Quit</source>
         <translation>MellowPlayer Schließen</translation>
     </message>
@@ -1269,17 +1269,17 @@ listened to will appear here...</source>
 <context>
     <name>UpdateChannelStringer</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="21"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="21"/>
         <source>Stable</source>
         <translation>Stabile Version</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="25"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="25"/>
         <source>Beta</source>
         <translation>Beta Version</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Application/Updater/UpdateChannel.hpp" line="29"/>
+        <location filename="../../lib/MellowPlayer/Infrastructure/Updater/UpdateChannel.hpp" line="29"/>
         <source>Continuous</source>
         <translation>Entwicklerversion</translation>
     </message>

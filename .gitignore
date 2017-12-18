@@ -62,3 +62,4 @@ qt\.zip
 schema.json
 .vscode
 /.vs
+/venv
