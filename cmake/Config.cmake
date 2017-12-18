@@ -31,11 +31,14 @@ endif()
 
 # Setup compiler settings
 # C++11 Required
-set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 if(MSVC_COMPILER)
-    add_compile_options("/std:c++latest")
+	# Require MSVC 2017
+	set(CMAKE_CXX_STANDARD 17)
+    add_compile_options("/std:c++17")
 else()
+	# only way to get c++17 support on GCC/Clang?
+	set(CMAKE_CXX_STANDARD 14)
     add_compile_options("-std=c++1z")
 endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
