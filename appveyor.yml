@@ -23,6 +23,9 @@ branches:
 build_script:
   - cd C:\projects\MellowPlayer\scripts\appveyor
   - build.bat
+  - cd C:\projects\MellowPlayer\scripts\packaging\windows
+  - make_installer.bat
+  - cd C:\projects\MellowPlayer
 
 test_script:
   - cd C:\projects\MellowPlayer\scripts\appveyor
@@ -30,13 +33,10 @@ test_script:
 
 deploy_script:
   - if defined APPVEYOR_REPO_TAG_NAME pip install github3.py
-  - cd C:\projects\MellowPlayer\scripts\packaging\windows
-  - make_installer.bat
-  - cd C:\projects\MellowPlayer
   - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
 
 artifacts:
-  - path: dist/MellowPlayer_Setup.exe
+  - path: C:\projects\MellowPlayer\dist\MellowPlayer_Setup.exe
     name: MellowPlayer_Setup
 
 # display remote desktop information and block build
