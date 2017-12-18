@@ -34,7 +34,7 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_CXX_STANDARD 17)
 if(MSVC_COMPILER)
-    add_compile_options("/std:latest")
+    add_compile_options("/std:c++latest")
 endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
