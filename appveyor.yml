@@ -1,4 +1,4 @@
-version: "3.1.50.{build}"
+version: "3.2.50.{build}"
 os: Visual Studio 2015
 platform:
   - x64
@@ -31,9 +31,13 @@ test_script:
 deploy_script:
   - if defined APPVEYOR_REPO_TAG_NAME pip install github3.py
   - cd C:\projects\MellowPlayer\scripts\packaging\windows
-  - if defined APPVEYOR_REPO_TAG_NAME make_installer.bat
+  - make_installer.bat
   - cd C:\projects\MellowPlayer
   - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+
+artifacts:
+  - path: dist/MellowPlayer_Setup.exe
+    name: MellowPlayer_Setup
 
 # display remote desktop information and block build
 #on_failure:
