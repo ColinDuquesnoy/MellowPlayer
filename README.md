@@ -18,23 +18,27 @@ notifications and more).
 
 # Supported services:
 
-- [Deezer](http://deezer.com)
-- [Mixcloud](http://mixcloud.com)
-- [Soundcloud](http://soundcloud.com)
-- [Spotify](http://spotify.com)
-- [TuneIn](http://tunein.com/)
-- [8tracks](http://8tracks.com/)
-- [Google Play Music](https://play.google.com/music/listen)
-- [Youtube](https://youtube.com/)
-- [Tidal](https://listen.tidal.com/) (no HiFi support)
-- [Anghami](https://www.anghami.com/)
-- [Pocket Casts](https://play.pocketcasts.com/)
-- [HearThisAt](https://hearthis.at/)
-- [Jamendo](https://www.jamendo.com/start)
-- [Radionomy](https://www.radionomy.com/)
-- [Wynk](https://www.wynk.in/music)
-- [ympd](https://github.com/notandy/ympd)
-- [Plex](https://www.plex.tv/)
+
+
+|                          Service                          | GNU/Linux | AppImage | Windows | OSx | Require non-free HTML codecs |      Require  flash      | Require  drm |
+|:---------------------------------------------------------:|:---------:|:--------:|:-------:|:---:|:----------------------------:|:------------------------:|:------------:|
+| [Deezer](http://deezer.com)                               |    Yes    |    Yes   |   Yes   | Yes |        Yes (or flash)        | Yes (or non-free codecs) |      No      |
+| [Mixcloud](http://mixcloud.com)                           |    Yes    |    No    |    No   |  No |              Yes             |            No            |      No      |
+| [Soundcloud](http://soundcloud.com)                       |    Yes    |    No    |    No   |  No |              Yes             |            No            |      No      |
+| [Spotify](http://spotify.com)                             |    Yes    |    No    |    No   |  No |              Yes             |            No            |      Yes     |
+| [TuneIn](http://tunein.com/)                              |    Yes    |    Yes   |   Yes   | Yes |     Depends on the stream    |            No            |      No      |
+| [8tracks](http://8tracks.com/)                            |    Yes    |    Yes   |   Yes   | Yes |     Depends on the stream    |            No            |      No      |
+| [Google Play Music](https://play.google.com/music/listen) |    Yes    |    Yes   |   Yes   | Yes |               ?              |             ?            |       ?      |
+| [Youtube](https://youtube.com/)                           |    Yes    |    Yes   |   Yes   | Yes |     Depends on the stream    |            No            |      No      |
+| [Tidal](https://listen.tidal.com/)                        |    Yes    |    Yes   |   Yes   | Yes |              No              |            Yes           |      No      |
+| [Anghami](https://www.anghami.com/)                       |    Yes    |    No    |    No   |  No |              Yes             |            No            |      No      |
+| [Pocket Casts](https://play.pocketcasts.com/)             |    Yes    |    No    |    No   |  No |              Yes             |            No            |      No      |
+| [HearThisAt](https://hearthis.at/)                        |    Yes    |    Yes   |   Yes   | Yes |     Depends on the stream    |            No            |      No      |
+| [Jamendo](https://www.jamendo.com/start)                  |    Yes    |    Yes   |   Yes   | Yes |              No              |            No            |      No      |
+| [Radionomy](https://www.radionomy.com/)                   |    Yes    |    Yes   |   Yes   | Yes |     Depends on the stream    |            No            |      No      |
+| [Wynk](https://www.wynk.in/music)                         |    Yes    |    No    |    No   |  No |              Yes             |            No            |      No      |
+| [ympd](https://github.com/notandy/ympd)                   |    Yes    |    Yes   |   Yes   | Yes |              No              |            No            |      No      |
+| [Plex](https://www.plex.tv/)                              |    Yes    |    No    |    No   |  No |              Yes             |            No            |       ?      |
 
 # Limitations:
 
