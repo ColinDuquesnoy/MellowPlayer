@@ -13,14 +13,6 @@ Supported Services
 ------------------
 
 
-Try pandoc!
-
-pandoc --from markdown --to rst
-
-  from
-
-to
-
 +------------------------+---+---+---+---+------------+----------+-----+
 | Service                | G | A | W | O | Require    | Require  | Req |
 |                        | N | p | i | S | non-free   | flash    | uir |
