@@ -33,6 +33,10 @@ set_option(STATIC_LIBSTDCPP OFF BOOL "True to link statically with libstdc++ and
 set_option(UPDATE_TRANSLATIONS OFF BOOL "True to update translations")
 set_option(DEFAULT_THEME "Adaptive" STRING "The default theme (available: Default, Midna, MidnaDark, Breeze, BreezeDark, Deezer, Spotify,...)")
 set_option(USE_PRECOMPILED_HEADER ON BOOL "(GNU/Linux Only) ON to enable usage of pre-compiled headers. Default is ON")
+if (UNIX)
+    set_option(USE_LD_GOLD ON BOOL "Use GNU gold linker")
+endif()
+
 
 if (UNIX AND NOT APPLE)
     set(USE_LIBNOTIFY TRUE)
