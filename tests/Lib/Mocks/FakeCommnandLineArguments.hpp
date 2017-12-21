@@ -72,7 +72,7 @@ namespace MellowPlayer::Infrastructure::Tests
 
         Domain::LogLevel logLevel() const override
         {
-            return Domain::LogLevel::Info;
+            return Domain::LogLevel::Error;
         }
 
         bool parsed = false;
