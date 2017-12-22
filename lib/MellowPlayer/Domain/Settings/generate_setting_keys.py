@@ -19,7 +19,7 @@ def get_translator_template():
 
 
 def get_schema():
-    with open('schema.json') as f:
+    with open('../../Infrastructure/Settings/schema.json') as f:
         return f.read()
 
 
