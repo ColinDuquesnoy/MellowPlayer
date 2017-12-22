@@ -59,98 +59,102 @@ Page {
         anchors.fill: parent
         spacing: 0
 
-        Pane {
-            padding: 0
-
+        Rectangle {
+            color: _theme.secondary
             Layout.fillHeight: true
             Layout.maximumWidth: 324
             Layout.minimumWidth: 324
 
-            Material.background: _theme.secondary
-            Material.foreground: _theme.secondaryForeground
-            Material.elevation: 4
-            Material.accent: _theme.accent
-            Material.theme: _theme.isDark(_theme.secondary) ? Material.Dark : Material.Light
-
-            ColumnLayout {
+            Pane {
+                padding: 0
                 anchors.fill: parent
 
-                Component {
-                    id: settingsCategoryDelegate
+                Material.background: _theme.secondary
+                Material.foreground: _theme.secondaryForeground
+                Material.elevation: 4
+                Material.accent: _theme.accent
+                Material.theme: _theme.isDark(_theme.secondary) ? Material.Dark : Material.Light
 
-                    ItemDelegate {
-                        id: delegate
+                ColumnLayout {
+                    anchors.fill: parent
 
-                        property string category: Translator.translateCategory(model.name)
+                    Component {
+                        id: settingsCategoryDelegate
 
-                        height: 60; width: parent.width
+                        ItemDelegate {
+                            id: delegate
+
+                            property string category: Translator.translateCategory(model.name)
+
+                            height: 60; width: parent.width
+                            hoverEnabled: true
+
+                            RowLayout {
+                                anchors.fill: parent
+                                anchors.leftMargin: parent.leftPadding
+                                anchors.rightMargin: parent.rightPadding
+                                anchors.topMargin: parent.topPadding
+                                anchors.bottomMargin: parent.bottomPadding
+
+                                Label {
+                                    text: model.icon
+                                    font.family: MaterialIcons.family
+                                    font.pixelSize: 24
+                                }
+
+                                Label {
+                                    verticalAlignment: "AlignVCenter"
+                                    text: delegate.category
+                                    font.pixelSize: 20
+                                }
+
+                                Item { Layout.fillWidth: true; }
+                            }
+
+                            onClicked: settingsPageList.currentIndex = index
+                        }
+                    }
+
+                    ListView {
+                        id: settingsPageList
+
+                        highlight: Rectangle {
+                            color: _theme.isDark(_theme.secondary) ? "#10ffffff" : "#10000000"
+
+                            Rectangle {
+                                anchors.top: parent.top
+                                anchors.left: parent.left
+                                anchors.bottom: parent.bottom
+
+                                width: 4
+                                color: _theme.accent
+                            }
+                        }
+                        highlightMoveDuration: 200
+                        model: _settings.categories
+                        delegate: settingsCategoryDelegate
+                        interactive: false
+
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                    }
+
+                    Button {
+                        id: btRestoreDefaults
+
+                        flat: true
+                        highlighted: true
                         hoverEnabled: true
+                        text: qsTr("Restore all to defaults")
+                        onClicked: messageBoxConfirmRestore.open()
 
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.leftMargin: parent.leftPadding
-                            anchors.rightMargin: parent.rightPadding
-                            anchors.topMargin: parent.topPadding
-                            anchors.bottomMargin: parent.bottomPadding
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 4
+                        Layout.rightMargin: 4
 
-                            Label {
-                                text: model.icon
-                                font.family: MaterialIcons.family
-                                font.pixelSize: 24
-                            }
-
-                            Label {
-                                verticalAlignment: "AlignVCenter"
-                                text: delegate.category
-                                font.pixelSize: 20
-                            }
-
-                            Item { Layout.fillWidth: true; }
+                        Tooltip {
+                            text: qsTr('Restore all settings to their <b>default value</b>.')
                         }
-
-                        onClicked: settingsPageList.currentIndex = index
-                    }
-                }
-
-                ListView {
-                    id: settingsPageList
-
-                    highlight: Rectangle {
-                        color: _theme.isDark(_theme.secondary) ? "#10ffffff" : "#10000000"
-
-                        Rectangle {
-                            anchors.top: parent.top
-                            anchors.left: parent.left
-                            anchors.bottom: parent.bottom
-
-                            width: 4
-                            color: _theme.accent
-                        }
-                    }
-                    highlightMoveDuration: 200
-                    model: _settings.categories
-                    delegate: settingsCategoryDelegate
-                    interactive: false
-
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                }
-
-                Button {
-                    id: btRestoreDefaults
-
-                    flat: true
-                    highlighted: true
-                    hoverEnabled: true
-                    text: qsTr("Restore all to defaults")
-                    onClicked: messageBoxConfirmRestore.open()
-
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 4
-                    Layout.rightMargin: 4
-
-                    Tooltip {
-                        text: qsTr('Restore all settings to their <b>default value</b>.')
                     }
                 }
             }
