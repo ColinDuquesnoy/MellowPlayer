@@ -16,21 +16,15 @@ namespace MellowPlayer::Domain
     {
         Q_OBJECT
         Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
+        Q_PROPERTY(QString sourceCode READ sourceCode NOTIFY sourceCodeChanged)
     public:
         explicit Player(Domain::StreamingService& streamingService);
         ~Player() override;
 
-        // IPlayer
-        Q_INVOKABLE void togglePlayPause() override;
-        Q_INVOKABLE void play() override;
-        Q_INVOKABLE void pause() override;
-        Q_INVOKABLE void next() override;
-        Q_INVOKABLE void previous() override;
         Q_INVOKABLE void seekToPosition(double value) override;
         Q_INVOKABLE void setVolume(double volume) override;
+        Q_INVOKABLE void togglePlayPause() override;
         Q_INVOKABLE void toggleFavoriteSong() override;
-        Q_INVOKABLE void addToFavorites() override;
-        Q_INVOKABLE void removeFromFavorites() override;
 
         Domain::Song* currentSong() override;
         double position() const override;
@@ -43,12 +37,13 @@ namespace MellowPlayer::Domain
         QString serviceName() const override;
         bool isPlaying() const override;
         bool isStopped() const override;
+        bool isRunning() const;
+        QString sourceCode() const;
 
         // invoked by WebView (QML)
+        Q_INVOKABLE void setUpdateResults(const QVariant& results);
         Q_INVOKABLE void start();
         Q_INVOKABLE void stop();
-        Q_INVOKABLE bool isRunning() const;
-        Q_INVOKABLE void setUpdateResults(const QVariant& results);
 
         // invoked by CurrentPlayer
         void suspend();
@@ -60,13 +55,16 @@ namespace MellowPlayer::Domain
         void setPlaybackStatus(PlaybackStatus value);
 
     signals:
-        void runJavascriptRequested(const QString& script);
-        void updateRequested(const QString& script);
         void isRunningChanged();
-
-    public slots:
-        void refresh();
-        void loadPlugin();
+        void sourceCodeChanged();
+        void play() override;
+        void pause() override;
+        void next() override;
+        void previous() override;
+        void addToFavorites() override;
+        void removeFromFavorites() override;
+        void seekToPositionRequest(double newPosition);
+        void changeVolumeRequest(double newVolume);
 
     private:
         void setCurrentSong(std::unique_ptr<Domain::Song>& song);
@@ -90,6 +88,5 @@ namespace MellowPlayer::Domain
         Domain::StreamingServiceScript& streamingServiceScript_;
         PlaybackStatus suspendedState_ = PlaybackStatus::Stopped;
         bool isRunning_ = false;
-        std::unique_ptr<QTimer> refreshTimer_;
     };
 }

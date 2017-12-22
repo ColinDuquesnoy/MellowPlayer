@@ -84,5 +84,6 @@
         <file>Views/MellowPlayer/Controls/IconToolButton.qml</file>
         <file>Views/MellowPlayer/DateCategoryTranslator.js</file>
         <file>Views/MellowPlayer/SettingsTranslator.js</file>
+        <file>Resources/mellowplayer.js</file>
     </qresource>
 </RCC>

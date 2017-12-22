@@ -4,6 +4,7 @@
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
+#include <qfile.h>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;

@@ -1,8 +1,10 @@
+
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 import QtWebEngine 1.5
+import QtWebChannel 1.0
 
 import MellowPlayer 3.0
 import ".."
@@ -17,6 +19,7 @@ WebEngineView {
     property bool isRunning: false
     property bool hasProprietaryCodecs: true
     property var userAgentSetting: _settings.get(SettingKey.PRIVACY_USER_AGENT)
+    readonly property string aboutBlank: "about:blank"
 
     signal updateImageFinished()
     signal customUrlSet(var customUrl)
@@ -34,7 +37,7 @@ WebEngineView {
         root.triggerWebAction(WebEngineView.Stop);
         image = null;
         isRunning = false;
-        url = "about:blank";
+        url = aboutBlank;
         reload();
         player.stop();
     }
@@ -77,8 +80,10 @@ WebEngineView {
         autoLoadIconsForPage: true
     }
     userScripts: d.getUserScripts()
-    url: "about:blank"
+    url: aboutBlank
     zoomFactor: d.zoomFactors[d.zoomFactorIndex]
+
+    webChannel: webChannel
 
     profile.httpUserAgent: userAgentSetting.value
 
@@ -100,19 +105,49 @@ WebEngineView {
         contextMenu.show();
     }
     onLoadingChanged: {
-        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != "about:blank") {
-            player.loadPlugin();
+        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != aboutBlank) {
             d.checkForProprietaryCodecs();
         }
         else
             d.checkForCustomUrlRequired();
     }
 
+    QtObject {
+        id: playerBridge
+
+        property var updateResults
+        property bool isRunning: root.player.isRunning
+
+        signal play()
+        signal pause()
+        signal next()
+        signal previous()
+        signal addToFavorites()
+        signal removeFromFavorites()
+        signal seekToPosition(var position)
+        signal changeVolume(double newVolume)
+
+        onUpdateResultsChanged: root.player.setUpdateResults(updateResults);
+
+        WebChannel.id: "player"
+    }
+
+    WebChannel {
+        id: webChannel
+        registeredObjects: [playerBridge]
+    }
+
     Connections {
-        target: player
-        onRunJavascriptRequested: runJavaScript(script, function(result) { })
-        onUpdateRequested: runJavaScript(script, function(results) { root.player.setUpdateResults(results); })
-        onIsRunningChanged: if (!player.isRunning && root.isRunning) root.stop()
+        target: root.player
+
+        onPlay: playerBridge.play()
+        onPause: playerBridge.pause()
+        onNext: playerBridge.next()
+        onPrevious: playerBridge.previous()
+        onAddToFavorites: playerBridge.addToFavorites()
+        onRemoveFromFavorites: playerBridge.removeFromFavorites()
+        onSeekToPositionRequest: playerBridge.seekToPosition(newPosition)
+        onChangeVolumeRequest: playerBridge.changeVolume(newVolume)
     }
 
     CustomUrlPane {
@@ -228,18 +263,49 @@ WebEngineView {
         function getUserScripts() {
             var scripts = [];
 
+
+            var webChannelScript = createMellowPlayerScriptFromSourceUrl("WebChannelAPI", "qrc:///qtwebchannel/qwebchannel.js");
+            webChannelScript.injectionPoint = WebEngineScript.DocumentCreation;
+            scripts.push(webChannelScript);
+            scripts.push(createMellowPlayerScriptFromSourceUrl("MellowPlayerAPI", "qrc:/MellowPlayer/Presentation/Resources/mellowplayer.js"));
+            scripts.push(createMellowPlayerScriptFromSourceCode("IntegrationPlugin", root.player.sourceCode));
+
             for (var i = 0; i < service.userScripts.model.count; i++) {
                 var userScript = service.userScripts.model.get(i);
-                var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
-                webEngineScript.name = userScript.name;
-                webEngineScript.sourceCode = userScript.code;
-                webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
-                scripts.push(webEngineScript);
+                scripts.push(createUserScriptFromCode(userScript.name, userScript.code));
             }
 
             reload();
 
             return scripts;
+        }
+
+        function createUserScriptFromCode(name, sourceCode) {
+            var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
+            webEngineScript.name = name;
+            webEngineScript.sourceCode = sourceCode;
+            webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
+            return webEngineScript;
+        }
+
+        function createMellowPlayerScript(name) {
+            var webEngineScript = Qt.createQmlObject("import QtWebEngine 1.5; WebEngineScript {}", root, "webEngineScript.js");
+            webEngineScript.name = name;
+            webEngineScript.injectionPoint = WebEngineScript.DocumentReady;
+            webEngineScript.worldId = WebEngineScript.MainWorld;
+            return webEngineScript;
+        }
+
+        function createMellowPlayerScriptFromSourceUrl(name, sourceUrl) {
+            var webEngineScript = createMellowPlayerScript(name)
+            webEngineScript.sourceUrl = sourceUrl;
+            return webEngineScript;
+        }
+
+        function createMellowPlayerScriptFromSourceCode(name, sourceCode) {
+            var webEngineScript = createMellowPlayerScript(name)
+            webEngineScript.sourceCode = sourceCode;
+            return webEngineScript;
         }
     }
 }

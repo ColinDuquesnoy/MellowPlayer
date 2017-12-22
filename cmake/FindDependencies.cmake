@@ -12,6 +12,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
              Svg
              Test
              WebEngine
+             WebChannel
              WebEngineWidgets
              Widgets)
 find_package(Qt5LinguistTools REQUIRED)

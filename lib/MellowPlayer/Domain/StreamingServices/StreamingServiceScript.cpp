@@ -32,51 +32,6 @@ const QString& StreamingServiceScript::path() const
     return path_;
 }
 
-QString StreamingServiceScript::update() const
-{
-    return "if (typeof update !== 'undefined') update();";
-}
-
-QString StreamingServiceScript::play() const
-{
-    return "play();";
-}
-
-QString StreamingServiceScript::pause() const
-{
-    return "pause();";
-}
-
-QString StreamingServiceScript::next() const
-{
-    return "goNext();";
-}
-
-QString StreamingServiceScript::previous() const
-{
-    return "goPrevious();";
-}
-
-QString StreamingServiceScript::setVolume(double volume) const
-{
-    return QString("setVolume(%1);").arg(volume);
-}
-
-QString StreamingServiceScript::addToFavorites() const
-{
-    return "addToFavorites();";
-}
-
-QString StreamingServiceScript::removeFromFavorites() const
-{
-    return "removeFromFavorites();";
-}
-
-QString StreamingServiceScript::seekToPosition(double position) const
-{
-    return QString("seekToPosition(%1);").arg(position);
-}
-
 QString StreamingServiceScript::constants() const
 {
     return "mellowplayer = {\n"
