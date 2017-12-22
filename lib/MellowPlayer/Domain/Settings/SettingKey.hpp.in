@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-namespace MellowPlayer::Application
+namespace MellowPlayer::Domain
 {
     class SettingKey : public QObject
     {
