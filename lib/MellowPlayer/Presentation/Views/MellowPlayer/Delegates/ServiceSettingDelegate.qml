@@ -8,153 +8,57 @@ import ".."
 import "../Controls"
 import "../Dialogs"
 
-ItemDelegate {
-    id: root
-
-    function enterEditMode() {
-        stack.currentIndex = 1
-        textField.forceActiveFocus()
-    }
-
+Pane {
     padding: 0
-    hoverEnabled: true
-    onClicked: switchEnabled.toggle()
 
-    Material.elevation: 2
+    Material.elevation: 4
 
-    width: layout.implicitWidth
-    height: layout.implicitHeight
-
-    ColumnLayout {
-        id: layout
-
+    ItemDelegate {
         anchors.fill: parent
-        anchors.leftMargin: parent.leftPadding
-        anchors.rightMargin: parent.rightPadding
-        anchors.topMargin: parent.topPadding
-        anchors.bottomMargin: parent.bottomPadding
 
-        RowLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.margins: 8
-            Layout.leftMargin: 16
-            Layout.rightMargin: 16
-            spacing: 16
-
-            Image {
-                antialiasing: true
-                mipmap: true
-                smooth: true
-                source: model.logo
-
-                Layout.preferredHeight: 64
-                Layout.preferredWidth: 64
-                Layout.alignment: Qt.AlignVCenter
-            }
+        Item {
+            anchors.fill: parent
 
             ColumnLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.alignment: Qt.AlignVCenter
+                anchors.centerIn: parent
+                spacing: 16
+                width: implicitWidth
+                height: implicitHeight
 
                 Label {
                     font.bold: true
-                    font.pixelSize: 20
+                    horizontalAlignment: "AlignHCenter"
+                    opacity: 0.66
                     text: model.name
 
-                    Layout.alignment: Qt.AlignVCenter
-                }
-
-                RowLayout {
-                    spacing: 0
-
-                    Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Material.accent: _theme.accent === "#ffc107" ? _theme.primary : _theme.accent
-
-                    Label {
-                        font.italic: true
-                        font.pixelSize: 12
-                        text: qsTr("Version ") + model.version + qsTr(" by ")
-                    }
-
-                    Link {
-                        font.italic: true
-                        font.pixelSize: 12
-                        name: model.authorName
-                        url: model.authorWebsite
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
                 }
 
-                TextField {
-                    id: textField
+                Image {
+                    mipmap: true; smooth: true
+                    source: model.logo
 
-                    selectByMouse: true
-                    text: model.url
-                    padding: 0
+                    Layout.preferredHeight: 128
+                    Layout.preferredWidth: 128
+                }
 
-                    onEditingFinished: model.url = text
+                Switch {
+                    checked: model.isEnabled
+                    onCheckedChanged: {
+                        model.isEnabled = checked;
+                        _streamingServices.enabledServices.update();
+                    }
 
-                    Layout.preferredWidth: 512
+                    Layout.alignment: Qt.AlignHCenter
                 }
             }
 
-            ColumnLayout {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-
-                RowLayout {
-                    IconToolButton {
-                        checked: model.notificationsEnabled
-                        checkable: true
-                        iconChar: checked ? MaterialIcons.icon_notifications_active : MaterialIcons.icon_notifications_off
-                        tooltip: checked ? qsTr("%1 notifications are enabled").arg(model.name) :
-                                           qsTr("%1 notifications are disabled").arg(model.name)
-
-                        onCheckedChanged: model.notificationsEnabled = checked;
-                    }
-
-                    Switch {
-                        id: switchEnabled
-                        checked: model.isEnabled
-
-                        onCheckedChanged: {
-                            model.isEnabled = checked;
-                            _streamingServices.enabledServices.update()
-                        }
-                    }
-
-                    Layout.alignment: Qt.AlignRight
-                }
-
-                Button {
-                    id: userScriptsButton
-
-                    flat: true
-                    highlighted: true
-                    text: qsTr("User scripts")
-
-                    onClicked: {
-                        userScriptsDialog.serviceName = model.name;
-                        userScriptsDialog.viewModel = model.userScripts;
-                        userScriptsDialog.open();
-                    }
-                }
+            Label {
+                anchors{ bottom: parent.bottom; right: parent.right; margins: 12 }
+                font { family: MaterialIcons.family; pixelSize: 24 }
+                opacity: 0.66
+                text: MaterialIcons.icon_settings
             }
-        }
-
-        Rectangle {
-            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-            height: 1
-            visible: model.index != (root.ListView.view.count - 1)
-
-            Layout.fillWidth: true
         }
     }
 }
-

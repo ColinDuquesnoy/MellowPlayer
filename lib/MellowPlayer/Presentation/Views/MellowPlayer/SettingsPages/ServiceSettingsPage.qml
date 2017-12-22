@@ -7,29 +7,65 @@ import MellowPlayer 3.0
 import ".."
 
 
-Item {
+Pane {
     clip: true
+    padding: 0
+
+    Material.background: Qt.darker(_theme.background, 1.05)
 
     ColumnLayout {
         anchors.fill: parent
 
-        ScrollView {
-            Layout.fillWidth: true
+        RowLayout {
             Layout.fillHeight: true
-            ScrollBar.vertical.policy: ScrollBar.vertical.size != 1 ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+            Layout.fillWidth: true
 
-            ListView {
-                id: listView
+            Pane {
+                padding: 0
+                topPadding: 3
+                leftPadding: 16
 
-                anchors.fill: parent
-                anchors.rightMargin: 16
-                clip: true
-                delegate: ServiceSettingDelegate {
-                    width: listView.width;
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                Material.background: Qt.darker(_theme.background, 1.05)
+
+                GridView {
+                    id: grid
+
+                    property int itemSpacing: 32
+
+                    anchors.centerIn: parent
+                    clip: true
+                    cellHeight: 256 + itemSpacing
+                    cellWidth: 256 + itemSpacing
+                    height: parent.height
+                    width: Math.floor(parent.width / cellWidth) * cellWidth
+
+                    delegate: ServiceSettingDelegate {
+                        Material.background: _theme.background
+
+                        width: grid.cellWidth - grid.itemSpacing / 2;
+                        height: grid.cellHeight - grid.itemSpacing / 2
+                    }
+                    model: _streamingServices.allServices
+
+                    ScrollBar.vertical: scrollBar
                 }
-                model: _streamingServices.allServices
-                spacing: 0
+            }
+
+            Item {
+                id: scrollBarArea
+
+                Layout.fillHeight: true
+                Layout.preferredWidth: 16
+
+                ScrollBar {
+                    id: scrollBar
+                    policy: size != 1 ? "AlwaysOn" : "AlwaysOff"
+
+                    anchors.fill: parent
+                }
             }
         }
 
