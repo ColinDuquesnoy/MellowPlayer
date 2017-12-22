@@ -61,6 +61,7 @@ Page {
 
         Rectangle {
             color: _theme.secondary
+
             Layout.fillHeight: true
             Layout.maximumWidth: 324
             Layout.minimumWidth: 324
