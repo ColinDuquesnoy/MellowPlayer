@@ -253,7 +253,7 @@ ToolBar {
 
                 sequence: _settings.get(SettingKey.SHORTCUTS_QUIT).value
 
-                onActivated: _app.requestQuit();
+                onActivated: _window.requestQuit()
             }
 
             Menu {
