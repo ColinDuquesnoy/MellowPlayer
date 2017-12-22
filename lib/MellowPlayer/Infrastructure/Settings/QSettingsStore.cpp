@@ -22,6 +22,4 @@ QVariant QSettingsStore::value(const QString& key, const QVariant& defaultValue)
 void QSettingsStore::setValue(const QString& key, const QVariant& value)
 {
     qSettings_.setValue(key, value);
-	auto newValue = qSettings_.value(key).toBool();
-	qDebug() << newValue;
 }
