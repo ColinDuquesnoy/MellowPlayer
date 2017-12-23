@@ -52,60 +52,58 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
 
     SECTION("control player1")
     {
-        QSignalSpy jsSpy(&player1, SIGNAL(runJavascriptRequested(const QString&)));
-
         SECTION("togglePlayPause")
         {
+            QSignalSpy spy(&player1, &Player::play);
             currentPlayer.togglePlayPause();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "play();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("play")
         {
+            QSignalSpy spy(&player1, &Player::play);
             currentPlayer.play();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "play();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("pause")
         {
-            currentPlayer.play();
+            QSignalSpy spy(&player1, &Player::pause);
             currentPlayer.pause();
-            REQUIRE(jsSpy.count() == 2);
-            REQUIRE(jsSpy[1][0] == "pause();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("next")
         {
+            QSignalSpy spy(&player1, &Player::next);
             currentPlayer.next();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "goNext();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("previous")
         {
+            QSignalSpy spy(&player1, &Player::previous);
             currentPlayer.previous();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "goPrevious();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("seekToPosition")
         {
-            currentPlayer.seekToPosition(153.5);
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "seekToPosition(153.5);");
+            QSignalSpy spy(&player1, &Player::seekToPositionRequest);
+            currentPlayer.seekToPosition(160);
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("setVolume")
         {
-            currentPlayer.setVolume(0.5);
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0].toString().toStdString() == "setVolume(0.5);");
+            QSignalSpy spy(&player1, &Player::changeVolumeRequest);
+            currentPlayer.setVolume(0.67);
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("toggleFavoriteSong")
         {
+            QSignalSpy spy(&player1, &Player::addToFavorites);
             QVariantMap map;
             map["position"] = 1.0;
             map["playbackStatus"] = static_cast<int>(PlaybackStatus::Playing);
@@ -122,24 +120,24 @@ TEST_CASE("CurrentPlayerTests", "[UnitTest]")
             map["volume"] = 0.5;
             map["duration"] = 350.0;
             player1.setUpdateResults(QVariant::fromValue(map));
-
             currentPlayer.toggleFavoriteSong();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "addToFavorites();");
+
+            currentPlayer.previous();
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("addToFavorites")
         {
+            QSignalSpy spy(&player1, &Player::addToFavorites);
             currentPlayer.addToFavorites();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "addToFavorites();");
+            REQUIRE(spy.count() == 1);
         }
 
         SECTION("removeFromFavorites")
         {
+            QSignalSpy spy(&player1, &Player::removeFromFavorites);
             currentPlayer.removeFromFavorites();
-            REQUIRE(jsSpy.count() == 1);
-            REQUIRE(jsSpy[0][0] == "removeFromFavorites();");
+            REQUIRE(spy.count() == 1);
         }
     }
 

@@ -29,60 +29,6 @@ TEST_CASE("StreamingServiceScriptTests", "[UnitTest]")
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("StreamingServiceScript.update")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.update() == "if (typeof update !== 'undefined') update();");
-    }
-
-    SECTION("StreamingServiceScript.play")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.play() == "play();");
-    }
-
-    SECTION("StreamingServiceScript.pause")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.pause() == "pause();");
-    }
-
-    SECTION("StreamingServiceScript.next")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.next() == "goNext();");
-    }
-
-    SECTION("StreamingServiceScript.previous")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.previous() == "goPrevious();");
-    }
-
-    SECTION("StreamingServiceScript.setVolume")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.setVolume(95).toStdString() == "setVolume(95);");
-    }
-
-    SECTION("StreamingServiceScript.addToFavorites")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.addToFavorites() == "addToFavorites();");
-    }
-
-    SECTION("StreamingServiceScript.removeFromFavorites")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.removeFromFavorites() == "removeFromFavorites();");
-    }
-
-    SECTION("StreamingServiceScript.seekToPosition")
-    {
-        StreamingServiceScript script("code", "path");
-        REQUIRE(script.seekToPosition(95).toStdString() == "seekToPosition(95);");
-    }
-
     SECTION("StreamingServiceScript.isValid_validCode")
     {
         QString code = "function update\n"
