@@ -37,7 +37,7 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
     QSignalSpy canGoPreviousChanged(&player, SIGNAL(canGoPreviousChanged()));
     QSignalSpy canAddToFavoritesChanged(&player, SIGNAL(canAddToFavoritesChanged()));
     QSignalSpy volumeChanged(&player, SIGNAL(volumeChanged()));
-    QSignalSpy jsSpy(&currentPlayer, SIGNAL(runJavascriptRequested(const QString&)));
+    
 
     SECTION("PlaybackStatus")
     {
@@ -169,54 +169,65 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
 
     SECTION("TogglePlayPause")
     {
+        QSignalSpy spy(&currentPlayer, &Player::play);
         mpris2Player.PlayPause();
-        REQUIRE(jsSpy.count() == 1);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Play")
     {
+        QSignalSpy spy(&currentPlayer, &Player::play);
         mpris2Player.Play();
-        REQUIRE(jsSpy.count() == 1);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Pause")
     {
+        QSignalSpy spy(&currentPlayer, &Player::pause);
         mpris2Player.Play();
         mpris2Player.Pause();
-        REQUIRE(jsSpy.count() == 2);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Stop")
     {
+        QSignalSpy spy(&currentPlayer, &Player::pause);
         mpris2Player.Play();
         mpris2Player.Stop();
-        REQUIRE(jsSpy.count() == 2);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Next")
     {
+        QSignalSpy spy(&currentPlayer, &Player::next);
         mpris2Player.Next();
-        REQUIRE(jsSpy.count() == 1);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Previous")
     {
+        QSignalSpy spy(&currentPlayer, &Player::previous);
         mpris2Player.Previous();
-        REQUIRE(jsSpy.count() == 1);
+        REQUIRE(spy.count() == 1);
     }
 
     SECTION("Seek")
     {
-        mpris2Player.Seek(360000000);
-        REQUIRE(jsSpy.count() == 1);
-        REQUIRE(jsSpy[0][0].toString() == "seekToPosition(360);");
+        auto pos = 360000000;
+
+        QSignalSpy spy(&currentPlayer, &Player::seekToPositionRequest);
+        mpris2Player.Seek(pos);
+        REQUIRE(spy.count() == 1);
+        REQUIRE(spy.at(0).at(0).toDouble() == pos / 1000000);
     }
 
     SECTION("SetPosition")
     {
-        mpris2Player.SetPosition(QDBusObjectPath(), 360000000);
-        REQUIRE(jsSpy.count() == 1);
-        REQUIRE(jsSpy[0][0].toString() == "seekToPosition(360);");
+        auto pos = 360000000;
+        QSignalSpy spy(&currentPlayer, &Player::seekToPositionRequest);
+        mpris2Player.SetPosition(QDBusObjectPath(), pos);
+        REQUIRE(spy.count() == 1);
+        REQUIRE(spy.at(0).at(0).toDouble() == pos / 1000000);
     }
 
     SECTION("SongChanged")
