@@ -177,10 +177,10 @@ Page {
                 }
             }
         }
-    }
+    }  
 
-    UserScriptsDialog {
-        id: userScriptsDialog
+    StreamingServiceSettingsDialog {
+        id: settingsDialog
 
         height: 540; width: 960
         x: parent.width / 2 - width / 2; y: parent.height / 2 - height / 2

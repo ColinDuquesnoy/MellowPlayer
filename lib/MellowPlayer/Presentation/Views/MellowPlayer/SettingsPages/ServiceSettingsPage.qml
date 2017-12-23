@@ -5,13 +5,10 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../Dialogs"
 
-
-Pane {
+Item {
     clip: true
-    padding: 0
-
-    Material.background: Qt.darker(_theme.background, 1.05)
 
     ColumnLayout {
         anchors.fill: parent
@@ -20,15 +17,11 @@ Pane {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            Pane {
-                padding: 0
-                topPadding: 3
-                leftPadding: 16
+            Item {
+                clip: true
 
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-
-                Material.background: Qt.darker(_theme.background, 1.05)
 
                 GridView {
                     id: grid
@@ -36,15 +29,12 @@ Pane {
                     property int itemSpacing: 32
 
                     anchors.centerIn: parent
-                    clip: true
                     cellHeight: 256 + itemSpacing
                     cellWidth: 256 + itemSpacing
                     height: parent.height
                     width: Math.floor(parent.width / cellWidth) * cellWidth
 
                     delegate: ServiceSettingDelegate {
-                        Material.background: _theme.background
-
                         width: grid.cellWidth - grid.itemSpacing / 2;
                         height: grid.cellHeight - grid.itemSpacing / 2
                     }

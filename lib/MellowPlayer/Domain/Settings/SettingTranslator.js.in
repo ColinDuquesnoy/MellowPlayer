@@ -16,7 +16,7 @@ function translateToolTip(toolTip) {
 
 function translateCategory(category) {
     var translations = {
-        "Services": qsTr("Services"),
+        "Streaming Services": qsTr("Streaming Services"),
         "Cache": qsTr("Cache"),
 %(categories)s
     };

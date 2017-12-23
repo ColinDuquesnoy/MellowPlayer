@@ -33,10 +33,9 @@ NewPluginWizard 3.0 NewPluginWizard/NewPluginWizard.qml
 
 AboutDialog 3.0 Dialogs/AboutDialog.qml
 MessageBoxDialog 3.0 Dialogs/MessageBoxDialog.qml
-UserScriptsDialog 3.0 Dialogs/UserScriptsDialog.qml
+StreamingServiceSettingsDialog 3.0 Dialogs/StreamingServiceSettingsDialog.qml
 
 ListeningHistoryEntryDelegate 3.0 Delegates/ListeningHistoryEntryDelegate.qml
 ListeningHistorySectionDelegate 3.0 Delegates/ListeningHistorySectionDelegate.qml
 ServiceOverviewDelegate 3.0 Delegates/ServiceOverviewDelegate.qml
 ServiceSettingDelegate 3.0 Delegates/ServiceSettingDelegate.qml
-

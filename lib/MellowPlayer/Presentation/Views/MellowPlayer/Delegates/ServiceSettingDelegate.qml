@@ -9,12 +9,21 @@ import "../Controls"
 import "../Dialogs"
 
 Pane {
+    id: root
+
+    property var service: model
     padding: 0
 
     Material.elevation: 4
+    Material.background: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background, 1.05) : Qt.darker(_theme.background, 1.05)
 
     ItemDelegate {
         anchors.fill: parent
+
+        onClicked: {
+            settingsDialog.service = root.service;
+            settingsDialog.open()
+        }
 
         Item {
             anchors.fill: parent
