@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -657,27 +657,9 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
-    <name>ServiceSettingDelegate</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="78"/>
-        <source>Version </source>
-        <translation>Versio </translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="78"/>
-        <source> by </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="126"/>
-        <source>User scripts</source>
-        <translation>Käyttäjäskriptit</translation>
-    </message>
-</context>
-<context>
     <name>ServiceSettingsPage</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="50"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="76"/>
         <source>Create plugin</source>
         <translation>Luo liitännäinen</translation>
     </message>
@@ -708,22 +690,22 @@ listened to will appear here...</source>
         <translation>Takaisin</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="145"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="149"/>
         <source>Restore all to defaults</source>
         <translation>Palauta kaikki oletusarvoihin</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="153"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="157"/>
         <source>Restore all settings to their &lt;b&gt;default value&lt;/b&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="188"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="193"/>
         <source>Are you sure you want to restore all settings to their default values?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="189"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="194"/>
         <source>Confirm restore defaults</source>
         <translation type="unfinished"/>
     </message>
@@ -927,6 +909,11 @@ listened to will appear here...</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
+        <source>Streaming Services</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="47"/>
         <source>Enable this option to get a confirmation message when you leave MellowPlayer.</source>
         <translation type="unfinished"/>
@@ -1097,11 +1084,6 @@ listened to will appear here...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
-        <source>Services</source>
-        <translation>Palvelut</translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="92"/>
         <source>Cache</source>
         <translation>Välimuisti</translation>
@@ -1170,6 +1152,69 @@ listened to will appear here...</source>
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>StreamingServiceSettingsDialog</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <source>Version </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <source> by </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="166"/>
+        <source>URL: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="213"/>
+        <source>No user script found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="223"/>
+        <source>Add user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="229"/>
+        <source>Click to add a user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="326"/>
+        <source>Remove script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="329"/>
+        <source>Are you sure you want to remove user script </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="389"/>
+        <source>Coming soon!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="415"/>
+        <source>Confirm remove user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="425"/>
+        <source>Javascript files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="426"/>
+        <source>Choose a user script</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1304,73 +1349,19 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
-    <name>UserScriptsDialog</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="20"/>
-        <source> - User Scripts</source>
-        <translation> - Käyttäjäskriptit</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="42"/>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="104"/>
-        <source>Add user script</source>
-        <translation>Lisää käyttäjäskripti</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="54"/>
-        <source>Done</source>
-        <translation>Valmis</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="94"/>
-        <source>No user script found</source>
-        <translation>Käyttäjäskriptiä ei löytynyt</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="110"/>
-        <source>Click to add a user script</source>
-        <translation>Napsauta lisätäksesi käyttäjäskriptin</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="188"/>
-        <source>Remove script</source>
-        <translation>Poista skripti</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="191"/>
-        <source>Are you sure you want to remove user script </source>
-        <translation>Haluatko varmasti poistaa käyttäjäskriptin</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="221"/>
-        <source>Confirm remove user script</source>
-        <translation>Vahvista käyttäjäskriptin poistaminen</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="231"/>
-        <source>Javascript files</source>
-        <translation>JavaScript-tiedostot</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="232"/>
-        <source>Choose a user script</source>
-        <translation>Valitse käyttäjäskripti</translation>
-    </message>
-</context>
-<context>
     <name>WebView</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="157"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="192"/>
         <source>Zoom out</source>
         <translation>Loitonna</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="170"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="205"/>
         <source>Zoom in</source>
         <translation>Lähennä</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="176"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="211"/>
         <source>Reset</source>
         <translation>Nollaa</translation>
     </message>

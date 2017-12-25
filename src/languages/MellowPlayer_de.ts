@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -667,27 +667,9 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
-    <name>ServiceSettingDelegate</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="78"/>
-        <source>Version </source>
-        <translation>Version </translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="78"/>
-        <source> by </source>
-        <translation> Von </translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml" line="126"/>
-        <source>User scripts</source>
-        <translation>User Skripts</translation>
-    </message>
-</context>
-<context>
     <name>ServiceSettingsPage</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="50"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="76"/>
         <source>Create plugin</source>
         <translation>Plug-In erstellen</translation>
     </message>
@@ -718,22 +700,22 @@ listened to will appear here...</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="145"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="149"/>
         <source>Restore all to defaults</source>
         <translation>Wiederherstellen aller Standartwerte</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="153"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="157"/>
         <source>Restore all settings to their &lt;b&gt;default value&lt;/b&gt;.</source>
         <translation>Setzen Sie alle Einstellungen auf ihren &lt;b&gt; Standardwert &lt;/b&gt; zurück.</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="188"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="193"/>
         <source>Are you sure you want to restore all settings to their default values?</source>
         <translation>Sind Sie sicher, dass Sie alle Einstellungen auf ihre Standardwerte zurücksetzen möchten?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="189"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Pages/SettingsPage.qml" line="194"/>
         <source>Confirm restore defaults</source>
         <translation>Bestätigen Sie das sie die Einstellungen auf die Standardwerte zurücksetzen möchten</translation>
     </message>
@@ -937,6 +919,11 @@ listened to will appear here...</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
+        <source>Streaming Services</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="47"/>
         <source>Enable this option to get a confirmation message when you leave MellowPlayer.</source>
         <translation>Aktivieren Sie diese Option, um eine Bestätigungsnachricht zu erhalten, wenn Sie MellowPlayer verlassen.</translation>
@@ -1107,11 +1094,6 @@ listened to will appear here...</source>
         <translation>Geben sie die Grenze des Hörverlaufs an</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
-        <source>Services</source>
-        <translation>Services</translation>
-    </message>
-    <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="92"/>
         <source>Cache</source>
         <translation>Cache</translation>
@@ -1203,6 +1185,69 @@ listened to will appear here...</source>
         &lt;/body&gt;
     &lt;/head&gt;
 &lt;/html&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>StreamingServiceSettingsDialog</name>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <source>Version </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <source> by </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="166"/>
+        <source>URL: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="213"/>
+        <source>No user script found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="223"/>
+        <source>Add user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="229"/>
+        <source>Click to add a user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="326"/>
+        <source>Remove script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="329"/>
+        <source>Are you sure you want to remove user script </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="389"/>
+        <source>Coming soon!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="415"/>
+        <source>Confirm remove user script</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="425"/>
+        <source>Javascript files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="426"/>
+        <source>Choose a user script</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1336,73 +1381,19 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
-    <name>UserScriptsDialog</name>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="20"/>
-        <source> - User Scripts</source>
-        <translation> - User Skripts</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="42"/>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="104"/>
-        <source>Add user script</source>
-        <translation>User Skript hinzufügen</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="54"/>
-        <source>Done</source>
-        <translation>Fertig</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="94"/>
-        <source>No user script found</source>
-        <translation>Kein User Skript gefunden</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="110"/>
-        <source>Click to add a user script</source>
-        <translation>Klicken sie um ein User Skript  hinzu zu fügen</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="188"/>
-        <source>Remove script</source>
-        <translation>User Skript löschen</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="191"/>
-        <source>Are you sure you want to remove user script </source>
-        <translation>Möchten sie das User Skript wirklich löschen </translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="221"/>
-        <source>Confirm remove user script</source>
-        <translation>User Skript entfernen bestätigen</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="231"/>
-        <source>Javascript files</source>
-        <translation>Javascript Dateien</translation>
-    </message>
-    <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/UserScriptsDialog.qml" line="232"/>
-        <source>Choose a user script</source>
-        <translation>Wählen sie ein User Skript</translation>
-    </message>
-</context>
-<context>
     <name>WebView</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="157"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="192"/>
         <source>Zoom out</source>
         <translation>Verkleinern - </translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="170"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="205"/>
         <source>Zoom in</source>
         <translation>Vergrößern + </translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="176"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="211"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
