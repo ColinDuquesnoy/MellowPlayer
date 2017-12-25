@@ -8,10 +8,12 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/TokenizedFilters.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
 
+using namespace MellowPlayer;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
@@ -228,4 +230,9 @@ StreamingServiceListModel* StreamingServicesViewModel::allServices()
 StreamingServiceProxyListModel* StreamingServicesViewModel::enabledServices()
 {
     return &enabledServices_;
+}
+
+void StreamingServicesViewModel::initialize(IQmlApplicationEngine &qmlApplicationEngine) {
+    qRegisterMetaType<Infrastructure::NetworkProxy*>("Infrastructure::NetworkProxy*");
+    ContextProperty::initialize(qmlApplicationEngine);
 }

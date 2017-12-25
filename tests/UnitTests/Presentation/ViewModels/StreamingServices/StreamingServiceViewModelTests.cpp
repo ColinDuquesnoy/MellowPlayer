@@ -1,6 +1,7 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
@@ -80,5 +81,11 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
         viewModel.setNotificationsEnabled(false);
         REQUIRE(!viewModel.notificationsEnabled());
         REQUIRE(spy.count() == 1);
+    }
+
+    SECTION("proxy settings are saved")
+    {
+        viewModel.networkProxy()->setEnabled(true);
+        REQUIRE(settingsStore.value(service1.name() + "/networkProxy").toMap()["enabled"].toBool());
     }
 }

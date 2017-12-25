@@ -85,5 +85,8 @@
         <file>Views/MellowPlayer/SettingsTranslator.js</file>
         <file>Resources/mellowplayer.js</file>
         <file>Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml</file>
+        <file>Views/MellowPlayer/Delegates/TextFieldDelegate.qml</file>
+        <file>Views/MellowPlayer/Controls/ItemDelegateSeparator.qml</file>
+        <file>Views/MellowPlayer/Delegates/SpinBoxDelegate.qml</file>
     </qresource>
 </RCC>

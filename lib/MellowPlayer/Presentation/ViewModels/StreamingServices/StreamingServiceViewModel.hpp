@@ -2,6 +2,7 @@
 
 #include <QtCore/QObject>
 #include <memory>
+#include <MellowPlayer/Domain/Properties.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
 
 
@@ -12,6 +13,11 @@ namespace MellowPlayer::Domain
     class StreamingService;
     class Player;
     class Players;
+}
+
+namespace MellowPlayer::Infrastructure
+{
+    class NetworkProxy;
 }
 
 namespace MellowPlayer::Presentation
@@ -32,6 +38,8 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QObject* userScripts READ userScripts CONSTANT)
         Q_PROPERTY(int zoomFactor READ zoomFactor WRITE setZoomFactor NOTIFY zoomFactorChanged)
         Q_PROPERTY(bool notificationsEnabled READ notificationsEnabled WRITE setNotificationsEnabled NOTIFY notificationsEnabledChanged)
+        CONSTANT_OBJECT_PROPERTY(Infrastructure::NetworkProxy, networkProxy);
+
     public:
         StreamingServiceViewModel(Domain::StreamingService& streamingService,
                                   Domain::ISettingsStore& settingsStore,
@@ -66,6 +74,8 @@ namespace MellowPlayer::Presentation
         bool notificationsEnabled() const;
         void setNotificationsEnabled(bool value);
 
+
+
     public slots:
         void setUrl(const QString& newUrl);
 
@@ -83,6 +93,7 @@ namespace MellowPlayer::Presentation
         QString isEnabledSettingsKey() const;
         QString zoomFactorSettingsKey() const;
         QString notificationsEnabledSettingsKey() const;
+        QString networkProxySettingsKey() const;
 
         Domain::StreamingService& streamingService_;
         Domain::ISettingsStore& settingsStore_;

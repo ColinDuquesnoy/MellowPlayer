@@ -77,7 +77,7 @@
 
 #define CONSTANT_OBJECT_PROPERTY(type, name) \
     protected: \
-        Q_PROPERTY (type name READ name CONSTANT) \
+        Q_PROPERTY (type* name READ name CONSTANT) \
         std::shared_ptr<type> name##_; \
     public: \
         virtual type* name() const { \

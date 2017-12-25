@@ -4,10 +4,13 @@
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
 #include <qfile.h>
 
+using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
 #define DEFAULT_ZOOM_FACTOR 7
@@ -17,14 +20,19 @@ StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streaming
                                                      IUserScriptFactory& factory,
                                                      Players& players,
                                                      QObject* parent) : 
-        QObject(parent), 
+        QObject(parent),
+        networkProxy_(nullptr),
         streamingService_(streamingService), 
         settingsStore_(settingsStore),
         player_(players.get(streamingService.name())),
         userScriptsViewModel_(streamingService.name(), factory, settingsStore, this),
         zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt())
 {
-    
+    networkProxy_ = make_shared<NetworkProxy>(settingsStore_.value(networkProxySettingsKey()).toMap());
+    connect(networkProxy_.get(), &NetworkProxy::changed, [&]()
+    {
+        settingsStore.setValue(networkProxySettingsKey(), networkProxy()->rawData());
+    });
 }
 
 QString StreamingServiceViewModel::logo() const
@@ -175,4 +183,8 @@ void StreamingServiceViewModel::setNotificationsEnabled(bool value)
 QString StreamingServiceViewModel::notificationsEnabledSettingsKey() const
 {
     return streamingService_.name() + "/notificationsEnabled";
+}
+
+QString StreamingServiceViewModel::networkProxySettingsKey() const {
+    return streamingService_.name() + "/networkProxy";
 }

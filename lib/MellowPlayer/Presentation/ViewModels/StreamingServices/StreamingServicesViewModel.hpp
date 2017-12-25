@@ -63,6 +63,8 @@ namespace MellowPlayer::Presentation
                                        const QString& authorWebsite, bool allPlatforms, bool linuxPlatform, bool appImagePlatform,
                                        bool osxPlatform, bool windowsPlatform);
 
+        void initialize(IQmlApplicationEngine &qmlApplicationEngine) override;
+
     public slots:
         void setCurrentService(QObject* value);
         void setCurrentIndex(int value);

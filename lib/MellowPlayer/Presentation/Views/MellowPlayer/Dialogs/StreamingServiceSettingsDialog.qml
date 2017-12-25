@@ -8,6 +8,7 @@ import QtQuick.Controls 1.2 as QuickControls1
 
 import ".."
 import "../Controls"
+import "../Delegates"
 
 Dialog {
     id: root
@@ -66,12 +67,7 @@ Dialog {
         spacing: 0
         clip: true
 
-        Rectangle {
-            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: 1
-            Layout.fillWidth: true
-        }
+        ItemDelegateSeparator { Layout.fillWidth: true }
 
         TabBar {
             id: tabBar
@@ -127,11 +123,7 @@ Dialog {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle {
-                            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-                            Layout.preferredHeight: 1
-                            Layout.fillWidth: true
-                        }
+                        ItemDelegateSeparator { Layout.fillWidth: true }
 
                         SwitchDelegate {
                             checked: service.notificationsEnabled
@@ -145,38 +137,13 @@ Dialog {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle {
-                            color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-                            Layout.preferredHeight: 1
+                        ItemDelegateSeparator { Layout.fillWidth: true }
+
+                        TextFieldDelegate {
                             Layout.fillWidth: true
-                        }
-
-                        ItemDelegate {
-                            hoverEnabled: true
-
-                            Layout.fillWidth: true
-
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.leftMargin: 16
-                                anchors.rightMargin: 16
-                                spacing: 12
-
-                                Label {
-                                    text: qsTr("URL: ")
-                                }
-
-                                Item {
-                                    Layout.fillWidth: true
-                                }
-
-                                TextField {
-                                    selectByMouse: true
-                                    text: service.url
-
-                                    Layout.preferredWidth: 320
-                                }
-                            }
+                            label: qsTr("URL: ")
+                            value: service.url
+                            onValueChanged: service.url = value
                         }
 
                         Item {
@@ -339,14 +306,9 @@ Dialog {
                                         }
                                     }
 
-                                    Rectangle {
-                                        color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
-                                        height: 1
+                                    ItemDelegateSeparator {
+                                        anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
                                         visible: model.index != (delegate.ListView.view.count - 1)
-
-                                        anchors.bottom: parent.bottom
-                                        anchors.left: parent.left
-                                        anchors.right: parent.right
                                     }
                                 }
                             }
@@ -366,37 +328,60 @@ Dialog {
                 }
             }
 
-            ColumnLayout {
+            Item {
                 anchors.fill: parent
-                spacing: 20
 
-                Item {
-                    Layout.fillHeight: true
-                }
+                Pane {
+                    id: networkProxyPane
 
-                Label {
-                    text: MaterialIcons.icon_build
-                    font.pixelSize: 64
-                    font.family: MaterialIcons.family
-                    color: Material.color(Material.Orange)
+                    padding: 0
+                    anchors.centerIn: parent
+                    width: parent.width / 2
+                    height: parent.height * 0.75
 
-                    horizontalAlignment: "AlignHCenter"
+                    Material.background: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background, 1.05) : Qt.darker(_theme.background, 1.05)
+                    Material.elevation: 2
 
-                    Layout.fillWidth: true
-                }
+                    ColumnLayout {
+                        anchors.fill: parent
 
-                Label {
-                    text: qsTr("Coming soon!")
-                    font.bold: true
-                    font.pixelSize: 20
+                        SwitchDelegate {
+                            id: networkProxySwitch
+                            text: qsTr("Use custom network proxy")
+                            checked: root.service.networkProxy.enabled
+                            onCheckedChanged: root.service.networkProxy.enabled = checked
 
-                    horizontalAlignment: "AlignHCenter"
+                            Layout.fillWidth: true
+                        }
 
-                    Layout.fillWidth: true
-                }
+                        ItemDelegateSeparator { Layout.fillWidth: true }
 
-                Item {
-                    Layout.fillHeight: true
+                        TextFieldDelegate {
+                            enabled: networkProxySwitch.checked
+                            label: qsTr("Host")
+                            value: root.service.networkProxy.hostName
+
+                            onValueChanged: root.service.networkProxy.hostName = value
+
+                            Layout.fillWidth: true
+                        }
+
+                        ItemDelegateSeparator { Layout.fillWidth: true }
+
+                        SpinBoxDelegate {
+                            label: qsTr("Port")
+                            value: root.service.networkProxy.port
+                            enabled: networkProxySwitch.checked
+
+                            onValueChanged: root.service.networkProxy.port = value
+
+                            Layout.fillWidth: true
+                        }
+
+                        Item {
+                            Layout.fillHeight: true
+                        }
+                    }
                 }
             }
         }
@@ -439,10 +424,11 @@ Dialog {
         property string authorWebsite: ""
         property bool notificationsEnabled: true
         property bool isEnabled: true
-
-        property QtObject userScripts: QtObject {
-
+        property QtObject userScripts: QtObject { }
+        property QtObject networkProxy: QtObject {
+            property bool enabled: false
+            property string hostName: ""
+            property int port: 0
         }
     }
 }
-
