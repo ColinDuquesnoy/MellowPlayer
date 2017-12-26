@@ -4,11 +4,11 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/PlayerMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
 #include <catch.hpp>
@@ -22,7 +22,7 @@ TEST_CASE("ListeningHistoryViewModelTests")
 {
     DependencyPool pool;
 
-    StreamingServices& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServices();
     streamingServices.load();
     streamingServices.setCurrent(streamingServices.toList()[0].get());
 

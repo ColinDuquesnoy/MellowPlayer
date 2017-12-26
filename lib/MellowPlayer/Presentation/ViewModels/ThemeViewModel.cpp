@@ -2,7 +2,7 @@
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>
 
 #include <QDebug>

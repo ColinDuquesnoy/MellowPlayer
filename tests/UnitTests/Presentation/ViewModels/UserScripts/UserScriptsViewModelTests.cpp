@@ -6,7 +6,7 @@
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 
 using namespace fakeit;
 using namespace MellowPlayer::Domain;
@@ -20,8 +20,7 @@ SCENARIO("UserScriptsViewModelTests")
        return new FakeUserScript;
     });
     QString serviceName = "fakeService";
-    auto settingsStoreMock = SettingsStoreMock::get();
-    ISettingsStore& settingsStore = settingsStoreMock.get();
+    FakeSettingsStore settingsStore;
 
     GIVEN("settings are empty")
     {
@@ -121,11 +120,11 @@ SCENARIO("UserScriptsViewModelTests")
                 REQUIRE(viewModel.model()->rowCount() == 1);
 
                 AND_THEN("settings paths count is 1") {
-                    REQUIRE(settingsStore.value("fakeService/userScriptPaths").toStringList().count() == 1);
+                    REQUIRE(settingsStore.value("fakeService/userScriptPaths", QVariant()).toStringList().count() == 1);
                 }
 
                 AND_THEN("settings names count is 1") {
-                    REQUIRE(settingsStore.value("fakeService/userScriptNames").toStringList().count() == 1);
+                    REQUIRE(settingsStore.value("fakeService/userScriptNames", QVariant()).toStringList().count() == 1);
                 }
 
                 AND_THEN("AdBlocker is valid")

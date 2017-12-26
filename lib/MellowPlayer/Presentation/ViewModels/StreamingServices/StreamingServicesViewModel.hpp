@@ -22,6 +22,7 @@ namespace MellowPlayer::Domain
 namespace MellowPlayer::Infrastructure
 {
     class ICommandLineArguments;
+    class INetworkProxies;
 }
 
 namespace MellowPlayer::Presentation
@@ -42,7 +43,8 @@ namespace MellowPlayer::Presentation
                                    Domain::IStreamingServiceCreator& streamingServiceCreator,
                                    Infrastructure::ICommandLineArguments& commandLineArguments,
                                    Domain::IUserScriptFactory& userScriptFactory,
-                                   IContextProperties& contextProperties);
+                                   IContextProperties& contextProperties,
+                                   Infrastructure::INetworkProxies& networkProxies);
 
         using ContextProperty::initialize;
         void initialize();
@@ -92,6 +94,7 @@ namespace MellowPlayer::Presentation
         Domain::IStreamingServiceCreator& streamingServiceCreator_;
         Infrastructure::ICommandLineArguments& commandLineArguments_;
         Domain::IUserScriptFactory& userScriptFactory_;
+        Infrastructure::INetworkProxies& networkProxies_;
         StreamingServiceListModel* allServices_;
         StreamingServiceProxyListModel enabledServices_;
         StreamingServiceViewModel* currentService_ = nullptr;

@@ -14,7 +14,7 @@ using namespace MellowPlayer::Domain;
 
 SCENARIO("check for stable updates")
 {
-    Tests::DependencyPool pool;
+    MellowPlayer::Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Stable);
 
@@ -86,7 +86,7 @@ SCENARIO("check for beta updates")
 {
     FakeHttpClient fakeHttpClient;
     LatestGithubReleaseQuerier querier(fakeHttpClient);
-    Tests::DependencyPool pool;
+    MellowPlayer::Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Beta);
 
@@ -135,7 +135,7 @@ SCENARIO("check for Continuous updates")
 {
     FakeHttpClient fakeHttpClient;
     LatestGithubReleaseQuerier querier(fakeHttpClient);
-    Tests::DependencyPool pool;
+    MellowPlayer::Tests::DependencyPool pool;
     Settings& settings = pool.getSettings();
     settings.get(SettingKey::MAIN_UPDATE_CHANNEL).setValue((int)UpdateChannel::Continuous);
 

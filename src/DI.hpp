@@ -16,7 +16,7 @@
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceLoader.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceWatcher.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Infrastructure/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Infrastructure/Network/IHttpClient.hpp>
 #include <MellowPlayer/Infrastructure/Updater/ILatestReleaseQuerier.hpp>
@@ -45,6 +45,8 @@
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <MellowPlayer/Infrastructure/Network/HttpClient.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxies.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <MellowPlayer/Infrastructure/UserScripts/UserScriptFactory.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifications.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
@@ -156,7 +158,8 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IUserScriptFactory>().to<UserScriptFactory>().in(scope),
         di::bind<IMainWindow>().to<MainWindowViewModel>().in(scope),
         di::bind<INotifications>().to<Notifications>().in(scope),
-        di::bind<IViewModels>().to<ViewModels>().in(scope)
+        di::bind<IViewModels>().to<ViewModels>().in(scope),
+        di::bind<INetworkProxies>().to<NetworkProxies>().in(scope)
     );
 };
 

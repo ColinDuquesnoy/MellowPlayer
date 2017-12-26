@@ -4,7 +4,7 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Infrastructure/Updater/Github/LatestGithubReleaseQuerier.hpp>
 #include <MellowPlayer/Infrastructure/Updater/Updater.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
@@ -31,10 +31,10 @@
 #include <Mocks/FakeWorkDispatcher.hpp>
 #include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
 #include <Mocks/NotificationPresenterMock.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <Mocks/ThemeLoaderMock.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
 #include <Mocks/FakeCommnandLineArguments.hpp>
@@ -50,7 +50,6 @@ using namespace MellowPlayer::Tests;
 
 DependencyPool::DependencyPool()
         : mICommandLineArgs(make_unique<FakeCommandLineArguments>()),
-          mISettingsStore(SettingsStoreMock::get()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
           mINotificationPresenter(NotificationPresenterMock::get()),
           dataProvider(make_unique<InMemoryListeningHistoryDataProvider>())
@@ -62,36 +61,37 @@ DependencyPool::DependencyPool()
 
 DependencyPool::~DependencyPool() = default;
 
-StreamingServices& DependencyPool::getStreamingServicesController()
+StreamingServices& DependencyPool::getStreamingServices()
 {
-    static auto streamingServiceLoaderMock = StreamingServiceLoaderMock::get();
-    static auto streamingServiceWatcherMock = StreamingServiceWatcherMock::get();
+    static FakeStreamingServiceLoader streamingServiceLoader;
+    static FakeStreamingServiceWatcher streamingServiceWatcher;
     if (pStreamingServicesController == nullptr) {
-        pStreamingServicesController = make_unique<StreamingServices>(streamingServiceLoaderMock.get(), streamingServiceWatcherMock.get());
+        pStreamingServicesController = make_unique<StreamingServices>(streamingServiceLoader, streamingServiceWatcher);
         pStreamingServicesController->load();
     }
     return *pStreamingServicesController;
 }
 
-StreamingServicesViewModel& DependencyPool::getStreamingServicesControllerViewModel()
+StreamingServicesViewModel& DependencyPool::getStreamingServicesViewModel()
 {
     if (pStreamingServicesControllerViewModel == nullptr)
         pStreamingServicesControllerViewModel = make_unique<StreamingServicesViewModel>(
-        getStreamingServicesController(),
+                getStreamingServices(),
         getPlayers(),
         getSettings(),
         getWorkDispatcher(),
         getStreamingServicesCreator(),
         getCommandLineArguments(),
         getUserScriptFactory(),
-        contextProperties_);
+        contextProperties_,
+        networkProxies_);
     return *pStreamingServicesControllerViewModel;
 }
 
 Players& DependencyPool::getPlayers()
 {
     if (pPlayers == nullptr)
-        pPlayers = make_unique<Players>(getStreamingServicesController());
+        pPlayers = make_unique<Players>(getStreamingServices());
     return *pPlayers;
 }
 
@@ -102,7 +102,7 @@ IStreamingServiceCreator& DependencyPool::getStreamingServicesCreator()
 
 ISettingsStore& DependencyPool::getSettingsStore()
 {
-    return mISettingsStore.get();
+    return mSettingsStore;
 }
 
 Settings& DependencyPool::getSettings()
@@ -141,7 +141,7 @@ ListeningHistory& DependencyPool::getListeningHistory()
 IPlayer& DependencyPool::getCurrentPlayer()
 {
     if (pCurrentPlayer == nullptr)
-        pCurrentPlayer = make_unique<CurrentPlayer>(getPlayers(), getStreamingServicesController());
+        pCurrentPlayer = make_unique<CurrentPlayer>(getPlayers(), getStreamingServices());
     return *pCurrentPlayer;
 }
 
@@ -149,7 +149,7 @@ ThemeViewModel& DependencyPool::getThemeViewModel()
 {
     static auto mock = ThemeLoaderMock::get();
     if (pThemeViewModel == nullptr)
-        pThemeViewModel = make_unique<ThemeViewModel>(getStreamingServicesController(), getSettings(), mock.get(),
+        pThemeViewModel = make_unique<ThemeViewModel>(getStreamingServices(), getSettings(), mock.get(),
                                                       contextProperties_);
     return *pThemeViewModel;
 }
@@ -174,7 +174,8 @@ Notifications& DependencyPool::getNotifier()
 {
     if (pNotifier == nullptr)
         pNotifier =
-        make_unique<Notifications>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(), getStreamingServicesController(), getSettings());
+        make_unique<Notifications>(getCurrentPlayer(), getLocalAlbumArt(), getNotificationPresenter(),
+                                   getStreamingServices(), getSettings());
     return *pNotifier;
 }
 
@@ -213,4 +214,9 @@ IUserScriptFactory& DependencyPool::getUserScriptFactory()
 IContextProperties& DependencyPool::getContextProperties()
 {
     return contextProperties_;
+}
+
+INetworkProxies &DependencyPool::getNetworkProxies()
+{
+    return networkProxies_;
 }

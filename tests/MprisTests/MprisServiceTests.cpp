@@ -6,22 +6,23 @@
 #include <MellowPlayer/Presentation/Mpris/Linux/MprisService.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <QtDBus/QDBusConnection>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <UnitTests/Presentation/FakeMainWindow.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Presentation::Tests;
 
 TEST_CASE("MprisServiceTests", "[IntegrationTest]")
 {
-    auto plugionLoaderMock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServices streamingServices(plugionLoaderMock.get(), watcherMock.get());
+    FakeStreamingServiceLoader streamingServiceLoader;
+    FakeStreamingServiceWatcher streamingServiceWatcher;
+    StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

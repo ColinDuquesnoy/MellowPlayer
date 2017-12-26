@@ -1,6 +1,6 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <catch.hpp>
 #include <fakeit.hpp>
 

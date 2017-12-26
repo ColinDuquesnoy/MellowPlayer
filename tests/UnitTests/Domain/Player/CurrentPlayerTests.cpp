@@ -1,19 +1,20 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
 TEST_CASE("CurrentPlayerTests", "[UnitTest]")
 {
-    auto mock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServices streamingServices(mock.get(), watcherMock.get());
+    FakeStreamingServiceLoader streamingServiceLoader;
+    FakeStreamingServiceWatcher streamingServiceWatcher;
+    StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
     streamingServices.load();
     Players players(streamingServices);
     CurrentPlayer currentPlayer(players, streamingServices);

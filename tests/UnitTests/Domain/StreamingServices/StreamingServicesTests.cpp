@@ -1,27 +1,26 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
-using namespace MellowPlayer::Domain;
-using namespace fakeit;
 using namespace std;
+using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
-TEST_CASE("StreamingServicesControllerTests", "[UnitTest]")
+TEST_CASE("StreamingServicesTests")
 {
-    auto loaderMock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServices streamingServices(loaderMock.get(), watcherMock.get());
+    FakeStreamingServiceLoader streamingServiceLoader;
+    FakeStreamingServiceWatcher streamingServiceWatcher;
+    StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
     QSignalSpy addedSpy(&streamingServices, SIGNAL(added(StreamingService*)));
     streamingServices.load();
 
     SECTION("load called StreamingServiceLoader::load and watch every new service")
     {
-        REQUIRE(streamingServices.toList().count() > 1);
-        Verify(Method(loaderMock, load)).Exactly(1);
-        Verify(Method(watcherMock, watch)).Exactly(streamingServices.toList().count());
+        REQUIRE(streamingServices.toList().count() == 4);
+        REQUIRE(streamingServiceWatcher.watchedServices.count() == streamingServices.toList().count());
     };
 
     SECTION("added signal is emitted for each service loaded")

@@ -3,7 +3,7 @@
 #include "Player.hpp"
 #include "Players.hpp"
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;

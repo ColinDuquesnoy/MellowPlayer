@@ -1,22 +1,22 @@
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <Mocks/AlbumArtDownloaderMock.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
-#include <Mocks/StreamingServiceWatcherMock.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("LocalAlbumArtTests", "[UnitTest]")
 {
-    auto serviceLoaderMock = StreamingServiceLoaderMock::get();
-    auto watcherMock = StreamingServiceWatcherMock::get();
-    StreamingServices streamingServices(serviceLoaderMock.get(), watcherMock.get());
+    FakeStreamingServiceLoader streamingServiceLoader;
+    FakeStreamingServiceWatcher streamingServiceWatcher;
+    StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     AlbumArtDownloaderMock albumArtDownloader;

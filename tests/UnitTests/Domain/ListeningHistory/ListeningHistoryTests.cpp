@@ -5,18 +5,18 @@
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <Utils/Helpers.hpp>
 
 using namespace MellowPlayer;
 using namespace MellowPlayer::Domain;
-using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
 TEST_CASE("ListeningHistoryTests")
 {
-    Tests::DependencyPool pool;
-    StreamingServices& streamingServices = pool.getStreamingServicesController();
+    MellowPlayer::Tests::DependencyPool pool;
+    StreamingServices& streamingServices = pool.getStreamingServices();
     streamingServices.load();
     Players& players = pool.getPlayers();
     Settings& settings = pool.getSettings();

@@ -6,9 +6,9 @@
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/TokenizedFilters.hpp>
-#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QtWebEngine/QtWebEngine>
@@ -26,7 +26,8 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& stream
                                                        IStreamingServiceCreator& streamingServiceCreator,
                                                        ICommandLineArguments& commandLineArguments,
                                                        IUserScriptFactory& userScriptFactory,
-                                                       IContextProperties& contextProperties) :
+                                                       IContextProperties& contextProperties,
+                                                       INetworkProxies& networkProxies) :
         ContextProperty("_streamingServices", this, contextProperties),
         streamingServices_(streamingServices),
         players_(players),
@@ -36,6 +37,7 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& stream
         streamingServiceCreator_(streamingServiceCreator),
         commandLineArguments_(commandLineArguments),
         userScriptFactory_(userScriptFactory),
+        networkProxies_(networkProxies),
         allServices_(new StreamingServiceListModel(this, QByteArray(), "name")),
         enabledServices_(allServices_)
 {
@@ -114,6 +116,7 @@ void StreamingServicesViewModel::onServiceAdded(StreamingService* streamingServi
                                              settings_.store(),
                                              userScriptFactory_,
                                              players_,
+                                             networkProxies_,
                                              this);
     Player* player = sv->player();
     connect(player, &Player::isRunningChanged, this, &StreamingServicesViewModel::onPlayerRunningChanged);

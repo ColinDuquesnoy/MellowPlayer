@@ -4,10 +4,11 @@
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 
 using namespace fakeit;
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
 #ifdef QT_DEBUG
 SCENARIO("UserScriptsTests")
@@ -27,8 +28,7 @@ SCENARIO("UserScriptsTests")
     When(Method(factoryMock, create)).AlwaysReturn(&userScript);
 
     QString serviceName = "fakeService";
-    auto settingsStoreMock = SettingsStoreMock::get();
-    ISettingsStore& settingsStore = settingsStoreMock.get();
+    FakeSettingsStore settingsStore;
     settingsStore.clear();
 
 
@@ -88,11 +88,11 @@ SCENARIO("UserScriptsTests")
                     REQUIRE(userScripts.count() == 0);
 
                     AND_THEN("settings paths count is 0") {
-                        REQUIRE(settingsStore.value("fakeService/userScriptPaths").toStringList().count() == 0);
+                        REQUIRE(settingsStore.value("fakeService/userScriptPaths", QVariant()).toStringList().count() == 0);
                     }
 
                     AND_THEN("settings names count is 0") {
-                        REQUIRE(settingsStore.value("fakeService/userScriptNames").toStringList().count() == 0);
+                        REQUIRE(settingsStore.value("fakeService/userScriptNames", QVariant()).toStringList().count() == 0);
                     }
                 }
             }

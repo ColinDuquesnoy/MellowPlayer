@@ -1,7 +1,7 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
-#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
@@ -15,7 +15,7 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
 {
     DependencyPool pool;
     Players& players = pool.getPlayers();
-    StreamingServices& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServices();
     streamingServices.load();
 
     ISettingsStore& settingsStore = pool.getSettingsStore();
@@ -23,9 +23,12 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
     StreamingService& service1 = *streamingServices.toList()[0];
     StreamingService& service2 = *streamingServices.toList()[1];
 
-    StreamingServiceViewModel viewModel(service1, settingsStore, pool.getUserScriptFactory(), players);
-    StreamingServiceViewModel sameModel(service1, settingsStore, pool.getUserScriptFactory(), players);
-    StreamingServiceViewModel model2(service2, settingsStore, pool.getUserScriptFactory(), players);
+    StreamingServiceViewModel viewModel(service1, settingsStore, pool.getUserScriptFactory(), players,
+                                        pool.getNetworkProxies());
+    StreamingServiceViewModel sameModel(service1, settingsStore, pool.getUserScriptFactory(), players,
+                                        pool.getNetworkProxies());
+    StreamingServiceViewModel model2(service2, settingsStore, pool.getUserScriptFactory(), players,
+                                     pool.getNetworkProxies());
 
     SECTION("basic properties")
     {
@@ -81,11 +84,5 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
         viewModel.setNotificationsEnabled(false);
         REQUIRE(!viewModel.notificationsEnabled());
         REQUIRE(spy.count() == 1);
-    }
-
-    SECTION("proxy settings are saved")
-    {
-        viewModel.networkProxy()->setEnabled(true);
-        REQUIRE(settingsStore.value(service1.name() + "/networkProxy").toMap()["enabled"].toBool());
     }
 }

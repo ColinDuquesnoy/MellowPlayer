@@ -1,16 +1,17 @@
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Song.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <QtTest/QSignalSpy>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 
 TEST_CASE("PlayerTests", "[UnitTest]")
 {
     StreamingServiceMetadata metadata;
-    auto settingsStoreMock = SettingsStoreMock::get();
+    FakeSettingsStore settingsStoreMock;
     StreamingService service(metadata);
     Player player(service);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));

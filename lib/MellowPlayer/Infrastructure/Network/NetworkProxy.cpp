@@ -1,4 +1,4 @@
-#include "NetworkProxy.h"
+#include "NetworkProxy.hpp"
 
 using namespace MellowPlayer::Infrastructure;
 

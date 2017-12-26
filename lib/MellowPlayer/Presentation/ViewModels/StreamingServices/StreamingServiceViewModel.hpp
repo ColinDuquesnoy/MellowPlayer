@@ -18,6 +18,7 @@ namespace MellowPlayer::Domain
 namespace MellowPlayer::Infrastructure
 {
     class NetworkProxy;
+    class INetworkProxies;
 }
 
 namespace MellowPlayer::Presentation
@@ -44,7 +45,9 @@ namespace MellowPlayer::Presentation
         StreamingServiceViewModel(Domain::StreamingService& streamingService,
                                   Domain::ISettingsStore& settingsStore,
                                   Domain::IUserScriptFactory& userScriptFactory,
-                                  Domain::Players& players, QObject* parent = nullptr);
+                                  Domain::Players& players,
+                                  Infrastructure::INetworkProxies& networkProxies,
+                                  QObject* parent = nullptr);
 
         QString logo() const;
         QString name() const;
@@ -93,7 +96,6 @@ namespace MellowPlayer::Presentation
         QString isEnabledSettingsKey() const;
         QString zoomFactorSettingsKey() const;
         QString notificationsEnabledSettingsKey() const;
-        QString networkProxySettingsKey() const;
 
         Domain::StreamingService& streamingService_;
         Domain::ISettingsStore& settingsStore_;

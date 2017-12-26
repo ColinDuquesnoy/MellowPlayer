@@ -1,4 +1,4 @@
-#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <catch.hpp>
 #include <QtTest/QSignalSpy>
 

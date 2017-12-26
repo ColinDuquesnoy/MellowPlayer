@@ -3,7 +3,7 @@
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <Mocks/FakeCommnandLineArguments.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
@@ -21,7 +21,7 @@ using namespace fakeit;
 TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 {
     DependencyPool pool;
-    StreamingServices& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServices();
     streamingServices.load();
     Players& players = pool.getPlayers();
     Settings& settings = pool.getSettings();
@@ -30,7 +30,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     FakeCommandLineArguments commandLineArguments;
     StreamingServicesViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
                                          commandLineArguments, pool.getUserScriptFactory(),
-                                         pool.getContextProperties());
+                                         pool.getContextProperties(), pool.getNetworkProxies());
     viewModel.initialize();
     viewModel.reload();
 
@@ -117,7 +117,8 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
         StreamingServicesViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher,
                                                         creatorMock.get(), commandLineArguments,
-                                                        pool.getUserScriptFactory(), pool.getContextProperties());
+                                                        pool.getUserScriptFactory(), pool.getContextProperties(),
+                                                        pool.getNetworkProxies());
         REQUIRE(viewModelWithCmdLine.currentIndex() == -1);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

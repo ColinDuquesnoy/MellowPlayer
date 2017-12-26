@@ -1,12 +1,13 @@
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingServicesController.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ThemeViewModel.hpp>
-#include <Mocks/StreamingServiceLoaderMock.hpp>
+#include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <catch.hpp>
 
 using namespace MellowPlayer::Domain;
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Tests;
 
@@ -29,7 +30,7 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
 {
     DependencyPool pool;
     Settings& settings = pool.getSettings();
-    StreamingServices& streamingServices = pool.getStreamingServicesController();
+    StreamingServices& streamingServices = pool.getStreamingServices();
     ThemeViewModel& themeViewModel = pool.getThemeViewModel();
 
     streamingServices.load();
@@ -46,9 +47,9 @@ TEST_CASE("ThemeViewModelTests", "[UnitTest]")
     {
         settings.get(SettingKey::APPEARANCE_THEME).setValue("Adaptive");
         streamingServices.setCurrent(&streamingServices.get("Deezer"));
-        requireMatchTheme(themeViewModel, StreamingServiceLoaderMock::DEFAULT_theme);
+        requireMatchTheme(themeViewModel, FakeStreamingServiceLoader::defaultTheme());
         streamingServices.setCurrent(&streamingServices.get("Spotify"));
-        requireMatchTheme(themeViewModel, StreamingServiceLoaderMock::DEFAULT_theme);
+        requireMatchTheme(themeViewModel, FakeStreamingServiceLoader::defaultTheme());
     }
 
     SECTION("colorScaleFactor")

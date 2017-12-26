@@ -1,4 +1,4 @@
-#include "StreamingServicesController.hpp"
+#include "StreamingServices.hpp"
 #include "IStreamingServiceLoader.hpp"
 #include "IStreamingServiceWatcher.hpp"
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>

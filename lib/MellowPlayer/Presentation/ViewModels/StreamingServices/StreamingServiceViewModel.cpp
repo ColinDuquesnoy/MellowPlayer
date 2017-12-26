@@ -4,7 +4,8 @@
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
-#include <MellowPlayer/Infrastructure/Network/NetworkProxy.h>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
+#include <MellowPlayer/Infrastructure/Network/NetworkProxies.hpp>
 #include <qfile.h>
 
 using namespace std;
@@ -19,20 +20,17 @@ StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streaming
                                                      ISettingsStore& settingsStore,
                                                      IUserScriptFactory& factory,
                                                      Players& players,
+                                                     INetworkProxies& networkProxies,
                                                      QObject* parent) : 
         QObject(parent),
-        networkProxy_(nullptr),
+        networkProxy_(networkProxies.get(streamingService.name())),
         streamingService_(streamingService), 
         settingsStore_(settingsStore),
         player_(players.get(streamingService.name())),
         userScriptsViewModel_(streamingService.name(), factory, settingsStore, this),
         zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt())
 {
-    networkProxy_ = make_shared<NetworkProxy>(settingsStore_.value(networkProxySettingsKey()).toMap());
-    connect(networkProxy_.get(), &NetworkProxy::changed, [&]()
-    {
-        settingsStore.setValue(networkProxySettingsKey(), networkProxy()->rawData());
-    });
+    Q_ASSERT(networkProxy_ != nullptr);
 }
 
 QString StreamingServiceViewModel::logo() const
@@ -183,8 +181,4 @@ void StreamingServiceViewModel::setNotificationsEnabled(bool value)
 QString StreamingServiceViewModel::notificationsEnabledSettingsKey() const
 {
     return streamingService_.name() + "/notificationsEnabled";
-}
-
-QString StreamingServiceViewModel::networkProxySettingsKey() const {
-    return streamingService_.name() + "/networkProxy";
 }

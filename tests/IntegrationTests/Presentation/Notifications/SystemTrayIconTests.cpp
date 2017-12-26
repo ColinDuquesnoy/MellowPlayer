@@ -2,10 +2,11 @@
 #include <MellowPlayer/Infrastructure/Settings/SettingsSchemaLoader.hpp>
 #include <MellowPlayer/Presentation/Notifications/SystemTrayIcon.hpp>
 #include <Mocks/PlayerMock.hpp>
-#include <Mocks/SettingsStoreMock.hpp>
+#include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <UnitTests/Presentation/FakeMainWindow.hpp>
 #include <catch.hpp>
 
+using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Presentation::Tests;
 using namespace MellowPlayer::Infrastructure;
@@ -14,9 +15,9 @@ TEST_CASE("SystemTrayIconTests")
 {
 
     auto playerMock = PlayerMock::get();
-    auto settingsStoreMock = SettingsStoreMock::get();
+    FakeSettingsStore settingsStore;
     SettingsSchemaLoader loader;
-    Settings settings(loader, settingsStoreMock.get());
+    Settings settings(loader, settingsStore);
     FakeMainWindow mainWindow;
     SystemTrayIcon systemTrayIcon(playerMock.get(), mainWindow, settings);
 
