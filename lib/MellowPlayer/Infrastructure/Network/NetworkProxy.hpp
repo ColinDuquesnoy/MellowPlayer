@@ -15,6 +15,7 @@ namespace MellowPlayer::Infrastructure
 
     public:
         NetworkProxy() = default;
+        NetworkProxy(const QNetworkProxy& qNetworkProxy);
         NetworkProxy(const QVariantMap& rawData);
 
         bool isEnabled() const;
@@ -25,6 +26,8 @@ namespace MellowPlayer::Infrastructure
 
         int port() const;
         void setPort(int port);
+
+        bool isValid() const;
 
         QNetworkProxy create() const;
 
@@ -37,6 +40,8 @@ namespace MellowPlayer::Infrastructure
         void portChanged();
 
     private:
-        QVariantMap rawData_;
+        bool isEnabled_ = false;
+        QString hostName_;
+        int port_ = 0;
     };
 }
