@@ -26,51 +26,61 @@ function getHashCode(s) {
     }, 0);
 }
 
+function getPlayerScope() {
+    var player = angular.element(document.getElementsByClassName("player-box1")[0]).scope();
+    if (!player)
+        throw "Null player";
+}
+
 function update() {
-    if (document.querySelector("#wynk-player > div > div > div.right-part.cssload-container > span").className === "sprite play") {
-        playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
-    } else if (document.querySelector("#wynk-player > div > div > div.right-part.cssload-container > span").className === "sprite pause") {
-        playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
-    } else {
-        playbackStatus = mellowplayer.PlaybackStatus.BUFFERING;
+    try {
+        var player = getPlayerScope();
+
+        var audio = player.audio;
+        var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
+        if (audio.paused && !player.showLoadingSong)
+            playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
+        else if (!audio.paused && !player.showLoadingSong)
+            playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
+        else
+            playbackStatus = mellowplayer.PlaybackStatus.BUFFERING;
+
+        return {
+            "playbackStatus": playbackStatus,
+            "canSeek": false,
+            "canGoNext": true,
+            "canGoPrevious": true,
+            "canAddToFavorites": false,
+            "volume": 1,
+            "duration": toSeconds(document.getElementsByClassName("time")[1].innerText),
+            "position": toSeconds(document.getElementsByClassName("time")[0].innerText),
+            "songId": getHashCode(player.currentSong.title),
+            "songTitle": player.currentSong.title,
+            "artistName": player.currentSong.subtitleId,
+            "albumTitle": player.currentSong.album,
+            "artUrl": player.currentSong.largeImage,
+            "isFavorite": false
+        };
     }
-    duration = document.querySelector("#wynk-player > div > div > div.bottom-part > div.seek-bar > span.right.ng-binding").innerHTML;
-    position = document.querySelector("#wynk-player > div > div > div.bottom-part > div.seek-bar > span.left.ng-binding").innerHTML;
-    songTitle = document.querySelector("#wynk-player > div > div > div.left-part > div > p.head > a").innerHTML;
-    albumTitle = document.querySelector("#wynk-player > div > div > div.left-part > div > p.sub > a").innerHTML;
-    artUrl = document.querySelector("#wynk-player > div > div > div.left-part > span > img").src;
-    return {
-        "playbackStatus": playbackStatus,
-        "canSeek": false,
-        "canGoNext": true,
-        "canGoPrevious": true,
-        "canAddToFavorites": false,
-        "volume": 1,
-        "duration": readTime(duration),
-        "position": readTime(position),
-        "songId": getHashCode(songTitle),
-        "songTitle": songTitle,
-        "artistName": '',
-        "albumTitle": albumTitle,
-        "artUrl": artUrl,
-        "isFavorite": false
-    };
+    catch (e) {
+        return  {}
+    }
 }
 
 function play() {
-    document.querySelector("#wynk-player > div > div > div.right-part.cssload-container > span").click();
+    getPlayerScope().togglePlayer();
 }
 
 function pause() {
-    play();
+    getPlayerScope().togglePlayer();
 }
 
 function goNext() {
-    document.querySelector("#wynk-player > div > div > div.bottom-part > div.prev-next > span.next > a").click();
+    getPlayerScope().next();
 }
 
 function goPrevious() {
-    document.querySelector("#wynk-player > div > div > div.bottom-part > div.prev-next > span.prev > a").click();
+    getPlayerScope().previous();
 }
 
 function setVolume(volume) {
