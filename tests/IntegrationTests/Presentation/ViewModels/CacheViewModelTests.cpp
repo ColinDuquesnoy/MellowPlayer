@@ -4,6 +4,7 @@
 #include <QtCore/QStandardPaths>
 #include <QtCore/QDir>
 #include <QtCore/QDirIterator>
+#include <QtTest/qtestsystem.h>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Presentation::Tests;
@@ -36,6 +37,8 @@ SCENARIO("CacheViewModelTests")
         WHEN("I clear the cache")
         {
             cache.clear();
+
+            QTest::qWait(1000);
 
             THEN("cache is empty")
             {

@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 #include <MellowPlayer/Infrastructure/BuildConfig.hpp>
+#include <QtWebEngine/qtwebengineglobal.h>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
@@ -24,6 +25,8 @@ int TestsRunner::runTests(int argc, char** argv)
     application.setApplicationDisplayName("MellowPlayer.Tests");
     application.setOrganizationName("MellowPlayer.Tests");
     application.setOrganizationDomain("org.mellowplayer.tests");
+
+    QtWebEngine::initialize();
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
