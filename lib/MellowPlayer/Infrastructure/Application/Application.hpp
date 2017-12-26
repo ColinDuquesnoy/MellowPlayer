@@ -1,12 +1,11 @@
 #pragma once
 
 #include <MellowPlayer/Infrastructure/Application/IApplication.hpp>
-#include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
-#include <QApplication>
-#include <QTranslator>
 
 namespace MellowPlayer::Infrastructure
 {
+    class IQtApplication;
+
     class Application : public Infrastructure::IApplication
     {
         Q_OBJECT

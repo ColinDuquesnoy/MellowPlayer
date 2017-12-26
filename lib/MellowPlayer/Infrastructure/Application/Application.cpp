@@ -1,15 +1,9 @@
 #include "Application.hpp"
-#include "MellowPlayer/Presentation/IconProvider.hpp"
 #include <MellowPlayer/Infrastructure/BuildConfig.hpp>
-#include <MellowPlayer/Domain/Player/Song.hpp>
-#include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
-#include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Domain/Player/Player.hpp>
-#include <MellowPlayer/Presentation/ViewModels/Settings/Types/SettingViewModel.hpp>
+#include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 #include <QtCore/QProcess>
-#include <QtGui/QFontDatabase>
-#include <QtWebEngineWidgets/QWebEngineProfile>
 
+using namespace std;
 using namespace MellowPlayer::Infrastructure;
 
 Application::Application(IQtApplication& qtApplication)
