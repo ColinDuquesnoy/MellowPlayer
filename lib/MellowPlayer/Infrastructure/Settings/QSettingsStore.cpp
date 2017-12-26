@@ -5,7 +5,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-QSettingsStore::QSettingsStore() : qSettings_("MellowPlayer", "3")
+QSettingsStore::QSettingsStore(const QString& orgName) : qSettings_(orgName, "3")
 {
 }
 
