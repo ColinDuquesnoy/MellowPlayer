@@ -72,7 +72,9 @@ int Program::main(int argc, char** argv)
     QtWebEngine::initialize();
 
     SpdLoggerFactory loggerFactory;
-    Loggers::initialize(loggerFactory);
+    LoggerConfig loggerConfig;
+    loggerConfig.createFileLoggers = SingleInstance::checkForPrimary();
+    Loggers::initialize(loggerFactory, loggerConfig);
 
     ScopedScope scope{};
     auto injector = di::make_injector(di::bind<QApplication>().to(qApplication),

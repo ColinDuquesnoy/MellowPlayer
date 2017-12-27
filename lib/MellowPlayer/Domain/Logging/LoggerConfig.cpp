@@ -10,6 +10,6 @@ LoggerConfig::LoggerConfig()
     logLevel = LogLevel::Debug;
     logFormat = DEFAULT_LOG_FORMAT;
     createConsoleLogger = true;
-    createFileLogger = true;
+    createFileLoggers = true;
     showFileAndLine = true;
 }

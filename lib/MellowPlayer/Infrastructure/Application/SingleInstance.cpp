@@ -165,3 +165,19 @@ void SingleInstance::pollState()
     }
 
 }
+
+bool SingleInstance::checkForPrimary()
+{
+#ifdef QT_DEBUG
+    return true;
+#else
+    QLockFile lockFile(QDir::tempPath() + QDir::separator() + qApp->applicationName() + ".lock");
+    lockFile.setStaleLockTime(0);
+    bool primary = false;
+    if (lockFile.tryLock(100)) {
+        primary = true;
+        lockFile.unlock();
+    }
+    return primary;
+#endif
+}

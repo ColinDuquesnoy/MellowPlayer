@@ -44,9 +44,9 @@ namespace MellowPlayer::Domain
         bool createConsoleLogger;
 
         /**
-         * @brief True to create a (rotating) file logger. Default is true.
+         * @brief True to create a file loggers. Default is true.
          */
-        bool createFileLogger;
+        bool createFileLoggers;
 
         /**
          * @brief True to show file and line where log record was emitted. Default is

@@ -34,6 +34,8 @@ namespace MellowPlayer::Infrastructure
 
         bool isPrimary() const;
 
+        static bool checkForPrimary();
+
     private slots:
         void pollState();
 
