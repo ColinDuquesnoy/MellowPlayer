@@ -1,4 +1,4 @@
-#include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
+#include <MellowPlayer/Presentation/Converters/DateTimeConverter.hpp>
 #include <QDateTime>
 #include <catch.hpp>
 

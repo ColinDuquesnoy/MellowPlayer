@@ -1,7 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
-#include <MellowPlayer/Presentation/Converters/DateTimeConverter.h>
+#include <MellowPlayer/Presentation/Converters/DateTimeConverter.hpp>
 
 namespace MellowPlayer::Presentation
 {
