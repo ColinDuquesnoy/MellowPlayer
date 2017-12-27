@@ -54,7 +54,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="321"/>
         <source>Show logs</source>
-        <translation type="unfinished"/>
+        <translation>Mostra els registres</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/AboutDialog.qml" line="332"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../../lib/MellowPlayer/Infrastructure/BuildConfig.hpp" line="12"/>
         <source>Built on %1 at %2 (%3, %4 bit) with Qt %5</source>
-        <translation type="unfinished"/>
+        <translation>Compilat el %1 a les %2 (%3, %4 bits) amb Qt %5</translation>
     </message>
 </context>
 <context>
@@ -916,12 +916,12 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="83"/>
         <source>Specifies the user agent string used by web views</source>
-        <translation type="unfinished"/>
+        <translation>Especifica la cadena d&apos;agent d&apos;usuari utilitzada per veure web</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="91"/>
         <source>Streaming Services</source>
-        <translation type="unfinished"/>
+        <translation>Serveis de transmissió</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/SettingsTranslator.js" line="47"/>
@@ -1191,64 +1191,79 @@ escoltat apareixeran aquí...</translation>
 <context>
     <name>StreamingServiceSettingsDialog</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="43"/>
         <source>Version </source>
-        <translation type="unfinished"/>
+        <translation>Versió</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="42"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="43"/>
         <source> by </source>
-        <translation type="unfinished"/>
+        <translation>per</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="166"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="144"/>
         <source>URL: </source>
-        <translation type="unfinished"/>
+        <translation>URL: </translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="213"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="180"/>
         <source>No user script found</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;ha trobat cap script d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="223"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="190"/>
         <source>Add user script</source>
-        <translation type="unfinished"/>
+        <translation>Afegeix un script d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="229"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="196"/>
         <source>Click to add a user script</source>
-        <translation type="unfinished"/>
+        <translation>Feu clic per afegir un script d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="326"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="293"/>
         <source>Remove script</source>
-        <translation type="unfinished"/>
+        <translation>Elimina l&apos;script</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="329"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="296"/>
         <source>Are you sure you want to remove user script </source>
-        <translation type="unfinished"/>
+        <translation>Esteu segurs que voleu eliminar l&apos;script d&apos;usuari?</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="389"/>
-        <source>Coming soon!</source>
-        <translation type="unfinished"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="350"/>
+        <source>Use custom network proxy</source>
+        <translation>Utiliser un proxy réseau personnalisé</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="415"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="361"/>
+        <source>Host</source>
+        <translation>Hôte</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="372"/>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="407"/>
+        <source>The global application proxy settings are changed when you switch active service. This may affects previously active services&apos; HTTP requests and you may need to reload their pages.</source>
+        <translation>Les paramètres de proxy réseau globaux de l&apos;application sont modifiés lorsque le service de streaming actif change. Ceci peut avoir des effets sur les autres services de streaming qui continuent de fonctionner en arrière plan. Vous devrez peut-être recharger leur pages.</translation>
+    </message>
+    <message>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="431"/>
         <source>Confirm remove user script</source>
-        <translation type="unfinished"/>
+        <translation>Confirmació de la eliminació de l&apos;script d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="425"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="441"/>
         <source>Javascript files</source>
-        <translation type="unfinished"/>
+        <translation>Fitxers Javascript</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="426"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="442"/>
         <source>Choose a user script</source>
-        <translation type="unfinished"/>
+        <translation>Trieu un script d&apos;usuari</translation>
     </message>
 </context>
 <context>
@@ -1384,17 +1399,17 @@ escoltat apareixeran aquí...</translation>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="192"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="197"/>
         <source>Zoom out</source>
         <translation>Allunya</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="205"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="210"/>
         <source>Zoom in</source>
         <translation>Amplia</translation>
     </message>
     <message>
-        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="211"/>
+        <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Controls/WebView.qml" line="216"/>
         <source>Reset</source>
         <translation>Reinicia</translation>
     </message>
