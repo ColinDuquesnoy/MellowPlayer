@@ -25,8 +25,8 @@ Dialog {
         RowLayout {
             Layout.fillWidth: true
             Layout.topMargin: 12
-            Layout.leftMargin: 12
-            Layout.rightMargin: 12
+            Layout.leftMargin: d.sidePadding
+            Layout.rightMargin: d.sidePadding
             spacing: 12
 
             Label {
@@ -45,20 +45,13 @@ Dialog {
             }
         }
 
-        GridLayout {
-            columns: 2
-            columnSpacing: 12
-
-            Layout.leftMargin: 12; Layout.rightMargin: 12; Layout.bottomMargin: 12
-
-            Label {
-                text: qsTr("User Name:")
-                font.pixelSize: userNameTextField.font.pixelSize
-                Layout.alignment: Qt.AlignRight
-            }
+        ColumnLayout {
+            Layout.leftMargin: d.sidePadding; Layout.rightMargin: d.sidePadding; Layout.bottomMargin: 12
 
             TextField {
                 id: userNameTextField
+
+                placeholderText: qsTr("User name")
                 selectByMouse: true
 
                 Keys.onPressed: {
@@ -68,16 +61,11 @@ Dialog {
                 Layout.fillWidth: true
             }
 
-            Label {
-                text: qsTr("Password:")
-                font.pixelSize: passwordTextField.font.pixelSize
-                Layout.alignment: Qt.AlignRight
-            }
-
             TextField {
                 id: passwordTextField
 
                 echoMode: showPasswordButton.checked ? TextField.Normal : TextField.Password
+                placeholderText: qsTr("Password")
                 selectByMouse: true
 
                 Keys.onPressed: {
@@ -125,12 +113,16 @@ Dialog {
         try {
             dialog.standardButton(Dialog.Ok).text = qsTr("Login");
         }
-        catch (e)
-        {
-
+        catch (e) {
         }
 
         userNameTextField.forceActiveFocus();
+    }
+
+    QtObject {
+        id: d
+
+        property int sidePadding: 32
     }
 }
 
