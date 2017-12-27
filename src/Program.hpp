@@ -2,6 +2,7 @@
 
 #include <QtCore/QObject>
 #include <MellowPlayer/Infrastructure/Application/IApplication.hpp>
+#include <MellowPlayer/Infrastructure/Network/ApplicationNetworkProxy.hpp>
 #include <MellowPlayer/Presentation/Qml/IContextProperties.hpp>
 #include <MellowPlayer/Presentation/Mpris/IMprisService.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ViewModels.hpp>
@@ -18,6 +19,7 @@ namespace MellowPlayer::Main
         static int main(int argc, char** argv);
 
         Program(Infrastructure::IApplication& application,
+                Infrastructure::ApplicationNetworkProxy& applicationNetworkProxy,
                 Presentation::IContextProperties& contextProperties,
                 Presentation::IMprisService& mprisService,
                 Presentation::IViewModels& viewModels,
@@ -32,6 +34,7 @@ namespace MellowPlayer::Main
 
     private:
         Infrastructure::IApplication& application_;
+        Infrastructure::ApplicationNetworkProxy& applicationNetworkProxy_;
         Presentation::IContextProperties& contextProperties_;
         Presentation::IMprisService& mprisService_;
         Presentation::IViewModels& viewModels_;

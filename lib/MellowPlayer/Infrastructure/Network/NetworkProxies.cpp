@@ -1,18 +1,16 @@
+#include "NetworkProxies.hpp"
+#include "NetworkProxy.hpp"
 #include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
-#include "NetworkProxies.hpp"
-#include "NetworkProxy.hpp"
 
 using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
-NetworkProxies::NetworkProxies(IQtApplication& qtApplication,
-                               ISettingsStore& settingsStore,
+NetworkProxies::NetworkProxies(ISettingsStore& settingsStore,
                                StreamingServices& streamingServices)
-        : qtApplication_(qtApplication),
-          settingsStore_(settingsStore),
+        : settingsStore_(settingsStore),
           streamingServices_(streamingServices)
 {
     connect(&streamingServices, &StreamingServices::added, this, &NetworkProxies::onStreamingServiceAdded);
@@ -33,7 +31,7 @@ void NetworkProxies::add(const QString& serviceName, const shared_ptr<NetworkPro
     items_[serviceName] = networkProxy;
     connect(networkProxy.get(), &NetworkProxy::changed, [=]()
     {
-        settingsStore_.setValue(settingUrl(serviceName), networkProxy->rawData());
+        settingsStore_.setValue(settingUrl(serviceName), networkProxy->toQVariantMap());
     });
 }
 

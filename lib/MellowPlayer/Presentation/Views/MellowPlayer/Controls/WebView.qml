@@ -92,6 +92,11 @@ WebEngineView {
         onValueChanged: { console.warn("new user agent: " + userAgentSetting.value); reload(); }
     }
 
+    Connections {
+        target: service.networkProxy
+        onChanged: reload()
+    }
+
     onContextMenuRequested: {
         request.accepted = true;
         contextMenu.x = request.x;

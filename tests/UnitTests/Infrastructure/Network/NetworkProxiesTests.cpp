@@ -17,12 +17,11 @@ SCENARIO("NetworkProxy are added when new streaming services are added")
 {
     GIVEN("An empty list of streaming services")
     {
-        FakeQtApplication qtApplication;
         FakeStreamingServiceLoader streamingServiceLoader;
         FakeStreamingServiceWatcher streamingServiceWatcher;
         FakeSettingsStore settingsStore;
         StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
-        NetworkProxies networkProxies(qtApplication, settingsStore, streamingServices);
+        NetworkProxies networkProxies(settingsStore, streamingServices);
 
         WHEN("I load StreamingServices")
         {
@@ -57,13 +56,25 @@ SCENARIO("NetworkProxy are added when new streaming services are added")
                     REQUIRE(settingsStore.value("Deezer/networkProxy").toMap()["enabled"].toBool());
                 }
 
-                AND_WHEN("I set a network proxy")
+                AND_WHEN("I set a network proxy host name")
                 {
-                    networkProxies.get("Deezer")->setHostName("Foo");
+                    QString hostName = "Foo";
+                    networkProxies.get("Deezer")->setHostName(hostName);
 
                     THEN("host name is saved in settings")
                     {
-                        REQUIRE(settingsStore.value("Deezer/networkProxy").toMap()["hostName"].toString() == "Foo");
+                        REQUIRE(settingsStore.value("Deezer/networkProxy").toMap()["hostName"].toString() == hostName);
+                    }
+
+                    AND_WHEN("I set a network proxy port")
+                    {
+                        int port = 42;
+                        networkProxies.get("Deezer")->setPort(port);
+
+                        THEN("host name is saved in settings")
+                        {
+                            REQUIRE(settingsStore.value("Deezer/networkProxy").toMap()["port"].toInt() == port);
+                        }
                     }
                 }
             }

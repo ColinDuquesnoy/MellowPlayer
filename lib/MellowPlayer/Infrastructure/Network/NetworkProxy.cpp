@@ -2,18 +2,10 @@
 
 using namespace MellowPlayer::Infrastructure;
 
-NetworkProxy::NetworkProxy(const QNetworkProxy& qNetworkProxy)
-        : isEnabled_(true),
-          hostName_(qNetworkProxy.hostName()),
-          port_(qNetworkProxy.port())
-{
-
-}
-
-NetworkProxy::NetworkProxy(const QVariantMap& rawData) :
-        isEnabled_(rawData["enabled"].toBool()),
-        hostName_(rawData["hostName"].toString()),
-        port_(rawData["port"].toInt())
+NetworkProxy::NetworkProxy(const QVariantMap& qVariantMap) :
+        isEnabled_(qVariantMap["enabled"].toBool()),
+        hostName_(qVariantMap["hostName"].toString()),
+        port_(qVariantMap["port"].toInt())
 {
 
 }
@@ -60,15 +52,15 @@ void NetworkProxy::setPort(int value)
     }
 }
 
-QVariantMap NetworkProxy::rawData() const
+QVariantMap NetworkProxy::toQVariantMap() const
 {
-    QVariantMap rawData;
+    QVariantMap qVariantMap;
 
-    rawData["enabled"] = isEnabled_;
-    rawData["port"] = port_;
-    rawData["hostName"] = hostName_;
+    qVariantMap["enabled"] = isEnabled_;
+    qVariantMap["port"] = port_;
+    qVariantMap["hostName"] = hostName_;
 
-    return rawData;
+    return qVariantMap;
 }
 
 QNetworkProxy NetworkProxy::create() const
@@ -81,4 +73,9 @@ QNetworkProxy NetworkProxy::create() const
 bool NetworkProxy::isValid() const
 {
     return isEnabled_ && !hostName_.isEmpty() && port_ != 0;
+}
+
+QString NetworkProxy::toString() const
+{
+    return QString("%1:%2").arg(hostName_).arg(port_);
 }

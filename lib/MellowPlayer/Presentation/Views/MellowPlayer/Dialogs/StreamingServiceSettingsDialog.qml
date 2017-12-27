@@ -381,6 +381,37 @@ Dialog {
                         Item {
                             Layout.fillHeight: true
                         }
+
+                        Pane {
+                            visible: networkProxySwitch.checked
+
+                            Layout.fillWidth: true
+                            Material.background: Material.color(Material.Orange)
+                            Material.foreground: "white"
+
+                            RowLayout {
+                                anchors.fill: parent
+                                spacing: 12
+
+                                Label {
+                                    text: MaterialIcons.icon_warning
+                                    font.family: MaterialIcons.family
+                                    font.pixelSize: 32
+                                    verticalAlignment: Text.AlignVCenter
+
+                                    Layout.fillHeight: true
+                                }
+
+                                Label {
+                                    font.pixelSize: 12
+                                    text: qsTr("The global application proxy settings are changed when you switch active service. This may affects previously active services' HTTP requests and you may need to reload their pages.")
+                                    width: parent.width
+                                    wrapMode: Text.Wrap
+
+                                    Layout.fillWidth: true
+                                }
+                            }
+                        }
                     }
                 }
             }

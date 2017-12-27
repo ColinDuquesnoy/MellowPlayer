@@ -58,9 +58,9 @@ SCENARIO("NetworkProxyTests")
                     REQUIRE(networkProxy.create().type() == QNetworkProxy::DefaultProxy);
                 }
 
-                AND_THEN("rawData is correct")
+                AND_THEN("QVariantMap is correct")
                 {
-                    REQUIRE(networkProxy.rawData()["enabled"].toBool());
+                    REQUIRE(networkProxy.toQVariantMap()["enabled"].toBool());
                 }
             }
         }
@@ -107,9 +107,9 @@ SCENARIO("NetworkProxyTests")
                     REQUIRE(networkProxy.create().hostName().isEmpty());
                 }
 
-                AND_THEN("rawData is correct")
+                AND_THEN("QVariantMap is correct")
                 {
-                    REQUIRE(networkProxy.rawData()["hostName"].toString() == hostName);
+                    REQUIRE(networkProxy.toQVariantMap()["hostName"].toString() == hostName);
                 }
             }
         }
@@ -156,9 +156,9 @@ SCENARIO("NetworkProxyTests")
                     REQUIRE(networkProxy.create().port() == 0);
                 }
 
-                AND_THEN("rawData is correct")
+                AND_THEN("QVariantMap is correct")
                 {
-                    REQUIRE(networkProxy.rawData()["port"].toInt() == port);
+                    REQUIRE(networkProxy.toQVariantMap()["port"].toInt() == port);
                 }
             }
         }
@@ -200,55 +200,28 @@ SCENARIO("NetworkProxyTests")
 
     GIVEN("A valid QVariantMap")
     {
-        QVariantMap rawData;
-        rawData["enabled"] = true;
-        rawData["hostName"] = "foo";
-        rawData["port"] = 42;
+        QVariantMap qVariantMap;
+        qVariantMap["enabled"] = true;
+        qVariantMap["hostName"] = "foo";
+        qVariantMap["port"] = 42;
 
         WHEN("I create a NetworkProxy instance")
         {
-            NetworkProxy networkProxy(rawData);
+            NetworkProxy networkProxy(qVariantMap);
 
             THEN("isEnabled is correctly initialized")
             {
-                REQUIRE(networkProxy.isEnabled() == rawData["enabled"]);
+                REQUIRE(networkProxy.isEnabled() == qVariantMap["enabled"]);
             }
 
             AND_THEN("hostName is correctly initialized")
             {
-                REQUIRE(networkProxy.hostName() == rawData["hostName"]);
+                REQUIRE(networkProxy.hostName() == qVariantMap["hostName"]);
             }
 
             AND_THEN("port is correctly initialized")
             {
-                REQUIRE(networkProxy.port() == rawData["port"]);
-            }
-        }
-    }
-
-    GIVEN("A valid QNetworkProxy")
-    {
-        QNetworkProxy qNetworkProxy;
-        qNetworkProxy.setHostName("foo");
-        qNetworkProxy.setPort(42);
-
-        WHEN("I create a NetworkProxy instance")
-        {
-            NetworkProxy networkProxy(qNetworkProxy);
-
-            THEN("isEnabled is set to true")
-            {
-                REQUIRE(networkProxy.isEnabled() == true);
-            }
-
-            AND_THEN("hostName is correctly initialized")
-            {
-                REQUIRE(networkProxy.hostName() == qNetworkProxy.hostName());
-            }
-
-            AND_THEN("port is correctly initialized")
-            {
-                REQUIRE(networkProxy.port() == qNetworkProxy.port());
+                REQUIRE(networkProxy.port() == qVariantMap["port"]);
             }
         }
     }

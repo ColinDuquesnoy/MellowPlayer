@@ -17,6 +17,7 @@ using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Main;
 
 Program::Program(IApplication& application,
+                 ApplicationNetworkProxy& applicationNetworkProxy,
                  IContextProperties& contextProperties,
                  IMprisService& mprisService,
                  IViewModels& viewModels,
@@ -24,6 +25,7 @@ Program::Program(IApplication& application,
                  INotifications& notifications,
                  IHotkeys& hotkeys)
         : application_(application),
+          applicationNetworkProxy_(applicationNetworkProxy),
           contextProperties_(contextProperties),
           mprisService_(mprisService),
           viewModels_(viewModels),
