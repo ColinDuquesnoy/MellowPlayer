@@ -26,7 +26,7 @@ shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfi
         auto logFileName = logDir + name;
 
         if (SpdLogger::allSink_ == nullptr) {
-            SpdLogger::allSink_ = make_shared<sinks::simple_file_sink_mt>(logDir + "All.log");
+            SpdLogger::allSink_ = make_shared<sinks::simple_file_sink_mt>(logDir + "All.log", true);
             make_shared<logger>("All", SpdLogger::allSink_)->log(level::info, "*******************************************************************************");
         }
 
