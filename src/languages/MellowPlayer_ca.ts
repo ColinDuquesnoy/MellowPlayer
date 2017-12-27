@@ -1233,22 +1233,22 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="350"/>
         <source>Use custom network proxy</source>
-        <translation>Utiliser un proxy réseau personnalisé</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="361"/>
         <source>Host</source>
-        <translation>Hôte</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="372"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="407"/>
         <source>The global application proxy settings are changed when you switch active service. This may affects previously active services&apos; HTTP requests and you may need to reload their pages.</source>
-        <translation>Les paramètres de proxy réseau globaux de l&apos;application sont modifiés lorsque le service de streaming actif change. Ceci peut avoir des effets sur les autres services de streaming qui continuent de fonctionner en arrière plan. Vous devrez peut-être recharger leur pages.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="431"/>
