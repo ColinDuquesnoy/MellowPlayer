@@ -8,6 +8,7 @@ import QtWebChannel 1.0
 
 import MellowPlayer 3.0
 import ".."
+import "../Dialogs.js" as Dialogs
 
 WebEngineView {
     id: root
@@ -71,6 +72,9 @@ WebEngineView {
         zoomPane.show()
     }
 
+    profile {
+        httpUserAgent: userAgentSetting.value
+    }
     settings {
         pluginsEnabled : true
         fullScreenSupportEnabled: true
@@ -82,20 +86,7 @@ WebEngineView {
     userScripts: d.getUserScripts()
     url: aboutBlank
     zoomFactor: d.zoomFactors[d.zoomFactorIndex]
-
     webChannel: webChannel
-
-    profile.httpUserAgent: userAgentSetting.value
-
-    Connections {
-        target: userAgentSetting
-        onValueChanged: { console.warn("new user agent: " + userAgentSetting.value); reload(); }
-    }
-
-    Connections {
-        target: service.networkProxy
-        onChanged: reload()
-    }
 
     onContextMenuRequested: {
         request.accepted = true;
@@ -108,6 +99,10 @@ WebEngineView {
         contextMenu.canGoForward = root.canGoForward;
         contextMenu.hasLink = request.linkText !== "";
         contextMenu.show();
+    }
+    onAuthenticationDialogRequested: function(request) {
+        request.accepted = true;
+        Dialogs.open("Authentication.qml", mainWindow, {"request": request});
     }
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != aboutBlank) {
@@ -140,19 +135,6 @@ WebEngineView {
     WebChannel {
         id: webChannel
         registeredObjects: [playerBridge]
-    }
-
-    Connections {
-        target: root.player
-
-        onPlay: playerBridge.play()
-        onPause: playerBridge.pause()
-        onNext: playerBridge.next()
-        onPrevious: playerBridge.previous()
-        onAddToFavorites: playerBridge.addToFavorites()
-        onRemoveFromFavorites: playerBridge.removeFromFavorites()
-        onSeekToPositionRequest: playerBridge.seekToPosition(newPosition)
-        onChangeVolumeRequest: playerBridge.changeVolume(newVolume)
     }
 
     CustomUrlPane {
@@ -241,6 +223,29 @@ WebEngineView {
         onGoForwardRequested: root.goForward()
         onReloadRequested: root.reload()
         onViewPageSourceRequested: root.triggerWebAction(WebEngineView.ViewSource)
+    }
+
+    Connections {
+        target: userAgentSetting
+        onValueChanged: { console.warn("new user agent: " + userAgentSetting.value); reload(); }
+    }
+
+    Connections {
+        target: service.networkProxy
+        onChanged: reload()
+    }
+
+    Connections {
+        target: root.player
+
+        onPlay: playerBridge.play()
+        onPause: playerBridge.pause()
+        onNext: playerBridge.next()
+        onPrevious: playerBridge.previous()
+        onAddToFavorites: playerBridge.addToFavorites()
+        onRemoveFromFavorites: playerBridge.removeFromFavorites()
+        onSeekToPositionRequest: playerBridge.seekToPosition(newPosition)
+        onChangeVolumeRequest: playerBridge.changeVolume(newVolume)
     }
 
     QtObject {

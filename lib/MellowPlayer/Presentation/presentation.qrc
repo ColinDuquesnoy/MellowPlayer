@@ -62,6 +62,7 @@
         <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
         <file>Views/MellowPlayer/Controls/IconMenuItem.qml</file>
         <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
+        <file>Views/MellowPlayer/Dialogs/Authentication.qml</file>
         <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
         <file>Views/MellowPlayer/Controls/Link.qml</file>
         <file>Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
@@ -82,6 +83,7 @@
         <file>Views/MellowPlayer/Controls/WebViewContextMenu.qml</file>
         <file>Views/MellowPlayer/Controls/IconToolButton.qml</file>
         <file>Views/MellowPlayer/DateCategoryTranslator.js</file>
+        <file>Views/MellowPlayer/Dialogs.js</file>
         <file>Views/MellowPlayer/SettingsTranslator.js</file>
         <file>Resources/mellowplayer.js</file>
         <file>Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml</file>

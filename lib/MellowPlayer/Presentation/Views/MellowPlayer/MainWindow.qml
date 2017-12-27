@@ -7,7 +7,7 @@ import Qt.labs.platform 1.0 as Platform
 import MellowPlayer 3.0
 
 ApplicationWindow {
-    id: root
+    id: mainWindow
 
     minimumWidth: 1280; minimumHeight: 720
     width: _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value;
@@ -26,7 +26,7 @@ ApplicationWindow {
         id: mainPage
 
         anchors.fill: parent
-        mainWindowWidth: root.width
+        mainWindowWidth: mainWindow.width
 
         onNewViewRequested: d.openWebPopup(request, profile)
         onFullScreenRequested: d.toggleFullScreen(request)
@@ -39,13 +39,13 @@ ApplicationWindow {
     SettingsDrawer {
         id: settingsDrawer;
 
-        width: root.width; height: root.height
+        width: mainWindow.width; height: mainWindow.height
     }
 
     ListeningHistoryDrawer {
         id: listeningHistoryDrawer;
 
-        height: root.height; width: 450
+        height: mainWindow.height; width: 450
     }
 
     AboutDialog {
@@ -72,7 +72,7 @@ ApplicationWindow {
 
         onAccepted: {
             _window.visible = false;
-            root.visible = false;
+            mainWindow.visible = false;
         }
     }
 
@@ -82,7 +82,7 @@ ApplicationWindow {
         property real scaleFactor: 0.9
 
         width: 1152; height: 648
-        x: root.width / 2 - width / 2; y: root.height / 2 - height / 2
+        x: mainWindow.width / 2 - width / 2; y: mainWindow.height / 2 - height / 2
     }
 
     NativeMenuBar {
@@ -98,7 +98,7 @@ ApplicationWindow {
     Connections {
         target: _window;
 
-        onVisibleChanged: _window.visible ? d.restoreWindow() : root.hide()
+        onVisibleChanged: _window.visible ? d.restoreWindow() : mainWindow.hide()
         onQuitRequest: d.quit()
         onForceQuitRequest: { d.forceQuit = true; _app.quit() }
     }
@@ -117,8 +117,8 @@ ApplicationWindow {
         property bool forceQuit: false;
 
         function restoreWindow() {
-            root.raise();
-            root.show();
+            mainWindow.raise();
+            mainWindow.show();
         }
 
         function openWebPopup(request, profile) {
@@ -130,15 +130,15 @@ ApplicationWindow {
 
         function toggleFullScreen(request) {
             if (request.toggleOn)
-                root.showFullScreen();
+                mainWindow.showFullScreen();
             else
-                root.visibility = d.previousVisibility;
+                mainWindow.visibility = d.previousVisibility;
             request.accept();
         }
 
         function handleEscapeKey() {
-            if (root.visibility === ApplicationWindow.FullScreen) {
-                root.visibility = d.previousVisibility;
+            if (mainWindow.visibility === ApplicationWindow.FullScreen) {
+                mainWindow.visibility = d.previousVisibility;
                 mainPage.exitFullScreen();
             }
             else if (!mainPage.isWebViewMode)
@@ -146,8 +146,8 @@ ApplicationWindow {
         }
 
         function saveGeometry() {
-            _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value = root.width;
-            _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value = root.height;
+            _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value = mainWindow.width;
+            _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value = mainWindow.height;
         }
 
         function handleCloseEvent(close) {
@@ -161,7 +161,7 @@ ApplicationWindow {
                 }
                 else {
                     _window.visible = false;
-                    root.visible = false;
+                    mainWindow.visible = false;
                 }
                 console.info("closing to system tray")
                 close.accepted = false;
