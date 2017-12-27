@@ -1247,7 +1247,7 @@ escuchado aparecerán aquí...</translation>
     </message>
     <message>
         <location filename="../../lib/MellowPlayer/Presentation/Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="407"/>
-        <source>The global application proxy settings are changed when you switch active service. This may affects previously active services&apos; HTTP requests and you may need to reload their pages.</source>
+        <source>QtWebEngine does not support attaching a network proxy to a particular web view. The network proxy settings of the current streaming service are used globally, this may lead to some HTTP requests failures for previously active services and you might need to reload them when you switch back.</source>
         <translation type="unfinished"/>
     </message>
     <message>
