@@ -6,6 +6,7 @@ import QtWebEngine 1.5
 
 import MellowPlayer 3.0
 import ".."
+import "../Controls"
 
 Page {
     id: root

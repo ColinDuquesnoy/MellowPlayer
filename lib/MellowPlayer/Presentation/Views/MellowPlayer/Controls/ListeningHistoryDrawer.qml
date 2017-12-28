@@ -4,7 +4,9 @@ import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
 
 import MellowPlayer 3.0
+
 import ".."
+import "../Dialogs"
 
 Drawer {
     id: drawer

@@ -5,7 +5,9 @@ import QtQuick.Controls.Material 2.2
 
 import MellowPlayer 3.0
 import ".."
+import "../Controls"
 import "../Dialogs"
+import "../NewPluginWizard"
 import "../SettingsTranslator.js" as Translator
 
 Page {
@@ -36,6 +38,7 @@ Page {
                 hoverEnabled: true
                 text: MaterialIcons.icon_keyboard_arrow_right
                 onClicked: settingsPage.closeRequested()
+
                 Tooltip {
                     y: toolBar.implicitHeight
                     text: qsTr("Back")

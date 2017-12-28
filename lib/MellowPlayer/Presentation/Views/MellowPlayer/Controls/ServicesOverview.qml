@@ -6,6 +6,7 @@ import QtQml.Models 2.1
 
 import MellowPlayer 3.0
 import ".."
+import "../Delegates"
 
 Item {
     id: root

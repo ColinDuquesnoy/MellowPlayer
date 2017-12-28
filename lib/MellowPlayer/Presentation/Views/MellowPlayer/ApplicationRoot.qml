@@ -2,6 +2,8 @@ import QtQuick 2.9
 import QtWebEngine 1.5
 import MellowPlayer 3.0
 
+import "Controls"
+
 QtObject {
     id: root
 

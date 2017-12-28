@@ -6,6 +6,11 @@ import Qt.labs.platform 1.0 as Platform
 
 import MellowPlayer 3.0
 
+import "Controls"
+import "Dialogs"
+import "NewPluginWizard"
+import "Pages"
+
 ApplicationWindow {
     id: mainWindow
 

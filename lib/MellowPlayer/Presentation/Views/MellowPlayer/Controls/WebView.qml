@@ -104,6 +104,27 @@ WebEngineView {
         request.accepted = true;
         Dialogs.open("Authentication.qml", mainWindow, {"request": request});
     }
+    onJavaScriptDialogRequested: function(request){
+        var component = "";
+        switch (request.type) {
+            case JavaScriptDialogRequest.DialogTypeAlert:
+                component = "Alert.qml"
+                break;
+            case JavaScriptDialogRequest.DialogTypeConfirm:
+                component = "Confirmation.qml"
+                break;
+            case JavaScriptDialogRequest.DialogTypePrompt:
+                component = "Prompt.qml"
+                break;
+            case JavaScriptDialogRequest.DialogTypeUnload:
+                component = "ReloadPage.qml"
+                break;
+            default:
+                 return;
+        }
+        Dialogs.open(component, mainWindow, {"request": request});
+        request.accepted = true;
+    }
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != aboutBlank) {
             d.checkForProprietaryCodecs();

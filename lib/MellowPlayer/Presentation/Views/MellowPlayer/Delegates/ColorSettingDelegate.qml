@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.3
 
 import MellowPlayer 3.0
 import ".."
+import "../Controls"
 import "../SettingsTranslator.js" as Translator
 
 ItemDelegate {

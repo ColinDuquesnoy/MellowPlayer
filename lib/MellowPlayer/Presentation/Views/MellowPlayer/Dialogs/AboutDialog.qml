@@ -5,7 +5,9 @@ import QtQuick.Controls.Material 2.2
 import QtQml 2.2
 
 import MellowPlayer 3.0
+
 import ".."
+import "../Controls"
 
 Popup {
     id: popup
