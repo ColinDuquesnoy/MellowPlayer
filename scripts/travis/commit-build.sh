@@ -16,9 +16,9 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     make -j2;
 
     # run tests
-    pushd src/tests
+    pushd src/tests;
     catchsegv ctest --output-on-failure;
-    popd
+    popd;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -27,7 +27,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     make -j2;
 
     # run tests
-    pushd src/tests
-    make test
-    popd
+    pushd src/tests;
+    ctest --output-on-failure;
+    popd;
 fi
