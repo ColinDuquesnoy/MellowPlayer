@@ -23,7 +23,5 @@ if __name__ == "__main__":
     if os.getcwd() == os.path.dirname(__file__):
         os.chdir("..")
 
-    clang_format_recursive(os.path.join(os.getcwd(), "lib"))
     clang_format_recursive(os.path.join(os.getcwd(), "src"))
-    clang_format_recursive(os.path.join(os.getcwd(), "tests"))
-    js_beautify_recursive(os.path.join(os.getcwd(), "plugins"))
+    js_beautify_recursive(os.path.join(os.getcwd(), "src/plugins"))

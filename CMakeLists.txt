@@ -43,7 +43,6 @@ endif()
 
 include(cmake/FindDependencies.cmake)
 include_directories(3rdparty)
-include_directories(lib)
 # Sources
 if(ENABLE_COVERAGE)
     include(cmake/CodeCoverage.cmake)
@@ -52,13 +51,7 @@ include(cmake/Config.cmake)
 include(cmake/InstallDirs.cmake)
 include(cmake/Cotire.cmake)
 
-add_subdirectory(lib/MellowPlayer)
 add_subdirectory(src)
-add_subdirectory(plugins)
-if(BUILD_TESTS)
-    enable_testing(true)
-    add_subdirectory(tests)
-endif()
 
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")
