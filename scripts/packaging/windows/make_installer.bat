@@ -11,7 +11,6 @@ xcopy /S /E /D /C /Y src\plugins %BUILD_DIR%\bin\plugins
 
 %QTDIR%\bin\windeployqt %BUILD_DIR%\bin\MellowPlayer.exe -qmldir=src
 
-dir /a-d /b /s
 "C:\Program Files (x86)\Inno Setup 5\iscc" /Q %BUILD_DIR%/setup.iss
 
 

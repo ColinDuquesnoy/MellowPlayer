@@ -23,10 +23,10 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
     ListeningHistoryEntry entry1Spotify = ListeningHistoryEntry::fromData(&song2, "Spotify");
 
     entry1Deezer.id = dataProvider.add(entry1Deezer);
+    REQUIRE(dataProvider.toList().count() == 1);
 
     SECTION("Add entry")
     {
-        REQUIRE(dataProvider.toList().count() == 1);
         int id = dataProvider.add(entry1Spotify);
         REQUIRE(id == 2);
         REQUIRE(dataProvider.toList().count() == 2);
