@@ -71,3 +71,5 @@ if (USE_LD_GOLD)
         set(USE_LD_GOLD OFF)
     endif()
 endif()
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DQT_QML_DEBUG ")
