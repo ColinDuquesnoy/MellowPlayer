@@ -129,7 +129,6 @@ You can specify the following options when calling cmake:
 - ``-DCMAKE_BUILD_TYPE=``: **Debug** or **Release** - Default is **Release**.
 - ``-DDEFAULT_THEME=``: **Adaptive** by default. Can be set to any theme appearing in the theme combo box.
 - ``-DBUILD_TESTS=``: **ON** or **OFF** - Default is **OFF**.
-- ``-DBUILD_INTEGRATION_TESTS=``: **ON** or **OFF** - Default is **OFF**.
 - ``-DENABLE_COVERAGE``: **ON** or **OFF** (requires ``BUILD_TEST=ON`` and ``CMAKE_BUILD_TYPE=Debug``) - Default is **OFF** .
 - ``-ENABLE_LCOV_REPORT``: **ON** or **OFF** (requires ``BUILD_TEST=ON``, ``CMAKE_BUILD_TYPE=Debug`` and ``ENABLE_COVERAGE``) - Default is **OFF** .
 
@@ -142,7 +141,7 @@ Example build commands:
 - developer build command  
 
     ```bash
-    cmake -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DENABLE_LCOV_REPORT=ON -DCMAKE_BUILD_TYPE=Debug ..
+    cmake -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DENABLE_LCOV_REPORT=ON -DCMAKE_BUILD_TYPE=Debug ..
     ```
 
 # Running the test suite

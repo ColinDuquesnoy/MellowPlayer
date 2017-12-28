@@ -25,5 +25,5 @@ void ColorSettingViewModel::onValueChanged()
 
 QString ColorSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/ColorSettingDelegate.qml";
+    return "Delegates/ColorSettingDelegate.qml";
 }

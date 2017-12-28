@@ -1,6 +1,8 @@
 #include "MainWindowViewModel.hpp"
+#include <MellowPlayer/Infrastructure/BuildConfig.hpp>
 #include <MellowPlayer/Presentation/Qml/IQmlApplicationEngine.hpp>
 
+using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
 MainWindowViewModel::MainWindowViewModel(IContextProperties& contextProperties,
@@ -19,8 +21,12 @@ void MainWindowViewModel::show()
 
 void MainWindowViewModel::load()
 {
-    qmlApplicationEngine_.addImportPath("qrc:/MellowPlayer/Presentation/Views");
-    qmlApplicationEngine_.load(QUrl("qrc:/MellowPlayer/Presentation/Views/main.qml"));
+#ifdef USE_IMPORTS_QRC
+    qmlApplicationEngine_.addImportPath("qrc:/MellowPlayer/imports");
+#else
+    qmlApplicationEngine_.addImportPath(BuildConfig::getSourceDir() +  "/src/imports");
+#endif
+    qmlApplicationEngine_.load(QUrl("qrc:/MellowPlayer/main.qml"));
 }
 
 void MainWindowViewModel::hide()

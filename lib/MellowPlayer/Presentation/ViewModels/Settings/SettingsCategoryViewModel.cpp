@@ -27,7 +27,7 @@ QString SettingsCategoryViewModel::icon() const
 
 QString SettingsCategoryViewModel::qmlComponent() const
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml";
+    return "SettingsPages/AutomaticSettingsPage.qml";
 }
 
 SettingListModel* SettingsCategoryViewModel::settingsModel()

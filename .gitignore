@@ -63,3 +63,6 @@ schema.json
 .vscode
 /.vs
 /venv
+
+*.qmlc
+*.jsc

@@ -5,6 +5,9 @@ set(LIB_NAME "${PROJECT_NAME}.Infrastructure")
 glob_recurse_excl(SOURCE_FILES *.cpp "Linux/;Windows/;OSX/")
 glob_recurse_excl(HEADER_FILES *.hpp "Linux/;Windows/;OSX/")
 
+set(BUILD_CONFIG_SOURCE ${CMAKE_BINARY_DIR}/BuildConfig.cpp)
+configure_file(BuildConfig.in ${BUILD_CONFIG_SOURCE})
+
 if (WIN32)
     file(GLOB_RECURSE UPDATER_SOURCE_FILES Updater/Windows/*.cpp)
     file(GLOB_RECURSE UPDATER_HEADER_FILES Updater/Windows/*.hpp)

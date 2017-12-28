@@ -14,10 +14,7 @@ cp scripts/packaging/osx/Info.plist ${build_dir}/src/MellowPlayer.app/Contents
 mkdir -p  ${build_dir}/src/MellowPlayer.app/Contents/Resources/qml/QtQuick/
 cp -R /usr/local/opt/qt/qml/QtQuick/Controls ${build_dir}/src/MellowPlayer.app/Contents/Resources/qml/QtQuick/
 
-qml_dir=$PWD/lib/MellowPlayer/Presentation/Views
-echo "QML Scanned Dir: ${qml_dir}"
-
-/usr/local/opt/qt/bin/macdeployqt ${build_dir}/src/MellowPlayer.app -dmg -qmldir=$PWD/lib/MellowPlayer/Presentation/Views -verbose=3
+/usr/local/opt/qt/bin/macdeployqt ${build_dir}/src/MellowPlayer.app -dmg -qmldir=$PWD/src -verbose=3
 
 mkdir -p dist
 cp ${build_dir}/src/MellowPlayer.dmg dist/

@@ -23,7 +23,7 @@ QStringList UpdateChannelSettingViewModel::values() const
 
 QString UpdateChannelSettingViewModel::qmlComponent()
 {
-    return "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/Delegates/EnumSettingDelegate.qml";
+    return "Delegates/EnumSettingDelegate.qml";
 }
 
 void UpdateChannelSettingViewModel::setValue(QString value)

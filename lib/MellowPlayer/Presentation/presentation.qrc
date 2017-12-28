@@ -3,8 +3,8 @@
         <file>qtquickcontrols2.conf</file>
     </qresource>
     <qresource prefix="/MellowPlayer/Presentation">
+        <file>Resources/mellowplayer.js</file>
         <file>Resources/fonts/MaterialIcons-Regular.ttf</file>
-        <file>Resources/images/home-background.png</file>
         <file>Resources/icons/mellowplayer.ico</file>
         <file>Resources/icons/mellowplayer.png</file>
         <file>Resources/icons/mellowplayer.svg</file>
@@ -26,69 +26,12 @@
         <file>Resources/icons/media-seek-backward.png</file>
         <file>Resources/icons/media-seek-forward.png</file>
         <file>Resources/icons/view-restore.png</file>
+        <file>Resources/images/home-background.png</file>
         <file>Themes/Breeze.json</file>
         <file>Themes/BreezeDark.json</file>
         <file>Themes/Default.json</file>
         <file>Themes/Midna.json</file>
         <file>Themes/MidnaDark.json</file>
         <file>Themes/Ambiance.json</file>
-        <file>Views/main.qml</file>
-        <file>Views/MellowPlayer/qmldir</file>
-        <file>Views/MellowPlayer/ApplicationRoot.qml</file>
-        <file>Views/MellowPlayer/MainWindow.qml</file>
-        <file>Views/MellowPlayer/DevToolsWindow.qml</file>
-        <file>Views/MellowPlayer/MaterialIcons.qml</file>
-        <file>Views/MellowPlayer/Controls/BrowserDialog.qml</file>
-        <file>Views/MellowPlayer/Controls/MainToolBar.qml</file>
-        <file>Views/MellowPlayer/Controls/FullScreenNotification.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistoryBody.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistoryClipboardConfirmation.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistoryDrawer.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistoryListView.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistoryToolBar.qml</file>
-        <file>Views/MellowPlayer/Controls/ListeningHistorySearchPane.qml</file>
-        <file>Views/MellowPlayer/Controls/ServicesOverview.qml</file>
-        <file>Views/MellowPlayer/Controls/Tooltip.qml</file>
-        <file>Views/MellowPlayer/Controls/WebView.qml</file>
-        <file>Views/MellowPlayer/Controls/WebViewStack.qml</file>
-        <file>Views/MellowPlayer/Delegates/BoolSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ColorSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/EnumSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ShortcutSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/StringSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ServiceSettingDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ServiceOverviewDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ListeningHistoryEntryDelegate.qml</file>
-        <file>Views/MellowPlayer/Delegates/ListeningHistorySectionDelegate.qml</file>
-        <file>Views/MellowPlayer/Controls/IconMenuItem.qml</file>
-        <file>Views/MellowPlayer/Dialogs/AboutDialog.qml</file>
-        <file>Views/MellowPlayer/Dialogs/Authentication.qml</file>
-        <file>Views/MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
-        <file>Views/MellowPlayer/Controls/Link.qml</file>
-        <file>Views/MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
-        <file>Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml</file>
-        <file>Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml</file>
-        <file>Views/MellowPlayer/Pages/MainPage.qml</file>
-        <file>Views/MellowPlayer/Pages/SettingsPage.qml</file>
-        <file>Views/MellowPlayer/Controls/CustomUrlPane.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/CreatingPage.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/DetailsPage.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/FinishPage.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/StartPage.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/NewPluginWizard.qml</file>
-        <file>Views/MellowPlayer/NewPluginWizard/WizardPage.qml</file>
-        <file>Views/MellowPlayer/Controls/UpdateToolBar.qml</file>
-        <file>Views/MellowPlayer/Controls/NativeMenuBar.qml</file>
-        <file>Views/MellowPlayer/Controls/SettingsDrawer.qml</file>
-        <file>Views/MellowPlayer/Controls/WebViewContextMenu.qml</file>
-        <file>Views/MellowPlayer/Controls/IconToolButton.qml</file>
-        <file>Views/MellowPlayer/DateCategoryTranslator.js</file>
-        <file>Views/MellowPlayer/Dialogs.js</file>
-        <file>Views/MellowPlayer/SettingsTranslator.js</file>
-        <file>Resources/mellowplayer.js</file>
-        <file>Views/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml</file>
-        <file>Views/MellowPlayer/Delegates/TextFieldDelegate.qml</file>
-        <file>Views/MellowPlayer/Controls/ItemDelegateSeparator.qml</file>
-        <file>Views/MellowPlayer/Delegates/SpinBoxDelegate.qml</file>
     </qresource>
 </RCC>

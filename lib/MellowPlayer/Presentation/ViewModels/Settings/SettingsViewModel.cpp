@@ -20,9 +20,9 @@ SettingsViewModel::SettingsViewModel(Settings& settings,
             categories_->append(new SettingsCategoryViewModel(themeViewModel, category, this));
     }
     categories_->append(new CustomSettingsCategoryViewModel(
-    "Streaming Services", u8"\ue405", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/ServiceSettingsPage.qml", themeViewModel, this));
+    "Streaming Services", u8"\ue405", "SettingsPages/ServiceSettingsPage.qml", themeViewModel, this));
     categories_->append(new CustomSettingsCategoryViewModel(
-    "Cache", u8"\ue872", "qrc:/MellowPlayer/Presentation/Views/MellowPlayer/SettingsPages/CacheSettingsPage.qml", themeViewModel, this));
+    "Cache", u8"\ue872", "SettingsPages/CacheSettingsPage.qml", themeViewModel, this));
 }
 
 SettingViewModel* SettingsViewModel::get(int key)

@@ -73,3 +73,12 @@ if (USE_LD_GOLD)
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DQT_QML_DEBUG ")
+
+IF(CMAKE_BUILD_TYPE MATCHES Debug)
+    message(STATUS "qml import path: from source directory")
+    set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/src/imports CACHE string "" FORCE)
+else()
+    message(STATUS "qml import path: from imports.qrc")
+    set(USE_QML_IMPORT_LIB TRUE)
+    add_definitions(-DUSE_IMPORTS_QRC=1)
+ENDIF()

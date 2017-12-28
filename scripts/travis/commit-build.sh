@@ -12,7 +12,7 @@ pushd build;
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # build
-    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON -DENABLE_COVERAGE=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
+    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
     make -j2;
 
     # run tests
@@ -21,7 +21,7 @@ fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
-    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DBUILD_INTEGRATION_TESTS=ON ..;
+    cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..;
     make -j2;
 
     # run tests
