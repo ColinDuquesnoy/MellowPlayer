@@ -19,9 +19,9 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # run all tests
     pushd src/tests
     ctest --output-on-failure;
+    popd;
     src/main/MellowPlayer --auto-quit-delay 10000 --log-level 1;
     src/main/MellowPlayer --auto-quit-delay 10000 --log-level 1 --service Deezer;
-    popd;
 
     # create AppImage
     popd;
