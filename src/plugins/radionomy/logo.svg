@@ -1,89 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   x="0px"
-   y="0px"
-   width="308px"
-   height="308px"
-   viewBox="0 0 308 308"
-   enable-background="new 0 0 308 308"
-   xml:space="preserve"
-   id="svg2"
-   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
-   sodipodi:docname="logo.svg"><metadata
-     id="metadata45"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
-     id="defs43" /><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1376"
-     id="namedview41"
-     showgrid="false"
-     inkscape:zoom="2.1672364"
-     inkscape:cx="77.720037"
-     inkscape:cy="102.25561"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="drawing" /><g
-     id="image_base" /><g
-     id="drawing"><circle
-       fill="#7F7F7F"
-       cx="154"
-       cy="154"
-       r="154"
-       id="circle6" /><rect
-       x="24.257"
-       y="87.299"
-       fill="none"
-       width="257.485"
-       height="117.402"
-       id="rect8" /><rect
-       style="fill:#0000ff;fill-opacity:0;fill-rule:evenodd;stroke:#ffffff;stroke-width:16;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect819"
-       width="189.23729"
-       height="187.93221"
-       x="61.338982"
-       y="58.516953"
-       ry="53.524387" /><text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:336.03909302px;line-height:1.25;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.75020373"
-       x="88.520432"
-       y="236.28426"
-       id="text827"
-       transform="scale(1.2249827,0.81633806)"><tspan
-         sodipodi:role="line"
-         id="tspan825"
-         x="88.520432"
-         y="236.28426"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:168.01954651px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:1.75020373">r</tspan></text>
-<flowRoot
-       xml:space="preserve"
-       id="flowRoot829"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:arial;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:arial;font-stretch:normal;font-variant:normal"><flowRegion
-         id="flowRegion831"><rect
-           id="rect833"
-           width="204.40779"
-           height="152.26765"
-           x="-19.840937"
-           y="431.19836" /></flowRegion><flowPara
-         id="flowPara835"></flowPara></flowRoot></g><g
-     id="guides"
-     display="none" /></svg>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" inkscape:version="0.92.2 5c3e80d, 2017-08-06" sodipodi:docname="logo.svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="308px" height="308px"
+	 viewBox="0 0 308 308" enable-background="new 0 0 308 308" xml:space="preserve">
+<sodipodi:namedview  inkscape:cx="77.720037" showgrid="false" inkscape:cy="102.25561" guidetolerance="10" borderopacity="1" objecttolerance="10" gridtolerance="10" id="namedview41" pagecolor="#ffffff" bordercolor="#666666" inkscape:zoom="2.1672364" inkscape:current-layer="drawing" inkscape:window-maximized="1" inkscape:window-y="27" inkscape:window-x="0" inkscape:window-height="1376" inkscape:window-width="2560" inkscape:pageshadow="2" inkscape:pageopacity="0">
+	</sodipodi:namedview>
+<g id="image_base">
+</g>
+<circle id="circle6" fill="#7F7F7F" cx="154" cy="154" r="154"/>
+<rect id="rect8" x="24.257" y="87.299" fill="none" width="257.485" height="117.402"/>
+<g id="guides" display="none">
+</g>
+<g>
+	<path fill="#FFFFFF" d="M153.455,248.164c-14.02,0-28.055,0.43-42.056-0.09c-28.64-1.064-51.969-25.652-52.013-54.315
+		c-0.04-26.221-0.023-52.441-0.005-78.661c0.021-29.675,23.28-54.342,52.976-55.005c27.844-0.621,55.724-0.619,83.566,0.023
+		c28.894,0.667,52.148,24.782,52.48,53.758c0.308,26.763,0.309,53.534,0.005,80.296c-0.333,29.258-23.646,53.01-52.897,53.971
+		c-14.006,0.46-28.038,0.078-42.058,0.078C153.455,248.202,153.455,248.183,153.455,248.164z M224.557,115.474
+		c-0.131-17.51-12.249-31.08-29.636-31.535c-27.289-0.712-54.62-0.712-81.909-0.004c-17.408,0.452-29.468,14.011-29.72,31.479
+		c-0.185,12.741-0.036,25.489-0.044,38.233c0,12.927-0.134,25.855,0.032,38.78c0.232,18.028,12.449,31.484,30.486,31.913
+		c26.748,0.637,53.531,0.617,80.28,0c18.039-0.415,30.391-13.84,30.519-31.853"/>
+	<path fill="#FFFFFF" d="M154.785,129.819c4.695-7.943,11.257-12.059,19.975-11.522c2.844,0.174,7.626,1.281,8.008,2.828
+		c1.077,4.375,0.564,9.223,0.067,13.819c-0.075,0.707-3.4,1.588-5.18,1.503c-15.041-0.723-20.648,3.071-22.293,17.893
+		c-1.278,11.519-0.718,23.247-0.912,34.883c-0.109,6.457-0.822,7.254-7.154,7.349c-13.279,0.197-13.281,0.199-13.282-12.883
+		c-0.001-18.572-0.024-37.144,0.013-55.715c0.015-7.044,0.783-7.737,7.856-7.759c0.545-0.001,1.092,0,1.638,0
+		C152.925,120.214,152.925,120.214,154.785,129.819z"/>
+</g>
+</svg>
