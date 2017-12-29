@@ -16,134 +16,141 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 50
 
         Label {
-            Layout.fillWidth: true
-            text: qsTr("Which service would you like to listen to ?")
+            text: qsTr("Which streaming service would you like to listen to ?")
             font.pixelSize: 32
             horizontalAlignment: Text.AlignHCenter
+
+            Layout.fillWidth: true
+            Layout.topMargin: 64
         }
 
-        ScrollView {
-            id: scrollView
+        RowLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.margins: 50
+            Layout.topMargin: 64
 
-            ScrollBar.vertical.policy: ScrollBar.vertical.size !== 1 ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
-
-            GridView {
-                id: gridView
-
-                property bool dragActive: false
-
-                anchors.centerIn: parent
-                focus: true
-                width: {
-                    if (mainWindowWidth <= 1680 )
-                        return 0.80 * mainWindowWidth;
-                    else if( mainWindowWidth < 1920)
-                        return 0.70 * mainWindowWidth;
-                    else
-                        return 0.60 * mainWindowWidth;
-                }
-                height: parent.height
+            Item {
                 clip: true
 
-                cellWidth: 340
-                cellHeight: 192
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.leftMargin: 96
+                Layout.rightMargin: 96
 
-                model: DelegateModel {
-                    id: visualModel
+                GridView {
+                    id: gridView
 
-                    model: _streamingServices.enabledServices
+                    property bool dragActive: false
+                    property int itemSpacing: 48
 
-                    delegate: Item {
-                        id: delegateRoot
+                    anchors.centerIn: parent
+                    focus: true
+                    cellWidth: 340; cellHeight: 192
+                    height: parent.height
+                    width: Math.floor(parent.width / cellWidth) * cellWidth
 
-                        property int visualIndex: DelegateModel.itemsIndex
-                        property var service: model.qtObject
+                    model: DelegateModel {
+                        id: visualModel
 
-                        width: gridView.cellWidth; height: gridView.cellHeight
+                        model: _streamingServices.enabledServices
 
-                        ServiceOverviewDelegate {
-                            id: item
+                        delegate: Item {
+                            id: delegateRoot
 
-                            anchors { horizontalCenter: parent.horizontalCenter; verticalCenter: parent.verticalCenter }
-                            height: gridView.cellHeight - 4; width: gridView.cellWidth - 4
-                            hovered: mouseArea.containsMouse
-                            index: delegateRoot.visualIndex
-                            transitionItem: root.transitionItem
-                            webView: root.webViews[_streamingServices.webViewIndex(model.name)]
+                            property int visualIndex: DelegateModel.itemsIndex
+                            property var service: model.qtObject
 
-                            Drag.active: mouseArea.drag.active
-                            Drag.source: delegateRoot
-                            Drag.hotSpot.x: gridView.cellWidth / 2
-                            Drag.hotSpot.y: gridView.cellHeight / 2
-                            Drag.onActiveChanged: gridView.dragActive = Drag.active
+                            width: gridView.cellWidth - gridView.itemSpacing / 2;
+                            height: gridView.cellHeight - gridView.itemSpacing / 2
 
-                            states: State {
-                                when: item.Drag.active
+                            ServiceOverviewDelegate {
+                                id: item
 
-                                ParentChange {
-                                    target: item
-                                    parent: root
-                                }
+                                anchors { horizontalCenter: parent.horizontalCenter; verticalCenter: parent.verticalCenter }
+                                height: gridView.cellHeight - 4; width: gridView.cellWidth - 4
+                                hovered: mouseArea.containsMouse
+                                index: delegateRoot.visualIndex
+                                transitionItem: root.transitionItem
+                                webView: root.webViews[_streamingServices.webViewIndex(model.name)]
 
-                                PropertyChanges {
-                                    target: item
-                                    z: 1
-                                }
+                                Drag.active: mouseArea.drag.active
+                                Drag.source: delegateRoot
+                                Drag.hotSpot.x: gridView.cellWidth / 2
+                                Drag.hotSpot.y: gridView.cellHeight / 2
+                                Drag.onActiveChanged: gridView.dragActive = Drag.active
 
-                                AnchorChanges {
-                                    target: item;
-                                    anchors.horizontalCenter: undefined;
-                                    anchors.verticalCenter: undefined
+                                states: State {
+                                    when: item.Drag.active
+
+                                    ParentChange {
+                                        target: item
+                                        parent: root
+                                    }
+
+                                    PropertyChanges {
+                                        target: item
+                                        z: 1
+                                    }
+
+                                    AnchorChanges {
+                                        target: item;
+                                        anchors.horizontalCenter: undefined;
+                                        anchors.verticalCenter: undefined
+                                    }
                                 }
                             }
-                        }
 
-                        MouseArea {
-                            id: mouseArea
+                            MouseArea {
+                                id: mouseArea
 
-                            anchors.fill: parent
-                            drag.target: item
-                            hoverEnabled: true
+                                anchors.fill: parent
+                                drag.target: item
+                                hoverEnabled: true
 
-                            onClicked: item.activate()
-                            onReleased: item.Drag.drop()
-                        }
+                                onClicked: item.activate()
+                                onReleased: item.Drag.drop()
+                            }
 
-                        DropArea {
-                            anchors { fill: parent; margins: 15 }
+                            DropArea {
+                                anchors { fill: parent; margins: 15 }
 
-                            onEntered: visualModel.items.move(drag.source.visualIndex, delegateRoot.visualIndex)
-                        }
+                                onEntered: visualModel.items.move(drag.source.visualIndex, delegateRoot.visualIndex)
+                            }
 
-                        RoundButton {
-                            id: btOff
+                            RoundButton {
+                                id: btOff
 
-                            anchors { top: parent.top; right: parent.right; margins: 2 }
-                            hoverEnabled: true
-                            visible: !item.Drag.active && model.qtObject.player.isRunning
-                            padding: 0
+                                anchors { top: parent.top; right: parent.right; margins: 2 }
+                                hoverEnabled: true
+                                visible: !item.Drag.active && model.qtObject.player.isRunning
+                                padding: 0
 
-                            Material.background: Material.color(Material.Red)
-                            Material.foreground: "white"
+                                Material.background: Material.color(Material.Red)
+                                Material.foreground: "white"
 
-                            text: MaterialIcons.icon_close
-                            font.family: MaterialIcons.family
-                            font.bold: true
-                            font.pixelSize: 22
+                                text: MaterialIcons.icon_close
+                                font.family: MaterialIcons.family
+                                font.bold: true
+                                font.pixelSize: 22
 
-                            onClicked: item.webView.stop()
+                                onClicked: item.webView.stop()
+                            }
                         }
                     }
-                }
 
-                displaced: Transition {
-                    NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
+                    displaced: Transition {
+                        NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
+                    }
+
+                    ScrollBar.vertical: ScrollBar {
+                        id: scrollBar
+                        policy: size != 1 ? "AlwaysOn" : "AlwaysOff"
+                        hoverEnabled: true
+
+//                        anchors.fill: parent
+                    }
                 }
             }
         }
