@@ -9,6 +9,7 @@ Dialog {
 
     property JavaScriptDialogRequest request
 
+    modal: true
     standardButtons: Dialog.Ok | Dialog.Cancel
     title: request.message
 
