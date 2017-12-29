@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -719,17 +719,17 @@ listened to will appear here...</source>
 <context>
     <name>ServicesOverview</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="23"/>
-        <source>Which service would you like to listen to ?</source>
-        <translation>Quel service voulez vous écouter?</translation>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="21"/>
+        <source>Which streaming service would you like to use?</source>
+        <translation>Quel service de streaming voulez-vous utiliser?</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="178"/>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="185"/>
         <source> has been removed from overview.</source>
         <translation>a été retiré de la vue d&apos;ensemble des services.</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="184"/>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="191"/>
         <source>UNDO</source>
         <translation>ANNULER</translation>
     </message>
@@ -1442,17 +1442,17 @@ listened to will appear here...</source>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="198"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="218"/>
         <source>Zoom out</source>
         <translation>Dézoomer</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="211"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="231"/>
         <source>Zoom in</source>
         <translation>Zoomer</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="217"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="237"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>

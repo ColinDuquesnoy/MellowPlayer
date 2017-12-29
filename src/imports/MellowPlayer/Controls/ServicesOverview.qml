@@ -18,7 +18,7 @@ Item {
         anchors.fill: parent
 
         Label {
-            text: qsTr("Which streaming service would you like to listen to ?")
+            text: qsTr("Which streaming service would you like to use?")
             font.pixelSize: 32
             horizontalAlignment: Text.AlignHCenter
 
