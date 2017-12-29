@@ -22,6 +22,7 @@
         <file>MellowPlayer/Controls/SettingsDrawer.qml</file>
         <file>MellowPlayer/Controls/Tooltip.qml</file>
         <file>MellowPlayer/Controls/UpdateToolBar.qml</file>
+        <file>MellowPlayer/Controls/ValidationMessage.qml</file>
         <file>MellowPlayer/Controls/WebView.qml</file>
         <file>MellowPlayer/Controls/WebViewContextMenu.qml</file>
         <file>MellowPlayer/Controls/WebViewStack.qml</file>
@@ -38,8 +39,11 @@
         <file>MellowPlayer/Delegates/TextFieldDelegate.qml</file>
         <file>MellowPlayer/DevToolsWindow.qml</file>
         <file>MellowPlayer/Dialogs/AboutDialog.qml</file>
+        <file>MellowPlayer/Dialogs/Alert.qml</file>
         <file>MellowPlayer/Dialogs/Authentication.qml</file>
+        <file>MellowPlayer/Dialogs/Confirmation.qml</file>
         <file>MellowPlayer/Dialogs/MessageBoxDialog.qml</file>
+        <file>MellowPlayer/Dialogs/Prompt.qml</file>
         <file>MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml</file>
         <file>MellowPlayer/MainWindow.qml</file>
         <file>MellowPlayer/MaterialIcons.qml</file>

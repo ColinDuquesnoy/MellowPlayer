@@ -22,6 +22,7 @@ ServicesOverview 3.0 Controls/ServicesOverview.qml
 SettingsDrawer 3.0 Controls/SettingsDrawer.qml
 Tooltip 3.0 Controls/Tooltip.qml
 UpdateToolBar 3.0 Controls/UpdateToolBar.qml
+ValidationMessage 3.0 Controls/ValidationMessage.qml
 WebView 3.0 Controls/WebView.qml
 WebViewContextMenu 3.0 Controls/WebViewContextMenu.qml
 WebViewStack 3.0 Controls/WebViewStack.qml
@@ -38,8 +39,11 @@ StringSettingDelegate 3.0 Delegates/StringSettingDelegate.qml
 TextFieldDelegate 3.0 Delegates/TextFieldDelegate.qml
 DevToolsWindow 3.0 DevToolsWindow.qml
 AboutDialog 3.0 Dialogs/AboutDialog.qml
+Alert 3.0 Dialogs/Alert.qml
 Authentication 3.0 Dialogs/Authentication.qml
+Confirmation 3.0 Dialogs/Confirmation.qml
 MessageBoxDialog 3.0 Dialogs/MessageBoxDialog.qml
+Prompt 3.0 Dialogs/Prompt.qml
 StreamingServiceSettingsDialog 3.0 Dialogs/StreamingServiceSettingsDialog.qml
 MainWindow 3.0 MainWindow.qml
 CreatingPage 3.0 NewPluginWizard/CreatingPage.qml

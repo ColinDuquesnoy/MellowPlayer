@@ -10,6 +10,6 @@ function open(qmlComponent, parent, properties) {
         throw "Error creating dialog object";
 
     dialog.x = parent.width / 2 - dialog.width / 2;
-    dialog.y = parent.height / 2 - dialog.height / 2;
+    dialog.y = parent.height / 2 - dialog.height / 2 - 48;
     dialog.open();
 }

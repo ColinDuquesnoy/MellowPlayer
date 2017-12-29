@@ -123,12 +123,32 @@ WebEngineView {
         Dialogs.open(component, mainWindow, {"request": request});
         request.accepted = true;
     }
+    onFormValidationMessageRequested: function(request) {
+        switch (request.type) {
+            case FormValidationMessageRequest.Show:
+                request.accepted = true;
+                validationMessage.text = request.text;
+                validationMessage.x = request.anchor.x
+                validationMessage.y = request.anchor.y + request.anchor.height;
+                validationMessage.visible = true;
+                break;
+            case FormValidationMessageRequest.Move:
+                break;
+            case FormValidationMessageRequest.Hide:
+                validationMessage.visible = false;
+                break;
+        }
+    }
     onLoadingChanged: {
         if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != aboutBlank) {
             d.checkForProprietaryCodecs();
         }
         else
             d.checkForCustomUrlRequired();
+    }
+
+    ValidationMessage {
+        id: validationMessage
     }
 
     QtObject {
