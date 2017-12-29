@@ -26,25 +26,21 @@ shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfi
         if (config.createFileLoggers) {
             auto logDir = FileHelper::createLogDirectory().toStdString();
             auto logFileName = logDir + name;
+
             if (SpdLogger::allSink_ == nullptr) {
                 SpdLogger::allSink_ = make_shared<sinks::simple_file_sink_mt>(logDir + "All.log", true);
-                make_shared<logger>("All", SpdLogger::allSink_)->log(level::info,
-                                                                     "*******************************************************************************");
+                make_shared<logger>("All", SpdLogger::allSink_)->log(level::info, "*******************************************************************************");
+                sinks.push_back(SpdLogger::allSink_);
             }
 
             if (SpdLogger::allRotatingSink_ == nullptr) {
-                SpdLogger::allRotatingSink_ = make_shared<sinks::rotating_file_sink_mt>(logDir + "AllRotating", "log",
-                                                                                        1024 * 1024 * 20, 5);
-                make_shared<logger>("AllRotating", SpdLogger::allRotatingSink_)->log(level::info,
-                                                                                     "*******************************************************************************");
+                SpdLogger::allRotatingSink_ = make_shared<sinks::rotating_file_sink_mt>(logDir + "AllRotating", "log", 1024 * 1024 * 20, 5);
+                make_shared<logger>("AllRotating", SpdLogger::allRotatingSink_)->log(level::info, "*******************************************************************************");
+                sinks.push_back(SpdLogger::allRotatingSink_);
             }
-
-            sinks.push_back(SpdLogger::allSink_);
-            sinks.push_back(SpdLogger::allRotatingSink_);
 
             auto loggerSpecificSink = make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5);
             make_shared<logger>(name, loggerSpecificSink)->log(level::info, "*******************************************************************************");
-
             sinks.push_back(loggerSpecificSink);
         }
 
@@ -56,7 +52,7 @@ shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfi
 
         return combined_logger;
     }
-    // LCOV_EXCL_START
+        // LCOV_EXCL_START
     catch (const spdlog_ex& ex) {
         cout << "SpdLogger (" << name << ") initialization failed: " << ex.what() << endl;
         return nullptr;
