@@ -29,7 +29,7 @@
 #include <Mocks/FakeHttpClient.hpp>
 #include <Mocks/FakePlatformUpdater.hpp>
 #include <Mocks/FakeWorkDispatcher.hpp>
-#include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
+#include <Mocks/FakeListeningHistoryDatabase.hpp>
 #include <Mocks/NotificationPresenterMock.hpp>
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <Mocks/StreamingServiceCreatorMock.hpp>
@@ -52,7 +52,7 @@ DependencyPool::DependencyPool()
         : mICommandLineArgs(make_unique<FakeCommandLineArguments>()),
           mIStreamingServiceCreator(StreamingServiceCreatorMock::get()),
           mINotificationPresenter(NotificationPresenterMock::get()),
-          dataProvider(make_unique<InMemoryListeningHistoryDataProvider>())
+          dataProvider(make_unique<FakeListeningHistoryDatabase>())
 {
     When(Method(mUserScriptsFactoryMock, create)).AlwaysDo([]() -> IUserScript* {
         return new FakeUserScript;

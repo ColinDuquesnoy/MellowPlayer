@@ -17,7 +17,7 @@ namespace MellowPlayer::Infrastructure
         SqlLiteListeningHistoryDatabase();
         ~SqlLiteListeningHistoryDatabase();
 
-        void initialize() override;
+        bool initialize() override;
         int add(const Domain::ListeningHistoryEntry& entry) override;
         void clear() override;
         void remove(const QString& filterKey, const QString& filterValue) override;
@@ -28,7 +28,7 @@ namespace MellowPlayer::Infrastructure
 
     private:
         bool openDatabase();
-        void initDatabase();
+        bool initDatabase();
 
         Domain::ILogger& logger_;
         QSqlDatabase database_;

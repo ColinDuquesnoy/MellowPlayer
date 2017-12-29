@@ -6,7 +6,7 @@
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServices.hpp>
 #include <MellowPlayer/Presentation/ViewModels/ListeningHistory/ListeningHistoryViewModel.hpp>
-#include <Mocks/InMemoryListeningHistoryDataProvider.hpp>
+#include <Mocks/FakeListeningHistoryDatabase.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
 #include <Utils/DependencyPool.hpp>

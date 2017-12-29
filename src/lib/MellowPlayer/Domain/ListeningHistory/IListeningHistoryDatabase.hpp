@@ -11,7 +11,7 @@ namespace MellowPlayer::Domain
     {
     public:
         virtual ~IListeningHistoryDatabase() = default;
-        virtual void initialize() = 0;
+        virtual bool initialize() = 0;
         virtual int add(const Domain::ListeningHistoryEntry& entry) = 0;
         virtual void clear() = 0;
         virtual void remove(const QString& filterKey, const QString& filterValue) = 0;

@@ -11,8 +11,11 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
     QString dbPath = SqlLiteListeningHistoryDatabase::getDatabasePath();
     QDir().remove(dbPath);
     SqlLiteListeningHistoryDatabase dataProvider;
-    dataProvider.initialize();
+    bool initialized = dataProvider.initialize();
     dataProvider.clear();
+
+    CAPTURE(dbPath.toStdString());
+    REQUIRE(initialized);
 
     Song song1("uniqueId1", "title1", "artist1", "album1", "artUrl1", 5, false);
     Song song2("uniqueId2", "title2", "artist2", "album2", "artUrl2", 5, false);
@@ -23,6 +26,7 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
     ListeningHistoryEntry entry1Spotify = ListeningHistoryEntry::fromData(&song2, "Spotify");
 
     entry1Deezer.id = dataProvider.add(entry1Deezer);
+    REQUIRE(entry1Deezer.id != -1);
     REQUIRE(dataProvider.toList().count() == 1);
 
     SECTION("Add entry")
@@ -34,7 +38,6 @@ TEST_CASE("SqlLiteListeningHistoryDataProviderTests")
 
     SECTION("Remove by id")
     {
-        REQUIRE(dataProvider.toList().count() == 1);
         dataProvider.remove("id", "1");
         REQUIRE(dataProvider.toList().count() == 0);
     }

@@ -49,10 +49,12 @@ int SqlLiteListeningHistoryDatabase::add(const ListeningHistoryEntry& entry)
     query.bindValue(":serviceName", entry.serviceName);
     query.bindValue(":time", entry.time);
 
-    if (!query.exec())
+    if (!query.exec()) {
         LOG_WARN(logger_, "failed to add listening history entry to db: " + query.lastError().text());
-
-    return query.lastInsertId().toInt();
+        return -1;
+    }
+    else
+        return query.lastInsertId().toInt();
 }
 
 void SqlLiteListeningHistoryDatabase::clear()
@@ -118,7 +120,7 @@ QList<ListeningHistoryEntry> SqlLiteListeningHistoryDatabase::toList() const
     return retVal;
 }
 
-void SqlLiteListeningHistoryDatabase::initDatabase()
+bool SqlLiteListeningHistoryDatabase::initDatabase()
 {
     if (database_.tables().count() == 0) {
         LOG_DEBUG(logger_, "creating database");
@@ -126,16 +128,20 @@ void SqlLiteListeningHistoryDatabase::initDatabase()
         query.prepare("CREATE TABLE song(id INTEGER PRIMARY KEY, songUniqueId "
                       "TEXT, songTitle TEXT, artist TEXT, album TEXT, "
                       "artUrl TEXT, serviceName TEXT, time TEXT);");
-        if (!query.exec())
+        if (!query.exec()) {
+            return false;
             LOG_WARN(logger_, "failed to create song table: " + query.lastError().text());
+        }
     }
+    return true;
 }
 
-void SqlLiteListeningHistoryDatabase::initialize()
+bool SqlLiteListeningHistoryDatabase::initialize()
 {
     database_ = QSqlDatabase::addDatabase("QSQLITE");
     if (openDatabase())
-        initDatabase();
+        return initDatabase();
+    return false;
 }
 
 QString SqlLiteListeningHistoryDatabase::getDatabasePath()

@@ -12,7 +12,7 @@
 #include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
 #include <UnitTests/Infrastructure/Network/FakeNetworkProxies.hpp>
 
-class InMemoryListeningHistoryDataProvider;
+class FakeListeningHistoryDatabase;
 
 namespace MellowPlayer::Domain
 {
@@ -108,7 +108,7 @@ namespace MellowPlayer::Tests
         std::unique_ptr<Presentation::UpdaterViewModel> pUpdaterViewModel;
         std::unique_ptr<Presentation::Notifications> pNotifier;
 
-        std::unique_ptr<InMemoryListeningHistoryDataProvider> dataProvider;
+        std::unique_ptr<FakeListeningHistoryDatabase> dataProvider;
 
         Presentation::Tests::FakeContextProperties contextProperties_;
         Infrastructure::Tests::FakeNetworkProxies networkProxies_;
