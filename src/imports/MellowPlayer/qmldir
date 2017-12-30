@@ -43,6 +43,7 @@ Authentication 3.0 Dialogs/Authentication.qml
 Confirmation 3.0 Dialogs/Confirmation.qml
 MessageBoxDialog 3.0 Dialogs/MessageBoxDialog.qml
 Prompt 3.0 Dialogs/Prompt.qml
+Reload 3.0 Dialogs/Reload.qml
 StreamingServiceSettingsDialog 3.0 Dialogs/StreamingServiceSettingsDialog.qml
 MainWindow 3.0 MainWindow.qml
 CreatingPage 3.0 NewPluginWizard/CreatingPage.qml
