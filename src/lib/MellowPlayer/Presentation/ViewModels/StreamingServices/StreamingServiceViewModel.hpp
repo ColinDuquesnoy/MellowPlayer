@@ -35,11 +35,14 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(QString authorWebsite READ authorWebsite CONSTANT)
         Q_PROPERTY(bool isEnabled READ isEnabled WRITE setEnabled NOTIFY isEnabledChanged)
         Q_PROPERTY(int sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
-        Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
         Q_PROPERTY(QObject* userScripts READ userScripts CONSTANT)
         Q_PROPERTY(int zoomFactor READ zoomFactor WRITE setZoomFactor NOTIFY zoomFactorChanged)
         Q_PROPERTY(bool notificationsEnabled READ notificationsEnabled WRITE setNotificationsEnabled NOTIFY notificationsEnabledChanged)
-        CONSTANT_OBJECT_PROPERTY(Infrastructure::NetworkProxy, networkProxy);
+        Q_PROPERTY(bool isActive READ isActive WRITE setActive NOTIFY isActiveChanged)
+        Q_PROPERTY(QString previewImageUrl READ previewImageUrl WRITE setPreviewImageUrl NOTIFY previewImageUrlChanged)
+        Q_PROPERTY(QString sourceCode READ sourceCode NOTIFY sourceCodeChanged)
+
+        CONSTANT_OBJECT_PROPERTY(Infrastructure::NetworkProxy, networkProxy)
 
     public:
         StreamingServiceViewModel(Domain::StreamingService& streamingService,
@@ -56,7 +59,6 @@ namespace MellowPlayer::Presentation
         QString version() const;
         QString authorName() const;
         QString authorWebsite() const;
-        bool isRunning() const;
 
         bool operator==(const StreamingServiceViewModel& rhs) const;
         bool operator!=(const StreamingServiceViewModel& rhs) const;
@@ -77,18 +79,26 @@ namespace MellowPlayer::Presentation
         bool notificationsEnabled() const;
         void setNotificationsEnabled(bool value);
 
+        bool isActive() const;
 
+        QString previewImageUrl() const;
+        QString sourceCode() const;
 
     public slots:
         void setUrl(const QString& newUrl);
+        void setActive(bool isActive);
+
+        void setPreviewImageUrl(QString previewImageUrl);
 
     signals:
         void urlChanged(const QString&);
         void sortOrderChanged();
         void isEnabledChanged();
-        void isRunningChanged();
         void zoomFactorChanged();
         void notificationsEnabledChanged();
+        void isActiveChanged();
+        void previewImageUrlChanged();
+        void sourceCodeChanged();
 
     private:
         QString customUrlSettingsKey() const;
@@ -102,5 +112,7 @@ namespace MellowPlayer::Presentation
         std::shared_ptr<Domain::Player> player_;
         UserScriptsViewModel userScriptsViewModel_;
         int zoomFactor_;
+        bool isActive_;
+        QString previewImageUrl_;
     };
 }

@@ -13,10 +13,8 @@ using namespace std;
 Player::Player(StreamingService& streamingService)
         : logger_(Loggers::logger("Player-" + streamingService.name().toStdString())),
           currentSong_(nullptr),
-          streamingService_(streamingService),
-          streamingServiceScript_(*streamingService.script())
+          streamingService_(streamingService)
 {
-    connect(&streamingService, &StreamingService::scriptChanged, this, &Player::sourceCodeChanged);
 }
 
 Player::~Player() = default;
@@ -101,25 +99,6 @@ double Player::volume() const
 QString Player::serviceName() const
 {
     return streamingService_.name();
-}
-
-void Player::start()
-{
-    LOG_DEBUG(logger_, "start()");
-    isRunning_ = true;
-    emit isRunningChanged();
-}
-
-void Player::stop()
-{
-    LOG_DEBUG(logger_, "stop()");
-    isRunning_ = false;
-    emit isRunningChanged();
-}
-
-bool Player::isRunning() const
-{
-    return isRunning_;
 }
 
 void Player::setUpdateResults(const QVariant& results)
@@ -268,8 +247,4 @@ bool Player::isPlaying() const
 bool Player::isStopped() const
 {
     return playbackStatus_ == PlaybackStatus::Stopped;
-}
-
-QString Player::sourceCode() const {
-    return streamingServiceScript_.constants() + "\n" + streamingServiceScript_.code();
 }

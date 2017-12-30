@@ -6,13 +6,10 @@ import MellowPlayer 3.0
 Platform.MenuBar {
     id: menuBar
 
-    signal openSettingsRequested()
     signal goHomeRequested()
     signal goBackRequested()
     signal goForwardRequested()
     signal reloadRequested()
-    signal openNewPluginWizardRequested()
-    signal openAboutDialogRequested()
 
     Platform.Menu {
         id: appMenu
@@ -24,7 +21,7 @@ Platform.MenuBar {
             property var shortcutSetting: _settings.get(SettingKey.SHORTCUTS_SETTINGS)
 
             shortcut: shortcutSetting.value
-            onTriggered: menuBar.openSettingsRequested()
+            onTriggered: settingsDrawer.open()
             role: Platform.MenuItem.PreferencesRole
         }
     }
@@ -98,7 +95,7 @@ Platform.MenuBar {
         Platform.MenuItem {
             text: qsTr("Create new plugin")
 
-            onTriggered: menuBar.openNewPluginWizardRequested()
+            onTriggered: newPluginWizard.open()
         }
     }
 
@@ -112,7 +109,7 @@ Platform.MenuBar {
             property var shortcutSetting: _settings.get(SettingKey.SHORTCUTS_ABOUT)
 
             shortcut: shortcutSetting.value
-            onTriggered: menuBar.openAboutDialogRequested()
+            onTriggered: aboutDialog.open()
             role: Platform.MenuItem.AboutRole
         }
 

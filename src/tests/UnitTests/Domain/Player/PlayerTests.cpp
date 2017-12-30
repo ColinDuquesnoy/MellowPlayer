@@ -16,15 +16,6 @@ TEST_CASE("PlayerTests", "[UnitTest]")
     Player player(service);
     QSignalSpy runJavascriptRequestedSpy(&player, SIGNAL(runJavascriptRequested(const QString&)));
 
-    SECTION("start test")
-    {
-        REQUIRE(!player.isRunning());
-        player.start();
-        REQUIRE(player.isRunning());
-        player.stop();
-        REQUIRE(!player.isRunning());
-    }
-
     SECTION("setUpdateResults with empty QVariant")
     {
         player.setUpdateResults(QVariant());
@@ -238,14 +229,5 @@ TEST_CASE("PlayerTests", "[UnitTest]")
 
         player.resume();
         REQUIRE(playSpy.count() == 0);
-    }
-
-    SECTION("reload plugin when streaming service script has changed")
-    {
-        QSignalSpy spy(&player, &Player::sourceCodeChanged);
-
-        emit service.scriptChanged();
-
-        REQUIRE(spy.count() == 1);
     }
 }

@@ -12,17 +12,14 @@ Item {
 
     property int index
     property string backgroundColor: Material.background
-    property Item transitionItem
-    property var webView
     property bool hovered: false
+    property var service: model.qtObject
 
     onIndexChanged: model.sortOrder = root.index
 
     Component.onCompleted: model.sortOrder = root.index
 
     Pane {
-        id: highlight
-
         anchors.fill: parent
         anchors.margins: parent.width / 50
 
@@ -34,53 +31,7 @@ Item {
             y: 0
             width: parent.width
             height: parent.height
-            source: {
-                return webView !== null && webView.image !== null ? webView.image.url : "qrc:/MellowPlayer/Presentation/Resources/images/home-background.png"
-            }
-            states: State {
-                name: "selected"
-
-                PropertyChanges {
-                    target: root.transitionItem
-                    state: "between"
-                    // @disable-check M16
-                    previewImage: preview
-                }
-
-                ParentChange {
-                    target: preview
-                    parent: root.transitionItem
-                    width: root.transitionItem.width
-                    height: root.transitionItem.height
-                    x: 0
-                    y: 0
-                }
-            }
-            transitions: [
-                Transition {
-                    ParentAnimation {
-                        via: root.transitionItem
-
-                        PropertyAnimation {
-                            properties: "x,y,width,height"
-                            easing.type: Easing.InOutCubic
-                        }
-                    }
-
-                    onRunningChanged: {
-                        if(!running) {
-                            root.transitionItem.state = preview.state == "selected" ? "webview" : "overview";
-                            root.transitionItem.previewImage = preview;
-                            preview.visible = preview.state != "selected";
-                        }
-                    }
-                }
-            ]
-            onStateChanged: {
-                preview.visible = true;
-                if (webView.url === "" )
-                    webView.start()
-            }
+            source: model.previewImageUrl
         }
 
         Desaturate {
@@ -153,8 +104,6 @@ Item {
     }
 
     function activate() {
-        _streamingServices.currentService = model.qtObject;
-        webView.start();
-        preview.state = "selected";
+        mainWindow.activateService(service);
     }
 }

@@ -25,7 +25,6 @@
         <file>MellowPlayer/Controls/ValidationMessage.qml</file>
         <file>MellowPlayer/Controls/WebView.qml</file>
         <file>MellowPlayer/Controls/WebViewContextMenu.qml</file>
-        <file>MellowPlayer/Controls/WebViewStack.qml</file>
         <file>MellowPlayer/Delegates/BoolSettingDelegate.qml</file>
         <file>MellowPlayer/Delegates/ColorSettingDelegate.qml</file>
         <file>MellowPlayer/Delegates/EnumSettingDelegate.qml</file>
@@ -53,7 +52,8 @@
         <file>MellowPlayer/NewPluginWizard/NewPluginWizard.qml</file>
         <file>MellowPlayer/NewPluginWizard/StartPage.qml</file>
         <file>MellowPlayer/NewPluginWizard/WizardPage.qml</file>
-        <file>MellowPlayer/Pages/MainPage.qml</file>
+        <file>MellowPlayer/Pages/RunningServicesPage.qml</file>
+        <file>MellowPlayer/Pages/SelectServicePage.qml</file>
         <file>MellowPlayer/Pages/SettingsPage.qml</file>
         <file>MellowPlayer/SettingsPages/AutomaticSettingsPage.qml</file>
         <file>MellowPlayer/SettingsPages/CacheSettingsPage.qml</file>

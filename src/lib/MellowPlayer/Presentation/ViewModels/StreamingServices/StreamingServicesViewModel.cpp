@@ -66,33 +66,12 @@ StreamingServiceViewModel* StreamingServicesViewModel::currentService() const
     return currentService_;
 }
 
-int StreamingServicesViewModel::currentIndex() const
-{
-    return currentIndex_;
-}
-
 void StreamingServicesViewModel::setCurrentService(QObject* value)
 {
     if (currentService_ == value)
         return;
 
-    auto service = static_cast<StreamingServiceViewModel*>(value);
-
-    QModelIndex sourceIndex = allServices_->index(allServices_->toList().indexOf(service), 0, QModelIndex());
-
-    setCurrentIndex(enabledServices_.mapFromSource(sourceIndex).row());
-}
-
-void StreamingServicesViewModel::setCurrentIndex(int value)
-{
-    int sourceIndex = enabledServices_.mapToSource(enabledServices_.index(value, 0, QModelIndex())).row();
-
-    if (currentIndex_ == sourceIndex)
-        return;
-
-    currentIndex_ = sourceIndex;
-    currentService_ = allServices_->at(sourceIndex);
-
+    currentService_ = static_cast<StreamingServiceViewModel*>(value);
     if (currentService_ == nullptr) {
         currentServiceSetting_.setValue("");
         streamingServices_.setCurrent(nullptr);
@@ -100,9 +79,8 @@ void StreamingServicesViewModel::setCurrentIndex(int value)
         currentServiceSetting_.setValue(currentService_->name());
         streamingServices_.setCurrent(currentService_->streamingService());
     }
-    emit currentIndexChanged(currentIndex_);
+
     emit currentServiceChanged(currentService_);
-    onPlayerRunningChanged();
 }
 
 void StreamingServicesViewModel::reload()
@@ -118,19 +96,17 @@ void StreamingServicesViewModel::onServiceAdded(StreamingService* streamingServi
                                              players_,
                                              networkProxies_,
                                              this);
-    Player* player = sv->player();
-    connect(player, &Player::isRunningChanged, this, &StreamingServicesViewModel::onPlayerRunningChanged);
-    connect(sv, &StreamingServiceViewModel::isEnabledChanged, this, &StreamingServicesViewModel::onServiceEnabledChanged);
     allServices_->append(sv);
 }
 
 void StreamingServicesViewModel::next()
 {
-    int index = nextIndex(currentIndex_);
+    int currentIndex = allServices_->indexOf(currentService_);
+    int index = nextIndex(currentIndex);
 
-    while (index != currentIndex_) {
+    while (index != currentIndex) {
         auto* sv = allServices_->at(index);
-        if (sv->isRunning()) {
+        if (sv->isActive() && sv->isEnabled()) {
             setCurrentService(sv);
             break;
         }
@@ -140,11 +116,12 @@ void StreamingServicesViewModel::next()
 
 void StreamingServicesViewModel::previous()
 {
-    int index = previousIndex(currentIndex_);
+    int currentIndex = allServices_->indexOf(currentService_);
+    int index = previousIndex(currentIndex);
 
-    while (index != currentIndex_) {
+    while (index != currentIndex) {
         auto* sv = allServices_->at(index);
-        if (sv->isRunning() && sv->isEnabled()) {
+        if (sv->isActive() && sv->isEnabled()) {
             setCurrentService(sv);
             break;
         }
@@ -197,35 +174,6 @@ int StreamingServicesViewModel::previousIndex(int index) const
     return previousIndex;
 }
 
-void StreamingServicesViewModel::onPlayerRunningChanged()
-{
-    bool wasCurrentServiceRunning = isCurrentServiceRunning_;
-    isCurrentServiceRunning_ = false;
-    if (currentService_ != nullptr)
-        isCurrentServiceRunning_ = currentService_->isRunning();
-
-    if (wasCurrentServiceRunning != isCurrentServiceRunning_) {
-        emit isCurrentServiceRunningChanged();
-    }
-}
-
-int StreamingServicesViewModel::webViewIndex(const QString& serviceName) const
-{
-    return allServices_->indexOf(serviceName);
-}
-
-void StreamingServicesViewModel::onServiceEnabledChanged()
-{
-    if (sender() == currentService_) {
-        setCurrentIndex(-1);
-        emit currentIndexChanged(-1);
-    }
-}
-
-bool StreamingServicesViewModel::isCurrentServiceRunning() const
-{
-    return isCurrentServiceRunning_;
-}
 StreamingServiceListModel* StreamingServicesViewModel::allServices()
 {
     return allServices_;

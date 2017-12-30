@@ -9,11 +9,6 @@ import MellowPlayer 3.0
 Item {
     id: root
 
-    property int mainWindowWidth
-    property int mainWindowHeight
-    property Item transitionItem
-    property var webViews
-
     ColumnLayout {
         anchors.fill: parent
 
@@ -29,7 +24,8 @@ Item {
         RowLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.topMargin: 64
+            Layout.topMargin: 32
+            Layout.bottomMargin: 64
 
             Item {
                 clip: true
@@ -72,8 +68,6 @@ Item {
                                 height: gridView.cellHeight - 4; width: gridView.cellWidth - 4
                                 hovered: mouseArea.containsMouse
                                 index: delegateRoot.visualIndex
-                                transitionItem: root.transitionItem
-                                webView: root.webViews[_streamingServices.webViewIndex(model.name)]
 
                                 Drag.active: mouseArea.drag.active
                                 Drag.source: delegateRoot
@@ -124,7 +118,7 @@ Item {
 
                                 anchors { top: parent.top; right: parent.right; margins: 2 }
                                 hoverEnabled: true
-                                visible: !item.Drag.active && model.qtObject.player.isRunning
+                                visible: !item.Drag.active && model.isActive
                                 padding: 0
 
                                 Material.background: Material.color(Material.Red)
@@ -135,7 +129,7 @@ Item {
                                 font.bold: true
                                 font.pixelSize: 22
 
-                                onClicked: item.webView.stop()
+                                onClicked: mainWindow.runningServices.remove(model)
                             }
                         }
                     }
@@ -148,8 +142,6 @@ Item {
                         id: scrollBar
                         policy: size != 1 ? "AlwaysOn" : "AlwaysOff"
                         hoverEnabled: true
-
-//                        anchors.fill: parent
                     }
                 }
             }
@@ -237,12 +229,12 @@ Item {
             height: gridView.cellHeight
 
             onDropped: {
-                var position = scrollView.ScrollBar.vertical.position;
+                var position = scrollBar.position;
                 gridView.dragActive = false;
                 drag.source.service.isEnabled = false;
                 _streamingServices.enabledServices.update()
                 removedLabel.service = drag.source.service;
-                scrollView.ScrollBar.vertical.position = position;
+                scrollBar.position = position;
             }
         }
 

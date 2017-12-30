@@ -10,31 +10,143 @@ import MellowPlayer 3.0
 ApplicationWindow {
     id: mainWindow
 
+    property string selectServicePage: "select"
+    property string runningServicesPage: "running"
+    property var runningServices: null
+    property string page
+    property bool isOnRunningServicesPage: page === runningServicesPage
+    property bool hasRunningServices: runningServices !== null && runningServices.currentIndex !== -1
+
+    function toggleActivePage() {
+        if (page === selectServicePage)
+            page = runningServicesPage;
+        else
+            page = selectServicePage;
+    }
+
+    function openWebPopup(request, profile) {
+        if (request.userInitiated) {
+            var dialog = d.applicationRoot.createDialog(profile);
+            request.openIn(dialog.currentWebView);
+        }
+    }
+
+    function toggleFullScreen(request) {
+        if (request.toggleOn) {
+            mainWindow.showFullScreen();
+            fullScreenNotification.visible = true;
+        }
+        else
+            mainWindow.visibility = d.previousVisibility;
+        mainToolBar.visible = !request.toggleOn;
+        request.accept();
+    }
+
+    function activateService(service) {
+        _streamingServices.currentService = service;
+        page = runningServicesPage;
+        var index = runningServices.indexOf(service);
+        if (index === -1) {
+            runningServices.add(service);
+            index = runningServices.count - 1;
+        }
+        runningServices.currentIndex = index;
+    }
+
     minimumWidth: 1280; minimumHeight: 720
     width: _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value;
     height: _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value;
     title: _streamingServices.currentService !== null ? _streamingServices.currentService.name : ""
 
     onClosing: d.handleCloseEvent(close);
+    onPageChanged: {
+        if (page === selectServicePage) {
+            if (runningServices !== null && runningServices.currentWebView !== null)
+                runningServices.currentWebView.updateImage();
+            stack.push(selectServicePageComponent);
+        }
+        else if (page === runningServicesPage) {
+            if (stack.depth <= 1) {
+                runningServices = stack.push(runningServicesPageComponent)
+            }
+            else {
+                stack.pop();
+            }
+        }
+    }
 
+    Component.onCompleted: {
+        if (_streamingServices.currentService !== null)
+            activateService(_streamingServices.currentService)
+        else
+            page = selectServicePage;
+    }
     Material.accent: _theme.accent
     Material.background: _theme.background
     Material.foreground: _theme.foreground
     Material.primary: _theme.primary
     Material.theme: _theme.dark ? Material.Dark : Material.Light
 
-    MainPage {
-        id: mainPage
+    header: MainToolBar {
+        id: mainToolBar
+    }
 
-        anchors.fill: parent
-        mainWindowWidth: mainWindow.width
+    StackView {
+       id: stack
 
-        onNewViewRequested: d.openWebPopup(request, profile)
-        onFullScreenRequested: d.toggleFullScreen(request)
-        onOpenListeningHistoryRequested: listeningHistoryDrawer.open()
-        onOpenSettingsRequested: settingsDrawer.open()
-        onOpenAboutDialogRequested: aboutDialog.open()
-        onCreatePluginRequested: newPluginWizard.open()
+       property bool slideTransitions: false
+
+       anchors.fill: parent
+
+       pushEnter: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 0
+               to:1
+               duration: 200
+           }
+       }
+       pushExit: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 1
+               to:0
+               duration: 200
+           }
+       }
+
+       popEnter: slideTransitions ? slideInLeft : fadeIn
+       popExit: slideTransitions ? slideOutRight : fadeOut
+
+       property Transition slideInLeft: Transition {
+           NumberAnimation { property: "x"; from: (stack.mirrored ? -0.5 : 0.5) *  -stack.width; to: 0; duration: 200; easing.type: Easing.OutCubic }
+           NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 200; easing.type: Easing.OutCubic }
+       }
+
+       property Transition slideOutRight: Transition {
+           NumberAnimation { property: "x"; from: 0; to: (stack.mirrored ? -0.5 : 0.5) * stack.width; duration: 200; easing.type: Easing.OutCubic }
+           NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 200; easing.type: Easing.OutCubic }
+       }
+
+       property Transition fadeIn: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 0
+               to:1
+               duration: 200
+           }
+       }
+       property Transition fadeOut: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 1
+               to:0
+               duration: 200
+           }
+       }
+
+       Component { id: selectServicePageComponent; SelectServicePage { id: selectServicePage } }
+       Component { id: runningServicesPageComponent; RunningServicesPage { id: runningServicesPage } }
     }
 
     SettingsDrawer {
@@ -87,13 +199,18 @@ ApplicationWindow {
     }
 
     NativeMenuBar {
-        onOpenSettingsRequested: settingsDrawer.open()
-        onGoHomeRequested: mainPage.goHome()
-        onGoBackRequested: mainPage.goBack()
-        onGoForwardRequested: mainPage.goForward()
-        onReloadRequested: mainPage.reload()
-        onOpenNewPluginWizardRequested: newPluginWizard.open();
-        onOpenAboutDialogRequested: aboutDialog.open()
+        onGoHomeRequested: runningServices.goHome()
+        onGoBackRequested: runningServices.goBack()
+        onGoForwardRequested: runningServices.goForward()
+        onReloadRequested: runningServices.reload()
+    }
+
+    FullScreenNotification {
+        id: fullScreenNotification
+
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
     }
 
     Connections {
@@ -110,6 +227,14 @@ ApplicationWindow {
         onActivated: d.handleEscapeKey()
     }
 
+    Shortcut {
+        sequence: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE).value
+        onActivated: {
+            stack.slideTransitions = false;
+            toggleActivePage();
+        }
+    }
+
     QtObject {
         id: d
 
@@ -122,28 +247,15 @@ ApplicationWindow {
             mainWindow.show();
         }
 
-        function openWebPopup(request, profile) {
-            if (request.userInitiated) {
-                var dialog = d.applicationRoot.createDialog(profile);
-                request.openIn(dialog.currentWebView);
-            }
-        }
-
-        function toggleFullScreen(request) {
-            if (request.toggleOn)
-                mainWindow.showFullScreen();
-            else
-                mainWindow.visibility = d.previousVisibility;
-            request.accept();
-        }
-
         function handleEscapeKey() {
             if (mainWindow.visibility === ApplicationWindow.FullScreen) {
                 mainWindow.visibility = d.previousVisibility;
-                mainPage.exitFullScreen();
+                runningServices.exitFullScreen();
             }
-            else if (!mainPage.isWebViewMode)
-                mainPage.showWebView();
+            else if (!mainWindow.isOnRunningServicesPage) {
+                stack.slideTransitions = false;
+                mainWindow.toggleActivePage()
+            }
         }
 
         function saveGeometry() {
@@ -164,7 +276,6 @@ ApplicationWindow {
                     _window.visible = false;
                     mainWindow.visible = false;
                 }
-                console.info("closing to system tray")
                 close.accepted = false;
             }
         }

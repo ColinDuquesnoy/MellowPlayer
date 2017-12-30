@@ -15,8 +15,6 @@ namespace MellowPlayer::Domain
     class Player : public IPlayer
     {
         Q_OBJECT
-        Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
-        Q_PROPERTY(QString sourceCode READ sourceCode NOTIFY sourceCodeChanged)
     public:
         explicit Player(Domain::StreamingService& streamingService);
         ~Player() override;
@@ -37,13 +35,9 @@ namespace MellowPlayer::Domain
         QString serviceName() const override;
         bool isPlaying() const override;
         bool isStopped() const override;
-        bool isRunning() const;
-        QString sourceCode() const;
 
         // invoked by WebView (QML)
         Q_INVOKABLE void setUpdateResults(const QVariant& results);
-        Q_INVOKABLE void start();
-        Q_INVOKABLE void stop();
 
         // invoked by CurrentPlayer
         void suspend();
@@ -55,8 +49,6 @@ namespace MellowPlayer::Domain
         void setPlaybackStatus(PlaybackStatus value);
 
     signals:
-        void isRunningChanged();
-        void sourceCodeChanged();
         void play() override;
         void pause() override;
         void next() override;
@@ -85,8 +77,6 @@ namespace MellowPlayer::Domain
         double volume_ = 1;
         std::unique_ptr<Domain::Song> currentSong_;
         Domain::StreamingService& streamingService_;
-        Domain::StreamingServiceScript& streamingServiceScript_;
         PlaybackStatus suspendedState_ = PlaybackStatus::Stopped;
-        bool isRunning_ = false;
     };
 }

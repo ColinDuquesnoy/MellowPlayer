@@ -85,4 +85,14 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
         REQUIRE(!viewModel.notificationsEnabled());
         REQUIRE(spy.count() == 1);
     }
+
+    SECTION("reload plugin when streaming service script has changed")
+    {
+        QSignalSpy spy(&viewModel, &StreamingServiceViewModel::sourceCodeChanged);
+
+        emit service1.scriptChanged();
+
+        REQUIRE(spy.count() == 1);
+        REQUIRE(!viewModel.sourceCode().isEmpty());
+    }
 }

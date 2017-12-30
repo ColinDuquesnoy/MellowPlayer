@@ -38,24 +38,20 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     StreamingServiceViewModel* service2 = viewModel.allServices()->at(1);
     StreamingServiceViewModel* service3 = viewModel.allServices()->at(2);
 
-    SECTION("setCurrentService changes currentIndex")
+    SECTION("setCurrentService changes current streaming service")
     {
-        REQUIRE(viewModel.allServices()->count() == streamingServices.toList().count());
-        REQUIRE(viewModel.currentIndex() == -1);
         REQUIRE(viewModel.currentService() == nullptr);
         viewModel.setCurrentService(viewModel.allServices()->toList()[1]);
-        REQUIRE(viewModel.currentIndex() == 1);
-        REQUIRE(viewModel.currentService() == viewModel.allServices()->toList()[1]);
-        viewModel.setCurrentService(viewModel.allServices()->toList()[1]);
-        viewModel.setCurrentIndex(1);
+        REQUIRE(viewModel.currentService()->streamingService() == streamingServices.current());
+        viewModel.setCurrentService(nullptr);
     }
 
-    SECTION("next does not change current service if only one running service")
+    SECTION("next does not change current service if only one active service")
     {
-        service1->player()->start();
-        service2->player()->stop();
-        service3->player()->stop();
-        viewModel.setCurrentIndex(0);
+        service1->setActive(true);
+        service2->setActive(false);
+        service3->setActive(false);
+        viewModel.setCurrentService(service1);
         REQUIRE(viewModel.currentService() == service1);
         viewModel.next();
         REQUIRE(viewModel.currentService() == service1);
@@ -63,10 +59,10 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
     SECTION("next changes current service if more than one service is running")
     {
-        service1->player()->start();
-        service2->player()->start();
-        service3->player()->start();
-        viewModel.setCurrentIndex(0);
+        service1->setActive(true);
+        service2->setActive(true);
+        service3->setActive(true);
+        viewModel.setCurrentService(service1);
         REQUIRE(viewModel.currentService() == service1);
         viewModel.next();
         REQUIRE(viewModel.currentService() == service2);
@@ -78,10 +74,10 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
     SECTION("previous does not change current service if only one running service")
     {
-        service1->player()->start();
-        service2->player()->stop();
-        service3->player()->stop();
-        viewModel.setCurrentIndex(0);
+        service1->setActive(true);
+        service2->setActive(false);
+        service3->setActive(false);
+        viewModel.setCurrentService(service1);
         REQUIRE(viewModel.currentService() == service1);
         viewModel.previous();
         REQUIRE(viewModel.currentService() == service1);
@@ -89,10 +85,10 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
 
     SECTION("previous changes current service if more than one service is running")
     {
-        service1->player()->start();
-        service2->player()->start();
-        service3->player()->start();
-        viewModel.setCurrentIndex(0);
+        service1->setActive(true);
+        service2->setActive(true);
+        service3->setActive(true);
+        viewModel.setCurrentService(service1);
         REQUIRE(viewModel.currentService() == service1);
         viewModel.previous();
         REQUIRE(viewModel.currentService() == service3);
@@ -119,27 +115,9 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
                                                         creatorMock.get(), commandLineArguments,
                                                         pool.getUserScriptFactory(), pool.getContextProperties(),
                                                         pool.getNetworkProxies());
-        REQUIRE(viewModelWithCmdLine.currentIndex() == -1);
+        REQUIRE(viewModelWithCmdLine.currentService() == nullptr);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();
-        REQUIRE(viewModelWithCmdLine.currentIndex() != -1);
-    }
-
-    SECTION("currentIndex is -1 when current service is disabled")
-    {
-        viewModel.setCurrentIndex(0);
-        REQUIRE(viewModel.currentIndex() == 0);
-        service1->setEnabled(false);
-        REQUIRE(viewModel.currentIndex() == -1);
-        service1->setSortOrder(0);
-        service1->setEnabled(true);
-    }
-
-    SECTION("currentIndex does not change if other service is disabled")
-    {
-        viewModel.setCurrentIndex(0);
-        REQUIRE(viewModel.currentIndex() == 0);
-        service2->setEnabled(false);
-        REQUIRE(viewModel.currentIndex() == 0);
+        REQUIRE(viewModelWithCmdLine.currentService() != nullptr);
     }
 }

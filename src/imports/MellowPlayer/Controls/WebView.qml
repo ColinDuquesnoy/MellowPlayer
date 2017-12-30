@@ -11,38 +11,17 @@ import MellowPlayer 3.0
 WebEngineView {
     id: root
 
-    property QtObject player
-    property string urlToLoad
-    property var service
+    property QtObject service
+    property QtObject player: service.player
     property var image: null
-    property bool isRunning: false
     property bool hasProprietaryCodecs: true
     property var userAgentSetting: _settings.get(SettingKey.PRIVACY_USER_AGENT)
-    readonly property string aboutBlank: "about:blank"
-
-    signal updateImageFinished()
-    signal customUrlSet(var customUrl)
-
-    function start() {
-        if (isRunning)
-            return;
-        isRunning = true;
-        url = urlToLoad
-        d.checkForCustomUrlRequired()
-        player.start()
-    }
-
-    function stop() {
-        root.triggerWebAction(WebEngineView.Stop);
-        image = null;
-        isRunning = false;
-        url = aboutBlank;
-        reload();
-        player.stop();
-    }
 
     function updateImage() {
-        root.grabToImage(function(result) { image = result; updateImageFinished(); }, Qt.size(root.width, root.height));
+        root.grabToImage(function(result) {
+            service.previewImageUrl = result.url;
+            image = result;
+        }, Qt.size(root.width, root.height));
     }
 
     function exitFullScreen() {
@@ -70,6 +49,9 @@ WebEngineView {
         zoomPane.show()
     }
 
+    enabled: visible
+    url: service.url
+    visible: _streamingServices.currentService && _streamingServices.currentService.name === service.name
     profile {
         httpUserAgent: userAgentSetting.value
     }
@@ -82,7 +64,6 @@ WebEngineView {
         autoLoadIconsForPage: true
     }
     userScripts: d.getUserScripts()
-    url: aboutBlank
     zoomFactor: d.zoomFactors[d.zoomFactorIndex]
     webChannel: webChannel
 
@@ -140,12 +121,14 @@ WebEngineView {
         }
     }
     onLoadingChanged: {
-        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus && url != aboutBlank) {
-            d.checkForProprietaryCodecs();
+        if (loadRequest.status === WebEngineLoadRequest.LoadSucceededStatus) {
+            updateImage();
         }
         else
             d.checkForCustomUrlRequired();
     }
+    onFullScreenRequested: mainWindow.toggleFullScreen(request)
+    onNewViewRequested: mainWindow.openWebPopup(request, profile)
 
     ValidationMessage {
         id: validationMessage
@@ -155,7 +138,7 @@ WebEngineView {
         id: playerBridge
 
         property var updateResults
-        property bool isRunning: root.player.isRunning
+        property bool isRunning: root.visible
 
         signal play()
         signal pause()
@@ -179,12 +162,17 @@ WebEngineView {
     CustomUrlPane {
         id: customUrlPane
 
-        customUrl: urlToLoad
+        customUrl: service.url
         x: root.width / 2 - width / 2; y: -2; z: 1
         width: 500
 
         onReloadRequested: root.reload()        
-        onCustomUrlChanged: if (customUrl != urlToLoad) root.customUrlSet(customUrl)
+        onCustomUrlChanged: {
+            if (customUrl !== service.url) {
+                service.url = customUrl
+                start()
+            }
+        }
     }
 
     Pane {
@@ -297,7 +285,7 @@ WebEngineView {
         onZoomFactorIndexChanged: root.service.zoomFactor = zoomFactorIndex
 
         function checkForCustomUrlRequired() {
-            var match = urlToLoad.match("(@.*@)");
+            var match = service.url.match("(@.*@)");
             if (match !== null) {
                 customUrlPane.open()
             }
@@ -312,12 +300,11 @@ WebEngineView {
         function getUserScripts() {
             var scripts = [];
 
-
             var webChannelScript = createMellowPlayerScriptFromSourceUrl("WebChannelAPI", "qrc:///qtwebchannel/qwebchannel.js");
             webChannelScript.injectionPoint = WebEngineScript.DocumentCreation;
             scripts.push(webChannelScript);
             scripts.push(createMellowPlayerScriptFromSourceUrl("MellowPlayerAPI", "qrc:/MellowPlayer/Presentation/Resources/mellowplayer.js"));
-            scripts.push(createMellowPlayerScriptFromSourceCode("IntegrationPlugin", root.player.sourceCode));
+            scripts.push(createMellowPlayerScriptFromSourceCode("IntegrationPlugin", root.service.sourceCode));
 
             for (var i = 0; i < service.userScripts.model.count; i++) {
                 var userScript = service.userScripts.model.get(i);
@@ -357,4 +344,32 @@ WebEngineView {
             return webEngineScript;
         }
     }
+
+//    QtObject {
+//        id: nullService
+
+//        property int zoomFactor: 1
+//        property QtObject player: QtObject {
+//            property string sourceCode: ""
+
+//            signal play()
+//            signal pause()
+//            signal next()
+//            signal previous()
+//            signal addToFavorites()
+//            signal removeFromFavorites()
+//            signal seekToPositionRequest(var position)
+//            signal changeVolumeRequest(double newVolume)
+//        }
+
+//        property QtObject networkProxy: QtObject {
+//            signal changed();
+//        }
+//        property QtObject userScripts: QtObject {
+//            property var model: []
+//        }
+
+//        property string url: ""
+//        property string name: ""
+//    }
 }

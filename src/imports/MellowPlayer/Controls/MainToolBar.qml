@@ -8,61 +8,36 @@ import MellowPlayer 3.0
 ToolBar {
     id: root
 
-    property bool isWebViewMode: false
     property bool isCurrentServiceRunning: false
-
-    signal showOverviewRequested()
-    signal showWebViewRequested()
-    signal goBackRequested()
-    signal goHomeRequested()
-    signal goForwardRequested()
-    signal reloadRequested()
-    signal openListeningHistoryRequested()
-    signal openSettingsRequested()
-    signal openAboutDialogRequested()
-    signal createPluginRequested()
 
     Material.primary: _theme.primary
     Material.foreground: _theme.primaryForeground
     Material.theme: _theme.isDark(_theme.primary) ? Material.Dark : Material.Light
-
-
-    QtObject {
-        id: d
-        property int iconSize: 22
-
-        function isPlayerActive() {
-            return _player.currentSong !== null && _player.currentSong.isValid()
-        }
-    }
-    
 
     RowLayout {
         anchors.fill: parent
         spacing: 0
 
         IconToolButton {
-            iconChar: root.isWebViewMode ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
-            shortcut: _settings.get(SettingKey.SHORTCUTS_SELECT_SERVICE).value
-            tooltip: root.isWebViewMode ? qsTr("Select another service") :
-                     _streamingServices.currentService !== null ? qsTr("Go back to ") + _streamingServices.currentService.name : ""
-            visible: root.isCurrentServiceRunning || root.isWebViewMode
+            iconChar: mainWindow.isOnRunningServicesPage ? MaterialIcons.icon_apps : MaterialIcons.icon_keyboard_arrow_left
+            tooltip: mainWindow.isOnRunningServicesPage ?
+                         qsTr("Select another service") :
+                         mainWindow.hasRunningServices ? qsTr("Go back to ") + _streamingServices.currentService.name : ""
+            visible: mainWindow.hasRunningServices
 
-            onTriggered: switchView()
-
-            function switchView() {
-                if (isWebViewMode)
-                    root.showOverviewRequested()
+            onClicked: {
+                if (!mainWindow.isOnRunningServicesPage && mainWindow.hasRunningServices)
+                    stack.slideTransitions = true;
                 else
-                    root.showWebViewRequested()
+                    stack.slideTransitions = false;
+                mainWindow.toggleActivePage();
             }
-
         }
 
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
 
             Rectangle {
                 anchors.centerIn: parent
@@ -75,40 +50,40 @@ ToolBar {
         IconToolButton {
             iconChar: MaterialIcons.icon_chevron_left
             tooltip: qsTr("Go back")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
 
-            onTriggered: root.goBackRequested()
+            onTriggered: mainWindow.runningServices.goBack()
         }
 
         IconToolButton {
             iconChar: MaterialIcons.icon_chevron_right
             tooltip: qsTr("Go forward")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
 
-            onTriggered: root.goForwardRequested();
+            onTriggered: mainWindow.runningServices.goForward()
         }
 
         IconToolButton {
             iconChar: MaterialIcons.icon_refresh
             tooltip: qsTr("Reload page")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_RELOAD).value
 
-            onTriggered: root.reloadRequested();
+            onTriggered: mainWindow.runningServices.reload()
         }
 
         IconToolButton {
             iconChar: MaterialIcons.icon_home
             tooltip: qsTr("Go to home page")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
 
-            onTriggered: root.goHomeRequested();
+            onTriggered: mainWindow.runningServices.goHome()
         }
 
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
 
             Rectangle {
                 anchors.centerIn: parent
@@ -119,10 +94,10 @@ ToolBar {
         }
 
         IconToolButton {
-            enabled: root.isWebViewMode && _player.canAddToFavorites
+            enabled: mainWindow.isOnRunningServicesPage && _player.canAddToFavorites
             iconChar: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             tooltip: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_FAVORITE).value
 
             onTriggered: _player.toggleFavoriteSong()
@@ -136,7 +111,7 @@ ToolBar {
             enabled: _player.canGoPrevious && d.isPlayerActive()
             iconChar: MaterialIcons.icon_fast_rewind
             tooltip: qsTr("Skip to previous song")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_PREVIOUS).value
 
             onTriggered: _player.previous()
@@ -146,7 +121,7 @@ ToolBar {
             enabled: !_player.isStopped || d.isPlayerActive()
             iconChar: _player.isPlaying ? MaterialIcons.icon_pause: MaterialIcons.icon_play_arrow
             tooltip: _player.isPlaying ? qsTr("Pause") : qsTr("Play")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_PLAY).value
 
             onTriggered: _player.togglePlayPause()
@@ -156,7 +131,7 @@ ToolBar {
             enabled: _player.canGoNext && d.isPlayerActive()
             iconChar: MaterialIcons.icon_fast_forward
             tooltip: qsTr("Skip to next song")
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_NEXT).value
 
             onTriggered: _player.next()
@@ -188,7 +163,7 @@ ToolBar {
                 color: Material.color(Material.Grey)
             }
 
-            visible: root.isWebViewMode
+            visible: mainWindow.isOnRunningServicesPage
         }
 
         IconToolButton {
@@ -196,7 +171,7 @@ ToolBar {
             tooltip: qsTr("Open listening history")
             shortcut: _settings.get(SettingKey.SHORTCUTS_LISTENING_HISTORY).value
 
-            onTriggered: root.openListeningHistoryRequested()
+            onTriggered: listeningHistoryDrawer.open()
         }
 
         IconToolButton {
@@ -210,7 +185,7 @@ ToolBar {
 
                 sequence: _settings.get(SettingKey.SHORTCUTS_SETTINGS).value
 
-                onActivated: root.openSettingsRequested()
+                onActivated: settingsDrawer.open()
             }
 
             Shortcut {
@@ -218,7 +193,7 @@ ToolBar {
 
                 sequence: _settings.get(SettingKey.SHORTCUTS_CREATE_PLUGIN).value
 
-                onActivated: root.createPluginRequested()
+                onActivated: newPluginWizard.open()
             }
 
             Shortcut {
@@ -244,7 +219,7 @@ ToolBar {
 
                 sequence: _settings.get(SettingKey.SHORTCUTS_ABOUT).value
 
-                onActivated: root.openAboutDialogRequested()
+                onActivated: aboutDialog.open()
             }
 
             Shortcut {
@@ -267,7 +242,7 @@ ToolBar {
                     shortcut: shortcutSettings.sequence
                     text: qsTr("Settings")
 
-                    onClicked: root.openSettingsRequested()
+                    onClicked: settingsDrawer.open()
                 }
 
                 IconMenuItem {
@@ -277,7 +252,7 @@ ToolBar {
                     shortcut: shortcutCreatePlugin.sequence
                     text: qsTr("Create plugin")
 
-                    onClicked: root.createPluginRequested()
+                    onClicked: newPluginWizard.open()
                 }
 
                 IconMenuItem {
@@ -316,7 +291,7 @@ ToolBar {
                     shortcut: shortcutAbout.sequence
                     text: qsTr("About")
 
-                    onClicked: root.openAboutDialogRequested()
+                    onClicked: aboutDialog.open()
                 }
 
                 IconMenuItem {
@@ -335,7 +310,7 @@ ToolBar {
         anchors.centerIn: parent
         height: root.height
         width: 500
-        visible: root.isWebViewMode
+        visible: mainWindow.isOnRunningServicesPage
 
         ColumnLayout {
             anchors.fill: parent
@@ -443,4 +418,14 @@ ToolBar {
             }
         }
     }
+
+    QtObject {
+        id: d
+        property int iconSize: 22
+
+        function isPlayerActive() {
+            return _player.currentSong !== null && _player.currentSong.isValid()
+        }
+    }
+
 }

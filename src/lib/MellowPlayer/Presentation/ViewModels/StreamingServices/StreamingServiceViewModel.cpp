@@ -3,6 +3,7 @@
 #include <MellowPlayer/Domain/Player/Players.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/StreamingServices/StreamingServiceScript.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 #include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <MellowPlayer/Infrastructure/Network/NetworkProxies.hpp>
@@ -28,8 +29,11 @@ StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streaming
         settingsStore_(settingsStore),
         player_(players.get(streamingService.name())),
         userScriptsViewModel_(streamingService.name(), factory, settingsStore, this),
-        zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt())
+        zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt()),
+        isActive_(false),
+        previewImageUrl_("qrc:/MellowPlayer/Presentation/Resources/images/home-background.png")
 {
+    connect(&streamingService_, &StreamingService::scriptChanged, this, &StreamingServiceViewModel::sourceCodeChanged);
     Q_ASSERT(networkProxy_ != nullptr);
 }
 
@@ -107,7 +111,6 @@ void StreamingServiceViewModel::setEnabled(bool enabled)
         emit isEnabledChanged();
 
         if (!enabled) {
-            player_->stop();
             player_->suspend();
             setSortOrder(255);
         }
@@ -122,14 +125,29 @@ void StreamingServiceViewModel::setUrl(const QString& newUrl)
     }
 }
 
+void StreamingServiceViewModel::setActive(bool isActive)
+{
+    if (isActive_ == isActive)
+        return;
+
+    isActive_ = isActive;
+    if (!isActive_)
+        setPreviewImageUrl("qrc:/MellowPlayer/Presentation/Resources/images/home-background.png");
+    emit isActiveChanged();
+}
+
+void StreamingServiceViewModel::setPreviewImageUrl(QString previewImageUrl)
+{
+    if (previewImageUrl_ == previewImageUrl)
+        return;
+
+    previewImageUrl_ = previewImageUrl;
+    emit previewImageUrlChanged();
+}
+
 QString StreamingServiceViewModel::customUrlSettingsKey() const
 {
     return streamingService_.name() + "/url";
-}
-
-bool StreamingServiceViewModel::isRunning() const
-{
-    return player_->isRunning();
 }
 
 QString StreamingServiceViewModel::sortOrderSettingsKey() const
@@ -178,7 +196,22 @@ void StreamingServiceViewModel::setNotificationsEnabled(bool value)
     }
 }
 
+bool StreamingServiceViewModel::isActive() const
+{
+    return isActive_;
+}
+
+QString StreamingServiceViewModel::previewImageUrl() const
+{
+    return previewImageUrl_;
+}
+
 QString StreamingServiceViewModel::notificationsEnabledSettingsKey() const
 {
     return streamingService_.name() + "/notificationsEnabled";
+}
+
+QString StreamingServiceViewModel::sourceCode() const
+{
+    return streamingService_.script()->constants() + "\n" + streamingService_.script()->code();
 }

@@ -128,7 +128,7 @@ Frame {
             ToolButton {
                 id: btDelete
                 hoverEnabled: true
-                text: MaterialIcons.MaterialIcons.icon_delete
+                text: MaterialIcons.icon_delete
                 font { family: MaterialIcons.family; pixelSize: 16 }
                 onClicked: {
                     messageBoxConfirmDelete.message = qsTr('Are you sure you want to remove that song from the history?')
@@ -149,7 +149,7 @@ Frame {
             ToolButton {
                 id: btCopy
                 hoverEnabled: true
-                text: MaterialIcons.MaterialIcons.icon_content_copy
+                text: MaterialIcons.icon_content_copy
                 font { family: MaterialIcons.family; pixelSize: 16 }
                 onClicked: _clipboard.setText(model.title)
 
