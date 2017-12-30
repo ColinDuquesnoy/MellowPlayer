@@ -441,117 +441,117 @@ escuchado aparecerán aquí...</translation>
 <context>
     <name>MainToolBar</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="47"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="24"/>
         <source>Select another service</source>
         <translation>Seleccione otro servicio</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="48"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="25"/>
         <source>Go back to </source>
         <translation>Volver a</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="77"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="52"/>
         <source>Go back</source>
         <translation>Volver</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="85"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="60"/>
         <source>Go forward</source>
         <translation>Avanzar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="93"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="68"/>
         <source>Reload page</source>
         <translation>Recargar página</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="102"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="77"/>
         <source>Go to home page</source>
         <translation>Ir a la página de inicio</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="124"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="99"/>
         <source>Remove current song from your favorites</source>
         <translation>Eliminar la canción actual de sus favoritos</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="124"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="99"/>
         <source>Add current song to your favorites</source>
         <translation>Añadir canción actual a sus favoritos</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="138"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="113"/>
         <source>Skip to previous song</source>
         <translation>Saltar a la canción anterior</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="148"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="123"/>
         <source>Pause</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="148"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="123"/>
         <source>Play</source>
         <translation>Reproducir</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="158"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="133"/>
         <source>Skip to next song</source>
         <translation>Saltar a la canción siguiente</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="171"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="146"/>
         <source>Disable notifications</source>
         <translation>Desactivar notificaciones</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="171"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="146"/>
         <source>Enable notifications</source>
         <translation>Activar notificaciones</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="196"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="171"/>
         <source>Open listening history</source>
         <translation>Abrir el historial de escucha</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="204"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="179"/>
         <source>Main menu</source>
         <translation>Menú principal</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="268"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="243"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="278"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="253"/>
         <source>Create plugin</source>
         <translation>Crear complemento</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="288"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="263"/>
         <source>Report issue</source>
         <translation>Reportar un problema</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="297"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="272"/>
         <source>Check for update</source>
         <translation>Buscar actualizaciones</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="317"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="292"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="325"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="300"/>
         <source>Quit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="357"/>
+        <location filename="../../imports/MellowPlayer/Controls/MainToolBar.qml" line="332"/>
         <source>&lt;/b&gt;&lt;i&gt; by </source>
         <translation>&lt;/b&gt;&lt;i&gt; por</translation>
     </message>
@@ -559,22 +559,22 @@ escuchado aparecerán aquí...</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="60"/>
+        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="172"/>
         <source>Are you sure you want to quit MellowPlayer?</source>
         <translation>¿Está seguro de que desea salir de MellowPlayer?</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="61"/>
+        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="173"/>
         <source>Confirm quit</source>
         <translation>Confirmar salida</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="69"/>
+        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="181"/>
         <source>Closing to system tray</source>
         <translation>Minimizar a la bandeja del sistema</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="70"/>
+        <location filename="../../imports/MellowPlayer/MainWindow.qml" line="182"/>
         <source>&lt;p&gt;MellowPlayer will continue to run in background.&lt;br&gt;You can quit the application or restore the main window via the system tray icon menu.&lt;/p&gt;</source>
         <translation>&lt;p&gt;MellowPlayer continuará ejecutándose en segundo plano.&lt;br&gt; Puede salir de la aplicación o restaurar la ventana principal a través del menú del icono de la bandeja del sistema.&lt;/p&gt;</translation>
     </message>
@@ -582,83 +582,83 @@ escuchado aparecerán aquí...</translation>
 <context>
     <name>NativeMenuBar</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="19"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="16"/>
         <source>Application</source>
         <translation>Aplicación</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="22"/>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="110"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="19"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="107"/>
         <source>Preferences</source>
         <translation>Preferencias</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="34"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="31"/>
         <source>Navigation</source>
         <translation>Navegación</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="37"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="34"/>
         <source>Go Home</source>
         <translation>Ir al inicio</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="43"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="40"/>
         <source>Go Back</source>
         <translation>Volver</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="49"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="46"/>
         <source>Go Forward</source>
         <translation>Avanzar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="57"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="54"/>
         <source>Reload page</source>
         <translation>Recargar página</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="65"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="62"/>
         <source>Player</source>
         <translation>Reproductor</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="68"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="65"/>
         <source>Play/Pause</source>
         <translation>Reproducir/Pausar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="74"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="71"/>
         <source>Next</source>
         <translation>Siguiente</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="80"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="77"/>
         <source>Previous</source>
         <translation>Anterior</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="88"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="85"/>
         <source>Add to favorites</source>
         <translation>Añadir a favoritos</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="96"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="93"/>
         <source>Developer</source>
         <translation>Desarrolador</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="99"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="96"/>
         <source>Create new plugin</source>
         <translation>Crear nuevo complemento</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="107"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="104"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="120"/>
+        <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="117"/>
         <source>Report issue</source>
         <translation>Reportar un problema</translation>
     </message>
@@ -710,6 +710,29 @@ escuchado aparecerán aquí...</translation>
     </message>
 </context>
 <context>
+    <name>Reload</name>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="11"/>
+        <source>Do you want to reload this site?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="12"/>
+        <source>Changes that you made may not be saved.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="20"/>
+        <source>Reload</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="21"/>
+        <source>Don&apos;t reload</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceSettingsPage</name>
     <message>
         <location filename="../../imports/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="74"/>
@@ -720,17 +743,17 @@ escuchado aparecerán aquí...</translation>
 <context>
     <name>ServicesOverview</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="21"/>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="16"/>
         <source>Which streaming service would you like to use?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="185"/>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="177"/>
         <source> has been removed from overview.</source>
         <translation>se ha eliminado de la vista general.</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="191"/>
+        <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="183"/>
         <source>UNDO</source>
         <translation>DESHACER</translation>
     </message>
@@ -1442,17 +1465,17 @@ escuchado aparecerán aquí...</translation>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="218"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="205"/>
         <source>Zoom out</source>
         <translation>Alejar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="231"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="218"/>
         <source>Zoom in</source>
         <translation>Acercar</translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="237"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="224"/>
         <source>Reset</source>
         <translation>Reiniciar</translation>
     </message>

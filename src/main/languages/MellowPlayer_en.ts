@@ -702,6 +702,29 @@ listened to will appear here...</source>
     </message>
 </context>
 <context>
+    <name>Reload</name>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="11"/>
+        <source>Do you want to reload this site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="12"/>
+        <source>Changes that you made may not be saved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="20"/>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="21"/>
+        <source>Don&apos;t reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ServiceSettingsPage</name>
     <message>
         <location filename="../../imports/MellowPlayer/SettingsPages/ServiceSettingsPage.qml" line="74"/>
@@ -1411,17 +1434,17 @@ listened to will appear here...</source>
 <context>
     <name>WebView</name>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="206"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="205"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="219"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="218"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="225"/>
+        <location filename="../../imports/MellowPlayer/Controls/WebView.qml" line="224"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>

@@ -96,10 +96,9 @@ WebEngineView {
                 component = "Prompt.qml"
                 break;
             case JavaScriptDialogRequest.DialogTypeUnload:
-                component = "ReloadPage.qml"
-                break;
             default:
-                 return;
+                component = "Reload.qml"
+                break;
         }
         Dialogs.open(component, mainWindow, {"request": request});
         request.accepted = true;

@@ -194,8 +194,10 @@ ApplicationWindow {
 
         property real scaleFactor: 0.9
 
+        modal: true
         width: 1152; height: 648
-        x: mainWindow.width / 2 - width / 2; y: mainWindow.height / 2 - height / 2
+        x: mainWindow.width / 2 - width / 2;
+        y: mainWindow.height / 2 - height / 2 - 48;
     }
 
     NativeMenuBar {
@@ -210,6 +212,7 @@ ApplicationWindow {
 
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 12
         visible: false
     }
 
