@@ -1,38 +1,41 @@
-var ready = false;
-var qWebChannel = null;
-var player = null;
-var refreshInterval = 100;
+MellowPlayer = {
+    ready: false,
+    webChannel: null,
+    player: null,
+    refreshInterval: 100,
+    refresh: function() {
+        if (MellowPlayer.ready && MellowPlayer.player.isRunning) {
+            var updateResults = update();
+            updateResults.songId = getHashCode(updateResults.songTitle);
+            MellowPlayer.player.updateResults = updateResults;
+        }
+    },
+    initialize: function() {
+        console.log("Connecting to MellowPlayer's WebChannel...");
+        try {
+            MellowPlayer.webChannel = new QWebChannel(qt.webChannelTransport, function(channel) {
+                console.log("Connected to MellowPlayer's WebChannel, ready to send/receive messages!");
+                MellowPlayer.player = channel.objects.player;
 
-function refresh() {
-    if (ready && player.isRunning)
-        player.updateResults = update();
-}
+                // connect events to integration script functions
+                MellowPlayer.player.play.connect(play);
+                MellowPlayer.player.pause.connect(pause);
+                MellowPlayer.player.next.connect(goNext);
+                MellowPlayer.player.previous.connect(goPrevious);
+                MellowPlayer.player.addToFavorites.connect(addToFavorites);
+                MellowPlayer.player.removeFromFavorites.connect(removeFromFavorites);
+                MellowPlayer.player.seekToPosition.connect(seekToPosition);
+                MellowPlayer.player.changeVolume.connect(setVolume);
 
-function initialize() {
-    console.log("Connecting to MellowPlayer's WebChannel...");
-    try {
-        qWebChannel = new QWebChannel(qt.webChannelTransport, function(channel) {
-            console.log("Connected to MellowPlayer's WebChannel, ready to send/receive messages!");
-            player = channel.objects.player;
-
-            // connect events to integration script functions
-            player.play.connect(play);
-            player.pause.connect(pause);
-            player.next.connect(goNext);
-            player.previous.connect(goPrevious);
-            player.addToFavorites.connect(addToFavorites);
-            player.removeFromFavorites.connect(removeFromFavorites);
-            player.seekToPosition.connect(seekToPosition);
-            player.changeVolume.connect(setVolume);
-
-            ready = true;
-            window.setInterval(refresh, refreshInterval);
-        });
+                MellowPlayer.ready = true;
+                window.setInterval(MellowPlayer.refresh, MellowPlayer.refreshInterval);
+            });
+        }
+        catch (e)
+        {
+            console.warn(e);
+        }
     }
-    catch (e)
-    {
-        console.warn(e);
-    }
-}
+};
 
-initialize();
+MellowPlayer.initialize();
