@@ -8,7 +8,9 @@ namespace MellowPlayer::Infrastructure
     class QSettingsStore : public Domain::ISettingsStore
     {
     public:
-        QSettingsStore(const QString& orgName="MellowPlayer");
+        QSettingsStore();
+
+        void setOrganizationName(const QString& orgName);
 
         void clear() override;
 
@@ -16,6 +18,6 @@ namespace MellowPlayer::Infrastructure
         void setValue(const QString& key, const QVariant& value) override;
 
     private:
-        QSettings qSettings_;
+        std::unique_ptr<QSettings> qSettings_;
     };
 }
