@@ -13,8 +13,8 @@
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="75"/>
-        <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation>Drets d&apos;autor 2014-2017 Colin Duquesnoy</translation>
+        <source>Copyright 2014-2018 Colin Duquesnoy</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="87"/>
@@ -67,42 +67,42 @@
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="53"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;usuari</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="67"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Contrasenya</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="101"/>
         <source>&lt;b&gt;%1&lt;/b&gt; is requesting your username and password.&lt;br&gt;The site says: &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; està demanant el vostre nom d&apos;usuari i contrasenya.&lt;br&gt;El lloc diu: &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="103"/>
         <source>&lt;b&gt;%1&lt;/b&gt; is requesting your username and password.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; està demanant el vostre nom d&apos;usuari i contrasenya.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="104"/>
         <source>Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>Es requereix autenticació</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="107"/>
         <source>Proxy &lt;b&gt;%1&lt;/b&gt; is requesting authentication</source>
-        <translation type="unfinished"/>
+        <translation>El servidor intermediari &lt;b&gt;%1&lt;/b&gt; està demanant autenticació</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="108"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>El servidor intermediari demana autenticació</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="113"/>
         <source>Login</source>
-        <translation type="unfinished"/>
+        <translation>Inicia sessió</translation>
     </message>
 </context>
 <context>
@@ -714,22 +714,22 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="11"/>
         <source>Do you want to reload this site?</source>
-        <translation type="unfinished"/>
+        <translation>Voleu tornar a carregar aquest lloc?</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="12"/>
         <source>Changes that you made may not be saved.</source>
-        <translation type="unfinished"/>
+        <translation>És possible que els canvis que heu fet no es desin.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="20"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Torna a carregar</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="21"/>
         <source>Don&apos;t reload</source>
-        <translation type="unfinished"/>
+        <translation>No ho ho tornis a carregar</translation>
     </message>
 </context>
 <context>
@@ -745,7 +745,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="16"/>
         <source>Which streaming service would you like to use?</source>
-        <translation type="unfinished"/>
+        <translation>Quin servei de transmissió voleu utilitzar?</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="177"/>
@@ -1314,7 +1314,7 @@ escoltat apareixeran aquí...</translation>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="406"/>
         <source>QtWebEngine does not support attaching a network proxy to a particular web view. The network proxy settings of the current streaming service are used globally, this may lead to some HTTP requests failurefor previously active services and you might need to reload them when you switch back.</source>
-        <translation type="unfinished"/>
+        <translation>QtWebEngine no suporta la connexió d&apos;un servidor intermediari de xarxa a una vista web en particular. La configuració del servidor intermediari de xarxa del servei de transmissió actual s&apos;usa globalment, això podria fer que fallés alguna sol·licitud HTTP per a serveis prèviament actius i és possible que hageu de tornar a carregar-los quan tornin a connectar-se.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="430"/>

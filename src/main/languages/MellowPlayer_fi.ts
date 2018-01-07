@@ -13,8 +13,8 @@
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="75"/>
-        <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation>Tekijänoikeus 2014-2017 Colin Duquesnoy</translation>
+        <source>Copyright 2014-2018 Colin Duquesnoy</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="87"/>
@@ -49,12 +49,12 @@
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="313"/>
         <source>Credits</source>
-        <translation type="unfinished"/>
+        <translation>Tekijät</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="320"/>
         <source>Show logs</source>
-        <translation type="unfinished"/>
+        <translation>Näytä lokit</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="331"/>
@@ -67,42 +67,42 @@
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="53"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="67"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="101"/>
         <source>&lt;b&gt;%1&lt;/b&gt; is requesting your username and password.&lt;br&gt;The site says: &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; pyytää käyttäjätunnustasi ja salasanaasi.&lt;br&gt;Sivusto sanoo: &lt;b&gt;&quot;%2&quot;&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="103"/>
         <source>&lt;b&gt;%1&lt;/b&gt; is requesting your username and password.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; pyytää käyttäjätunnustasi ja salasanaasi.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="104"/>
         <source>Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>Tunnistautuminen vaaditaan</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="107"/>
         <source>Proxy &lt;b&gt;%1&lt;/b&gt; is requesting authentication</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelin &lt;b&gt;%1&lt;/b&gt; pyytää tunnistautumista</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="108"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>Välityspalvelimen tunnistautuminen vaaditaan</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Authentication.qml" line="113"/>
         <source>Login</source>
-        <translation type="unfinished"/>
+        <translation>Kirjaudu</translation>
     </message>
 </context>
 <context>
@@ -353,7 +353,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ListeningHistoryClipboardConfirmation.qml" line="57"/>
         <source>copied to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>kopioitu leikepöydälle</translation>
     </message>
 </context>
 <context>
@@ -580,12 +580,12 @@ listened to will appear here...</source>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="19"/>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="107"/>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="31"/>
         <source>Navigation</source>
-        <translation type="unfinished"/>
+        <translation>Liikkuminen</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="34"/>
@@ -595,12 +595,12 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="40"/>
         <source>Go Back</source>
-        <translation type="unfinished"/>
+        <translation>Siirry taaksepäin</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="46"/>
         <source>Go Forward</source>
-        <translation type="unfinished"/>
+        <translation>Siirry eteenpäin</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/NativeMenuBar.qml" line="54"/>
@@ -683,7 +683,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/NewPluginWizard/NewPluginWizard.qml" line="204"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
 </context>
 <context>
@@ -704,22 +704,22 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="11"/>
         <source>Do you want to reload this site?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko ladata sivun uudelleen?</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="12"/>
         <source>Changes that you made may not be saved.</source>
-        <translation type="unfinished"/>
+        <translation>Tekemiäsi muutoksia ei välttämättä tallenneta.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="20"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Lataa uudelleen</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/Reload.qml" line="21"/>
         <source>Don&apos;t reload</source>
-        <translation type="unfinished"/>
+        <translation>Älä lataa uudelleen</translation>
     </message>
 </context>
 <context>
@@ -735,7 +735,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="16"/>
         <source>Which streaming service would you like to use?</source>
-        <translation type="unfinished"/>
+        <translation>Mitä suoratoistopalvelua haluat käyttää?</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="177"/>
@@ -745,7 +745,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Controls/ServicesOverview.qml" line="183"/>
         <source>UNDO</source>
-        <translation type="unfinished"/>
+        <translation>KUMOA</translation>
     </message>
 </context>
 <context>
@@ -763,17 +763,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Pages/SettingsPage.qml" line="155"/>
         <source>Restore all settings to their &lt;b&gt;default value&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Palauta kaikki asetukset &lt;b&gt;oletusarvoihin&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Pages/SettingsPage.qml" line="191"/>
         <source>Are you sure you want to restore all settings to their default values?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti palauttaa kaikki asetukset oletusarvoihin?</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Pages/SettingsPage.qml" line="192"/>
         <source>Confirm restore defaults</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista oletusten palauttaminen</translation>
     </message>
 </context>
 <context>
@@ -977,7 +977,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/SettingsTranslator.js" line="91"/>
         <source>Streaming Services</source>
-        <translation type="unfinished"/>
+        <translation>Suoratoistopalvelut</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/SettingsTranslator.js" line="47"/>
@@ -1226,7 +1226,7 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="41"/>
         <source>Version </source>
-        <translation type="unfinished"/>
+        <translation>Versio</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="41"/>
@@ -1241,27 +1241,27 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="178"/>
         <source>No user script found</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjäskriptiä ei löydy</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="188"/>
         <source>Add user script</source>
-        <translation type="unfinished"/>
+        <translation>Lisää käyttäjäskripti</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="194"/>
         <source>Click to add a user script</source>
-        <translation type="unfinished"/>
+        <translation>Napsauta lisätäksesi käyttäjäskriptin</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="291"/>
         <source>Remove script</source>
-        <translation type="unfinished"/>
+        <translation>Poista skripti</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="294"/>
         <source>Are you sure you want to remove user script </source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa käyttäjäskriptin</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="348"/>
@@ -1286,17 +1286,17 @@ listened to will appear here...</source>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="430"/>
         <source>Confirm remove user script</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista käyttäjäskriptin poistaminen</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="440"/>
         <source>Javascript files</source>
-        <translation type="unfinished"/>
+        <translation>Javascript-tiedostot</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/StreamingServiceSettingsDialog.qml" line="441"/>
         <source>Choose a user script</source>
-        <translation type="unfinished"/>
+        <translation>Valitse käyttäjäskripti</translation>
     </message>
 </context>
 <context>
