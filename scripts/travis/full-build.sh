@@ -17,7 +17,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     make -j2;
 
     # run all tests
-    pushd src/tests
+    pushd tests
     ctest --output-on-failure;
     popd;
     src/main/MellowPlayer --auto-quit-delay 10000 --log-level 1;
@@ -34,7 +34,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     make -j2;
 
     # run all tests
-    pushd src/tests
+    pushd tests
     ctest --output-on-failure;
     popd
 

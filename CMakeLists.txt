@@ -52,6 +52,11 @@ include(cmake/InstallDirs.cmake)
 include(cmake/Cotire.cmake)
 
 add_subdirectory(src)
+add_subdirectory(plugins)
+if(BUILD_TESTS)
+    enable_testing(true)
+    add_subdirectory(tests)
+endif()
 
 # Summary
 message(STATUS "Building MellowPlayer v${MellowPlayer_VERSION}")

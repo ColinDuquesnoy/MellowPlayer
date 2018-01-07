@@ -7,7 +7,7 @@ build_dir=build
 mkdir -p ${build_dir}/src/main/MellowPlayer.app/Contents/PlugIns/services
 mkdir -p ${build_dir}/src/main/MellowPlayer.app/Contents/Resources
 
-cp -R src/plugins/ ${build_dir}/src/main/MellowPlayer.app/Contents/PlugIns/services
+cp -R plugins/ ${build_dir}/src/main/MellowPlayer.app/Contents/PlugIns/services
 cp scripts/packaging/osx/mellowplayer.icns ${build_dir}/src/main/MellowPlayer.app/Contents/Resources
 cp scripts/packaging/osx/Info.plist ${build_dir}/src/main/MellowPlayer.app/Contents
 

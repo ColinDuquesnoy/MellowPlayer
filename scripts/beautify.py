@@ -24,4 +24,4 @@ if __name__ == "__main__":
         os.chdir("..")
 
     clang_format_recursive(os.path.join(os.getcwd(), "src"))
-    js_beautify_recursive(os.path.join(os.getcwd(), "src/plugins"))
+    js_beautify_recursive(os.path.join(os.getcwd(), "plugins"))

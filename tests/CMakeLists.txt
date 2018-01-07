@@ -1,10 +1,11 @@
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/catch)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/fakeit)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/gtest-gmock)
+include_directories(../src/lib)
 include_directories(.)
 include_directories(Lib)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-add_definitions(-DPLUGINS_DIR=\"${CMAKE_SOURCE_DIR}/src/plugins\")
+add_definitions(-DPLUGINS_DIR=\"${CMAKE_SOURCE_DIR}/plugins\")
 add_definitions(-DTEST_SUITE=1)
 set(CMAKE_CXX_FLAGS "${TESTS_CMAKE_CXX_FLAGS}")
 
