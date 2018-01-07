@@ -1,10 +1,9 @@
 #include "QSettingsStore.hpp"
-#include <QDebug>
 
+using namespace std;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
-using namespace std;
 
 QSettingsStore::QSettingsStore() : qSettings_(make_unique<QSettings>("MellowPlayer", "3"))
 {

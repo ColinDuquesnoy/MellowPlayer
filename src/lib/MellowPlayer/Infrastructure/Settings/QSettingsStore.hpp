@@ -1,7 +1,8 @@
 #pragma once
 
-#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
+#include <memory>
 #include <QSettings>
+#include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 
 namespace MellowPlayer::Infrastructure
 {
