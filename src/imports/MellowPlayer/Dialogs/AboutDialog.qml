@@ -72,7 +72,7 @@ Popup {
                 }
 
                 Label {
-                    text: qsTr("Copyright 2014-2017 Colin Duquesnoy")
+                    text: qsTr("Copyright 2014-2018 Colin Duquesnoy")
 
                     Layout.alignment: Qt.AlignCenter
                 }

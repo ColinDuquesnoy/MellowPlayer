@@ -15,8 +15,8 @@
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="75"/>
-        <source>Copyright 2014-2017 Colin Duquesnoy</source>
-        <translation></translation>
+        <source>Copyright 2014-2018 Colin Duquesnoy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="87"/>
