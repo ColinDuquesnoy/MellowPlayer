@@ -8,7 +8,7 @@ using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("QSettingsStoreTests")
 {
-    QSettingsStore qSettingsStore();
+    QSettingsStore qSettingsStore;
     qSettingsStore.setOrganizationName("MellowPlayer.Tests");
 
     SECTION("defaultValue")
