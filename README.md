@@ -149,8 +149,7 @@ Example build commands:
 Make sure you've built MellowPlayer with -DBUILD_TEST.
 
 ```bash
-cd build\tests
-ctest -V
+make test
 ```
 
 # Contributing
