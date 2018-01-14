@@ -13,7 +13,7 @@ pushd build;
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # build
-    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr ..;
+    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr -DCHECK_QML_SYNTAX=ON ..;
     make -j2;
 
     # run all tests
@@ -28,7 +28,7 @@ fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # build
-    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON ..;
+    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DCHECK_QML_SYNTAX=ON ..;
     make -j2;
 
     # run all tests
