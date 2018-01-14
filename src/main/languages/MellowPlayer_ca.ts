@@ -14,7 +14,7 @@
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="75"/>
         <source>Copyright 2014-2018 Colin Duquesnoy</source>
-        <translation type="unfinished"/>
+        <translation>Drets d&apos;autor 2014-2018 Colin Duquesnoy</translation>
     </message>
     <message>
         <location filename="../../imports/MellowPlayer/Dialogs/AboutDialog.qml" line="87"/>
