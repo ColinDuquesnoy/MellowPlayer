@@ -1,5 +1,30 @@
 # Change Log
 
+## [3.3.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.0) (2018-01-14)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.2.0...3.3.0)
+
+**Implemented enhancements:**
+
+- \[New Service\] Add support for player.fm [\#182](https://github.com/ColinDuquesnoy/MellowPlayer/issues/182)
+- Use custom dialogs for WebEngine dialogs [\#180](https://github.com/ColinDuquesnoy/MellowPlayer/issues/180)
+- Improve centering of services overview grid [\#178](https://github.com/ColinDuquesnoy/MellowPlayer/issues/178)
+- Improve web views management [\#177](https://github.com/ColinDuquesnoy/MellowPlayer/issues/177)
+- Redesign service settings [\#176](https://github.com/ColinDuquesnoy/MellowPlayer/issues/176)
+- Use QtWebChannel to interact with streaming service web page [\#172](https://github.com/ColinDuquesnoy/MellowPlayer/issues/172)
+- Add Network Proxy Support [\#170](https://github.com/ColinDuquesnoy/MellowPlayer/issues/170)
+
+**Fixed bugs:**
+
+- Broken Wynk integration plugin [\#181](https://github.com/ColinDuquesnoy/MellowPlayer/issues/181)
+- Scrolling in the service settings page is slow and emits lots of QML warnings [\#175](https://github.com/ColinDuquesnoy/MellowPlayer/issues/175)
+- Quit shortcut doesn't work anymore [\#174](https://github.com/ColinDuquesnoy/MellowPlayer/issues/174)
+- CMake developper warning [\#173](https://github.com/ColinDuquesnoy/MellowPlayer/issues/173)
+- Fail to build when Qt was linked using GNU Gold Linker [\#171](https://github.com/ColinDuquesnoy/MellowPlayer/issues/171)
+
+**Closed issues:**
+
+- Update copyright year [\#185](https://github.com/ColinDuquesnoy/MellowPlayer/issues/185)
+
 ## [3.2.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.2.0) (2017-12-18)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.1.0...3.2.0)
 
