@@ -1,10 +1,18 @@
 # Change Log
 
+## [3.3.1](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.1) (2018-01-14)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.2.0...3.3.1)
+
+**Fixed bugs:**
+
+- Build issues when packaging version 3.3.0 [\#188](https://github.com/ColinDuquesnoy/MellowPlayer/issues/188)
+
 ## [3.3.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.0) (2018-01-14)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.2.0...3.3.0)
 
 **Implemented enhancements:**
 
+- Add Russian localization [\#186](https://github.com/ColinDuquesnoy/MellowPlayer/issues/186)
 - \[New Service\] Add support for player.fm [\#182](https://github.com/ColinDuquesnoy/MellowPlayer/issues/182)
 - Use custom dialogs for WebEngine dialogs [\#180](https://github.com/ColinDuquesnoy/MellowPlayer/issues/180)
 - Improve centering of services overview grid [\#178](https://github.com/ColinDuquesnoy/MellowPlayer/issues/178)
