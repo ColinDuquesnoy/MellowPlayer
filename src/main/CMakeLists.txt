@@ -46,7 +46,7 @@ target_link_libraries(${PROJECT_NAME}
 
 IF(USE_QML_IMPORT_LIB)
     target_link_libraries(${PROJECT_NAME} MellowPlayer.QmlImports)
-elseif(QMLLINT)
+elseif(CHECK_QML_SYNTAX AND QMLLINT)
     add_dependencies(MellowPlayer check_qml_syntax)
 ENDIF()
 
