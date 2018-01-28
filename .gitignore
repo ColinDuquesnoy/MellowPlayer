@@ -28,6 +28,8 @@ doxyxml
 _build
 bin
 dist
+# Python
+*.pyc
 
 # Pycharm project files
 .idea
