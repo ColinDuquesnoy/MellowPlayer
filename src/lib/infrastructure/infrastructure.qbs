@@ -1,17 +1,18 @@
 import qbs 1.0
 import qbs.TextFile
 
-DynamicLibrary {
+Product {
     id: product
 
     name: "MellowPlayer.Infrastructure"
+    type: platform.libraryType
 
     cpp.includePaths: [
         product.sourceDirectory + "/include",
         project.thridPartyIncludePath,
         project.thridPartyIncludePath + "/spdlog-0.11.0/include/"
     ]
-    cpp.cxxLanguageVersion: "c++17"
+    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Group {
         name: "Source Files"
@@ -26,7 +27,7 @@ DynamicLibrary {
             files: [
                 "src/Updater/Windows/*.cpp"
             ]
-            condition: qbs.targetOS.contains("windows")
+            condition: platform.windows
         }
 
         Group {
@@ -34,7 +35,7 @@ DynamicLibrary {
             files: [
                 "src/Updater/Linux/*.cpp"
             ]
-            condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
+            condition: platform.unix
         }
 
         Group {
@@ -42,7 +43,7 @@ DynamicLibrary {
             files: [
                 "src/Updater/OSX/*.cpp"
             ]
-            condition: qbs.targetOS.contains("macos")
+            condition: platform.macOs
         }
     }
 
@@ -59,7 +60,7 @@ DynamicLibrary {
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/Windows/*.hpp"
             ]
-            condition: qbs.targetOS.contains("windows")
+            condition: product.platform.windows
         }
 
         Group {
@@ -67,7 +68,7 @@ DynamicLibrary {
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/Linux/*.hpp"
             ]
-            condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
+            condition: product.platform.unix
         }
 
         Group {
@@ -75,7 +76,7 @@ DynamicLibrary {
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/OSX/*.hpp"
             ]
-            condition: qbs.targetOS.contains("macos")
+            condition: product.platform.macOs
         }
     }
 
@@ -107,18 +108,14 @@ DynamicLibrary {
             var cmd = new JavaScriptCommand();
             cmd.description = "generating BuildConfig.cpp";
             cmd.highlight = "codegen";
-            cmd.onWindows = (product.moduleProperty("qbs", "targetOS").contains("windows"));
+            cmd.onWindows = product.platform.windows
             cmd.sourceCode = function() {
                 var file = new TextFile(input.filePath);
                 var content = file.readAll();
-                content = content.replace("@VERSION_MAJOR@", project.versionMajor);
-                content = content.replace("@VERSION_MINOR@", project.versionMinor);
-                content = content.replace("@VERSION_PATCH@", project.versionPatch);
-                content = content.replace("@VERSION_TWEAK@", project.buildNumber);
-                content = content.replace("@VERSION_MAJOR@", project.versionMajor);
-                content = content.replace("@VERSION_MINOR@", project.versionMinor);
-                content = content.replace("@VERSION_PATCH@", project.versionPatch);
-                content = content.replace("@VERSION_TWEAK@", project.buildNumber);
+                content = content.replace(/@VERSION_MAJOR@/g, project.versionMajor);
+                content = content.replace(/@VERSION_MINOR@/g, project.versionMinor);
+                content = content.replace(/@VERSION_PATCH@/g, project.versionPatch);
+                content = content.replace(/@VERSION_TWEAK@/g, project.buildNumber);
                 content = content.replace("@BUILD_DATE@", project.buildDate);
                 content = content.replace("@SOURCE_DIR@", project.sourceDirectory);
                 content = content.replace("@DEFAULT_THEME@", project.defaultTheme);
@@ -137,6 +134,7 @@ DynamicLibrary {
     Depends { name: "Qt.network" }
     Depends { name: "Qt.sql" }
     Depends { name: 'MellowPlayer.Domain' }
+    Depends { name: 'platform' }
 
     Export {
         Depends { name: 'cpp' }
@@ -147,8 +145,7 @@ DynamicLibrary {
         Depends { name: "Qt.sql" }
         Depends { name: 'MellowPlayer.Domain' }
 
-        cpp.cxxLanguageVersion: product.cpp.cxxLanguageVersion
+        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }
-

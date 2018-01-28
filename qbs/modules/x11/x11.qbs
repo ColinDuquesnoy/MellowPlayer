@@ -8,10 +8,9 @@ Module {
         id: probe
         name: "x11"
     }
-    cpp.cxxFlags: base.concat(probe.cflags)
-    cpp.libraryPaths: base.concat(probe.libraryPaths)
-    cpp.dynamicLibraries: base.concat(probe.libraries)
+    cpp.cxxFlags: found ? base.concat(probe.cflags) : base
+    cpp.libraryPaths: found ? base.concat(probe.libraryPaths) : base
+    cpp.dynamicLibraries: found ? base.concat(probe.libraries) : base
 
-    property bool found: (qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")) && probe.found
-    onFoundChanged: console.warn("found x11: " + found)
+    property bool found: probe.found
 }

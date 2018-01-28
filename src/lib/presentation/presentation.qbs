@@ -3,14 +3,14 @@ import qbs.Probes
 import qbs.TextFile
 import Settings
 
-DynamicLibrary {
+Product {
     id: product
 
     name: "MellowPlayer.Presentation"
+    type: platform.libraryType
 
-    type: ["dynamiclibrary", "js"]
     cpp.includePaths: [ product.sourceDirectory + "/include" ]
-    cpp.cxxLanguageVersion: "c++17"
+    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Group {
         name: "Imports"
@@ -32,7 +32,7 @@ DynamicLibrary {
             files: [
                 "src/Mpris/Linux/*.cpp"
             ]
-            condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
+            condition: product.platform.unix
         }
 
         Group {
@@ -59,7 +59,7 @@ DynamicLibrary {
             files: [
                 "include/MellowPlayer/Presentation/Mpris/Linux/*.hpp"
             ]
-            condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
+            condition: product.platform.unix
         }
 
         Group {
@@ -84,18 +84,19 @@ DynamicLibrary {
     }
 
     Depends { name: 'cpp' }
+    Depends { name: "platform"}
     Depends { name: "Qt.core" }
     Depends { name: "Qt.concurrent" }
     Depends { name: "Qt.widgets" }
     Depends { name: "Qt.network" }
     Depends { name: "Qt.webengine" }
     Depends { name: "Qt.sql" }
-    Depends { name: "Qt.dbus"; condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd") }
+    Depends { name: "Qt.dbus"; condition: platform.unix }
     Depends { name: 'MellowPlayer.Domain' }
     Depends { name: 'MellowPlayer.Infrastructure' }
     Depends { name: 'qxtglobalshortcut' }
     Depends { name: "settings_translator" }
-    Depends { name: "libnotify"}
+    Depends { name: "libnotify"; condition: platform.unix }
 
     Export {
         Depends { name: 'cpp' }
@@ -106,13 +107,13 @@ DynamicLibrary {
         Depends { name: "Qt.webengine" }
         Depends { name: "Qt.webenginewidgets" }
         Depends { name: "Qt.sql" }
-        Depends { name: "Qt.dbus"; condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd") }
+        Depends { name: "Qt.dbus"; condition: product.platform.unix }
         Depends { name: 'MellowPlayer.Domain' }
         Depends { name: 'MellowPlayer.Infrastructure' }
         Depends { name: 'qxtglobalshortcut' }
         Depends { name: "settings_translator" }
 
-        cpp.cxxLanguageVersion: product.cpp.cxxLanguageVersion
+        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }

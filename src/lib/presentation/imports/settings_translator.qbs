@@ -22,7 +22,7 @@ Product {
             var cmd = new JavaScriptCommand();
             cmd.description = "generating SettingsTranslator.js";
             cmd.highlight = "codegen";
-            cmd.onWindows = (product.moduleProperty("qbs", "targetOS").contains("windows"));
+            cmd.onWindows = product.platform.windows
             cmd.sourceCode = function() {
                 var inFile = new TextFile(input.filePath);
                 var schema = Settings.getSchema();
@@ -47,4 +47,6 @@ Product {
             return cmd;
         }
     }
+
+    Depends { name: "platform" }
 }

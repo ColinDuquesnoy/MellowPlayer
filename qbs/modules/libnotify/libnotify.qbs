@@ -8,9 +8,9 @@ Module {
         id: probe
         name: "libnotify"
     }
-    cpp.cxxFlags: base.concat(probe.cflags)
-    cpp.libraryPaths: base.concat(probe.libraryPaths)
-    cpp.dynamicLibraries: base.concat(probe.libraries)
+    cpp.cxxFlags: found ? base.concat(probe.cflags) : base
+    cpp.libraryPaths: found ? base.concat(probe.libraryPaths) : base
+    cpp.dynamicLibraries: found ? base.concat(probe.libraries) : base
 
-    property bool found: (qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")) && probe.found
+    property bool found: probe.found
 }

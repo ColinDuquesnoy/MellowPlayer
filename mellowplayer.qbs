@@ -3,21 +3,21 @@ import qbs 1.0
 Project {
     id: project
 
-    property int versionMajor: 3
-    property int versionMinor: 3
-    property int versionPatch: 50
-    property int buildNumber: 0
-    property string thridPartyIncludePath: project.sourceDirectory + "/3rdparty"
-    property string buildDate: {
-        var d = new Date();
-        return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-    }
-
     // Build options
     property string defaultTheme: "Adaptive"
     property string libDir: "lib"
 
-    name: "mellowplayer"
+    // Version info
+    property int versionMajor: 3
+    property int versionMinor: 3
+    property int versionPatch: 50
+    property int buildNumber: 0
+    property string buildDate: { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+
+    // Utils
+    property string thridPartyIncludePath: project.sourceDirectory + "/3rdparty"
+
+    name: "MellowPlayer"
     qbsSearchPaths: "qbs"
     references: [
         "3rdparty/libqxt/libqxt.qbs",

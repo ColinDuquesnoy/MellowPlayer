@@ -7,7 +7,11 @@ Product {
     type: "application"
     name: "MellowPlayer"
 
+    bundle.isBundle: platform.isBundle
+
     Depends { name: "cpp" }
+    Depends { name: "bundle" }
+    Depends { name: "platform" }
     Depends { name: "Qt.webengine" }
     Depends { name: "Qt.quickcontrols2" }
     Depends { name: "MellowPlayer.Domain" }

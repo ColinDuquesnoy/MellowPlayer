@@ -7,11 +7,12 @@ StaticLibrary {
     name: "qxtglobalshortcut"
     condition: !qxt.found
 
-    cpp.cxxLanguageVersion: "c++17"
+    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
     cpp.includePaths: [
         product.sourceDirectory + "/src/core",
         product.sourceDirectory + "/src/widgets",
     ]
+    cpp.frameworks: platform.macOs ? base.concate(["Carbon", "Cocoa"]) : base
 
     Group {
         name: "Source Files"
@@ -32,28 +33,29 @@ StaticLibrary {
     Group {
         name: "Windows"
         files: "src/widgets/win/qxtglobalshortcut_win.cpp"
-        condition: qbs.targetOS.contains("windows")
+        condition: { return product.platform.windows; }
     }
 
     Group {
-        name: "X11"
+        name: "Unix"
         files: "src/widgets/x11/qxtglobalshortcut_x11.cpp"
-        condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
+        condition: product.platform.unix
     }
 
     Group {
         name: "MacOS"
         files: "src/widgets/mac/qxtglobalshortcut_mac.cpp"
-        condition: qbs.targetOS.contains("macos")
+        condition: product.platform.macOs
     }
 
     Depends { name: 'cpp' }
+    Depends { name: "platform" }
     Depends { name: "Qt.core" }
     Depends { name: "Qt.core-private" }
     Depends { name: "Qt.gui-private" }
     Depends { name: "Qt.widgets" }
-    Depends { name: "qxt" }
-    Depends { name: "x11"; condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd") }
+    Depends { name: "qxt"; condition: platform.unix }
+    Depends { name: "x11"; condition: platform.unix }
 
     Export {
         Depends { name: 'cpp' }
@@ -62,7 +64,7 @@ StaticLibrary {
         Depends { name: "Qt.gui-private" }
         Depends { name: "Qt.widgets" }
 
-        cpp.cxxLanguageVersion: product.cpp.cxxLanguageVersion
+        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
         cpp.cxxFlags: product.cxxFlags
         cpp.linkerFlags: product.cxxFlags

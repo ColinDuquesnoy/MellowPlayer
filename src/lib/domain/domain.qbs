@@ -2,13 +2,14 @@ import qbs 1.0
 import qbs.TextFile
 import Settings
 
-DynamicLibrary {
+Product {
     id: product
 
     name: "MellowPlayer.Domain"
+    type: platform.libraryType
 
     cpp.includePaths: [product.sourceDirectory + "/include", product.buildDirectory]
-    cpp.cxxLanguageVersion: "c++17"
+    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Group {
         name: "Source Files"
@@ -36,10 +37,10 @@ DynamicLibrary {
     }
 
     Depends { name: 'cpp' }
+    Depends { name: "platform" }
     Depends { name: "Qt.core" }
     Depends { name: "Qt.gui" }
     Depends { name: "Qt.qml" }
-
 
     Group {
         name: "SettingKey"
@@ -58,7 +59,7 @@ DynamicLibrary {
             var cmd = new JavaScriptCommand();
             cmd.description = "generating SettingKey.hpp";
             cmd.highlight = "codegen";
-            cmd.onWindows = (product.moduleProperty("qbs", "targetOS").contains("windows"));
+            cmd.onWindows = product.platform.windows
             cmd.sourceCode = function() {
                 var inFile = new TextFile(input.filePath);
                 var keys = Settings.getKeys(Settings.getSchema())
@@ -82,7 +83,7 @@ DynamicLibrary {
         Depends { name: "Qt.gui" }
         Depends { name: "Qt.qml" }
 
-        cpp.cxxLanguageVersion: product.cpp.cxxLanguageVersion
+        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }
