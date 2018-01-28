@@ -1,10 +1,18 @@
 # Change Log
 
-## [3.3.1](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.1) (2018-01-14)
-[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.2.0...3.3.1)
+## [3.3.2](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.2) (2018-01-28)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.1...3.3.2)
 
 **Fixed bugs:**
 
+- openSUSE package is broken [\#192](https://github.com/ColinDuquesnoy/MellowPlayer/issues/192)
+
+## [3.3.1](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.1) (2018-01-14)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.0...3.3.1)
+
+**Fixed bugs:**
+
+- Missing QtWebChannel dependency on Ubuntu \(version 3.3.1\) [\#190](https://github.com/ColinDuquesnoy/MellowPlayer/issues/190)
 - Build issues when packaging version 3.3.0 [\#188](https://github.com/ColinDuquesnoy/MellowPlayer/issues/188)
 
 ## [3.3.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.0) (2018-01-14)
@@ -41,7 +49,9 @@
 - Allow to customize notifications per service [\#158](https://github.com/ColinDuquesnoy/MellowPlayer/issues/158)
 - Add support for compiling on FreeBSD [\#157](https://github.com/ColinDuquesnoy/MellowPlayer/issues/157)
 - Add a way to easily open the logs folder [\#156](https://github.com/ColinDuquesnoy/MellowPlayer/issues/156)
+- Use system qxtglobalshortcut library if available [\#151](https://github.com/ColinDuquesnoy/MellowPlayer/issues/151)
 - Add missing QtWebEngine command line arguments [\#150](https://github.com/ColinDuquesnoy/MellowPlayer/issues/150)
+-  Appdata.xml file for Gnome Software Center  [\#149](https://github.com/ColinDuquesnoy/MellowPlayer/issues/149)
 - Improve state restoration [\#141](https://github.com/ColinDuquesnoy/MellowPlayer/issues/141)
 
 **Fixed bugs:**
@@ -55,7 +65,13 @@
 - \[Windows\] Blank screen on Deezer [\#152](https://github.com/ColinDuquesnoy/MellowPlayer/issues/152)
 - \[UI Regression\] Service grid is not centered anymore [\#147](https://github.com/ColinDuquesnoy/MellowPlayer/issues/147)
 - Deezer love button broken [\#146](https://github.com/ColinDuquesnoy/MellowPlayer/issues/146)
+- Player window does not show on macOs High Sierra [\#144](https://github.com/ColinDuquesnoy/MellowPlayer/issues/144)
 - Logout cancelled by MellowPlayer [\#143](https://github.com/ColinDuquesnoy/MellowPlayer/issues/143)
+
+**Closed issues:**
+
+- Debian package for Ubuntu 17.10 [\#137](https://github.com/ColinDuquesnoy/MellowPlayer/issues/137)
+- Broken AppImage [\#166](https://github.com/ColinDuquesnoy/MellowPlayer/issues/166)
 
 **Merged pull requests:**
 
@@ -141,12 +157,21 @@
 - High DPI issue [\#71](https://github.com/ColinDuquesnoy/MellowPlayer/issues/71)
 - Soundcloud integration broken [\#60](https://github.com/ColinDuquesnoy/MellowPlayer/issues/60)
 
+**Closed issues:**
+
+- Windows Packaging [\#44](https://github.com/ColinDuquesnoy/MellowPlayer/issues/44)
+- Use QtQuickControls2 dialog set for QtWebengine [\#67](https://github.com/ColinDuquesnoy/MellowPlayer/issues/67)
+
 **Merged pull requests:**
 
 - German translation finished. [\#89](https://github.com/ColinDuquesnoy/MellowPlayer/pull/89) ([ZeroDot1](https://github.com/ZeroDot1))
 
 ## [2.95.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/2.95.0) (2017-06-24)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/2.2.5...2.95.0)
+
+**Closed issues:**
+
+- OSX Packaging [\#45](https://github.com/ColinDuquesnoy/MellowPlayer/issues/45)
 
 
 

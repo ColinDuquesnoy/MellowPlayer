@@ -1,7 +1,7 @@
 unreleased=true
-future-release=3.3.1
+future-release=3.3.2
 since-tag=2.2.5
 exclude-tags=Continuous
-exclude_labels=duplicate,question,invalid,wontfix,rejected,infrastructure,technical task,packaging,news,not our bug,discussion,website
+exclude_labels=duplicate,question,invalid,wontfix,rejected,infrastructure,technical task,news,not our bug,discussion,website,support request
 issues-wo-labels=false
 enhancement-labels=feature
