@@ -12,6 +12,8 @@ Product {
     cpp.includePaths: [ product.sourceDirectory + "/include" ]
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
+    property bool hasLibnotify: product.libnotify !== undefined && product.libnotify.found
+
     Group {
         name: "Imports"
         files: "imports/imports.qrc"
@@ -40,7 +42,7 @@ Product {
             files: [
                 "src/Notifications/Presenters/Linux/*.cpp"
             ]
-            condition: libnotify.found
+            condition: product.hasLibnotify
         }
     }
 
@@ -67,7 +69,7 @@ Product {
             files: [
                 "include/MellowPlayer/Presentation/Notifications/Presenters/Linux/*.hpp"
             ]
-            condition: product.libnotify.found
+            condition: product.hasLibnotify
         }
     }
 

@@ -5,14 +5,14 @@ StaticLibrary {
     id: product
 
     name: "qxtglobalshortcut"
-    condition: !qxt.found
+    condition: product.qxt === undefined || !product.qxt.found
 
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
     cpp.includePaths: [
         product.sourceDirectory + "/src/core",
         product.sourceDirectory + "/src/widgets",
     ]
-    cpp.frameworks: platform.macOs ? base.concate(["Carbon", "Cocoa"]) : base
+    cpp.frameworks: platform.macOs ? base.concat(["Carbon", "Cocoa"]) : base
 
     Group {
         name: "Source Files"
