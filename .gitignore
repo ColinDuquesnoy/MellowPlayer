@@ -61,7 +61,6 @@ appdir/
 qt/
 
 qt\.zip
-schema.json
 .vscode
 /.vs
 /venv

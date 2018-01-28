@@ -5,17 +5,13 @@ StaticLibrary {
     id: product
 
     name: "qxtglobalshortcut"
+    condition: !qxt.found
+
     cpp.cxxLanguageVersion: "c++17"
-
-    Probes.PkgConfigProbe {
-        id: pkgConfig
-
-        name: "x11"
-        condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd")
-    }
-    cpp.cxxFlags: base.concat(pkgConfig.cflags)
-    cpp.libraryPaths: base.concat(pkgConfig.libraryPaths)
-    cpp.dynamicLibraries: base.concat(pkgConfig.libraries)
+    cpp.includePaths: [
+        product.sourceDirectory + "/src/core",
+        product.sourceDirectory + "/src/widgets",
+    ]
 
     Group {
         name: "Source Files"
@@ -56,11 +52,9 @@ StaticLibrary {
     Depends { name: "Qt.core-private" }
     Depends { name: "Qt.gui-private" }
     Depends { name: "Qt.widgets" }
+    Depends { name: "qxt" }
+    Depends { name: "x11"; condition: qbs.targetOS.contains("linux") || qbs.targetOS.contains("bsd") }
 
-    cpp.includePaths: [
-        product.sourceDirectory + "/src/core",
-        product.sourceDirectory + "/src/widgets",
-    ]
     Export {
         Depends { name: 'cpp' }
         Depends { name: "Qt.core" }
