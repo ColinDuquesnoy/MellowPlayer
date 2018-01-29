@@ -7,7 +7,7 @@ Module {
     property bool windows: qbs.targetOS.contains("windows")
 
     // platform specific library link options
-    property string libraryType: windows || macOs ? "staticlibrary" : "dynamiclibrary"
+    property string libraryType: "staticlibrary"
     property bool isBundle: macOs
     property string cxxLanguageVersion: unix ? "c++17" : "c++1z"
 }
