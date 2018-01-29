@@ -5,7 +5,7 @@
 #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 
 #include <MellowPlayer/Infrastructure/Platform/Linux/IMpris.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 using namespace MellowPlayer::Infrastructure;

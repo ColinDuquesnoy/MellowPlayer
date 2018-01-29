@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Domain/Logging/LoggerConfig.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 namespace MellowPlayer::Infrastructure::Tests

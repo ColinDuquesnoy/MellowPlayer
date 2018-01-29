@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/UserScripts/UserScriptFactory.hpp>
 
 using namespace MellowPlayer::Domain;

@@ -115,7 +115,6 @@ Product {
         Depends { name: 'qxtglobalshortcut' }
         Depends { name: "settings_translator" }
 
-        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }

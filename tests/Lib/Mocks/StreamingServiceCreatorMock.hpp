@@ -1,6 +1,6 @@
 #pragma once
 #include <MellowPlayer/Domain/StreamingServices/IStreamingServiceCreator.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 using namespace MellowPlayer::Domain;

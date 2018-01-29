@@ -64,7 +64,6 @@ StaticLibrary {
         Depends { name: "Qt.gui-private" }
         Depends { name: "Qt.widgets" }
 
-        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
         cpp.cxxFlags: product.cxxFlags
         cpp.linkerFlags: product.cxxFlags

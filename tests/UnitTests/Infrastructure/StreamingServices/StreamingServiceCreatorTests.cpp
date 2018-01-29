@@ -1,7 +1,7 @@
 #include "Utils/Helpers.hpp"
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <QtCore/QDir>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <iostream>
 
 using namespace MellowPlayer::Infrastructure;

@@ -1,8 +1,8 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceLoader.hpp>
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;

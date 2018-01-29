@@ -145,7 +145,6 @@ Product {
         Depends { name: "Qt.sql" }
         Depends { name: 'MellowPlayer.Domain' }
 
-        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }

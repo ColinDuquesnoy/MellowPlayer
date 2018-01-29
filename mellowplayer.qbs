@@ -1,11 +1,10 @@
 import qbs
 
 Project {
-    id: project
-
     // Build options
     property string defaultTheme: "Adaptive"
     property string libDir: "lib"
+    property bool buildTests: true
 
     // Version info
     property int versionMajor: 3
@@ -15,7 +14,7 @@ Project {
     property string buildDate: { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
 
     // Utils
-    property string thridPartyIncludePath: project.sourceDirectory + "/3rdparty"
+    property string thridPartyIncludePath: sourceDirectory + "/3rdparty"
 
     name: "MellowPlayer"
     qbsSearchPaths: "qbs"
@@ -27,5 +26,6 @@ Project {
         "src/lib/presentation/presentation.qbs",
         "src/plugins/plugins.qbs",
         "src/main/main.qbs",
+        "tests/tests.qbs",
     ]
 }

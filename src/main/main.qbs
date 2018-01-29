@@ -8,6 +8,7 @@ Product {
     name: "MellowPlayer"
 
     bundle.isBundle: platform.isBundle
+    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Depends { name: "cpp" }
     Depends { name: "bundle" }

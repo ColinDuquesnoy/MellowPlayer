@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/BuildConfig.hpp>
 #include <MellowPlayer/Infrastructure/Application/Application.hpp>
 #include <QtTest/QSignalSpy>

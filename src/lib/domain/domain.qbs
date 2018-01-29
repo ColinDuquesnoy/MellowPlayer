@@ -83,7 +83,6 @@ Product {
         Depends { name: "Qt.gui" }
         Depends { name: "Qt.qml" }
 
-        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
         cpp.includePaths: product.cpp.includePaths
     }
 }

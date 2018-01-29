@@ -1,5 +1,5 @@
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 #include <QObject>
 #include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilters.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilterFactory.hpp>

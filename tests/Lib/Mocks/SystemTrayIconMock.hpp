@@ -1,6 +1,6 @@
 #pragma once
 #include <MellowPlayer/Presentation/Notifications/ISystemTrayIcon.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 using namespace MellowPlayer::Presentation;
