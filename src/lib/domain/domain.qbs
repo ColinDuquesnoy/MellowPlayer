@@ -1,4 +1,4 @@
-import qbs 1.0
+import qbs
 import qbs.TextFile
 import Settings
 

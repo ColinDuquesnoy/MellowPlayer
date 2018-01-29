@@ -1,4 +1,4 @@
-import qbs 1.0
+import qbs
 
 Project {
     id: project
@@ -25,6 +25,7 @@ Project {
         "src/lib/infrastructure/infrastructure.qbs",
         "src/lib/presentation/imports/settings_translator.qbs",
         "src/lib/presentation/presentation.qbs",
+        "src/plugins/plugins.qbs",
         "src/main/main.qbs",
     ]
 }
