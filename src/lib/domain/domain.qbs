@@ -12,7 +12,7 @@ Product {
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Group {
-        name: "Source Files"
+        name: "Sources"
         files: [
             "src/*.cpp",
             "src/*/*.cpp",
@@ -21,7 +21,7 @@ Product {
     }
 
     Group {
-        name: "Header Files"
+        name: "Headers"
         files: [
             "include/MellowPlayer/Domain/*.hpp",
             "include/MellowPlayer/Domain/*/*.hpp",
@@ -43,7 +43,7 @@ Product {
     Depends { name: "Qt.qml" }
 
     Group {
-        name: "SettingKey"
+        name: "SettingKey Header"
         files: ["include/MellowPlayer/Domain/Settings/SettingKey.hpp.in"]
         fileTags: ["hpp.in"]
     }

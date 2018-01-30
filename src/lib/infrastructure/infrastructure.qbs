@@ -15,7 +15,7 @@ Product {
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
     Group {
-        name: "Source Files"
+        name: "Sources"
         files: [
             "src/*.cpp",
             "src/*/*.cpp",
@@ -23,7 +23,7 @@ Product {
         ]
 
         Group {
-            name: "Windows Source Files"
+            name: "Windows Sources"
             files: [
                 "src/Updater/Windows/*.cpp"
             ]
@@ -31,7 +31,7 @@ Product {
         }
 
         Group {
-            name: "Linux/BSD Source Files"
+            name: "Linux/BSD Sources"
             files: [
                 "src/Updater/Linux/*.cpp"
             ]
@@ -39,7 +39,7 @@ Product {
         }
 
         Group {
-            name: "MacOS Source Files"
+            name: "MacOS Sources"
             files: [
                 "src/Updater/OSX/*.cpp"
             ]
@@ -48,7 +48,7 @@ Product {
     }
 
     Group {
-        name: "Header Files"
+        name: "Headers"
         files: [
             "include/MellowPlayer/Infrastructure/*.hpp",
             "include/MellowPlayer/Infrastructure/*/*.hpp",
@@ -56,7 +56,7 @@ Product {
         ]
 
         Group {
-            name: "Windows Header Files"
+            name: "Windows Headers"
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/Windows/*.hpp"
             ]
@@ -64,7 +64,7 @@ Product {
         }
 
         Group {
-            name: "Linux/BSD Header Files"
+            name: "Unix Headers"
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/Linux/*.hpp"
             ]
@@ -72,7 +72,7 @@ Product {
         }
 
         Group {
-            name: "MacOS Header Files"
+            name: "MacOS Headers"
             files: [
                 "include/MellowPlayer/Infrastructure/Updater/OSX/*.hpp"
             ]
@@ -93,7 +93,7 @@ Product {
     }
 
     Group {
-        name: "BuildConfig"
+        name: "BuildConfig Impl"
         files: ["src/BuildConfig.cpp.in"]
         fileTags: ["cpp.in"]
     }

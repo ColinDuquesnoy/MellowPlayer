@@ -16,11 +16,11 @@ Product {
 
     Group {
         name: "Imports"
-        files: "imports/imports.qrc"
+        files: ["imports/imports.qrc", "**/*.qml", "**/*.js"]
     }
 
     Group {
-        name: "Source Files"
+        name: "Sources"
         files: [
             "src/*.cpp",
             "src/*/*.cpp",
@@ -30,7 +30,7 @@ Product {
         ]
 
         Group {
-            name: "MPRIS Source Files"
+            name: "MPRIS Sources"
             files: [
                 "src/Mpris/Linux/*.cpp"
             ]
@@ -38,7 +38,7 @@ Product {
         }
 
         Group {
-            name: "Libnotify Presenter Source Files"
+            name: "Libnotify Presenter Sources"
             files: [
                 "src/Notifications/Presenters/Linux/*.cpp"
             ]
@@ -47,7 +47,7 @@ Product {
     }
 
     Group {
-        name: "Header Files"
+        name: "Headers"
         files: [
             "include/MellowPlayer/Presentation/*.hpp",
             "include/MellowPlayer/Presentation/*/*.hpp",
@@ -57,7 +57,7 @@ Product {
         ]
 
         Group {
-            name: "MPRIS Header Files"
+            name: "MPRIS Headers"
             files: [
                 "include/MellowPlayer/Presentation/Mpris/Linux/*.hpp"
             ]
@@ -65,7 +65,7 @@ Product {
         }
 
         Group {
-            name: "Libnotify Presenter Header Files"
+            name: "Libnotify Presenter Headers"
             files: [
                 "include/MellowPlayer/Presentation/Notifications/Presenters/Linux/*.hpp"
             ]
@@ -97,10 +97,11 @@ Product {
     Depends { name: 'MellowPlayer.Domain' }
     Depends { name: 'MellowPlayer.Infrastructure' }
     Depends { name: 'qxtglobalshortcut' }
-    Depends { name: "settings_translator" }
+    Depends { name: "SettingsTranslator.js" }
     Depends { name: "libnotify"; condition: platform.unix }
 
     Export {
+        Depends { name: "platform"}
         Depends { name: 'cpp' }
         Depends { name: "Qt.core" }
         Depends { name: "Qt.concurrent" }
@@ -109,11 +110,10 @@ Product {
         Depends { name: "Qt.webengine" }
         Depends { name: "Qt.webenginewidgets" }
         Depends { name: "Qt.sql" }
-        Depends { name: "Qt.dbus"; condition: product.platform.unix }
+        Depends { name: "Qt.dbus"; condition: platform.unix }
         Depends { name: 'MellowPlayer.Domain' }
         Depends { name: 'MellowPlayer.Infrastructure' }
         Depends { name: 'qxtglobalshortcut' }
-        Depends { name: "settings_translator" }
 
         cpp.includePaths: product.cpp.includePaths
     }

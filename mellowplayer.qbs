@@ -30,12 +30,7 @@ Project {
     qbsSearchPaths: "qbs"
     references: [
         "3rdparty/libqxt/libqxt.qbs",
-        "src/lib/domain/domain.qbs",
-        "src/lib/infrastructure/infrastructure.qbs",
-        "src/lib/presentation/imports/settings_translator.qbs",
-        "src/lib/presentation/presentation.qbs",
-        "src/plugins/plugins.qbs",
-        "src/main/main.qbs",
+        "src/src.qbs",
         "tests/tests.qbs",
     ]
 }

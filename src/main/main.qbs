@@ -27,15 +27,15 @@ Product {
     }
 
     Group {
-        name: "Source Files"
+        name: "Sources"
         files: [ "*.cpp" ]
     }
     Group {
-        name: "Header Files"
+        name: "Headers"
         files: [ "*.hpp" ]
     }
     Group {
-        name: "QML"
+        name: "Imports"
         files: ["qml.qrc", "main.qml"]
     }
     Group {
