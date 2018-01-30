@@ -11,7 +11,17 @@ Project {
     property int versionMinor: 3
     property int versionPatch: 50
     property int buildNumber: 0
-    property string buildDate: { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+    property string buildDate: {
+        function zeroPad(number, size) {
+            var s = String(number)
+            while (s.length < (size || 2))
+            {
+                s = "0" + s;
+            }
+            return s;
+        }
+        var d = new Date();
+        return d.getFullYear() + "-" + zeroPad(d.getMonth() + 1) + "-" + d.getDate(); }
 
     // Utils
     property string thridPartyIncludePath: sourceDirectory + "/3rdparty"
