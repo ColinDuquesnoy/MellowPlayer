@@ -18,7 +18,6 @@ TEST_CASE("StreamingServiceCreatorTests")
     files.append(QFileInfo(pluginDir + "/" + "metadata.ini"));
 
     for (auto fileInfo : files) {
-        std::cerr << fileInfo.absoluteFilePath().toStdString() << std::endl;
         REQUIRE(fileInfo.exists());
         REQUIRE(!readFile(fileInfo.absoluteFilePath()).isEmpty());
     }
