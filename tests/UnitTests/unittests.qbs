@@ -8,7 +8,6 @@ Project {
     ]
 
     AutotestRunner {
-        builtByDefault: project.buildTests
         limitToSubProject: true
     }
 }
