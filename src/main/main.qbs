@@ -1,5 +1,6 @@
 import qbs
 import qbs.Probes
+import qbs.Xml
 
 Product {
     id: product
@@ -9,6 +10,10 @@ Product {
 
     bundle.isBundle: platform.isBundle
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+
+    Qt.core.resourcePrefix: "/MellowPlayer/Translations"
+    Qt.core.resourceSourceBase: undefined
+    Qt.core.resourceFileBaseName: "languages"
 
     Depends { name: "cpp" }
     Depends { name: "bundle" }
@@ -42,6 +47,68 @@ Product {
         name: "Resources"
         files: ["mellowplayer.ico", "MellowPlayer.rc"]
     }
+
+    Group {
+        name: "Language files"
+        files: ["**/*.ts"]
+    }
+
+    Rule {
+        multiplex: true
+        inputs: ["qm"]
+
+        Artifact {
+            filePath: product.Qt.core.resourceFileBaseName + ".qrc"
+            fileTags: ["qrc"]
+        }
+
+        prepare: {
+            // take from qt.core.resource_data rule
+            var cmd = new JavaScriptCommand();
+            cmd.description = "generating " + output.fileName;
+            cmd.sourceCode = function() {
+                var doc = new Xml.DomDocument("RCC");
+
+                var rccNode = doc.createElement("RCC");
+                rccNode.setAttribute("version", "1.0");
+                doc.appendChild(rccNode);
+
+                var inputsByPrefix = {}
+                for (var i = 0; i < inputs["qm"].length; ++i) {
+                    var inp = inputs["qm"][i];
+                    var prefix = inp.Qt.core.resourcePrefix;
+                    var inputsList = inputsByPrefix[prefix] || [];
+                    inputsList.push(inp);
+                    inputsByPrefix[prefix] = inputsList;
+                }
+
+                for (var prefix in inputsByPrefix) {
+                    var qresourceNode = doc.createElement("qresource");
+                    qresourceNode.setAttribute("prefix", prefix);
+                    rccNode.appendChild(qresourceNode);
+
+                    for (var i = 0; i < inputsByPrefix[prefix].length; ++i) {
+                        var inp = inputsByPrefix[prefix][i];
+                        var fullResPath = inp.filePath;
+                        var baseDir = inp.Qt.core.resourceSourceBase;
+                        var resAlias = baseDir
+                            ? FileInfo.relativePath(baseDir, fullResPath) : inp.fileName;
+
+                        var fileNode = doc.createElement("file");
+                        fileNode.setAttribute("alias", resAlias);
+                        qresourceNode.appendChild(fileNode);
+
+                        var fileTextNode = doc.createTextNode(fullResPath);
+                        fileNode.appendChild(fileTextNode);
+                    }
+                }
+
+                doc.save(output.filePath, 4);
+            };
+            return [cmd];
+        }
+    }
+
 
     Group {
         name: "Share"

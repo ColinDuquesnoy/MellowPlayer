@@ -12,11 +12,16 @@ Product {
     cpp.includePaths: [ product.sourceDirectory + "/include" ]
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
+    Qt.core.resourcePrefix: "/MellowPlayer"
+    Qt.core.resourceSourceBase: sourceDirectory
+    Qt.core.resourceFileBaseName: "imports"
+
     property bool hasLibnotify: product.libnotify !== undefined && product.libnotify.found
 
     Group {
         name: "Imports"
-        files: ["imports/imports.qrc", "**/*.qml", "**/*.js"]
+        files: ["**/*.qml", "**/*.js", "**/qmldir"]
+        fileTags: "qt.core.resource_data"
     }
 
     Group {
