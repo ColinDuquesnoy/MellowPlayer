@@ -25,6 +25,7 @@ UpdateToolBar 3.0 Controls/UpdateToolBar.qml
 ValidationMessage 3.0 Controls/ValidationMessage.qml
 WebView 3.0 Controls/WebView.qml
 WebViewContextMenu 3.0 Controls/WebViewContextMenu.qml
+DateCategoryTranslator 3.0 DateCategoryTranslator.js
 BoolSettingDelegate 3.0 Delegates/BoolSettingDelegate.qml
 ColorSettingDelegate 3.0 Delegates/ColorSettingDelegate.qml
 EnumSettingDelegate 3.0 Delegates/EnumSettingDelegate.qml
@@ -37,6 +38,7 @@ SpinBoxDelegate 3.0 Delegates/SpinBoxDelegate.qml
 StringSettingDelegate 3.0 Delegates/StringSettingDelegate.qml
 TextFieldDelegate 3.0 Delegates/TextFieldDelegate.qml
 DevToolsWindow 3.0 DevToolsWindow.qml
+Dialogs 3.0 Dialogs.js
 AboutDialog 3.0 Dialogs/AboutDialog.qml
 Alert 3.0 Dialogs/Alert.qml
 Authentication 3.0 Dialogs/Authentication.qml
@@ -58,6 +60,4 @@ SettingsPage 3.0 Pages/SettingsPage.qml
 AutomaticSettingsPage 3.0 SettingsPages/AutomaticSettingsPage.qml
 CacheSettingsPage 3.0 SettingsPages/CacheSettingsPage.qml
 ServiceSettingsPage 3.0 SettingsPages/ServiceSettingsPage.qml
-DateCategoryTranslator 3.0 DateCategoryTranslator.js
-Dialogs 3.0 Dialogs.js
 SettingsTranslator 3.0 SettingsTranslator.js
