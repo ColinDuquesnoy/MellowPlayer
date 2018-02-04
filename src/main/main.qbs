@@ -109,7 +109,6 @@ Product {
         }
     }
 
-
     Group {
         name: "Share"
 

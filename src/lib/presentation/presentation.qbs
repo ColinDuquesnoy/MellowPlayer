@@ -102,7 +102,6 @@ Product {
     Depends { name: 'MellowPlayer.Domain' }
     Depends { name: 'MellowPlayer.Infrastructure' }
     Depends { name: 'qxtglobalshortcut' }
-    Depends { name: "SettingsTranslator.js" }
     Depends { name: "libnotify"; condition: platform.unix }
 
     Export {

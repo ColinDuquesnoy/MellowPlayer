@@ -5,7 +5,6 @@ Project {
     references: [
         "domain/domain.qbs",
         "infrastructure/infrastructure.qbs",
-        "presentation/imports/settings_translator.qbs",
         "presentation/presentation.qbs",
     ]
 }

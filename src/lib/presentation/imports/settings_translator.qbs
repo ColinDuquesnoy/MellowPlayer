@@ -4,7 +4,7 @@ import Settings
 
 Product {
     type: "js"
-    name: "SettingsTranslator.js"
+    name: "settings_translator"
 
     Group {
         name: "SettingsTranslator.js.in"
