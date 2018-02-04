@@ -101,7 +101,8 @@ Product {
     Depends { name: "Qt.dbus"; condition: platform.unix }
     Depends { name: 'MellowPlayer.Domain' }
     Depends { name: 'MellowPlayer.Infrastructure' }
-    Depends { name: 'qxtglobalshortcut' }
+    Depends { name: "qxt" }
+    Depends { name: "qxtglobalshortcut"; condition: !qxt.found; required: false }
     Depends { name: "libnotify"; condition: platform.unix }
 
     Export {
@@ -115,9 +116,10 @@ Product {
         Depends { name: "Qt.webenginewidgets" }
         Depends { name: "Qt.sql" }
         Depends { name: "Qt.dbus"; condition: platform.unix }
-        Depends { name: 'MellowPlayer.Domain' }
-        Depends { name: 'MellowPlayer.Infrastructure' }
-        Depends { name: 'qxtglobalshortcut' }
+        Depends { name: "MellowPlayer.Domain" }
+        Depends { name: "MellowPlayer.Infrastructure" }
+        Depends { name: "qxt" }
+        Depends { name: "qxtglobalshortcut"; condition: !qxt.found; required: false }
 
         cpp.includePaths: product.cpp.includePaths
     }
