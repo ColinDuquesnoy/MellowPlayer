@@ -21,7 +21,9 @@ Project {
             return s;
         }
         var d = new Date();
-        return d.getFullYear() + "-" + zeroPad(d.getMonth() + 1) + "-" + d.getDate(); }
+        return d.getFullYear() + "-" + zeroPad(d.getMonth() + 1) + "-" + zeroPad(d.getDate());
+
+    }
 
     // Utils
     property string thridPartyIncludePath: sourceDirectory + "/3rdparty"
