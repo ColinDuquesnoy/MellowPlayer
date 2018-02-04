@@ -1,7 +1,7 @@
 #include <MellowPlayer/Infrastructure/Network/FileDownloader.hpp>
 #include <QtCore/QTemporaryDir>
 #include <QtTest/qtestsystem.h>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

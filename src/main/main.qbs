@@ -2,124 +2,128 @@ import qbs
 import qbs.Probes
 import qbs.Xml
 
-Product {
-    id: product
+Project {
+    name: "Application"
 
-    type: "application"
-    name: "MellowPlayer"
+    Product {
+        id: product
 
-    bundle.isBundle: platform.isBundle
-    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+        type: "application"
+        name: "MellowPlayer"
 
-    Qt.core.resourcePrefix: "/MellowPlayer/Translations"
-    Qt.core.resourceSourceBase: undefined
-    Qt.core.resourceFileBaseName: "languages"
+        bundle.isBundle: platform.isBundle
+        cpp.cxxLanguageVersion: platform.cxxLanguageVersion
 
-    Depends { name: "cpp" }
-    Depends { name: "bundle" }
-    Depends { name: "platform" }
-    Depends { name: "Qt.webengine" }
-    Depends { name: "Qt.quickcontrols2" }
-    Depends { name: "MellowPlayer.Domain" }
-    Depends { name: "MellowPlayer.Infrastructure" }
-    Depends { name: "MellowPlayer.Presentation" }
+        Qt.core.resourcePrefix: "/MellowPlayer/Translations"
+        Qt.core.resourceSourceBase: undefined
+        Qt.core.resourceFileBaseName: "languages"
 
-    Group {
-        name: "Application"
-        fileTagsFilter: "application"
-        qbs.install: true
-        qbs.installDir: "bin"
-    }
+        Depends { name: "cpp" }
+        Depends { name: "bundle" }
+        Depends { name: "platform" }
+        Depends { name: "Qt.webengine" }
+        Depends { name: "Qt.quickcontrols2" }
+        Depends { name: "MellowPlayer.Domain" }
+        Depends { name: "MellowPlayer.Infrastructure" }
+        Depends { name: "MellowPlayer.Presentation" }
 
-    Group {
-        name: "Sources"
-        files: [ "*.cpp" ]
-    }
-    Group {
-        name: "Headers"
-        files: [ "*.hpp" ]
-    }
-    Group {
-        name: "Imports"
-        files: ["qml.qrc", "main.qml"]
-    }
-    Group {
-        name: "Resources"
-        files: ["mellowplayer.ico", "MellowPlayer.rc"]
-    }
-
-    Group {
-        name: "Language files"
-        files: ["**/*.ts"]
-    }
-
-    Rule {
-        multiplex: true
-        inputs: ["qm"]
-
-        Artifact {
-            filePath: product.Qt.core.resourceFileBaseName + ".qrc"
-            fileTags: ["qrc"]
+        Group {
+            name: "Application"
+            fileTagsFilter: "application"
+            qbs.install: true
+            qbs.installDir: "bin"
         }
 
-        prepare: {
-            // take from qt.core.resource_data rule
-            var cmd = new JavaScriptCommand();
-            cmd.description = "generating " + output.fileName;
-            cmd.sourceCode = function() {
-                var doc = new Xml.DomDocument("RCC");
+        Group {
+            name: "Sources"
+            files: [ "*.cpp" ]
+        }
+        Group {
+            name: "Headers"
+            files: [ "*.hpp" ]
+        }
+        Group {
+            name: "Imports"
+            files: ["qml.qrc", "main.qml"]
+        }
+        Group {
+            name: "Resources"
+            files: ["mellowplayer.ico", "MellowPlayer.rc"]
+        }
 
-                var rccNode = doc.createElement("RCC");
-                rccNode.setAttribute("version", "1.0");
-                doc.appendChild(rccNode);
+        Group {
+            name: "Language files"
+            files: ["**/*.ts"]
+        }
 
-                var inputsByPrefix = {}
-                for (var i = 0; i < inputs["qm"].length; ++i) {
-                    var inp = inputs["qm"][i];
-                    var prefix = inp.Qt.core.resourcePrefix;
-                    var inputsList = inputsByPrefix[prefix] || [];
-                    inputsList.push(inp);
-                    inputsByPrefix[prefix] = inputsList;
-                }
+        Rule {
+            multiplex: true
+            inputs: ["qm"]
 
-                for (var prefix in inputsByPrefix) {
-                    var qresourceNode = doc.createElement("qresource");
-                    qresourceNode.setAttribute("prefix", prefix);
-                    rccNode.appendChild(qresourceNode);
+            Artifact {
+                filePath: product.Qt.core.resourceFileBaseName + ".qrc"
+                fileTags: ["qrc"]
+            }
 
-                    for (var i = 0; i < inputsByPrefix[prefix].length; ++i) {
-                        var inp = inputsByPrefix[prefix][i];
-                        var fullResPath = inp.filePath;
-                        var baseDir = inp.Qt.core.resourceSourceBase;
-                        var resAlias = baseDir
-                            ? FileInfo.relativePath(baseDir, fullResPath) : inp.fileName;
+            prepare: {
+                // take from qt.core.resource_data rule
+                var cmd = new JavaScriptCommand();
+                cmd.description = "generating " + output.fileName;
+                cmd.sourceCode = function() {
+                    var doc = new Xml.DomDocument("RCC");
 
-                        var fileNode = doc.createElement("file");
-                        fileNode.setAttribute("alias", resAlias);
-                        qresourceNode.appendChild(fileNode);
+                    var rccNode = doc.createElement("RCC");
+                    rccNode.setAttribute("version", "1.0");
+                    doc.appendChild(rccNode);
 
-                        var fileTextNode = doc.createTextNode(fullResPath);
-                        fileNode.appendChild(fileTextNode);
+                    var inputsByPrefix = {}
+                    for (var i = 0; i < inputs["qm"].length; ++i) {
+                        var inp = inputs["qm"][i];
+                        var prefix = inp.Qt.core.resourcePrefix;
+                        var inputsList = inputsByPrefix[prefix] || [];
+                        inputsList.push(inp);
+                        inputsByPrefix[prefix] = inputsList;
                     }
-                }
 
-                doc.save(output.filePath, 4);
-            };
-            return [cmd];
+                    for (var prefix in inputsByPrefix) {
+                        var qresourceNode = doc.createElement("qresource");
+                        qresourceNode.setAttribute("prefix", prefix);
+                        rccNode.appendChild(qresourceNode);
+
+                        for (var i = 0; i < inputsByPrefix[prefix].length; ++i) {
+                            var inp = inputsByPrefix[prefix][i];
+                            var fullResPath = inp.filePath;
+                            var baseDir = inp.Qt.core.resourceSourceBase;
+                            var resAlias = baseDir
+                                ? FileInfo.relativePath(baseDir, fullResPath) : inp.fileName;
+
+                            var fileNode = doc.createElement("file");
+                            fileNode.setAttribute("alias", resAlias);
+                            qresourceNode.appendChild(fileNode);
+
+                            var fileTextNode = doc.createTextNode(fullResPath);
+                            fileNode.appendChild(fileTextNode);
+                        }
+                    }
+
+                    doc.save(output.filePath, 4);
+                };
+                return [cmd];
+            }
         }
-    }
 
-    Group {
-        name: "Share"
+        Group {
+            name: "Share"
 
-        files: [
-            "share/applications/mellowplayer.desktop",
-            "share/icons/hicolor/scalable/apps/mellowplayer.svg",
-            "share/metainfo/mellowplayer.appdata.xml"
-        ]
+            files: [
+                "share/applications/mellowplayer.desktop",
+                "share/icons/hicolor/scalable/apps/mellowplayer.svg",
+                "share/metainfo/mellowplayer.appdata.xml"
+            ]
 
-        qbs.install: true
-        qbs.installSourceBase: "share"
-        qbs.installDir: "share"
+            qbs.install: true
+            qbs.installSourceBase: "share"
+            qbs.installDir: "share"
+        }
     }
 }

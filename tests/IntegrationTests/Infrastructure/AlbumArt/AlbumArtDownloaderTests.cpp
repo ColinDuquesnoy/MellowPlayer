@@ -1,6 +1,6 @@
 #include <MellowPlayer/Infrastructure/AlbumArt/AlbumArtDownloader.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <iostream>
 #include <QtCore/QTemporaryDir>
 

@@ -1,15 +1,15 @@
 import qbs
 
 Project {
-    name: "Unit Tests"
+    name: "Integration Tests"
     references: [
-        "Domain/domain.qbs",
         "Infrastructure/infrastructure.qbs",
-        "Presentation/presentation.qbs"
+        "Presentation/presentation.qbs",
+        "Mpris/mpristests.qbs"
     ]
 
     AutotestRunner {
-        name: "unittests-runner"
+        name: "integrationtests-runner"
         limitToSubProject: true
     }
 }

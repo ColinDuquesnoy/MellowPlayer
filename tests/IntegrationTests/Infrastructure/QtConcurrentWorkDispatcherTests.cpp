@@ -1,6 +1,6 @@
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <QtTest/qtestsystem.h>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <thread>
 
 using namespace std::this_thread;

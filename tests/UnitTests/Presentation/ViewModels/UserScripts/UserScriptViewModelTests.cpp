@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <UnitTests/Domain/UserScripts/FakeUserScript.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptViewModel.hpp>
 #include <QtTest/QSignalSpy>

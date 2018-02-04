@@ -1,7 +1,7 @@
 #include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/SystemTrayIconPresenter.hpp>
 #include <Mocks/SystemTrayIconMock.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Presentation;
 

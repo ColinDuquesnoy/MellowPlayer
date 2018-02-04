@@ -1,7 +1,7 @@
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistoryEntry.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDatabase.hpp>
 #include <QDir>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;

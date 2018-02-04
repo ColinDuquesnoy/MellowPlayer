@@ -2,6 +2,6 @@ import qbs
 import CatchTest
 
 CatchTest {
-    layer: "Domain"
+    layer: "Presentation"
     kind: "UnitTests"
 }

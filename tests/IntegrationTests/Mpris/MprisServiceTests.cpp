@@ -1,5 +1,5 @@
 #include <QtCore>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
 #include <MellowPlayer/Domain/Player/CurrentPlayer.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>

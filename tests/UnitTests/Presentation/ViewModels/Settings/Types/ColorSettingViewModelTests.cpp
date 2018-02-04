@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Presentation/ViewModels/Settings/Types/ColorSettingViewModel.hpp>
 #include <QtTest/QSignalSpy>

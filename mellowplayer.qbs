@@ -31,7 +31,7 @@ Project {
     name: "MellowPlayer"
     qbsSearchPaths: "qbs"
     references: [
-        "3rdparty/libqxt/libqxt.qbs",
+        "3rdparty/3rdparty.qbs",
         "src/src.qbs",
         "tests/tests.qbs",
     ]

@@ -9,7 +9,7 @@
 #include <Mocks/StreamingServiceCreatorMock.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;

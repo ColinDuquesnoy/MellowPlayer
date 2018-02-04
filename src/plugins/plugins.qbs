@@ -1,14 +1,18 @@
 import qbs
 
-Product {
-    name: "MellowPlayer.Plugins"
+Project {
+    name: "Plugins"
 
-    Group {
-        name: "Web Plugins"
-        files: ["web/**/*"]
+    Product {
+        name: "Web"
 
-        qbs.install: true
-        qbs.installSourceBase: "web"
-        qbs.installDir: "share/mellowplayer/plugins"
+        Group {
+            name: "Sources"
+            files: ["web/**/*"]
+
+            qbs.install: true
+            qbs.installSourceBase: "web"
+            qbs.installDir: "share/mellowplayer/plugins"
+        }
     }
 }

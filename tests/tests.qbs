@@ -11,7 +11,8 @@ Project {
     condition: project.buildTests
     name: "Tests"
     references: [
-        "Lib/Lib.qbs",
-        "UnitTests/unittests.qbs"
+        "Lib/TestLib.qbs",
+        "UnitTests/unittests.qbs",
+        "IntegrationTests/integrationtests.qbs"
     ]
 }

@@ -4,8 +4,8 @@
 #include <MellowPlayer/Infrastructure/AlbumArt/LocalAlbumArt.hpp>
 #include <MellowPlayer/Presentation/Notifications/Notifications.hpp>
 #include <Utils/DependencyPool.hpp>
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 
 using namespace fakeit;
 using namespace MellowPlayer::Domain;

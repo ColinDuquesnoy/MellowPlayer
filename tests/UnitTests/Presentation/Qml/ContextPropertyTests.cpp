@@ -1,7 +1,7 @@
 #include <MellowPlayer/Presentation/Qml/ContextProperty.hpp>
 #include "FakeQmlApplicationEngine.hpp"
 #include "FakeContextProperties.hpp"
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Presentation;
 using namespace MellowPlayer::Presentation::Tests;

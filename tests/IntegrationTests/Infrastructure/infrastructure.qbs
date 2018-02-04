@@ -3,5 +3,5 @@ import CatchTest
 
 CatchTest {
     layer: "Infrastructure"
-    kind: "UnitTests"
+    kind: "IntegrationTests"
 }

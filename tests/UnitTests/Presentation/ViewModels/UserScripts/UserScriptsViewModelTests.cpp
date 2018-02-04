@@ -1,5 +1,5 @@
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScript.hpp>
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>

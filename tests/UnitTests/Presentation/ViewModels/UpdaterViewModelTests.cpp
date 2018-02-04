@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <Utils/DependencyPool.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UpdaterViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Updater/Updater.hpp>
