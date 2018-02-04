@@ -4,6 +4,7 @@ import qbs.Process
 Product {
     type: "ts"
     name: "update_translations"
+    builtByDefault: false
 
     Group {
         name: "Translation source"
@@ -15,6 +16,7 @@ Product {
 
     Rule {
         inputs: ["_en.ts"]
+        alwaysRun: true
 
         Artifact {
             filePath: "MellowPlayer_en.ts"

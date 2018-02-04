@@ -5,6 +5,7 @@ Project {
 
     references: [
         "main/languages/update_translations.qbs",
-        "lib/presentation/imports/settings_translator.qbs",
+        "lib/presentation/imports/MellowPlayer/update_settings_translator.qbs",
+        "lib/presentation/imports/MellowPlayer/update_qmldir.qbs",
     ]
 }

@@ -4,16 +4,18 @@ import Settings
 
 Product {
     type: "js"
-    name: "settings_translator"
+    name: "update_settings_translator"
+    builtByDefault: false
 
     Group {
         name: "SettingsTranslator.js.in"
-        files: ["MellowPlayer/SettingsTranslator.js.in"]
+        files: ["SettingsTranslator.js.in"]
         fileTags: ["js.in"]
     }
 
     Rule {
         inputs: ["js.in"]
+        alwaysRun: true
 
         Artifact {
             filePath: "SettingsTranslator.js"
@@ -35,12 +37,6 @@ Product {
                 content = content.replace("%(tooltips)s", Settings.getTooltips(schema));
                 content = content.replace("%(categories)s", Settings.getCategories(schema));
                 file = new TextFile(input.filePath.replace(".in", ""), TextFile.WriteOnly);
-                file.truncate();
-                file.write(content);
-                file.close();
-
-                // to force update of imports.qrc
-                file = new TextFile(output.filePath, TextFile.WriteOnly);
                 file.truncate();
                 file.write(content);
                 file.close();
