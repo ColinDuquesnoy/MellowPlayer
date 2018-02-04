@@ -2,15 +2,12 @@ import qbs
 import qbs.Probes
 import qbs.TextFile
 import Settings
+import MellowPlayerLib
 
-Product {
+MellowPlayerLib {
     id: product
 
-    name: "MellowPlayer.Presentation"
-    type: platform.libraryType
-
-    cpp.includePaths: [ product.sourceDirectory + "/include" ]
-    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+    layer: "Presentation"
 
     Qt.core.resourcePrefix: "/MellowPlayer"
     Qt.core.resourceSourceBase: sourceDirectory
@@ -83,16 +80,6 @@ Product {
         files: "resources/presentation.qrc"
     }
 
-    Group {
-        name: "Library"
-        fileTagsFilter: "dynamiclibrary"
-        qbs.install: true
-        qbs.installDir: project.libDir
-    }
-
-    Depends { name: 'cpp' }
-    Depends { name: "platform"}
-    Depends { name: "Qt.core" }
     Depends { name: "Qt.concurrent" }
     Depends { name: "Qt.widgets" }
     Depends { name: "Qt.network" }

@@ -1,15 +1,15 @@
 import qbs
 import qbs.TextFile
 import Settings
+import MellowPlayerLib
 
-Product {
+MellowPlayerLib {
     id: product
 
-    name: "MellowPlayer.Domain"
+    layer: "Domain"
     type: platform.libraryType
 
-    cpp.includePaths: [product.sourceDirectory + "/include", product.buildDirectory]
-    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+    cpp.includePaths: base.concat([product.buildDirectory])
 
     Group {
         name: "Sources"
@@ -36,8 +36,6 @@ Product {
         qbs.installDir: project.libDir
     }
 
-    Depends { name: 'cpp' }
-    Depends { name: "platform" }
     Depends { name: "Qt.core" }
     Depends { name: "Qt.gui" }
     Depends { name: "Qt.qml" }

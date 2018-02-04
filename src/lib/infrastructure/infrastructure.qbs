@@ -1,18 +1,12 @@
 import qbs
 import qbs.TextFile
+import MellowPlayerLib
 
-Product {
+MellowPlayerLib {
     id: product
 
-    name: "MellowPlayer.Infrastructure"
-    type: platform.libraryType
-
-    cpp.includePaths: [
-        product.sourceDirectory + "/include",
-        project.thridPartyIncludePath,
-        project.thridPartyIncludePath + "/spdlog-0.11.0/include/"
-    ]
-    cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+    layer: "Infrastructure"
+    cpp.includePaths: base.concat([project.thridPartyIncludePath + "/spdlog-0.11.0/include/"])
 
     Group {
         name: "Sources"
@@ -127,14 +121,11 @@ Product {
         }
     }
 
-    Depends { name: 'cpp' }
-    Depends { name: "Qt.core" }
     Depends { name: "Qt.concurrent" }
     Depends { name: "Qt.widgets" }
     Depends { name: "Qt.network" }
     Depends { name: "Qt.sql" }
     Depends { name: 'MellowPlayer.Domain' }
-    Depends { name: 'platform' }
 
     Export {
         Depends { name: 'cpp' }
