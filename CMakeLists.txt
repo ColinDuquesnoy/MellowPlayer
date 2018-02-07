@@ -43,7 +43,7 @@ if (UNIX AND NOT APPLE)
 endif()
 
 include(cmake/FindDependencies.cmake)
-include_directories(3rdparty)
+include_directories(SYSTEM 3rdparty)
 # Sources
 if(ENABLE_COVERAGE)
     include(cmake/CodeCoverage.cmake)

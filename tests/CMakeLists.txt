@@ -1,6 +1,6 @@
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/catch)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/fakeit)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/gtest-gmock)
+include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/gtest-gmock)
 include_directories(../src/lib)
 include_directories(.)
 include_directories(Lib)
