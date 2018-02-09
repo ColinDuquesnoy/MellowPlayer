@@ -26,7 +26,7 @@ if(MSVC_COMPILER)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 else()
     set(TESTS_CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions -Winvalid-pch")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions -Winvalid-pch -Wnon-virtual-dtor -Wdelete-non-virtual-dtor")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -W -Wall -Wextra -Wno-unused-private-field -Wno-c++1z-extensions -Winvalid-pch -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wno-class-memaccess")
 endif()
 
 # Setup compiler settings
