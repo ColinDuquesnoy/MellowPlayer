@@ -1,12 +1,23 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
+<RCC version="1.0">
+    <qresource prefix="/MellowPlayer/Translations">
     <qresource prefix="/MellowPlayer/Translations">
         <file>MellowPlayer_ca.qm</file>
+        <file>MellowPlayer_ca.qm</file>
+        <file>MellowPlayer_de.qm</file>
         <file>MellowPlayer_de.qm</file>
         <file>MellowPlayer_en.qm</file>
+        <file>MellowPlayer_en.qm</file>
+        <file>MellowPlayer_es.qm</file>
         <file>MellowPlayer_es.qm</file>
         <file>MellowPlayer_fi.qm</file>
+        <file>MellowPlayer_fi.qm</file>
+        <file>MellowPlayer_fr.qm</file>
         <file>MellowPlayer_fr.qm</file>
         <file>MellowPlayer_ru.qm</file>
+        <file>MellowPlayer_ru.qm</file>
+    </qresource>
+</RCC>
     </qresource>
 </RCC>
