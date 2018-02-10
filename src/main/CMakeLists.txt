@@ -13,20 +13,20 @@ if (UPDATE_TRANSLATIONS)
 else()
     qt5_add_translation(QM_FILES ${TS_FILES})
 endif()
-qt5_add_resources(RSCS languages/languages.qrc)
 add_custom_target(gen_qrc DEPENDS ${RSCS} ${QM_FILES} ${TS_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES} ${TS_FILES})
 
 # generate languages.qrc
-file(WRITE languages/languages.qrc "<!DOCTYPE RCC>\n")
-file(APPEND languages/languages.qrc "<RCC version=\"1.0\">\n")
-file(APPEND languages/languages.qrc "    <qresource prefix=\"/MellowPlayer/Translations\">\n")
+set(LANGUAGE_QRC "${CMAKE_CURRENT_BINARY_DIR}/languages/languages.qrc")
+file(WRITE ${LANGUAGE_QRC} "<!DOCTYPE RCC>\n")
+file(APPEND ${LANGUAGE_QRC} "<RCC version=\"1.0\">\n")
+file(APPEND ${LANGUAGE_QRC} "    <qresource prefix=\"/MellowPlayer/Translations\">\n")
 foreach(FILE ${QM_FILES})
     string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/languages/" "" RELATIVE_PATH ${FILE})
-    file(APPEND languages/languages.qrc "        <file>${RELATIVE_PATH}</file>\n")
+    file(APPEND ${LANGUAGE_QRC} "        <file alias=\"${RELATIVE_PATH}\">${FILE}</file>\n")
 endforeach()
-file(APPEND languages/languages.qrc "    </qresource>\n")
-file(APPEND languages/languages.qrc "</RCC>\n")
+file(APPEND ${LANGUAGE_QRC} "    </qresource>\n")
+file(APPEND ${LANGUAGE_QRC} "</RCC>\n")
 set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/qrc_languages.cpp PROPERTY SKIP_AUTOMOC ON)
 
 # Create main executable
@@ -36,7 +36,7 @@ if(WIN32)
     set(SOURCE_FILES ${SOURCE_FILES} MellowPlayer.rc)
     configure_file(../../scripts/packaging/windows/setup_templ.iss ${CMAKE_BINARY_DIR}/setup.iss)
 endif()
-add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS} qml.qrc)
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE WIN32 ${SOURCE_FILES} ${QM_FILES} ${RSCS} ${LANGUAGE_QRC} qml.qrc)
 target_link_libraries(${PROJECT_NAME}
                       MellowPlayer.Domain
                       MellowPlayer.Presentation
