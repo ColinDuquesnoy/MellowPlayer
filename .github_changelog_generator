@@ -1,5 +1,5 @@
 unreleased=true
-future-release=3.3.2
+future-release=3.3.3
 since-tag=2.2.5
 exclude-tags=Continuous
 exclude_labels=duplicate,question,invalid,wontfix,rejected,infrastructure,technical task,news,not our bug,discussion,website,support request
