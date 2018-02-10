@@ -25,7 +25,7 @@ if (NOT qxtglobalshortcut_FOUND)
     include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/core)
     include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/libqxt/src/widgets/)
 endif()
-include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.11.0/include/)
+include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/3rdparty/spdlog-0.16.3/include/)
 
 add_library(${LIB_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} infrastructure.qrc ${BUILD_CONFIG_SOURCE})
 target_link_libraries(${LIB_NAME} ${PROJECT_NAME}.Domain
