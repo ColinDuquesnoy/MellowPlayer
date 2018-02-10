@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.3.3](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.3) (2018-02-10)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.2...3.3.3)
+
+**Fixed bugs:**
+
+- Compilation issues with GCC8 [\#193](https://github.com/ColinDuquesnoy/MellowPlayer/issues/193)
+
 ## [3.3.2](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.2) (2018-01-28)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.1...3.3.2)
 
