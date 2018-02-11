@@ -27,7 +27,6 @@ foreach(FILE ${QM_FILES})
 endforeach()
 file(APPEND ${LANGUAGE_QRC} "    </qresource>\n")
 file(APPEND ${LANGUAGE_QRC} "</RCC>\n")
-set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/qrc_languages.cpp PROPERTY SKIP_AUTOMOC ON)
 
 # Create main executable
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_SOURCE_DIR}/lib/*.hpp)
