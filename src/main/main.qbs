@@ -43,8 +43,15 @@ Project {
         }
         Group {
             name: "Headers"
-            files: [ "*.hpp" ]
+            files: [ "DI.hpp", "Program.hpp" ]
         }
+
+        Group {
+            name: "Precompiled headers"
+            files: ["stdafx.hpp"]
+            fileTags: ["cpp_pch_src"]
+        }
+
         Group {
             name: "Imports"
             files: ["qml.qrc", "main.qml"]

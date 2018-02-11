@@ -32,6 +32,7 @@ Project {
     qbsSearchPaths: "qbs"
     references: [
         "3rdparty/3rdparty.qbs",
+        "docs/docs.qbs",
         "src/src.qbs",
         "tests/tests.qbs",
     ]

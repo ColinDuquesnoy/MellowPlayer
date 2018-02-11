@@ -15,6 +15,12 @@ Product {
     cpp.cxxFlags: platform.testCxxFlags
     cpp.treatWarningsAsErrors: false
 
+    Group {
+        name: "Precompiled headers"
+        files: ["tests_stdafx.hpp"]
+        fileTags: ["cpp_pch_src"]
+    }
+
     Depends { name: 'cpp' }
     Depends { name: 'platform' }
     Depends { name: 'Qt.core' }

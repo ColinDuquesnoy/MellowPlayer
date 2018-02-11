@@ -1,7 +1,7 @@
 import qbs
 
 Project {
-    name: "3rdparty"
+    name: "Third Parties"
 
     references: [
         "libqxt/libqxt.qbs"

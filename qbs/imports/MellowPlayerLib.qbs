@@ -26,4 +26,10 @@ Product {
         qbs.install: true
         qbs.installDir: project.libDir
     }
+
+    Group {
+        name: "Precompiled headers"
+        files: [product.sourceDirectory + "/src/stdafx.hpp"]
+        fileTags: ["cpp_pch_src"]
+    }
 }
