@@ -1,17 +1,34 @@
 FAQ & Known issues
 ==================
 
-Frequently asked questions
---------------------------
+Playback does not start on some services such as Soundcloud or Mixcloud... What can I do?
+-----------------------------------------------------------------------------------------
 
-- I cannot play music on Spotify and on Mixcloud. What can I do?
+Services that don't use flash often requires proprietary audio codecs to be installed on your system. 
 
-Spotify and Mixcloud streaming has become quite tricky since they moved away from flash for managing content.
+Make sure you have installed the properietary audio codecs (ffmpeg with extra codecs) by following your distribution's install instructions.
 
-The official release of Qt and our official releases are not built with proprietary codecs for licensing reasons.
 
-**You need to recompile Qt WebEngine yourself with proprietary codecs support**. *Note that some linux distributions such as KaOS and OpenSuse ships QtWebEngine with proprietary codecs related.*
+The application crash at startup on GNU/Linux with open source NVIDIA drivers. What can I do?
+---------------------------------------------------------------------------------------------
 
-Spotify also requires the Widevine plugin to work. You can find more information in this `blog post`_.
+Qt/QML applications don't work well with the open source NVIDIA drivers (nouveau). It is recommended to **use the proprietary NVIDIA drivers**.
 
-.. _blog post: http://blog.qt.io/blog/2016/06/03/netflix-qt-webengine-5-7/
+
+There is no music playback on Spotify. What can I do?
+-----------------------------------------------------
+
+Make sure you have installed both the properietary audio codecs (ffmpeg with extra codecs) and the widevine DRM plugin. The DRM plugin can be extracted from chromium binary archive:
+
+.. code-block:: bash
+
+    wget https://archive.archlinux.org/packages/c/chromium/chromium-61.0.3163.100-1-x86_64.pkg.tar.xz
+    wget https://dl.google.com/widevine-cdm/1.4.8.1008-linux-x64.zip
+    tar -xvf chromium-61.0.3163.100-1-x86_64.pkg.tar.xz
+    unzip 1.4.8.1008-linux-x64.zip
+
+    sudo mkdir /usr/lib/chromium
+    sudo cp libwidevinecdm.so /usr/lib/chromium
+    sudo cp ./usr/lib/chromium/libwidevinecdmadapter.so /usr/lib/chromium
+    sudo chmod 644 /usr/lib/chromium/libwidevinecdm.so
+    sudo chmod 644 /usr/lib/chromium/libwidevinecdmadapter.so
