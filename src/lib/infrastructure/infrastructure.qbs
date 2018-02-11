@@ -6,7 +6,7 @@ MellowPlayerLib {
     id: product
 
     layer: "Infrastructure"
-    cpp.includePaths: base.concat([project.thridPartyIncludePath + "/spdlog-0.11.0/include/"])
+    cpp.includePaths: base.concat([project.thridPartyIncludePath + "/spdlog-0.16.3/include/"])
 
     Group {
         name: "Sources"

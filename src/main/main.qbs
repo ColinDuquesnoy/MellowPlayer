@@ -13,6 +13,9 @@ Project {
 
         bundle.isBundle: platform.isBundle
         cpp.cxxLanguageVersion: platform.cxxLanguageVersion
+        cpp.warningLevel: undefined
+        cpp.cxxFlags: platform.cxxFlags
+        cpp.treatWarningsAsErrors: false
 
         Qt.core.resourcePrefix: "/MellowPlayer/Translations"
         Qt.core.resourceSourceBase: undefined

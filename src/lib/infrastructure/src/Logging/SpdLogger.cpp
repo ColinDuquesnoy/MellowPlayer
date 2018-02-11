@@ -19,7 +19,7 @@ shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfi
 #ifdef Q_OS_WIN
             sinks.push_back(make_shared<sinks::stdout_sink_mt>());
 #else
-            sinks.push_back(make_shared<sinks::ansicolor_sink>(make_shared<sinks::stdout_sink_mt>()));
+            sinks.push_back(make_shared<sinks::ansicolor_stdout_sink_mt>());
 #endif
         }
 
@@ -34,12 +34,12 @@ shared_ptr<logger> SpdLogger::createLogger(const string& name, const LoggerConfi
             }
 
             if (SpdLogger::allRotatingSink_ == nullptr) {
-                SpdLogger::allRotatingSink_ = make_shared<sinks::rotating_file_sink_mt>(logDir + "AllRotating", "log", 1024 * 1024 * 20, 5);
+                SpdLogger::allRotatingSink_ = make_shared<sinks::rotating_file_sink_mt>(logDir + "AllRotating.log", 1024 * 1024 * 20, 5);
                 make_shared<logger>("AllRotating", SpdLogger::allRotatingSink_)->log(level::info, "*******************************************************************************");
                 sinks.push_back(SpdLogger::allRotatingSink_);
             }
 
-            auto loggerSpecificSink = make_shared<sinks::rotating_file_sink_mt>(logFileName, "log", 1024 * 1024 * 20, 5);
+            auto loggerSpecificSink = make_shared<sinks::rotating_file_sink_mt>(logFileName + ".log", 1024 * 1024 * 20, 5);
             make_shared<logger>(name, loggerSpecificSink)->log(level::info, "*******************************************************************************");
             sinks.push_back(loggerSpecificSink);
         }

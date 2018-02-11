@@ -11,7 +11,10 @@ Product {
     
     cpp.includePaths: [ product.sourceDirectory + "/include", project.thridPartyIncludePath,]
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
-    
+    cpp.warningLevel: undefined
+    cpp.cxxFlags: platform.cxxFlags
+    cpp.treatWarningsAsErrors: false
+
     Depends { name: 'cpp' }
     Depends { name: "platform"}
     Depends { name: "Qt.core" }
