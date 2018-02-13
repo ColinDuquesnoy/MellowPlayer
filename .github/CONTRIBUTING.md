@@ -41,7 +41,7 @@ Adding support for a new service
 
 Web streaming service integration plugins are now written in pure javascript.
 
-1. Create a new plugin using the wizard (see hhttp://mellowplayer.readthedocs.io/en/latest/developers/plugins.html#create-a-new-plugin)
+1. Create a new plugin using the wizard (see http://mellowplayer.readthedocs.io/en/latest/developers/plugins.html#create-a-new-plugin)
 2. Edit ``metadata.ini`` (add correct url, name, version,...)
 3. Edit ``description.html`` to describe the streaming service
 4. Customise logo.svg
