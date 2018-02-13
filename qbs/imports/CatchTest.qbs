@@ -7,7 +7,7 @@ Product {
     files: ["**", project.main]
     name: "MellowPlayer." + layer + "." + kind
     type: ["application", "autotest"]
-    consoleApplication: true
+    consoleApplication: platform.windows
 
     cpp.includePaths: base.concat(project.includePaths)
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
