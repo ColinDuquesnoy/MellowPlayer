@@ -12,6 +12,7 @@ StaticLibrary {
         product.sourceDirectory + "/src/core",
         product.sourceDirectory + "/src/widgets",
     ]
+    cpp.defines: ["QXT_STATIC=1"]
     cpp.frameworks: platform.macOs ? base.concat(["Carbon", "Cocoa"]) : base
 
     Group {

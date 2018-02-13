@@ -7,6 +7,7 @@ Product {
     files: ["**", project.main]
     name: "MellowPlayer." + layer + "." + kind
     type: ["application", "autotest"]
+    consoleApplication: true
 
     cpp.includePaths: base.concat(project.includePaths)
     cpp.cxxLanguageVersion: platform.cxxLanguageVersion
@@ -14,12 +15,7 @@ Product {
     cpp.warningLevel: undefined
     cpp.cxxFlags: platform.testCxxFlags
     cpp.treatWarningsAsErrors: false
-
-    Group {
-        name: "Precompiled headers"
-        files: ["tests_stdafx.hpp"]
-        fileTags: ["cpp_pch_src"]
-    }
+    cpp.staticLibraries: layer == "Presentation" && platform.windows ? base.concat(["user32"]) : base
 
     Depends { name: 'cpp' }
     Depends { name: 'platform' }
