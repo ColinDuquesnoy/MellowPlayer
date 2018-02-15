@@ -15,7 +15,7 @@ TEST_CASE("AlbumArtDownloaderTests", "[!mayfail]")
 
     SECTION("download will take some time and a file will be created")
     {
-        REQUIRE(albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/2312266/mellowplayer.svg", "mellowplayer.svg"));
+        REQUIRE(albumArtDownloader.download("https://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/docs/_static/banner.png", "mellowplayer.svg"));
         if (downloadFinishedSpy.wait(2000)) {
             REQUIRE(downloadFinishedSpy.count() == 1);
             auto path = downloadFinishedSpy[0][0].toString();

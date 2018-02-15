@@ -9,7 +9,7 @@ Module {
     property bool windows: qbs.targetOS.contains("windows")
     property var cxxFlags: {
         if (platform.unix) {
-            return [
+            var flags = [
                 "-W",
                 "-Wall",
                 "-Wextra",
@@ -19,6 +19,9 @@ Module {
                 "-Wno-deprecated-declarations",
                 "-Wdelete-non-virtual-dtor",
             ]
+            if (isGcc && project.enableCoverage)
+                flags = flags.concat(["-g", "-O0", "--coverage", "-fprofile-arcs", "-ftest-coverage"])
+            return flags;
         }
         else if (platform.macOs)
             return ["-Weverything"]
@@ -48,4 +51,8 @@ Module {
     property string libraryType: "staticlibrary"
     property bool isBundle: macOs
     property string cxxLanguageVersion: unix ? "c++17" : "c++1z"
+
+    property bool isGcc: cpp.compilerName.indexOf("g++") !== -1
+
+    Depends { name: "cpp" }
 }

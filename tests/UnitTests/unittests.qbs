@@ -9,7 +9,7 @@ Project {
     ]
 
     AutotestRunner {
-        name: "unittests-runner"
+        name: "unit-tests"
         limitToSubProject: true
     }
 }

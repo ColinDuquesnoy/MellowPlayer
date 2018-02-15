@@ -13,9 +13,11 @@ Project {
 
         bundle.isBundle: platform.isBundle
         cpp.cxxLanguageVersion: platform.cxxLanguageVersion
-        cpp.warningLevel: undefined
         cpp.cxxFlags: platform.cxxFlags
+        cpp.linkerFlags: platform.linkerFlags
+        cpp.warningLevel: undefined
         cpp.treatWarningsAsErrors: false
+        cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
 
         Qt.core.resourcePrefix: "/MellowPlayer/Translations"
         Qt.core.resourceSourceBase: undefined

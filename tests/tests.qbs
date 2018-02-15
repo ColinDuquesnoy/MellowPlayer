@@ -15,4 +15,9 @@ Project {
         "UnitTests/unittests.qbs",
         "IntegrationTests/integrationtests.qbs"
     ]
+
+    AutotestRunner {
+        name: "tests"
+        limitToSubProject: true
+    }
 }

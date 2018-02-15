@@ -14,8 +14,10 @@ Product {
     cpp.defines: ['PLUGINS_DIR="' + project.sourceDirectory + 'src/plugins/web"']
     cpp.warningLevel: undefined
     cpp.cxxFlags: platform.testCxxFlags
+    cpp.linkerFlags: platform.linkerFlags
     cpp.treatWarningsAsErrors: false
     cpp.staticLibraries: layer == "Presentation" && platform.windows ? base.concat(["user32"]) : base
+    cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
 
     Depends { name: 'cpp' }
     Depends { name: 'platform' }

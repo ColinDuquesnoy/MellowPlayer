@@ -14,6 +14,7 @@ Product {
     cpp.warningLevel: undefined
     cpp.cxxFlags: platform.cxxFlags
     cpp.treatWarningsAsErrors: false
+    cpp.linkerFlags: platform.linkerFlags
 
     Depends { name: 'cpp' }
     Depends { name: "platform"}

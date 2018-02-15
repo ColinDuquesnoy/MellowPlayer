@@ -4,7 +4,8 @@ Project {
     // Build options
     property string defaultTheme: "Adaptive"
     property string libDir: "lib"
-    property bool buildTests: true
+    property bool buildTests: false
+    property bool enableCoverage: false
 
     // Version info
     property int versionMajor: 3
