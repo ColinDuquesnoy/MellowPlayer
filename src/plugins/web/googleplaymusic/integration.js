@@ -35,7 +35,7 @@ function update() {
     var pp = getButtons().playpause;
     var playbackStatus;
 
-    if (pp.disabled)
+    if (!pp || pp.disabled)
         playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     else if (pp.className.indexOf("playing") != -1)
         playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
