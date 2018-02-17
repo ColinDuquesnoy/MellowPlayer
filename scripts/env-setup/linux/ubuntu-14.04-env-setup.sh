@@ -14,7 +14,8 @@ source /opt/qt${PACKAGE_VERSION}/bin/qt${PACKAGE_VERSION}-env.sh;
 QBS_VERSION=1.10.1
 wget https://download.qt.io/official_releases/qbs/${QBS_VERSION}/qbs-src-${QBS_VERSION}.tar.gz
 tar -xf qbs-src-${QBS_VERSION}.tar.gz
-cd qbs-src-${QBS_VERSION}
+pushd qbs-src-${QBS_VERSION}
 qmake qbs.pro CONFIG+=Release CONFIG-=qbs_enable_unit_tests
 make CC=gcc-7 CXX=g++-7
 sudo make install
+popd
