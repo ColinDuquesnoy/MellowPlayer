@@ -12,10 +12,10 @@ mkdir -p build
 pushd build;
 
 # build
-qbs build -f ../ config:debug
+qbs build -f ../ config:release projects.MellowPlayer.buildTests:true projects.MellowPlayer.enableCoverage:true
 
 # run all tests
-qbs build -f ../ config:debug -p tests
+qbs build -f ../ config:release -p tests
 
 popd;
 
