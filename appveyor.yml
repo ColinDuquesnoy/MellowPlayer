@@ -15,6 +15,9 @@ clone_folder: C:\projects\MellowPlayer
 branches:
   except:
     - gh-pages
+    
+install:
+    - choco install -y qbs --version 1.10.1
 
 build_script:
   - cd C:\projects\MellowPlayer\scripts\appveyor
