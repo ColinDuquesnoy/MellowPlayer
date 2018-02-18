@@ -7,7 +7,7 @@ app_dir=build/release/install-root/Applications/MellowPlayer.app
 mkdir -p ${app_dir}/Contents/PlugIns/services
 mkdir -p ${app_dir}/Contents/Resources
 
-cp -R src/plugins/web/plugins/ ${app_dir}/Contents/PlugIns/services
+cp -R src/plugins/web ${app_dir}/Contents/PlugIns/services
 cp scripts/packaging/osx/mellowplayer.icns ${app_dir}/Contents/Resources
 cp scripts/packaging/osx/Info.plist ${app_dir}/Contents
 
