@@ -1,10 +1,34 @@
 # Change Log
 
+## [3.3.4](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.4) (2018-02-18)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.3...3.3.4)
+
+**Implemented enhancements:**
+
+- add bandcamp plugin [\#200](https://github.com/ColinDuquesnoy/MellowPlayer/pull/200) ([bayang](https://github.com/bayang))
+
+**Fixed bugs:**
+
+- JS errors in ympd [\#207](https://github.com/ColinDuquesnoy/MellowPlayer/issues/207)
+- JS errors in Google Play Music [\#206](https://github.com/ColinDuquesnoy/MellowPlayer/issues/206)
+- JS Error on Deezer login page [\#205](https://github.com/ColinDuquesnoy/MellowPlayer/issues/205)
+- mellowplayer-3.3.3 compilation fails on Fedora 27 [\#196](https://github.com/ColinDuquesnoy/MellowPlayer/issues/196)
+
+**Closed issues:**
+
+- \[Documentation\] Broken links to ReadTheDocs in some files [\#201](https://github.com/ColinDuquesnoy/MellowPlayer/issues/201)
+- error message when generating man/html page with sphinx [\#199](https://github.com/ColinDuquesnoy/MellowPlayer/issues/199)
+
+**Merged pull requests:**
+
+- Fix broken links to ReadTheDocs in some files [\#202](https://github.com/ColinDuquesnoy/MellowPlayer/pull/202) ([andrewjmetzger](https://github.com/andrewjmetzger))
+
 ## [3.3.3](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.3) (2018-02-10)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.2...3.3.3)
 
 **Fixed bugs:**
 
+- AppImage startup fails on 3.3.3  [\#195](https://github.com/ColinDuquesnoy/MellowPlayer/issues/195)
 - Compilation issues with GCC8 [\#193](https://github.com/ColinDuquesnoy/MellowPlayer/issues/193)
 
 ## [3.3.2](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.2) (2018-01-28)
