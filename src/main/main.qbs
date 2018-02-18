@@ -10,6 +10,7 @@ Project {
 
         type: "application"
         name: "MellowPlayer"
+        consoleApplication: false
 
         bundle.isBundle: platform.isBundle
         cpp.cxxLanguageVersion: platform.cxxLanguageVersion

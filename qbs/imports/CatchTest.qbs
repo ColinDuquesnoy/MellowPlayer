@@ -19,6 +19,14 @@ Product {
     cpp.staticLibraries: layer == "Presentation" && platform.windows ? base.concat(["user32"]) : base
     cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
 
+    Group {
+        name: "Application"
+        fileTagsFilter: "application"
+        qbs.install: true
+        qbs.installDir: "tests"
+        condition: platform.windows
+    }
+
     Depends { name: 'cpp' }
     Depends { name: 'platform' }
     Depends { name: 'Qt.core' }
