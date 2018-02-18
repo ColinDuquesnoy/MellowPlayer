@@ -7,6 +7,9 @@ Project {
     property bool buildTests: false
     property bool enableCoverage: false
 
+    // set this to true when building an appimage
+    property bool staticLibCpp: false
+
     // Version info
     property int versionMajor: 3
     property int versionMinor: 3

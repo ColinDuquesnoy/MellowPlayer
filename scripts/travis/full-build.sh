@@ -12,8 +12,7 @@ mkdir -p build
 pushd build;
 
 # build
-qbs build -f ../ release projects.MellowPlayer.buildTests:true projects.MellowPlayer.enableCoverage:true
-
+qbs build -f ../ release projects.MellowPlayer.buildTests:true
 # run all tests
 qbs build -f ../ -p tests release
 
