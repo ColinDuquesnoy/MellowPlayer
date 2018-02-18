@@ -20,7 +20,7 @@ popd;
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     # create AppImage
-    ./scripts/packaging/make_appimage.sh /opt/qt510;
+    ./scripts/packaging/make_appimage.sh /opt/qt59;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
