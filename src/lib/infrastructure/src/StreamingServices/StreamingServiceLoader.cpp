@@ -150,6 +150,7 @@ QStringList StreamingServiceLoader::searchPaths() const
     pluginsDir.cdUp();
     pluginsDir.cd("PlugIns");
     pluginsDir.cd("services");
+    pluginsDir.cd("web");
     paths.append(pluginsDir.path());
 #endif
 
