@@ -27,13 +27,16 @@ mkdir -p appdir
 pushd build
 qbs resolve -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
 qbs build -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
-qbs --clean-install-root config:release
+qbs --clean-install-root release
 popd
 
 ldd appdir/usr/bin/MellowPlayer
 
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=../
+echo "Copying missing files..."
+ls ${QT_DIR}/plugins/imageformats/
 cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
+ls ${QT_DIR}/qml/QtQuick/Controls
 cp -R ${QT_DIR}/qml/QtQuick/Controls ./appdir/usr/qml/QtQuick/
 ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
 

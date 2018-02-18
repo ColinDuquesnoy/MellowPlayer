@@ -10,7 +10,7 @@ PACKAGE_VERSION=${QT_VERSION_MAJOR}${QT_VERSION_MINOR}
 # Install Qt from ppa
 sudo apt-add-repository ppa:beineri/opt-qt-${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}-trusty -y
 sudo apt-get update
-sudo apt-get install build-essential qt${PACKAGE_VERSION}base qt${PACKAGE_VERSION}declarative qt${PACKAGE_VERSION}quickcontrols2 qt${PACKAGE_VERSION}graphicaleffects qt${PACKAGE_VERSION}svg qt${PACKAGE_VERSION}translations qt${PACKAGE_VERSION}script qt${PACKAGE_VERSION}tools qt${PACKAGE_VERSION}webengine mesa-common-dev libgl1-mesa-dev pkg-config cmake libnotify-dev python --fix-missing -y
+sudo apt-get install build-essential qt${PACKAGE_VERSION}base qt${PACKAGE_VERSION}declarative qt${PACKAGE_VERSION}quickcontrols qt${PACKAGE_VERSION}quickcontrols2 qt${PACKAGE_VERSION}graphicaleffects qt${PACKAGE_VERSION}svg qt${PACKAGE_VERSION}translations qt${PACKAGE_VERSION}script qt${PACKAGE_VERSION}tools qt${PACKAGE_VERSION}webengine mesa-common-dev libgl1-mesa-dev pkg-config cmake libnotify-dev python --fix-missing -y
 source /opt/qt${PACKAGE_VERSION}/bin/qt${PACKAGE_VERSION}-env.sh;
 
 # Download a precompiled version of qbs 1.10 (precompiled on trusty)
