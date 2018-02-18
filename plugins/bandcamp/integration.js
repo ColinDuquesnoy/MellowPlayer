@@ -113,7 +113,7 @@ function play() {
         m[1].getElementsByClassName("play-button")[0].click();
     }
     else if (document.location.host === "bandcamp.com" || document.location.host ==="daily.bandcamp.com") {
-        clickOnHome();
+        clickButton("playbutton");
     }
     else {
         clickButton("playbutton");
@@ -177,18 +177,26 @@ function readTimeString(stringTime) {
 }
 
 function readElapsedOnFeed() {
-    var m=document.getElementsByClassName("playing");
-    var elapsed = m[1].getElementsByClassName("time_elapsed")[0];
-    if (elapsed != undefined) {
-        return readTimeString(elapsed.innerHTML);
+    try {
+        var m=document.getElementsByClassName("playing");
+        var elapsed = m[1].getElementsByClassName("time_elapsed")[0];
+        if (elapsed != undefined) {
+            return readTimeString(elapsed.innerHTML);
+        }
+    } catch (e) {
+        return 0;
     }
 }
 
 function readTotalOnFeed() {
-    var m=document.getElementsByClassName("playing");
-    var total = m[1].getElementsByClassName("time_total")[0];
-    if (total != undefined) {
-        return readTimeString(total.innerHTML);
+    try {
+        var m=document.getElementsByClassName("playing");
+        var total = m[1].getElementsByClassName("time_total")[0];
+        if (total != undefined) {
+            return readTimeString(total.innerHTML);
+        }
+    } catch (e) {
+        return 0
     }
 }
 
@@ -258,7 +266,12 @@ function getArtistNameOnHome() {
         }
     }
     catch (e) {
-        return ""
+        var miniPlayer=document.getElementsByClassName("playbutton");
+        if (miniPlayer.length == 1) {
+            //console.log("mini "+ miniPlayer);
+            return document.querySelector(".detail-artist > a:nth-child(1)").innerHTML;
+        }
+        return "";
     }
 }
 
@@ -311,7 +324,12 @@ function getSongTitleOnHome() {
         }
     }
     catch (e) {
-        return ""
+        var miniPlayer=document.getElementsByClassName("playbutton");
+        if (miniPlayer.length == 1) {
+            //console.log("mini "+ miniPlayer);
+            return document.querySelector(".title").innerHTML;
+        }
+        return "";
     }
 }
 
