@@ -42,6 +42,13 @@ Project {
         }
 
         Group {
+            fileTagsFilter: ["bundle.content"]
+            qbs.install: true
+            qbs.installDir: "Applications"
+            qbs.installSourceBase: product.destinationDirectory
+        }
+
+        Group {
             name: "Sources"
             files: [ "*.cpp" ]
         }
