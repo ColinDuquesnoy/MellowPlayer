@@ -1,5 +1,6 @@
+choco install -y qbs --version 1.10.1
 set QTDIR=C:\Qt\5.10.0\msvc2017_64
-set PATH=%QTDIR%\bin;%QTDIR%\lib;C:\Qt\Tools\QtCreator\bin;%PATH%
+set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
 qbs --version
 qbs-setup-toolchains --detect
 qbs-setup-qt --detect
