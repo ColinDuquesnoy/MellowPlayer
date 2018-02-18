@@ -5,6 +5,4 @@ fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     source ./scripts/travis/osx-setup.sh;
-    pip2 install github3.py
-    pip2 --version
 fi

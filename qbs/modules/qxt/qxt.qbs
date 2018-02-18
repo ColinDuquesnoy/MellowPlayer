@@ -14,11 +14,5 @@ Module {
     cpp.libraryPaths: found ? base.concat(probe.libraryPaths) : base
     cpp.dynamicLibraries: found ? base.concat(probe.libraries) : base
 
-    property bool found: {
-        if (probe.found)
-            console.info("found libqxt");
-        else
-            console.info("libqxt not found, using bundled library...");
-        return probe.found;
-    }
+    property bool found: probe.found
 }

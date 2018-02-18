@@ -18,13 +18,13 @@ Module {
                 "-Wno-class-memaccess",
                 "-Wno-deprecated-declarations",
                 "-Wdelete-non-virtual-dtor",
-            ]
+            ];
             if (isGcc && project.enableCoverage)
                 flags = flags.concat(["-g", "-O0", "--coverage", "-fprofile-arcs", "-ftest-coverage"])
             return flags;
         }
         else if (platform.macOs)
-            return ["-Weverything"]
+            return [];
         else if (platform.windows)
             return ["/W4"]
     }
@@ -42,7 +42,7 @@ Module {
             ]
         }
         else if (platform.macOs)
-            return ["-Weverything"]
+            return []
         else if (platform.windows)
             return ["/W4"]
     }
@@ -52,7 +52,7 @@ Module {
     property bool isBundle: macOs
     property string cxxLanguageVersion: unix ? "c++17" : "c++1z"
 
-    property bool isGcc: cpp.compilerName.indexOf("g++") !== -1
+    property bool isGcc: cpp.compilerName.indexOf("g++") !== -1 && unix
 
     Depends { name: "cpp" }
 }
