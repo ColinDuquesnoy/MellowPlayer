@@ -50,7 +50,7 @@ Module {
     // platform specific library link options
     property string libraryType: "staticlibrary"
     property bool isBundle: macOs
-    property string cxxLanguageVersion: unix ? "c++17" : "c++1z"
+    property string cxxLanguageVersion: unix || windows ? "c++17" : "c++1z"
 
     property bool isGcc: cpp.compilerName.indexOf("g++") !== -1 && unix
 
