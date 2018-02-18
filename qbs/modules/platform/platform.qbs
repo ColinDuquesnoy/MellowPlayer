@@ -41,10 +41,7 @@ Module {
                 "-Wno-cast-function-type"
             ]
         }
-        else if (platform.macOs)
-            return []
-        else if (platform.windows)
-            return ["/W4"]
+        return []
     }
 
     // platform specific library link options
