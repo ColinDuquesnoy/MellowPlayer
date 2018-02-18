@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Setup dev environment for Ubuntu 14.04
 QT_VERSION=59
-QT_VERSION_PATCH=4
+QT_VERSION_PATCH=3
 sudo apt-add-repository ppa:beineri/opt-qt${QT_VERSION}${QT_VERSION_PATCH}-trusty -y
 sudo apt-add-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update

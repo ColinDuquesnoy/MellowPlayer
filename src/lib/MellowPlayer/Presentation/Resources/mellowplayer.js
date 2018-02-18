@@ -6,7 +6,11 @@ MellowPlayer = {
     refresh: function() {
         if (MellowPlayer.ready && MellowPlayer.player.isRunning) {
             var updateResults = update();
-            updateResults.songId = getHashCode(updateResults.songTitle);
+            try {
+                updateResults.songId = getHashCode(updateResults.songTitle);
+            } catch (e) {
+                updateResults.songId = -1;
+            }
             MellowPlayer.player.updateResults = updateResults;
         }
     },
