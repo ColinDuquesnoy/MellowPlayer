@@ -10,10 +10,6 @@ environment:
 configuration:
   - Release
 
-init:
-  - cd C:\projects\MellowPlayer\scripts\appveyor
-  - init.bat
-
 clone_folder: C:\projects\MellowPlayer
 
 branches:
@@ -22,6 +18,7 @@ branches:
 
 build_script:
   - cd C:\projects\MellowPlayer\scripts\appveyor
+  - init.bat
   - build.bat
   # - cd C:\projects\MellowPlayer\scripts\packaging\windows
   # - make_installer.bat
