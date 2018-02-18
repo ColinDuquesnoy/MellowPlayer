@@ -25,8 +25,8 @@ chmod a+x linuxdeployqt*.AppImage
 mkdir -p build
 mkdir -p appdir
 pushd build
-qbs resolve -f ../ config:release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
-qbs build -f ../ config:release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
+qbs resolve -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
+qbs build -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
 qbs --clean-install-root config:release
 popd
 
