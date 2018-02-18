@@ -16,7 +16,7 @@ source /opt/qt${PACKAGE_VERSION}/bin/qt${PACKAGE_VERSION}-env.sh;
 # Download a precompiled version of qbs 1.10 (precompiled on trusty)
 mkdir qbs-download
 pushd qbs-download
-wget https://www.dropbox.com/s/t85wczj6fa7ddbe/qbs.tar.gz
+wget https://www.dropbox.com/s/xroiu9vv2ngc98o/qbs.tar.gz
 tar -xf qbs.tar.gz
 sudo cp -R usr/ /
 popd
