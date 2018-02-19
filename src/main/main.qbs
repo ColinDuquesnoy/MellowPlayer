@@ -19,7 +19,7 @@ Project {
         cpp.warningLevel: undefined
         cpp.treatWarningsAsErrors: false
         cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
-        cpp.staticLibraries: platform.isGcc && project.staticLibCpp ? base.concat(["stdc++"]) : base
+        cpp.driverFlags: platform.isGcc && project.staticLibCpp ? base.concat(["-static-libstdc++", "-static-libgcc"]) : base
 
         Qt.core.resourcePrefix: "/MellowPlayer/Translations"
         Qt.core.resourceSourceBase: undefined
