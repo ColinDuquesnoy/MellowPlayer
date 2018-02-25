@@ -20,6 +20,7 @@ Project {
         cpp.linkerFlags: platform.linkerFlags
         cpp.warningLevel: undefined
         cpp.treatWarningsAsErrors: false
+        cpp.staticLibraries: platform.windows ? base.concat(["user32"]) : base
         cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
         cpp.driverFlags: platform.isGcc && project.staticLibCpp ? base.concat(["-static-libstdc++", "-static-libgcc"]) : base
         cpp.defines: hasLibnotify ? base.concat(["USE_LIBNOTIFY=1"]) : base
