@@ -5,7 +5,7 @@
 
 using namespace MellowPlayer::Infrastructure;
 
-SCENARIO("FileDownloader can download a release source archive")
+SCENARIO("FileDownloader can download a release source archive", "[!mayfail]")
 {
     FileDownloader downloader;
     QTemporaryDir dir;
