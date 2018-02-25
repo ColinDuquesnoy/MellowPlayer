@@ -28,6 +28,7 @@ Project {
         return d.getFullYear() + "-" + zeroPad(d.getMonth() + 1) + "-" + zeroPad(d.getDate());
 
     }
+    property string version: versionMajor + "." + versionMinor + "." + versionPatch
 
     // Utils
     property string thridPartyIncludePath: sourceDirectory + "/3rdparty"
@@ -39,5 +40,6 @@ Project {
         "docs/docs.qbs",
         "src/src.qbs",
         "tests/tests.qbs",
+        "scripts/packaging/packaging.qbs"
     ]
 }
