@@ -1,17 +1,21 @@
 import qbs
 
-InnoSetup {
-    name: "MellowPlayer_Setup"
-    files: ["setup.iss"]
-    builtByDefault: false
+Project {
+    name: "Windows"
 
-    innosetup.defines: ["MyAppVersion=" + project.version]
-    innosetup.verboseOutput: false
+    InnoSetup {
+        name: "MellowPlayer_Setup"
+        files: ["setup.iss"]
+        builtByDefault: false
 
-    Group {
-        name: "InnoSetup Installer"
-        fileTagsFilter: ["innosetup.exe"]
-        qbs.installDir: "dist"
-        qbs.install: true
+        innosetup.defines: ["MyAppVersion=" + project.version]
+        innosetup.verboseOutput: false
+
+        Group {
+            name: "InnoSetup Installer"
+            fileTagsFilter: ["innosetup.exe"]
+            qbs.installDir: "dist"
+            qbs.install: true
+        }
     }
 }
