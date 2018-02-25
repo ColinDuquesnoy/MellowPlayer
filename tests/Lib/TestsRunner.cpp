@@ -30,7 +30,7 @@ int TestsRunner::runTests(int argc, char** argv)
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
-    loggerConfig.createFileLoggers = false;
+    loggerConfig.createFileLoggers = true;
 
     try {
         Loggers::instance();
