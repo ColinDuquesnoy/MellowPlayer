@@ -2,6 +2,7 @@ import qbs
 
 Project {
     name: "Windows"
+    condition: qbs.targetOS.contains("windows")
 
     InnoSetup {
         name: "MellowPlayer_Setup"
