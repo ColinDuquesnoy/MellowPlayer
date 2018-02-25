@@ -22,16 +22,16 @@ Program::Program(IApplication& application,
                  IMprisService& mprisService,
                  IViewModels& viewModels,
                  ISystemTrayIcon& systemTrayIcon,
-                 INotifications& notifications/*,
-                 IHotkeys& hotkeys*/)
+                 INotifications& notifications,
+                 IHotkeys& hotkeys)
         : application_(application),
           applicationNetworkProxy_(applicationNetworkProxy),
           contextProperties_(contextProperties),
           mprisService_(mprisService),
           viewModels_(viewModels),
           systemTrayIcon_(systemTrayIcon),
-          notifications_(notifications)/*,
-          hotkeys_(hotkeys)*/
+          notifications_(notifications),
+          hotkeys_(hotkeys)
 {
     connect(&application, &IApplication::initialized, this, &Program::initialize);
     connect(&application, &IApplication::finished, this, &Program::finished);
@@ -46,7 +46,7 @@ int Program::run()
 void Program::initialize()
 {
     mprisService_.start();
-//    hotkeys_.initialize();
+    hotkeys_.initialize();
     contextProperties_.initialize();
     viewModels_.initialize();
     notifications_.initialize();

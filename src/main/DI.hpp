@@ -144,7 +144,7 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<ILoggerFactory>().to<SpdLoggerFactory>().in(scope),
         di::bind<IAlbumArtDownloader>().to<AlbumArtDownloader>().in(scope),
         di::bind<ILocalAlbumArt>().to<LocalAlbumArt>().in(scope),
-//        di::bind<IHotkeys>().to<Hotkeys>().in(scope),
+        di::bind<IHotkeys>().to<Hotkeys>().in(scope),
         di::bind<ISystemTrayIcon>().to<SystemTrayIcon>().in(scope),
         di::bind<IListeningHistoryDatabase>().to<SqlLiteListeningHistoryDatabase>().in(scope),
         di::bind<ISettingsStore>().to<QSettingsStore>().in(scope),

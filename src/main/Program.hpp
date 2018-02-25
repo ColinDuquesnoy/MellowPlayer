@@ -24,8 +24,8 @@ namespace MellowPlayer::Main
                 Presentation::IMprisService& mprisService,
                 Presentation::IViewModels& viewModels,
                 Presentation::ISystemTrayIcon& systemTrayIcon,
-                Presentation::INotifications& notifications /*,
-                Presentation::IHotkeys& hotkeys*/);
+                Presentation::INotifications& notifications,
+                Presentation::IHotkeys& hotkeys);
         int run();
 
     private slots:
@@ -40,6 +40,6 @@ namespace MellowPlayer::Main
         Presentation::IViewModels& viewModels_;
         Presentation::ISystemTrayIcon& systemTrayIcon_;
         Presentation::INotifications& notifications_;
-//        Presentation::IHotkeys& hotkeys_;
+        Presentation::IHotkeys& hotkeys_;
     };
 }
