@@ -38,6 +38,11 @@ Project {
         Depends { name: "MellowPlayer.Presentation" }
         Depends { name: "libnotify"; condition: platform.unix }
 
+        Properties {
+            condition: platform.macOs
+            cpp.rpaths: ["@loader_path/../Frameworks"]
+        }
+
         Group {
             name: "Application"
             fileTagsFilter: "application"
