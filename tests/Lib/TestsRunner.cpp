@@ -40,7 +40,7 @@ int TestsRunner::runTests(int argc, char** argv)
 
     }
     Loggers& loggingManager = Loggers::initialize(loggerFactory, loggerConfig);
-    loggingManager.setDefaultLogLevel(LogLevel::Off);
+    loggingManager.setDefaultLogLevel(LogLevel::Error);
 
     LOG_DEBUG(loggingManager.logger("tests"), "Starting tests");
     qDebug() << "Starting tests" << BuildConfig::buildInfo();

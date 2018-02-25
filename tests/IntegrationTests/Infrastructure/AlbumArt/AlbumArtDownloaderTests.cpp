@@ -15,18 +15,19 @@ TEST_CASE("AlbumArtDownloaderTests", "[!mayfail]")
 
     SECTION("download will take some time and a file will be created")
     {
-        REQUIRE(albumArtDownloader.download("https://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/docs/_static/banner.png", "mellowplayer.svg"));
+        QString url = "http://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/docs/_static/banner.png";
+        QString name = "banner.png";
+        REQUIRE(albumArtDownloader.download(url, name));
         if (downloadFinishedSpy.wait(2000)) {
             REQUIRE(downloadFinishedSpy.count() == 1);
             auto path = downloadFinishedSpy[0][0].toString();
+            CAPTURE(path.toStdString());
             REQUIRE(!path.isEmpty());
             REQUIRE(QFile(path).exists());
 
             SECTION("second download is immediate")
             {
-                albumArtDownloader.download("https://gitlab.com/uploads/project/avatar/"
-                                            "2312266/mellowplayer.svg",
-                                            "mellowplayer.svg");
+                albumArtDownloader.download(url, name);
                 REQUIRE(downloadFinishedSpy.count() == 2);
             }
         }
