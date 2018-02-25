@@ -3,6 +3,7 @@ import qbs
 InnoSetup {
     name: "MellowPlayer_Setup"
     files: ["setup.iss"]
+    builtByDefault: false
 
     innosetup.defines: ["MyAppVersion=" + project.version]
     innosetup.verboseOutput: false
