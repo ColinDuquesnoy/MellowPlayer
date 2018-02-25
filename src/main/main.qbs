@@ -8,6 +8,8 @@ Project {
     Product {
         id: product
 
+        property bool hasLibnotify: product.libnotify !== undefined && product.libnotify.found
+
         type: "application"
         name: "MellowPlayer"
         consoleApplication: false
@@ -20,6 +22,7 @@ Project {
         cpp.treatWarningsAsErrors: false
         cpp.dynamicLibraries: platform.isGcc && project.enableCoverage ? base.concat(["gcov"]) : base
         cpp.driverFlags: platform.isGcc && project.staticLibCpp ? base.concat(["-static-libstdc++", "-static-libgcc"]) : base
+        cpp.defines: hasLibnotify ? base.concat(["USE_LIBNOTIFY=1"]) : base
 
         Qt.core.resourcePrefix: "/MellowPlayer/Translations"
         Qt.core.resourceSourceBase: undefined
@@ -33,6 +36,7 @@ Project {
         Depends { name: "MellowPlayer.Domain" }
         Depends { name: "MellowPlayer.Infrastructure" }
         Depends { name: "MellowPlayer.Presentation" }
+        Depends { name: "libnotify"; condition: platform.unix }
 
         Group {
             name: "Application"
