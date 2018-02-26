@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew install qt5 qbs python
+brew install python
 pip2 install github3.py
 pip2 --version
 
