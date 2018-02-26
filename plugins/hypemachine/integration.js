@@ -2,8 +2,8 @@ function update() {
     return {
         "playbackStatus": getPlaybackStatus(),
         "canSeek": false,
-        "canGoNext": hasNext(),
-        "canGoPrevious": hasPrevious(),
+        "canGoNext": true,
+        "canGoPrevious": true,
         "canAddToFavorites": true,
         "volume": 1,
         "duration": readTime("player-time-total"),
@@ -19,15 +19,6 @@ function update() {
 
 function isFavorite() {
     return hasClass(document.getElementById("playerFav"), "fav-on");
-}
-
-function hasNext() {
-
-    return true;
-}
-
-function hasPrevious() {
-    return true;
 }
 
 function hasClass(elem, className) {
@@ -86,12 +77,8 @@ function seekToPosition(position) {
 
 function readTime(elementClassName) {
 	try {
-	    var time = document.getElementsById(elementClassName).innerHTML.split(":");
-	    var minutes = 0;
-	    var seconds = 0;
-	    minutes = parseInt(time[0]);
-	    seconds = parseInt(time[1]);
-	    return minutes * 60 + seconds;
+	    var time = document.getElementById(elementClassName).innerHTML;
+	    return toSeconds(time);
 	}
 	catch (e) {
         return 0;
@@ -99,7 +86,7 @@ function readTime(elementClassName) {
 }
 
 function getAlbumTitle() {
-        return "";
+    return "";
 }
 
 function getArtistName() {
@@ -121,7 +108,7 @@ function getSongTitle() {
 }
 
 function getAlbumArt() {
-        return "";
+    return "";
 }
 
 function getSongId() {
