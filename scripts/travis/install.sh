@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
+pushd ./scripts/travis/;
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    source ./scripts/travis/linux-setup.sh;
+    source ./install-qt gcc_64;
+    source ./linux-setup.sh;
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    source ./scripts/travis/osx-setup.sh;
+    source ./install-qt clang;
+    source ./osx-setup.sh;
 fi
+
+popd;

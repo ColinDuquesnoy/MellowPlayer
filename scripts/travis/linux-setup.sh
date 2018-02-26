@@ -1,26 +1,9 @@
 #!/usr/bin/env bash
 # Require GCC-7 (from ppa:ubuntu-toolchain/test)
-# Setup dev environment for Ubuntu 14.04
 
-QT_VERSION_MAJOR=5
-QT_VERSION_MINOR=9
-QT_VERSION_PATCH=3
-PACKAGE_VERSION=${QT_VERSION_MAJOR}${QT_VERSION_MINOR}
-
-# Install Qt from ppa
-sudo apt-add-repository ppa:beineri/opt-qt${QT_VERSION_MAJOR}${QT_VERSION_MINOR}${QT_VERSION_PATCH}-trusty -y 
+# Install additional packages
 sudo apt-get update
-sudo apt-get install build-essential qt${PACKAGE_VERSION}base qt${PACKAGE_VERSION}declarative qt${PACKAGE_VERSION}quickcontrols qt${PACKAGE_VERSION}quickcontrols2 qt${PACKAGE_VERSION}graphicaleffects qt${PACKAGE_VERSION}svg qt${PACKAGE_VERSION}translations qt${PACKAGE_VERSION}script qt${PACKAGE_VERSION}tools qt${PACKAGE_VERSION}webengine mesa-common-dev libgl1-mesa-dev pkg-config cmake libnotify-dev python --fix-missing -y
-source /opt/qt${PACKAGE_VERSION}/bin/qt${PACKAGE_VERSION}-env.sh;
-
-# Download a precompiled version of qbs 1.10 (precompiled on trusty)
-mkdir qbs-download
-pushd qbs-download
-wget https://www.dropbox.com/s/xroiu9vv2ngc98o/qbs.tar.gz
-tar -xf qbs.tar.gz
-sudo cp -R usr/ /
-popd
-rm -rf qbs-download
+sudo apt-get install build-essential libgl1-mesa-dev pkg-config libnotify-dev python --fix-missing -y
 
 # Setup qbs profiles
 QMAKE_PATH=`which qmake`
