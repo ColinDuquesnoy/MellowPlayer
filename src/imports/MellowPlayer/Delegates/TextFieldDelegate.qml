@@ -6,7 +6,7 @@ ItemDelegate {
     id: root
 
     property string label: ""
-    property string value: ""
+    property alias value: textField.text
     property int textFieldPreferredWidth: 320
 
     hoverEnabled: true
@@ -27,11 +27,10 @@ ItemDelegate {
         }
 
         TextField {
+            id: textField
+
             enabled: root.enabled
             selectByMouse: true
-            text: root.value
-
-            onTextChanged: root.value = text;
 
             Layout.preferredWidth: root.textFieldPreferredWidth
         }
