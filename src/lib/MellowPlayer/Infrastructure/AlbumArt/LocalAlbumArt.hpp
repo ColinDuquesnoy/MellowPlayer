@@ -1,6 +1,7 @@
 #pragma once
 
 #include <MellowPlayer/Domain/AlbumArt/ILocalAlbumArt.hpp>
+#include <QTimer>
 
 namespace MellowPlayer::Domain
 {
@@ -15,10 +16,12 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        LocalAlbumArt(Domain::IPlayer& player, Domain::IAlbumArtDownloader& downloader);
+        LocalAlbumArt(Domain::IPlayer& player, Domain::IAlbumArtDownloader& downloader, int timeout=1000);
 
         const QString& url() const override;
-        bool isSongArtReady(const Domain::Song& song) override;
+        bool isReady(const Domain::Song& song) override;
+
+        QString fallbackUrl() const;
 
     private slots:
         void onCurrentSongChanged(Domain::Song* song);
@@ -26,8 +29,10 @@ namespace MellowPlayer::Infrastructure
         void onArtUrlChanged();
 
     private:
-        Domain::IPlayer& player_;
-        Domain::IAlbumArtDownloader& downloader_;
-        QString url_;
+        Domain::IPlayer& _player;
+        Domain::IAlbumArtDownloader& _downloader;
+        QString _url;
+        int _timeout;
+        QTimer _timer;
     };
 }

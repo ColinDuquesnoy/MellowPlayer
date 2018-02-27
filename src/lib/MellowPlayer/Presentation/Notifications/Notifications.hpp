@@ -53,7 +53,7 @@ namespace MellowPlayer::Presentation
 
         Domain::ILogger& logger_;
         Domain::IPlayer& player_;
-        Domain::ILocalAlbumArt& localAlbumArtService_;
+        Domain::ILocalAlbumArt& localAlbumArt_;
         INotificationPresenter& presenter_;
         Domain::StreamingServices& streamingServices_;
         Domain::Settings& settings_;

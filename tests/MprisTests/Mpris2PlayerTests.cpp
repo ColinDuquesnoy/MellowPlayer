@@ -26,7 +26,7 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
     Player& currentPlayer = *players.get(streamingServices.current()->name());
-    AlbumArtDownloaderMock albumArtDownloader;
+    FakeAlbumArtDownloader albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     Mpris2Player mpris2Player(player, localAlbumArt, nullptr);
 

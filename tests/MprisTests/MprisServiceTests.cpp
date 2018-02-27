@@ -25,7 +25,7 @@ TEST_CASE("MprisServiceTests", "[IntegrationTest]")
     StreamingServices streamingServices(streamingServiceLoader, streamingServiceWatcher);
     Players players(streamingServices);
     CurrentPlayer player(players, streamingServices);
-    AlbumArtDownloaderMock albumArtDownloader;
+    FakeAlbumArtDownloader albumArtDownloader;
     LocalAlbumArt localAlbumArt(player, albumArtDownloader);
     FakeMainWindow mainWindow;
 
