@@ -6,7 +6,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
 fi
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    source ./install-qt-osx.sh clang;
+    source ./install-qt-osx.sh;
     source ./osx-setup.sh;
 fi
 

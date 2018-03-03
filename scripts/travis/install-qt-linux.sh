@@ -1,6 +1,5 @@
 #!/bin/sh
 chmod +x qtci/bin/extract-qt-installer
-chmod +x qtci/install-qt
 
 COMPILER_TYPE=gcc_64
 QT_VERSION_MAJOR=5
@@ -12,7 +11,7 @@ QT_COMPONENT_VERSION=${QT_VERSION_MAJOR}.${QT_VERSION_MAJOR}${QT_VERSION_MINOR}$
 export QT_CI_PACKAGES=qt.qt${QT_COMPONENT_VERSION}.${COMPILER_TYPE},qt.qt${QT_COMPONENT_VERSION}.qtwebengine,qt.tools.qtcreator
 
 echo Downloading Qt
-wget  -c https://download.qt.io/archive/qt/$(echo $QT_VERSION |cut -d "." -f-2)/${QT_VERSION}/qt-opensource-linux-x64-${QT_VERSION}.run
+wget  -nv -c https://download.qt.io/archive/qt/$(echo $QT_VERSION |cut -d "." -f-2)/${QT_VERSION}/qt-opensource-linux-x64-${QT_VERSION}.run
 INSTALLER=$PWD/qt-opensource-linux-x64-${QT_VERSION}.run
 
 echo Installing Qt
