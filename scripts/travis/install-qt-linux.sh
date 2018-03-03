@@ -1,9 +1,8 @@
 #!/bin/sh
-COMPILER_TYPE=$1
-
 chmod +x qtci/bin/extract-qt-installer
 chmod +x qtci/install-qt
 
+COMPILER_TYPE=gcc_64
 QT_VERSION_MAJOR=5
 QT_VERSION_MINOR=10
 QT_VERSION_PATCH=1
@@ -21,4 +20,4 @@ sudo mkdir -p /opt/qt
 sudo chown $USER /opt/qt
 qtci/bin/extract-qt-installer $INSTALLER /opt/qt
 
-export PATH=/opt/qt/${QT_VERSION}/gcc_64/bin:$PATH
+export PATH=/opt/qt/${QT_VERSION}/gcc_64/bin:/opt/qt/Tools/QtCreator/bin:$PATH
