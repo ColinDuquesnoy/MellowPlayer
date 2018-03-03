@@ -29,6 +29,7 @@ void ViewModels::initialize()
     streamingServices_.initialize();
     listeningHistory_.initialize();
     mainWindow_.load();
+    mainWindow_.show();
     updater_.check();
 }
 

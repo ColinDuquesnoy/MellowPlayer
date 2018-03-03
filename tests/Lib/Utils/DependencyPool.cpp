@@ -186,7 +186,7 @@ INotificationPresenter& DependencyPool::getNotificationPresenter()
 
 LocalAlbumArt& DependencyPool::getLocalAlbumArt()
 {
-    static AlbumArtDownloaderMock downloader;
+    static FakeAlbumArtDownloader downloader;
 
     if (pLocalAlbumArt == nullptr)
         pLocalAlbumArt = make_unique<LocalAlbumArt>(getCurrentPlayer(), downloader);

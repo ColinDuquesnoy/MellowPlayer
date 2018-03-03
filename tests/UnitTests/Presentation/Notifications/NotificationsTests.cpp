@@ -33,7 +33,7 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
     REQUIRE(!invalidSong.isValid());
 
     When(Method(playerSpy, playbackStatus)).AlwaysReturn(PlaybackStatus::Playing);
-    When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(true);
+    When(Method(localAlbumArtServiceSpy, isReady)).AlwaysReturn(true);
     When(Method(playerSpy, currentSong)).AlwaysReturn(&validSong);
 
     SECTION("initialize")
@@ -85,13 +85,13 @@ TEST_CASE("NotificationsTests", "[UnitTest]")
 
     SECTION("don't display current song changed notification if art is not ready")
     {
-        When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(false);
+        When(Method(localAlbumArtServiceSpy, isReady)).AlwaysReturn(false);
         notifications.onCurrentSongChanged(&validSong);
         Verify(Method(notificationPresenterMock, display)).Never();
 
         SECTION("display current song changed notification when album art is ready")
         {
-            When(Method(localAlbumArtServiceSpy, isSongArtReady)).AlwaysReturn(true);
+            When(Method(localAlbumArtServiceSpy, isReady)).AlwaysReturn(true);
             notifications.onCurrentSongUrlChanged();
             Verify(Method(notificationPresenterMock, display)).Once();
         }

@@ -22,7 +22,7 @@ Notifications::Notifications(IPlayer& player,
                              Settings& settings)
         : logger_(Loggers::logger("Notifier")),
           player_(player),
-          localAlbumArtService_(localAlbumArtService),
+          localAlbumArt_(localAlbumArtService),
           presenter_(presenter),
           streamingServices_(streamingServices),
           settings_(settings)
@@ -34,7 +34,7 @@ void Notifications::initialize()
     LOG_TRACE(logger_, "initialize");
     connect(&player_, &IPlayer::currentSongChanged, this, &Notifications::onCurrentSongChanged);
     connect(&player_, &IPlayer::playbackStatusChanged, this, &Notifications::onPlaybackStatusChanged);
-    connect(&localAlbumArtService_, &ILocalAlbumArt::urlChanged, this, &Notifications::onCurrentSongUrlChanged);
+    connect(&localAlbumArt_, &ILocalAlbumArt::urlChanged, this, &Notifications::onCurrentSongUrlChanged);
     presenter_.initialize();
 }
 
@@ -53,7 +53,7 @@ bool Notifications::display(const Notification& notification)
 void Notifications::onCurrentSongChanged(Song* song)
 {
     LOG_TRACE(logger_, "onCurrentSongChanged");
-    showSongNotification(song, localAlbumArtService_.url());
+    showSongNotification(song, localAlbumArt_.url());
 }
 
 void Notifications::onPlaybackStatusChanged()
@@ -64,7 +64,7 @@ void Notifications::onPlaybackStatusChanged()
             display(notificationFactory_.createPausedNotification(currentServiceName(), currentServiceLogo()));
             break;
         case PlaybackStatus::Playing:
-            showSongNotification(player_.currentSong(), localAlbumArtService_.url());
+            showSongNotification(player_.currentSong(), localAlbumArt_.url());
             break;
         default:
             break;
@@ -74,13 +74,13 @@ void Notifications::onPlaybackStatusChanged()
 void Notifications::onCurrentSongUrlChanged()
 {
     LOG_TRACE(logger_, "onCurrentSongUrlChanged");
-    showSongNotification(player_.currentSong(), localAlbumArtService_.url());
+    showSongNotification(player_.currentSong(), localAlbumArt_.url());
 }
 
 void Notifications::showSongNotification(Song* song, const QString& localAlbumArtUrl)
 {
     LOG_TRACE(logger_, "showSongNotification");
-    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArtService_.isSongArtReady(*song)) {
+    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArt_.isReady(*song)) {
         bool resume = song->uniqueId() == previousSongId_;
         previousSongId_ = song->uniqueId();
         display(notificationFactory_.createSongNotification(currentServiceName(), song, localAlbumArtUrl, resume));
