@@ -13,7 +13,7 @@ namespace MellowPlayer::Domain
     public:
         virtual ~ILocalAlbumArt();
         virtual const QString& url() const = 0;
-        virtual bool isSongArtReady(const Domain::Song& song) = 0;
+        virtual bool isReady(const Domain::Song& song) = 0;
 
     signals:
         void urlChanged();

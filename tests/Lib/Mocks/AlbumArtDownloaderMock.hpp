@@ -8,17 +8,33 @@ using namespace fakeit;
 
 #define LOCAL_URL "/path/to/art/songId"
 
-class AlbumArtDownloaderMock : public IAlbumArtDownloader
+class FakeAlbumArtDownloader : public IAlbumArtDownloader
 {
 public:
-    bool download(const QString&, const QString&) override
+    bool download(const QString& artUrl, const QString& songId) override
     {
-        emit downloadFinished(LOCAL_URL);
+        _artUrl = artUrl;
+        _localArtUrl = LOCAL_URL + songId;
+        emit downloadFinished(_localArtUrl);
         return true;
     }
 
     QFileInfo localArtUrl(const QString&) override
     {
-        return QFileInfo(LOCAL_URL);
+        return QFileInfo(_localArtUrl);
     }
+
+    QString artUrl()
+    {
+        return _artUrl;
+    }
+
+    QString localArtUrl()
+    {
+        return _localArtUrl;
+    }
+
+private:
+    QString _artUrl;
+    QString _localArtUrl;
 };

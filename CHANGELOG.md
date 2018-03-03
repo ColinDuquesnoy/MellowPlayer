@@ -1,5 +1,22 @@
 # Change Log
 
+## [3.3.5](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.5) (2018-03-03)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.4...3.3.5)
+
+**Fixed bugs:**
+
+- MainWindow does not show up with Qt 5.10.1 [\#211](https://github.com/ColinDuquesnoy/MellowPlayer/issues/211)
+- Service setting url not updated when clicking on another service [\#210](https://github.com/ColinDuquesnoy/MellowPlayer/issues/210)
+- No notification if the song has no album art [\#209](https://github.com/ColinDuquesnoy/MellowPlayer/issues/209)
+
+**Closed issues:**
+
+- Add Greek translations [\#212](https://github.com/ColinDuquesnoy/MellowPlayer/issues/212)
+
+**Merged pull requests:**
+
+- add Hypemachine [\#208](https://github.com/ColinDuquesnoy/MellowPlayer/pull/208) ([bayang](https://github.com/bayang))
+
 ## [3.3.4](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.4) (2018-02-18)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.3...3.3.4)
 

@@ -1,6 +1,7 @@
 #include <QtCore/QThread>
 #include <MellowPlayer/Presentation/ViewModels/ViewModels.hpp>
 
+
 using namespace MellowPlayer::Presentation;
 
 ViewModels::ViewModels(ApplicationViewModel&,
@@ -29,6 +30,7 @@ void ViewModels::initialize()
     streamingServices_.initialize();
     listeningHistory_.initialize();
     mainWindow_.load();
+    mainWindow_.show();
     updater_.check();
 }
 
@@ -36,3 +38,4 @@ void ViewModels::cleanup()
 {
     cache_.clear();
 }
+
