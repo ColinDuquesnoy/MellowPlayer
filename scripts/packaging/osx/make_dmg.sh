@@ -14,7 +14,7 @@ cp scripts/packaging/osx/Info.plist ${app_dir}/Contents
 mkdir -p  ${app_dir}/Contents/Resources/qml/QtQuick/
 cp -R /usr/local/opt/qt/qml/QtQuick/Controls ${app_dir}/Contents/Resources/qml/QtQuick/
 
-/usr/local/opt/qt/bin/macdeployqt ${app_dir} -dmg -qmldir=$PWD/src -verbose=1
+macdeployqt ${app_dir} -dmg -qmldir=$PWD/src -verbose=1
 
 mkdir -p dist
 cp build/release/install-root/Applications/MellowPlayer.dmg dist/
