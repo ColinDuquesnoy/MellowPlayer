@@ -20,9 +20,9 @@ Project {
         if (!ciBuildNumber) {
             ciBuildNumber = Environment.getEnv("APPVEYOR_BUILD_NUMBER");
             if (!ciBuildNumber)
-                ciBuildNumber = 0;
+                ciBuildNumber = "0";
         }
-        return ciBuildNumber;
+        return parseInt(ciBuildNumber);
     }
     property string buildDate: {
         function zeroPad(number, size) {
