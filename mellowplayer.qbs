@@ -1,4 +1,5 @@
 import qbs
+import qbs.Environment
 
 Project {
     // Build options
@@ -14,7 +15,15 @@ Project {
     property int versionMajor: 3
     property int versionMinor: 3
     property int versionPatch: 50
-    property int buildNumber: 0
+    property int buildNumber: {
+        var ciBuildNumber = Environment.getEnv("TRAVIS_BUILD_NUMBER");
+        if (!ciBuildNumber) {
+            ciBuildNumber = Environment.getEnv("APPVEYOR_BUILD_NUMBER");
+            if (!ciBuildNumber)
+                ciBuildNumber = 0;
+        }
+        return ciBuildNumber;
+    }
     property string buildDate: {
         function zeroPad(number, size) {
             var s = String(number)
