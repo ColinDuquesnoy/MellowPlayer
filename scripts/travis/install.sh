@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 pushd ./scripts/travis/;
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    source ./install-qt-linux.sh;
     source ./linux-setup.sh;
 fi
 
