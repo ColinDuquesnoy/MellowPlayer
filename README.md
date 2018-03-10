@@ -150,8 +150,8 @@ qbs build release
 Make sure you've built MellowPlayer with ``projects.MellowPlayer.buildTests:true``
 
 ```bash
-qbs resolve -f ../ debug projects.MellowPlayer.buildTests:true
-qbs build -f ../ debug projects.MellowPlayer.buildTests:true
+qbs resolve debug projects.MellowPlayer.buildTests:true
+qbs build debug projects.MellowPlayer.buildTests:true
 ```
 
 To run the tests, just build one of the below products (either from QtCreator or from command line):
@@ -163,7 +163,7 @@ To run the tests, just build one of the below products (either from QtCreator or
 Example from command line:
 
 ```bash
-qbs build -f ../ -p tests debug
+qbs build -p tests debug
 ```
 
 # Contributing
