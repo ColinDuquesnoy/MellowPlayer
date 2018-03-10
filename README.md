@@ -91,55 +91,40 @@ MellowPlayer is licensed under the GPL license.
 
 # Compilation
 
-Building MellowPlayer requires [qbs](http://doc.qt.io/qbs/) >= 1.10 and a **C++17** compiler
+Building MellowPlayer requires [Qbs](http://doc.qt.io/qbs/) >= 1.10 and a **C++17** compiler (GCC >= 6.x or Clang >= 3.5 or MSVC 2015 Update 2).
 
-- GCC >= 6.x
-- Clang >= 3.5
-- MSVC 2015 Update 2
+Qbs is a new build system from the Qt Company that is much easier to use compared to CMake, especially for Qt based projects.
+
+If you want to learn more, please read the [Qbs manual](http://doc.qt.io/qbs/index.html),
+especially the [setup guide](http://doc.qt.io/qbs/configuring.html) and how to install artifacts
+from the [installation guide](http://doc.qt.io/qbs/installing-files.html).
 
 ## From QtCreator
 
-The easiest way to build MellowPlayer is using QtCreator. Just open ``mellowplayer.qbs`` in QtCreator and build the project.
+Open up `mellowplayer.qbs` with QtCreator, hit build and run.
 
 ## From Command Line
 
-Building from command line is a bit more complicated as it requires you to setup the qbs toolchain and qt version profiles before you can build.
+Before you can build, you have to [setup qbs](http://doc.qt.io/qbs/configuring.html). This step must be done the first time you're building MellowPlayer and everytime you update your Qt version or toolchain.
 
-### Setup qbs toolchains and qt
-
-These steps must be done once before you build MellowPlayer and everytime you change your toolchain or your qt version:
-
-1. Detect toolchain
+### Setting up qbs
 
 ```bash
 qbs-setup-toolchains --detect
+qbs-setup-qt $(which qmake) qt5  # make sure that qmake is in PATH
+qbs-config defaultProfile qt5
 ```
-
-2. Detect Qt version
-
-```bash
-qbs-setup-qt --detect
-```
-
-3. Choose your default profile
-
-*Replace ``QT_PROFILE_NAME`` by the name of the profile that match the qt version you want to use to build MellowPlayer*
-
-```bash
-qbs config defaultProfile QT_PROFILE_NAME
-```
-
-### Build MellowPlayer
-
-Now you can start building MellowPlayer
+### Building MellowPlayer
 
 ```
 qbs build release
 ```
 
-*If you're using qbs >= 1.11, replace ``release`` by ``config:release``*
+*Note: If you're using qbs >= 1.11, replace ``release`` by ``config:release``*
 
-## Build options
+#### Build options
+
+You can append the following command line options when building MellowPlayer:
 
 - ``projects.MellowPlayer.defaultTheme``:``<string>``: the name of the default theme. Can be set to any theme appearing in the theme combo box. Default value: "Adaptive".
 - ``projects.MellowPlayer.buildTests``:``<bool>``: true to build mellowplayer test suite. Default value: false.
