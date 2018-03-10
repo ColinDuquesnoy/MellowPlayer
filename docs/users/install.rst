@@ -125,15 +125,9 @@ MellowPlayer is available from `KaOSx/apps`_ repository, just run:
 Other distributions
 +++++++++++++++++++
 
-You will have to compile from source. Grab the latest source release from the `official website`_, extract the archive and run the following commands:
+You will have to compile from source. See the `README`_ for build instructions.
 
-.. code-block:: bash
-
-    $ cmake .
-    $ make
-    $ sudo make install
-
-Before compiling, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
+.. _README: https://github.com/ColinDuquesnoy/MellowPlayer/blob/qbs/README.md#compilation
 
 OS X
 ----
