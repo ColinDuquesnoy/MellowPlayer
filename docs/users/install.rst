@@ -21,17 +21,16 @@ Fedora
 Starting from Fedora 27, MellowPlayer is available from the official stable repositories:
 
 .. code-block:: bash
-    
+
     sudo dnf install mellowplayer
-    
+
 Proprietary codecs
 ******************
 
-Most services require proprietary audio codecs to work. You can install them from the RPMFusion repositories:
+Most services require proprietary audio codecs to work. You can install them from the `RPMFusion repositories`_:
 
 .. code-block:: bash
 
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     sudo dnf install qt5-qtwebengine-freeworld
 
 Flash 
@@ -40,7 +39,7 @@ Flash
 Services such as Deezer and Tidal require flash to work. You can install it from the adobe repositories:
 
 .. code-block:: bash
-    
+
     sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
     sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
     sudo dnf install flash-player-ppapi
@@ -154,3 +153,4 @@ Please note the Windows Installer we provide is built with a version of QtWebEng
 .. _official website: http://colinduquesnoy.github.io/MellowPlayer
 .. _github release: https://github.com/ColinDuquesnoy/MellowPlayer/releases
 .. _openSUSE build service: https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer
+.. _RPMFusion repositories: https://rpmfusion.org/Configuration
