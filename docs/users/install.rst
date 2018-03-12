@@ -21,9 +21,9 @@ Fedora
 Starting from Fedora 27, MellowPlayer is available from the official stable repositories:
 
 .. code-block:: bash
-    
+
     sudo dnf install mellowplayer
-    
+
 Proprietary codecs
 ******************
 
@@ -39,7 +39,7 @@ Flash
 Services such as Deezer and Tidal require flash to work. You can install it from the adobe repositories:
 
 .. code-block:: bash
-    
+
     sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
     sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
     sudo dnf install flash-player-ppapi
