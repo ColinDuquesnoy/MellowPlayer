@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/PlatformFilterFactory.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/IPlatformFilter.hpp>
 #include <QtCore/QList>

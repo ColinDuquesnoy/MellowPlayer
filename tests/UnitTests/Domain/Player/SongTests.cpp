@@ -1,6 +1,6 @@
 #include <MellowPlayer/Domain/Player/Song.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace std;

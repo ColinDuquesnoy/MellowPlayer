@@ -1,5 +1,5 @@
 #include <MellowPlayer/Infrastructure/Updater/Asset.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

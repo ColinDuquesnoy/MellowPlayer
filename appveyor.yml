@@ -1,5 +1,5 @@
-version: "3.2.50.{build}"
-os: Visual Studio 2015
+version: "3.3.50.{build}"
+os: Visual Studio 2017
 platform:
   - x64
 
@@ -10,18 +10,18 @@ environment:
 configuration:
   - Release
 
-init:
-  - cmake --version
-  - msbuild /version
-
 clone_folder: C:\projects\MellowPlayer
 
 branches:
   except:
     - gh-pages
+    
+install:
+    - choco install -y qbs --version 1.10.1
 
 build_script:
   - cd C:\projects\MellowPlayer\scripts\appveyor
+  - init.bat
   - build.bat
   - cd C:\projects\MellowPlayer\scripts\packaging\windows
   - make_installer.bat
@@ -33,10 +33,10 @@ test_script:
 deploy_script:
   - if defined APPVEYOR_REPO_TAG_NAME pip install github3.py
   - cd C:\projects\MellowPlayer
-  - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% dist/*
+  - if defined APPVEYOR_REPO_TAG_NAME python scripts\upload.py %APPVEYOR_REPO_TAG_NAME% build/release/install-root/dist/*
 
 artifacts:
-  - path: dist\MellowPlayer_Setup.exe
+  - path: build\release\install-root\dist\MellowPlayer_Setup.exe
     name: MellowPlayer_Setup
 
 # display remote desktop information and block build

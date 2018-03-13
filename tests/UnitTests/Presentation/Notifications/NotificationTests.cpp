@@ -1,5 +1,5 @@
 #include <MellowPlayer/Presentation/Notifications/Notification.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Presentation;
 

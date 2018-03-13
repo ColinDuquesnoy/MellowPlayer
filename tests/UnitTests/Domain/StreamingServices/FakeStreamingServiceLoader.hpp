@@ -5,7 +5,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingServiceMetadata.hpp>
 #include <MellowPlayer/Domain/Theme/Theme.hpp>
 #include <QList>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <memory>
 
 namespace MellowPlayer::Domain::Tests

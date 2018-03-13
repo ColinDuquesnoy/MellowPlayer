@@ -1,6 +1,6 @@
 #include <MellowPlayer/Presentation/Converters/DateTimeConverter.hpp>
 #include <QDateTime>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Presentation;
 

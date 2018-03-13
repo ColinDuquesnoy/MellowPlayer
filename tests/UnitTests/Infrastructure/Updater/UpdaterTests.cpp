@@ -1,5 +1,5 @@
 #include "Utils/DependencyPool.hpp"
-#include "catch.hpp"
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>

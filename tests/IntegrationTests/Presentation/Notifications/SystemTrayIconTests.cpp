@@ -4,7 +4,7 @@
 #include <Mocks/PlayerMock.hpp>
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <UnitTests/Presentation/FakeMainWindow.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Presentation;

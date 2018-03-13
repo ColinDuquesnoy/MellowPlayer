@@ -1,10 +1,10 @@
 #include <MellowPlayer/Infrastructure/Network/HttpClient.hpp>
 #include <QtTest/qtestsystem.h>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 
-SCENARIO("HttpClient get github API response")
+SCENARIO("HttpClient get github API response", "[!mayfail]")
 {
     HttpClient client;
 

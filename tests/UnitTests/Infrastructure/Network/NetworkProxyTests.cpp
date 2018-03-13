@@ -1,5 +1,5 @@
 #include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <QtTest/QSignalSpy>
 
 using namespace MellowPlayer::Infrastructure;

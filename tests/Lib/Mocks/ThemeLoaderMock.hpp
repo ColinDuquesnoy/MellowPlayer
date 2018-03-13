@@ -1,5 +1,5 @@
 #pragma once
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 #include <QColor>
 #include <MellowPlayer/Domain/Theme/IThemeLoader.hpp>

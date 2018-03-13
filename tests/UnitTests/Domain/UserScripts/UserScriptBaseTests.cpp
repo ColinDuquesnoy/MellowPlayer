@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScriptBase.hpp>
 #include "FakeUserScript.hpp"
 

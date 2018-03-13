@@ -1,5 +1,5 @@
 #include <MellowPlayer/Infrastructure/Application/ApplicationDecorator.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <QtTest/QSignalSpy>
 #include "FakeApplication.hpp"
 

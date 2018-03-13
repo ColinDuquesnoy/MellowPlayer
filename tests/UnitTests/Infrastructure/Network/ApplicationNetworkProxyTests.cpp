@@ -4,7 +4,7 @@
 #include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
 #include <UnitTests/Infrastructure/Network/FakeNetworkProxies.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace std;
 using namespace MellowPlayer::Domain;

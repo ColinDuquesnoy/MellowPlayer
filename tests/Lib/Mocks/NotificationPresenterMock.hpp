@@ -1,6 +1,6 @@
 #pragma once
 #include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 using namespace MellowPlayer::Presentation;

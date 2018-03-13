@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+    <qresource prefix="/MellowPlayer/Presentation">
+        <file>mellowplayer.js</file>
+        <file>fonts/MaterialIcons-Regular.ttf</file>
+        <file>icons/mellowplayer.ico</file>
+        <file>icons/mellowplayer.png</file>
+        <file>icons/mellowplayer.svg</file>
+        <file>fonts/Roboto/Roboto-Black.ttf</file>
+        <file>fonts/Roboto/Roboto-BlackItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Bold.ttf</file>
+        <file>fonts/Roboto/Roboto-BoldItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Italic.ttf</file>
+        <file>fonts/Roboto/Roboto-Light.ttf</file>
+        <file>fonts/Roboto/Roboto-LightItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Medium.ttf</file>
+        <file>fonts/Roboto/Roboto-MediumItalic.ttf</file>
+        <file>fonts/Roboto/Roboto-Regular.ttf</file>
+        <file>fonts/Roboto/Roboto-Thin.ttf</file>
+        <file>fonts/Roboto/Roboto-ThinItalic.ttf</file>
+        <file>icons/application-exit.png</file>
+        <file>icons/media-playback-start.png</file>
+        <file>icons/media-playback-pause.png</file>
+        <file>icons/media-seek-backward.png</file>
+        <file>icons/media-seek-forward.png</file>
+        <file>icons/view-restore.png</file>
+        <file>images/home-background.png</file>
+        <file>themes/Breeze.json</file>
+        <file>themes/BreezeDark.json</file>
+        <file>themes/Default.json</file>
+        <file>themes/Midna.json</file>
+        <file>themes/MidnaDark.json</file>
+        <file>themes/Ambiance.json</file>
+    </qresource>
+</RCC>

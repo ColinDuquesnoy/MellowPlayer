@@ -2,7 +2,7 @@
 
 #include <MellowPlayer/Presentation/Notifications/Notification.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/Linux/LibnotifyPresenter.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
     #include <UnitTests/Presentation/FakeMainWindow.hpp>
 
 using namespace MellowPlayer::Domain;

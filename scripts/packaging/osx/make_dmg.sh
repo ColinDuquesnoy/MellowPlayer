@@ -2,19 +2,19 @@
 
 echo "Copying plugins to .app"
 
-build_dir=build
+app_dir=build/release/install-root/Applications/MellowPlayer.app
 
-mkdir -p ${build_dir}/src/main/MellowPlayer.app/Contents/PlugIns/services
-mkdir -p ${build_dir}/src/main/MellowPlayer.app/Contents/Resources
+mkdir -p ${app_dir}/Contents/PlugIns/services
+mkdir -p ${app_dir}/Contents/Resources
 
-cp -R plugins/ ${build_dir}/src/main/MellowPlayer.app/Contents/PlugIns/services
-cp scripts/packaging/osx/mellowplayer.icns ${build_dir}/src/main/MellowPlayer.app/Contents/Resources
-cp scripts/packaging/osx/Info.plist ${build_dir}/src/main/MellowPlayer.app/Contents
+cp -R src/plugins/web ${app_dir}/Contents/PlugIns/services
+cp scripts/packaging/osx/mellowplayer.icns ${app_dir}/Contents/Resources
+cp scripts/packaging/osx/Info.plist ${app_dir}/Contents
 
-mkdir -p  ${build_dir}/src/main/MellowPlayer.app/Contents/Resources/qml/QtQuick/
-cp -R /usr/local/opt/qt/qml/QtQuick/Controls ${build_dir}/src/main/MellowPlayer.app/Contents/Resources/qml/QtQuick/
+mkdir -p  ${app_dir}/Contents/Resources/qml/QtQuick/
+cp -R /usr/local/opt/qt/qml/QtQuick/Controls ${app_dir}/Contents/Resources/qml/QtQuick/
 
-/usr/local/opt/qt/bin/macdeployqt ${build_dir}/src/main/MellowPlayer.app -dmg -qmldir=$PWD/src -verbose=3
+macdeployqt ${app_dir} -dmg -qmldir=$PWD/src -verbose=1
 
 mkdir -p dist
-cp ${build_dir}/src/main/MellowPlayer.dmg dist/
+cp build/release/install-root/Applications/MellowPlayer.dmg dist/

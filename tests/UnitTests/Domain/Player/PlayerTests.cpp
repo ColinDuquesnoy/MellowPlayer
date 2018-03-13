@@ -3,7 +3,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain::Tests;

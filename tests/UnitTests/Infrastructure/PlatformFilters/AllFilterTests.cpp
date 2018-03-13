@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/AllFilter.hpp>
 
 using namespace MellowPlayer::Infrastructure;

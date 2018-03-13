@@ -1,6 +1,6 @@
 #include "TestsRunner.hpp"
 #define CATCH_CONFIG_RUNNER
-#include "catch.hpp"
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/Logging/ILogger.hpp>
 #include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
@@ -30,7 +30,7 @@ int TestsRunner::runTests(int argc, char** argv)
 
     SpdLoggerFactory loggerFactory;
     LoggerConfig loggerConfig;
-    loggerConfig.createFileLoggers = true;
+    loggerConfig.createFileLoggers = false;
 
     try {
         Loggers::instance();
@@ -40,7 +40,7 @@ int TestsRunner::runTests(int argc, char** argv)
 
     }
     Loggers& loggingManager = Loggers::initialize(loggerFactory, loggerConfig);
-    loggingManager.setDefaultLogLevel(LogLevel::Off);
+    loggingManager.setDefaultLogLevel(LogLevel::Error);
 
     LOG_DEBUG(loggingManager.logger("tests"), "Starting tests");
     qDebug() << "Starting tests" << BuildConfig::buildInfo();
