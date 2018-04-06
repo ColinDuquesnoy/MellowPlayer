@@ -13,3 +13,4 @@ Contributors
 - [Mahmoud Hossam](https://github.com/mahmoudhossam)
 - [Terin Stock](https://github.com/terinjokes)
 - [Rasmus Thomsen](https://github.com/Cogitri)
+- [DmMlhch](https://github.com/DmMlhch)

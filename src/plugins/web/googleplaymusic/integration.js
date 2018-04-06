@@ -24,8 +24,45 @@ function getButtons() {
     return {
         playpause: document.getElementById("player-bar-play-pause"),
         skip: document.getElementById("player-bar-forward"),
-        back: document.getElementById("player-bar-rewind")
+        back: document.getElementById("player-bar-rewind"),
+        seekBar: document.getElementById('progressContainer')
     };
+}
+// The two functions below can be used to control playback position and volume level
+// See https://www.martin-brennan.com/simulating-mouse-click-event-javascript/ , 
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+// and https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent for details
+/**
+ * @param element    (HTMLElement) Element to send events to. 
+ * @param eventName  (String) type of the MouseEvent to send. 
+ * @param relativeX  (Float) relative x position within the boundaries of the element, 
+ * as a fraction of the element's width(0..1). 
+ * @param relativeY  (Float) relative y position within the boundaries of the element,
+ * as a fraction of the element's height(0..1).
+*/
+function sendMouseEventToElement(element, eventName, relativeX, relativeY) {
+    var clientRect = element.getBoundingClientRect();   
+    var event = new MouseEvent(eventName, {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true,
+        'clientX': clientRect.left + (clientRect.width * relativeX),
+        'clientY': clientRect.top + (clientRect.height * relativeY)
+    });
+    element.dispatchEvent(event);
+}
+/**
+ * Emulates mouse click on the specified position of the given element
+ * @param element    (HTMLElement) Element to send click to. 
+ * @param relativeX  (Float) relative x position within the boundaries of the element, 
+ * as a fraction of the element's width(0..1). 
+ * @param relativeY  (Float) relative y position within the boundaries of the element,
+ * as a fraction of the element's height(0..1).
+*/
+function sendMouseClickToElement(element, relativeX, relativeY) {
+    sendMouseEventToElement(element, 'mouseover', relativeX, relativeY);
+    sendMouseEventToElement(element, 'mousedown', relativeX, relativeY);
+    sendMouseEventToElement(element, 'mouseup', relativeX, relativeY);
 }
 
 //-----------------------------------------------------------------------------
@@ -93,9 +130,11 @@ function update() {
         position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
     } catch (e) {}
 
+    var canSeek = getButtons().seekBar != null && duration != 0;
+
     return {
         "playbackStatus": playbackStatus,
-        "canSeek": false,
+        "canSeek": canSeek,
         "canGoNext": true,
         "canGoPrevious": true,
         "canAddToFavorites": false,
@@ -155,7 +194,6 @@ function removeFromFavorites() {
 }
 
 function seekToPosition(position) {
-
-    // not currently supported
-
+    var positionAsFraction =  position  / update().duration;    
+    sendMouseClickToElement(getButtons().seekBar, positionAsFraction, 0.5);   
 }
