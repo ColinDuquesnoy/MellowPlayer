@@ -25,6 +25,7 @@ function getButtons() {
         playpause: document.getElementById("player-bar-play-pause"),
         skip: document.getElementById("player-bar-forward"),
         back: document.getElementById("player-bar-rewind"),
+        thumbUp: document.querySelector('#player .player-rating-container [icon^="sj:thumb-"][data-rating="5"]'),
         seekBar: document.getElementById('progressContainer')
     };
 }
@@ -132,12 +133,25 @@ function update() {
 
     var canSeek = getButtons().seekBar != null && duration != 0;
 
+    // Adapted from gmusic.js
+    // please see https://github.com/gmusic-utils/gmusic.js/blob/master/src/namespaces/RatingNamespace.js
+    // and https://github.com/gmusic-utils/gmusic.js/blob/master/src/constants/selectors.js
+
+    elm = getButtons().thumbUp;
+    var canAddToFavorites = elm != null && playbackStatus != mellowplayer.PlaybackStatus.STOPPED;
+    var isFavorite = false;    
+    try {
+        isFavorite = elm.__data__.icon === 'thumb-up';
+    } catch (e) {
+        canAddToFavorites = false;
+    }
+
     return {
         "playbackStatus": playbackStatus,
         "canSeek": canSeek,
         "canGoNext": true,
         "canGoPrevious": true,
-        "canAddToFavorites": false,
+        "canAddToFavorites": canAddToFavorites,
         "volume": 1,
         "duration": duration,
         "position": position,
@@ -146,7 +160,7 @@ function update() {
         "artistName": artistName,
         "albumTitle": albumTitle,
         "artUrl": artUrl,
-        "isFavorite": false
+        "isFavorite": isFavorite
     }
 }
 
@@ -183,13 +197,13 @@ function setVolume(volume) {
 
 function addToFavorites() {
 
-    // not currently supported
+    getButtons().thumbUp.click();
 
 }
 
 function removeFromFavorites() {
 
-    // not currently supported
+    getButtons().thumbUp.click();
 
 }
 
