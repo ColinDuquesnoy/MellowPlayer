@@ -131,6 +131,12 @@ function update() {
         position = parseInt(pseconds, 10) + (parseInt(pminutes, 10) * 60);
     } catch (e) {}
 
+    elm = getButtons().skip;
+    var canGoNext = elm != null && !elm.disabled;
+
+    elm = getButtons().back;
+    var canGoPrevious = elm != null && !elm.disabled;
+
     var canSeek = getButtons().seekBar != null && duration != 0;
 
     // Adapted from gmusic.js
@@ -149,8 +155,8 @@ function update() {
     return {
         "playbackStatus": playbackStatus,
         "canSeek": canSeek,
-        "canGoNext": true,
-        "canGoPrevious": true,
+        "canGoNext": canGoNext,
+        "canGoPrevious": canGoPrevious,
         "canAddToFavorites": canAddToFavorites,
         "volume": 1,
         "duration": duration,
