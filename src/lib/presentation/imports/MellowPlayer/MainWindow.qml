@@ -53,7 +53,7 @@ ApplicationWindow {
         runningServices.currentIndex = index;
     }
 
-    minimumWidth: 1280; minimumHeight: 720
+    minimumWidth: 960; minimumHeight: 540
     width: _settings.get(SettingKey.PRIVATE_WINDOW_WIDTH).value;
     height: _settings.get(SettingKey.PRIVATE_WINDOW_HEIGHT).value;
     title: _streamingServices.currentService !== null ? _streamingServices.currentService.name : ""
