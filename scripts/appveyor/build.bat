@@ -4,4 +4,4 @@ set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
 mkdir build
 cd build
 qbs --version
-qbs build -f ../ release projects.MellowPlayer.buildTests:true
+qbs build -f ../ config:release projects.MellowPlayer.buildTests:true
