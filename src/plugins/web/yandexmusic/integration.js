@@ -7,6 +7,13 @@ function getArtist() {
     return artistTitle;
 }
 
+function appendProtocol(url){
+    if (!(url.slice(0,4) === "http")) {
+        return "http://"+url;
+    }
+    return url;
+}
+
 function update() {
     var playbackStatus;
     if (externalAPI.isPlaying())
@@ -31,7 +38,7 @@ function update() {
         "songTitle": track.title,
         "artistName": getArtist(),
         "albumTitle": track.album.title,
-        "artUrl": track.cover.slice(0, -2) + "200x200",
+        "artUrl": appendProtocol(track.cover.slice(0, -2) + "200x200"),
         "isFavorite": track.liked
     };
 }
