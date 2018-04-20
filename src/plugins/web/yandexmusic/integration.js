@@ -7,9 +7,9 @@ function getArtist() {
     return artistTitle;
 }
 
-function appendProtocol(url){
-    if (!(url.slice(0,4) === "http")) {
-        return "http://"+url;
+function appendProtocol(url) {
+    if (!(url.slice(0, 4) === "http")) {
+        return "http://" + url;
     }
     return url;
 }
@@ -25,6 +25,22 @@ function update() {
     var track = externalAPI.getCurrentTrack();
     var progress = externalAPI.getProgress();
     var controls = externalAPI.getControls();
+    if (!track) {
+        return {
+            "playbackStatus": playbackStatus,
+            "canSeek": false,
+            "canGoNext": false,
+            "canGoPrevious": false,
+            "canAddToFavorites": false,
+            "volume": 1,
+            "songId": '',
+            "songTitle": '',
+            "artistName": '',
+            "albumTitle": '',
+            "artUrl": '',
+            "isFavorite": ''
+        };
+    }
     return {
         "playbackStatus": playbackStatus,
         "canSeek": true,
