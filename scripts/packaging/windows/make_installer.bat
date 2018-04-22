@@ -7,4 +7,4 @@ set INSTALL_DIR=build\release\install-root\
 %QTDIR%\bin\windeployqt %INSTALL_DIR%\bin\MellowPlayer.exe -qmldir=src
 
 cd build
-qbs build -f ../ -p MellowPlayer_Setup release projects.MellowPlayer.buildTests:true
+qbs build -f ../ -p MellowPlayer_Setup config:release projects.MellowPlayer.buildTests:true
