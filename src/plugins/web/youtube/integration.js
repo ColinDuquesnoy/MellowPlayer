@@ -16,95 +16,83 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-var previousSongTitle = "";
-var previousArtUrl = "";
-
-function getButtons() {
-    return {
-        play: document.getElementsByClassName("ytp-play-button")[0],
-        pause: document.getElementsByClassName("ytp-play-button")[0],
-        skip: document.getElementsByClassName("ytp-next-button")[0]
-    };
-}
+var player;
 
 function update() {
-    var rawPosition = "00:00";
-    var rawDuration = "00:00";
-    var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
-    var songTitle = "";
-    var artistName = "";
-    var artUrl = "";
 
-    if (document.URL.indexOf("watch") !== -1) {
-        try {
-            var rawPosition = document.getElementsByClassName("ytp-time-current")[0].innerText;
-            var rawDuration = document.getElementsByClassName("ytp-time-duration")[0].innerText;
-            var playbackStatus = getButtons().play.attributes["aria-label"].value === "Pause" ? mellowplayer.PlaybackStatus.PLAYING : mellowplayer.PlaybackStatus.PAUSED;
-            var songTitle = document.querySelector("#container > h1").innerText;
-            var artistName = document.getElementById('owner-name').children[0].innerText
-            try {
-                var artUrl = document.querySelector("#meta-contents #avatar #img").src
-            } catch (e) {
-                var artUrl = "";
-            }
-        } catch (e) { }
+    // Get the player when available once
+    if(!player)
+        player = document.getElementById("movie_player");
 
-        // prevent duplicate notifications while while loading new art url (previous art url remains)
-        if (songTitle !== previousSongTitle && artUrl === previousArtUrl) {
-            artUrl = "";
-        }
-        else {
-            previousArtUrl = artUrl;
-            previousSongTitle = songTitle;
-        }
+    // Playback status
+    switch(player.getPlayerState()) {
+        case 1:
+            var playbackStatus = mellowplayer.PlaybackStatus.PLAYING;
+            break;
+
+        case 2:
+            var playbackStatus = mellowplayer.PlaybackStatus.PAUSED;
+            break;
+
+        case 3:
+            var playbackStatus = mellowplayer.PlaybackStatus.BUFFERING;
+            break;
+
+        default:
+            var playbackStatus = mellowplayer.PlaybackStatus.STOPPED;
     }
+
+    // Song title
+    var songTitle = document.getElementsByTagName('h1')[0].innerText;
+
+    // Artist name
+    var artistName = document.getElementById('owner-container').innerText;
+
+    // Art URL
+    var artUrl = document.getElementById('avatar').getElementsByTagName('img')[0].src;
 
     return {
         "playbackStatus": playbackStatus,
-        "canSeek": false,
-        "canGoNext": true,
-        "canGoPrevious": false,
-        "canAddToFavorites": false,
-        "volume": 1,
-        "duration": toSeconds(rawDuration),
-        "position": toSeconds(rawPosition),
+        "volume": player.getVolume()/100,
+        "duration": Math.floor(player.getDuration()),
+        "position": Math.floor(player.getCurrentTime()),
         "songId": getHashCode(songTitle),
         "songTitle": songTitle,
         "artistName": artistName,
-        "albumTitle": "",
         "artUrl": artUrl,
+        "canSeek": true,
+        "canGoNext": true,
+        "canGoPrevious": true,
+
+        "albumTitle": "",
+        "canAddToFavorites": false,
         "isFavorite": false
     };
 }
 
 function play() {
-    getButtons().play.click()
+    player.playVideo();
 }
 
 function pause() {
-    getButtons().pause.click()
+    player.pauseVideo()
 }
 
 function goNext() {
-    getButtons().skip.click()
+    player.nextVideo()
 }
 
 function goPrevious() {
-
+    player.previousVideo()
 }
 
 function setVolume(volume) {
-
-}
-
-function addToFavorites() {
-
-}
-
-function removeFromFavorites() {
-
+    player.setVolume(volume*100);
 }
 
 function seekToPosition(position) {
-
+    player.seekTo(position, true);
 }
+
+function addToFavorites() {}
+function removeFromFavorites() {}
