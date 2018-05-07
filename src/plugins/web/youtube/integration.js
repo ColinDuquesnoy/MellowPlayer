@@ -16,13 +16,33 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+
 var player;
 
 function update() {
 
-    // Get the player when available once
-    if(!player)
-        player = document.getElementById("movie_player");
+    // If the player is not currently playing a video
+    if(!document.getElementsByTagName('ytd-app')[0].attributes['is-watch-page']) {
+        return {
+            "playbackStatus": mellowplayer.PlaybackStatus.STOPPED,
+            "volume": 0,
+            "duration": 0,
+            "position": 0,
+            "songId": 0,
+            "songTitle": "",
+            "artistName": "",
+            "artUrl": "",
+            "canSeek": false,
+            "canGoNext": false,
+            "canGoPrevious": false,
+
+            "albumTitle": "",
+            "canAddToFavorites": false,
+            "isFavorite": false
+        };
+    }
+
+    player = document.getElementById("movie_player");
 
     // Playback status
     switch(player.getPlayerState()) {
@@ -62,7 +82,9 @@ function update() {
         "artUrl": artUrl,
         "canSeek": true,
         "canGoNext": true,
-        "canGoPrevious": true,
+
+        // Check if the video is in a playlist
+        "canGoPrevious": document.getElementById('playlist-actions') ? true : false,
 
         "albumTitle": "",
         "canAddToFavorites": false,
