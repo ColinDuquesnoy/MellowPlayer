@@ -44,6 +44,21 @@ function update() {
 
     player = document.getElementById("movie_player");
 
+    // An ad is currently played
+    var adContainer = document.getElementsByClassName('videoAdUiSkipContainer')[0];
+    if( adContainer ) {
+
+        // If the ad can't be skipped, the sound is muted
+        if( adContainer.style.display == "none" ) {
+            player.mute();
+
+        // If the ad can be skipped, the sound is unmuted and the ad skipped
+        } else if( document.getElementsByClassName('videoAdUiSkipButton')[0] ) {
+            document.getElementsByClassName('videoAdUiSkipButton')[0].click();
+            player.unMute();
+        }
+    }
+
     // Playback status
     switch(player.getPlayerState()) {
         case 1:
