@@ -17,6 +17,7 @@ void Mpris2Root::Raise()
 
 void Mpris2Root::Quit()
 {
+    mainWindow_.requestQuit();
 }
 
 bool Mpris2Root::canRaise()
