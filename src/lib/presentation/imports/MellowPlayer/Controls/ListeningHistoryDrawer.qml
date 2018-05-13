@@ -10,6 +10,7 @@ Drawer {
 
     clip: true
     edge: Qt.RightEdge
+    dragMargin: 0
 
     onPositionChanged: if (position == 0) toolBar.searchChecked = false
 
