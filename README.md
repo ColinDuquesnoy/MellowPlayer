@@ -116,7 +116,7 @@ qbs-config defaultProfile qt5
 ```
 ### Building MellowPlayer
 
-```
+```bash
 qbs build release
 ```
 
@@ -129,6 +129,18 @@ You can append the following command line options when building MellowPlayer:
 - ``projects.MellowPlayer.defaultTheme``:``<string>``: the name of the default theme. Can be set to any theme appearing in the theme combo box. Default value: "Adaptive".
 - ``projects.MellowPlayer.buildTests``:``<bool>``: true to build mellowplayer test suite. Default value: false.
 - ``projects.MellowPlayer.enableCoverage``:``<bool>``: true to enable code coverage build. Require a debug build config and a gcc compiler. Default value: false;
+
+### Running MellowPlayer from build directory
+
+```bash
+qbs run config:release -p MellowPlayer
+```
+
+### Installing MellowPlayer on your system
+
+```bash
+sudo qbs install --install-root /usr/ config:release
+```
 
 # Running the test suite
 
