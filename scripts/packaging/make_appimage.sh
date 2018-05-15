@@ -32,7 +32,7 @@ popd
 
 ldd appdir/usr/bin/MellowPlayer
 
-./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=../
+./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -exclude-libs="libnss3.so,libnssutil3.so" -bundle-non-qt-libs -qmldir=../
 echo "Copying missing files..."
 ls ${QT_DIR}/plugins/imageformats/
 cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
