@@ -38,7 +38,8 @@ ls ${QT_DIR}/plugins/imageformats/
 cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
 ls ${QT_DIR}/qml/QtQuick/Controls
 cp -R ${QT_DIR}/qml/QtQuick/Controls ./appdir/usr/qml/QtQuick/
-./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
+ls -R ./appdir
+./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -exclude-libs="libnss3.so,libnssutil3.so" -appimage
 
 chmod +x MellowPlayer-x86_64.AppImage
 mkdir -p dist
