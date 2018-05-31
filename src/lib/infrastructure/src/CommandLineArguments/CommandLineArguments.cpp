@@ -9,7 +9,7 @@ CommandLineArguments::CommandLineArguments()
         : serviceOption_(QStringList() << "s" << "service", "Select startup service", "service"),
           logLevelOption_(QStringList() << "l" << "log-level",
                           "Log level (0=TRACE, 1=DEBUG, 2=INFO, 3=WARNING, 4=ERROR, 5=CRITICAL, 6=OFF)",
-                          "logLevel", "2"),
+                          "logLevel", "1"),
           playPauseOption_(QStringList() << "p" << "play-pause", "Play or pause the current song"),
           nextOption_(QStringList() << "f" << "next", "Skip to the next song"),
           previousOption_(QStringList() << "b" << "previous", "Skip to the previous song"),
