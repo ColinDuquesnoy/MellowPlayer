@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -35,8 +35,8 @@ struct injector {
 aux::false_type configurable_impl(...);
 
 template <class T>
-auto configurable_impl(T &&)
-    -> aux::is_valid_expr<decltype(T::provider((injector<T>*)0)), decltype(T::policies((injector<T>*)0))>;
+auto configurable_impl(T &&) -> aux::is_valid_expr<decltype(aux::declval<T>().provider((injector<T>*)0)),
+                                                   decltype(aux::declval<T>().policies((injector<T>*)0))>;
 
 template <class T1, class T2>
 struct get_configurable_error : aux::type_list<T1, T2> {};
@@ -56,8 +56,8 @@ struct get_configurable_error<aux::true_type, aux::true_type> : aux::true_type {
 
 template <class T>
 auto is_configurable(const aux::true_type&) {
-  return typename get_configurable_error<decltype(providable<decltype(T::provider((injector<T>*)0))>()),
-                                         decltype(callable<decltype(T::policies((injector<T>*)0))>())>::type{};
+  return typename get_configurable_error<decltype(providable<decltype(aux::declval<T>().provider((injector<T>*)0))>()),
+                                         decltype(callable<decltype(aux::declval<T>().policies((injector<T>*)0))>())>::type{};
 }
 
 template <class T>
@@ -73,6 +73,6 @@ struct configurable__ {
 template <class T>
 using configurable = typename configurable__<T>::type;
 
-}  // concepts
+}  // namespace concepts
 
 #endif

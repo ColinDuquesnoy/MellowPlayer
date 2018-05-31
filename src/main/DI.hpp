@@ -70,8 +70,7 @@
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
 #include <boost/di.hpp>
-#include <boost-di-extensions/ScopedScope.hpp>
-#include <boost-di-extensions/Contextual.hpp>
+#include <boost/di/extension/scopes/scoped.hpp>
 #include <boost-di-extensions/Factory.hpp>
 
 #ifdef USE_LIBNOTIFY
@@ -129,7 +128,7 @@ private:
 
 
 // clang-format off
-auto defaultInjector = [](ScopedScope& scope) {
+auto defaultInjector = [](di::extension::detail::scoped& scope) {
     return di::make_injector(
         di::bind<IApplication>().to(ApplicationFactory { }),
         di::bind<IQtApplication>().to<QtApplication>().in(scope),
@@ -163,7 +162,7 @@ auto defaultInjector = [](ScopedScope& scope) {
     );
 };
 
-auto platformInjector = [](ScopedScope &scope) {
+auto platformInjector = [](di::extension::detail::scoped& scope) {
 #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     return di::make_injector(
         di::bind<IMprisService>().to<MprisService>().in(scope),
@@ -182,7 +181,7 @@ auto platformInjector = [](ScopedScope &scope) {
 #endif
 };
 
-auto notificationPresenterInjector = [](ScopedScope &scope) {
+auto notificationPresenterInjector = [](di::extension::detail::scoped& scope) {
 #if defined(USE_LIBNOTIFY)
     return di::make_injector(di::bind<INotificationPresenter>().to<LibnotifyPresenter>().in(scope));
 #else

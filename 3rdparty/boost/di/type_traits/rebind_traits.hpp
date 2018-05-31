@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -64,6 +64,6 @@ struct rebind_traits<boost::shared_ptr<T>, named<TName, _>> {
 template <class T, class U>
 using rebind_traits_t = typename rebind_traits<T, U>::type;
 
-}  // type_traits
+}  // namespace type_traits
 
 #endif

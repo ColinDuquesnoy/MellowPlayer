@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -15,7 +15,8 @@ namespace core {
 
 template <class T, class TInjector, class TError = aux::false_type>
 struct is_referable__ {
-  static constexpr auto value = dependency__<binder::resolve_t<TInjector, T>>::template is_referable<T>::value;
+  static constexpr auto value =
+      dependency__<binder::resolve_t<TInjector, T>>::template is_referable<T, typename TInjector::config>::value;
 };
 
 template <class T, class TInjector>
@@ -208,7 +209,7 @@ struct any_type_1st_ref {
   const TInjector& injector_;
 };
 
-}  // successful
+}  // namespace successful
 
 template <class>
 struct any_type_fwd {
@@ -264,6 +265,6 @@ struct any_type_1st_ref_fwd {
   operator const T&() const;
 };
 
-}  // core
+}  // namespace core
 
 #endif

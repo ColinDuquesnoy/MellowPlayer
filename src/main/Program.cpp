@@ -76,7 +76,7 @@ int Program::main(int argc, char** argv)
     loggerConfig.createFileLoggers = SingleInstance::checkForPrimary();
     Loggers::initialize(loggerFactory, loggerConfig);
 
-    ScopedScope scope{};
+    di::extension::detail::scoped scope{};
     auto injector = di::make_injector(di::bind<QApplication>().to(qApplication),
                                       defaultInjector(scope),
                                       platformInjector(scope),

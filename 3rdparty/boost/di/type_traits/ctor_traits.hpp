@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -85,7 +85,7 @@ struct ctor_traits_impl<T, _, aux::true_type>
 template <class T, class _>
 struct ctor_traits_impl<T, _, aux::false_type> : aux::pair<T, typename ctor_traits<T>::type> {};
 
-}  // type_traits
+}  // namespace type_traits
 
 template <class T, class>
 struct ctor_traits : type_traits::ctor<T, type_traits::ctor_impl_t<aux::is_constructible, T>> {};

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -41,10 +41,12 @@ template <class...>
 struct any_of : aux::false_type {};
 
 template <class... TDeps>
-struct is_supported : aux::is_same<aux::bool_list<aux::always<TDeps>::value...>,
-                                   aux::bool_list<(aux::is_constructible<TDeps, TDeps&&>::value &&
-                                                   (aux::is_a<core::injector_base, TDeps>::value ||
-                                                    aux::is_a<core::dependency_base, TDeps>::value))...>> {};
+struct is_supported
+    : aux::is_same<aux::bool_list<aux::always<TDeps>::value...>,
+                   aux::bool_list<(aux::is_constructible<TDeps, TDeps&&>::value &&
+                                   (aux::is_a<core::injector_base, TDeps>::value ||
+                                    aux::is_a<core::dependency_base, TDeps>::value || aux::is_empty_expr<TDeps>::value))...>> {
+};
 
 template <class...>
 struct get_not_supported;
@@ -115,8 +117,7 @@ struct is_related {
 template <class I, class T>
 struct is_related<true, I, T> {
   static constexpr auto value =
-      aux::is_callable<T>::value ||
-      (aux::is_base_of<I, T>::value || (aux::is_convertible<T, I>::value && !aux::is_narrowed<I, T>::value));
+      aux::is_base_of<I, T>::value || (aux::is_convertible<T, I>::value && !aux::is_narrowed<I, T>::value);
 };
 
 template <bool, class>
@@ -142,10 +143,11 @@ using boundable_impl__ = aux::conditional_t<
     aux::conditional_t<is_abstract<aux::is_complete<T>::value, T>::value, typename type_<T>::is_abstract, aux::true_type>,
     typename type_<T>::template is_not_related_to<I>>;
 
-template <class I, class T>                                                                   // expected -> given
-auto boundable_impl(I&&, T &&) -> aux::conditional_t<aux::is_same<T, aux::decay_t<T>>::value  // I is already verified
-                                                     ,
-                                                     boundable_impl__<I, T>, typename type_<T>::has_disallowed_qualifiers>;
+template <class I, class T>  // expected -> given
+auto boundable_impl(I&&, T &&)
+    -> aux::conditional_t<aux::is_same<T, aux::decay_t<T>>::value || !aux::is_complete<I>::value  // I is already verified
+                          ,
+                          boundable_impl__<I, T>, typename type_<T>::has_disallowed_qualifiers>;
 
 template <class I, class T>  // expected -> given
 auto boundable_impl(I&&, T&&, aux::valid<> &&)

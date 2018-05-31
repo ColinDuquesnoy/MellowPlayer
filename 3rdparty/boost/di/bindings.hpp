@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -35,7 +35,7 @@ struct bind<int, TScope, Ts...> {
   using type = core::dependency<TScope, concepts::any_of<Ts...>>;
 };
 
-}  // detail
+}  // namespace detail
 
 template <class... Ts>
 #if defined(__cpp_variable_templates)  // __pph__
@@ -50,8 +50,5 @@ struct bind :
 {};
 
 static constexpr __BOOST_DI_UNUSED core::override override{};
-static constexpr __BOOST_DI_UNUSED scopes::deduce deduce{};
-static constexpr __BOOST_DI_UNUSED scopes::unique unique{};
-static constexpr __BOOST_DI_UNUSED scopes::singleton singleton{};
 
 #endif

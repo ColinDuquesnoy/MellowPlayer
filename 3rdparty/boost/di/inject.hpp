@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -45,7 +45,7 @@ struct combine<aux::type_list<T1...>, aux::type_list<T2...>> {
 template <class T1, class T2>
 using combine_t = typename combine<T1, T2>::type;
 
-}  // detail
+}  // namespace detail
 
 template <class... Ts>
 using inject = aux::type_list<Ts...>;

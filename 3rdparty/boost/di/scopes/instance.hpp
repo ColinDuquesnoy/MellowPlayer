@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -41,11 +41,11 @@ using wrapper_traits_t = typename wrapper_traits<T>::type;
 __BOOST_DI_HAS_TYPE(has_result_type, result_type);
 
 template <class TGiven, class TProvider, class... Ts>
-struct is_expr : aux::integral_constant<bool,
-                                        aux::is_callable_with<TGiven, typename TProvider::injector_t, Ts...>::value &&
-                                            !has_result_type<TGiven>::value> {};
+struct is_expr
+    : aux::integral_constant<
+          bool, aux::is_invocable<TGiven, typename TProvider::injector, Ts...>::value && !has_result_type<TGiven>::value> {};
 
-}  // detail
+}  // namespace detail
 
 template <class T>
 struct wrapper {
@@ -57,7 +57,7 @@ class instance {
  public:
   template <class, class TGiven, class = int>
   struct scope {
-    template <class>
+    template <class...>
     using is_referable = aux::false_type;
 
     explicit scope(const TGiven& object) : object_{object} {}
@@ -75,7 +75,7 @@ class instance {
 
   template <class TExpected, class TGiven>
   struct scope<TExpected, std::shared_ptr<TGiven>> {
-    template <class T>
+    template <class T, class>
     using is_referable = typename wrappers::shared<instance, TGiven>::template is_referable<aux::remove_qualifiers_t<T>>;
 
     explicit scope(const std::shared_ptr<TGiven>& object) : object_{object} {}
@@ -93,7 +93,7 @@ class instance {
 
   template <class TExpected, class TGiven>
   struct scope<TExpected, std::initializer_list<TGiven>> {
-    template <class>
+    template <class...>
     using is_referable = aux::false_type;
 
     scope(const std::initializer_list<TGiven>& object) : object_(object) {}
@@ -111,7 +111,7 @@ class instance {
 
   template <class TExpected, class TGiven>
   struct scope<TExpected, TGiven&, __BOOST_DI_REQUIRES(!aux::is_callable<TGiven>::value)> {
-    template <class>
+    template <class...>
     using is_referable = aux::true_type;
 
     explicit scope(TGiven& object) : object_{object} {}
@@ -129,7 +129,7 @@ class instance {
 
   template <class TExpected, class TGiven>
   struct scope<TExpected, TGiven, __BOOST_DI_REQUIRES(aux::is_callable<TGiven>::value)> {
-    template <class>
+    template <class...>
     using is_referable =
         aux::integral_constant<bool, !aux::is_callable<TExpected>::value || !detail::has_result_type<TExpected>::value>;
 
@@ -146,18 +146,18 @@ class instance {
     static wrappers::unique<instance, TExpected> try_create(const TProvider&) noexcept;
 
     template <class T, class, class TProvider,
-              __BOOST_DI_REQUIRES(!detail::is_expr<TGiven, TProvider>::value && aux::is_callable_with<TGiven>::value &&
+              __BOOST_DI_REQUIRES(!detail::is_expr<TGiven, TProvider>::value && aux::is_invocable<TGiven>::value &&
                                   !aux::is_callable<TExpected>::value) = 0>
     static auto try_create(const TProvider&) noexcept
         -> detail::wrapper_traits_t<decltype(aux::declval<typename aux::identity<TGiven, T>::type>()())>;
 
     template <class, class, class TProvider, __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider>::value) = 0>
-    static detail::wrapper_traits_t<decltype(aux::declval<TGiven>()(aux::declval<typename TProvider::injector_t>()))>
-    try_create(const TProvider&) noexcept;
+    static detail::wrapper_traits_t<decltype(aux::declval<TGiven>()(aux::declval<typename TProvider::injector>()))> try_create(
+        const TProvider&) noexcept;
 
     template <class T, class, class TProvider,
               __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider, const detail::arg<T, TExpected, TGiven>&>::value) = 0>
-    static detail::wrapper_traits_t<decltype(aux::declval<TGiven>()(aux::declval<typename TProvider::injector_t>(),
+    static detail::wrapper_traits_t<decltype(aux::declval<TGiven>()(aux::declval<typename TProvider::injector>(),
                                                                     aux::declval<detail::arg<T, TExpected, TGiven>>()))>
     try_create(const TProvider&) noexcept;
 #endif  // __pph__
@@ -170,7 +170,7 @@ class instance {
     }
 
     template <class T, class, class TProvider,
-              __BOOST_DI_REQUIRES(!detail::is_expr<TGiven, TProvider>::value && aux::is_callable_with<TGiven>::value &&
+              __BOOST_DI_REQUIRES(!detail::is_expr<TGiven, TProvider>::value && aux::is_invocable<TGiven>::value &&
                                   !aux::is_callable<TExpected>::value) = 0>
     auto create(const TProvider&) const {
       using wrapper = detail::wrapper_traits_t<decltype(aux::declval<TGiven>()())>;
@@ -179,15 +179,15 @@ class instance {
 
     template <class, class, class TProvider, __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider>::value) = 0>
     auto create(const TProvider& provider) {
-      using wrapper = detail::wrapper_traits_t<decltype((object_)(*provider.injector_))>;
-      return wrapper{(object_)(*provider.injector_)};
+      using wrapper = detail::wrapper_traits_t<decltype((object_)(provider.super()))>;
+      return wrapper{(object_)(provider.super())};
     }
 
     template <class T, class, class TProvider,
               __BOOST_DI_REQUIRES(detail::is_expr<TGiven, TProvider, const detail::arg<T, TExpected, TGiven>&>::value) = 0>
     auto create(const TProvider& provider) {
-      using wrapper = detail::wrapper_traits_t<decltype((object_)(*provider.injector_, detail::arg<T, TExpected, TGiven>{}))>;
-      return wrapper{(object_)(*provider.injector_, detail::arg<T, TExpected, TGiven>{})};
+      using wrapper = detail::wrapper_traits_t<decltype((object_)(provider.super(), detail::arg<T, TExpected, TGiven>{}))>;
+      return wrapper{(object_)(provider.super(), detail::arg<T, TExpected, TGiven>{})};
     }
 
     TGiven object_;
@@ -268,7 +268,7 @@ class instance {
     };
 
    public:
-    template <class>
+    template <class...>
     using is_referable = aux::true_type;
 
     template <class TInjector, __BOOST_DI_REQUIRES(aux::is_a<core::injector_base, TInjector>::value) = 0>
@@ -291,6 +291,6 @@ class instance {
   };
 };
 
-}  // scopes
+}  // namespace scopes
 
 #endif
