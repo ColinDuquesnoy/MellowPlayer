@@ -244,7 +244,7 @@ class ReactController {
 
     getAlbumArt() {
         try {
-            return document.querySelector("div.player-cloudcast-image").children[0].src;
+            return document.querySelector("div.player-cloudcast-image").children[0].src.replace("52x52", "512x512");
         }
         catch (e) {
             return "";

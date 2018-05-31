@@ -60,7 +60,7 @@ bool LocalAlbumArt::isReady(const Song& song)
 
 QString LocalAlbumArt::fallbackUrl() const
 {
-    return "https://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/src/lib/MellowPlayer/Presentation/Resources/icons/mellowplayer.png";
+    return "https://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/src/lib/presentation/resources/icons/mellowplayer.png";
 }
 
 void LocalAlbumArt::onArtUrlChanged()

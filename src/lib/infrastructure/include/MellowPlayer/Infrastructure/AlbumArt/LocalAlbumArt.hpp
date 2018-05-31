@@ -16,7 +16,7 @@ namespace MellowPlayer::Infrastructure
     {
         Q_OBJECT
     public:
-        LocalAlbumArt(Domain::IPlayer& player, Domain::IAlbumArtDownloader& downloader, int timeout=1000);
+        LocalAlbumArt(Domain::IPlayer& player, Domain::IAlbumArtDownloader& downloader, int timeout=5000);
 
         const QString& url() const override;
         bool isReady(const Domain::Song& song) override;
