@@ -18,4 +18,6 @@ ApplicationWindow {
         anchors.fill: parent
         url: devToolsWindow.url
     }
+
+    Component.onCompleted: visible = true
 }
