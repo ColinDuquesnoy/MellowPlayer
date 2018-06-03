@@ -93,7 +93,9 @@ Dialog {
 
             Item {
                 id: generalPage
-                anchors.fill: parent
+
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 Pane {
                     anchors.centerIn: parent
@@ -152,12 +154,16 @@ Dialog {
             }
 
             StackLayout {
-                anchors.fill: parent
                 currentIndex: service !== null && service.userScripts.hasScripts ? 1 : 0
 
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
                 ColumnLayout {
-                    anchors.fill: parent
                     spacing: 20
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
                     Item {
                         Layout.fillHeight: true
@@ -203,7 +209,8 @@ Dialog {
                 }
 
                 Item {
-                    anchors.fill: parent
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
                     Pane {
                         id: userScriptListPane
@@ -327,7 +334,8 @@ Dialog {
             }
 
             Item {
-                anchors.fill: parent
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 Pane {
                     id: networkProxyPane

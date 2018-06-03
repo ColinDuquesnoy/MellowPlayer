@@ -170,8 +170,10 @@ Page {
                 model: _settings.categories
 
                 Loader {
-                    anchors.fill: parent
                     source: Qt.resolvedUrl("../" + model.qmlComponent)
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                 }
             }
         }

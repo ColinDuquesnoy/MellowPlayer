@@ -10,7 +10,6 @@ ScrollView {
 
     property alias count: listView.count
 
-    anchors.fill: parent
     contentHeight: listView.contentHeight
     contentWidth: listView.contentWidth
 

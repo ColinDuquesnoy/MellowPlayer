@@ -24,11 +24,13 @@ StackLayout {
     ListeningHistoryListView {
         id: listView
 
-        anchors.fill: parent
+        Layout.fillHeight: true
+        Layout.fillWidth: true
     }
 
     Pane {
-        anchors.fill: parent
+        Layout.fillHeight: true
+        Layout.fillWidth: true
 
         ColumnLayout {
             anchors.fill: parent
