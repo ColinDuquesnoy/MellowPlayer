@@ -34,6 +34,7 @@
 #include <MellowPlayer/Infrastructure/Network/FileDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDatabase.hpp>
+#include <MellowPlayer/Infrastructure/ListeningHistory/DelayedListeningHistory.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalServer.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalSocket.hpp>
@@ -66,6 +67,7 @@
 #include <MellowPlayer/Presentation/ViewModels/CookiesViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 #include <MellowPlayer/Infrastructure/Application/Application.hpp>
+#include <MellowPlayer/Infrastructure/Timer.hpp>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
@@ -126,7 +128,6 @@ private:
     std::shared_ptr<IApplication> object_ = nullptr;
 };
 
-
 // clang-format off
 auto defaultInjector = [](di::extension::detail::scoped& scope) {
     return di::make_injector(
@@ -158,7 +159,9 @@ auto defaultInjector = [](di::extension::detail::scoped& scope) {
         di::bind<IMainWindow>().to<MainWindowViewModel>().in(scope),
         di::bind<INotifications>().to<Notifications>().in(scope),
         di::bind<IViewModels>().to<ViewModels>().in(scope),
-        di::bind<INetworkProxies>().to<NetworkProxies>().in(scope)
+        di::bind<INetworkProxies>().to<NetworkProxies>().in(scope),
+        di::bind<ITimer>().to<Timer>().in(di::unique),
+        di::bind<IListeningHistory>().to<DelayedListeningHistory>().in(scope)
     );
 };
 

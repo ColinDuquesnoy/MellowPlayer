@@ -5,7 +5,7 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
 
-ListeningHistoryViewModel::ListeningHistoryViewModel(ListeningHistory& listeningHistory,
+ListeningHistoryViewModel::ListeningHistoryViewModel(IListeningHistory &listeningHistory,
                                                      IContextProperties& contextProperties)
         : ContextProperty("_listeningHistory", this, contextProperties),
           listeningHistoryService_(listeningHistory),

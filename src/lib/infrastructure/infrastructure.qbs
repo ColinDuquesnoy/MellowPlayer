@@ -46,7 +46,7 @@ MellowPlayerLib {
         files: [
             "include/MellowPlayer/Infrastructure/*.hpp",
             "include/MellowPlayer/Infrastructure/*/*.hpp",
-            "include/MellowPlayer/Infrastructure/Updater/Github/*.hpp"
+            "include/MellowPlayer/Infrastructure/Updater/Github/*.hpp",
         ]
 
         Group {

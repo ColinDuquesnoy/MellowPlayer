@@ -13,30 +13,50 @@ namespace MellowPlayer::Domain
     class IPlayer;
     class Setting;
     class Settings;
-    class IWorkDispatcher;
 
-    class ListeningHistory : public QObject
+    class IListeningHistory : public QObject
     {
         Q_OBJECT
     public:
-        ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings);
+        virtual ~IListeningHistory() = default;
 
-        void initialize();
-        const QList<Domain::ListeningHistoryEntry>& toList() const;
-        int count() const;
-        void clear();
-        void removeById(int entryId);
-        void removeByService(const QString& serviceName);
-        void removeManyById(const QList<int>& ids);
+        virtual void initialize() = 0;
+        virtual QList<Domain::ListeningHistoryEntry> toList() const = 0;
+        virtual int count() const = 0;
+        virtual void clear() = 0;
+        virtual void removeById(int entryId) = 0;
+        virtual void removeByService(const QString& serviceName) = 0;
+        virtual void removeManyById(const QList<int>& ids) = 0;
+
+    public slots:
+        virtual void addSong(Domain::Song* song) = 0;
 
     signals:
         void entryAdded(const Domain::ListeningHistoryEntry& entry);
         void entryRemoved(int entryId);
         void entriesCleared();
+    };
+
+    class ListeningHistory : public IListeningHistory
+    {
+        Q_OBJECT
+    public:
+        ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player_, Settings& settings);
+
+        void initialize() override;
+        QList<Domain::ListeningHistoryEntry> toList() const override;
+        int count() const override;
+        void clear() override;
+        void removeById(int entryId) override;
+        void removeByService(const QString& serviceName) override;
+        void removeManyById(const QList<int>& ids) override;
+
+    public slots:
+        void addSong(Domain::Song* song) override;
 
     private slots:
         void onPlaybackStatusChanged();
-        void onCurrentSongChanged(Domain::Song* song);
+        void onSongChanged(Song* song);
         void onIsEnabledChanged();
         void clearOutdatedEntries();
 
@@ -44,13 +64,14 @@ namespace MellowPlayer::Domain
         void addSong(const Domain::Song* song, Domain::ListeningHistoryEntry& newEntry);
         void updateRemovedEntries();
 
-        ILogger& logger;
-        IListeningHistoryDatabase& dataProvider;
-        IPlayer& player;
-        IWorkDispatcher& workDispatcher;
-        QMap<QString, Domain::ListeningHistoryEntry> previousEntryPerPlayer;
-        QList<Domain::ListeningHistoryEntry> entries;
-        Setting& isEnabledSetting;
-        Setting& limitSetting;
+        QMap<QString, Domain::ListeningHistoryEntry> previousEntryPerPlayer_;
+        QList<Domain::ListeningHistoryEntry> entries_;
+        Setting& isEnabledSetting_;
+        Setting& limitSetting_;
+
+    protected:
+        ILogger& logger_;
+        IListeningHistoryDatabase& database_;
+        IPlayer& player_;
     };
 }

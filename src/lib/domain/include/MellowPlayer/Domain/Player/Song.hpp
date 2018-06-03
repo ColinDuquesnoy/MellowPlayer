@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtCore/QObject>
+#include <memory>
 
 namespace MellowPlayer::Domain
 {
@@ -49,6 +50,11 @@ namespace MellowPlayer::Domain
         QString toString() const
         {
             return title_ + " by " + artist_;
+        }
+
+        std::shared_ptr<Song> clone() const
+        {
+            return std::make_shared<Song>(uniqueId(), title(), artist(), album(), artUrl(), duration(), isFavorite());
         }
 
     signals:

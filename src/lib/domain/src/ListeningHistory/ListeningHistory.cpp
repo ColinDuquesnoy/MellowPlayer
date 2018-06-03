@@ -1,6 +1,7 @@
 #include <QDateTime>
 #include <QSet>
 #include <QVariant>
+#include <QTimer>
 #include <algorithm>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/IListeningHistoryDatabase.hpp>
@@ -15,47 +16,47 @@
 #include <MellowPlayer/Domain/Player/Song.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
 
-#define DELAY 5000
-
 using namespace MellowPlayer::Domain;
 
-ListeningHistory::ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player, IWorkDispatcher& workDispatcher, Settings& settings)
-        : logger(Loggers::logger("ListeningHistory")),
-          dataProvider(model),
-          player(player),
-          workDispatcher(workDispatcher),
-          isEnabledSetting(settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY)),
-          limitSetting(settings.get(SettingKey::PRIVACY_LISTENING_HISTORY_LIMIT))
+ListeningHistory::ListeningHistory(IListeningHistoryDatabase& model, IPlayer& player, Settings& settings)
+        : isEnabledSetting_(settings.get(SettingKey::PRIVACY_ENABLE_LISTENING_HISTORY)),
+          limitSetting_(settings.get(SettingKey::PRIVACY_LISTENING_HISTORY_LIMIT)),
+          logger_(Loggers::logger("ListeningHistory")),
+          database_(model),
+          player_(player)
 {
-    connect(&player, &IPlayer::currentSongChanged, this, &ListeningHistory::onCurrentSongChanged);
+    connect(&player, &IPlayer::currentSongChanged, this, &ListeningHistory::onSongChanged);
     connect(&player, &IPlayer::playbackStatusChanged, this, &ListeningHistory::onPlaybackStatusChanged);
-    connect(&isEnabledSetting, &Setting::valueChanged, this, &ListeningHistory::onIsEnabledChanged);
-    connect(&limitSetting, &Setting::valueChanged, this, &ListeningHistory::clearOutdatedEntries);
+    connect(&isEnabledSetting_, &Setting::valueChanged, this, &ListeningHistory::onIsEnabledChanged);
+    connect(&limitSetting_, &Setting::valueChanged, this, &ListeningHistory::clearOutdatedEntries);
 }
 
 void ListeningHistory::onPlaybackStatusChanged()
 {
-    onCurrentSongChanged(player.currentSong());
+    addSong(player_.currentSong());
 }
 
-void ListeningHistory::onCurrentSongChanged(Song* song)
+void ListeningHistory::onSongChanged(Song *song)
 {
-    workDispatcher.delayInvoke(DELAY, [=]() mutable {
-        auto newEntry = ListeningHistoryEntry::fromData(song, player.serviceName());
-        addSong(song, newEntry);
-    });
+    addSong(song);
+}
+
+void ListeningHistory::addSong(Song* song)
+{
+    auto newEntry = ListeningHistoryEntry::fromData(song, player_.serviceName());
+    addSong(song, newEntry);
 }
 
 void ListeningHistory::initialize()
 {
-    dataProvider.initialize();
-    entries = this->dataProvider.toList();
+    database_.initialize();
+    entries_ = database_.toList();
     clearOutdatedEntries();
 }
 
-const QList<ListeningHistoryEntry>& ListeningHistory::toList() const
+QList<ListeningHistoryEntry> ListeningHistory::toList() const
 {
-    return entries;
+    return entries_;
 }
 
 int ListeningHistory::count() const
@@ -65,66 +66,58 @@ int ListeningHistory::count() const
 
 void ListeningHistory::clear()
 {
-    workDispatcher.invoke([=]() mutable {
-        dataProvider.clear();
-        updateRemovedEntries();
-    });
+    database_.clear();
+    updateRemovedEntries();
 }
 
 void ListeningHistory::removeById(int entryId)
 {
-    workDispatcher.invoke([=]() mutable {
-        dataProvider.remove("id", QString("%1").arg(entryId));
-        updateRemovedEntries();
-    });
+    database_.remove("id", QString("%1").arg(entryId));
+    updateRemovedEntries();
 }
 
 void ListeningHistory::removeByService(const QString& serviceName)
 {
-    workDispatcher.invoke([=]() mutable {
-        dataProvider.remove("serviceName", serviceName);
-        updateRemovedEntries();
-    });
+    database_.remove("serviceName", serviceName);
+    updateRemovedEntries();
 }
 
 void ListeningHistory::removeManyById(const QList<int>& ids)
 {
-    workDispatcher.invoke([=]() mutable {
-        dataProvider.removeMany(ids);
-        updateRemovedEntries();
-    });
+    database_.removeMany(ids);
+    updateRemovedEntries();
 }
 
 void ListeningHistory::addSong(const Song* song, ListeningHistoryEntry& newEntry)
 {
-    if (!isEnabledSetting.value().toBool())
+    if (!isEnabledSetting_.value().toBool())
         return;
 
-    auto previousEntry = previousEntryPerPlayer[player.serviceName()];
+    auto previousEntry = previousEntryPerPlayer_[player_.serviceName()];
 
-    if (previousEntry.equals(newEntry) || !newEntry.isValid() || player.playbackStatus() != PlaybackStatus::Playing)
+    if (previousEntry.equals(newEntry) || !newEntry.isValid() || player_.playbackStatus() != PlaybackStatus::Playing)
         return;
 
-    newEntry.id = dataProvider.add(newEntry);
-    entries.append(newEntry);
+    newEntry.id = database_.add(newEntry);
+    entries_.append(newEntry);
     emit entryAdded(newEntry);
-    previousEntryPerPlayer[player.serviceName()] = newEntry;
-    LOG_DEBUG(logger, "new entry: " + song->toString() + ", id=" + QString("%1").arg(newEntry.id));
+    previousEntryPerPlayer_[player_.serviceName()] = newEntry;
+    LOG_DEBUG(logger_, "new entry: " + song->toString() + ", id=" + QString("%1").arg(newEntry.id));
 }
 
 void ListeningHistory::updateRemovedEntries()
 {
-    auto removedEntries = entries.toSet().subtract(dataProvider.toList().toSet()).toList();
+    auto removedEntries = entries_.toSet().subtract(database_.toList().toSet()).toList();
     for (auto entry : removedEntries) {
-        int index = entries.indexOf(entry);
-        entries.removeAt(index);
+        int index = entries_.indexOf(entry);
+        entries_.removeAt(index);
         emit entryRemoved(entry.id);
     }
 }
 
 void ListeningHistory::onIsEnabledChanged()
 {
-    if (!isEnabledSetting.value().toBool())
+    if (!isEnabledSetting_.value().toBool())
         clear();
 }
 
@@ -153,22 +146,20 @@ TimeLimits dateToTimeLimit(const QDateTime& dateTime)
 
 void ListeningHistory::clearOutdatedEntries()
 {
-    TimeLimits limit = static_cast<TimeLimits>(limitSetting.value().toInt());
+    TimeLimits limit = static_cast<TimeLimits>(limitSetting_.value().toInt());
 
     if (limit == TimeLimits::Never)
         return;
 
-    workDispatcher.invoke([=]() mutable {
-        LOG_INFO(logger, "Cleaning history ");
-        QList<int> items;
-        for (auto entry : entries) {
-            TimeLimits entryLimit = dateToTimeLimit(entry.dateTime());
-            if (entryLimit > limit) {
-                items.append(entry.id);
-                LOG_DEBUG(logger, "Removing entry " << entry.songTitle);
-            }
+    LOG_INFO(logger_, "Cleaning history ");
+    QList<int> items;
+    for (auto entry : entries_) {
+        TimeLimits entryLimit = dateToTimeLimit(entry.dateTime());
+        if (entryLimit > limit) {
+            items.append(entry.id);
+            LOG_DEBUG(logger_, "Removing entry " << entry.songTitle);
         }
-        dataProvider.removeMany(items);
-        updateRemovedEntries();
-    });
+    }
+    database_.removeMany(items);
+    updateRemovedEntries();
 }

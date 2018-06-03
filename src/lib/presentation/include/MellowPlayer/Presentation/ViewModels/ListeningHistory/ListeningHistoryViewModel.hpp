@@ -5,7 +5,7 @@
 
 namespace MellowPlayer::Domain
 {
-    class ListeningHistory;
+    class IListeningHistory;
 }
 
 namespace MellowPlayer::Presentation
@@ -15,7 +15,7 @@ namespace MellowPlayer::Presentation
         Q_OBJECT
         Q_PROPERTY(QAbstractItemModel* model READ model CONSTANT)
     public:
-        ListeningHistoryViewModel(Domain::ListeningHistory& listeningHistory, IContextProperties& contextProperties);
+        ListeningHistoryViewModel(Domain::IListeningHistory& listeningHistory, IContextProperties& contextProperties);
 
         using ContextProperty::initialize;
         void initialize();
@@ -30,7 +30,7 @@ namespace MellowPlayer::Presentation
         void onEntryRemoved(int entryId);
 
     private:
-        Domain::ListeningHistory& listeningHistoryService_;
+        Domain::IListeningHistory& listeningHistoryService_;
         ListeningHistoryListModel* sourceModel_;
         ListeningHistoryProxyListModel proxyModel_;
     };
