@@ -41,6 +41,8 @@ Product {
     Depends { name: 'Qt.core' }
     Depends { name: 'Qt.gui' }
     Depends { name: 'Qt.test' }
+    Depends { name: 'Qt.webengine' }
+    Depends { name: 'Qt.webenginewidgets' }
     Depends { name: 'MellowPlayer.Domain' }
     Depends { name: 'MellowPlayer.Infrastructure' }
     Depends { name: 'MellowPlayer.Presentation' }

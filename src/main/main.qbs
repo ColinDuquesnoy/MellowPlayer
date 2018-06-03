@@ -33,6 +33,7 @@ Project {
         Depends { name: "bundle" }
         Depends { name: "platform" }
         Depends { name: "Qt.webengine" }
+        Depends { name: "Qt.webenginewidgets" }
         Depends { name: "Qt.quickcontrols2" }
         Depends { name: "MellowPlayer.Domain" }
         Depends { name: "MellowPlayer.Infrastructure" }

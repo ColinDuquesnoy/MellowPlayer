@@ -79,7 +79,6 @@ MellowPlayerLib {
         Depends { name: 'cpp' }
         Depends { name: "Qt.core" }
         Depends { name: "Qt.gui" }
-        Depends { name: "Qt.qml" }
 
         cpp.includePaths: product.cpp.includePaths
     }

@@ -99,8 +99,6 @@ MellowPlayerLib {
         Depends { name: "Qt.concurrent" }
         Depends { name: "Qt.widgets" }
         Depends { name: "Qt.network" }
-        Depends { name: "Qt.webengine" }
-        Depends { name: "Qt.webenginewidgets" }
         Depends { name: "Qt.sql" }
         Depends { name: "Qt.dbus"; condition: platform.unix }
         Depends { name: "MellowPlayer.Domain" }
