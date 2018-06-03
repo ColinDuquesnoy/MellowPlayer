@@ -83,7 +83,26 @@ Install procedure:
     sudo apt-get update
     sudo apt install mellowplayer
 
+Ubuntu 18.04
+++++++++++++
 
+Before installing MellowPlayer, **make sure the universe repository is enabled**:
+
+.. code-block:: bash
+
+    sudo add-apt-repository universe
+
+
+Install procedure:
+
+.. code-block:: bash
+
+    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_18.04/ /' > /etc/apt/sources.list.d/mellowplayer.list"
+    wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_18.04/Release.key -O Release.key
+    sudo apt-key add - < Release.key
+    sudo apt-get update
+    sudo apt install mellowplayer
+    
 ArchLinux
 +++++++++
 
@@ -95,6 +114,17 @@ MellowPlayer is available from the `AUR`_, install it with your favorite AUR too
     yaourt -S mellowplayer
 
 .. _AUR: https://aur.archlinux.org/packages/mellowplayer
+
+openSuse Leap 15
+++++++++++++++++
+
+Use the `openSUSE build service`_ web interface or install manually:
+
+.. code-block:: bash
+
+    zypper addrepo https://download.opensuse.org/repositories/home:ColinDuquesnoy/openSUSE_Leap_15.0/home:ColinDuquesnoy.repo
+    zypper refresh
+    zypper install MellowPlayer
 
 
 openSuse Tumbleweed
