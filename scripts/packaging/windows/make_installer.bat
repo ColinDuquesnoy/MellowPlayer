@@ -1,6 +1,6 @@
 cd ..\..\..
 
-set QTDIR=C:\Qt\5.10.1\msvc2017_64
+set QTDIR=C:\Qt\5.11.0\msvc2017_64
 set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
 set INSTALL_DIR=build\release\install-root\
 
