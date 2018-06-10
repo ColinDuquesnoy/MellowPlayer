@@ -16,6 +16,7 @@ using namespace MellowPlayer::Domain::Tests;
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;
 
+
 TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
 {
     FakeStreamingServiceLoader streamingServiceLoader;
@@ -65,9 +66,8 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
         SECTION("Paused When buffering")
         {
             REQUIRE(mpris2Player.playbackStatus() != "Paused");
-            QVariantMap results;
-            results["playbackStatus"] = static_cast<int>(PlaybackStatus::Buffering);
-            currentPlayer.setUpdateResults(results);
+            currentPlayer.setPlaybackStatus(PlaybackStatus::Buffering);
+
             REQUIRE(mpris2Player.playbackStatus() == "Paused");
         }
     }
@@ -175,19 +175,52 @@ TEST_CASE("Mpris2PlayerTests", "[IntegrationTest]")
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("Play")
+    SECTION("Play when player is stopped call play on currentPlayer")
     {
         QSignalSpy spy(&currentPlayer, &Player::play);
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Stopped);
         mpris2Player.Play();
         REQUIRE(spy.count() == 1);
     }
 
-    SECTION("Pause")
+    SECTION("Play when player is paused call play on currentPlayer")
+    {
+        QSignalSpy spy(&currentPlayer, &Player::play);
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Paused);
+        mpris2Player.Play();
+        REQUIRE(spy.count() == 1);
+    }
+
+    SECTION("Play when player is playing do nothing")
+    {
+        QSignalSpy spy(&currentPlayer, &Player::play);
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Playing);
+        mpris2Player.Play();
+        REQUIRE(spy.count() == 0);
+    }
+
+    SECTION("Play when player is buffering do nothing")
+    {
+        QSignalSpy spy(&currentPlayer, &Player::play);
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Buffering);
+        mpris2Player.Play();
+        REQUIRE(spy.count() == 0);
+    }
+
+    SECTION("Pause when player is playing call pause on currentPlayer")
     {
         QSignalSpy spy(&currentPlayer, &Player::pause);
-        mpris2Player.Play();
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Playing);
         mpris2Player.Pause();
         REQUIRE(spy.count() == 1);
+    }
+
+    SECTION("Pause when player is paused do nothing")
+    {
+        QSignalSpy spy(&currentPlayer, &Player::pause);
+        currentPlayer.setPlaybackStatus(PlaybackStatus::Paused);
+        mpris2Player.Pause();
+        REQUIRE(spy.count() == 0);
     }
 
     SECTION("Stop")

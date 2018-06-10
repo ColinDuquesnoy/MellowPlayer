@@ -164,13 +164,15 @@ void Mpris2Player::PlayPause()
 void Mpris2Player::Play()
 {
     LOG_TRACE(logger_, "Play()");
-    player_.play();
+    if (player_.playbackStatus() == Domain::PlaybackStatus::Paused || player_.playbackStatus() == Domain::PlaybackStatus::Stopped)
+        player_.play();
 }
 
 void Mpris2Player::Pause()
 {
     LOG_TRACE(logger_, "Pause()");
-    player_.pause();
+    if (player_.playbackStatus() == Domain::PlaybackStatus::Playing)
+        player_.pause();
 }
 
 void Mpris2Player::Stop()
