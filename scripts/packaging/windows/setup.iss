@@ -41,14 +41,14 @@ Name: custom;  Description: "Custom installation"; Flags: iscustom
 [Components]
 Name: app;  Description: "MellowPlayer";  Types: full compact custom; Flags: fixed
 Name: flash; Description: "Flash Player PPAPI";  Types: full; Flags: disablenouninstallwarning;
-Name: vcredist; Description: "MSVC 2015 Redist";  Types: full; Flags: disablenouninstallwarning;
+Name: vcredist; Description: "MSVC 2017 Redist";  Types: full; Flags: disablenouninstallwarning;
 
 [Files]
 Source: "..\..\..\build\release\install-root\bin\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; Components: app
 Source: "libeay32.dll"; DestDir: "{app}"; Components: app
 Source: "ssleay32.dll"; DestDir: "{app}"; Components: app
 Source: "vc_redist.x64.exe"; DestDir: "{tmp}"; Components: vcredist
-Source: "flashplayer28pp_xa_install.exe"; DestDir: "{tmp}"; Components: flash
+Source: "flashplayer30pp_xa_install.exe"; DestDir: "{tmp}"; Components: flash
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; Components: app;
