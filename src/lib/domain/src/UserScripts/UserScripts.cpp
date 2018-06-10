@@ -2,6 +2,9 @@
 #include <MellowPlayer/Domain/UserScripts/IUserScriptFactory.hpp>
 #include <MellowPlayer/Domain/UserScripts/UserScripts.hpp>
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
+#include <MellowPlayer/Domain/Logging/ILogger.hpp>
+#include <MellowPlayer/Domain/Logging/Loggers.hpp>
+#include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 
 using namespace MellowPlayer::Domain;
 
@@ -10,7 +13,8 @@ UserScripts::UserScripts(const QString& serviceName,
                          ISettingsStore& settingsStore):
     serviceName_(serviceName),
     userScriptFactory_(userScriptFactory),
-    settingsStore_(settingsStore)
+    settingsStore_(settingsStore),
+    _logger(Loggers::logger("UserScripts"))
 {
     auto scriptPaths = settingsStore.value(pathsKey(), QStringList()).toStringList();
     auto scriptNames = settingsStore.value(namesKey(), QStringList()).toStringList();
@@ -37,9 +41,14 @@ int UserScripts::count() const
 
 IUserScript* UserScripts::add(const QString& userScriptName, const QString& sourceScriptPath)
 {
+    QString sourcePath = sourceScriptPath;
+#ifdef Q_OS_WIN
+    sourcePath = sourcePath.replace("file:///", "");
+#endif
+    LOG_INFO(_logger, "Add user script " << userScriptName.toStdString() << " from " << sourceScriptPath.toStdString());
     auto* userScript = userScriptFactory_.create();
     userScript->setName(userScriptName);
-    if (userScript->import(sourceScriptPath)) {
+    if (userScript->import(sourcePath)) {
         _scripts.append(userScript);
         save(userScriptName, userScript);
         return userScript;

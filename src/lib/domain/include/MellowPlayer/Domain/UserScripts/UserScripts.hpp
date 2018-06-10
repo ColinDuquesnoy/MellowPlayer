@@ -7,6 +7,7 @@ namespace MellowPlayer::Domain
     class ISettingsStore;
     class IUserScript;
     class IUserScriptFactory;
+    class ILogger;
 
     class UserScripts
     {
@@ -32,6 +33,7 @@ namespace MellowPlayer::Domain
         IUserScriptFactory& userScriptFactory_;
         ISettingsStore& settingsStore_;
         QList<IUserScript*> _scripts;
+        ILogger& _logger;
 
         void save(const QString& userScriptName, const IUserScript* userScript) const;
     };
