@@ -83,7 +83,7 @@ ToolBar {
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
-            visible: mainWindow.isOnRunningServicesPage
+            visible:  mainWindow.isOnRunningServicesPage && _player.canAddToFavorites
 
             Rectangle {
                 anchors.centerIn: parent
@@ -94,10 +94,9 @@ ToolBar {
         }
 
         IconToolButton {
-            enabled: mainWindow.isOnRunningServicesPage && _player.canAddToFavorites
+            visible: mainWindow.isOnRunningServicesPage && _player.canAddToFavorites
             iconChar: _player.currentSong.isFavorite ? MaterialIcons.icon_favorite : MaterialIcons.icon_favorite_border
             tooltip: _player.currentSong.isFavorite ? qsTr("Remove current song from your favorites") : qsTr("Add current song to your favorites")
-            visible: mainWindow.isOnRunningServicesPage
             shortcut: _settings.get(SettingKey.SHORTCUTS_FAVORITE).value
 
             onTriggered: _player.toggleFavoriteSong()
