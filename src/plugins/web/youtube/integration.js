@@ -84,7 +84,7 @@ function update() {
     var artistName = document.getElementById('owner-container').innerText;
 
     // Art URL
-    var artUrl = document.getElementById('avatar').getElementsByTagName('img')[0].src;
+    var artUrl = "https://img.youtube.com/vi/"+ player.getVideoData().video_id + "/hqdefault.jpg"
 
     return {
         "playbackStatus": playbackStatus,
