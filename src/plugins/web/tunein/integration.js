@@ -16,10 +16,6 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
-function playButton() {
-    return document.getElementById("playerActionButton");
-}
-
 function getHashCode(s) {
     return s.split("").reduce(function(a, b) {
         a = ((a << 5) - a) + b.charCodeAt(0);
@@ -28,14 +24,14 @@ function getHashCode(s) {
 }
 
 function getPlaybackStatus() {
-    btn = playButton();
+    var audio = jp_audio_0;
 
-    if (btn === null)
-        return mellowplayer.PlaybackStatus.BUFFERING;
-    else if (btn.className === "playing")
-        return mellowplayer.PlaybackStatus.PLAYING;
-    else if (btn.className === "playing")
+    if (audio === null)
+        return mellowplayer.PlaybackStatus.STOPPED;
+    else if (audio.paused)
         return mellowplayer.PlaybackStatus.PAUSED;
+    else
+        return mellowplayer.PlaybackStatus.PLAYING;
 }
 
 function getSongInfos() {
@@ -88,11 +84,11 @@ function update() {
 }
 
 function play() {
-    playButton().click();
+    jp_audio_0.play()
 }
 
 function pause() {
-    play();
+    jp_audio_0.pause()
 }
 
 function goNext() {
