@@ -20,9 +20,10 @@ void notify_action_callback(NotifyNotification*, char*, gpointer)
     LibnotifyPresenter::onActionCallback();
 }
 
-LibnotifyPresenter::LibnotifyPresenter(IMainWindow& mainWindow)
+LibnotifyPresenter::LibnotifyPresenter(IMainWindow& mainWindow, IWorkDispatcher& workDispatcher)
         : logger_(Loggers::logger("LibnotifyPresenter")),
           mainWindow_(mainWindow),
+          _workDispatcher(workDispatcher),
           previousNotification_(nullptr)
 {
     instance_ = this;
@@ -44,10 +45,12 @@ void LibnotifyPresenter::checkSupportForActions() {
 
 bool LibnotifyPresenter::display(const Notification& notification)
 {
+    Q_UNUSED(notification)
     static LibnotifyStrings strings;
 
     if (previousNotification_)
         notify_notification_close(previousNotification_, 0);
+
     QString title = "MellowPlayer - " + notification.title;
     NotifyNotification* n = notify_notification_new(
             title.toStdString().c_str(),
@@ -58,9 +61,14 @@ bool LibnotifyPresenter::display(const Notification& notification)
     if (actionsSupported_)
         notify_notification_add_action(n, "open", strings.open().c_str(),
                                        (NotifyActionCallback)notify_action_callback, nullptr, nullptr);
-    bool success = static_cast<bool>(notify_notification_show(n, 0));
+
+    _workDispatcher.invoke([=]() {
+        notify_notification_show(n, 0);
+    });
+
     previousNotification_ = n;
-    return success;
+
+    return true;
 }
 
 void LibnotifyPresenter::onActionCallback()
