@@ -3,9 +3,11 @@
 
 using namespace MellowPlayer::Infrastructure;
 
+#define PLATFORM_FILTER_SEPARATOR "-"
+
 TokenizedFilters::TokenizedFilters(const QString& filters)
 {
-    QStringList tokens = filters.toLower().split(",");
+    QStringList tokens = filters.toLower().split(PLATFORM_FILTER_SEPARATOR);
     FilterConverter converter;
 
     for (auto token: tokens)
@@ -26,7 +28,7 @@ QString TokenizedFilters::join() const
         strings.append(converter.toString(filter));
     }
 
-    return strings.join(",");
+    return strings.join(PLATFORM_FILTER_SEPARATOR);
 }
 
 TokenizedFilters::const_iterator TokenizedFilters::begin(void) const

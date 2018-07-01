@@ -8,7 +8,7 @@ SCENARIO("TokenizedFilterTests")
 {
     GIVEN("a TokenizedFilterTests instantiated with filter=\"Windows,Linux,OSX\"")
     {
-        QString filtersString = "Windows,Linux,OSX";
+        QString filtersString = "Windows-Linux-OSX";
         TokenizedFilters tokenizedFilters(filtersString);
 
         WHEN("iterating on the filters")
