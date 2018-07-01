@@ -20,7 +20,6 @@
 var player;
 
 function update() {
-
     // If the player is not currently playing a video
     if(!document.getElementsByTagName('ytd-app')[0].attributes['is-watch-page']) {
         return {
@@ -50,12 +49,15 @@ function update() {
 
         // If the ad can't be skipped, the sound is muted
         if( adContainer.style.display == "none" ) {
-            player.mute();
+            if (pluginSettings.muteAds)
+                player.mute();
 
         // If the ad can be skipped, the sound is unmuted and the ad skipped
         } else if( document.getElementsByClassName('videoAdUiSkipButton')[0] ) {
-            document.getElementsByClassName('videoAdUiSkipButton')[0].click();
-            player.unMute();
+            if (pluginSettings.skipAds)
+                document.getElementsByClassName('videoAdUiSkipButton')[0].click();
+            if (pluginSettings.muteAds)
+                player.unMute();
         }
     }
 

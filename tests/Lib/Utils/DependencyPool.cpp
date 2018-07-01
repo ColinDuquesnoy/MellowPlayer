@@ -84,7 +84,8 @@ StreamingServicesViewModel& DependencyPool::getStreamingServicesViewModel()
         getCommandLineArguments(),
         getUserScriptFactory(),
         contextProperties_,
-        networkProxies_);
+        networkProxies_,
+        getThemeViewModel());
     return *pStreamingServicesControllerViewModel;
 }
 

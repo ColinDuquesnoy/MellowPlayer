@@ -39,7 +39,10 @@ function translateName(name) {
         "User agent": qsTr("User agent")
     };
 
-    return translations[name];
+    var translated = translations[name];
+    if (translated)
+        return translated;
+    return name;
 }
 
 function translateToolTip(toolTip) {
@@ -84,7 +87,10 @@ function translateToolTip(toolTip) {
     };
 
 
-    return translations[toolTip];
+    var translated = translations[toolTip];
+    if (translated)
+        return translated;
+    return toolTip;
 }
 
 function translateCategory(category) {
@@ -98,5 +104,8 @@ function translateCategory(category) {
         "Privacy": qsTr("Privacy")
     };
 
-    return translations[category];
+    var translated = translations[category];
+    if (translated)
+        return translated;
+    return category;
 }

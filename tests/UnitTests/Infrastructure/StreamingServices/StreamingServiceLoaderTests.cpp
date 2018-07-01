@@ -3,13 +3,16 @@
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 #include <catch/catch.hpp>
 #include <fakeit/fakeit.hpp>
+#include <Lib/Utils/DependencyPool.hpp>
 
+using namespace MellowPlayer::Tests;
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 
 TEST_CASE("StreamingServiceLoaderTests")
 {
-    StreamingServiceLoader loader;
+    DependencyPool pool;
+    auto loader = StreamingServiceLoader(pool.getSettings());
 
     SECTION("load")
     {

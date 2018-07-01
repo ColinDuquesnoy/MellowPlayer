@@ -4,6 +4,7 @@
 #include <memory>
 #include <MellowPlayer/Domain/Properties.hpp>
 #include <MellowPlayer/Presentation/ViewModels/UserScripts/UserScriptsViewModel.hpp>
+#include <MellowPlayer/Presentation/ViewModels/Settings/SettingsCategoryViewModel.hpp>
 
 
 namespace MellowPlayer::Domain
@@ -41,7 +42,7 @@ namespace MellowPlayer::Presentation
         Q_PROPERTY(bool isActive READ isActive WRITE setActive NOTIFY isActiveChanged)
         Q_PROPERTY(QString previewImageUrl READ previewImageUrl WRITE setPreviewImageUrl NOTIFY previewImageUrlChanged)
         Q_PROPERTY(QString sourceCode READ sourceCode NOTIFY sourceCodeChanged)
-
+        Q_PROPERTY(SettingsCategoryViewModel* settings READ settings CONSTANT)
         CONSTANT_OBJECT_PROPERTY(Infrastructure::NetworkProxy, networkProxy)
 
     public:
@@ -50,6 +51,7 @@ namespace MellowPlayer::Presentation
                                   Domain::IUserScriptFactory& userScriptFactory,
                                   Domain::Players& players,
                                   Infrastructure::INetworkProxies& networkProxies,
+                                  ThemeViewModel& themeViewModel,
                                   QObject* parent = nullptr);
 
         QString logo() const;
@@ -84,6 +86,8 @@ namespace MellowPlayer::Presentation
         QString previewImageUrl() const;
         QString sourceCode() const;
 
+        SettingsCategoryViewModel* settings();
+
     public slots:
         void setUrl(const QString& newUrl);
         void setActive(bool isActive);
@@ -114,5 +118,6 @@ namespace MellowPlayer::Presentation
         int zoomFactor_;
         bool isActive_;
         QString previewImageUrl_;
+        SettingsCategoryViewModel _settingsCategoryViewModel;
     };
 }

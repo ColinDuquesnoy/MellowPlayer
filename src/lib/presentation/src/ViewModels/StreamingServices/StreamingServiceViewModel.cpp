@@ -5,6 +5,7 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingServiceScript.hpp>
 #include <MellowPlayer/Domain/Settings/SettingKey.hpp>
+#include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/Infrastructure/Network/NetworkProxy.hpp>
 #include <MellowPlayer/Infrastructure/Network/NetworkProxies.hpp>
 #include <qfile.h>
@@ -17,12 +18,13 @@ using namespace MellowPlayer::Presentation;
 
 #define DEFAULT_ZOOM_FACTOR 7
 
-StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService, 
+StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streamingService,
                                                      ISettingsStore& settingsStore,
                                                      IUserScriptFactory& factory,
                                                      Players& players,
                                                      INetworkProxies& networkProxies,
-                                                     QObject* parent) : 
+                                                     ThemeViewModel& themeViewModel,
+                                                     QObject* parent) :
         QObject(parent),
         networkProxy_(networkProxies.get(streamingService.name())),
         streamingService_(streamingService), 
@@ -31,7 +33,8 @@ StreamingServiceViewModel::StreamingServiceViewModel(StreamingService& streaming
         userScriptsViewModel_(streamingService.name(), factory, settingsStore, this),
         zoomFactor_(settingsStore_.value(zoomFactorSettingsKey(), 7).toInt()),
         isActive_(false),
-        previewImageUrl_("qrc:/MellowPlayer/Presentation/images/home-background.png")
+        previewImageUrl_("qrc:/MellowPlayer/Presentation/images/home-background.png"),
+        _settingsCategoryViewModel(themeViewModel, streamingService.settings())
 {
     connect(&streamingService_, &StreamingService::scriptChanged, this, &StreamingServiceViewModel::sourceCodeChanged);
     Q_ASSERT(networkProxy_ != nullptr);
@@ -213,5 +216,13 @@ QString StreamingServiceViewModel::notificationsEnabledSettingsKey() const
 
 QString StreamingServiceViewModel::sourceCode() const
 {
-    return streamingService_.script()->constants() + "\n" + streamingService_.script()->code();
+    auto sourceCode = streamingService_.script()->constants() + "\n" + streamingService_.script()->code() + "\n";
+    if (streamingService_.settings() != nullptr)
+        sourceCode += QString("var pluginSettings = JSON.parse('%1')\n").arg(streamingService_.settings()->toJavascriptObject());
+    return sourceCode;
+}
+
+SettingsCategoryViewModel *StreamingServiceViewModel::settings()
+{
+    return &_settingsCategoryViewModel;
 }

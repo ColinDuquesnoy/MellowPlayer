@@ -9,6 +9,7 @@
 namespace MellowPlayer::Domain
 {
     class StreamingServiceScript;
+    class SettingsCategory;
 
     class StreamingService : public QObject
     {
@@ -20,8 +21,10 @@ namespace MellowPlayer::Domain
         Q_PROPERTY(QString url READ url CONSTANT)
         Q_PROPERTY(QString version READ version CONSTANT)
         Q_PROPERTY(StreamingServiceScript* script READ script CONSTANT)
+        Q_PROPERTY(SettingsCategory* settings READ settings CONSTANT)
     public:
-        StreamingService(const StreamingServiceMetadata& metadata, const Theme& theme = Theme());
+        StreamingService(const StreamingServiceMetadata& metadata, const Theme& theme = Theme(),
+                         const std::shared_ptr<SettingsCategory>& settings=nullptr);
         ~StreamingService();
 
         bool isValid() const;
@@ -42,6 +45,8 @@ namespace MellowPlayer::Domain
         bool operator==(const StreamingService& rhs) const;
         bool operator!=(const StreamingService& rhs) const;
 
+        SettingsCategory* settings() const;
+
     signals:
         void scriptChanged();
         void themeChanged();
@@ -49,6 +54,7 @@ namespace MellowPlayer::Domain
     private:
         StreamingServiceMetadata metadata_;
         Theme theme_;
+        std::shared_ptr<SettingsCategory> _settings;
         std::unique_ptr<StreamingServiceScript> script_;
     };
 }

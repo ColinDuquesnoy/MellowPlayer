@@ -3,6 +3,8 @@
 #include <MellowPlayer/Domain/Logging/Loggers.hpp>
 #include <MellowPlayer/Domain/Logging/LoggingMacros.hpp>
 #include <MellowPlayer/Domain/StreamingServices/StreamingService.hpp>
+#include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
+#include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Infrastructure/Theme/ThemeLoader.hpp>
 #include <QDebug>
 #include <QtCore/QCoreApplication>
@@ -18,7 +20,9 @@ using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;
 using namespace std;
 
-StreamingServiceLoader::StreamingServiceLoader() : logger_(Loggers::logger("StreamingServiceLoader"))
+StreamingServiceLoader::StreamingServiceLoader(Settings &settings)
+        : logger_(Loggers::logger("StreamingServiceLoader")),
+          _settings(settings)
 {
 }
 
@@ -49,10 +53,10 @@ QList<shared_ptr<StreamingService>> StreamingServiceLoader::load() const
     return services;
 }
 
-QString StreamingServiceLoader::findFileByExtension(const QString& directory, const QString& suffix) const
+QString StreamingServiceLoader::findFile(const QString& directory, const QString& suffix) const
 {
     foreach (const QFileInfo& fileInfo, QDir(directory).entryInfoList(QDir::Files | QDir::NoDotAndDotDot)) {
-        if (fileInfo.isFile() && fileInfo.suffix() == suffix)
+        if (fileInfo.isFile() && fileInfo.absoluteFilePath().endsWith(suffix))
             return fileInfo.absoluteFilePath();
     }
     return QString();
@@ -69,6 +73,19 @@ QString StreamingServiceLoader::readFileContent(const QString& filePath)
     }
 
     return retVal;
+}
+
+std::shared_ptr<SettingsCategory> StreamingServiceLoader::readSettings(const QString &name, const QString& filePath) const
+{
+    if (filePath.isEmpty() || !QFileInfo::exists(filePath))
+        return nullptr;
+    auto content = readFileContent(filePath);
+    auto jsonDocument = QJsonDocument::fromJson(content.toUtf8());
+    SettingsCategory::Data settingsData;
+    settingsData.name = "Options";
+    settingsData.key = name.toLower().trimmed() + "_options";
+    settingsData.parameters = jsonDocument.array();
+    return make_shared<SettingsCategory>(settingsData, &_settings);
 }
 
 StreamingServiceMetadata StreamingServiceLoader::readMetadata(const QString& filePath) const
@@ -101,9 +118,10 @@ Theme StreamingServiceLoader::readTheme(const QString& filePath)
 
 unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& directory) const
 {
-    QString metadataPath = findFileByExtension(directory, "ini");
-    QString scriptPath = findFileByExtension(directory, "js");
-    QString themePath = findFileByExtension(directory, "json");
+    QString metadataPath = findFile(directory, "ini");
+    QString scriptPath = findFile(directory, "js");
+    QString themePath = findFile(directory, "theme.json");
+    QString settingsPath = findFile(directory, "settings.json");
     QString locale = QLocale::system().name().split("_")[0];
     StreamingServiceMetadata metadata;
     try {
@@ -113,18 +131,18 @@ unique_ptr<StreamingService> StreamingServiceLoader::loadService(const QString& 
         LOG_INFO(logger_, "plugin is not supported on this platform");
         return nullptr;
     }
-
     metadata.pluginDirectory = directory;
     metadata.script = readFileContent(scriptPath);
     metadata.scriptPath = scriptPath;
     Theme theme = readTheme(themePath);
-    return make_unique<StreamingService>(metadata, theme);
+    auto settings = readSettings(metadata.name, settingsPath);
+    return make_unique<StreamingService>(metadata, theme, settings);
 }
 
 bool StreamingServiceLoader::checkServiceDirectory(const QString& directory) const
 {
-    QString metadataPath = findFileByExtension(directory, "ini");
-    QString scriptPath = findFileByExtension(directory, "js");
+    QString metadataPath = findFile(directory, "ini");
+    QString scriptPath = findFile(directory, "js");
 
     return !scriptPath.isEmpty() && !metadataPath.isEmpty();
 }

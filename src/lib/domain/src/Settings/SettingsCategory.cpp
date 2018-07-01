@@ -1,6 +1,7 @@
 #include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
+#include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 
 using namespace std;
@@ -53,6 +54,23 @@ Setting& SettingsCategory::get(const QString& key) const
         if (param->key() == key)
             return *param;
     throw runtime_error("Unknown setting: " + data_.key.toStdString() + "/" + key.toStdString());
+}
+
+QString SettingsCategory::toJavascriptObject()
+{
+    QJsonDocument document;
+    QJsonObject jsonObject;
+    for (auto* setting: toList()) {
+        QString type = setting->type().toLower();
+        if (type == "bool")
+            jsonObject[setting->key()] = setting->value().toBool();
+        else if (type == "int")
+            jsonObject[setting->key()] = setting->value().toInt();
+        else
+            jsonObject[setting->key()] = setting->value().toString();
+    }
+    document.setObject(jsonObject);
+    return QString::fromUtf8(document.toJson(QJsonDocument::Compact));
 }
 
 void SettingsCategory::restoreDefaults()

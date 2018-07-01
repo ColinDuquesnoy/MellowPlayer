@@ -30,7 +30,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
     FakeCommandLineArguments commandLineArguments;
     StreamingServicesViewModel viewModel(streamingServices, players, settings, workDispatcher, creatorMock.get(),
                                          commandLineArguments, pool.getUserScriptFactory(),
-                                         pool.getContextProperties(), pool.getNetworkProxies());
+                                         pool.getContextProperties(), pool.getNetworkProxies(), pool.getThemeViewModel());
     viewModel.initialize();
     viewModel.reload();
 
@@ -114,7 +114,7 @@ TEST_CASE("StreamingServicesControllerViewModel", "[UnitTest]")
         StreamingServicesViewModel viewModelWithCmdLine(streamingServices, players, settings, workDispatcher,
                                                         creatorMock.get(), commandLineArguments,
                                                         pool.getUserScriptFactory(), pool.getContextProperties(),
-                                                        pool.getNetworkProxies());
+                                                        pool.getNetworkProxies(), pool.getThemeViewModel());
         REQUIRE(viewModelWithCmdLine.currentService() == nullptr);
         viewModelWithCmdLine.initialize();
         viewModelWithCmdLine.reload();

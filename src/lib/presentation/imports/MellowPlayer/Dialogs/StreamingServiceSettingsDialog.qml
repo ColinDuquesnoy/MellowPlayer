@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.2 as NativeDialogs
 import QtQuick.Controls 1.2 as QuickControls1
 
 import MellowPlayer 3.0
+import "../SettingsPages"
 
 Dialog {
     id: root
@@ -83,6 +84,12 @@ Dialog {
             TabButton {
                 text: "Network Proxy"
             }
+
+            TabButton {
+                text: "Other options"
+                visible: optionsListView.count > 0
+                width: visible ? tabBar.width / 4 : 0
+            }
         }
 
         StackLayout {
@@ -154,6 +161,7 @@ Dialog {
             }
 
             StackLayout {
+                id: userScripts
                 currentIndex: service !== null && service.userScripts.hasScripts ? 1 : 0
 
                 Layout.fillHeight: true
@@ -422,6 +430,52 @@ Dialog {
                     }
                 }
             }
+
+            Item {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                Pane {
+                    id: otherOptions
+
+                    padding: 0
+                    anchors.centerIn: parent
+                    width: parent.width / 2
+                    height: parent.height * 0.75
+
+                    Material.background: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background, 1.05) : Qt.darker(_theme.background, 1.05)
+                    Material.elevation: 2
+
+                    ListView {
+                        id: optionsListView
+
+                        anchors.fill: parent
+                        clip: true
+                        delegate: ColumnLayout {
+                            width: ListView.view.width
+                            spacing: 0
+
+                            Loader {
+                                id: loader
+                                source: Qt.resolvedUrl("../" + model.qmlComponent)
+
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 56
+                            }
+
+                            Rectangle {
+                                color: _theme.isDark(_theme.background) ? Qt.lighter(_theme.background) : Qt.darker(_theme.background, 1.1)
+                                visible: model.index !== parent.ListView.view.count - 1
+
+                                Layout.preferredHeight: 1
+                                Layout.fillWidth: true
+                            }
+                        }
+                        model: root.service.settings !== undefined ? root.service.settings.settings : undefined
+                        spacing: 0
+                    }
+                }
+            }
         }
 
         Rectangle {
@@ -462,6 +516,7 @@ Dialog {
         property string authorWebsite: ""
         property bool notificationsEnabled: true
         property bool isEnabled: true
+        property var settings: undefined
         property QtObject userScripts: QtObject { }
         property QtObject networkProxy: QtObject {
             property bool enabled: false

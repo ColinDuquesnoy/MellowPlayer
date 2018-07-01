@@ -27,7 +27,8 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& stream
                                                        ICommandLineArguments& commandLineArguments,
                                                        IUserScriptFactory& userScriptFactory,
                                                        IContextProperties& contextProperties,
-                                                       INetworkProxies& networkProxies) :
+                                                       INetworkProxies& networkProxies,
+                                                       ThemeViewModel& themeViewModel) :
         ContextProperty("_streamingServices", this, contextProperties),
         streamingServices_(streamingServices),
         players_(players),
@@ -39,7 +40,8 @@ StreamingServicesViewModel::StreamingServicesViewModel(StreamingServices& stream
         userScriptFactory_(userScriptFactory),
         networkProxies_(networkProxies),
         allServices_(new StreamingServiceListModel(this, QByteArray(), "name")),
-        enabledServices_(allServices_)
+        enabledServices_(allServices_),
+        _themeViewModel(themeViewModel)
 {
 
     connect(&streamingServices, &StreamingServices::added, this, &StreamingServicesViewModel::onServiceAdded);
@@ -95,6 +97,7 @@ void StreamingServicesViewModel::onServiceAdded(StreamingService* streamingServi
                                              userScriptFactory_,
                                              players_,
                                              networkProxies_,
+                                             _themeViewModel,
                                              this);
     allServices_->append(sv);
 }

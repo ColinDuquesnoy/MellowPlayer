@@ -9,6 +9,8 @@ namespace MellowPlayer::Domain
     class StreamingService;
     struct StreamingServiceMetadata;
     struct Theme;
+    class SettingsCategory;
+    class Settings;
 }
 
 namespace MellowPlayer::Infrastructure
@@ -16,17 +18,18 @@ namespace MellowPlayer::Infrastructure
     class StreamingServiceLoader : public Domain::IStreamingServiceLoader
     {
     public:
-        StreamingServiceLoader();
+        StreamingServiceLoader(Domain::Settings& settings);
         QList<std::shared_ptr<Domain::StreamingService>> load() const override;
 
         static QString userDirectory();
 
         static Domain::Theme readTheme(const QString& filePath);
         static QString readFileContent(const QString& filePath);
+        std::shared_ptr<Domain::SettingsCategory> readSettings(const QString& name, const QString& filePath) const;
 
     private:
         std::unique_ptr<Domain::StreamingService> loadService(const QString& directory) const;
-        QString findFileByExtension(const QString& directory, const QString& suffix) const;
+        QString findFile(const QString& directory, const QString& suffix) const;
         Domain::StreamingServiceMetadata readMetadata(const QString& filePath) const;
         bool checkServiceDirectory(const QString& directory) const;
         QStringList searchPaths() const;
@@ -34,6 +37,7 @@ namespace MellowPlayer::Infrastructure
                              std::shared_ptr<Domain::StreamingService>& toCheck) const;
 
         Domain::ILogger& logger_;
+        Domain::Settings& _settings;
         PlatformFilters platformFilters_;
     };
 }

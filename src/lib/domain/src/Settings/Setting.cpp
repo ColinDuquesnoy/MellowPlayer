@@ -84,10 +84,6 @@ bool Setting::isEnabled() const
         return parentValue.trimmed().toLower() == value;
     } else {
         bool parentValue = parentSetting_->value().toBool();
-
-        //        if (notOperator_)
-        //            return !parentValue;
-
         return parentValue;
     }
 }
