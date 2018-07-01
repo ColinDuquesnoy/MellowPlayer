@@ -79,10 +79,15 @@ function readTime(elementClassName) {
 }
 
 function isFavorite() {
-    if (document.getElementsByClassName('playbackSoundBadge__like')[0].title === "Unlike")
-        return true;
-    else
+    try {
+        if (document.getElementsByClassName('playbackSoundBadge__like')[0].title === "Unlike")
+            return true;
+        else
+            return false;
+    } catch(e)
+    {
         return false;
+    }
 }
 
 function clickButton(buttonName) {

@@ -23,9 +23,12 @@ namespace MellowPlayer::Infrastructure
 
         QString fallbackUrl() const;
 
+        void useFallbackUrl();
+        
     private slots:
         void onCurrentSongChanged(Domain::Song* song);
         void onDownloadFinished(const QString& newUrl);
+        void onDownloadFailed();
         void onArtUrlChanged();
 
     private:
@@ -34,5 +37,6 @@ namespace MellowPlayer::Infrastructure
         QString _url;
         int _timeout;
         QTimer _timer;
+        bool succeeded;
     };
 }

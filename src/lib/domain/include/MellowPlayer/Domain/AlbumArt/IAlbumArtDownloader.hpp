@@ -17,5 +17,6 @@ namespace MellowPlayer::Domain
 
     signals:
         void downloadFinished(const QString& localUrl);
+        void downloadFailed();
     };
 }

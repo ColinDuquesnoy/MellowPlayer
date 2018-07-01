@@ -44,12 +44,15 @@ namespace MellowPlayer::Domain
 
         Q_INVOKABLE bool isValid() const
         {
-            return uniqueId_ != "" && title_ != "";
+            return !uniqueId_.isEmpty() && !toString().isEmpty();
         }
 
         QString toString() const
         {
-            return title_ + " by " + artist_;
+            if (!artist_.isEmpty())
+                return title_ + " by " + artist_;
+            else
+                return title_;
         }
 
         std::shared_ptr<Song> clone() const

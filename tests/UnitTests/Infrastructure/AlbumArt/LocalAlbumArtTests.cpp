@@ -67,19 +67,10 @@ SCENARIO("LocalAlbumArt download current song art url when it changed")
         {
             urlChangedSpy.wait();
 
-            THEN("albumArtDownloader is called with MellowPlayer's logo url")
+            THEN("localAlbumArt use MellowPlayer's svg logo")
             {
-                REQUIRE(albumArtDownloader.artUrl().toStdString() == localAlbumArt.fallbackUrl().toStdString());
+                REQUIRE(localAlbumArt.url().toStdString() == localAlbumArt.fallbackUrl().toStdString());
 
-                THEN("urlChanged signal is emitted")
-                {
-                    REQUIRE(urlChangedSpy.count() == 1);
-                }
-
-                AND_THEN("album local url is valid")
-                {
-                    REQUIRE(localAlbumArt.url() == albumArtDownloader.localArtUrl());
-                }
             }
         }
 

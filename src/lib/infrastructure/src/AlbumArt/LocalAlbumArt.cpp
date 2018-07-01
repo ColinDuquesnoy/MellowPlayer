@@ -15,13 +15,17 @@ LocalAlbumArt::LocalAlbumArt(IPlayer& player, IAlbumArtDownloader& downloader, i
     _timer.setInterval(timeout);
     _timer.setSingleShot(true);
 
-    connect(&_timer, &QTimer::timeout, [&]() {
-        if (_player.currentSong() != nullptr)
-            _downloader.download(fallbackUrl(), _player.currentSong()->uniqueId());
-    });
+    connect(&_timer, &QTimer::timeout, [&]() { useFallbackUrl(); });
 
     connect(&player, &IPlayer::currentSongChanged, this, &LocalAlbumArt::onCurrentSongChanged);
     connect(&downloader, &IAlbumArtDownloader::downloadFinished, this, &LocalAlbumArt::onDownloadFinished);
+    connect(&downloader, &IAlbumArtDownloader::downloadFailed, this, &LocalAlbumArt::onDownloadFailed);
+}
+
+void LocalAlbumArt::useFallbackUrl()
+{
+    _url = fallbackUrl();
+    emit urlChanged();
 }
 
 const QString& LocalAlbumArt::url() const
@@ -32,6 +36,7 @@ const QString& LocalAlbumArt::url() const
 void LocalAlbumArt::onCurrentSongChanged(Song* song)
 {
     if (song != nullptr && !song->uniqueId().isEmpty()) {
+        _url = "";
         auto artUrl = song->artUrl();
         auto songId = song->uniqueId();
 
@@ -53,14 +58,19 @@ void LocalAlbumArt::onDownloadFinished(const QString& newUrl)
     }
 }
 
+void LocalAlbumArt::onDownloadFailed()
+{
+    useFallbackUrl();
+}
+
 bool LocalAlbumArt::isReady(const Song& song)
 {
-    return _url.contains(song.uniqueId()) && QFileInfo(_url).exists();
+    return _url == fallbackUrl() || (_url.contains(song.uniqueId()) && QFileInfo(_url).exists());
 }
 
 QString LocalAlbumArt::fallbackUrl() const
 {
-    return "https://github.com/ColinDuquesnoy/MellowPlayer/blob/develop/src/lib/presentation/resources/icons/mellowplayer.png";
+    return "mellowplayer";
 }
 
 void LocalAlbumArt::onArtUrlChanged()

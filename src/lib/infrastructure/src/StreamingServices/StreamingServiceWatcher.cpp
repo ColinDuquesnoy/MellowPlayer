@@ -29,7 +29,7 @@ void StreamingServiceWatcher::watch(StreamingService& serviceToWatch)
 
 void StreamingServiceWatcher::watchPath(const QString& path)
 {
-    LOG_DEBUG(logger_, "Watching path: " + path);
+    LOG_TRACE(logger_, "Watching path: " + path);
     fileSystemWatcher_.addPath(path);
 }
 

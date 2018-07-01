@@ -80,7 +80,14 @@ void Notifications::onCurrentSongUrlChanged()
 void Notifications::showSongNotification(Song* song, const QString& localAlbumArtUrl)
 {
     LOG_TRACE(logger_, "showSongNotification");
-    if (song != nullptr && song->isValid() && isPlaying() && localAlbumArt_.isReady(*song)) {
+    if (song == nullptr)
+        return;
+
+    bool isReady = song->isValid();
+    isReady &= localAlbumArt_.isReady(*song);
+    isReady &= isPlaying();
+    isReady &= localAlbumArt_.isReady(*song);
+    if (isReady) {
         bool resume = song->uniqueId() == previousSongId_;
         previousSongId_ = song->uniqueId();
         display(notificationFactory_.createSongNotification(currentServiceName(), song, localAlbumArtUrl, resume));

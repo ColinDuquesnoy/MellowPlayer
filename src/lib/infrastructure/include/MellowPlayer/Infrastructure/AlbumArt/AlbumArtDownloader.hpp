@@ -21,7 +21,7 @@ namespace MellowPlayer::Infrastructure
         QFileInfo localArtUrl(const QString& songId) override;
 
     private slots:
-        void onDownloadFinished(bool);
+        void onDownloadFinished(bool success);
 
     private:
         void downloadImage(const QString& url);

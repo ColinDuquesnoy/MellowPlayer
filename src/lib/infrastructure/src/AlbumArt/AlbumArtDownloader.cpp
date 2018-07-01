@@ -50,10 +50,13 @@ QFileInfo AlbumArtDownloader::localArtUrl(const QString& songId)
     return localArtUrl;
 }
 
-void AlbumArtDownloader::onDownloadFinished(bool)
+void AlbumArtDownloader::onDownloadFinished(bool success)
 {
     LOG_DEBUG(logger_, "download finished");
-    emit downloadFinished(localUrl_.absoluteFilePath());
+    if (success)
+        emit downloadFinished(localUrl_.absoluteFilePath());
+    else
+        emit downloadFailed();
 }
 
 bool AlbumArtDownloader::isBase64Image(const QString& artUrl)
