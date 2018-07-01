@@ -12,7 +12,7 @@ using namespace MellowPlayer::Infrastructure;
 TEST_CASE("StreamingServiceLoaderTests")
 {
     DependencyPool pool;
-    auto loader = StreamingServiceLoader(pool.getSettings());
+    StreamingServiceLoader loader(pool.getSettings());
 
     SECTION("load")
     {
