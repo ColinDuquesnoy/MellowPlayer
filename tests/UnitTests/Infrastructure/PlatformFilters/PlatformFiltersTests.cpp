@@ -64,8 +64,8 @@ SCENARIO("PlatformFiltersTests")
             }
         }
 
-        WHEN("filter is 'Linux,AppImage'") {
-            QString filter = "Linux,AppImage";
+        WHEN("filter is 'Linux-AppImage'") {
+            QString filter = "Linux-AppImage";
 
             AND_WHEN("not in an AppImage") {
                 qputenv("APPIMAGE", "");
@@ -94,8 +94,8 @@ SCENARIO("PlatformFiltersTests")
             }
         }
 
-        WHEN("filter is 'Linux,Windows'") {
-            QString filter = "Linux,Windows";
+        WHEN("filter is 'Linux-Windows'") {
+            QString filter = "Linux-Windows";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
@@ -110,16 +110,16 @@ SCENARIO("PlatformFiltersTests")
             }
         }
 
-        WHEN("filter is 'Linux,OSX'") {
-            QString filter = "Linux,OSX";
+        WHEN("filter is 'Linux-OSX'") {
+            QString filter = "Linux-,OSX";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
             }
         }
 
-        WHEN("filter is 'Linux,OSX,Windows'") {
-            QString filter = "Linux,OSX,Windows";
+        WHEN("filter is 'Linux-OSX-Windows'") {
+            QString filter = "Linux-OSX-Windows";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
@@ -161,24 +161,24 @@ SCENARIO("PlatformFiltersTests")
         }
 
 
-        WHEN("filter is 'Linux,Windows'") {
-            QString filter = "Linux,Windows";
+        WHEN("filter is 'Linux-Windows'") {
+            QString filter = "Linux-Windows";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
             }
         }
 
-        WHEN("filter is 'Linux,OSX'") {
-            QString filter = "Linux,OSX";
+        WHEN("filter is 'Linux-OSX'") {
+            QString filter = "Linux-OSX";
 
             THEN("match returns false") {
                 REQUIRE(!filters.match(filter));
             }
         }
 
-        WHEN("filter is 'Linux,OSX,Windows'") {
-            QString filter = "Linux,OSX,Windows";
+        WHEN("filter is 'Linux-OSX-Windows'") {
+            QString filter = "Linux-OSX-Windows";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
@@ -220,24 +220,24 @@ SCENARIO("PlatformFiltersTests")
         }
 
 
-        WHEN("filter is 'Linux,Windows'") {
-            QString filter = "Linux,Windows";
+        WHEN("filter is 'Linux-Windows'") {
+            QString filter = "Linux-Windows";
 
             THEN("match returns false") {
                 REQUIRE(!filters.match(filter));
             }
         }
 
-        WHEN("filter is 'Linux,OSX'") {
-            QString filter = "Linux,OSX";
+        WHEN("filter is 'Linux-OSX'") {
+            QString filter = "Linux-OSX";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
             }
         }
 
-        WHEN("filter is 'Linux,OSX,Windows'") {
-            QString filter = "Linux,OSX,Windows";
+        WHEN("filter is 'Linux-OSX-Windows'") {
+            QString filter = "Linux-OSX-Windows";
 
             THEN("match returns true") {
                 REQUIRE(filters.match(filter));
