@@ -120,7 +120,7 @@ function isFavorite() {
     if (addRemoveToMusic === null) {
         return false;
     }
-    return addRemoveToMusic.attributes.class.value.match(".*added.*") !== null;
+    return addRemoveToMusic.attributes.class.value.match(".*active.*") !== null;
 }
 
 function update() {
