@@ -58,7 +58,7 @@ function getPlaybackStatus() {
 
 function getArtist() {
     try {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div.now-playing-bar > div.now-playing-bar__left > div > div > div.track-info__artists").children[0].children[0].children[0].text
+        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div.now-playing-bar > div.now-playing-bar__left > div > div > div.track-info__artists").children[0].children[0].children[0].innerText;
     } catch (e) {
         return ""
     }
@@ -66,7 +66,7 @@ function getArtist() {
 
 function getSongTitle() {
     try {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].text;
+        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].innerText;
     } catch (e) {
         return ""
     }
@@ -107,13 +107,20 @@ function getVolume() {
 }
 
 function getArtUrl() {
-    var artUrlDiv = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > a > div > div > div.cover-art-image.cover-art-image-loaded");
+    var artUrlDiv = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > span > a > div > div > div > div.cover-art-image.cover-art-image-loaded");
+    if (artUrlDiv === null) {
+        return "";
+    }
     var artUrl = artUrlDiv.style.backgroundImage;
     return artUrl.replace('url("', "").replace('")', "");
 }
 
 function isFavorite() {
-    return getButtons().addRemoveToMusic.attributes.class.value.match(".*added.*") !== null;
+    var addRemoveToMusic = getButtons().addRemoveToMusic;
+    if (addRemoveToMusic === null) {
+        return false;
+    }
+    return addRemoveToMusic.attributes.class.value.match(".*active.*") !== null;
 }
 
 function update() {
