@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Automatically mute ads",
+        "tooltip": "Automatically mute ads",
+        "type": "bool",
+        "default": false,
+        "key": "muteAds"
+    },
+    {
+        "name": "Automatically skip adds",
+        "tooltip": "Automatically skip ads after 5 seconds",
+        "type": "bool",
+        "default": false,
+        "key": "skipAds"
+    }
+]

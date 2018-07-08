@@ -4,8 +4,8 @@
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceWatcher.hpp>
 #include <QtTest/QSignalSpy>
 #include <QtTest/qtestsystem.h>
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Infrastructure;

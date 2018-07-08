@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -17,7 +17,7 @@
 namespace core {
 
 template <class T, class... Ts>
-struct array_impl {
+struct array_impl : _ {
   using boost_di_inject__ = aux::type_list<Ts...>;
   explicit array_impl(type_traits::remove_named_t<Ts>&&... args)
       : array{static_cast<type_traits::remove_named_t<Ts>&&>(args)...} {}
@@ -41,12 +41,12 @@ struct array<T()> : T {
   using boost_di_inject__ = aux::type_list<>;
 };
 
-}  // core
+}  // namespace core
 
 namespace type_traits {
 template <class _, class T, class... Ts>
 struct ctor_traits__<core::array<_, Ts...>, T, aux::false_type>
     : type_traits::ctor_traits__<core::array<aux::remove_smart_ptr_t<aux::remove_qualifiers_t<T>>(), Ts...>> {};
-}  // type_traits
+}  // namespace type_traits
 
 #endif

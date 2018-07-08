@@ -2,7 +2,7 @@
 #include <MellowPlayer/Infrastructure/Updater/Release.hpp>
 #include <MellowPlayer/Infrastructure/Updater/Github/GithubReleasesReplyParser.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 

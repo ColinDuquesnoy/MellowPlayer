@@ -1,6 +1,6 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingServiceScript.hpp>
 #include <QtTest/QSignalSpy>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace std;

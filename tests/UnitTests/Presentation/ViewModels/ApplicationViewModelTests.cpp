@@ -2,7 +2,7 @@
 #include <UnitTests/Infrastructure/Application/FakeQtApplication.hpp>
 #include <UnitTests/Infrastructure/Application/FakeApplication.hpp>
 #include <UnitTests/Presentation/Qml/FakeContextProperties.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <UnitTests/Presentation/FakeMainWindow.hpp>
 

@@ -1,7 +1,7 @@
 #include "Utils/Helpers.hpp"
 #include <MellowPlayer/Infrastructure/StreamingServices/StreamingServiceCreator.hpp>
 #include <QtCore/QDir>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <iostream>
 
 using namespace MellowPlayer::Infrastructure;
@@ -18,7 +18,6 @@ TEST_CASE("StreamingServiceCreatorTests")
     files.append(QFileInfo(pluginDir + "/" + "metadata.ini"));
 
     for (auto fileInfo : files) {
-        std::cerr << fileInfo.absoluteFilePath().toStdString() << std::endl;
         REQUIRE(fileInfo.exists());
         REQUIRE(!readFile(fileInfo.absoluteFilePath()).isEmpty());
     }

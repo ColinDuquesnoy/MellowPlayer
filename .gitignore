@@ -26,14 +26,12 @@ Makefile*
 doxyxml
 # sphinx
 _build
-bin
 dist
 # Python
 *.pyc
 
 # Pycharm project files
 .idea
-setup.iss
 *.usr
 
 # Dolpin
@@ -61,10 +59,11 @@ appdir/
 qt/
 
 qt\.zip
-schema.json
 .vscode
 /.vs
 /venv
 
 *.qmlc
 *.jsc
+
+*.dmg

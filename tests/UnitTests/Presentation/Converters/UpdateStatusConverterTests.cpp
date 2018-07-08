@@ -1,5 +1,5 @@
 #include <MellowPlayer/Presentation/Converters/UpdaterStatusConverter.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Infrastructure;
 using namespace MellowPlayer::Presentation;

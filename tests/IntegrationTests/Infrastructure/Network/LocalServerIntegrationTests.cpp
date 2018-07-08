@@ -1,6 +1,6 @@
 #include <MellowPlayer/Infrastructure/Network/LocalServer.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalSocket.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <QtTest/qtestsystem.h>
 
 using namespace std;

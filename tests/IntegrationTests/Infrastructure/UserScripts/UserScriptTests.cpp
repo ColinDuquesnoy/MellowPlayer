@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/UserScripts/UserScript.hpp>
 #include <QtCore/QDir>
 #include <MellowPlayer/Infrastructure/Helpers/FileHelper.hpp>

@@ -4,7 +4,7 @@
 #include <UnitTests/Domain/StreamingServices/FakeStreamingServiceLoader.hpp>
 #include <UnitTests/Domain/StreamingServices/FakeStreamingServiceWatcher.hpp>
 #include <UnitTests/Infrastructure/Application/FakeQtApplication.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <QtTest/QSignalSpy>
 #include <UnitTests/Domain/Settings/FakeSettingsStore.hpp>
 

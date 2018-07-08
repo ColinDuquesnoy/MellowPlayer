@@ -1,5 +1,5 @@
 #include <MellowPlayer/Domain/StreamingServices/StreamingServiceMetadata.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace std;

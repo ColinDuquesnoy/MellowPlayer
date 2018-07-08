@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Infrastructure/PlatformFilters/LinuxFilter.hpp>
 
 using namespace MellowPlayer::Infrastructure;

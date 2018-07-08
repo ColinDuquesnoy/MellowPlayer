@@ -1,4 +1,4 @@
-#include <catch.hpp>
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/ListeningHistory/ListeningHistory.hpp>
 #include <MellowPlayer/Domain/Player/Player.hpp>
 #include <MellowPlayer/Domain/Player/Players.hpp>

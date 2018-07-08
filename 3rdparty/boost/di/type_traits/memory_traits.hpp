@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -55,9 +55,6 @@ struct memory_traits<T, __BOOST_DI_REQUIRES(aux::is_polymorphic<T>::value)> {
   using type = heap;
 };
 
-template <class T>
-using memory_traits_t = typename memory_traits<T>::type;
-
-}  // type_traits
+}  // namespace type_traits
 
 #endif

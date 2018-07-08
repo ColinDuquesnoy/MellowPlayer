@@ -5,7 +5,7 @@
 #include <MellowPlayer/Presentation/ViewModels/StreamingServices/StreamingServicesViewModel.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
-#include <catch.hpp>
+#include <catch/catch.hpp>
 
 using namespace MellowPlayer::Domain;
 using namespace MellowPlayer::Presentation;
@@ -24,11 +24,11 @@ TEST_CASE("StreamingServiceModelTests", "[UnitTest]")
     StreamingService& service2 = *streamingServices.toList()[1];
 
     StreamingServiceViewModel viewModel(service1, settingsStore, pool.getUserScriptFactory(), players,
-                                        pool.getNetworkProxies());
+                                        pool.getNetworkProxies(), pool.getThemeViewModel());
     StreamingServiceViewModel sameModel(service1, settingsStore, pool.getUserScriptFactory(), players,
-                                        pool.getNetworkProxies());
+                                        pool.getNetworkProxies(), pool.getThemeViewModel());
     StreamingServiceViewModel model2(service2, settingsStore, pool.getUserScriptFactory(), players,
-                                     pool.getNetworkProxies());
+                                     pool.getNetworkProxies(), pool.getThemeViewModel());
 
     SECTION("basic properties")
     {

@@ -149,7 +149,7 @@ def upload_binaries(release, glob_expr):
         name = os.path.split(file)[1]
         content_type = "application/octet-stream"
 
-        for asset in release.assets:
+        for asset in release.assets():
             if asset.name == name:
                 print("asset %r already uploaded" % asset.name)
                 break

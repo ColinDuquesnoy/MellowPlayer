@@ -1,9 +1,10 @@
-#include "catch.hpp"
+#include <catch/catch.hpp>
 #include <MellowPlayer/Domain/Settings/Setting.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
 #include <QtTest/QSignalSpy>
 #include <Utils/DependencyPool.hpp>
+#include <QVersionNumber>
 
 using namespace std;
 using namespace MellowPlayer::Domain;
@@ -153,6 +154,28 @@ TEST_CASE("SettingsTests")
                 theme.setValue("Custom");
                 REQUIRE(spy.count() == 1);
                 REQUIRE(accent.isEnabled());
+            }
+
+            SECTION("qtVersion condition, require >= 5.11")
+            {
+                Setting::Data data;
+                data.enableCondition = "qtVersion >= 5.11";
+                data.key = "test";
+                Setting setting(settings, *mainCategory, data);
+                QVersionNumber qtVersion(QT_VERSION_MAJOR, QT_VERSION_MINOR);
+                if (qtVersion >= QVersionNumber::fromString("5.11"))
+                    REQUIRE(setting.isEnabled());
+                else
+                    REQUIRE(!setting.isEnabled());
+            }
+
+            SECTION("qtVersion condition, require >= 6.5")
+            {
+                Setting::Data data;
+                data.enableCondition = "qtVersion >= 6.5";
+                data.key = "test";
+                Setting setting(settings, *mainCategory, data);
+                REQUIRE(!setting.isEnabled());
             }
         }
 

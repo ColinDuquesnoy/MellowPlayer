@@ -33,6 +33,13 @@
 #include <atomic>
 #include <tuple>
 
+inline bool catch_uncaught_exceptions() {
+#if __cplusplus >= 201703L
+    return std::uncaught_exceptions() > 0;
+#else
+    return std::uncaught_exception();
+#endif
+}
 
 namespace fakeit
 {
@@ -9671,7 +9678,7 @@ m_timer.start();
 Section::~Section() {
 if( m_sectionIncluded ) {
 SectionEndInfo endInfo( m_info, m_assertions, m_timer.getElapsedSeconds() );
-if( std::uncaught_exception() )
+if( catch_uncaught_exceptions() )
 getResultCapture().sectionEndedEarly( endInfo );
 else
 getResultCapture().sectionEnded( endInfo );
@@ -21063,7 +21070,7 @@ namespace fakeit
             virtual ~StubbingChange() THROWS
             {
 
-                if (std::uncaught_exception()) {
+                if (catch_uncaught_exceptions()) {
                     return;
                 }
 
@@ -21362,7 +21369,7 @@ namespace fakeit
 
         ~SequenceVerificationExpectation() THROWS
         {
-            if (std::uncaught_exception()) {
+            if (catch_uncaught_exceptions()) {
                 return;
             }
             VerifyExpectation(_fakeit);
@@ -21788,7 +21795,7 @@ namespace fakeit
 
             ~VerifyNoOtherInvocationsExpectation() THROWS
             {
-                if (std::uncaught_exception()) {
+                if (catch_uncaught_exceptions()) {
                     return;
                 }
 

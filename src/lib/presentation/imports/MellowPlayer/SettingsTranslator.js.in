@@ -1,0 +1,35 @@
+function translateName(name) {
+    var translations = {
+%(names)s
+    };
+
+    var translated = translations[name];
+    if (translated)
+        return translated;
+    return name;
+}
+
+function translateToolTip(toolTip) {
+    var translations = {
+%(tooltips)s
+    };
+
+
+    var translated = translations[toolTip];
+    if (translated)
+        return translated;
+    return toolTip;
+}
+
+function translateCategory(category) {
+    var translations = {
+        "Streaming Services": qsTr("Streaming Services"),
+        "Cache": qsTr("Cache"),
+%(categories)s
+    };
+
+    var translated = translations[category];
+    if (translated)
+        return translated;
+    return category;
+}

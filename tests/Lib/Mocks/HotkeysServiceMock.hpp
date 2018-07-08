@@ -1,6 +1,6 @@
 #pragma once
 #include <MellowPlayer/Infrastructure/Hotkeys/IHotkeys.hpp>
-#include <fakeit.hpp>
+#include <fakeit/fakeit.hpp>
 #include <memory>
 
 using namespace MellowPlayer::Infrastructure;

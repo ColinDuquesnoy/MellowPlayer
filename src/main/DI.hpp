@@ -34,6 +34,7 @@
 #include <MellowPlayer/Infrastructure/Network/FileDownloader.hpp>
 #include <MellowPlayer/Infrastructure/Logging/SpdLoggerFactory.hpp>
 #include <MellowPlayer/Infrastructure/ListeningHistory/SqlLiteListeningHistoryDatabase.hpp>
+#include <MellowPlayer/Infrastructure/ListeningHistory/DelayedListeningHistory.hpp>
 #include <MellowPlayer/Infrastructure/QtConcurrentWorkDispatcher.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalServer.hpp>
 #include <MellowPlayer/Infrastructure/Network/LocalSocket.hpp>
@@ -66,12 +67,12 @@
 #include <MellowPlayer/Presentation/ViewModels/CookiesViewModel.hpp>
 #include <MellowPlayer/Infrastructure/Application/QtApplication.hpp>
 #include <MellowPlayer/Infrastructure/Application/Application.hpp>
+#include <MellowPlayer/Infrastructure/Timer.hpp>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtWebEngine>
 #include <boost/di.hpp>
-#include <boost-di-extensions/ScopedScope.hpp>
-#include <boost-di-extensions/Contextual.hpp>
+#include <boost/di/extension/scopes/scoped.hpp>
 #include <boost-di-extensions/Factory.hpp>
 
 #ifdef USE_LIBNOTIFY
@@ -127,9 +128,8 @@ private:
     std::shared_ptr<IApplication> object_ = nullptr;
 };
 
-
 // clang-format off
-auto defaultInjector = [](ScopedScope& scope) {
+auto defaultInjector = [](di::extension::detail::scoped& scope) {
     return di::make_injector(
         di::bind<IApplication>().to(ApplicationFactory { }),
         di::bind<IQtApplication>().to<QtApplication>().in(scope),
@@ -159,11 +159,13 @@ auto defaultInjector = [](ScopedScope& scope) {
         di::bind<IMainWindow>().to<MainWindowViewModel>().in(scope),
         di::bind<INotifications>().to<Notifications>().in(scope),
         di::bind<IViewModels>().to<ViewModels>().in(scope),
-        di::bind<INetworkProxies>().to<NetworkProxies>().in(scope)
+        di::bind<INetworkProxies>().to<NetworkProxies>().in(scope),
+        di::bind<ITimer>().to<Timer>().in(di::unique),
+        di::bind<IListeningHistory>().to<DelayedListeningHistory>().in(scope)
     );
 };
 
-auto platformInjector = [](ScopedScope &scope) {
+auto platformInjector = [](di::extension::detail::scoped& scope) {
 #if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
     return di::make_injector(
         di::bind<IMprisService>().to<MprisService>().in(scope),
@@ -182,7 +184,7 @@ auto platformInjector = [](ScopedScope &scope) {
 #endif
 };
 
-auto notificationPresenterInjector = [](ScopedScope &scope) {
+auto notificationPresenterInjector = [](di::extension::detail::scoped& scope) {
 #if defined(USE_LIBNOTIFY)
     return di::make_injector(di::bind<INotificationPresenter>().to<LibnotifyPresenter>().in(scope));
 #else

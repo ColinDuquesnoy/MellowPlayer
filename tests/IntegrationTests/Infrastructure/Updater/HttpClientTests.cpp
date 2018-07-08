@@ -1,34 +1,29 @@
 #include <MellowPlayer/Infrastructure/Network/HttpClient.hpp>
 #include <QtTest/qtestsystem.h>
-#include <catch.hpp>
+#include <catch/catch.hpp>
+#include <QSignalSpy>
 
 using namespace MellowPlayer::Infrastructure;
 
-SCENARIO("HttpClient get github API response")
+SCENARIO("HttpClient get github API response", "[!mayfail]")
 {
     HttpClient client;
 
     GIVEN("an initial state and the most basic github query url")
     {
-        bool replyReceived = false;
-        QByteArray replyData;
-
-        client.connect(&client, &HttpClient::replyReceived, [&](const QByteArray& data) {
-            replyReceived = true;
-            replyData = data;
-        });
+        QSignalSpy spy(&client, &HttpClient::replyReceived);
 
         WHEN("a get request is send")
         {
             client.get("https://api.github.com/");
-            REQUIRE(!replyReceived);
-            REQUIRE(replyData.isEmpty());
 
             THEN("it receives a non empty response")
             {
-                QTest::qWait(1000);
-                if (replyReceived)
-                    REQUIRE(!replyData.isEmpty());
+                if (spy.wait(5000)) {
+                    REQUIRE(spy.count() == 1);
+                    QList<QVariant> args = spy.takeFirst();
+                    REQUIRE(!args.at(0).toByteArray().isEmpty());
+                }
             }
         }
     }

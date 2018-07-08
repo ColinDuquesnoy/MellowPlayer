@@ -84,7 +84,8 @@ StreamingServicesViewModel& DependencyPool::getStreamingServicesViewModel()
         getCommandLineArguments(),
         getUserScriptFactory(),
         contextProperties_,
-        networkProxies_);
+        networkProxies_,
+        getThemeViewModel());
     return *pStreamingServicesControllerViewModel;
 }
 
@@ -134,7 +135,7 @@ ListeningHistoryViewModel& DependencyPool::getListeningHistoryViewModel()
 ListeningHistory& DependencyPool::getListeningHistory()
 {
     if (pListeningHistory == nullptr)
-        pListeningHistory = make_unique<ListeningHistory>(*dataProvider, getCurrentPlayer(), getWorkDispatcher(), getSettings());
+        pListeningHistory = make_unique<ListeningHistory>(*dataProvider, getCurrentPlayer(), getSettings());
     return *pListeningHistory;
 }
 

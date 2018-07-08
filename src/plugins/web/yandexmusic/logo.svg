@@ -1,0 +1,61 @@
+<svg width="308" height="308" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="image_base"/>
+  <g id="drawing">
+   <g id="svg_1">
+    <circle id="svg_2" r="154" cy="155.764698" cx="154" fill="#7F7F7F"/>
+    <g id="svg_3">
+     <rect id="svg_4" height="13.021" width="40.979" fill="#FFFFFF" y="94.742698" x="227.983"/>
+     <rect id="svg_5" height="13.023" width="40.979" fill="#FFFFFF" y="110.443698" x="227.983"/>
+     <rect id="svg_6" height="13.022" width="40.979" fill="#FFFFFF" y="126.147698" x="227.983"/>
+     <rect id="svg_7" height="13.021" width="40.979" fill="#FFFFFF" y="141.849698" x="227.983"/>
+     <rect id="svg_8" height="13.022" width="40.979" fill="#FFFFFF" y="157.552698" x="227.983"/>
+     <rect id="svg_9" height="13.023" width="40.979" fill="#FFFFFF" y="173.254698" x="227.983"/>
+     <rect id="svg_10" height="13.022" width="40.979" fill="#FFFFFF" y="188.957698" x="227.983"/>
+     <rect id="svg_11" height="13.021" width="40.979" fill="#FFFFFF" y="204.661698" x="227.983"/>
+     <rect id="svg_12" height="13.021" width="40.981" fill="#FFFFFF" y="141.849698" x="181.64"/>
+     <rect id="svg_13" height="13.022" width="40.981" fill="#FFFFFF" y="157.552698" x="181.64"/>
+     <rect id="svg_14" height="13.023" width="40.981" fill="#FFFFFF" y="173.254698" x="181.64"/>
+     <rect id="svg_15" height="13.022" width="40.981" fill="#FFFFFF" y="188.957698" x="181.64"/>
+     <rect id="svg_16" height="13.021" width="40.981" fill="#FFFFFF" y="204.661698" x="181.64"/>
+     <rect id="svg_17" height="13.023" width="40.979" fill="#FFFFFF" y="110.443698" x="135.299"/>
+     <rect id="svg_18" height="13.022" width="40.979" fill="#FFFFFF" y="126.147698" x="135.299"/>
+     <rect id="svg_19" height="13.021" width="40.979" fill="#FFFFFF" y="141.849698" x="135.299"/>
+     <rect id="svg_20" height="13.022" width="40.979" fill="#FFFFFF" y="157.552698" x="135.299"/>
+     <rect id="svg_21" height="13.023" width="40.979" fill="#FFFFFF" y="173.254698" x="135.299"/>
+     <rect id="svg_22" height="13.022" width="40.979" fill="#FFFFFF" y="188.957698" x="135.299"/>
+     <rect id="svg_23" height="13.021" width="40.979" fill="#FFFFFF" y="204.661698" x="135.299"/>
+     <rect id="svg_24" height="13.023" width="40.981" fill="#FFFFFF" y="173.254698" x="88.955"/>
+     <rect id="svg_25" height="13.022" width="40.981" fill="#FFFFFF" y="188.957698" x="88.955"/>
+     <rect id="svg_26" height="13.021" width="40.981" fill="#FFFFFF" y="204.661698" x="88.955"/>
+     <rect id="svg_27" height="13.021" width="40.981" fill="#FFFFFF" y="141.849698" x="42.613"/>
+     <rect id="svg_28" height="13.022" width="40.981" fill="#FFFFFF" y="157.552698" x="42.613"/>
+     <rect id="svg_29" height="13.023" width="40.981" fill="#FFFFFF" y="173.254698" x="42.613"/>
+     <rect id="svg_30" height="13.022" width="40.981" fill="#FFFFFF" y="188.957698" x="42.613"/>
+     <rect id="svg_31" height="13.021" width="40.981" fill="#FFFFFF" y="204.661698" x="42.613"/>
+    </g>
+   </g>
+  </g>
+  <g display="none" id="guides"/>
+  <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+  <desc transform="matrix(0.3326740239675843,0,0,0.3326740239675843,0,0) ">Created with Sketch.</desc>
+
+  <rect id="svg_45" height="150.58754" width="241.76359" y="79.000355" x="33.706438" stroke-width="1.5" fill="#7F7F7F"/>
+  <g stroke="null" id="svg_44">
+   <g stroke="null" transform="matrix(1.3542728906704788,0,0,1.3542728906704788,-228.95327177139347,-166.85785481099435) " fill-rule="evenodd" fill="none" id="svg_38">
+    <g stroke="null" fill="#1D1D1B" id="svg_39">
+     <g stroke="null" id="svg_40">
+      <path stroke="#ffffff" fill="#fff" id="svg_42" d="m298.020557,196.979985c5.67635,1.46098 11.04791,3.68112 16.00002,6.54575l-0.00002,19.37294c-4.63481,-4.059 -10.05377,-7.24461 -16,-9.29996l0,-16.61873zm-16,-2.01626c-35.34635,0 -64,28.65365 -64,64c0,35.34635 28.65365,64 64,64c35.34635,0 64,-28.65365 64,-64l-15.52997,0c0.00037,0.07839 0.00056,0.15682 0.00056,0.23529c0,26.63972 -21.59558,48.2353 -48.2353,48.2353c-26.63971,0 -48.23529,-21.59558 -48.23529,-48.2353c0,-26.56124 21.46853,-48.10801 48,-48.23473l0,-16.00056z"/>
+      <path stroke="#ffffff" fill="#fff" id="svg_41" d="m314.020557,184.297055l0,74.66665c0,17.67296 -14.32706,32.00002 -32,32.00002c-17.67294,0 -32,-14.32706 -32,-32c0,-17.67294 14.32706,-32 32,-32c5.82857,0 11.29321,1.55834 16,4.28111l0,-58.16346l0,-26.11765l48,16l0,32l-32,-10.66667z"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

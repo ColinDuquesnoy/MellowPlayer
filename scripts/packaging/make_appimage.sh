@@ -6,6 +6,8 @@
 #
 #   ./scripts/packaging/make_appimage.sh PATH_TO_QT_INSTALL_DIR
 #
+# E.g., on openSUSE: ./scripts/packaging/make_appimage.sh /usr/lib64/qt5
+#
 
 # override path so that the correct qmake version is used
 QT_DIR=$1
@@ -20,22 +22,24 @@ echo "downloading linuxdeployqt"
 wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 chmod a+x linuxdeployqt*.AppImage
 
-# build in release mode and install into appdir
-mkdir -p appdir
 mkdir -p build
+mkdir -p appdir
 pushd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=FALSE -DSTATIC_LIBSTDCPP=TRUE ..
-make -j$(nproc)
-make DESTDIR=../appdir install
-VERSION="$(cat CMakeCache.txt | grep MELLOWPLAYER_VERSION:STRING= | cut -d "=" -f2)"
+qbs resolve -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
+qbs build -f ../ release projects.MellowPlayer.staticLibCpp:true qbs.installRoot:../appdir/usr
+qbs --clean-install-root release
 popd
 
 ldd appdir/usr/bin/MellowPlayer
 
-./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=../
+./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -exclude-libs="libnss3.so,libnssutil3.so" -bundle-non-qt-libs -qmldir=../
+echo "Copying missing files..."
+ls ${QT_DIR}/plugins/imageformats/
 cp ${QT_DIR}/plugins/imageformats/libqsvg.so ./appdir/usr/plugins/imageformats/
+ls ${QT_DIR}/qml/QtQuick/Controls
 cp -R ${QT_DIR}/qml/QtQuick/Controls ./appdir/usr/qml/QtQuick/
-./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
+ls -R ./appdir
+./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -exclude-libs="libnss3.so,libnssutil3.so" -appimage
 
 chmod +x MellowPlayer-x86_64.AppImage
 mkdir -p dist

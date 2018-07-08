@@ -1,5 +1,5 @@
-cd ..\..\build\tests
-set QTDIR=C:\Qt\5.9\msvc2015_64
+@echo off
+cd ..\..\build
+set QTDIR=C:\Qt\5.11.0\msvc2017_64
 set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
-
-ctest --output-on-failure -C Release
+qbs build -f ../ -p tests config:release projects.MellowPlayer.buildTests:true

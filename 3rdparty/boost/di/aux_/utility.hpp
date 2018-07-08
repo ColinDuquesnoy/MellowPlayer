@@ -1,11 +1,11 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software type_listicense, Version 1.0.
 // (See accompanying file type_listICENSE_1_0.txt or copy at http://www.boost.org/type_listICENSE_1_0.txt)
 //
-#ifndef BOOST_DI_AUX_UTItype_listITY_HPP
-#define BOOST_DI_AUX_UTItype_listITY_HPP
+#ifndef BOOST_DI_AUX_UTILITY_HPP
+#define BOOST_DI_AUX_UTILITY_HPP
 
 struct _ {
   _(...) {}
@@ -154,6 +154,6 @@ struct make_index_sequence_impl<10> : index_sequence<0, 1, 2, 3, 4, 5, 6, 7, 8, 
 template <int N>
 using make_index_sequence = typename make_index_sequence_impl<N>::type;
 
-}  // aux
+}  // namespace aux
 
 #endif

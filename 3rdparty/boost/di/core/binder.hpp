@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -25,10 +25,11 @@ struct binder {
     return static_cast<TDependency&>(*dep);
   }
 
-  template <class, class TConcept, class TScope, class TExpected, class TGiven, class TName>
+  template <class, class TConcept, class TScope, class TExpected, class TGiven, class TName,
+            template <class, class, class, class, class> class TDependency>
   static decltype(auto) resolve_impl(
-      aux::pair<TConcept, dependency<TScope, TExpected, TGiven, TName, override>>* dep) noexcept {
-    return static_cast<dependency<TScope, TExpected, TGiven, TName, override>&>(*dep);
+      aux::pair<TConcept, TDependency<TScope, TExpected, TGiven, TName, override>>* dep) noexcept {
+    return static_cast<TDependency<TScope, TExpected, TGiven, TName, override>&>(*dep);
   }
 
   template <class TDefault, class>
@@ -37,9 +38,10 @@ struct binder {
   template <class, class TConcept, class TDependency>
   static TDependency resolve_impl__(aux::pair<TConcept, TDependency>*);
 
-  template <class, class TConcept, class TScope, class TExpected, class TGiven, class TName>
+  template <class, class TConcept, class TScope, class TExpected, class TGiven, class TName,
+            template <class, class, class, class, class> class TDependency>
   static dependency<TScope, TExpected, TGiven, TName, override> resolve_impl__(
-      aux::pair<TConcept, dependency<TScope, TExpected, TGiven, TName, override>>*);
+      aux::pair<TConcept, TDependency<TScope, TExpected, TGiven, TName, override>>*);
 
   template <class TDeps, class T, class TName, class TDefault>
   struct resolve__ {
@@ -90,6 +92,6 @@ struct binder {
   using resolve_template_t = typename resolve_template_impl<TDeps, aux::remove_qualifiers_t<T>>::type;
 };
 
-}  // core
+}  // namespace core
 
 #endif

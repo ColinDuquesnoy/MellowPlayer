@@ -1,8 +1,8 @@
 #include <MellowPlayer/Presentation/Hotkeys/Hotkeys.hpp>
 #include <Mocks/PlayerMock.hpp>
 #include <Utils/DependencyPool.hpp>
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 #include "FakeMainWindow.hpp"
 
 using namespace MellowPlayer::Tests;

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -24,7 +24,7 @@ static auto make_injector = [](auto injector) {
   };
   return i{static_cast<injector_t&&>(injector)};
 };
-}  // detail
+}  // namespace detail
 #define __BOOST_DI_MAKE_INJECTOR(...) detail::make_injector(__VA_ARGS__)  // __pph__
 #endif                                                                    // __pph__
 

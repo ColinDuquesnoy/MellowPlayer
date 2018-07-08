@@ -71,32 +71,37 @@ class Promotion:
 
     @staticmethod
     def read_cmake_version():
-        with open("CMakeLists.txt") as f:
+        with open("mellowplayer.qbs") as f:
             lines = f.read().splitlines()
+        version_major = 0
+        version_minor = 0
+        version_patch = 0
         for l in lines:
-            if l.startswith("project(MellowPlayer VERSION "):
-                m = re.match(r'project\(.*VERSION\s(.*)\.\$.*\)', l)
-                if m:
-                    version = m.groups()[0]
-                    version_numbers = []
-                    for n in version.split('.'):
-                        version_numbers.append(int(n))
-                    return Version(version_numbers[0], version_numbers[1], version_numbers[2])
+            if l.startswith("    property int versionMajor:"):
+                version_major = int(l.split(":")[1].strip())
+            elif l.startswith("    property int versionMinor:"):
+                version_minor = int(l.split(":")[1].strip())
+            elif l.startswith("    property int versionPatch:"):
+                version_patch = int(l.split(":")[1].strip())
 
-        return Version()
+        return Version(version_major, version_minor, version_patch)
 
     @staticmethod
     def write_cmake_version(version):
-        with open("CMakeLists.txt") as f:
+        with open("mellowplayer.qbs") as f:
             lines = f.read().splitlines()
         updated_lines = []
         for l in lines:
-            if l.startswith("project(MellowPlayer VERSION "):
-                updated_lines.append("project(MellowPlayer VERSION %s.${BUILD_NUMBER})" % version)
+            if l.startswith("    property int versionMajor:"):
+                updated_lines.append("    property int versionMajor: %s" % version.major)
+            elif l.startswith("    property int versionMinor:"):
+                updated_lines.append("    property int versionMinor: %s" % version.minor)
+            elif l.startswith("    property int versionPatch:"):
+                updated_lines.append("    property int versionPatch: %s" % version.patch)
             else:
                 updated_lines.append(l)
 
-        with open('CMakeLists.txt', 'w') as f:
+        with open('mellowplayer.qbs', 'w') as f:
             f.write('\n'.join(updated_lines))
 
 

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -214,6 +214,11 @@ struct deref_type<std::set<TKey, TCompare, TAllocator>> {
 };
 
 template <class T>
+struct deref_type<std::initializer_list<T>> {
+  using type = core::array<remove_qualifiers_t<typename deref_type<T>::type>>;
+};
+
+template <class T>
 using decay_t = typename deref_type<remove_qualifiers_t<T>>::type;
 
 template <class, class>
@@ -352,7 +357,14 @@ struct unique<type<Rs...>> : type_list<Rs...> {};
 template <class... Ts>
 using unique_t = typename unique<type<>, Ts...>::type;
 
-__BOOST_DI_HAS_METHOD(is_callable_with, operator());
+false_type has_shared_ptr__(...);
+
+#if !defined(BOOST_DI_DISABLE_SHARED_PTR_DEDUCTION)  // __pph__
+template <class T>
+auto has_shared_ptr__(T &&) -> is_valid_expr<decltype(std::shared_ptr<T>{})>;
+#endif  // __pph__
+
+__BOOST_DI_HAS_METHOD(is_invocable, operator());
 
 struct callable_base_impl {
   void operator()(...) {}
@@ -367,6 +379,18 @@ aux::true_type is_callable_impl(...);
 
 template <class T>
 struct is_callable : decltype(is_callable_impl((callable_base<T>*)0)) {};
+
+template <class, class = int>
+struct is_empty_expr : false_type {};
+
+template <class TExpr>
+#if defined(__MSVC__)  // __pph__
+struct is_empty_expr<TExpr, valid_t<decltype(declval<TExpr>()())>> : integral_constant<bool, sizeof(TExpr) == 1> {
+};
+#else  // __pph__
+struct is_empty_expr<TExpr, valid_t<decltype(+declval<TExpr>()), decltype(declval<TExpr>()())>> : true_type {
+};
+#endif  // __pph__
 
 template <class>
 struct function_traits;
@@ -398,6 +422,6 @@ struct function_traits<R (T::*)(TArgs...) const> {
 template <class T>
 using function_traits_t = typename function_traits<T>::args;
 
-}  // aux
+}  // namespace aux
 
 #endif

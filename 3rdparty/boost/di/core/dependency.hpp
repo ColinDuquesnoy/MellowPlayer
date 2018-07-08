@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -137,7 +137,7 @@ class dependency
     return dependency{object};
   }
 
-  template <class T, __BOOST_DI_REQUIRES(externable<T>::value) = 0,
+  template <class T, __BOOST_DI_REQUIRES(externable<T>::value && !aux::is_callable<T>::value) = 0,
             __BOOST_DI_REQUIRES_MSG(concepts::boundable<deduce_traits_t<TExpected, T>, aux::decay_t<T>, aux::valid<>>) = 0>
   auto to(T&& object) noexcept {
     using dependency =
@@ -145,8 +145,22 @@ class dependency
     return dependency{static_cast<T&&>(object)};
   }
 
-  template <class TConcept, class T, __BOOST_DI_REQUIRES(externable<T>::value) = 0,
+  template <class T, __BOOST_DI_REQUIRES(externable<T>::value&& aux::is_callable<T>::value) = 0>
+  auto to(T&& object) noexcept {
+    using dependency =
+        dependency<scopes::instance, deduce_traits_t<TExpected, T>, typename ref_traits<T>::type, TName, TPriority>;
+    return dependency{static_cast<T&&>(object)};
+  }
+
+  template <class TConcept, class T, __BOOST_DI_REQUIRES(externable<T>::value && !aux::is_callable<T>::value) = 0,
             __BOOST_DI_REQUIRES_MSG(concepts::boundable<deduce_traits_t<TExpected, T>, aux::decay_t<T>, aux::valid<>>) = 0>
+  auto to(T&& object) noexcept {
+    using dependency = dependency<scopes::instance, deduce_traits_t<concepts::any_of<TExpected, TConcept>, T>,
+                                  typename ref_traits<T>::type, TName, TPriority>;
+    return dependency{static_cast<T&&>(object)};
+  }
+
+  template <class TConcept, class T, __BOOST_DI_REQUIRES(externable<T>::value&& aux::is_callable<T>::value) = 0>
   auto to(T&& object) noexcept {
     using dependency = dependency<scopes::instance, deduce_traits_t<concepts::any_of<TExpected, TConcept>, T>,
                                   typename ref_traits<T>::type, TName, TPriority>;
@@ -169,18 +183,14 @@ class dependency
   dependency& operator()() noexcept { return *this; }
 #endif  // __pph__
 
-#if defined(__MSVC__)  // __pph__
- public:
-#else   // __pph__
  protected:
-#endif  // __pph__
-  using scope_t::is_referable;
   using scope_t::create;
+  using scope_t::is_referable;
   using scope_t::try_create;
   template <class, class>
   static void try_create(...);
 };
 
-}  // core
+}  // namespace core
 
 #endif

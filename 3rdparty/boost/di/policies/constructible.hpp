@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2017 Kris Jusiak (kris at jusiak dot net)
+// Copyright (c) 2012-2018 Kris Jusiak (kris at jusiak dot net)
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -71,7 +71,7 @@ struct or_ : detail::type_op {
                                                       aux::bool_list<aux::never<Ts>::value...>>::value> {};
 };
 
-}  // detail
+}  // namespace detail
 
 template <class T>
 struct type {
@@ -132,7 +132,7 @@ inline auto operator!(const T&) {
   return detail::not_<T>{};
 }
 
-}  // operators
+}  // namespace operators
 
 template <bool, class T>
 struct constructible_impl {
@@ -172,6 +172,6 @@ inline auto constructible(const T& = {}) {
   return constructible_impl<IncludeRoot, detail::or_<T>>{};
 }
 
-}  // policies
+}  // namespace policies
 
 #endif

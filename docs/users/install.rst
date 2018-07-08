@@ -21,17 +21,16 @@ Fedora
 Starting from Fedora 27, MellowPlayer is available from the official stable repositories:
 
 .. code-block:: bash
-    
+
     sudo dnf install mellowplayer
-    
+
 Proprietary codecs
 ******************
 
-Most services require proprietary audio codecs to work. You can install them from the RPMFusion repositories:
+Most services require proprietary audio codecs to work. You can install them from the `RPMFusion repositories`_:
 
 .. code-block:: bash
 
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     sudo dnf install qt5-qtwebengine-freeworld
 
 Flash 
@@ -40,7 +39,7 @@ Flash
 Services such as Deezer and Tidal require flash to work. You can install it from the adobe repositories:
 
 .. code-block:: bash
-    
+
     sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
     sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
     sudo dnf install flash-player-ppapi
@@ -64,7 +63,7 @@ Spotify requires the widevine ppapi plugin to work, you can install it by runnin
     sudo chmod 644 /usr/lib/chromium/libwidevinecdmadapter.so
 
 
-Ubuntu 17.10
+Ubuntu 18.04
 ++++++++++++
 
 Before installing MellowPlayer, **make sure the universe repository is enabled**:
@@ -78,13 +77,12 @@ Install procedure:
 
 .. code-block:: bash
 
-    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_17.10/ /' > /etc/apt/sources.list.d/mellowplayer.list"
-    wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_17.10/Release.key -O Release.key
+    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_18.04/ /' > /etc/apt/sources.list.d/mellowplayer.list"
+    wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_18.04/Release.key -O Release.key
     sudo apt-key add - < Release.key
     sudo apt-get update
     sudo apt install mellowplayer
-
-
+    
 ArchLinux
 +++++++++
 
@@ -96,6 +94,17 @@ MellowPlayer is available from the `AUR`_, install it with your favorite AUR too
     yaourt -S mellowplayer
 
 .. _AUR: https://aur.archlinux.org/packages/mellowplayer
+
+openSuse Leap 15
+++++++++++++++++
+
+Use the `openSUSE build service`_ web interface or install manually:
+
+.. code-block:: bash
+
+    zypper addrepo https://download.opensuse.org/repositories/home:ColinDuquesnoy/openSUSE_Leap_15.0/home:ColinDuquesnoy.repo
+    zypper refresh
+    zypper install MellowPlayer
 
 
 openSuse Tumbleweed
@@ -125,15 +134,9 @@ MellowPlayer is available from `KaOSx/apps`_ repository, just run:
 Other distributions
 +++++++++++++++++++
 
-You will have to compile from source. Grab the latest source release from the `official website`_, extract the archive and run the following commands:
+You will have to compile from source. See the `README`_ for build instructions.
 
-.. code-block:: bash
-
-    $ cmake .
-    $ make
-    $ sudo make install
-
-Before compiling, you will need to install **Qt >= 5.9 (with QtWebEngine and QtQuickControls2)**.
+.. _README: https://github.com/ColinDuquesnoy/MellowPlayer/blob/qbs/README.md#compilation
 
 OS X
 ----
@@ -154,3 +157,4 @@ Please note the Windows Installer we provide is built with a version of QtWebEng
 .. _official website: http://colinduquesnoy.github.io/MellowPlayer
 .. _github release: https://github.com/ColinDuquesnoy/MellowPlayer/releases
 .. _openSUSE build service: https://software.opensuse.org//download.html?project=home%3AColinDuquesnoy&package=MellowPlayer
+.. _RPMFusion repositories: https://rpmfusion.org/Configuration

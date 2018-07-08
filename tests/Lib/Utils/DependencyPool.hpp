@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "fakeit.hpp"
+#include <fakeit/fakeit.hpp>
 
 #include <MellowPlayer/Infrastructure/CommandLineArguments/ICommandLineArguments.hpp>
 #include <MellowPlayer/Presentation/Notifications/Presenters/INotificationPresenter.hpp>

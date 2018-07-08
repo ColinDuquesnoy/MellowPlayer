@@ -1,5 +1,44 @@
 # Change Log
 
+## [3.4.0](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.4.0) (2018-07-08)
+[Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.5...3.4.0)
+
+**Implemented enhancements:**
+
+- Add brazilian translations [\#256](https://github.com/ColinDuquesnoy/MellowPlayer/issues/256)
+- Settings page for each plugin. [\#236](https://github.com/ColinDuquesnoy/MellowPlayer/issues/236)
+- Youtube: automatically mute and skip ads [\#218](https://github.com/ColinDuquesnoy/MellowPlayer/issues/218)
+- Stop automatically playing videos in MellowPlayer [\#130](https://github.com/ColinDuquesnoy/MellowPlayer/issues/130)
+- Youtube plugin improvements [\#229](https://github.com/ColinDuquesnoy/MellowPlayer/pull/229) ([NicolasGuilloux](https://github.com/NicolasGuilloux))
+- Add Yandex Music support [\#223](https://github.com/ColinDuquesnoy/MellowPlayer/pull/223) ([rustamzh](https://github.com/rustamzh))
+- Google Play Music: handle cases when we can't go to next/previous [\#222](https://github.com/ColinDuquesnoy/MellowPlayer/pull/222) ([DmMlhch](https://github.com/DmMlhch))
+- Google Play Music: add favorites support [\#220](https://github.com/ColinDuquesnoy/MellowPlayer/pull/220) ([DmMlhch](https://github.com/DmMlhch))
+
+**Fixed bugs:**
+
+- MPRIS2 Pause should only pause, not be a toggle and play if already paused [\#250](https://github.com/ColinDuquesnoy/MellowPlayer/issues/250)
+- Unable to add user scripts on Windows 10 [\#249](https://github.com/ColinDuquesnoy/MellowPlayer/issues/249)
+- Fix Qt 5.11 qml warnings [\#244](https://github.com/ColinDuquesnoy/MellowPlayer/issues/244)
+- Listening history broken with Qt 5.11 [\#243](https://github.com/ColinDuquesnoy/MellowPlayer/issues/243)
+- Mixcloud mixtape art sometimes missing or blurry in KDE Mpris Client [\#240](https://github.com/ColinDuquesnoy/MellowPlayer/issues/240)
+- Open Dev Tools from right-click menu does not work. [\#239](https://github.com/ColinDuquesnoy/MellowPlayer/issues/239)
+- Quit action from KDE's MPRIS player tray icon does not work [\#226](https://github.com/ColinDuquesnoy/MellowPlayer/issues/226)
+- Web view scrollbar does not always work and is hard to use [\#225](https://github.com/ColinDuquesnoy/MellowPlayer/issues/225)
+- Unable to maximize window on 1280x720 screens [\#221](https://github.com/ColinDuquesnoy/MellowPlayer/issues/221)
+- Fix Spotify integration script [\#258](https://github.com/ColinDuquesnoy/MellowPlayer/pull/258) ([b0o](https://github.com/b0o))
+- Youtube plugin improvements [\#229](https://github.com/ColinDuquesnoy/MellowPlayer/pull/229) ([NicolasGuilloux](https://github.com/NicolasGuilloux))
+- Youtube: fix the art URL and the position [\#227](https://github.com/ColinDuquesnoy/MellowPlayer/pull/227) ([NicolasGuilloux](https://github.com/NicolasGuilloux))
+
+**Closed issues:**
+
+- Debian package for Ubuntu 18.04 [\#238](https://github.com/ColinDuquesnoy/MellowPlayer/issues/238)
+- Improve README instructions for installing with qbs [\#230](https://github.com/ColinDuquesnoy/MellowPlayer/issues/230)
+
+**Merged pull requests:**
+
+- Google Play Music : add seeking support [\#219](https://github.com/ColinDuquesnoy/MellowPlayer/pull/219) ([DmMlhch](https://github.com/DmMlhch))
+- Minor docs updates [\#215](https://github.com/ColinDuquesnoy/MellowPlayer/pull/215) ([axxx007xxxz](https://github.com/axxx007xxxz))
+
 ## [3.3.5](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.5) (2018-03-03)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.4...3.3.5)
 
@@ -15,7 +54,7 @@
 
 **Merged pull requests:**
 
-- add Hypemachine [\#208](https://github.com/ColinDuquesnoy/MellowPlayer/pull/208) ([bayang](https://github.com/bayang))
+- Add Hypemachine support [\#208](https://github.com/ColinDuquesnoy/MellowPlayer/pull/208) ([bayang](https://github.com/bayang))
 
 ## [3.3.4](https://github.com/ColinDuquesnoy/MellowPlayer/tree/3.3.4) (2018-02-18)
 [Full Changelog](https://github.com/ColinDuquesnoy/MellowPlayer/compare/3.3.3...3.3.4)

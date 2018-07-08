@@ -1,7 +1,7 @@
 #pragma once
 
-#include <catch.hpp>
-#include <fakeit.hpp>
+#include <catch/catch.hpp>
+#include <fakeit/fakeit.hpp>
 
 #define Check(statement) \
     try { \
