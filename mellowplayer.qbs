@@ -13,8 +13,8 @@ Project {
 
     // Version info
     property int versionMajor: 3
-    property int versionMinor: 3
-    property int versionPatch: 50
+    property int versionMinor: 4
+    property int versionPatch: 0
     property int buildNumber: {
         var ciBuildNumber = Environment.getEnv("TRAVIS_BUILD_NUMBER");
         if (!ciBuildNumber) {
