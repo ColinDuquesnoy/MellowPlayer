@@ -2,6 +2,7 @@
 #include <MellowPlayer/Domain/Settings/ISettingsStore.hpp>
 #include <MellowPlayer/Domain/Settings/Settings.hpp>
 #include <MellowPlayer/Domain/Settings/SettingsCategory.hpp>
+#include <QVersionNumber>
 
 using namespace std;
 using namespace MellowPlayer::Domain;
@@ -74,6 +75,13 @@ void Setting::setValue(const QVariant& newValue)
 bool Setting::isEnabled() const
 {
     QString cond = data_.enableCondition;
+
+    if (cond.contains("qtVersion >="))
+    {
+        QVersionNumber requiredQtVersion = QVersionNumber::fromString(cond.split(">=")[1].trimmed().toLower());
+        QVersionNumber qtVersion(QT_VERSION_MAJOR, QT_VERSION_MINOR);
+        return qtVersion >= requiredQtVersion;
+    }
 
     if (parentSetting_ == nullptr)
         return true;

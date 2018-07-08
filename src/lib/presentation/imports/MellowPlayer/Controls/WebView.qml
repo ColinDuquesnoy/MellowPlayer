@@ -129,6 +129,8 @@ WebEngineView {
     onFullScreenRequested: mainWindow.toggleFullScreen(request)
     onNewViewRequested: mainWindow.openWebPopup(request, profile)
 
+    Component.onCompleted: d.updatePlaybackRequiresUserGesture()
+
     ValidationMessage {
         id: validationMessage
     }
@@ -274,6 +276,11 @@ WebEngineView {
         onChangeVolumeRequest: playerBridge.changeVolume(newVolume)
     }
 
+    Connections {
+        target: _settings.get(SettingKey.MAIN_PLAYBACK_REQUIRES_USER_GESTURE)
+        onValueChanged: d.updatePlaybackRequiresUserGesture()
+    }
+
     QtObject {
         id: d
 
@@ -282,6 +289,16 @@ WebEngineView {
         property int zoomFactorIndex: root.service.zoomFactor
 
         onZoomFactorIndexChanged: root.service.zoomFactor = zoomFactorIndex
+
+        function updatePlaybackRequiresUserGesture() {
+            try {
+                root.settings.playbackRequiresUserGesture = _settings.get(SettingKey.MAIN_PLAYBACK_REQUIRES_USER_GESTURE).value
+                root.reload()
+                console.log("playbackRequiresUserGesture: " + root.settings.playbackRequiresUserGesture)
+            } catch(e) {
+                console.log("playbackRequiresUserGesture setting not supported with this version of Qt.")
+            }
+        }
 
         function checkForCustomUrlRequired() {
             var match = service.url.match("(@.*@)");
@@ -343,32 +360,4 @@ WebEngineView {
             return webEngineScript;
         }
     }
-
-//    QtObject {
-//        id: nullService
-
-//        property int zoomFactor: 1
-//        property QtObject player: QtObject {
-//            property string sourceCode: ""
-
-//            signal play()
-//            signal pause()
-//            signal next()
-//            signal previous()
-//            signal addToFavorites()
-//            signal removeFromFavorites()
-//            signal seekToPositionRequest(var position)
-//            signal changeVolumeRequest(double newVolume)
-//        }
-
-//        property QtObject networkProxy: QtObject {
-//            signal changed();
-//        }
-//        property QtObject userScripts: QtObject {
-//            property var model: []
-//        }
-
-//        property string url: ""
-//        property string name: ""
-//    }
 }

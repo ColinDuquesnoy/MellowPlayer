@@ -41,7 +41,15 @@
 					"default": 0,
 					"key": "update-channel",
 					"enabled": "main/check-for-updates"
-				}
+                },
+                {
+                    "name": "Playback requires user gesture",
+                    "tooltip": "Inhibits playback of media content until the user interacts with the page. This is similar to how Chrome on Android behaves, while the default behavior when it is disabled is similar to Chrome on desktop",
+                    "type": "bool",
+                    "default": false,
+                    "key": "playback-requires-user-gesture",
+                    "enabled": "qtVersion >= 5.11"
+                }
 			]
 		},
 		{
