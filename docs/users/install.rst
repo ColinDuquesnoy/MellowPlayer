@@ -63,26 +63,6 @@ Spotify requires the widevine ppapi plugin to work, you can install it by runnin
     sudo chmod 644 /usr/lib/chromium/libwidevinecdmadapter.so
 
 
-Ubuntu 17.10
-++++++++++++
-
-Before installing MellowPlayer, **make sure the universe repository is enabled**:
-
-.. code-block:: bash
-
-    sudo add-apt-repository universe
-
-
-Install procedure:
-
-.. code-block:: bash
-
-    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_17.10/ /' > /etc/apt/sources.list.d/mellowplayer.list"
-    wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_17.10/Release.key -O Release.key
-    sudo apt-key add - < Release.key
-    sudo apt-get update
-    sudo apt install mellowplayer
-
 Ubuntu 18.04
 ++++++++++++
 
