@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Try to fetch the art base64",
+        "tooltip": "Not working",
+        "type": "bool",
+        "default": false,
+        "key": "artFetch"
+    },
+    {
+        "name": "Skip credits",
+        "tooltip": "Skip the recap and the intro",
+        "type": "bool",
+        "default": false,
+        "key": "skipCredits"
+    }
+]
