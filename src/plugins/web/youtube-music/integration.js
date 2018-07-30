@@ -19,28 +19,29 @@
 
 var player;
 
+var defaultArray = {
+    "playbackStatus": mellowplayer.PlaybackStatus.STOPPED,
+    "volume": 0,
+    "duration": 0,
+    "position": 0,
+    "songId": 0,
+    "songTitle": "",
+    "albumTitle": "",
+    "artistName": "",
+    "artUrl": "",
+    "canSeek": false,
+    "canGoNext": false,
+    "canGoPrevious": false,
+    "canAddToFavorites": false,
+    "isFavorite": false
+};
+
 function update() {
     player = document.querySelector('video');
 
     // If the player is not currently playing a video
     if(!player) {
-        return {
-            "playbackStatus": mellowplayer.PlaybackStatus.STOPPED,
-            "volume": 0,
-            "duration": 0,
-            "position": 0,
-            "songId": 0,
-            "songTitle": "",
-            "artistName": "",
-            "artUrl": "",
-            "canSeek": false,
-            "canGoNext": false,
-            "canGoPrevious": false,
-
-            "albumTitle": "",
-            "canAddToFavorites": false,
-            "isFavorite": false
-        };
+        return defaultArray;
     }
 
     // An ad is currently played
@@ -73,8 +74,11 @@ function update() {
     // Song title
     var songTitle = document.querySelector('.title.ytmusic-player-bar').innerText;
 
+    if(songTitle == "")
+	return defaultArray;
+
     // Artist name
-    var artistName = document.querySelector('.subtitle.ytmusic-player-bar').children[0].innerText.trim();
+    var artistName = document.querySelector('.subtitle.ytmusic-player-bar .yt-formatted-string').innerText.trim();
 
     // Art URL
     var artUrl = document.querySelector('img.ytmusic-player-bar').src;
