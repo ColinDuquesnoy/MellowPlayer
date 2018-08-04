@@ -1,6 +1,6 @@
 cd ..\..\..
 
-set QTDIR=C:\Qt\5.11.0\msvc2017_64
+set QTDIR=C:\Qt\5.11.1\msvc2017_64
 set PATH=%QTDIR%\bin;%QTDIR%\lib;%PATH%
 set INSTALL_DIR=build\release\install-root\
 
@@ -8,3 +8,4 @@ set INSTALL_DIR=build\release\install-root\
 
 cd build
 qbs build -f ../ -p MellowPlayer_Setup config:release projects.MellowPlayer.buildTests:true
+
