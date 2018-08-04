@@ -34,7 +34,7 @@
 #include <tuple>
 
 inline bool catch_uncaught_exceptions() {
-#if __cplusplus >= 201703L
+#if __cplusplus >= 201703L && !__clang__
     return std::uncaught_exceptions() > 0;
 #else
     return std::uncaught_exception();
