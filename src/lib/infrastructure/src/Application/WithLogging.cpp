@@ -25,7 +25,7 @@ void WithLogging::initialize()
     auto logDirectory = FileHelper::logDirectory();
     auto version = BuildConfig::getVersion();
     auto buildInfo = BuildConfig::buildInfo();
-
+    LOG_INFO(logger, "****************************** Starting ***************************************");
     LOG_INFO(logger, QString("MellowPlayer %1 - %2").arg(version).arg(buildInfo));
     LOG_INFO(logger, "Log directory: " + logDirectory);
 
