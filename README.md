@@ -37,6 +37,7 @@ notifications and more).
 | [Wynk](https://www.wynk.in/music)                         | Yes       | No       | No      | No  | Yes                          | No                       | No           |
 | [ympd](https://github.com/notandy/ympd)                   | Yes       | Yes      | Yes     | Yes | No                           | No                       | No           |
 | [Plex](https://www.plex.tv/)                              | Yes       | No       | No      | No  | Yes                          | No                       | ?            |
+| [Netflix](https://www.netflix.com/)                       | Yes       | No       | No      | No  | Yes                          | No                       | Yes          |
 
 # Limitations:
 
