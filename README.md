@@ -38,6 +38,7 @@ notifications and more).
 | [ympd](https://github.com/notandy/ympd)                   | Yes       | Yes      | Yes     | Yes | No                           | No                       | No           |
 | [Plex](https://www.plex.tv/)                              | Yes       | No       | No      | No  | Yes                          | No                       | ?            |
 | [Youtube Music](https://music.youtube.com/)               | Yes       | Yes      | Yes     | Yes | Depends on the stream        | No                       | No           |
+| [Netflix](https://www.netflix.com)                        | Yes       | No       | No      | No  | No                           | No                       | Yes          |
 
 # Limitations:
 
