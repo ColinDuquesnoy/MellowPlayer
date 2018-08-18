@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Skip credits",
+        "tooltip": "Skip the recap and the intro",
+        "type": "bool",
+        "default": false,
+        "key": "skipCredits"
+    }
+]
