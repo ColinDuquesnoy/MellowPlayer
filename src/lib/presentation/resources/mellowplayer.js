@@ -7,7 +7,8 @@ MellowPlayer = {
         if (MellowPlayer.ready && MellowPlayer.player.isRunning) {
             var updateResults = update();
             try {
-                updateResults.songId = getHashCode(updateResults.songTitle);
+                if(updateResults.songId == 0)
+                    updateResults.songId = getHashCode(updateResults.songTitle);
             } catch (e) {
                 updateResults.songId = -1;
             }
