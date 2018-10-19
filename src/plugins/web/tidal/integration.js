@@ -1,7 +1,6 @@
 var previousID = -1;
 
-function getItemByTestID(buttonName, parent)
-{
+function getItemByTestID(buttonName, parent) {
     parent = parent || document;
     return parent.querySelectorAll("[data-test-id=\""+buttonName+"\"]")[0];
 }
@@ -10,8 +9,7 @@ function isPaused() {
     return getItemByTestID("play");
 }
 
-function getAlbumTitle()
-{
+function getAlbumTitle() {
     var links = document.getElementsByClassName("infoTable--22VxO")[0].getElementsByTagName('a');
     for(var link = 0; link < links.length; link++)
         if(links[link].href.indexOf("/album/") !== -1)
@@ -100,9 +98,12 @@ function update() {
         
         // We skip the default album image placeholder, it loads before the first album loads, so on start there won't
         // be a album on MPRIS as it will be cached for the first loaded song, also it doesn't show up as it is svg
+        if(results.artUrl.indexOf("defaultAlbumImage.78c633.svg") !== -1)
+            results.artUrl = "";
+
         // also don't allow to load the art if we still hasn't started buffering.
         // We drop the status about the song until we find the art, so it won't create multiple item in the listening history
-        if(results.artUrl.indexOf("defaultAlbumImage.78c633.svg") !== -1 || results.songId != previousID || results.playbackStatus == mellowplayer.PlaybackStatus.BUFFERING) {
+        if(results.songId != previousID || results.playbackStatus == mellowplayer.PlaybackStatus.BUFFERING) {
             results.songTitle = "";
             results.songId = 0;
             results.artUrl = "";
@@ -116,7 +117,7 @@ function update() {
         // If it is paused, we use the seekbar's value, as if we seek, only that will be updated
         results.position = isPaused() ? getItemByTestID("progress-bar", infoDiv).getAttribute("aria-valuenow") : toSeconds(getItemByTestID("duration", infoDiv).children[0].innerHTML);
         results.duration = toSeconds(getItemByTestID("duration", infoDiv).children[1].innerHTML);
-        results.volume = infoDiv.getElementsByClassName("nativeRange--EDim6")[0].value;
+        results.volume = infoDiv.getElementsByClassName("nativeRange--EDim6")[0].value / 100;
         results.isFavorite = infoDiv.getElementsByClassName("mediaActions--3gVRx")[0].getElementsByClassName("button--1GSBa")[0].classList.contains("favorite--3ptX1");
         results.albumTitle = getAlbumTitle();
         results.canSeek = true;
@@ -142,8 +143,16 @@ function goPrevious() {
     getItemByTestID("previous").click();
 }
 
-function setVolume(volume) {   
-    sendMouseClickToElement(getItemByTestID("footer-player").getElementsByClassName("nativeRange--EDim6")[0], volume, 0.5);   
+function setVolume(volume) {
+    if(volume == 0)
+        getItemByTestID("volume", getItemByTestID("footer-player")).click();
+    else{
+        var volumeSlider = getItemByTestID("footer-player").getElementsByClassName("nativeRange--EDim6")[0];
+        volumeSlider.value = volume * 100;
+        volumeSlider.dispatchEvent(new Event('input', {
+            'bubbles': true
+        }));
+    }
 }
 
 function addToFavorites() {
