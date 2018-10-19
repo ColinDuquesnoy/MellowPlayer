@@ -86,10 +86,7 @@ function update() {
             previousID = results.songId;
         }
         
-        // Replacing HTTPS to HTTP, as it gives OpenSSL errors and doesn't download the image.
-        /// TODO: It should be fixed, and reverted back to HTTPS, as know someone on the network can see what album
-        /// is being played
-        results.artUrl = getItemByTestID("current-media-imagery", infoDiv).children[0].src.replace("https", "http");
+        results.artUrl = getItemByTestID("current-media-imagery", infoDiv).children[0].src;
         
         // On the initial song, there is no buffering, so we can accept the first valid album art
         if(previousID == -1)
