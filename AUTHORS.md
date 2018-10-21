@@ -15,3 +15,4 @@ Contributors
 - [Rasmus Thomsen](https://github.com/Cogitri)
 - [DmMlhch](https://github.com/DmMlhch)
 - [Rustam Zhumagambetov](https://github.com/rustamzh)
+- [Nagy Tamás (T-bond)](https://github.com/T-bond)
