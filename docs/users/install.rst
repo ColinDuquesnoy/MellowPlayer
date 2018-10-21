@@ -80,7 +80,27 @@ Install procedure:
     sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_18.04/ /' > /etc/apt/sources.list.d/mellowplayer.list"
     wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_18.04/Release.key -O Release.key
     sudo apt-key add - < Release.key
-    sudo apt-get update
+    sudo apt update
+    sudo apt install mellowplayer
+    
+Ubuntu 18.10
+++++++++++++
+
+Before installing MellowPlayer, **make sure the universe repository is enabled**:
+
+.. code-block:: bash
+
+    sudo add-apt-repository universe
+
+
+Install procedure:
+
+.. code-block:: bash
+
+    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ColinDuquesnoy/xUbuntu_18.10/ /' > /etc/apt/sources.list.d/mellowplayer.list"
+    wget -nv https://download.opensuse.org/repositories/home:ColinDuquesnoy/xUbuntu_18.10/Release.key -O Release.key
+    sudo apt-key add - < Release.key
+    sudo apt update
     sudo apt install mellowplayer
     
 ArchLinux
