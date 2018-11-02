@@ -17,7 +17,7 @@
 //
 //-----------------------------------------------------------------------------
 
-const nowPlayingBar = "#main > div > div.Root__now-playing-bar > footer > div.now-playing-bar"
+const nowPlayingBar = "#main > div > div.Root__now-playing-bar > footer > div.now-playing-bar";
 
 function getButtons() {
     function getPlayPauseButton() {
