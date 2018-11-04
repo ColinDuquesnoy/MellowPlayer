@@ -16,10 +16,13 @@
 // along with MellowPlayer.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+
+const nowPlayingBar = "#main > div > div.Root__now-playing-bar > footer > div.now-playing-bar";
+
 function getButtons() {
     function getPlayPauseButton() {
-        var playButton = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-play-16.control-button--circled");
-        var pauseButton = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-pause-16.control-button--circled");
+        var playButton = document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-play-16.control-button--circled`);
+        var pauseButton = document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-pause-16.control-button--circled`);
 
         if (playButton === null)
             return pauseButton;
@@ -28,15 +31,15 @@ function getButtons() {
     }
 
     function getSkipPreviousSongButton() {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-back-16");
+        return document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-back-16`);
     }
 
     function getSkipNextSongButton() {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-forward-16");
+        return document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.player-controls__buttons > button.control-button.spoticon-skip-forward-16`);
     }
 
     function getAddRemoveToMusicButton() {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > button");
+        return document.querySelector(`${nowPlayingBar} > div.now-playing-bar__left > div > button`);
     }
 
     return {
@@ -58,7 +61,7 @@ function getPlaybackStatus() {
 
 function getArtist() {
     try {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div.now-playing-bar > div.now-playing-bar__left > div > div > div.track-info__artists").children[0].children[0].children[0].innerText;
+        return document.querySelector(`${nowPlayingBar} > div.now-playing-bar__left > div > div > div.track-info__artists`).children[0].children[0].children[0].innerText;
     } catch (e) {
         return ""
     }
@@ -66,7 +69,7 @@ function getArtist() {
 
 function getSongTitle() {
     try {
-        return document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > div > div.track-info__name > div").children[0].innerText;
+        return document.querySelector(`${nowPlayingBar} > div.now-playing-bar__left > div > div > div.track-info__name > div`).children[0].innerText;
     } catch (e) {
         return ""
     }
@@ -94,20 +97,20 @@ function readTime(timeString) {
 }
 
 function getPosition() {
-    return readTime(document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(1)").innerText);
+    return readTime(document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(1)`).innerText);
 }
 
 function getDuration() {
-    return readTime(document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(3)").innerText);
+    return readTime(document.querySelector(`${nowPlayingBar} > div.now-playing-bar__center > div > div.playback-bar > div:nth-child(3)`).innerText);
 }
 
 function getVolume() {
-    var volumeStr = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__right > div > div > div > div > div > div.progress-bar__fg").style.width.replace("%", "");
+    var volumeStr = document.querySelector(`${nowPlayingBar} > div.now-playing-bar__right > div > div > div > div > div > div.progress-bar__fg`).style.width.replace("%", "");
     return parseFloat(volumeStr) / 100.0;
 }
 
 function getArtUrl() {
-    var artUrlDiv = document.querySelector("#main > div > div.nowPlayingBar-container > footer > div > div.now-playing-bar__left > div > span > a > div > div > div > div.cover-art-image.cover-art-image-loaded");
+    var artUrlDiv = document.querySelector(`${nowPlayingBar} > div.now-playing-bar__left > div > span > a > div > div > div > div.cover-art-image.cover-art-image-loaded`);
     if (artUrlDiv === null) {
         return "";
     }
