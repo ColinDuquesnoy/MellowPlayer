@@ -107,9 +107,6 @@ struct ApplicationFactory {
 
             auto baseApplication = make_shared<Application>(qtApplication);
 
-#ifdef QT_DEBUG
-            auto withLogging = make_shared<WithLogging>(baseApplication, commandLineArguments);
-#else
             IPlayer& player = injector.template create<IPlayer&>();
             IFactory<ILocalServer, QString>& localServerFactory = injector.template create<IFactory<ILocalServer, QString>&>();
             IFactory<ILocalSocket>& localSocketFactory = injector.template create<IFactory<ILocalSocket>&>();
@@ -118,7 +115,7 @@ struct ApplicationFactory {
                                                               commandLineArguments, localServerFactory,
                                                               localSocketFactory);
             auto withLogging = make_shared<WithLogging>(singleInstance, commandLineArguments);
-#endif
+
             object_ = make_shared<WithCommandLineArguments>(withLogging, commandLineArguments);
         }
         return object_;
